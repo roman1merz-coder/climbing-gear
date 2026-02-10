@@ -369,18 +369,19 @@ function ProsCons({ pros, cons }) {
 function ImageGallery({ shoe }) {
   const [active, setActive] = useState(0);
   const views = ["Side view", "Top view", "Sole", "Heel"];
+  const hasImage = shoe.image_url && shoe.image_url.startsWith("/images/");
   return (
     <div>
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
         position: "relative", border: `1px solid ${T.border}`,
-        background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        background: hasImage ? `url(${shoe.image_url}) center/contain no-repeat, ${T.card}` : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <div style={{ textAlign: "center" }}>
+        {!hasImage && <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>👟</div>
           <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>{views[active]}</div>
-        </div>
+        </div>}
         <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
           {views.map((_, i) => (
             <button key={i} onClick={() => setActive(i)} style={{
@@ -396,12 +397,13 @@ function ImageGallery({ shoe }) {
           <button key={i} onClick={() => setActive(i)} style={{
             flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
             border: i === active ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
-            background: T.surface, cursor: "pointer", opacity: i === active ? 1 : 0.5,
+            background: i === 0 && hasImage ? `url(${shoe.image_url}) center/contain no-repeat, ${T.surface}` : T.surface,
+            cursor: "pointer", opacity: i === active ? 1 : 0.5,
             transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
             flexDirection: "column", gap: "2px",
           }}>
-            <span style={{ fontSize: "18px", opacity: 0.5 }}>👟</span>
-            <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>
+            {!(i === 0 && hasImage) && <span style={{ fontSize: "18px", opacity: 0.5 }}>👟</span>}
+            {!(i === 0 && hasImage) && <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>}
           </button>
         ))}
       </div>

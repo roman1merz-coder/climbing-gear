@@ -5,3 +5,8 @@ dist
 *.local
 .DS_Store
 .vercel
+
+# Shoe images (too large for git, deployed via Vercel)
+public/images/shoes/
+scrape_images.mjs
+scrape_images.py
