@@ -11084,86 +11084,6 @@
   },
   {
     "brand": "Evolv",
-    "model": "Titan",
-    "slug": "evolv-titan",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "feel": "moderate",
-    "downturn": "moderate",
-    "asymmetry": "slight",
-    "volume": "standard",
-    "width": "medium",
-    "heel": "medium",
-    "closure": "lace",
-    "upper_material": "synthetic",
-    "midsole": "partial",
-    "toe_patch": "full",
-    "heel_rubber_coverage": "full",
-    "gender": "unisex",
-    "rand": "tensioned",
-    "stretch_expectation": "none",
-    "break_in_period": "moderate",
-    "ankle_protection": "none",
-    "skill_level": [
-      "intermediate",
-      "advanced"
-    ],
-    "use_cases": [
-      "sport",
-      "trad_multipitch"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical",
-      "overhang"
-    ],
-    "best_rock_types": [
-      "limestone",
-      "granite",
-      "sandstone"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear",
-      "crack"
-    ],
-    "durability": [
-      "moderate",
-      "high"
-    ],
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_type": "TRAX HF 4mm (forefoot) / TRAX HF (heel)",
-    "rubber_thickness_mm": 4,
-    "vegan": true,
-    "resoleable": true,
-    "toe_form": "egyptian",
-    "kids_friendly": false,
-    "rubber_compound": "TRAX HF",
-    "rubber_manufacturer": "TRAX",
-    "weight_g": 500,
-    "size_range": "36-44.5",
-    "description": "A balanced performer with moderate downturn, the Titan delivers precision and comfort across varied wall angles. Lace closure offers precise foot locking, ideal for technical sport, trad_multipitch. With standard volume and responsive TRAX HF rubber, this shoe handles all foothold types.",
-    "pros": [
-      "Balanced downturn for versatility",
-      "Precise lace-up control",
-      "Vegan-friendly materials",
-      "Resoleable for durability"
-    ],
-    "cons": [
-      "Medium width may feel snug",
-      "Requires moderate break-in time"
-    ],
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
-    "customer_voices": [
-      "These feel natural on everything I climb. Solid all-around shoe from Evolv.",
-      "Perfect for long sport pitches. Comfort matters, and these deliver.",
-      "Worth the investment. Evolv really nailed this design."
-    ]
-  },
-  {
-    "brand": "Evolv",
     "model": "Rave",
     "slug": "evolv-rave",
     "price_uvp_eur": 129,
@@ -11480,7 +11400,8 @@
       "These feel natural on everything I climb. Solid all-around shoe from Evolv.",
       "Perfect for long sport pitches. Comfort matters, and these deliver.",
       "Worth the investment. Evolv really nailed this design."
-    ]
+    ],
+    "image_url": "/images/shoes/evolv-nighthawk.jpg"
   },
   {
     "brand": "Evolv",
@@ -11709,82 +11630,6 @@
       "Worth the investment. Evolv really nailed this design."
     ],
     "image_url": "/images/shoes/evolv-royale.jpg"
-  },
-  {
-    "brand": "Evolv",
-    "model": "Cruzer Psyche",
-    "slug": "evolv-cruzer-psyche",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "feel": "stiff",
-    "downturn": "flat",
-    "asymmetry": "none",
-    "volume": "standard",
-    "width": "medium",
-    "heel": "medium",
-    "closure": "lace",
-    "upper_material": "synthetic",
-    "midsole": "full",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
-    "gender": "unisex",
-    "rand": "relaxed",
-    "stretch_expectation": "none",
-    "break_in_period": "minimal",
-    "ankle_protection": "none",
-    "skill_level": [
-      "beginner",
-      "hobby"
-    ],
-    "use_cases": [
-      "sport"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_rock_types": [
-      "granite",
-      "sandstone",
-      "limestone"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "durability": [
-      "high"
-    ],
-    "rubber_hardness": [
-      "hard"
-    ],
-    "rubber_type": "TRAX Enduro 5mm",
-    "rubber_thickness_mm": 5,
-    "vegan": true,
-    "resoleable": false,
-    "toe_form": "egyptian",
-    "kids_friendly": false,
-    "rubber_compound": "TRAX Enduro",
-    "rubber_manufacturer": "TRAX",
-    "weight_g": 374,
-    "size_range": "35-48",
-    "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Lace closure offers precise foot locking, ideal for technical sport. With standard volume and responsive TRAX Enduro rubber, this shoe handles all foothold types.",
-    "pros": [
-      "Minimal downturn for slabs",
-      "Durable hard rubber compound",
-      "Precise lace-up control",
-      "Vegan-friendly materials"
-    ],
-    "cons": [
-      "Medium width may feel snug",
-      "Limited on steep overhangs"
-    ],
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
-    "customer_voices": [
-      "These feel natural on everything I climb. Solid all-around shoe from Evolv.",
-      "Perfect for long sport pitches. Comfort matters, and these deliver.",
-      "Worth the investment. Evolv really nailed this design."
-    ]
   },
   {
     "brand": "Evolv",
@@ -15721,7 +15566,8 @@
     "customer_voices": [
       "The precision and support are unmatched at this level. These shoes keep up with my ambitions.",
       "These work equally well in the gym and outdoors. Solid everyday climbing shoe that delivers performance."
-    ]
+    ],
+    "image_url": "/images/shoes/boreal-ballet-gold.jpg"
   },
   {
     "brand": "Boreal",
@@ -18014,7 +17860,8 @@
     "customer_voices": [
       "Czech engineering makes this a pocket assassin. Responsive and precise.",
       "Asymmetry feels natural, not forced. Volumes are just right."
-    ]
+    ],
+    "image_url": "/images/shoes/ocun-diamond-s.jpg"
   },
   {
     "brand": "Ocún",
@@ -18808,7 +18655,8 @@
     "customer_voices": [
       "No toe patch forced me to place feet properly. Cracks feel solid.",
       "Stiff midsole stands up to hours of granite friction."
-    ]
+    ],
+    "image_url": "/images/shoes/ocun-jett-crack.jpg"
   },
   {
     "brand": "Ocún",
@@ -23663,7 +23511,8 @@
     "customer_voices": [
       "Stiff Enigma Black suited vertical and overhang equally. Balanced performer.",
       "Extasy HG was a pleasant surprise—proprietary rubber works."
-    ]
+    ],
+    "image_url": "/images/shoes/saltic-enigma-black-evo.jpg"
   },
   {
     "brand": "Saltic",
@@ -23989,161 +23838,6 @@
       "Guru lived up to its name—versatile guide through my progression."
     ],
     "image_url": "/images/shoes/saltic-guru-evo.jpg"
-  },
-  {
-    "brand": "Saltic",
-    "model": "Vampir",
-    "slug": "saltic-vampir",
-    "price_uvp_eur": 109,
-    "current_price_eur": null,
-    "feel": "moderate",
-    "downturn": "flat",
-    "asymmetry": "none",
-    "volume": "high",
-    "width": "wide",
-    "heel": "medium",
-    "closure": "velcro",
-    "upper_material": "microfiber",
-    "midsole": "partial",
-    "toe_patch": "full",
-    "heel_rubber_coverage": "partial",
-    "gender": "unisex",
-    "rand": "relaxed",
-    "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "ankle_protection": "none",
-    "skill_level": [
-      "beginner",
-      "intermediate"
-    ],
-    "use_cases": [
-      "sport",
-      "trad_multipitch"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_rock_types": [
-      "sandstone",
-      "limestone",
-      "granite"
-    ],
-    "best_foothold_types": [
-      "smear",
-      "edge"
-    ],
-    "durability": [
-      "high"
-    ],
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_type": "Extasy HG (proprietary)",
-    "rubber_thickness_mm": 4,
-    "vegan": true,
-    "resoleable": true,
-    "toe_form": "roman",
-    "kids_friendly": false,
-    "rubber_compound": "Extasy HG",
-    "rubber_manufacturer": "Proprietary",
-    "weight_g": 320,
-    "size_range": "34-46",
-    "description": "Budget-friendly Czech option for wide feet with flat geometry and relaxed philosophy. Moderate feel and proprietary Extasy HG rubber handle slab and vertical climbing while wide platform accommodates roomy feet. Quick learning curve suits beginners.",
-    "pros": [
-      "Budget price point accessible",
-      "Wide fit comfortable",
-      "Flat geometry beginner-friendly",
-      "Minimal break-in period"
-    ],
-    "cons": [
-      "Flat geometry uninspiring",
-      "Partial heel coverage limited",
-      "Generic performance expectations"
-    ],
-    "sizing": "Microfiber minimal stretch fits true-to-size. Wide width and volume engineered for broader feet without compromise.",
-    "customer_voices": [
-      "Affordable Czech shoe for wide feet. Vampir delivered.",
-      "Flat geometry let me learn without foot fighting gear anxiety."
-    ]
-  },
-  {
-    "brand": "Saltic",
-    "model": "Fenix",
-    "slug": "saltic-fenix",
-    "price_uvp_eur": 109,
-    "current_price_eur": null,
-    "feel": "moderate",
-    "downturn": "flat",
-    "asymmetry": "slight",
-    "volume": "standard",
-    "width": "medium",
-    "heel": "medium",
-    "closure": "lace",
-    "upper_material": "microfiber",
-    "midsole": "partial",
-    "toe_patch": "medium",
-    "heel_rubber_coverage": "partial",
-    "gender": "unisex",
-    "rand": "relaxed",
-    "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "ankle_protection": "none",
-    "skill_level": [
-      "beginner",
-      "intermediate"
-    ],
-    "use_cases": [
-      "sport",
-      "trad_multipitch"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_rock_types": [
-      "sandstone",
-      "limestone",
-      "granite"
-    ],
-    "best_foothold_types": [
-      "smear",
-      "edge"
-    ],
-    "durability": [
-      "moderate",
-      "high"
-    ],
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_type": "Extasy HG (proprietary)",
-    "rubber_thickness_mm": 4,
-    "vegan": true,
-    "resoleable": true,
-    "toe_form": "roman",
-    "kids_friendly": false,
-    "rubber_compound": "Extasy HG",
-    "rubber_manufacturer": "Proprietary",
-    "weight_g": 380,
-    "size_range": "34-46",
-    "description": "Moderate Czech lace-up with relaxed design for sport and trad multipitch. Flat profile and slight asymmetry suit varied terrain while proprietary Extasy HG rubber maintains responsive feedback. Minimal break-in enables rapid progression.",
-    "pros": [
-      "Lace precision for fit",
-      "Relaxed all-terrain approach",
-      "Flat profile versatile",
-      "Minimal break-in period"
-    ],
-    "cons": [
-      "Laces require adjustments",
-      "Moderate durability expected",
-      "Partial heel rubber limited"
-    ],
-    "sizing": "Microfiber minimal stretch fits true-to-size with lacing. Standard width accommodates typical feet with lace fine-tuning capability.",
-    "customer_voices": [
-      "Lace precision for multipitch climbing—Fenix earned its name.",
-      "Relaxed approach meant long pitches without fatigue."
-    ]
   },
   {
     "brand": "Saltic",
@@ -24534,79 +24228,6 @@
       "Lace precision on long multipitch meant secure foot placement."
     ],
     "image_url": "/images/shoes/saltic-garnet.jpg"
-  },
-  {
-    "brand": "Saltic",
-    "model": "Givet",
-    "slug": "saltic-givet",
-    "price_uvp_eur": 99,
-    "current_price_eur": null,
-    "feel": "soft",
-    "downturn": "flat",
-    "asymmetry": "none",
-    "volume": "high",
-    "width": "wide",
-    "heel": "medium",
-    "closure": "lace",
-    "upper_material": "microfiber",
-    "midsole": "none",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
-    "gender": "unisex",
-    "rand": "relaxed",
-    "stretch_expectation": "half_size",
-    "break_in_period": "minimal",
-    "ankle_protection": "none",
-    "skill_level": [
-      "beginner"
-    ],
-    "use_cases": [
-      "sport"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_rock_types": [
-      "indoor",
-      "sandstone"
-    ],
-    "best_foothold_types": [
-      "smear"
-    ],
-    "durability": [
-      "moderate"
-    ],
-    "rubber_hardness": [
-      "soft"
-    ],
-    "rubber_type": "Extasy HG (proprietary)",
-    "rubber_thickness_mm": 4,
-    "vegan": true,
-    "resoleable": true,
-    "toe_form": "roman",
-    "kids_friendly": false,
-    "rubber_compound": "Extasy HG",
-    "rubber_manufacturer": "Proprietary",
-    "weight_g": 380,
-    "size_range": "34-46",
-    "description": "Budget entry-level Czech option with wide fit, soft Extasy HG rubber, and minimalist construction. No midsole emphasizes ground feel while lace precision and relaxed geometry suit beginners. Half-size stretch expectation allows affordable fit discovery.",
-    "pros": [
-      "Budget price beginner-accessible",
-      "Wide fit forgiving",
-      "Soft Extasy HG responsive",
-      "Minimal break-in period"
-    ],
-    "cons": [
-      "No midsole limited support",
-      "No toe patch learning curve",
-      "Soft rubber not durable"
-    ],
-    "sizing": "Microfiber with half-size stretch expectation; size down and allow break-in. Wide fit accommodates beginners without extremes.",
-    "customer_voices": [
-      "Affordable entry into Czech climbing philosophy.",
-      "Wide fit and soft rubber made learning comfortable."
-    ]
   },
   {
     "brand": "Saltic",
