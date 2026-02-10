@@ -6,7 +6,6 @@ dist
 .DS_Store
 .vercel
 
-# Shoe images (too large for git, deployed via Vercel)
-public/images/shoes/
+# Shoe images - committed to git for Vercel deployment (74MB total)
 scrape_images.mjs
 scrape_images.py
