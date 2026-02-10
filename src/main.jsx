@@ -86,6 +86,21 @@ class ErrorBoundary extends React.Component {
 }
 
 // ─── Root ────────────────────────────────────────────────────
+// Build a slug→seed lookup so we can fill gaps from Supabase data
+const SEED_MAP = Object.fromEntries(SEED.map(s => [s.slug, s]));
+
+/** Merge Supabase row with seed data: Supabase wins for non-null fields, seed fills gaps */
+function mergeShoe(sbShoe) {
+  const seed = SEED_MAP[sbShoe.slug] || {};
+  const merged = { ...seed };
+  for (const [key, val] of Object.entries(sbShoe)) {
+    if (val !== null && val !== undefined) {
+      merged[key] = val;
+    }
+  }
+  return merged;
+}
+
 function Root() {
   const [shoes, setShoes] = useState(SEED);
   const [src, setSrc] = useState("local");
@@ -94,8 +109,13 @@ function Root() {
     supabaseSelect("shoes")
       .then((data) => {
         if (data?.length) {
-          setShoes(data);
-          setSrc("supabase");
+          // Merge Supabase data with seed data so null fields are filled from seed
+          const merged = data.map(mergeShoe);
+          // Also include any seed shoes not in Supabase
+          const sbSlugs = new Set(data.map(s => s.slug));
+          const extras = SEED.filter(s => !sbSlugs.has(s.slug));
+          setShoes([...merged, ...extras]);
+          setSrc("supabase+seed");
         }
       })
       .catch(() => {});

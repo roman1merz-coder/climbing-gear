@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 
-// â•â•â• SCORING FUNCTIONS â•â•â•
+// ═══ SCORING FUNCTIONS ═══
 
 const ORD = {
   toe_form: ["egyptian", "roman", "greek"],
@@ -108,13 +108,13 @@ function score(shoes, filters) {
     );
 }
 
-// â•â•â• FILTER GROUPS â•â•â•
+// ═══ FILTER GROUPS ═══
 
 const GROUPS = [
   {
     id: "basics",
     label: "Your Climbing",
-    icon: "ðŸ§—",
+    icon: "🧗",
     filters: [
       {
         key: "skill_level",
@@ -151,7 +151,7 @@ const GROUPS = [
   {
     id: "foot",
     label: "Your Foot",
-    icon: "ðŸ¦¶",
+    icon: "🦶",
     filters: [
       {
         key: "toe_form",
@@ -177,7 +177,7 @@ const GROUPS = [
   {
     id: "shoe",
     label: "Shoe Type",
-    icon: "ðŸ‘Ÿ",
+    icon: "👟",
     filters: [
       {
         key: "closure",
@@ -217,7 +217,7 @@ const GROUPS = [
   {
     id: "advanced",
     label: "Advanced",
-    icon: "ðŸ”¬",
+    icon: "🔬",
     filters: [
       {
         key: "durability",
@@ -262,9 +262,9 @@ const GROUPS = [
   {
     id: "price",
     label: "Price",
-    icon: "ðŸ’°",
+    icon: "💰",
     filters: [
-      { key: "current_price_eur", label: "Price (â‚¬)", type: "range", min: 50, max: 220 },
+      { key: "current_price_eur", label: "Price (€)", type: "range", min: 50, max: 220 },
       {
         key: "my_size",
         label: "My Size (EU)",
@@ -294,7 +294,7 @@ const GROUPS = [
   },
 ];
 
-// â•â•â• UI PRIMITIVES â•â•â•
+// ═══ UI PRIMITIVES ═══
 
 function Chip({ label, active, onClick }) {
   return (
@@ -411,7 +411,7 @@ function Bool({ label, value, onChange }) {
         transition: "all .2s",
       }}
     >
-      <span style={{ fontSize: "14px" }}>{value ? "âœ“" : "â—¯"}</span> {label}
+      <span style={{ fontSize: "14px" }}>{value ? "✓" : "◯"}</span> {label}
     </button>
   );
 }
@@ -621,7 +621,7 @@ function Card({ shoe, onClick }) {
               fontFamily: "'DM Mono',monospace",
             }}
           >
-            â‚¬{d.current_price_eur}
+            €{d.current_price_eur}
           </span>
           {d.current_price_eur < d.price_uvp_eur && (
             <span
@@ -632,7 +632,7 @@ function Card({ shoe, onClick }) {
                 fontFamily: "'DM Mono',monospace",
               }}
             >
-              â‚¬{d.price_uvp_eur}
+              €{d.price_uvp_eur}
             </span>
           )}
         </div>
@@ -677,7 +677,7 @@ function Card({ shoe, onClick }) {
   );
 }
 
-// â•â•â• MAIN APP â•â•â•
+// ═══ MAIN APP ═══
 
 export default function ClimbingGearApp({ shoes = [], src = "local" }) {
   const navigate = useNavigate();
@@ -685,7 +685,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
   const [openGroup, setOpenGroup] = useState("basics");
   const [query, setQuery] = useState("");
 
-  // â”€â”€ Weighted text relevance scoring â”€â”€
+  // ── Weighted text relevance scoring ──
   // Returns { shoe, relevance (0-100) } for each shoe, or null if no match.
   // Field weights: model name >> brand >> use_cases/closure/feel >> description
   const searchScored = useMemo(() => {
@@ -815,7 +815,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontSize: "24px" }}>ðŸ§—</span>
+          <span style={{ fontSize: "24px" }}>🧗</span>
           <span style={{ fontSize: "18px", fontWeight: 700, letterSpacing: "-0.5px" }}>
             climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
           </span>
@@ -833,7 +833,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                 pointerEvents: "none",
               }}
             >
-              ðŸ”
+              🔍
             </span>
             <input
               type="text"
@@ -872,7 +872,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                   lineHeight: 1,
                 }}
               >
-                Ã—
+                ×
               </button>
             )}
           </div>
@@ -882,17 +882,17 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                background: src === "supabase" ? "#22c55e" : "#3b82f6",
-                boxShadow: `0 0 6px ${src === "supabase" ? "rgba(34,197,94,.5)" : "rgba(59,130,246,.5)"}`,
+                background: src.includes("supabase") ? "#22c55e" : "#3b82f6",
+                boxShadow: `0 0 6px ${src.includes("supabase") ? "rgba(34,197,94,.5)" : "rgba(59,130,246,.5)"}`,
               }}
             />
             <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-              {src === "supabase" ? "Live Â· Supabase" : "Preview Â· Local"}
+              {src.includes("supabase") ? "Live · Supabase" : "Preview · Local"}
             </span>
           </div>
           <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
             {results.length} shoe{results.length !== 1 ? "s" : ""}
-            {ac > 0 && ` Â· ${ac} filter${ac > 1 ? "s" : ""}`}
+            {ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
           </span>
           {(ac > 0 || query) && (
             <button
@@ -1022,7 +1022,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                     transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)",
                   }}
                 >
-                  â€¹
+                  ‹
                 </span>
               </button>
               {openGroup === g.id && (
@@ -1062,7 +1062,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                           step={f.step || 1}
                           value={filters[f.key]}
                           onChange={(v) => set(f.key, v)}
-                          unit={f.key.includes("price") ? "â‚¬" : ""}
+                          unit={f.key.includes("price") ? "€" : ""}
                         />
                       )}
                       {f.type === "bool" && (
@@ -1093,9 +1093,9 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
               Match Score
             </div>
             {[
-              { c: "#22c55e", l: "80â€“100%", d: "Great fit" },
-              { c: "#E8734A", l: "50â€“79%", d: "Partial" },
-              { c: "#ef4444", l: "0â€“49%", d: "Weak" },
+              { c: "#22c55e", l: "80–100%", d: "Great fit" },
+              { c: "#E8734A", l: "50–79%", d: "Partial" },
+              { c: "#ef4444", l: "0–49%", d: "Weak" },
             ].map((x) => (
               <div
                 key={x.l}
@@ -1115,7 +1115,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                   }}
                 />
                 <span style={{ fontSize: "11px", color: "#9ca3af" }}>
-                  {x.l} â€“ {x.d}
+                  {x.l} – {x.d}
                 </span>
               </div>
             ))}
@@ -1162,7 +1162,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                       lineHeight: 1,
                     }}
                   >
-                    Ã—
+                    ×
                   </button>
                 </span>
               )}
@@ -1170,7 +1170,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                 const d = Array.isArray(v)
                   ? v.join(", ")
                   : typeof v === "object"
-                    ? `${v.min ?? ""}â€“${v.max ?? ""}`
+                    ? `${v.min ?? ""}–${v.max ?? ""}`
                     : typeof v === "boolean"
                       ? "Yes"
                       : v;
@@ -1205,7 +1205,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                         lineHeight: 1,
                       }}
                     >
-                      Ã—
+                      ×
                     </button>
                   </span>
                 );
@@ -1237,7 +1237,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
 
           {!results.length && (
             <div style={{ textAlign: "center", padding: "80px 0", color: "#6b7280" }}>
-              <div style={{ fontSize: "48px", marginBottom: "16px" }}>ðŸ§—</div>
+              <div style={{ fontSize: "48px", marginBottom: "16px" }}>🧗</div>
               <div style={{ fontSize: "16px", marginBottom: "8px" }}>
                 No shoes match{query ? ` "${query}"` : ""}
               </div>

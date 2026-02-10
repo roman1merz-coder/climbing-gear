@@ -1,11 +1,11 @@
 import { useState, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks } from "./utils/comfort.js";
 
-// â•â•â• DETAIL PAGE COMPONENTS â•â•â•
-// â”€â”€â”€ Tiny Components â”€â”€â”€
+// ═══ DETAIL PAGE COMPONENTS ═══
+// ─── Tiny Components ───
 function Tag({ children, variant = "default", icon, small }) {
   const styles = {
     default: { bg: T.card, color: T.muted, border: T.border },
@@ -45,7 +45,7 @@ function SectionHeader({ icon, title, subtitle, action }) {
   );
 }
 
-// â”€â”€â”€ Single Net (SVG spider chart) â”€â”€â”€
+// ─── Single Net (SVG spider chart) ───
 function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.accentSoft }) {
   const cx = size / 2, cy = size / 2, r = size * 0.34;
   const n = dims.length;
@@ -86,7 +86,7 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
   );
 }
 
-// â”€â”€â”€ Dual Radar: Specs + Style side-by-side â”€â”€â”€
+// ─── Dual Radar: Specs + Style side-by-side ───
 function DualRadar({ shoe }) {
   // === SPECS NET ===
   // Normalise raw specs to 0-1 range
@@ -100,7 +100,7 @@ function DualRadar({ shoe }) {
   const thickComp = shoe.rubber_thickness_mm ? Math.min(1, Math.max(0, (shoe.rubber_thickness_mm - 2) / 3)) : 0.5;
   const midComp = ({ full: 0.9, partial: 0.5, none: 0.1 })[shoe.midsole] || 0.5;
   const supportVal = Math.min(1, hardComp * 0.40 + thickComp * 0.35 + midComp * 0.25);
-  // Weight: 200g (lightest) â†’ 1.0, 890g (heaviest) â†’ 0.05, inverted so lighter = higher
+  // Weight: 200g (lightest) → 1.0, 890g (heaviest) → 0.05, inverted so lighter = higher
   const weightVal = shoe.weight_g ? Math.min(1, Math.max(0.05, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
   const specValues = [dtVal, asymVal, feelVal, supportVal, weightVal];
 
@@ -129,7 +129,7 @@ function DualRadar({ shoe }) {
 }
 
 
-// â”€â”€â”€ Spec Row â”€â”€â”€
+// ─── Spec Row ───
 function SpecRow({ label, value, highlight, confidence }) {
   if (!value) return null;
   const display = Array.isArray(value) ? value.map(fmt).join(", ") : cap(value);
@@ -158,7 +158,7 @@ function SpecRow({ label, value, highlight, confidence }) {
   );
 }
 
-// â”€â”€â”€ Price History Mini Chart â”€â”€â”€
+// ─── Price History Mini Chart ───
 function PriceChart({ data, width = 320, height = 100 }) {
   if (!data || !data.length) return null;
   const prices = data.map(d => d.price);
@@ -185,7 +185,7 @@ function PriceChart({ data, width = 320, height = 100 }) {
         const y = pad.t + h - ((v - min) / (max - min)) * h;
         return <g key={i}>
           <line x1={pad.l} y1={y} x2={width - pad.r} y2={y} stroke={T.border} strokeWidth="1" strokeDasharray="3,3" />
-          <text x={pad.l - 6} y={y + 3} textAnchor="end" style={{ fontSize: "9px", fill: T.muted, fontFamily: T.mono }}>â‚¬{Math.round(v)}</text>
+          <text x={pad.l - 6} y={y + 3} textAnchor="end" style={{ fontSize: "9px", fill: T.muted, fontFamily: T.mono }}>€{Math.round(v)}</text>
         </g>;
       })}
       <path d={areaPath} fill="url(#priceGrad)" />
@@ -200,7 +200,7 @@ function PriceChart({ data, width = 320, height = 100 }) {
   );
 }
 
-// â”€â”€â”€ Foot Shape Visual â”€â”€â”€
+// ─── Foot Shape Visual ───
 function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
   const body = "M15,62 Q12,80 14,100 Q16,125 22,145 Q28,165 35,180 Q42,192 50,195 Q58,192 65,180 Q72,165 78,145 Q84,125 86,100 Q88,80 85,62";
 
@@ -267,10 +267,10 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
   );
 }
 
-// â”€â”€â”€ Sizing Calculator â”€â”€â”€
+// ─── Sizing Calculator ───
 function SizingCalculator({ shoe }) {
   const [streetSize, setStreetSize] = useState("");
-  const suggestion = streetSize ? `EU ${(parseFloat(streetSize) - 1.5).toFixed(1)} â€“ ${(parseFloat(streetSize) - 0.5).toFixed(1)}` : null;
+  const suggestion = streetSize ? `EU ${(parseFloat(streetSize) - 1.5).toFixed(1)} – ${(parseFloat(streetSize) - 0.5).toFixed(1)}` : null;
   return (
     <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
       <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Quick Size Estimator</div>
@@ -285,7 +285,7 @@ function SizingCalculator({ shoe }) {
             }}
           />
         </div>
-        <div style={{ fontSize: "20px", color: T.muted, paddingTop: "16px" }}>â†’</div>
+        <div style={{ fontSize: "20px", color: T.muted, paddingTop: "16px" }}>→</div>
         <div style={{ flex: 1.5 }}>
           <label style={{ fontSize: "11px", color: T.muted, display: "block", marginBottom: "4px" }}>Recommended size</label>
           <div style={{
@@ -299,29 +299,29 @@ function SizingCalculator({ shoe }) {
         </div>
       </div>
       <p style={{ fontSize: "11px", color: T.muted, marginTop: "10px", lineHeight: 1.5, fontStyle: "italic" }}>
-        {shoe.sizing || `Size down 0.5â€“1.5 EU from street shoe for performance fit.`}
+        {shoe.sizing || `Size down 0.5–1.5 EU from street shoe for performance fit.`}
       </p>
     </div>
   );
 }
 
-// â”€â”€â”€ "Who is this for?" â”€â”€â”€
+// ─── "Who is this for?" ───
 function WhoIsThisFor({ shoe }) {
   const profiles = [];
   if (ensureArray(shoe.skill_level).includes("beginner") || ensureArray(shoe.skill_level).includes("hobby"))
-    profiles.push({ icon: "ðŸŒ±", label: "Newer climbers", desc: "Comfortable enough for learning, supportive enough for progression" });
+    profiles.push({ icon: "🌱", label: "Newer climbers", desc: "Comfortable enough for learning, supportive enough for progression" });
   if (ensureArray(shoe.skill_level).includes("intermediate"))
-    profiles.push({ icon: "ðŸ“ˆ", label: "Progressing climbers", desc: "Ready to push grades with more precision and power" });
+    profiles.push({ icon: "📈", label: "Progressing climbers", desc: "Ready to push grades with more precision and power" });
   if (ensureArray(shoe.skill_level).includes("advanced"))
-    profiles.push({ icon: "ðŸ”¥", label: "Strong climbers", desc: "Sending hard sport or steep boulders at a high level" });
+    profiles.push({ icon: "🔥", label: "Strong climbers", desc: "Sending hard sport or steep boulders at a high level" });
   if (ensureArray(shoe.skill_level).includes("elite"))
-    profiles.push({ icon: "ðŸ†", label: "Competition / elite", desc: "Maximum performance for comp climbing and limit sends" });
+    profiles.push({ icon: "🏆", label: "Competition / elite", desc: "Maximum performance for comp climbing and limit sends" });
   if (ensureArray(shoe.use_cases).includes("trad_multipitch"))
-    profiles.push({ icon: "â›°ï¸", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
+    profiles.push({ icon: "⛰️", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
   if (shoe.width === "wide" || shoe.volume === "high")
-    profiles.push({ icon: "ðŸ‘£", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
+    profiles.push({ icon: "👣", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
   if (shoe.width === "narrow" || shoe.volume === "low")
-    profiles.push({ icon: "ðŸ¦¶", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
+    profiles.push({ icon: "🦶", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
 
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
@@ -341,7 +341,7 @@ function WhoIsThisFor({ shoe }) {
   );
 }
 
-// â”€â”€â”€ Pros / Cons â”€â”€â”€
+// ─── Pros / Cons ───
 function ProsCons({ pros, cons }) {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
@@ -357,7 +357,7 @@ function ProsCons({ pros, cons }) {
         <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
         {ensureArray(cons).map((c, i) => (
           <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
-            <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>âˆ’</span> {c}
+            <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>−</span> {c}
           </div>
         ))}
       </div>
@@ -365,7 +365,7 @@ function ProsCons({ pros, cons }) {
   );
 }
 
-// â”€â”€â”€ Image Gallery â”€â”€â”€
+// ─── Image Gallery ───
 function ImageGallery({ shoe }) {
   const [active, setActive] = useState(0);
   const views = ["Side view", "Top view", "Sole", "Heel"];
@@ -378,7 +378,7 @@ function ImageGallery({ shoe }) {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>ðŸ‘Ÿ</div>
+          <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>👟</div>
           <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>{views[active]}</div>
         </div>
         <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
@@ -400,7 +400,7 @@ function ImageGallery({ shoe }) {
             transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
             flexDirection: "column", gap: "2px",
           }}>
-            <span style={{ fontSize: "18px", opacity: 0.5 }}>ðŸ‘Ÿ</span>
+            <span style={{ fontSize: "18px", opacity: 0.5 }}>👟</span>
             <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>
           </button>
         ))}
@@ -409,7 +409,7 @@ function ImageGallery({ shoe }) {
   );
 }
 
-// â”€â”€â”€ Price Comparison Table â”€â”€â”€
+// ─── Price Comparison Table ───
 function PriceComparison({ prices, shoe }) {
   if (!prices || !prices.length) {
     return (
@@ -423,7 +423,7 @@ function PriceComparison({ prices, shoe }) {
     <div style={{ background: T.card, borderRadius: T.radius, border: `1px solid ${T.border}`, overflow: "hidden" }}>
       <div style={{ padding: "16px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
-        <Tag variant="green" small icon="âœ“">Best: â‚¬{best}</Tag>
+        <Tag variant="green" small icon="✓">Best: €{best}</Tag>
       </div>
       {prices.map((p, i) => (
         <div key={i} style={{
@@ -434,7 +434,7 @@ function PriceComparison({ prices, shoe }) {
         }}>
           <span style={{ fontSize: "13px", fontWeight: 600, color: T.text }}>{p.shop}</span>
           <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
-            {p.price ? `â‚¬${p.price.toFixed(2)}` : "â€”"}
+            {p.price ? `€${p.price.toFixed(2)}` : "—"}
           </span>
           <span style={{ fontSize: "11px", color: T.muted }}>{p.shipping}</span>
           <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery}</span>
@@ -447,7 +447,7 @@ function PriceComparison({ prices, shoe }) {
   );
 }
 
-// â”€â”€â”€ Similar / Alternatives MiniCard â”€â”€â”€
+// ─── Similar / Alternatives MiniCard ───
 function MiniCard({ shoe, onClick, matchLabel }) {
   const discount = shoe.price_uvp_eur && shoe.current_price_eur
     ? Math.round(((shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur) * 100) : 0;
@@ -469,14 +469,14 @@ function MiniCard({ shoe, onClick, matchLabel }) {
         {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
       </div>
       <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-        <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>â‚¬{shoe.current_price_eur}</span>
-        {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>âˆ’{discount}%</span>}
+        <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>€{shoe.current_price_eur}</span>
+        {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>−{discount}%</span>}
       </div>
     </button>
   );
 }
 
-// â•â•â• PRICE INTELLIGENCE â•â•â•
+// ═══ PRICE INTELLIGENCE ═══
 export function getPriceIntelligence(shoe, prices, history) {
   const now = new Date();
   const month = now.getMonth();
@@ -490,8 +490,8 @@ export function getPriceIntelligence(shoe, prices, history) {
   // Factor 1: Price vs MSRP (30%)
   let ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
   factors.push({ name: "Price vs MSRP", score: ps, weight: 0.30,
-    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (â‚¬${shoe.price_uvp_eur})` : `At or near full MSRP (â‚¬${shoe.price_uvp_eur})`,
-    icon: ps >= 0.5 ? "ðŸŸ¢" : ps >= 0 ? "ðŸŸ¡" : "ðŸ”´",
+    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (€${shoe.price_uvp_eur})` : `At or near full MSRP (€${shoe.price_uvp_eur})`,
+    icon: ps >= 0.5 ? "🟢" : ps >= 0 ? "🟡" : "🔴",
   });
   totalScore += ps * 0.30; totalWeight += 0.30;
 
@@ -502,19 +502,19 @@ export function getPriceIntelligence(shoe, prices, history) {
     let ss = inStockCount <= 1 ? 0.8 : inStockCount <= 3 ? 0.3 : -0.2;
     factors.push({ name: "Stock Availability", score: ss, weight: 0.20,
       detail: `In stock at ${inStockCount} of ${totalRetailers} retailers`,
-      icon: inStockCount <= 2 ? "ðŸ”´" : inStockCount <= 4 ? "ðŸŸ¡" : "ðŸŸ¢",
+      icon: inStockCount <= 2 ? "🔴" : inStockCount <= 4 ? "🟡" : "🟢",
     });
     totalScore += ss * 0.20; totalWeight += 0.20;
   }
 
   // Factor 3: Seasonal timing (15%)
   let seasonScore, seasonDetail;
-  if (month >= 10 || month <= 1) { seasonScore = 0.6; seasonDetail = "Peak sale season â€” Black Friday & winter deals"; }
-  else if (month >= 2 && month <= 3) { seasonScore = 0.0; seasonDetail = "Pre-season â€” prices stabilising before spring"; }
-  else if (month >= 4 && month <= 7) { seasonScore = -0.5; seasonDetail = "Peak climbing season â€” prices typically highest"; }
-  else { seasonScore = 0.3; seasonDetail = "End of season â€” early discounts appearing"; }
+  if (month >= 10 || month <= 1) { seasonScore = 0.6; seasonDetail = "Peak sale season — Black Friday & winter deals"; }
+  else if (month >= 2 && month <= 3) { seasonScore = 0.0; seasonDetail = "Pre-season — prices stabilising before spring"; }
+  else if (month >= 4 && month <= 7) { seasonScore = -0.5; seasonDetail = "Peak climbing season — prices typically highest"; }
+  else { seasonScore = 0.3; seasonDetail = "End of season — early discounts appearing"; }
   factors.push({ name: "Seasonal Timing", score: seasonScore, weight: 0.15, detail: seasonDetail,
-    icon: seasonScore > 0.3 ? "ðŸŸ¢" : seasonScore >= 0 ? "ðŸŸ¡" : "ðŸ”´",
+    icon: seasonScore > 0.3 ? "🟢" : seasonScore >= 0 ? "🟡" : "🔴",
   });
   totalScore += seasonScore * 0.15; totalWeight += 0.15;
 
@@ -522,12 +522,12 @@ export function getPriceIntelligence(shoe, prices, history) {
   const modelAge = shoe.year_released ? currentYear - shoe.year_released : null;
   if (modelAge !== null) {
     let as, ad;
-    if (modelAge >= 3) { as = 0.5; ad = `Released ${shoe.year_released} (${modelAge}y ago) â€” expect clearance pricing`; }
-    else if (modelAge >= 2) { as = -0.3; ad = `Released ${shoe.year_released} (${modelAge}y ago) â€” successor may trigger price drops`; }
-    else if (modelAge >= 1) { as = 0.0; ad = `Released ${shoe.year_released} â€” current model, stable pricing`; }
-    else { as = -0.4; ad = `Released ${shoe.year_released} â€” brand-new, rarely discounted`; }
+    if (modelAge >= 3) { as = 0.5; ad = `Released ${shoe.year_released} (${modelAge}y ago) — expect clearance pricing`; }
+    else if (modelAge >= 2) { as = -0.3; ad = `Released ${shoe.year_released} (${modelAge}y ago) — successor may trigger price drops`; }
+    else if (modelAge >= 1) { as = 0.0; ad = `Released ${shoe.year_released} — current model, stable pricing`; }
+    else { as = -0.4; ad = `Released ${shoe.year_released} — brand-new, rarely discounted`; }
     factors.push({ name: "Model Lifecycle", score: as, weight: 0.15, detail: ad,
-      icon: as > 0.2 ? "ðŸŸ¢" : as >= -0.1 ? "ðŸŸ¡" : "ðŸ”´",
+      icon: as > 0.2 ? "🟢" : as >= -0.1 ? "🟡" : "🔴",
     });
     totalScore += as * 0.15; totalWeight += 0.15;
   }
@@ -539,22 +539,22 @@ export function getPriceIntelligence(shoe, prices, history) {
     const oAvg = older.reduce((a, d) => a + d.price, 0) / older.length;
     const trendPct = (rAvg - oAvg) / oAvg;
     let ts, td;
-    if (trendPct <= -0.10) { ts = -0.3; td = `Down ${Math.abs(Math.round(trendPct*100))}% â€” may keep dropping`; }
-    else if (trendPct <= -0.03) { ts = 0.3; td = "Slightly declining â€” good buying window"; }
-    else if (trendPct <= 0.03) { ts = 0.0; td = "Stable â€” consistent market pricing"; }
-    else { ts = 0.5; td = `Up ${Math.round(trendPct*100)}% â€” buy before further increase`; }
+    if (trendPct <= -0.10) { ts = -0.3; td = `Down ${Math.abs(Math.round(trendPct*100))}% — may keep dropping`; }
+    else if (trendPct <= -0.03) { ts = 0.3; td = "Slightly declining — good buying window"; }
+    else if (trendPct <= 0.03) { ts = 0.0; td = "Stable — consistent market pricing"; }
+    else { ts = 0.5; td = `Up ${Math.round(trendPct*100)}% — buy before further increase`; }
     factors.push({ name: "Price Trend", score: ts, weight: 0.20, detail: td,
-      icon: ts > 0.2 ? "ðŸŸ¢" : ts >= -0.1 ? "ðŸŸ¡" : "ðŸ”´" });
+      icon: ts > 0.2 ? "🟢" : ts >= -0.1 ? "🟡" : "🔴" });
     totalScore += ts * 0.20; totalWeight += 0.20;
   }
 
   const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
   let signal, label, color, bgColor, icon;
-  if (ns >= 0.45) { signal = "buy_now"; label = "Buy Now"; color = T.green; bgColor = T.greenSoft; icon = "ðŸŸ¢"; }
-  else if (ns >= 0.15) { signal = "good_deal"; label = "Good Deal"; color = T.green; bgColor = T.greenSoft; icon = "ðŸ‘"; }
-  else if (ns >= -0.15) { signal = "fair_price"; label = "Fair Price"; color = T.yellow; bgColor = T.yellowSoft; icon = "âš–ï¸"; }
-  else if (ns >= -0.40) { signal = "consider_waiting"; label = "Consider Waiting"; color = T.accent; bgColor = T.accentSoft; icon = "â³"; }
-  else { signal = "wait"; label = "Wait for Sale"; color = T.red; bgColor = T.redSoft; icon = "ðŸ”´"; }
+  if (ns >= 0.45) { signal = "buy_now"; label = "Buy Now"; color = T.green; bgColor = T.greenSoft; icon = "🟢"; }
+  else if (ns >= 0.15) { signal = "good_deal"; label = "Good Deal"; color = T.green; bgColor = T.greenSoft; icon = "👍"; }
+  else if (ns >= -0.15) { signal = "fair_price"; label = "Fair Price"; color = T.yellow; bgColor = T.yellowSoft; icon = "⚖️"; }
+  else if (ns >= -0.40) { signal = "consider_waiting"; label = "Consider Waiting"; color = T.accent; bgColor = T.accentSoft; icon = "⏳"; }
+  else { signal = "wait"; label = "Wait for Sale"; color = T.red; bgColor = T.redSoft; icon = "🔴"; }
 
   const parts = [];
   if (ns >= 0.3) {
@@ -564,34 +564,35 @@ export function getPriceIntelligence(shoe, prices, history) {
     parts.push("We don't expect significantly better pricing short-term.");
   } else if (ns >= 0) {
     parts.push("Reasonable price but not exceptional.");
-    if (seasonScore < 0) parts.push("Prices tend to drop during sale season (Novâ€“Feb).");
+    if (seasonScore < 0) parts.push("Prices tend to drop during sale season (Nov–Feb).");
     if (modelAge >= 2) parts.push("A successor model may push this one's price down.");
     else parts.push("Current-model pricing is relatively stable.");
   } else {
     parts.push("We recommend waiting for a better price.");
-    if (seasonScore < 0) parts.push("Peak season pricing â€” expect deals in autumn/winter.");
+    if (seasonScore < 0) parts.push("Peak season pricing — expect deals in autumn/winter.");
     if (modelAge === 0) parts.push("Newly released shoes rarely see discounts in year one.");
     if (discount < 0.05) parts.push("Currently at or near full MSRP.");
   }
   return { signal, label, color, bgColor, icon, score: ns, factors, forecast: parts.join(" ") };
 }
 
-// â•â•â• SHOE DETAIL PAGE (3-Tab Layout) â•â•â•
+// ═══ SHOE DETAIL PAGE (3-Tab Layout) ═══
 export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [] }) {
   const { slug } = useParams();
   const shoe = shoes.find(s => s.slug === slug);
   if (!shoe) {
     return (
       <div style={{ minHeight: "100vh", background: T.bg, padding: "40px", fontFamily: T.font }}>
-        <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>â† Back to search</Link>
+        <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>← Back to search</Link>
         <div style={{ textAlign: "center", marginTop: "60px", color: T.muted }}>
-          <div style={{ fontSize: "48px", marginBottom: "16px" }}>ðŸ§—</div>
+          <div style={{ fontSize: "48px", marginBottom: "16px" }}>🧗</div>
           <div style={{ fontSize: "16px" }}>Shoe not found</div>
         </div>
       </div>
     );
   }
 
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("overview");
   const prices = priceData[slug] || [];
   const history = priceHistory[slug] || [];
@@ -602,7 +603,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       {/* Header */}
       <header style={{ padding: "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: `rgba(14,16,21,0.92)`, backdropFilter: "blur(12px)", zIndex: 50 }}>
         <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: "14px", marginBottom: "16px" }}>
-          â† Search
+          ← Search
         </Link>
       </header>
 
@@ -618,7 +619,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {/* Hero info */}
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <span style={{ fontSize: "24px", color: BRAND_COLORS[shoe.brand] || T.accent }}>â—</span>
+                <span style={{ fontSize: "24px", color: BRAND_COLORS[shoe.brand] || T.accent }}>●</span>
                 <span style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>{shoe.brand}</span>
               </div>
               <h1 style={{ fontSize: "32px", fontWeight: 800, margin: "0 0 24px", letterSpacing: "-0.5px" }}>{shoe.model}</h1>
@@ -637,9 +638,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
               {/* Price */}
               <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "20px" }}>
-                <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>â‚¬{shoe.current_price_eur}</span>
+                <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>€{shoe.current_price_eur}</span>
                 {shoe.current_price_eur < shoe.price_uvp_eur && (
-                  <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>â‚¬{shoe.price_uvp_eur}</span>
+                  <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>€{shoe.price_uvp_eur}</span>
                 )}
               </div>
 
@@ -676,11 +677,11 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {/* Left col */}
             <div>
               {/* Description */}
-              <SectionHeader icon="ðŸ“‹" title="Overview" />
+              <SectionHeader icon="📋" title="Overview" />
               <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.8, marginBottom: "36px" }}>{shoe.description}</p>
 
               {/* Foot Shape & Sizing */}
-              <SectionHeader icon="ðŸ¦¶" title="Foot Shape & Sizing" />
+              <SectionHeader icon="🦶" title="Foot Shape & Sizing" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
                 <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
               </div>
@@ -691,11 +692,11 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {/* Right col */}
             <div>
               {/* Best For */}
-              <SectionHeader icon="ðŸŽ¯" title="Best For" />
+              <SectionHeader icon="🎯" title="Best For" />
               <WhoIsThisFor shoe={shoe} />
 
               {/* Pros & Cons */}
-              <SectionHeader icon="âš–ï¸" title="Strengths & Trade-offs" />
+              <SectionHeader icon="⚖️" title="Strengths & Trade-offs" />
               <ProsCons pros={shoe.pros} cons={shoe.cons} />
             </div>
           </div>
@@ -705,26 +706,26 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         {activeTab === "prices" && (
           <div>
             {/* Price History Chart - full width */}
-            <SectionHeader icon="ðŸ“ˆ" title="Price History" subtitle="Historical price evolution and directional forecast" />
+            <SectionHeader icon="📈" title="Price History" subtitle="Historical price evolution and directional forecast" />
             <div style={{ background: T.card, borderRadius: T.radius, padding: "24px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
               {history.length > 0 ? (
                 <>
                   <PriceChart data={history} width={720} height={200} />
                   <div style={{ display: "flex", gap: "24px", marginTop: "16px", paddingTop: "12px", borderTop: `1px solid ${T.border}` }}>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Lowest: <span style={{ color: T.green, fontWeight: 700, fontFamily: T.mono }}>â‚¬{Math.min(...history.map(h => h.price))}</span>
+                      Lowest: <span style={{ color: T.green, fontWeight: 700, fontFamily: T.mono }}>€{Math.min(...history.map(h => h.price))}</span>
                     </div>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Highest: <span style={{ color: T.red, fontWeight: 700, fontFamily: T.mono }}>â‚¬{Math.max(...history.map(h => h.price))}</span>
+                      Highest: <span style={{ color: T.red, fontWeight: 700, fontFamily: T.mono }}>€{Math.max(...history.map(h => h.price))}</span>
                     </div>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>â‚¬{shoe.current_price_eur}</span>
+                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>€{shoe.current_price_eur}</span>
                     </div>
                   </div>
                 </>
               ) : (
                 <div style={{ textAlign: "center", padding: "32px 0" }}>
-                  <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>ðŸ“Š</div>
+                  <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>📊</div>
                   <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
                 </div>
               )}
@@ -733,7 +734,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
               {/* Left: Price Intelligence */}
               <div>
-                <SectionHeader icon="ðŸ§ " title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" />
+                <SectionHeader icon="🧠" title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" />
                 <div style={{ display: "grid", gap: "12px" }}>
                   {intel.factors.map((f, i) => (
                     <div key={i} style={{ background: T.card, borderRadius: T.radiusSm, padding: "14px", border: `1px solid ${T.border}` }}>
@@ -752,7 +753,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
               {/* Right: Retailer Availability */}
               <div>
-                <SectionHeader icon="ðŸª" title="Retailer Availability" subtitle="Size-specific pricing coming soon" />
+                <SectionHeader icon="🏪" title="Retailer Availability" subtitle="Size-specific pricing coming soon" />
                 <PriceComparison prices={prices} shoe={shoe} />
               </div>
             </div>
@@ -764,7 +765,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
             {/* Left: Build Details */}
             <div>
-              <SectionHeader icon="ðŸ”§" title="Build Details" />
+              <SectionHeader icon="🔧" title="Build Details" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                 <SpecRow label="Closure" value={cap(shoe.closure)} />
                 <SpecRow label="Downturn" value={cap(shoe.downturn)} />
@@ -781,7 +782,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
             {/* Right: Rubber & Comfort */}
             <div>
-              <SectionHeader icon="ðŸ›ž" title="Rubber & Durability" />
+              <SectionHeader icon="🛞" title="Rubber & Durability" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
                 <SpecRow label="Rubber Type" value={shoe.rubber_type} />
                 <SpecRow label="Thickness" value={`${shoe.rubber_thickness_mm}mm`} />
@@ -790,10 +791,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Weight" value={`${shoe.weight_g}g`} />
               </div>
 
-              <SectionHeader icon="âœ¨" title="Wearing Comfort" />
+              <SectionHeader icon="✨" title="Wearing Comfort" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                  <span style={{ fontSize: "20px" }}>ðŸ†</span>
+                  <span style={{ fontSize: "20px" }}>🏆</span>
                   <div>
                     <div style={{ fontSize: "14px", fontWeight: 700, color: T.text }}>Comfort: {getComfortLabel(shoe)}</div>
                     <div style={{ fontSize: "12px", color: T.muted }}>Feel: {cap(shoe.feel)}</div>
@@ -803,13 +804,13 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Break-in" value={cap(shoe.break_in_period)} />
               </div>
 
-              <SectionHeader icon="ðŸŒ±" title="Sustainability" />
+              <SectionHeader icon="🌱" title="Sustainability" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                 <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: shoe.recycled_material_pct != null ? "16px" : "0" }}>
-                  {shoe.vegan && <Tag variant="green" icon="ðŸŒ±">Vegan</Tag>}
-                  {shoe.resoleable && <Tag variant="blue" icon="ðŸ”§">Resoleable</Tag>}
+                  {shoe.vegan && <Tag variant="green" icon="🌱">Vegan</Tag>}
+                  {shoe.resoleable && <Tag variant="blue" icon="🔧">Resoleable</Tag>}
                   {shoe.recycled_material_pct != null && (
-                    <Tag variant="green" icon="â™»ï¸">{shoe.recycled_material_pct}% Recycled</Tag>
+                    <Tag variant="green" icon="♻️">{shoe.recycled_material_pct}% Recycled</Tag>
                   )}
                 </div>
                 {shoe.recycled_material_pct != null && (
@@ -832,7 +833,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       {/* Footer with similar shoes */}
       <div style={{ padding: "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionHeader icon="ðŸ‘Ÿ" title="You May Also Like" subtitle="Similar performance and fit" />
+          <SectionHeader icon="👟" title="You May Also Like" subtitle="Similar performance and fit" />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
             {shoes
               .filter(s => s.slug !== slug && (
@@ -841,7 +842,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               ))
               .slice(0, 4)
               .map(s => (
-                <MiniCard key={s.slug} shoe={s} onClick={() => { window.location.hash = `#/shoe/${s.slug}`; }} />
+                <MiniCard key={s.slug} shoe={s} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
               ))}
           </div>
         </div>
