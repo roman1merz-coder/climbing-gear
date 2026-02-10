@@ -5,7 +5,8 @@ import { fmt, cap, ensureArray } from "./utils/format.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks } from "./utils/comfort.js";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
-// ─── Tiny Components ───
+
+// ─── Tag ───
 function Tag({ children, variant = "default", icon, small }) {
   const styles = {
     default: { bg: T.card, color: T.muted, border: T.border },
@@ -14,6 +15,7 @@ function Tag({ children, variant = "default", icon, small }) {
     red: { bg: T.redSoft, color: T.red, border: "rgba(239,68,68,0.20)" },
     yellow: { bg: T.yellowSoft, color: T.yellow, border: "rgba(251,191,36,0.20)" },
     blue: { bg: T.blueSoft, color: T.blue, border: "rgba(96,165,250,0.20)" },
+    purple: { bg: T.purpleSoft, color: T.purple, border: "rgba(167,139,250,0.20)" },
   };
   const s = styles[variant] || styles.default;
   return (
@@ -60,7 +62,7 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
   const path = points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + "Z";
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: "block" }}>
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: "block", margin: "0 auto" }}>
       {rings.map(rv => (
         <polygon key={rv} points={dims.map((_, i) => { const p = getPoint(i, rv); return `${p.x},${p.y}`; }).join(" ")}
           fill="none" stroke={T.border} strokeWidth="1" opacity={0.5} />
@@ -74,60 +76,39 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
         const p = getPoint(i, 1.22);
         return (
           <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle"
-            style={{ fontSize: "9px", fontWeight: 600, fill: T.muted, fontFamily: T.font }}>
+            style={{ fontSize: size > 200 ? "10px" : "9px", fontWeight: 600, fill: T.muted, fontFamily: T.font }}>
             {d}
           </text>
         );
       })}
       {points.map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r="3" fill={color} stroke={T.bg} strokeWidth="1.5" />
+        <circle key={i} cx={p.x} cy={p.y} r={size > 200 ? 3.5 : 3} fill={color} stroke={T.bg} strokeWidth="1.5" />
       ))}
     </svg>
   );
 }
 
-// ─── Dual Radar: Specs + Style side-by-side ───
-function DualRadar({ shoe }) {
-  // === SPECS NET ===
-  // Normalise raw specs to 0-1 range
-  const specDims = ["Downturn", "Asymmetry", "Sensitivity", "Support", "Weight"];
+// ─── Performance Radar (single 6-axis) ───
+function PerformanceRadar({ shoe }) {
+  const dims = ["Downturn", "Asymmetry", "Sensitivity", "Comfort", "Weight", "Support"];
   const dtVal = ({ flat: 0.15, moderate: 0.5, aggressive: 0.9 })[shoe.downturn] || 0.5;
   const asymVal = ({ none: 0.15, slight: 0.5, strong: 0.9 })[shoe.asymmetry] || 0.5;
-  const feelVal = FEEL_SCORE_MAP[shoe.feel] || 0.5;  // soft = high sensitivity
-  // Support: composite of rubber hardness (40%) + rubber thickness (35%) + midsole (25%)
-  // harder rubber + thicker rubber + full midsole = more support
-  const hardComp = 1 - (_hardnessVal(shoe));  // hard = high support
+  const feelVal = FEEL_SCORE_MAP[shoe.feel] || 0.5;
+  const comfortVal = getComfortScore(shoe);
+  const weightVal = shoe.weight_g ? Math.min(1, Math.max(0.05, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
+  const hardComp = 1 - (_hardnessVal(shoe));
   const thickComp = shoe.rubber_thickness_mm ? Math.min(1, Math.max(0, (shoe.rubber_thickness_mm - 2) / 3)) : 0.5;
   const midComp = ({ full: 0.9, partial: 0.5, none: 0.1 })[shoe.midsole] || 0.5;
   const supportVal = Math.min(1, hardComp * 0.40 + thickComp * 0.35 + midComp * 0.25);
-  // Weight: 200g (lightest) → 1.0, 890g (heaviest) → 0.05, inverted so lighter = higher
-  const weightVal = shoe.weight_g ? Math.min(1, Math.max(0.05, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
-  const specValues = [dtVal, asymVal, feelVal, supportVal, weightVal];
-
-  // === STYLE NET ===
-  const styleDims = ["Smearing", "Edging", "Pockets", "Hooks", "Comfort"];
-  const styleValues = [
-    computeSmearing(shoe),
-    computeEdging(shoe),
-    computePockets(shoe),
-    computeHooks(shoe),
-    getComfortScore(shoe),
-  ];
+  const values = [dtVal, asymVal, feelVal, comfortVal, weightVal, supportVal];
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-      <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "12px 8px 8px", border: `1px solid ${T.border}`, textAlign: "center" }}>
-        <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>Specs</div>
-        <SpiderNet dims={specDims} values={specValues} size={180} color={T.accent} softColor={T.accentSoft} />
-      </div>
-      <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "12px 8px 8px", border: `1px solid ${T.border}`, textAlign: "center" }}>
-        <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>Style</div>
-        <SpiderNet dims={styleDims} values={styleValues} size={180} color={T.blue} softColor={T.blueSoft} />
-      </div>
+    <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "16px", border: `1px solid ${T.border}`, textAlign: "center" }}>
+      <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>Performance Profile</div>
+      <SpiderNet dims={dims} values={values} size={280} color={T.accent} softColor={T.accentSoft} />
     </div>
   );
 }
-
 
 // ─── Spec Row ───
 function SpecRow({ label, value, highlight, confidence }) {
@@ -185,7 +166,7 @@ function PriceChart({ data, width = 320, height = 100 }) {
         const y = pad.t + h - ((v - min) / (max - min)) * h;
         return <g key={i}>
           <line x1={pad.l} y1={y} x2={width - pad.r} y2={y} stroke={T.border} strokeWidth="1" strokeDasharray="3,3" />
-          <text x={pad.l - 6} y={y + 3} textAnchor="end" style={{ fontSize: "9px", fill: T.muted, fontFamily: T.mono }}>€{Math.round(v)}</text>
+          <text x={pad.l - 6} y={y + 3} textAnchor="end" style={{ fontSize: "9px", fill: T.muted, fontFamily: T.mono }}>{"\u20AC"}{Math.round(v)}</text>
         </g>;
       })}
       <path d={areaPath} fill="url(#priceGrad)" />
@@ -203,7 +184,6 @@ function PriceChart({ data, width = 320, height = 100 }) {
 // ─── Foot Shape Visual ───
 function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
   const body = "M15,62 Q12,80 14,100 Q16,125 22,145 Q28,165 35,180 Q42,192 50,195 Q58,192 65,180 Q72,165 78,145 Q84,125 86,100 Q88,80 85,62";
-
   const toeShapes = {
     egyptian: {
       toes: [
@@ -233,13 +213,11 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
       ],
     },
   };
-
   const descs = {
     egyptian: "Big toe longest, toes descend diagonally",
-    greek: "Second toe longest (Morton's toe)",
+    greek: "Second toe longest (Morton\u2019s toe)",
     roman: "First three toes roughly equal length",
   };
-
   const shape = toeShapes[toe_form] || toeShapes.egyptian;
 
   return (
@@ -270,7 +248,7 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
 // ─── Sizing Calculator ───
 function SizingCalculator({ shoe }) {
   const [streetSize, setStreetSize] = useState("");
-  const suggestion = streetSize ? `EU ${(parseFloat(streetSize) - 1.5).toFixed(1)} – ${(parseFloat(streetSize) - 0.5).toFixed(1)}` : null;
+  const suggestion = streetSize ? `EU ${(parseFloat(streetSize) - 1.5).toFixed(1)} \u2013 ${(parseFloat(streetSize) - 0.5).toFixed(1)}` : null;
   return (
     <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
       <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Quick Size Estimator</div>
@@ -285,7 +263,7 @@ function SizingCalculator({ shoe }) {
             }}
           />
         </div>
-        <div style={{ fontSize: "20px", color: T.muted, paddingTop: "16px" }}>→</div>
+        <div style={{ fontSize: "20px", color: T.muted, paddingTop: "16px" }}>{"\u2192"}</div>
         <div style={{ flex: 1.5 }}>
           <label style={{ fontSize: "11px", color: T.muted, display: "block", marginBottom: "4px" }}>Recommended size</label>
           <div style={{
@@ -299,33 +277,67 @@ function SizingCalculator({ shoe }) {
         </div>
       </div>
       <p style={{ fontSize: "11px", color: T.muted, marginTop: "10px", lineHeight: 1.5, fontStyle: "italic" }}>
-        {shoe.sizing || `Size down 0.5–1.5 EU from street shoe for performance fit.`}
+        {shoe.sizing || "Size down 0.5\u20131.5 EU from street shoe for performance fit."}
       </p>
     </div>
   );
 }
 
-// ─── "Who is this for?" ───
+// ─── Stretch Expectation ───
+function StretchExpectation({ shoe }) {
+  const stretchMap = { none: 0, minimal: 0.2, quarter_size: 0.4, half_size: 0.6, full_size: 0.8 };
+  const stretchLabels = { none: "None", minimal: "Minimal", quarter_size: "\u00BC Size", half_size: "\u00BD Size", full_size: "Full Size" };
+  const stretchDescs = {
+    none: "No stretch expected \u2014 stays true to initial fit",
+    minimal: "Won\u2019t stretch much \u2014 size for day-one comfort",
+    quarter_size: "Stretches slightly \u2014 size down \u00BC for a snug fit",
+    half_size: "Noticeable stretch \u2014 size down \u00BD for performance fit",
+    full_size: "Significant stretch \u2014 size down a full size",
+  };
+  const val = stretchMap[shoe.stretch_expectation] ?? 0.2;
+  const label = stretchLabels[shoe.stretch_expectation] || cap(shoe.stretch_expectation || "minimal");
+  const desc = stretchDescs[shoe.stretch_expectation] || "Size for day-one comfort";
+
+  return (
+    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "16px 20px" }}>
+      <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "8px" }}>Stretch Expectation</div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <span style={{ fontSize: "13px", fontWeight: 700, color: T.text }}>{label}</span>
+        <span style={{ fontSize: "11px", color: T.muted }}>{desc}</span>
+      </div>
+      <div style={{ height: "6px", background: T.border, borderRadius: "3px", position: "relative", margin: "12px 0 8px" }}>
+        <div style={{ height: "100%", borderRadius: "3px", position: "absolute", top: 0, left: 0, width: `${val * 100}%`, background: `linear-gradient(90deg, ${T.green}, ${T.yellow}, ${T.accent})` }} />
+        <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: T.accent, border: `2px solid ${T.bg}`, position: "absolute", top: "-4px", left: `calc(${val * 100}% - 7px)`, boxShadow: "0 0 8px rgba(232,115,74,0.4)" }} />
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "9px", color: T.muted, fontFamily: T.mono }}>
+        <span>None</span><span>Minimal</span><span>{"\u00BC"} size</span><span>{"\u00BD"} size</span><span>Full size</span>
+      </div>
+    </div>
+  );
+}
+
+// ─── "Who is this for?" (max 2 cards) ───
 function WhoIsThisFor({ shoe }) {
   const profiles = [];
   if (ensureArray(shoe.skill_level).includes("beginner") || ensureArray(shoe.skill_level).includes("hobby"))
-    profiles.push({ icon: "🌱", label: "Newer climbers", desc: "Comfortable enough for learning, supportive enough for progression" });
+    profiles.push({ icon: "\uD83C\uDF31", label: "Newer climbers", desc: "Comfortable enough for learning, supportive enough for progression" });
   if (ensureArray(shoe.skill_level).includes("intermediate"))
-    profiles.push({ icon: "📈", label: "Progressing climbers", desc: "Ready to push grades with more precision and power" });
+    profiles.push({ icon: "\uD83D\uDCC8", label: "Progressing climbers", desc: "Ready to push grades with more precision and power" });
   if (ensureArray(shoe.skill_level).includes("advanced"))
-    profiles.push({ icon: "🔥", label: "Strong climbers", desc: "Sending hard sport or steep boulders at a high level" });
+    profiles.push({ icon: "\uD83D\uDD25", label: "Strong climbers", desc: "Sending hard sport or steep boulders at a high level" });
   if (ensureArray(shoe.skill_level).includes("elite"))
-    profiles.push({ icon: "🏆", label: "Competition / elite", desc: "Maximum performance for comp climbing and limit sends" });
+    profiles.push({ icon: "\uD83C\uDFC6", label: "Competition / elite", desc: "Maximum performance for comp climbing and limit sends" });
   if (ensureArray(shoe.use_cases).includes("trad_multipitch"))
-    profiles.push({ icon: "⛰️", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
+    profiles.push({ icon: "\u26F0\uFE0F", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
   if (shoe.width === "wide" || shoe.volume === "high")
-    profiles.push({ icon: "👣", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
+    profiles.push({ icon: "\uD83D\uDC63", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
   if (shoe.width === "narrow" || shoe.volume === "low")
-    profiles.push({ icon: "🦶", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
+    profiles.push({ icon: "\uD83E\uDDB6", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
 
+  const shown = profiles.slice(0, 2);
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
-      {profiles.map((p, i) => (
+      {shown.map((p, i) => (
         <div key={i} style={{
           background: T.card, borderRadius: T.radiusSm, padding: "16px",
           border: `1px solid ${T.border}`, display: "flex", gap: "12px", alignItems: "flex-start",
@@ -357,10 +369,71 @@ function ProsCons({ pros, cons }) {
         <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
         {ensureArray(cons).map((c, i) => (
           <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
-            <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>−</span> {c}
+            <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>{"\u2212"}</span> {c}
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// ─── Performance DNA (4-col grid) ───
+function PerformanceDNA({ shoe }) {
+  const wallAngles = ensureArray(shoe.best_wall_angles);
+  const rockTypes = ensureArray(shoe.best_rock_types);
+  const footholdTypes = ensureArray(shoe.best_foothold_types);
+  const skillLevels = ensureArray(shoe.skill_level);
+
+  const hookTypes = ["toe_hook", "heel_hook"];
+  const footholdTag = (f) => hookTypes.includes(f) ? "purple" : "blue";
+  const skillTag = (s) => {
+    if (s === "beginner" || s === "hobby") return "green";
+    if (s === "intermediate") return "yellow";
+    return "accent";
+  };
+
+  const cards = [
+    { icon: "\uD83D\uDCD0", label: "Wall Angles", items: wallAngles, tagFn: () => "accent" },
+    { icon: "\uD83E\uDEA8", label: "Rock Types", items: rockTypes, tagFn: () => "default" },
+    { icon: "\uD83E\uDDB6", label: "Foothold Types", items: footholdTypes, tagFn: footholdTag },
+    { icon: "\uD83C\uDFAF", label: "Skill Level", items: skillLevels, tagFn: skillTag },
+  ];
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px" }}>
+      {cards.map((c, ci) => (
+        <div key={ci} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "18px", transition: "border-color 0.2s" }}
+          onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.3)"}
+          onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
+          <div style={{ fontSize: "18px", marginBottom: "10px" }}>{c.icon}</div>
+          <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "10px" }}>{c.label}</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+            {c.items.map((item, i) => <Tag key={i} small variant={c.tagFn(item)}>{item}</Tag>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── Customer Voices ───
+function CustomerVoices({ shoe }) {
+  const voices = ensureArray(shoe.customer_voices).slice(0, 4);
+  if (!voices.length) return null;
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+      {voices.map((v, i) => (
+        <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
+          onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+          onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
+          <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
+          <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{v}</div>
+          <div style={{ marginTop: "14px", paddingTop: "10px", borderTop: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: T.accentSoft, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", color: T.accent }}>{"\uD83E\uDDD7"}</div>
+            <span style={{ fontSize: "11px", color: T.muted }}>Verified Climber</span>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -379,7 +452,7 @@ function ImageGallery({ shoe }) {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         {!hasImage && <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>👟</div>
+          <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>{"\uD83D\uDC5F"}</div>
           <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>{views[active]}</div>
         </div>}
         <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
@@ -402,7 +475,7 @@ function ImageGallery({ shoe }) {
             transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
             flexDirection: "column", gap: "2px",
           }}>
-            {!(i === 0 && hasImage) && <span style={{ fontSize: "18px", opacity: 0.5 }}>👟</span>}
+            {!(i === 0 && hasImage) && <span style={{ fontSize: "18px", opacity: 0.5 }}>{"\uD83D\uDC5F"}</span>}
             {!(i === 0 && hasImage) && <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>}
           </button>
         ))}
@@ -425,7 +498,7 @@ function PriceComparison({ prices, shoe }) {
     <div style={{ background: T.card, borderRadius: T.radius, border: `1px solid ${T.border}`, overflow: "hidden" }}>
       <div style={{ padding: "16px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
-        <Tag variant="green" small icon="✓">Best: €{best}</Tag>
+        <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
       </div>
       {prices.map((p, i) => (
         <div key={i} style={{
@@ -436,7 +509,7 @@ function PriceComparison({ prices, shoe }) {
         }}>
           <span style={{ fontSize: "13px", fontWeight: 600, color: T.text }}>{p.shop}</span>
           <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
-            {p.price ? `€${p.price.toFixed(2)}` : "—"}
+            {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
           </span>
           <span style={{ fontSize: "11px", color: T.muted }}>{p.shipping}</span>
           <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery}</span>
@@ -471,8 +544,8 @@ function MiniCard({ shoe, onClick, matchLabel }) {
         {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
       </div>
       <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-        <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>€{shoe.current_price_eur}</span>
-        {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>−{discount}%</span>}
+        <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>
+        {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>}
       </div>
     </button>
   );
@@ -492,8 +565,8 @@ export function getPriceIntelligence(shoe, prices, history) {
   // Factor 1: Price vs MSRP (30%)
   let ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
   factors.push({ name: "Price vs MSRP", score: ps, weight: 0.30,
-    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (€${shoe.price_uvp_eur})` : `At or near full MSRP (€${shoe.price_uvp_eur})`,
-    icon: ps >= 0.5 ? "🟢" : ps >= 0 ? "🟡" : "🔴",
+    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (\u20AC${shoe.price_uvp_eur})` : `At or near full MSRP (\u20AC${shoe.price_uvp_eur})`,
+    icon: ps >= 0.5 ? "\uD83D\uDFE2" : ps >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34",
   });
   totalScore += ps * 0.30; totalWeight += 0.30;
 
@@ -504,19 +577,19 @@ export function getPriceIntelligence(shoe, prices, history) {
     let ss = inStockCount <= 1 ? 0.8 : inStockCount <= 3 ? 0.3 : -0.2;
     factors.push({ name: "Stock Availability", score: ss, weight: 0.20,
       detail: `In stock at ${inStockCount} of ${totalRetailers} retailers`,
-      icon: inStockCount <= 2 ? "🔴" : inStockCount <= 4 ? "🟡" : "🟢",
+      icon: inStockCount <= 2 ? "\uD83D\uDD34" : inStockCount <= 4 ? "\uD83D\uDFE1" : "\uD83D\uDFE2",
     });
     totalScore += ss * 0.20; totalWeight += 0.20;
   }
 
   // Factor 3: Seasonal timing (15%)
   let seasonScore, seasonDetail;
-  if (month >= 10 || month <= 1) { seasonScore = 0.6; seasonDetail = "Peak sale season — Black Friday & winter deals"; }
-  else if (month >= 2 && month <= 3) { seasonScore = 0.0; seasonDetail = "Pre-season — prices stabilising before spring"; }
-  else if (month >= 4 && month <= 7) { seasonScore = -0.5; seasonDetail = "Peak climbing season — prices typically highest"; }
-  else { seasonScore = 0.3; seasonDetail = "End of season — early discounts appearing"; }
+  if (month >= 10 || month <= 1) { seasonScore = 0.6; seasonDetail = "Peak sale season \u2014 Black Friday & winter deals"; }
+  else if (month >= 2 && month <= 3) { seasonScore = 0.0; seasonDetail = "Pre-season \u2014 prices stabilising before spring"; }
+  else if (month >= 4 && month <= 7) { seasonScore = -0.5; seasonDetail = "Peak climbing season \u2014 prices typically highest"; }
+  else { seasonScore = 0.3; seasonDetail = "End of season \u2014 early discounts appearing"; }
   factors.push({ name: "Seasonal Timing", score: seasonScore, weight: 0.15, detail: seasonDetail,
-    icon: seasonScore > 0.3 ? "🟢" : seasonScore >= 0 ? "🟡" : "🔴",
+    icon: seasonScore > 0.3 ? "\uD83D\uDFE2" : seasonScore >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34",
   });
   totalScore += seasonScore * 0.15; totalWeight += 0.15;
 
@@ -524,12 +597,12 @@ export function getPriceIntelligence(shoe, prices, history) {
   const modelAge = shoe.year_released ? currentYear - shoe.year_released : null;
   if (modelAge !== null) {
     let as, ad;
-    if (modelAge >= 3) { as = 0.5; ad = `Released ${shoe.year_released} (${modelAge}y ago) — expect clearance pricing`; }
-    else if (modelAge >= 2) { as = -0.3; ad = `Released ${shoe.year_released} (${modelAge}y ago) — successor may trigger price drops`; }
-    else if (modelAge >= 1) { as = 0.0; ad = `Released ${shoe.year_released} — current model, stable pricing`; }
-    else { as = -0.4; ad = `Released ${shoe.year_released} — brand-new, rarely discounted`; }
+    if (modelAge >= 3) { as = 0.5; ad = `Released ${shoe.year_released} (${modelAge}y ago) \u2014 expect clearance pricing`; }
+    else if (modelAge >= 2) { as = -0.3; ad = `Released ${shoe.year_released} (${modelAge}y ago) \u2014 successor may trigger price drops`; }
+    else if (modelAge >= 1) { as = 0.0; ad = `Released ${shoe.year_released} \u2014 current model, stable pricing`; }
+    else { as = -0.4; ad = `Released ${shoe.year_released} \u2014 brand-new, rarely discounted`; }
     factors.push({ name: "Model Lifecycle", score: as, weight: 0.15, detail: ad,
-      icon: as > 0.2 ? "🟢" : as >= -0.1 ? "🟡" : "🔴",
+      icon: as > 0.2 ? "\uD83D\uDFE2" : as >= -0.1 ? "\uD83D\uDFE1" : "\uD83D\uDD34",
     });
     totalScore += as * 0.15; totalWeight += 0.15;
   }
@@ -541,22 +614,22 @@ export function getPriceIntelligence(shoe, prices, history) {
     const oAvg = older.reduce((a, d) => a + d.price, 0) / older.length;
     const trendPct = (rAvg - oAvg) / oAvg;
     let ts, td;
-    if (trendPct <= -0.10) { ts = -0.3; td = `Down ${Math.abs(Math.round(trendPct*100))}% — may keep dropping`; }
-    else if (trendPct <= -0.03) { ts = 0.3; td = "Slightly declining — good buying window"; }
-    else if (trendPct <= 0.03) { ts = 0.0; td = "Stable — consistent market pricing"; }
-    else { ts = 0.5; td = `Up ${Math.round(trendPct*100)}% — buy before further increase`; }
+    if (trendPct <= -0.10) { ts = -0.3; td = `Down ${Math.abs(Math.round(trendPct*100))}% \u2014 may keep dropping`; }
+    else if (trendPct <= -0.03) { ts = 0.3; td = "Slightly declining \u2014 good buying window"; }
+    else if (trendPct <= 0.03) { ts = 0.0; td = "Stable \u2014 consistent market pricing"; }
+    else { ts = 0.5; td = `Up ${Math.round(trendPct*100)}% \u2014 buy before further increase`; }
     factors.push({ name: "Price Trend", score: ts, weight: 0.20, detail: td,
-      icon: ts > 0.2 ? "🟢" : ts >= -0.1 ? "🟡" : "🔴" });
+      icon: ts > 0.2 ? "\uD83D\uDFE2" : ts >= -0.1 ? "\uD83D\uDFE1" : "\uD83D\uDD34" });
     totalScore += ts * 0.20; totalWeight += 0.20;
   }
 
   const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
   let signal, label, color, bgColor, icon;
-  if (ns >= 0.45) { signal = "buy_now"; label = "Buy Now"; color = T.green; bgColor = T.greenSoft; icon = "🟢"; }
-  else if (ns >= 0.15) { signal = "good_deal"; label = "Good Deal"; color = T.green; bgColor = T.greenSoft; icon = "👍"; }
-  else if (ns >= -0.15) { signal = "fair_price"; label = "Fair Price"; color = T.yellow; bgColor = T.yellowSoft; icon = "⚖️"; }
-  else if (ns >= -0.40) { signal = "consider_waiting"; label = "Consider Waiting"; color = T.accent; bgColor = T.accentSoft; icon = "⏳"; }
-  else { signal = "wait"; label = "Wait for Sale"; color = T.red; bgColor = T.redSoft; icon = "🔴"; }
+  if (ns >= 0.45) { signal = "buy_now"; label = "Buy Now"; color = T.green; bgColor = T.greenSoft; icon = "\uD83D\uDFE2"; }
+  else if (ns >= 0.15) { signal = "good_deal"; label = "Good Deal"; color = T.green; bgColor = T.greenSoft; icon = "\uD83D\uDC4D"; }
+  else if (ns >= -0.15) { signal = "fair_price"; label = "Fair Price"; color = T.yellow; bgColor = T.yellowSoft; icon = "\u2696\uFE0F"; }
+  else if (ns >= -0.40) { signal = "consider_waiting"; label = "Consider Waiting"; color = T.accent; bgColor = T.accentSoft; icon = "\u23F3"; }
+  else { signal = "wait"; label = "Wait for Sale"; color = T.red; bgColor = T.redSoft; icon = "\uD83D\uDD34"; }
 
   const parts = [];
   if (ns >= 0.3) {
@@ -566,17 +639,27 @@ export function getPriceIntelligence(shoe, prices, history) {
     parts.push("We don't expect significantly better pricing short-term.");
   } else if (ns >= 0) {
     parts.push("Reasonable price but not exceptional.");
-    if (seasonScore < 0) parts.push("Prices tend to drop during sale season (Nov–Feb).");
+    if (seasonScore < 0) parts.push("Prices tend to drop during sale season (Nov\u2013Feb).");
     if (modelAge >= 2) parts.push("A successor model may push this one's price down.");
     else parts.push("Current-model pricing is relatively stable.");
   } else {
     parts.push("We recommend waiting for a better price.");
-    if (seasonScore < 0) parts.push("Peak season pricing — expect deals in autumn/winter.");
+    if (seasonScore < 0) parts.push("Peak season pricing \u2014 expect deals in autumn/winter.");
     if (modelAge === 0) parts.push("Newly released shoes rarely see discounts in year one.");
     if (discount < 0.05) parts.push("Currently at or near full MSRP.");
   }
   return { signal, label, color, bgColor, icon, score: ns, factors, forecast: parts.join(" ") };
 }
+
+// ═══ USE CASE ICON MAP ═══
+const USE_CASE_ICONS = {
+  boulder: "\uD83E\uDEA8", sport: "\uD83E\uDDD7", trad_multipitch: "\u26F0\uFE0F",
+  gym: "\uD83C\uDFE2", indoor: "\uD83C\uDFE2", crack: "\uD83E\uDEA8", alpine: "\uD83C\uDFD4\uFE0F",
+};
+const USE_CASE_TAG_VARIANT = {
+  boulder: "accent", sport: "blue", trad_multipitch: "green",
+  gym: "default", indoor: "default", crack: "yellow", alpine: "green",
+};
 
 // ═══ SHOE DETAIL PAGE (3-Tab Layout) ═══
 export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [] }) {
@@ -585,9 +668,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   if (!shoe) {
     return (
       <div style={{ minHeight: "100vh", background: T.bg, padding: "40px", fontFamily: T.font }}>
-        <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>← Back to search</Link>
+        <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>{"\u2190"} Back to search</Link>
         <div style={{ textAlign: "center", marginTop: "60px", color: T.muted }}>
-          <div style={{ fontSize: "48px", marginBottom: "16px" }}>🧗</div>
+          <div style={{ fontSize: "48px", marginBottom: "16px" }}>{"\uD83E\uDDD7"}</div>
           <div style={{ fontSize: "16px" }}>Shoe not found</div>
         </div>
       </div>
@@ -599,144 +682,174 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const prices = priceData[slug] || [];
   const history = priceHistory[slug] || [];
   const intel = getPriceIntelligence(shoe, prices, history);
+  const discount = shoe.price_uvp_eur && shoe.current_price_eur && shoe.current_price_eur < shoe.price_uvp_eur
+    ? Math.round(((shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur) * 100) : 0;
 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       {/* Header */}
-      <header style={{ padding: "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: `rgba(14,16,21,0.92)`, backdropFilter: "blur(12px)", zIndex: 50 }}>
-        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: "14px", marginBottom: "16px" }}>
-          ← Search
+      <header style={{ padding: "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: "rgba(14,16,21,0.92)", backdropFilter: "blur(12px)", zIndex: 50 }}>
+        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+          {"\u2190"} Search
         </Link>
       </header>
 
-      {/* Hero */}
+      {/* ═══ HERO ═══ */}
       <div style={{ padding: "40px 32px", borderBottom: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "start" }}>
-            {/* Image */}
+            {/* Left: Image Gallery */}
             <div>
               <ImageGallery shoe={shoe} />
             </div>
 
-            {/* Hero info */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                <span style={{ fontSize: "24px", color: BRAND_COLORS[shoe.brand] || T.accent }}>●</span>
+            {/* Right: Hero Info — flex column to push radar down */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {/* Brand + Gender + Use Case tags on ONE line */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
+                <span style={{ fontSize: "24px", color: BRAND_COLORS[shoe.brand] || T.accent }}>{"\u25CF"}</span>
                 <span style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>{shoe.brand}</span>
+                <Tag small>{cap(shoe.gender || "unisex")}</Tag>
+                {ensureArray(shoe.use_cases).length > 0 && (
+                  <span style={{ width: "1px", height: "16px", background: T.border, margin: "0 2px" }} />
+                )}
+                {ensureArray(shoe.use_cases).map((uc, i) => (
+                  <Tag key={i} small variant={USE_CASE_TAG_VARIANT[uc] || "default"} icon={USE_CASE_ICONS[uc]}>
+                    {uc}
+                  </Tag>
+                ))}
               </div>
-              <h1 style={{ fontSize: "32px", fontWeight: 800, margin: "0 0 24px", letterSpacing: "-0.5px" }}>{shoe.model}</h1>
 
-              {/* Price Intelligence CTA */}
-              <div style={{ background: intel.bgColor, border: `1px solid rgba(232,115,74,0.25)`, borderRadius: T.radius, padding: "20px", marginBottom: "24px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
-                  <span style={{ fontSize: "20px" }}>{intel.icon}</span>
-                  <div>
-                    <div style={{ fontSize: "13px", fontWeight: 700, color: intel.color }}>{intel.label}</div>
-                    <div style={{ fontSize: "11px", color: T.muted }}>{intel.signal.replace(/_/g, " ")}</div>
+              <h1 style={{ fontSize: "32px", fontWeight: 800, margin: "0 0 20px", letterSpacing: "-0.5px" }}>{shoe.model}</h1>
+
+              {/* Combined Price Box: price+size left | evaluation right */}
+              <div style={{
+                background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius,
+                padding: 0, marginBottom: "20px", display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden",
+              }}>
+                {/* Left: Price + Size Range */}
+                <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
+                    <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>
+                    {discount > 0 && (
+                      <>
+                        <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>{"\u20AC"}{shoe.price_uvp_eur}</span>
+                        <span style={{ fontSize: "12px", fontWeight: 700, color: T.green, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>
+                      </>
+                    )}
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <span style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600 }}>EU Size Range</span>
+                    <span style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.mono }}>{shoe.size_range}</span>
                   </div>
                 </div>
-                <div style={{ fontSize: "12px", color: T.text, lineHeight: 1.6 }}>{intel.forecast}</div>
+                {/* Right: Evaluation Signal */}
+                <div style={{ padding: "20px", borderLeft: `1px solid ${T.border}`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+                    <span style={{ fontSize: "18px" }}>{intel.icon}</span>
+                    <span style={{ fontSize: "13px", fontWeight: 700, color: intel.color }}>{intel.label}</span>
+                  </div>
+                  <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6 }}>{intel.forecast}</div>
+                </div>
               </div>
 
-              {/* Price */}
-              <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "20px" }}>
-                <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>€{shoe.current_price_eur}</span>
-                {shoe.current_price_eur < shoe.price_uvp_eur && (
-                  <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>€{shoe.price_uvp_eur}</span>
-                )}
-              </div>
+              {/* Flex spacer pushes radar to bottom, aligned with image thumbnails */}
+              <div style={{ flex: 1 }} />
 
-              {/* Size Range */}
-              <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "12px 16px", marginBottom: "24px" }}>
-                <span style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600 }}>EU Size Range</span>
-                <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginTop: "4px" }}>{shoe.size_range}</div>
-              </div>
-
-              {/* Performance Nets */}
-              <DualRadar shoe={shoe} />
+              {/* Single 6-axis Performance Radar */}
+              <PerformanceRadar shoe={shoe} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* ═══ TABS ═══ */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 32px" }}>
         <div style={{ display: "flex", gap: "20px", marginBottom: "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: "20px" }}>
           {[{ key: "overview", label: "Overview" }, { key: "prices", label: "Price & Availability" }, { key: "specs", label: "Specs" }].map(tab => (
             <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{
               padding: "8px 16px", border: "none", background: "transparent", color: activeTab === tab.key ? T.accent : T.muted,
               fontSize: "14px", fontWeight: activeTab === tab.key ? 700 : 600, cursor: "pointer", borderBottom: activeTab === tab.key ? `2px solid ${T.accent}` : "none",
-              transition: "all 0.2s ease",
+              transition: "all 0.2s ease", fontFamily: T.font,
             }}>
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* OVERVIEW TAB */}
+        {/* ═══ OVERVIEW TAB ═══ */}
         {activeTab === "overview" && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
-            {/* Left col */}
-            <div>
-              {/* Description */}
-              <SectionHeader icon="📋" title="Overview" />
-              <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.8, marginBottom: "36px" }}>{shoe.description}</p>
+          <div>
+            {/* Two-col: Description + Foot Shape | Best For + Pros/Cons */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+              {/* Left col */}
+              <div>
+                <SectionHeader icon={"\uD83D\uDCCB"} title="Overview" />
+                <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.8, marginBottom: "36px" }}>{shoe.description}</p>
 
-              {/* Foot Shape & Sizing */}
-              <SectionHeader icon="🦶" title="Foot Shape & Sizing" />
-              <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
-                <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
+                <SectionHeader icon={"\uD83E\uDDB6"} title="Foot Shape & Sizing" />
+                <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
+                  <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
+                </div>
               </div>
 
+              {/* Right col */}
+              <div>
+                <SectionHeader icon={"\uD83C\uDFAF"} title="Best For" />
+                <WhoIsThisFor shoe={shoe} />
+
+                <SectionHeader icon={"\u2696\uFE0F"} title="Strengths & Trade-offs" />
+                <ProsCons pros={shoe.pros} cons={shoe.cons} />
+              </div>
+            </div>
+
+            {/* Full-width: Sizing + Stretch side by side (50/50) */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginTop: "36px" }}>
               <SizingCalculator shoe={shoe} />
+              <StretchExpectation shoe={shoe} />
             </div>
 
-            {/* Right col */}
-            <div>
-              {/* Best For */}
-              <SectionHeader icon="🎯" title="Best For" />
-              <WhoIsThisFor shoe={shoe} />
+            {/* Full-width: Performance DNA */}
+            <SectionHeader icon={"\uD83E\uDDEC"} title="Performance DNA" subtitle="Where this shoe excels" />
+            <PerformanceDNA shoe={shoe} />
 
-              {/* Pros & Cons */}
-              <SectionHeader icon="⚖️" title="Strengths & Trade-offs" />
-              <ProsCons pros={shoe.pros} cons={shoe.cons} />
-            </div>
+            {/* Full-width: Customer Voices */}
+            <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" />
+            <CustomerVoices shoe={shoe} />
           </div>
         )}
 
-        {/* PRICE & AVAILABILITY TAB */}
+        {/* ═══ PRICE & AVAILABILITY TAB ═══ */}
         {activeTab === "prices" && (
           <div>
-            {/* Price History Chart - full width */}
-            <SectionHeader icon="📈" title="Price History" subtitle="Historical price evolution and directional forecast" />
+            <SectionHeader icon={"\uD83D\uDCC8"} title="Price History" subtitle="Historical price evolution and directional forecast" />
             <div style={{ background: T.card, borderRadius: T.radius, padding: "24px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
               {history.length > 0 ? (
                 <>
                   <PriceChart data={history} width={720} height={200} />
                   <div style={{ display: "flex", gap: "24px", marginTop: "16px", paddingTop: "12px", borderTop: `1px solid ${T.border}` }}>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Lowest: <span style={{ color: T.green, fontWeight: 700, fontFamily: T.mono }}>€{Math.min(...history.map(h => h.price))}</span>
+                      Lowest: <span style={{ color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{Math.min(...history.map(h => h.price))}</span>
                     </div>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Highest: <span style={{ color: T.red, fontWeight: 700, fontFamily: T.mono }}>€{Math.max(...history.map(h => h.price))}</span>
+                      Highest: <span style={{ color: T.red, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{Math.max(...history.map(h => h.price))}</span>
                     </div>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>€{shoe.current_price_eur}</span>
+                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>
                     </div>
                   </div>
                 </>
               ) : (
                 <div style={{ textAlign: "center", padding: "32px 0" }}>
-                  <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>📊</div>
+                  <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>{"\uD83D\uDCCA"}</div>
                   <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
                 </div>
               )}
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
-              {/* Left: Price Intelligence */}
               <div>
-                <SectionHeader icon="🧠" title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" />
+                <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" />
                 <div style={{ display: "grid", gap: "12px" }}>
                   {intel.factors.map((f, i) => (
                     <div key={i} style={{ background: T.card, borderRadius: T.radiusSm, padding: "14px", border: `1px solid ${T.border}` }}>
@@ -752,22 +865,20 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                   ))}
                 </div>
               </div>
-
-              {/* Right: Retailer Availability */}
               <div>
-                <SectionHeader icon="🏪" title="Retailer Availability" subtitle="Size-specific pricing coming soon" />
+                <SectionHeader icon={"\uD83C\uDFEA"} title="Retailer Availability" subtitle="Size-specific pricing coming soon" />
                 <PriceComparison prices={prices} shoe={shoe} />
               </div>
             </div>
           </div>
         )}
 
-        {/* SPECS TAB */}
+        {/* ═══ SPECS TAB ═══ */}
         {activeTab === "specs" && (
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
-            {/* Left: Build Details */}
+            {/* Left: Build Details (includes Weight + Break-in) */}
             <div>
-              <SectionHeader icon="🔧" title="Build Details" />
+              <SectionHeader icon={"\uD83D\uDD27"} title="Build Details" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                 <SpecRow label="Closure" value={cap(shoe.closure)} />
                 <SpecRow label="Downturn" value={cap(shoe.downturn)} />
@@ -777,42 +888,29 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Midsole" value={cap(shoe.midsole)} />
                 <SpecRow label="Rand" value={cap(shoe.rand)} />
                 <SpecRow label="Upper Material" value={cap(shoe.upper_material)} />
-              </div>
-
-
-            </div>
-
-            {/* Right: Rubber & Comfort */}
-            <div>
-              <SectionHeader icon="🛞" title="Rubber & Durability" />
-              <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
-                <SpecRow label="Rubber Type" value={shoe.rubber_type} />
-                <SpecRow label="Thickness" value={`${shoe.rubber_thickness_mm}mm`} />
-                <SpecRow label="Hardness" value={Array.isArray(shoe.rubber_hardness) ? shoe.rubber_hardness.map(cap).join(", ") : cap(shoe.rubber_hardness)} />
-                <SpecRow label="Durability" value={Array.isArray(shoe.durability) ? shoe.durability.map(cap).join(", ") : cap(shoe.durability)} />
-                <SpecRow label="Weight" value={`${shoe.weight_g}g`} />
-              </div>
-
-              <SectionHeader icon="✨" title="Wearing Comfort" />
-              <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                  <span style={{ fontSize: "20px" }}>🏆</span>
-                  <div>
-                    <div style={{ fontSize: "14px", fontWeight: 700, color: T.text }}>Comfort: {getComfortLabel(shoe)}</div>
-                    <div style={{ fontSize: "12px", color: T.muted }}>Feel: {cap(shoe.feel)}</div>
-                  </div>
-                </div>
-                <SpecRow label="Sizing" value={shoe.sizing} />
+                <SpecRow label="Weight" value={shoe.weight_g ? `${shoe.weight_g}g` : null} />
                 <SpecRow label="Break-in" value={cap(shoe.break_in_period)} />
               </div>
+            </div>
 
-              <SectionHeader icon="🌱" title="Sustainability" />
+            {/* Right: Rubber System + Sustainability */}
+            <div>
+              <SectionHeader icon={"\uD83D\uDEDE"} title="Rubber System" />
+              <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
+                <SpecRow label="Manufacturer" value={cap(shoe.rubber_manufacturer)} />
+                <SpecRow label="Compound" value={shoe.rubber_compound || shoe.rubber_type} />
+                <SpecRow label="Thickness" value={shoe.rubber_thickness_mm ? `${shoe.rubber_thickness_mm}mm` : null} />
+                <SpecRow label="Hardness" value={Array.isArray(shoe.rubber_hardness) ? shoe.rubber_hardness.map(cap).join(", ") : cap(shoe.rubber_hardness)} />
+                <SpecRow label="Durability" value={Array.isArray(shoe.durability) ? shoe.durability.map(cap).join(", ") : cap(shoe.durability)} />
+              </div>
+
+              <SectionHeader icon={"\uD83C\uDF31"} title="Sustainability" />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                 <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: shoe.recycled_material_pct != null ? "16px" : "0" }}>
-                  {shoe.vegan && <Tag variant="green" icon="🌱">Vegan</Tag>}
-                  {shoe.resoleable && <Tag variant="blue" icon="🔧">Resoleable</Tag>}
+                  {shoe.vegan && <Tag variant="green" icon={"\uD83C\uDF31"}>Vegan</Tag>}
+                  {shoe.resoleable && <Tag variant="blue" icon={"\uD83D\uDD27"}>Resoleable</Tag>}
                   {shoe.recycled_material_pct != null && (
-                    <Tag variant="green" icon="♻️">{shoe.recycled_material_pct}% Recycled</Tag>
+                    <Tag variant="green" icon={"\u267B\uFE0F"}>{shoe.recycled_material_pct}% Recycled</Tag>
                   )}
                 </div>
                 {shoe.recycled_material_pct != null && (
@@ -835,7 +933,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       {/* Footer with similar shoes */}
       <div style={{ padding: "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionHeader icon="👟" title="You May Also Like" subtitle="Similar performance and fit" />
+          <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit" />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
             {shoes
               .filter(s => s.slug !== slug && (

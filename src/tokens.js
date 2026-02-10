@@ -7,6 +7,7 @@ export const T = {
   red: "#ef4444", redSoft: "rgba(239,68,68,0.12)",
   yellow: "#fbbf24", yellowSoft: "rgba(251,191,36,0.12)",
   blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.12)",
+  purple: "#a78bfa", purpleSoft: "rgba(167,139,250,0.12)",
   font: "'Instrument Sans', 'DM Sans', system-ui, sans-serif",
   mono: "'JetBrains Mono', 'DM Mono', monospace",
   radius: "14px", radiusSm: "10px", radiusXs: "6px",
