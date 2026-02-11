@@ -14,14 +14,14 @@ const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const SERPAPI_KEY = process.env.SERPAPI_KEY;
 
 // ── Supabase helpers ──
-async function supabaseUpsert(table, rows) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+async function supabaseUpsert(table, rows, conflictCols = "shoe_slug,retailer") {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?on_conflict=${conflictCols}`, {
     method: "POST",
     headers: {
       apikey: SUPABASE_KEY,
       Authorization: `Bearer ${SUPABASE_KEY}`,
       "Content-Type": "application/json",
-      Prefer: "resolution=merge-duplicates",  // upsert on unique constraint
+      Prefer: "resolution=merge-duplicates,return=minimal",
     },
     body: JSON.stringify(rows),
   });
@@ -29,7 +29,7 @@ async function supabaseUpsert(table, rows) {
     const err = await res.text();
     throw new Error(`Supabase ${table} upsert failed: ${res.status} ${err}`);
   }
-  return res.json();
+  return true;
 }
 
 async function supabaseInsert(table, rows) {
