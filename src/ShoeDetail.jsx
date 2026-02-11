@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks } from "./utils/comfort.js";
+import useIsMobile from "./useIsMobile.js";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
 
@@ -336,7 +337,7 @@ function WhoIsThisFor({ shoe }) {
 
   const shown = profiles.slice(0, 2);
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+    <div style={{ display: "grid", gridTemplateColumns: shown.length > 1 ? "1fr 1fr" : "1fr", gap: "10px" }}>
       {shown.map((p, i) => (
         <div key={i} style={{
           background: T.card, borderRadius: T.radiusSm, padding: "16px",
@@ -354,9 +355,9 @@ function WhoIsThisFor({ shoe }) {
 }
 
 // ─── Pros / Cons ───
-function ProsCons({ pros, cons }) {
+function ProsCons({ pros, cons, stacked }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+    <div style={{ display: "grid", gridTemplateColumns: stacked ? "1fr" : "1fr 1fr", gap: "14px" }}>
       <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
         <div style={{ fontSize: "11px", fontWeight: 700, color: T.green, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
         {ensureArray(pros).map((p, i) => (
@@ -378,7 +379,7 @@ function ProsCons({ pros, cons }) {
 }
 
 // ─── Performance DNA (4-col grid) ───
-function PerformanceDNA({ shoe }) {
+function PerformanceDNA({ shoe, compact }) {
   const wallAngles = ensureArray(shoe.best_wall_angles);
   const rockTypes = ensureArray(shoe.best_rock_types);
   const footholdTypes = ensureArray(shoe.best_foothold_types);
@@ -400,7 +401,7 @@ function PerformanceDNA({ shoe }) {
   ];
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px" }}>
+    <div style={{ display: "grid", gridTemplateColumns: compact ? "1fr 1fr" : "repeat(4, 1fr)", gap: compact ? "10px" : "14px" }}>
       {cards.map((c, ci) => (
         <div key={ci} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "18px", transition: "border-color 0.2s" }}
           onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.3)"}
@@ -417,11 +418,11 @@ function PerformanceDNA({ shoe }) {
 }
 
 // ─── Customer Voices ───
-function CustomerVoices({ shoe }) {
+function CustomerVoices({ shoe, stacked }) {
   const voices = ensureArray(shoe.customer_voices).slice(0, 4);
   if (!voices.length) return null;
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+    <div style={{ display: "grid", gridTemplateColumns: stacked ? "1fr" : "1fr 1fr", gap: "14px" }}>
       {voices.map((v, i) => (
         <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
           onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
@@ -485,7 +486,7 @@ function ImageGallery({ shoe }) {
 }
 
 // ─── Price Comparison Table ───
-function PriceComparison({ prices, shoe }) {
+function PriceComparison({ prices, shoe, compact }) {
   if (!prices || !prices.length) {
     return (
       <div style={{ background: T.card, borderRadius: T.radius, padding: "32px", border: `1px solid ${T.border}`, textAlign: "center" }}>
@@ -502,24 +503,37 @@ function PriceComparison({ prices, shoe }) {
       </div>
       {prices.map((p, i) => (
         <div key={i} style={{
-          display: "grid", gridTemplateColumns: "1.5fr 0.8fr 0.5fr 0.5fr",
-          alignItems: "center", padding: "12px 20px",
+          display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr 0.5fr",
+          alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
+          gap: compact ? "8px" : "0",
           borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
           background: p.price === best && p.inStock ? T.accentSoft : "transparent",
         }}>
-          <span style={{ fontSize: "13px", fontWeight: 600, color: T.text }}>
-            {p.shop}
-          </span>
-          <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
+          <div style={{ minWidth: 0 }}>
+            <span style={{ fontSize: compact ? "12px" : "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {p.shop}
+            </span>
+            {compact && (
+              <span style={{ fontSize: "10px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
+                {p.inStock ? "In stock" : "Out of stock"}
+              </span>
+            )}
+          </div>
+          <span style={{ fontSize: compact ? "14px" : "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
             {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
           </span>
-          <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-            {p.inStock ? "In stock" : "Out"}
-          </span>
+          {!compact && (
+            <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
+              {p.inStock ? "In stock" : "Out"}
+            </span>
+          )}
           {p.url && p.url !== "#" ? (
             <a href={p.url} target="_blank" rel="noopener noreferrer" style={{
               fontSize: "11px", fontWeight: 600, color: T.accent, textDecoration: "none",
               display: "inline-flex", alignItems: "center", gap: "3px",
+              padding: compact ? "6px 10px" : "0",
+              background: compact ? T.accentSoft : "transparent",
+              borderRadius: compact ? "8px" : "0",
             }}>
               Visit {"\u2192"}
             </a>
@@ -690,6 +704,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   }
 
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
   const prices = priceData[slug] || [];
   const history = priceHistory[slug] || [];
@@ -705,16 +720,16 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       {/* Header */}
-      <header style={{ padding: "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: "rgba(14,16,21,0.92)", backdropFilter: "blur(12px)", zIndex: 50 }}>
-        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+      <header style={{ padding: isMobile ? "12px 16px" : "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: "rgba(14,16,21,0.92)", backdropFilter: "blur(12px)", zIndex: 50 }}>
+        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px" }}>
           {"\u2190"} Search
         </Link>
       </header>
 
       {/* ═══ HERO ═══ */}
-      <div style={{ padding: "40px 32px", borderBottom: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)` }}>
+      <div style={{ padding: isMobile ? "20px 16px" : "40px 32px", borderBottom: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "20px" : "40px", alignItems: "start" }}>
             {/* Left: Image Gallery */}
             <div>
               <ImageGallery shoe={shoe} />
@@ -737,12 +752,12 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 ))}
               </div>
 
-              <h1 style={{ fontSize: "32px", fontWeight: 800, margin: "0 0 20px", letterSpacing: "-0.5px" }}>{shoe.model}</h1>
+              <h1 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, margin: isMobile ? "0 0 14px" : "0 0 20px", letterSpacing: "-0.5px" }}>{shoe.model}</h1>
 
               {/* Combined Price Box: price+size left | evaluation right */}
               <div style={{
                 background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius,
-                padding: 0, marginBottom: "20px", display: "grid", gridTemplateColumns: "1fr 1fr", overflow: "hidden",
+                padding: 0, marginBottom: isMobile ? "16px" : "20px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", overflow: "hidden",
               }}>
                 {/* Left: Price + Size Range */}
                 <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -766,7 +781,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                   </div>
                 </div>
                 {/* Right: Evaluation Signal */}
-                <div style={{ padding: "20px", borderLeft: `1px solid ${T.border}`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
                     <span style={{ fontSize: "18px" }}>{intel.icon}</span>
                     <span style={{ fontSize: "13px", fontWeight: 700, color: intel.color }}>{intel.label}</span>
@@ -776,23 +791,23 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               </div>
 
               {/* Flex spacer pushes radar to bottom, aligned with image thumbnails */}
-              <div style={{ flex: 1 }} />
+              {!isMobile && <div style={{ flex: 1 }} />}
 
-              {/* Single 6-axis Performance Radar */}
-              <PerformanceRadar shoe={shoe} />
+              {/* Single 6-axis Performance Radar — hidden on mobile (shown in overview tab) */}
+              {!isMobile && <PerformanceRadar shoe={shoe} />}
             </div>
           </div>
         </div>
       </div>
 
       {/* ═══ TABS ═══ */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 32px" }}>
-        <div style={{ display: "flex", gap: "20px", marginBottom: "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: "20px" }}>
-          {[{ key: "overview", label: "Overview" }, { key: "prices", label: "Price & Availability" }, { key: "specs", label: "Specs" }].map(tab => (
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "20px 16px" : "40px 32px" }}>
+        <div style={{ display: "flex", gap: isMobile ? "0" : "20px", marginBottom: isMobile ? "24px" : "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: isMobile ? "12px" : "20px" }}>
+          {[{ key: "overview", label: "Overview" }, { key: "prices", label: isMobile ? "Prices" : "Price & Availability" }, { key: "specs", label: "Specs" }].map(tab => (
             <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{
-              padding: "8px 16px", border: "none", background: "transparent", color: activeTab === tab.key ? T.accent : T.muted,
-              fontSize: "14px", fontWeight: activeTab === tab.key ? 700 : 600, cursor: "pointer", borderBottom: activeTab === tab.key ? `2px solid ${T.accent}` : "none",
-              transition: "all 0.2s ease", fontFamily: T.font,
+              padding: isMobile ? "8px 12px" : "8px 16px", border: "none", background: "transparent", color: activeTab === tab.key ? T.accent : T.muted,
+              fontSize: isMobile ? "13px" : "14px", fontWeight: activeTab === tab.key ? 700 : 600, cursor: "pointer", borderBottom: activeTab === tab.key ? `2px solid ${T.accent}` : "none",
+              transition: "all 0.2s ease", fontFamily: T.font, flex: isMobile ? 1 : "none", textAlign: "center",
             }}>
               {tab.label}
             </button>
@@ -803,7 +818,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         {activeTab === "overview" && (
           <div>
             {/* Two-col: Description + Foot Shape | Best For + Pros/Cons */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "8px" : "40px" }}>
               {/* Left col */}
               <div>
                 <SectionHeader icon={"\uD83D\uDCCB"} title="Overview" />
@@ -821,23 +836,24 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <WhoIsThisFor shoe={shoe} />
 
                 <SectionHeader icon={"\u2696\uFE0F"} title="Strengths & Trade-offs" />
-                <ProsCons pros={shoe.pros} cons={shoe.cons} />
+                <ProsCons pros={shoe.pros} cons={shoe.cons} stacked={isMobile} />
               </div>
             </div>
 
             {/* Full-width: Sizing + Stretch side by side (50/50) */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginTop: "36px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px", marginTop: isMobile ? "8px" : "36px" }}>
               <SizingCalculator shoe={shoe} />
               <StretchExpectation shoe={shoe} />
             </div>
 
             {/* Full-width: Performance DNA */}
             <SectionHeader icon={"\uD83E\uDDEC"} title="Performance DNA" subtitle="Where this shoe excels" />
-            <PerformanceDNA shoe={shoe} />
+            {isMobile && <PerformanceRadar shoe={shoe} />}
+            <PerformanceDNA shoe={shoe} compact={isMobile} />
 
             {/* Full-width: Customer Voices */}
             <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" />
-            <CustomerVoices shoe={shoe} />
+            <CustomerVoices shoe={shoe} stacked={isMobile} />
           </div>
         )}
 
@@ -848,8 +864,8 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             <div style={{ background: T.card, borderRadius: T.radius, padding: "24px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
               {history.length > 0 ? (
                 <>
-                  <PriceChart data={history} width={720} height={200} />
-                  <div style={{ display: "flex", gap: "24px", marginTop: "16px", paddingTop: "12px", borderTop: `1px solid ${T.border}` }}>
+                  <PriceChart data={history} width={isMobile ? 340 : 720} height={isMobile ? 150 : 200} />
+                  <div style={{ display: "flex", gap: isMobile ? "16px" : "24px", flexWrap: "wrap", marginTop: "16px", paddingTop: "12px", borderTop: `1px solid ${T.border}` }}>
                     <div style={{ fontSize: "11px", color: T.muted }}>
                       Lowest: <span style={{ color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{Math.min(...history.map(h => h.price))}</span>
                     </div>
@@ -869,7 +885,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               )}
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px" }}>
               <div>
                 <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" />
                 <div style={{ display: "grid", gap: "12px" }}>
@@ -889,7 +905,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               </div>
               <div>
                 <SectionHeader icon={"\uD83C\uDFEA"} title="Retailer Availability" subtitle="Size-specific pricing coming soon" />
-                <PriceComparison prices={prices} shoe={shoe} />
+                <PriceComparison prices={prices} shoe={shoe} compact={isMobile} />
               </div>
             </div>
           </div>
@@ -897,7 +913,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
         {/* ═══ SPECS TAB ═══ */}
         {activeTab === "specs" && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px" }}>
             {/* Left: Build Details (includes Weight + Break-in) */}
             <div>
               <SectionHeader icon={"\uD83D\uDD27"} title="Build Details" />
@@ -953,10 +969,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       </div>
 
       {/* Footer with similar shoes */}
-      <div style={{ padding: "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
+      <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit" />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
+          <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
             {shoes
               .filter(s => s.slug !== slug && (
                 (ensureArray(s.skill_level).some(l => ensureArray(shoe.skill_level).includes(l))) ||
@@ -964,7 +980,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               ))
               .slice(0, 4)
               .map(s => (
-                <MiniCard key={s.slug} shoe={s} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+                <div key={s.slug} style={{ minWidth: isMobile ? "200px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <MiniCard shoe={s} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+                </div>
               ))}
           </div>
         </div>

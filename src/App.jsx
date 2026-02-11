@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
+import useIsMobile from "./useIsMobile.js";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -473,7 +474,7 @@ const BI = {
     "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400&h=400&fit=crop",
 };
 
-function Card({ shoe, onClick, priceData }) {
+function Card({ shoe, onClick, priceData, compact }) {
   const d = shoe.shoe_data;
   const s = shoe.match_score;
   const livePrices = (priceData?.[d.slug] || []).filter(p => p.inStock && p.price > 0).map(p => p.price);
@@ -510,7 +511,7 @@ function Card({ shoe, onClick, priceData }) {
     >
       <div
         style={{
-          height: "180px",
+          height: compact ? "130px" : "180px",
           background: `url(${img}) center/cover`,
           position: "relative",
         }}
@@ -527,13 +528,13 @@ function Card({ shoe, onClick, priceData }) {
           <div
             style={{
               position: "absolute",
-              top: "12px",
-              left: "12px",
+              top: compact ? "8px" : "12px",
+              left: compact ? "8px" : "12px",
               background: "#22c55e",
               color: "#fff",
-              padding: "3px 10px",
+              padding: compact ? "2px 7px" : "3px 10px",
               borderRadius: "12px",
-              fontSize: "11px",
+              fontSize: compact ? "10px" : "11px",
               fontWeight: 700,
               fontFamily: "'DM Mono',monospace",
             }}
@@ -541,7 +542,7 @@ function Card({ shoe, onClick, priceData }) {
             -{disc}%
           </div>
         )}
-        {d.gender && d.gender !== "unisex" && (
+        {d.gender && d.gender !== "unisex" && !compact && (
           <div
             style={{
               position: "absolute",
@@ -561,19 +562,19 @@ function Card({ shoe, onClick, priceData }) {
           </div>
         )}
       </div>
-      <div style={{ padding: "16px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}>
+      <div style={{ padding: compact ? "10px" : "16px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: compact ? "2px" : "4px" }}>
           <div
             style={{
               width: "4px",
-              height: "12px",
+              height: compact ? "10px" : "12px",
               borderRadius: "2px",
               background: BC[d.brand] || "#6b7280",
             }}
           />
           <span
             style={{
-              fontSize: "10px",
+              fontSize: compact ? "9px" : "10px",
               color: "#6b7280",
               fontWeight: 600,
               letterSpacing: "1.5px",
@@ -586,39 +587,42 @@ function Card({ shoe, onClick, priceData }) {
         </div>
         <div
           style={{
-            fontSize: "17px",
+            fontSize: compact ? "14px" : "17px",
             fontWeight: 700,
             color: "#f0f0f0",
             fontFamily: "'DM Sans',sans-serif",
-            marginBottom: "12px",
+            marginBottom: compact ? "6px" : "12px",
+            lineHeight: 1.2,
           }}
         >
           {d.model}
         </div>
-        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
-          {[d.closure, d.downturn, d.feel]
-            .filter(Boolean)
-            .map((t) => (
-              <span
-                key={t}
-                style={{
-                  padding: "3px 10px",
-                  borderRadius: "12px",
-                  background: "#252830",
-                  color: "#9ca3af",
-                  fontSize: "10px",
-                  fontFamily: "'DM Sans',sans-serif",
-                  textTransform: "capitalize",
-                }}
-              >
-                {String(t).replace(/-/g, " ")}
-              </span>
-            ))}
-        </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "10px" }}>
+        {!compact && (
+          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
+            {[d.closure, d.downturn, d.feel]
+              .filter(Boolean)
+              .map((t) => (
+                <span
+                  key={t}
+                  style={{
+                    padding: "3px 10px",
+                    borderRadius: "12px",
+                    background: "#252830",
+                    color: "#9ca3af",
+                    fontSize: "10px",
+                    fontFamily: "'DM Sans',sans-serif",
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {String(t).replace(/-/g, " ")}
+                </span>
+              ))}
+          </div>
+        )}
+        <div style={{ display: "flex", alignItems: "baseline", gap: compact ? "6px" : "8px", marginBottom: compact ? "4px" : "10px" }}>
           <span
             style={{
-              fontSize: "20px",
+              fontSize: compact ? "16px" : "20px",
               fontWeight: 700,
               color: "#E8734A",
               fontFamily: "'DM Mono',monospace",
@@ -629,7 +633,7 @@ function Card({ shoe, onClick, priceData }) {
           {effectivePrice < d.price_uvp_eur && (
             <span
               style={{
-                fontSize: "13px",
+                fontSize: compact ? "11px" : "13px",
                 color: "#6b7280",
                 textDecoration: "line-through",
                 fontFamily: "'DM Mono',monospace",
@@ -639,42 +643,44 @@ function Card({ shoe, onClick, priceData }) {
             </span>
           )}
         </div>
-        <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
-          {(d.skill_level || []).map((l) => (
-            <span
-              key={l}
-              style={{
-                padding: "2px 8px",
-                borderRadius: "8px",
-                fontSize: "9px",
-                fontWeight: 600,
-                background: "rgba(232,115,74,.1)",
-                color: "#E8734A",
-                textTransform: "capitalize",
-                fontFamily: "'DM Sans',sans-serif",
-              }}
-            >
-              {l}
-            </span>
-          ))}
-          {(d.use_cases || []).map((u) => (
-            <span
-              key={u}
-              style={{
-                padding: "2px 8px",
-                borderRadius: "8px",
-                fontSize: "9px",
-                fontWeight: 600,
-                background: "rgba(34,197,94,.1)",
-                color: "#22c55e",
-                textTransform: "capitalize",
-                fontFamily: "'DM Sans',sans-serif",
-              }}
-            >
-              {String(u).replace(/_/g, " ")}
-            </span>
-          ))}
-        </div>
+        {!compact && (
+          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
+            {(d.skill_level || []).map((l) => (
+              <span
+                key={l}
+                style={{
+                  padding: "2px 8px",
+                  borderRadius: "8px",
+                  fontSize: "9px",
+                  fontWeight: 600,
+                  background: "rgba(232,115,74,.1)",
+                  color: "#E8734A",
+                  textTransform: "capitalize",
+                  fontFamily: "'DM Sans',sans-serif",
+                }}
+              >
+                {l}
+              </span>
+            ))}
+            {(d.use_cases || []).map((u) => (
+              <span
+                key={u}
+                style={{
+                  padding: "2px 8px",
+                  borderRadius: "8px",
+                  fontSize: "9px",
+                  fontWeight: 600,
+                  background: "rgba(34,197,94,.1)",
+                  color: "#22c55e",
+                  textTransform: "capitalize",
+                  fontFamily: "'DM Sans',sans-serif",
+                }}
+              >
+                {String(u).replace(/_/g, " ")}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -684,11 +690,13 @@ function Card({ shoe, onClick, priceData }) {
 
 export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {}, filters: extFilters, setFilters: extSetFilters, query: extQuery, setQuery: extSetQuery }) {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const filters = extFilters || {};
   const setFilters = extSetFilters || (() => {});
   const query = extQuery || "";
   const setQuery = extSetQuery || (() => {});
   const [openGroup, setOpenGroup] = useState("basics");
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // ── Weighted text relevance scoring ──
   // Returns { shoe, relevance (0-100) } for each shoe, or null if no match.
@@ -807,11 +815,13 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       {/* Header */}
       <header
         style={{
-          padding: "20px 32px",
+          padding: isMobile ? "12px 16px" : "20px 32px",
           borderBottom: "1px solid #1e2028",
           display: "flex",
-          alignItems: "center",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: isMobile ? "stretch" : "center",
           justifyContent: "space-between",
+          gap: isMobile ? "10px" : 0,
           position: "sticky",
           top: 0,
           background: "rgba(19,21,26,.92)",
@@ -819,23 +829,40 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           zIndex: 100,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontSize: "24px" }}>🧗</span>
-          <span style={{ fontSize: "18px", fontWeight: 700, letterSpacing: "-0.5px" }}>
-            climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
-          </span>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <span style={{ fontSize: isMobile ? "20px" : "24px" }}>🧗</span>
+            <span style={{ fontSize: isMobile ? "15px" : "18px", fontWeight: 700, letterSpacing: "-0.5px" }}>
+              climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
+            </span>
+          </div>
+          {isMobile && (
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <span style={{ fontSize: "12px", color: "#6b7280" }}>
+                {results.length} shoes
+              </span>
+              <button
+                onClick={() => setShowMobileFilters(true)}
+                style={{
+                  padding: "6px 14px", borderRadius: "20px",
+                  border: `1.5px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
+                  background: ac > 0 ? "rgba(232,115,74,0.15)" : "transparent",
+                  color: ac > 0 ? "#E8734A" : "#9ca3af",
+                  fontSize: "12px", fontWeight: 600, cursor: "pointer",
+                  fontFamily: "'DM Sans',sans-serif", display: "flex", alignItems: "center", gap: "4px",
+                }}
+              >
+                Filters{ac > 0 ? ` (${ac})` : ""}
+              </button>
+            </div>
+          )}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", flex: 1, justifyContent: "flex-end" }}>
-          <div style={{ position: "relative", maxWidth: "320px", flex: 1 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px", flex: isMobile ? undefined : 1, justifyContent: isMobile ? undefined : "flex-end" }}>
+          <div style={{ position: "relative", maxWidth: isMobile ? undefined : "320px", flex: 1 }}>
             <span
               style={{
-                position: "absolute",
-                left: "12px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontSize: "14px",
-                color: "#6b7280",
-                pointerEvents: "none",
+                position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)",
+                fontSize: "14px", color: "#6b7280", pointerEvents: "none",
               }}
             >
               🔍
@@ -846,15 +873,9 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search brand, model, style..."
               style={{
-                width: "100%",
-                padding: "8px 12px 8px 36px",
-                borderRadius: "12px",
-                border: "1.5px solid #2a2f38",
-                background: "#1c1f26",
-                color: "#f0f0f0",
-                fontSize: "13px",
-                fontFamily: "'DM Sans',sans-serif",
-                outline: "none",
+                width: "100%", padding: "8px 12px 8px 36px", borderRadius: "12px",
+                border: "1.5px solid #2a2f38", background: "#1c1f26", color: "#f0f0f0",
+                fontSize: "13px", fontFamily: "'DM Sans',sans-serif", outline: "none",
                 transition: "border-color .2s",
               }}
               onFocus={(e) => (e.target.style.borderColor = "#E8734A")}
@@ -864,68 +885,113 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               <button
                 onClick={() => setQuery("")}
                 style={{
-                  position: "absolute",
-                  right: "10px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  background: "none",
-                  border: "none",
-                  color: "#6b7280",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                  padding: 0,
-                  lineHeight: 1,
+                  position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
+                  background: "none", border: "none", color: "#6b7280", cursor: "pointer",
+                  fontSize: "14px", padding: 0, lineHeight: 1,
                 }}
               >
                 ×
               </button>
             )}
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <div
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: src.includes("supabase") ? "#22c55e" : "#3b82f6",
-                boxShadow: `0 0 6px ${src.includes("supabase") ? "rgba(34,197,94,.5)" : "rgba(59,130,246,.5)"}`,
-              }}
-            />
-            <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-              {src.includes("supabase") ? "Live · Supabase" : "Preview · Local"}
-            </span>
-          </div>
-          <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
-            {results.length} shoe{results.length !== 1 ? "s" : ""}
-            {ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
-          </span>
-          {(ac > 0 || query) && (
-            <button
-              onClick={() => {
-                setFilters({});
-                setQuery("");
-              }}
-              style={{
-                padding: "6px 16px",
-                borderRadius: "20px",
-                border: "1px solid #3a3f47",
-                background: "transparent",
-                color: "#9ca3af",
-                fontSize: "12px",
-                cursor: "pointer",
-                fontFamily: "'DM Sans',sans-serif",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Clear all
-            </button>
+          {!isMobile && (
+            <>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <div style={{
+                  width: "8px", height: "8px", borderRadius: "50%",
+                  background: src.includes("supabase") ? "#22c55e" : "#3b82f6",
+                  boxShadow: `0 0 6px ${src.includes("supabase") ? "rgba(34,197,94,.5)" : "rgba(59,130,246,.5)"}`,
+                }} />
+                <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+                  {src.includes("supabase") ? "Live · Supabase" : "Preview · Local"}
+                </span>
+              </div>
+              <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
+                {results.length} shoe{results.length !== 1 ? "s" : ""}
+                {ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
+              </span>
+              {(ac > 0 || query) && (
+                <button
+                  onClick={() => { setFilters({}); setQuery(""); }}
+                  style={{
+                    padding: "6px 16px", borderRadius: "20px", border: "1px solid #3a3f47",
+                    background: "transparent", color: "#9ca3af", fontSize: "12px",
+                    cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+                  }}
+                >
+                  Clear all
+                </button>
+              )}
+            </>
           )}
         </div>
       </header>
 
+      {/* Mobile filter overlay */}
+      {isMobile && showMobileFilters && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 200, background: "#13151a",
+          overflowY: "auto", padding: "0 0 80px",
+        }}>
+          <div style={{
+            padding: "16px", borderBottom: "1px solid #1e2028",
+            display: "flex", justifyContent: "space-between", alignItems: "center",
+            position: "sticky", top: 0, background: "rgba(19,21,26,.95)", backdropFilter: "blur(12px)", zIndex: 1,
+          }}>
+            <span style={{ fontSize: "16px", fontWeight: 700, color: "#f0f0f0" }}>Filters</span>
+            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+              {ac > 0 && (
+                <button onClick={() => setFilters({})} style={{
+                  padding: "6px 14px", borderRadius: "16px", border: "1px solid #3a3f47",
+                  background: "transparent", color: "#9ca3af", fontSize: "12px", cursor: "pointer",
+                }}>Clear all</button>
+              )}
+              <button onClick={() => setShowMobileFilters(false)} style={{
+                padding: "8px 18px", borderRadius: "20px", border: "none",
+                background: "#E8734A", color: "#fff", fontSize: "13px", fontWeight: 700, cursor: "pointer",
+              }}>Show {results.length} shoes</button>
+            </div>
+          </div>
+          {GROUPS.map((g) => (
+            <div key={g.id} style={{ borderBottom: "1px solid #1e2028" }}>
+              <button
+                onClick={() => setOpenGroup(openGroup === g.id ? null : g.id)}
+                style={{
+                  width: "100%", padding: "14px 20px", display: "flex", alignItems: "center",
+                  justifyContent: "space-between", background: "transparent", border: "none",
+                  color: "#f0f0f0", cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+                }}
+              >
+                <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span style={{ fontSize: "16px" }}>{g.icon}</span>
+                  <span style={{ fontSize: "14px", fontWeight: 600 }}>{g.label}</span>
+                  {g.filters.some(f => filters[f.key] != null && (!Array.isArray(filters[f.key]) || filters[f.key].length > 0)) && (
+                    <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#E8734A" }} />
+                  )}
+                </span>
+                <span style={{ color: "#6b7280", fontSize: "18px", transition: "transform .2s", transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)" }}>‹</span>
+              </button>
+              {openGroup === g.id && (
+                <div style={{ padding: "0 20px 16px" }}>
+                  {g.filters.map((f) => (
+                    <div key={f.key} style={{ marginBottom: "16px" }}>
+                      <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: "0.5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
+                      {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                      {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
+                      {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} unit={f.key.includes("price") ? "€" : ""} />}
+                      {f.type === "bool" && <Bool label={f.label} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar */}
-        <aside
+        {/* Sidebar — desktop only */}
+        {!isMobile && <aside
           style={{
             width: "320px",
             minWidth: "320px",
@@ -1125,10 +1191,10 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               </div>
             ))}
           </div>
-        </aside>
+        </aside>}
 
         {/* Results */}
-        <main style={{ flex: 1, padding: "24px 28px", overflowY: "auto" }}>
+        <main style={{ flex: 1, padding: isMobile ? "16px 12px" : "24px 28px", overflowY: "auto" }}>
           {(ac > 0 || query) && (
             <div
               style={{
@@ -1221,8 +1287,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: "20px",
+              gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(280px, 1fr))",
+              gap: isMobile ? "12px" : "20px",
             }}
           >
             {results.map((shoe, i) => (
@@ -1236,6 +1302,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   shoe={shoe}
                   onClick={() => navigate(`/shoe/${shoe.shoe_data.slug}`)}
                   priceData={priceData}
+                  compact={isMobile}
                 />
               </div>
             ))}
@@ -1254,19 +1321,21 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           )}
         </main>
 
-        {/* Footer */}
-        <footer style={{
-          padding: "24px 32px", borderTop: "1px solid #252a35",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          fontSize: "12px", color: "#717889", fontFamily: "'DM Sans',sans-serif",
-        }}>
-          <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <Link to="/impressum" style={{ color: "#717889", textDecoration: "none" }}>Impressum</Link>
-            <Link to="/privacy" style={{ color: "#717889", textDecoration: "none" }}>Datenschutz</Link>
-          </div>
-        </footer>
       </div>
+
+      {/* Footer */}
+      <footer style={{
+        padding: isMobile ? "16px" : "24px 32px", borderTop: "1px solid #252a35",
+        display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "8px" : 0,
+        justifyContent: "space-between", alignItems: isMobile ? "center" : "center",
+        fontSize: "12px", color: "#717889", fontFamily: "'DM Sans',sans-serif",
+      }}>
+        <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <Link to="/impressum" style={{ color: "#717889", textDecoration: "none" }}>Impressum</Link>
+          <Link to="/privacy" style={{ color: "#717889", textDecoration: "none" }}>Datenschutz</Link>
+        </div>
+      </footer>
     </div>
   );
 }
