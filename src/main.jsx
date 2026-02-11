@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
 import ShoeDetail from "./ShoeDetail.jsx";
+import Legal from "./Legal.jsx";
 import { GLOBAL_CSS } from "./tokens.js";
 
 // ─── Data Bridge ─────────────────────────────────────────────
@@ -139,6 +140,8 @@ function Root() {
                 />
               }
             />
+            <Route path="/impressum" element={<Legal />} />
+            <Route path="/privacy" element={<Legal />} />
           </Routes>
         </BrowserRouter>
       </ErrorBoundary>

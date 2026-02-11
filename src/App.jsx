@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 
 // ═══ SCORING FUNCTIONS ═══
@@ -1247,6 +1247,19 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
             </div>
           )}
         </main>
+
+        {/* Footer */}
+        <footer style={{
+          padding: "24px 32px", borderTop: "1px solid #252a35",
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          fontSize: "12px", color: "#717889", fontFamily: "'DM Sans',sans-serif",
+        }}>
+          <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
+          <div style={{ display: "flex", gap: "20px" }}>
+            <Link to="/impressum" style={{ color: "#717889", textDecoration: "none" }}>Impressum</Link>
+            <Link to="/privacy" style={{ color: "#717889", textDecoration: "none" }}>Datenschutz</Link>
+          </div>
+        </footer>
       </div>
     </div>
   );
