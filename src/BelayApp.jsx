@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
+import useIsMobile from "./useIsMobile.js";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -470,7 +471,7 @@ function BelayCard({ belay, matchScore, onClick }) {
 
 // ═══ FILTER SIDEBAR ═══
 
-function FilterSidebar({ groups, filters, setFilter, activeTypes, setActiveTypes }) {
+function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActiveTypes }) {
   const [openGroup, setOpenGroup] = useState("climbing");
   const activeCount = Object.entries(filters).filter(([, v]) => {
     if (v == null) return false;
@@ -487,7 +488,7 @@ function FilterSidebar({ groups, filters, setFilter, activeTypes, setActiveTypes
   ];
 
   return (
-    <div style={{ width: "280px", flexShrink: 0 }}>
+    <>
       {/* Hard filter: Device type */}
       <div style={{ marginBottom: "20px" }}>
         <div style={{ color: "#6b7280", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
@@ -592,7 +593,7 @@ function FilterSidebar({ groups, filters, setFilter, activeTypes, setActiveTypes
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
 
@@ -600,8 +601,10 @@ function FilterSidebar({ groups, filters, setFilter, activeTypes, setActiveTypes
 
 export default function BelayApp({ belays = [], src }) {
   const nav = useNavigate();
+  const isMobile = useIsMobile();
   const [activeTypes, setActiveTypes] = useState([]);
   const [filters, setFilters] = useState({});
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const setFilter = (k, v) => setFilters((p) => ({ ...p, [k]: v }));
 
   const groups = useMemo(() => getGroups(activeTypes), [activeTypes]);
@@ -612,57 +615,163 @@ export default function BelayApp({ belays = [], src }) {
     return score(pool, filters);
   }, [belays, activeTypes, filters]);
 
+  const ac = Object.entries(filters).filter(([, v]) => {
+    if (v == null) return false;
+    if (Array.isArray(v) && !v.length) return false;
+    if (typeof v === "object" && !Array.isArray(v) && v.min == null && v.max == null) return false;
+    return true;
+  }).length;
+
   return (
     <div style={{ minHeight: "100vh", background: "#0d1117", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
       {/* Header */}
-      <header style={{ padding: "24px 32px", borderBottom: "1px solid #23272f", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: "24px" }}>🔗</span>
-            <h1 style={{ fontSize: "20px", fontWeight: 700, margin: 0, letterSpacing: "-0.5px" }}>
-              climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
-            </h1>
-          </div>
-          <p style={{ margin: "4px 0 0 36px", color: "#6b7280", fontSize: "13px" }}>
-            Find your perfect belay device
-          </p>
+      <header style={{
+        position: "sticky", top: 0, zIndex: 100,
+        display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px",
+        flexWrap: isMobile ? "wrap" : "nowrap",
+        padding: isMobile ? "10px 12px" : "0 24px",
+        minHeight: isMobile ? undefined : "65px",
+        background: "rgba(13,17,23,.92)", backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #23272f",
+      }}>
+        <div
+          onClick={() => nav("/")}
+          style={{ fontSize: isMobile ? "13px" : "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", whiteSpace: "nowrap" }}
+        >
+          <span style={{ fontSize: isMobile ? "16px" : "20px" }}>🧗</span>
+          climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
         </div>
-        <div style={{ display: "flex", gap: "8px" }}>
-          <button onClick={() => nav("/shoes")} style={{ padding: "6px 16px", borderRadius: "8px", border: "1px solid #3a3f47", background: "transparent", color: "#9ca3af", fontSize: "12px", cursor: "pointer" }}>
-            🥿 Shoes
-          </button>
-          <button onClick={() => nav("/ropes")} style={{ padding: "6px 16px", borderRadius: "8px", border: "1px solid #3a3f47", background: "transparent", color: "#9ca3af", fontSize: "12px", cursor: "pointer" }}>
-            🧵 Ropes
-          </button>
-          <button style={{ padding: "6px 16px", borderRadius: "8px", border: "1px solid #E8734A", background: "rgba(232,115,74,0.1)", color: "#E8734A", fontSize: "12px", fontWeight: 600, cursor: "default" }}>
-            🔗 Belays
-          </button>
+
+        <div style={{
+          display: "flex", gap: "2px", background: "#151820", borderRadius: "8px", padding: "3px", marginLeft: isMobile ? "auto" : "20px",
+        }}>
+          <button onClick={() => nav("/shoes")} style={{
+            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
+            color: "#6b7280", cursor: "pointer", border: "none", background: "none",
+            fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
+          }}>Shoes</button>
+          <button onClick={() => nav("/ropes")} style={{
+            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
+            color: "#6b7280", cursor: "pointer", border: "none", background: "none",
+            fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
+          }}>Ropes</button>
+          <button style={{
+            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
+            color: "#f0f0f0", cursor: "pointer", border: "none",
+            background: "#1a1f2a", boxShadow: "0 1px 3px rgba(0,0,0,.3)",
+            fontFamily: "'DM Sans',sans-serif",
+          }}>Belays</button>
         </div>
+
+        {isMobile && (
+          <button
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+            style={{
+              padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 500,
+              color: ac > 0 ? "#E8734A" : "#6b7280",
+              cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
+              background: ac > 0 ? "rgba(232,115,74,0.1)" : "transparent",
+              fontFamily: "'DM Sans',sans-serif",
+            }}
+          >
+            ☰ Filters{ac > 0 ? ` (${ac})` : ""}
+          </button>
+        )}
+
+        {!isMobile && <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap", marginLeft: "auto" }}>
+          {filtered.length} device{filtered.length !== 1 ? "s" : ""}
+        </span>}
       </header>
 
+      {/* Mobile filter overlay */}
+      {isMobile && showMobileFilters && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 200,
+          background: "rgba(0,0,0,.6)", backdropFilter: "blur(4px)",
+        }} onClick={() => setShowMobileFilters(false)}>
+          <div
+            style={{
+              position: "absolute", top: 0, right: 0, bottom: 0,
+              width: "85vw", maxWidth: "340px", background: "#14171c",
+              overflowY: "auto", borderLeft: "1px solid #23272f",
+              animation: "slideInRight .25s ease",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #23272f" }}>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0f0f0" }}>Filters</span>
+              <button
+                onClick={() => setShowMobileFilters(false)}
+                style={{ background: "none", border: "none", color: "#9ca3af", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+              >×</button>
+            </div>
+            <div style={{ padding: "16px 20px" }}>
+              <FilterSidebarContent
+                groups={groups}
+                filters={filters}
+                setFilter={setFilter}
+                activeTypes={activeTypes}
+                setActiveTypes={setActiveTypes}
+              />
+            </div>
+            <div style={{ padding: "16px 20px" }}>
+              <button
+                onClick={() => setShowMobileFilters(false)}
+                style={{
+                  width: "100%", padding: "12px", borderRadius: "10px",
+                  background: "#E8734A", color: "#fff", border: "none",
+                  fontSize: "14px", fontWeight: 600, cursor: "pointer",
+                }}
+              >
+                Show {filtered.length} device{filtered.length !== 1 ? "s" : ""}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Body */}
-      <div style={{ display: "flex", gap: "24px", padding: "24px 32px", alignItems: "flex-start" }}>
-        <FilterSidebar
-          groups={groups}
-          filters={filters}
-          setFilter={setFilter}
-          activeTypes={activeTypes}
-          setActiveTypes={setActiveTypes}
-        />
+      <div style={{ display: "flex", gap: "24px", padding: isMobile ? "16px 12px" : "24px 32px", alignItems: "flex-start" }}>
+        {/* Desktop sidebar */}
+        {!isMobile && (
+          <div style={{ width: "280px", flexShrink: 0 }}>
+            <FilterSidebarContent
+              groups={groups}
+              filters={filters}
+              setFilter={setFilter}
+              activeTypes={activeTypes}
+              setActiveTypes={setActiveTypes}
+            />
+          </div>
+        )}
 
         {/* Results */}
         <div style={{ flex: 1 }}>
           <div style={{ marginBottom: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ color: "#6b7280", fontSize: "13px" }}>
-              {filtered.length} device{filtered.length !== 1 ? "s" : ""}
-              {src && <span style={{ marginLeft: "8px", fontSize: "11px", color: "#4b5563" }}>({src})</span>}
-            </span>
+            {isMobile ? (
+              <>
+                <span style={{ color: "#6b7280", fontSize: "12px", fontFamily: "'DM Mono',monospace" }}>
+                  {filtered.length} device{filtered.length !== 1 ? "s" : ""}
+                </span>
+                {(ac > 0 || activeTypes.length > 0) && (
+                  <button
+                    onClick={() => { setFilters({}); setActiveTypes([]); }}
+                    style={{ padding: "4px 12px", borderRadius: "16px", border: "1px solid #3a3f47", background: "transparent", color: "#9ca3af", fontSize: "11px", cursor: "pointer" }}
+                  >Clear all</button>
+                )}
+              </>
+            ) : (
+              <span style={{ color: "#6b7280", fontSize: "13px" }}>
+                {filtered.length} device{filtered.length !== 1 ? "s" : ""}
+                {src && <span style={{ marginLeft: "8px", fontSize: "11px", color: "#4b5563" }}>({src})</span>}
+              </span>
+            )}
           </div>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: "16px",
+              gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: isMobile ? "14px" : "16px",
             }}
           >
             {filtered.map(({ belay_data: d, match_score: ms }) => (
@@ -675,7 +784,7 @@ export default function BelayApp({ belays = [], src }) {
             ))}
           </div>
           {!filtered.length && (
-            <div style={{ textAlign: "center", padding: "60px 20px", color: "#6b7280" }}>
+            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "60px 20px", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🔗</div>
               <div style={{ fontSize: "16px" }}>No devices match your filters</div>
               <div style={{ fontSize: "13px", marginTop: "8px" }}>Try broadening your criteria</div>

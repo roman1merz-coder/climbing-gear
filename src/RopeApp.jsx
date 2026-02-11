@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
+import useIsMobile from "./useIsMobile.js";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -550,11 +551,13 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
 
 export default function RopeApp({ ropes = [], src = "local" }) {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [filters, setFilters] = useState({});
   const [activeTypes, setActiveTypes] = useState([]);
   const [openGroup, setOpenGroup] = useState("climbing");
   const [query, setQuery] = useState("");
   const [selectedLengths, setSelectedLengths] = useState({});
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const set = (k, v) => {
     setFilters((p) => {
@@ -615,41 +618,58 @@ export default function RopeApp({ ropes = [], src = "local" }) {
       {/* Header */}
       <header style={{
         position: "sticky", top: 0, zIndex: 100,
-        display: "flex", alignItems: "center", gap: "16px",
-        padding: "0 24px", height: "65px",
+        display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px",
+        flexWrap: isMobile ? "wrap" : "nowrap",
+        padding: isMobile ? "10px 12px" : "0 24px",
+        minHeight: isMobile ? undefined : "65px",
         background: "rgba(14,16,21,.92)", backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e2028",
       }}>
         <div
           onClick={() => navigate("/")}
-          style={{ fontSize: "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", whiteSpace: "nowrap" }}
+          style={{ fontSize: isMobile ? "13px" : "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", whiteSpace: "nowrap" }}
         >
-          <span style={{ fontSize: "20px" }}>🧗</span>
+          <span style={{ fontSize: isMobile ? "16px" : "20px" }}>🧗</span>
           climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
         </div>
 
         <div style={{
-          display: "flex", gap: "2px", background: "#151820", borderRadius: "8px", padding: "3px", marginLeft: "20px",
+          display: "flex", gap: "2px", background: "#151820", borderRadius: "8px", padding: "3px", marginLeft: isMobile ? "auto" : "20px",
         }}>
           <button onClick={() => navigate("/shoes")} style={{
-            padding: "6px 16px", borderRadius: "6px", fontSize: "12px", fontWeight: 500,
+            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
             color: "#6b7280", cursor: "pointer", border: "none", background: "none",
             fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
           }}>Shoes</button>
           <button style={{
-            padding: "6px 16px", borderRadius: "6px", fontSize: "12px", fontWeight: 500,
+            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
             color: "#f0f0f0", cursor: "pointer", border: "none",
             background: "#1a1f2a", boxShadow: "0 1px 3px rgba(0,0,0,.3)",
             fontFamily: "'DM Sans',sans-serif",
           }}>Ropes</button>
           <button onClick={() => navigate("/belays")} style={{
-            padding: "6px 16px", borderRadius: "6px", fontSize: "12px", fontWeight: 500,
+            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
             color: "#6b7280", cursor: "pointer", border: "none", background: "none",
             fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
           }}>Belays</button>
         </div>
 
-        <div style={{ flex: 1, maxWidth: "400px", marginLeft: "auto", position: "relative" }}>
+        {isMobile && (
+          <button
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+            style={{
+              padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 500,
+              color: ac > 0 ? "#E8734A" : "#6b7280",
+              cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
+              background: ac > 0 ? "rgba(232,115,74,0.1)" : "transparent",
+              fontFamily: "'DM Sans',sans-serif",
+            }}
+          >
+            ☰ Filters{ac > 0 ? ` (${ac})` : ""}
+          </button>
+        )}
+
+        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", marginLeft: isMobile ? undefined : "auto", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
           <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
           <input
             type="text"
@@ -665,11 +685,11 @@ export default function RopeApp({ ropes = [], src = "local" }) {
           />
         </div>
 
-        <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
+        {!isMobile && <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
           {results.length} ropes
-        </span>
+        </span>}
 
-        {(ac > 0 || activeTypes.length > 0) && (
+        {!isMobile && (ac > 0 || activeTypes.length > 0) && (
           <button
             onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
             style={{
@@ -684,117 +704,223 @@ export default function RopeApp({ ropes = [], src = "local" }) {
         )}
       </header>
 
-      <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar */}
-        <aside style={{
-          width: "320px", minWidth: "320px",
-          borderRight: "1px solid #1e2028",
-          overflowY: "auto", height: "calc(100vh - 65px)",
-          position: "sticky", top: "65px",
-        }}>
-          <div style={{ padding: "20px 20px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <span style={{ fontSize: "11px", fontWeight: 600, color: "#6b7280", letterSpacing: "2px", textTransform: "uppercase" }}>
-              Find Your Rope
-            </span>
-          </div>
-
-          {/* Hard filter: Rope Type */}
-          <div style={{ padding: "0 20px 20px", borderBottom: "1px solid #1e2028" }}>
-            <div style={{
-              fontSize: "10px", fontWeight: 700, color: "#22d3ee",
-              letterSpacing: "1.5px", textTransform: "uppercase",
-              marginBottom: "10px", display: "flex", alignItems: "center", gap: "6px",
-            }}>
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#22d3ee" }} />
-              Rope Type
-            </div>
-            <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-              {[
-                { type: "single", icon: "①", label: "Single" },
-                { type: "half", icon: "½", label: "Half" },
-                { type: "twin", icon: "∞", label: "Twin" },
-                { type: "static", icon: "▬", label: "Static" },
-              ].map((t) => (
-                <TypePill
-                  key={t.type}
-                  icon={t.icon}
-                  label={t.label}
-                  active={activeTypes.includes(t.type)}
-                  onClick={() => toggleType(t.type)}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Soft filter groups */}
-          {GROUPS.map((g) => (
-            <div key={g.id} style={{ borderBottom: "1px solid #1e2028" }}>
+      {/* Mobile filter overlay */}
+      {isMobile && showMobileFilters && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 200,
+          background: "rgba(0,0,0,.6)", backdropFilter: "blur(4px)",
+        }} onClick={() => setShowMobileFilters(false)}>
+          <div
+            style={{
+              position: "absolute", top: 0, right: 0, bottom: 0,
+              width: "85vw", maxWidth: "340px", background: "#14171c",
+              overflowY: "auto", borderLeft: "1px solid #1e2028",
+              animation: "slideInRight .25s ease",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #1e2028" }}>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0f0f0" }}>Filters</span>
               <button
-                onClick={() => setOpenGroup(openGroup === g.id ? null : g.id)}
-                style={{
-                  width: "100%", padding: "14px 20px",
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  background: "transparent", border: "none", color: "#f0f0f0",
-                  cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
-                }}
-              >
-                <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <span style={{ fontSize: "16px" }}>{g.icon}</span>
-                  <span style={{ fontSize: "14px", fontWeight: 600 }}>{g.label}</span>
-                  {g.filters.some(
-                    (f) => filters[f.key] != null && (!Array.isArray(filters[f.key]) || filters[f.key].length > 0)
-                  ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#E8734A" }} />}
-                </span>
-                <span style={{ color: "#6b7280", fontSize: "18px", transition: "transform .2s", transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)" }}>
-                  ‹
-                </span>
-              </button>
-              {openGroup === g.id && (
-                <div style={{ padding: "0 20px 16px" }}>
-                  {g.filters.map((f) => (
-                    <div key={f.key} style={{ marginBottom: "16px" }}>
-                      <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>
-                        {f.label}
-                      </div>
-                      {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
-                      {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
-                      {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} />}
-                      {f.type === "bool" && <Bool label={f.label} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
-                      {f.type === "length" && <LengthPicker options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
-                    </div>
-                  ))}
-                </div>
-              )}
+                onClick={() => setShowMobileFilters(false)}
+                style={{ background: "none", border: "none", color: "#9ca3af", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+              >×</button>
             </div>
-          ))}
 
-          {/* Legend */}
-          <div style={{ padding: "20px", marginTop: "8px" }}>
-            <div style={{ fontSize: "11px", fontWeight: 600, color: "#6b7280", letterSpacing: "1px", marginBottom: "12px", textTransform: "uppercase" }}>
-              Match Score
+            {/* Rope Type */}
+            <div style={{ padding: "16px 20px", borderBottom: "1px solid #1e2028" }}>
+              <div style={{
+                fontSize: "10px", fontWeight: 700, color: "#22d3ee",
+                letterSpacing: "1.5px", textTransform: "uppercase",
+                marginBottom: "10px", display: "flex", alignItems: "center", gap: "6px",
+              }}>
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#22d3ee" }} />
+                Rope Type
+              </div>
+              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                {[
+                  { type: "single", icon: "①", label: "Single" },
+                  { type: "half", icon: "½", label: "Half" },
+                  { type: "twin", icon: "∞", label: "Twin" },
+                  { type: "static", icon: "▬", label: "Static" },
+                ].map((t) => (
+                  <TypePill key={t.type} icon={t.icon} label={t.label} active={activeTypes.includes(t.type)} onClick={() => toggleType(t.type)} />
+                ))}
+              </div>
             </div>
-            {[
-              { c: "#22c55e", l: "80–100%", d: "Great match" },
-              { c: "#E8734A", l: "50–79%", d: "Partial" },
-              { c: "#ef4444", l: "0–49%", d: "Weak" },
-            ].map((x) => (
-              <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-                <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: x.c }} />
-                <span style={{ fontSize: "11px", color: "#9ca3af" }}>{x.l} — {x.d}</span>
+
+            {/* Filter groups */}
+            {GROUPS.map((g) => (
+              <div key={g.id} style={{ borderBottom: "1px solid #1e2028" }}>
+                <button
+                  onClick={() => setOpenGroup(openGroup === g.id ? null : g.id)}
+                  style={{
+                    width: "100%", padding: "14px 20px",
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    background: "transparent", border: "none", color: "#f0f0f0",
+                    cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+                  }}
+                >
+                  <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <span style={{ fontSize: "16px" }}>{g.icon}</span>
+                    <span style={{ fontSize: "14px", fontWeight: 600 }}>{g.label}</span>
+                    {g.filters.some(
+                      (f) => filters[f.key] != null && (!Array.isArray(filters[f.key]) || filters[f.key].length > 0)
+                    ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#E8734A" }} />}
+                  </span>
+                  <span style={{ color: "#6b7280", fontSize: "18px", transition: "transform .2s", transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)" }}>‹</span>
+                </button>
+                {openGroup === g.id && (
+                  <div style={{ padding: "0 20px 16px" }}>
+                    {g.filters.map((f) => (
+                      <div key={f.key} style={{ marginBottom: "16px" }}>
+                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
+                        {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "bool" && <Bool label={f.label} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "length" && <LengthPicker options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
+
+            {/* Apply button */}
+            <div style={{ padding: "16px 20px" }}>
+              <button
+                onClick={() => setShowMobileFilters(false)}
+                style={{
+                  width: "100%", padding: "12px", borderRadius: "10px",
+                  background: "#E8734A", color: "#fff", border: "none",
+                  fontSize: "14px", fontWeight: 600, cursor: "pointer",
+                }}
+              >
+                Show {results.length} rope{results.length !== 1 ? "s" : ""}
+              </button>
+            </div>
           </div>
-        </aside>
+        </div>
+      )}
+
+      <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
+        {/* Sidebar — desktop only */}
+        {!isMobile && (
+          <aside style={{
+            width: "320px", minWidth: "320px",
+            borderRight: "1px solid #1e2028",
+            overflowY: "auto", height: "calc(100vh - 65px)",
+            position: "sticky", top: "65px",
+          }}>
+            <div style={{ padding: "20px 20px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{ fontSize: "11px", fontWeight: 600, color: "#6b7280", letterSpacing: "2px", textTransform: "uppercase" }}>
+                Find Your Rope
+              </span>
+            </div>
+
+            {/* Hard filter: Rope Type */}
+            <div style={{ padding: "0 20px 20px", borderBottom: "1px solid #1e2028" }}>
+              <div style={{
+                fontSize: "10px", fontWeight: 700, color: "#22d3ee",
+                letterSpacing: "1.5px", textTransform: "uppercase",
+                marginBottom: "10px", display: "flex", alignItems: "center", gap: "6px",
+              }}>
+                <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#22d3ee" }} />
+                Rope Type
+              </div>
+              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                {[
+                  { type: "single", icon: "①", label: "Single" },
+                  { type: "half", icon: "½", label: "Half" },
+                  { type: "twin", icon: "∞", label: "Twin" },
+                  { type: "static", icon: "▬", label: "Static" },
+                ].map((t) => (
+                  <TypePill
+                    key={t.type}
+                    icon={t.icon}
+                    label={t.label}
+                    active={activeTypes.includes(t.type)}
+                    onClick={() => toggleType(t.type)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Soft filter groups */}
+            {GROUPS.map((g) => (
+              <div key={g.id} style={{ borderBottom: "1px solid #1e2028" }}>
+                <button
+                  onClick={() => setOpenGroup(openGroup === g.id ? null : g.id)}
+                  style={{
+                    width: "100%", padding: "14px 20px",
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    background: "transparent", border: "none", color: "#f0f0f0",
+                    cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+                  }}
+                >
+                  <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <span style={{ fontSize: "16px" }}>{g.icon}</span>
+                    <span style={{ fontSize: "14px", fontWeight: 600 }}>{g.label}</span>
+                    {g.filters.some(
+                      (f) => filters[f.key] != null && (!Array.isArray(filters[f.key]) || filters[f.key].length > 0)
+                    ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#E8734A" }} />}
+                  </span>
+                  <span style={{ color: "#6b7280", fontSize: "18px", transition: "transform .2s", transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)" }}>
+                    ‹
+                  </span>
+                </button>
+                {openGroup === g.id && (
+                  <div style={{ padding: "0 20px 16px" }}>
+                    {g.filters.map((f) => (
+                      <div key={f.key} style={{ marginBottom: "16px" }}>
+                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>
+                          {f.label}
+                        </div>
+                        {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "bool" && <Bool label={f.label} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                        {f.type === "length" && <LengthPicker options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Legend */}
+            <div style={{ padding: "20px", marginTop: "8px" }}>
+              <div style={{ fontSize: "11px", fontWeight: 600, color: "#6b7280", letterSpacing: "1px", marginBottom: "12px", textTransform: "uppercase" }}>
+                Match Score
+              </div>
+              {[
+                { c: "#22c55e", l: "80–100%", d: "Great match" },
+                { c: "#E8734A", l: "50–79%", d: "Partial" },
+                { c: "#ef4444", l: "0–49%", d: "Weak" },
+              ].map((x) => (
+                <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: x.c }} />
+                  <span style={{ fontSize: "11px", color: "#9ca3af" }}>{x.l} — {x.d}</span>
+                </div>
+              ))}
+            </div>
+          </aside>
+        )}
 
         {/* Results */}
-        <main style={{ flex: 1, padding: "24px 28px", overflowY: "auto" }}>
+        <main style={{ flex: 1, padding: isMobile ? "16px 12px" : "24px 28px", overflowY: "auto" }}>
           {/* Active tags */}
           {(ac > 0 || activeTypes.length > 0 || query) && (
-            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px", paddingBottom: "16px", borderBottom: "1px solid #1e2028" }}>
+            <div style={{
+              display: "flex", gap: "8px", flexWrap: isMobile ? "nowrap" : "wrap",
+              overflowX: isMobile ? "auto" : undefined, WebkitOverflowScrolling: "touch",
+              marginBottom: "20px", paddingBottom: "16px", borderBottom: "1px solid #1e2028",
+            }}>
               {activeTypes.map((t) => (
                 <span key={t} style={{
                   display: "flex", alignItems: "center", gap: "6px", padding: "4px 12px",
-                  borderRadius: "16px", fontSize: "11px",
+                  borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                   background: "rgba(34,211,238,.08)", border: "1px solid rgba(34,211,238,.25)", color: "#22d3ee",
                 }}>
                   <span style={{ color: "#6b7280" }}>type:</span> {fmt(t)}
@@ -804,7 +930,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
               {query && (
                 <span style={{
                   display: "flex", alignItems: "center", gap: "6px", padding: "4px 12px",
-                  borderRadius: "16px", fontSize: "11px",
+                  borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                   background: "rgba(96,165,250,.1)", border: "1px solid rgba(96,165,250,.3)", color: "#60a5fa",
                 }}>
                   <span style={{ color: "#9ca3af" }}>search:</span> "{query}"
@@ -824,7 +950,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
                 return (
                   <span key={k} style={{
                     display: "flex", alignItems: "center", gap: "6px", padding: "4px 12px",
-                    borderRadius: "16px", fontSize: "11px",
+                    borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                     background: "rgba(232,115,74,.1)", border: "1px solid rgba(232,115,74,.3)", color: "#E8734A",
                   }}>
                     <span style={{ color: "#9ca3af" }}>{fmt(k)}:</span>
@@ -836,8 +962,21 @@ export default function RopeApp({ ropes = [], src = "local" }) {
             </div>
           )}
 
+          {/* Mobile result count + clear */}
+          {isMobile && (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
+              <span style={{ fontSize: "12px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>{results.length} ropes</span>
+              {(ac > 0 || activeTypes.length > 0) && (
+                <button
+                  onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
+                  style={{ padding: "4px 12px", borderRadius: "16px", border: "1px solid #3a3f47", background: "transparent", color: "#9ca3af", fontSize: "11px", cursor: "pointer" }}
+                >Clear all</button>
+              )}
+            </div>
+          )}
+
           {/* Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "20px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "14px" : "20px" }}>
             {results.map((r, i) => (
               <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both` }}>
                 <RopeCard
@@ -851,7 +990,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
           </div>
 
           {!results.length && (
-            <div style={{ textAlign: "center", padding: "80px 0", color: "#6b7280" }}>
+            <div style={{ textAlign: "center", padding: isMobile ? "40px 0" : "80px 0", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🪢</div>
               <div style={{ fontSize: "16px", marginBottom: "8px" }}>No ropes match{query ? ` "${query}"` : ""}</div>
               <div style={{ fontSize: "13px" }}>Try {query ? "a different search term or " : ""}adjusting your filters</div>
