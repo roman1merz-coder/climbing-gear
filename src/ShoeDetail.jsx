@@ -500,24 +500,41 @@ function PriceComparison({ prices, shoe }) {
         <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
         <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
       </div>
-      {prices.map((p, i) => (
-        <div key={i} style={{
-          display: "grid", gridTemplateColumns: "1.4fr 0.8fr 0.8fr 0.6fr 0.6fr",
-          alignItems: "center", padding: "12px 20px",
-          borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
-          background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-        }}>
-          <span style={{ fontSize: "13px", fontWeight: 600, color: T.text }}>{p.shop}</span>
-          <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
-            {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
-          </span>
-          <span style={{ fontSize: "11px", color: T.muted }}>{p.shipping}</span>
-          <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery}</span>
-          <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-            {p.inStock ? "In stock" : "Out"}
-          </span>
-        </div>
-      ))}
+      {prices.map((p, i) => {
+        const row = (
+          <div key={i} style={{
+            display: "grid", gridTemplateColumns: "1.4fr 0.8fr 0.6fr 0.6fr 0.5fr",
+            alignItems: "center", padding: "12px 20px",
+            borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+            background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+            cursor: p.url && p.url !== "#" ? "pointer" : "default",
+            transition: "background 0.15s ease",
+          }}
+            onMouseOver={e => { if (p.url && p.url !== "#") e.currentTarget.style.background = "rgba(232,115,74,0.08)"; }}
+            onMouseOut={e => { e.currentTarget.style.background = p.price === best && p.inStock ? T.accentSoft : "transparent"; }}
+          >
+            <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, display: "flex", alignItems: "center", gap: "6px" }}>
+              {p.shop}
+              {p.url && p.url !== "#" && <span style={{ fontSize: "10px", color: T.muted }}>{"\u2197"}</span>}
+            </span>
+            <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
+              {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
+            </span>
+            <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery || p.shipping || ""}</span>
+            <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
+              {p.inStock ? "In stock" : "Out"}
+            </span>
+            {p.url && p.url !== "#" ? (
+              <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>Visit {"\u2192"}</span>
+            ) : (
+              <span />
+            )}
+          </div>
+        );
+        return p.url && p.url !== "#" ? (
+          <a key={i} href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>{row}</a>
+        ) : row;
+      })}
     </div>
   );
 }

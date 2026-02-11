@@ -30,31 +30,53 @@ async function supabaseSelect(table) {
 // Seed data — Vite imports JSON natively.
 import SEED from "./seed_data.json";
 
-// Mock price data (will be replaced by live scraping later)
-const PRICE_DATA = {
-  "scarpa-instinct-vs-mens": [
-    { shop: "bergfreunde.de", price: 149.0, url: "#", inStock: true, shipping: "Free", delivery: "2-4 days" },
-    { shop: "bergzeit.de", price: 152.95, url: "#", inStock: true, shipping: "Free >€50", delivery: "1-3 days" },
-    { shop: "epictv.com", price: 154.9, url: "#", inStock: true, shipping: "€4.95", delivery: "3-5 days" },
-    { shop: "bananafingers.co.uk", price: 159.0, url: "#", inStock: false, shipping: "—", delivery: "—" },
-  ],
-  "scarpa-drago": [
-    { shop: "bergfreunde.de", price: 162.0, url: "#", inStock: true, shipping: "Free", delivery: "2-4 days" },
-    { shop: "oliunid.com", price: 169.0, url: "#", inStock: true, shipping: "Free >€80", delivery: "3-5 days" },
-    { shop: "epictv.com", price: 174.9, url: "#", inStock: true, shipping: "€4.95", delivery: "3-5 days" },
-  ],
-};
+// ─── Price Data (fetched live from Supabase) ─────────────────
+// Populated by api/fetch-prices.js cron (SerpApi → Supabase)
+async function fetchLivePrices() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/prices?select=*&order=price_eur`, {
+      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+    });
+    if (!res.ok) return {};
+    const rows = await res.json();
+    // Group by shoe_slug → array of {shop, price, url, inStock, ...}
+    const grouped = {};
+    for (const r of rows) {
+      if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
+      grouped[r.shoe_slug].push({
+        shop: r.retailer,
+        price: Number(r.price_eur),
+        oldPrice: r.old_price_eur ? Number(r.old_price_eur) : null,
+        url: r.product_url || "#",
+        inStock: r.in_stock !== false,
+        shipping: "",
+        delivery: r.delivery || "",
+      });
+    }
+    return grouped;
+  } catch { return {}; }
+}
 
-const PRICE_HISTORY = {
-  "scarpa-instinct-vs-mens": [
-    { month: "Sep", price: 175 },
-    { month: "Oct", price: 175 },
-    { month: "Nov", price: 159 },
-    { month: "Dec", price: 155 },
-    { month: "Jan", price: 149 },
-    { month: "Feb", price: 149 },
-  ],
-};
+async function fetchPriceHistory() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/price_history?select=shoe_slug,price_eur,recorded_at&order=recorded_at`,
+      { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } },
+    );
+    if (!res.ok) return {};
+    const rows = await res.json();
+    const grouped = {};
+    for (const r of rows) {
+      if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
+      const d = new Date(r.recorded_at);
+      grouped[r.shoe_slug].push({
+        month: d.toLocaleString("en", { month: "short" }),
+        price: Number(r.price_eur),
+      });
+    }
+    return grouped;
+  } catch { return {}; }
+}
 
 // ─── Error Boundary ──────────────────────────────────────────
 class ErrorBoundary extends React.Component {
@@ -105,15 +127,15 @@ function mergeShoe(sbShoe) {
 function Root() {
   const [shoes, setShoes] = useState(SEED);
   const [src, setSrc] = useState("local");
+  const [priceData, setPriceData] = useState({});
+  const [priceHistory, setPriceHistory] = useState({});
 
   useEffect(() => {
+    // Fetch shoes from Supabase
     supabaseSelect("shoes")
       .then((data) => {
         if (data?.length) {
-          // Merge Supabase data with seed data so null fields are filled from seed.
-          // Only keep shoes that exist in SEED (seed_data.json is the canonical list).
           const merged = data.map(mergeShoe).filter(s => SEED_MAP[s.slug]);
-          // Also include any seed shoes not in Supabase
           const sbSlugs = new Set(data.map(s => s.slug));
           const extras = SEED.filter(s => !sbSlugs.has(s.slug));
           setShoes([...merged, ...extras]);
@@ -121,6 +143,10 @@ function Root() {
         }
       })
       .catch(() => {});
+
+    // Fetch live prices
+    fetchLivePrices().then(setPriceData);
+    fetchPriceHistory().then(setPriceHistory);
   }, []);
 
   return (
@@ -135,8 +161,8 @@ function Root() {
               element={
                 <ShoeDetail
                   shoes={shoes}
-                  priceData={PRICE_DATA}
-                  priceHistory={PRICE_HISTORY}
+                  priceData={priceData}
+                  priceHistory={priceHistory}
                 />
               }
             />
