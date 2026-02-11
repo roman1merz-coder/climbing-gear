@@ -192,7 +192,12 @@ const fmtPct = (shoe) => {
 };
 const fmtWeight = (v) => v ? `${v}g` : "\u2014";
 const fmtMm = (v) => v ? `${v}mm` : "\u2014";
-const cap = (s) => s ? s.charAt(0).toUpperCase() + s.slice(1) : "\u2014";
+const cap = (s) => {
+  if (!s) return "\u2014";
+  if (Array.isArray(s)) return s.map(v => cap(v)).join(", ");
+  const str = String(s);
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
 // Winner logic: for a given row, which shoe index has the "best" value?
 function findWinner(shoes, getter, mode = "min") {
