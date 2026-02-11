@@ -1380,6 +1380,16 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
 
       </div>
 
+      {/* Legal disclaimer */}
+      <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: "1px solid #252a35", background: "#0e1015" }}>
+        <p style={{ fontSize: "11px", color: "#717889", lineHeight: 1.7, fontFamily: "'DM Sans',sans-serif", margin: 0, maxWidth: "800px" }}>
+          <strong style={{ color: "#717889", fontWeight: 600 }}>Disclaimer:</strong>{" "}
+          Prices, availability, and product data are provided for informational purposes only and may change without notice.
+          This site contains affiliate links {"\u2014"} if you purchase through these links, we may earn a commission at no extra cost to you.
+          Always verify pricing and details with the retailer before purchasing.
+        </p>
+      </div>
+
       {/* Footer */}
       <footer style={{
         padding: isMobile ? "16px" : "24px 32px", borderTop: "1px solid #252a35",

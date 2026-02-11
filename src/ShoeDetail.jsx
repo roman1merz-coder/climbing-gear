@@ -986,6 +986,35 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           </div>
         </div>
       </div>
+
+      {/* Legal disclaimer */}
+      <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", color: T.muted, lineHeight: 1.7, fontFamily: T.font, margin: 0, maxWidth: "800px" }}>
+            <strong style={{ color: T.muted, fontWeight: 600 }}>Disclaimer:</strong>{" "}
+            Prices, availability, and product data are provided for informational purposes only and may change without notice.
+            This site contains affiliate links {"\u2014"} if you purchase through these links, we may earn a commission at no extra cost to you.
+            Product images and specifications are sourced from manufacturers and retailers.
+            Community reviews reflect individual experiences and may not represent typical results.
+            Always verify pricing and details with the retailer before purchasing.
+          </p>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer style={{
+        padding: isMobile ? "16px" : "24px 32px", borderTop: `1px solid ${T.border}`,
+        display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "8px" : 0,
+        justifyContent: "space-between", alignItems: "center",
+        fontSize: "12px", color: T.muted, fontFamily: T.font,
+      }}>
+        <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <Link to="/about" style={{ color: T.muted, textDecoration: "none" }}>About</Link>
+          <Link to="/impressum" style={{ color: T.muted, textDecoration: "none" }}>Impressum</Link>
+          <Link to="/privacy" style={{ color: T.muted, textDecoration: "none" }}>Datenschutz</Link>
+        </div>
+      </footer>
     </div>
   );
 }
