@@ -13,19 +13,41 @@ const S = {
 };
 
 // ─── Suggestion Hub ───
+const SB_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co";
+const SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI";
+
 function SuggestionHub() {
   const [type, setType] = useState("feature");
   const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Opens mailto with pre-filled subject
-    const subject = encodeURIComponent(`[climbing-gear.com] ${type === "feature" ? "Feature request" : type === "bug" ? "Bug report" : "General feedback"}`);
-    const body = encodeURIComponent(message);
-    window.open(`mailto:roman1merz@gmail.com?subject=${subject}&body=${body}`, "_blank");
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    if (!message.trim() || status === "sending") return;
+    setStatus("sending");
+    try {
+      const res = await fetch(`${SB_URL}/rest/v1/feedback`, {
+        method: "POST",
+        headers: {
+          apikey: SB_ANON,
+          Authorization: `Bearer ${SB_ANON}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          type,
+          message: message.trim(),
+          page_url: window.location.href,
+        }),
+      });
+      if (!res.ok) throw new Error(res.statusText);
+      setStatus("success");
+      setMessage("");
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   const types = [
@@ -81,15 +103,22 @@ function SuggestionHub() {
 
         {/* Submit */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "16px" }}>
-          <span style={{ fontSize: "11px", color: T.muted }}>Opens your email client with a pre-filled message</span>
-          <button type="submit" disabled={!message.trim()} style={{
+          <span style={{ fontSize: "11px", color: T.muted }}>
+            {status === "success" ? "Thanks! Your feedback has been received." :
+             status === "error" ? "Something went wrong. Please try again." :
+             "Your feedback is stored securely and read by a real human."}
+          </span>
+          <button type="submit" disabled={!message.trim() || status === "sending"} style={{
             padding: "10px 24px", borderRadius: "8px", border: "none",
-            background: message.trim() ? T.accent : T.border,
-            color: message.trim() ? "#fff" : T.muted,
-            fontSize: "13px", fontWeight: 700, cursor: message.trim() ? "pointer" : "not-allowed",
+            background: status === "success" ? T.green : status === "error" ? T.red : message.trim() ? T.accent : T.border,
+            color: (status === "success" || status === "error" || message.trim()) ? "#fff" : T.muted,
+            fontSize: "13px", fontWeight: 700, cursor: message.trim() && status !== "sending" ? "pointer" : "not-allowed",
             fontFamily: T.font, transition: "all 0.2s ease",
           }}>
-            {submitted ? "\u{2713} Opening email..." : "Send suggestion"}
+            {status === "sending" ? "Sending..." :
+             status === "success" ? "\u{2713} Sent!" :
+             status === "error" ? "Failed" :
+             "Send suggestion"}
           </button>
         </div>
       </form>
