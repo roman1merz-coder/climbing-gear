@@ -33,9 +33,9 @@ function Tag({ children, variant = "default", icon, small }) {
   );
 }
 
-function SectionHeader({ icon, title, subtitle, action }) {
+function SectionHeader({ icon, title, subtitle, action, compact }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px", marginTop: "36px" }}>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: compact ? "12px" : "16px", marginTop: compact ? "24px" : "36px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <span style={{ fontSize: "17px" }}>{icon}</span>
         <div>
@@ -247,7 +247,7 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
 }
 
 // ─── Sizing Calculator ───
-function SizingCalculator({ shoe }) {
+function SizingCalculator({ shoe, compact }) {
   const [streetSize, setStreetSize] = useState("");
   const suggestion = streetSize ? `EU ${(parseFloat(streetSize) - 1.5).toFixed(1)} \u2013 ${(parseFloat(streetSize) - 0.5).toFixed(1)}` : null;
   return (
@@ -440,7 +440,7 @@ function CustomerVoices({ shoe, stacked }) {
 }
 
 // ─── Image Gallery ───
-function ImageGallery({ shoe }) {
+function ImageGallery({ shoe, compact }) {
   const [active, setActive] = useState(0);
   const views = ["Side view", "Top view", "Sole", "Heel"];
   const hasImage = shoe.image_url && shoe.image_url.startsWith("/images/");
@@ -466,7 +466,7 @@ function ImageGallery({ shoe }) {
           ))}
         </div>
       </div>
-      <div style={{ display: "flex", gap: "8px", marginTop: "10px" }}>
+      <div style={{ display: "flex", gap: compact ? "6px" : "8px", marginTop: compact ? "8px" : "10px" }}>
         {views.map((v, i) => (
           <button key={i} onClick={() => setActive(i)} style={{
             flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
@@ -721,7 +721,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       {/* Header */}
       <header style={{ padding: isMobile ? "12px 16px" : "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: "rgba(14,16,21,0.92)", backdropFilter: "blur(12px)", zIndex: 50 }}>
-        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px" }}>
+        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px", padding: isMobile ? "4px 0" : "0", minHeight: isMobile ? "44px" : "auto" }}>
           {"\u2190"} Search
         </Link>
       </header>
@@ -732,7 +732,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "20px" : "40px", alignItems: "start" }}>
             {/* Left: Image Gallery */}
             <div>
-              <ImageGallery shoe={shoe} />
+              <ImageGallery shoe={shoe} compact={isMobile} />
             </div>
 
             {/* Right: Hero Info — flex column to push radar down */}
@@ -821,10 +821,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "8px" : "40px" }}>
               {/* Left col */}
               <div>
-                <SectionHeader icon={"\uD83D\uDCCB"} title="Overview" />
+                <SectionHeader icon={"\uD83D\uDCCB"} title="Overview" compact={isMobile} />
                 <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.8, marginBottom: "36px" }}>{shoe.description}</p>
 
-                <SectionHeader icon={"\uD83E\uDDB6"} title="Foot Shape & Sizing" />
+                <SectionHeader icon={"\uD83E\uDDB6"} title="Foot Shape & Sizing" compact={isMobile} />
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                   <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
                 </div>
@@ -832,27 +832,27 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
               {/* Right col */}
               <div>
-                <SectionHeader icon={"\uD83C\uDFAF"} title="Best For" />
+                <SectionHeader icon={"\uD83C\uDFAF"} title="Best For" compact={isMobile} />
                 <WhoIsThisFor shoe={shoe} />
 
-                <SectionHeader icon={"\u2696\uFE0F"} title="Strengths & Trade-offs" />
+                <SectionHeader icon={"\u2696\uFE0F"} title="Strengths & Trade-offs" compact={isMobile} />
                 <ProsCons pros={shoe.pros} cons={shoe.cons} stacked={isMobile} />
               </div>
             </div>
 
             {/* Full-width: Sizing + Stretch side by side (50/50) */}
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px", marginTop: isMobile ? "8px" : "36px" }}>
-              <SizingCalculator shoe={shoe} />
+              <SizingCalculator shoe={shoe} compact={isMobile} />
               <StretchExpectation shoe={shoe} />
             </div>
 
             {/* Full-width: Performance DNA */}
-            <SectionHeader icon={"\uD83E\uDDEC"} title="Performance DNA" subtitle="Where this shoe excels" />
+            <SectionHeader icon={"\uD83E\uDDEC"} title="Performance DNA" subtitle="Where this shoe excels" compact={isMobile} />
             {isMobile && <PerformanceRadar shoe={shoe} />}
             <PerformanceDNA shoe={shoe} compact={isMobile} />
 
             {/* Full-width: Customer Voices */}
-            <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" />
+            <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" compact={isMobile} />
             <CustomerVoices shoe={shoe} stacked={isMobile} />
           </div>
         )}
@@ -860,7 +860,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         {/* ═══ PRICE & AVAILABILITY TAB ═══ */}
         {activeTab === "prices" && (
           <div>
-            <SectionHeader icon={"\uD83D\uDCC8"} title="Price History" subtitle="Historical price evolution and directional forecast" />
+            <SectionHeader icon={"\uD83D\uDCC8"} title="Price History" subtitle={isMobile ? "Price evolution" : "Historical price evolution and directional forecast"} compact={isMobile} />
             <div style={{ background: T.card, borderRadius: T.radius, padding: "24px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
               {history.length > 0 ? (
                 <>
@@ -887,7 +887,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px" }}>
               <div>
-                <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" />
+                <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" compact={isMobile} />
                 <div style={{ display: "grid", gap: "12px" }}>
                   {intel.factors.map((f, i) => (
                     <div key={i} style={{ background: T.card, borderRadius: T.radiusSm, padding: "14px", border: `1px solid ${T.border}` }}>
@@ -904,7 +904,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 </div>
               </div>
               <div>
-                <SectionHeader icon={"\uD83C\uDFEA"} title="Retailer Availability" subtitle="Size-specific pricing coming soon" />
+                <SectionHeader icon={"\uD83C\uDFEA"} title="Retailer Availability" subtitle="Size-specific pricing coming soon" compact={isMobile} />
                 <PriceComparison prices={prices} shoe={shoe} compact={isMobile} />
               </div>
             </div>
@@ -916,7 +916,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px" }}>
             {/* Left: Build Details (includes Weight + Break-in) */}
             <div>
-              <SectionHeader icon={"\uD83D\uDD27"} title="Build Details" />
+              <SectionHeader icon={"\uD83D\uDD27"} title="Build Details" compact={isMobile} />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                 <SpecRow label="Closure" value={cap(shoe.closure)} />
                 <SpecRow label="Downturn" value={cap(shoe.downturn)} />
@@ -933,7 +933,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
             {/* Right: Rubber System + Sustainability */}
             <div>
-              <SectionHeader icon={"\uD83D\uDEDE"} title="Rubber System" />
+              <SectionHeader icon={"\uD83D\uDEDE"} title="Rubber System" compact={isMobile} />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
                 <SpecRow label="Manufacturer" value={cap(shoe.rubber_manufacturer)} />
                 <SpecRow label="Compound" value={shoe.rubber_compound || shoe.rubber_type} />
@@ -942,7 +942,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Durability" value={Array.isArray(shoe.durability) ? shoe.durability.map(cap).join(", ") : cap(shoe.durability)} />
               </div>
 
-              <SectionHeader icon={"\uD83C\uDF31"} title="Sustainability" />
+              <SectionHeader icon={"\uD83C\uDF31"} title="Sustainability" compact={isMobile} />
               <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                 <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: shoe.recycled_material_pct != null ? "16px" : "0" }}>
                   {shoe.vegan && <Tag variant="green" icon={"\uD83C\uDF31"}>Vegan</Tag>}
@@ -971,7 +971,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       {/* Footer with similar shoes */}
       <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit" />
+          <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit" compact={isMobile} />
           <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
             {shoes
               .filter(s => s.slug !== slug && (
