@@ -61,11 +61,18 @@ async function searchGoogleShopping(query) {
   });
 
   const res = await fetch(`https://serpapi.com/search.json?${params}`);
+  const text = await res.text();
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`SerpApi failed: ${res.status} ${err}`);
+    throw new Error(`SerpApi failed: ${res.status} ${text.slice(0, 200)}`);
   }
-  return res.json();
+  if (!text || text.length === 0) {
+    throw new Error(`SerpApi returned empty response for: ${query}`);
+  }
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    throw new Error(`SerpApi JSON parse error (${text.length} chars): ${text.slice(0, 100)}`);
+  }
 }
 
 // ── Extract retailer prices from SerpApi response ──

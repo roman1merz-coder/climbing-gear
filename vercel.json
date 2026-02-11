@@ -2,6 +2,11 @@
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
+  "functions": {
+    "api/fetch-prices.js": {
+      "maxDuration": 60
+    }
+  },
   "crons": [
     {
       "path": "/api/fetch-prices?limit=50",
