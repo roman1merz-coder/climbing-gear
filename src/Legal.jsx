@@ -125,7 +125,7 @@ export default function Legal() {
   return (
     <div style={S.page}>
       <header style={S.header}>
-        <Link to="/" style={S.back}>{"\u2190"} Search</Link>
+        <Link to="/shoes" style={S.back}>{"\u2190"} Search</Link>
       </header>
       <div style={S.wrap}>
         {isPrivacy ? <PrivacyPolicy /> : <Impressum />}

@@ -162,7 +162,7 @@ export default function About() {
   return (
     <div style={S.page}>
       <header style={S.header}>
-        <Link to="/" style={S.back}>{"\u2190"} Search</Link>
+        <Link to="/shoes" style={S.back}>{"\u2190"} Search</Link>
       </header>
 
       <div style={{ maxWidth: "820px", margin: "0 auto", padding: "48px 32px 80px" }}>

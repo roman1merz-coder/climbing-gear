@@ -693,7 +693,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   if (!shoe) {
     return (
       <div style={{ minHeight: "100vh", background: T.bg, padding: "40px", fontFamily: T.font }}>
-        <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>{"\u2190"} Back to search</Link>
+        <Link to="/shoes" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>{"\u2190"} Back to search</Link>
         <div style={{ textAlign: "center", marginTop: "60px", color: T.muted }}>
           <div style={{ fontSize: "48px", marginBottom: "16px" }}>{"\uD83E\uDDD7"}</div>
           <div style={{ fontSize: "16px" }}>Shoe not found</div>
@@ -720,7 +720,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       {/* Header */}
       <header style={{ padding: isMobile ? "12px 16px" : "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: "rgba(14,16,21,0.92)", backdropFilter: "blur(12px)", zIndex: 50 }}>
-        <Link to="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px", padding: isMobile ? "4px 0" : "0", minHeight: isMobile ? "44px" : "auto" }}>
+        <Link to="/shoes" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px", padding: isMobile ? "4px 0" : "0", minHeight: isMobile ? "44px" : "auto" }}>
           {"\u2190"} Search
         </Link>
       </header>

@@ -310,7 +310,7 @@ export default function Compare({ shoes = [] }) {
     return (
       <div style={S.page}>
         <header style={S.header}>
-          <Link to="/" style={S.back}>{"\u2190"} Search</Link>
+          <Link to="/shoes" style={S.back}>{"\u2190"} Search</Link>
         </header>
         <div style={{ padding: "80px 32px", textAlign: "center" }}>
           <div style={{ fontSize: "40px", marginBottom: "16px" }}>{"\u2696\uFE0F"}</div>
@@ -320,7 +320,7 @@ export default function Compare({ shoes = [] }) {
           <p style={{ fontSize: "14px", color: T.muted, marginBottom: "24px" }}>
             Use the compare checkbox on shoe cards to select shoes, then come back here.
           </p>
-          <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>
+          <Link to="/shoes" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>
             {"\u2190"} Browse shoes
           </Link>
         </div>
@@ -339,7 +339,7 @@ export default function Compare({ shoes = [] }) {
     <div style={S.page}>
       {/* Header */}
       <header style={S.header}>
-        <Link to="/" style={S.back}>{"\u2190"} Search</Link>
+        <Link to="/shoes" style={S.back}>{"\u2190"} Search</Link>
         <span style={{ fontSize: "13px", fontWeight: 600, color: T.muted }}>
           Compare ({selectedShoes.length} shoes)
         </span>
@@ -424,7 +424,7 @@ export default function Compare({ shoes = [] }) {
                 ))}
                 {selectedShoes.length < 4 && (
                   <th style={{ ...S.th, minWidth: "120px" }}>
-                    <Link to="/" style={{
+                    <Link to="/shoes" style={{
                       display: "flex", flexDirection: "column", alignItems: "center", gap: "8px",
                       color: T.muted, textDecoration: "none", padding: "20px 0",
                     }}>

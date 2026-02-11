@@ -6,6 +6,7 @@ import ShoeDetail from "./ShoeDetail.jsx";
 import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
 import About from "./About.jsx";
+import Landing from "./Landing.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
 import CompareBar from "./CompareBar.jsx";
 import { GLOBAL_CSS } from "./tokens.js";
@@ -100,7 +101,7 @@ class ErrorBoundary extends React.Component {
             {String(this.state.error)}
           </pre>
           <button
-            onClick={() => { this.setState({ error: null }); window.location.href = "/"; }}
+            onClick={() => { this.setState({ error: null }); window.location.href = "/shoes"; }}
             style={{ marginTop: "20px", padding: "10px 20px", background: "#E8734A", color: "#fff", border: "none", borderRadius: "8px", cursor: "pointer" }}
           >
             ← Back to search
@@ -162,7 +163,8 @@ function Root() {
         <CompareProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />
+              <Route path="/" element={<Landing />} />
+              <Route path="/shoes" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />
               <Route
                 path="/shoe/:slug"
                 element={
