@@ -109,8 +109,9 @@ function Root() {
     supabaseSelect("shoes")
       .then((data) => {
         if (data?.length) {
-          // Merge Supabase data with seed data so null fields are filled from seed
-          const merged = data.map(mergeShoe);
+          // Merge Supabase data with seed data so null fields are filled from seed.
+          // Only keep shoes that exist in SEED (seed_data.json is the canonical list).
+          const merged = data.map(mergeShoe).filter(s => SEED_MAP[s.slug]);
           // Also include any seed shoes not in Supabase
           const sbSlugs = new Set(data.map(s => s.slug));
           const extras = SEED.filter(s => !sbSlugs.has(s.slug));
