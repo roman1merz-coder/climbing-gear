@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
 import ShoeDetail from "./ShoeDetail.jsx";
 import Legal from "./Legal.jsx";
+import Compare from "./Compare.jsx";
+import About from "./About.jsx";
+import { CompareProvider } from "./CompareContext.jsx";
+import CompareBar from "./CompareBar.jsx";
 import { GLOBAL_CSS } from "./tokens.js";
 
 // ─── Data Bridge ─────────────────────────────────────────────
@@ -155,23 +159,28 @@ function Root() {
     <>
       <style>{GLOBAL_CSS}</style>
       <ErrorBoundary>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />
-            <Route
-              path="/shoe/:slug"
-              element={
-                <ShoeDetail
-                  shoes={shoes}
-                  priceData={priceData}
-                  priceHistory={priceHistory}
-                />
-              }
-            />
-            <Route path="/impressum" element={<Legal />} />
-            <Route path="/privacy" element={<Legal />} />
-          </Routes>
-        </BrowserRouter>
+        <CompareProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />
+              <Route
+                path="/shoe/:slug"
+                element={
+                  <ShoeDetail
+                    shoes={shoes}
+                    priceData={priceData}
+                    priceHistory={priceHistory}
+                  />
+                }
+              />
+              <Route path="/compare" element={<Compare shoes={shoes} />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/impressum" element={<Legal />} />
+              <Route path="/privacy" element={<Legal />} />
+            </Routes>
+            <CompareBar shoes={shoes} />
+          </BrowserRouter>
+        </CompareProvider>
       </ErrorBoundary>
     </>
   );

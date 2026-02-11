@@ -2,6 +2,9 @@ import { useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
+import { sortShoes, SortDropdown } from "./sorting.jsx";
+import { fairShuffle } from "./randomizer.js";
+import CompareCheckbox from "./CompareCheckbox.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -75,7 +78,7 @@ function score(shoes, filters) {
     return true;
   });
   if (!active.length)
-    return shoes.map((s) => ({ shoe_data: s, match_score: -1 })).sort(() => Math.random() - 0.5);
+    return shoes.map((s) => ({ shoe_data: s, match_score: -1 }));
   return shoes
     .map((shoe) => {
       let tot = 0;
@@ -105,7 +108,7 @@ function score(shoes, filters) {
       return { shoe_data: shoe, match_score: cnt ? Math.round((tot / cnt) * 100) : -1 };
     })
     .sort((a, b) =>
-      b.match_score !== a.match_score ? b.match_score - a.match_score : Math.random() - 0.5
+      b.match_score !== a.match_score ? b.match_score - a.match_score : 0
     );
 }
 
@@ -620,17 +623,23 @@ function Card({ shoe, onClick, priceData, compact }) {
           </div>
         )}
         <div style={{ display: "flex", alignItems: "baseline", gap: compact ? "6px" : "8px", marginBottom: compact ? "4px" : "10px" }}>
-          <span
-            style={{
-              fontSize: compact ? "16px" : "20px",
-              fontWeight: 700,
-              color: "#E8734A",
-              fontFamily: "'DM Mono',monospace",
-            }}
-          >
-            €{effectivePrice}
-          </span>
-          {effectivePrice < d.price_uvp_eur && (
+          {effectivePrice ? (
+            <span
+              style={{
+                fontSize: compact ? "16px" : "20px",
+                fontWeight: 700,
+                color: "#E8734A",
+                fontFamily: "'DM Mono',monospace",
+              }}
+            >
+              €{Number(effectivePrice) % 1 === 0 ? Number(effectivePrice) : Number(effectivePrice).toFixed(2)}
+            </span>
+          ) : (
+            <span style={{ fontSize: compact ? "12px" : "14px", fontWeight: 600, color: "#6b7280", fontStyle: "italic" }}>
+              Check retailers
+            </span>
+          )}
+          {effectivePrice && effectivePrice < d.price_uvp_eur && (
             <span
               style={{
                 fontSize: compact ? "11px" : "13px",
@@ -688,6 +697,9 @@ function Card({ shoe, onClick, priceData, compact }) {
 
 // ═══ MAIN APP ═══
 
+// Stable session ID — created once per page load, not per render
+const SESSION_ID = String(Date.now());
+
 export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {}, filters: extFilters, setFilters: extSetFilters, query: extQuery, setQuery: extSetQuery }) {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
@@ -697,6 +709,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
   const setQuery = extSetQuery || (() => {});
   const [openGroup, setOpenGroup] = useState("basics");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [sortKey, setSortKey] = useState("best_match");
 
   // ── Weighted text relevance scoring ──
   // Returns { shoe, relevance (0-100) } for each shoe, or null if no match.
@@ -793,6 +806,39 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       );
   }, [filtered, filters, relevanceMap]);
 
+  // Apply sorting or fair shuffle on top of the scored results
+  const displayResults = useMemo(() => {
+    const hasActiveFilters = Object.keys(filters).length > 0;
+    const hasSearch = !!query.trim();
+
+    // If user has active search or filters, respect the match-score ordering
+    // Unless they explicitly pick a sort option other than "best_match"
+    if (sortKey === "best_match" && (hasActiveFilters || hasSearch)) {
+      // Keep the match-score ordering, but apply fair shuffle to ties
+      const shoeData = results.map(r => r.shoe_data);
+      const shuffled = fairShuffle(shoeData, filters, query, SESSION_ID);
+      // Re-attach scores and stable-sort by score (ties get fair shuffle order)
+      const shuffleIdx = new Map(shuffled.map((s, i) => [s.slug, i]));
+      return [...results].sort((a, b) => {
+        if (b.match_score !== a.match_score) return b.match_score - a.match_score;
+        return (shuffleIdx.get(a.shoe_data.slug) || 0) - (shuffleIdx.get(b.shoe_data.slug) || 0);
+      });
+    }
+
+    if (sortKey === "best_match" && !hasActiveFilters && !hasSearch) {
+      // No filters, no search — use sort-based "Best Match" + fair shuffle for ties
+      const shoeData = results.map(r => r.shoe_data);
+      const sorted = sortShoes(shoeData, "best_match", priceData);
+      const shuffled = fairShuffle(sorted, filters, query, SESSION_ID);
+      return shuffled.map(s => results.find(r => r.shoe_data.slug === s.slug) || { shoe_data: s, match_score: -1 });
+    }
+
+    // Explicit sort option chosen
+    const shoeData = results.map(r => r.shoe_data);
+    const sorted = sortShoes(shoeData, sortKey, priceData);
+    return sorted.map(s => results.find(r => r.shoe_data.slug === s.slug) || { shoe_data: s, match_score: -1 });
+  }, [results, sortKey, filters, query, priceData]);
+
   const set = (k, v) =>
     setFilters((p) => {
       const n = { ...p };
@@ -839,7 +885,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           {isMobile && (
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "12px", color: "#6b7280" }}>
-                {results.length} shoes
+                {displayResults.length} shoes
               </span>
               <button
                 onClick={() => setShowMobileFilters(true)}
@@ -907,7 +953,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 </span>
               </div>
               <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
-                {results.length} shoe{results.length !== 1 ? "s" : ""}
+                {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
                 {ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
               </span>
               {(ac > 0 || query) && (
@@ -949,7 +995,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               <button onClick={() => setShowMobileFilters(false)} style={{
                 padding: "8px 18px", borderRadius: "20px", border: "none",
                 background: "#E8734A", color: "#fff", fontSize: "13px", fontWeight: 700, cursor: "pointer",
-              }}>Show {results.length} shoes</button>
+              }}>Show {displayResults.length} shoes</button>
             </div>
           </div>
           {GROUPS.map((g) => (
@@ -1284,6 +1330,11 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
           )}
 
+          {/* Sort controls */}
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "16px" }}>
+            <SortDropdown value={sortKey} onChange={setSortKey} />
+          </div>
+
           <div
             style={{
               display: "grid",
@@ -1291,13 +1342,15 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               gap: isMobile ? "12px" : "20px",
             }}
           >
-            {results.map((shoe, i) => (
+            {displayResults.map((shoe, i) => (
               <div
                 key={shoe.shoe_data?.id || shoe.shoe_data?.slug || i}
                 style={{
                   animation: `fadeUp .4s ease ${i * 40}ms both`,
+                  position: "relative",
                 }}
               >
+                <CompareCheckbox slug={shoe.shoe_data.slug} />
                 <Card
                   shoe={shoe}
                   onClick={() => navigate(`/shoe/${shoe.shoe_data.slug}`)}
@@ -1308,7 +1361,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             ))}
           </div>
 
-          {!results.length && (
+          {!displayResults.length && (
             <div style={{ textAlign: "center", padding: "80px 0", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🧗</div>
               <div style={{ fontSize: "16px", marginBottom: "8px" }}>
@@ -1332,6 +1385,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       }}>
         <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
         <div style={{ display: "flex", gap: "20px" }}>
+          <Link to="/about" style={{ color: "#717889", textDecoration: "none" }}>About</Link>
           <Link to="/impressum" style={{ color: "#717889", textDecoration: "none" }}>Impressum</Link>
           <Link to="/privacy" style={{ color: "#717889", textDecoration: "none" }}>Datenschutz</Link>
         </div>

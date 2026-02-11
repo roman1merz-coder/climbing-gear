@@ -33,4 +33,5 @@ export const GLOBAL_CSS = `
   ::-webkit-scrollbar-thumb { background: ${T.border}; border-radius: 3px; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   .fade-up { animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  @keyframes compareSlideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 `;
