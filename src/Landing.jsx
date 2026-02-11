@@ -207,12 +207,12 @@ export default function Landing() {
             description="328+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking."
           />
           <GearCard
-            icon={"\u{1FA22}"} title="Rope Selector"
-            description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment."
+            icon={"\u{1FA22}"} title="Rope Selector" to="/ropes" active
+            description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands."
           />
           <GearCard
-            icon={"\u{2699}\u{FE0F}"} title="Belay Device Selector"
-            description="Assisted-braking, tubular, and figure-8 devices. Find the right match for your climbing style."
+            icon={"\u{1F517}"} title="Belay Device Selector" to="/belays" active
+            description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price."
           />
           <GearCard
             icon={"\u{1F9D7}"} title="Pants Selector"

@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App.jsx";
 import ShoeDetail from "./ShoeDetail.jsx";
+import RopeApp from "./RopeApp.jsx";
+import RopeDetail from "./RopeDetail.jsx";
+import BelayApp from "./BelayApp.jsx";
+import BelayDetail from "./BelayDetail.jsx";
 import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
 import About from "./About.jsx";
@@ -34,6 +38,8 @@ async function supabaseSelect(table) {
 
 // Seed data — Vite imports JSON natively.
 import SEED from "./seed_data.json";
+import ROPE_SEED from "./rope_seed_data.json";
+import BELAY_SEED from "./belay_seed_data.json";
 
 // ─── Price Data (fetched live from Supabase) ─────────────────
 // Populated by api/fetch-prices.js cron (SerpApi → Supabase)
@@ -137,6 +143,12 @@ function Root() {
   const [searchFilters, setSearchFilters] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Rope & Belay state
+  const [ropes, setRopes] = useState(ROPE_SEED);
+  const [ropeSrc, setRopeSrc] = useState("seed");
+  const [belays, setBelays] = useState(BELAY_SEED);
+  const [belaySrc, setBelaySrc] = useState("seed");
+
   useEffect(() => {
     // Fetch shoes from Supabase
     supabaseSelect("shoes")
@@ -149,6 +161,16 @@ function Root() {
           setSrc("supabase+seed");
         }
       })
+      .catch(() => {});
+
+    // Fetch ropes from Supabase (falls back to seed if table doesn't exist)
+    supabaseSelect("ropes")
+      .then((data) => { if (data?.length) { setRopes(data); setRopeSrc(`supabase · ${data.length}`); } })
+      .catch(() => {});
+
+    // Fetch belay devices from Supabase
+    supabaseSelect("belay_devices")
+      .then((data) => { if (data?.length) { setBelays(data); setBelaySrc(`supabase · ${data.length}`); } })
       .catch(() => {});
 
     // Fetch live prices
@@ -176,6 +198,12 @@ function Root() {
                 }
               />
               <Route path="/compare" element={<Compare shoes={shoes} />} />
+              {/* Rope routes */}
+              <Route path="/ropes" element={<RopeApp ropes={ropes} src={ropeSrc} />} />
+              <Route path="/rope/:slug" element={<RopeDetail ropes={ropes} />} />
+              {/* Belay device routes */}
+              <Route path="/belays" element={<BelayApp belays={belays} src={belaySrc} />} />
+              <Route path="/belay/:slug" element={<BelayDetail belays={belays} />} />
               <Route path="/about" element={<About />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
