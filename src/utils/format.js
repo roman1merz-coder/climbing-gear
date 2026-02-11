@@ -13,9 +13,12 @@ export function cap(str) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-/** Ensure value is an array */
+/** Ensure value is an array (handles JSON strings from Supabase) */
 export function ensureArray(v) {
   if (Array.isArray(v)) return v;
   if (v == null || v === "") return [];
+  if (typeof v === "string" && v.startsWith("[")) {
+    try { return JSON.parse(v); } catch { /* fall through */ }
+  }
   return [v];
 }

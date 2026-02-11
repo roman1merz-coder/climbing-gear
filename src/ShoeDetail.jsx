@@ -423,18 +423,42 @@ function CustomerVoices({ shoe, stacked }) {
   if (!voices.length) return null;
   return (
     <div style={{ display: "grid", gridTemplateColumns: stacked ? "1fr" : "1fr 1fr", gap: "14px" }}>
-      {voices.map((v, i) => (
-        <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
-          onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
-          onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
-          <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
-          <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{v}</div>
-          <div style={{ marginTop: "14px", paddingTop: "10px", borderTop: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: "8px" }}>
-            <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: T.accentSoft, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", color: T.accent }}>{"\uD83E\uDDD7"}</div>
-            <span style={{ fontSize: "11px", color: T.muted }}>Verified Climber</span>
+      {voices.map((v, i) => {
+        const isObj = typeof v === "object" && v !== null;
+        const text = isObj ? v.text : v;
+        const source = isObj ? v.source : null;
+        const rating = isObj ? v.rating : null;
+        const url = isObj ? v.url : null;
+        return (
+          <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
+            onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+            onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "6px" }}>
+              <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1 }}>{"\u201C"}</div>
+              {rating && (
+                <div style={{ display: "flex", gap: "2px", alignItems: "center" }}>
+                  {[1,2,3,4,5].map(s => (
+                    <span key={s} style={{ fontSize: "12px", color: s <= Math.round(rating) ? "#f59e0b" : T.border }}>{"\u2605"}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{text}</div>
+            <div style={{ marginTop: "14px", paddingTop: "10px", borderTop: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: "8px", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <div style={{ width: "26px", height: "26px", borderRadius: "50%", background: T.accentSoft, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", color: T.accent }}>{"\uD83E\uDDD7"}</div>
+                <span style={{ fontSize: "11px", color: T.muted }}>{source ? source.split("(")[0].trim() : "Verified Climber"}</span>
+              </div>
+              {url && (
+                <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontSize: "10px", color: T.accent, textDecoration: "none", opacity: 0.7 }}
+                  onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.7}>
+                  Source {"\u2192"}
+                </a>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
