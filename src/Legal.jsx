@@ -25,8 +25,8 @@ function Impressum() {
       <h2 style={S.h2}>Verantwortlich</h2>
       <p style={S.p}>
         Roman Merz<br />
-        [Stra\u00dfe und Hausnummer]<br />
-        [PLZ Ort]<br />
+        Von-Hutten-Stra\u00dfe 22<br />
+        67489 Kirrweiler<br />
         Deutschland
       </p>
 
