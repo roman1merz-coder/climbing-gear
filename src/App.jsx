@@ -420,19 +420,20 @@ function Bool({ label, value, onChange }) {
   );
 }
 
-function Badge({ score: s }) {
+function Badge({ score: s, compact }) {
   if (s == null || s < 0) return null;
   const c = s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444";
   const bg =
     s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)";
+  const sz = compact ? 38 : 52;
   return (
     <div
       style={{
         position: "absolute",
-        top: "12px",
-        right: "12px",
-        width: "52px",
-        height: "52px",
+        top: compact ? "8px" : "12px",
+        right: compact ? "38px" : "12px",
+        width: `${sz}px`,
+        height: `${sz}px`,
         borderRadius: "50%",
         background: bg,
         border: `2px solid ${c}`,
@@ -445,7 +446,7 @@ function Badge({ score: s }) {
     >
       <span
         style={{
-          fontSize: "16px",
+          fontSize: compact ? "12px" : "16px",
           fontWeight: 700,
           color: c,
           fontFamily: "'DM Mono',monospace",
@@ -526,7 +527,7 @@ function Card({ shoe, onClick, priceData, compact }) {
             background: "linear-gradient(to bottom, transparent 40%, #1c1f26)",
           }}
         />
-        <Badge score={s} />
+        <Badge score={s} compact={compact} />
         {disc > 0 && (
           <div
             style={{
@@ -1330,8 +1331,11 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
           )}
 
-          {/* Sort controls */}
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "16px" }}>
+          {/* Sort controls + count row */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+              {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
+            </span>
             <SortDropdown value={sortKey} onChange={setSortKey} />
           </div>
 
@@ -1350,7 +1354,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   position: "relative",
                 }}
               >
-                <CompareCheckbox slug={shoe.shoe_data.slug} />
+                <CompareCheckbox slug={shoe.shoe_data.slug} compact={isMobile} />
                 <Card
                   shoe={shoe}
                   onClick={() => navigate(`/shoe/${shoe.shoe_data.slug}`)}

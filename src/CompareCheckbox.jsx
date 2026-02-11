@@ -1,7 +1,7 @@
 import { useCompare } from "./CompareContext.jsx";
 import { T } from "./tokens.js";
 
-export default function CompareCheckbox({ slug }) {
+export default function CompareCheckbox({ slug, compact }) {
   const { toggleCompare, isInCompare, isFull } = useCompare();
   const checked = isInCompare(slug);
   const disabled = !checked && isFull;
@@ -20,11 +20,11 @@ export default function CompareCheckbox({ slug }) {
       }
       style={{
         position: "absolute",
-        top: "10px",
-        right: "10px",
+        top: compact ? "8px" : "10px",
+        right: compact ? "8px" : "10px",
         zIndex: 10,
-        width: "28px",
-        height: "28px",
+        width: compact ? "24px" : "28px",
+        height: compact ? "24px" : "28px",
         borderRadius: "6px",
         border: `1.5px solid ${checked ? T.accent : T.border}`,
         background: checked ? T.accent : "rgba(14,16,21,0.7)",
