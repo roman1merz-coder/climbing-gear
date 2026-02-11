@@ -500,41 +500,25 @@ function PriceComparison({ prices, shoe }) {
         <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
         <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
       </div>
-      {prices.map((p, i) => {
-        const row = (
-          <div key={i} style={{
-            display: "grid", gridTemplateColumns: "1.4fr 0.8fr 0.6fr 0.6fr 0.5fr",
-            alignItems: "center", padding: "12px 20px",
-            borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
-            background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-            cursor: p.url && p.url !== "#" ? "pointer" : "default",
-            transition: "background 0.15s ease",
-          }}
-            onMouseOver={e => { if (p.url && p.url !== "#") e.currentTarget.style.background = "rgba(232,115,74,0.08)"; }}
-            onMouseOut={e => { e.currentTarget.style.background = p.price === best && p.inStock ? T.accentSoft : "transparent"; }}
-          >
-            <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, display: "flex", alignItems: "center", gap: "6px" }}>
-              {p.shop}
-              {p.url && p.url !== "#" && <span style={{ fontSize: "10px", color: T.muted }}>{"\u2197"}</span>}
-            </span>
-            <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
-              {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
-            </span>
-            <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery || p.shipping || ""}</span>
-            <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-              {p.inStock ? "In stock" : "Out"}
-            </span>
-            {p.url && p.url !== "#" ? (
-              <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>Visit {"\u2192"}</span>
-            ) : (
-              <span />
-            )}
-          </div>
-        );
-        return p.url && p.url !== "#" ? (
-          <a key={i} href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>{row}</a>
-        ) : row;
-      })}
+      {prices.map((p, i) => (
+        <div key={i} style={{
+          display: "grid", gridTemplateColumns: "1.5fr 0.8fr 0.7fr 0.5fr",
+          alignItems: "center", padding: "12px 20px",
+          borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+          background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+        }}>
+          <span style={{ fontSize: "13px", fontWeight: 600, color: T.text }}>
+            {p.shop}
+          </span>
+          <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
+            {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
+          </span>
+          <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery || p.shipping || ""}</span>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
+            {p.inStock ? "In stock" : "Out"}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -569,20 +553,22 @@ function MiniCard({ shoe, onClick, matchLabel }) {
 }
 
 // ═══ PRICE INTELLIGENCE ═══
-export function getPriceIntelligence(shoe, prices, history) {
+export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
   const now = new Date();
   const month = now.getMonth();
   const currentYear = now.getFullYear();
   const factors = [];
   let totalScore = 0, totalWeight = 0;
 
-  const discount = shoe.price_uvp_eur && shoe.current_price_eur
-    ? (shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur : 0;
+  // Use live lowest price when available, otherwise fall back to seed price
+  const effectivePrice = liveBestPrice || shoe.current_price_eur;
+  const discount = shoe.price_uvp_eur && effectivePrice
+    ? (shoe.price_uvp_eur - effectivePrice) / shoe.price_uvp_eur : 0;
 
   // Factor 1: Price vs MSRP (30%)
   let ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
   factors.push({ name: "Price vs MSRP", score: ps, weight: 0.30,
-    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (\u20AC${shoe.price_uvp_eur})` : `At or near full MSRP (\u20AC${shoe.price_uvp_eur})`,
+    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (\u20AC${shoe.price_uvp_eur}) — best price \u20AC${effectivePrice}` : `At or near full MSRP (\u20AC${shoe.price_uvp_eur})`,
     icon: ps >= 0.5 ? "\uD83D\uDFE2" : ps >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34",
   });
   totalScore += ps * 0.30; totalWeight += 0.30;
@@ -651,7 +637,7 @@ export function getPriceIntelligence(shoe, prices, history) {
   const parts = [];
   if (ns >= 0.3) {
     parts.push("This is a strong buying moment.");
-    if (discount >= 0.15) parts.push(`At ${Math.round(discount*100)}% off MSRP, you're getting solid value.`);
+    if (discount >= 0.15) parts.push(`At ${Math.round(discount*100)}% off MSRP (\u20AC${effectivePrice} vs \u20AC${shoe.price_uvp_eur}), you're getting solid value.`);
     if (inStockCount > 0 && inStockCount <= 2) parts.push("Limited stock adds urgency.");
     parts.push("We don't expect significantly better pricing short-term.");
   } else if (ns >= 0) {
@@ -698,9 +684,14 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const [activeTab, setActiveTab] = useState("overview");
   const prices = priceData[slug] || [];
   const history = priceHistory[slug] || [];
-  const intel = getPriceIntelligence(shoe, prices, history);
-  const discount = shoe.price_uvp_eur && shoe.current_price_eur && shoe.current_price_eur < shoe.price_uvp_eur
-    ? Math.round(((shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur) * 100) : 0;
+
+  // Compute live best price from retailer data
+  const inStockPrices = prices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBestPrice = inStockPrices.length > 0 ? Math.min(...inStockPrices) : null;
+  const effectivePrice = liveBestPrice || shoe.current_price_eur;
+  const intel = getPriceIntelligence(shoe, prices, history, liveBestPrice);
+  const discount = shoe.price_uvp_eur && effectivePrice && effectivePrice < shoe.price_uvp_eur
+    ? Math.round(((shoe.price_uvp_eur - effectivePrice) / shoe.price_uvp_eur) * 100) : 0;
 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
@@ -747,7 +738,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 {/* Left: Price + Size Range */}
                 <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-                    <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>
+                    <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{effectivePrice}</span>
                     {discount > 0 && (
                       <>
                         <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>{"\u20AC"}{shoe.price_uvp_eur}</span>
@@ -755,6 +746,11 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                       </>
                     )}
                   </div>
+                  {liveBestPrice && liveBestPrice !== shoe.current_price_eur && (
+                    <div style={{ fontSize: "10px", color: T.muted, marginBottom: "8px" }}>
+                      Best live price from {prices.find(p => p.price === liveBestPrice)?.shop || "retailer"}
+                    </div>
+                  )}
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600 }}>EU Size Range</span>
                     <span style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.mono }}>{shoe.size_range}</span>
@@ -852,7 +848,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                       Highest: <span style={{ color: T.red, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{Math.max(...history.map(h => h.price))}</span>
                     </div>
                     <div style={{ fontSize: "11px", color: T.muted }}>
-                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>
+                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{effectivePrice}</span>
                     </div>
                   </div>
                 </>
