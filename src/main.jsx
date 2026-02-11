@@ -129,6 +129,8 @@ function Root() {
   const [src, setSrc] = useState("local");
   const [priceData, setPriceData] = useState({});
   const [priceHistory, setPriceHistory] = useState({});
+  const [searchFilters, setSearchFilters] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // Fetch shoes from Supabase
@@ -155,7 +157,7 @@ function Root() {
       <ErrorBoundary>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App shoes={shoes} src={src} priceData={priceData} />} />
+            <Route path="/" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />
             <Route
               path="/shoe/:slug"
               element={

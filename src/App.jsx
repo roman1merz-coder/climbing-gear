@@ -682,11 +682,13 @@ function Card({ shoe, onClick, priceData }) {
 
 // ═══ MAIN APP ═══
 
-export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {} }) {
+export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {}, filters: extFilters, setFilters: extSetFilters, query: extQuery, setQuery: extSetQuery }) {
   const navigate = useNavigate();
-  const [filters, setFilters] = useState({});
+  const filters = extFilters || {};
+  const setFilters = extSetFilters || (() => {});
+  const query = extQuery || "";
+  const setQuery = extSetQuery || (() => {});
   const [openGroup, setOpenGroup] = useState("basics");
-  const [query, setQuery] = useState("");
 
   // ── Weighted text relevance scoring ──
   // Returns { shoe, relevance (0-100) } for each shoe, or null if no match.
