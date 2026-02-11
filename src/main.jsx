@@ -155,7 +155,7 @@ function Root() {
       <ErrorBoundary>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App shoes={shoes} src={src} />} />
+            <Route path="/" element={<App shoes={shoes} src={src} priceData={priceData} />} />
             <Route
               path="/shoe/:slug"
               element={

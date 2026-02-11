@@ -75,8 +75,32 @@ async function searchGoogleShopping(query) {
   }
 }
 
+// ── Model-matching: find which model a product title best matches ──
+// Prevents "Cobra" results from bleeding into "Cobra Eco" or "Cobra 4:99"
+function normalize(s) {
+  return s.toLowerCase().replace(/:/g, ".").replace(/\s+/g, " ").trim();
+}
+
+function bestModelForTitle(title, brand, allModels) {
+  if (!title) return null;
+  const t = normalize(title);
+  const brandLower = normalize(brand);
+  // Only compare models from the same brand
+  const sameBrand = allModels.filter(m => normalize(m.brand) === brandLower);
+  let best = null;
+  let bestLen = 0;
+  for (const m of sameBrand) {
+    const ml = normalize(m.model);
+    if (t.includes(ml) && ml.length > bestLen) {
+      best = m.model;
+      bestLen = ml.length;
+    }
+  }
+  return best;
+}
+
 // ── Extract retailer prices from SerpApi response ──
-function extractPrices(data, shoeSlug) {
+function extractPrices(data, shoeSlug, shoeModel, shoeBrand, allModels) {
   const results = data.shopping_results || [];
   const prices = [];
   const seen = new Set();
@@ -89,6 +113,14 @@ function extractPrices(data, shoeSlug) {
     // Only include results with a price
     const price = r.extracted_price;
     if (!price || price <= 0) continue;
+
+    // Filter by model: if the title best matches a DIFFERENT model, skip it.
+    // e.g., when fetching "Cobra" prices, skip results whose title says "Cobra Eco"
+    const title = r.title || "";
+    if (title && allModels && allModels.length > 0) {
+      const bestMatch = bestModelForTitle(title, shoeBrand, allModels);
+      if (bestMatch && normalize(bestMatch) !== normalize(shoeModel)) continue;
+    }
 
     prices.push({
       shoe_slug: shoeSlug,
@@ -156,7 +188,7 @@ export default async function handler(req, res) {
       try {
         const query = `${shoe.brand} ${shoe.model} Kletterschuh kaufen`;
         const data = await searchGoogleShopping(query);
-        const prices = extractPrices(data, shoe.slug);
+        const prices = extractPrices(data, shoe.slug, shoe.model, shoe.brand, shoes);
 
         if (prices.length > 0) {
           // Upsert current prices

@@ -473,12 +473,15 @@ const BI = {
     "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400&h=400&fit=crop",
 };
 
-function Card({ shoe, onClick }) {
+function Card({ shoe, onClick, priceData }) {
   const d = shoe.shoe_data;
   const s = shoe.match_score;
+  const livePrices = (priceData?.[d.slug] || []).filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
+  const effectivePrice = liveBestPrice || d.current_price_eur;
   const disc =
-    d.price_uvp_eur && d.current_price_eur
-      ? Math.round(((d.price_uvp_eur - d.current_price_eur) / d.price_uvp_eur) * 100)
+    d.price_uvp_eur && effectivePrice
+      ? Math.round(((d.price_uvp_eur - effectivePrice) / d.price_uvp_eur) * 100)
       : 0;
   const img =
     d.image_url ||
@@ -621,9 +624,9 @@ function Card({ shoe, onClick }) {
               fontFamily: "'DM Mono',monospace",
             }}
           >
-            €{d.current_price_eur}
+            €{effectivePrice}
           </span>
-          {d.current_price_eur < d.price_uvp_eur && (
+          {effectivePrice < d.price_uvp_eur && (
             <span
               style={{
                 fontSize: "13px",
@@ -679,7 +682,7 @@ function Card({ shoe, onClick }) {
 
 // ═══ MAIN APP ═══
 
-export default function ClimbingGearApp({ shoes = [], src = "local" }) {
+export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {} }) {
   const navigate = useNavigate();
   const [filters, setFilters] = useState({});
   const [openGroup, setOpenGroup] = useState("basics");
@@ -1230,6 +1233,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local" }) {
                 <Card
                   shoe={shoe}
                   onClick={() => navigate(`/shoe/${shoe.shoe_data.slug}`)}
+                  priceData={priceData}
                 />
               </div>
             ))}

@@ -502,7 +502,7 @@ function PriceComparison({ prices, shoe }) {
       </div>
       {prices.map((p, i) => (
         <div key={i} style={{
-          display: "grid", gridTemplateColumns: "1.5fr 0.8fr 0.7fr 0.5fr",
+          display: "grid", gridTemplateColumns: "1.5fr 0.8fr 0.5fr 0.5fr",
           alignItems: "center", padding: "12px 20px",
           borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
           background: p.price === best && p.inStock ? T.accentSoft : "transparent",
@@ -513,10 +513,19 @@ function PriceComparison({ prices, shoe }) {
           <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono }}>
             {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
           </span>
-          <span style={{ fontSize: "11px", color: T.muted }}>{p.delivery || p.shipping || ""}</span>
           <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
             {p.inStock ? "In stock" : "Out"}
           </span>
+          {p.url && p.url !== "#" ? (
+            <a href={p.url} target="_blank" rel="noopener noreferrer" style={{
+              fontSize: "11px", fontWeight: 600, color: T.accent, textDecoration: "none",
+              display: "inline-flex", alignItems: "center", gap: "3px",
+            }}>
+              Visit {"\u2192"}
+            </a>
+          ) : (
+            <span style={{ fontSize: "11px", color: T.muted }}>{"\u2014"}</span>
+          )}
         </div>
       ))}
     </div>
