@@ -246,10 +246,46 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
   );
 }
 
+// ─── Brand-specific sizing offsets (EU) ───
+const BRAND_SIZING = {
+  "La Sportiva":  { min: -2.5, max: -1.5, note: "La Sportiva runs small \u2014 aggressive downsizing typical" },
+  "Scarpa":       { min: -1.0, max: -0.5, note: "Scarpa runs slightly small \u2014 moderate downsize" },
+  "Five Ten":     { min:  0.0, max:  0.5, note: "Five Ten runs true to size \u2014 street size works" },
+  "Adidas Five Ten": { min: 0.0, max: 0.5, note: "Five Ten runs true to size \u2014 street size works" },
+  "Evolv":        { min:  0.0, max:  0.5, note: "Evolv runs true to size \u2014 no downsize needed" },
+  "Butora":       { min: -1.0, max: -0.5, note: "Butora runs close to true \u2014 modest downsize" },
+  "Mad Rock":     { min: -0.5, max:  0.0, note: "Mad Rock runs true to size \u2014 optional light downsize" },
+  "Ocun":         { min: -0.5, max:  0.0, note: "Oc\u00fan runs true to size \u2014 no downsize needed" },
+  "Tenaya":       { min: -1.0, max: -0.5, note: "Tenaya runs snug \u2014 standard downsize" },
+  "Boreal":       { min: -0.5, max:  0.0, note: "Boreal runs true to size" },
+  "Red Chili":    { min: -0.5, max:  0.0, note: "Red Chili is designed true to size" },
+  "Unparallel":   { min: -1.0, max: -0.5, note: "Unparallel runs small \u2014 moderate downsize" },
+  "So iLL":       { min: -1.5, max:  0.0, note: "So iLL varies \u2014 check gender-specific sizing" },
+  "Black Diamond":{ min: -0.5, max:  0.0, note: "Black Diamond runs close to true size" },
+  "EB":           { min: -0.5, max:  0.0, note: "EB runs true to size \u2014 minimal downsize" },
+  "Andrea Boldrini": { min: -0.5, max: 0.0, note: "Boldrini runs true to size" },
+};
+const DEFAULT_SIZING = { min: -1.5, max: -0.5, note: "Size down 0.5\u20131.5 EU from street shoe for performance fit." };
+
+function getBrandSizing(brand) {
+  if (!brand) return DEFAULT_SIZING;
+  const b = brand.trim();
+  if (BRAND_SIZING[b]) return BRAND_SIZING[b];
+  // Fuzzy match: check if brand starts with any key
+  for (const [key, val] of Object.entries(BRAND_SIZING)) {
+    if (b.toLowerCase().startsWith(key.toLowerCase()) || key.toLowerCase().startsWith(b.toLowerCase())) return val;
+  }
+  return DEFAULT_SIZING;
+}
+
 // ─── Sizing Calculator ───
 function SizingCalculator({ shoe, compact }) {
   const [streetSize, setStreetSize] = useState("");
-  const suggestion = streetSize ? `EU ${(parseFloat(streetSize) - 1.5).toFixed(1)} \u2013 ${(parseFloat(streetSize) - 0.5).toFixed(1)}` : null;
+  const sizing = getBrandSizing(shoe.brand);
+  const sz = parseFloat(streetSize);
+  const suggestion = streetSize && !isNaN(sz)
+    ? `EU ${(sz + sizing.min).toFixed(1)} \u2013 ${(sz + sizing.max).toFixed(1)}`
+    : null;
   return (
     <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
       <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Quick Size Estimator</div>
@@ -266,7 +302,7 @@ function SizingCalculator({ shoe, compact }) {
         </div>
         <div style={{ fontSize: "20px", color: T.muted, paddingTop: "16px" }}>{"\u2192"}</div>
         <div style={{ flex: 1.5 }}>
-          <label style={{ fontSize: "11px", color: T.muted, display: "block", marginBottom: "4px" }}>Recommended size</label>
+          <label style={{ fontSize: "11px", color: T.muted, display: "block", marginBottom: "4px" }}>Recommended {shoe.brand || ""} size</label>
           <div style={{
             padding: "10px 12px", borderRadius: T.radiusXs, background: suggestion ? T.accentSoft : T.surface,
             border: `1px solid ${suggestion ? "rgba(232,115,74,0.25)" : T.border}`,
@@ -278,7 +314,7 @@ function SizingCalculator({ shoe, compact }) {
         </div>
       </div>
       <p style={{ fontSize: "11px", color: T.muted, marginTop: "10px", lineHeight: 1.5, fontStyle: "italic" }}>
-        {shoe.sizing || "Size down 0.5\u20131.5 EU from street shoe for performance fit."}
+        {shoe.sizing || sizing.note}
       </p>
     </div>
   );
