@@ -145,8 +145,8 @@ export default function About() {
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.8, maxWidth: "600px", margin: "0 auto" }}>
             climbing-gear.com exists for one reason: so you can spend more time climbing
-            and less time researching your next shoe. We compare every model, every price,
-            every retailer {"\u2014"} with zero brand bias and full transparency.
+            and less time researching your gear. We compare every model, every spec,
+            every price {"\u2014"} with zero brand bias and full transparency.
           </p>
         </div>
 
@@ -167,15 +167,15 @@ export default function About() {
             the pain. I built this tool because I was tired of doing exactly that.
           </p>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "16px" }}>
-            This is a one-person community project. There's no company behind it, no investors to
+            This is a community project. There's no company behind it, no investors to
             please, and no brand partnerships influencing what gets shown first. Every shoe gets the
             same treatment. Every price is tracked the same way. The sorting algorithm doesn't care
             who made the shoe.
           </p>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8 }}>
-            If we use affiliate links in the future, we'll be upfront about it {"\u2014"} and they will
+            We will use affiliate links in the future, but we are upfront about it {"\u2014"} and they will
             never influence rankings, recommendations, or which retailers appear first. Transparency
-            isn't a marketing slogan here; it's the whole point.
+            is the whole point here.
           </p>
         </div>
 
@@ -207,7 +207,7 @@ export default function About() {
           <h2 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px" }}>Help make it better</h2>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "20px" }}>
             This is an open project. If you notice incorrect data, have an idea for a feature, or just
-            want to say what's working (or not) {"\u2014"} I'd genuinely love to hear it. Every piece of
+            want to say what's working (or not) {"\u2014"} We'd genuinely love to hear it. Every piece of
             feedback shapes what gets built next.
           </p>
           <SuggestionHub />
@@ -218,9 +218,9 @@ export default function About() {
           <div style={{ fontSize: "28px", marginBottom: "12px" }}>{"\u{26F0}"}</div>
           <h2 style={{ fontSize: "16px", fontWeight: 700, marginBottom: "8px" }}>Who's behind this?</h2>
           <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, maxWidth: "500px", margin: "0 auto" }}>
-            Hi, I'm Roman {"\u2014"} a climber and developer based in Germany. I built climbing-gear.com
+            Hi, I'm Roman {"\u2014"} a climber based in beautiful Palatine, Germany. I built climbing-gear.com
             because I wanted the tool I couldn't find anywhere else. If you have questions or just want
-            to chat about climbing shoes, drop me a line at{" "}
+            to chat about climbing gear, drop me a line at{" "}
             <a href="mailto:roman1merz@gmail.com" style={{ color: T.accent, textDecoration: "none" }}>roman1merz@gmail.com</a>.
           </p>
         </div>
