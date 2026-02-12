@@ -231,10 +231,10 @@ export default function Landing() {
             <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>
               Drop me a note and I'll add it to the queue.
             </div>
-            <a href="mailto:roman1merz@gmail.com?subject=[climbing-gear.com] Gear selector idea" style={{
+            <a href="mailto:roman@climbing-gear.com?subject=[climbing-gear.com] Gear selector idea" style={{
               display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, textDecoration: "none", marginTop: "4px",
             }}>
-              {"\u{2709}\u{FE0F}"} roman1merz@gmail.com
+              {"\u{2709}\u{FE0F}"} roman@climbing-gear.com
             </a>
           </div>
         </div>
@@ -332,7 +332,7 @@ export default function Landing() {
             Hi, I'm Roman {"\u2014"} a climber based in beautiful Palatine, Germany. I built climbing-gear.com
             because I wanted the tool I couldn't find anywhere else. If you have questions or just want
             to chat about climbing gear, drop me a line at{" "}
-            <a href="mailto:roman1merz@gmail.com" style={{ color: T.accent, textDecoration: "none" }}>roman1merz@gmail.com</a>.
+            <a href="mailto:roman@climbing-gear.com" style={{ color: T.accent, textDecoration: "none" }}>roman@climbing-gear.com</a>.
           </p>
         </div>
 

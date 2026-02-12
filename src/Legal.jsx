@@ -31,7 +31,7 @@ function Impressum() {
       </p>
 
       <h2 style={S.h2}>Kontakt</h2>
-      <p style={S.p}>E-Mail: roman1merz@gmail.com</p>
+      <p style={S.p}>E-Mail: roman@climbing-gear.com</p>
 
       <h2 style={S.h2}>Haftungsausschluss</h2>
       <p style={S.p}>
@@ -63,7 +63,7 @@ function PrivacyPolicy() {
       <h2 style={S.h2}>1. Verantwortlicher</h2>
       <p style={S.p}>
         {"Verantwortlich f\u00fcr die Datenverarbeitung auf dieser Website ist:"}<br />
-        Roman Merz {"\u2014"} roman1merz@gmail.com
+        Roman Merz {"\u2014"} roman@climbing-gear.com
       </p>
 
       <h2 style={S.h2}>2. Hosting</h2>
@@ -93,7 +93,7 @@ function PrivacyPolicy() {
 
       <h2 style={S.h2}>6. Ihre Rechte</h2>
       <p style={S.p}>
-        {"Sie haben das Recht auf Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung der Verarbeitung, Daten\u00fcbertragbarkeit und Widerspruch. Wenden Sie sich dazu an: roman1merz@gmail.com"}
+        {"Sie haben das Recht auf Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung der Verarbeitung, Daten\u00fcbertragbarkeit und Widerspruch. Wenden Sie sich dazu an: roman@climbing-gear.com"}
       </p>
 
       <h2 style={S.h2}>7. Beschwerderecht</h2>
@@ -111,7 +111,7 @@ export default function Legal() {
   return (
     <div style={S.page}>
       <header style={S.header}>
-        <Link to="/shoes" style={S.back}>{"\u2190"} Search</Link>
+        <Link to="/" style={S.back}>{"\u2190"} Home</Link>
       </header>
       <div style={S.wrap}>
         {isPrivacy ? <PrivacyPolicy /> : <Impressum />}

@@ -162,7 +162,7 @@ export default function About() {
   return (
     <div style={S.page}>
       <header style={S.header}>
-        <Link to="/shoes" style={S.back}>{"\u2190"} Search</Link>
+        <Link to="/" style={S.back}>{"\u2190"} Home</Link>
       </header>
 
       <div style={{ maxWidth: "820px", margin: "0 auto", padding: "48px 32px 80px" }}>
@@ -250,7 +250,7 @@ export default function About() {
             Hi, I'm Roman {"\u2014"} a climber based in beautiful Palatine, Germany. I built climbing-gear.com
             because I wanted the tool I couldn't find anywhere else. If you have questions or just want
             to chat about climbing gear, drop me a line at{" "}
-            <a href="mailto:roman1merz@gmail.com" style={{ color: T.accent, textDecoration: "none" }}>roman1merz@gmail.com</a>.
+            <a href="mailto:roman@climbing-gear.com" style={{ color: T.accent, textDecoration: "none" }}>roman@climbing-gear.com</a>.
           </p>
         </div>
 
