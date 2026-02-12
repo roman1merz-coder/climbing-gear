@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
+import PriceAlertForm from "./PriceAlertForm.jsx";
 import useIsMobile from "./useIsMobile.js";
 
 /** Image with graceful fallback on 404 */
@@ -265,64 +266,145 @@ export default function RopeDetail({ ropes = [] }) {
               </div>
             </Section>
 
-            {/* Price & Lengths */}
-            <Section title="Available Lengths & Pricing">
-              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
-                {ensureArray(rope.available_lengths_m).map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => setSelectedLength(selectedLength === l ? null : l)}
-                    style={{
-                      padding: "8px 16px", borderRadius: "8px",
-                      fontSize: "14px", fontFamily: T.mono, fontWeight: 600,
-                      background: selectedLength === l ? T.accentSoft : T.card,
-                      color: selectedLength === l ? T.accent : T.text,
-                      border: selectedLength === l ? `1.5px solid ${T.accent}` : `1px solid ${T.border}`,
-                      cursor: "pointer", transition: "all .15s",
-                    }}
-                  >
-                    {l}m
-                  </button>
-                ))}
-              </div>
-
-              <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
-                {selectedLength ? (
-                  <>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "8px" }}>
-                      <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
-                        €{(rope.price_per_meter_eur_min * selectedLength).toFixed(0)}
-                      </span>
-                      <span style={{ fontSize: "14px", color: T.dim }}>for {selectedLength}m</span>
-                    </div>
-                    <div style={{ fontSize: "13px", color: T.muted }}>
+            {/* ═══ STANDARDIZED PRICE SECTION ═══ */}
+            <Section title="Price & Deal Evaluation">
+              {/* Combined Price Box: price+length left | evaluation right */}
+              <div style={{
+                background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px",
+                padding: 0, marginBottom: "16px", display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", overflow: "hidden",
+              }}>
+                {/* Left: Price + Length Selector */}
+                <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+                    <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                      {selectedLength
+                        ? `€${(rope.price_per_meter_eur_min * selectedLength).toFixed(0)}`
+                        : `€${rope.price_per_meter_eur_min?.toFixed(2)}`}
+                    </span>
+                    <span style={{ fontSize: "14px", color: T.dim }}>
+                      {selectedLength ? `for ${selectedLength}m` : "/m"}
+                    </span>
+                    {rope.price_uvp_per_meter_eur > rope.price_per_meter_eur_min && (
+                      <>
+                        <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>
+                          €{selectedLength ? (rope.price_uvp_per_meter_eur * selectedLength).toFixed(0) : rope.price_uvp_per_meter_eur?.toFixed(2)}
+                        </span>
+                        <span style={{ fontSize: "12px", fontWeight: 700, color: T.green, fontFamily: T.mono }}>
+                          −{Math.round(((rope.price_uvp_per_meter_eur - rope.price_per_meter_eur_min) / rope.price_uvp_per_meter_eur) * 100)}%
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  {selectedLength && (
+                    <div style={{ fontSize: "11px", color: T.muted, marginBottom: "8px" }}>
                       €{rope.price_per_meter_eur_min}/m best price
                     </div>
-                    {rope.price_uvp_per_meter_eur > rope.price_per_meter_eur_min && (
-                      <div style={{ fontSize: "13px", color: T.dim, marginTop: "4px" }}>
-                        <span style={{ textDecoration: "line-through" }}>€{(rope.price_uvp_per_meter_eur * selectedLength).toFixed(0)} UVP</span>
-                        <span style={{ color: T.green, marginLeft: "8px", fontWeight: 600 }}>
-                          Save €{((rope.price_uvp_per_meter_eur - rope.price_per_meter_eur_min) * selectedLength).toFixed(0)}
-                        </span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "8px" }}>
-                      <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
-                        €{rope.price_per_meter_eur_min?.toFixed(2)}
-                      </span>
-                      <span style={{ fontSize: "14px", color: T.dim }}>/m</span>
+                  )}
+                  {!selectedLength && rope.price_per_meter_eur_max > rope.price_per_meter_eur_min && (
+                    <div style={{ fontSize: "11px", color: T.muted, marginBottom: "8px" }}>
+                      Range: €{rope.price_per_meter_eur_min?.toFixed(2)}–€{rope.price_per_meter_eur_max?.toFixed(2)}/m
                     </div>
-                    <div style={{ fontSize: "13px", color: T.muted }}>Select a length to see absolute prices</div>
-                    {rope.price_per_meter_eur_max > rope.price_per_meter_eur_min && (
-                      <div style={{ fontSize: "12px", color: T.dim, marginTop: "4px" }}>
-                        Range: €{rope.price_per_meter_eur_min?.toFixed(2)}–€{rope.price_per_meter_eur_max?.toFixed(2)}/m
-                      </div>
-                    )}
-                  </>
-                )}
+                  )}
+                  {/* Length selector */}
+                  <div style={{ marginTop: "8px" }}>
+                    <div style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600, marginBottom: "8px" }}>
+                      Length
+                    </div>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                      {ensureArray(rope.available_lengths_m).map((l) => (
+                        <button
+                          key={l}
+                          onClick={() => setSelectedLength(selectedLength === l ? null : l)}
+                          style={{
+                            padding: "6px 14px", borderRadius: "8px",
+                            fontSize: "13px", fontFamily: T.mono, fontWeight: 600,
+                            background: selectedLength === l ? T.accentSoft : "transparent",
+                            color: selectedLength === l ? T.accent : T.text,
+                            border: selectedLength === l ? `1.5px solid ${T.accent}` : `1px solid ${T.border}`,
+                            cursor: "pointer", transition: "all .15s",
+                          }}
+                        >
+                          {l}m
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Right: Deal Evaluation */}
+                <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  {(() => {
+                    const discount = rope.price_uvp_per_meter_eur && rope.price_per_meter_eur_min
+                      ? (rope.price_uvp_per_meter_eur - rope.price_per_meter_eur_min) / rope.price_uvp_per_meter_eur : 0;
+                    const factors = [];
+                    let totalScore = 0, totalWeight = 0;
+                    // Factor 1: Price vs UVP (40%)
+                    const ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
+                    factors.push({ name: "Price vs UVP", icon: ps >= 0.5 ? "\uD83D\uDFE2" : ps >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34", weight: 0.40,
+                      detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${rope.price_uvp_per_meter_eur?.toFixed(2)}/m)` : `At or near full UVP` });
+                    totalScore += ps * 0.40; totalWeight += 0.40;
+                    // Factor 2: Model Lifecycle (25%)
+                    const currentYear = new Date().getFullYear();
+                    const modelAge = rope.year_released ? currentYear - rope.year_released : null;
+                    if (modelAge !== null) {
+                      const as = modelAge >= 3 ? 0.5 : modelAge >= 2 ? -0.3 : modelAge >= 1 ? 0.0 : -0.4;
+                      factors.push({ name: "Model Lifecycle", icon: as > 0.2 ? "\uD83D\uDFE2" : as >= -0.1 ? "\uD83D\uDFE1" : "\uD83D\uDD34", weight: 0.25,
+                        detail: `Released ${rope.year_released} (${modelAge}y ago)` });
+                      totalScore += as * 0.25; totalWeight += 0.25;
+                    }
+                    // Factor 3: Expected Price Development (20%)
+                    factors.push({ name: "Expected Price Development", icon: "\u23F3", weight: 0.20, detail: "Coming soon — data collection in progress" });
+                    // Factor 4: Price History (15%)
+                    factors.push({ name: "Price History", icon: "\uD83D\uDCCA", weight: 0.15, detail: "Coming soon — historical data collection in progress" });
+
+                    const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
+                    let label, color, icon;
+                    if (ns >= 0.45) { label = "Buy Now"; color = T.green; icon = "\uD83D\uDFE2"; }
+                    else if (ns >= 0.15) { label = "Good Deal"; color = T.green; icon = "\uD83D\uDC4D"; }
+                    else if (ns >= -0.15) { label = "Fair Price"; color = T.yellow; icon = "\u2696\uFE0F"; }
+                    else if (ns >= -0.40) { label = "Consider Waiting"; color = T.accent; icon = "\u23F3"; }
+                    else { label = "Wait for Sale"; color = T.red; icon = "\uD83D\uDD34"; }
+                    const forecast = ns >= 0.3
+                      ? `At ${Math.round(discount*100)}% off UVP, this is a strong buying moment.`
+                      : ns >= 0
+                        ? "Reasonable price. More data coming soon for better recommendations."
+                        : "Currently at or near full UVP. Consider waiting for a sale.";
+
+                    return (
+                      <>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+                          <span style={{ fontSize: "18px" }}>{icon}</span>
+                          <span style={{ fontSize: "13px", fontWeight: 700, color }}>{label}</span>
+                        </div>
+                        <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6, marginBottom: "14px" }}>{forecast}</div>
+                        <div style={{ display: "grid", gap: "8px" }}>
+                          {factors.map((f, i) => (
+                            <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                              <span style={{ fontSize: "12px" }}>{f.icon}</span>
+                              <span style={{ fontSize: "11px", fontWeight: 600, color: T.text, whiteSpace: "nowrap" }}>{f.name}</span>
+                              <span style={{ fontSize: "10px", color: T.dim, fontFamily: T.mono }}>{Math.round(f.weight * 100)}%</span>
+                              <span style={{ flex: 1, fontSize: "10px", color: T.muted, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.detail}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              {/* Price Alert */}
+              <PriceAlertForm
+                gearType="rope"
+                slug={rope.slug}
+                currentPrice={selectedLength ? rope.price_per_meter_eur_min * selectedLength : rope.price_per_meter_eur_min}
+                isMobile={isMobile}
+              />
+
+              {/* Price History — Coming Soon */}
+              <div style={{ background: T.card, borderRadius: "12px", padding: "24px", border: `1px solid ${T.border}`, textAlign: "center" }}>
+                <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>{"\uD83D\uDCCA"}</div>
+                <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
               </div>
             </Section>
           </div>

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
+import PriceAlertForm from "./PriceAlertForm.jsx";
 import useIsMobile from "./useIsMobile.js";
 
 // ─── Design Tokens ───────────────────────────────────────────────
@@ -466,24 +467,107 @@ export default function CrashpadDetail({ crashpads = [] }) {
               </div>
             </Section>
 
-            {/* Price block */}
-            <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginBottom: "8px" }}>
-                <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
-                  €{pad.current_price_eur}
-                </span>
-              </div>
-              {hasDiscount && (
-                <div style={{ fontSize: "13px", color: T.dim }}>
-                  <span style={{ textDecoration: "line-through" }}>€{pad.price_uvp_eur} UVP</span>
-                  <span style={{ color: T.green, marginLeft: "8px", fontWeight: 600 }}>
-                    Save €{pad.price_uvp_eur - pad.current_price_eur} ({Math.round(((pad.price_uvp_eur - pad.current_price_eur) / pad.price_uvp_eur) * 100)}% off)
+            {/* ═══ STANDARDIZED PRICE SECTION ═══ */}
+            <div style={{
+              background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px",
+              padding: 0, marginBottom: "16px", display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", overflow: "hidden",
+            }}>
+              {/* Left: Price + Size (N/A) */}
+              <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
+                  <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                    €{pad.current_price_eur}
                   </span>
+                  {hasDiscount && (
+                    <>
+                      <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>
+                        €{pad.price_uvp_eur}
+                      </span>
+                      <span style={{ fontSize: "12px", fontWeight: 700, color: T.green, fontFamily: T.mono }}>
+                        −{Math.round(((pad.price_uvp_eur - pad.current_price_eur) / pad.price_uvp_eur) * 100)}%
+                      </span>
+                    </>
+                  )}
                 </div>
-              )}
-              {!hasDiscount && (
-                <div style={{ fontSize: "12px", color: T.dim }}>UVP €{pad.price_uvp_eur}</div>
-              )}
+                {!hasDiscount && (
+                  <div style={{ fontSize: "11px", color: T.dim, marginBottom: "4px" }}>UVP €{pad.price_uvp_eur}</div>
+                )}
+                {/* Size selection — N/A for crashpads */}
+                <div style={{ marginTop: "8px" }}>
+                  <div style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600, marginBottom: "4px" }}>Size Selection</div>
+                  <div style={{ fontSize: "11px", color: T.dim, fontStyle: "italic" }}>Not applicable for crashpads</div>
+                </div>
+              </div>
+              {/* Right: Deal Evaluation */}
+              <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                {(() => {
+                  const discount = pad.price_uvp_eur && pad.current_price_eur
+                    ? (pad.price_uvp_eur - pad.current_price_eur) / pad.price_uvp_eur : 0;
+                  const factors = [];
+                  let totalScore = 0, totalWeight = 0;
+                  // Factor 1: Price vs UVP (40%)
+                  const ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
+                  factors.push({ name: "Price vs UVP", icon: ps >= 0.5 ? "\uD83D\uDFE2" : ps >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34", weight: 0.40,
+                    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${pad.price_uvp_eur})` : "At or near full UVP" });
+                  totalScore += ps * 0.40; totalWeight += 0.40;
+                  // Factor 2: Model Lifecycle (25%)
+                  const currentYear = new Date().getFullYear();
+                  const modelAge = pad.year_released ? currentYear - pad.year_released : null;
+                  if (modelAge !== null) {
+                    const as = modelAge >= 3 ? 0.5 : modelAge >= 2 ? -0.3 : modelAge >= 1 ? 0.0 : -0.4;
+                    factors.push({ name: "Model Lifecycle", icon: as > 0.2 ? "\uD83D\uDFE2" : as >= -0.1 ? "\uD83D\uDFE1" : "\uD83D\uDD34", weight: 0.25,
+                      detail: `Released ${pad.year_released} (${modelAge}y ago)` });
+                    totalScore += as * 0.25; totalWeight += 0.25;
+                  }
+                  // Factor 3: Expected Price Development (20%)
+                  factors.push({ name: "Expected Price Development", icon: "\u23F3", weight: 0.20, detail: "Coming soon" });
+                  // Factor 4: Price History (15%)
+                  factors.push({ name: "Price History", icon: "\uD83D\uDCCA", weight: 0.15, detail: "Coming soon" });
+
+                  const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
+                  let label, color, icon;
+                  if (ns >= 0.45) { label = "Buy Now"; color = T.green; icon = "\uD83D\uDFE2"; }
+                  else if (ns >= 0.15) { label = "Good Deal"; color = T.green; icon = "\uD83D\uDC4D"; }
+                  else if (ns >= -0.15) { label = "Fair Price"; color = T.yellow; icon = "\u2696\uFE0F"; }
+                  else if (ns >= -0.40) { label = "Consider Waiting"; color = T.accent; icon = "\u23F3"; }
+                  else { label = "Wait for Sale"; color = T.red; icon = "\uD83D\uDD34"; }
+                  const forecast = ns >= 0.3
+                    ? `At ${Math.round(discount*100)}% off UVP, this is a strong buying moment.`
+                    : ns >= 0
+                      ? "Reasonable price. More data coming soon for better recommendations."
+                      : "Currently at or near full UVP. Consider waiting for a sale.";
+
+                  return (
+                    <>
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+                        <span style={{ fontSize: "18px" }}>{icon}</span>
+                        <span style={{ fontSize: "13px", fontWeight: 700, color }}>{label}</span>
+                      </div>
+                      <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6, marginBottom: "14px" }}>{forecast}</div>
+                      <div style={{ display: "grid", gap: "8px" }}>
+                        {factors.map((f, i) => (
+                          <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                            <span style={{ fontSize: "12px" }}>{f.icon}</span>
+                            <span style={{ fontSize: "11px", fontWeight: 600, color: T.text, whiteSpace: "nowrap" }}>{f.name}</span>
+                            <span style={{ fontSize: "10px", color: T.dim, fontFamily: T.mono }}>{Math.round(f.weight * 100)}%</span>
+                            <span style={{ flex: 1, fontSize: "10px", color: T.muted, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.detail}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Price Alert */}
+            <PriceAlertForm gearType="crashpad" slug={pad.slug} currentPrice={pad.current_price_eur} isMobile={isMobile} />
+
+            {/* Price History — Coming Soon */}
+            <div style={{ background: T.card, borderRadius: "12px", padding: "24px", border: `1px solid ${T.border}`, textAlign: "center" }}>
+              <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>{"\uD83D\uDCCA"}</div>
+              <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
             </div>
           </div>
         </div>

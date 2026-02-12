@@ -654,16 +654,12 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
     totalScore += ss * 0.20; totalWeight += 0.20;
   }
 
-  // Factor 3: Seasonal timing (15%)
-  let seasonScore, seasonDetail;
-  if (month >= 10 || month <= 1) { seasonScore = 0.6; seasonDetail = "Peak sale season \u2014 Black Friday & winter deals"; }
-  else if (month >= 2 && month <= 3) { seasonScore = 0.0; seasonDetail = "Pre-season \u2014 prices stabilising before spring"; }
-  else if (month >= 4 && month <= 7) { seasonScore = -0.5; seasonDetail = "Peak climbing season \u2014 prices typically highest"; }
-  else { seasonScore = 0.3; seasonDetail = "End of season \u2014 early discounts appearing"; }
-  factors.push({ name: "Seasonal Timing", score: seasonScore, weight: 0.15, detail: seasonDetail,
-    icon: seasonScore > 0.3 ? "\uD83D\uDFE2" : seasonScore >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34",
+  // Factor 3: Expected Price Development (15%)
+  factors.push({ name: "Expected Price Development", score: 0, weight: 0.15,
+    detail: "Coming soon \u2014 data collection in progress",
+    icon: "\u23F3",
   });
-  totalScore += seasonScore * 0.15; totalWeight += 0.15;
+  // Don't add to totalScore/totalWeight — this factor is placeholder
 
   // Factor 4: Model lifecycle (15%)
   const modelAge = shoe.year_released ? currentYear - shoe.year_released : null;
@@ -679,21 +675,12 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
     totalScore += as * 0.15; totalWeight += 0.15;
   }
 
-  // Factor 5: Price trend (20%, if history available)
-  if (history.length >= 3) {
-    const recent = history.slice(-3), older = history.slice(0, 3);
-    const rAvg = recent.reduce((a, d) => a + d.price, 0) / recent.length;
-    const oAvg = older.reduce((a, d) => a + d.price, 0) / older.length;
-    const trendPct = (rAvg - oAvg) / oAvg;
-    let ts, td;
-    if (trendPct <= -0.10) { ts = -0.3; td = `Down ${Math.abs(Math.round(trendPct*100))}% \u2014 may keep dropping`; }
-    else if (trendPct <= -0.03) { ts = 0.3; td = "Slightly declining \u2014 good buying window"; }
-    else if (trendPct <= 0.03) { ts = 0.0; td = "Stable \u2014 consistent market pricing"; }
-    else { ts = 0.5; td = `Up ${Math.round(trendPct*100)}% \u2014 buy before further increase`; }
-    factors.push({ name: "Price Trend", score: ts, weight: 0.20, detail: td,
-      icon: ts > 0.2 ? "\uD83D\uDFE2" : ts >= -0.1 ? "\uD83D\uDFE1" : "\uD83D\uDD34" });
-    totalScore += ts * 0.20; totalWeight += 0.20;
-  }
+  // Factor 5: Price Trend (20% — coming soon, history data not yet reliable)
+  factors.push({ name: "Price Trend", score: 0, weight: 0.20,
+    detail: "Coming soon \u2014 historical data collection in progress",
+    icon: "\uD83D\uDCCA",
+  });
+  // Don't add to totalScore/totalWeight — this factor is placeholder
 
   const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
   let signal, label, color, bgColor, icon;
@@ -915,27 +902,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           <div>
             <SectionHeader icon={"\uD83D\uDCC8"} title="Price History" subtitle={isMobile ? "Price evolution" : "Historical price evolution and directional forecast"} compact={isMobile} />
             <div style={{ background: T.card, borderRadius: T.radius, padding: "24px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
-              {history.length > 0 ? (
-                <>
-                  <PriceChart data={history} width={isMobile ? 340 : 720} height={isMobile ? 150 : 200} />
-                  <div style={{ display: "flex", gap: isMobile ? "16px" : "24px", flexWrap: "wrap", marginTop: "16px", paddingTop: "12px", borderTop: `1px solid ${T.border}` }}>
-                    <div style={{ fontSize: "11px", color: T.muted }}>
-                      Lowest: <span style={{ color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{Math.min(...history.map(h => h.price))}</span>
-                    </div>
-                    <div style={{ fontSize: "11px", color: T.muted }}>
-                      Highest: <span style={{ color: T.red, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{Math.max(...history.map(h => h.price))}</span>
-                    </div>
-                    <div style={{ fontSize: "11px", color: T.muted }}>
-                      Current: <span style={{ color: T.accent, fontWeight: 700, fontFamily: T.mono }}>{"\u20AC"}{effectivePrice}</span>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <div style={{ textAlign: "center", padding: "32px 0" }}>
-                  <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>{"\uD83D\uDCCA"}</div>
-                  <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
-                </div>
-              )}
+              <div style={{ textAlign: "center", padding: "32px 0" }}>
+                <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>{"\uD83D\uDCCA"}</div>
+                <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
+              </div>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px" }}>
