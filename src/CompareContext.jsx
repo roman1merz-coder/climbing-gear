@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
 const CompareContext = createContext(null);
-const MAX_COMPARE = 4;
+const MAX_COMPARE = 10;
 
 export function CompareProvider({ children }) {
   const [lists, setLists] = useState({});

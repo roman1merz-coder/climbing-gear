@@ -394,8 +394,8 @@ function CompactBelayCard({ belay, matchScore, onClick }) {
 
   return (
     <div onClick={onClick} style={{
-      background: "#14171c", borderRadius: "12px", overflow: "hidden",
-      border: "1px solid #23272f", cursor: "pointer", position: "relative",
+      background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
+      border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
     }}>
       {/* Visual header with small SVG */}
       <div style={{
@@ -407,28 +407,31 @@ function CompactBelayCard({ belay, matchScore, onClick }) {
           <div style={{
             position: "absolute", top: "6px", left: "6px", zIndex: 3,
             padding: "2px 6px", borderRadius: "8px",
-            background: s >= 75 ? "rgba(34,197,94,0.15)" : s >= 50 ? "rgba(234,179,8,0.15)" : "rgba(239,68,68,0.15)",
-            border: `1px solid ${s >= 75 ? "rgba(34,197,94,.25)" : s >= 50 ? "rgba(234,179,8,.25)" : "rgba(239,68,68,.25)"}`,
+            background: s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
+            border: `1px solid ${s >= 80 ? "rgba(34,197,94,.25)" : s >= 50 ? "rgba(232,115,74,.25)" : "rgba(239,68,68,.25)"}`,
           }}>
             <span style={{ fontSize: "10px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
-              color: s >= 75 ? "#22c55e" : s >= 50 ? "#eab308" : "#ef4444" }}>{s}%</span>
+              color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
           </div>
         )}
         <BelaySVG device={d} width={70} height={58} />
+        <HeartButton type="belay" slug={d.slug} style={{
+          position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
+        }} />
       </div>
       {/* Content */}
-      <div style={{ padding: "8px 10px 10px" }}>
-        <div style={{ fontSize: "9px", color: "#9ca3af", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
+      <div style={{ padding: "10px" }}>
+        <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
           {d.brand}
         </div>
-        <div style={{ fontSize: "13px", fontWeight: 700, color: "#e5e7eb", lineHeight: 1.2, marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+        <div style={{ fontSize: "13px", fontWeight: 700, color: "#f0f0f0", lineHeight: 1.2, marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
           {d.model}
         </div>
-        <div style={{ fontSize: "10px", color: "#6b7280", fontFamily: "'DM Mono',monospace", marginBottom: "6px" }}>
+        <div style={{ fontSize: "10px", color: "#9ca3af", fontFamily: "'DM Mono',monospace", marginBottom: "6px" }}>
           {d.weight_g}g · {d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-          <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#e5e7eb" }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
             €{fmt(price)}
           </span>
         </div>
@@ -457,13 +460,13 @@ function BelayCard({ belay, matchScore, onClick }) {
     <div
       onClick={onClick}
       style={{
-        background: "#14171c", borderRadius: "16px", padding: "20px",
-        border: "1px solid #23272f", cursor: "pointer",
-        transition: "all .2s", position: "relative",
+        background: "#1c1f26", borderRadius: "16px", padding: "20px",
+        border: "1px solid #2a2f38", cursor: "pointer",
+        transition: "all .3s", position: "relative",
         display: "flex", flexDirection: "column", gap: "12px",
       }}
-      onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#3b82f6"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#23272f"; e.currentTarget.style.transform = "none"; }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#E8734A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2f38"; e.currentTarget.style.transform = "none"; }}
     >
       {/* Heart + Match badge */}
       <HeartButton type="belay" slug={d.slug} style={{
@@ -473,8 +476,8 @@ function BelayCard({ belay, matchScore, onClick }) {
         <div
           style={{
             position: "absolute", top: "12px", right: "40px",
-            background: matchScore >= 75 ? "rgba(34,197,94,0.15)" : matchScore >= 50 ? "rgba(234,179,8,0.15)" : "rgba(239,68,68,0.15)",
-            color: matchScore >= 75 ? "#22c55e" : matchScore >= 50 ? "#eab308" : "#ef4444",
+            background: matchScore >= 80 ? "rgba(34,197,94,.12)" : matchScore >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
+            color: matchScore >= 80 ? "#22c55e" : matchScore >= 50 ? "#E8734A" : "#ef4444",
             padding: "4px 10px", borderRadius: "10px",
             fontSize: "12px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
           }}
@@ -495,7 +498,7 @@ function BelayCard({ belay, matchScore, onClick }) {
           <div style={{ color: "#9ca3af", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
             {d.brand}
           </div>
-          <div style={{ color: "#e5e7eb", fontSize: "16px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif" }}>
+          <div style={{ color: "#f0f0f0", fontSize: "16px", fontWeight: 700, fontFamily: "'DM Sans',sans-serif" }}>
             {d.model}
           </div>
         </div>
@@ -519,7 +522,7 @@ function BelayCard({ belay, matchScore, onClick }) {
 
       {/* Price */}
       <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginTop: "auto" }}>
-        <span style={{ color: "#e5e7eb", fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace" }}>
+        <span style={{ color: "#E8734A", fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace" }}>
           €{fmt(price)}
         </span>
         {hasDiscount && (
@@ -822,7 +825,7 @@ export default function BelayApp({ belays = [], src }) {
             style={{
               display: "grid",
               gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: isMobile ? "10px" : "16px",
+              gap: isMobile ? "10px" : "20px",
             }}
           >
             {displayResults.map(({ belay_data: d, match_score: ms }) => (
@@ -845,7 +848,7 @@ export default function BelayApp({ belays = [], src }) {
             ))}
           </div>
           {!displayResults.length && (
-            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "60px 20px", color: "#6b7280" }}>
+            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🔗</div>
               <div style={{ fontSize: "16px" }}>No devices match your filters</div>
               <div style={{ fontSize: "13px", marginTop: "8px" }}>Try broadening your criteria</div>

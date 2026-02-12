@@ -201,7 +201,7 @@ export default function CompareGeneric({ items = [], type = "ropes" }) {
                     <div style={{ fontSize: "15px", fontWeight: 800, color: T.text, marginBottom: "6px" }}>{item.model}</div>
                   </th>
                 ))}
-                {selectedItems.length < 4 && (
+                {selectedItems.length < 10 && (
                   <th style={{ ...S.th, minWidth: "120px" }}>
                     <Link to={cfg.backPath} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", color: T.muted, textDecoration: "none", padding: "20px 0" }}>
                       <div style={{ width: "48px", height: "48px", borderRadius: "50%", border: `2px dashed ${T.border}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px" }}>+</div>
@@ -215,7 +215,7 @@ export default function CompareGeneric({ items = [], type = "ropes" }) {
               {sections.map((section) => (
                 <React.Fragment key={section.title}>
                   <tr>
-                    <td colSpan={selectedItems.length + 1 + (selectedItems.length < 4 ? 1 : 0)} style={S.sectionHeader}>{section.title}</td>
+                    <td colSpan={selectedItems.length + 1 + (selectedItems.length < 10 ? 1 : 0)} style={S.sectionHeader}>{section.title}</td>
                   </tr>
                   {section.rows.map((row) => {
                     const winnerIdx = findWinner(selectedItems, row);
@@ -228,7 +228,7 @@ export default function CompareGeneric({ items = [], type = "ropes" }) {
                             {winnerIdx === idx && <span style={{ marginLeft: "4px", fontSize: "10px" }}>★</span>}
                           </td>
                         ))}
-                        {selectedItems.length < 4 && <td style={S.td} />}
+                        {selectedItems.length < 10 && <td style={S.td} />}
                       </tr>
                     );
                   })}

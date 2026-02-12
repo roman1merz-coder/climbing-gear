@@ -420,9 +420,12 @@ function CompactCrashpadCard({ result, onClick }) {
               color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
           </div>
         )}
+        <HeartButton type="crashpad" slug={d.slug} style={{
+          position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
+        }} />
       </div>
       {/* Content */}
-      <div style={{ padding: "8px 10px 10px" }}>
+      <div style={{ padding: "10px" }}>
         <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
           {d.brand}
         </div>

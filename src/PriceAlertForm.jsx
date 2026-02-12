@@ -9,7 +9,7 @@ import { T } from "./tokens.js";
  *   - Active alert indicator (with edit/remove)
  *
  * Props:
- *   gearType: "shoe" | "rope" | "belay"
+ *   gearType: "shoe" | "rope" | "belay" | "crashpad"
  *   slug: string
  *   currentPrice: number | null — current best price for this item
  *   isMobile: boolean

@@ -1317,8 +1317,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: isMobile ? "12px" : "20px",
+              gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: isMobile ? "10px" : "20px",
             }}
           >
             {displayResults.map((shoe, i) => (

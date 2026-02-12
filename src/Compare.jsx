@@ -9,7 +9,7 @@
 //   - Side-by-side specs table with winner highlighting
 //   - Mini radar chart per shoe
 //   - Radar overlay toggle (all on one chart)
-//   - "Add shoe" slot if < 4 selected
+//   - "Add shoe" slot if < 10 selected
 //   - Responsive: horizontal scroll on mobile
 // ══════════════════════════════════════════════════════════
 
@@ -421,7 +421,7 @@ export default function Compare({ shoes = [] }) {
                     </div>
                   </th>
                 ))}
-                {selectedShoes.length < 4 && (
+                {selectedShoes.length < 10 && (
                   <th style={{ ...S.th, minWidth: "120px" }}>
                     <Link to="/shoes" style={{
                       display: "flex", flexDirection: "column", alignItems: "center", gap: "8px",
@@ -445,7 +445,7 @@ export default function Compare({ shoes = [] }) {
                 <>
                   {/* Section header */}
                   <tr key={`sec-${section.title}`}>
-                    <td colSpan={selectedShoes.length + 1 + (selectedShoes.length < 4 ? 1 : 0)} style={S.sectionHeader}>
+                    <td colSpan={selectedShoes.length + 1 + (selectedShoes.length < 10 ? 1 : 0)} style={S.sectionHeader}>
                       {section.title}
                     </td>
                   </tr>
@@ -467,7 +467,7 @@ export default function Compare({ shoes = [] }) {
                           )}
                         </td>
                       ))}
-                      {selectedShoes.length < 4 && <td style={S.td} />}
+                      {selectedShoes.length < 10 && <td style={S.td} />}
                     </tr>
                   ))}
                 </>

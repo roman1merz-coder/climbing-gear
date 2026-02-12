@@ -437,9 +437,12 @@ function CompactRopeCard({ result, onClick }) {
           </div>
         )}
         <RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />
+        <HeartButton type="rope" slug={d.slug} style={{
+          position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
+        }} />
       </div>
       {/* Content */}
-      <div style={{ padding: "8px 10px 10px" }}>
+      <div style={{ padding: "10px" }}>
         <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
           {d.brand}
         </div>

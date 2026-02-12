@@ -15,7 +15,7 @@ export default function CompareCheckbox({ type = "shoes", slug, compact }) {
       }}
       title={
         checked ? "Remove from comparison" :
-        disabled ? "Max 4 in comparison" :
+        disabled ? "Max 10 in comparison" :
         "Add to comparison"
       }
       style={{
