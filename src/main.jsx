@@ -128,19 +128,31 @@ class ErrorBoundary extends React.Component {
 }
 
 // ─── Root ────────────────────────────────────────────────────
-// Build a slug→seed lookup so we can fill gaps from Supabase data
+// Build slug→seed lookups so we can fill gaps from Supabase data
 const SEED_MAP = Object.fromEntries(SEED.map(s => [s.slug, s]));
+const ROPE_SEED_MAP = Object.fromEntries(ROPE_SEED.map(r => [r.slug, r]));
+const BELAY_SEED_MAP = Object.fromEntries(BELAY_SEED.map(b => [b.slug, b]));
+const CRASHPAD_SEED_MAP = Object.fromEntries(CRASHPAD_SEED.map(c => [c.slug, c]));
 
 /** Merge Supabase row with seed data: Supabase wins for non-null fields, seed fills gaps */
-function mergeShoe(sbShoe) {
-  const seed = SEED_MAP[sbShoe.slug] || {};
+function mergeWithSeed(sbRow, seedMap) {
+  const seed = seedMap[sbRow.slug] || {};
   const merged = { ...seed };
-  for (const [key, val] of Object.entries(sbShoe)) {
+  for (const [key, val] of Object.entries(sbRow)) {
     if (val !== null && val !== undefined) {
       merged[key] = val;
     }
   }
   return merged;
+}
+function mergeShoe(sbShoe) { return mergeWithSeed(sbShoe, SEED_MAP); }
+
+/** Merge Supabase array with seed: update existing by slug, keep seed-only extras */
+function mergeDataset(sbData, seedArr, seedMap) {
+  const merged = sbData.map(row => mergeWithSeed(row, seedMap));
+  const sbSlugs = new Set(sbData.map(r => r.slug));
+  const extras = seedArr.filter(s => !sbSlugs.has(s.slug));
+  return [...merged, ...extras];
 }
 
 /** Assign local image_url based on slug → /images/{category}/{slug}.jpg */
@@ -181,19 +193,37 @@ function Root() {
       })
       .catch(() => {});
 
-    // Fetch ropes from Supabase (falls back to seed if table doesn't exist)
+    // Fetch ropes from Supabase — merge with seed so seed-only ropes are kept
     supabaseSelect("ropes")
-      .then((data) => { if (data?.length) { setRopes(assignLocalImages(data, "ropes")); setRopeSrc(`supabase · ${data.length}`); } })
+      .then((data) => {
+        if (data?.length) {
+          const merged = mergeDataset(data, ROPE_SEED, ROPE_SEED_MAP);
+          setRopes(assignLocalImages(merged, "ropes"));
+          setRopeSrc(`supabase+seed · ${merged.length}`);
+        }
+      })
       .catch(() => {});
 
-    // Fetch belay devices from Supabase
+    // Fetch belay devices — merge with seed
     supabaseSelect("belay_devices")
-      .then((data) => { if (data?.length) { setBelays(assignLocalImages(data, "belays")); setBelaySrc(`supabase · ${data.length}`); } })
+      .then((data) => {
+        if (data?.length) {
+          const merged = mergeDataset(data, BELAY_SEED, BELAY_SEED_MAP);
+          setBelays(assignLocalImages(merged, "belays"));
+          setBelaySrc(`supabase+seed · ${merged.length}`);
+        }
+      })
       .catch(() => {});
 
-    // Fetch crashpads from Supabase
+    // Fetch crashpads — merge with seed
     supabaseSelect("crashpads")
-      .then((data) => { if (data?.length) { setCrashpads(data); setCrashpadSrc(`supabase · ${data.length}`); } })
+      .then((data) => {
+        if (data?.length) {
+          const merged = mergeDataset(data, CRASHPAD_SEED, CRASHPAD_SEED_MAP);
+          setCrashpads(merged);
+          setCrashpadSrc(`supabase+seed · ${merged.length}`);
+        }
+      })
       .catch(() => {});
 
     // Fetch live prices
