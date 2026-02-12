@@ -15,6 +15,7 @@ import NavBar from "./NavBar.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
 import CompareBar from "./CompareBar.jsx";
 import { WishlistProvider } from "./WishlistContext.jsx";
+import { PriceAlertProvider } from "./PriceAlertContext.jsx";
 import Wishlist from "./Wishlist.jsx";
 import { GLOBAL_CSS } from "./tokens.js";
 
@@ -186,9 +187,10 @@ function Root() {
       <style>{GLOBAL_CSS}</style>
       <ErrorBoundary>
         <WishlistProvider>
+        <PriceAlertProvider>
         <CompareProvider>
           <BrowserRouter>
-            <NavBar />
+            <NavBar priceData={priceData} />
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/shoes" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />
@@ -217,6 +219,7 @@ function Root() {
             <CompareBar shoes={shoes} />
           </BrowserRouter>
         </CompareProvider>
+        </PriceAlertProvider>
         </WishlistProvider>
       </ErrorBoundary>
     </>

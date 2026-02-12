@@ -2,6 +2,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import useIsMobile from "./useIsMobile.js";
 import { T } from "./tokens.js";
 import { useWL } from "./WishlistContext.jsx";
+import AlertBell from "./AlertBell.jsx";
 
 const TABS = [
   { key: "shoes",  label: "Shoes",      path: "/shoes",  match: ["/shoes", "/shoe/"],  active: true },
@@ -11,7 +12,7 @@ const TABS = [
   { key: "harness",label: "Harnesses",  path: null,      match: [],                    active: false },
 ];
 
-export default function NavBar() {
+export default function NavBar({ priceData = {} }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
@@ -120,6 +121,9 @@ export default function NavBar() {
           </span>
         </div>
       )}
+
+      {/* Price alert bell */}
+      <AlertBell priceData={priceData} isMobile={isMobile} onClick={() => navigate("/wishlist")} />
 
       {/* Right links (desktop only) */}
       {!isMobile && (

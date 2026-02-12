@@ -5,6 +5,7 @@ import { fmt, cap, ensureArray } from "./utils/format.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
+import PriceAlertForm from "./PriceAlertForm.jsx";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
 
@@ -850,6 +851,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                   <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6 }}>{intel.forecast}</div>
                 </div>
               </div>
+
+              {/* Price Alert */}
+              <PriceAlertForm gearType="shoe" slug={shoe.slug} currentPrice={effectivePrice} isMobile={isMobile} />
 
               {/* Flex spacer pushes radar to bottom, aligned with image thumbnails */}
               {!isMobile && <div style={{ flex: 1 }} />}
