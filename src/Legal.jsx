@@ -5,8 +5,7 @@ const S = {
   page: { minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text },
   header: {
     padding: "20px 32px", borderBottom: `1px solid ${T.border}`,
-    position: "sticky", top: 0, background: "rgba(14,16,21,0.92)",
-    backdropFilter: "blur(12px)", zIndex: 50,
+    background: T.bg,
   },
   back: { display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: "14px" },
   wrap: { maxWidth: "720px", margin: "0 auto", padding: "48px 32px 80px" },

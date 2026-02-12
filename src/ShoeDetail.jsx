@@ -755,7 +755,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       {/* Header */}
-      <header style={{ padding: isMobile ? "12px 16px" : "20px 32px", borderBottom: `1px solid ${T.border}`, position: "sticky", top: 0, background: "rgba(14,16,21,0.92)", backdropFilter: "blur(12px)", zIndex: 50 }}>
+      <header style={{ padding: isMobile ? "8px 16px" : "10px 32px", borderBottom: `1px solid ${T.border}`, background: T.bg }}>
         <Link to="/shoes" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px", padding: isMobile ? "4px 0" : "0", minHeight: isMobile ? "44px" : "auto" }}>
           {"\u2190"} Search
         </Link>
@@ -810,10 +810,32 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                       Best live price from {prices.find(p => p.price === liveBestPrice)?.shop || "retailer"}
                     </div>
                   )}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: prices.length > 0 ? "14px" : 0 }}>
                     <span style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600 }}>EU Size Range</span>
                     <span style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.mono }}>{shoe.size_range}</span>
                   </div>
+                  {prices.length > 0 && (() => {
+                    const best = prices.filter(p => p.inStock && p.price > 0).sort((a, b) => a.price - b.price)[0];
+                    if (!best) return null;
+                    return (
+                      <a
+                        href={best.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                          padding: "10px 20px", borderRadius: T.radiusSm,
+                          background: T.accent, color: "#fff",
+                          fontSize: "13px", fontWeight: 700, textDecoration: "none",
+                          fontFamily: T.font, transition: "opacity .2s", cursor: "pointer",
+                        }}
+                        onMouseOver={e => e.currentTarget.style.opacity = "0.85"}
+                        onMouseOut={e => e.currentTarget.style.opacity = "1"}
+                      >
+                        Buy from {best.shop} for {"\u20AC"}{best.price} {"\u2192"}
+                      </a>
+                    );
+                  })()}
                 </div>
                 {/* Right: Evaluation Signal */}
                 <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>

@@ -137,10 +137,9 @@ export default function RopeDetail({ ropes = [] }) {
     <div style={{ background: T.bg, minHeight: "100vh", fontFamily: T.font, color: T.text }}>
       {/* Header */}
       <header style={{
-        position: "sticky", top: 0, zIndex: 100,
         display: "flex", alignItems: "center", gap: "16px",
-        padding: "0 24px", height: "65px",
-        background: "rgba(14,16,21,.92)", backdropFilter: "blur(12px)",
+        padding: "0 24px", height: "50px",
+        background: T.bg,
         borderBottom: `1px solid ${T.border}`,
       }}>
         <Link to="/ropes" style={{ color: T.muted, textDecoration: "none", fontSize: "14px", display: "flex", alignItems: "center", gap: "6px" }}>
