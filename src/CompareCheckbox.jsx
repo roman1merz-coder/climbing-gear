@@ -1,21 +1,21 @@
 import { useCompare } from "./CompareContext.jsx";
 import { T } from "./tokens.js";
 
-export default function CompareCheckbox({ slug, compact }) {
+export default function CompareCheckbox({ type = "shoes", slug, compact }) {
   const { toggleCompare, isInCompare, isFull } = useCompare();
-  const checked = isInCompare(slug);
-  const disabled = !checked && isFull;
+  const checked = isInCompare(type, slug);
+  const disabled = !checked && isFull(type);
 
   return (
     <button
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!disabled) toggleCompare(slug);
+        if (!disabled) toggleCompare(type, slug);
       }}
       title={
         checked ? "Remove from comparison" :
-        disabled ? "Max 4 shoes in comparison" :
+        disabled ? "Max 4 in comparison" :
         "Add to comparison"
       }
       style={{

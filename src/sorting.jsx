@@ -72,6 +72,80 @@ export function sortShoes(shoes, sortKey, priceData = {}) {
   return sorted;
 }
 
+/**
+ * Generic sort for any gear type.
+ * Pass accessor functions for price fields, or use defaults (shoe-style).
+ */
+export function sortItems(items, sortKey, { getPrice, getUvp, getBrand, getModel } = {}) {
+  const gp = getPrice || (i => i.current_price_eur);
+  const gu = getUvp || (i => i.price_uvp_eur);
+  const gb = getBrand || (i => i.brand);
+  const gm = getModel || (i => i.model);
+  const sorted = [...items];
+  switch (sortKey) {
+    case "price_asc":
+      sorted.sort((a, b) => (gp(a) || Infinity) - (gp(b) || Infinity));
+      break;
+    case "price_desc":
+      sorted.sort((a, b) => (gp(b) || 0) - (gp(a) || 0));
+      break;
+    case "discount":
+      sorted.sort((a, b) => {
+        const da = (gu(a) && gp(a)) ? (gu(a) - gp(a)) / gu(a) : 0;
+        const db = (gu(b) && gp(b)) ? (gu(b) - gp(b)) / gu(b) : 0;
+        return db - da;
+      });
+      break;
+    case "brand_az":
+      sorted.sort((a, b) => {
+        const bc = (gb(a) || "").localeCompare(gb(b) || "");
+        return bc !== 0 ? bc : (gm(a) || "").localeCompare(gm(b) || "");
+      });
+      break;
+    case "best_match":
+    default:
+      break; // keep existing order from scoring
+  }
+  return sorted;
+}
+
+export const SORT_OPTIONS_GENERIC = [
+  { key: "best_match",   label: "Best Match" },
+  { key: "price_asc",    label: "Price: Low → High" },
+  { key: "price_desc",   label: "Price: High → Low" },
+  { key: "discount",     label: "Biggest Discount" },
+  { key: "brand_az",     label: "Brand A–Z" },
+];
+
+export function SortDropdownGeneric({ value, onChange, options }) {
+  const opts = options || SORT_OPTIONS_GENERIC;
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <span style={{ fontSize: "11px", color: T.muted, fontWeight: 600, letterSpacing: "0.5px", textTransform: "uppercase" }}>
+        Sort by
+      </span>
+      <select
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        style={{
+          padding: "7px 12px", borderRadius: "8px",
+          border: `1px solid ${T.border}`, background: T.surface,
+          color: T.text, fontSize: "12px", fontWeight: 600,
+          fontFamily: T.font, cursor: "pointer", outline: "none",
+          appearance: "none", paddingRight: "28px",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23717889' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right 10px center",
+        }}
+      >
+        {opts.map(o => (
+          <option key={o.key} value={o.key}>{o.label}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 export function SortDropdown({ value, onChange }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>

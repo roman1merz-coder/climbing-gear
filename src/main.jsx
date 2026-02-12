@@ -11,6 +11,7 @@ import CrashpadApp from "./CrashpadApp.jsx";
 import CrashpadDetail from "./CrashpadDetail.jsx";
 import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
+import CompareGeneric from "./CompareGeneric.jsx";
 import About from "./About.jsx";
 import Landing from "./Landing.jsx";
 import NavBar from "./NavBar.jsx";
@@ -215,6 +216,9 @@ function Root() {
                 }
               />
               <Route path="/compare" element={<Compare shoes={shoes} />} />
+              <Route path="/compare-ropes" element={<CompareGeneric items={ropes} type="ropes" />} />
+              <Route path="/compare-belays" element={<CompareGeneric items={belays} type="belays" />} />
+              <Route path="/compare-pads" element={<CompareGeneric items={crashpads} type="crashpads" />} />
               {/* Rope routes */}
               <Route path="/ropes" element={<RopeApp ropes={ropes} src={ropeSrc} />} />
               <Route path="/rope/:slug" element={<RopeDetail ropes={ropes} />} />
@@ -229,7 +233,7 @@ function Root() {
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
             </Routes>
-            <CompareBar shoes={shoes} />
+            <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} />
           </BrowserRouter>
         </CompareProvider>
         </PriceAlertProvider>

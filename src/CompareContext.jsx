@@ -4,34 +4,42 @@ const CompareContext = createContext(null);
 const MAX_COMPARE = 4;
 
 export function CompareProvider({ children }) {
-  const [compareList, setCompareList] = useState([]);
+  const [lists, setLists] = useState({});
 
-  const toggleCompare = useCallback((slug) => {
-    setCompareList((prev) => {
-      if (prev.includes(slug)) return prev.filter((s) => s !== slug);
-      if (prev.length >= MAX_COMPARE) return prev;
-      return [...prev, slug];
+  const toggleCompare = useCallback((type, slug) => {
+    setLists((prev) => {
+      const list = prev[type] || [];
+      if (list.includes(slug)) return { ...prev, [type]: list.filter((s) => s !== slug) };
+      if (list.length >= MAX_COMPARE) return prev;
+      return { ...prev, [type]: [...list, slug] };
     });
   }, []);
 
-  const removeFromCompare = useCallback((slug) => {
-    setCompareList((prev) => prev.filter((s) => s !== slug));
+  const removeFromCompare = useCallback((type, slug) => {
+    setLists((prev) => ({
+      ...prev,
+      [type]: (prev[type] || []).filter((s) => s !== slug),
+    }));
   }, []);
 
-  const clearCompare = useCallback(() => setCompareList([]), []);
+  const clearCompare = useCallback((type) => {
+    setLists((prev) => ({ ...prev, [type]: [] }));
+  }, []);
 
   const isInCompare = useCallback(
-    (slug) => compareList.includes(slug),
-    [compareList]
+    (type, slug) => (lists[type] || []).includes(slug),
+    [lists]
   );
+
+  const getList = useCallback((type) => lists[type] || [], [lists]);
+  const getCount = useCallback((type) => (lists[type] || []).length, [lists]);
+  const isFull = useCallback((type) => (lists[type] || []).length >= MAX_COMPARE, [lists]);
 
   return (
     <CompareContext.Provider
       value={{
-        compareList, toggleCompare, removeFromCompare,
-        clearCompare, isInCompare,
-        isFull: compareList.length >= MAX_COMPARE,
-        count: compareList.length,
+        lists, toggleCompare, removeFromCompare,
+        clearCompare, isInCompare, getList, getCount, isFull,
       }}
     >
       {children}

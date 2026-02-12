@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
+import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
+import CompareCheckbox from "./CompareCheckbox.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -403,6 +405,69 @@ function SmallTag({ children, variant = "default" }) {
   );
 }
 
+// ═══ COMPACT ROPE CARD (mobile 2-per-row) ═══
+
+function CompactRopeCard({ result, onClick }) {
+  const d = result.rope_data;
+  const s = result.match_score;
+  const hasDiscount = d.price_uvp_per_meter_eur && d.price_per_meter_eur_min && d.price_per_meter_eur_min < d.price_uvp_per_meter_eur;
+  const discountPct = hasDiscount ? Math.round(((d.price_uvp_per_meter_eur - d.price_per_meter_eur_min) / d.price_uvp_per_meter_eur) * 100) : 0;
+
+  return (
+    <div onClick={onClick} style={{
+      background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
+      border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
+    }}>
+      {/* Visual header */}
+      <div style={{
+        height: "70px", position: "relative", overflow: "hidden",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        background: `linear-gradient(135deg, ${d.rope_color_1 || '#555'}15, ${d.rope_color_2 || '#333'}08)`,
+      }}>
+        {/* Match badge */}
+        {s >= 0 && (
+          <div style={{
+            position: "absolute", top: "6px", left: "6px", zIndex: 3,
+            padding: "2px 6px", borderRadius: "8px",
+            background: s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
+            border: `1px solid ${s >= 80 ? "rgba(34,197,94,.25)" : s >= 50 ? "rgba(232,115,74,.25)" : "rgba(239,68,68,.25)"}`,
+          }}>
+            <span style={{ fontSize: "10px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
+              color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
+          </div>
+        )}
+        <RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />
+      </div>
+      {/* Content */}
+      <div style={{ padding: "8px 10px 10px" }}>
+        <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
+          {d.brand}
+        </div>
+        <div style={{ fontSize: "13px", fontWeight: 700, color: "#f0f0f0", lineHeight: 1.2, marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {d.model}
+        </div>
+        <div style={{ fontSize: "10px", color: "#9ca3af", fontFamily: "'DM Mono',monospace", marginBottom: "6px" }}>
+          {d.diameter_mm}mm · {d.weight_per_meter_g}g/m
+        </div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
+            €{d.price_per_meter_eur_min?.toFixed(2)}
+          </span>
+          <span style={{ fontSize: "9px", color: "#6b7280" }}>/m</span>
+        </div>
+        {hasDiscount && (
+          <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
+            <span style={{ fontSize: "10px", color: "#6b7280", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>
+              €{d.price_uvp_per_meter_eur?.toFixed(2)}
+            </span>
+            <span style={{ fontSize: "10px", fontWeight: 600, color: "#22c55e" }}>-{discountPct}%</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ═══ ROPE CARD ═══
 
 function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
@@ -562,6 +627,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
   const [query, setQuery] = useState("");
   const [selectedLengths, setSelectedLengths] = useState({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [sortKey, setSortKey] = useState("best_match");
 
   const set = (k, v) => {
     setFilters((p) => {
@@ -591,6 +657,16 @@ export default function RopeApp({ ropes = [], src = "local" }) {
 
   // Score
   const results = useMemo(() => score(searchFiltered, filters), [searchFiltered, filters]);
+
+  const displayResults = useMemo(() => {
+    if (sortKey === "best_match") return results;
+    const items = results.map(r => r.rope_data);
+    const sorted = sortItems(items, sortKey, {
+      getPrice: i => i.price_per_meter_eur_min,
+      getUvp: i => i.price_uvp_per_meter_eur,
+    });
+    return sorted.map(s => results.find(r => r.rope_data.slug === s.slug) || { rope_data: s, match_score: -1 });
+  }, [results, sortKey]);
 
   const GROUPS = useMemo(() => getGroups(activeTypes), [activeTypes]);
 
@@ -937,34 +1013,36 @@ export default function RopeApp({ ropes = [], src = "local" }) {
             </div>
           )}
 
-          {/* Mobile result count + clear */}
-          {isMobile && (
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-              <span style={{ fontSize: "12px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>{results.length} ropes</span>
-              {(ac > 0 || activeTypes.length > 0) && (
-                <button
-                  onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
-                  style={{ padding: "4px 12px", borderRadius: "16px", border: "1px solid #3a3f47", background: "transparent", color: "#9ca3af", fontSize: "11px", cursor: "pointer" }}
-                >Clear all</button>
-              )}
-            </div>
-          )}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+              {displayResults.length} rope{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
+            </span>
+            <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
+          </div>
 
           {/* Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "14px" : "20px" }}>
-            {results.map((r, i) => (
-              <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both` }}>
-                <RopeCard
-                  result={r}
-                  onClick={() => navigate(`/rope/${r.rope_data.slug}`)}
-                  selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
-                  onLengthSelect={handleLengthSelect}
-                />
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
+            {displayResults.map((r, i) => (
+              <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
+                <CompareCheckbox type="ropes" slug={r.rope_data.slug} compact={isMobile} />
+                {isMobile ? (
+                  <CompactRopeCard
+                    result={r}
+                    onClick={() => navigate(`/rope/${r.rope_data.slug}`)}
+                  />
+                ) : (
+                  <RopeCard
+                    result={r}
+                    onClick={() => navigate(`/rope/${r.rope_data.slug}`)}
+                    selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
+                    onLengthSelect={handleLengthSelect}
+                  />
+                )}
               </div>
             ))}
           </div>
 
-          {!results.length && (
+          {!displayResults.length && (
             <div style={{ textAlign: "center", padding: isMobile ? "40px 0" : "80px 0", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🪢</div>
               <div style={{ fontSize: "16px", marginBottom: "8px" }}>No ropes match{query ? ` "${query}"` : ""}</div>

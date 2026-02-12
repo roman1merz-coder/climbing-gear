@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
+import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
+import CompareCheckbox from "./CompareCheckbox.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -381,6 +383,68 @@ function getTags(d) {
   return tags;
 }
 
+// ═══ COMPACT BELAY CARD (mobile 2-per-row) ═══
+
+function CompactBelayCard({ belay, matchScore, onClick }) {
+  const d = belay;
+  const s = matchScore;
+  const price = d.price_eur_min || d.price_uvp_eur;
+  const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
+  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur) * 100) : 0;
+
+  return (
+    <div onClick={onClick} style={{
+      background: "#14171c", borderRadius: "12px", overflow: "hidden",
+      border: "1px solid #23272f", cursor: "pointer", position: "relative",
+    }}>
+      {/* Visual header with small SVG */}
+      <div style={{
+        height: "70px", position: "relative",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        background: "linear-gradient(135deg, rgba(20,23,28,.8), rgba(30,32,40,.6))",
+      }}>
+        {s >= 0 && (
+          <div style={{
+            position: "absolute", top: "6px", left: "6px", zIndex: 3,
+            padding: "2px 6px", borderRadius: "8px",
+            background: s >= 75 ? "rgba(34,197,94,0.15)" : s >= 50 ? "rgba(234,179,8,0.15)" : "rgba(239,68,68,0.15)",
+            border: `1px solid ${s >= 75 ? "rgba(34,197,94,.25)" : s >= 50 ? "rgba(234,179,8,.25)" : "rgba(239,68,68,.25)"}`,
+          }}>
+            <span style={{ fontSize: "10px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
+              color: s >= 75 ? "#22c55e" : s >= 50 ? "#eab308" : "#ef4444" }}>{s}%</span>
+          </div>
+        )}
+        <BelaySVG device={d} width={70} height={58} />
+      </div>
+      {/* Content */}
+      <div style={{ padding: "8px 10px 10px" }}>
+        <div style={{ fontSize: "9px", color: "#9ca3af", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
+          {d.brand}
+        </div>
+        <div style={{ fontSize: "13px", fontWeight: 700, color: "#e5e7eb", lineHeight: 1.2, marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {d.model}
+        </div>
+        <div style={{ fontSize: "10px", color: "#6b7280", fontFamily: "'DM Mono',monospace", marginBottom: "6px" }}>
+          {d.weight_g}g · {d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm
+        </div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#e5e7eb" }}>
+            €{fmt(price)}
+          </span>
+        </div>
+        {hasDiscount && (
+          <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
+            <span style={{ fontSize: "10px", color: "#6b7280", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>
+              €{fmt(d.price_uvp_eur)}
+            </span>
+            <span style={{ fontSize: "10px", fontWeight: 600, color: "#22c55e" }}>-{discountPct}%</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ═══ BELAY CARD ═══
 
 function BelayCard({ belay, matchScore, onClick }) {
@@ -609,6 +673,7 @@ export default function BelayApp({ belays = [], src }) {
   const [activeTypes, setActiveTypes] = useState([]);
   const [filters, setFilters] = useState({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [sortKey, setSortKey] = useState("best_match");
   const setFilter = (k, v) => setFilters((p) => ({ ...p, [k]: v }));
 
   const groups = useMemo(() => getGroups(activeTypes), [activeTypes]);
@@ -618,6 +683,16 @@ export default function BelayApp({ belays = [], src }) {
     if (activeTypes.length) pool = pool.filter((b) => activeTypes.includes(b.device_type));
     return score(pool, filters);
   }, [belays, activeTypes, filters]);
+
+  const displayResults = useMemo(() => {
+    if (sortKey === "best_match") return filtered;
+    const items = filtered.map(r => r.belay_data);
+    const sorted = sortItems(items, sortKey, {
+      getPrice: i => i.price_eur_min || i.price_uvp_eur,
+      getUvp: i => i.price_uvp_eur,
+    });
+    return sorted.map(s => filtered.find(r => r.belay_data.slug === s.slug) || { belay_data: s, match_score: -1 });
+  }, [filtered, sortKey]);
 
   const ac = Object.entries(filters).filter(([, v]) => {
     if (v == null) return false;
@@ -737,43 +812,39 @@ export default function BelayApp({ belays = [], src }) {
 
         {/* Results */}
         <div style={{ flex: 1 }}>
-          <div style={{ marginBottom: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            {isMobile ? (
-              <>
-                <span style={{ color: "#6b7280", fontSize: "12px", fontFamily: "'DM Mono',monospace" }}>
-                  {filtered.length} device{filtered.length !== 1 ? "s" : ""}
-                </span>
-                {(ac > 0 || activeTypes.length > 0) && (
-                  <button
-                    onClick={() => { setFilters({}); setActiveTypes([]); }}
-                    style={{ padding: "4px 12px", borderRadius: "16px", border: "1px solid #3a3f47", background: "transparent", color: "#9ca3af", fontSize: "11px", cursor: "pointer" }}
-                  >Clear all</button>
-                )}
-              </>
-            ) : (
-              <span style={{ color: "#6b7280", fontSize: "13px" }}>
-                {filtered.length} device{filtered.length !== 1 ? "s" : ""}
-                {src && <span style={{ marginLeft: "8px", fontSize: "11px", color: "#4b5563" }}>({src})</span>}
-              </span>
-            )}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+              {displayResults.length} device{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
+            </span>
+            <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
           </div>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: isMobile ? "14px" : "16px",
+              gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: isMobile ? "10px" : "16px",
             }}
           >
-            {filtered.map(({ belay_data: d, match_score: ms }) => (
-              <BelayCard
-                key={d.slug}
-                belay={d}
-                matchScore={ms}
-                onClick={() => nav(`/belay/${d.slug}`)}
-              />
+            {displayResults.map(({ belay_data: d, match_score: ms }) => (
+              <div key={d.slug} style={{ position: "relative" }}>
+                <CompareCheckbox type="belays" slug={d.slug} compact={isMobile} />
+                {isMobile ? (
+                  <CompactBelayCard
+                    belay={d}
+                    matchScore={ms}
+                    onClick={() => nav(`/belay/${d.slug}`)}
+                  />
+                ) : (
+                  <BelayCard
+                    belay={d}
+                    matchScore={ms}
+                    onClick={() => nav(`/belay/${d.slug}`)}
+                  />
+                )}
+              </div>
             ))}
           </div>
-          {!filtered.length && (
+          {!displayResults.length && (
             <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "60px 20px", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🔗</div>
               <div style={{ fontSize: "16px" }}>No devices match your filters</div>
