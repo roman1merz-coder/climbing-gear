@@ -46,13 +46,13 @@
     "price_eur_max": 119.95,
     "description": "The gold standard of assisted braking belay devices. The GriGri's cam-assisted blocking provides reliable fall arrest while maintaining smooth rope feeding for experienced belayers. Updated version handles ropes down to 8.5mm with improved cam engagement and 3:1 mechanical advantage for comfortable lowering. The most popular belay device at any crag worldwide.",
     "pros": [
-      "Industry standard — universally trusted",
+      "Industry standard \u2014 universally trusted",
       "Smooth lowering with 3:1 mechanical advantage",
       "Handles ropes down to 8.5mm",
       "Excellent for projecting and long belays"
     ],
     "cons": [
-      "Single rope only — no rappel on doubled rope",
+      "Single rope only \u2014 no rappel on doubled rope",
       "Can lock up when feeding slack quickly",
       "Higher price than tube devices",
       "Right-hand optimized design"
@@ -105,7 +105,7 @@
     "price_uvp_eur": 149.95,
     "price_eur_min": 119.95,
     "price_eur_max": 149.95,
-    "description": "The safety-enhanced version of the GriGri with additional features for guides and newer climbers. Anti-panic handle automatically re-engages the cam if the lever is opened too far during lowering. Lead/top-rope toggle adjusts cam spring tension — tighter in top-rope mode for extra security. 3:1 mechanical advantage makes it ideal for weight mismatches and big wall hauling.",
+    "description": "The safety-enhanced version of the GriGri with additional features for guides and newer climbers. Anti-panic handle automatically re-engages the cam if the lever is opened too far during lowering. Lead/top-rope toggle adjusts cam spring tension \u2014 tighter in top-rope mode for extra security. 3:1 mechanical advantage makes it ideal for weight mismatches and big wall hauling.",
     "pros": [
       "Anti-panic feature prevents accidental drops",
       "Lead/top-rope mode switch",
@@ -165,7 +165,7 @@
     "price_uvp_eur": 149.95,
     "price_eur_min": 129.95,
     "price_eur_max": 149.95,
-    "description": "The next evolution in assisted braking. The Neox features an integrated wheel that eliminates the biggest complaint about the GriGri — premature cam engagement when feeding slack. The wheel spins freely during normal rope feeding but stops and engages the cam during falls. Universally praised as a game-changer for lead belaying, offering ATC-smooth slack feeding with GriGri-level fall arrest.",
+    "description": "The next evolution in assisted braking. The Neox features an integrated wheel that eliminates the biggest complaint about the GriGri \u2014 premature cam engagement when feeding slack. The wheel spins freely during normal rope feeding but stops and engages the cam during falls. Universally praised as a game-changer for lead belaying, offering ATC-smooth slack feeding with GriGri-level fall arrest.",
     "pros": [
       "Revolutionary wheel eliminates short-roping",
       "Buttery smooth lead belay experience",
@@ -174,8 +174,8 @@
     ],
     "cons": [
       "Heaviest assisted device at 235g",
-      "Newer design — less field track record",
-      "Single rope only — no double strand rappel",
+      "Newer design \u2014 less field track record",
+      "Single rope only \u2014 no double strand rappel",
       "Premium price point"
     ],
     "device_color_1": "#2d2d2d",
@@ -228,9 +228,9 @@
     "price_uvp_eur": 34.95,
     "price_eur_min": 24.95,
     "price_eur_max": 34.95,
-    "description": "The most versatile belay device available. The ATC Guide does everything — lead belay, top belay, guide mode for belaying a second from above, single and double rope rappel. Its simplicity is its strength: no moving parts, works with virtually any rope, and weighs under 90g. The go-to device for multi-pitch climbing, trad, and alpine where versatility trumps assisted braking.",
+    "description": "The most versatile belay device available. The ATC Guide does everything \u2014 lead belay, top belay, guide mode for belaying a second from above, single and double rope rappel. Its simplicity is its strength: no moving parts, works with virtually any rope, and weighs under 90g. The go-to device for multi-pitch climbing, trad, and alpine where versatility trumps assisted braking.",
     "pros": [
-      "Does everything — ultimate versatility",
+      "Does everything \u2014 ultimate versatility",
       "Guide mode for multi-pitch belaying",
       "Double rope rappel capable",
       "Lightweight at 88g, budget-friendly"
@@ -292,7 +292,7 @@
     "price_eur_max": 29.95,
     "description": "Petzl's ultralight tube device with guide mode. At just 59g, the Reverso is one of the lightest full-featured tube devices available, making it the alpinist's choice. Works with single, half, and twin ropes for complete versatility. Smooth rappelling characteristics make it a favorite for long multi-pitch descents. The asymmetric shape provides two friction levels depending on orientation.",
     "pros": [
-      "Ultralight at 59g — lightest guide device",
+      "Ultralight at 59g \u2014 lightest guide device",
       "Asymmetric design for variable friction",
       "Smooth double-rope rappelling",
       "Full rope type compatibility"
@@ -348,11 +348,11 @@
     "price_uvp_eur": 34.95,
     "price_eur_min": 24.95,
     "price_eur_max": 34.95,
-    "description": "Mammut's passive assisted braking device — a lightweight alternative to mechanical cam devices. The Smart 2.0 uses a simple pinching mechanism between the device body and carabiner to provide braking assistance during falls. Easy to learn, lightweight at 75g, and significantly cheaper than the GriGri. Ideal for gym climbers and beginners who want extra security without the complexity of a cam device.",
+    "description": "Mammut's passive assisted braking device \u2014 a lightweight alternative to mechanical cam devices. The Smart 2.0 uses a simple pinching mechanism between the device body and carabiner to provide braking assistance during falls. Easy to learn, lightweight at 75g, and significantly cheaper than the GriGri. Ideal for gym climbers and beginners who want extra security without the complexity of a cam device.",
     "pros": [
       "Lightweight passive braking at 75g",
       "Budget-friendly alternative to GriGri",
-      "Simple mechanism — fewer moving parts",
+      "Simple mechanism \u2014 fewer moving parts",
       "Easy to learn for beginners"
     ],
     "cons": [
@@ -409,7 +409,7 @@
     "price_uvp_eur": 34.95,
     "price_eur_min": 24.95,
     "price_eur_max": 34.95,
-    "description": "The Swiss Army knife of belay devices. The Mega Jul combines passive assisted braking with guide mode and double rope capability in an ultralight 65g steel package — something no other device achieves. Thinner than a phone and weighing 61% less than a GriGri, it handles everything from lead belaying to double-rope rappelling. The tradeoff: a steep learning curve and technique-dependent braking.",
+    "description": "The Swiss Army knife of belay devices. The Mega Jul combines passive assisted braking with guide mode and double rope capability in an ultralight 65g steel package \u2014 something no other device achieves. Thinner than a phone and weighing 61% less than a GriGri, it handles everything from lead belaying to double-rope rappelling. The tradeoff: a steep learning curve and technique-dependent braking.",
     "pros": [
       "Lightest assisted braking with guide mode",
       "Steel construction for durability",
@@ -480,7 +480,7 @@
     ],
     "cons": [
       "Heavier than Mega Jul at 121g",
-      "Complex — three modes to master",
+      "Complex \u2014 three modes to master",
       "More friction in auto-block than competitors",
       "Learning curve steeper than single-mode devices"
     ],
@@ -654,7 +654,7 @@
     "price_uvp_eur": 109.95,
     "price_eur_min": 79.95,
     "price_eur_max": 109.95,
-    "description": "CAMP's contender against the GriGri, with an anti-panic feature baked in. The Matik uses a cam mechanism similar to the GriGri but adds a spring-loaded anti-panic handle that re-engages the cam if the lever is opened too far — similar to the GriGri+ but in a different form factor. Lighter than the GriGri+ and cheaper, making it an attractive alternative for climbers wanting assisted braking with extra safety.",
+    "description": "CAMP's contender against the GriGri, with an anti-panic feature baked in. The Matik uses a cam mechanism similar to the GriGri but adds a spring-loaded anti-panic handle that re-engages the cam if the lever is opened too far \u2014 similar to the GriGri+ but in a different form factor. Lighter than the GriGri+ and cheaper, making it an attractive alternative for climbers wanting assisted braking with extra safety.",
     "pros": [
       "Anti-panic at a lower price than GriGri+",
       "Reliable cam-assisted catch",
@@ -714,16 +714,16 @@
     "price_uvp_eur": 129.95,
     "price_eur_min": 109.95,
     "price_eur_max": 129.95,
-    "description": "Edelrid's newest cam-assisted device with a revolutionary closure system that clips directly to the belay loop — no separate carabiner needed. This eliminates the risk of cross-loading or carabiner twist during falls. Features anti-panic on the lowering handle and a clean industrial design. Positioned as a direct GriGri competitor with the added safety of integrated attachment.",
+    "description": "Edelrid's newest cam-assisted device with a revolutionary closure system that clips directly to the belay loop \u2014 no separate carabiner needed. This eliminates the risk of cross-loading or carabiner twist during falls. Features anti-panic on the lowering handle and a clean industrial design. Positioned as a direct GriGri competitor with the added safety of integrated attachment.",
     "pros": [
-      "Integrated belay loop attachment — no carabiner needed",
+      "Integrated belay loop attachment \u2014 no carabiner needed",
       "Eliminates cross-loading risk",
       "Anti-panic lowering handle",
       "Clean, modern design"
     ],
     "cons": [
       "Heavy at 230g",
-      "New design — limited field testing data",
+      "New design \u2014 limited field testing data",
       "Single rope only",
       "Integrated attachment limits versatility"
     ],
@@ -776,7 +776,7 @@
     "price_uvp_eur": 89.95,
     "price_eur_min": 65.0,
     "price_eur_max": 89.95,
-    "description": "The Swiss Army knife of belay devices. The Alpine Up offers assisted braking in lead mode, guide mode for multi-pitch, and standard rappel — all in a 160g package. One of the most versatile devices on the market.",
+    "description": "The Swiss Army knife of belay devices. The Alpine Up offers assisted braking in lead mode, guide mode for multi-pitch, and standard rappel \u2014 all in a 160g package. One of the most versatile devices on the market.",
     "pros": [
       "3 modes: lead, guide, rappel",
       "Assisted braking + anti-panic",
@@ -836,7 +836,7 @@
     "price_eur_max": 89.95,
     "description": "A GriGri alternative with a twist: the Click Up's anti-panic function locks the rope if the handle is pulled too hard. Great for nervous beginners and gym climbing.",
     "pros": [
-      "Anti-panic function — locks on over-squeeze",
+      "Anti-panic function \u2014 locks on over-squeeze",
       "Smooth lowering",
       "Good value vs GriGri",
       "Beginner-friendly"
@@ -952,9 +952,9 @@
     "price_uvp_eur": 159.95,
     "price_eur_min": 129.95,
     "price_eur_max": 159.95,
-    "description": "The panic-proof belay device. The Revo's bi-directional locking mechanism stops the rope in ANY scenario — whether you grip too hard or let go entirely. The safest assisted device on the market.",
+    "description": "The panic-proof belay device. The Revo's bi-directional locking mechanism stops the rope in ANY scenario \u2014 whether you grip too hard or let go entirely. The safest assisted device on the market.",
     "pros": [
-      "Bi-directional locking — works if you grip or release",
+      "Bi-directional locking \u2014 works if you grip or release",
       "Truly panic-proof design",
       "Wide rope range (8.5-11mm)",
       "Ideal for beginners and gyms"
@@ -1016,7 +1016,7 @@
       "Anti-panic function",
       "Smooth lowering",
       "Good rope feeding",
-      "Made by Beal — rope experts"
+      "Made by Beal \u2014 rope experts"
     ],
     "cons": [
       "Heavier at 210g",
@@ -1147,5 +1147,723 @@
     "device_color_1": "#6b7280",
     "device_color_2": "#ef4444",
     "slug": "mammut-crag-light-belay"
+  },
+  {
+    "brand": "Black Diamond",
+    "model": "ATC-Pilot",
+    "slug": "black-diamond-atc-pilot",
+    "device_type": "passive_assisted",
+    "braking_type": "geometry_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.7,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 10.2,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 94,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 54.95,
+    "price_eur_min": 39.95,
+    "price_eur_max": 54.95,
+    "description": "A single-rope passive assisted braking device that uses geometry to pinch the rope between device and carabiner during a fall. Ultra-lightweight at 94g, the ATC-Pilot offers brake assistance in a familiar tube-style package \u2014 perfect for gym and single-pitch cragging.",
+    "pros": [
+      "Very lightweight at 94g",
+      "Passive brake assistance without cam",
+      "Familiar tube-style handling",
+      "Great value"
+    ],
+    "cons": [
+      "Single rope only",
+      "Less braking power than cam devices",
+      "Sensitive to rope diameter",
+      "No guide mode"
+    ],
+    "device_color_1": "#374151",
+    "device_color_2": "#6b7280"
+  },
+  {
+    "brand": "Black Diamond",
+    "model": "ATC-Alpine Guide",
+    "slug": "black-diamond-atc-alpine-guide",
+    "device_type": "tubular",
+    "braking_type": "tubular",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 6.9,
+    "rope_diameter_max_mm": 9.0,
+    "rope_diameter_optimal_min_mm": 7.5,
+    "rope_diameter_optimal_max_mm": 8.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 74,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2019,
+    "price_uvp_eur": 49.95,
+    "price_eur_min": 34.95,
+    "price_eur_max": 49.95,
+    "description": "A thin-rope specialist tube device designed for alpine climbing with half and twin ropes. At just 74g, the ATC-Alpine Guide is one of the lightest belay devices with guide mode, making it ideal for weight-conscious alpinists. Handles ropes as thin as 6.9mm.",
+    "pros": [
+      "Ultra-light at 74g",
+      "Guide mode for multi-pitch",
+      "Handles thin ropes down to 6.9mm",
+      "Perfect for alpine/ice"
+    ],
+    "cons": [
+      "Not optimized for thick ropes",
+      "Max 9mm diameter",
+      "No brake assistance",
+      "Requires solid technique"
+    ],
+    "device_color_1": "#1f2937",
+    "device_color_2": "#374151"
+  },
+  {
+    "brand": "Edelrid",
+    "model": "Jul 2",
+    "slug": "edelrid-jul-2",
+    "device_type": "passive_assisted",
+    "braking_type": "geometry_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.9,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 9.4,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 105,
+    "material": "aluminum_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": true,
+    "eco_details": "Recycled materials in production",
+    "year_released": 2021,
+    "price_uvp_eur": 49.95,
+    "price_eur_min": 34.95,
+    "price_eur_max": 49.95,
+    "description": "Edelrid's entry-level passive assisted braking device with geometry that blocks the rope during a fall. Easier rope payout than the Mega Jul thanks to optimized slot geometry. A great choice for gym climbing and indoor/outdoor single-pitch use.",
+    "pros": [
+      "Easy rope payout for lead belaying",
+      "Passive brake assistance",
+      "Good value",
+      "Eco-conscious production"
+    ],
+    "cons": [
+      "Single rope only",
+      "Heavier than basic tubes",
+      "Less versatile than Mega Jul",
+      "No guide mode"
+    ],
+    "device_color_1": "#059669",
+    "device_color_2": "#047857"
+  },
+  {
+    "brand": "Mad Rock",
+    "model": "Lifeguard",
+    "slug": "mad-rock-lifeguard",
+    "device_type": "active_assisted",
+    "braking_type": "cam_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.9,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 9.4,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 153,
+    "material": "aluminum_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "lever",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2019,
+    "price_uvp_eur": 99.95,
+    "price_eur_min": 69.95,
+    "price_eur_max": 99.95,
+    "description": "A compact and lightweight active assisted braking device that rivals the GriGri at a lower price. The Lifeguard uses a cam mechanism for reliable brake assistance. Hot forged aircraft-grade aluminum and stainless steel construction ensures durability.",
+    "pros": [
+      "Lightest active assisted device at 153g",
+      "Hot forged aluminum construction",
+      "Compact design",
+      "Good value vs GriGri"
+    ],
+    "cons": [
+      "No anti-panic safety backup",
+      "Less proven than GriGri",
+      "Handle can override cam in full throttle",
+      "Limited availability in Europe"
+    ],
+    "device_color_1": "#dc2626",
+    "device_color_2": "#b91c1c"
+  },
+  {
+    "brand": "Mammut",
+    "model": "Nordwand Alpine Belay",
+    "slug": "mammut-nordwand-alpine-belay",
+    "device_type": "tubular",
+    "braking_type": "tubular",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.5,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.0,
+    "rope_diameter_optimal_max_mm": 9.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 80,
+    "material": "aluminum_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "trad",
+      "sport_multi"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2021,
+    "price_uvp_eur": 34.95,
+    "price_eur_min": 24.95,
+    "price_eur_max": 34.95,
+    "description": "Mammut's innovative and robust tube-style belay device with V-shaped grooves and abrasion-resistant steel inserts. At just 80g, it allows guide-mode belaying of one or two seconds independently. The steel insert prevents overheating during long rappels.",
+    "pros": [
+      "Very light at 80g",
+      "Steel inserts prevent wear and overheating",
+      "Guide mode for multi-pitch",
+      "Wide rope range 7.5-10.5mm"
+    ],
+    "cons": [
+      "No brake assistance",
+      "Requires solid belay technique",
+      "Steel adds slight weight vs pure aluminum",
+      "Not ideal for beginners"
+    ],
+    "device_color_1": "#1f2937",
+    "device_color_2": "#4b5563"
+  },
+  {
+    "brand": "Petzl",
+    "model": "Verso",
+    "slug": "petzl-verso",
+    "device_type": "tubular",
+    "braking_type": "tubular",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 6.9,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 55,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "alpine"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 29.95,
+    "price_eur_min": 22.95,
+    "price_eur_max": 29.95,
+    "description": "Petzl's ultralight and compact tubular belay device \u2014 the lightest in the Petzl belay lineup at just 55g. A simple, reliable tube device for gym and outdoor climbing. Handles all rope types from 6.9mm to 11mm, making it versatile for any climbing style.",
+    "pros": [
+      "Ultra-light at 55g",
+      "Very affordable",
+      "Simple and reliable",
+      "Wide rope range"
+    ],
+    "cons": [
+      "No brake assistance",
+      "No guide mode",
+      "Basic design \u2014 no frills",
+      "Requires solid technique for lead belay"
+    ],
+    "device_color_1": "#f97316",
+    "device_color_2": "#ea580c"
+  },
+  {
+    "brand": "Wild Country",
+    "model": "Pro Guide Lite",
+    "slug": "wild-country-pro-guide-lite",
+    "device_type": "tubular",
+    "braking_type": "tubular",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.7,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 77,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "sport_multi"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 29.95,
+    "price_eur_min": 22.95,
+    "price_eur_max": 29.95,
+    "description": "A lightweight tube device with guide mode from Wild Country. At 77g, the Pro Guide Lite is one of the lightest devices with auto-block functionality for multi-pitch climbing. Excellent value for a versatile, no-frills belay/rappel device.",
+    "pros": [
+      "Very light at 77g",
+      "Guide mode for multi-pitch",
+      "Excellent value",
+      "Wide rope compatibility"
+    ],
+    "cons": [
+      "No brake assistance",
+      "Basic feature set",
+      "Less friction than premium tubes",
+      "Requires experience for lead belaying"
+    ],
+    "device_color_1": "#0891b2",
+    "device_color_2": "#0e7490"
+  },
+  {
+    "brand": "DMM",
+    "model": "Mantis",
+    "slug": "dmm-mantis",
+    "device_type": "tubular",
+    "braking_type": "tubular",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.5,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 45,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "alpine"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2019,
+    "price_uvp_eur": 22.95,
+    "price_eur_min": 17.95,
+    "price_eur_max": 22.95,
+    "description": "One of the lightest tube-style belay devices on the market at just 45g. The Mantis is DMM's minimalist tube device \u2014 simple, reliable, and extremely lightweight. Ideal as a backup device or for weight-conscious climbers.",
+    "pros": [
+      "Incredibly light at 45g",
+      "Very affordable",
+      "Simple and reliable",
+      "Made in Wales"
+    ],
+    "cons": [
+      "No brake assistance",
+      "No guide mode",
+      "Very basic \u2014 no extra features",
+      "Requires good technique"
+    ],
+    "device_color_1": "#7c3aed",
+    "device_color_2": "#6d28d9"
+  },
+  {
+    "brand": "Climbing Technology",
+    "model": "Click Up+",
+    "slug": "climbing-technology-click-up-plus",
+    "device_type": "passive_assisted",
+    "braking_type": "geometry_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.5,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 110,
+    "material": "aluminum_steel",
+    "anti_panic": true,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 84.95,
+    "price_eur_min": 64.95,
+    "price_eur_max": 84.95,
+    "description": "The upgraded Click Up+ adds an anti-panic system to the popular Click Up design. Uses a special carabiner (included) that enables the braking geometry. If the belayer panics and pulls the handle too far, the device re-engages the brake automatically.",
+    "pros": [
+      "Anti-panic system",
+      "Passive assisted braking",
+      "Includes special carabiner",
+      "Good for beginners"
+    ],
+    "cons": [
+      "Requires proprietary carabiner",
+      "Single rope only",
+      "Heavier than tube devices",
+      "Less versatile than Mega Jul"
+    ],
+    "device_color_1": "#dc2626",
+    "device_color_2": "#ef4444"
+  },
+  {
+    "brand": "Kong",
+    "model": "Gi-Gi",
+    "slug": "kong-gi-gi",
+    "device_type": "tubular",
+    "braking_type": "tubular",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 8.0,
+    "rope_diameter_max_mm": 13.0,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 11.0,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 63,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "sport_multi",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2015,
+    "price_uvp_eur": 19.95,
+    "price_eur_min": 14.95,
+    "price_eur_max": 19.95,
+    "description": "A budget-friendly Italian-made plate device with guide mode capability. The Gi-Gi handles ropes from 8mm all the way up to 13mm, making it one of the most accommodating belay devices. Perfect as a lightweight guide-mode device at an unbeatable price.",
+    "pros": [
+      "Incredible value",
+      "Guide mode included",
+      "Widest rope range (8-13mm)",
+      "Light at 63g"
+    ],
+    "cons": [
+      "No brake assistance",
+      "Basic construction",
+      "Less smooth lowering",
+      "Dated design"
+    ],
+    "device_color_1": "#eab308",
+    "device_color_2": "#ca8a04"
+  },
+  {
+    "brand": "Ocun",
+    "model": "Hawk",
+    "slug": "ocun-hawk",
+    "device_type": "passive_assisted",
+    "braking_type": "geometry_assisted",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.7,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.0,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 72,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "trad",
+      "sport_multi",
+      "alpine"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 29.95,
+    "price_eur_min": 22.95,
+    "price_eur_max": 29.95,
+    "description": "A Czech-made passive-assisted tube device from Ocun with guide mode. The Hawk uses geometry to provide assisted braking while maintaining tube-device versatility. Very light at 72g with guide mode \u2014 a great all-rounder for multi-pitch climbing.",
+    "pros": [
+      "Passive assisted + guide mode",
+      "Very light at 72g",
+      "Good value",
+      "Two rope slots"
+    ],
+    "cons": [
+      "Less known brand",
+      "Assisted braking less powerful than cam devices",
+      "Limited availability",
+      "Moderate rope range"
+    ],
+    "device_color_1": "#f59e0b",
+    "device_color_2": "#d97706"
+  },
+  {
+    "brand": "Mammut",
+    "model": "Smart Alpine",
+    "slug": "mammut-smart-alpine",
+    "device_type": "passive_assisted",
+    "braking_type": "geometry_assisted",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.5,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.0,
+    "rope_diameter_optimal_max_mm": 10.0,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 90,
+    "material": "aluminum_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "sport_multi",
+      "ice_climbing"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 44.95,
+    "price_eur_min": 34.95,
+    "price_eur_max": 44.95,
+    "description": "The alpine version of Mammut's popular Smart 2.0, adding guide mode and two rope slots for multi-pitch climbing with half ropes. Combines passive brake assistance with tube-device versatility. Handles ropes from 7.5mm for alpine and ice climbing.",
+    "pros": [
+      "Passive assisted braking + guide mode",
+      "Wide rope range for alpine use",
+      "Recommended by DAV",
+      "Two rope slots"
+    ],
+    "cons": [
+      "Heavier than pure tube devices",
+      "Assisted braking not as strong as cam",
+      "Requires proper technique",
+      "Limited lowering control"
+    ],
+    "device_color_1": "#1e3a8a",
+    "device_color_2": "#1e40af"
   }
 ]

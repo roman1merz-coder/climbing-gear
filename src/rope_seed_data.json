@@ -181,7 +181,7 @@
     "cons": [
       "Heavier at 61g/m",
       "No short 50m option",
-      "Moderate handling — needs break-in"
+      "Moderate handling \u2014 needs break-in"
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
@@ -265,7 +265,7 @@
       "CH",
       "FR"
     ],
-    "description": "The ultralight Opera is Beal's thinnest single rope, triple-rated for maximum versatility in alpine terrain. Unicore technology bonds the sheath to the core — if the sheath is cut, the rope remains functional. Golden Dry provides the highest level of water protection. Expert-only due to thin diameter.",
+    "description": "The ultralight Opera is Beal's thinnest single rope, triple-rated for maximum versatility in alpine terrain. Unicore technology bonds the sheath to the core \u2014 if the sheath is cut, the rope remains functional. Golden Dry provides the highest level of water protection. Expert-only due to thin diameter.",
     "pros": [
       "Triple rated (single/half/twin)",
       "Unicore sheath-core bonding",
@@ -274,7 +274,7 @@
     ],
     "cons": [
       "Only 5 UIAA falls",
-      "Low durability — thin sheath",
+      "Low durability \u2014 thin sheath",
       "Not compatible with most assisted braking devices",
       "Expert handling required"
     ],
@@ -361,11 +361,11 @@
       "AT",
       "CH"
     ],
-    "description": "The greenest rope in the lineup — made entirely from recycled materials with Bluesign certification and no PFC treatment. The 9.8mm diameter and 9 UIAA falls make it a bombproof gym and single-pitch workhorse. Available in a short 40m gym length. The perfect first rope.",
+    "description": "The greenest rope in the lineup \u2014 made entirely from recycled materials with Bluesign certification and no PFC treatment. The 9.8mm diameter and 9 UIAA falls make it a bombproof gym and single-pitch workhorse. Available in a short 40m gym length. The perfect first rope.",
     "pros": [
       "100% recycled materials",
       "Best value per meter",
-      "9 UIAA falls — bombproof",
+      "9 UIAA falls \u2014 bombproof",
       "40m gym length available"
     ],
     "cons": [
@@ -460,7 +460,7 @@
     ],
     "description": "Petzl's flagship triple-rated rope combines EverFlex thermal treatment for consistent handling with Duratec Dry water protection. At 9.2mm and 52g/m, it's light enough for alpine objectives while remaining compatible with assisted-braking devices. A do-everything rope for experienced climbers.",
     "pros": [
-      "Triple rated — maximum versatility",
+      "Triple rated \u2014 maximum versatility",
       "EverFlex consistent handling",
       "Light at 52g/m",
       "Works with GriGri and similar"
@@ -555,7 +555,7 @@
     "description": "Mammut's flagship half rope with aramid core protection for sharp-edge alpine terrain. At 8.0mm and 41g/m, it's remarkably light for a half rope with 12 UIAA falls. Dry treated and PFC-free. Used in pairs, clipped alternately for wandering trad and alpine routes.",
     "pros": [
       "Aramid core protection",
-      "12 UIAA falls — excellent for half rope",
+      "12 UIAA falls \u2014 excellent for half rope",
       "Light at 41g/m per strand",
       "PFC-free Dry treatment"
     ],
@@ -646,9 +646,9 @@
       "AT",
       "CH"
     ],
-    "description": "The ultimate alpine half rope — triple-rated with a record 20 UIAA falls and aramid sheath protection. DuoTec bi-pattern for permanent middle marking. At 42% sheath, it's the most durable half rope on the market. Partially recycled with Bluesign certification.",
+    "description": "The ultimate alpine half rope \u2014 triple-rated with a record 20 UIAA falls and aramid sheath protection. DuoTec bi-pattern for permanent middle marking. At 42% sheath, it's the most durable half rope on the market. Partially recycled with Bluesign certification.",
     "pros": [
-      "20 UIAA falls — industry leading",
+      "20 UIAA falls \u2014 industry leading",
       "Triple rated",
       "Aramid protection + 42% sheath",
       "DuoTec bi-pattern"
@@ -657,7 +657,7 @@
       "Heavier for a half rope at 52g/m",
       "Premium price",
       "Pro Dry not PFC-free",
-      "Moderate handling — stiffer than competitors"
+      "Moderate handling \u2014 stiffer than competitors"
     ],
     "ai_review": null,
     "rope_color_1": "#2d5b4e",
@@ -743,12 +743,12 @@
       "Lightest twin system at 36g/m per strand",
       "Unicore safety bonding",
       "Golden Dry full impregnation",
-      "15 UIAA falls — excellent"
+      "15 UIAA falls \u2014 excellent"
     ],
     "cons": [
       "Must clip both strands together",
       "Tube belay only",
-      "Low durability — thin sheath",
+      "Low durability \u2014 thin sheath",
       "Expert-only handling"
     ],
     "ai_review": null,
@@ -833,7 +833,7 @@
       "AT",
       "CH"
     ],
-    "description": "Edelrid's EN 1891 Type A static rope for rappelling, hauling, and rope access. The 10.5mm diameter provides excellent abrasion resistance with 45% sheath and 31kN breaking strength. Available in long cuts up to 200m for fixed line setups. NOT for lead climbing — no dynamic fall absorption.",
+    "description": "Edelrid's EN 1891 Type A static rope for rappelling, hauling, and rope access. The 10.5mm diameter provides excellent abrasion resistance with 45% sheath and 31kN breaking strength. Available in long cuts up to 200m for fixed line setups. NOT for lead climbing \u2014 no dynamic fall absorption.",
     "pros": [
       "31kN breaking strength",
       "Very high durability (45% sheath)",
@@ -841,7 +841,7 @@
       "Best value per meter"
     ],
     "cons": [
-      "⚠️ NOT for lead climbing",
+      "\u26a0\ufe0f NOT for lead climbing",
       "No dry treatment",
       "Heavy at 72g/m",
       "Limited to static applications"
@@ -1028,7 +1028,7 @@
       "AT",
       "CH"
     ],
-    "description": "Mammut's burliest single rope. At 10.2mm it's thick, forgiving, and practically indestructible — perfect for gym rats, top-rope warriors, and anyone who values longevity over weight savings.",
+    "description": "Mammut's burliest single rope. At 10.2mm it's thick, forgiving, and practically indestructible \u2014 perfect for gym rats, top-rope warriors, and anyone who values longevity over weight savings.",
     "pros": [
       "Extremely durable",
       "Great for beginners and gyms",
@@ -1126,7 +1126,7 @@
     ],
     "description": "Mammut's all-around performer with Dry treatment. The Infinity splits the difference between weight and durability at 9.5mm, with 8 UIAA falls and buttery handling. A crag workhorse.",
     "pros": [
-      "8 UIAA falls — above average durability",
+      "8 UIAA falls \u2014 above average durability",
       "Smooth handling",
       "Dry treatment included",
       "Versatile diameter"
@@ -1314,7 +1314,7 @@
     ],
     "description": "Petzl's flagship sport rope with Duratec Dry treatment for all-weather performance. The tight weave and smooth handling make it a favourite for long days at the crag.",
     "pros": [
-      "Duratec Dry treatment — excellent water resistance",
+      "Duratec Dry treatment \u2014 excellent water resistance",
       "Smooth consistent handling",
       "Good durability at 9.5mm",
       "Petzl quality control"
@@ -1503,7 +1503,7 @@
     ],
     "description": "Petzl's gym workhorse. Thick and tough at 10.1mm, the Mambo takes abuse session after session. The ideal first rope or dedicated gym/top-rope line.",
     "pros": [
-      "8 UIAA falls — impressive for its diameter",
+      "8 UIAA falls \u2014 impressive for its diameter",
       "Extremely durable",
       "Good value entry-level rope",
       "Easy handling for beginners"
@@ -1599,7 +1599,7 @@
     ],
     "description": "Edelrid's high-fall-count sport rope. With 9 UIAA falls it's one of the most durable 9.5mm ropes on the market. Pro Dry treatment, Bluesign certified, and partially made from recycled materials.",
     "pros": [
-      "9 UIAA falls — excellent durability",
+      "9 UIAA falls \u2014 excellent durability",
       "Pro Dry treatment",
       "Bluesign + partially recycled",
       "PFC-free"
@@ -1698,7 +1698,7 @@
       "Excellent for multi-pitch"
     ],
     "cons": [
-      "Only 5 UIAA falls — limited lifespan",
+      "Only 5 UIAA falls \u2014 limited lifespan",
       "Thin diameter needs careful device selection",
       "Not great for top-roping"
     ],
@@ -1786,7 +1786,7 @@
     ],
     "description": "Beal's balanced sport rope with Unicore bonding and low impact force (7.8 kN). The 9.4mm diameter handles beautifully in any device while offering better durability than skinnier options.",
     "pros": [
-      "Low impact force (7.8 kN) — soft catches",
+      "Low impact force (7.8 kN) \u2014 soft catches",
       "Unicore bonding",
       "Good balance of weight and durability",
       "Excellent handling"
@@ -1882,7 +1882,7 @@
     ],
     "description": "Beal's durable everyday rope with Unicore bonding. At 10mm it's tough enough for gym and top-rope abuse, with an impressively low impact force of 7.6 kN for soft catches.",
     "pros": [
-      "8 UIAA falls — very durable",
+      "8 UIAA falls \u2014 very durable",
       "Lowest impact force in class (7.6 kN)",
       "Unicore bonding",
       "Great value"
@@ -1978,7 +1978,7 @@
     ],
     "description": "Tendon's trad and winter climbing specialist. 9 UIAA falls and 7.4 kN impact force give you the safety margin you want on runout routes. Complete Shield treatment handles wet and icy conditions.",
     "pros": [
-      "9 UIAA falls — excellent lifespan",
+      "9 UIAA falls \u2014 excellent lifespan",
       "Lowest impact force (7.4 kN)",
       "Complete Shield treatment",
       "Great value per meter"
@@ -1986,7 +1986,7 @@
     "cons": [
       "Heavier at 64 g/m",
       "Stiffer handling than premium ropes",
-      "Czech brand — less widely stocked"
+      "Czech brand \u2014 less widely stocked"
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
@@ -2072,8 +2072,8 @@
     ],
     "description": "Sterling's flagship sport rope, made in the USA. The 40% sheath gives exceptional durability for cragging, while DryXP sheath treatment adds water resistance. A favourite at American crags.",
     "pros": [
-      "Made in USA — Sterling quality",
-      "40% sheath — very durable",
+      "Made in USA \u2014 Sterling quality",
+      "40% sheath \u2014 very durable",
       "8 UIAA falls",
       "DryXP sheath treatment"
     ],
@@ -2174,7 +2174,7 @@
     "cons": [
       "No core dry treatment",
       "Heavier side at 64 g/m",
-      "US brand — limited EU availability"
+      "US brand \u2014 limited EU availability"
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
@@ -2257,7 +2257,7 @@
     ],
     "description": "Edelrid's ultralight half rope for serious alpine objectives. Triple-rated with 9 UIAA falls (as half), it's one of the most capable thin ropes on the market. Pro Dry and partially recycled.",
     "pros": [
-      "Triple rated — maximum flexibility",
+      "Triple rated \u2014 maximum flexibility",
       "9 UIAA falls as half rope",
       "Pro Dry treatment",
       "Bluesign + recycled materials"
@@ -2355,7 +2355,7 @@
     ],
     "cons": [
       "Only 5 UIAA falls",
-      "Very thin — requires skilled belaying",
+      "Very thin \u2014 requires skilled belaying",
       "Expensive",
       "Limited to tube devices"
     ],
@@ -2441,7 +2441,7 @@
     ],
     "description": "Beal's workhorse half rope for ice and alpine climbing. With an incredible 12 UIAA falls and Unicore bonding, it's one of the most durable half ropes you can buy. Golden Dry for wet conditions.",
     "pros": [
-      "12 UIAA falls — exceptional durability",
+      "12 UIAA falls \u2014 exceptional durability",
       "Unicore bonding",
       "Golden Dry treatment",
       "Great for ice climbing"
@@ -2536,7 +2536,7 @@
     "description": "Sterling's professional static rope for guiding, rescue, and big wall operations. The 40% sheath and 28 kN break strength make it one of the toughest static lines available.",
     "pros": [
       "28 kN break strength",
-      "40% sheath — extremely durable",
+      "40% sheath \u2014 extremely durable",
       "NFPA certified for rescue use",
       "Available up to 200m"
     ],
@@ -2629,7 +2629,7 @@
     "description": "Beal's workhorse static rope with Unicore bonding for canyoning, rappelling, and rope access. The 30 kN break strength and Unicore construction give excellent safety margins.",
     "pros": [
       "30 kN break strength",
-      "Unicore bonding — no sheath slip",
+      "Unicore bonding \u2014 no sheath slip",
       "Good value for static applications",
       "Available in long lengths"
     ],
@@ -2642,5 +2642,1719 @@
     "ai_review": null,
     "rope_color_1": "#3b82f6",
     "rope_color_2": "#f8fafc"
+  },
+  {
+    "slug": "black-diamond-9-4-dry",
+    "brand": "Black Diamond",
+    "model": "9.4 Dry",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.4,
+    "weight_per_meter_g": 58,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.4,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.0,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry Performance",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      35,
+      40,
+      60,
+      70
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad",
+      "alpine"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.86,
+    "price_per_meter_eur_min": 3.5,
+    "price_per_meter_eur_max": 4.86,
+    "description": "Black Diamond's skinniest single rope, designed for demanding sport and trad rock climbs. The 9.4mm diameter delivers a supple feel ideal for long multi-pitches and wandering routes. Dry Performance treatment on core and sheath repels moisture effectively.",
+    "pros": [
+      "Light and supple at 58 g/m",
+      "Excellent dry treatment",
+      "Smooth feeding through devices",
+      "Great for redpointing"
+    ],
+    "cons": [
+      "Premium price point",
+      "Thinner ropes wear faster on sharp rock",
+      "Only 7 UIAA falls"
+    ],
+    "rope_color_1": "#2563eb",
+    "rope_color_2": "#1d4ed8",
+    "id": 29,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "black-diamond-9-9",
+    "brand": "Black Diamond",
+    "model": "9.9",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.9,
+    "weight_per_meter_g": 64,
+    "sheath_percentage": 42,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.0,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      35,
+      40,
+      60,
+      70
+    ],
+    "available_colors": [
+      "red",
+      "orange"
+    ],
+    "best_use_cases": [
+      "gym",
+      "sport_single_pitch",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "very_high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 3.57,
+    "price_per_meter_eur_min": 2.8,
+    "price_per_meter_eur_max": 3.57,
+    "description": "A thick, durable workhorse rope built for top roping, group cragging, and heavy daily use. The 9.9mm diameter provides excellent durability and longevity, making it a great pick for climbers who prioritize rope life over weight savings.",
+    "pros": [
+      "Very durable for heavy use",
+      "Good value",
+      "Thick enough for comfortable belaying",
+      "Confidence-inspiring diameter"
+    ],
+    "cons": [
+      "Heavier than performance ropes",
+      "No dry treatment",
+      "Too thick for demanding alpine routes"
+    ],
+    "rope_color_1": "#dc2626",
+    "rope_color_2": "#b91c1c",
+    "id": 30,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-9-8-crag-classic",
+    "brand": "Mammut",
+    "model": "9.8 Crag Classic",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.8,
+    "weight_per_meter_g": 61,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.0,
+    "uiaa_falls": 8,
+    "impact_force_kn": 7.8,
+    "dynamic_elongation_pct": 32,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "red",
+      "blue",
+      "yellow"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 2.57,
+    "price_per_meter_eur_min": 2.1,
+    "price_per_meter_eur_max": 2.57,
+    "description": "Mammut's best-selling all-round rope for sport and trad climbing. The 9.8mm diameter offers an excellent balance of handling and durability at a very attractive price. With 8 UIAA falls and a low 7.8 kN impact force, it provides a soft catch while being robust enough for regular use.",
+    "pros": [
+      "Excellent value for money",
+      "8 UIAA falls for durability",
+      "Low impact force \u2014 soft catches",
+      "Bluesign certified"
+    ],
+    "cons": [
+      "No dry treatment in Classic version",
+      "Slightly heavier than premium ropes",
+      "Basic sheath technology"
+    ],
+    "rope_color_1": "#ef4444",
+    "rope_color_2": "#dc2626",
+    "id": 31,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-crag-we-care-classic-9-5",
+    "brand": "Mammut",
+    "model": "9.5 Crag We Care Classic",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.5,
+    "weight_per_meter_g": 59,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.0,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.4,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "green",
+      "orange"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "partial",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 2.36,
+    "price_per_meter_eur_min": 1.9,
+    "price_per_meter_eur_max": 2.57,
+    "description": "Mammut's best budget rope that hits the sweet spot in diameter and weight. Made with sustainability in mind as part of the We Care line, using Bluesign-certified and PFC-free materials. Same excellent handling as the premium Crag Dry at a significantly lower price.",
+    "pros": [
+      "Best budget option from Mammut",
+      "Sustainable We Care production",
+      "Same great Mammut handling",
+      "Bluesign + PFC-free"
+    ],
+    "cons": [
+      "No dry treatment",
+      "Fewer UIAA falls than heavier ropes",
+      "Limited color options"
+    ],
+    "rope_color_1": "#22c55e",
+    "rope_color_2": "#16a34a",
+    "id": 32,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-alpine-core-protect-9-5",
+    "brand": "Mammut",
+    "model": "Alpine Core Protect 9.5",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.5,
+    "weight_per_meter_g": 59,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.2,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": true,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70
+    ],
+    "available_colors": [
+      "orange",
+      "green"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "ice_climbing",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "very_high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 3.86,
+    "price_per_meter_eur_min": 3.2,
+    "price_per_meter_eur_max": 3.86,
+    "description": "The most cut-resistant climbing rope on the market. Mammut weaves aramid fibers into the sheath for unmatched protection against sharp rock edges. Ideal for alpine and trad climbing on rough terrain where rope durability is paramount.",
+    "pros": [
+      "Aramid-reinforced sheath \u2014 most cut-resistant rope",
+      "Dry treatment for wet conditions",
+      "Perfect for alpine and ice climbing",
+      "Bluesign certified"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Higher impact force than non-aramid ropes",
+      "Premium price for the protection"
+    ],
+    "rope_color_1": "#f97316",
+    "rope_color_2": "#ea580c",
+    "id": 33,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-canary-pro-dry-8-6",
+    "brand": "Edelrid",
+    "model": "Canary Pro Dry 8.6",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 8.6,
+    "weight_per_meter_g": 51,
+    "sheath_percentage": 47,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.4,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.4,
+    "dynamic_elongation_pct": 32,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Pro Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "yellow"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.14,
+    "price_per_meter_eur_min": 3.3,
+    "price_per_meter_eur_max": 4.14,
+    "description": "One of the thinnest and lightest single ropes available, also triple-rated for use as a half or twin rope. At 51 g/m the Canary Pro Dry is a specialist tool for alpine climbing and ice routes where every gram matters. Pro Dry treatment meets UIAA water repellent standard.",
+    "pros": [
+      "Triple-rated \u2014 ultimate versatility",
+      "Ultra-light at 51 g/m",
+      "Pro Dry meets UIAA water standard",
+      "47% sheath for durability despite thin diameter"
+    ],
+    "cons": [
+      "Only 5 UIAA falls as single rope",
+      "Too thin for beginners",
+      "Not ideal for GriGri-style devices"
+    ],
+    "rope_color_1": "#3b82f6",
+    "rope_color_2": "#2563eb",
+    "id": 34,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-swift-eco-dry-8-9",
+    "brand": "Edelrid",
+    "model": "Swift Eco Dry 8.9",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 8.9,
+    "weight_per_meter_g": 52,
+    "sheath_percentage": 34,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 6.8,
+    "uiaa_falls": 7,
+    "impact_force_kn": 9.0,
+    "dynamic_elongation_pct": 35,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Eco Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "green",
+      "blue",
+      "red"
+    ],
+    "best_use_cases": [
+      "sport_multi_pitch",
+      "alpine",
+      "trad",
+      "ice_climbing"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 4.0,
+    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_max": 4.0,
+    "description": "The world's first PFC-free rope to meet the UIAA water repellent standard. Triple-rated for use as a single, half, or twin rope. Lightweight yet durable, the Swift Eco Dry is Edelrid's top pick for redpointing and alpine climbing with uncompromised eco credentials.",
+    "pros": [
+      "World's first PFC-free UIAA dry rope",
+      "Triple-rated versatility",
+      "Light at 52 g/m with 7 UIAA falls",
+      "Bluesign certified"
+    ],
+    "cons": [
+      "Lower sheath percentage (34%)",
+      "Higher impact force than heavier ropes",
+      "Premium eco price"
+    ],
+    "rope_color_1": "#059669",
+    "rope_color_2": "#047857",
+    "id": 35,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "bluewater-lightning-pro-9-7",
+    "brand": "BlueWater",
+    "model": "Lightning Pro 9.7",
+    "year_released": 2023,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.7,
+    "weight_per_meter_g": 61,
+    "sheath_percentage": 36,
+    "sheath_slippage_mm": 1,
+    "static_elongation_pct": 8.9,
+    "uiaa_falls": 8,
+    "impact_force_kn": 7.8,
+    "dynamic_elongation_pct": 32,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Double Dry",
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      30,
+      40,
+      60,
+      70
+    ],
+    "available_colors": [
+      "blue",
+      "red",
+      "orange"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad",
+      "ice_climbing"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.09,
+    "price_per_meter_eur_min": 3.2,
+    "price_per_meter_eur_max": 4.09,
+    "description": "A versatile American-made 9.7mm single rope excelling in sport, trad, and ice climbing. The Lightning Pro boasts 8 UIAA falls with a remarkably low 7.8 kN impact force \u2014 among the softest catches in its class. Double Dry treatment keeps it performing in wet conditions.",
+    "pros": [
+      "8 UIAA falls \u2014 great durability",
+      "Very low 7.8 kN impact force",
+      "Made in USA",
+      "Available in Double Dry treatment"
+    ],
+    "cons": [
+      "Slightly stiffer handling",
+      "Not PFC-free",
+      "Limited availability in Europe"
+    ],
+    "rope_color_1": "#1e40af",
+    "rope_color_2": "#1e3a8a",
+    "id": 36,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "bluewater-icon-9-1",
+    "brand": "BlueWater",
+    "model": "Icon 9.1",
+    "year_released": 2023,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.1,
+    "weight_per_meter_g": 55,
+    "sheath_percentage": 35,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.2,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Double Dry",
+    "uiaa_water_repellent": false,
+    "core_construction": "40_carrier",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "green",
+      "pink"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 2.43,
+    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_max": 2.43,
+    "description": "BlueWater's lightweight performance single rope with a unique 40-carrier sheath for a tighter weave despite the thin diameter. The Icon 9.1 is the go-to rope for Tommy Caldwell and Cedar Wright. Light enough for long approaches while still offering 35% sheath mass for durability.",
+    "pros": [
+      "Light at 55 g/m",
+      "40-carrier sheath for tight weave",
+      "Good value for a skinny rope",
+      "Tommy Caldwell's choice"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Can be stiff and prone to kinking",
+      "Not PFC-free"
+    ],
+    "rope_color_1": "#06b6d4",
+    "rope_color_2": "#0891b2",
+    "id": 37,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "sterling-ionr-9-4-xeros",
+    "brand": "Sterling",
+    "model": "IonR 9.4 XEROS BiColor",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.4,
+    "weight_per_meter_g": 57,
+    "sheath_percentage": 37,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.5,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "XEROS",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "bicolor_pattern",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue_orange",
+      "green_red"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad",
+      "alpine"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 5.0,
+    "price_per_meter_eur_min": 4.0,
+    "price_per_meter_eur_max": 5.0,
+    "description": "Sterling's premium lightweight single rope with XEROS dry treatment that meets UIAA water repellent standard. The bi-pattern design makes middle identification instant \u2014 no fading marks. Excellent for multi-pitch climbing where you need reliable middle detection.",
+    "pros": [
+      "XEROS UIAA dry treatment",
+      "BiColor pattern for instant middle ID",
+      "Light at 57 g/m",
+      "Excellent handling"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Premium price",
+      "Bi-pattern limits color choice"
+    ],
+    "rope_color_1": "#f59e0b",
+    "rope_color_2": "#d97706",
+    "id": 38,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "trango-agility-9-1-duo-dry",
+    "brand": "Trango",
+    "model": "Agility 9.1 Duo Dry",
+    "year_released": 2023,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.1,
+    "weight_per_meter_g": 56,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.5,
+    "uiaa_falls": 9,
+    "impact_force_kn": 8.2,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Duo Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": true,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "red",
+      "blue"
+    ],
+    "best_use_cases": [
+      "sport_multi_pitch",
+      "trad",
+      "alpine",
+      "ice_climbing"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 6.43,
+    "price_per_meter_eur_min": 5.0,
+    "price_per_meter_eur_max": 6.43,
+    "description": "Triple-rated for single, double, or twin use with an impressive 9 UIAA fall count. The Red Flag treatment marks the final five meters at each end with bright red dye for end-of-rope awareness. One of the most versatile ropes on the market at just 56 g/m.",
+    "pros": [
+      "9 UIAA falls \u2014 excellent durability for diameter",
+      "Triple-rated versatility",
+      "Red Flag end marking",
+      "Duo Dry UIAA treatment"
+    ],
+    "cons": [
+      "Very expensive at \u20ac6.43/m",
+      "Limited availability",
+      "Higher impact force than some competitors"
+    ],
+    "rope_color_1": "#dc2626",
+    "rope_color_2": "#b91c1c",
+    "id": 39,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "beal-booster-9-7-dry-cover",
+    "brand": "Beal",
+    "model": "Booster III 9.7 Dry Cover",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.7,
+    "weight_per_meter_g": 61,
+    "sheath_percentage": 41,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 9.7,
+    "uiaa_falls": 8,
+    "impact_force_kn": 7.3,
+    "dynamic_elongation_pct": 38,
+    "dry_treatment": "sheath",
+    "dry_treatment_name": "Dry Cover",
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "sheath_technology": "Unicore",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "green",
+      "blue",
+      "orange"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 3.57,
+    "price_per_meter_eur_min": 2.8,
+    "price_per_meter_eur_max": 3.57,
+    "description": "Beal's workhorse all-round rope with 8 UIAA falls and one of the lowest impact forces in its class at 7.3 kN. Unicore construction bonds the sheath to the core for safety. The Booster III is a proven favorite for sport and trad climbing.",
+    "pros": [
+      "Very low 7.3 kN impact force",
+      "8 UIAA falls for great durability",
+      "Unicore construction",
+      "Good value workhorse"
+    ],
+    "cons": [
+      "Higher static elongation (9.7%)",
+      "Only sheath dry treatment",
+      "Slightly dynamic feel"
+    ],
+    "rope_color_1": "#10b981",
+    "rope_color_2": "#059669",
+    "id": 40,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "sterling-velocity-xeros-9-8",
+    "brand": "Sterling",
+    "model": "Velocity XEROS 9.8",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.8,
+    "weight_per_meter_g": 62,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.0,
+    "uiaa_falls": 6,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "XEROS",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "very_high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.14,
+    "price_per_meter_eur_min": 3.3,
+    "price_per_meter_eur_max": 4.14,
+    "description": "Sterling's flagship cragging workhorse with XEROS dry treatment meeting the UIAA water repellent standard. Among the most durable ropes tested, the Velocity XEROS excels at heavy-use cragging and trad climbing. Excellent moisture resistance for all-weather performance.",
+    "pros": [
+      "XEROS UIAA dry treatment",
+      "Very durable for the diameter",
+      "Excellent all-weather performance",
+      "Proven workhorse rope"
+    ],
+    "cons": [
+      "Heavier at 62 g/m",
+      "Stiffer handling than thinner ropes",
+      "Not PFC-free"
+    ],
+    "rope_color_1": "#4f46e5",
+    "rope_color_2": "#4338ca",
+    "id": 41,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "black-diamond-8-5-dry",
+    "brand": "Black Diamond",
+    "model": "8.5 Dry",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "half",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 8.5,
+    "weight_per_meter_g": 48,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.5,
+    "uiaa_falls": 12,
+    "impact_force_kn": 6.0,
+    "dynamic_elongation_pct": 30,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry Performance",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70
+    ],
+    "available_colors": [
+      "blue",
+      "orange"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.5,
+    "price_per_meter_eur_min": 3.5,
+    "price_per_meter_eur_max": 4.5,
+    "description": "A versatile half/twin rope for alpine and ice climbing. At just 48 g/m, the 8.5 Dry is built for demanding alpine routes where weight is critical. Dry Performance treatment keeps it performing in wet and icy conditions. Use as half ropes on wandering routes or twin for straightforward lines.",
+    "pros": [
+      "Ultra-light at 48 g/m",
+      "Triple-rated versatility",
+      "Dry Performance UIAA treatment",
+      "Excellent for alpine and ice"
+    ],
+    "cons": [
+      "Too thin for beginners",
+      "Not compatible with GriGri-type devices",
+      "Requires half/twin belay technique"
+    ],
+    "rope_color_1": "#6366f1",
+    "rope_color_2": "#4f46e5",
+    "id": 42,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-tommy-caldwell-eco-dry-colortec-9-3",
+    "brand": "Edelrid",
+    "model": "Tommy Caldwell Eco Dry ColorTec 9.3",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.3,
+    "weight_per_meter_g": 57,
+    "sheath_percentage": 36,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.2,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.6,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Eco Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "color_change",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue_green",
+      "red_yellow"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 3.71,
+    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_max": 3.71,
+    "description": "The ColorTec version of Edelrid's signature Tommy Caldwell rope features a color-change pattern at the middle mark that can never wear off. Smooth sheath feel that's nice on the hands. Eco Dry treatment is PFC-free and meets UIAA water repellent standard.",
+    "pros": [
+      "Permanent color-change middle mark",
+      "Smooth sheath feel",
+      "PFC-free Eco Dry",
+      "Bluesign certified"
+    ],
+    "cons": [
+      "Only 7 UIAA falls",
+      "Lower sheath percentage (36%)",
+      "Bi-pattern may limit clip identification"
+    ],
+    "rope_color_1": "#8b5cf6",
+    "rope_color_2": "#7c3aed",
+    "id": 43,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "sterling-aero-9-2-xeros",
+    "brand": "Sterling",
+    "model": "Aero 9.2 XEROS",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.2,
+    "weight_per_meter_g": 55,
+    "sheath_percentage": 36,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.8,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.6,
+    "dynamic_elongation_pct": 35,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "XEROS",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.57,
+    "price_per_meter_eur_min": 3.6,
+    "price_per_meter_eur_max": 4.57,
+    "description": "Sterling's top pick for single-pitch sport routes. The Aero 9.2 delivers a lightweight and supple feel with XEROS dry treatment for all-weather performance. An excellent choice for climbers pushing their limits on sport routes.",
+    "pros": [
+      "Light at 55 g/m",
+      "XEROS UIAA dry treatment",
+      "Excellent for sport redpointing",
+      "Supple handling"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Not ideal for trad on sharp rock",
+      "Premium price"
+    ],
+    "rope_color_1": "#0ea5e9",
+    "rope_color_2": "#0284c7",
+    "id": 44,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-9-0-crag-sender-dry",
+    "brand": "Mammut",
+    "model": "9.0 Crag Sender Dry",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.0,
+    "weight_per_meter_g": 52,
+    "sheath_percentage": 36,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.8,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "yellow",
+      "blue"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "alpine"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 4.29,
+    "price_per_meter_eur_min": 3.5,
+    "price_per_meter_eur_max": 4.29,
+    "description": "Mammut's ultralight performance rope for sending hard routes. At 52 g/m, the Crag Sender Dry is among the lightest 9mm single ropes on the market. A quiver-of-one rope that works from cragging to alpine climbing with UIAA Dry treatment.",
+    "pros": [
+      "Ultra-light at 52 g/m",
+      "Versatile quiver-of-one rope",
+      "Bluesign + PFC-free",
+      "UIAA Dry treatment"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Thin diameter wears faster",
+      "Higher impact force"
+    ],
+    "rope_color_1": "#eab308",
+    "rope_color_2": "#ca8a04",
+    "id": 45,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelweiss-oxygen-ii-superevedry-8-2",
+    "brand": "Edelweiss",
+    "model": "O2 Oxygen II SuperEverDry 8.2",
+    "year_released": 2023,
+    "status": "active",
+    "rope_type": "half",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 8.2,
+    "weight_per_meter_g": 46,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.0,
+    "uiaa_falls": 20,
+    "impact_force_kn": 5.5,
+    "dynamic_elongation_pct": 28,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "SuperEverDry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70
+    ],
+    "available_colors": [
+      "green",
+      "blue"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.71,
+    "price_per_meter_eur_min": 3.7,
+    "price_per_meter_eur_max": 4.71,
+    "description": "An outstanding half/twin rope that shines on ice and alpine climbs. SuperEverDry treatment on both sheath and core keeps it performing in the wettest and coldest conditions. At 46 g/m, it's one of the lightest half ropes available with an impressive 20 UIAA falls rating.",
+    "pros": [
+      "SuperEverDry on core + sheath",
+      "20 UIAA falls \u2014 exceptional durability",
+      "Very light at 46 g/m",
+      "Excellent for ice and alpine"
+    ],
+    "cons": [
+      "Not suitable as a single rope",
+      "Requires double rope technique",
+      "Premium price for a half rope"
+    ],
+    "rope_color_1": "#14b8a6",
+    "rope_color_2": "#0d9488",
+    "id": 46,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
   }
 ]
