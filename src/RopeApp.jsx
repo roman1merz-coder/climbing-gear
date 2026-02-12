@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
+import HeartButton from "./HeartButton.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -302,7 +303,7 @@ function Badge({ score: s }) {
   const bg = s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)";
   return (
     <div style={{
-      position: "absolute", top: "10px", right: "10px", zIndex: 3,
+      position: "absolute", top: "10px", right: "36px", zIndex: 3,
       padding: "3px 10px", borderRadius: "12px",
       background: bg, border: `1.5px solid ${c}33`,
       backdropFilter: "blur(8px)",
@@ -429,6 +430,9 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
       }}>
         <TypeBadge type={d.rope_type} tripleRated={d.triple_rated} />
         <Badge score={s} />
+        <HeartButton type="rope" slug={d.slug} style={{
+          position: "absolute", top: "10px", right: "10px", zIndex: 4,
+        }} />
         <RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />
       </div>
 

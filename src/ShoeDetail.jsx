@@ -4,6 +4,7 @@ import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
+import HeartButton from "./HeartButton.jsx";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
 
@@ -787,7 +788,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 ))}
               </div>
 
-              <h1 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, margin: isMobile ? "0 0 14px" : "0 0 20px", letterSpacing: "-0.5px" }}>{shoe.model}</h1>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: isMobile ? "0 0 14px" : "0 0 20px" }}>
+                <h1 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, margin: 0, letterSpacing: "-0.5px" }}>{shoe.model}</h1>
+                <HeartButton type="shoe" slug={shoe.slug} style={{ fontSize: "22px" }} />
+              </div>
 
               {/* Combined Price Box: price+size left | evaluation right */}
               <div style={{

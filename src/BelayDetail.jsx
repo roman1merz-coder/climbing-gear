@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
+import HeartButton from "./HeartButton.jsx";
 
 // ═══ TYPE BADGE ═══
 
@@ -207,9 +208,12 @@ export default function BelayDetail({ belays = [] }) {
             <div style={{ color: "#9ca3af", fontSize: "13px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "4px" }}>
               {d.brand}
             </div>
-            <h1 style={{ fontSize: "28px", fontWeight: 700, margin: "0 0 16px", letterSpacing: "-0.5px" }}>
-              {d.model}
-            </h1>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: "0 0 16px" }}>
+              <h1 style={{ fontSize: "28px", fontWeight: 700, margin: 0, letterSpacing: "-0.5px" }}>
+                {d.model}
+              </h1>
+              <HeartButton type="belay" slug={d.slug} style={{ fontSize: "22px" }} />
+            </div>
 
             <p style={{ color: "#9ca3af", fontSize: "14px", lineHeight: 1.6, marginBottom: "20px" }}>
               {d.description}

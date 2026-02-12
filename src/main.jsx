@@ -14,6 +14,8 @@ import Landing from "./Landing.jsx";
 import NavBar from "./NavBar.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
 import CompareBar from "./CompareBar.jsx";
+import { WishlistProvider } from "./WishlistContext.jsx";
+import Wishlist from "./Wishlist.jsx";
 import { GLOBAL_CSS } from "./tokens.js";
 
 // ─── Data Bridge ─────────────────────────────────────────────
@@ -183,6 +185,7 @@ function Root() {
     <>
       <style>{GLOBAL_CSS}</style>
       <ErrorBoundary>
+        <WishlistProvider>
         <CompareProvider>
           <BrowserRouter>
             <NavBar />
@@ -206,6 +209,7 @@ function Root() {
               {/* Belay device routes */}
               <Route path="/belays" element={<BelayApp belays={belays} src={belaySrc} />} />
               <Route path="/belay/:slug" element={<BelayDetail belays={belays} />} />
+              <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/about" element={<About />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
@@ -213,6 +217,7 @@ function Root() {
             <CompareBar shoes={shoes} />
           </BrowserRouter>
         </CompareProvider>
+        </WishlistProvider>
       </ErrorBoundary>
     </>
   );

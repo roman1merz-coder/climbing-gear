@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import useIsMobile from "./useIsMobile.js";
 import { T } from "./tokens.js";
+import { useWL } from "./WishlistContext.jsx";
 
 const TABS = [
   { key: "shoes",  label: "Shoes",      path: "/shoes",  match: ["/shoes", "/shoe/"],  active: true },
@@ -14,6 +15,7 @@ export default function NavBar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const { count } = useWL();
 
   const current = TABS.find(t => t.match.some(m => pathname.startsWith(m)))?.key || null;
 
@@ -96,6 +98,28 @@ export default function NavBar() {
 
       {/* Spacer */}
       <div style={{ flex: 1 }} />
+
+      {/* Wishlist indicator */}
+      {count > 0 && (
+        <div
+          onClick={() => navigate("/wishlist")}
+          style={{
+            display: "flex", alignItems: "center", gap: "4px",
+            cursor: "pointer", padding: isMobile ? "4px 8px" : "5px 12px",
+            borderRadius: "16px", background: "rgba(232,115,74,0.1)",
+            border: "1px solid rgba(232,115,74,0.25)", flexShrink: 0,
+            transition: "all .2s",
+          }}
+        >
+          <span style={{ fontSize: isMobile ? "12px" : "13px" }}>{"\u2764\uFE0F"}</span>
+          <span style={{
+            fontSize: isMobile ? "10px" : "11px", fontWeight: 700,
+            color: T.accent, fontFamily: "'DM Mono',monospace",
+          }}>
+            {count}
+          </span>
+        </div>
+      )}
 
       {/* Right links (desktop only) */}
       {!isMobile && (

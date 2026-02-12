@@ -5,6 +5,7 @@ import useIsMobile from "./useIsMobile.js";
 import { sortShoes, SortDropdown } from "./sorting.jsx";
 import { fairShuffle } from "./randomizer.js";
 import CompareCheckbox from "./CompareCheckbox.jsx";
+import HeartButton from "./HeartButton.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -431,7 +432,7 @@ function Badge({ score: s, compact }) {
       style={{
         position: "absolute",
         top: compact ? "8px" : "12px",
-        right: compact ? "38px" : "12px",
+        right: compact ? "38px" : "44px",
         width: `${sz}px`,
         height: `${sz}px`,
         borderRadius: "50%",
@@ -528,6 +529,10 @@ function Card({ shoe, onClick, priceData, compact }) {
           }}
         />
         <Badge score={s} compact={compact} />
+        <HeartButton type="shoe" slug={d.slug} style={{
+          position: "absolute", top: compact ? "8px" : "12px",
+          right: compact ? "8px" : "12px", zIndex: 2,
+        }} />
         {disc > 0 && (
           <div
             style={{

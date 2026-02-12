@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
+import HeartButton from "./HeartButton.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -400,11 +401,14 @@ function BelayCard({ belay, matchScore, onClick }) {
       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#3b82f6"; e.currentTarget.style.transform = "translateY(-2px)"; }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#23272f"; e.currentTarget.style.transform = "none"; }}
     >
-      {/* Match badge */}
+      {/* Heart + Match badge */}
+      <HeartButton type="belay" slug={d.slug} style={{
+        position: "absolute", top: "12px", right: "12px", zIndex: 2,
+      }} />
       {matchScore >= 0 && (
         <div
           style={{
-            position: "absolute", top: "12px", right: "12px",
+            position: "absolute", top: "12px", right: "40px",
             background: matchScore >= 75 ? "rgba(34,197,94,0.15)" : matchScore >= 50 ? "rgba(234,179,8,0.15)" : "rgba(239,68,68,0.15)",
             color: matchScore >= 75 ? "#22c55e" : matchScore >= 50 ? "#eab308" : "#ef4444",
             padding: "4px 10px", borderRadius: "10px",

@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
+import HeartButton from "./HeartButton.jsx";
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
@@ -179,9 +180,12 @@ export default function RopeDetail({ ropes = [] }) {
               {rope.rope_type}{rope.triple_rated ? " ③ triple rated" : ""}
             </span>
           </div>
-          <h1 style={{ fontSize: "28px", fontWeight: 800, lineHeight: 1.2, marginBottom: "12px", letterSpacing: "-0.5px" }}>
-            {rope.model}
-          </h1>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+            <h1 style={{ fontSize: "28px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
+              {rope.model}
+            </h1>
+            <HeartButton type="rope" slug={rope.slug} style={{ fontSize: "22px" }} />
+          </div>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.7, maxWidth: "700px" }}>
             {rope.description}
           </p>
