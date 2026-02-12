@@ -422,26 +422,44 @@ export default function BelayDetail({ belays = [] }) {
           </div>
         </div>
 
-        {/* Pros / Cons */}
+        {/* ═══ Strengths & Trade-offs ═══ */}
         {(pros.length > 0 || cons.length > 0) && (
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "16px", marginBottom: isMobile ? "28px" : "40px" }}>
-            {pros.length > 0 && (
-              <div style={{ background: "rgba(34,197,94,0.05)", borderRadius: "12px", padding: "20px", border: "1px solid rgba(34,197,94,0.15)" }}>
-                <h4 style={{ color: "#22c55e", fontSize: "13px", fontWeight: 600, margin: "0 0 12px" }}>✓ Pros</h4>
+          <Section title="⚖️ Strengths & Trade-offs">
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px", marginBottom: isMobile ? "28px" : "40px" }}>
+              <div style={{ background: "#14171c", borderRadius: "12px", padding: "20px", border: "1px solid #23272f" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "#22c55e", marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
                 {pros.map((p, i) => (
-                  <div key={i} style={{ color: "#9ca3af", fontSize: "13px", marginBottom: "6px", paddingLeft: "12px" }}>• {p}</div>
+                  <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: "#e5e7eb", lineHeight: 1.5 }}>
+                    <span style={{ color: "#22c55e", flexShrink: 0, fontWeight: 700 }}>+</span> {p}
+                  </div>
                 ))}
               </div>
-            )}
-            {cons.length > 0 && (
-              <div style={{ background: "rgba(239,68,68,0.05)", borderRadius: "12px", padding: "20px", border: "1px solid rgba(239,68,68,0.15)" }}>
-                <h4 style={{ color: "#ef4444", fontSize: "13px", fontWeight: 600, margin: "0 0 12px" }}>✗ Cons</h4>
+              <div style={{ background: "#14171c", borderRadius: "12px", padding: "20px", border: "1px solid #23272f" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "#ef4444", marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
                 {cons.map((c, i) => (
-                  <div key={i} style={{ color: "#9ca3af", fontSize: "13px", marginBottom: "6px", paddingLeft: "12px" }}>• {c}</div>
+                  <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: "#e5e7eb", lineHeight: 1.5 }}>
+                    <span style={{ color: "#ef4444", flexShrink: 0, fontWeight: 700 }}>{"\u2212"}</span> {c}
+                  </div>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
+          </Section>
+        )}
+
+        {/* ═══ What Climbers Say ═══ */}
+        {d.customer_voices?.length > 0 && (
+          <Section title="💬 What Climbers Say">
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px", marginBottom: isMobile ? "28px" : "40px" }}>
+              {d.customer_voices.slice(0, 4).map((v, i) => (
+                <div key={i} style={{ background: "#14171c", border: "1px solid #23272f", borderRadius: "12px", padding: "22px", transition: "border-color 0.2s" }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "#23272f"}>
+                  <div style={{ fontSize: "28px", color: "#E8734A", opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
+                  <div style={{ fontSize: "13px", color: "#e5e7eb", lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>
+                </div>
+              ))}
+            </div>
+          </Section>
         )}
 
         {/* Similar devices */}

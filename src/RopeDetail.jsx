@@ -410,30 +410,46 @@ export default function RopeDetail({ ropes = [] }) {
           </div>
         </div>
 
-        {/* Pros & Cons */}
+        {/* ═══ Strengths & Trade-offs ═══ */}
         {(rope.pros?.length > 0 || rope.cons?.length > 0) && (
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "24px", marginBottom: "32px" }}>
-            {rope.pros?.length > 0 && (
-              <div style={{ background: T.greenSoft, borderRadius: "12px", padding: "20px", border: `1px solid rgba(34,197,94,.15)` }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, color: T.green, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Pros</div>
-                {rope.pros.map((p, i) => (
-                  <div key={i} style={{ fontSize: "13px", color: T.text, marginBottom: "6px", display: "flex", gap: "8px" }}>
-                    <span style={{ color: T.green }}>✓</span> {p}
-                  </div>
-                ))}
+          <>
+            <Section title="⚖️ Strengths & Trade-offs">
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+                <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
+                  <div style={{ fontSize: "11px", fontWeight: 700, color: T.green, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
+                  {(rope.pros || []).map((p, i) => (
+                    <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
+                      <span style={{ color: T.green, flexShrink: 0, fontWeight: 700 }}>+</span> {p}
+                    </div>
+                  ))}
+                </div>
+                <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
+                  <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
+                  {(rope.cons || []).map((c, i) => (
+                    <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
+                      <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>{"\u2212"}</span> {c}
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
-            {rope.cons?.length > 0 && (
-              <div style={{ background: T.redSoft, borderRadius: "12px", padding: "20px", border: `1px solid rgba(239,68,68,.15)` }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, color: T.red, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Cons</div>
-                {rope.cons.map((c, i) => (
-                  <div key={i} style={{ fontSize: "13px", color: T.text, marginBottom: "6px", display: "flex", gap: "8px" }}>
-                    <span style={{ color: T.red }}>✗</span> {c}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+            </Section>
+          </>
+        )}
+
+        {/* ═══ What Climbers Say ═══ */}
+        {rope.customer_voices?.length > 0 && (
+          <Section title="💬 What Climbers Say">
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+              {rope.customer_voices.slice(0, 4).map((v, i) => (
+                <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "22px", transition: "border-color 0.2s" }}
+                  onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+                  onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
+                  <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
+                  <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>
+                </div>
+              ))}
+            </div>
+          </Section>
         )}
 
         {/* Similar ropes */}

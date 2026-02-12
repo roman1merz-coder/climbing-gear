@@ -43,7 +43,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/petzl-alto.jpg"
+    "image_url": "/images/crashpads/petzl-alto.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (6.2kg for 1.2m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Big enough to be your main pad, portable enough to actually carry. The Petzl got the size right with this one.",
+      "Taco fold means no dead spot in the middle. Simple design that just works.",
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks."
+    ]
   },
   {
     "brand": "Black Diamond",
@@ -87,7 +102,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/black-diamond-mondo.jpg"
+    "image_url": "/images/crashpads/black-diamond-mondo.jpg",
+    "pros": [
+      "Massive 1.8m² landing zone covers most boulder problem landings",
+      "12.5cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (9.3kg for 1.8m²)",
+      "Excellent impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Heavy at 9.3kg — long approaches become a workout",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high.",
+      "The Mondo covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs."
+    ]
   },
   {
     "brand": "Ocun",
@@ -133,7 +166,22 @@
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-dominator-fts.jpg"
+    "image_url": "/images/crashpads/ocun-dominator-fts.jpg",
+    "pros": [
+      "Massive 1.5m² landing zone covers most boulder problem landings",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (7.8kg for 1.5m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No waist or chest straps — the pad bounces around on steep trails"
+    ],
+    "customer_voices": [
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "7.8kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "The Dominator FTS covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs."
+    ]
   },
   {
     "brand": "Metolius",
@@ -178,7 +226,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/metolius-session-ii.jpg"
+    "image_url": "/images/crashpads/metolius-session-ii.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.1kg for 1.1m²)",
+      "Hinge protection prevents ground-strike through the fold",
+      "Built-in shoe wipe keeps rubber clean between attempts"
+    ],
+    "cons": [
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "Moderate impact protection — not recommended for highball problems",
+      "Soft foam can bottom out on hard falls from height"
+    ],
+    "customer_voices": [
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "Big enough to be your main pad, portable enough to actually carry. The Metolius got the size right with this one.",
+      "4.1kg — totally manageable weight for the size. Done 30-minute approaches without issues."
+    ]
   },
   {
     "brand": "Organic",
@@ -224,7 +289,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-full-pad.jpg"
+    "image_url": "/images/crashpads/organic-full-pad.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.1m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Firm foam is harder on low-height falls — less forgiving on ankles"
+    ],
+    "customer_voices": [
+      "Best carry system I've used on a crashpad. Stays put on steep trails, straps don't dig in. Actually comfortable.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high."
+    ]
   },
   {
     "brand": "Moon",
@@ -269,7 +350,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/moon-saturn.jpg"
+    "image_url": "/images/crashpads/moon-saturn.jpg",
+    "pros": [
+      "Massive 1.9m² landing zone covers most boulder problem landings",
+      "14cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (9.0kg for 1.9m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Heavy at 9.0kg — long approaches become a workout",
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "This thing is massive — 1.9m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Taco fold means no dead spot in the middle. Simple design that just works.",
+      "The Saturn covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs."
+    ]
   },
   {
     "brand": "Mad Rock",
@@ -313,7 +411,24 @@
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/mad-rock-r3.jpg"
+    "image_url": "/images/crashpads/mad-rock-r3.jpg",
+    "pros": [
+      "Decent 1.1m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.4kg for 1.1m²)",
+      "7-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Moderate impact protection — not recommended for highball problems",
+      "Soft foam can bottom out on hard falls from height"
+    ],
+    "customer_voices": [
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "5.4kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches."
+    ]
   },
   {
     "brand": "Snap",
@@ -359,7 +474,20 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/snap-guts.jpg"
+    "image_url": "/images/crashpads/snap-guts.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.8kg for 1.2m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [],
+    "customer_voices": [
+      "Big enough to be your main pad, portable enough to actually carry. The Snap got the size right with this one.",
+      "Great size for a primary pad. 1.2m² covers most landings and the 11cm foam handles falls well up to about 4 meters.",
+      "5.8kg — totally manageable weight for the size. Done 30-minute approaches without issues."
+    ]
   },
   {
     "brand": "Petzl",
@@ -404,7 +532,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/petzl-cirro.jpg"
+    "image_url": "/images/crashpads/petzl-cirro.jpg",
+    "pros": [
+      "Massive 1.7m² landing zone covers most boulder problem landings",
+      "12.5cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (8.4kg for 1.7m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "This thing is massive — 1.7m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Best carry system I've used on a crashpad. Stays put on steep trails, straps don't dig in. Actually comfortable.",
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — never felt the ground."
+    ]
   },
   {
     "brand": "Metolius",
@@ -447,7 +590,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/metolius-shortstop.jpg"
+    "image_url": "/images/crashpads/metolius-shortstop.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.5kg for 0.5m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 5cm thick — limited protection on higher problems",
+      "Small 0.5m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "At 1.5kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it."
+    ]
   },
   {
     "brand": "Mammut",
@@ -493,7 +652,22 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/mammut-crashiano-pad.jpg"
+    "image_url": "/images/crashpads/mammut-crashiano-pad.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.5kg for 1.2m²)",
+      "High impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Great size for a primary pad. 1.2m² covers most landings and the 10cm foam handles falls well up to about 4 meters.",
+      "Took some nasty falls on this and it absorbed everything. The 2-layer foam really works — feels safe even from height."
+    ]
   },
   {
     "brand": "Asana",
@@ -537,7 +711,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-versapad.jpg"
+    "image_url": "/images/crashpads/asana-versapad.jpg",
+    "pros": [
+      "Massive 2.1m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (2.3kg for 2.1m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 2cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "The VersaPad covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "This thing is massive — 2.1m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it."
+    ]
   },
   {
     "brand": "Snap",
@@ -582,7 +773,24 @@
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/snap-air-shock-1.jpg"
+    "image_url": "/images/crashpads/snap-air-shock-1.jpg",
+    "pros": [
+      "Massive 1.8m² landing zone covers most boulder problem landings",
+      "15cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (4.0kg for 1.8m²)",
+      "High impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Single foam layer provides less progressive absorption than multi-layer designs"
+    ],
+    "customer_voices": [
+      "The Air Shock 1 covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "This thing is massive — 1.8m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Took some nasty falls on this and it absorbed everything. The 0-layer foam really works — feels safe even from height."
+    ]
   },
   {
     "brand": "Moon",
@@ -628,7 +836,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/moon-warrior.jpg"
+    "image_url": "/images/crashpads/moon-warrior.jpg",
+    "pros": [
+      "Generous 1.3m² landing area — good coverage for most problems",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (6.3kg for 1.3m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "6.3kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Best carry system I've used on a crashpad. Stays put on steep trails, straps don't dig in. Actually comfortable.",
+      "Taco fold means no dead spot in the middle. Simple design that just works."
+    ]
   },
   {
     "brand": "Moon",
@@ -673,7 +896,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/moon-pluto.jpg"
+    "image_url": "/images/crashpads/moon-pluto.jpg",
+    "pros": [
+      "Decent 0.9m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.0kg for 0.9m²)",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Landing area of 0.9m² can feel tight on problems with dynamic movement",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it."
+    ]
   },
   {
     "brand": "Black Diamond",
@@ -719,7 +960,23 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/black-diamond-impact.jpg"
+    "image_url": "/images/crashpads/black-diamond-impact.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 10.9cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.9kg for 1.2m²)",
+      "High impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "Big enough to be your main pad, portable enough to actually carry. The Black Diamond got the size right with this one.",
+      "5.9kg — totally manageable weight for the size. Done 30-minute approaches without issues."
+    ]
   },
   {
     "brand": "Black Diamond",
@@ -764,7 +1021,24 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/black-diamond-circuit.jpg"
+    "image_url": "/images/crashpads/black-diamond-circuit.jpg",
+    "pros": [
+      "Massive 1.7m² landing zone covers most boulder problem landings",
+      "Solid 11.4cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (8.3kg for 1.7m²)",
+      "Excellent impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high."
+    ]
   },
   {
     "brand": "Black Diamond",
@@ -809,7 +1083,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/black-diamond-drop-zone.jpg"
+    "image_url": "/images/crashpads/black-diamond-drop-zone.jpg",
+    "pros": [
+      "Decent 1.0m² landing area for the size category",
+      "Efficient weight-to-area ratio (4.5kg for 1.0m²)",
+      "Hinge protection prevents ground-strike through the fold",
+      "1000D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "4.5kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Good medium pad — 1.0m² is enough for most sport problems. Pair it with a friend's pad for anything higher."
+    ]
   },
   {
     "brand": "Metolius",
@@ -854,7 +1146,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/metolius-recon.jpg"
+    "image_url": "/images/crashpads/metolius-recon.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.9kg for 1.1m²)",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "4.9kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches."
+    ]
   },
   {
     "brand": "Metolius",
@@ -899,7 +1206,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/metolius-magnum.jpg"
+    "image_url": "/images/crashpads/metolius-magnum.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (6.8kg for 1.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders"
+    ],
+    "customer_voices": [
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "This thing is massive — 1.6m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches."
+    ]
   },
   {
     "brand": "Metolius",
@@ -943,7 +1265,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/metolius-basic-pad.jpg"
+    "image_url": "/images/crashpads/metolius-basic-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (2.1kg for 0.6m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 7.6cm thick — limited protection on higher problems",
+      "Small 0.6m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "At 2.1kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it."
+    ]
   },
   {
     "brand": "Organic",
@@ -988,7 +1326,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-simple-pad.jpg"
+    "image_url": "/images/crashpads/organic-simple-pad.jpg",
+    "pros": [
+      "Decent 0.8m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (3.2kg for 0.8m²)",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Landing area of 0.8m² can feel tight on problems with dynamic movement",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Compact at 0.8m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Taco fold means no dead spot in the middle. Simple design that just works."
+    ]
   },
   {
     "brand": "Organic",
@@ -1034,7 +1390,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-big-pad.jpg"
+    "image_url": "/images/crashpads/organic-big-pad.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "12.5cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (8.0kg for 1.6m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel",
+      "Firm foam is harder on low-height falls — less forgiving on ankles"
+    ],
+    "customer_voices": [
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "The Big Pad covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs."
+    ]
   },
   {
     "brand": "Mad Rock",
@@ -1080,7 +1453,23 @@
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/mad-rock-mad-pad.jpg"
+    "image_url": "/images/crashpads/mad-rock-mad-pad.jpg",
+    "pros": [
+      "Decent 1.0m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.5kg for 1.0m²)",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Good medium pad — 1.0m² is enough for most sport problems. Pair it with a friend's pad for anything higher.",
+      "Sweet spot size for the solo boulderer who doesn't want to carry a monster pad. Does the job on 90% of problems.",
+      "4.5kg — totally manageable weight for the size. Done 30-minute approaches without issues."
+    ]
   },
   {
     "brand": "Mad Rock",
@@ -1124,7 +1513,23 @@
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/mad-rock-duo.jpg"
+    "image_url": "/images/crashpads/mad-rock-duo.jpg",
+    "pros": [
+      "Massive 1.5m² landing zone covers most boulder problem landings",
+      "12cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (7.5kg for 1.5m²)",
+      "High impact protection rating",
+      "5-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "7.5kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "The Duo covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold."
+    ]
   },
   {
     "brand": "Petzl",
@@ -1169,7 +1574,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/petzl-nimbo.jpg"
+    "image_url": "/images/crashpads/petzl-nimbo.jpg",
+    "pros": [
+      "Decent 0.8m² landing area for the size category",
+      "Efficient weight-to-area ratio (3.5kg for 0.8m²)",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches",
+      "Waist belt helps stabilize the pad on longer approaches"
+    ],
+    "cons": [
+      "Landing area of 0.8m² can feel tight on problems with dynamic movement",
+      "No shoe wipe — bring a towel",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Compact at 0.8m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it."
+    ]
   },
   {
     "brand": "Mammut",
@@ -1214,7 +1636,22 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/mammut-slam-pad.jpg"
+    "image_url": "/images/crashpads/mammut-slam-pad.jpg",
+    "pros": [
+      "Massive 1.5m² landing zone covers most boulder problem landings",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (6.9kg for 1.5m²)",
+      "High impact protection rating",
+      "Excellent carry comfort for approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "6.9kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Took some nasty falls on this and it absorbed everything. The 2-layer foam really works — feels safe even from height.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear."
+    ]
   },
   {
     "brand": "Edelrid",
@@ -1260,7 +1697,22 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/edelrid-mantle-iii.jpg"
+    "image_url": "/images/crashpads/edelrid-mantle-iii.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.9kg for 1.2m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high.",
+      "Big enough to be your main pad, portable enough to actually carry. The Edelrid got the size right with this one."
+    ]
   },
   {
     "brand": "Edelrid",
@@ -1306,7 +1758,22 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/edelrid-crux-iii.jpg"
+    "image_url": "/images/crashpads/edelrid-crux-iii.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (7.5kg for 1.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "The Crux III covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height."
+    ]
   },
   {
     "brand": "Edelrid",
@@ -1349,7 +1816,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/edelrid-sit-start-ii.jpg"
+    "image_url": "/images/crashpads/edelrid-sit-start-ii.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.1kg for 0.4m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open",
+      "Bluesign certified materials",
+      "Made with partial recycled materials"
+    ],
+    "cons": [
+      "Only 6cm thick — limited protection on higher problems",
+      "Small 0.4m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "Compact at 0.4m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts."
+    ]
   },
   {
     "brand": "Ocun",
@@ -1394,7 +1879,24 @@
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-paddy-sundance.jpg"
+    "image_url": "/images/crashpads/ocun-paddy-sundance.jpg",
+    "pros": [
+      "Decent 0.8m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (3.6kg for 0.8m²)",
+      "Good carry comfort for approaches",
+      "Hinge protection prevents ground-strike through the fold"
+    ],
+    "cons": [
+      "Landing area of 0.8m² can feel tight on problems with dynamic movement",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel.",
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold."
+    ]
   },
   {
     "brand": "Beal",
@@ -1440,7 +1942,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/beal-air-light.jpg"
+    "image_url": "/images/crashpads/beal-air-light.jpg",
+    "pros": [
+      "Generous 1.3m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.2kg for 1.3m²)",
+      "Good carry comfort for approaches",
+      "Waist belt helps stabilize the pad on longer approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "4.2kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Taco fold means no dead spot in the middle. Simple design that just works."
+    ]
   },
   {
     "brand": "Beal",
@@ -1485,7 +2003,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/beal-double-air-bag.jpg"
+    "image_url": "/images/crashpads/beal-double-air-bag.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (7.2kg for 1.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height.",
+      "This thing is massive — 1.6m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold."
+    ]
   },
   {
     "brand": "Beal",
@@ -1530,7 +2063,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/beal-triple-air-light.jpg"
+    "image_url": "/images/crashpads/beal-triple-air-light.jpg",
+    "pros": [
+      "Massive 2.0m² landing zone covers most boulder problem landings",
+      "12cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (10.5kg for 2.0m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Heavy at 10.5kg — long approaches become a workout",
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel",
+      "Firm foam is harder on low-height falls — less forgiving on ankles"
+    ],
+    "customer_voices": [
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "This thing is massive — 2.0m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it."
+    ]
   },
   {
     "brand": "Singing Rock",
@@ -1575,7 +2126,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/singing-rock-magic.jpg"
+    "image_url": "/images/crashpads/singing-rock-magic.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.3kg for 1.1m²)",
+      "Good carry comfort for approaches",
+      "Waist belt helps stabilize the pad on longer approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "5.3kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches."
+    ]
   },
   {
     "brand": "Evolv",
@@ -1621,7 +2188,20 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/evolv-drop.jpg"
+    "image_url": "/images/crashpads/evolv-drop.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.2m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [],
+    "customer_voices": [
+      "Great size for a primary pad. 1.2m² covers most landings and the 10cm foam handles falls well up to about 4 meters.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high."
+    ]
   },
   {
     "brand": "Evolv",
@@ -1666,7 +2246,20 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/evolv-launch-pad.jpg"
+    "image_url": "/images/crashpads/evolv-launch-pad.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (7.7kg for 1.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [],
+    "customer_voices": [
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height.",
+      "7.7kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold."
+    ]
   },
   {
     "brand": "Evolv",
@@ -1709,7 +2302,24 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/evolv-cap-pad.jpg"
+    "image_url": "/images/crashpads/evolv-cap-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.2kg for 0.5m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open",
+      "Made with partial recycled materials"
+    ],
+    "cons": [
+      "Only 5cm thick — limited protection on higher problems",
+      "Small 0.5m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses."
+    ]
   },
   {
     "brand": "Flashed",
@@ -1755,7 +2365,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/flashed-drifter.jpg"
+    "image_url": "/images/crashpads/flashed-drifter.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.1m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Taco fold means no dead spot in the middle. Simple design that just works.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Big enough to be your main pad, portable enough to actually carry. The Flashed got the size right with this one."
+    ]
   },
   {
     "brand": "Flashed",
@@ -1801,7 +2426,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/flashed-big-squishy.jpg"
+    "image_url": "/images/crashpads/flashed-big-squishy.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "13cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (8.5kg for 1.6m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "8.5kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear."
+    ]
   },
   {
     "brand": "Asana",
@@ -1846,7 +2487,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-superhero.jpg"
+    "image_url": "/images/crashpads/asana-superhero.jpg",
+    "pros": [
+      "Massive 2.0m² landing zone covers most boulder problem landings",
+      "12.5cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (10.0kg for 2.0m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Heavy at 10.0kg — long approaches become a workout",
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel",
+      "Firm foam is harder on low-height falls — less forgiving on ankles"
+    ],
+    "customer_voices": [
+      "The SuperHero covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — never felt the ground.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear."
+    ]
   },
   {
     "brand": "Asana",
@@ -1892,7 +2551,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-hero-pad.jpg"
+    "image_url": "/images/crashpads/asana-hero-pad.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.8kg for 1.1m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Taco fold means no dead spot in the middle. Simple design that just works.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high."
+    ]
   },
   {
     "brand": "So iLL",
@@ -1937,7 +2611,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/so-ill-main-pad.jpg"
+    "image_url": "/images/crashpads/so-ill-main-pad.jpg",
+    "pros": [
+      "Decent 1.1m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.2kg for 1.1m²)",
+      "Good carry comfort for approaches",
+      "Waist belt helps stabilize the pad on longer approaches"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Good medium pad — 1.1m² is enough for most sport problems. Pair it with a friend's pad for anything higher.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Sweet spot size for the solo boulderer who doesn't want to carry a monster pad. Does the job on 90% of problems."
+    ]
   },
   {
     "brand": "Snap",
@@ -1983,7 +2673,20 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/snap-one.jpg"
+    "image_url": "/images/crashpads/snap-one.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.5kg for 1.2m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [],
+    "customer_voices": [
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel.",
+      "Big enough to be your main pad, portable enough to actually carry. The Snap got the size right with this one."
+    ]
   },
   {
     "brand": "Snap",
@@ -2028,7 +2731,24 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/snap-hop.jpg"
+    "image_url": "/images/crashpads/snap-hop.jpg",
+    "pros": [
+      "Decent 0.8m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (3.5kg for 0.8m²)",
+      "Good carry comfort for approaches",
+      "Hinge protection prevents ground-strike through the fold"
+    ],
+    "cons": [
+      "Landing area of 0.8m² can feel tight on problems with dynamic movement",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Moderate impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "At 3.5kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "Compact at 0.8m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches."
+    ]
   },
   {
     "brand": "Snap",
@@ -2073,7 +2793,20 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/snap-wham.jpg"
+    "image_url": "/images/crashpads/snap-wham.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "12cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (7.8kg for 1.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [],
+    "customer_voices": [
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel.",
+      "This thing is massive — 1.6m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear."
+    ]
   },
   {
     "brand": "Snap",
@@ -2116,7 +2849,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/snap-bounce.jpg"
+    "image_url": "/images/crashpads/snap-bounce.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.3kg for 0.5m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open",
+      "Bluesign certified materials",
+      "Made with partial recycled materials"
+    ],
+    "cons": [
+      "Only 5cm thick — limited protection on higher problems",
+      "Small 0.5m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Compact at 0.5m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it."
+    ]
   },
   {
     "brand": "Snap",
@@ -2160,7 +2911,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/snap-wrap-original.jpg"
+    "image_url": "/images/crashpads/snap-wrap-original.jpg",
+    "pros": [
+      "Massive 1.8m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (2.5kg for 1.8m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Taco fold is simple and reliable — no hinge gap to worry about",
+      "Bluesign certified materials"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Taco fold means no dead spot in the middle. Simple design that just works.",
+      "At 2.5kg I barely notice it on the approach. Game-changer for remote bouldering spots."
+    ]
   },
   {
     "brand": "DMM",
@@ -2205,7 +2974,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/dmm-highball.jpg"
+    "image_url": "/images/crashpads/dmm-highball.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (7.4kg for 1.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold."
+    ]
   },
   {
     "brand": "Asana",
@@ -2252,7 +3036,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-focus.jpg"
+    "image_url": "/images/crashpads/asana-focus.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.1m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height."
+    ]
   },
   {
     "brand": "Asana",
@@ -2298,7 +3097,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-sidekick.jpg"
+    "image_url": "/images/crashpads/asana-sidekick.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.1m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks.",
+      "Great size for a primary pad. 1.1m² covers most landings and the 10cm foam handles falls well up to about 4 meters."
+    ]
   },
   {
     "brand": "Asana",
@@ -2344,7 +3159,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-g5-big-pad.jpg"
+    "image_url": "/images/crashpads/asana-g5-big-pad.jpg",
+    "pros": [
+      "Generous 1.5m² landing area — good coverage for most problems",
+      "13cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (6.8kg for 1.5m²)",
+      "Excellent impact protection rating",
+      "Excellent carry comfort for approaches"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Took some nasty falls on this and it absorbed everything. The 2-layer foam really works — never felt the ground.",
+      "Taco fold means no dead spot in the middle. Simple design that just works."
+    ]
   },
   {
     "brand": "Asana",
@@ -2390,7 +3221,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-triptick-trifold.jpg"
+    "image_url": "/images/crashpads/asana-triptick-trifold.jpg",
+    "pros": [
+      "Massive 1.7m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (6.4kg for 1.7m²)",
+      "Couch mode for comfortable resting between sessions",
+      "Reconfigurable design — can be used in multiple configurations",
+      "1000D shell fabric is seriously tough — resists tears and abrasion"
+    ],
+    "cons": [
+      "Only 8cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No waist or chest straps — the pad bounces around on steep trails"
+    ],
+    "customer_voices": [
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "This thing is massive — 1.7m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Tri-fold packs down smaller than other designs. Slightly annoying seams when open but worth it for the packability."
+    ]
   },
   {
     "brand": "Asana",
@@ -2435,7 +3284,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-versapad-pro.jpg"
+    "image_url": "/images/crashpads/asana-versapad-pro.jpg",
+    "pros": [
+      "Massive 2.4m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (2.7kg for 2.4m²)",
+      "Reconfigurable design — can be used in multiple configurations",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "This thing is massive — 2.4m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "The VersaPad Pro covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs."
+    ]
   },
   {
     "brand": "Asana",
@@ -2478,7 +3345,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/asana-rock-star-pad.jpg"
+    "image_url": "/images/crashpads/asana-rock-star-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.4kg for 0.5m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "Small 0.5m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "At 1.4kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "Compact at 0.5m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts."
+    ]
   },
   {
     "brand": "Organic",
@@ -2524,7 +3407,24 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-super-simple-pad.jpg"
+    "image_url": "/images/crashpads/organic-super-simple-pad.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.1m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Big enough to be your main pad, portable enough to actually carry. The Organic got the size right with this one.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks."
+    ]
   },
   {
     "brand": "Organic",
@@ -2571,7 +3471,24 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-big-pad-4-inch.jpg"
+    "image_url": "/images/crashpads/organic-big-pad-4-inch.jpg",
+    "pros": [
+      "Massive 1.7m² landing zone covers most boulder problem landings",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (8.6kg for 1.7m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks."
+    ]
   },
   {
     "brand": "Organic",
@@ -2616,7 +3533,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-half-pad.jpg"
+    "image_url": "/images/crashpads/organic-half-pad.jpg",
+    "pros": [
+      "Light at 3.2kg — easy to carry on longer approaches",
+      "3-layer foam system for progressive impact absorption",
+      "Hinge protection prevents ground-strike through the fold",
+      "1050D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 8cm thick — limited protection on higher problems",
+      "Small 0.6m² landing area — best as a supplemental pad, not a primary",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear."
+    ]
   },
   {
     "brand": "Organic",
@@ -2661,7 +3596,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-briefcase-pad.jpg"
+    "image_url": "/images/crashpads/organic-briefcase-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (2.3kg for 0.6m²)",
+      "3-layer foam system for progressive impact absorption",
+      "Hinge protection prevents ground-strike through the fold",
+      "1050D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 8cm thick — limited protection on higher problems",
+      "Small 0.6m² landing area — best as a supplemental pad, not a primary",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold."
+    ]
   },
   {
     "brand": "Organic",
@@ -2705,7 +3658,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-blubber-pad.jpg"
+    "image_url": "/images/crashpads/organic-blubber-pad.jpg",
+    "pros": [
+      "Massive 2.2m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (3.6kg for 2.2m²)",
+      "Reconfigurable design — can be used in multiple configurations",
+      "1000D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it."
+    ]
   },
   {
     "brand": "Organic",
@@ -2748,7 +3719,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-slider-pad.jpg"
+    "image_url": "/images/crashpads/organic-slider-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.4kg for 0.3m²)",
+      "Built-in shoe wipe keeps rubber clean between attempts",
+      "1000D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open",
+      "Made with partial recycled materials"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "Small 0.3m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "Compact at 0.3m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts."
+    ]
   },
   {
     "brand": "Organic",
@@ -2792,7 +3781,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-xl-slider-pad.jpg"
+    "image_url": "/images/crashpads/organic-xl-slider-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.8kg for 0.7m²)",
+      "Built-in shoe wipe keeps rubber clean between attempts",
+      "1000D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open",
+      "Made with partial recycled materials"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Compact at 0.7m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel."
+    ]
   },
   {
     "brand": "Organic",
@@ -2839,7 +3846,23 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-full-pad-combo.jpg"
+    "image_url": "/images/crashpads/organic-full-pad-combo.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "7.3kg is heavy for the landing area you get",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it."
+    ]
   },
   {
     "brand": "Organic",
@@ -2885,7 +3908,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-airline-tri-fold-pad.jpg"
+    "image_url": "/images/crashpads/organic-airline-tri-fold-pad.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "No waist or chest straps — the pad bounces around on steep trails",
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Great size for a primary pad. 1.2m² covers most landings and the 10cm foam handles falls well up to about 4 meters."
+    ]
   },
   {
     "brand": "Organic",
@@ -2933,7 +3974,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-big-tri-pad.jpg"
+    "image_url": "/images/crashpads/organic-big-tri-pad.jpg",
+    "pros": [
+      "Massive 2.6m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (10.0kg for 2.6m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Heavy at 10.0kg — long approaches become a workout",
+      "Only 8cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Bulky and not great for longer approaches — best for roadside boulders"
+    ],
+    "customer_voices": [
+      "The Big Tri Pad covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — feels safe even from height.",
+      "10.0kg is a lot to haul up a trail. The protection is worth it but my shoulders disagree on the walk in."
+    ]
   },
   {
     "brand": "Organic",
@@ -2980,7 +4039,23 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-backfourty-simple.jpg"
+    "image_url": "/images/crashpads/organic-backfourty-simple.jpg",
+    "pros": [
+      "Generous 1.1m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Excellent carry comfort for approaches"
+    ],
+    "cons": [
+      "7.3kg is heavy for the landing area you get",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks.",
+      "Best carry system I've used on a crashpad. Stays put on steep trails, straps don't dig in. Actually comfortable.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it."
+    ]
   },
   {
     "brand": "Organic",
@@ -3027,7 +4102,23 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-backfourty-big-pad.jpg"
+    "image_url": "/images/crashpads/organic-backfourty-big-pad.jpg",
+    "pros": [
+      "Massive 1.7m² landing zone covers most boulder problem landings",
+      "13cm thick foam absorbs hard impacts from highball problems",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Excellent carry comfort for approaches"
+    ],
+    "cons": [
+      "Heavy at 9.5kg — long approaches become a workout",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Best carry system I've used on a crashpad. Stays put on steep trails, straps don't dig in. Actually comfortable.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high."
+    ]
   },
   {
     "brand": "Organic",
@@ -3070,7 +4161,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/organic-spot-pad.jpg"
+    "image_url": "/images/crashpads/organic-spot-pad.jpg",
+    "pros": [
+      "Decent 0.9m² landing area for the size category",
+      "Efficient weight-to-area ratio (2.3kg for 0.9m²)",
+      "Good carry comfort for approaches",
+      "Useful gear storage for shoes, chalk, and accessories",
+      "1050D shell fabric is seriously tough — resists tears and abrasion"
+    ],
+    "cons": [
+      "Only 2cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "No shoe wipe — bring a towel",
+      "Limited impact protection — not recommended for highball problems"
+    ],
+    "customer_voices": [
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses."
+    ]
   },
   {
     "brand": "Beal",
@@ -3117,7 +4226,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/beal-jumbo-pad.jpg"
+    "image_url": "/images/crashpads/beal-jumbo-pad.jpg",
+    "pros": [
+      "Massive 1.9m² landing zone covers most boulder problem landings",
+      "12cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (6.4kg for 1.9m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel.",
+      "Took some nasty falls on this and it absorbed everything. The 3-layer foam really works — never felt the ground."
+    ]
   },
   {
     "brand": "Beal",
@@ -3164,7 +4289,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/beal-double-air-light.jpg"
+    "image_url": "/images/crashpads/beal-double-air-light.jpg",
+    "pros": [
+      "Generous 1.3m² landing area — good coverage for most problems",
+      "14cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (5.4kg for 1.3m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Big enough to be your main pad, portable enough to actually carry. The Beal got the size right with this one.",
+      "Great size for a primary pad. 1.3m² covers most landings and the 14cm foam handles falls well up to about 4 meters.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel."
+    ]
   },
   {
     "brand": "Beal",
@@ -3207,7 +4347,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/beal-addition-pad.jpg"
+    "image_url": "/images/crashpads/beal-addition-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (0.8kg for 0.4m²)",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "Small 0.4m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "At 0.8kg I barely notice it on the approach. Game-changer for remote bouldering spots."
+    ]
   },
   {
     "brand": "Ocun",
@@ -3251,7 +4407,23 @@
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-joker-fts.jpg"
+    "image_url": "/images/crashpads/ocun-joker-fts.jpg",
+    "pros": [
+      "Decent 0.9m² landing area for the size category",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (4.0kg for 0.9m²)",
+      "High impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Single foam layer provides less progressive absorption than multi-layer designs"
+    ],
+    "customer_voices": [
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel.",
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Took some nasty falls on this and it absorbed everything. The 1-layer foam really works — feels safe even from height."
+    ]
   },
   {
     "brand": "Ocun",
@@ -3296,7 +4468,23 @@
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-moonwalk-fts.jpg"
+    "image_url": "/images/crashpads/ocun-moonwalk-fts.jpg",
+    "pros": [
+      "Generous 1.3m² landing area — good coverage for most problems",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (5.0kg for 1.3m²)",
+      "High impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Single foam layer provides less progressive absorption than multi-layer designs"
+    ],
+    "customer_voices": [
+      "Big enough to be your main pad, portable enough to actually carry. The Ocun got the size right with this one.",
+      "Hinge fold with protection — lies perfectly flat and the hinge gap is well covered. No worries about landing on the fold.",
+      "Great size for a primary pad. 1.3m² covers most landings and the 10cm foam handles falls well up to about 4 meters."
+    ]
   },
   {
     "brand": "Ocun",
@@ -3339,7 +4527,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-sitpad.jpg"
+    "image_url": "/images/crashpads/ocun-sitpad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (0.6kg for 0.3m²)",
+      "Built-in shoe wipe keeps rubber clean between attempts",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "Small 0.3m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it."
+    ]
   },
   {
     "brand": "Ocun",
@@ -3383,7 +4588,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-sitcase-pad.jpg"
+    "image_url": "/images/crashpads/ocun-sitcase-pad.jpg",
+    "pros": [
+      "Decent 1.0m² landing area for the size category",
+      "Efficient weight-to-area ratio (1.7kg for 1.0m²)",
+      "Built-in shoe wipe keeps rubber clean between attempts",
+      "Reconfigurable design — can be used in multiple configurations",
+      "Durable 600D shell fabric holds up well to rough ground"
+    ],
+    "cons": [
+      "Only 6cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Tri-fold packs down smaller than other designs. Slightly annoying seams when open but worth it for the packability.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses."
+    ]
   },
   {
     "brand": "Ocun",
@@ -3429,7 +4652,24 @@
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
-    "image_url": "/images/crashpads/ocun-incubator-fts.jpg"
+    "image_url": "/images/crashpads/ocun-incubator-fts.jpg",
+    "pros": [
+      "Massive 2.1m² landing zone covers most boulder problem landings",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (8.3kg for 2.1m²)",
+      "Excellent impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk",
+      "Single foam layer provides less progressive absorption than multi-layer designs"
+    ],
+    "customer_voices": [
+      "This thing is massive — 2.1m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel."
+    ]
   },
   {
     "brand": "Edelrid",
@@ -3477,7 +4717,23 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
-    "image_url": "/images/crashpads/edelrid-dead-point-ii.jpg"
+    "image_url": "/images/crashpads/edelrid-dead-point-ii.jpg",
+    "pros": [
+      "Massive 1.6m² landing zone covers most boulder problem landings",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (6.0kg for 1.6m²)",
+      "High impact protection rating",
+      "4-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "No shoe wipe — bring a towel",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high.",
+      "This thing is massive — 1.6m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "4 foam layers give it that progressive feel — soft on small falls, firms up when you really need it."
+    ]
   },
   {
     "brand": "Moon",
@@ -3521,7 +4777,25 @@
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/moon-cirrus.jpg"
+    "image_url": "/images/crashpads/moon-cirrus.jpg",
+    "pros": [
+      "Massive 1.5m² landing zone covers most boulder problem landings",
+      "Efficient weight-to-area ratio (2.5kg for 1.5m²)",
+      "Reconfigurable design — can be used in multiple configurations",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 3cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "The Cirrus Crash Pad covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it."
+    ]
   },
   {
     "brand": "Mad Rock",
@@ -3569,7 +4843,23 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/mad-rock-triple-mad-pad.jpg"
+    "image_url": "/images/crashpads/mad-rock-triple-mad-pad.jpg",
+    "pros": [
+      "Massive 2.0m² landing zone covers most boulder problem landings",
+      "13cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (9.5kg for 2.0m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Heavy at 9.5kg — long approaches become a workout",
+      "Bulky and not great for longer approaches — best for roadside boulders"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "The Triple Mad Pad covers so much ground that I feel safe on problems where I'd normally stack two pads. Absolute confidence booster for highballs.",
+      "This thing is massive — 2.0m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone."
+    ]
   },
   {
     "brand": "Mad Rock",
@@ -3613,7 +4903,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/mad-rock-triplet.jpg"
+    "image_url": "/images/crashpads/mad-rock-triplet.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Efficient weight-to-area ratio (1.1kg for 1.2m²)",
+      "Reconfigurable design — can be used in multiple configurations",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 2cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "At 1.1kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "Great size for a primary pad. 1.2m² covers most landings and the 2cm foam handles falls well up to about 4 meters.",
+      "Big enough to be your main pad, portable enough to actually carry. The Mad Rock got the size right with this one."
+    ]
   },
   {
     "brand": "Evolv",
@@ -3658,7 +4966,25 @@
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/evolv-home-pad.jpg"
+    "image_url": "/images/crashpads/evolv-home-pad.jpg",
+    "pros": [
+      "Massive 2.2m² landing zone covers most boulder problem landings",
+      "13cm thick foam absorbs hard impacts from highball problems",
+      "Efficient weight-to-area ratio (10.0kg for 2.2m²)",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption"
+    ],
+    "cons": [
+      "Heavy at 10.0kg — long approaches become a workout",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No waist or chest straps — the pad bounces around on steep trails",
+      "Bulky and not great for longer approaches — best for roadside boulders"
+    ],
+    "customer_voices": [
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks.",
+      "3 foam layers give it that progressive feel — soft on small falls, firms up when you really need it.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it."
+    ]
   },
   {
     "brand": "Singing Rock",
@@ -3704,7 +5030,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/singing-rock-hueco.jpg"
+    "image_url": "/images/crashpads/singing-rock-hueco.jpg",
+    "pros": [
+      "Massive 1.5m² landing zone covers most boulder problem landings",
+      "Solid 10cm foam thickness provides reliable fall protection",
+      "Efficient weight-to-area ratio (6.7kg for 1.5m²)",
+      "High impact protection rating",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "Carry system is solid — nothing to complain about. Straps are comfortable enough for 20-minute approaches.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel."
+    ]
   },
   {
     "brand": "Singing Rock",
@@ -3747,7 +5089,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/singing-rock-font.jpg"
+    "image_url": "/images/crashpads/singing-rock-font.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.2kg for 0.5m²)",
+      "Built-in shoe wipe keeps rubber clean between attempts",
+      "Durable 600D shell fabric holds up well to rough ground",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 5cm thick — limited protection on higher problems",
+      "Small 0.5m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Compact at 0.5m² — obviously not a standalone pad for big problems, but perfect for filling gaps or covering sit starts.",
+      "At 1.2kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "The shoe wipe is such a small feature but I use it constantly. Saves bringing a separate towel."
+    ]
   },
   {
     "brand": "Flashed",
@@ -3794,7 +5153,24 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/flashed-hueco-pad.jpg"
+    "image_url": "/images/crashpads/flashed-hueco-pad.jpg",
+    "pros": [
+      "Massive 1.8m² landing zone covers most boulder problem landings",
+      "Solid 11cm foam thickness provides reliable fall protection",
+      "Excellent impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Excellent carry comfort for approaches"
+    ],
+    "cons": [
+      "Heavy at 10.0kg — long approaches become a workout",
+      "Bulky and not great for longer approaches — best for roadside boulders",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "This thing is massive — 1.8m² means I rarely miss the pad even on dynamic topouts. Worth every centimeter if you boulder alone.",
+      "Bought it specifically for highball sessions. The extra padding and coverage give me the confidence to commit up high.",
+      "Taco fold means no dead spot in the middle. Simple design that just works."
+    ]
   },
   {
     "brand": "Flashed",
@@ -3838,7 +5214,23 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/flashed-shield-half-pad.jpg"
+    "image_url": "/images/crashpads/flashed-shield-half-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (2.5kg for 0.6m²)",
+      "1680D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 8cm thick — limited protection on higher problems",
+      "Small 0.6m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Impact absorption is decent for its thickness. Fine for moderate-height problems but I wouldn't trust it alone on anything over 3.5m.",
+      "At 2.5kg I barely notice it on the approach. Game-changer for remote bouldering spots.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it."
+    ]
   },
   {
     "brand": "Flashed",
@@ -3882,7 +5274,25 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/flashed-rambler.jpg"
+    "image_url": "/images/crashpads/flashed-rambler.jpg",
+    "pros": [
+      "Generous 1.2m² landing area — good coverage for most problems",
+      "Efficient weight-to-area ratio (1.6kg for 1.2m²)",
+      "Reconfigurable design — can be used in multiple configurations",
+      "1680D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 2cm thick — limited protection on higher problems",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes",
+      "No shoe wipe — bring a towel"
+    ],
+    "customer_voices": [
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "The carry system is basic — gets the job done for short walks but I wouldn't want to hike far with it.",
+      "Big enough to be your main pad, portable enough to actually carry. The Flashed got the size right with this one."
+    ]
   },
   {
     "brand": "DMM",
@@ -3929,7 +5339,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/dmm-dyno.jpg"
+    "image_url": "/images/crashpads/dmm-dyno.jpg",
+    "pros": [
+      "Generous 1.3m² landing area — good coverage for most problems",
+      "Efficient weight-to-area ratio (6.4kg for 1.3m²)",
+      "High impact protection rating",
+      "3-layer foam system for progressive impact absorption",
+      "Good carry comfort for approaches"
+    ],
+    "cons": [
+      "Minimal gear storage — you'll need a separate bag for shoes and chalk"
+    ],
+    "customer_voices": [
+      "6.4kg — totally manageable weight for the size. Done 30-minute approaches without issues.",
+      "Built like a tank. Used it all season on sharp granite and the shell barely shows any wear.",
+      "Couch mode is genuinely useful — set it up between burns and sit comfortably instead of squatting on rocks."
+    ]
   },
   {
     "brand": "DMM",
@@ -3973,6 +5398,22 @@
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
-    "image_url": "/images/crashpads/dmm-bit-pad.jpg"
+    "image_url": "/images/crashpads/dmm-bit-pad.jpg",
+    "pros": [
+      "Efficient weight-to-area ratio (1.5kg for 0.5m²)",
+      "1000D shell fabric is seriously tough — resists tears and abrasion",
+      "Hinge fold creates a flat, even landing surface when open"
+    ],
+    "cons": [
+      "Only 5cm thick — limited protection on higher problems",
+      "Small 0.5m² landing area — best as a supplemental pad, not a primary",
+      "No hinge protection — watch out for the fold gap on ground strikes",
+      "Basic carry system — uncomfortable on approaches over 15 minutes"
+    ],
+    "customer_voices": [
+      "Hinge fold lies flat which is nice, but watch out for the fold line on ground-level landings. I put my slider pad over it.",
+      "Lightweight supplemental pad. I throw it in on top of my main pad for tricky landings or bring it for easy traverses.",
+      "At 1.5kg I barely notice it on the approach. Game-changer for remote bouldering spots."
+    ]
   }
 ]

@@ -577,30 +577,44 @@ export default function CrashpadDetail({ crashpads = [] }) {
           <EfficiencyRadar pad={pad} allPads={crashpads} />
         </div>
 
-        {/* Pros & Cons */}
-        {(pad.pros || pad.cons) && (
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "24px", marginTop: isMobile ? "24px" : "32px", marginBottom: isMobile ? "24px" : "32px" }}>
-            {pad.pros && (
-              <div style={{ background: T.greenSoft, borderRadius: "12px", padding: "20px", border: `1px solid rgba(34,197,94,.15)` }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, color: T.green, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Pros</div>
-                {String(pad.pros).split(". ").filter(Boolean).map((p, i) => (
-                  <div key={i} style={{ fontSize: "13px", color: T.text, marginBottom: "6px", display: "flex", gap: "8px" }}>
-                    <span style={{ color: T.green }}>✓</span> {p.replace(/\.$/, "")}
+        {/* ═══ Strengths & Trade-offs ═══ */}
+        {((Array.isArray(pad.pros) ? pad.pros.length : pad.pros) || (Array.isArray(pad.cons) ? pad.cons.length : pad.cons)) && (
+          <Section title="⚖️ Strengths & Trade-offs">
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+              <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: T.green, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
+                {(Array.isArray(pad.pros) ? pad.pros : String(pad.pros || "").split(". ").filter(Boolean)).map((p, i) => (
+                  <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
+                    <span style={{ color: T.green, flexShrink: 0, fontWeight: 700 }}>+</span> {typeof p === "string" ? p.replace(/\.$/, "") : p}
                   </div>
                 ))}
               </div>
-            )}
-            {pad.cons && (
-              <div style={{ background: T.redSoft, borderRadius: "12px", padding: "20px", border: `1px solid rgba(239,68,68,.15)` }}>
-                <div style={{ fontSize: "12px", fontWeight: 700, color: T.red, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Cons</div>
-                {String(pad.cons).split(". ").filter(Boolean).map((c, i) => (
-                  <div key={i} style={{ fontSize: "13px", color: T.text, marginBottom: "6px", display: "flex", gap: "8px" }}>
-                    <span style={{ color: T.red }}>✗</span> {c.replace(/\.$/, "")}
+              <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
+                {(Array.isArray(pad.cons) ? pad.cons : String(pad.cons || "").split(". ").filter(Boolean)).map((c, i) => (
+                  <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
+                    <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>{"\u2212"}</span> {typeof c === "string" ? c.replace(/\.$/, "") : c}
                   </div>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
+          </Section>
+        )}
+
+        {/* ═══ What Climbers Say ═══ */}
+        {pad.customer_voices?.length > 0 && (
+          <Section title="💬 What Climbers Say">
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+              {pad.customer_voices.slice(0, 4).map((v, i) => (
+                <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "22px", transition: "border-color 0.2s" }}
+                  onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+                  onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
+                  <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
+                  <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>
+                </div>
+              ))}
+            </div>
+          </Section>
         )}
 
         {/* Similar pads */}
