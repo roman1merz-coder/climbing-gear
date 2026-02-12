@@ -42,7 +42,8 @@
     "current_price_eur": 249,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/petzl-alto.jpg"
   },
   {
     "brand": "Black Diamond",
@@ -85,7 +86,8 @@
     "current_price_eur": 380,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/black-diamond-mondo.jpg"
   },
   {
     "brand": "Ocun",
@@ -130,7 +132,8 @@
     "current_price_eur": 298,
     "recycled_materials": "none",
     "hic_certified": true,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/ocun-dominator-fts.jpg"
   },
   {
     "brand": "Metolius",
@@ -174,7 +177,8 @@
     "current_price_eur": 180,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/metolius-session-ii.jpg"
   },
   {
     "brand": "Organic",
@@ -219,7 +223,8 @@
     "current_price_eur": 280,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/organic-full-pad.jpg"
   },
   {
     "brand": "Moon",
@@ -263,7 +268,8 @@
     "current_price_eur": 362,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/moon-saturn.jpg"
   },
   {
     "brand": "Mad Rock",
@@ -306,7 +312,8 @@
     "current_price_eur": 225,
     "recycled_materials": "full",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/mad-rock-r3.jpg"
   },
   {
     "brand": "Snap",
@@ -351,7 +358,8 @@
     "current_price_eur": 235,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/snap-guts.jpg"
   },
   {
     "brand": "Edelrid",
@@ -395,7 +403,8 @@
     "current_price_eur": 199,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/edelrid-dead-spot.jpg"
   },
   {
     "brand": "Petzl",
@@ -439,7 +448,8 @@
     "current_price_eur": 389,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/petzl-cirro.jpg"
   },
   {
     "brand": "Metolius",
@@ -481,7 +491,8 @@
     "current_price_eur": 45,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/metolius-shortstop.jpg"
   },
   {
     "brand": "Mammut",
@@ -526,7 +537,8 @@
     "current_price_eur": 240,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/mammut-crashiano-pad.jpg"
   },
   {
     "brand": "Asana",
@@ -569,7 +581,8 @@
     "current_price_eur": 140,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/asana-versapad.jpg"
   },
   {
     "brand": "Snap",
@@ -613,7 +626,8 @@
     "current_price_eur": 320,
     "recycled_materials": "full",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/snap-air-shock-1.jpg"
   },
   {
     "brand": "Moon",
@@ -658,7 +672,8 @@
     "current_price_eur": 289,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/moon-warrior.jpg"
   },
   {
     "brand": "Moon",
@@ -702,7 +717,8 @@
     "current_price_eur": 219,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/moon-pluto.jpg"
   },
   {
     "brand": "Black Diamond",
@@ -747,7 +763,8 @@
     "current_price_eur": 260,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/black-diamond-impact.jpg"
   },
   {
     "brand": "Black Diamond",
@@ -791,7 +808,8 @@
     "current_price_eur": 339,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/black-diamond-circuit.jpg"
   },
   {
     "brand": "Black Diamond",
@@ -835,7 +853,8 @@
     "current_price_eur": 180,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/black-diamond-drop-zone.jpg"
   },
   {
     "brand": "Metolius",
@@ -879,7 +898,8 @@
     "current_price_eur": 220,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/metolius-recon.jpg"
   },
   {
     "brand": "Metolius",
@@ -923,7 +943,8 @@
     "current_price_eur": 280,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/metolius-magnum.jpg"
   },
   {
     "brand": "Metolius",
@@ -966,7 +987,8 @@
     "current_price_eur": 85,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/metolius-basic-pad.jpg"
   },
   {
     "brand": "Organic",
@@ -1010,7 +1032,8 @@
     "current_price_eur": 210,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/organic-simple-pad.jpg"
   },
   {
     "brand": "Organic",
@@ -1055,7 +1078,8 @@
     "current_price_eur": 390,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/organic-big-pad.jpg"
   },
   {
     "brand": "Mad Rock",
@@ -1100,7 +1124,8 @@
     "current_price_eur": 175,
     "recycled_materials": "full",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/mad-rock-mad-pad.jpg"
   },
   {
     "brand": "Mad Rock",
@@ -1143,7 +1168,8 @@
     "current_price_eur": 299,
     "recycled_materials": "full",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/mad-rock-duo.jpg"
   },
   {
     "brand": "Petzl",
@@ -1187,7 +1213,8 @@
     "current_price_eur": 199,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/petzl-nimbo.jpg"
   },
   {
     "brand": "Mammut",
@@ -1231,7 +1258,8 @@
     "current_price_eur": 310,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/mammut-slam-pad.jpg"
   },
   {
     "brand": "Edelrid",
@@ -1276,7 +1304,8 @@
     "current_price_eur": 255,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/edelrid-mantle-iii.jpg"
   },
   {
     "brand": "Edelrid",
@@ -1321,7 +1350,8 @@
     "current_price_eur": 320,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/edelrid-crux-iii.jpg"
   },
   {
     "brand": "Edelrid",
@@ -1363,7 +1393,8 @@
     "current_price_eur": 52,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/edelrid-sit-start-ii.jpg"
   },
   {
     "brand": "Ocun",
@@ -1408,7 +1439,8 @@
     "current_price_eur": 249,
     "recycled_materials": "none",
     "hic_certified": true,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/ocun-paddy-moonwalk.jpg"
   },
   {
     "brand": "Ocun",
@@ -1452,7 +1484,8 @@
     "current_price_eur": 175,
     "recycled_materials": "none",
     "hic_certified": true,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/ocun-paddy-sundance.jpg"
   },
   {
     "brand": "Ocun",
@@ -1497,7 +1530,8 @@
     "current_price_eur": 375,
     "recycled_materials": "none",
     "hic_certified": true,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/ocun-incubator.jpg"
   },
   {
     "brand": "Beal",
@@ -1542,7 +1576,8 @@
     "current_price_eur": 219,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/beal-air-light.jpg"
   },
   {
     "brand": "Beal",
@@ -1586,7 +1621,8 @@
     "current_price_eur": 299,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/beal-double-air-bag.jpg"
   },
   {
     "brand": "Beal",
@@ -1630,7 +1666,8 @@
     "current_price_eur": 399,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/beal-triple-air-light.jpg"
   },
   {
     "brand": "Singing Rock",
@@ -1674,7 +1711,8 @@
     "current_price_eur": 159,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/singing-rock-magic.jpg"
   },
   {
     "brand": "Evolv",
@@ -1719,7 +1757,8 @@
     "current_price_eur": 215,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/evolv-drop.jpg"
   },
   {
     "brand": "Evolv",
@@ -1763,7 +1802,8 @@
     "current_price_eur": 315,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/evolv-launch-pad.jpg"
   },
   {
     "brand": "Evolv",
@@ -1805,7 +1845,8 @@
     "current_price_eur": 49,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/evolv-cap-pad.jpg"
   },
   {
     "brand": "Flashed",
@@ -1850,7 +1891,8 @@
     "current_price_eur": 209,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/flashed-drifter.jpg"
   },
   {
     "brand": "Flashed",
@@ -1895,7 +1937,8 @@
     "current_price_eur": 339,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/flashed-big-squishy.jpg"
   },
   {
     "brand": "Asana",
@@ -1939,7 +1982,8 @@
     "current_price_eur": 399,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/asana-superhero.jpg"
   },
   {
     "brand": "Asana",
@@ -1984,7 +2028,8 @@
     "current_price_eur": 265,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/asana-hero-pad.jpg"
   },
   {
     "brand": "So iLL",
@@ -2028,7 +2073,8 @@
     "current_price_eur": 195,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/so-ill-main-pad.jpg"
   },
   {
     "brand": "Snap",
@@ -2073,7 +2119,8 @@
     "current_price_eur": 245,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/snap-one.jpg"
   },
   {
     "brand": "Snap",
@@ -2117,7 +2164,8 @@
     "current_price_eur": 169,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/snap-hop.jpg"
   },
   {
     "brand": "Snap",
@@ -2161,7 +2209,8 @@
     "current_price_eur": 330,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/snap-wham.jpg"
   },
   {
     "brand": "Snap",
@@ -2203,7 +2252,8 @@
     "current_price_eur": 55,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/snap-bounce.jpg"
   },
   {
     "brand": "Snap",
@@ -2246,7 +2296,8 @@
     "current_price_eur": 115,
     "recycled_materials": "partial",
     "hic_certified": false,
-    "bluesign": true
+    "bluesign": true,
+    "image_url": "/images/crashpads/snap-wrap-original.jpg"
   },
   {
     "brand": "DMM",
@@ -2290,6 +2341,7 @@
     "current_price_eur": 285,
     "recycled_materials": "none",
     "hic_certified": false,
-    "bluesign": false
+    "bluesign": false,
+    "image_url": "/images/crashpads/dmm-highball.jpg"
   }
 ]

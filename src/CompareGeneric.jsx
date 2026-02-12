@@ -193,6 +193,10 @@ export default function CompareGeneric({ items = [], type = "ropes" }) {
                 <th style={{ ...S.th, width: "100px" }} />
                 {selectedItems.map((item) => (
                   <th key={item.slug} style={S.th}>
+                    {item.image_url && (
+                      <img src={item.image_url} alt={item.model}
+                        style={{ width: "80px", height: "60px", objectFit: "contain", borderRadius: "6px", marginBottom: "6px" }} />
+                    )}
                     <div style={{ fontSize: "11px", fontWeight: 600, color: T.muted, marginBottom: "2px" }}>{item.brand}</div>
                     <div style={{ fontSize: "15px", fontWeight: 800, color: T.text, marginBottom: "6px" }}>{item.model}</div>
                   </th>

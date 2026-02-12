@@ -380,10 +380,19 @@ function CompactCrashpadCard({ result, onClick }) {
     }}>
       {/* Visual header */}
       <div style={{
-        height: "60px", position: "relative",
+        height: "100px", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center",
-        background: "linear-gradient(135deg, rgba(30,32,40,.8), rgba(20,23,28,.9))",
+        overflow: "hidden",
       }}>
+        {d.image_url ? (
+          <img src={d.image_url} alt={d.model} loading="lazy"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+            background: "linear-gradient(135deg, rgba(30,32,40,.8), rgba(20,23,28,.9))" }}>
+            <CrashpadSVG pad={d} />
+          </div>
+        )}
         {/* Size badge */}
         <span style={{
           position: "absolute", top: "6px", left: "6px", zIndex: 3,
@@ -393,6 +402,7 @@ function CompactCrashpadCard({ result, onClick }) {
           background: SIZE_COLORS[d.pad_size_category]?.bg || "rgba(96,165,250,.12)",
           color: sizeColor,
           border: `1px solid ${SIZE_COLORS[d.pad_size_category]?.border || "rgba(96,165,250,.25)"}`,
+          backdropFilter: "blur(4px)",
         }}>
           {String(d.pad_size_category).replace(/_/g, " ")}
         </span>
@@ -403,12 +413,12 @@ function CompactCrashpadCard({ result, onClick }) {
             padding: "2px 6px", borderRadius: "8px",
             background: s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
             border: `1px solid ${s >= 80 ? "rgba(34,197,94,.25)" : s >= 50 ? "rgba(232,115,74,.25)" : "rgba(239,68,68,.25)"}`,
+            backdropFilter: "blur(4px)",
           }}>
             <span style={{ fontSize: "10px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
               color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
           </div>
         )}
-        <CrashpadSVG pad={d} />
       </div>
       {/* Content */}
       <div style={{ padding: "8px 10px 10px" }}>
@@ -457,18 +467,24 @@ function CrashpadCard({ result, onClick }) {
       onMouseOver={(e) => { e.currentTarget.style.border = "1px solid #E8734A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
       onMouseOut={(e) => { e.currentTarget.style.border = "1px solid #2a2f38"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
-      {/* Visual header with pad SVG */}
+      {/* Visual header with product image */}
       <div style={{
-        height: "100px", position: "relative", overflow: "hidden",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        background: "linear-gradient(135deg, rgba(30,32,40,.8), rgba(20,23,28,.9))",
+        height: "180px", position: "relative", overflow: "hidden",
       }}>
+        {d.image_url ? (
+          <img src={d.image_url} alt={d.model} loading="lazy"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ) : (
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+            background: "linear-gradient(135deg, rgba(30,32,40,.8), rgba(20,23,28,.9))" }}>
+            <CrashpadSVG pad={d} />
+          </div>
+        )}
         <SizeBadge size={d.pad_size_category} />
         <Badge score={s} />
         <HeartButton type="crashpad" slug={d.slug} style={{
           position: "absolute", top: "10px", right: "10px", zIndex: 4,
         }} />
-        <CrashpadSVG pad={d} />
       </div>
 
       <div style={{ padding: "16px" }}>

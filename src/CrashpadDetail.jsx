@@ -333,13 +333,27 @@ export default function CrashpadDetail({ crashpads = [] }) {
 
       {/* Pad visual header */}
       <div style={{
-        padding: "32px 0 12px",
-        background: `linear-gradient(135deg, ${sc.color}10, ${sc.color}04)`,
+        padding: pad.image_url ? "0" : "32px 0 12px",
+        background: pad.image_url ? "none" : `linear-gradient(135deg, ${sc.color}10, ${sc.color}04)`,
         borderBottom: `1px solid ${T.border}`,
       }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
-          <CrashpadSVGDetail pad={pad} />
-        </div>
+        {pad.image_url ? (
+          <div style={{
+            maxWidth: "900px", margin: "0 auto",
+            display: "flex", justifyContent: "center",
+            background: `linear-gradient(135deg, ${sc.color}08, ${sc.color}02)`,
+          }}>
+            <img src={pad.image_url} alt={`${pad.brand} ${pad.model}`}
+              style={{
+                width: "100%", maxHeight: isMobile ? "280px" : "400px",
+                objectFit: "contain",
+              }} />
+          </div>
+        ) : (
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
+            <CrashpadSVGDetail pad={pad} />
+          </div>
+        )}
       </div>
 
       {/* Content */}
