@@ -170,7 +170,7 @@ export default function Landing() {
       {/* ─── Hero ─── */}
       <section style={{ textAlign: "center", padding: isMobile ? "48px 20px 40px" : "72px 32px 56px", maxWidth: "800px", margin: "0 auto" }}>
         <h1 style={{ fontSize: isMobile ? "28px" : "42px", fontWeight: 800, letterSpacing: "-0.8px", margin: "0 0 18px", lineHeight: 1.15 }}>
-          Stop guessing. Start climbing.
+          Scroll less. Climb more.
         </h1>
         <p style={{ fontSize: isMobile ? "14px" : "16px", color: T.muted, lineHeight: 1.8, maxWidth: "620px", margin: "0 auto" }}>
           Data-driven comparison tools for every piece of climbing gear. Every model, every spec, every price {"\u2014"} with zero brand bias and full transparency.
@@ -185,7 +185,7 @@ export default function Landing() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "14px" }}>
           <GearCard
             icon={"\u{1F45F}"} title="Shoe Selector" to="/shoes" active
-            description="328+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking."
+            description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking."
           />
           <GearCard
             icon={"\u{1FA22}"} title="Rope Selector" to="/ropes" active
@@ -194,6 +194,14 @@ export default function Landing() {
           <GearCard
             icon={"\u{1F517}"} title="Belay Device Selector" to="/belays" active
             description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price."
+          />
+          <GearCard
+            icon={"\u{1F9FB}"} title="Crashpad Selector" to="/crashpads" active
+            description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability."
+          />
+          <GearCard
+            icon={"\u{1FA93}"} title="Harness Selector"
+            description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability."
           />
           <GearCard
             icon={"\u{1F9D7}"} title="Pants Selector"
@@ -260,7 +268,7 @@ export default function Landing() {
         {/* Stats */}
         <div style={{ display: "flex", gap: "14px", marginBottom: "40px", flexWrap: "wrap", justifyContent: "center" }}>
           {[
-            { icon: "\u{1F45F}", number: "328+", label: "Shoes compared" },
+            { icon: "\u{1F3AF}", number: "500+", label: "Products compared" },
             { icon: "\u{1F3EA}", number: "20+", label: "Retailers tracked" },
             { icon: "\u{1F3F7}", number: "Daily", label: "Price updates" },
             { icon: "\u{1F6AB}", number: "0", label: "Ads or sponsored rankings" },
@@ -288,9 +296,9 @@ export default function Landing() {
             who made the shoe.
           </p>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8 }}>
-            We will use affiliate links in the future, but we are upfront about it {"\u2014"} and they will
-            never influence rankings, recommendations, or which retailers appear first. Transparency
-            is the whole point here.
+            This site uses affiliate links {"\u2014"} if you purchase through one, we may earn a small
+            commission at no extra cost to you. Affiliate links never influence rankings,
+            recommendations, or which retailers appear first. Transparency is the whole point here.
           </p>
         </div>
 

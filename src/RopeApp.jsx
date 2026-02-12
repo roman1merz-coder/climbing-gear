@@ -6,6 +6,13 @@ import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
 
+/** Image with graceful fallback on 404 */
+function Img({ src, alt, style, fallback }) {
+  const [err, setErr] = useState(false);
+  if (!src || err) return fallback || null;
+  return <img src={src} alt={alt} onError={() => setErr(true)} style={style} />;
+}
+
 // ═══ SCORING FUNCTIONS ═══
 
 const ORD = {
@@ -418,11 +425,11 @@ function CompactRopeCard({ result, onClick }) {
       background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
       border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
     }}>
-      {/* Visual header */}
+      {/* Visual header: product image or SVG fallback */}
       <div style={{
-        height: "70px", position: "relative", overflow: "hidden",
+        height: "90px", position: "relative", overflow: "hidden",
         display: "flex", alignItems: "center", justifyContent: "center",
-        background: `linear-gradient(135deg, ${d.rope_color_1 || '#555'}15, ${d.rope_color_2 || '#333'}08)`,
+        background: "#fff",
       }}>
         {/* Match badge */}
         {s >= 0 && (
@@ -436,7 +443,12 @@ function CompactRopeCard({ result, onClick }) {
               color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
           </div>
         )}
-        <RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />
+        <Img
+          src={d.image_url}
+          alt={`${d.brand} ${d.model}`}
+          style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
+          fallback={<RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />}
+        />
         <HeartButton type="rope" slug={d.slug} style={{
           position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
         }} />
@@ -490,18 +502,23 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
       onMouseOver={(e) => { e.currentTarget.style.border = "1px solid #E8734A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
       onMouseOut={(e) => { e.currentTarget.style.border = "1px solid #2a2f38"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
-      {/* Visual header with rope SVG */}
+      {/* Visual header: product image or rope SVG fallback */}
       <div style={{
-        height: "88px", position: "relative", overflow: "hidden",
+        height: "140px", position: "relative", overflow: "hidden",
         display: "flex", alignItems: "center", justifyContent: "center",
-        background: `linear-gradient(135deg, ${d.rope_color_1 || '#555'}15, ${d.rope_color_2 || '#333'}08)`,
+        background: "#fff",
       }}>
         <TypeBadge type={d.rope_type} tripleRated={d.triple_rated} />
         <Badge score={s} />
         <HeartButton type="rope" slug={d.slug} style={{
           position: "absolute", top: "10px", right: "10px", zIndex: 4,
         }} />
-        <RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />
+        <Img
+          src={d.image_url}
+          alt={`${d.brand} ${d.model}`}
+          style={{ maxWidth: "90%", maxHeight: "90%", objectFit: "contain" }}
+          fallback={<RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />}
+        />
       </div>
 
       <div style={{ padding: "16px" }}>
@@ -1031,12 +1048,12 @@ export default function RopeApp({ ropes = [], src = "local" }) {
                 {isMobile ? (
                   <CompactRopeCard
                     result={r}
-                    onClick={() => navigate(`/rope/${r.rope_data.slug}`)}
+                    onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
                   />
                 ) : (
                   <RopeCard
                     result={r}
-                    onClick={() => navigate(`/rope/${r.rope_data.slug}`)}
+                    onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
                     selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
                     onLengthSelect={handleLengthSelect}
                   />

@@ -564,19 +564,7 @@ function PriceComparison({ prices, shoe, compact }) {
               {p.inStock ? "In stock" : "Out"}
             </span>
           )}
-          {p.url && p.url !== "#" ? (
-            <a href={p.url} target="_blank" rel="noopener noreferrer" style={{
-              fontSize: "11px", fontWeight: 600, color: T.accent, textDecoration: "none",
-              display: "inline-flex", alignItems: "center", gap: "3px",
-              padding: compact ? "6px 10px" : "0",
-              background: compact ? T.accentSoft : "transparent",
-              borderRadius: compact ? "8px" : "0",
-            }}>
-              Visit {"\u2192"}
-            </a>
-          ) : (
-            <span style={{ fontSize: "11px", color: T.muted }}>{"\u2014"}</span>
-          )}
+          {/* Shop links removed for now */}
         </div>
       ))}
     </div>
@@ -819,28 +807,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                     <span style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600 }}>EU Size Range</span>
                     <span style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.mono }}>{shoe.size_range}</span>
                   </div>
-                  {prices.length > 0 && (() => {
-                    const best = prices.filter(p => p.inStock && p.price > 0).sort((a, b) => a.price - b.price)[0];
-                    if (!best) return null;
-                    return (
-                      <a
-                        href={best.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-                          padding: "10px 20px", borderRadius: T.radiusSm,
-                          background: T.accent, color: "#fff",
-                          fontSize: "13px", fontWeight: 700, textDecoration: "none",
-                          fontFamily: T.font, transition: "opacity .2s", cursor: "pointer",
-                        }}
-                        onMouseOver={e => e.currentTarget.style.opacity = "0.85"}
-                        onMouseOut={e => e.currentTarget.style.opacity = "1"}
-                      >
-                        Buy from {best.shop} for {"\u20AC"}{best.price} {"\u2192"}
-                      </a>
-                    );
-                  })()}
+                  {/* Buy button removed for now — prices still shown above */}
                 </div>
                 {/* Right: Evaluation Signal */}
                 <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>

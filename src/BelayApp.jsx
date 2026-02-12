@@ -6,6 +6,13 @@ import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
 
+/** Image with graceful fallback on 404 */
+function Img({ src, alt, style, fallback }) {
+  const [err, setErr] = useState(false);
+  if (!src || err) return fallback || null;
+  return <img src={src} alt={alt} onError={() => setErr(true)} style={style} />;
+}
+
 // ═══ SCORING FUNCTIONS ═══
 
 const PROX = {
@@ -397,11 +404,11 @@ function CompactBelayCard({ belay, matchScore, onClick }) {
       background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
       border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
     }}>
-      {/* Visual header with small SVG */}
+      {/* Visual header: product image or SVG fallback */}
       <div style={{
-        height: "70px", position: "relative",
+        height: "100px", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center",
-        background: "linear-gradient(135deg, rgba(20,23,28,.8), rgba(30,32,40,.6))",
+        background: "#fff",
       }}>
         {s >= 0 && (
           <div style={{
@@ -414,7 +421,12 @@ function CompactBelayCard({ belay, matchScore, onClick }) {
               color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
           </div>
         )}
-        <BelaySVG device={d} width={70} height={58} />
+        <Img
+          src={d.image_url}
+          alt={`${d.brand} ${d.model}`}
+          style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
+          fallback={<BelaySVG device={d} width={70} height={58} />}
+        />
         <HeartButton type="belay" slug={d.slug} style={{
           position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
         }} />
@@ -486,10 +498,14 @@ function BelayCard({ belay, matchScore, onClick }) {
         </div>
       )}
 
-      {/* SVG + Info */}
+      {/* Image/SVG + Info */}
       <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-        <div style={{ flexShrink: 0 }}>
-          <BelaySVG device={d} width={90} height={75} />
+        <div style={{ flexShrink: 0, width: "90px", height: "75px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px", overflow: "hidden", background: d.image_url ? "#fff" : "transparent" }}>
+          {d.image_url ? (
+            <img src={d.image_url} alt={`${d.brand} ${d.model}`} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+          ) : (
+            <BelaySVG device={d} width={90} height={75} />
+          )}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "4px" }}>
@@ -835,13 +851,13 @@ export default function BelayApp({ belays = [], src }) {
                   <CompactBelayCard
                     belay={d}
                     matchScore={ms}
-                    onClick={() => nav(`/belay/${d.slug}`)}
+                    onClick={() => { nav(`/belay/${d.slug}`); window.scrollTo(0, 0); }}
                   />
                 ) : (
                   <BelayCard
                     belay={d}
                     matchScore={ms}
-                    onClick={() => nav(`/belay/${d.slug}`)}
+                    onClick={() => { nav(`/belay/${d.slug}`); window.scrollTo(0, 0); }}
                   />
                 )}
               </div>

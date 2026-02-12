@@ -4,6 +4,13 @@ import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import useIsMobile from "./useIsMobile.js";
 
+/** Image with graceful fallback on 404 */
+function Img({ src, alt, style, fallback }) {
+  const [err, setErr] = useState(false);
+  if (!src || err) return fallback || null;
+  return <img src={src} alt={alt} onError={() => setErr(true)} style={style} />;
+}
+
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
   bg: "#0e1015", surface: "#151820", card: "#1c1f26", border: "#2a2f38",
@@ -158,12 +165,17 @@ export default function RopeDetail({ ropes = [] }) {
 
       {/* Rope visual header */}
       <div style={{
-        padding: "40px 0 20px",
+        padding: isMobile ? "24px 0 16px" : "40px 0 20px",
         background: `linear-gradient(135deg, ${rope.rope_color_1 || '#555'}12, ${rope.rope_color_2 || '#333'}06)`,
         borderBottom: `1px solid ${T.border}`,
       }}>
         <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
-          <RopeSVGDetail color1={rope.rope_color_1 || "#888"} color2={rope.rope_color_2 || "#666"} diameter={rope.diameter_mm} ropeType={rope.rope_type} />
+          <Img
+            src={rope.image_url}
+            alt={`${rope.brand} ${rope.model}`}
+            style={{ display: "block", maxWidth: isMobile ? "260px" : "380px", maxHeight: isMobile ? "180px" : "240px", objectFit: "contain", margin: "0 auto", borderRadius: "12px" }}
+            fallback={<RopeSVGDetail color1={rope.rope_color_1 || "#888"} color2={rope.rope_color_2 || "#666"} diameter={rope.diameter_mm} ropeType={rope.rope_type} />}
+          />
         </div>
       </div>
 

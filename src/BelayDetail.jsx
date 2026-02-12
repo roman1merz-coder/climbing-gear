@@ -4,6 +4,13 @@ import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import useIsMobile from "./useIsMobile.js";
 
+/** Image with graceful fallback on 404 */
+function Img({ src, alt, style, fallback }) {
+  const [err, setErr] = useState(false);
+  if (!src || err) return fallback || null;
+  return <img src={src} alt={alt} onError={() => setErr(true)} style={style} />;
+}
+
 // ═══ TYPE BADGE ═══
 
 const TYPE_COLORS = {
@@ -199,9 +206,14 @@ export default function BelayDetail({ belays = [] }) {
       <div style={{ maxWidth: "1000px", margin: "0 auto", padding: isMobile ? "20px 16px" : "32px" }}>
         {/* Top section */}
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", marginBottom: isMobile ? "28px" : "40px" }}>
-          {/* Left: SVG */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#14171c", borderRadius: "16px", padding: isMobile ? "20px" : "32px" }}>
-            <BelaySVGDetail device={d} compact={isMobile} />
+          {/* Left: Product Image (fallback to SVG) */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: d.image_url ? "#fff" : "#14171c", borderRadius: "16px", padding: isMobile ? "20px" : "32px", minHeight: isMobile ? "180px" : "260px" }}>
+            <Img
+              src={d.image_url}
+              alt={`${d.brand} ${d.model}`}
+              style={{ maxWidth: "90%", maxHeight: isMobile ? "160px" : "220px", objectFit: "contain" }}
+              fallback={<BelaySVGDetail device={d} compact={isMobile} />}
+            />
           </div>
 
           {/* Right: Identity + Price */}

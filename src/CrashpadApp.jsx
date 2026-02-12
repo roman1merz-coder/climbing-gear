@@ -997,12 +997,12 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
                 {isMobile ? (
                   <CompactCrashpadCard
                     result={r}
-                    onClick={() => navigate(`/crashpad/${r.pad_data.slug}`)}
+                    onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
                   />
                 ) : (
                   <CrashpadCard
                     result={r}
-                    onClick={() => navigate(`/crashpad/${r.pad_data.slug}`)}
+                    onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
                   />
                 )}
               </div>

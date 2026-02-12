@@ -143,6 +143,14 @@ function mergeShoe(sbShoe) {
   return merged;
 }
 
+/** Assign local image_url based on slug → /images/{category}/{slug}.jpg */
+function assignLocalImages(items, category) {
+  return items.map(item => ({
+    ...item,
+    image_url: item.image_url || `/images/${category}/${item.slug}.jpg`,
+  }));
+}
+
 function Root() {
   const [shoes, setShoes] = useState(SEED);
   const [src, setSrc] = useState("local");
@@ -152,9 +160,9 @@ function Root() {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Rope & Belay state
-  const [ropes, setRopes] = useState(ROPE_SEED);
+  const [ropes, setRopes] = useState(assignLocalImages(ROPE_SEED, "ropes"));
   const [ropeSrc, setRopeSrc] = useState("seed");
-  const [belays, setBelays] = useState(BELAY_SEED);
+  const [belays, setBelays] = useState(assignLocalImages(BELAY_SEED, "belays"));
   const [belaySrc, setBelaySrc] = useState("seed");
   const [crashpads, setCrashpads] = useState(CRASHPAD_SEED);
   const [crashpadSrc, setCrashpadSrc] = useState("seed");
@@ -175,12 +183,12 @@ function Root() {
 
     // Fetch ropes from Supabase (falls back to seed if table doesn't exist)
     supabaseSelect("ropes")
-      .then((data) => { if (data?.length) { setRopes(data); setRopeSrc(`supabase · ${data.length}`); } })
+      .then((data) => { if (data?.length) { setRopes(assignLocalImages(data, "ropes")); setRopeSrc(`supabase · ${data.length}`); } })
       .catch(() => {});
 
     // Fetch belay devices from Supabase
     supabaseSelect("belay_devices")
-      .then((data) => { if (data?.length) { setBelays(data); setBelaySrc(`supabase · ${data.length}`); } })
+      .then((data) => { if (data?.length) { setBelays(assignLocalImages(data, "belays")); setBelaySrc(`supabase · ${data.length}`); } })
       .catch(() => {});
 
     // Fetch crashpads from Supabase

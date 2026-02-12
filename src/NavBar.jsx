@@ -10,6 +10,7 @@ const TABS = [
   { key: "belays", label: "Belays",     path: "/belays", match: ["/belays", "/belay/"], active: true },
   { key: "pads",   label: "Crashpads",  path: "/crashpads", match: ["/crashpads", "/crashpad/"], active: true },
   { key: "harness",label: "Harnesses",  path: null,      match: [],                    active: false },
+  { key: "pants",  label: "Pants",      path: null,      match: [],                    active: false },
 ];
 
 export default function NavBar({ priceData = {} }) {

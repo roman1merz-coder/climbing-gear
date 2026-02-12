@@ -1332,7 +1332,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 <CompareCheckbox slug={shoe.shoe_data.slug} compact={isMobile} />
                 <Card
                   shoe={shoe}
-                  onClick={() => navigate(`/shoe/${shoe.shoe_data.slug}`)}
+                  onClick={() => { navigate(`/shoe/${shoe.shoe_data.slug}`); window.scrollTo(0, 0); }}
                   priceData={priceData}
                   compact={isMobile}
                 />
