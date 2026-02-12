@@ -380,13 +380,14 @@ function CompactCrashpadCard({ result, onClick }) {
     }}>
       {/* Visual header */}
       <div style={{
-        height: "100px", position: "relative",
+        height: "110px", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center",
         overflow: "hidden",
+        background: d.image_url ? "#14171c" : "transparent",
       }}>
         {d.image_url ? (
           <img src={d.image_url} alt={d.model} loading="lazy"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }} />
         ) : (
           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
             background: "linear-gradient(135deg, rgba(30,32,40,.8), rgba(20,23,28,.9))" }}>
@@ -469,11 +470,12 @@ function CrashpadCard({ result, onClick }) {
     >
       {/* Visual header with product image */}
       <div style={{
-        height: "180px", position: "relative", overflow: "hidden",
+        height: "200px", position: "relative", overflow: "hidden",
+        background: d.image_url ? "#14171c" : "transparent",
       }}>
         {d.image_url ? (
           <img src={d.image_url} alt={d.model} loading="lazy"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            style={{ width: "100%", height: "100%", objectFit: "contain", padding: "6px" }} />
         ) : (
           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
             background: "linear-gradient(135deg, rgba(30,32,40,.8), rgba(20,23,28,.9))" }}>
