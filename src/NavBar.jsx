@@ -4,6 +4,27 @@ import { T } from "./tokens.js";
 import { useWL } from "./WishlistContext.jsx";
 import AlertBell from "./AlertBell.jsx";
 
+/* ─── Logo SVG (triangle + mountains + carabiner + rope) ─── */
+function LogoIcon({ size = 32 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Triangle frame */}
+      <path d="M50 5 L92 88 H8 Z" fill="none" stroke="#3a4555" strokeWidth="5" strokeLinejoin="round" />
+      {/* Mountains (blue) */}
+      <path d="M25 72 L38 48 L46 58 L55 40 L64 55 L75 72" fill="none" stroke="#5b9cc7" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Snow caps */}
+      <path d="M52 43 L55 40 L58 43" fill="none" stroke="#a8d4f0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M35 51 L38 48 L41 51" fill="none" stroke="#a8d4f0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Carabiner (orange) at top */}
+      <ellipse cx="50" cy="18" rx="7" ry="9" fill="none" stroke="#E8734A" strokeWidth="2.5" />
+      <line x1="55" y1="12" x2="55" y2="24" stroke="#E8734A" strokeWidth="2" strokeLinecap="round" />
+      {/* Rope coil (blue) at bottom */}
+      <path d="M34 78 Q38 73 42 78 Q46 83 50 78 Q54 73 58 78 Q62 83 66 78" fill="none" stroke="#5b9cc7" strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M37 83 Q41 78 45 83 Q49 88 53 83 Q57 78 61 83" fill="none" stroke="#5b9cc7" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+    </svg>
+  );
+}
+
 const TABS = [
   { key: "shoes",  label: "Shoes",      path: "/shoes",  match: ["/shoes", "/shoe/"],  active: true },
   { key: "ropes",  label: "Ropes",      path: "/ropes",  match: ["/ropes", "/rope/"],  active: true },
@@ -41,7 +62,7 @@ export default function NavBar({ priceData = {} }) {
           cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
         }}
       >
-        <span style={{ fontSize: isMobile ? "16px" : "18px" }}>{"\u26F0\uFE0F"}</span>
+        <LogoIcon size={isMobile ? 28 : 34} />
         {!isMobile && (
           <span style={{
             fontSize: "15px", fontWeight: 800,

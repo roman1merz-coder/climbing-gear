@@ -184,59 +184,80 @@ function PriceChart({ data, width = 320, height = 100 }) {
   );
 }
 
-// ─── Foot Shape Visual ───
+// ─── Foot Shape Visual (anatomical style with profile line) ───
 function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
-  const body = "M15,62 Q12,80 14,100 Q16,125 22,145 Q28,165 35,180 Q42,192 50,195 Q58,192 65,180 Q72,165 78,145 Q84,125 86,100 Q88,80 85,62";
-  const toeShapes = {
-    egyptian: {
-      toes: [
-        "M15,62 Q13,50 15,38 Q17,24 22,16 Q27,8 32,8 Q37,8 39,16 Q41,24 40,38 Q39,50 38,62",
-        "M38,62 Q38,52 39,42 Q40,30 43,22 Q46,16 49,16 Q52,16 54,22 Q56,30 56,42 Q56,52 55,62",
-        "M55,62 Q55,52 56,44 Q57,34 59,28 Q61,22 63,22 Q65,22 67,28 Q69,34 69,44 Q69,52 68,62",
-        "M68,62 Q68,54 69,47 Q70,39 71,34 Q73,29 75,29 Q77,29 78,34 Q79,39 79,47 Q79,54 78,62",
-        "M78,62 Q79,56 79,51 Q80,45 81,41 Q82,37 83,37 Q85,37 85,41 Q86,45 86,51 Q86,56 85,62",
-      ],
-    },
-    greek: {
-      toes: [
-        "M15,62 Q13,50 15,38 Q17,26 22,20 Q27,14 32,14 Q37,14 39,20 Q41,26 40,38 Q39,50 38,62",
-        "M38,62 Q38,50 39,38 Q40,24 43,16 Q46,8 49,8 Q52,8 54,16 Q56,24 56,38 Q56,50 55,62",
-        "M55,62 Q55,52 56,42 Q57,30 59,24 Q61,18 63,18 Q65,18 67,24 Q69,30 69,42 Q69,52 68,62",
-        "M68,62 Q68,54 69,47 Q70,39 71,34 Q73,29 75,29 Q77,29 78,34 Q79,39 79,47 Q79,54 78,62",
-        "M78,62 Q79,56 79,51 Q80,45 81,41 Q82,37 83,37 Q85,37 85,41 Q86,45 86,51 Q86,56 85,62",
-      ],
-    },
-    roman: {
-      toes: [
-        "M15,62 Q13,50 15,38 Q17,26 22,18 Q27,10 32,10 Q37,10 39,18 Q41,26 40,38 Q39,50 38,62",
-        "M38,62 Q38,50 39,40 Q40,28 43,20 Q46,12 49,12 Q52,12 54,20 Q56,28 56,40 Q56,50 55,62",
-        "M55,62 Q55,52 56,42 Q57,30 59,22 Q61,14 63,14 Q65,14 67,22 Q69,30 69,42 Q69,52 68,62",
-        "M68,62 Q68,54 69,47 Q70,39 71,34 Q73,29 75,29 Q77,29 78,34 Q79,39 79,47 Q79,54 78,62",
-        "M78,62 Q79,56 79,51 Q80,45 81,41 Q82,37 83,37 Q85,37 85,41 Q86,45 86,51 Q86,56 85,62",
-      ],
-    },
-  };
   const descs = {
     egyptian: "Big toe longest, toes descend diagonally",
     greek: "Second toe longest (Morton\u2019s toe)",
     roman: "First three toes roughly equal length",
   };
-  const shape = toeShapes[toe_form] || toeShapes.egyptian;
+  const tf = toe_form || "egyptian";
+
+  // Toe tip Y positions define the profile (lower Y = higher toe)
+  const profiles = {
+    egyptian: [10, 18, 26, 34, 40],   // big toe highest, descending
+    greek:    [18, 8, 20, 32, 40],     // 2nd toe highest
+    roman:    [12, 12, 14, 30, 38],    // first 3 roughly equal
+  };
+  const tipY = profiles[tf] || profiles.egyptian;
+
+  // Profile line endpoints for the diagonal indicator
+  const lineEndpoints = {
+    egyptian: { x1: 14, y1: 6, x2: 88, y2: 44 },
+    greek:    { x1: 8, y1: 18, x2: 52, y2: 4 },
+    roman:    { x1: 8, y1: 8, x2: 68, y2: 10 },
+  };
+  const le = lineEndpoints[tf] || lineEndpoints.egyptian;
+
+  // Toe X positions (center) and widths
+  const toeX = [22, 40, 56, 70, 82];
+  const toeW = [14, 10, 9, 8, 7];
+
+  function Toe({ cx, halfW, tipYv, idx }) {
+    const baseY = 62;
+    const h = baseY - tipYv;
+    const nailY = tipYv + 4;
+    const nailH = Math.min(10, h * 0.25);
+    const jointY = tipYv + h * 0.5;
+    return (
+      <g>
+        {/* Toe body */}
+        <path d={`M${cx - halfW},${baseY} Q${cx - halfW - 1},${tipYv + h * 0.3} ${cx - halfW + 2},${tipYv + 2} Q${cx},${tipYv - 2} ${cx + halfW - 2},${tipYv + 2} Q${cx + halfW + 1},${tipYv + h * 0.3} ${cx + halfW},${baseY}`}
+          fill="none" stroke={T.accent} strokeWidth="1.6" strokeLinecap="round" />
+        {/* Toenail */}
+        <rect x={cx - halfW + 3} y={nailY} width={halfW * 2 - 6} height={nailH} rx="2"
+          fill="none" stroke={T.accent} strokeWidth="1" opacity="0.6" />
+        {/* Joint line */}
+        <line x1={cx - halfW + 2} y1={jointY} x2={cx + halfW - 2} y2={jointY}
+          stroke={T.accent} strokeWidth="0.8" opacity="0.35" strokeDasharray="2,2" />
+      </g>
+    );
+  }
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-      <svg width="80" height="150" viewBox="5 2 90 198" style={{ flexShrink: 0 }}>
-        <path d={body} fill={T.accentSoft} stroke={T.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        {shape.toes.map((d, i) => (
-          <path key={i} d={d} fill={T.accentSoft} stroke={T.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <svg width="90" height="155" viewBox="0 0 100 165" style={{ flexShrink: 0 }}>
+        {/* Foot body */}
+        <path d="M8,62 Q5,82 7,105 Q10,130 18,150 Q26,162 42,164 Q58,164 72,150 Q84,130 88,105 Q92,82 90,62"
+          fill={T.accentSoft} stroke={T.accent} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Toes */}
+        {toeX.map((cx, i) => (
+          <Toe key={i} cx={cx} halfW={toeW[i] / 2} tipYv={tipY[i]} idx={i} />
         ))}
+        {/* Toe divider lines (subtle) */}
+        {[30, 47, 62, 75].map((x, i) => (
+          <line key={i} x1={x} y1={62} x2={x + (i < 2 ? 1 : 0)} y2={56} stroke={T.accent} strokeWidth="0.6" opacity="0.2" />
+        ))}
+        {/* Profile line (blue diagonal) */}
+        <line x1={le.x1} y1={le.y1} x2={le.x2} y2={le.y2}
+          stroke="#60a5fa" strokeWidth="1.8" strokeLinecap="round" opacity="0.7" />
       </svg>
       <div>
         <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.font, textTransform: "capitalize", marginBottom: "6px" }}>
-          {toe_form} foot shape
+          {tf} foot shape
         </div>
         <div style={{ fontSize: "12px", color: T.muted, fontFamily: T.font, lineHeight: 1.6, marginBottom: "12px" }}>
-          {descs[toe_form] || descs.egyptian}
+          {descs[tf] || descs.egyptian}
         </div>
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
           <Tag small variant={w === "narrow" ? "accent" : "default"}>{w} width</Tag>
