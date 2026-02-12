@@ -11,7 +11,9 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single"],
+    "compatible_rope_types": [
+      "single"
+    ],
     "weight_g": 175,
     "material": "aluminum_steel",
     "anti_panic": false,
@@ -20,9 +22,22 @@
     "mechanical_advantage": "3:1",
     "rappel_single_strand": true,
     "rappel_double_strand": false,
-    "best_use_cases": ["gym", "sport_single", "top_rope", "projecting"],
-    "skill_level": ["beginner", "intermediate", "advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope",
+      "projecting"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": true,
     "eco_details": "Recycled nylon handle",
     "year_released": 2019,
@@ -57,7 +72,9 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single"],
+    "compatible_rope_types": [
+      "single"
+    ],
     "weight_g": 200,
     "material": "aluminum_steel",
     "anti_panic": true,
@@ -66,9 +83,22 @@
     "mechanical_advantage": "3:1",
     "rappel_single_strand": true,
     "rappel_double_strand": false,
-    "best_use_cases": ["gym", "sport_single", "top_rope", "big_wall", "projecting"],
-    "skill_level": ["beginner", "intermediate", "advanced"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope",
+      "big_wall",
+      "projecting"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2017,
@@ -103,7 +133,9 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single"],
+    "compatible_rope_types": [
+      "single"
+    ],
     "weight_g": 235,
     "material": "aluminum_steel",
     "anti_panic": false,
@@ -112,9 +144,21 @@
     "mechanical_advantage": "3:1",
     "rappel_single_strand": true,
     "rappel_double_strand": false,
-    "best_use_cases": ["gym", "sport_single", "top_rope", "projecting"],
-    "skill_level": ["intermediate", "advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope",
+      "projecting"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": true,
     "eco_details": "Recycled nylon handle and components",
     "year_released": 2024,
@@ -149,7 +193,11 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single", "half", "twin"],
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
     "weight_g": 88,
     "material": "aluminum",
     "anti_panic": false,
@@ -158,9 +206,22 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": true,
-    "best_use_cases": ["trad_multi", "alpine", "sport_single", "top_rope", "ice_mixed"],
-    "skill_level": ["intermediate", "advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "trad_multi",
+      "alpine",
+      "sport_single",
+      "top_rope",
+      "ice_mixed"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2012,
@@ -195,7 +256,11 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single", "half", "twin"],
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
     "weight_g": 59,
     "material": "aluminum",
     "anti_panic": false,
@@ -204,9 +269,21 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": true,
-    "best_use_cases": ["trad_multi", "alpine", "sport_single", "ice_mixed"],
-    "skill_level": ["intermediate", "advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "trad_multi",
+      "alpine",
+      "sport_single",
+      "ice_mixed"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2020,
@@ -241,7 +318,9 @@
     "rope_diameter_max_mm": 10.5,
     "rope_diameter_optimal_min_mm": 9.0,
     "rope_diameter_optimal_max_mm": 10.0,
-    "compatible_rope_types": ["single"],
+    "compatible_rope_types": [
+      "single"
+    ],
     "weight_g": 75,
     "material": "aluminum",
     "anti_panic": false,
@@ -250,9 +329,19 @@
     "mechanical_advantage": null,
     "rappel_single_strand": false,
     "rappel_double_strand": false,
-    "best_use_cases": ["gym", "sport_single", "top_rope"],
-    "skill_level": ["beginner", "intermediate"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2017,
@@ -287,7 +376,11 @@
     "rope_diameter_max_mm": 10.5,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 9.8,
-    "compatible_rope_types": ["single", "half", "twin"],
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
     "weight_g": 65,
     "material": "steel",
     "anti_panic": false,
@@ -296,9 +389,20 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": true,
-    "best_use_cases": ["trad_multi", "alpine", "sport_single", "ice_mixed"],
-    "skill_level": ["advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "trad_multi",
+      "alpine",
+      "sport_single",
+      "ice_mixed"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2014,
@@ -333,7 +437,11 @@
     "rope_diameter_max_mm": 10.0,
     "rope_diameter_optimal_min_mm": 8.0,
     "rope_diameter_optimal_max_mm": 9.5,
-    "compatible_rope_types": ["single", "half", "twin"],
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
     "weight_g": 121,
     "material": "aluminum_steel",
     "anti_panic": false,
@@ -342,9 +450,21 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": true,
-    "best_use_cases": ["trad_multi", "alpine", "sport_single", "ice_mixed"],
-    "skill_level": ["intermediate", "advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "trad_multi",
+      "alpine",
+      "sport_single",
+      "ice_mixed"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2018,
@@ -379,7 +499,11 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single", "half", "twin"],
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
     "weight_g": 71,
     "material": "aluminum",
     "anti_panic": false,
@@ -388,9 +512,20 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": true,
-    "best_use_cases": ["sport_single", "trad_multi", "top_rope"],
-    "skill_level": ["beginner", "intermediate", "advanced"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "sport_single",
+      "trad_multi",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2010,
@@ -425,7 +560,11 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.0,
     "rope_diameter_optimal_max_mm": 10.0,
-    "compatible_rope_types": ["single", "half", "twin"],
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
     "weight_g": 80,
     "material": "aluminum",
     "anti_panic": false,
@@ -434,9 +573,21 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": true,
-    "best_use_cases": ["trad_multi", "alpine", "sport_single", "ice_mixed"],
-    "skill_level": ["intermediate", "advanced", "expert"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "trad_multi",
+      "alpine",
+      "sport_single",
+      "ice_mixed"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2019,
@@ -471,7 +622,9 @@
     "rope_diameter_max_mm": 10.5,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.0,
-    "compatible_rope_types": ["single"],
+    "compatible_rope_types": [
+      "single"
+    ],
     "weight_g": 198,
     "material": "aluminum_steel",
     "anti_panic": true,
@@ -480,9 +633,21 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": false,
-    "best_use_cases": ["gym", "sport_single", "top_rope", "projecting"],
-    "skill_level": ["beginner", "intermediate", "advanced"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope",
+      "projecting"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2019,
@@ -517,7 +682,9 @@
     "rope_diameter_max_mm": 11.0,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
-    "compatible_rope_types": ["single"],
+    "compatible_rope_types": [
+      "single"
+    ],
     "weight_g": 230,
     "material": "aluminum_steel",
     "anti_panic": true,
@@ -526,9 +693,21 @@
     "mechanical_advantage": null,
     "rappel_single_strand": true,
     "rappel_double_strand": false,
-    "best_use_cases": ["gym", "sport_single", "top_rope", "projecting"],
-    "skill_level": ["beginner", "intermediate", "advanced"],
-    "certification": ["CE_EN15151", "UIAA"],
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope",
+      "projecting"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
     "eco_design": false,
     "eco_details": null,
     "year_released": 2025,
@@ -550,5 +729,423 @@
     ],
     "device_color_1": "#6366f1",
     "device_color_2": "#1f2937"
+  },
+  {
+    "brand": "Climbing Technology",
+    "model": "Alpine Up",
+    "device_type": "passive_assisted",
+    "braking_type": "slot_assisted",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.7,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.0,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 160,
+    "material": "aluminum",
+    "anti_panic": true,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "sport_multi",
+      "trad",
+      "alpine",
+      "top_rope"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2013,
+    "price_uvp_eur": 89.95,
+    "price_eur_min": 65.0,
+    "price_eur_max": 89.95,
+    "description": "The Swiss Army knife of belay devices. The Alpine Up offers assisted braking in lead mode, guide mode for multi-pitch, and standard rappel — all in a 160g package. One of the most versatile devices on the market.",
+    "pros": [
+      "3 modes: lead, guide, rappel",
+      "Assisted braking + anti-panic",
+      "Works with single and half ropes",
+      "Extremely versatile for alpine climbing"
+    ],
+    "cons": [
+      "Learning curve for mode switching",
+      "Braking not as positive as cam devices",
+      "Can be fiddly with thin ropes"
+    ],
+    "device_color_1": "#22c55e",
+    "device_color_2": "#6b7280",
+    "slug": "climbing-technology-alpine-up"
+  },
+  {
+    "brand": "Climbing Technology",
+    "model": "Click Up",
+    "device_type": "passive_assisted",
+    "braking_type": "slot_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.5,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 10.2,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 165,
+    "material": "aluminum_steel",
+    "anti_panic": true,
+    "lead_top_switch": false,
+    "lowering_type": "lever",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2016,
+    "price_uvp_eur": 89.95,
+    "price_eur_min": 60.0,
+    "price_eur_max": 89.95,
+    "description": "A GriGri alternative with a twist: the Click Up's anti-panic function locks the rope if the handle is pulled too hard. Great for nervous beginners and gym climbing.",
+    "pros": [
+      "Anti-panic function — locks on over-squeeze",
+      "Smooth lowering",
+      "Good value vs GriGri",
+      "Beginner-friendly"
+    ],
+    "cons": [
+      "Single rope only",
+      "No guide mode",
+      "Heavier than tube devices",
+      "Rope feeding can be stiff"
+    ],
+    "device_color_1": "#f97316",
+    "device_color_2": "#6b7280",
+    "slug": "climbing-technology-click-up"
+  },
+  {
+    "brand": "Trango",
+    "model": "Vergo",
+    "device_type": "active_assisted",
+    "braking_type": "cam_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.9,
+    "rope_diameter_max_mm": 10.7,
+    "rope_diameter_optimal_min_mm": 9.4,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 195,
+    "material": "aluminum_steel",
+    "anti_panic": true,
+    "lead_top_switch": true,
+    "lowering_type": "lever",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope",
+      "projecting"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 129.95,
+    "price_eur_min": 99.95,
+    "price_eur_max": 129.95,
+    "description": "Trango's GriGri competitor with anti-panic and lead/TR mode switch. The Vergo's dual-mode design lets you optimize braking for lead or top-rope. A strong choice for gym and sport climbing.",
+    "pros": [
+      "Anti-panic function",
+      "Lead/TR mode switch",
+      "Smooth lowering",
+      "Good rope feeding"
+    ],
+    "cons": [
+      "Heavier at 195g",
+      "Narrow rope range (8.9-10.7mm)",
+      "Less established brand",
+      "More expensive than basic GriGri"
+    ],
+    "device_color_1": "#ef4444",
+    "device_color_2": "#6b7280",
+    "slug": "trango-vergo"
+  },
+  {
+    "brand": "Wild Country",
+    "model": "Revo",
+    "device_type": "active_assisted",
+    "braking_type": "bi-directional_locking",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.5,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 285,
+    "material": "aluminum_steel",
+    "anti_panic": true,
+    "lead_top_switch": false,
+    "lowering_type": "standard",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 159.95,
+    "price_eur_min": 129.95,
+    "price_eur_max": 159.95,
+    "description": "The panic-proof belay device. The Revo's bi-directional locking mechanism stops the rope in ANY scenario — whether you grip too hard or let go entirely. The safest assisted device on the market.",
+    "pros": [
+      "Bi-directional locking — works if you grip or release",
+      "Truly panic-proof design",
+      "Wide rope range (8.5-11mm)",
+      "Ideal for beginners and gyms"
+    ],
+    "cons": [
+      "Heavy at 285g",
+      "Cannot be used for rappel",
+      "Expensive",
+      "Feeds rope slower than GriGri"
+    ],
+    "device_color_1": "#a855f7",
+    "device_color_2": "#6b7280",
+    "slug": "wild-country-revo"
+  },
+  {
+    "brand": "Beal",
+    "model": "Birdie",
+    "device_type": "passive_assisted",
+    "braking_type": "slot_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.5,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 10.2,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 210,
+    "material": "aluminum_steel",
+    "anti_panic": true,
+    "lead_top_switch": false,
+    "lowering_type": "lever",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2021,
+    "price_uvp_eur": 119.95,
+    "price_eur_min": 89.95,
+    "price_eur_max": 119.95,
+    "description": "Beal's assisted-braking device with anti-panic function. The Birdie offers smooth lowering and reliable braking in a design that's easier to learn than the GriGri for some climbers.",
+    "pros": [
+      "Anti-panic function",
+      "Smooth lowering",
+      "Good rope feeding",
+      "Made by Beal — rope experts"
+    ],
+    "cons": [
+      "Heavier at 210g",
+      "No guide mode",
+      "Single rope only",
+      "Less market presence than GriGri"
+    ],
+    "device_color_1": "#fbbf24",
+    "device_color_2": "#6b7280",
+    "slug": "beal-birdie"
+  },
+  {
+    "brand": "Salewa",
+    "model": "Ergo Belay System",
+    "device_type": "active_assisted",
+    "braking_type": "cam_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.6,
+    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 170,
+    "material": "aluminum_steel",
+    "anti_panic": true,
+    "lead_top_switch": false,
+    "lowering_type": "lever",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 109.95,
+    "price_eur_min": 79.95,
+    "price_eur_max": 109.95,
+    "description": "Salewa's ergonomic assisted-braking device. The Ergo's cam mechanism provides reliable braking while the handle design keeps your hand in the correct position. A good alternative for Salewa loyalists.",
+    "pros": [
+      "Ergonomic handle design",
+      "Anti-panic function",
+      "Light at 170g",
+      "Good value"
+    ],
+    "cons": [
+      "Less proven than GriGri",
+      "Limited to single ropes",
+      "No guide mode",
+      "Brand less established in belay devices"
+    ],
+    "device_color_1": "#3b82f6",
+    "device_color_2": "#6b7280",
+    "slug": "salewa-ergo-belay-system"
+  },
+  {
+    "brand": "Mammut",
+    "model": "Crag Light Belay",
+    "device_type": "tube_guide",
+    "braking_type": "friction",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.5,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.0,
+    "rope_diameter_optimal_max_mm": 10.0,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 57,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "friction",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "sport_multi"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2023,
+    "price_uvp_eur": 24.95,
+    "price_eur_min": 19.95,
+    "price_eur_max": 24.95,
+    "description": "Mammut's ultralight tube device with guide mode. At just 57g it's perfect for weight-conscious alpinists who need a reliable device for half and twin ropes on long routes.",
+    "pros": [
+      "Ultralight at 57g",
+      "Guide mode for multi-pitch",
+      "Works with all rope types",
+      "Excellent value"
+    ],
+    "cons": [
+      "No assisted braking",
+      "Requires skilled belaying",
+      "Basic friction braking only",
+      "Not ideal for beginners"
+    ],
+    "device_color_1": "#6b7280",
+    "device_color_2": "#ef4444",
+    "slug": "mammut-crag-light-belay"
   }
 ]
