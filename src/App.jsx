@@ -859,119 +859,89 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
         color: "#f0f0f0",
       }}
     >
-      {/* Header */}
+      {/* Sub-header: search + filters */}
       <header
         style={{
-          padding: isMobile ? "12px 16px" : "20px 32px",
+          padding: isMobile ? "8px 16px" : "10px 32px",
           borderBottom: "1px solid #1e2028",
           display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          alignItems: isMobile ? "stretch" : "center",
-          justifyContent: "space-between",
-          gap: isMobile ? "10px" : 0,
+          alignItems: "center",
+          gap: isMobile ? "8px" : "16px",
           position: "sticky",
-          top: 0,
+          top: isMobile ? "44px" : "50px",
           background: "rgba(19,21,26,.92)",
           backdropFilter: "blur(12px)",
           zIndex: 100,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: isMobile ? "20px" : "24px" }}>🧗</span>
-            <span style={{ fontSize: isMobile ? "15px" : "18px", fontWeight: 700, letterSpacing: "-0.5px" }}>
-              climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
-            </span>
-          </div>
-          {isMobile && (
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <span style={{ fontSize: "12px", color: "#6b7280" }}>
-                {displayResults.length} shoes
-              </span>
-              <button
-                onClick={() => setShowMobileFilters(true)}
-                style={{
-                  padding: "6px 14px", borderRadius: "20px",
-                  border: `1.5px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
-                  background: ac > 0 ? "rgba(232,115,74,0.15)" : "transparent",
-                  color: ac > 0 ? "#E8734A" : "#9ca3af",
-                  fontSize: "12px", fontWeight: 600, cursor: "pointer",
-                  fontFamily: "'DM Sans',sans-serif", display: "flex", alignItems: "center", gap: "4px",
-                }}
-              >
-                Filters{ac > 0 ? ` (${ac})` : ""}
-              </button>
-            </div>
-          )}
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px", flex: isMobile ? undefined : 1, justifyContent: isMobile ? undefined : "flex-end" }}>
-          <div style={{ position: "relative", maxWidth: isMobile ? undefined : "320px", flex: 1 }}>
-            <span
+        {isMobile && (
+          <button
+            onClick={() => setShowMobileFilters(true)}
+            style={{
+              padding: "6px 14px", borderRadius: "20px",
+              border: `1.5px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
+              background: ac > 0 ? "rgba(232,115,74,0.15)" : "transparent",
+              color: ac > 0 ? "#E8734A" : "#9ca3af",
+              fontSize: "12px", fontWeight: 600, cursor: "pointer",
+              fontFamily: "'DM Sans',sans-serif", display: "flex", alignItems: "center", gap: "4px",
+              flexShrink: 0,
+            }}
+          >
+            Filters{ac > 0 ? ` (${ac})` : ""}
+          </button>
+        )}
+        <div style={{ position: "relative", maxWidth: isMobile ? undefined : "320px", flex: 1 }}>
+          <span
+            style={{
+              position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)",
+              fontSize: "14px", color: "#6b7280", pointerEvents: "none",
+            }}
+          >
+            🔍
+          </span>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search brand, model, style..."
+            style={{
+              width: "100%", padding: "8px 12px 8px 36px", borderRadius: "12px",
+              border: "1.5px solid #2a2f38", background: "#1c1f26", color: "#f0f0f0",
+              fontSize: "13px", fontFamily: "'DM Sans',sans-serif", outline: "none",
+              transition: "border-color .2s",
+            }}
+            onFocus={(e) => (e.target.style.borderColor = "#E8734A")}
+            onBlur={(e) => (e.target.style.borderColor = "#2a2f38")}
+          />
+          {query && (
+            <button
+              onClick={() => setQuery("")}
               style={{
-                position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)",
-                fontSize: "14px", color: "#6b7280", pointerEvents: "none",
+                position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
+                background: "none", border: "none", color: "#6b7280", cursor: "pointer",
+                fontSize: "14px", padding: 0, lineHeight: 1,
               }}
             >
-              🔍
-            </span>
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search brand, model, style..."
-              style={{
-                width: "100%", padding: "8px 12px 8px 36px", borderRadius: "12px",
-                border: "1.5px solid #2a2f38", background: "#1c1f26", color: "#f0f0f0",
-                fontSize: "13px", fontFamily: "'DM Sans',sans-serif", outline: "none",
-                transition: "border-color .2s",
-              }}
-              onFocus={(e) => (e.target.style.borderColor = "#E8734A")}
-              onBlur={(e) => (e.target.style.borderColor = "#2a2f38")}
-            />
-            {query && (
-              <button
-                onClick={() => setQuery("")}
-                style={{
-                  position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
-                  background: "none", border: "none", color: "#6b7280", cursor: "pointer",
-                  fontSize: "14px", padding: 0, lineHeight: 1,
-                }}
-              >
-                ×
-              </button>
-            )}
-          </div>
-          {!isMobile && (
-            <>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <div style={{
-                  width: "8px", height: "8px", borderRadius: "50%",
-                  background: src.includes("supabase") ? "#22c55e" : "#3b82f6",
-                  boxShadow: `0 0 6px ${src.includes("supabase") ? "rgba(34,197,94,.5)" : "rgba(59,130,246,.5)"}`,
-                }} />
-                <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-                  {src.includes("supabase") ? "Live · Supabase" : "Preview · Local"}
-                </span>
-              </div>
-              <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
-                {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
-                {ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
-              </span>
-              {(ac > 0 || query) && (
-                <button
-                  onClick={() => { setFilters({}); setQuery(""); }}
-                  style={{
-                    padding: "6px 16px", borderRadius: "20px", border: "1px solid #3a3f47",
-                    background: "transparent", color: "#9ca3af", fontSize: "12px",
-                    cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
-                  }}
-                >
-                  Clear all
-                </button>
-              )}
-            </>
+              ×
+            </button>
           )}
         </div>
+        <span style={{ fontSize: isMobile ? "11px" : "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
+          {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
+          {!isMobile && ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
+        </span>
+        {(ac > 0 || query) && (
+          <button
+            onClick={() => { setFilters({}); setQuery(""); }}
+            style={{
+              padding: "6px 16px", borderRadius: "20px", border: "1px solid #3a3f47",
+              background: "transparent", color: "#9ca3af", fontSize: "12px",
+              cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+            }}
+          >
+            Clear all
+          </button>
+        )}
       </header>
 
       {/* Mobile filter overlay */}

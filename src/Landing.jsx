@@ -167,25 +167,6 @@ export default function Landing() {
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
 
-      {/* ─── Header ─── */}
-      <header style={{
-        padding: isMobile ? "16px" : "18px 32px",
-        borderBottom: `1px solid ${T.border}`,
-        position: "sticky", top: 0, background: "rgba(14,16,21,0.92)",
-        backdropFilter: "blur(12px)", zIndex: 50,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontSize: "20px" }}>{"\u{26F0}"}</span>
-          <span style={{ fontSize: "15px", fontWeight: 800, letterSpacing: "-0.3px" }}>climbing-gear.com</span>
-        </div>
-        <div style={{ display: "flex", gap: "20px", fontSize: "13px" }}>
-          <a href="#about" style={{ color: T.muted, textDecoration: "none", fontWeight: 500 }}>About</a>
-          <Link to="/impressum" style={{ color: T.muted, textDecoration: "none", fontWeight: 500 }}>Impressum</Link>
-          <Link to="/privacy" style={{ color: T.muted, textDecoration: "none", fontWeight: 500 }}>Datenschutz</Link>
-        </div>
-      </header>
-
       {/* ─── Hero ─── */}
       <section style={{ textAlign: "center", padding: isMobile ? "48px 20px 40px" : "72px 32px 56px", maxWidth: "800px", margin: "0 auto" }}>
         <h1 style={{ fontSize: isMobile ? "28px" : "42px", fontWeight: 800, letterSpacing: "-0.8px", margin: "0 0 18px", lineHeight: 1.15 }}>

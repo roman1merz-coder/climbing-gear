@@ -624,45 +624,16 @@ export default function BelayApp({ belays = [], src }) {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0d1117", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
-      {/* Header */}
+      {/* Sub-header: filters + count */}
       <header style={{
-        position: "sticky", top: 0, zIndex: 100,
+        position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
         display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px",
         flexWrap: isMobile ? "wrap" : "nowrap",
-        padding: isMobile ? "10px 12px" : "0 24px",
-        minHeight: isMobile ? undefined : "65px",
+        padding: isMobile ? "8px 12px" : "0 24px",
+        minHeight: isMobile ? undefined : "50px",
         background: "rgba(13,17,23,.92)", backdropFilter: "blur(12px)",
         borderBottom: "1px solid #23272f",
       }}>
-        <div
-          onClick={() => nav("/")}
-          style={{ fontSize: isMobile ? "13px" : "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", whiteSpace: "nowrap" }}
-        >
-          <span style={{ fontSize: isMobile ? "16px" : "20px" }}>🧗</span>
-          climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
-        </div>
-
-        <div style={{
-          display: "flex", gap: "2px", background: "#151820", borderRadius: "8px", padding: "3px", marginLeft: isMobile ? "auto" : "20px",
-        }}>
-          <button onClick={() => nav("/shoes")} style={{
-            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
-            color: "#6b7280", cursor: "pointer", border: "none", background: "none",
-            fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
-          }}>Shoes</button>
-          <button onClick={() => nav("/ropes")} style={{
-            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
-            color: "#6b7280", cursor: "pointer", border: "none", background: "none",
-            fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
-          }}>Ropes</button>
-          <button style={{
-            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
-            color: "#f0f0f0", cursor: "pointer", border: "none",
-            background: "#1a1f2a", boxShadow: "0 1px 3px rgba(0,0,0,.3)",
-            fontFamily: "'DM Sans',sans-serif",
-          }}>Belays</button>
-        </div>
-
         {isMobile && (
           <button
             onClick={() => setShowMobileFilters(!showMobileFilters)}
@@ -678,9 +649,24 @@ export default function BelayApp({ belays = [], src }) {
           </button>
         )}
 
-        {!isMobile && <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap", marginLeft: "auto" }}>
+        <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap", marginLeft: isMobile ? "auto" : undefined }}>
           {filtered.length} device{filtered.length !== 1 ? "s" : ""}
-        </span>}
+        </span>
+
+        {ac > 0 && (
+          <button
+            onClick={() => { setFilters({}); setActiveTypes([]); }}
+            style={{
+              padding: "6px 16px", borderRadius: "20px",
+              border: "1px solid #3a3f47", background: "transparent",
+              color: "#9ca3af", fontSize: "12px", cursor: "pointer",
+              fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+              marginLeft: isMobile ? undefined : "auto",
+            }}
+          >
+            Clear all
+          </button>
+        )}
       </header>
 
       {/* Mobile filter overlay */}

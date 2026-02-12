@@ -11,6 +11,7 @@ import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
 import About from "./About.jsx";
 import Landing from "./Landing.jsx";
+import NavBar from "./NavBar.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
 import CompareBar from "./CompareBar.jsx";
 import { GLOBAL_CSS } from "./tokens.js";
@@ -184,6 +185,7 @@ function Root() {
       <ErrorBoundary>
         <CompareProvider>
           <BrowserRouter>
+            <NavBar />
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/shoes" element={<App shoes={shoes} src={src} priceData={priceData} filters={searchFilters} setFilters={setSearchFilters} query={searchQuery} setQuery={setSearchQuery} />} />

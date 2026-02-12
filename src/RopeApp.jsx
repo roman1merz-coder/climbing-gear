@@ -615,45 +615,16 @@ export default function RopeApp({ ropes = [], src = "local" }) {
 
   return (
     <div style={{ background: "#0e1015", minHeight: "100vh", color: "#f0f0f0" }}>
-      {/* Header */}
+      {/* Sub-header: search + filters */}
       <header style={{
-        position: "sticky", top: 0, zIndex: 100,
+        position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
         display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px",
         flexWrap: isMobile ? "wrap" : "nowrap",
-        padding: isMobile ? "10px 12px" : "0 24px",
-        minHeight: isMobile ? undefined : "65px",
+        padding: isMobile ? "8px 12px" : "0 24px",
+        minHeight: isMobile ? undefined : "50px",
         background: "rgba(14,16,21,.92)", backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e2028",
       }}>
-        <div
-          onClick={() => navigate("/")}
-          style={{ fontSize: isMobile ? "13px" : "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", whiteSpace: "nowrap" }}
-        >
-          <span style={{ fontSize: isMobile ? "16px" : "20px" }}>🧗</span>
-          climbing-gear<span style={{ color: "#E8734A" }}>.com</span>
-        </div>
-
-        <div style={{
-          display: "flex", gap: "2px", background: "#151820", borderRadius: "8px", padding: "3px", marginLeft: isMobile ? "auto" : "20px",
-        }}>
-          <button onClick={() => navigate("/shoes")} style={{
-            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
-            color: "#6b7280", cursor: "pointer", border: "none", background: "none",
-            fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
-          }}>Shoes</button>
-          <button style={{
-            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
-            color: "#f0f0f0", cursor: "pointer", border: "none",
-            background: "#1a1f2a", boxShadow: "0 1px 3px rgba(0,0,0,.3)",
-            fontFamily: "'DM Sans',sans-serif",
-          }}>Ropes</button>
-          <button onClick={() => navigate("/belays")} style={{
-            padding: isMobile ? "5px 10px" : "6px 16px", borderRadius: "6px", fontSize: isMobile ? "11px" : "12px", fontWeight: 500,
-            color: "#6b7280", cursor: "pointer", border: "none", background: "none",
-            fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
-          }}>Belays</button>
-        </div>
-
         {isMobile && (
           <button
             onClick={() => setShowMobileFilters(!showMobileFilters)}
@@ -669,7 +640,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
           </button>
         )}
 
-        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", marginLeft: isMobile ? undefined : "auto", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
+        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
           <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
           <input
             type="text"
@@ -685,11 +656,11 @@ export default function RopeApp({ ropes = [], src = "local" }) {
           />
         </div>
 
-        {!isMobile && <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
+        <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
           {results.length} ropes
-        </span>}
+        </span>
 
-        {!isMobile && (ac > 0 || activeTypes.length > 0) && (
+        {(ac > 0 || activeTypes.length > 0) && (
           <button
             onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
             style={{
