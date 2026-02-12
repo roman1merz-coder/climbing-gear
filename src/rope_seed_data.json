@@ -6262,5 +6262,1324 @@
       "CH"
     ],
     "ai_review": null
+  },
+  {
+    "slug": "edelrid-siskin-eco-dry-8-6",
+    "brand": "Edelrid",
+    "model": "Siskin Eco Dry 8.6",
+    "year_released": 2025,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 8.6,
+    "weight_per_meter_g": 48,
+    "sheath_percentage": 45,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.0,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.2,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Eco Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "48_carrier",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "sport_multi_pitch",
+      "alpine",
+      "ice_climbing"
+    ],
+    "skill_level": [
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 5.0,
+    "price_per_meter_eur_min": 4.0,
+    "price_per_meter_eur_max": 5.0,
+    "description": "The lightest single rope in the world. At just 48 g/m the Siskin breaks new ground thanks to revolutionary new yarn technology and innovative construction. Triple-rated for single, half, and twin use. PFC-free Eco Dry treatment meets UIAA water repellent standard.",
+    "pros": [
+      "Lightest single rope in the world at 48 g/m",
+      "Triple-rated versatility",
+      "PFC-free Eco Dry UIAA treatment",
+      "Revolutionary yarn technology"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Expert-only rope",
+      "Very expensive",
+      "Not suitable for beginners or GriGri"
+    ],
+    "rope_color_1": "#0ea5e9",
+    "rope_color_2": "#0284c7",
+    "id": 67,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-birdlime-1r-9-8",
+    "brand": "Edelrid",
+    "model": "Birdlime 1R 9.8",
+    "year_released": 2025,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.8,
+    "weight_per_meter_g": 60,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.5,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "none",
+    "dry_treatment_name": "Thermo Shield",
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "green",
+      "orange"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "bio_based",
+    "pfc_free": true,
+    "eco_label": "Bio-based (40%+ castor oil)",
+    "price_uvp_per_meter_eur": 3.57,
+    "price_per_meter_eur_min": 2.8,
+    "price_per_meter_eur_max": 3.57,
+    "description": "The world's first climbing rope made from renewable bio-based materials. Over 40% of the Birdlime is made from castor-oil-based material, reducing fossil fuel dependency. Thermo Shield treatment ensures excellent handling. The '1R' designation means 'Reduce' in Edelrid's sustainability system.",
+    "pros": [
+      "World's first bio-based climbing rope",
+      "40%+ renewable castor oil materials",
+      "PFC-free and Bluesign certified",
+      "Excellent handling with Thermo Shield"
+    ],
+    "cons": [
+      "No dry treatment available yet",
+      "Slightly heavier than comparable ropes",
+      "New technology \u2014 long-term durability unproven"
+    ],
+    "rope_color_1": "#22c55e",
+    "rope_color_2": "#16a34a",
+    "id": 68,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-neo-100-3r-9-6",
+    "brand": "Edelrid",
+    "model": "Neo 100 3R 9.6",
+    "year_released": 2025,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.6,
+    "weight_per_meter_g": 60,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.5,
+    "uiaa_falls": 6,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "none",
+    "dry_treatment_name": "Thermo Shield",
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "full",
+    "pfc_free": true,
+    "eco_label": "100% recycled (core + sheath)",
+    "price_uvp_per_meter_eur": 3.29,
+    "price_per_meter_eur_min": 2.6,
+    "price_per_meter_eur_max": 3.29,
+    "description": "The world's first rope made from 100% recycled materials \u2014 both core and sheath. The NEO 100 3R closes the materials cycle using Edelrid's in-house factory waste from Isny, Germany. Combines mechanically and chemically recycled nylon for zero-compromise performance. Lowest carbon footprint of any Edelrid single rope.",
+    "pros": [
+      "100% recycled materials \u2014 core and sheath",
+      "Lowest carbon footprint in class",
+      "No compromise on performance",
+      "Bluesign + PFC-free"
+    ],
+    "cons": [
+      "No dry treatment",
+      "Only 6 UIAA falls",
+      "New product \u2014 limited availability"
+    ],
+    "rope_color_1": "#059669",
+    "rope_color_2": "#047857",
+    "id": 69,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-boa-eco-2r-9-6",
+    "brand": "Edelrid",
+    "model": "Boa Eco 2R 9.6",
+    "year_released": 2025,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.6,
+    "weight_per_meter_g": 59,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.8,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 38,
+    "dry_treatment": "none",
+    "dry_treatment_name": "Thermo Shield",
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "green",
+      "blue",
+      "orange"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "partial",
+    "pfc_free": true,
+    "eco_label": "2R \u2014 Reuse (upcycled production yarns)",
+    "price_uvp_per_meter_eur": 2.57,
+    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_max": 2.57,
+    "description": "The thinner sibling of the Boa Eco 9.8, now at 9.6mm for improved handling. Made from high-quality leftover yarns from Edelrid's own production \u2014 each rope looks unique. The '2R' designation means 'Reuse' in Edelrid's sustainability naming. Excellent all-rounder at a budget price.",
+    "pros": [
+      "Eco-friendly upcycled materials",
+      "Unique colorway per rope",
+      "Thinner 9.6mm for better handling",
+      "Great value"
+    ],
+    "cons": [
+      "No dry treatment",
+      "Higher dynamic elongation (38%)",
+      "Each rope looks different \u2014 no color consistency"
+    ],
+    "rope_color_1": "#4ade80",
+    "rope_color_2": "#22c55e",
+    "id": 70,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "edelrid-eagle-lite-protect-pro-dry-9-5",
+    "brand": "Edelrid",
+    "model": "Eagle Lite Protect Pro Dry 9.5",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.5,
+    "weight_per_meter_g": 63,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 6.5,
+    "uiaa_falls": 8,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Pro Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "48_carrier",
+    "aramid_protection": true,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "orange",
+      "green"
+    ],
+    "best_use_cases": [
+      "sport_multi_pitch",
+      "trad",
+      "big_wall",
+      "alpine"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "very_high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.43,
+    "price_per_meter_eur_min": 3.5,
+    "price_per_meter_eur_max": 4.43,
+    "description": "The most robust single rope in Edelrid's lineup. Aramid fibers woven into the sheath provide outstanding cut resistance for sharp rock and big wall climbing. 48-bobbin construction creates a compact, fine sheath. Pro Dry treatment meets UIAA water repellent standard.",
+    "pros": [
+      "Aramid-reinforced sheath \u2014 maximum cut resistance",
+      "8 UIAA falls with 48-bobbin construction",
+      "Pro Dry UIAA treatment",
+      "Ideal for big wall and demanding multi-pitch"
+    ],
+    "cons": [
+      "Heavier at 63 g/m due to aramid",
+      "Higher impact force",
+      "Premium price",
+      "Not PFC-free"
+    ],
+    "rope_color_1": "#f97316",
+    "rope_color_2": "#ea580c",
+    "id": 71,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "petzl-volta-guide-9-0",
+    "brand": "Petzl",
+    "model": "Volta Guide 9.0",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.0,
+    "weight_per_meter_g": 52,
+    "sheath_percentage": 40,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.0,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 35,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Guide Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "40_carrier",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "blue",
+      "orange"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 5.0,
+    "price_per_meter_eur_min": 4.0,
+    "price_per_meter_eur_max": 5.0,
+    "description": "Petzl's ultra-lightweight triple-rated rope for elite mountaineering. The Guide Dry treatment is Petzl's most advanced water repellent, ensuring performance in the harshest alpine conditions. At 52 g/m with 9.0mm diameter, it's the quiver-of-one rope for mountain professionals.",
+    "pros": [
+      "Ultra-light at 52 g/m",
+      "Triple-rated versatility",
+      "Guide Dry \u2014 Petzl's best dry treatment",
+      "Professional mountaineering rope"
+    ],
+    "cons": [
+      "Only 5 UIAA falls",
+      "Premium price",
+      "Not for beginners",
+      "Not PFC-free"
+    ],
+    "rope_color_1": "#3b82f6",
+    "rope_color_2": "#2563eb",
+    "id": 72,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "petzl-salsa-8-2",
+    "brand": "Petzl",
+    "model": "Salsa 8.2",
+    "year_released": 2023,
+    "status": "active",
+    "rope_type": "half",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 8.2,
+    "weight_per_meter_g": 45,
+    "sheath_percentage": 31,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.0,
+    "uiaa_falls": 9,
+    "impact_force_kn": 6.4,
+    "dynamic_elongation_pct": 32,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Duratec Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "48_carrier",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60
+    ],
+    "available_colors": [
+      "coral",
+      "blue"
+    ],
+    "best_use_cases": [
+      "trad",
+      "sport_multi_pitch",
+      "alpine"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.33,
+    "price_per_meter_eur_min": 3.3,
+    "price_per_meter_eur_max": 4.33,
+    "description": "Petzl's versatile half rope for multi-pitch climbing and mountaineering. With 9 UIAA falls and 48-carrier construction, the Salsa 8.2 is one of the most durable half ropes available. Duratec Dry treatment ensures performance in all weather conditions.",
+    "pros": [
+      "9 UIAA falls \u2014 excellent half rope durability",
+      "48-carrier construction for smooth handling",
+      "Duratec Dry treatment",
+      "Great for wandering multi-pitch routes"
+    ],
+    "cons": [
+      "Only half/twin \u2014 not single-rated",
+      "31% sheath \u2014 lower than average",
+      "Not PFC-free"
+    ],
+    "rope_color_1": "#fb7185",
+    "rope_color_2": "#f43f5e",
+    "id": 73,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "petzl-contact-wall-9-8",
+    "brand": "Petzl",
+    "model": "Contact Wall 9.8",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.8,
+    "weight_per_meter_g": 62,
+    "sheath_percentage": 37,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.5,
+    "uiaa_falls": 7,
+    "impact_force_kn": 8.5,
+    "dynamic_elongation_pct": 34,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "40_carrier",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      30,
+      40,
+      50
+    ],
+    "available_colors": [
+      "purple",
+      "green"
+    ],
+    "best_use_cases": [
+      "gym",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 2.57,
+    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_max": 2.57,
+    "description": "Petzl's gym-specific version of the Contact rope. Available in shorter lengths (30\u201350m) optimized for indoor walls. The Contact Wall has the same lightweight construction as the outdoor Contact but at a lower price point without dry treatment.",
+    "pros": [
+      "Affordable gym rope",
+      "Lightweight for its diameter",
+      "Available in short lengths",
+      "Same quality as outdoor Contact"
+    ],
+    "cons": [
+      "No dry treatment",
+      "Indoor use only",
+      "Limited length options",
+      "Less durable than gym-specific ropes"
+    ],
+    "rope_color_1": "#a855f7",
+    "rope_color_2": "#9333ea",
+    "id": 74,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-gym-workhorse-classic-9-9",
+    "brand": "Mammut",
+    "model": "9.9 Gym Workhorse Classic",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.9,
+    "weight_per_meter_g": 61,
+    "sheath_percentage": 42,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.0,
+    "uiaa_falls": 8,
+    "impact_force_kn": 8.0,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "workhorse",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      30,
+      40,
+      50,
+      60
+    ],
+    "available_colors": [
+      "pink",
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "gym",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "very_high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 2.5,
+    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_max": 2.5,
+    "description": "Mammut's most abrasion-resistant rope ever, purpose-built for gym climbing. The Workhorse construction creates a fine, smooth surface for maximum sheath durability on rough gym walls. With 42% sheath proportion and 8 UIAA falls, it's built to handle thousands of gym laps.",
+    "pros": [
+      "Most abrasion-resistant Mammut rope",
+      "42% sheath proportion",
+      "Bluesign + PFC-free",
+      "Short lengths for gym use"
+    ],
+    "cons": [
+      "Indoor use only",
+      "Not suitable for outdoor climbing",
+      "No dry treatment",
+      "Limited length options"
+    ],
+    "rope_color_1": "#ec4899",
+    "rope_color_2": "#db2777",
+    "id": 75,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-7-5-alpine-sender-dry",
+    "brand": "Mammut",
+    "model": "7.5 Alpine Sender Dry",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "half",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 7.5,
+    "weight_per_meter_g": 37,
+    "sheath_percentage": 35,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 9.0,
+    "uiaa_falls": 7,
+    "impact_force_kn": 5.5,
+    "dynamic_elongation_pct": 32,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "glacier_travel"
+    ],
+    "skill_level": [
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 5.33,
+    "price_per_meter_eur_min": 4.2,
+    "price_per_meter_eur_max": 5.33,
+    "description": "An extremely lightweight half rope for ice climbing, mixed climbing, and mountaineering. At just 37 g/m, the 7.5 Alpine Sender Dry is one of the lightest half ropes in existence. The smooth sheath from high-quality yarns ensures easy handling despite the thin diameter.",
+    "pros": [
+      "Ultra-light at 37 g/m",
+      "UIAA Dry treatment",
+      "Smooth premium sheath",
+      "Bluesign + PFC-free"
+    ],
+    "cons": [
+      "Expert-only \u2014 very thin",
+      "Only 7 UIAA falls",
+      "Short length options",
+      "Not for beginners"
+    ],
+    "rope_color_1": "#2563eb",
+    "rope_color_2": "#1d4ed8",
+    "id": 76,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-9-5-gym-classic",
+    "brand": "Mammut",
+    "model": "9.5 Gym Classic",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.5,
+    "weight_per_meter_g": 58,
+    "sheath_percentage": 42,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.0,
+    "uiaa_falls": 7,
+    "impact_force_kn": 7.7,
+    "dynamic_elongation_pct": 33,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      30,
+      40,
+      50
+    ],
+    "available_colors": [
+      "green",
+      "orange"
+    ],
+    "best_use_cases": [
+      "gym",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 2.0,
+    "price_per_meter_eur_min": 1.6,
+    "price_per_meter_eur_max": 2.0,
+    "description": "Based on the tried-and-tested Infinity construction, the Gym Classic is optimized for indoor climbing. The 42% sheath proportion ensures durability on gym walls while the 9.5mm diameter keeps it light. Available in short gym-friendly lengths at an affordable price.",
+    "pros": [
+      "42% sheath for gym durability",
+      "Light at 58 g/m for a gym rope",
+      "Low 7.7 kN impact force",
+      "Very affordable"
+    ],
+    "cons": [
+      "No dry treatment",
+      "Short lengths only",
+      "Not for outdoor use"
+    ],
+    "rope_color_1": "#22c55e",
+    "rope_color_2": "#16a34a",
+    "id": 77,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "mammut-crag-sender-dry-9-0-triple",
+    "brand": "Mammut",
+    "model": "9.0 Crag Sender Dry (Triple)",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": true,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.0,
+    "weight_per_meter_g": 54,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.86,
+    "uiaa_falls": 5,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 31,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry",
+    "uiaa_water_repellent": true,
+    "core_construction": "48_carrier",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "yellow",
+      "blue"
+    ],
+    "best_use_cases": [
+      "sport_multi_pitch",
+      "alpine",
+      "ice_climbing"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": true,
+    "recycled_materials": "none",
+    "pfc_free": true,
+    "price_uvp_per_meter_eur": 4.14,
+    "price_per_meter_eur_min": 3.3,
+    "price_per_meter_eur_max": 4.14,
+    "description": "Mammut's triple-rated quiver-of-one rope. The 48-bobbin sheath creates a smooth, abrasion-resistant surface. UIAA Dry treatment keeps water absorption under 1.5%. Use as a single for sport, half for wandering trad, or twin for alpine \u2014 one rope does it all.",
+    "pros": [
+      "Triple-rated \u2014 ultimate versatility",
+      "48-bobbin abrasion-resistant sheath",
+      "UIAA Dry certified",
+      "Bluesign + PFC-free"
+    ],
+    "cons": [
+      "Only 5 UIAA falls as single",
+      "Premium price",
+      "Thin for single rope use"
+    ],
+    "rope_color_1": "#facc15",
+    "rope_color_2": "#eab308",
+    "id": 78,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "tendon-smartlite-9-8",
+    "brand": "Tendon",
+    "model": "Smart Lite 9.8",
+    "year_released": 2023,
+    "status": "active",
+    "rope_type": "single",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 9.8,
+    "weight_per_meter_g": 62,
+    "sheath_percentage": 38,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 8.8,
+    "uiaa_falls": 6,
+    "impact_force_kn": 8.8,
+    "dynamic_elongation_pct": 32,
+    "dry_treatment": "none",
+    "dry_treatment_name": null,
+    "uiaa_water_repellent": false,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60,
+      70,
+      80
+    ],
+    "available_colors": [
+      "green",
+      "red"
+    ],
+    "best_use_cases": [
+      "sport_single_pitch",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "handling_feel": "moderate",
+    "durability_rating": "high",
+    "compatible_device_types": [
+      "tube",
+      "assisted_braking",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 2.0,
+    "price_per_meter_eur_min": 1.6,
+    "price_per_meter_eur_max": 2.0,
+    "description": "Tendon's budget-friendly all-rounder. The Smart Lite 9.8 is just as durable as any Tendon rope but at a fantastically low price \u2014 making it a great first rope for new outdoor climbers. Czech-made quality at an entry-level price.",
+    "pros": [
+      "Very affordable",
+      "Czech-made quality",
+      "Good value for beginners",
+      "Light for its class at 62 g/m"
+    ],
+    "cons": [
+      "No dry treatment",
+      "Only 6 UIAA falls",
+      "Higher static elongation",
+      "Basic feature set"
+    ],
+    "rope_color_1": "#16a34a",
+    "rope_color_2": "#15803d",
+    "id": 79,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
+  },
+  {
+    "slug": "black-diamond-7-0-dry",
+    "brand": "Black Diamond",
+    "model": "7.0 Dry",
+    "year_released": 2024,
+    "status": "active",
+    "rope_type": "twin",
+    "triple_rated": false,
+    "certification": [
+      "EN 892",
+      "UIAA 101"
+    ],
+    "diameter_mm": 7.0,
+    "weight_per_meter_g": 36,
+    "sheath_percentage": 35,
+    "sheath_slippage_mm": 0,
+    "static_elongation_pct": 7.0,
+    "uiaa_falls": 15,
+    "impact_force_kn": 6.5,
+    "dynamic_elongation_pct": 28,
+    "dry_treatment": "core_and_sheath",
+    "dry_treatment_name": "Dry Performance",
+    "uiaa_water_repellent": true,
+    "core_construction": "standard",
+    "aramid_protection": false,
+    "middle_mark": "ink_mark",
+    "end_marks": false,
+    "available_lengths_m": [
+      50,
+      60
+    ],
+    "available_colors": [
+      "blue",
+      "green"
+    ],
+    "best_use_cases": [
+      "alpine",
+      "ice_climbing",
+      "glacier_travel"
+    ],
+    "skill_level": [
+      "expert"
+    ],
+    "handling_feel": "supple",
+    "durability_rating": "medium",
+    "compatible_device_types": [
+      "tube",
+      "auto_tube"
+    ],
+    "bluesign": false,
+    "recycled_materials": "none",
+    "pfc_free": false,
+    "price_uvp_per_meter_eur": 4.67,
+    "price_per_meter_eur_min": 3.5,
+    "price_per_meter_eur_max": 4.67,
+    "description": "One of the thinnest twin ropes available at just 7.0mm and 36 g/m. The BD 7.0 Dry is designed for technical alpine climbing where two-rope redundancy is essential and every gram counts. Dry Performance treatment for wet and icy conditions.",
+    "pros": [
+      "Ultra-thin at 7.0mm / 36 g/m",
+      "15 UIAA falls \u2014 excellent twin durability",
+      "Dry Performance treatment",
+      "Maximum weight savings for alpine"
+    ],
+    "cons": [
+      "Twin only \u2014 must clip both ropes",
+      "Expert-only technique required",
+      "Very thin \u2014 wears fast on sharp rock"
+    ],
+    "rope_color_1": "#0ea5e9",
+    "rope_color_2": "#0284c7",
+    "id": 80,
+    "image_url": null,
+    "product_url": null,
+    "static_type": null,
+    "knotability_mm": null,
+    "breaking_strength_kn": null,
+    "working_elongation_pct": null,
+    "falls_en1891": null,
+    "core_material": null,
+    "sheath_technology": null,
+    "lap_coiled": true,
+    "rope_bag_included": false,
+    "min_compatible_diameter_mm": null,
+    "max_compatible_diameter_mm": null,
+    "eco_label": null,
+    "available_in": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "ai_review": null
   }
 ]
