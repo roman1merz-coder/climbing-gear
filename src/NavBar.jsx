@@ -36,33 +36,40 @@ export default function NavBar({ priceData = {} }) {
       <div
         onClick={() => navigate("/")}
         style={{
-          display: "flex", alignItems: "center", gap: "8px",
+          display: "flex", alignItems: "center", gap: isMobile ? "4px" : "8px",
           cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
         }}
       >
         <span style={{ fontSize: isMobile ? "16px" : "18px" }}>{"\u26F0\uFE0F"}</span>
-        <span style={{
-          fontSize: isMobile ? "13px" : "15px", fontWeight: 800,
-          letterSpacing: "-0.3px", color: T.text,
-        }}>
-          climbing-gear<span style={{ color: T.accent }}>.com</span>
-        </span>
+        {!isMobile && (
+          <span style={{
+            fontSize: "15px", fontWeight: 800,
+            letterSpacing: "-0.3px", color: T.text,
+          }}>
+            climbing-gear<span style={{ color: T.accent }}>.com</span>
+          </span>
+        )}
       </div>
 
       {/* Gear tabs */}
       <div style={{
         display: "flex", gap: "2px",
         background: T.surface, borderRadius: "8px", padding: "3px",
-        marginLeft: isMobile ? "auto" : "12px",
-        overflow: "auto", flexShrink: 0,
+        marginLeft: isMobile ? "0" : "12px",
+        overflow: "auto", flexShrink: isMobile ? 1 : 0,
+        WebkitOverflowScrolling: "touch",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
       }}>
         {TABS.map(tab => {
           const isCurrent = tab.key === current;
+          // Hide inactive tabs on mobile to save space
           if (!tab.active) {
+            if (isMobile) return null;
             return (
               <span key={tab.key} style={{
-                padding: isMobile ? "4px 8px" : "5px 14px",
-                borderRadius: "6px", fontSize: isMobile ? "10px" : "11px",
+                padding: "5px 14px",
+                borderRadius: "6px", fontSize: "11px",
                 fontWeight: 500, color: T.muted, opacity: 0.45,
                 fontFamily: T.font, whiteSpace: "nowrap",
                 display: "flex", alignItems: "center", gap: "3px",
@@ -76,6 +83,7 @@ export default function NavBar({ priceData = {} }) {
               </span>
             );
           }
+          const mobileLabel = isMobile && tab.key === "pads" ? "Pads" : tab.label;
           return (
             <button
               key={tab.key}
@@ -92,7 +100,7 @@ export default function NavBar({ priceData = {} }) {
                 fontFamily: T.font, transition: "all .2s",
                 whiteSpace: "nowrap",
               }}
-            >{tab.label}</button>
+            >{mobileLabel}</button>
           );
         })}
       </div>

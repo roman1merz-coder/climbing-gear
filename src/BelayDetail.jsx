@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
+import useIsMobile from "./useIsMobile.js";
 
 // ═══ TYPE BADGE ═══
 
@@ -33,15 +34,17 @@ function TypeBadge({ type, size = "sm" }) {
 
 // ═══ BELAY DEVICE SVG (Detail — larger) ═══
 
-function BelaySVGDetail({ device }) {
+function BelaySVGDetail({ device, compact }) {
   const c1 = device.device_color_1 || "#4a4a4a";
   const c2 = device.device_color_2 || "#e8734a";
   const isActive = device.device_type === "active_assisted";
   const isPassive = device.device_type === "passive_assisted";
+  const svgW = compact ? 200 : 300;
+  const svgH = compact ? 160 : 240;
 
   if (isActive) {
     return (
-      <svg viewBox="0 0 200 160" width="300" height="240">
+      <svg viewBox="0 0 200 160" width={svgW} height={svgH}>
         <defs>
           <linearGradient id="detail-bg" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor={c1} />
@@ -61,7 +64,7 @@ function BelaySVGDetail({ device }) {
 
   if (isPassive) {
     return (
-      <svg viewBox="0 0 200 160" width="300" height="240">
+      <svg viewBox="0 0 200 160" width={svgW} height={svgH}>
         <defs>
           <linearGradient id="detail-bg" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor={c1} />
@@ -81,7 +84,7 @@ function BelaySVGDetail({ device }) {
 
   // Tube / Tube Guide
   return (
-    <svg viewBox="0 0 200 160" width="300" height="240">
+    <svg viewBox="0 0 200 160" width={svgW} height={svgH}>
       <defs>
         <linearGradient id="detail-bg" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor={c1} />
@@ -153,6 +156,7 @@ function Tag({ label, variant = "default" }) {
 export default function BelayDetail({ belays = [] }) {
   const { slug } = useParams();
   const d = belays.find((b) => b.slug === slug);
+  const isMobile = useIsMobile();
 
   const similar = useMemo(() => {
     if (!d) return [];
@@ -185,19 +189,19 @@ export default function BelayDetail({ belays = [] }) {
   return (
     <div style={{ minHeight: "100vh", background: "#0d1117", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
       {/* Header */}
-      <header style={{ padding: "16px 32px", borderBottom: "1px solid #23272f" }}>
-        <Link to="/belays" style={{ color: "#6b7280", textDecoration: "none", fontSize: "13px" }}>
+      <header style={{ padding: isMobile ? "12px 16px" : "16px 32px", borderBottom: "1px solid #23272f", minHeight: isMobile ? "44px" : "auto", display: "flex", alignItems: "center" }}>
+        <Link to="/belays" style={{ color: "#6b7280", textDecoration: "none", fontSize: "13px", minHeight: "44px", display: "flex", alignItems: "center" }}>
           ← Back to belay devices
         </Link>
       </header>
 
       {/* Main */}
-      <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "32px" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto", padding: isMobile ? "20px 16px" : "32px" }}>
         {/* Top section */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", marginBottom: "40px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", marginBottom: isMobile ? "28px" : "40px" }}>
           {/* Left: SVG */}
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#14171c", borderRadius: "16px", padding: "32px" }}>
-            <BelaySVGDetail device={d} />
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#14171c", borderRadius: "16px", padding: isMobile ? "20px" : "32px" }}>
+            <BelaySVGDetail device={d} compact={isMobile} />
           </div>
 
           {/* Right: Identity + Price */}
@@ -209,7 +213,7 @@ export default function BelayDetail({ belays = [] }) {
               {d.brand}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: "0 0 16px" }}>
-              <h1 style={{ fontSize: "28px", fontWeight: 700, margin: 0, letterSpacing: "-0.5px" }}>
+              <h1 style={{ fontSize: isMobile ? "22px" : "28px", fontWeight: 700, margin: 0, letterSpacing: "-0.5px" }}>
                 {d.model}
               </h1>
               <HeartButton type="belay" slug={d.slug} style={{ fontSize: "22px" }} />
@@ -252,7 +256,7 @@ export default function BelayDetail({ belays = [] }) {
         </div>
 
         {/* Specs + Use in two columns */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", marginBottom: "40px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "32px", marginBottom: isMobile ? "28px" : "40px" }}>
           {/* Specs */}
           <div>
             <Section title="📐 Specifications">
@@ -324,7 +328,7 @@ export default function BelayDetail({ belays = [] }) {
 
         {/* Pros / Cons */}
         {(pros.length > 0 || cons.length > 0) && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "40px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "16px", marginBottom: isMobile ? "28px" : "40px" }}>
             {pros.length > 0 && (
               <div style={{ background: "rgba(34,197,94,0.05)", borderRadius: "12px", padding: "20px", border: "1px solid rgba(34,197,94,0.15)" }}>
                 <h4 style={{ color: "#22c55e", fontSize: "13px", fontWeight: 600, margin: "0 0 12px" }}>✓ Pros</h4>
@@ -347,7 +351,7 @@ export default function BelayDetail({ belays = [] }) {
         {/* Similar devices */}
         {similar.length > 0 && (
           <Section title="🔗 Similar Devices">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "12px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "12px" }}>
               {similar.map((s) => (
                 <Link
                   key={s.slug}

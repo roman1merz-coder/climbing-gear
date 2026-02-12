@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
+import useIsMobile from "./useIsMobile.js";
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
@@ -114,6 +115,7 @@ export default function RopeDetail({ ropes = [] }) {
   const { slug } = useParams();
   const rope = ropes.find((r) => r.slug === slug);
   const [selectedLength, setSelectedLength] = useState(null);
+  const isMobile = useIsMobile();
 
   if (!rope) {
     return (
@@ -138,18 +140,20 @@ export default function RopeDetail({ ropes = [] }) {
     <div style={{ background: T.bg, minHeight: "100vh", fontFamily: T.font, color: T.text }}>
       {/* Header */}
       <header style={{
-        display: "flex", alignItems: "center", gap: "16px",
-        padding: "0 24px", height: "50px",
+        display: "flex", alignItems: "center", gap: isMobile ? "10px" : "16px",
+        padding: isMobile ? "0 16px" : "0 24px", height: isMobile ? "44px" : "50px",
         background: T.bg,
         borderBottom: `1px solid ${T.border}`,
       }}>
-        <Link to="/ropes" style={{ color: T.muted, textDecoration: "none", fontSize: "14px", display: "flex", alignItems: "center", gap: "6px" }}>
+        <Link to="/ropes" style={{ color: T.muted, textDecoration: "none", fontSize: isMobile ? "13px" : "14px", display: "flex", alignItems: "center", gap: "6px", minHeight: "44px" }}>
           <span>←</span> Back to ropes
         </Link>
-        <div style={{ marginLeft: "auto", fontSize: "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "20px" }}>🧗</span>
-          climbing-gear<span style={{ color: T.accent }}>.com</span>
-        </div>
+        {!isMobile && (
+          <div style={{ marginLeft: "auto", fontSize: "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "20px" }}>🧗</span>
+            climbing-gear<span style={{ color: T.accent }}>.com</span>
+          </div>
+        )}
       </header>
 
       {/* Rope visual header */}
@@ -158,17 +162,17 @@ export default function RopeDetail({ ropes = [] }) {
         background: `linear-gradient(135deg, ${rope.rope_color_1 || '#555'}12, ${rope.rope_color_2 || '#333'}06)`,
         borderBottom: `1px solid ${T.border}`,
       }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
           <RopeSVGDetail color1={rope.rope_color_1 || "#888"} color2={rope.rope_color_2 || "#666"} diameter={rope.diameter_mm} ropeType={rope.rope_type} />
         </div>
       </div>
 
       {/* Content */}
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "32px 24px 80px" }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "20px 16px 60px" : "32px 24px 80px" }}>
 
         {/* Title block */}
-        <div style={{ marginBottom: "32px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+        <div style={{ marginBottom: isMobile ? "24px" : "32px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "11px", color: T.dim, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>
               {rope.brand}
             </span>
@@ -181,7 +185,7 @@ export default function RopeDetail({ ropes = [] }) {
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
-            <h1 style={{ fontSize: "28px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
+            <h1 style={{ fontSize: isMobile ? "22px" : "28px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
               {rope.model}
             </h1>
             <HeartButton type="rope" slug={rope.slug} style={{ fontSize: "22px" }} />
@@ -192,7 +196,7 @@ export default function RopeDetail({ ropes = [] }) {
         </div>
 
         {/* Two-column layout */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "32px" }}>
 
           {/* Left column — Specs */}
           <div>
@@ -314,7 +318,7 @@ export default function RopeDetail({ ropes = [] }) {
 
         {/* Pros & Cons */}
         {(rope.pros?.length > 0 || rope.cons?.length > 0) && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "24px", marginBottom: "32px" }}>
             {rope.pros?.length > 0 && (
               <div style={{ background: T.greenSoft, borderRadius: "12px", padding: "20px", border: `1px solid rgba(34,197,94,.15)` }}>
                 <div style={{ fontSize: "12px", fontWeight: 700, color: T.green, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Pros</div>
@@ -341,7 +345,7 @@ export default function RopeDetail({ ropes = [] }) {
         {/* Similar ropes */}
         {similar.length > 0 && (
           <Section title="Similar Ropes">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
               {similar.map((r) => (
                 <Link key={r.slug} to={`/rope/${r.slug}`} style={{ textDecoration: "none" }}>
                   <div style={{

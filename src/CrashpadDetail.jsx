@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
+import useIsMobile from "./useIsMobile.js";
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
@@ -214,6 +215,7 @@ function EfficiencyRadar({ pad, allPads }) {
   const cx = size / 2;
   const cy = size / 2;
   const r = 90;
+  // Note: SVG uses viewBox so it auto-scales; we control rendered size via the parent
   const n = metrics.length;
 
   const getPoint = (i, val) => {
@@ -231,7 +233,7 @@ function EfficiencyRadar({ pad, allPads }) {
         Efficiency Radar
       </h3>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <svg viewBox={`0 0 ${size} ${size}`} width={size} height={size}>
+        <svg viewBox={`0 0 ${size} ${size}`} style={{ width: "100%", maxWidth: `${size}px`, height: "auto" }}>
           {/* Grid circles */}
           {[25, 50, 75, 100].map((pct) => (
             <circle key={pct} cx={cx} cy={cy} r={(pct / 100) * r}
@@ -261,7 +263,7 @@ function EfficiencyRadar({ pad, allPads }) {
         </svg>
       </div>
       {/* Details below */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", marginTop: "12px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "8px", marginTop: "12px" }}>
         {metrics.map((m) => (
           <div key={m.label} style={{ textAlign: "center" }}>
             <div style={{ fontSize: "10px", color: T.dim, marginBottom: "2px" }}>{m.label}</div>
@@ -286,6 +288,7 @@ function EfficiencyRadar({ pad, allPads }) {
 export default function CrashpadDetail({ crashpads = [] }) {
   const { slug } = useParams();
   const pad = crashpads.find((p) => p.slug === slug);
+  const isMobile = useIsMobile();
 
   if (!pad) {
     return (
@@ -312,18 +315,20 @@ export default function CrashpadDetail({ crashpads = [] }) {
     <div style={{ background: T.bg, minHeight: "100vh", fontFamily: T.font, color: T.text }}>
       {/* Header */}
       <header style={{
-        display: "flex", alignItems: "center", gap: "16px",
-        padding: "0 24px", height: "50px",
+        display: "flex", alignItems: "center", gap: isMobile ? "10px" : "16px",
+        padding: isMobile ? "0 16px" : "0 24px", height: isMobile ? "44px" : "50px",
         background: T.bg,
         borderBottom: `1px solid ${T.border}`,
       }}>
-        <Link to="/crashpads" style={{ color: T.muted, textDecoration: "none", fontSize: "14px", display: "flex", alignItems: "center", gap: "6px" }}>
+        <Link to="/crashpads" style={{ color: T.muted, textDecoration: "none", fontSize: isMobile ? "13px" : "14px", display: "flex", alignItems: "center", gap: "6px", minHeight: "44px" }}>
           <span>←</span> Back to crashpads
         </Link>
-        <div style={{ marginLeft: "auto", fontSize: "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "20px" }}>🧗</span>
-          climbing-gear<span style={{ color: T.accent }}>.com</span>
-        </div>
+        {!isMobile && (
+          <div style={{ marginLeft: "auto", fontSize: "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "20px" }}>🧗</span>
+            climbing-gear<span style={{ color: T.accent }}>.com</span>
+          </div>
+        )}
       </header>
 
       {/* Pad visual header */}
@@ -332,17 +337,17 @@ export default function CrashpadDetail({ crashpads = [] }) {
         background: `linear-gradient(135deg, ${sc.color}10, ${sc.color}04)`,
         borderBottom: `1px solid ${T.border}`,
       }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
           <CrashpadSVGDetail pad={pad} />
         </div>
       </div>
 
       {/* Content */}
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "32px 24px 80px" }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "20px 16px 60px" : "32px 24px 80px" }}>
 
         {/* Title block */}
-        <div style={{ marginBottom: "32px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+        <div style={{ marginBottom: isMobile ? "24px" : "32px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "11px", color: T.dim, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>
               {pad.brand}
             </span>
@@ -358,7 +363,7 @@ export default function CrashpadDetail({ crashpads = [] }) {
             )}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
-            <h1 style={{ fontSize: "28px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
+            <h1 style={{ fontSize: isMobile ? "22px" : "28px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
               {pad.model}
             </h1>
             <HeartButton type="crashpad" slug={pad.slug} style={{ fontSize: "22px" }} />
@@ -371,7 +376,7 @@ export default function CrashpadDetail({ crashpads = [] }) {
         </div>
 
         {/* Two-column layout */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "32px" }}>
 
           {/* Left column — Specs */}
           <div>
@@ -476,7 +481,7 @@ export default function CrashpadDetail({ crashpads = [] }) {
 
         {/* Pros & Cons */}
         {(pad.pros || pad.cons) && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginTop: "32px", marginBottom: "32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "24px", marginTop: isMobile ? "24px" : "32px", marginBottom: isMobile ? "24px" : "32px" }}>
             {pad.pros && (
               <div style={{ background: T.greenSoft, borderRadius: "12px", padding: "20px", border: `1px solid rgba(34,197,94,.15)` }}>
                 <div style={{ fontSize: "12px", fontWeight: 700, color: T.green, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Pros</div>
@@ -503,7 +508,7 @@ export default function CrashpadDetail({ crashpads = [] }) {
         {/* Similar pads */}
         {similar.length > 0 && (
           <Section title="Similar Crashpads">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
               {similar.map((p) => {
                 const psc = SIZE_COLORS[p.pad_size_category] || SIZE_COLORS.medium;
                 return (
