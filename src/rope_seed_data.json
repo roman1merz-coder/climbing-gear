@@ -2466,7 +2466,7 @@
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
-    "static_type": "low_stretch",
+    "static_type": "A",
     "certification": [
       "EN 1891",
       "NFPA 1983"
@@ -2561,7 +2561,7 @@
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
-    "static_type": "low_stretch",
+    "static_type": "A",
     "certification": [
       "EN 1891"
     ],
