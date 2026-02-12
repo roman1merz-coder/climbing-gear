@@ -7,6 +7,8 @@ import RopeApp from "./RopeApp.jsx";
 import RopeDetail from "./RopeDetail.jsx";
 import BelayApp from "./BelayApp.jsx";
 import BelayDetail from "./BelayDetail.jsx";
+import CrashpadApp from "./CrashpadApp.jsx";
+import CrashpadDetail from "./CrashpadDetail.jsx";
 import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
 import About from "./About.jsx";
@@ -44,6 +46,7 @@ async function supabaseSelect(table) {
 import SEED from "./seed_data.json";
 import ROPE_SEED from "./rope_seed_data.json";
 import BELAY_SEED from "./belay_seed_data.json";
+import CRASHPAD_SEED from "./crashpad_seed_data.json";
 
 // ─── Price Data (fetched live from Supabase) ─────────────────
 // Populated by api/fetch-prices.js cron (SerpApi → Supabase)
@@ -152,6 +155,8 @@ function Root() {
   const [ropeSrc, setRopeSrc] = useState("seed");
   const [belays, setBelays] = useState(BELAY_SEED);
   const [belaySrc, setBelaySrc] = useState("seed");
+  const [crashpads, setCrashpads] = useState(CRASHPAD_SEED);
+  const [crashpadSrc, setCrashpadSrc] = useState("seed");
 
   useEffect(() => {
     // Fetch shoes from Supabase
@@ -175,6 +180,11 @@ function Root() {
     // Fetch belay devices from Supabase
     supabaseSelect("belay_devices")
       .then((data) => { if (data?.length) { setBelays(data); setBelaySrc(`supabase · ${data.length}`); } })
+      .catch(() => {});
+
+    // Fetch crashpads from Supabase
+    supabaseSelect("crashpads")
+      .then((data) => { if (data?.length) { setCrashpads(data); setCrashpadSrc(`supabase · ${data.length}`); } })
       .catch(() => {});
 
     // Fetch live prices
@@ -211,6 +221,9 @@ function Root() {
               {/* Belay device routes */}
               <Route path="/belays" element={<BelayApp belays={belays} src={belaySrc} />} />
               <Route path="/belay/:slug" element={<BelayDetail belays={belays} />} />
+              {/* Crashpad routes */}
+              <Route path="/crashpads" element={<CrashpadApp crashpads={crashpads} src={crashpadSrc} />} />
+              <Route path="/crashpad/:slug" element={<CrashpadDetail crashpads={crashpads} />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/about" element={<About />} />
               <Route path="/impressum" element={<Legal />} />

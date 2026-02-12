@@ -2,7 +2,7 @@ import { useWL } from "./WishlistContext.jsx";
 
 /**
  * Heart toggle button for the wishlist.
- * @param {string} type - "shoe" | "rope" | "belay"
+ * @param {string} type - "shoe" | "rope" | "belay" | "crashpad"
  * @param {string} slug - product slug
  * @param {object} [style] - optional extra styles
  */
