@@ -398,7 +398,8 @@ export default function Compare({ shoes = [] }) {
                       <img
                         src={shoe.image_url}
                         alt={shoe.model}
-                        style={{ width: "80px", height: "60px", objectFit: "contain", marginBottom: "8px" }}
+                        style={{ width: "80px", height: "60px", objectFit: "contain", marginBottom: "8px",
+                          background: "#f5f5f5", borderRadius: "8px", padding: "4px" }}
                       />
                     )}
                     <div style={{ fontSize: "11px", fontWeight: 600, color: T.muted, marginBottom: "2px" }}>

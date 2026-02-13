@@ -507,9 +507,14 @@ function ImageGallery({ shoe, compact }) {
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
         position: "relative", border: `1px solid ${T.border}`,
-        background: hasImage ? `url(${shoe.image_url}) center/contain no-repeat, ${T.card}` : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        background: hasImage ? "#f5f5f5" : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
+        {hasImage && <img
+          src={shoe.image_url}
+          alt={`${shoe.brand} ${shoe.model}`}
+          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
+        />}
         {!hasImage && <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>{"\uD83D\uDC5F"}</div>
           <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>{views[active]}</div>
@@ -529,11 +534,13 @@ function ImageGallery({ shoe, compact }) {
           <button key={i} onClick={() => setActive(i)} style={{
             flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
             border: i === active ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
-            background: i === 0 && hasImage ? `url(${shoe.image_url}) center/contain no-repeat, ${T.surface}` : T.surface,
+            background: i === 0 && hasImage ? "#f5f5f5" : T.surface,
             cursor: "pointer", opacity: i === active ? 1 : 0.5,
             transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
-            flexDirection: "column", gap: "2px",
+            flexDirection: "column", gap: "2px", overflow: "hidden",
           }}>
+            {i === 0 && hasImage && <img src={shoe.image_url} alt={shoe.model}
+              style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }} />}
             {!(i === 0 && hasImage) && <span style={{ fontSize: "18px", opacity: 0.5 }}>{"\uD83D\uDC5F"}</span>}
             {!(i === 0 && hasImage) && <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>}
           </button>

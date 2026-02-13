@@ -516,16 +516,32 @@ function Card({ shoe, onClick, priceData, compact }) {
     >
       <div
         style={{
-          height: compact ? "130px" : "180px",
-          background: `url(${img}) center/cover`,
+          aspectRatio: "4/3",
+          background: "#f5f5f5",
           position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
         }}
       >
+        <img
+          src={img}
+          alt={d.model || "Climbing shoe"}
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            padding: compact ? "8px" : "12px",
+          }}
+        />
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, transparent 40%, #1c1f26)",
+            background: "linear-gradient(to bottom, transparent 60%, #1c1f26)",
+            pointerEvents: "none",
           }}
         />
         <Badge score={s} compact={compact} />
