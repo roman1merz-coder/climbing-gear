@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
@@ -686,13 +686,25 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
 
 // ═══ MAIN APP ═══
 
+// ═══ SESSION PERSISTENCE ═══
+const BELAY_STORAGE_KEY = "cg_belay_filters";
+function loadBelaySession() {
+  try { return JSON.parse(sessionStorage.getItem(BELAY_STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
 export default function BelayApp({ belays = [], src }) {
   const nav = useNavigate();
   const isMobile = useIsMobile();
-  const [activeTypes, setActiveTypes] = useState([]);
-  const [filters, setFilters] = useState({});
+  const _s = loadBelaySession();
+  const [activeTypes, setActiveTypes] = useState(_s.activeTypes || []);
+  const [filters, setFilters] = useState(_s.filters || {});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [sortKey, setSortKey] = useState("best_match");
+  const [sortKey, setSortKey] = useState(_s.sortKey || "best_match");
+
+  useEffect(() => {
+    sessionStorage.setItem(BELAY_STORAGE_KEY, JSON.stringify({ activeTypes, filters, sortKey }));
+  }, [activeTypes, filters, sortKey]);
   const setFilter = (k, v) => setFilters((p) => ({ ...p, [k]: v }));
 
   const groups = useMemo(() => getGroups(activeTypes), [activeTypes]);

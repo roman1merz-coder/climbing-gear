@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
@@ -638,16 +638,28 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
 
 // ═══ MAIN APP ═══
 
+// ═══ SESSION PERSISTENCE ═══
+const ROPE_STORAGE_KEY = "cg_rope_filters";
+function loadRopeSession() {
+  try { return JSON.parse(sessionStorage.getItem(ROPE_STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
 export default function RopeApp({ ropes = [], src = "local" }) {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
-  const [filters, setFilters] = useState({});
-  const [activeTypes, setActiveTypes] = useState([]);
-  const [openGroup, setOpenGroup] = useState("climbing");
-  const [query, setQuery] = useState("");
+  const _s = loadRopeSession();
+  const [filters, setFilters] = useState(_s.filters || {});
+  const [activeTypes, setActiveTypes] = useState(_s.activeTypes || []);
+  const [openGroup, setOpenGroup] = useState(_s.openGroup || "climbing");
+  const [query, setQuery] = useState(_s.query || "");
   const [selectedLengths, setSelectedLengths] = useState({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [sortKey, setSortKey] = useState("best_match");
+  const [sortKey, setSortKey] = useState(_s.sortKey || "best_match");
+
+  useEffect(() => {
+    sessionStorage.setItem(ROPE_STORAGE_KEY, JSON.stringify({ filters, activeTypes, openGroup, query, sortKey }));
+  }, [filters, activeTypes, openGroup, query, sortKey]);
 
   const set = (k, v) => {
     setFilters((p) => {

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
@@ -621,15 +621,28 @@ function SizePill({ cat, active, onClick }) {
 
 // ═══ MAIN APP ═══
 
+// ═══ SESSION PERSISTENCE (survives back-navigation) ═══
+const STORAGE_KEY = "cg_crashpad_filters";
+function loadSession() {
+  try { return JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || {}; }
+  catch { return {}; }
+}
+
 export default function CrashpadApp({ crashpads = [], src = "local" }) {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
-  const [filters, setFilters] = useState({});
-  const [activeSizes, setActiveSizes] = useState([]);
-  const [openGroup, setOpenGroup] = useState("climbing");
-  const [query, setQuery] = useState("");
+  const _s = loadSession();
+  const [filters, setFilters] = useState(_s.filters || {});
+  const [activeSizes, setActiveSizes] = useState(_s.activeSizes || []);
+  const [openGroup, setOpenGroup] = useState(_s.openGroup || "climbing");
+  const [query, setQuery] = useState(_s.query || "");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [sortKey, setSortKey] = useState("best_match");
+  const [sortKey, setSortKey] = useState(_s.sortKey || "best_match");
+
+  // Persist filter state to sessionStorage on every change
+  useEffect(() => {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ filters, activeSizes, openGroup, query, sortKey }));
+  }, [filters, activeSizes, openGroup, query, sortKey]);
 
   const set = (k, v) => {
     setFilters((p) => {
