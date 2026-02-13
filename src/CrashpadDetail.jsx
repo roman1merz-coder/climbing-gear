@@ -212,7 +212,7 @@ function EfficiencyRadar({ pad, allPads }) {
     ];
   }, [pad, allPads, area, vol]);
 
-  const size = 240;
+  const size = 280;
   const cx = size / 2;
   const cy = size / 2;
   const r = 90;
@@ -253,10 +253,10 @@ function EfficiencyRadar({ pad, allPads }) {
           ))}
           {/* Labels */}
           {metrics.map((m, i) => {
-            const p = getPoint(i, 130);
+            const p = getPoint(i, 140);
             return (
               <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle"
-                fill={T.muted} fontSize="9" fontFamily={T.font} fontWeight="600">
+                fill={T.muted} fontSize="10" fontFamily={T.font} fontWeight="600">
                 {m.label}
               </text>
             );

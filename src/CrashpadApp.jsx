@@ -74,7 +74,9 @@ function score(pads, filters) {
   if (!active.length)
     return pads.map((p) => ({ pad_data: p, match_score: -1 })).sort(() => Math.random() - 0.5);
   return pads
-    .map((pad) => {
+    .map((rawPad) => {
+      // Add computed fields
+      const pad = { ...rawPad, landing_area_m2: (rawPad.length_open_cm * rawPad.width_open_cm) / 10000 };
       let tot = 0;
       let cnt = 0;
       for (const [k, val] of active) {
@@ -94,7 +96,7 @@ function score(pads, filters) {
         tot += s;
         cnt++;
       }
-      return { pad_data: pad, match_score: cnt ? Math.round((tot / cnt) * 100) : -1 };
+      return { pad_data: rawPad, match_score: cnt ? Math.round((tot / cnt) * 100) : -1 };
     })
     .sort((a, b) =>
       b.match_score !== a.match_score ? b.match_score - a.match_score : Math.random() - 0.5
@@ -115,6 +117,7 @@ const FILTER_GROUPS = [
     id: "specs", label: "Pad Specs", icon: "📐",
     filters: [
       { key: "fold_style", label: "Fold Style", type: "multi", options: ["taco", "hinge", "hybrid", "tri_fold", "baffled", "inflatable"] },
+      { key: "landing_area_m2", label: "Landing Area (m²)", type: "range", min: 0.1, max: 2.5, step: 0.05 },
       { key: "thickness_cm", label: "Thickness (cm)", type: "range", min: 1, max: 15, step: 0.5 },
       { key: "weight_kg", label: "Weight (kg)", type: "range", min: 0.3, max: 12, step: 0.1 },
       { key: "current_price_eur", label: "Price (€)", type: "range", min: 20, max: 550, step: 10 },
@@ -433,7 +436,7 @@ function CompactCrashpadCard({ result, onClick }) {
           {d.model}
         </div>
         <div style={{ fontSize: "10px", color: "#9ca3af", fontFamily: "'DM Mono',monospace", marginBottom: "6px" }}>
-          {d.thickness_cm}cm · {d.weight_kg}kg
+          {((d.length_open_cm * d.width_open_cm) / 10000).toFixed(2)}m² · {d.thickness_cm}cm · {d.weight_kg}kg
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
           <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
@@ -659,6 +662,13 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
 
   const displayResults = useMemo(() => {
     if (sortKey === "best_match") return results;
+    if (sortKey === "landing_area") {
+      return [...results].sort((a, b) => {
+        const aA = (a.pad_data.length_open_cm || 0) * (a.pad_data.width_open_cm || 0);
+        const bA = (b.pad_data.length_open_cm || 0) * (b.pad_data.width_open_cm || 0);
+        return bA - aA;
+      });
+    }
     const items = results.map(r => r.pad_data);
     const sorted = sortItems(items, sortKey, {
       getPrice: i => i.current_price_eur,
@@ -986,7 +996,14 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
             <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
               {displayResults.length} pad{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
             </span>
-            <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
+            <SortDropdownGeneric value={sortKey} onChange={setSortKey} options={[
+              { key: "best_match", label: "Best Match" },
+              { key: "price_asc", label: "Price: Low → High" },
+              { key: "price_desc", label: "Price: High → Low" },
+              { key: "discount", label: "Biggest Discount" },
+              { key: "landing_area", label: "Landing Area" },
+              { key: "brand_az", label: "Brand A–Z" },
+            ]} />
           </div>
 
           {/* Grid */}
