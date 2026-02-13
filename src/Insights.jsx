@@ -9,8 +9,8 @@ function useIsMobile() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   DATA — embedded from database analysis of 333 shoes,
-   28 ropes (19 single), 19 belay devices.
+   DATA — embedded from seed file analysis of 333 shoes,
+   141 ropes (106 single), 19 belay devices.
    Crashpad data from curated analysis (DB table pending).
    ═══════════════════════════════════════════════════════════════ */
 // Article 1+6: Crashpad scatter data (name, area m², €/m², foam layers, fold style, price, weight)
@@ -57,16 +57,18 @@ const FOAM_DATA = [
   { layers: 5, n: 4, avgPrice: 274, avgEurM2: 292 },
 ];
 
-/* Article 3: Rope diameter data — SINGLE-CERTIFIED ROPES ONLY (19 ropes).
+/* Article 3: Rope diameter data — 106 SINGLE-CERTIFIED ROPES (from seed).
    Half & twin ropes excluded: they use a lighter 55kg test mass for UIAA falls,
    which inflates fall counts at thin diameters and distorts the analysis. */
 const ROPE_DIAMETER = [
-  { band: "≤8.7", d: 8.6, n: 2, falls: 5.0, gm: 48, dry: 100 },
-  { band: "9.1–9.2", d: 9.15, n: 2, falls: 5.0, gm: 52, dry: 100 },
-  { band: "9.3–9.5", d: 9.47, n: 6, falls: 7.5, gm: 59, dry: 100 },
-  { band: "9.6–9.8", d: 9.76, n: 5, falls: 8.2, gm: 62, dry: 60 },
-  { band: "9.9–10.0", d: 9.95, n: 2, falls: 8.0, gm: 62, dry: 50 },
-  { band: "≥10.1", d: 10.15, n: 2, falls: 7.5, gm: 68, dry: 0 },
+  { band: "≤8.7",      d: 8.6,  n: 6,  falls: 4.8, gm: 48.5, dry: 100 },
+  { band: "8.8–9.0",   d: 8.95, n: 6,  falls: 6.2, gm: 53.2, dry: 100 },
+  { band: "9.1–9.2",   d: 9.15, n: 12, falls: 6.3, gm: 54.8, dry: 100 },
+  { band: "9.3–9.5",   d: 9.45, n: 21, falls: 7.0, gm: 58.8, dry: 90 },
+  { band: "9.6–9.8",   d: 9.7,  n: 31, falls: 8.0, gm: 61.6, dry: 65 },
+  { band: "9.9–10.0",  d: 9.95, n: 14, falls: 8.4, gm: 63.9, dry: 50 },
+  { band: "10.1–10.5", d: 10.3, n: 12, falls: 8.8, gm: 67.1, dry: 50 },
+  { band: "≥11.0",     d: 11.0, n: 4,  falls: 13.8,gm: 75.5, dry: 25 },
 ];
 
 // Article 4: Rubber compounds
@@ -277,11 +279,11 @@ function RopeDiameterChart({ isMobile }) {
   const linePath = bands.map((d, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)},${y(d[cfg.key]).toFixed(1)}`).join(" ");
   const areaPath = linePath + ` L${x(bands.length - 1)},${pad.top + ch} L${x(0)},${pad.top + ch} Z`;
 
-  // Highlight the 9.3-9.5 "threshold" zone — where falls jump from 5 to 7.5
-  const threshIdx = [1, 2]; // indices for 9.1-9.2 and 9.3-9.5
+  // Sweet-spot highlight: 9.5–9.8mm (index 4 = "9.6–9.8")
+  const ssIdx = [3, 4]; // 9.3–9.5 and 9.6–9.8
 
   return (
-    <ChartContainer title="Rope Diameter Deep Dive" subtitle="19 single-certified ropes — half & twin excluded (different UIAA test standard)">
+    <ChartContainer title="Rope Diameter Deep Dive" subtitle="106 single-certified ropes — half & twin excluded (different UIAA test standard)">
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", flexWrap: "wrap" }}>
         {Object.entries(configs).map(([k, c]) => (
           <button key={k} onClick={() => setMetric(k)} style={{
@@ -301,9 +303,9 @@ function RopeDiameterChart({ isMobile }) {
             </g>
           );
         })}
-        {/* Threshold zone */}
-        <rect x={x(threshIdx[0]) - 10} y={pad.top} width={x(threshIdx[1]) - x(threshIdx[0]) + 20} height={ch} rx="4" fill={T.yellow} opacity="0.06" />
-        <text x={(x(threshIdx[0]) + x(threshIdx[1])) / 2} y={pad.top + 14} fill={T.yellow} fontSize="9" fontWeight="600" textAnchor="middle" opacity="0.8">Threshold Zone</text>
+        {/* Sweet-spot zone */}
+        <rect x={x(ssIdx[0]) - 10} y={pad.top} width={x(ssIdx[1]) - x(ssIdx[0]) + 20} height={ch} rx="4" fill={T.green} opacity="0.06" />
+        <text x={(x(ssIdx[0]) + x(ssIdx[1])) / 2} y={pad.top + 14} fill={T.green} fontSize="9" fontWeight="600" textAnchor="middle" opacity="0.8">Sweet Spot</text>
         {/* Area */}
         <path d={areaPath} fill={cfg.color} opacity="0.08" />
         {/* Line */}
@@ -466,7 +468,7 @@ export default function Insights() {
           </p>
           <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginTop: "20px" }}>
             <span style={{ fontSize: "11px", color: T.accent, background: T.accentSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>333 Shoes</span>
-            <span style={{ fontSize: "11px", color: T.green, background: T.greenSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>28 Ropes</span>
+            <span style={{ fontSize: "11px", color: T.green, background: T.greenSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>141 Ropes</span>
             <span style={{ fontSize: "11px", color: T.blue, background: T.blueSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>19 Belay Devices</span>
           </div>
         </div>
@@ -512,37 +514,43 @@ export default function Insights() {
             Foam layers tell a clear story: each additional layer adds roughly €40–50 to the street price. The jump from 3 to 4 layers is the steepest — a 54% price increase for what amounts to marginal impact-absorption gains. For most boulderers on standard 3–4m problems, 2–3 foam layers are more than sufficient.
           </Prose>
         </section>
-        {/* ═══ ARTICLE 2: The 68g/m Threshold ═══ */}
+        {/* ═══ ARTICLE 2: The Rope Sweet Spot ═══ */}
         <section style={sectionStyle}>
           <ArticleHeader
             number={2}
             icon="🧵"
-            title="The 9.3mm Threshold: Where Single Ropes Come Alive"
-            subtitle="19 single-certified ropes reveal a sharp performance cliff — and a sweet spot most climbers overlook."
+            title="The 9.5–9.8mm Sweet Spot: 106 Ropes Expose the Best Value Band"
+            subtitle="106 single-certified ropes reveal a steady performance curve — and one diameter range where competition delivers the best deals."
           />
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-            <StatCard label="The Cliff" value="9.3mm" sub="Falls jump from 5 → 7.5" color={T.accent} />
-            <StatCard label="Sweet Spot" value="9.4–9.5" sub="6 models, best falls/weight" color={T.blue} />
-            <StatCard label="Diminishing Returns" value="10.0mm+" sub="Falls drop, dry vanishes" color={T.yellow} />
+            <StatCard label="Most Models" value="9.6–9.8" sub="31 ropes — fiercest competition" color={T.accent} />
+            <StatCard label="Best Balance" value="8.0 falls" sub="62 g/m avg in sweet spot" color={T.blue} />
+            <StatCard label="Gym Territory" value="≥11.0mm" sub="13.8 falls, 75 g/m — tanks" color={T.yellow} />
           </div>
 
           <Prose>
-            When you look at single-certified ropes only — excluding half and twin ropes that use a lighter 55kg test mass — a striking pattern emerges. Below 9.3mm, every single rope maxes out at just 5 UIAA falls. Cross that threshold, and you jump to 7–9 falls. But go above 9.8mm and you hit diminishing returns: falls plateau while weight keeps climbing.
+            Analyzing 106 single-certified ropes — excluding half and twin ropes that use a lighter 55kg test mass — reveals no dramatic "cliff" or threshold. Instead, durability climbs steadily with diameter: from 4.8 avg falls at ≤8.7mm up to 13.8 at ≥11.0mm. The real insight isn't where a threshold lies, but where the market concentrates — and that tells you where the best deals are.
           </Prose>
 
           <RopeDiameterChart isMobile={isMobile} />
 
+          <div style={{ textAlign: "center", margin: "16px 0 8px" }}>
+            <Link to="/ropes" style={{ fontSize: "12px", color: T.accent, textDecoration: "none", fontWeight: 600 }}>
+              → Explore all 106 ropes with interactive scatter plots
+            </Link>
+          </div>
+
           <KeyInsight color={T.green}>
-            <strong>The 9.3mm Threshold:</strong> Below 9.3mm, single ropes are ultralight alpine specialists — all with 5 UIAA falls and full dry treatment. At 9.3mm+, durability jumps 50% (to 7.5 avg falls) for only ~12% more weight (59 vs 52 g/m). The 9.4–9.5mm band (6 models) hits the optimal balance of durability, weight, and versatility.
+            <strong>The Sweet Spot (9.5–9.8mm):</strong> This band holds 31 of 106 ropes — nearly a third of the entire market. More models means fiercer price competition and more choice. Average durability here is 8.0 UIAA falls at 61.6 g/m — a solid all-round spec. Below 9.0mm you're in ultralight specialist territory (4.8–6.2 falls); above 10.0mm the weight penalty outpaces durability gains.
           </KeyInsight>
 
           <Prose>
-            Toggle to "Weight" above and the linear climb is clear. From 8.6mm to 10.2mm, weight rises steadily from 48 to 70 g/m. On a 70m rope, that's the difference between 3.36kg and 4.90kg — over 1.5kg. The falls curve, by contrast, plateaus above 9.5mm: going thicker buys minimal extra durability.
+            Toggle to "Weight" above and the steady climb is clear: from 48.5 g/m at ≤8.7mm to 75.5 g/m at ≥11.0mm. On a 70m rope, that's the difference between 3.4kg and 5.3kg — nearly 2kg extra in your pack. Meanwhile, the falls curve flattens above 9.5mm: going from 9.5mm to 10.0mm adds only 0.4 extra UIAA falls but 5 g/m more weight.
           </Prose>
 
           <KeyInsight>
-            <strong>The Dry Treatment Cliff:</strong> 100% of single ropes below 9.6mm have dry treatment. At 9.6–9.8mm it drops to 60%, and above 10mm it vanishes entirely (0%). This is the clearest signal: thicker ropes are built for gym and top-rope use where weather protection doesn't matter.
+            <strong>The Dry Treatment Signal:</strong> 100% of ropes below 9.0mm have dry treatment — these are alpine tools built for mountain weather. By 9.6–9.8mm, dry treatment drops to 65%. Above 10mm it's a coin flip. This clearly separates alpine ropes (thin, dry, light) from sport/gym ropes (thick, untreated, durable).
           </KeyInsight>
         </section>
 
@@ -618,7 +626,7 @@ export default function Insights() {
           <p style={{ fontSize: "12px", color: T.muted, lineHeight: 1.7, margin: 0 }}>
             Data sourced from manufacturer specs and retailer listings across European markets. Prices reflect current street prices (or UVP where unavailable) as of early 2025. 
             €/m² calculated as current_price ÷ (length_open × width_open). Foam layer counts from manufacturer datasheets. Rubber compound data from official shoe specifications. 
-            Rope analysis restricted to single-certified ropes only (EN 892, 80kg test mass). Half and twin ropes use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Sample sizes noted on each chart. Analysis by climbing-gear.com.
+            Rope analysis covers 106 single-certified ropes from seed database (EN 892, 80kg test mass). Half and twin ropes (35 total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Sample sizes noted on each chart. Analysis by climbing-gear.com.
           </p>
         </div>
 
