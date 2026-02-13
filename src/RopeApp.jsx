@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
+import RopeScatterChart from "./RopeScatterChart.jsx";
 
 /** Image with graceful fallback on 404 */
 function Img({ src, alt, style, fallback }) {
@@ -647,7 +648,10 @@ function loadRopeSession() {
 
 export default function RopeApp({ ropes = [], src = "local" }) {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
+  const viewFromUrl = searchParams.get("view");
+  const [view, setView] = useState(viewFromUrl === "chart" ? "chart" : "cards"); // "cards" | "chart"
   const _s = loadRopeSession();
   const [filters, setFilters] = useState(_s.filters || {});
   const [activeTypes, setActiveTypes] = useState(_s.activeTypes || []);
@@ -766,6 +770,25 @@ export default function RopeApp({ ropes = [], src = "local" }) {
               fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
             }}
           />
+        </div>
+
+        {/* View toggle */}
+        <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+          {[
+            { key: "cards", icon: "▦", label: "Cards" },
+            { key: "chart", icon: "⊙", label: "Chart" },
+          ].map(v => (
+            <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+              padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
+              background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+              color: view === v.key ? "#E8734A" : "#6b7280",
+              fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+              display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <span style={{ fontSize: "13px" }}>{v.icon}</span>
+              {!isMobile && v.label}
+            </button>
+          ))}
         </div>
 
         <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
@@ -1045,41 +1068,47 @@ export default function RopeApp({ ropes = [], src = "local" }) {
             </div>
           )}
 
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
-            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-              {displayResults.length} rope{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
-            </span>
-            <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
-          </div>
-
-          {/* Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
-            {displayResults.map((r, i) => (
-              <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
-                <CompareCheckbox type="ropes" slug={r.rope_data.slug} compact={isMobile} />
-                {isMobile ? (
-                  <CompactRopeCard
-                    result={r}
-                    onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
-                  />
-                ) : (
-                  <RopeCard
-                    result={r}
-                    onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
-                    selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
-                    onLengthSelect={handleLengthSelect}
-                  />
-                )}
+          {view === "chart" ? (
+            <RopeScatterChart isMobile={isMobile} />
+          ) : (
+            <>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+                <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+                  {displayResults.length} rope{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
+                </span>
+                <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
               </div>
-            ))}
-          </div>
 
-          {!displayResults.length && (
-            <div style={{ textAlign: "center", padding: isMobile ? "40px 0" : "80px 0", color: "#6b7280" }}>
-              <div style={{ fontSize: "48px", marginBottom: "16px" }}>🪢</div>
-              <div style={{ fontSize: "16px", marginBottom: "8px" }}>No ropes match{query ? ` "${query}"` : ""}</div>
-              <div style={{ fontSize: "13px" }}>Try {query ? "a different search term or " : ""}adjusting your filters</div>
-            </div>
+              {/* Grid */}
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
+                {displayResults.map((r, i) => (
+                  <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
+                    <CompareCheckbox type="ropes" slug={r.rope_data.slug} compact={isMobile} />
+                    {isMobile ? (
+                      <CompactRopeCard
+                        result={r}
+                        onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
+                      />
+                    ) : (
+                      <RopeCard
+                        result={r}
+                        onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
+                        selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
+                        onLengthSelect={handleLengthSelect}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {!displayResults.length && (
+                <div style={{ textAlign: "center", padding: isMobile ? "40px 0" : "80px 0", color: "#6b7280" }}>
+                  <div style={{ fontSize: "48px", marginBottom: "16px" }}>🪢</div>
+                  <div style={{ fontSize: "16px", marginBottom: "8px" }}>No ropes match{query ? ` "${query}"` : ""}</div>
+                  <div style={{ fontSize: "13px" }}>Try {query ? "a different search term or " : ""}adjusting your filters</div>
+                </div>
+              )}
+            </>
           )}
         </main>
       </div>
