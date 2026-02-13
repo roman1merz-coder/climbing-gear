@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
@@ -6,8 +6,8 @@ import CRASHPAD_SEED from "./crashpad_seed_data.json";
 /* ─── Data ─── */
 const PADS = CRASHPAD_SEED.filter(p => p.length_open_cm && p.width_open_cm && p.weight_kg && p.current_price_eur)
   .map(p => {
-    const area = (p.length_open_cm * p.width_open_cm) / 10000; // m²
-    const vol = area * (p.thickness_cm || 10) / 100; // m³
+    const area = (p.length_open_cm * p.width_open_cm) / 10000;
+    const vol = area * (p.thickness_cm || 10) / 100;
     const eurM2 = Math.round(p.current_price_eur / area);
     return {
       brand: p.brand, model: p.model, slug: p.slug,
@@ -17,7 +17,7 @@ const PADS = CRASHPAD_SEED.filter(p => p.length_open_cm && p.width_open_cm && p.
     };
   });
 
-/* Color coding by foam layers */
+/* Color palettes */
 const LAYER_COLORS = {
   0: "#94a3b8", 1: "#60a5fa", 2: "#22c55e", 3: "#E8734A", 4: "#ef4444", 5: "#a78bfa", 7: "#eab308",
 };
@@ -25,6 +25,9 @@ const FOLD_COLORS = {
   taco: "#E8734A", hinge: "#60a5fa", tri_fold: "#22c55e", hybrid: "#a78bfa",
   inflatable: "#eab308", baffled: "#94a3b8", unknown: "#6b7280",
 };
+const BRAND_PAL = ["#63b3ed","#ed64a6","#48bb78","#ecc94b","#ed8936","#9f7aea","#38b2ac","#fc8181","#f6ad55","#68d391","#d53f8c","#4fd1c5","#b794f4","#90cdf4","#feb2b2","#fbd38d","#81e6d9","#c4b5fd","#fca5a5","#bef264"];
+const BRAND_LIST = [...new Set(PADS.map(d => d.brand))].sort();
+const BRAND_COLORS = Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]]));
 
 /* ─── Chart Container ─── */
 function ChartContainer({ title, subtitle, children, style }) {
@@ -42,36 +45,52 @@ export default function CrashpadScatterChart({ isMobile }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
-  const [metric, setMetric] = useState("area_weight"); // 4 views
-  const [colorBy, setColorBy] = useState("layers"); // "layers" | "fold"
+  const [metric, setMetric] = useState("area_weight");
+  const [colorBy, setColorBy] = useState("layers"); // "layers" | "fold" | "brand"
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
+
+  /* ─── Clickable legend filter state ─── */
+  const [hiddenLayers, setHiddenLayers] = useState(new Set());
+  const [hiddenFolds, setHiddenFolds] = useState(new Set());
+  const [hiddenBrands, setHiddenBrands] = useState(new Set());
+
+  const toggleHidden = (setter, key) => setter(prev => {
+    const next = new Set(prev);
+    next.has(key) ? next.delete(key) : next.add(key);
+    return next;
+  });
+
+  const filteredPads = useMemo(() => PADS.filter(d =>
+    !hiddenLayers.has(d.layers) && !hiddenFolds.has(d.fold) && !hiddenBrands.has(d.brand)
+  ), [hiddenLayers, hiddenFolds, hiddenBrands]);
 
   const cfgs = {
     area_weight: {
       xField: "area", yField: "weight", xLabel: "Landing Area (m²)", yLabel: "Weight (kg)",
-      xMin: 0.3, xMax: 2.5, yMin: 0, yMax: 11, xStep: 0.5, yStep: 2,
-      label: "Area vs Weight", sub: `${PADS.length} crashpads — bigger = heavier, but by how much?`,
+      xMin: 0.3, xMax: 2.8, yMin: 0, yMax: 11, xStep: 0.5, yStep: 2,
+      label: "Area vs Weight", sub: `${filteredPads.length} crashpads — bigger = heavier, but by how much?`,
     },
     area_price: {
       xField: "area", yField: "price", xLabel: "Landing Area (m²)", yLabel: "Price (€)",
-      xMin: 0.3, xMax: 2.5, yMin: 0, yMax: 650, xStep: 0.5, yStep: 100,
-      label: "Area vs Price", sub: `${PADS.length} crashpads — what does more landing zone cost?`,
+      xMin: 0.3, xMax: 2.8, yMin: 0, yMax: 650, xStep: 0.5, yStep: 100,
+      label: "Area vs Price", sub: `${filteredPads.length} crashpads — what does more landing zone cost?`,
     },
     area_eurm2: {
       xField: "area", yField: "eurM2", xLabel: "Landing Area (m²)", yLabel: "€ / m²",
-      xMin: 0.3, xMax: 2.5, yMin: 30, yMax: 420, xStep: 0.5, yStep: 50,
-      label: "Area vs €/m²", sub: `${PADS.length} crashpads — value density across the market`,
+      xMin: 0.3, xMax: 2.8, yMin: 30, yMax: 450, xStep: 0.5, yStep: 50,
+      label: "Area vs €/m²", sub: `${filteredPads.length} crashpads — value density across the market`,
     },
     eurm2_weight: {
       xField: "eurM2", yField: "weight", xLabel: "€ / m²", yLabel: "Weight (kg)",
-      xMin: 30, xMax: 420, yMin: 0, yMax: 11, xStep: 50, yStep: 2,
-      label: "€/m² vs Weight", sub: `${PADS.length} crashpads — cheap AND light is the sweet spot`,
+      xMin: 20, xMax: 450, yMin: 0, yMax: 11, xStep: 50, yStep: 2,
+      label: "€/m² vs Weight", sub: `${filteredPads.length} crashpads — cheap AND light is the sweet spot`,
     },
   };
   const cfg = cfgs[metric];
 
   const getColor = useCallback((d) => {
+    if (colorBy === "brand") return BRAND_COLORS[d.brand] || "#94a3b8";
     if (colorBy === "fold") return FOLD_COLORS[d.fold] || FOLD_COLORS.unknown;
     return LAYER_COLORS[d.layers] || "#94a3b8";
   }, [colorBy]);
@@ -82,7 +101,7 @@ export default function CrashpadScatterChart({ isMobile }) {
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
     const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 20, b: 44, l: 55 };
+    const PAD = { t: 20, r: 30, b: 44, l: 55 };
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -127,22 +146,20 @@ export default function CrashpadScatterChart({ isMobile }) {
       ctx.fillText("Sweet Spot", (x1 + x2) / 2, y1 + 12);
     }
 
-    // Dots
+    // Dots (filtered)
     const hovered = hovRef.current;
-    PADS.forEach(d => {
+    filteredPads.forEach(d => {
       const px = sx(Math.max(xMin, Math.min(xMax, d[xField])));
       const py = sy(Math.max(yMin, Math.min(yMax, d[yField])));
       const isH = hovered === d;
       const hex = getColor(d);
       const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-
-      // Size dot by area (bigger pad = bigger dot)
       const r = Math.max(3.5, Math.min(7, d.area * 3.5));
       ctx.beginPath(); ctx.arc(px, py, isH ? r + 2 : r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${cr},${cg},${cb},${isH ? 1 : 0.7})`; ctx.fill();
       ctx.strokeStyle = isH ? "#fff" : `rgba(${cr},${cg},${cb},0.3)`; ctx.lineWidth = isH ? 2 : 0.8; ctx.stroke();
     });
-  }, [metric, colorBy, isMobile, cfg, getColor]);
+  }, [metric, colorBy, isMobile, cfg, getColor, filteredPads]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -153,17 +170,17 @@ export default function CrashpadScatterChart({ isMobile }) {
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left, my = e.clientY - rect.top;
     const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD_C = { t: 20, r: 20, b: 44, l: 55 };
+    const PAD_C = { t: 20, r: 30, b: 44, l: 55 };
     const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
     const sx = x => PAD_C.l + (x - xMin) / (xMax - xMin) * (W - PAD_C.l - PAD_C.r);
     const sy = y => H - PAD_C.b - (y - yMin) / (yMax - yMin) * (H - PAD_C.t - PAD_C.b);
     let closest = null, best = Infinity;
-    PADS.forEach(d => {
+    filteredPads.forEach(d => {
       const dx = sx(d[xField]) - mx, dy = sy(d[yField]) - my, dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < 24 && dist < best) { closest = d; best = dist; }
     });
     return closest;
-  }, [isMobile, cfg]);
+  }, [isMobile, cfg, filteredPads]);
 
   const showTip = useCallback((d, x, y, pinned) => {
     const tip = tipRef.current;
@@ -234,6 +251,10 @@ export default function CrashpadScatterChart({ isMobile }) {
     return () => tip.removeEventListener("click", onClick);
   }, [navigate]);
 
+  /* ─── Legend data for current colorBy ─── */
+  const layerKeys = [...new Set(PADS.map(d => d.layers))].sort((a, b) => a - b);
+  const foldKeys = [...new Set(PADS.map(d => d.fold))].filter(k => k !== "unknown").sort();
+
   const metricButtons = [
     { key: "area_weight", label: "Area vs Weight", color: T.accent },
     { key: "area_price", label: "Area vs Price", color: T.blue },
@@ -241,9 +262,20 @@ export default function CrashpadScatterChart({ isMobile }) {
     { key: "eurm2_weight", label: "€/m² vs Weight", color: "#a78bfa" },
   ];
 
-  const legendItems = colorBy === "layers"
-    ? [1, 2, 3, 4, 5].map(l => ({ color: LAYER_COLORS[l], label: `${l} layer${l > 1 ? "s" : ""}` }))
-    : Object.entries(FOLD_COLORS).filter(([k]) => k !== "unknown").map(([k, c]) => ({ color: c, label: k.replace("_", "-") }));
+  /* Reusable clickable legend pill */
+  const Pill = ({ color, label, hidden, onClick }) => (
+    <span onClick={onClick} style={{
+      fontSize: "10px", color: hidden ? "#4a5568" : T.muted, display: "flex", alignItems: "center", gap: "4px",
+      cursor: "pointer", padding: "2px 8px", borderRadius: "10px", userSelect: "none",
+      background: hidden ? "transparent" : "rgba(255,255,255,.04)",
+      border: `1px solid ${hidden ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.1)"}`,
+      opacity: hidden ? 0.4 : 1, textDecoration: hidden ? "line-through" : "none",
+      transition: "all .15s",
+    }}>
+      <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: color, display: "inline-block", opacity: hidden ? 0.3 : 1 }} />
+      {label}
+    </span>
+  );
 
   return (
     <ChartContainer title={cfg.label} subtitle={cfg.sub}>
@@ -256,16 +288,18 @@ export default function CrashpadScatterChart({ isMobile }) {
           }}>{isMobile ? m.label.replace(" vs ", "/") : m.label}</button>
         ))}
       </div>
-      {/* Color toggle */}
+
+      {/* Color-by toggle */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
-        {["layers", "fold"].map(k => (
+        {["layers", "fold", "brand"].map(k => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
-          }}>{k === "layers" ? "Foam Layers" : "Fold Style"}</button>
+          }}>{k === "layers" ? "Foam Layers" : k === "fold" ? "Fold Style" : "Brand"}</button>
         ))}
       </div>
+
       <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
         onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
       <div ref={tipRef} style={{
@@ -273,16 +307,39 @@ export default function CrashpadScatterChart({ isMobile }) {
         borderRadius: "8px", padding: "10px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
         boxShadow: "0 8px 24px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .1s", maxWidth: "280px",
       }} />
-      {/* Legend */}
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-        {legendItems.map(l => (
-          <span key={l.label} style={{ fontSize: "10px", color: T.muted, display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: l.color, display: "inline-block" }} />{l.label}
-          </span>
-        ))}
-      </div>
+
+      {/* Clickable legend — foam layers */}
+      {colorBy === "layers" && (
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+          {layerKeys.map(l => (
+            <Pill key={l} color={LAYER_COLORS[l] || "#94a3b8"} label={`${l} layer${l !== 1 ? "s" : ""}`}
+              hidden={hiddenLayers.has(l)} onClick={() => toggleHidden(setHiddenLayers, l)} />
+          ))}
+        </div>
+      )}
+
+      {/* Clickable legend — fold style */}
+      {colorBy === "fold" && (
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+          {foldKeys.map(k => (
+            <Pill key={k} color={FOLD_COLORS[k] || "#6b7280"} label={k.replace("_", "-")}
+              hidden={hiddenFolds.has(k)} onClick={() => toggleHidden(setHiddenFolds, k)} />
+          ))}
+        </div>
+      )}
+
+      {/* Clickable legend — brands */}
+      {colorBy === "brand" && (
+        <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+          {BRAND_LIST.map(b => (
+            <Pill key={b} color={BRAND_COLORS[b]} label={b}
+              hidden={hiddenBrands.has(b)} onClick={() => toggleHidden(setHiddenBrands, b)} />
+          ))}
+        </div>
+      )}
+
       <div style={{ marginTop: "6px", textAlign: "center" }}>
-        <span style={{ fontSize: "10px", color: "#4a5568" }}>Click a dot for specs & detail link · Dot size = landing area</span>
+        <span style={{ fontSize: "10px", color: "#4a5568" }}>Click a dot for specs & detail link · Click legend to filter · Dot size = landing area</span>
       </div>
     </ChartContainer>
   );
