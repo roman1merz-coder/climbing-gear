@@ -660,6 +660,7 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
     icon: "\u23F3",
   });
   // Don't add to totalScore/totalWeight — this factor is placeholder
+    const seasonScore = 0; // placeholder — prevents ReferenceError in forecast text
 
   // Factor 4: Model lifecycle (15%)
   const modelAge = shoe.year_released ? currentYear - shoe.year_released : null;
