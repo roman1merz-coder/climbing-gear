@@ -22,7 +22,7 @@ import CompareBar from "./CompareBar.jsx";
 import { WishlistProvider } from "./WishlistContext.jsx";
 import { PriceAlertProvider } from "./PriceAlertContext.jsx";
 import Wishlist from "./Wishlist.jsx";
-import { GLOBAL_CSS } from "./tokens.js";
+import { T, GLOBAL_CSS } from "./tokens.js";
 
 // ─── Data Bridge ─────────────────────────────────────────────
 // Both App (list) and ShoeDetail (detail) need access to shoes.
