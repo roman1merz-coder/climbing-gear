@@ -13,32 +13,7 @@ function useIsMobile() {
    141 ropes (106 single), 19 belay devices.
    Crashpad data from curated analysis (DB table pending).
    ═══════════════════════════════════════════════════════════════ */
-// Article 1+6: Crashpad scatter data (name, area m², €/m², foam layers, fold style, price, weight)
-const PAD_SCATTER = [
-  {n:"Petzl Alto",a:1.18,e:211,f:3,s:"taco",p:249,w:6.2},{n:"BD Mondo",a:1.85,e:206,f:2,s:"hinge",p:380,w:9.3},
-  {n:"Ocun Dominator FTS",a:1.54,e:194,f:3,s:"hinge",p:298,w:7.8},{n:"Metolius Session II",a:1.11,e:162,f:2,s:"hinge",p:180,w:4.1},
-  {n:"Organic Full Pad",a:1.11,e:252,f:3,s:"hybrid",p:280,w:5.0},{n:"Moon Saturn",a:1.92,e:189,f:3,s:"taco",p:362,w:9.0},
-  {n:"Mad Rock R3",a:1.06,e:211,f:7,s:"baffled",p:225,w:5.4},{n:"Snap Guts",a:1.2,e:196,f:3,s:"taco",p:235,w:5.8},
-  {n:"Petzl Cirro",a:1.75,e:223,f:3,s:"taco",p:389,w:8.4},{n:"Metolius Shortstop",a:0.53,e:85,f:2,s:"hinge",p:45,w:1.5},
-  {n:"Mammut Crashiano",a:1.2,e:200,f:2,s:"hinge",p:240,w:5.5},{n:"Asana VersaPad",a:2.11,e:67,f:1,s:"hinge",p:140,w:2.3},
-  {n:"Snap Air Shock",a:1.8,e:178,f:0,s:"inflatable",p:320,w:4.0},{n:"Moon Warrior",a:1.3,e:222,f:3,s:"taco",p:289,w:6.3},
-  {n:"BD Impact",a:1.21,e:215,f:2,s:"hinge",p:260,w:5.9},{n:"BD Circuit",a:1.68,e:202,f:2,s:"hinge",p:339,w:8.3},
-  {n:"BD Drop Zone",a:1.03,e:175,f:2,s:"hinge",p:180,w:4.5},{n:"Metolius Recon",a:1.11,e:198,f:3,s:"hinge",p:220,w:4.9},
-  {n:"Metolius Magnum",a:1.63,e:172,f:3,s:"hinge",p:280,w:6.8},{n:"Organic Simple",a:0.81,e:258,f:3,s:"taco",p:210,w:3.2},
-  {n:"Organic Big Pad",a:1.63,e:240,f:3,s:"taco",p:390,w:8.0},{n:"Mad Rock Mad Pad",a:1.04,e:169,f:3,s:"hinge",p:175,w:4.5},
-  {n:"Mad Rock Duo",a:1.5,e:199,f:5,s:"hinge",p:299,w:7.5},{n:"Petzl Nimbo",a:0.8,e:249,f:3,s:"taco",p:199,w:3.5},
-  {n:"Mammut Slam",a:1.5,e:207,f:2,s:"hinge",p:310,w:6.9},{n:"Edelrid Mantle III",a:1.25,e:204,f:3,s:"hinge",p:255,w:5.9},
-  {n:"Edelrid Crux III",a:1.6,e:200,f:3,s:"hinge",p:320,w:7.5},{n:"Edelrid Sit Start",a:0.44,e:118,f:2,s:"hinge",p:52,w:1.1},
-  {n:"Beal Air Light",a:1.3,e:169,f:2,s:"taco",p:219,w:4.2},{n:"Beal Double Air",a:1.65,e:181,f:3,s:"taco",p:299,w:6.1},
-  {n:"Flashed Rambler",a:1.16,e:54,f:1,s:"hinge",p:62,w:2.5},{n:"Mad Rock Triplet",a:1.23,e:45,f:1,s:"hinge",p:55,w:2.8},
-  {n:"Organic Blubber",a:2.23,e:62,f:1,s:"hinge",p:139,w:3.5},{n:"Snap Wrap Original",a:1.8,e:64,f:1,s:"taco",p:115,w:3.2},
-  {n:"Send 4x4 Pro",a:1.49,e:335,f:4,s:"hinge",p:499,w:7.5},{n:"Send 4x4 Highball",a:1.49,e:402,f:4,s:"hinge",p:599,w:8.2},
-  {n:"ZIGZAG Double",a:0.74,e:362,f:5,s:"hinge",p:269,w:3.8},{n:"ZIGZAG Triple",a:1.12,e:340,f:5,s:"hinge",p:379,w:5.5},
-  {n:"BD Erratic",a:1.24,e:321,f:3,s:"hinge",p:399,w:6.5},{n:"Mammut Sender",a:1.2,e:208,f:3,s:"hinge",p:250,w:5.5},
-  {n:"Kinetik Newton 4",a:1.2,e:233,f:3,s:"taco",p:279,w:5.8},{n:"Escape Zone Plus",a:1.3,e:192,f:3,s:"hinge",p:249,w:5.6},
-  {n:"La Sportiva Laspo",a:1.2,e:225,f:3,s:"taco",p:270,w:5.9},{n:"La Sportiva Maipo",a:1.44,e:208,f:3,s:"taco",p:300,w:6.5},
-  {n:"Kailas Inflatable",a:1.2,e:208,f:0,s:"inflatable",p:249,w:2.3},
-];
+// Crashpad inline scatter data removed — now lives in CrashpadScatterChart.jsx
 // Fold style aggregation
 const FOLD_DATA = [
   { style: "Hinge", n: 64, avgPrice: 219, avgArea: 1.20, avgWeight: 4.9, avgEurM2: 178 },
@@ -97,84 +72,51 @@ function StatCard({ label, value, sub, color = T.accent }) {
     </div>
   );
 }
-/* ─── Scatter Plot: €/m² vs Landing Area ─── */
-function PadScatterPlot({ isMobile }) {
-  const [hovered, setHovered] = useState(null);
-  const [colorBy, setColorBy] = useState("fold"); // "fold" | "foam"
-  const W = isMobile ? 340 : 700, H = isMobile ? 280 : 380;
-  const pad = { top: 30, right: 20, bottom: 45, left: 55 };
-  const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
+/* ─── Crashpad Teaser: €/m² by fold style (links to interactive chart) ─── */
+const PAD_TEASER = [
+  { style: "Hinge", eur: 178, n: 48, color: FOLD_COLORS.hinge },
+  { style: "Taco", eur: 218, n: 28, color: FOLD_COLORS.taco },
+  { style: "Tri-fold", eur: 176, n: 8, color: FOLD_COLORS.tri_fold },
+  { style: "Hybrid", eur: 198, n: 6, color: FOLD_COLORS.hybrid },
+  { style: "Inflatable", eur: 193, n: 3, color: FOLD_COLORS.inflatable },
+];
 
-  const xMin = 0.3, xMax = 2.4, yMin = 30, yMax = 420;
-  const x = v => pad.left + ((v - xMin) / (xMax - xMin)) * cw;
-  const y = v => pad.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
-
-  const getColor = d => colorBy === "fold" ? (FOLD_COLORS[d.s] || T.muted) : (FOAM_COLORS[d.f] || T.muted);
+function PadTeaserChart({ isMobile }) {
+  const W = isMobile ? 340 : 700, H = isMobile ? 200 : 210;
+  const pad = { top: 16, right: 20, bottom: 30, left: 80 };
+  const barH = 24, gap = 8;
+  const maxVal = 260;
+  const cw = W - pad.left - pad.right;
 
   return (
-    <ChartContainer title="€/m² vs Landing Area" subtitle={`${PAD_SCATTER.length} crashpads analyzed — color by ${colorBy === "fold" ? "fold style" : "foam layers"}`}>
-      <div style={{ display: "flex", gap: "8px", marginBottom: "12px", flexWrap: "wrap" }}>
-        {["fold", "foam"].map(k => (
-          <button key={k} onClick={() => setColorBy(k)} style={{
-            padding: "4px 14px", fontSize: "12px", fontWeight: 600, borderRadius: "6px", border: "none", cursor: "pointer",
-            background: colorBy === k ? T.accent : T.surface, color: colorBy === k ? "#fff" : T.muted,
-          }}>{k === "fold" ? "By Fold Style" : "By Foam Layers"}</button>
-        ))}
-      </div>
+    <ChartContainer title="Avg €/m² by Fold Style" subtitle="103 crashpads · Fold style is a hidden price driver">
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {/* Grid */}
-        {[100, 200, 300, 400].map(v => v >= yMin && v <= yMax && (
-          <g key={v}>
-            <line x1={pad.left} y1={y(v)} x2={W - pad.right} y2={y(v)} stroke={T.border} strokeDasharray="3,3" />
-            <text x={pad.left - 8} y={y(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">€{v}</text>
-          </g>
-        ))}
-        {[0.5, 1.0, 1.5, 2.0].map(v => (
-          <g key={v}>
-            <line x1={x(v)} y1={pad.top} x2={x(v)} y2={H - pad.bottom} stroke={T.border} strokeDasharray="3,3" />
-            <text x={x(v)} y={H - pad.bottom + 18} fill={T.muted} fontSize="10" textAnchor="middle">{v}m²</text>
-          </g>
-        ))}
-        {/* Axes labels */}
-        <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">Landing Area (m²)</text>
-        <text x={14} y={H / 2} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600" transform={`rotate(-90,14,${H / 2})`}>€ / m²</text>
-        {/* Sweet spot zone */}
-        <rect x={x(1.0)} y={y(220)} width={x(1.7) - x(1.0)} height={y(150) - y(220)} rx="6" fill={T.green} opacity="0.08" stroke={T.green} strokeWidth="1" strokeDasharray="4,4" />
-        <text x={x(1.35)} y={y(225)} fill={T.green} fontSize="9" textAnchor="middle" fontWeight="600" opacity="0.7">Sweet Spot</text>
-        {/* Dots */}
-        {PAD_SCATTER.map((d, i) => {
-          const cx = x(Math.max(xMin, Math.min(xMax, d.a)));
-          const cy = y(Math.max(yMin, Math.min(yMax, d.e)));
+        {PAD_TEASER.map((d, i) => {
+          const yPos = pad.top + i * (barH + gap);
+          const barW = (d.eur / maxVal) * cw;
           return (
-            <g key={i} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: "pointer" }}>
-              <circle cx={cx} cy={cy} r={hovered === i ? 7 : 5} fill={getColor(d)} opacity={hovered === i ? 1 : 0.8} stroke={hovered === i ? "#fff" : "none"} strokeWidth="2" />
-              {hovered === i && (
-                <g>
-                  <rect x={cx + 10} y={cy - 34} width={Math.max(d.n.length * 6.5 + 20, 140)} height="48" rx="6" fill={T.surface} stroke={T.border} />
-                  <text x={cx + 18} y={cy - 18} fill={T.text} fontSize="11" fontWeight="700">{d.n}</text>
-                  <text x={cx + 18} y={cy - 3} fill={T.muted} fontSize="10">€{d.e}/m² · {d.a}m² · €{d.p} · {d.w}kg</text>
-                  <text x={cx + 18} y={cy + 10} fill={getColor(d)} fontSize="9" fontWeight="600">{colorBy === "fold" ? d.s : `${d.f} foam layers`}</text>
-                </g>
-              )}
+            <g key={d.style}>
+              <text x={pad.left - 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize="12" fontWeight="600" textAnchor="end">{d.style}</text>
+              <rect x={pad.left} y={yPos} width={barW} height={barH} rx="4" fill={d.color} opacity="0.85" />
+              <text x={pad.left + barW + 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize="12" fontWeight="700">€{d.eur}/m²</text>
+              <text x={pad.left + barW + 70} y={yPos + barH / 2 + 4} fill={T.muted} fontSize="10">n={d.n}</text>
             </g>
           );
         })}
       </svg>
-      {/* Legend */}
-      <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "8px", justifyContent: "center" }}>
-        {colorBy === "fold"
-          ? Object.entries(FOLD_COLORS).map(([k, c]) => (
-              <span key={k} style={{ fontSize: "11px", color: T.muted, display: "flex", alignItems: "center", gap: "4px" }}>
-                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: c, display: "inline-block" }} />{k}
-              </span>
-            ))
-          : [1,2,3,4,5].map(l => (
-              <span key={l} style={{ fontSize: "11px", color: T.muted, display: "flex", alignItems: "center", gap: "4px" }}>
-                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: FOAM_COLORS[l], display: "inline-block" }} />{l} layer{l > 1 ? "s" : ""}
-              </span>
-            ))
-        }
-      </div>
+      {/* CTA to interactive chart */}
+      <Link to="/crashpads?view=chart" style={{
+        display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+        marginTop: "16px", padding: "10px 20px",
+        background: T.accentSoft, color: T.accent,
+        borderRadius: "8px", fontSize: "13px", fontWeight: 700,
+        textDecoration: "none", transition: "transform 0.15s",
+      }}
+        onMouseOver={e => e.currentTarget.style.transform = "translateY(-1px)"}
+        onMouseOut={e => e.currentTarget.style.transform = "translateY(0)"}
+      >
+        Explore all 103 crashpads interactively →
+      </Link>
     </ChartContainer>
   );
 }
@@ -497,7 +439,7 @@ export default function Insights() {
             When you walk into a climbing shop and see a €55 crashpad next to a €599 one, the price gap seems absurd. But zoom in on what you actually get per square meter of landing zone, and the picture shifts dramatically. The Mad Rock Triplet delivers protection at just €45/m² — but with a single foam layer and minimal carry features. The Send 4x4 Pro Highball commands €402/m² with 4-layer foam and professional-grade features.
           </Prose>
 
-          <PadScatterPlot isMobile={isMobile} />
+          <PadTeaserChart isMobile={isMobile} />
 
           <KeyInsight>
             <strong>The Sweet Spot:</strong> Pads between 1.0–1.7m² and €150–220/m² offer the best balance of protection, portability, and value. This zone contains 60%+ of all crashpads — for good reason.

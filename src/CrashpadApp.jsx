@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
+import CrashpadScatterChart from "./CrashpadScatterChart.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -630,7 +631,10 @@ function loadSession() {
 
 export default function CrashpadApp({ crashpads = [], src = "local" }) {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
+  const viewFromUrl = searchParams.get("view");
+  const [view, setView] = useState(viewFromUrl === "chart" ? "chart" : "cards");
   const _s = loadSession();
   const [filters, setFilters] = useState(_s.filters || {});
   const [activeSizes, setActiveSizes] = useState(_s.activeSizes || []);
@@ -745,6 +749,25 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
               fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
             }}
           />
+        </div>
+
+        {/* View toggle */}
+        <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+          {[
+            { key: "cards", icon: "▦", label: "Cards" },
+            { key: "chart", icon: "⊙", label: "Chart" },
+          ].map(v => (
+            <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+              padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
+              background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+              color: view === v.key ? "#E8734A" : "#6b7280",
+              fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+              display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <span style={{ fontSize: "13px" }}>{v.icon}</span>
+              {!isMobile && v.label}
+            </button>
+          ))}
         </div>
 
         <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
@@ -1007,48 +1030,54 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
             </div>
           )}
 
-          {/* Mobile result count */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
-            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-              {displayResults.length} pad{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
-            </span>
-            <SortDropdownGeneric value={sortKey} onChange={setSortKey} options={[
-              { key: "best_match", label: "Best Match" },
-              { key: "price_asc", label: "Price: Low → High" },
-              { key: "price_desc", label: "Price: High → Low" },
-              { key: "discount", label: "Biggest Discount" },
-              { key: "landing_area", label: "Landing Area" },
-              { key: "weight_asc", label: "Weight: Lightest" },
-              { key: "brand_az", label: "Brand A–Z" },
-            ]} />
-          </div>
-
-          {/* Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
-            {displayResults.map((r, i) => (
-              <div key={r.pad_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
-                <CompareCheckbox type="crashpads" slug={r.pad_data.slug} compact={isMobile} />
-                {isMobile ? (
-                  <CompactCrashpadCard
-                    result={r}
-                    onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
-                  />
-                ) : (
-                  <CrashpadCard
-                    result={r}
-                    onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
-                  />
-                )}
+          {view === "chart" ? (
+            <CrashpadScatterChart isMobile={isMobile} />
+          ) : (
+            <>
+              {/* Result count + sort */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+                <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+                  {displayResults.length} pad{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
+                </span>
+                <SortDropdownGeneric value={sortKey} onChange={setSortKey} options={[
+                  { key: "best_match", label: "Best Match" },
+                  { key: "price_asc", label: "Price: Low → High" },
+                  { key: "price_desc", label: "Price: High → Low" },
+                  { key: "discount", label: "Biggest Discount" },
+                  { key: "landing_area", label: "Landing Area" },
+                  { key: "weight_asc", label: "Weight: Lightest" },
+                  { key: "brand_az", label: "Brand A–Z" },
+                ]} />
               </div>
-            ))}
-          </div>
 
-          {!displayResults.length && (
-            <div style={{ textAlign: "center", padding: isMobile ? "40px 0" : "80px 0", color: "#6b7280" }}>
-              <div style={{ fontSize: "48px", marginBottom: "16px" }}>🛏️</div>
-              <div style={{ fontSize: "16px", marginBottom: "8px" }}>No crashpads match{query ? ` "${query}"` : ""}</div>
-              <div style={{ fontSize: "13px" }}>Try {query ? "a different search term or " : ""}adjusting your filters</div>
-            </div>
+              {/* Grid */}
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
+                {displayResults.map((r, i) => (
+                  <div key={r.pad_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
+                    <CompareCheckbox type="crashpads" slug={r.pad_data.slug} compact={isMobile} />
+                    {isMobile ? (
+                      <CompactCrashpadCard
+                        result={r}
+                        onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
+                      />
+                    ) : (
+                      <CrashpadCard
+                        result={r}
+                        onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {!displayResults.length && (
+                <div style={{ textAlign: "center", padding: isMobile ? "40px 0" : "80px 0", color: "#6b7280" }}>
+                  <div style={{ fontSize: "48px", marginBottom: "16px" }}>🛏️</div>
+                  <div style={{ fontSize: "16px", marginBottom: "8px" }}>No crashpads match{query ? ` "${query}"` : ""}</div>
+                  <div style={{ fontSize: "13px" }}>Try {query ? "a different search term or " : ""}adjusting your filters</div>
+                </div>
+              )}
+            </>
           )}
         </main>
       </div>
