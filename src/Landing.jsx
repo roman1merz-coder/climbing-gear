@@ -57,19 +57,29 @@ function GearCard({ icon, title, description, to, active }) {
 }
 
 // ─── Content Hub Card (Insights / News / Deals) ───
-function ContentCard({ icon, title, tagline, color }) {
+function ContentCard({ icon, title, tagline, color, to }) {
   const isMobile = useIsMobile();
+  const Wrap = to ? Link : "div";
+  const wrapProps = to ? { to, style: { textDecoration: "none" } } : {};
   return (
-    <div style={{
-      background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px",
+    <Wrap {...wrapProps} style={{
+      background: T.card, border: `1px solid ${to ? `${color}40` : T.border}`, borderRadius: "14px",
       padding: isMobile ? "24px 20px" : "28px 24px", flex: 1, minWidth: "240px",
-      position: "relative", overflow: "hidden",
-    }}>
-      <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.muted, background: T.border, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Coming Soon</div>
+      position: "relative", overflow: "hidden", textDecoration: "none",
+      cursor: to ? "pointer" : "default", transition: "all 0.25s",
+    }}
+      onMouseOver={to ? e => { e.currentTarget.style.borderColor = color; e.currentTarget.style.transform = "translateY(-2px)"; } : undefined}
+      onMouseOut={to ? e => { e.currentTarget.style.borderColor = `${color}40`; e.currentTarget.style.transform = "translateY(0)"; } : undefined}
+    >
+      {to
+        ? <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color, background: `${color}18`, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Live</div>
+        : <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.muted, background: T.border, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Coming Soon</div>
+      }
       <div style={{ fontSize: "28px", marginBottom: "14px", width: "48px", height: "48px", borderRadius: "12px", background: `${color}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>{icon}</div>
       <div style={{ fontSize: "16px", fontWeight: 800, color: T.text, letterSpacing: "-0.2px", marginBottom: "8px" }}>{title}</div>
       <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7 }}>{tagline}</div>
-    </div>
+      {to && <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color, fontSize: "13px", fontWeight: 700, marginTop: "12px" }}>Read insights →</div>}
+    </Wrap>
   );
 }
 
@@ -236,7 +246,7 @@ export default function Landing() {
         </h2>
         <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
           <ContentCard
-            icon={"\u{1F4CA}"} title="Gear Insights" color={T.purple}
+            icon={"\u{1F4CA}"} title="Gear Insights" color={T.purple} to="/insights"
             tagline="You'd be surprised what emerges when you compare every climbing product side by side. Data-driven insights no catalog can give you."
           />
           <ContentCard

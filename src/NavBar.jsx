@@ -158,6 +158,10 @@ export default function NavBar({ priceData = {} }) {
       {/* Right links (desktop only) */}
       {!isMobile && (
         <div style={{ display: "flex", gap: "16px", fontSize: "12px", flexShrink: 0 }}>
+          <Link to="/insights" style={{
+            color: pathname === "/insights" ? T.accent : T.muted,
+            textDecoration: "none", fontWeight: 600,
+          }}>Insights</Link>
           <Link to="/about" style={{
             color: pathname === "/about" ? T.text : T.muted,
             textDecoration: "none", fontWeight: 500,
