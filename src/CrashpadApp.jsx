@@ -669,6 +669,9 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
         return bA - aA;
       });
     }
+    if (sortKey === "weight_asc") {
+      return [...results].sort((a, b) => (a.pad_data.weight_kg || Infinity) - (b.pad_data.weight_kg || Infinity));
+    }
     const items = results.map(r => r.pad_data);
     const sorted = sortItems(items, sortKey, {
       getPrice: i => i.current_price_eur,
@@ -1002,6 +1005,7 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
               { key: "price_desc", label: "Price: High → Low" },
               { key: "discount", label: "Biggest Discount" },
               { key: "landing_area", label: "Landing Area" },
+              { key: "weight_asc", label: "Weight: Lightest" },
               { key: "brand_az", label: "Brand A–Z" },
             ]} />
           </div>
