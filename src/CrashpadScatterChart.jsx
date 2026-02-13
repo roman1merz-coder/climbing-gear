@@ -3,6 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
 
+/* Thickness groups */
+const THICK_GROUPS = [
+  { key: "≤5", label: "≤5 cm", min: 0, max: 5.9, color: "#60a5fa" },
+  { key: "6–9", label: "6–9 cm", min: 6, max: 9.9, color: "#22c55e" },
+  { key: "10–11", label: "10–11 cm", min: 10, max: 11.9, color: "#E8734A" },
+  { key: "12–15", label: "12–15 cm", min: 12, max: 99, color: "#a78bfa" },
+];
+const thickGroup = cm => THICK_GROUPS.find(g => cm >= g.min && cm <= g.max)?.key || "10–11";
+const THICK_COLORS = Object.fromEntries(THICK_GROUPS.map(g => [g.key, g.color]));
+
 /* ─── Data ─── */
 const PADS = CRASHPAD_SEED.filter(p => p.length_open_cm && p.width_open_cm && p.weight_kg && p.current_price_eur)
   .map(p => {
@@ -13,7 +23,7 @@ const PADS = CRASHPAD_SEED.filter(p => p.length_open_cm && p.width_open_cm && p.
       brand: p.brand, model: p.model, slug: p.slug,
       area, vol, weight: p.weight_kg, price: p.current_price_eur,
       eurM2, layers: p.foam_layers || 0, fold: p.fold_style || "unknown",
-      thickness: p.thickness_cm || 10,
+      thickness: p.thickness_cm || 10, tGroup: thickGroup(p.thickness_cm || 10),
     };
   });
 
@@ -46,7 +56,7 @@ export default function CrashpadScatterChart({ isMobile }) {
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
   const [metric, setMetric] = useState("area_weight");
-  const [colorBy, setColorBy] = useState("layers"); // "layers" | "fold" | "brand"
+  const [colorBy, setColorBy] = useState("layers"); // "layers" | "fold" | "brand" | "thickness"
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
 
@@ -54,6 +64,7 @@ export default function CrashpadScatterChart({ isMobile }) {
   const [hiddenLayers, setHiddenLayers] = useState(new Set());
   const [hiddenFolds, setHiddenFolds] = useState(new Set());
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
+  const [hiddenThickness, setHiddenThickness] = useState(new Set());
 
   const toggleHidden = (setter, key) => setter(prev => {
     const next = new Set(prev);
@@ -62,8 +73,8 @@ export default function CrashpadScatterChart({ isMobile }) {
   });
 
   const filteredPads = useMemo(() => PADS.filter(d =>
-    !hiddenLayers.has(d.layers) && !hiddenFolds.has(d.fold) && !hiddenBrands.has(d.brand)
-  ), [hiddenLayers, hiddenFolds, hiddenBrands]);
+    !hiddenLayers.has(d.layers) && !hiddenFolds.has(d.fold) && !hiddenBrands.has(d.brand) && !hiddenThickness.has(d.tGroup)
+  ), [hiddenLayers, hiddenFolds, hiddenBrands, hiddenThickness]);
 
   const cfgs = {
     area_weight: {
@@ -90,6 +101,7 @@ export default function CrashpadScatterChart({ isMobile }) {
   const cfg = cfgs[metric];
 
   const getColor = useCallback((d) => {
+    if (colorBy === "thickness") return THICK_COLORS[d.tGroup] || "#94a3b8";
     if (colorBy === "brand") return BRAND_COLORS[d.brand] || "#94a3b8";
     if (colorBy === "fold") return FOLD_COLORS[d.fold] || FOLD_COLORS.unknown;
     return LAYER_COLORS[d.layers] || "#94a3b8";
@@ -292,11 +304,11 @@ export default function CrashpadScatterChart({ isMobile }) {
       {/* Color-by toggle */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
-        {["layers", "fold", "brand"].map(k => (
+        {["layers", "fold", "thickness", "brand"].map(k => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
-          }}>{k === "layers" ? "Foam Layers" : k === "fold" ? "Fold Style" : "Brand"}</button>
+          }}>{{ layers: "Foam Layers", fold: "Fold Style", thickness: "Thickness", brand: "Brand" }[k]}</button>
         ))}
       </div>
 
@@ -324,6 +336,16 @@ export default function CrashpadScatterChart({ isMobile }) {
           {foldKeys.map(k => (
             <Pill key={k} color={FOLD_COLORS[k] || "#6b7280"} label={k.replace("_", "-")}
               hidden={hiddenFolds.has(k)} onClick={() => toggleHidden(setHiddenFolds, k)} />
+          ))}
+        </div>
+      )}
+
+      {/* Clickable legend — thickness */}
+      {colorBy === "thickness" && (
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+          {THICK_GROUPS.map(g => (
+            <Pill key={g.key} color={g.color} label={g.label}
+              hidden={hiddenThickness.has(g.key)} onClick={() => toggleHidden(setHiddenThickness, g.key)} />
           ))}
         </div>
       )}
