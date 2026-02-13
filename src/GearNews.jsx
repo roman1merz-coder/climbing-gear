@@ -190,57 +190,105 @@ const PAD_COMPARISON = [
 ];
 
 function PadComparisonChart({ isMobile }) {
-  const W = isMobile ? 340 : 660, H = isMobile ? 300 : 320;
-  const pad = { top: 30, right: 30, bottom: 45, left: 55 };
+  const W = isMobile ? 340 : 660, H = isMobile ? 300 : 340;
+  const pad = { top: 30, right: 30, bottom: 50, left: 55 };
   const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
 
-  const xMin = 1.2, xMax = 2.8, yMin = 100, yMax = 500;
+  /* Axes: x = weight (lighter → left = better), y = thickness (thicker → top = better) */
+  const xMin = 2.0, xMax = 11.0, yMin = 4, yMax = 15;
   const x = v => pad.left + ((v - xMin) / (xMax - xMin)) * cw;
   const y = v => pad.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
 
   const [hovered, setHovered] = useState(null);
 
+  /* Quadrant midpoints for "best zone" shading */
+  const midX = x((xMin + xMax) / 2), midY = y((yMin + yMax) / 2);
+
   return (
-    <ChartBox title="Price vs Landing Area: Premium Pad Showdown" subtitle="How the Asana G5 BIG stacks up against the biggest pads in our database">
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {/* Grid */}
-        {[200, 300, 400, 500].map(v => v <= yMax && (
-          <g key={v}>
-            <line x1={pad.left} y1={y(v)} x2={W - pad.right} y2={y(v)} stroke={T.border} strokeDasharray="3,3" />
-            <text x={pad.left - 8} y={y(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">{"\u20AC"}{v}</text>
-          </g>
-        ))}
-        {[1.5, 2.0, 2.5].map(v => (
-          <g key={v}>
-            <line x1={x(v)} y1={pad.top} x2={x(v)} y2={H - pad.bottom} stroke={T.border} strokeDasharray="3,3" />
-            <text x={x(v)} y={H - pad.bottom + 18} fill={T.muted} fontSize="10" textAnchor="middle">{v}m{"\u00B2"}</text>
-          </g>
-        ))}
-        <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">Landing Area</text>
-        {/* Dots */}
-        {PAD_COMPARISON.map((d, i) => {
-          const cx = x(Math.min(xMax, Math.max(xMin, d.area)));
-          const cy = y(Math.min(yMax, Math.max(yMin, d.price)));
-          const r = Math.max(6, Math.min(14, d.thickness));
-          const color = d.isNew ? T.accent : T.blue;
-          return (
-            <g key={d.name} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: "pointer" }}>
-              <circle cx={cx} cy={cy} r={hovered === i ? r + 3 : r} fill={color} opacity={hovered === i || d.isNew ? 1 : 0.6} stroke={hovered === i || d.isNew ? "#fff" : "none"} strokeWidth="2" />
-              {(hovered === i || d.isNew) && (
-                <text x={cx} y={cy - r - 6} fill={color} fontSize="10" fontWeight="700" textAnchor="middle">{d.name}</text>
-              )}
-              {hovered === i && (
-                <g>
-                  <rect x={cx + r + 8} y={cy - 24} width="160" height="42" rx="6" fill={T.surface} stroke={T.border} />
-                  <text x={cx + r + 16} y={cy - 8} fill={T.text} fontSize="10" fontWeight="600">{d.area}m{"\u00B2"} {"\u00B7"} {"\u20AC"}{d.price} {"\u00B7"} {d.weight}kg</text>
-                  <text x={cx + r + 16} y={cy + 6} fill={T.muted} fontSize="9">{d.denier}D {"\u00B7"} {d.foam} foam {"\u00B7"} {d.thickness}cm thick</text>
-                </g>
-              )}
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <ChartBox title="Protection Density: Thickness vs Weight" subtitle="Top-left = most protection per kilo carried \u00B7 dot border shows shell denier">
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
+          {/* "Best" quadrant shading */}
+          <rect x={pad.left} y={pad.top} width={midX - pad.left} height={midY - pad.top} rx="4" fill={T.green} opacity="0.04" />
+          <text x={pad.left + 8} y={pad.top + 14} fill={T.green} fontSize="9" fontWeight="700" opacity="0.6">{"\u2B06"} THICKEST + LIGHTEST</text>
+
+          {/* Grid lines — thickness */}
+          {[6, 8, 10, 12, 14].map(v => v >= yMin && v <= yMax && (
+            <g key={`y${v}`}>
+              <line x1={pad.left} y1={y(v)} x2={W - pad.right} y2={y(v)} stroke={T.border} strokeDasharray="3,3" />
+              <text x={pad.left - 8} y={y(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">{v}cm</text>
             </g>
+          ))}
+          {/* Grid lines — weight */}
+          {[4, 6, 8, 10].map(v => (
+            <g key={`x${v}`}>
+              <line x1={x(v)} y1={pad.top} x2={x(v)} y2={H - pad.bottom} stroke={T.border} strokeDasharray="3,3" />
+              <text x={x(v)} y={H - pad.bottom + 18} fill={T.muted} fontSize="10" textAnchor="middle">{v}kg</text>
+            </g>
+          ))}
+          <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">{"\u2190"} Lighter &nbsp;&nbsp; Weight &nbsp;&nbsp; Heavier {"\u2192"}</text>
+          <text x={12} y={H / 2} fill={T.muted} fontSize="10" textAnchor="middle" fontWeight="600" transform={`rotate(-90,12,${H / 2})`}>Thickness</text>
+
+          {/* Dots */}
+          {PAD_COMPARISON.map((d, i) => {
+            const cx = x(Math.min(xMax, Math.max(xMin, d.weight)));
+            const cy = y(Math.min(yMax, Math.max(yMin, d.thickness)));
+            const r = d.isNew ? 12 : 8;
+            const fill = d.isNew ? T.accent : d.denier >= 1680 ? T.yellow : T.blue;
+            const strokeCol = d.denier >= 1680 ? T.yellow : d.denier >= 900 ? T.blue : T.muted;
+            const strokeW = d.denier >= 1680 ? 3 : 1.5;
+            return (
+              <g key={d.name} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: "pointer" }}>
+                <circle cx={cx} cy={cy} r={hovered === i ? r + 3 : r} fill={fill} opacity={hovered === i || d.isNew ? 1 : 0.55} stroke={hovered === i ? "#fff" : strokeCol} strokeWidth={strokeW} />
+                {(hovered === i || d.isNew) && (
+                  <text x={cx} y={cy - r - 6} fill={d.isNew ? T.accent : T.text} fontSize="10" fontWeight="700" textAnchor="middle">{d.name}</text>
+                )}
+                {hovered === i && (
+                  <g>
+                    <rect x={cx + r + 8} y={cy - 28} width="175" height="50" rx="6" fill={T.surface} stroke={T.border} />
+                    <text x={cx + r + 16} y={cy - 12} fill={T.text} fontSize="10" fontWeight="600">{d.thickness}cm thick {"\u00B7"} {d.weight}kg</text>
+                    <text x={cx + r + 16} y={cy + 2} fill={T.muted} fontSize="9">{d.denier}D shell {"\u00B7"} {d.area}m{"\u00B2"} {"\u00B7"} {"\u20AC"}{d.price}</text>
+                    <text x={cx + r + 16} y={cy + 14} fill={T.green} fontSize="9" fontWeight="600">{(d.thickness / d.weight).toFixed(1)} cm/kg protection ratio</text>
+                  </g>
+                )}
+              </g>
+            );
+          })}
+          {/* Legend */}
+          <g transform={`translate(${pad.left},${H - pad.bottom + 30})`}>
+            <circle cx="0" cy="0" r="5" fill={T.yellow} stroke={T.yellow} strokeWidth="2.5" /><text x="10" y="4" fill={T.muted} fontSize="9">1680D shell</text>
+            <circle cx="90" cy="0" r="5" fill={T.blue} stroke={T.blue} strokeWidth="1.5" /><text x="100" y="4" fill={T.muted} fontSize="9">900–1050D</text>
+            <circle cx="170" cy="0" r="5" fill={T.blue} stroke={T.muted} strokeWidth="1.5" opacity="0.5" /><text x="180" y="4" fill={T.muted} fontSize="9">600D</text>
+          </g>
+        </svg>
+      </ChartBox>
+
+      {/* Shell Denier comparison bars */}
+      <ChartBox title="Shell Durability: Denier Comparison" subtitle="Higher denier = more abrasion resistance \u00B7 1680D is military-grade ballistic nylon">
+        {(() => {
+          const sorted = [...PAD_COMPARISON].sort((a, b) => b.denier - a.denier);
+          const bW = isMobile ? 280 : 500, bH = sorted.length * 32 + 10;
+          const lPad = isMobile ? 120 : 150;
+          return (
+            <svg viewBox={`0 0 ${bW + lPad + 60} ${bH}`} style={{ width: "100%", height: "auto" }}>
+              {sorted.map((d, i) => {
+                const yPos = 5 + i * 32;
+                const barW = (d.denier / 1800) * bW;
+                const color = d.isNew ? T.accent : d.denier >= 1680 ? T.yellow : d.denier >= 900 ? T.blue : T.muted;
+                return (
+                  <g key={d.name}>
+                    <text x={lPad - 8} y={yPos + 16} fill={d.isNew ? T.accent : T.text} fontSize={isMobile ? "9" : "11"} fontWeight={d.isNew ? "800" : "500"} textAnchor="end">{d.name}</text>
+                    <rect x={lPad} y={yPos + 2} width={barW} height={24} rx="4" fill={color} opacity={d.isNew ? 1 : 0.5} />
+                    {d.isNew && <rect x={lPad} y={yPos + 2} width={barW} height={24} rx="4" fill="none" stroke={T.accent} strokeWidth="2" />}
+                    <text x={lPad + barW + 6} y={yPos + 18} fill={color} fontSize="11" fontWeight="700">{d.denier}D</text>
+                  </g>
+                );
+              })}
+            </svg>
           );
-        })}
-      </svg>
-    </ChartBox>
+        })()}
+      </ChartBox>
+    </div>
   );
 }
 /* ═══════════════════════════════════════════════════════════════
@@ -457,10 +505,10 @@ export default function GearNews() {
             <Badge color={T.blue}>In Our Database</Badge>
           </div>
           <h2 style={{ fontSize: "24px", fontWeight: 800, color: T.text, letterSpacing: "-0.5px", lineHeight: 1.3, margin: "0 0 6px" }}>
-            The Crashpad Nobody Knows: Asana G5 BIG
+            The Thickest, Toughest Pad You've Never Heard Of
           </h2>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.6, margin: "0 0 20px" }}>
-            Made in the USA with 1680D ballistic nylon and a cult following. At $425, the Asana G5 BIG is the premium pad that mainstream brands don't want you to find.
+            13cm of foam, 1680D ballistic nylon, and just 6.8kg. The Asana G5 BIG delivers the best protection-to-weight ratio of any premium crashpad — made in Boulder, Colorado with a cult following.
           </p>
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
@@ -473,15 +521,15 @@ export default function GearNews() {
           <PadComparisonChart isMobile={isMobile} />
 
           <Prose>
-            In a market dominated by European brands like Petzl, Black Diamond, and Edelrid, Asana is a Boulder, Colorado company that builds pads the way bouldering lifers want them built. The G5 BIG's 1680D ballistic nylon shell is the toughest in our entire 103-pad database — matching Mad Rock's Triple Mad Pad and outclassing the 900D fabric used by BD and Petzl.
+            The chart above tells the story: the G5 BIG sits alone in the top-left quadrant — the thickest foam (13cm) at the lightest weight (6.8kg) among premium pads. That 1.91 cm/kg protection ratio is unmatched. The Asana SuperHero matches its thickness at 13cm but weighs 10kg. The BD Mondo and Petzl Cirro offer only 10cm of foam at 9+ kg. Asana, a Boulder, Colorado company, builds pads the way bouldering lifers want them.
           </Prose>
 
           <KeyInsight color={T.purple}>
-            <strong>The Denier Advantage:</strong> Shell durability matters more than most climbers realize. Rough granite approaches, desert sandstone, and sharp forest debris chew through 600D fabric in a season. At 1680D, the Asana G5 is built for multi-year abuse. For context: BD Mondo uses 900D, Petzl Cirro uses 900D, and budget pads like the Asana VersaPad use 600D.
+            <strong>The Denier Advantage:</strong> Shell durability matters more than most climbers realize. Rough granite approaches, desert sandstone, and sharp forest debris chew through 600D fabric in a season. At 1680D ballistic nylon — the toughest in our 103-pad database — the G5 is built for multi-year abuse. Only Mad Rock's Triple matches it. BD Mondo and Petzl Cirro use 900D.
           </KeyInsight>
 
           <Prose>
-            At $425 ({"\u20AC"}~395), the G5 BIG isn't cheap. But it sits at a fascinating price-performance point: 5 inches (13cm) of dual-density foam — thicker than the BD Mondo (10cm) and matching Asana's own SuperHero. The carry system includes contoured padded shoulder straps, a sternum strap, cushioned hipbelt, and load lifters. Four high-visibility yellow handles make repositioning easy.
+            The trade-off is landing area: at 1.48m{"\u00B2"}, the G5 BIG is smaller than competitors like the Organic Big Tri (2.62m{"\u00B2"}) or Evolv Home Pad (2.23m{"\u00B2"}). But Asana's philosophy is deliberate — prioritize depth and durability over sprawl. At $425 ({"\u20AC"}~395), you're paying for 5 inches (13cm) of dual-density foam under an indestructible shell. The carry system includes contoured padded shoulder straps, a sternum strap, cushioned hipbelt, and load lifters. Four high-visibility yellow handles make repositioning easy.
           </Prose>
 
           <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "16px", marginTop: "16px" }}>
@@ -493,7 +541,7 @@ export default function GearNews() {
           </div>
 
           <KeyInsight>
-            <strong>Bottom Line:</strong> The G5 BIG isn't the biggest pad — it prioritizes thickness and durability over raw landing area. If you want maximum m{"\u00B2"}, look at the Organic Big Tri (2.62m{"\u00B2"}) or Asana's own VersaPad Pro (2.40m{"\u00B2"}). But if you want the most protective foam stack under a near-indestructible shell, the G5 BIG is hard to beat.
+            <strong>Bottom Line:</strong> The G5 BIG wins on protection density — the most foam per kilogram, wrapped in the toughest shell available. If maximum coverage is your priority, look at the Organic Big Tri (2.62m{"\u00B2"}) or pair the G5 with a secondary pad. But for highball bouldering where you need every centimeter of cushion under your feet, the G5's 13cm foam stack is what you want between you and the ground.
           </KeyInsight>
         </section>
         {/* ═══ ARTICLE 4: Inflatable Pads ═══ */}
