@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
+import ROPE_SEED from "./rope_seed_data.json";
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -258,6 +259,201 @@ function FoamLayerChart({ isMobile }) {
     </ChartContainer>
   );
 }
+/* ─── Scatter Plot Detail View (Canvas) ─── */
+const SINGLES = ROPE_SEED.filter(r => r.rope_type === "single" && r.diameter_mm && r.uiaa_falls && r.weight_per_meter_g)
+  .map(r => ({ brand: r.brand, model: r.model, slug: r.slug, dia: r.diameter_mm, falls: r.uiaa_falls, gm: r.weight_per_meter_g, impact: r.impact_force_kn, dry: r.dry_treatment || "none", triple: !!r.triple_rated, sheath: r.sheath_percentage }));
+const HALVES = ROPE_SEED.filter(r => r.rope_type === "half" && r.diameter_mm && r.weight_per_meter_g)
+  .map(r => ({ brand: r.brand, model: r.model, slug: r.slug, dia: r.diameter_mm, falls: r.uiaa_falls, gm: r.weight_per_meter_g }));
+
+// Polynomial curve data (pre-computed)
+const CX=[7.5,7.6,7.7,7.8,7.9,8.0,8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,9.0,9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,10.0,10.1,10.2,10.3,10.4,10.5,10.6,10.7,10.8,10.9,11.0,11.1,11.2,11.3,11.4];
+const CF=[2.585,2.949,3.288,3.601,3.892,4.163,4.415,4.651,4.872,5.082,5.281,5.472,5.657,5.838,6.018,6.197,6.379,6.565,6.757,6.958,7.169,7.393,7.631,7.886,8.16,8.454,8.771,9.114,9.483,9.881,10.311,10.773,11.271,11.806,12.38,12.996,13.655,14.36,15.113,15.915];
+const CG=[41.154,41.905,42.67,43.449,44.243,45.05,45.872,46.707,47.557,48.421,49.3,50.192,51.098,52.019,52.954,53.903,54.866,55.843,56.835,57.84,58.86,59.894,60.942,62.004,63.08,64.171,65.275,66.394,67.527,68.674,69.835,71.01,72.2,73.404,74.621,75.853,77.099,78.36,79.634,80.923];
+const SF=1.316, SG=1.660;
+
+const BRAND_PAL=['#63b3ed','#ed64a6','#48bb78','#ecc94b','#ed8936','#9f7aea','#38b2ac','#fc8181','#f6ad55','#68d391','#d53f8c','#4fd1c5','#b794f4','#90cdf4','#feb2b2','#fbd38d'];
+const BRAND_LIST=[...new Set(SINGLES.map(r=>r.brand))].sort();
+const BRAND_COLOR=Object.fromEntries(BRAND_LIST.map((b,i)=>[b,BRAND_PAL[i%BRAND_PAL.length]]));
+
+function RopeScatterDetail({ isMobile }) {
+  const navigate = useNavigate();
+  const ref1 = useRef(null), ref2 = useRef(null), tipRef = useRef(null);
+  const [hov, setHov] = useState(null);
+  const [pinned, setPinned] = useState(null);
+  const [showH, setShowH] = useState(false);
+
+  const curveAt = useCallback((d, cv) => {
+    for (let i = 0; i < CX.length - 1; i++) {
+      if (d >= CX[i] && d <= CX[i+1]) { const t = (d - CX[i]) / (CX[i+1] - CX[i]); return cv[i] + t * (cv[i+1] - cv[i]); }
+    }
+    return cv[0];
+  }, []);
+
+  const drawChart = useCallback((canvas, yField, yLabel, yMin, yMax, yStep, curveY, stdDev) => {
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const rect = canvas.parentElement.getBoundingClientRect();
+    const W = rect.width, H = isMobile ? 280 : 380;
+    const PAD = { t: 20, r: 20, b: 44, l: 50 };
+    canvas.width = W * 2; canvas.height = H * 2;
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    ctx.setTransform(2, 0, 0, 2, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const xMin = 7.3, xMax = 11.3;
+    const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
+    const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
+
+    // Grid
+    ctx.strokeStyle = "rgba(255,255,255,.05)"; ctx.lineWidth = 1;
+    for (let x = 8; x <= 11; x += 0.5) { ctx.beginPath(); ctx.moveTo(sx(x), PAD.t); ctx.lineTo(sx(x), H - PAD.b); ctx.stroke(); }
+    for (let y = yMin; y <= yMax; y += yStep) { ctx.beginPath(); ctx.moveTo(PAD.l, sy(y)); ctx.lineTo(W - PAD.r, sy(y)); ctx.stroke(); }
+    // Ticks
+    ctx.fillStyle = "#4a5568"; ctx.font = "10px system-ui"; ctx.textAlign = "center";
+    for (let x = 8; x <= 11; x += 0.5) ctx.fillText(x.toFixed(1), sx(x), H - PAD.b + 14);
+    ctx.textAlign = "right";
+    for (let y = yMin; y <= yMax; y += yStep) ctx.fillText(y, PAD.l - 6, sy(y) + 3);
+    // Labels
+    ctx.fillStyle = "#64748b"; ctx.font = "11px system-ui"; ctx.textAlign = "center";
+    ctx.fillText("Diameter (mm)", W / 2, H - 6);
+    ctx.save(); ctx.translate(12, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(yLabel, 0, 0); ctx.restore();
+
+    // Confidence bands
+    ctx.beginPath();
+    for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + stdDev); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+    for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - stdDev));
+    ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.07)"; ctx.fill();
+    // ±2σ
+    ctx.beginPath();
+    for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + 2 * stdDev); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+    for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - 2 * stdDev));
+    ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.03)"; ctx.fill();
+    // Curve
+    ctx.strokeStyle = "rgba(99,179,237,.5)"; ctx.lineWidth = 2; ctx.setLineDash([]);
+    ctx.beginPath();
+    for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i]); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+    ctx.stroke();
+
+    // Half ropes
+    if (showH) {
+      HALVES.filter(r => r.falls != null && r[yField] != null).forEach(r => {
+        ctx.save(); ctx.translate(sx(r.dia), sy(r[yField])); ctx.rotate(Math.PI / 4);
+        ctx.fillStyle = "rgba(237,100,166,.2)"; ctx.strokeStyle = "rgba(237,100,166,.4)"; ctx.lineWidth = 1;
+        ctx.fillRect(-4, -4, 8, 8); ctx.strokeRect(-4, -4, 8, 8); ctx.restore();
+      });
+    }
+
+    // Dots
+    const active = pinned || hov;
+    SINGLES.forEach(r => {
+      const px = sx(r.dia), py = sy(r[yField]);
+      const isAct = active === r;
+      ctx.beginPath(); ctx.arc(px, py, isAct ? 6.5 : 4, 0, Math.PI * 2);
+      const hex = BRAND_COLOR[r.brand] || "#a0aec0";
+      const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
+      ctx.fillStyle = `rgba(${cr},${cg},${cb},${isAct ? 1 : 0.7})`;
+      ctx.fill();
+      ctx.strokeStyle = isAct ? "#fff" : `rgba(${cr},${cg},${cb},0.3)`;
+      ctx.lineWidth = isAct ? 2 : 0.8; ctx.stroke();
+    });
+
+    return { sx, sy, W, H, PAD, xMin, xMax, yMin, yMax };
+  }, [isMobile, showH, hov, pinned]);
+
+  useEffect(() => {
+    drawChart(ref1.current, "falls", "UIAA Falls", 0, 18, 2, CF, SF);
+    drawChart(ref2.current, "gm", "Weight (g/m)", 40, 82, 5, CG, SG);
+  }, [drawChart]);
+
+  const findClosest = (canvas, e, yField) => {
+    if (!canvas) return null;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const W = rect.width, H = isMobile ? 280 : 380;
+    const PAD = { t: 20, r: 20, b: 44, l: 50 };
+    const xMin = 7.3, xMax = 11.3, yMin = yField === "falls" ? 0 : 40, yMax = yField === "falls" ? 18 : 82;
+    const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
+    const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
+    let closest = null, best = Infinity;
+    SINGLES.forEach(r => { const dx = sx(r.dia) - mx, dy = sy(r[yField]) - my, d = Math.sqrt(dx * dx + dy * dy); if (d < 20 && d < best) { closest = r; best = d; } });
+    return closest;
+  };
+
+  const handleMove = (e, yField) => {
+    if (pinned) return;
+    const canvas = yField === "falls" ? ref1.current : ref2.current;
+    const r = findClosest(canvas, e, yField);
+    if (r !== hov) setHov(r);
+    const tip = tipRef.current;
+    if (r && tip) {
+      tip.style.opacity = "1"; tip.style.pointerEvents = "none";
+      const dry = (r.dry || "none").replace(/_/g, " ");
+      tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/>∅ ${r.dia}mm · ${r.gm}g/m · ${r.falls} falls<br/>Impact: ${r.impact}kN · Sheath: ${r.sheath}%<br/><span style="color:${T.muted};font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span>`;
+      let tx = e.clientX + 14, ty = e.clientY - 10;
+      if (tx + 260 > window.innerWidth) tx = e.clientX - 270;
+      tip.style.left = tx + "px"; tip.style.top = ty + "px";
+    } else if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
+  };
+
+  const handleClick = (e, yField) => {
+    if (pinned) { setPinned(null); if (tipRef.current) { tipRef.current.style.opacity = "0"; tipRef.current.style.pointerEvents = "none"; } return; }
+    const canvas = yField === "falls" ? ref1.current : ref2.current;
+    const r = findClosest(canvas, e, yField);
+    if (r) {
+      setPinned(r); setHov(r);
+      const tip = tipRef.current;
+      if (tip) {
+        const dry = (r.dry || "none").replace(/_/g, " ");
+        tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/>∅ ${r.dia}mm · ${r.gm}g/m · ${r.falls} falls<br/>Impact: ${r.impact}kN · Sheath: ${r.sheath}%<br/><span style="color:${T.muted};font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span><br/><span style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;cursor:pointer" onclick="event.stopPropagation()">View full specs →</span>`;
+        tip.style.opacity = "1"; tip.style.pointerEvents = "auto";
+        let tx = e.clientX + 14, ty = e.clientY - 10;
+        if (tx + 260 > window.innerWidth) tx = e.clientX - 270;
+        tip.style.left = tx + "px"; tip.style.top = ty + "px";
+        // Bind click on the link
+        setTimeout(() => {
+          const link = tip.querySelector("span[onclick]");
+          if (link) link.addEventListener("click", () => navigate(`/rope/${r.slug}`));
+        }, 0);
+      }
+    }
+  };
+
+  const handleLeave = () => { if (!pinned) { setHov(null); if (tipRef.current) { tipRef.current.style.opacity = "0"; tipRef.current.style.pointerEvents = "none"; } } };
+
+  return (
+    <div>
+      <div style={{ display: "flex", gap: "12px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
+        <label style={{ fontSize: "12px", color: T.muted, display: "flex", alignItems: "center", gap: "5px", cursor: "pointer" }}>
+          <input type="checkbox" checked={showH} onChange={e => setShowH(e.target.checked)} style={{ accentColor: T.accent }} /> Overlay half ropes
+        </label>
+        <span style={{ fontSize: "11px", color: T.muted }}>Click a dot to pin tooltip · Click again to dismiss</span>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "0" }}>
+        <div style={{ padding: "12px", borderRight: isMobile ? "none" : `1px solid ${T.border}`, borderBottom: isMobile ? `1px solid ${T.border}` : "none" }}>
+          <div style={{ fontSize: "12px", fontWeight: 600, color: T.muted, textTransform: "uppercase", marginBottom: "4px" }}>UIAA Falls vs Diameter</div>
+          <div style={{ fontSize: "10px", color: "#4a5568", marginBottom: "8px" }}>Cubic fit · R² = 0.575 · σ = 1.32 falls</div>
+          <canvas ref={ref1} style={{ display: "block", cursor: "crosshair", width: "100%" }}
+            onMouseMove={e => handleMove(e, "falls")} onClick={e => handleClick(e, "falls")} onMouseLeave={handleLeave} />
+        </div>
+        <div style={{ padding: "12px" }}>
+          <div style={{ fontSize: "12px", fontWeight: 600, color: T.muted, textTransform: "uppercase", marginBottom: "4px" }}>Weight (g/m) vs Diameter</div>
+          <div style={{ fontSize: "10px", color: "#4a5568", marginBottom: "8px" }}>Quadratic fit · R² = 0.919 · σ = 1.66 g/m</div>
+          <canvas ref={ref2} style={{ display: "block", cursor: "crosshair", width: "100%" }}
+            onMouseMove={e => handleMove(e, "gm")} onClick={e => handleClick(e, "gm")} onMouseLeave={handleLeave} />
+        </div>
+      </div>
+      {/* Tooltip */}
+      <div ref={tipRef} style={{
+        position: "fixed", pointerEvents: "none", background: "rgba(15,17,25,.95)", border: `1px solid rgba(99,179,237,.35)`,
+        borderRadius: "8px", padding: "10px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
+        boxShadow: "0 8px 24px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .1s", maxWidth: "280px",
+      }} />
+      <div style={{ fontSize: "10px", color: "#4a5568", textAlign: "center", marginTop: "8px" }}>
+        Shaded band = ±1σ / ±2σ from polynomial trend · Half ropes use 55kg test mass (not comparable) · Trend lines fitted to single ropes only
+      </div>
+    </div>
+  );
+}
+
 /* ─── Multi-line Chart: Rope Diameter ─── */
 function RopeDiameterChart({ isMobile }) {
   const [metric, setMetric] = useState("falls"); // falls | gm | dry
@@ -325,6 +521,32 @@ function RopeDiameterChart({ isMobile }) {
     </ChartContainer>
   );
 }
+/* ─── Toggle wrapper: Simple ↔ Detail chart ─── */
+function RopeChartToggle({ isMobile }) {
+  const [detail, setDetail] = useState(false);
+  return (
+    <div>
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "8px" }}>
+        <button onClick={() => setDetail(d => !d)} style={{
+          display: "flex", alignItems: "center", gap: "6px",
+          padding: "5px 14px", fontSize: "11px", fontWeight: 600, borderRadius: "6px",
+          border: `1px solid ${detail ? T.accent : T.border}`, cursor: "pointer",
+          background: detail ? T.accentSoft : T.surface, color: detail ? T.accent : T.muted,
+          transition: "all .15s",
+        }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            {detail
+              ? <><path d="M3 3h18v18H3z"/><path d="M8 12h8"/></>
+              : <><circle cx="7" cy="12" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><circle cx="17" cy="16" r="1.5"/></>}
+          </svg>
+          {detail ? "Simple view" : "Detail view — 106 individual ropes"}
+        </button>
+      </div>
+      {detail ? <RopeScatterDetail isMobile={isMobile} /> : <RopeDiameterChart isMobile={isMobile} />}
+    </div>
+  );
+}
+
 /* ─── Horizontal Bar Chart: Rubber Compounds ─── */
 function RubberCompoundChart({ isMobile }) {
   const W = isMobile ? 340 : 660, H = 380;
@@ -533,13 +755,7 @@ export default function Insights() {
             Analyzing 106 single-certified ropes — excluding half and twin ropes that use a lighter 55kg test mass — reveals no dramatic "cliff" or threshold. Instead, durability climbs steadily with diameter: from 4.8 avg falls at ≤8.7mm up to 13.8 at ≥11.0mm. The real insight isn't where a threshold lies, but where the market concentrates — and that tells you where the best deals are.
           </Prose>
 
-          <RopeDiameterChart isMobile={isMobile} />
-
-          <div style={{ textAlign: "center", margin: "16px 0 8px" }}>
-            <Link to="/ropes" style={{ fontSize: "12px", color: T.accent, textDecoration: "none", fontWeight: 600 }}>
-              → Explore all 106 ropes with interactive scatter plots
-            </Link>
-          </div>
+          <RopeChartToggle isMobile={isMobile} />
 
           <KeyInsight color={T.green}>
             <strong>The Sweet Spot (9.5–9.8mm):</strong> This band holds 31 of 106 ropes — nearly a third of the entire market. More models means fiercer price competition and more choice. Average durability here is 8.0 UIAA falls at 61.6 g/m — a solid all-round spec. Below 9.0mm you're in ultralight specialist territory (4.8–6.2 falls); above 10.0mm the weight penalty outpaces durability gains.
