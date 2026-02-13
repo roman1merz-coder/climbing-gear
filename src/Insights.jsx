@@ -268,6 +268,7 @@ function RopeScatterChart({ isMobile }) {
   const [metric, setMetric] = useState("falls"); // "falls" | "gm"
   const [showH, setShowH] = useState(false);
   const hovRef = useRef(null); // use ref to avoid re-render per mousemove
+  const pinnedRef = useRef(null); // click-to-pin: locked tooltip
 
   const cfgs = {
     falls: { yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: 18, yStep: 2, curveY: CF, std: SF, sub: "Cubic fit · R² = 0.575", color: T.accent },
@@ -361,43 +362,70 @@ function RopeScatterChart({ isMobile }) {
     return closest;
   }, [isMobile, cfg]);
 
+  const showTip = useCallback((r, x, y, pinned) => {
+    const tip = tipRef.current;
+    if (!tip) return;
+    const dry = (r.dry || "none").replace(/_/g, " ");
+    tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/>∅ ${r.dia}mm · ${r.gm}g/m · ${r.falls} falls<br/>Impact: ${r.impact}kN · Sheath: ${r.sheath}%<br/><span style="color:#64748b;font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span>`
+      + (pinned ? `<br/><a href="/rope/${r.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>` : "");
+    tip.style.opacity = "1";
+    tip.style.pointerEvents = pinned ? "auto" : "none";
+    tip.style.borderColor = pinned ? T.accent : "rgba(99,179,237,.35)";
+    let tx = x + 14, ty = y - 10;
+    if (tx + 280 > window.innerWidth) tx = x - 290;
+    if (ty + 130 > window.innerHeight) ty = y - 130;
+    tip.style.left = tx + "px"; tip.style.top = ty + "px";
+  }, []);
+
+  const hideTip = useCallback(() => {
+    const tip = tipRef.current;
+    if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
+  }, []);
+
   const handleMove = useCallback((e) => {
+    if (pinnedRef.current) return; // don't update hover while pinned
     const r = findClosest(e);
     const prev = hovRef.current;
     if (r !== prev) { hovRef.current = r; draw(); }
-    const tip = tipRef.current;
-    if (r && tip) {
-      const dry = (r.dry || "none").replace(/_/g, " ");
-      tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/>∅ ${r.dia}mm · ${r.gm}g/m · ${r.falls} falls<br/>Impact: ${r.impact}kN · Sheath: ${r.sheath}%<br/><span style="color:#64748b;font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span><br/><a href="/rope/${r.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>`;
-      tip.style.opacity = "1"; tip.style.pointerEvents = "auto";
-      let tx = e.clientX + 14, ty = e.clientY - 10;
-      if (tx + 280 > window.innerWidth) tx = e.clientX - 290;
-      if (ty + 130 > window.innerHeight) ty = e.clientY - 130;
-      tip.style.left = tx + "px"; tip.style.top = ty + "px";
-    } else if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
-  }, [findClosest, draw]);
+    if (r) { showTip(r, e.clientX, e.clientY, false); }
+    else { hideTip(); }
+  }, [findClosest, draw, showTip, hideTip]);
 
   const handleLeave = useCallback(() => {
-    // Small delay so user can move to the tooltip link
-    setTimeout(() => {
-      const tip = tipRef.current;
-      if (tip && !tip.matches(":hover")) {
-        hovRef.current = null; draw();
-        tip.style.opacity = "0"; tip.style.pointerEvents = "none";
-      }
-    }, 150);
-  }, [draw]);
+    if (pinnedRef.current) return;
+    hovRef.current = null; draw(); hideTip();
+  }, [draw, hideTip]);
 
-  // Also dismiss tooltip when mouse leaves the tooltip itself
+  const handleClick = useCallback((e) => {
+    const r = findClosest(e);
+    if (pinnedRef.current === r) {
+      // Clicking same dot unpins
+      pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
+    } else if (r) {
+      // Pin new dot
+      pinnedRef.current = r; hovRef.current = r; draw();
+      showTip(r, e.clientX, e.clientY, true);
+    } else {
+      // Click on empty space unpins
+      pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
+    }
+  }, [findClosest, draw, showTip, hideTip]);
+
+  // Dismiss pinned tooltip when clicking outside the chart
   useEffect(() => {
-    const tip = tipRef.current;
-    if (!tip) return;
-    const onLeave = () => { hovRef.current = null; draw(); tip.style.opacity = "0"; tip.style.pointerEvents = "none"; };
-    tip.addEventListener("mouseleave", onLeave);
-    return () => tip.removeEventListener("mouseleave", onLeave);
-  }, [draw]);
+    const onDocClick = (e) => {
+      if (!pinnedRef.current) return;
+      const canvas = canvasRef.current;
+      const tip = tipRef.current;
+      if (canvas && canvas.contains(e.target)) return; // handled by handleClick
+      if (tip && tip.contains(e.target)) return; // clicking inside tooltip
+      pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
+    };
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, [draw, hideTip]);
 
-  // Intercept link clicks to use React Router
+  // Intercept link clicks inside tooltip to use React Router
   useEffect(() => {
     const tip = tipRef.current;
     if (!tip) return;
@@ -423,7 +451,7 @@ function RopeScatterChart({ isMobile }) {
         </label>
       </div>
       <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-        onMouseMove={handleMove} onMouseLeave={handleLeave} />
+        onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
       {/* Floating tooltip */}
       <div ref={tipRef} style={{
         position: "fixed", pointerEvents: "none", background: "rgba(15,17,25,.95)", border: "1px solid rgba(99,179,237,.35)",
@@ -431,7 +459,7 @@ function RopeScatterChart({ isMobile }) {
         boxShadow: "0 8px 24px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .1s", maxWidth: "280px",
       }} />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px" }}>
-        <span style={{ fontSize: "10px", color: "#4a5568" }}>Shaded band = ±1σ / ±2σ · Hover a dot for specs · Trend line = single ropes only</span>
+        <span style={{ fontSize: "10px", color: "#4a5568" }}>Shaded band = ±1σ / ±2σ · Click a dot for specs & link · Trend line = single ropes only</span>
         {showH && <span style={{ fontSize: "10px", color: "#4a5568" }}>◇ = half ropes (55kg test)</span>}
       </div>
     </ChartContainer>
