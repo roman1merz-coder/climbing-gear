@@ -28,7 +28,7 @@ import { T, GLOBAL_CSS } from "./tokens.js";
 // Both App (list) and ShoeDetail (detail) need access to shoes.
 // This wrapper fetches once and passes data down.
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 const SUPABASE_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -213,6 +213,13 @@ function FeedbackFAB() {
   );
 }
 
+/* ─── Scroll to top on every route change ─── */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function Root() {
   const [shoes, setShoes] = useState(SEED);
   const [src, setSrc] = useState("local");
@@ -289,6 +296,7 @@ function Root() {
         <PriceAlertProvider>
         <CompareProvider>
           <BrowserRouter>
+            <ScrollToTop />
             <NavBar priceData={priceData} />
             <Routes>
               <Route path="/" element={<Landing />} />
