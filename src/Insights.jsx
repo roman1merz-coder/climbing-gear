@@ -89,7 +89,7 @@ function PadTeaserChart({ isMobile }) {
   const cw = W - pad.left - pad.right;
 
   return (
-    <ChartContainer title="Avg €/m² by Fold Style" subtitle="103 crashpads · Fold style is a hidden price driver">
+    <ChartContainer title="Avg €/m² by Fold Style" subtitle="101 crashpads · Fold style is a hidden price driver">
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
         {PAD_TEASER.map((d, i) => {
           const yPos = pad.top + i * (barH + gap);
@@ -115,7 +115,7 @@ function PadTeaserChart({ isMobile }) {
         onMouseOver={e => e.currentTarget.style.transform = "translateY(-1px)"}
         onMouseOut={e => e.currentTarget.style.transform = "translateY(0)"}
       >
-        Explore all 103 crashpads interactively →
+        Explore all 101 crashpads interactively →
       </Link>
     </ChartContainer>
   );
