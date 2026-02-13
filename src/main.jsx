@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import App from "./App.jsx";
 import ShoeDetail from "./ShoeDetail.jsx";
 import RopeApp from "./RopeApp.jsx";
@@ -165,6 +165,54 @@ function assignLocalImages(items, category) {
   }));
 }
 
+/* ─── Floating Action Button: links to Suggestion Hub ─── */
+function FeedbackFAB() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [hover, setHover] = useState(false);
+  const isLanding = pathname === "/" || pathname === "";
+
+  const handleClick = () => {
+    if (isLanding) {
+      const el = document.getElementById("suggestion-hub");
+      if (el) { el.scrollIntoView({ behavior: "smooth" }); return; }
+    }
+    navigate("/");
+    setTimeout(() => {
+      const el = document.getElementById("suggestion-hub");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      aria-label="Questions & Feedback"
+      style={{
+        position: "fixed", bottom: "24px", right: "24px", zIndex: 900,
+        width: hover ? "auto" : "52px", height: "52px",
+        borderRadius: hover ? "26px" : "50%",
+        background: `linear-gradient(135deg, ${T.accent}, #d4613a)`,
+        color: "#fff", border: "none", cursor: "pointer",
+        boxShadow: hover ? `0 8px 32px ${T.accent}50` : `0 4px 16px rgba(0,0,0,0.4)`,
+        display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+        padding: hover ? "0 20px" : "0",
+        transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)",
+        transform: hover ? "scale(1.05)" : "scale(1)",
+        fontFamily: T.font, fontSize: "13px", fontWeight: 700,
+        whiteSpace: "nowrap", overflow: "hidden",
+      }}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      {hover && <span>Questions & Feedback</span>}
+    </button>
+  );
+}
+
 function Root() {
   const [shoes, setShoes] = useState(SEED);
   const [src, setSrc] = useState("local");
@@ -276,6 +324,7 @@ function Root() {
               <Route path="/privacy" element={<Legal />} />
             </Routes>
             <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} />
+            <FeedbackFAB />
           </BrowserRouter>
         </CompareProvider>
         </PriceAlertProvider>

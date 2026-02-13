@@ -110,6 +110,7 @@ function SuggestionHub() {
   };
 
   const types = [
+    { key: "question", label: "Gear question", icon: "\u{2753}" },
     { key: "feature", label: "Feature idea", icon: "\u{1F4A1}" },
     { key: "bug", label: "Bug report", icon: "\u{1F41B}" },
     { key: "data", label: "Data correction", icon: "\u{1F4CA}" },
@@ -119,7 +120,7 @@ function SuggestionHub() {
   return (
     <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: "32px" }}>
       <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 6px", letterSpacing: "-0.3px" }}>{"\u{1F4E8}"} Suggestion Hub</h3>
-      <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, margin: "0 0 24px" }}>Got an idea? Found wrong data? Every suggestion helps us build a better tool for the climbing community.</p>
+      <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, margin: "0 0 24px" }}>Got a gear question? An idea? Found wrong data? Ask anything or help us build a better tool for the climbing community.</p>
       <form onSubmit={handleSubmit}>
         <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
           {types.map(t => (
@@ -131,7 +132,7 @@ function SuggestionHub() {
           ))}
         </div>
         <textarea value={message} onChange={e => setMessage(e.target.value)}
-          placeholder={type === "feature" ? "I'd love to see..." : type === "bug" ? "I noticed that..." : type === "data" ? "The data for [shoe model] seems off because..." : "Hey, just wanted to say..."}
+          placeholder={type === "question" ? "Which crashpad is best for highball bouldering on a budget?" : type === "feature" ? "I'd love to see..." : type === "bug" ? "I noticed that..." : type === "data" ? "The data for [shoe model] seems off because..." : "Hey, just wanted to say..."}
           style={{ width: "100%", minHeight: "100px", padding: "14px", borderRadius: "10px", border: `1px solid ${T.border}`, background: T.surface, color: T.text, fontSize: "13px", fontFamily: T.font, resize: "vertical", outline: "none", lineHeight: 1.6, boxSizing: "border-box" }}
           onFocus={e => e.target.style.borderColor = T.accent} onBlur={e => e.target.style.borderColor = T.border}
         />
@@ -145,7 +146,7 @@ function SuggestionHub() {
             color: (status === "success" || status === "error" || message.trim()) ? "#fff" : T.muted,
             fontSize: "13px", fontWeight: 700, cursor: message.trim() && status !== "sending" ? "pointer" : "not-allowed", fontFamily: T.font, transition: "all 0.2s",
           }}>
-            {status === "sending" ? "Sending..." : status === "success" ? "\u{2713} Sent!" : status === "error" ? "Failed" : "Send suggestion"}
+            {status === "sending" ? "Sending..." : status === "success" ? "\u{2713} Sent!" : status === "error" ? "Failed" : type === "question" ? "Ask question" : "Send suggestion"}
           </button>
         </div>
       </form>
@@ -221,20 +222,26 @@ export default function Landing() {
             icon={"\u{1F9E5}"} title="Jacket Selector"
             description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability."
           />
-          <div style={{
+          <div
+            onClick={() => { const el = document.getElementById("suggestion-hub"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
+            style={{
             background: T.surface, border: `1px dashed ${T.border}`, borderRadius: "14px",
             padding: isMobile ? "24px 20px" : "32px 28px",
             display: "flex", flexDirection: "column", justifyContent: "center", gap: "10px",
-          }}>
+            cursor: "pointer", transition: "border-color 0.25s",
+          }}
+            onMouseOver={e => e.currentTarget.style.borderColor = T.accent}
+            onMouseOut={e => e.currentTarget.style.borderColor = T.border}
+          >
             <div style={{ fontSize: "16px", fontWeight: 700, color: T.text }}>Other difficult gear decisions?</div>
             <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>
-              Drop me a note and I'll add it to the queue.
+              Tell us what gear selector you'd like to see next.
             </div>
-            <a href="mailto:roman@climbing-gear.com?subject=[climbing-gear.com] Gear selector idea" style={{
-              display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, textDecoration: "none", marginTop: "4px",
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, marginTop: "4px",
             }}>
-              {"\u{2709}\u{FE0F}"} roman@climbing-gear.com
-            </a>
+              {"\u{1F4AC}"} Go to Suggestion Hub {"\u2193"}
+            </span>
           </div>
         </div>
       </section>
@@ -336,7 +343,7 @@ export default function Landing() {
         </div>
 
         {/* Suggestion Hub */}
-        <div style={{ maxWidth: "820px", margin: "0 auto 40px" }}>
+        <div id="suggestion-hub" style={{ maxWidth: "820px", margin: "0 auto 40px", scrollMarginTop: "70px" }}>
           <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px" }}>Help make it better</h3>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "20px" }}>
             This is an open project. If you notice incorrect data, have an idea for a feature, or just
