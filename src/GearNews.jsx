@@ -53,28 +53,30 @@ function SpecRow({ label, value, highlight }) {
 /* ═══════════════════════════════════════════════════════════════
    ARTICLE 1: World's Lightest Single Rope
    ═══════════════════════════════════════════════════════════════ */
+/* Single-certified ropes only — lightest 10 in our DB + the Siskin (article subject).
+   Half & twin ropes excluded: their UIAA falls use a lighter test mass (55kg vs 80kg). */
 const ROPE_COMPARISON = [
-  { name: "Edelweiss Spirit ARC 8.8", gm: 45, dia: 8.8, falls: 5, triple: false, eco: false },
-  { name: "Fixe Pedraforca 8.8", gm: 46, dia: 8.8, falls: 5, triple: false, eco: false },
-  { name: "Petzl Tango 8.5", gm: 47, dia: 8.5, falls: 10, triple: false, eco: false },
-  { name: "Beal Opera 8.5", gm: 48, dia: 8.5, falls: 5, triple: false, eco: false },
-  { name: "Mammut Alpine Sender 8.7", gm: 48, dia: 8.7, falls: 5, triple: false, eco: false },
-  { name: "Black Diamond 8.5 Dry", gm: 48, dia: 8.5, falls: 12, triple: false, eco: false },
-  { name: "Edelrid Siskin Eco Dry 8.6", gm: 48, dia: 8.6, falls: 5, triple: true, eco: true },
-  { name: "Ocun Peak 8.5", gm: 48, dia: 8.5, falls: 6, triple: false, eco: false },
-  { name: "Tendon Master 8.6", gm: 50, dia: 8.6, falls: 5, triple: false, eco: false },
-  { name: "Beal Cobra II 8.6", gm: 50, dia: 8.6, falls: 7, triple: false, eco: false },
+  { name: "Mammut Alpine Sender Dry 8.7", gm: 48, dia: 8.7, falls: 5, triple: true, eco: false, inDB: true },
+  { name: "Beal Opera 8.5 Golden Dry", gm: 48, dia: 8.5, falls: 5, triple: true, eco: false, inDB: true },
+  { name: "Edelrid Siskin Eco Dry 8.6", gm: 48, dia: 8.6, falls: 5, triple: true, eco: true, inDB: false },
+  { name: "Petzl Volta 9.2", gm: 52, dia: 9.2, falls: 5, triple: true, eco: false, inDB: true },
+  { name: "Beal Joker 9.1 Golden Dry", gm: 53, dia: 9.1, falls: 5, triple: false, eco: false, inDB: true },
+  { name: "Tendon Master 9.4 TeFix", gm: 57, dia: 9.4, falls: 7, triple: false, eco: false, inDB: true },
+  { name: "Petzl Arial 9.5", gm: 58, dia: 9.5, falls: 7, triple: false, eco: false, inDB: true },
+  { name: "Mammut 9.5 Crag Dry", gm: 59, dia: 9.5, falls: 7, triple: false, eco: false, inDB: true },
+  { name: "Mammut 9.5 Infinity Dry", gm: 59, dia: 9.5, falls: 8, triple: false, eco: false, inDB: true },
+  { name: "Beal Stinger 9.4 Dry Cover", gm: 59, dia: 9.4, falls: 7, triple: false, eco: false, inDB: true },
 ];
 
 function RopeWeightChart({ isMobile }) {
-  const W = isMobile ? 340 : 660, H = 340;
-  const padL = isMobile ? 130 : 180, padR = 60, padT = 10;
+  const W = isMobile ? 340 : 660, H = 360;
+  const padL = isMobile ? 130 : 195, padR = 80, padT = 10;
   const barH = 26, gap = 6;
-  const maxG = 52;
-  const minG = 43;
+  const maxG = 62;
+  const minG = 45;
 
   return (
-    <ChartBox title="Weight per Meter: The Sub-50g Club" subtitle="Every rope at or below 50g/m in our 141-rope database">
+    <ChartBox title="Lightest Single Ropes" subtitle={`Top 10 lightest single-certified ropes \u00B7 half & twin ropes excluded (different test standard)`}>
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
         {ROPE_COMPARISON.map((r, i) => {
           const yPos = padT + i * (barH + gap);
@@ -400,7 +402,7 @@ export default function GearNews() {
             What's New in Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "540px", margin: "0 auto" }}>
-            Record-breaking announcements, upcoming releases, and emerging technologies — cross-referenced with our database of 572 products.
+            Record-breaking announcements, upcoming releases, and emerging technologies — cross-referenced with our database of 380+ products.
           </p>
         </div>
 
@@ -428,7 +430,7 @@ export default function GearNews() {
           <RopeWeightChart isMobile={isMobile} />
 
           <Prose>
-            At 48g/m, the Siskin Eco Dry ties with the Beal Opera 8.5, Mammut Alpine Sender 8.7, Black Diamond 8.5 Dry, and Ocun Peak 8.5 for the lightest ropes in our database. But the Siskin is the only one that carries <strong>triple certification</strong> (single + half + twin) — meaning a single rope replaces three use cases.
+            At 48g/m, the Siskin ties with the Beal Opera 8.5 and Mammut Alpine Sender Dry 8.7 as the lightest single-certified ropes in existence. The next lightest single rope — the Petzl Volta 9.2 — jumps to 52g/m, a full 8% heavier. All three share <strong>triple certification</strong> (single + half + twin), but the Siskin is the only one with PFC-free dry treatment and eco credentials.
           </Prose>
 
           <KeyInsight color={T.green}>
@@ -436,7 +438,7 @@ export default function GearNews() {
           </KeyInsight>
 
           <Prose>
-            The trade-off? At 5 UIAA falls (single cert), durability is modest. The Black Diamond 8.5 Dry manages 12 falls at the same weight. And at roughly {"\u20AC"}275–360 depending on length, the Siskin commands a premium. But with PFC-free Eco Dry treatment and less than 2% water absorption, Edelrid's sustainability credentials are unmatched in this weight class.
+            The trade-off? At 5 UIAA falls (single cert), durability is modest — the same as its 48g/m peers. You won't get the 7–9 falls of thicker 9.4–9.5mm singles, which is the price of ultralight construction. And at roughly {"\u20AC"}275–360 depending on length, the Siskin commands a premium. But with PFC-free Eco Dry treatment and less than 2% water absorption, Edelrid's sustainability credentials are unmatched in this weight class.
           </Prose>
 
           <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "16px", marginTop: "16px" }}>
