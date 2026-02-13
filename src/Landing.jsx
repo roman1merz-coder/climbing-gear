@@ -250,7 +250,7 @@ export default function Landing() {
             tagline="You'd be surprised what emerges when you compare every climbing product side by side. Data-driven insights no catalog can give you."
           />
           <ContentCard
-            icon={"\u{1F4F0}"} title="Gear News" color={T.blue}
+            icon={"\u{1F4F0}"} title="Gear News" color={T.blue} to="/news"
             tagline="Latest and greatest gear additions. New models, updated specs, and noteworthy releases across all categories."
           />
           <ContentCard

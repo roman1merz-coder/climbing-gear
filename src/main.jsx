@@ -15,6 +15,7 @@ import CompareGeneric from "./CompareGeneric.jsx";
 import About from "./About.jsx";
 import Landing from "./Landing.jsx";
 import Insights from "./Insights.jsx";
+import GearNews from "./GearNews.jsx";
 import NavBar from "./NavBar.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
 import CompareBar from "./CompareBar.jsx";
@@ -269,6 +270,7 @@ function Root() {
               <Route path="/crashpad/:slug" element={<CrashpadDetail crashpads={crashpads} />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/insights" element={<Insights />} />
+              <Route path="/news" element={<GearNews />} />
               <Route path="/about" element={<About />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />

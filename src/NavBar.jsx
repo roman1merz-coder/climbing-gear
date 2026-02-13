@@ -162,6 +162,10 @@ export default function NavBar({ priceData = {} }) {
             color: pathname === "/insights" ? T.accent : T.muted,
             textDecoration: "none", fontWeight: 600,
           }}>Insights</Link>
+          <Link to="/news" style={{
+            color: pathname === "/news" ? T.accent : T.muted,
+            textDecoration: "none", fontWeight: 600,
+          }}>News</Link>
           <Link to="/about" style={{
             color: pathname === "/about" ? T.text : T.muted,
             textDecoration: "none", fontWeight: 500,
