@@ -8,7 +8,7 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -74,7 +74,7 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -140,7 +140,7 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -205,7 +205,7 @@
     "guide_mode": true,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.7,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -273,7 +273,7 @@
     "guide_mode": true,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.7,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -341,8 +341,8 @@
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.7,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 9.0,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_optimal_min_mm": 9,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single"
     ],
@@ -469,8 +469,8 @@
     "guide_mode": true,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.1,
-    "rope_diameter_max_mm": 10.0,
-    "rope_diameter_optimal_min_mm": 8.0,
+    "rope_diameter_max_mm": 10,
+    "rope_diameter_optimal_min_mm": 8,
     "rope_diameter_optimal_max_mm": 9.5,
     "compatible_rope_types": [
       "single",
@@ -536,7 +536,7 @@
     "guide_mode": false,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.7,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -602,9 +602,9 @@
     "guide_mode": true,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.5,
-    "rope_diameter_max_mm": 11.0,
-    "rope_diameter_optimal_min_mm": 8.0,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 8,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single",
       "half",
@@ -671,7 +671,7 @@
     "rope_diameter_min_mm": 8.5,
     "rope_diameter_max_mm": 10.5,
     "rope_diameter_optimal_min_mm": 8.9,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single"
     ],
@@ -734,7 +734,7 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -800,7 +800,7 @@
     "rope_diameter_min_mm": 7.7,
     "rope_diameter_max_mm": 10.5,
     "rope_diameter_optimal_min_mm": 8.5,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single",
       "half",
@@ -834,7 +834,7 @@
     "eco_details": null,
     "year_released": 2013,
     "price_uvp_eur": 89.95,
-    "price_eur_min": 65.0,
+    "price_eur_min": 65,
     "price_eur_max": 89.95,
     "description": "The Swiss Army knife of belay devices. The Alpine Up offers assisted braking in lead mode, guide mode for multi-pitch, and standard rappel — all in a 160g package. One of the most versatile devices on the market.",
     "pros": [
@@ -866,7 +866,7 @@
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_min_mm": 9,
     "rope_diameter_optimal_max_mm": 10.2,
     "compatible_rope_types": [
       "single"
@@ -897,7 +897,7 @@
     "eco_details": null,
     "year_released": 2016,
     "price_uvp_eur": 89.95,
-    "price_eur_min": 60.0,
+    "price_eur_min": 60,
     "price_eur_max": 89.95,
     "description": "A GriGri alternative with a twist: the Click Up's anti-panic function locks the rope if the handle is pulled too hard. Great for nervous beginners and gym climbing.",
     "pros": [
@@ -994,8 +994,8 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
-    "rope_diameter_max_mm": 11.0,
-    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
       "single"
@@ -1058,7 +1058,7 @@
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_min_mm": 9,
     "rope_diameter_optimal_max_mm": 10.2,
     "compatible_rope_types": [
       "single"
@@ -1121,8 +1121,8 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.6,
-    "rope_diameter_max_mm": 11.0,
-    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
       "single"
@@ -1186,8 +1186,8 @@
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.5,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 8.0,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_optimal_min_mm": 8,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single",
       "half",
@@ -1253,7 +1253,7 @@
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.7,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_optimal_min_mm": 9,
     "rope_diameter_optimal_max_mm": 10.2,
     "compatible_rope_types": [
       "single"
@@ -1315,7 +1315,7 @@
     "guide_mode": true,
     "rope_slots": 2,
     "rope_diameter_min_mm": 6.9,
-    "rope_diameter_max_mm": 9.0,
+    "rope_diameter_max_mm": 9,
     "rope_diameter_optimal_min_mm": 7.5,
     "rope_diameter_optimal_max_mm": 8.5,
     "compatible_rope_types": [
@@ -1380,7 +1380,7 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.9,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 9.4,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -1443,7 +1443,7 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.9,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 9.4,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -1507,7 +1507,7 @@
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.5,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 8.0,
+    "rope_diameter_optimal_min_mm": 8,
     "rope_diameter_optimal_max_mm": 9.5,
     "compatible_rope_types": [
       "single",
@@ -1573,7 +1573,7 @@
     "guide_mode": false,
     "rope_slots": 2,
     "rope_diameter_min_mm": 6.9,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -1638,7 +1638,7 @@
     "guide_mode": true,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.7,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -1703,7 +1703,7 @@
     "guide_mode": false,
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.5,
-    "rope_diameter_max_mm": 11.0,
+    "rope_diameter_max_mm": 11,
     "rope_diameter_optimal_min_mm": 8.5,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
@@ -1768,8 +1768,8 @@
     "guide_mode": false,
     "rope_slots": 1,
     "rope_diameter_min_mm": 8.5,
-    "rope_diameter_max_mm": 11.0,
-    "rope_diameter_optimal_min_mm": 9.0,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
     "rope_diameter_optimal_max_mm": 10.5,
     "compatible_rope_types": [
       "single"
@@ -1830,10 +1830,10 @@
     "braking_type": "tubular",
     "guide_mode": true,
     "rope_slots": 2,
-    "rope_diameter_min_mm": 8.0,
-    "rope_diameter_max_mm": 13.0,
-    "rope_diameter_optimal_min_mm": 9.0,
-    "rope_diameter_optimal_max_mm": 11.0,
+    "rope_diameter_min_mm": 8,
+    "rope_diameter_max_mm": 13,
+    "rope_diameter_optimal_min_mm": 9,
+    "rope_diameter_optimal_max_mm": 11,
     "compatible_rope_types": [
       "single",
       "half",
@@ -1900,7 +1900,7 @@
     "rope_diameter_min_mm": 7.7,
     "rope_diameter_max_mm": 10.5,
     "rope_diameter_optimal_min_mm": 8.5,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single",
       "half",
@@ -1964,8 +1964,8 @@
     "rope_slots": 2,
     "rope_diameter_min_mm": 7.5,
     "rope_diameter_max_mm": 10.5,
-    "rope_diameter_optimal_min_mm": 8.0,
-    "rope_diameter_optimal_max_mm": 10.0,
+    "rope_diameter_optimal_min_mm": 8,
+    "rope_diameter_optimal_max_mm": 10,
     "compatible_rope_types": [
       "single",
       "half",
@@ -2019,6 +2019,1145 @@
       "Two rope slots means I can belay on half ropes for trad. Also makes regular rappels on doubled rope straightforward.",
       "Handles thin ropes down to 7.5mm, which is increasingly important as ropes get skinnier. Tested with my 8.9mm and it feeds smoothly.",
       "Double-strand rappel works fine. Smooth descent with good speed control — doesn't heat up the way some devices do."
+    ]
+  },
+  {
+    "brand": "Edelrid",
+    "model": "Micro Jul",
+    "slug": "edelrid-micro-jul",
+    "device_type": "passive_assisted",
+    "braking_type": "passive_assisted",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 6.9,
+    "rope_diameter_max_mm": 8.9,
+    "rope_diameter_optimal_min_mm": 7,
+    "rope_diameter_optimal_max_mm": 8.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 62,
+    "material": "stainless_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "multi_pitch",
+      "ice",
+      "mountaineering"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2014,
+    "price_uvp_eur": 49.95,
+    "price_eur_min": 34,
+    "price_eur_max": 50,
+    "description": "The Edelrid Micro Jul is a tiny stainless-steel passive assisted-braking device designed for thin ropes from 6.9–8.9mm. Originally created to pair with the groundbreaking 6.9mm Flycatcher rope, it features guide mode for belaying seconds and can also be used for rappelling. The assisted braking engages through device geometry — no moving parts.",
+    "pros": [
+      "Lightest assisted-braking device at 62g",
+      "Handles ropes as thin as 6.9mm",
+      "Stainless steel — extremely durable",
+      "Guide mode for multi-pitch"
+    ],
+    "cons": [
+      "Not for thick single ropes above 8.9mm",
+      "Requires specific technique for smooth feeding",
+      "Steep learning curve compared to tubes"
+    ],
+    "device_color_1": "#6b7280",
+    "device_color_2": "#374151",
+    "customer_voices": [
+      "The only device that works with my 6.9mm twins — indispensable for alpine routes.",
+      "Stainless steel construction means this will outlast me.",
+      "Tiny, light, and provides real assisted braking — the ultimate alpine device."
+    ]
+  },
+  {
+    "brand": "Edelrid",
+    "model": "Nano Jul",
+    "slug": "edelrid-nano-jul",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.1,
+    "rope_diameter_max_mm": 8.9,
+    "rope_diameter_optimal_min_mm": 7.5,
+    "rope_diameter_optimal_max_mm": 8.5,
+    "compatible_rope_types": [
+      "half",
+      "twin"
+    ],
+    "weight_g": 80,
+    "material": "stainless_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "multi_pitch",
+      "mountaineering"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2016,
+    "price_uvp_eur": 44.95,
+    "price_eur_min": 30,
+    "price_eur_max": 45,
+    "description": "The Edelrid Nano Jul is a stainless-steel tube-style guide device optimized for thin half and twin ropes from 7.1–8.9mm. Its guide mode allows belaying one or two followers from above on multi-pitch routes. Built for durability with no moving parts.",
+    "pros": [
+      "Stainless steel construction",
+      "Guide mode for multi-pitch",
+      "Optimized for thin ropes",
+      "Smooth rope handling"
+    ],
+    "cons": [
+      "Not for thick single ropes",
+      "Half/twin ropes only",
+      "Heavier than the Micro Jul"
+    ],
+    "device_color_1": "#9ca3af",
+    "device_color_2": "#4b5563",
+    "customer_voices": [
+      "Perfect companion for half-rope alpine climbing.",
+      "The stainless steel body shrugs off dirty glacier rope.",
+      "My go-to for any route where I am using doubles."
+    ]
+  },
+  {
+    "brand": "Trango",
+    "model": "Cinch",
+    "slug": "trango-cinch",
+    "device_type": "active_assisted",
+    "braking_type": "cam_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 9.4,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9.8,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 230,
+    "material": "aluminum_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "lever",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "gym",
+      "sport_single",
+      "top_rope"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2008,
+    "price_uvp_eur": 99.95,
+    "price_eur_min": 80,
+    "price_eur_max": 100,
+    "description": "The Trango Cinch is a cam-assisted belay device with a straightforward design for single ropes. Its spring-loaded cam locks automatically when loaded, and the smooth lowering lever provides controlled descents. Best suited for gym and sport climbing with thicker ropes.",
+    "pros": [
+      "Intuitive cam mechanism",
+      "Smooth controlled lowering",
+      "Durable construction",
+      "Great for gym use"
+    ],
+    "cons": [
+      "Heavy at 230g",
+      "Narrow rope range — only 9.4mm+",
+      "Cannot rappel",
+      "Bulky compared to GriGri"
+    ],
+    "device_color_1": "#1abc9c",
+    "device_color_2": "#16a085",
+    "customer_voices": [
+      "Bomb-proof gym device — been using it for years without any issues.",
+      "The cam engagement is very positive and confidence-inspiring.",
+      "Wish it handled thinner ropes, but for gym use it is perfect."
+    ]
+  },
+  {
+    "brand": "CAMP",
+    "model": "Shell",
+    "slug": "camp-shell",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.3,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8,
+    "rope_diameter_optimal_max_mm": 10,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 60,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "multi_pitch",
+      "trad",
+      "alpine",
+      "mountaineering"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 24.95,
+    "price_eur_min": 18,
+    "price_eur_max": 28,
+    "description": "The CAMP Shell is an ultralight guide-mode belay device at just 60g. Unique shell-shaped design with asymmetric V-grooves provides different friction levels for lead vs top-rope belaying. Guide mode allows belaying one or two seconds from an anchor.",
+    "pros": [
+      "Ultralight at 60g with guide mode",
+      "Asymmetric grooves for variable friction",
+      "Wide rope range 7.3–10.5mm",
+      "Excellent value"
+    ],
+    "cons": [
+      "Less friction than heavier devices",
+      "Aluminum wears faster than steel",
+      "Less widely stocked than Reverso"
+    ],
+    "device_color_1": "#2c3e50",
+    "device_color_2": "#34495e",
+    "customer_voices": [
+      "60 grams with guide mode — nothing else comes close on weight.",
+      "The asymmetric grooves actually make a noticeable difference.",
+      "My alpine climbing partner for every route."
+    ]
+  },
+  {
+    "brand": "Black Diamond",
+    "model": "ATC",
+    "slug": "black-diamond-atc",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.7,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 64,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 1993,
+    "price_uvp_eur": 19.95,
+    "price_eur_min": 15,
+    "price_eur_max": 22,
+    "description": "The original Air Traffic Controller — the device that defined the modern tube belay device category. Simple, lightweight, and reliable with a wide rope range. No frills, no guide mode, just a proven design that has been trusted by millions of climbers since 1993.",
+    "pros": [
+      "Industry icon — proven over 30 years",
+      "Lightweight at 64g",
+      "Very affordable",
+      "Wide rope compatibility"
+    ],
+    "cons": [
+      "No guide mode",
+      "No assisted braking",
+      "Basic friction only",
+      "Less control than the ATC-XP"
+    ],
+    "device_color_1": "#4a4a4a",
+    "device_color_2": "#2c3e50",
+    "customer_voices": [
+      "The original and still a benchmark — every climber should own one.",
+      "My backup device that goes on every trip.",
+      "30 years of proven design speaks for itself."
+    ]
+  },
+  {
+    "brand": "Metolius",
+    "model": "BRD",
+    "slug": "metolius-brd",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 8,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 82,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2010,
+    "price_uvp_eur": 22,
+    "price_eur_min": 18,
+    "price_eur_max": 28,
+    "description": "The Metolius BRD (Belay/Rappel Device) is a CNC-machined tubular device with engineered friction channels and cooling fins for heat dissipation during long lowers and rappels. A friction horn on the cable end provides extra stopping power when needed.",
+    "pros": [
+      "Very affordable",
+      "Cooling fins for heat management",
+      "Extra friction horn for controlled lowers",
+      "Wide rope compatibility"
+    ],
+    "cons": [
+      "No guide mode",
+      "Basic tube design",
+      "Heavier than some competitors at 82g"
+    ],
+    "device_color_1": "#4a90d9",
+    "device_color_2": "#2c3e50",
+    "customer_voices": [
+      "Solid budget device that just works — great first belay device.",
+      "The friction horn is surprisingly useful for long rappels.",
+      "Best value tube device on the market."
+    ]
+  },
+  {
+    "brand": "Grivel",
+    "model": "Master Pro",
+    "slug": "grivel-master-pro",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.3,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 89,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "multi_pitch",
+      "trad",
+      "alpine",
+      "mountaineering"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2015,
+    "price_uvp_eur": 30,
+    "price_eur_min": 22,
+    "price_eur_max": 35,
+    "description": "The Grivel Master Pro is a lightweight guide-mode belay device with cooling holes for heat dissipation and horns for extra friction with thin ropes. Works as a self-locking plate for belaying seconds from above.",
+    "pros": [
+      "Guide mode for multi-pitch",
+      "Lightweight at 89g",
+      "Cooling holes reduce heat buildup",
+      "Wide rope range 7.3–11mm"
+    ],
+    "cons": [
+      "No assisted braking",
+      "Horns can snag in packs",
+      "Plain aluminum wears faster than steel"
+    ],
+    "device_color_1": "#d4a62a",
+    "device_color_2": "#1a1a2e",
+    "customer_voices": [
+      "Perfect weight-to-feature ratio for alpine climbing.",
+      "The cooling holes really work — noticeably less rope wear on long lowers.",
+      "Great value compared to the Reverso or ATC Guide."
+    ]
+  },
+  {
+    "brand": "Grivel",
+    "model": "Master",
+    "slug": "grivel-master",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.3,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 64,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2012,
+    "price_uvp_eur": 20,
+    "price_eur_min": 15,
+    "price_eur_max": 25,
+    "description": "Grivel lightest tube belay device at just 64g. A simple, no-frills design with V-grooves for controlled braking on a wide range of rope diameters from 7.3–11mm.",
+    "pros": [
+      "Ultralight at 64g",
+      "Very affordable",
+      "Wide rope compatibility",
+      "Simple and reliable"
+    ],
+    "cons": [
+      "No guide mode",
+      "No assisted braking",
+      "Basic feature set"
+    ],
+    "device_color_1": "#c0c0c0",
+    "device_color_2": "#333333",
+    "customer_voices": [
+      "When grams matter, this is hard to beat for a basic tube.",
+      "Simple, effective, cheap — what more could you want?",
+      "Perfect gym belay device."
+    ]
+  },
+  {
+    "brand": "Singing Rock",
+    "model": "Shuttle",
+    "slug": "singing-rock-shuttle",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.8,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 65,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "multi_pitch",
+      "trad",
+      "alpine"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2014,
+    "price_uvp_eur": 22,
+    "price_eur_min": 16,
+    "price_eur_max": 25,
+    "description": "The Singing Rock Shuttle features guide mode with self-locking function for belaying seconds. V-grooves provide high friction, and an eye-hole allows releasing the self-lock under tension. Can simultaneously belay two climbers.",
+    "pros": [
+      "Guide mode at only 65g",
+      "Self-locking function for seconds",
+      "Can belay two followers simultaneously",
+      "Very affordable"
+    ],
+    "cons": [
+      "Less well-known brand",
+      "Narrower rope range than competitors",
+      "No assisted braking for lead"
+    ],
+    "device_color_1": "#2ecc71",
+    "device_color_2": "#27ae60",
+    "customer_voices": [
+      "Hidden gem — guide mode at this weight is impressive.",
+      "Works great for multi-pitch with half ropes.",
+      "Excellent budget alternative to the Reverso."
+    ]
+  },
+  {
+    "brand": "Singing Rock",
+    "model": "Buddy",
+    "slug": "singing-rock-buddy",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.8,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 54,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2012,
+    "price_uvp_eur": 15,
+    "price_eur_min": 10,
+    "price_eur_max": 18,
+    "description": "The Singing Rock Buddy is an ultra-lightweight tube belay device at just 54g. Smooth rope handling and effective heat dissipation make it a great budget option for gym and crag climbing.",
+    "pros": [
+      "Only 54g — one of the lightest tubes",
+      "Excellent value",
+      "Wide rope range up to 11mm",
+      "Smooth rope handling"
+    ],
+    "cons": [
+      "No guide mode",
+      "No assisted braking",
+      "Very basic design"
+    ],
+    "device_color_1": "#3498db",
+    "device_color_2": "#2980b9",
+    "customer_voices": [
+      "Cheapest belay device that actually works well.",
+      "Perfect for beginners on a budget.",
+      "Lighter than a Verso and half the price."
+    ]
+  },
+  {
+    "brand": "Beal",
+    "model": "Air Force 2",
+    "slug": "beal-air-force-2",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.3,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 66,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 20,
+    "price_eur_min": 14,
+    "price_eur_max": 22,
+    "description": "Beal V-Groove friction system provides controlled braking across a wide range of rope diameters. The straight edge decreases rope wear, and each device has an individual serial number for traceability.",
+    "pros": [
+      "V-Groove friction adapts to rope diameter",
+      "Reduces rope wear",
+      "Individual serial number traceability",
+      "Lightweight at 66g"
+    ],
+    "cons": [
+      "No guide mode",
+      "No assisted braking",
+      "Basic tube design"
+    ],
+    "device_color_1": "#e67e22",
+    "device_color_2": "#d35400",
+    "customer_voices": [
+      "The V-groove provides noticeably more friction than standard tubes.",
+      "Beal quality at a great price point.",
+      "Good option if you do not need guide mode."
+    ]
+  },
+  {
+    "brand": "Beal",
+    "model": "Air Force 3",
+    "slug": "beal-air-force-3",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.3,
+    "rope_diameter_max_mm": 10.5,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 75,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "multi_pitch",
+      "trad",
+      "alpine"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2019,
+    "price_uvp_eur": 25,
+    "price_eur_min": 18,
+    "price_eur_max": 28,
+    "description": "The Air Force 3 adds guide mode to Beal V-Groove design, allowing belaying one or two followers from above. A small release hole makes it easy to lower under tension. Optimized for modern thin ropes.",
+    "pros": [
+      "Guide mode for multi-pitch",
+      "V-Groove friction system",
+      "Optimized for thin modern ropes",
+      "Release hole for tension lowering"
+    ],
+    "cons": [
+      "No assisted braking",
+      "Slightly heavier than basic tubes",
+      "Less widely available than Reverso or ATC Guide"
+    ],
+    "device_color_1": "#e67e22",
+    "device_color_2": "#c0392b",
+    "customer_voices": [
+      "Great guide-mode device if you are in the Beal ecosystem.",
+      "The V-groove works especially well with skinny ropes.",
+      "Solid alternative to the Reverso at a lower price."
+    ]
+  },
+  {
+    "brand": "Trango",
+    "model": "Aries",
+    "slug": "trango-aries",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.5,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 90,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "multi_pitch",
+      "trad",
+      "sport_single"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2020,
+    "price_uvp_eur": 28,
+    "price_eur_min": 22,
+    "price_eur_max": 32,
+    "description": "The Trango Aries is a hot-forged 7075 aluminum guide-mode device with dual V channels for controlled braking. Wide rope range from 7.5–11mm makes it versatile for all climbing styles.",
+    "pros": [
+      "Guide mode capable",
+      "Hot-forged 7075 aluminum durability",
+      "Very wide rope range",
+      "Affordable"
+    ],
+    "cons": [
+      "Slightly heavier at 90g",
+      "No assisted braking",
+      "Less well-known than Reverso or ATC Guide"
+    ],
+    "device_color_1": "#1abc9c",
+    "device_color_2": "#16a085",
+    "customer_voices": [
+      "Trango quality at a fraction of the Petzl price.",
+      "The dual V channels provide really nice braking control.",
+      "Pairs perfectly with the Regulock carabiner."
+    ]
+  },
+  {
+    "brand": "Trango",
+    "model": "Pyramid",
+    "slug": "trango-pyramid",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 8.5,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half"
+    ],
+    "weight_g": 68,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "sport_single",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2008,
+    "price_uvp_eur": 18,
+    "price_eur_min": 14,
+    "price_eur_max": 22,
+    "description": "A time-honored tube design with a pivoting center pin that allows flipping for customizable friction. V-shaped rope channels and tapered geometry provide versatile braking control.",
+    "pros": [
+      "Flippable for two friction modes",
+      "Machined cooling fins",
+      "Very affordable",
+      "Proven design"
+    ],
+    "cons": [
+      "No guide mode",
+      "Narrower rope range than modern tubes",
+      "Twin ropes not recommended"
+    ],
+    "device_color_1": "#9b59b6",
+    "device_color_2": "#8e44ad",
+    "customer_voices": [
+      "Old school cool — still one of the best basic tubes after 15 years.",
+      "The flip feature for extra friction is underrated.",
+      "Best 18 euros I ever spent on climbing gear."
+    ]
+  },
+  {
+    "brand": "Mad Rock",
+    "model": "Safeguard",
+    "slug": "mad-rock-safeguard",
+    "device_type": "active_assisted",
+    "braking_type": "cam_assisted",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.9,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9.4,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single"
+    ],
+    "weight_g": 154,
+    "material": "aluminum_steel",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "cam_release",
+    "mechanical_advantage": null,
+    "rappel_single_strand": false,
+    "rappel_double_strand": false,
+    "best_use_cases": [
+      "rescue",
+      "rigging",
+      "top_rope"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 65,
+    "price_eur_min": 50,
+    "price_eur_max": 70,
+    "description": "The Safeguard is the springless version of Mad Rock Lifeguard. Without the internal spring, the cam is always on — any force from the climber side blocks the rope. Designed primarily for rescue and rigging rather than lead climbing.",
+    "pros": [
+      "Always-on cam for maximum security",
+      "Hot forged aircraft-grade aluminum",
+      "Great for rescue and rigging",
+      "Same weight as the Lifeguard"
+    ],
+    "cons": [
+      "Not recommended for lead climbing",
+      "No spring-assisted feeding",
+      "Specialized rescue tool"
+    ],
+    "device_color_1": "#e74c3c",
+    "device_color_2": "#c0392b",
+    "customer_voices": [
+      "Indispensable for rope rescue and route setting.",
+      "The always-on cam provides peace of mind for top-rope setups.",
+      "Not a substitute for the Lifeguard for sport climbing."
+    ]
+  },
+  {
+    "brand": "Black Diamond",
+    "model": "Super 8",
+    "slug": "black-diamond-super-8",
+    "device_type": "figure_eight",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 1,
+    "rope_diameter_min_mm": 8.1,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 9,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half"
+    ],
+    "weight_g": 87,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "rappelling",
+      "rescue",
+      "mountaineering"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 25,
+    "price_eur_min": 18,
+    "price_eur_max": 28,
+    "description": "The Black Diamond Super 8 is a modern figure-eight style device with ears to prevent girth hitching. Dual friction modes and compatibility with ropes from 8.1–11mm make it versatile for rappelling and rescue.",
+    "pros": [
+      "Figure-8 simplicity with modern features",
+      "Anti-girth-hitch ears",
+      "Wide rope range",
+      "Great for SAR and rescue teams"
+    ],
+    "cons": [
+      "Less friction control than tubes for lead belaying",
+      "Figure-8 style adds rope twist",
+      "Heavier than basic tubes"
+    ],
+    "device_color_1": "#7f8c8d",
+    "device_color_2": "#2c3e50",
+    "customer_voices": [
+      "The only figure-8 device I would actually recommend today.",
+      "Perfect for canyoneering and long rappels.",
+      "Ears prevent the girth-hitch problem that plagues classic figure-8s."
+    ]
+  },
+  {
+    "brand": "Grivel",
+    "model": "Scream",
+    "slug": "grivel-scream",
+    "device_type": "tube",
+    "braking_type": "manual",
+    "guide_mode": false,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 5,
+    "rope_diameter_max_mm": 8,
+    "rope_diameter_optimal_min_mm": 6,
+    "rope_diameter_optimal_max_mm": 7.5,
+    "compatible_rope_types": [
+      "half",
+      "twin"
+    ],
+    "weight_g": 48,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "alpine",
+      "mountaineering",
+      "ice"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151",
+      "UIAA"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2018,
+    "price_uvp_eur": 22,
+    "price_eur_min": 16,
+    "price_eur_max": 25,
+    "description": "The Grivel Scream is an ultralight specialist tube device designed exclusively for thin ropes from 5–8mm. Perfect for alpine and ice climbing where every gram counts and half/twin ropes are standard.",
+    "pros": [
+      "Featherweight at 48g",
+      "Handles ropes as thin as 5mm",
+      "Perfect for half/twin rope systems",
+      "Great for ice and mixed climbing"
+    ],
+    "cons": [
+      "Not for single ropes",
+      "Very narrow rope range",
+      "No guide mode"
+    ],
+    "device_color_1": "#e74c3c",
+    "device_color_2": "#2c3e50",
+    "customer_voices": [
+      "Only device I trust with my 6.0mm twins on alpine routes.",
+      "Absurdly light — barely notice it on the harness.",
+      "Niche but indispensable for the lightweight alpine climber."
+    ]
+  },
+  {
+    "brand": "Grivel",
+    "model": "Shuttle",
+    "slug": "grivel-shuttle",
+    "device_type": "tube_guide",
+    "braking_type": "manual",
+    "guide_mode": true,
+    "rope_slots": 2,
+    "rope_diameter_min_mm": 7.3,
+    "rope_diameter_max_mm": 11,
+    "rope_diameter_optimal_min_mm": 8.5,
+    "rope_diameter_optimal_max_mm": 10.5,
+    "compatible_rope_types": [
+      "single",
+      "half",
+      "twin"
+    ],
+    "weight_g": 85,
+    "material": "aluminum",
+    "anti_panic": false,
+    "lead_top_switch": false,
+    "lowering_type": "manual",
+    "mechanical_advantage": null,
+    "rappel_single_strand": true,
+    "rappel_double_strand": true,
+    "best_use_cases": [
+      "guiding",
+      "multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "CE_EN15151"
+    ],
+    "eco_design": false,
+    "eco_details": null,
+    "year_released": 2017,
+    "price_uvp_eur": 30,
+    "price_eur_min": 22,
+    "price_eur_max": 35,
+    "description": "Designed for mountain guides, the Grivel Shuttle features an optimized guide-mode geometry that makes pulling up rope easier on multi-pitch routes, saving energy for the actual climbing.",
+    "pros": [
+      "Designed by and for guides",
+      "Easy rope pulling in guide mode",
+      "Wide rope range",
+      "Guide-optimized geometry"
+    ],
+    "cons": [
+      "Slightly heavy at 85g for a tube device",
+      "Limited brand awareness",
+      "No assisted braking"
+    ],
+    "device_color_1": "#f1c40f",
+    "device_color_2": "#2c3e50",
+    "customer_voices": [
+      "The easiest tube device I have used for pulling rope in guide mode.",
+      "My go-to for guiding clients on multi-pitch routes.",
+      "Noticeably easier to manage than the Reverso on long routes."
     ]
   }
 ]
