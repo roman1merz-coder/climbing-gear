@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
+import BelayScatterChart from "./BelayScatterChart.jsx";
 
 /** Image with graceful fallback on 404 */
 function Img({ src, alt, style, fallback }) {
@@ -714,6 +715,9 @@ function loadBelaySession() {
 export default function BelayApp({ belays = [], src, priceData = {} }) {
   const nav = useNavigate();
   const isMobile = useIsMobile();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const viewFromUrl = searchParams.get("view");
+  const [view, setView] = useState(viewFromUrl === "chart" ? "chart" : "cards");
   const _s = loadBelaySession();
   const [activeTypes, setActiveTypes] = useState(_s.activeTypes || []);
   const [filters, setFilters] = useState(_s.filters || {});
@@ -861,12 +865,24 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
 
         {/* Results */}
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px", flexWrap: "wrap", gap: "8px" }}>
             <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
               {displayResults.length} device{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
             </span>
-            <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
+            <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+              {[{ key: "cards", icon: "▦", label: "Cards" }, { key: "chart", icon: "⊙", label: "Chart" }].map(v => (
+                <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+                  padding: "4px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "6px", border: "none", cursor: "pointer",
+                  background: view === v.key ? "rgba(255,255,255,.1)" : "transparent",
+                  color: view === v.key ? "#e8e9ec" : "#6b7280",
+                }}>{v.icon} {v.label}</button>
+              ))}
+              {view === "cards" && <SortDropdownGeneric value={sortKey} onChange={setSortKey} />}
+            </div>
           </div>
+          {view === "chart" ? (
+            <BelayScatterChart isMobile={isMobile} />
+          ) : (
           <div
             style={{
               display: "grid",
@@ -895,6 +911,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
               </div>
             ))}
           </div>
+          )}
           {!displayResults.length && (
             <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#6b7280" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🔗</div>

@@ -502,7 +502,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
         {/* Specs Tab */}
         {activeTab === "specs" && (
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "32px", marginBottom: "40px" }}>
-            {/* Left: Specifications + Safety Features */}
+            {/* Left: Specifications */}
             <div>
               <Section title="Specifications">
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
@@ -520,19 +520,6 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                 </div>
               </Section>
 
-              <Section title="Safety Features">
-                <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
-                  <StatRow label="Anti-Panic" value={d.anti_panic ? "✅ Yes" : "—"} />
-                  <StatRow label="Lead/TR Switch" value={d.lead_top_switch ? "✅ Yes" : "—"} />
-                  <StatRow label="Guide Mode" value={d.guide_mode ? "✅ Yes" : "—"} />
-                  <StatRow label="Single Strand Rappel" value={d.rappel_single_strand ? "✅ Yes" : "—"} />
-                  <StatRow label="Double Strand Rappel" value={d.rappel_double_strand ? "✅ Yes" : "—"} />
-                </div>
-              </Section>
-            </div>
-
-            {/* Right: Certifications + Sustainability */}
-            <div>
               {certs.length > 0 && (
                 <Section title="Certifications">
                   <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
@@ -544,6 +531,19 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                   </div>
                 </Section>
               )}
+            </div>
+
+            {/* Right: Safety Features + Sustainability */}
+            <div>
+              <Section title="Safety Features">
+                <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
+                  <StatRow label="Anti-Panic" value={d.anti_panic ? "✅ Yes" : "—"} />
+                  <StatRow label="Lead/TR Switch" value={d.lead_top_switch ? "✅ Yes" : "—"} />
+                  <StatRow label="Guide Mode" value={d.guide_mode ? "✅ Yes" : "—"} />
+                  <StatRow label="Single Strand Rappel" value={d.rappel_single_strand ? "✅ Yes" : "—"} />
+                  <StatRow label="Double Strand Rappel" value={d.rappel_double_strand ? "✅ Yes" : "—"} />
+                </div>
+              </Section>
 
               {d.eco_design && d.eco_details && (
                 <Section title="Sustainability">
