@@ -768,6 +768,8 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const inStockPrices = prices.filter(p => p.inStock && p.price > 0).map(p => p.price);
   const liveBestPrice = inStockPrices.length > 0 ? Math.min(...inStockPrices) : null;
   const effectivePrice = liveBestPrice || shoe.current_price_eur;
+  const bestOffer = prices.find(p => p.inStock && p.price === liveBestPrice) || prices[0];
+  const bestOfferUrl = bestOffer?.url && bestOffer.url !== "#" ? bestOffer.url : null;
   const intel = getPriceIntelligence(shoe, prices, history, liveBestPrice);
   const discount = shoe.price_uvp_eur && effectivePrice && effectivePrice < shoe.price_uvp_eur
     ? Math.round(((shoe.price_uvp_eur - effectivePrice) / shoe.price_uvp_eur) * 100) : 0;
@@ -812,41 +814,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <HeartButton type="shoe" slug={shoe.slug} style={{ fontSize: "22px" }} />
               </div>
 
-              {/* Combined Price Box: price+size left | evaluation right */}
-              <div style={{
-                background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius,
-                padding: 0, marginBottom: isMobile ? "16px" : "20px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", overflow: "hidden",
-              }}>
-                {/* Left: Price + Size Range */}
-                <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "12px" }}>
-                    <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{effectivePrice}</span>
-                    {discount > 0 && (
-                      <>
-                        <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>{"\u20AC"}{shoe.price_uvp_eur}</span>
-                        <span style={{ fontSize: "12px", fontWeight: 700, color: T.green, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>
-                      </>
-                    )}
-                  </div>
-                  {liveBestPrice && liveBestPrice !== shoe.current_price_eur && (
-                    <div style={{ fontSize: "10px", color: T.muted, marginBottom: "8px" }}>
-                      Best live price from {prices.find(p => p.price === liveBestPrice)?.shop || "retailer"}
-                    </div>
-                  )}
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: prices.length > 0 ? "14px" : 0 }}>
-                    <span style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600 }}>EU Size Range</span>
-                    <span style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.mono }}>{shoe.size_range}</span>
-                  </div>
-                  {/* Buy button removed for now — prices still shown above */}
-                </div>
-                {/* Right: Evaluation Signal */}
-                <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-                    <span style={{ fontSize: "18px" }}>{intel.icon}</span>
-                    <span style={{ fontSize: "13px", fontWeight: 700, color: intel.color }}>{intel.label}</span>
-                  </div>
-                  <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6 }}>{intel.forecast}</div>
-                </div>
+              {/* Price Comparison in Hero */}
+              <div style={{ marginBottom: isMobile ? "16px" : "20px" }}>
+                <PriceComparison prices={prices} shoe={shoe} compact={isMobile} />
               </div>
 
               {/* Price Alert */}
@@ -930,28 +900,20 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "16px" : "40px" }}>
-              <div>
-                <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" compact={isMobile} />
-                <div style={{ display: "grid", gap: "12px" }}>
-                  {intel.factors.map((f, i) => (
-                    <div key={i} style={{ background: T.card, borderRadius: T.radiusSm, padding: "14px", border: `1px solid ${T.border}` }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-                        <span style={{ fontSize: "14px" }}>{f.icon}</span>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: "12px", fontWeight: 700, color: T.text }}>{f.name}</div>
-                        </div>
-                        <span style={{ fontSize: "10px", color: T.muted, fontFamily: T.mono }}>{Math.round(f.weight * 100)}%</span>
-                      </div>
-                      <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.5 }}>{f.detail}</div>
+            <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" compact={isMobile} />
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}>
+              {intel.factors.map((f, i) => (
+                <div key={i} style={{ background: T.card, borderRadius: T.radiusSm, padding: "14px", border: `1px solid ${T.border}` }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                    <span style={{ fontSize: "14px" }}>{f.icon}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: "12px", fontWeight: 700, color: T.text }}>{f.name}</div>
                     </div>
-                  ))}
+                    <span style={{ fontSize: "10px", color: T.muted, fontFamily: T.mono }}>{Math.round(f.weight * 100)}%</span>
+                  </div>
+                  <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.5 }}>{f.detail}</div>
                 </div>
-              </div>
-              <div>
-                <SectionHeader icon={"\uD83C\uDFEA"} title="Retailer Availability" subtitle="Size-specific pricing coming soon" compact={isMobile} />
-                <PriceComparison prices={prices} shoe={shoe} compact={isMobile} />
-              </div>
+              ))}
             </div>
           </div>
         )}
