@@ -21,7 +21,23 @@ const FEEL_STIFF_MAP = {
   soft: 0.15,
 };
 
-const MID_MAP = { full: 0.9, partial: 0.5, none: 0.1 };
+const MID_MAP = { full: 0.9, partial: 0.45, none: 0.1 };
+
+// ═══ STRUCTURAL STIFFNESS ═══
+// Derived entirely from physical construction — no subjective `feel` input.
+// Midsole 40% + Rand 25% + Rubber thickness 15% + Closure 10% + Upper 10%
+const RAND_MAP = { tensioned: 0.85, standard: 0.55, split: 0.35, relaxed: 0.15 };
+const STIFF_CLOSURE_MAP = { lace: 0.80, velcro: 0.50, slipper: 0.25 };
+const UPPER_MAP = { synthetic: 0.70, microfiber: 0.60, microsuede: 0.45, leather: 0.30 };
+
+export function computeStiffness(shoe) {
+  const mid = MID_MAP[shoe.midsole] || 0.5;
+  const rand = RAND_MAP[shoe.rand] || 0.5;
+  const thick = rubberThick(shoe);
+  const cl = STIFF_CLOSURE_MAP[shoe.closure] || 0.5;
+  const upper = UPPER_MAP[shoe.upper_material] || 0.5;
+  return mid * 0.40 + rand * 0.25 + thick * 0.15 + cl * 0.10 + upper * 0.10;
+}
 
 /** Rubber hardness → softness (0-1). Soft = high (0.70), hard = low (0.30).
  *  Compressed range [0.30–0.70] prevents extreme gaps in edging/smearing. */
@@ -60,23 +76,19 @@ const EDGING_OVERRIDES = {
 };
 
 /** Edging: geometric mean of SHAPE × STIFFNESS — need both for top scores.
- *  Balanced exponents (40/60): stiffness still dominant but less extreme.
- *  Downturn-dominant shape (80%): downturn matters more than asymmetry for edging.
- *  No double-counting: hardR only in compoundStiff, not repeated in final blend. */
+ *  Uses structural stiffness (from computeStiffness) instead of subjective feel.
+ *  Stiffness-dominant (60%): rigid platform is essential for micro-edging.
+ *  Downturn-dominant shape (80%): downturn matters more than asymmetry for edging. */
 export function computeEdging(shoe) {
-  const softR = _hardnessVal(shoe);
-  const hardR = 1 - softR;
-  const feelStiff = FEEL_STIFF_MAP[shoe.feel] || 0.5;
-  const thickR = rubberThick(shoe);
-  const mid = MID_MAP[shoe.midsole] || 0.5;
+  const hardR = 1 - _hardnessVal(shoe);
   const cl = shoe.closure || "";
 
-  const compoundStiff = feelStiff * 0.50 + hardR * 0.35 + mid * 0.15;
+  const stiffness = computeStiffness(shoe);
   const edgeDown = ({ flat: 0.15, moderate: 0.70, aggressive: 0.85 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.55, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
   const edgeShape = edgeDown * 0.80 + asymE * 0.20;
-  const edgeCore = Math.pow(edgeShape, 0.40) * Math.pow(compoundStiff, 0.60);
+  const edgeCore = Math.pow(edgeShape, 0.40) * Math.pow(stiffness, 0.60);
   const override = EDGING_OVERRIDES[shoe.slug] || 0;
   return Math.min(1, edgeCore * 0.85 + edgeCl * 0.10 + hardR * 0.05 + override);
 }

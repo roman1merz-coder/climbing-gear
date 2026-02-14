@@ -9730,7 +9730,7 @@
     "heel": "medium",
     "closure": "velcro",
     "upper_material": "synthetic",
-    "midsole": "full",
+    "midsole": "partial",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "gender": "unisex",
@@ -9763,8 +9763,8 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_type": "UP RS/RH split",
-    "rubber_thickness_mm": 3.5,
+    "rubber_type": "RS 3.0mm (front) / RH 4.2mm (rear)",
+    "rubber_thickness_mm": 3.0,
     "vegan": true,
     "resoleable": true,
     "toe_form": "egyptian",
@@ -9807,7 +9807,7 @@
     "heel": "narrow",
     "closure": "velcro",
     "upper_material": "synthetic",
-    "midsole": "full",
+    "midsole": "partial",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "gender": "unisex",
@@ -9840,8 +9840,8 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_type": "UP RS/RH split",
-    "rubber_thickness_mm": 3.5,
+    "rubber_type": "RS 3.0mm (front) / RH 4.2mm (rear)",
+    "rubber_thickness_mm": 3.0,
     "vegan": true,
     "resoleable": true,
     "toe_form": "egyptian",
