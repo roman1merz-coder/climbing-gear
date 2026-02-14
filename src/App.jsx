@@ -6,6 +6,8 @@ import { sortShoes, SortDropdown } from "./sorting.jsx";
 import { fairShuffle } from "./randomizer.js";
 import CompareCheckbox from "./CompareCheckbox.jsx";
 import HeartButton from "./HeartButton.jsx";
+import { useWL } from "./WishlistContext.jsx";
+import { useCompare } from "./CompareContext.jsx";
 import { ScoringDisclaimer } from "./Methodology.jsx";
 import ShoeScatterChart from "./ShoeScatterChart.jsx";
 
@@ -481,6 +483,23 @@ const BI = {
     "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400&h=400&fit=crop",
 };
 
+// ─── SVG icons for action bar ───
+const HeartSVG = ({ filled, size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </svg>
+);
+const CompareSVG = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  </svg>
+);
+const CheckSVG = ({ size = 12 }) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+    <path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
 function Card({ shoe, onClick, priceData, compact }) {
   const d = shoe.shoe_data;
   const s = shoe.match_score;
@@ -495,9 +514,16 @@ function Card({ shoe, onClick, priceData, compact }) {
     d.image_url ||
     BI[d.brand] ||
     "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=400&fit=crop";
+
+  // Wishlist & compare hooks
+  const { toggle: toggleWL, has: hasWL } = useWL();
+  const saved = hasWL("shoe", d.slug);
+  const { toggleCompare, isInCompare, isFull } = useCompare();
+  const compared = isInCompare("shoes", d.slug);
+  const compareFull = !compared && isFull("shoes");
+
   return (
     <div
-      onClick={onClick}
       style={{
         background: "#1c1f26",
         borderRadius: "16px",
@@ -517,6 +543,7 @@ function Card({ shoe, onClick, priceData, compact }) {
       }}
     >
       <div
+        onClick={onClick}
         style={{
           aspectRatio: "4/3",
           background: "#f5f5f5",
@@ -547,10 +574,6 @@ function Card({ shoe, onClick, priceData, compact }) {
           }}
         />
         <Badge score={s} compact={compact} />
-        <HeartButton type="shoe" slug={d.slug} style={{
-          position: "absolute", top: compact ? "8px" : "12px",
-          right: compact ? "8px" : "12px", zIndex: 2,
-        }} />
         {disc > 0 && (
           <div
             style={{
@@ -589,7 +612,7 @@ function Card({ shoe, onClick, priceData, compact }) {
           </div>
         )}
       </div>
-      <div style={{ padding: compact ? "10px" : "16px" }}>
+      <div onClick={onClick} style={{ padding: compact ? "10px" : "16px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: compact ? "2px" : "4px" }}>
           <div
             style={{
@@ -714,6 +737,47 @@ function Card({ shoe, onClick, priceData, compact }) {
             ))}
           </div>
         )}
+      </div>
+      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleWL("shoe", d.slug); }}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: compact ? "10px 6px" : "12px 8px",
+            background: "none", border: "none", borderRight: "1px solid #252a35",
+            cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+            fontSize: compact ? "11px" : "12px", fontWeight: 600,
+            color: saved ? "#ef4444" : "#717889",
+            transition: "all .15s",
+          }}
+          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#717889"; e.currentTarget.style.background = "none"; }}
+        >
+          <HeartSVG filled={saved} size={compact ? 15 : 16} />
+          {!compact && (saved ? "Saved" : "Save")}
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("shoes", d.slug); }}
+          title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: compact ? "10px 6px" : "12px 8px",
+            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            border: "none", cursor: compareFull ? "not-allowed" : "pointer",
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: compact ? "11px" : "12px", fontWeight: 600,
+            color: compared ? "#E8734A" : "#717889",
+            opacity: compareFull ? 0.4 : 1,
+            transition: "all .15s",
+          }}
+          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; } }}
+          onMouseOut={e => { e.currentTarget.style.color = compared ? "#E8734A" : "#717889"; e.currentTarget.style.background = compared ? "rgba(232,115,74,0.06)" : "none"; }}
+        >
+          <CompareSVG size={compact ? 15 : 16} />
+          {compared && <CheckSVG size={compact ? 11 : 12} />}
+          {!compact && (compared ? "Added" : "Compare")}
+        </button>
       </div>
     </div>
   );
@@ -1373,7 +1437,6 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                       position: "relative",
                     }}
                   >
-                    <CompareCheckbox slug={shoe.shoe_data.slug} compact={isMobile} />
                     <Card
                       shoe={shoe}
                       onClick={() => { navigate(`/shoe/${shoe.shoe_data.slug}`); window.scrollTo(0, 0); }}
