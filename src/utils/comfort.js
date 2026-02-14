@@ -5,28 +5,29 @@
 
 /** Feel → softness score (0–1). Soft = high */
 export const FEEL_SCORE_MAP = {
-  soft: 0.9,
-  "moderate-soft": 0.7,
-  moderate: 0.5,
-  "stiff-moderate": 0.3,
-  stiff: 0.1,
+  soft: 0.85,
+  "moderate-soft": 0.70,
+  moderate: 0.50,
+  "stiff-moderate": 0.30,
+  stiff: 0.15,
 };
 
 /** Feel → stiffness score (0–1). Stiff = high */
 const FEEL_STIFF_MAP = {
-  stiff: 0.95,
-  "stiff-moderate": 0.75,
+  stiff: 0.85,
+  "stiff-moderate": 0.70,
   moderate: 0.50,
-  "moderate-soft": 0.25,
-  soft: 0.05,
+  "moderate-soft": 0.30,
+  soft: 0.15,
 };
 
 const MID_MAP = { full: 0.9, partial: 0.5, none: 0.1 };
 
-/** Rubber hardness → softness (0-1). Soft = high (0.85), hard = low (0.15) */
+/** Rubber hardness → softness (0-1). Soft = high (0.70), hard = low (0.30).
+ *  Compressed range [0.30–0.70] prevents extreme gaps in edging/smearing. */
 export function _hardnessVal(shoe) {
   const h = Array.isArray(shoe.rubber_hardness) ? shoe.rubber_hardness[0] : shoe.rubber_hardness;
-  return ({ soft: 0.85, medium: 0.5, hard: 0.15 })[h] || 0.5;
+  return ({ soft: 0.70, medium: 0.50, hard: 0.30 })[h] || 0.5;
 }
 
 /** Rubber thickness → 0-1 (thick = high) */
@@ -59,8 +60,9 @@ const EDGING_OVERRIDES = {
 };
 
 /** Edging: geometric mean of SHAPE × STIFFNESS — need both for top scores.
- *  Stiffness-dominant (65% exponent): a soft aggressive shoe CANNOT edge well.
- *  Downturn-dominant shape (80%): downturn matters more than asymmetry for edging. */
+ *  Balanced exponents (40/60): stiffness still dominant but less extreme.
+ *  Downturn-dominant shape (80%): downturn matters more than asymmetry for edging.
+ *  No double-counting: hardR only in compoundStiff, not repeated in final blend. */
 export function computeEdging(shoe) {
   const softR = _hardnessVal(shoe);
   const hardR = 1 - softR;
@@ -74,9 +76,9 @@ export function computeEdging(shoe) {
   const asymE = ({ none: 0.15, slight: 0.55, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
   const edgeShape = edgeDown * 0.80 + asymE * 0.20;
-  const edgeCore = Math.pow(edgeShape, 0.35) * Math.pow(compoundStiff, 0.65);
+  const edgeCore = Math.pow(edgeShape, 0.40) * Math.pow(compoundStiff, 0.60);
   const override = EDGING_OVERRIDES[shoe.slug] || 0;
-  return Math.min(1, edgeCore * 0.78 + edgeCl * 0.07 + hardR * 0.10 + thickR * 0.05 + override);
+  return Math.min(1, edgeCore * 0.85 + edgeCl * 0.10 + hardR * 0.05 + override);
 }
 
 /** Pocket ability: aggressive downturn + asymmetry + toe patch + stiffness + closure + hardness */
