@@ -16,7 +16,7 @@
 import { useState, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { T } from "./tokens.js";
-import { computeEdging, computeSmearing, computePockets, computeHooks, computeSensitivity, computeSupport, getComfortScore } from "./utils/comfort.js";
+import { getPercentileScores } from "./utils/comfort.js";
 
 // ── Radar chart as inline SVG ──
 const RADAR_AXES = [
@@ -28,16 +28,17 @@ const RADAR_AXES = [
   { key: "sensitivity", label: "Sensitivity" },
 ];
 
-// Derive a 0-1 score for each radar axis from shoe attributes
-// Uses the same compound formulas as the scatter plot analysis tool
-function shoeToRadarScores(shoe) {
+// Derive a 0-1 percentile score for each radar axis from shoe attributes
+// Uses percentile normalization across the full shoe database
+function shoeToRadarScores(shoe, allShoes) {
+  const pct = getPercentileScores(shoe, allShoes);
   return {
-    edging:      computeEdging(shoe),
-    smearing:    computeSmearing(shoe),
-    pockets:     computePockets(shoe),
-    hooks:       computeHooks(shoe),
-    comfort:     getComfortScore(shoe),
-    sensitivity: computeSensitivity(shoe),
+    edging:      pct.edging,
+    smearing:    pct.smearing,
+    pockets:     pct.pockets,
+    hooks:       pct.hooks,
+    comfort:     pct.comfort,
+    sensitivity: pct.sensitivity,
   };
 }
 
@@ -320,7 +321,7 @@ export default function Compare({ shoes = [] }) {
   const specSections = getSpecSections(selectedShoes);
   const radarData = selectedShoes.map((s, i) => ({
     shoe: s,
-    scores: shoeToRadarScores(s),
+    scores: shoeToRadarScores(s, shoes),
     color: SHOE_COLORS[i % SHOE_COLORS.length],
   }));
 

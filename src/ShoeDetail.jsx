@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
-import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport } from "./utils/comfort.js";
+import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport, getPercentileScores } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
@@ -91,22 +91,17 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
   );
 }
 
-// ─── Performance Radar (single 6-axis) ───
-function PerformanceRadar({ shoe }) {
+// ─── Performance Radar (single 6-axis, percentile-normalized) ───
+function PerformanceRadar({ shoe, allShoes }) {
   const dims = ["Edging", "Smearing", "Pockets", "Hooks", "Comfort", "Sensitivity"];
-  const values = [
-    computeEdging(shoe),
-    computeSmearing(shoe),
-    computePockets(shoe),
-    computeHooks(shoe),
-    getComfortScore(shoe),
-    computeSensitivity(shoe),
-  ];
+  const pct = getPercentileScores(shoe, allShoes);
+  const values = [pct.edging, pct.smearing, pct.pockets, pct.hooks, pct.comfort, pct.sensitivity];
 
   return (
     <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "16px", border: `1px solid ${T.border}`, textAlign: "center" }}>
       <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>Performance Profile</div>
       <SpiderNet dims={dims} values={values} size={280} color={T.accent} softColor={T.accentSoft} />
+      <div style={{ fontSize: "9px", color: "#4a5568", marginTop: "4px" }}>Percentile rank vs {(allShoes || []).filter(s => !s.kids_friendly).length} shoes</div>
     </div>
   );
 }
@@ -830,7 +825,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               {!isMobile && <div style={{ flex: 1 }} />}
 
               {/* Single 6-axis Performance Radar — hidden on mobile (shown in overview tab) */}
-              {!isMobile && <PerformanceRadar shoe={shoe} />}
+              {!isMobile && <PerformanceRadar shoe={shoe} allShoes={shoes} />}
             </div>
           </div>
         </div>
@@ -884,7 +879,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
             {/* Full-width: Performance DNA */}
             <SectionHeader icon={"\uD83E\uDDEC"} title="Performance DNA" subtitle="Where this shoe excels" compact={isMobile} />
-            {isMobile && <PerformanceRadar shoe={shoe} />}
+            {isMobile && <PerformanceRadar shoe={shoe} allShoes={shoes} />}
             <PerformanceDNA shoe={shoe} compact={isMobile} />
 
             {/* Full-width: Customer Voices */}

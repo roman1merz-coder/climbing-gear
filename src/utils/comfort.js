@@ -1,7 +1,7 @@
 // ═══ Comfort & Performance Scoring ═══
 // These formulas match the analysis scatter plot (shoe-scatter.html).
 // All 10 axes use compound scores with multiple inputs for continuous distribution.
-// On the website, these raw scores are used directly (no percentile normalization).
+// Percentile normalization maps raw scores to 0→1 rank across the full shoe set.
 
 /** Feel → softness score (0–1). Soft = high */
 export const FEEL_SCORE_MAP = {
@@ -153,4 +153,69 @@ export function getComfortLabel(shoe) {
   if (s >= 0.55) return "Good";
   if (s >= 0.35) return "Moderate";
   return "Performance-focused";
+}
+
+// ═══ PERCENTILE NORMALIZATION ═══
+// Converts raw scores to percentile ranks (0→1) using rank order with tie averaging.
+// Kids shoes are excluded from the ranking pool.
+// Returns: Map<slug, { edging, smearing, pockets, hooks, comfort, sensitivity, support }>
+
+const RAW_FNS = [
+  ["edging", computeEdging],
+  ["smearing", computeSmearing],
+  ["pockets", computePockets],
+  ["hooks", computeHooks],
+  ["comfort", getComfortScore],
+  ["sensitivity", computeSensitivity],
+  ["support", computeSupport],
+];
+
+let _cachedShoes = null;
+let _cachedMap = null;
+
+/** Build a slug→percentiles lookup from the full shoe array.
+ *  Results are cached — only recomputes when the shoe array reference changes. */
+export function buildPercentileMap(shoes) {
+  if (shoes === _cachedShoes && _cachedMap) return _cachedMap;
+  _cachedShoes = shoes;
+
+  const adults = shoes.filter(s => !s.kids_friendly);
+  const map = {}; // slug → { edging, smearing, ... }
+
+  for (const [key, fn] of RAW_FNS) {
+    // Compute raw scores for adults
+    const pairs = adults.map(s => ({ slug: s.slug, v: fn(s) }));
+    pairs.sort((a, b) => a.v - b.v);
+    const n = pairs.length;
+    // Rank with tie averaging
+    let i = 0;
+    while (i < n) {
+      let j = i;
+      while (j < n && pairs[j].v === pairs[i].v) j++;
+      const pct = n > 1 ? ((i + j - 1) / 2) / (n - 1) : 0.5;
+      for (let k = i; k < j; k++) {
+        if (!map[pairs[k].slug]) map[pairs[k].slug] = {};
+        map[pairs[k].slug][key] = pct;
+      }
+      i = j;
+    }
+  }
+
+  _cachedMap = map;
+  return map;
+}
+
+/** Get percentile scores for a single shoe (convenience wrapper).
+ *  Returns { edging, smearing, pockets, hooks, comfort, sensitivity, support } */
+export function getPercentileScores(shoe, allShoes) {
+  const map = buildPercentileMap(allShoes);
+  return map[shoe.slug] || {
+    edging: computeEdging(shoe),
+    smearing: computeSmearing(shoe),
+    pockets: computePockets(shoe),
+    hooks: computeHooks(shoe),
+    comfort: getComfortScore(shoe),
+    sensitivity: computeSensitivity(shoe),
+    support: computeSupport(shoe),
+  };
 }
