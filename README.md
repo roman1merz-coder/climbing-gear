@@ -64,9 +64,9 @@ src/*_seed_data.json          ← CANONICAL source of truth (checked into git)
 | File | Contents | Count |
 |------|----------|-------|
 | `src/seed_data.json` | Climbing shoes | ~333 |
-| `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 141 (106 single, 28 half, 3 twin, 4 static) |
-| `src/belay_seed_data.json` | Belay devices | ~19 |
-| `src/crashpad_seed_data.json` | Crashpads | ~25 |
+| `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 156 (106 single, 28 half, 3 twin, 19 static) |
+| `src/belay_seed_data.json` | Belay devices | ~49 |
+| `src/crashpad_seed_data.json` | Crashpads | ~101 |
 
 ### Rules for Developers and AI Agents
 
@@ -89,6 +89,29 @@ src/*_seed_data.json          ← CANONICAL source of truth (checked into git)
    // Derived from rope_seed_data.json (141 ropes, 106 singles) — 2025-02-13
    const ROPE_DIAMETER = [ ... ];
    ```
+
+### Similar Products Logic
+
+Each detail page shows "Similar" or "You May Also Like" products at the bottom. The matching logic varies by product type:
+
+| Product | Logic | Max shown |
+|---------|-------|-----------|
+| **Shoes** | Same `skill_level` (any overlap) OR same `downturn` | 4 |
+| **Ropes** | Same `rope_type` AND overlapping `best_use_cases` | 3 |
+| **Belay devices** | Same `device_type` | 3 |
+| **Crashpads** | Same `pad_size_category` OR overlapping `best_use` | 3 |
+
+No scoring or ranking is applied — the first N matches from the dataset are shown. The current product is always excluded.
+
+### Amazon Search Links
+
+Every product detail page includes an Amazon.de search link (with affiliate tag `climbinggear0e-21`). The search query includes the product type for better results:
+- Shoes: `climbing shoe {brand} {model}`
+- Ropes: `climbing rope {brand} {model}`
+- Belays: `belay device {brand} {model}`
+- Crashpads: `crash pad {brand} {model}`
+
+When no real retailer price data exists (only Amazon search), the "in stock" status is hidden to avoid misleading users.
 
 ### Supabase
 

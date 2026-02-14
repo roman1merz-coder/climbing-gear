@@ -142,6 +142,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
   const bestRopeOffer = ropePrices.find(p => p.inStock && p.price > 0) || ropePrices[0];
   const bestRopeUrl = bestRopeOffer?.url && bestRopeOffer.url !== "#" ? bestRopeOffer.url : null;
 
+  // SIMILAR PRODUCTS: up to 3 ropes matching BOTH same rope_type AND any overlapping best_use_cases
   const similar = ropes.filter((r) =>
     r.slug !== rope.slug &&
     r.rope_type === rope.rope_type &&

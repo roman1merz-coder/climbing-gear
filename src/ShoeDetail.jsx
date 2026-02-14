@@ -1068,7 +1068,12 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         )}
       </div>
 
-      {/* Footer with similar shoes */}
+      {/* Footer with similar shoes
+           SIMILAR PRODUCTS LOGIC:
+           Shows up to 4 shoes that match EITHER:
+           1. Same skill_level (any overlap) — e.g. both "intermediate" shoes
+           2. Same downturn — e.g. both "aggressive" shoes
+           First matches shown, no scoring/ranking applied. */}
       <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit" compact={isMobile} />

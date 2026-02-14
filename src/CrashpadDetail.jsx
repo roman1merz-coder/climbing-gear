@@ -361,6 +361,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const bestPadOffer = padPrices.find(p => p.inStock && p.price > 0) || padPrices[0];
   const bestPadUrl = bestPadOffer?.url && bestPadOffer.url !== "#" ? bestPadOffer.url : null;
 
+  // SIMILAR PRODUCTS: up to 3 pads matching EITHER same size_category OR any overlapping best_use
   const similar = crashpads.filter((p) =>
     p.slug !== pad.slug &&
     (p.pad_size_category === pad.pad_size_category ||

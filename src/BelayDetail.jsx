@@ -183,6 +183,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 
+  // SIMILAR PRODUCTS: up to 3 belay devices with the same device_type (e.g. active_assisted)
   const similar = useMemo(() => {
     if (!d) return [];
     return belays
