@@ -52,6 +52,12 @@ export function computeSmearing(shoe) {
   return Math.min(1, conformability * 0.72 + smearShape * 0.08 + effectiveThick * 0.20);
 }
 
+/** Manual edging overrides for shoes where real-world performance diverges from formula.
+ *  Value is added to the raw edging score before clamping to 0–1. */
+const EDGING_OVERRIDES = {
+  "la-sportiva-ondra-comp": 0.15,  // edges surprisingly well despite soft feel
+};
+
 /** Edging: geometric mean of SHAPE × STIFFNESS — need both for top scores.
  *  Stiffness-dominant (65% exponent): a soft aggressive shoe CANNOT edge well.
  *  Downturn-dominant shape (80%): downturn matters more than asymmetry for edging. */
@@ -69,7 +75,8 @@ export function computeEdging(shoe) {
   const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
   const edgeShape = edgeDown * 0.80 + asymE * 0.20;
   const edgeCore = Math.pow(edgeShape, 0.35) * Math.pow(compoundStiff, 0.65);
-  return Math.min(1, edgeCore * 0.78 + edgeCl * 0.07 + hardR * 0.10 + thickR * 0.05);
+  const override = EDGING_OVERRIDES[shoe.slug] || 0;
+  return Math.min(1, edgeCore * 0.78 + edgeCl * 0.07 + hardR * 0.10 + thickR * 0.05 + override);
 }
 
 /** Pocket ability: aggressive downturn + asymmetry + toe patch + stiffness + closure + hardness */
