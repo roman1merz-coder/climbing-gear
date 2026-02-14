@@ -415,11 +415,14 @@ function SmallTag({ children, variant = "default" }) {
 
 // ═══ COMPACT ROPE CARD (mobile 2-per-row) ═══
 
-function CompactRopeCard({ result, onClick }) {
+function CompactRopeCard({ result, onClick, priceData = {} }) {
   const d = result.rope_data;
   const s = result.match_score;
   const hasDiscount = d.price_uvp_per_meter_eur && d.price_per_meter_eur_min && d.price_per_meter_eur_min < d.price_uvp_per_meter_eur;
   const discountPct = hasDiscount ? Math.round(((d.price_uvp_per_meter_eur - d.price_per_meter_eur_min) / d.price_uvp_per_meter_eur) * 100) : 0;
+  const rPrices = priceData[d.slug] || [];
+  const bestUrl = (rPrices.find(p => p.inStock && p.price > 0) || rPrices[0])?.url;
+  const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
   return (
     <div onClick={onClick} style={{
@@ -470,6 +473,12 @@ function CompactRopeCard({ result, onClick }) {
             €{d.price_per_meter_eur_min?.toFixed(2)}
           </span>
           <span style={{ fontSize: "9px", color: "#6b7280" }}>/m</span>
+          {buyUrl && (
+            <span
+              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+              style={{ fontSize: "10px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "2px", whiteSpace: "nowrap" }}
+            >→ Buy</span>
+          )}
         </div>
         {hasDiscount && (
           <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
@@ -486,11 +495,14 @@ function CompactRopeCard({ result, onClick }) {
 
 // ═══ ROPE CARD ═══
 
-function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
+function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData = {} }) {
   const d = result.rope_data;
   const s = result.match_score;
   const isDynamic = d.rope_type !== "static";
   const selLen = selectedLength;
+  const rPrices = priceData[d.slug] || [];
+  const bestUrl = (rPrices.find(p => p.inStock && p.price > 0) || rPrices[0])?.url;
+  const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
   return (
     <div
@@ -618,6 +630,12 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect }) {
                 <span style={{ fontSize: "12px", color: "#6b7280", marginLeft: "2px" }}>/m</span>
               </>
             )}
+            {buyUrl && (
+              <span
+                onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+                style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "6px", whiteSpace: "nowrap" }}
+              >→ Buy</span>
+            )}
           </div>
           <div>
             {d.price_uvp_per_meter_eur > d.price_per_meter_eur_min && (
@@ -646,7 +664,7 @@ function loadRopeSession() {
   catch { return {}; }
 }
 
-export default function RopeApp({ ropes = [], src = "local" }) {
+export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
@@ -1088,6 +1106,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
                       <CompactRopeCard
                         result={r}
                         onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
+                        priceData={priceData}
                       />
                     ) : (
                       <RopeCard
@@ -1095,6 +1114,7 @@ export default function RopeApp({ ropes = [], src = "local" }) {
                         onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
                         selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
                         onLengthSelect={handleLengthSelect}
+                        priceData={priceData}
                       />
                     )}
                   </div>

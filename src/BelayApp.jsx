@@ -392,12 +392,15 @@ function getTags(d) {
 
 // ═══ COMPACT BELAY CARD (mobile 2-per-row) ═══
 
-function CompactBelayCard({ belay, matchScore, onClick }) {
+function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
   const d = belay;
   const s = matchScore;
   const price = d.price_eur_min || d.price_uvp_eur;
   const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
   const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur) * 100) : 0;
+  const bPrices = priceData[d.slug] || [];
+  const bestUrl = (bPrices.find(p => p.inStock && p.price > 0) || bPrices[0])?.url;
+  const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
   return (
     <div onClick={onClick} style={{
@@ -446,6 +449,12 @@ function CompactBelayCard({ belay, matchScore, onClick }) {
           <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
             €{fmt(price)}
           </span>
+          {buyUrl && (
+            <span
+              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+              style={{ fontSize: "10px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "2px", whiteSpace: "nowrap" }}
+            >→ Buy</span>
+          )}
         </div>
         {hasDiscount && (
           <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
@@ -462,11 +471,14 @@ function CompactBelayCard({ belay, matchScore, onClick }) {
 
 // ═══ BELAY CARD ═══
 
-function BelayCard({ belay, matchScore, onClick }) {
+function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
   const d = belay;
   const tags = getTags(d);
   const price = d.price_eur_min || d.price_uvp_eur;
   const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
+  const bPrices = priceData[d.slug] || [];
+  const bestUrl = (bPrices.find(p => p.inStock && p.price > 0) || bPrices[0])?.url;
+  const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
   return (
     <div
@@ -541,6 +553,12 @@ function BelayCard({ belay, matchScore, onClick }) {
         <span style={{ color: "#E8734A", fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace" }}>
           €{fmt(price)}
         </span>
+        {buyUrl && (
+          <span
+            onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+            style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}
+          >→ Buy</span>
+        )}
         {hasDiscount && (
           <>
             <span style={{ color: "#6b7280", fontSize: "12px", textDecoration: "line-through" }}>
@@ -693,7 +711,7 @@ function loadBelaySession() {
   catch { return {}; }
 }
 
-export default function BelayApp({ belays = [], src }) {
+export default function BelayApp({ belays = [], src, priceData = {} }) {
   const nav = useNavigate();
   const isMobile = useIsMobile();
   const _s = loadBelaySession();
@@ -864,12 +882,14 @@ export default function BelayApp({ belays = [], src }) {
                     belay={d}
                     matchScore={ms}
                     onClick={() => { nav(`/belay/${d.slug}`); window.scrollTo(0, 0); }}
+                    priceData={priceData}
                   />
                 ) : (
                   <BelayCard
                     belay={d}
                     matchScore={ms}
                     onClick={() => { nav(`/belay/${d.slug}`); window.scrollTo(0, 0); }}
+                    priceData={priceData}
                   />
                 )}
               </div>

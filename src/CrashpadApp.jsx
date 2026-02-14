@@ -370,12 +370,15 @@ function SmallTag({ children, variant = "default" }) {
 
 // ═══ COMPACT CRASHPAD CARD (mobile 2-per-row) ═══
 
-function CompactCrashpadCard({ result, onClick }) {
+function CompactCrashpadCard({ result, onClick, priceData = {} }) {
   const d = result.pad_data;
   const s = result.match_score;
   const hasDiscount = d.price_uvp_eur && d.current_price_eur && d.current_price_eur < d.price_uvp_eur;
   const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - d.current_price_eur) / d.price_uvp_eur) * 100) : 0;
   const sizeColor = SIZE_COLORS[d.pad_size_category]?.color || "#60a5fa";
+  const cPrices = priceData[d.slug] || [];
+  const bestUrl = (cPrices.find(p => p.inStock && p.price > 0) || cPrices[0])?.url;
+  const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
   return (
     <div onClick={onClick} style={{
@@ -443,6 +446,12 @@ function CompactCrashpadCard({ result, onClick }) {
           <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
             €{d.current_price_eur}
           </span>
+          {buyUrl && (
+            <span
+              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+              style={{ fontSize: "10px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "2px", whiteSpace: "nowrap" }}
+            >→ Buy</span>
+          )}
         </div>
         {hasDiscount && (
           <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
@@ -459,10 +468,13 @@ function CompactCrashpadCard({ result, onClick }) {
 
 // ═══ CRASHPAD CARD ═══
 
-function CrashpadCard({ result, onClick }) {
+function CrashpadCard({ result, onClick, priceData = {} }) {
   const d = result.pad_data;
   const s = result.match_score;
   const area = ((d.length_open_cm * d.width_open_cm) / 10000).toFixed(2);
+  const cPrices = priceData[d.slug] || [];
+  const bestUrl = (cPrices.find(p => p.inStock && p.price > 0) || cPrices[0])?.url;
+  const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
   return (
     <div
@@ -567,6 +579,12 @@ function CrashpadCard({ result, onClick }) {
             <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
               €{d.current_price_eur}
             </span>
+            {buyUrl && (
+              <span
+                onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+                style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "6px", whiteSpace: "nowrap" }}
+              >→ Buy</span>
+            )}
           </div>
           <div>
             {d.price_uvp_eur > d.current_price_eur && (
@@ -629,7 +647,7 @@ function loadSession() {
   catch { return {}; }
 }
 
-export default function CrashpadApp({ crashpads = [], src = "local" }) {
+export default function CrashpadApp({ crashpads = [], src = "local", priceData = {} }) {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
@@ -1059,11 +1077,13 @@ export default function CrashpadApp({ crashpads = [], src = "local" }) {
                       <CompactCrashpadCard
                         result={r}
                         onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
+                        priceData={priceData}
                       />
                     ) : (
                       <CrashpadCard
                         result={r}
                         onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
+                        priceData={priceData}
                       />
                     )}
                   </div>
