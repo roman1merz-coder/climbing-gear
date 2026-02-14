@@ -900,6 +900,73 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               </div>
             </div>
 
+            {/* Size Selection & Stock Availability placeholders */}
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "12px" : "16px", marginBottom: "36px" }}>
+              {/* Size Selection */}
+              <div style={{
+                background: T.card, borderRadius: T.radius, border: `1px dashed ${T.border}`,
+                padding: "24px", position: "relative", overflow: "hidden",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+                  <span style={{ fontSize: "16px" }}>{"\uD83D\uDC5F"}</span>
+                  <div style={{ fontSize: "12px", fontWeight: 700, color: T.text, letterSpacing: "0.5px" }}>Size Selection</div>
+                  <span style={{
+                    fontSize: "9px", fontWeight: 700, color: T.accent, letterSpacing: "1px", textTransform: "uppercase",
+                    background: T.accentSoft, padding: "3px 8px", borderRadius: "6px", border: `1px solid rgba(232,115,74,0.2)`,
+                  }}>Coming Soon</span>
+                </div>
+                {/* Fake size pills */}
+                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", opacity: 0.3, pointerEvents: "none" }}>
+                  {["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"].map(s => (
+                    <span key={s} style={{
+                      padding: "6px 10px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
+                      fontFamily: T.mono, background: T.surface, color: T.muted, border: `1px solid ${T.border}`,
+                    }}>{s}</span>
+                  ))}
+                </div>
+                <div style={{ fontSize: "11px", color: T.muted, marginTop: "12px", lineHeight: 1.5 }}>
+                  Select your EU size to see size-specific prices and availability across retailers
+                </div>
+              </div>
+
+              {/* Stock Availability Check */}
+              <div style={{
+                background: T.card, borderRadius: T.radius, border: `1px dashed ${T.border}`,
+                padding: "24px", position: "relative", overflow: "hidden",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+                  <span style={{ fontSize: "16px" }}>{"\uD83D\uDCE6"}</span>
+                  <div style={{ fontSize: "12px", fontWeight: 700, color: T.text, letterSpacing: "0.5px" }}>Stock Availability</div>
+                  <span style={{
+                    fontSize: "9px", fontWeight: 700, color: T.accent, letterSpacing: "1px", textTransform: "uppercase",
+                    background: T.accentSoft, padding: "3px 8px", borderRadius: "6px", border: `1px solid rgba(232,115,74,0.2)`,
+                  }}>Coming Soon</span>
+                </div>
+                {/* Fake retailer stock rows */}
+                <div style={{ opacity: 0.3, pointerEvents: "none" }}>
+                  {["bergfreunde.de", "basislager.de", "Amazon.de"].map((r, i) => (
+                    <div key={r} style={{
+                      display: "flex", justifyContent: "space-between", alignItems: "center",
+                      padding: "8px 0", borderBottom: i < 2 ? `1px solid ${T.border}` : "none",
+                    }}>
+                      <span style={{ fontSize: "12px", fontWeight: 600, color: T.text }}>{r}</span>
+                      <div style={{ display: "flex", gap: "4px" }}>
+                        {[38, 39, 40, 41, 42].map(s => (
+                          <span key={s} style={{
+                            width: "6px", height: "6px", borderRadius: "50%",
+                            background: i === 1 && s === 40 ? T.red : T.green,
+                          }} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ fontSize: "11px", color: T.muted, marginTop: "12px", lineHeight: 1.5 }}>
+                  Real-time stock checks per size across all tracked retailers
+                </div>
+              </div>
+            </div>
+
             <SectionHeader icon={"\uD83E\uDDE0"} title="Price Intelligence" subtitle="Algorithmic buy/wait recommendation" compact={isMobile} />
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}>
               {intel.factors.map((f, i) => (
