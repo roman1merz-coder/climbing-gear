@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
-import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks } from "./utils/comfort.js";
+import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
@@ -93,17 +93,15 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
 
 // ─── Performance Radar (single 6-axis) ───
 function PerformanceRadar({ shoe }) {
-  const dims = ["Downturn", "Asymmetry", "Sensitivity", "Comfort", "Weight", "Support"];
-  const dtVal = ({ flat: 0.15, moderate: 0.5, aggressive: 0.9 })[shoe.downturn] || 0.5;
-  const asymVal = ({ none: 0.15, slight: 0.5, strong: 0.9 })[shoe.asymmetry] || 0.5;
-  const feelVal = FEEL_SCORE_MAP[shoe.feel] || 0.5;
-  const comfortVal = getComfortScore(shoe);
-  const weightVal = shoe.weight_g ? Math.min(1, Math.max(0.05, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
-  const hardComp = 1 - (_hardnessVal(shoe));
-  const thickComp = shoe.rubber_thickness_mm ? Math.min(1, Math.max(0, (shoe.rubber_thickness_mm - 2) / 3)) : 0.5;
-  const midComp = ({ full: 0.9, partial: 0.5, none: 0.1 })[shoe.midsole] || 0.5;
-  const supportVal = Math.min(1, hardComp * 0.40 + thickComp * 0.35 + midComp * 0.25);
-  const values = [dtVal, asymVal, feelVal, comfortVal, weightVal, supportVal];
+  const dims = ["Edging", "Smearing", "Pockets", "Hooks", "Comfort", "Sensitivity"];
+  const values = [
+    computeEdging(shoe),
+    computeSmearing(shoe),
+    computePockets(shoe),
+    computeHooks(shoe),
+    getComfortScore(shoe),
+    computeSensitivity(shoe),
+  ];
 
   return (
     <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "16px", border: `1px solid ${T.border}`, textAlign: "center" }}>

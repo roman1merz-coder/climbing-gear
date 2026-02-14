@@ -16,38 +16,28 @@
 import { useState, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { T } from "./tokens.js";
+import { computeEdging, computeSmearing, computePockets, computeHooks, computeSensitivity, computeSupport, getComfortScore } from "./utils/comfort.js";
 
 // ── Radar chart as inline SVG ──
 const RADAR_AXES = [
-  { key: "precision", label: "Precision" },
-  { key: "comfort",   label: "Comfort" },
-  { key: "edging",    label: "Edging" },
-  { key: "smearing",  label: "Smearing" },
-  { key: "crack",     label: "Crack" },
-  { key: "durability", label: "Durability" },
+  { key: "edging",      label: "Edging" },
+  { key: "smearing",    label: "Smearing" },
+  { key: "pockets",     label: "Pockets" },
+  { key: "hooks",       label: "Hooks" },
+  { key: "comfort",     label: "Comfort" },
+  { key: "sensitivity", label: "Sensitivity" },
 ];
 
 // Derive a 0-1 score for each radar axis from shoe attributes
+// Uses the same compound formulas as the scatter plot analysis tool
 function shoeToRadarScores(shoe) {
-  const downMap = { aggressive: 1, moderate: 0.6, slight: 0.35, flat: 0.15 };
-  const feelMap = { stiff: 0.2, moderate: 0.5, "moderately stiff": 0.4, "moderately soft": 0.65, soft: 0.85 };
-  const asymMap = { strong: 1, moderate: 0.6, slight: 0.3, neutral: 0.1 };
-
-  const downScore = downMap[(shoe.downturn || "").toLowerCase()] || 0.5;
-  const feelScore = feelMap[(shoe.feel || "").toLowerCase()] || 0.5;
-  const asymScore = asymMap[(shoe.asymmetry || "").toLowerCase()] || 0.5;
-
-  // Rubber thickness → durability signal
-  const thickness = shoe.rubber_thickness_mm || 4;
-  const durScore = Math.min(1, thickness / 5);
-
   return {
-    precision: Math.min(1, (downScore * 0.5 + asymScore * 0.5)),
-    comfort:   Math.min(1, (1 - downScore) * 0.5 + (1 - asymScore) * 0.3 + feelScore * 0.2),
-    edging:    Math.min(1, (1 - feelScore) * 0.4 + asymScore * 0.3 + downScore * 0.3),
-    smearing:  Math.min(1, feelScore * 0.6 + (1 - asymScore) * 0.2 + 0.2),
-    crack:     Math.min(1, (1 - downScore) * 0.4 + (1 - asymScore) * 0.3 + (shoe.closure === "lace" ? 0.3 : 0.15)),
-    durability: Math.min(1, durScore * 0.6 + (1 - feelScore) * 0.4),
+    edging:      computeEdging(shoe),
+    smearing:    computeSmearing(shoe),
+    pockets:     computePockets(shoe),
+    hooks:       computeHooks(shoe),
+    comfort:     getComfortScore(shoe),
+    sensitivity: computeSensitivity(shoe),
   };
 }
 
