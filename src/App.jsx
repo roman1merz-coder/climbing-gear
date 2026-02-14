@@ -1033,8 +1033,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar — desktop only */}
-        {!isMobile && <aside
+        {/* Sidebar — desktop only, hidden in chart view */}
+        {!isMobile && view !== "chart" && <aside
           style={{
             width: "320px",
             minWidth: "320px",

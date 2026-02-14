@@ -850,8 +850,8 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
 
       {/* Body */}
       <div style={{ display: "flex", gap: "24px", padding: isMobile ? "16px 12px" : "24px 32px", alignItems: "flex-start" }}>
-        {/* Desktop sidebar */}
-        {!isMobile && (
+        {/* Desktop sidebar — hidden in chart view */}
+        {!isMobile && view !== "chart" && (
           <div style={{ width: "280px", flexShrink: 0 }}>
             <FilterSidebarContent
               groups={groups}

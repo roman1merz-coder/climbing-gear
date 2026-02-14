@@ -302,7 +302,14 @@ export default function CrashpadScatterChart({ isMobile }) {
       </div>
 
       {/* Color-by toggle */}
-      <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
+        {/* Reset all */}
+        {(hiddenLayers.size > 0 || hiddenFolds.size > 0 || hiddenBrands.size > 0 || hiddenThickness.size > 0) && (
+          <button onClick={() => { setHiddenLayers(new Set()); setHiddenFolds(new Set()); setHiddenBrands(new Set()); setHiddenThickness(new Set()); }}
+            style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
+            ✕ Reset filters
+          </button>
+        )}
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
         {["layers", "fold", "thickness", "brand"].map(k => (
           <button key={k} onClick={() => setColorBy(k)} style={{

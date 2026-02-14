@@ -291,6 +291,13 @@ export default function BelayScatterChart({ isMobile }) {
     <ChartContainer title="Price vs Weight" subtitle={`${filtered.length} belay devices`}>
       {/* Device type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
+        {/* Reset all */}
+        {(hiddenBrands.size > 0 || enabledTypes.size !== 5) && (
+          <button onClick={() => { setEnabledTypes(new Set(["active_assisted", "passive_assisted", "tube_guide", "tube", "figure_eight"])); setHiddenBrands(new Set()); }}
+            style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
+            ✕ Reset filters
+          </button>
+        )}
         <div style={{ display: "flex", gap: "2px", alignItems: "center" }}>
           <span style={{ fontSize: "10px", color: T.muted, marginRight: "2px" }}>Type:</span>
           {TYPE_LIST.map(k => (

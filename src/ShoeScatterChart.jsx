@@ -361,6 +361,13 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
 
       {/* Filters row */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
+        {/* Reset all */}
+        {(hideKids !== true || genderFilter !== "all" || footShape !== "all" || hiddenClosure.size > 0 || hiddenBrands.size > 0 || hiddenVegan.size > 0) && (
+          <button onClick={() => { setHideKids(true); setGenderFilter("all"); setFootShape("all"); setHiddenClosure(new Set()); setHiddenBrands(new Set()); setHiddenVegan(new Set()); }}
+            style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
+            ✕ Reset filters
+          </button>
+        )}
         {/* Kids toggle */}
         <label style={{ fontSize: "11px", color: T.muted, cursor: "pointer", display: "flex", alignItems: "center", gap: "4px" }}>
           <input type="checkbox" checked={hideKids} onChange={e => setHideKids(e.target.checked)}

@@ -902,8 +902,8 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar — desktop only */}
-        {!isMobile && (
+        {/* Sidebar — desktop only, hidden in chart view */}
+        {!isMobile && view !== "chart" && (
           <aside style={{
             width: "320px", minWidth: "320px",
             borderRight: "1px solid #1e2028",
