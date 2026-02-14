@@ -1564,7 +1564,7 @@
     ],
     "sizing": "Runs true to size; microfiber upper has minimal stretch. Size to a snug fit from day one.",
     "customer_voices": [
-      "I use these exclusively for bouldering indoors—the downturn and edge sensitivity are unreal for small holds and powerful sequences.",
+      "I use these exclusively for bouldering indoors\u2014the downturn and edge sensitivity are unreal for small holds and powerful sequences.",
       "As an intermediate climber moving into sport climbing, the Drago feels aggressive to me, but my feet are narrower and they fit like a glove."
     ],
     "image_url": "/images/shoes/scarpa-drago.jpg"
@@ -1644,7 +1644,7 @@
     ],
     "sizing": "Suits lower-volume and narrower feet. Size to a snug fit; minimal stretch expected. Consider LV if you find standard Drago loose in the heel.",
     "customer_voices": [
-      "I have narrow feet and finally found a shoe that doesn't slip—the LV is my go-to for overhanging problems.",
+      "I have narrow feet and finally found a shoe that doesn't slip\u2014the LV is my go-to for overhanging problems.",
       "Advanced boulderer here. The Drago LV is sharper than the standard Drago, which I prefer for technical climbing on small pockets."
     ],
     "image_url": "/images/shoes/scarpa-drago-lv.jpg"
@@ -1724,7 +1724,7 @@
     ],
     "sizing": "Low-volume and narrow fit; no stretch. Size to snug fit from day one. Recommended for narrow to medium-narrow feet.",
     "customer_voices": [
-      "Lightweight, responsive, and I can feel every bump on the wall—perfect for my climbing style on overhanging routes.",
+      "Lightweight, responsive, and I can feel every bump on the wall\u2014perfect for my climbing style on overhanging routes.",
       "The Furia Air is my second shoe for routes where I know every edge. The fit took some getting used to because of the low volume."
     ],
     "image_url": "/images/shoes/scarpa-furia-air.jpg"
@@ -1885,7 +1885,7 @@
     ],
     "sizing": "Runs true to size with minimal stretch. The wide-fit last suits normal to broader feet. Snug but not restrictive from day one.",
     "customer_voices": [
-      "These are my everyday climbing shoe—versatile enough for indoor walls and solid enough for outdoor granite routes.",
+      "These are my everyday climbing shoe\u2014versatile enough for indoor walls and solid enough for outdoor granite routes.",
       "The partial midsole and durable rubber mean I can wear these for full sessions without worry, and the edge control is solid."
     ],
     "image_url": "/images/shoes/scarpa-instinct-vs-mens.jpg"
@@ -1966,7 +1966,7 @@
     ],
     "sizing": "Women's-specific fit with low volume and narrow heel. Minimal stretch expected. Size to a snug, supportive fit.",
     "customer_voices": [
-      "Finally, a shoe engineered for my foot shape—the heel doesn't slip and the volume is perfect for women with narrower feet.",
+      "Finally, a shoe engineered for my foot shape\u2014the heel doesn't slip and the volume is perfect for women with narrower feet.",
       "I use VS for training and projects. The durable rubber means multiple sessions a week without premature wear."
     ],
     "image_url": "/images/shoes/scarpa-instinct-vs-womens.jpg"
@@ -2047,7 +2047,7 @@
     ],
     "sizing": "Standard volume with medium width; minimal stretch. Wide-fit last accommodates diverse foot shapes. Size to a supportive, snug fit.",
     "customer_voices": [
-      "I prefer the softer rubber—the VSR reads texture so well on varied rock that I'm more confident on smears.",
+      "I prefer the softer rubber\u2014the VSR reads texture so well on varied rock that I'm more confident on smears.",
       "Indoor gym climber here. The full Grip 2 sole feels great for edging, and the wide fit means no hot spots during long sessions."
     ],
     "image_url": "/images/shoes/scarpa-instinct-vsr-mens.jpg"
@@ -2209,7 +2209,7 @@
     ],
     "sizing": "Standard volume, medium width; minimal stretch expected. Slipper fit accommodates quick on-off. Size to a snug, comfortable fit.",
     "customer_voices": [
-      "Intermediate boulderer—the SR is my second pair for volume climbing when I don't need the support of a midsole.",
+      "Intermediate boulderer\u2014the SR is my second pair for volume climbing when I don't need the support of a midsole.",
       "I like the slipper convenience, and the soft rubber gives me feedback I need on smears and pockets."
     ],
     "image_url": "/images/shoes/scarpa-instinct-sr.jpg"
@@ -2291,7 +2291,7 @@
     "sizing": "Standard volume, medium width; minimal stretch. Lace closure allows progressive tightening. Size to a snug midfoot with secure heel.",
     "customer_voices": [
       "Sport climber here. The lace system lets me dial in pressure exactly where I need it for full pitches.",
-      "I use these for trad climbing—the crack-edge geometry and lace fit inspire confidence on slab and vertical terrain."
+      "I use these for trad climbing\u2014the crack-edge geometry and lace fit inspire confidence on slab and vertical terrain."
     ],
     "image_url": "/images/shoes/scarpa-instinct-lace.jpg"
   },
@@ -2369,7 +2369,7 @@
     ],
     "sizing": "Standard volume, medium width; minimal stretch. Slipper fit is forgiving. Size snug from day one.",
     "customer_voices": [
-      "My go-to gym shoe—the S is light, responsive, and the wide fit means no cramping after hours.",
+      "My go-to gym shoe\u2014the S is light, responsive, and the wide fit means no cramping after hours.",
       "Intermediate climber. The S gives me enough edge control without the weight and bulk of a midsole."
     ],
     "image_url": "/images/shoes/scarpa-instinct-s.jpg"
@@ -2450,7 +2450,7 @@
     ],
     "sizing": "Runs 0.5 EU size large due to leather stretch. Size down 0.5 EU from street shoe. Moderate break-in expected.",
     "customer_voices": [
-      "Sport climber and boulderer. The Vapor V is my jacket shoe—breathable leather, solid all-around feel, durable enough for outdoor objectives.",
+      "Sport climber and boulderer. The Vapor V is my jacket shoe\u2014breathable leather, solid all-around feel, durable enough for outdoor objectives.",
       "I have Morton's toe and finally found a shoe that accommodates my foot shape. The Vapor V feels like it's made for me."
     ],
     "image_url": "/images/shoes/scarpa-vapor-v-mens.jpg"
@@ -2692,7 +2692,7 @@
     ],
     "sizing": "Standard volume, medium width; minimal stretch. Size to a snug fit; expect minimal break-in.",
     "customer_voices": [
-      "Beginner climber—the Veloce is forgiving, durable, and didn't break the bank for my first real climbing shoe.",
+      "Beginner climber\u2014the Veloce is forgiving, durable, and didn't break the bank for my first real climbing shoe.",
       "Gym regular. The Veloce works for sport and bouldering. It's not the most sensitive, but for the price, it's solid."
     ],
     "image_url": "/images/shoes/scarpa-veloce.jpg"
@@ -2854,7 +2854,7 @@
     "sizing": "Standard volume, medium width; minimal stretch. Size to a snug fit. Quick break-in expected.",
     "customer_voices": [
       "Beginner to intermediate climber. The Arpia is approachable, durable, and doesn't demand a lot of foot shaping skill.",
-      "Good bang for buck—the XS Edge rubber lasts, and the balanced design works across wall angles."
+      "Good bang for buck\u2014the XS Edge rubber lasts, and the balanced design works across wall angles."
     ],
     "image_url": "/images/shoes/scarpa-arpia.jpg"
   },
@@ -3012,7 +3012,7 @@
     ],
     "sizing": "Leather stretches 0.5 EU. Size down from street size. Extended break-in (4-5 sessions) required; suits Greek/longer second toe.",
     "customer_voices": [
-      "Trad climber for 15 years. The Kubo is my cragging shoe—comfort and support matter more than raw sensitivity.",
+      "Trad climber for 15 years. The Kubo is my cragging shoe\u2014comfort and support matter more than raw sensitivity.",
       "The full midsole means I can wear these for entire days on granite without foot fatigue."
     ],
     "image_url": "/images/shoes/scarpa-kubo.jpg"
@@ -3092,7 +3092,7 @@
     "sizing": "Leather stretches 0.5 EU; size down from street size. Lace for precise fit. Moderate 3-4 session break-in.",
     "customer_voices": [
       "Sport climber transitioning to trad. The Maestro gives me the control I need for cracks and edges.",
-      "I love that these lace up tight at the heel and allow midfoot and toe give—perfect for full-day objectives."
+      "I love that these lace up tight at the heel and allow midfoot and toe give\u2014perfect for full-day objectives."
     ],
     "image_url": "/images/shoes/scarpa-maestro-mens.jpg"
   },
@@ -3247,7 +3247,7 @@
     ],
     "sizing": "Leather stretches 0.5 EU; size down from street size. Stiff construction requires extended break-in (5-6 sessions).",
     "customer_voices": [
-      "Alpine climber. The Maestro Alpine is built for serious objectives—no nonsense, just support and durability.",
+      "Alpine climber. The Maestro Alpine is built for serious objectives\u2014no nonsense, just support and durability.",
       "The stiff platform and full rubber coverage give me confidence on loose terrain and sustained climbing."
     ],
     "image_url": "/images/shoes/scarpa-maestro-alpine.jpg"
@@ -3406,7 +3406,7 @@
     "sizing": "Standard volume, medium width; minimal stretch. Lace allows progressive tightening. Moderate break-in expected.",
     "customer_voices": [
       "Advanced sport climber. The Mago laces up tight, has enough downturn to feel special, and lasts full sessions.",
-      "I appreciate shoes that balance aggression and wearability—the Mago hits that sweet spot."
+      "I appreciate shoes that balance aggression and wearability\u2014the Mago hits that sweet spot."
     ],
     "image_url": "/images/shoes/scarpa-mago.jpg"
   },
@@ -3486,10 +3486,10 @@
     ],
     "sizing": "Standard volume, medium width; narrow heel. Minimal stretch. Velcro closure for quick adjustment. Size snug from day one.",
     "customer_voices": [
-      "Advanced boulderer. The Boostic is my go-to for overhanging gym and outdoor—the asymmetry and velcro are perfect.",
+      "Advanced boulderer. The Boostic is my go-to for overhanging gym and outdoor\u2014the asymmetry and velcro are perfect.",
       "The midsole keeps my feet fresher than pure slippers during long sessions on roofs and pockets."
     ],
-    "image_url": "/images/shoes/scarpa-boostic.jpg"
+    "image_url": null
   },
   {
     "brand": "Scarpa",
@@ -3566,7 +3566,7 @@
     ],
     "sizing": "Standard volume with narrow heel; minimal stretch. Lace for precision. Size to snug, advanced fit.",
     "customer_voices": [
-      "Elite sport climber. The Chimera is sharp—every inch of the shoe works to maximize power through the big toe.",
+      "Elite sport climber. The Chimera is sharp\u2014every inch of the shoe works to maximize power through the big toe.",
       "The lace system and aggressive geometry suit climbers who know what they want from their shoe."
     ],
     "image_url": "/images/shoes/scarpa-chimera.jpg"
@@ -3645,7 +3645,7 @@
     "sizing": "Leather stretches a full EU size. Size down 1 EU from street shoe. Moderate break-in expected (3-4 sessions).",
     "customer_voices": [
       "Beginner climber. The Origin is forgiving, durable, and the leather feels quality. Perfect for learning.",
-      "I like that these work across wall angles—no specialization, just solid all-around climbing shoes."
+      "I like that these work across wall angles\u2014no specialization, just solid all-around climbing shoes."
     ],
     "image_url": "/images/shoes/scarpa-origin-mens.jpg"
   },
@@ -4260,7 +4260,7 @@
     "sizing": "Leather stretches 0.5 EU; size down from street size. Lace for precise fit. Moderate 3-4 session break-in.",
     "customer_voices": [
       "Trad climber for years. The Generator is reliable, durable, and handles anything from slabs to cracks.",
-      "Full-day granite missions demand shoes you trust—the Generator delivers confidence and support."
+      "Full-day granite missions demand shoes you trust\u2014the Generator delivers confidence and support."
     ],
     "image_url": "/images/shoes/scarpa-generator.jpg"
   },
@@ -5047,7 +5047,7 @@
     ],
     "sizing": "No stretch; synthetic holds its shape from day one.",
     "customer_voices": [
-      "V6+ boulderer here — the Theory's toe patch is bomber on roofs, and the direct feel lets me trust every micro-feature.",
+      "V6+ boulderer here \u2014 the Theory's toe patch is bomber on roofs, and the direct feel lets me trust every micro-feature.",
       "Gym climber here. Love how Theory locks onto jugs and volumes without my heel slipping."
     ],
     "image_url": "/images/shoes/la-sportiva-theory.jpg"
@@ -5129,7 +5129,7 @@
     ],
     "sizing": "Women's-specific cut with narrower volumes and heels. No stretch; synthetic holds its shape from day one. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
-      "V6+ boulderer here — the Theory Women's's toe patch is bomber on roofs, and the direct feel lets me trust every micro-feature.",
+      "V6+ boulderer here \u2014 the Theory Women's's toe patch is bomber on roofs, and the direct feel lets me trust every micro-feature.",
       "Gym climber here. Love how Theory Women's locks onto jugs and volumes without my heel slipping."
     ],
     "image_url": "/images/shoes/la-sportiva-theory-womens.jpg"
@@ -5212,7 +5212,7 @@
     ],
     "sizing": "No stretch; synthetic holds its shape from day one.",
     "customer_voices": [
-      "Advanced sport climber — Futura nails steep terrain with its asymmetric design. Precision is insane.",
+      "Advanced sport climber \u2014 Futura nails steep terrain with its asymmetric design. Precision is insane.",
       "Gym climber here. Love how Futura locks onto jugs and volumes without my heel slipping."
     ],
     "image_url": "/images/shoes/la-sportiva-futura.jpg"
@@ -5635,7 +5635,7 @@
     ],
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": [
-      "Advanced sport climber — Miura VS nails steep terrain with its asymmetric design. Precision is insane.",
+      "Advanced sport climber \u2014 Miura VS nails steep terrain with its asymmetric design. Precision is insane.",
       "Solid progression shoe. Comfortable enough for 2-3 hour sessions while building technique.",
       "Gym climber here. Love how Miura VS locks onto jugs and volumes without my heel slipping."
     ],
@@ -5718,7 +5718,7 @@
     ],
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
-      "Advanced sport climber — Miura VS Women's nails steep terrain with its asymmetric design. Precision is insane.",
+      "Advanced sport climber \u2014 Miura VS Women's nails steep terrain with its asymmetric design. Precision is insane.",
       "Solid progression shoe. Comfortable enough for 2-3 hour sessions while building technique.",
       "Gym climber here. Love how Miura VS Women's locks onto jugs and volumes without my heel slipping."
     ],
@@ -5801,9 +5801,9 @@
     ],
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": [
-      "Advanced sport climber — Miura nails steep terrain with its asymmetric design. Precision is insane.",
+      "Advanced sport climber \u2014 Miura nails steep terrain with its asymmetric design. Precision is insane.",
       "Solid multi-pitch option. Supportive enough for long days but still lets me feel the wall.",
-      "Took these on a granite multi-pitch — Miura handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Miura handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-miura-mens.jpg"
   },
@@ -5884,9 +5884,9 @@
     ],
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
-      "Advanced sport climber — Miura Women's nails steep terrain with its asymmetric design. Precision is insane.",
+      "Advanced sport climber \u2014 Miura Women's nails steep terrain with its asymmetric design. Precision is insane.",
       "Solid multi-pitch option. Supportive enough for long days but still lets me feel the wall.",
-      "Took these on a granite multi-pitch — Miura Women's handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Miura Women's handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-miura-womens.jpg"
   },
@@ -6134,7 +6134,7 @@
     "sizing": "Minimal stretch expected; wear your true street size. True-to-size for average feet.",
     "customer_voices": [
       "Solid multi-pitch option. Supportive enough for long days but still lets me feel the wall.",
-      "Took these on a granite multi-pitch — Mantra handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Mantra handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-mantra.jpg"
   },
@@ -6380,7 +6380,7 @@
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": [
       "Solid multi-pitch option. Supportive enough for long days but still lets me feel the wall.",
-      "Took these on a granite multi-pitch — Katana Lace handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Katana Lace handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-katana-lace-mens.jpg"
   },
@@ -6462,7 +6462,7 @@
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
       "Solid multi-pitch option. Supportive enough for long days but still lets me feel the wall.",
-      "Took these on a granite multi-pitch — Katana Lace Women's handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Katana Lace Women's handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-katana-lace-womens.jpg"
   },
@@ -6936,7 +6936,7 @@
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — TC Pro handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 TC Pro handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-tc-pro.jpg"
   },
@@ -7015,7 +7015,7 @@
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — TC Pro Women's handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 TC Pro Women's handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-tc-pro-womens.jpg"
   },
@@ -7094,7 +7094,7 @@
     "sizing": "Leather stretches significantly; size down 1 full EU size from street shoe. True-to-size for average feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Mythos handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Mythos handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-mythos-mens.jpg"
   },
@@ -7173,7 +7173,7 @@
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather stretches significantly; size down 1 full EU size from street shoe. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Mythos Women's handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Mythos Women's handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-mythos-womens.jpg"
   },
@@ -7252,7 +7252,7 @@
     "sizing": "Leather stretches significantly; size down 1 full EU size from street shoe. True-to-size for average feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Mythos Eco handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Mythos Eco handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-mythos-eco.jpg"
   },
@@ -7485,7 +7485,7 @@
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Tarantulace handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Tarantulace handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-tarantulace-mens.jpg"
   },
@@ -7563,7 +7563,7 @@
     "sizing": "Women's-specific cut with narrower volumes and heels. No stretch; synthetic holds its shape from day one. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Tarantulace Women's handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Tarantulace Women's handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-tarantulace-womens.jpg"
   },
@@ -7645,7 +7645,7 @@
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Finale handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Finale handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-finale-mens.jpg"
   },
@@ -7726,7 +7726,7 @@
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
     "customer_voices": [
       "Great all-around shoe. I can do 4-hour gym sessions without my feet crying.",
-      "Took these on a granite multi-pitch — Finale Women's handled cracks and slab flawlessly."
+      "Took these on a granite multi-pitch \u2014 Finale Women's handled cracks and slab flawlessly."
     ],
     "image_url": "/images/shoes/la-sportiva-finale-womens.jpg"
   },
@@ -8117,7 +8117,7 @@
     ],
     "sizing": "Minimal stretch expected; wear your true street size. True-to-size for average feet.",
     "customer_voices": [
-      "V6+ boulderer here — the Ondra Comp's toe patch is bomber on roofs, and the direct feel lets me trust every micro-feature.",
+      "V6+ boulderer here \u2014 the Ondra Comp's toe patch is bomber on roofs, and the direct feel lets me trust every micro-feature.",
       "Gym climber here. Love how Ondra Comp locks onto jugs and volumes without my heel slipping."
     ],
     "image_url": "/images/shoes/la-sportiva-ondra-comp.jpg"
@@ -17785,7 +17785,7 @@
     "image_url": "/images/shoes/red-chili-clue.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Diamond S",
     "slug": "ocun-diamond-s",
     "price_uvp_eur": 150,
@@ -17864,7 +17864,7 @@
     "image_url": "/images/shoes/ocun-diamond-s.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Sigma",
     "slug": "ocun-sigma",
     "price_uvp_eur": 170,
@@ -17937,12 +17937,12 @@
     "sizing": "Microfiber minimal stretch fits true-to-size with tight lacing. Narrow heel and volume suit pointed Czech feet ideally.",
     "customer_voices": [
       "Split sole changed how I felt the wall. Medium rubber doesn't lie.",
-      "Lacing precision and lightweight feel—Czech engineering at its finest."
+      "Lacing precision and lightweight feel\u2014Czech engineering at its finest."
     ],
     "image_url": "/images/shoes/ocun-sigma.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Fury",
     "slug": "ocun-fury",
     "price_uvp_eur": 140,
@@ -18021,7 +18021,7 @@
     "image_url": "/images/shoes/ocun-fury.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Ozone",
     "slug": "ocun-ozone",
     "price_uvp_eur": 150,
@@ -18102,7 +18102,7 @@
     "image_url": "/images/shoes/ocun-ozone.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Ozone HV",
     "slug": "ocun-ozone-hv",
     "price_uvp_eur": 150,
@@ -18177,13 +18177,13 @@
     ],
     "sizing": "Microfiber minimal stretch fits true-to-size. Elevated volume and width suit climbers with broad forefeet and higher instep.",
     "customer_voices": [
-      "Finally—Egyptian taper without the cramped feeling. Volume is perfect.",
+      "Finally\u2014Egyptian taper without the cramped feeling. Volume is perfect.",
       "Wide enough that my feet relax, precise enough for technical climbs."
     ],
     "image_url": "/images/shoes/ocun-ozone-hv.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Bullit",
     "slug": "ocun-bullit",
     "price_uvp_eur": 140,
@@ -18255,13 +18255,13 @@
     ],
     "sizing": "Microfiber minimal stretch fits true-to-size immediately. Standard width suits typical feet; soft nature provides additional comfort.",
     "customer_voices": [
-      "Aggressive downturned Egyptian design with soft rubber—perfect for my style.",
+      "Aggressive downturned Egyptian design with soft rubber\u2014perfect for my style.",
       "They don't last forever but the feedback is addictive."
     ],
     "image_url": "/images/shoes/ocun-bullit.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Havoc",
     "slug": "ocun-havoc",
     "price_uvp_eur": 130,
@@ -18341,7 +18341,7 @@
     "image_url": "/images/shoes/ocun-havoc.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Iris",
     "slug": "ocun-iris",
     "price_uvp_eur": 130,
@@ -18413,13 +18413,13 @@
     ],
     "sizing": "Microfiber minimal stretch fits true-to-size. Narrow width and volume ideal for Egyptian foot form; oversizing negates fit benefits.",
     "customer_voices": [
-      "Narrow and aggressive—made for my Egyptian foot. Precision is unmatched.",
+      "Narrow and aggressive\u2014made for my Egyptian foot. Precision is unmatched.",
       "Finally, a shoe that doesn't fight my foot shape."
     ],
     "image_url": "/images/shoes/ocun-iris.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Pearl",
     "slug": "ocun-pearl",
     "price_uvp_eur": 120,
@@ -18498,7 +18498,7 @@
     "image_url": "/images/shoes/ocun-pearl.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Jett QC",
     "slug": "ocun-jett-qc",
     "price_uvp_eur": 110,
@@ -18581,7 +18581,7 @@
     "image_url": "/images/shoes/ocun-jett-qc.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Jett Crack",
     "slug": "ocun-jett-crack",
     "price_uvp_eur": 130,
@@ -18659,7 +18659,7 @@
     "image_url": "/images/shoes/ocun-jett-crack.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Advancer QC",
     "slug": "ocun-advancer-qc",
     "price_uvp_eur": 105,
@@ -18739,7 +18739,7 @@
     "image_url": "/images/shoes/ocun-advancer-qc.jpg"
   },
   {
-    "brand": "Ocún",
+    "brand": "Oc\u00fan",
     "model": "Striker QC",
     "slug": "ocun-striker-qc",
     "price_uvp_eur": 90,
@@ -19864,7 +19864,7 @@
     ],
     "sizing": "Microfiber minimal stretch fits true-to-size with lacing. Narrow tapered last suits Egyptian foot; wider feet should look elsewhere.",
     "customer_voices": [
-      "Crack climbing demands stiff shoes—Strange delivers with French precision.",
+      "Crack climbing demands stiff shoes\u2014Strange delivers with French precision.",
       "Narrow last and taper felt like a glove for my foot shape."
     ],
     "image_url": "/images/shoes/eb-strange.png"
@@ -23510,7 +23510,7 @@
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width accommodates typical feet; Saltic barefoot philosophy emphasizes natural geometry.",
     "customer_voices": [
       "Stiff Enigma Black suited vertical and overhang equally. Balanced performer.",
-      "Extasy HG was a pleasant surprise—proprietary rubber works."
+      "Extasy HG was a pleasant surprise\u2014proprietary rubber works."
     ],
     "image_url": "/images/shoes/saltic-enigma-black-evo.jpg"
   },
@@ -23752,7 +23752,7 @@
     ],
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width suits typical feet; Saltic barefoot philosophy emphasizes natural geometry.",
     "customer_voices": [
-      "Aggressive downturn with full midsole—perfect for my pocket-climbing style.",
+      "Aggressive downturn with full midsole\u2014perfect for my pocket-climbing style.",
       "Project S4 rubber performs and feels like Czech engineering."
     ],
     "image_url": "/images/shoes/saltic-toxic.jpg"
@@ -23835,7 +23835,7 @@
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width accommodates broad skill range from beginners to advanced.",
     "customer_voices": [
       "Moderate-soft meant I could climb all day without discomfort.",
-      "Guru lived up to its name—versatile guide through my progression."
+      "Guru lived up to its name\u2014versatile guide through my progression."
     ],
     "image_url": "/images/shoes/saltic-guru-evo.jpg"
   },
@@ -24147,7 +24147,7 @@
     ],
     "sizing": "Microfiber no-stretch fits tight and true-to-size. Narrow width and slipper fit engineered for speed climbing; oversizing defeats purpose.",
     "customer_voices": [
-      "Speed climbing demands specialized shoes—Czech engineering delivers.",
+      "Speed climbing demands specialized shoes\u2014Czech engineering delivers.",
       "Slipper closure means zero adjustment time on walls."
     ],
     "image_url": "/images/shoes/saltic-speed.jpg"
@@ -26207,5 +26207,562 @@
       "Solid performer that won't break the bank. Recommended for climbers at all levels."
     ],
     "image_url": "/images/shoes/millet-easy-up.jpg"
+  },
+  {
+    "brand": "Scarpa",
+    "model": "Boostic R",
+    "slug": "scarpa-boostic-r",
+    "price_uvp_eur": 190,
+    "current_price_eur": 175,
+    "feel": "stiff",
+    "downturn": "aggressive",
+    "asymmetry": "strong",
+    "volume": "standard",
+    "width": "narrow",
+    "heel": "narrow",
+    "closure": "velcro",
+    "upper_material": "microsuede",
+    "midsole": "full",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "unisex",
+    "rand": "tensioned",
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "ankle_protection": "none",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "durability": [
+      "high"
+    ],
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_thickness_mm": 4.0,
+    "vegan": false,
+    "resoleable": true,
+    "toe_form": "egyptian",
+    "kids_friendly": false,
+    "rubber_compound": "Vibram XS Edge",
+    "rubber_manufacturer": "Vibram",
+    "weight_g": 480,
+    "size_range": "35-45",
+    "description": "The stiffest high-performance shoe in Scarpa's lineup, the Boostic R delivers unmatched edging power on the tiniest features. Built on the highly downturned FZ last with V-Tension Rand and full-length Vibram XS Edge outsole, it excels at precision sport climbing on micro-edges.",
+    "pros": [
+      "Exceptional micro-edging precision",
+      "Extremely stiff for sustained support",
+      "Vibram XS Edge rubber for durability",
+      "V-Tension Rand for power transfer"
+    ],
+    "cons": [
+      "Too stiff for sensitive smearing",
+      "Aggressive fit not for beginners",
+      "Narrow last may not suit wide feet"
+    ],
+    "sizing": "Narrow cut, highly asymmetric FZ last. Size snug\u2014the stiff midsole doesn't give much. Minimal stretch expected.",
+    "customer_voices": [
+      "The stiffest shoe I've ever climbed in\u2014perfect for razor-thin limestone edges.",
+      "My go-to for outdoor sport projects where I need to trust tiny footholds."
+    ],
+    "image_url": "/images/shoes/scarpa-boostic.jpg"
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Orbit",
+    "slug": "unparallel-orbit",
+    "price_uvp_eur": 185,
+    "current_price_eur": 165,
+    "feel": "stiff",
+    "downturn": "aggressive",
+    "asymmetry": "moderate",
+    "volume": "standard",
+    "width": "medium",
+    "heel": "snug",
+    "closure": "velcro",
+    "upper_material": "synthetic",
+    "midsole": "partial",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "unisex",
+    "rand": "tensioned",
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "ankle_protection": "none",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang",
+      "roof"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "smear"
+    ],
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_type": "RH 3.5mm (front) / RS 3.5mm (rear)",
+    "rubber_thickness_mm": 3.5,
+    "vegan": true,
+    "resoleable": true,
+    "toe_form": "egyptian",
+    "kids_friendly": false,
+    "rubber_compound": "RH",
+    "rubber_manufacturer": "Unparallel",
+    "weight_g": 500,
+    "size_range": "37-48.5",
+    "description": "A precision velcro shoe built for demanding climbs. The Orbit features an aggressive downturn with a split sole design\u2014sticky RH rubber up front for edging and RS rubber in the heel for feedback. The 3D molded toe patch and locked-in heel make it ideal for steep sport and bouldering.",
+    "pros": [
+      "Excellent precision on micro-holds",
+      "Split rubber for balanced performance",
+      "Vegan construction",
+      "Molded heel for powerful heel hooks"
+    ],
+    "cons": [
+      "Stiff midsole limits sensitivity",
+      "Aggressive shape requires break-in",
+      "Not ideal for crack climbing"
+    ],
+    "sizing": "Standard volume. Size snug for performance\u2014minimal stretch. Breathable Ariaprene tongue.",
+    "customer_voices": [
+      "The split sole gives me confidence on both edges and heel hooks.",
+      "My go-to for steep bouldering\u2014the toe precision is outstanding."
+    ],
+    "image_url": null
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Qubit",
+    "slug": "unparallel-qubit",
+    "price_uvp_eur": 190,
+    "current_price_eur": 170,
+    "feel": "stiff",
+    "downturn": "aggressive",
+    "asymmetry": "moderate",
+    "volume": "standard",
+    "width": "medium",
+    "heel": "snug",
+    "closure": "velcro",
+    "upper_material": "synthetic",
+    "midsole": "full",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "unisex",
+    "rand": "tensioned",
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "ankle_protection": "none",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "volcanic",
+      "sandstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "durability": [
+      "high"
+    ],
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_type": "RH 4.2mm outsole / RS 3D toe patch",
+    "rubber_thickness_mm": 4.2,
+    "vegan": true,
+    "resoleable": true,
+    "toe_form": "egyptian",
+    "kids_friendly": false,
+    "rubber_compound": "RH",
+    "rubber_manufacturer": "Unparallel",
+    "weight_g": 474,
+    "size_range": "37-48.5",
+    "description": "A high-end precision edging machine with a stiff full-length sole and 4.2mm RH rubber. The Qubit excels on tiny footholds and steep terrain where support matters. The 3D RS toe patch provides powerful toe hooking, while the full-length midsole delivers fatigue-free performance on long projects.",
+    "pros": [
+      "Exceptional edging on micro-holds",
+      "Stiff full-length midsole for support",
+      "Durable 4.2mm RH rubber",
+      "Strong toe hooking with 3D toe patch"
+    ],
+    "cons": [
+      "Stiffness reduces sensitivity",
+      "Not ideal for slab or smearing",
+      "Aggressive shape needs break-in"
+    ],
+    "sizing": "Standard volume, medium forefoot, narrow heel. Minimal stretch. Size snug for edging performance.",
+    "customer_voices": [
+      "The stiffest Unparallel shoe\u2014perfect for tiny crimps on limestone.",
+      "My feet stay fresh during long sessions thanks to the supportive midsole."
+    ],
+    "image_url": null
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Qubit LV",
+    "slug": "unparallel-qubit-lv",
+    "price_uvp_eur": 190,
+    "current_price_eur": 170,
+    "feel": "stiff",
+    "downturn": "aggressive",
+    "asymmetry": "moderate",
+    "volume": "low",
+    "width": "narrow",
+    "heel": "narrow",
+    "closure": "velcro",
+    "upper_material": "synthetic",
+    "midsole": "full",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "women",
+    "rand": "tensioned",
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "ankle_protection": "none",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "volcanic",
+      "sandstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "durability": [
+      "high"
+    ],
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_type": "RH 3.5mm outsole / RS 3D toe patch",
+    "rubber_thickness_mm": 3.5,
+    "vegan": true,
+    "resoleable": true,
+    "toe_form": "egyptian",
+    "kids_friendly": false,
+    "rubber_compound": "RH",
+    "rubber_manufacturer": "Unparallel",
+    "weight_g": 352,
+    "size_range": "34.5-48.5",
+    "description": "The low-volume version of the Qubit, designed for climbers with narrower feet. Maintains all the edging precision and stiff support of the standard Qubit but with a reduced-volume last. Thinner 3.5mm RH rubber adds a touch more sensitivity while keeping the same aggressive geometry.",
+    "pros": [
+      "Perfect for narrow/low-volume feet",
+      "Excellent edging precision",
+      "Lighter than standard Qubit",
+      "Full midsole support"
+    ],
+    "cons": [
+      "Too narrow for wide feet",
+      "Stiff for sensitivity",
+      "Aggressive shape needs break-in"
+    ],
+    "sizing": "Low volume last\u2014designed for slim feet. Runs narrower than the standard Qubit. Minimal stretch.",
+    "customer_voices": [
+      "Finally a high-performance shoe that fits my narrow feet perfectly.",
+      "Same edging power as the Qubit but in a low-volume package."
+    ],
+    "image_url": null
+  },
+  {
+    "brand": "Unparallel",
+    "model": "TN Finity",
+    "slug": "unparallel-tn-finity",
+    "price_uvp_eur": 186,
+    "current_price_eur": 170,
+    "feel": "moderate",
+    "downturn": "aggressive",
+    "asymmetry": "slight",
+    "volume": "standard",
+    "width": "medium",
+    "heel": "snug",
+    "closure": "velcro",
+    "upper_material": "synthetic",
+    "midsole": "partial",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "unisex",
+    "rand": "tensioned",
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "ankle_protection": "none",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "smear"
+    ],
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_type": "RH 4.2mm molded outsole / RS 3D toe patch",
+    "rubber_thickness_mm": 4.2,
+    "vegan": true,
+    "resoleable": true,
+    "toe_form": "egyptian",
+    "kids_friendly": false,
+    "rubber_compound": "RH",
+    "rubber_manufacturer": "Unparallel",
+    "weight_g": 476,
+    "size_range": "37-48.5",
+    "description": "From the Tomoa Narasaki signature line, the TN Finity is built for explosive movements on steep terrain. Features a 3D heel cup midsole for powerful drive, 4.2mm RH rubber for friction, and a rigid toe rand for precision. Designed for competition-level bouldering and steep sport climbing.",
+    "pros": [
+      "Powerful heel cup for explosive moves",
+      "4.2mm RH rubber balances grip and durability",
+      "Competition-grade performance",
+      "Strong toe hooking"
+    ],
+    "cons": [
+      "Aggressive shape not for all-day comfort",
+      "Less suited for slab or vertical terrain",
+      "Needs break-in period"
+    ],
+    "sizing": "Standard volume, medium width. Size snug for steep performance. Minimal stretch.",
+    "customer_voices": [
+      "Tomoa's shoe delivers\u2014the heel cup gives me power I've never felt before.",
+      "Perfect for steep comp-style bouldering where I need precision and drive."
+    ],
+    "image_url": null
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Up Float",
+    "slug": "unparallel-up-float",
+    "price_uvp_eur": 170,
+    "current_price_eur": 155,
+    "feel": "moderate",
+    "downturn": "aggressive",
+    "asymmetry": "moderate",
+    "volume": "standard",
+    "width": "medium",
+    "heel": "snug",
+    "closure": "velcro",
+    "upper_material": "synthetic",
+    "midsole": "partial",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "unisex",
+    "rand": "tensioned",
+    "stretch_expectation": "minimal",
+    "break_in_period": "short",
+    "ankle_protection": "none",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "pocket"
+    ],
+    "durability": [
+      "moderate"
+    ],
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_type": "RS 3.5mm (front) / RH 3.5mm (rear)",
+    "rubber_thickness_mm": 3.5,
+    "vegan": true,
+    "resoleable": true,
+    "toe_form": "egyptian",
+    "kids_friendly": false,
+    "rubber_compound": "RS",
+    "rubber_manufacturer": "Unparallel",
+    "weight_g": 510,
+    "size_range": "37-48.5",
+    "description": "A sensitive all-rounder with an asymmetrical slingshot heel design. The Up Float uses soft RS rubber up front for delicate footwork and harder RH rubber in the rear for powerful heel hooks. The split rubber approach gives a perfect balance between sensitivity and stability for climbers pushing into harder grades.",
+    "pros": [
+      "Excellent sensitivity from RS front rubber",
+      "Strong heel hooks with RH rear rubber",
+      "Versatile for indoor and outdoor",
+      "Quick break-in"
+    ],
+    "cons": [
+      "Softer rubber wears faster",
+      "Not as stiff for micro-edging",
+      "Less support on long routes"
+    ],
+    "sizing": "Standard volume. Size snug for performance but comfortable enough for longer sessions. Minimal stretch.",
+    "customer_voices": [
+      "The soft RS rubber gives amazing feedback on technical moves.",
+      "Great balance between sensitivity and support for my level."
+    ],
+    "image_url": null
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Up Beat",
+    "slug": "unparallel-up-beat",
+    "price_uvp_eur": 155,
+    "current_price_eur": 140,
+    "feel": "stiff",
+    "downturn": "moderate",
+    "asymmetry": "slight",
+    "volume": "high",
+    "width": "wide",
+    "heel": "standard",
+    "closure": "lace",
+    "upper_material": "synthetic",
+    "midsole": "full",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "gender": "unisex",
+    "rand": "standard",
+    "stretch_expectation": "minimal",
+    "break_in_period": "short",
+    "ankle_protection": "none",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "trad",
+      "boulder",
+      "gym"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical",
+      "overhang"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "gritstone"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "crack"
+    ],
+    "durability": [
+      "high"
+    ],
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_type": "RH 4.2mm pressed molded outsole",
+    "rubber_thickness_mm": 4.2,
+    "vegan": true,
+    "resoleable": true,
+    "toe_form": "rounded",
+    "kids_friendly": false,
+    "rubber_compound": "RH",
+    "rubber_manufacturer": "Unparallel",
+    "weight_g": 420,
+    "size_range": "35.5-47.5",
+    "description": "A versatile lace-up with a high-volume toe box suited for wider feet. The Up Beat delivers solid edging performance through its precision-pressed 4.2mm RH outsole and full-length midsole. Great for sport, trad, and gym climbing with excellent durability and a comfortable fit that works all day.",
+    "pros": [
+      "High-volume fit for wider feet",
+      "Excellent edging support",
+      "Durable 4.2mm RH rubber",
+      "Versatile lace closure for fine-tuning"
+    ],
+    "cons": [
+      "Less aggressive than competition shoes",
+      "Heavier for bouldering sessions",
+      "Moderate downturn limits roof performance"
+    ],
+    "sizing": "High-volume toe box\u2014ideal for wide feet. Lace closure allows precise adjustment. Minimal stretch.",
+    "customer_voices": [
+      "Finally a performance shoe that fits my wide feet without cramping.",
+      "The pressed molded sole edges better than any shoe in this price range."
+    ],
+    "image_url": null
   }
 ]

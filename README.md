@@ -63,7 +63,7 @@ src/*_seed_data.json          ← CANONICAL source of truth (checked into git)
 
 | File | Contents | Count |
 |------|----------|-------|
-| `src/seed_data.json` | Climbing shoes | ~333 |
+| `src/seed_data.json` | Climbing shoes | ~335 |
 | `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 156 (106 single, 28 half, 3 twin, 19 static) |
 | `src/belay_seed_data.json` | Belay devices | ~49 |
 | `src/crashpad_seed_data.json` | Crashpads | ~101 |

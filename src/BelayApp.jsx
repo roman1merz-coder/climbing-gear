@@ -5,6 +5,25 @@ import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
+import { useWL } from "./WishlistContext.jsx";
+import { useCompare } from "./CompareContext.jsx";
+
+// ─── SVG icons for action bar ───
+const HeartSVG = ({ filled, size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </svg>
+);
+const CompareSVG = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  </svg>
+);
+const CheckSVG = ({ size = 12 }) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+    <path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 import BelayScatterChart from "./BelayScatterChart.jsx";
 
 /** Image with graceful fallback on 404 */
@@ -403,13 +422,19 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
   const bestUrl = (bPrices.find(p => p.inStock && p.price > 0) || bPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
+  const { toggle: toggleWL, has: hasWL } = useWL();
+  const saved = hasWL("belay", d.slug);
+  const { toggleCompare, isInCompare, isFull } = useCompare();
+  const compared = isInCompare("belays", d.slug);
+  const compareFull = !compared && isFull("belays");
+
   return (
-    <div onClick={onClick} style={{
+    <div style={{
       background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
       border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
     }}>
       {/* Visual header: product image or SVG fallback */}
-      <div style={{
+      <div onClick={onClick} style={{
         height: "100px", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center",
         background: "#fff",
@@ -431,12 +456,9 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
           style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
           fallback={<BelaySVG device={d} width={70} height={58} />}
         />
-        <HeartButton type="belay" slug={d.slug} style={{
-          position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
-        }} />
       </div>
       {/* Content */}
-      <div style={{ padding: "10px" }}>
+      <div onClick={onClick} style={{ padding: "10px" }}>
         <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
           {d.brand}
         </div>
@@ -466,6 +488,41 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
           </div>
         )}
       </div>
+      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleWL("belay", d.slug); }}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "10px 6px",
+            background: "none", border: "none", borderRight: "1px solid #252a35",
+            cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+            fontSize: "11px", fontWeight: 600,
+            color: saved ? "#ef4444" : "#717889",
+            transition: "all .15s",
+          }}
+        >
+          <HeartSVG filled={saved} size={15} />
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("belays", d.slug); }}
+          title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "10px 6px",
+            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            border: "none", cursor: compareFull ? "not-allowed" : "pointer",
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: "11px", fontWeight: 600,
+            color: compared ? "#E8734A" : "#717889",
+            opacity: compareFull ? 0.4 : 1,
+            transition: "all .15s",
+          }}
+        >
+          <CompareSVG size={15} />
+          {compared && <CheckSVG size={11} />}
+        </button>
+      </div>
     </div>
   );
 }
@@ -481,95 +538,140 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
   const bestUrl = (bPrices.find(p => p.inStock && p.price > 0) || bPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
+  const { toggle: toggleWL, has: hasWL } = useWL();
+  const saved = hasWL("belay", d.slug);
+  const { toggleCompare, isInCompare, isFull } = useCompare();
+  const compared = isInCompare("belays", d.slug);
+  const compareFull = !compared && isFull("belays");
+
   return (
     <div
-      onClick={onClick}
       style={{
-        background: "#1c1f26", borderRadius: "16px", padding: "20px",
+        background: "#1c1f26", borderRadius: "16px", overflow: "hidden",
         border: "1px solid #2a2f38", cursor: "pointer",
         transition: "all .3s", position: "relative",
-        display: "flex", flexDirection: "column", gap: "12px",
+        display: "flex", flexDirection: "column",
       }}
       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#E8734A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2f38"; e.currentTarget.style.transform = "none"; }}
     >
-      {/* Heart + Match badge */}
-      <HeartButton type="belay" slug={d.slug} style={{
-        position: "absolute", top: "12px", right: "12px", zIndex: 2,
-      }} />
-      {matchScore >= 0 && (
-        <div
-          style={{
-            position: "absolute", top: "12px", right: "40px",
-            background: matchScore >= 80 ? "rgba(34,197,94,.12)" : matchScore >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
-            color: matchScore >= 80 ? "#22c55e" : matchScore >= 50 ? "#E8734A" : "#ef4444",
-            padding: "4px 10px", borderRadius: "10px",
-            fontSize: "12px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
-          }}
-        >
-          {matchScore}%
-        </div>
-      )}
+      <div onClick={onClick} style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "12px", flex: 1 }}>
+        {/* Match badge */}
+        {matchScore >= 0 && (
+          <div
+            style={{
+              position: "absolute", top: "12px", right: "12px",
+              background: matchScore >= 80 ? "rgba(34,197,94,.12)" : matchScore >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
+              color: matchScore >= 80 ? "#22c55e" : matchScore >= 50 ? "#E8734A" : "#ef4444",
+              padding: "4px 10px", borderRadius: "10px",
+              fontSize: "12px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
+            }}
+          >
+            {matchScore}%
+          </div>
+        )}
 
-      {/* Image/SVG + Info */}
-      <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-        <div style={{ flexShrink: 0, width: "90px", height: "75px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px", overflow: "hidden", background: d.image_url ? "#fff" : "transparent" }}>
-          {d.image_url ? (
-            <img src={d.image_url} alt={`${d.brand} ${d.model}`} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
-          ) : (
-            <BelaySVG device={d} width={90} height={75} />
+        {/* Image/SVG + Info */}
+        <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+          <div style={{ flexShrink: 0, width: "90px", height: "75px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px", overflow: "hidden", background: d.image_url ? "#fff" : "transparent" }}>
+            {d.image_url ? (
+              <img src={d.image_url} alt={`${d.brand} ${d.model}`} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+            ) : (
+              <BelaySVG device={d} width={90} height={75} />
+            )}
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "4px" }}>
+              <TypeBadge type={d.device_type} />
+            </div>
+            <div style={{ color: "#9ca3af", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
+              {d.brand}
+            </div>
+            <div style={{ color: "#f0f0f0", fontSize: "16px", fontWeight: 700, fontFamily: "'DM Sans',sans-serif" }}>
+              {d.model}
+            </div>
+          </div>
+        </div>
+
+        {/* Quick specs */}
+        <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+          <span>{d.weight_g}g</span>
+          <span>{d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm</span>
+          <span>{d.rope_slots === 2 ? "2 slots" : "1 slot"}</span>
+        </div>
+
+        {/* Tags */}
+        {tags.length > 0 && (
+          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
+            {tags.slice(0, 4).map((t, i) => (
+              <SmallTag key={i} label={t.label} variant={t.variant} />
+            ))}
+          </div>
+        )}
+
+        {/* Price */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginTop: "auto" }}>
+          <span style={{ color: "#E8734A", fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace" }}>
+            €{fmt(price)}
+          </span>
+          {buyUrl && (
+            <span
+              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+              style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}
+            >→ Buy</span>
+          )}
+          {hasDiscount && (
+            <>
+              <span style={{ color: "#6b7280", fontSize: "12px", textDecoration: "line-through" }}>
+                €{fmt(d.price_uvp_eur)}
+              </span>
+              <span style={{ color: "#22c55e", fontSize: "11px", fontWeight: 600 }}>
+                -{Math.round(((d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur) * 100)}%
+              </span>
+            </>
           )}
         </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "4px" }}>
-            <TypeBadge type={d.device_type} />
-          </div>
-          <div style={{ color: "#9ca3af", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
-            {d.brand}
-          </div>
-          <div style={{ color: "#f0f0f0", fontSize: "16px", fontWeight: 700, fontFamily: "'DM Sans',sans-serif" }}>
-            {d.model}
-          </div>
-        </div>
       </div>
-
-      {/* Quick specs */}
-      <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-        <span>{d.weight_g}g</span>
-        <span>{d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm</span>
-        <span>{d.rope_slots === 2 ? "2 slots" : "1 slot"}</span>
-      </div>
-
-      {/* Tags */}
-      {tags.length > 0 && (
-        <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
-          {tags.slice(0, 4).map((t, i) => (
-            <SmallTag key={i} label={t.label} variant={t.variant} />
-          ))}
-        </div>
-      )}
-
-      {/* Price */}
-      <div style={{ display: "flex", alignItems: "baseline", gap: "8px", marginTop: "auto" }}>
-        <span style={{ color: "#E8734A", fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace" }}>
-          €{fmt(price)}
-        </span>
-        {buyUrl && (
-          <span
-            onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
-            style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}
-          >→ Buy</span>
-        )}
-        {hasDiscount && (
-          <>
-            <span style={{ color: "#6b7280", fontSize: "12px", textDecoration: "line-through" }}>
-              €{fmt(d.price_uvp_eur)}
-            </span>
-            <span style={{ color: "#22c55e", fontSize: "11px", fontWeight: 600 }}>
-              -{Math.round(((d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur) * 100)}%
-            </span>
-          </>
-        )}
+      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleWL("belay", d.slug); }}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "12px 8px",
+            background: "none", border: "none", borderRight: "1px solid #252a35",
+            cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+            fontSize: "12px", fontWeight: 600,
+            color: saved ? "#ef4444" : "#717889",
+            transition: "all .15s",
+          }}
+          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#717889"; e.currentTarget.style.background = "none"; }}
+        >
+          <HeartSVG filled={saved} size={16} />
+          {saved ? "Saved" : "Save"}
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("belays", d.slug); }}
+          title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "12px 8px",
+            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            border: "none", cursor: compareFull ? "not-allowed" : "pointer",
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: "12px", fontWeight: 600,
+            color: compared ? "#E8734A" : "#717889",
+            opacity: compareFull ? 0.4 : 1,
+            transition: "all .15s",
+          }}
+          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; } }}
+          onMouseOut={e => { e.currentTarget.style.color = compared ? "#E8734A" : "#717889"; e.currentTarget.style.background = compared ? "rgba(232,115,74,0.06)" : "none"; }}
+        >
+          <CompareSVG size={16} />
+          {compared && <CheckSVG size={12} />}
+          {compared ? "Added" : "Compare"}
+        </button>
       </div>
     </div>
   );
@@ -892,7 +994,6 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
           >
             {displayResults.map(({ belay_data: d, match_score: ms }) => (
               <div key={d.slug} style={{ position: "relative" }}>
-                <CompareCheckbox type="belays" slug={d.slug} compact={isMobile} />
                 {isMobile ? (
                   <CompactBelayCard
                     belay={d}

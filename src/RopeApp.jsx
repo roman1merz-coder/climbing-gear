@@ -5,6 +5,25 @@ import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
+import { useWL } from "./WishlistContext.jsx";
+import { useCompare } from "./CompareContext.jsx";
+
+// ─── SVG icons for action bar ───
+const HeartSVG = ({ filled, size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </svg>
+);
+const CompareSVG = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  </svg>
+);
+const CheckSVG = ({ size = 12 }) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+    <path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 import RopeScatterChart from "./RopeScatterChart.jsx";
 
 /** Image with graceful fallback on 404 */
@@ -424,13 +443,19 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
   const bestUrl = (rPrices.find(p => p.inStock && p.price > 0) || rPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
+  const { toggle: toggleWL, has: hasWL } = useWL();
+  const saved = hasWL("rope", d.slug);
+  const { toggleCompare, isInCompare, isFull } = useCompare();
+  const compared = isInCompare("ropes", d.slug);
+  const compareFull = !compared && isFull("ropes");
+
   return (
-    <div onClick={onClick} style={{
+    <div style={{
       background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
       border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
     }}>
       {/* Visual header: product image or SVG fallback */}
-      <div style={{
+      <div onClick={onClick} style={{
         height: "90px", position: "relative", overflow: "hidden",
         display: "flex", alignItems: "center", justifyContent: "center",
         background: "#fff",
@@ -453,12 +478,9 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
           fallback={<RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />}
         />
-        <HeartButton type="rope" slug={d.slug} style={{
-          position: "absolute", bottom: "6px", right: "6px", zIndex: 4, fontSize: "14px",
-        }} />
       </div>
       {/* Content */}
-      <div style={{ padding: "10px" }}>
+      <div onClick={onClick} style={{ padding: "10px" }}>
         <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
           {d.brand}
         </div>
@@ -489,6 +511,41 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           </div>
         )}
       </div>
+      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleWL("rope", d.slug); }}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "10px 6px",
+            background: "none", border: "none", borderRight: "1px solid #252a35",
+            cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+            fontSize: "11px", fontWeight: 600,
+            color: saved ? "#ef4444" : "#717889",
+            transition: "all .15s",
+          }}
+        >
+          <HeartSVG filled={saved} size={15} />
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("ropes", d.slug); }}
+          title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "10px 6px",
+            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            border: "none", cursor: compareFull ? "not-allowed" : "pointer",
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: "11px", fontWeight: 600,
+            color: compared ? "#E8734A" : "#717889",
+            opacity: compareFull ? 0.4 : 1,
+            transition: "all .15s",
+          }}
+        >
+          <CompareSVG size={15} />
+          {compared && <CheckSVG size={11} />}
+        </button>
+      </div>
     </div>
   );
 }
@@ -504,9 +561,14 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
   const bestUrl = (rPrices.find(p => p.inStock && p.price > 0) || rPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
+  const { toggle: toggleWL, has: hasWL } = useWL();
+  const saved = hasWL("rope", d.slug);
+  const { toggleCompare, isInCompare, isFull } = useCompare();
+  const compared = isInCompare("ropes", d.slug);
+  const compareFull = !compared && isFull("ropes");
+
   return (
     <div
-      onClick={onClick}
       style={{
         background: "#1c1f26", borderRadius: "16px", overflow: "hidden",
         border: "1px solid #2a2f38", transition: "all .3s",
@@ -516,16 +578,13 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
       onMouseOut={(e) => { e.currentTarget.style.border = "1px solid #2a2f38"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
       {/* Visual header: product image or rope SVG fallback */}
-      <div style={{
+      <div onClick={onClick} style={{
         height: "140px", position: "relative", overflow: "hidden",
         display: "flex", alignItems: "center", justifyContent: "center",
         background: "#fff",
       }}>
         <TypeBadge type={d.rope_type} tripleRated={d.triple_rated} />
         <Badge score={s} />
-        <HeartButton type="rope" slug={d.slug} style={{
-          position: "absolute", top: "10px", right: "10px", zIndex: 4,
-        }} />
         <Img
           src={d.image_url}
           alt={`${d.brand} ${d.model}`}
@@ -534,7 +593,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
         />
       </div>
 
-      <div style={{ padding: "16px" }}>
+      <div onClick={onClick} style={{ padding: "16px" }}>
         {/* Brand */}
         <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}>
           <span style={{
@@ -650,6 +709,47 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
             )}
           </div>
         </div>
+      </div>
+      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+        <button
+          onClick={(e) => { e.stopPropagation(); toggleWL("rope", d.slug); }}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "12px 8px",
+            background: "none", border: "none", borderRight: "1px solid #252a35",
+            cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+            fontSize: "12px", fontWeight: 600,
+            color: saved ? "#ef4444" : "#717889",
+            transition: "all .15s",
+          }}
+          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#717889"; e.currentTarget.style.background = "none"; }}
+        >
+          <HeartSVG filled={saved} size={16} />
+          {saved ? "Saved" : "Save"}
+        </button>
+        <button
+          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("ropes", d.slug); }}
+          title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
+          style={{
+            flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
+            gap: "6px", padding: "12px 8px",
+            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            border: "none", cursor: compareFull ? "not-allowed" : "pointer",
+            fontFamily: "'DM Sans',sans-serif",
+            fontSize: "12px", fontWeight: 600,
+            color: compared ? "#E8734A" : "#717889",
+            opacity: compareFull ? 0.4 : 1,
+            transition: "all .15s",
+          }}
+          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; } }}
+          onMouseOut={e => { e.currentTarget.style.color = compared ? "#E8734A" : "#717889"; e.currentTarget.style.background = compared ? "rgba(232,115,74,0.06)" : "none"; }}
+        >
+          <CompareSVG size={16} />
+          {compared && <CheckSVG size={12} />}
+          {compared ? "Added" : "Compare"}
+        </button>
       </div>
     </div>
   );
@@ -1101,7 +1201,6 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
                 {displayResults.map((r, i) => (
                   <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
-                    <CompareCheckbox type="ropes" slug={r.rope_data.slug} compact={isMobile} />
                     {isMobile ? (
                       <CompactRopeCard
                         result={r}
