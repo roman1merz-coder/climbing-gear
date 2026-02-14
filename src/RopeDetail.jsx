@@ -123,6 +123,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
   const { slug } = useParams();
   const rope = ropes.find((r) => r.slug === slug);
   const [selectedLength, setSelectedLength] = useState(null);
+  const [activeTab, setActiveTab] = useState("overview");
   const isMobile = useIsMobile();
 
   if (!rope) {
@@ -137,6 +138,9 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
 
   const isDynamic = rope.rope_type !== "static";
   const tc = TYPE_COLORS[rope.rope_type] || TYPE_COLORS.single;
+  const ropePrices = priceData[rope.slug] || [];
+  const bestRopeOffer = ropePrices.find(p => p.inStock && p.price > 0) || ropePrices[0];
+  const bestRopeUrl = bestRopeOffer?.url && bestRopeOffer.url !== "#" ? bestRopeOffer.url : null;
 
   const similar = ropes.filter((r) =>
     r.slug !== rope.slug &&
@@ -164,79 +168,162 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
         )}
       </header>
 
-      {/* Rope visual header */}
+      {/* Hero Section: 2-column (image left | identity+pricing right) */}
       <div style={{
-        padding: isMobile ? "24px 0 16px" : "40px 0 20px",
-        background: `linear-gradient(135deg, ${rope.rope_color_1 || '#555'}12, ${rope.rope_color_2 || '#333'}06)`,
+        padding: isMobile ? "24px 16px" : "40px 24px",
         borderBottom: `1px solid ${T.border}`,
+        background: `linear-gradient(135deg, ${rope.rope_color_1 || '#555'}12, ${rope.rope_color_2 || '#333'}06)`,
       }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "0 16px" : "0 24px" }}>
-          <Img
-            src={rope.image_url}
-            alt={`${rope.brand} ${rope.model}`}
-            style={{ display: "block", maxWidth: isMobile ? "260px" : "380px", maxHeight: isMobile ? "180px" : "240px", objectFit: "contain", margin: "0 auto", borderRadius: "12px" }}
-            fallback={<RopeSVGDetail color1={rope.rope_color_1 || "#888"} color2={rope.rope_color_2 || "#666"} diameter={rope.diameter_mm} ropeType={rope.rope_type} />}
-          />
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "48px", alignItems: "start" }}>
+
+            {/* Left: Image/SVG */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Img
+                src={rope.image_url}
+                alt={`${rope.brand} ${rope.model}`}
+                style={{ display: "block", maxWidth: isMobile ? "280px" : "360px", maxHeight: isMobile ? "200px" : "260px", objectFit: "contain", borderRadius: "12px" }}
+                fallback={<RopeSVGDetail color1={rope.rope_color_1 || "#888"} color2={rope.rope_color_2 || "#666"} diameter={rope.diameter_mm} ropeType={rope.rope_type} />}
+              />
+            </div>
+
+            {/* Right: Identity + Pricing */}
+            <div>
+              {/* Type badge + Brand */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px", flexWrap: "wrap" }}>
+                <span style={{ fontSize: "11px", color: T.dim, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>
+                  {rope.brand}
+                </span>
+                <span style={{
+                  padding: "3px 8px", borderRadius: "6px",
+                  fontSize: "10px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
+                  fontFamily: T.mono, background: tc.bg, color: tc.color, border: `1px solid ${tc.border}`,
+                }}>
+                  {rope.rope_type}{rope.triple_rated ? " ③" : ""}
+                </span>
+              </div>
+
+              {/* Model + Heart */}
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                <h1 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
+                  {rope.model}
+                </h1>
+                <HeartButton type="rope" slug={rope.slug} style={{ fontSize: "24px" }} />
+              </div>
+
+              {/* Description */}
+              <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.7, marginBottom: "24px" }}>
+                {rope.description}
+              </p>
+
+              {/* Price Comparison Inline Table */}
+              {(() => {
+                const prices = priceData[rope.slug] || [];
+                if (!prices.length) return null;
+                const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
+                return (
+                  <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "24px" }}>
+                    <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
+                      {best < Infinity && (
+                        <span style={{ fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 8px", borderRadius: "6px" }}>
+                          Best: €{best.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
+                    {prices.map((p, i) => (
+                      <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+                        display: "grid", gridTemplateColumns: "1fr auto auto auto",
+                        alignItems: "center", padding: "12px 16px", gap: "12px",
+                        borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+                        background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+                        textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+                        transition: "background .15s",
+                      }}>
+                        <div style={{ minWidth: 0 }}>
+                          <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+                          {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
+                        </div>
+                        <span style={{ fontSize: "11px", color: T.muted, whiteSpace: "nowrap" }}>
+                          {p.inStock ? "In stock" : "Out of stock"}
+                        </span>
+                        <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
+                          {p.price ? `€${p.price.toFixed(2)}` : "—"}
+                        </span>
+                        {p.url && p.url !== "#" && (
+                          <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"}</span>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                );
+              })()}
+
+              {/* Price Alert */}
+              <div style={{ marginBottom: "24px" }}>
+                <PriceAlertForm
+                  gearType="rope"
+                  slug={rope.slug}
+                  currentPrice={selectedLength ? rope.price_per_meter_eur_min * selectedLength : rope.price_per_meter_eur_min}
+                  isMobile={isMobile}
+                />
+              </div>
+
+              {/* Length Selector */}
+              <div>
+                <div style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600, marginBottom: "10px" }}>
+                  Length
+                </div>
+                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                  {ensureArray(rope.available_lengths_m).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setSelectedLength(selectedLength === l ? null : l)}
+                      style={{
+                        padding: "6px 14px", borderRadius: "8px",
+                        fontSize: "13px", fontFamily: T.mono, fontWeight: 600,
+                        background: selectedLength === l ? T.accentSoft : "transparent",
+                        color: selectedLength === l ? T.accent : T.text,
+                        border: selectedLength === l ? `1.5px solid ${T.accent}` : `1px solid ${T.border}`,
+                        cursor: "pointer", transition: "all .15s",
+                      }}
+                    >
+                      {l}m
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: isMobile ? "20px 16px 60px" : "32px 24px 80px" }}>
+      {/* Content with Tabs */}
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "20px 16px 60px" : "32px 24px 80px" }}>
 
-        {/* Title block */}
-        <div style={{ marginBottom: isMobile ? "24px" : "32px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px", flexWrap: "wrap" }}>
-            <span style={{ fontSize: "11px", color: T.dim, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>
-              {rope.brand}
-            </span>
-            <span style={{
-              padding: "3px 8px", borderRadius: "6px",
-              fontSize: "10px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
-              fontFamily: T.mono, background: tc.bg, color: tc.color, border: `1px solid ${tc.border}`,
+        {/* Tab Bar */}
+        <div style={{ display: "flex", gap: "0", borderBottom: `1px solid ${T.border}`, marginBottom: "32px" }}>
+          {[
+            { id: "overview", label: "Overview" },
+            { id: "prices", label: "Prices" },
+            { id: "specs", label: "Specs" },
+          ].map(tab => (
+            <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
+              padding: "12px 24px", fontSize: "13px", fontWeight: 600,
+              color: activeTab === tab.id ? T.accent : T.muted,
+              background: "transparent", border: "none", cursor: "pointer",
+              borderBottom: activeTab === tab.id ? `2px solid ${T.accent}` : "2px solid transparent",
+              transition: "all .15s", fontFamily: T.font,
             }}>
-              {rope.rope_type}{rope.triple_rated ? " ③ triple rated" : ""}
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
-            <h1 style={{ fontSize: isMobile ? "22px" : "28px", fontWeight: 800, lineHeight: 1.2, margin: 0, letterSpacing: "-0.5px" }}>
-              {rope.model}
-            </h1>
-            <HeartButton type="rope" slug={rope.slug} style={{ fontSize: "22px" }} />
-          </div>
-          <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.7, maxWidth: "700px" }}>
-            {rope.description}
-          </p>
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        {/* Two-column layout */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "32px" }}>
-
-          {/* Left column — Specs */}
+        {/* OVERVIEW TAB */}
+        {activeTab === "overview" && (
           <div>
-            <Section title="Physical Specifications">
-              <StatRow label="Diameter" value={rope.diameter_mm} unit="mm" highlight />
-              <StatRow label="Weight" value={rope.weight_per_meter_g} unit="g/m" />
-              <StatRow label="Sheath" value={rope.sheath_percentage} unit="%" />
-              {isDynamic && rope.uiaa_falls && <StatRow label="UIAA Falls" value={rope.uiaa_falls} />}
-              {isDynamic && rope.impact_force_kn && <StatRow label="Impact Force" value={rope.impact_force_kn} unit="kN" />}
-              {isDynamic && rope.dynamic_elongation_pct && <StatRow label="Dynamic Elongation" value={rope.dynamic_elongation_pct} unit="%" />}
-              {rope.static_elongation_pct && <StatRow label="Static Elongation" value={rope.static_elongation_pct} unit="%" />}
-              {!isDynamic && rope.breaking_strength_kn && <StatRow label="Breaking Strength" value={rope.breaking_strength_kn} unit="kN" highlight />}
-              {!isDynamic && rope.working_elongation_pct && <StatRow label="Working Elongation" value={rope.working_elongation_pct} unit="%" />}
-            </Section>
-
-            <Section title="Treatment & Technology">
-              <StatRow label="Dry Treatment" value={rope.dry_treatment_name || fmt(rope.dry_treatment)} />
-              <StatRow label="UIAA Water Repellent" value={rope.uiaa_water_repellent ? "Yes" : "No"} />
-              <StatRow label="Core Construction" value={rope.core_construction} />
-              {rope.sheath_technology && <StatRow label="Sheath Technology" value={rope.sheath_technology} />}
-              <StatRow label="Aramid Protection" value={rope.aramid_protection ? "Yes" : "No"} />
-              <StatRow label="Middle Mark" value={fmt(rope.middle_mark)} />
-            </Section>
-          </div>
-
-          {/* Right column — Use, Price, Tags */}
-          <div>
+            {/* Best For + Skill Level */}
             <Section title="Best For">
               <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
                 {ensureArray(rope.best_use_cases).map((u) => <Tag key={u} variant="accent">{u}</Tag>)}
@@ -246,6 +333,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               </div>
             </Section>
 
+            {/* Handling & Compatibility */}
             <Section title="Handling & Compatibility">
               <StatRow label="Handling Feel" value={fmt(rope.handling_feel)} />
               <StatRow label="Durability" value={fmt(rope.durability_rating)} />
@@ -254,268 +342,192 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               </div>
             </Section>
 
-            <Section title="Sustainability">
-              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                {rope.bluesign && <Tag variant="green">Bluesign</Tag>}
-                {rope.pfc_free && <Tag variant="green">PFC-Free</Tag>}
-                {rope.recycled_materials !== "none" && <Tag variant="green">{fmt(rope.recycled_materials)} Recycled</Tag>}
-                {rope.eco_label && <Tag variant="green">{rope.eco_label}</Tag>}
-                {!rope.bluesign && !rope.pfc_free && rope.recycled_materials === "none" && (
-                  <span style={{ fontSize: "13px", color: T.dim }}>No eco certifications</span>
-                )}
-              </div>
-            </Section>
-
-            {/* ═══ STANDARDIZED PRICE SECTION ═══ */}
-            <Section title="Price & Deal Evaluation">
-              {/* Combined Price Box: price+length left | evaluation right */}
-              <div style={{
-                background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px",
-                padding: 0, marginBottom: "16px", display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", overflow: "hidden",
-              }}>
-                {/* Left: Price + Length Selector */}
-                <div style={{ padding: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "8px" }}>
-                    <span style={{ fontSize: "28px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
-                      {selectedLength
-                        ? `€${(rope.price_per_meter_eur_min * selectedLength).toFixed(0)}`
-                        : `€${rope.price_per_meter_eur_min?.toFixed(2)}`}
-                    </span>
-                    <span style={{ fontSize: "14px", color: T.dim }}>
-                      {selectedLength ? `for ${selectedLength}m` : "/m"}
-                    </span>
-                    {rope.price_uvp_per_meter_eur > rope.price_per_meter_eur_min && (
-                      <>
-                        <span style={{ fontSize: "14px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono }}>
-                          €{selectedLength ? (rope.price_uvp_per_meter_eur * selectedLength).toFixed(0) : rope.price_uvp_per_meter_eur?.toFixed(2)}
-                        </span>
-                        <span style={{ fontSize: "12px", fontWeight: 700, color: T.green, fontFamily: T.mono }}>
-                          −{Math.round(((rope.price_uvp_per_meter_eur - rope.price_per_meter_eur_min) / rope.price_uvp_per_meter_eur) * 100)}%
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  {selectedLength && (
-                    <div style={{ fontSize: "11px", color: T.muted, marginBottom: "8px" }}>
-                      €{rope.price_per_meter_eur_min}/m best price
-                    </div>
-                  )}
-                  {!selectedLength && rope.price_per_meter_eur_max > rope.price_per_meter_eur_min && (
-                    <div style={{ fontSize: "11px", color: T.muted, marginBottom: "8px" }}>
-                      Range: €{rope.price_per_meter_eur_min?.toFixed(2)}–€{rope.price_per_meter_eur_max?.toFixed(2)}/m
-                    </div>
-                  )}
-                  {/* Length selector */}
-                  <div style={{ marginTop: "8px" }}>
-                    <div style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600, marginBottom: "8px" }}>
-                      Length
-                    </div>
-                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                      {ensureArray(rope.available_lengths_m).map((l) => (
-                        <button
-                          key={l}
-                          onClick={() => setSelectedLength(selectedLength === l ? null : l)}
-                          style={{
-                            padding: "6px 14px", borderRadius: "8px",
-                            fontSize: "13px", fontFamily: T.mono, fontWeight: 600,
-                            background: selectedLength === l ? T.accentSoft : "transparent",
-                            color: selectedLength === l ? T.accent : T.text,
-                            border: selectedLength === l ? `1.5px solid ${T.accent}` : `1px solid ${T.border}`,
-                            cursor: "pointer", transition: "all .15s",
-                          }}
-                        >
-                          {l}m
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                {/* Right: Deal Evaluation */}
-                <div style={{ padding: isMobile ? "16px 20px" : "20px", borderLeft: isMobile ? "none" : `1px solid ${T.border}`, borderTop: isMobile ? `1px solid ${T.border}` : "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  {(() => {
-                    const discount = rope.price_uvp_per_meter_eur && rope.price_per_meter_eur_min
-                      ? (rope.price_uvp_per_meter_eur - rope.price_per_meter_eur_min) / rope.price_uvp_per_meter_eur : 0;
-                    const factors = [];
-                    let totalScore = 0, totalWeight = 0;
-                    // Factor 1: Price vs UVP (40%)
-                    const ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
-                    factors.push({ name: "Price vs UVP", icon: ps >= 0.5 ? "\uD83D\uDFE2" : ps >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34", weight: 0.40,
-                      detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${rope.price_uvp_per_meter_eur?.toFixed(2)}/m)` : `At or near full UVP` });
-                    totalScore += ps * 0.40; totalWeight += 0.40;
-                    // Factor 2: Model Lifecycle (25%)
-                    const currentYear = new Date().getFullYear();
-                    const modelAge = rope.year_released ? currentYear - rope.year_released : null;
-                    if (modelAge !== null) {
-                      const as = modelAge >= 3 ? 0.5 : modelAge >= 2 ? -0.3 : modelAge >= 1 ? 0.0 : -0.4;
-                      factors.push({ name: "Model Lifecycle", icon: as > 0.2 ? "\uD83D\uDFE2" : as >= -0.1 ? "\uD83D\uDFE1" : "\uD83D\uDD34", weight: 0.25,
-                        detail: `Released ${rope.year_released} (${modelAge}y ago)` });
-                      totalScore += as * 0.25; totalWeight += 0.25;
-                    }
-                    // Factor 3: Expected Price Development (20%)
-                    factors.push({ name: "Expected Price Development", icon: "\u23F3", weight: 0.20, detail: "Coming soon — data collection in progress" });
-                    // Factor 4: Price History (15%)
-                    factors.push({ name: "Price History", icon: "\uD83D\uDCCA", weight: 0.15, detail: "Coming soon — historical data collection in progress" });
-
-                    const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
-                    let label, color, icon;
-                    if (ns >= 0.45) { label = "Buy Now"; color = T.green; icon = "\uD83D\uDFE2"; }
-                    else if (ns >= 0.15) { label = "Good Deal"; color = T.green; icon = "\uD83D\uDC4D"; }
-                    else if (ns >= -0.15) { label = "Fair Price"; color = T.yellow; icon = "\u2696\uFE0F"; }
-                    else if (ns >= -0.40) { label = "Consider Waiting"; color = T.accent; icon = "\u23F3"; }
-                    else { label = "Wait for Sale"; color = T.red; icon = "\uD83D\uDD34"; }
-                    const forecast = ns >= 0.3
-                      ? `At ${Math.round(discount*100)}% off UVP, this is a strong buying moment.`
-                      : ns >= 0
-                        ? "Reasonable price. More data coming soon for better recommendations."
-                        : "Currently at or near full UVP. Consider waiting for a sale.";
-
-                    return (
-                      <>
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-                          <span style={{ fontSize: "18px" }}>{icon}</span>
-                          <span style={{ fontSize: "13px", fontWeight: 700, color }}>{label}</span>
-                        </div>
-                        <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6, marginBottom: "14px" }}>{forecast}</div>
-                        <div style={{ display: "grid", gap: "8px" }}>
-                          {factors.map((f, i) => (
-                            <div key={i} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                              <span style={{ fontSize: "12px" }}>{f.icon}</span>
-                              <span style={{ fontSize: "11px", fontWeight: 600, color: T.text, whiteSpace: "nowrap" }}>{f.name}</span>
-                              <span style={{ fontSize: "10px", color: T.dim, fontFamily: T.mono }}>{Math.round(f.weight * 100)}%</span>
-                              <span style={{ flex: 1, fontSize: "10px", color: T.muted, textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{f.detail}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </>
-                    );
-                  })()}
-                </div>
-              </div>
-
-              {/* Retailer Links */}
-              {(() => {
-                const prices = priceData[rope.slug] || [];
-                if (!prices.length) return null;
-                const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
-                return (
-                  <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "16px" }}>
-                    <div style={{ padding: "14px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Where to Buy</div>
-                    </div>
-                    {prices.map((p, i) => (
-                      <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
-                        display: "grid", gridTemplateColumns: "1fr auto auto",
-                        alignItems: "center", padding: "12px 20px", gap: "12px",
-                        borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
-                        background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-                        textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
-                        transition: "background .15s",
-                      }}>
-                        <div style={{ minWidth: 0 }}>
-                          <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
-                          {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
-                        </div>
-                        <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-                          {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
-                        </span>
-                        {p.url && p.url !== "#" && (
-                          <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"} Shop</span>
-                        )}
-                      </a>
+            {/* Strengths & Trade-offs */}
+            {(rope.pros?.length > 0 || rope.cons?.length > 0) && (
+              <Section title="⚖️ Strengths & Trade-offs">
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+                  <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
+                    <div style={{ fontSize: "11px", fontWeight: 700, color: T.green, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
+                    {(rope.pros || []).map((p, i) => (
+                      <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
+                        <span style={{ color: T.green, flexShrink: 0, fontWeight: 700 }}>+</span> {p}
+                      </div>
                     ))}
                   </div>
-                );
-              })()}
-
-              {/* Price Alert */}
-              <PriceAlertForm
-                gearType="rope"
-                slug={rope.slug}
-                currentPrice={selectedLength ? rope.price_per_meter_eur_min * selectedLength : rope.price_per_meter_eur_min}
-                isMobile={isMobile}
-              />
-
-              {/* Price History — Coming Soon */}
-              <div style={{ background: T.card, borderRadius: "12px", padding: "24px", border: `1px solid ${T.border}`, textAlign: "center" }}>
-                <div style={{ fontSize: "28px", marginBottom: "8px", opacity: 0.4 }}>{"\uD83D\uDCCA"}</div>
-                <div style={{ fontSize: "12px", color: T.muted }}>Price history data coming soon</div>
-              </div>
-            </Section>
-          </div>
-        </div>
-
-        {/* ═══ Strengths & Trade-offs ═══ */}
-        {(rope.pros?.length > 0 || rope.cons?.length > 0) && (
-          <>
-            <Section title="⚖️ Strengths & Trade-offs">
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
-                <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
-                  <div style={{ fontSize: "11px", fontWeight: 700, color: T.green, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
-                  {(rope.pros || []).map((p, i) => (
-                    <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
-                      <span style={{ color: T.green, flexShrink: 0, fontWeight: 700 }}>+</span> {p}
-                    </div>
-                  ))}
-                </div>
-                <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
-                  <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
-                  {(rope.cons || []).map((c, i) => (
-                    <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
-                      <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>{"\u2212"}</span> {c}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Section>
-          </>
-        )}
-
-        {/* ═══ What Climbers Say ═══ */}
-        {rope.customer_voices?.length > 0 && (
-          <Section title="💬 What Climbers Say">
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
-              {rope.customer_voices.slice(0, 4).map((v, i) => (
-                <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "22px", transition: "border-color 0.2s" }}
-                  onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
-                  onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
-                  <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
-                  <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>
-                </div>
-              ))}
-            </div>
-          </Section>
-        )}
-
-        {/* Similar ropes */}
-        {similar.length > 0 && (
-          <Section title="Similar Ropes">
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
-              {similar.map((r) => (
-                <Link key={r.slug} to={`/rope/${r.slug}`} style={{ textDecoration: "none" }}>
-                  <div style={{
-                    background: T.card, borderRadius: "12px", padding: "16px",
-                    border: `1px solid ${T.border}`, transition: "all .2s", cursor: "pointer",
-                  }}
-                    onMouseOver={(e) => { e.currentTarget.style.borderColor = T.accent; }}
-                    onMouseOut={(e) => { e.currentTarget.style.borderColor = T.border; }}
-                  >
-                    <div style={{ fontSize: "10px", color: T.dim, fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>
-                      {r.brand}
-                    </div>
-                    <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "8px" }}>{r.model}</div>
-                    <div style={{ display: "flex", gap: "8px", fontSize: "12px", color: T.muted, marginBottom: "8px" }}>
-                      <span>⌀ {r.diameter_mm}mm</span>
-                      <span>{r.weight_per_meter_g}g/m</span>
-                    </div>
-                    <span style={{ fontSize: "16px", fontWeight: 700, color: T.accent, fontFamily: T.mono }}>
-                      €{r.price_per_meter_eur_min?.toFixed(2)}/m
-                    </span>
+                  <div style={{ background: T.card, borderRadius: "12px", padding: "20px", border: `1px solid ${T.border}` }}>
+                    <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
+                    {(rope.cons || []).map((c, i) => (
+                      <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
+                        <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>−</span> {c}
+                      </div>
+                    ))}
                   </div>
-                </Link>
-              ))}
+                </div>
+              </Section>
+            )}
+
+            {/* What Climbers Say */}
+            {rope.customer_voices?.length > 0 && (
+              <Section title="💬 What Climbers Say">
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
+                  {rope.customer_voices.slice(0, 4).map((v, i) => (
+                    <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "22px", transition: "border-color 0.2s" }}
+                      onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+                      onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
+                      <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>"</div>
+                      <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>
+                    </div>
+                  ))}
+                </div>
+              </Section>
+            )}
+
+            {/* Similar Ropes */}
+            {similar.length > 0 && (
+              <Section title="Similar Ropes">
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
+                  {similar.map((r) => (
+                    <Link key={r.slug} to={`/rope/${r.slug}`} style={{ textDecoration: "none" }}>
+                      <div style={{
+                        background: T.card, borderRadius: "12px", padding: "16px",
+                        border: `1px solid ${T.border}`, transition: "all .2s", cursor: "pointer",
+                      }}
+                        onMouseOver={(e) => { e.currentTarget.style.borderColor = T.accent; }}
+                        onMouseOut={(e) => { e.currentTarget.style.borderColor = T.border; }}
+                      >
+                        <div style={{ fontSize: "10px", color: T.dim, fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>
+                          {r.brand}
+                        </div>
+                        <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "8px" }}>{r.model}</div>
+                        <div style={{ display: "flex", gap: "8px", fontSize: "12px", color: T.muted, marginBottom: "8px" }}>
+                          <span>⌀ {r.diameter_mm}mm</span>
+                          <span>{r.weight_per_meter_g}g/m</span>
+                        </div>
+                        <span style={{ fontSize: "16px", fontWeight: 700, color: T.accent, fontFamily: T.mono }}>
+                          €{r.price_per_meter_eur_min?.toFixed(2)}/m
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </Section>
+            )}
+          </div>
+        )}
+
+        {/* PRICES TAB */}
+        {activeTab === "prices" && (
+          <div>
+            {/* Price History Placeholder */}
+            <Section title="Price History">
+              <div style={{ background: T.card, borderRadius: "12px", padding: "40px", border: `1px solid ${T.border}`, textAlign: "center" }}>
+                <div style={{ fontSize: "32px", marginBottom: "12px" }}>📊</div>
+                <div style={{ fontSize: "13px", color: T.muted }}>Historical price data coming soon</div>
+              </div>
+            </Section>
+
+            {/* Price Intelligence: 2×2 Grid */}
+            {(() => {
+              const discount = rope.price_uvp_per_meter_eur && rope.price_per_meter_eur_min
+                ? (rope.price_uvp_per_meter_eur - rope.price_per_meter_eur_min) / rope.price_uvp_per_meter_eur : 0;
+              const factors = [];
+
+              // Factor 1: Price vs UVP
+              const ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
+              factors.push({
+                icon: ps >= 0.5 ? "🟢" : ps >= 0 ? "🟡" : "🔴",
+                name: "Price vs UVP",
+                detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${rope.price_uvp_per_meter_eur?.toFixed(2)}/m)` : "At or near full UVP"
+              });
+
+              // Factor 2: Model Lifecycle
+              const currentYear = new Date().getFullYear();
+              const modelAge = rope.year_released ? currentYear - rope.year_released : null;
+              if (modelAge !== null) {
+                const as = modelAge >= 3 ? 0.5 : modelAge >= 2 ? -0.3 : modelAge >= 1 ? 0.0 : -0.4;
+                factors.push({
+                  icon: as > 0.2 ? "🟢" : as >= -0.1 ? "🟡" : "🔴",
+                  name: "Model Lifecycle",
+                  detail: `Released ${rope.year_released} (${modelAge} years ago)`
+                });
+              }
+
+              // Factor 3: Expected Price Development
+              factors.push({
+                icon: "⏳",
+                name: "Expected Price Development",
+                detail: "Coming soon — data collection in progress"
+              });
+
+              // Factor 4: Price History
+              factors.push({
+                icon: "📈",
+                name: "Price History",
+                detail: "Coming soon — historical data collection in progress"
+              });
+
+              return (
+                <Section title="Price Intelligence">
+                  <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "16px" }}>
+                    {factors.map((f, i) => (
+                      <div key={i} style={{
+                        background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`,
+                        padding: "20px", display: "flex", flexDirection: "column", gap: "12px"
+                      }}>
+                        <div style={{ fontSize: "28px" }}>{f.icon}</div>
+                        <div style={{ fontSize: "13px", fontWeight: 600, color: T.text }}>{f.name}</div>
+                        <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.5 }}>{f.detail}</div>
+                      </div>
+                    ))}
+                  </div>
+                </Section>
+              );
+            })()}
+          </div>
+        )}
+
+        {/* SPECS TAB */}
+        {activeTab === "specs" && (
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "32px" }}>
+            {/* Left column */}
+            <div>
+              <Section title="Physical Specifications">
+                <StatRow label="Diameter" value={rope.diameter_mm} unit="mm" highlight />
+                <StatRow label="Weight" value={rope.weight_per_meter_g} unit="g/m" />
+                <StatRow label="Sheath" value={rope.sheath_percentage} unit="%" />
+                {isDynamic && rope.uiaa_falls && <StatRow label="UIAA Falls" value={rope.uiaa_falls} />}
+                {isDynamic && rope.impact_force_kn && <StatRow label="Impact Force" value={rope.impact_force_kn} unit="kN" />}
+                {isDynamic && rope.dynamic_elongation_pct && <StatRow label="Dynamic Elongation" value={rope.dynamic_elongation_pct} unit="%" />}
+                {rope.static_elongation_pct && <StatRow label="Static Elongation" value={rope.static_elongation_pct} unit="%" />}
+                {!isDynamic && rope.breaking_strength_kn && <StatRow label="Breaking Strength" value={rope.breaking_strength_kn} unit="kN" highlight />}
+                {!isDynamic && rope.working_elongation_pct && <StatRow label="Working Elongation" value={rope.working_elongation_pct} unit="%" />}
+              </Section>
+
+              <Section title="Treatment & Technology">
+                <StatRow label="Dry Treatment" value={rope.dry_treatment_name || fmt(rope.dry_treatment)} />
+                <StatRow label="UIAA Water Repellent" value={rope.uiaa_water_repellent ? "Yes" : "No"} />
+                <StatRow label="Core Construction" value={rope.core_construction} />
+                {rope.sheath_technology && <StatRow label="Sheath Technology" value={rope.sheath_technology} />}
+                <StatRow label="Aramid Protection" value={rope.aramid_protection ? "Yes" : "No"} />
+                <StatRow label="Middle Mark" value={fmt(rope.middle_mark)} />
+              </Section>
             </div>
-          </Section>
+
+            {/* Right column */}
+            <div>
+              <Section title="Sustainability">
+                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                  {rope.bluesign && <Tag variant="green">Bluesign</Tag>}
+                  {rope.pfc_free && <Tag variant="green">PFC-Free</Tag>}
+                  {rope.recycled_materials !== "none" && <Tag variant="green">{fmt(rope.recycled_materials)} Recycled</Tag>}
+                  {rope.eco_label && <Tag variant="green">{rope.eco_label}</Tag>}
+                  {!rope.bluesign && !rope.pfc_free && rope.recycled_materials === "none" && (
+                    <span style={{ fontSize: "13px", color: T.dim }}>No eco certifications</span>
+                  )}
+                </div>
+              </Section>
+            </div>
+          </div>
         )}
       </div>
     </div>
