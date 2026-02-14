@@ -65,16 +65,56 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     return next;
   });
 
-  /* Compute scores once per shoe set */
-  const scored = useMemo(() => shoes.map(s => ({
-    ...s,
-    _edging: computeEdging(s),
-    _sensitivity: computeSensitivity(s),
-    _support: computeSupport(s),
-    _comfort: getComfortScore(s),
-    _price: s.price_uvp_eur || 0,
-    _vegan: s.vegan ? "true" : "false",
-  })), [shoes]);
+  /* Compute raw scores, then percentile-normalize across non-kids shoes (matching Excel) */
+  const scored = useMemo(() => {
+    // 1. Compute raw scores for all shoes
+    const withRaw = shoes.map(s => ({
+      ...s,
+      _rawEdg: computeEdging(s),
+      _rawSens: computeSensitivity(s),
+      _rawSup: computeSupport(s),
+      _rawComf: getComfortScore(s),
+      _price: s.price_uvp_eur || 0,
+      _vegan: s.vegan ? "true" : "false",
+    }));
+
+    // 2. Percentile normalization: rank-based with tie averaging, kids excluded from ranking pool
+    const adults = withRaw.filter(s => !s.kids_friendly);
+    const axes = ["_rawEdg", "_rawSens", "_rawSup", "_rawComf"];
+    const pctFields = ["_edging", "_sensitivity", "_support", "_comfort"];
+    const pctMap = {}; // slug -> { _edging, _sensitivity, _support, _comfort }
+
+    axes.forEach((raw, ai) => {
+      const sorted = [...adults].sort((a, b) => a[raw] - b[raw]);
+      // Assign rank with tie averaging
+      const rankOf = {};
+      let i = 0;
+      while (i < sorted.length) {
+        let j = i;
+        while (j < sorted.length && sorted[j][raw] === sorted[i][raw]) j++;
+        const avgRank = (i + j - 1) / 2; // 0-based average
+        for (let k = i; k < j; k++) {
+          if (!rankOf[sorted[k].slug]) rankOf[sorted[k].slug] = {};
+          rankOf[sorted[k].slug][pctFields[ai]] = adults.length > 1 ? avgRank / (adults.length - 1) : 0.5;
+        }
+        i = j;
+      }
+      Object.assign(pctMap, ...Object.entries(rankOf).map(([slug, vals]) => {
+        if (!pctMap[slug]) pctMap[slug] = {};
+        Object.assign(pctMap[slug], vals);
+        return { [slug]: pctMap[slug] };
+      }));
+    });
+
+    // 3. Apply percentiles (kids get raw scores as fallback)
+    return withRaw.map(s => ({
+      ...s,
+      _edging: pctMap[s.slug]?._edging ?? s._rawEdg,
+      _sensitivity: pctMap[s.slug]?._sensitivity ?? s._rawSens,
+      _support: pctMap[s.slug]?._support ?? s._rawSup,
+      _comfort: pctMap[s.slug]?._comfort ?? s._rawComf,
+    }));
+  }, [shoes]);
 
   /* Brand list & colors */
   const BRAND_LIST = useMemo(() => [...new Set(scored.map(d => d.brand))].sort(), [scored]);
@@ -255,6 +295,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       + `<span style="color:#64748b;font-size:11px">${d.closure} · ${d.downturn} · ${d.feel} feel`
       + `${d.price_uvp_eur ? " · €" + d.price_uvp_eur : ""}`
       + `${d.vegan ? " · 🌱" : ""}</span>`
+      + `<br/><span style="color:#4a5568;font-size:10px">Percentile rank vs ${shoes.filter(s => !s.kids_friendly).length} shoes</span>`
       + (pinned ? `<br/><a href="/shoe/${d.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>` : "");
     tip.style.opacity = "1";
     tip.style.pointerEvents = pinned ? "auto" : "none";
