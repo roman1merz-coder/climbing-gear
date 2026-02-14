@@ -14,6 +14,8 @@ import Compare from "./Compare.jsx";
 import CompareGeneric from "./CompareGeneric.jsx";
 import About from "./About.jsx";
 import Landing from "./Landing.jsx";
+import Methodology from "./Methodology.jsx";
+import Footer from "./Footer.jsx";
 import Insights from "./Insights.jsx";
 import GearNews from "./GearNews.jsx";
 import NavBar from "./NavBar.jsx";
@@ -327,11 +329,13 @@ function Root() {
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/news" element={<GearNews />} />
+              <Route path="/methodology" element={<Methodology />} />
               <Route path="/about" element={<About />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
             </Routes>
             <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} />
+            <Footer />
             <FeedbackFAB />
           </BrowserRouter>
         </CompareProvider>

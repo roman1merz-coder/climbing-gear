@@ -6,6 +6,7 @@ import { sortShoes, SortDropdown } from "./sorting.jsx";
 import { fairShuffle } from "./randomizer.js";
 import CompareCheckbox from "./CompareCheckbox.jsx";
 import HeartButton from "./HeartButton.jsx";
+import { ScoringDisclaimer } from "./Methodology.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -1329,6 +1330,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </span>
             <SortDropdown value={sortKey} onChange={setSortKey} />
           </div>
+
+          <ScoringDisclaimer />
 
           <div
             style={{
