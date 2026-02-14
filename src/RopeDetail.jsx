@@ -219,43 +219,62 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               {/* Price Comparison Inline Table */}
               {(() => {
                 const prices = priceData[rope.slug] || [];
-                if (!prices.length) return null;
+                const hasRealRetailer = prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
+                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`climbing rope ${rope.brand} ${rope.model}`.trim())}&tag=climbinggear0e-21`;
+                const amazonLink = (
+                  <a href={amazonUrl} target="_blank" rel="noopener noreferrer"
+                    style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+                      background: "#232F3E", borderRadius: "8px", textDecoration: "none",
+                      transition: "opacity .15s", marginBottom: "24px" }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+                    onMouseLeave={e => e.currentTarget.style.opacity = "1"}>
+                    <span style={{ fontSize: "13px", fontWeight: 700, color: "#FF9900" }}>amazon</span>
+                    <span style={{ fontSize: "12px", color: "#fff", flex: 1 }}>Search on Amazon.de</span>
+                    <span style={{ fontSize: "12px", color: "#FF9900" }}>→</span>
+                  </a>
+                );
+                if (!prices.length) return amazonLink;
                 const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
                 return (
-                  <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "24px" }}>
-                    <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
-                      {best < Infinity && (
-                        <span style={{ fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 8px", borderRadius: "6px" }}>
-                          Best: €{best.toFixed(2)}
-                        </span>
-                      )}
-                    </div>
-                    {prices.map((p, i) => (
-                      <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
-                        display: "grid", gridTemplateColumns: "1fr auto auto auto",
-                        alignItems: "center", padding: "12px 16px", gap: "12px",
-                        borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
-                        background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-                        textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
-                        transition: "background .15s",
-                      }}>
-                        <div style={{ minWidth: 0 }}>
-                          <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
-                          {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
-                        </div>
-                        <span style={{ fontSize: "11px", color: T.muted, whiteSpace: "nowrap" }}>
-                          {p.inStock ? "In stock" : "Out of stock"}
-                        </span>
-                        <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-                          {p.price ? `€${p.price.toFixed(2)}` : "—"}
-                        </span>
-                        {p.url && p.url !== "#" && (
-                          <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"}</span>
+                  <>
+                    <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "8px" }}>
+                      <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
+                        {best < Infinity && (
+                          <span style={{ fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 8px", borderRadius: "6px" }}>
+                            Best: €{best.toFixed(2)}
+                          </span>
                         )}
-                      </a>
-                    ))}
-                  </div>
+                      </div>
+                      {prices.map((p, i) => (
+                        <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+                          display: "grid", gridTemplateColumns: hasRealRetailer ? "1fr auto auto auto" : "1fr auto auto",
+                          alignItems: "center", padding: "12px 16px", gap: "12px",
+                          borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+                          background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+                          textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+                          transition: "background .15s",
+                        }}>
+                          <div style={{ minWidth: 0 }}>
+                            <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+                            {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
+                          </div>
+                          {hasRealRetailer && (
+                            <span style={{ fontSize: "11px", color: T.muted, whiteSpace: "nowrap" }}>
+                              {p.inStock ? "In stock" : "Out of stock"}
+                            </span>
+                          )}
+                          <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
+                            {p.price ? `€${p.price.toFixed(2)}` : "—"}
+                          </span>
+                          {p.url && p.url !== "#" && (
+                            <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"}</span>
+                          )}
+                        </a>
+                      ))}
+                    </div>
+                    {amazonLink}
+                  </>
                 );
               })()}
 

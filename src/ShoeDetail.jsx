@@ -543,65 +543,93 @@ function ImageGallery({ shoe, compact }) {
   );
 }
 
+// ─── Amazon Search Link ───
+function amazonSearchUrl(productType, brand, model) {
+  const q = encodeURIComponent(`${productType} ${brand} ${model}`.trim());
+  return `https://www.amazon.de/s?k=${q}&tag=climbinggear0e-21`;
+}
+
+function AmazonSearchLink({ productType, brand, model, style = {} }) {
+  return (
+    <a href={amazonSearchUrl(productType, brand, model)} target="_blank" rel="noopener noreferrer"
+      style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+        background: "#232F3E", borderRadius: T.radiusSm || "8px", textDecoration: "none",
+        transition: "opacity .15s", ...style }}
+      onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+      onMouseLeave={e => e.currentTarget.style.opacity = "1"}>
+      <span style={{ fontSize: "13px", fontWeight: 700, color: "#FF9900" }}>amazon</span>
+      <span style={{ fontSize: "12px", color: "#fff", flex: 1 }}>Search on Amazon.de</span>
+      <span style={{ fontSize: "12px", color: "#FF9900" }}>→</span>
+    </a>
+  );
+}
+
 // ─── Price Comparison Table ───
 function PriceComparison({ prices, shoe, compact }) {
+  const hasRealRetailer = prices && prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
   if (!prices || !prices.length) {
     return (
-      <div style={{ background: T.card, borderRadius: T.radius, padding: "32px", border: `1px solid ${T.border}`, textAlign: "center" }}>
-        <div style={{ fontSize: "13px", color: T.muted }}>Price comparison data coming soon</div>
+      <div>
+        <div style={{ background: T.card, borderRadius: T.radius, padding: "32px", border: `1px solid ${T.border}`, textAlign: "center", marginBottom: "8px" }}>
+          <div style={{ fontSize: "13px", color: T.muted }}>Price comparison data coming soon</div>
+        </div>
+        <AmazonSearchLink productType="climbing shoe" brand={shoe.brand} model={shoe.model} />
       </div>
     );
   }
   const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
   return (
-    <div style={{ background: T.card, borderRadius: T.radius, border: `1px solid ${T.border}`, overflow: "hidden" }}>
-      <div style={{ padding: "16px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
-        <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
+    <div>
+      <div style={{ background: T.card, borderRadius: T.radius, border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "8px" }}>
+        <div style={{ padding: "16px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
+          <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
+        </div>
+        {prices.map((p, i) => (
+          <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+            display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
+            alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
+            gap: compact ? "8px" : "0",
+            borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+            background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+            textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+            transition: "background .15s",
+          }}
+          onMouseEnter={e => { if (p.url && p.url !== "#") e.currentTarget.style.background = T.accentSoft; }}
+          onMouseLeave={e => { e.currentTarget.style.background = p.price === best && p.inStock ? T.accentSoft : "transparent"; }}
+          >
+            <div style={{ minWidth: 0 }}>
+              <span style={{ fontSize: compact ? "12px" : "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {p.shop}
+              </span>
+              {p.delivery && (
+                <span style={{ fontSize: "10px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                  {p.delivery}
+                </span>
+              )}
+              {compact && !p.delivery && hasRealRetailer && (
+                <span style={{ fontSize: "10px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
+                  {p.inStock ? "In stock" : "Out of stock"}
+                </span>
+              )}
+            </div>
+            <span style={{ fontSize: compact ? "14px" : "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
+              {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
+            </span>
+            {!compact && hasRealRetailer && (
+              <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
+                {p.inStock ? "In stock" : "Out"}
+              </span>
+            )}
+            {p.url && p.url !== "#" && (
+              <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600, whiteSpace: "nowrap" }}>
+                {"\u2192"} Shop
+              </span>
+            )}
+          </a>
+        ))}
       </div>
-      {prices.map((p, i) => (
-        <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
-          display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
-          alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
-          gap: compact ? "8px" : "0",
-          borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
-          background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-          textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
-          transition: "background .15s",
-        }}
-        onMouseEnter={e => { if (p.url && p.url !== "#") e.currentTarget.style.background = T.accentSoft; }}
-        onMouseLeave={e => { e.currentTarget.style.background = p.price === best && p.inStock ? T.accentSoft : "transparent"; }}
-        >
-          <div style={{ minWidth: 0 }}>
-            <span style={{ fontSize: compact ? "12px" : "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-              {p.shop}
-            </span>
-            {p.delivery && (
-              <span style={{ fontSize: "10px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                {p.delivery}
-              </span>
-            )}
-            {compact && !p.delivery && (
-              <span style={{ fontSize: "10px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-                {p.inStock ? "In stock" : "Out of stock"}
-              </span>
-            )}
-          </div>
-          <span style={{ fontSize: compact ? "14px" : "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-            {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
-          </span>
-          {!compact && (
-            <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-              {p.inStock ? "In stock" : "Out"}
-            </span>
-          )}
-          {p.url && p.url !== "#" && (
-            <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600, whiteSpace: "nowrap" }}>
-              {"\u2192"} Shop
-            </span>
-          )}
-        </a>
-      ))}
+      <AmazonSearchLink productType="climbing shoe" brand={shoe.brand} model={shoe.model} />
     </div>
   );
 }
