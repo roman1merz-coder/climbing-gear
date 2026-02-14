@@ -17,7 +17,8 @@ const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g)
   .map(r => ({
     brand: r.brand, model: r.model, slug: r.slug,
     dia: r.diameter_mm, falls: r.uiaa_falls, gm: r.weight_per_meter_g,
-    impact: r.impact_force_kn, dry: r.dry_treatment || "none",
+    impact: r.impact_force_kn, breakStr: r.breaking_strength_kn,
+    dry: r.dry_treatment || "none",
     triple: !!r.triple_rated, sheath: r.sheath_percentage,
     type: r.rope_type || "single",
   }));
@@ -31,7 +32,7 @@ const SF=1.316, SG=1.660;
 /* ─── Chart Container ─── */
 function ChartContainer({ title, subtitle, children, style }) {
   return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", ...style }}>
+    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", ...style }}>
       {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
       {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
       {children}
@@ -75,6 +76,15 @@ export default function RopeScatterChart({ isMobile }) {
 
   /* Filter state — rope type toggles (single & half default ON, twin & static default OFF) */
   const [enabledTypes, setEnabledTypes] = useState(new Set(["single", "half"]));
+
+  /* Determine if static-only or has static */
+  const onlyStatic = enabledTypes.size === 1 && enabledTypes.has("static");
+  const hasStatic = enabledTypes.has("static");
+
+  /* Auto-switch metric when only static ropes are enabled (they have no falls data) */
+  useEffect(() => {
+    if (onlyStatic && metric === "falls") setMetric("gm");
+  }, [onlyStatic, metric]);
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
   const [hiddenDry, setHiddenDry] = useState(new Set());
 
@@ -104,22 +114,27 @@ export default function RopeScatterChart({ isMobile }) {
     if (hiddenDry.has(r.dry)) return false;
     // For falls metric, need falls data (static ropes have none)
     if (metric === "falls" && !r.falls) return false;
+    // For break strength metric, need break data
+    if (metric === "breakStr" && !r.breakStr) return false;
     return true;
   }), [enabledTypes, hiddenBrands, hiddenDry, metric]);
 
   /* Dynamic axis bounds */
   const axisBounds = useMemo(() => {
-    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82 };
+    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82, bsMin: 15, bsMax: 40 };
     const dias = filtered.map(r => r.dia);
     const diaMin = Math.floor(Math.min(...dias) * 2 - 1) / 2;
     const diaMax = Math.ceil(Math.max(...dias) * 2 + 1) / 2;
     const falls = filtered.filter(r => r.falls).map(r => r.falls);
     const gms = filtered.map(r => r.gm);
+    const bss = filtered.filter(r => r.breakStr).map(r => r.breakStr);
     return {
       diaMin: Math.max(5, diaMin), diaMax: Math.min(14, diaMax),
       fallsMax: Math.ceil((Math.max(...falls, 4)) / 2) * 2 + 2,
       gmMin: Math.floor(Math.min(...gms) / 5) * 5 - 5,
       gmMax: Math.ceil(Math.max(...gms) / 5) * 5 + 5,
+      bsMin: bss.length ? Math.floor(Math.min(...bss) / 5) * 5 - 5 : 15,
+      bsMax: bss.length ? Math.ceil(Math.max(...bss) / 5) * 5 + 5 : 40,
     };
   }, [filtered]);
 
@@ -131,6 +146,10 @@ export default function RopeScatterChart({ isMobile }) {
     gm: {
       yField: "gm", yLabel: "Weight (g/m)", yMin: axisBounds.gmMin, yMax: axisBounds.gmMax, yStep: 5,
       curveY: CG, std: SG, sub: `${filtered.length} ropes · Quadratic fit · R² = 0.919`, color: T.blue,
+    },
+    breakStr: {
+      yField: "breakStr", yLabel: "Break Strength (kN)", yMin: axisBounds.bsMin, yMax: axisBounds.bsMax, yStep: 5,
+      curveY: null, std: 0, sub: `${filtered.length} ropes · Static rope break strength`, color: "#ecc94b",
     },
   }), [filtered.length, axisBounds]);
   const cfg = cfgs[metric];
@@ -261,8 +280,9 @@ export default function RopeScatterChart({ isMobile }) {
     const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
     const fallsLine = r.falls ? ` · ${r.falls} falls` : "";
     const impactLine = r.impact ? ` · Impact: ${r.impact}kN` : "";
+    const breakLine = r.breakStr ? ` · Break: ${r.breakStr}kN` : "";
     const sheathLine = r.sheath ? ` · Sheath: ${r.sheath}%` : "";
-    tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/><span style="color:${TYPE_COLORS[r.type]}">${typeLabel}</span> · ∅ ${r.dia}mm · ${r.gm}g/m${fallsLine}${impactLine}${sheathLine}<br/><span style="color:#64748b;font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span>`
+    tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/><span style="color:${TYPE_COLORS[r.type]}">${typeLabel}</span> · ∅ ${r.dia}mm · ${r.gm}g/m${fallsLine}${impactLine}${breakLine}${sheathLine}<br/><span style="color:#64748b;font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span>`
       + (pinned ? `<br/><a href="/rope/${r.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>` : "");
     tip.style.opacity = "1";
     tip.style.pointerEvents = pinned ? "auto" : "none";
@@ -342,7 +362,11 @@ export default function RopeScatterChart({ isMobile }) {
     <ChartContainer title="Rope Diameter Deep Dive" subtitle={cfg.sub}>
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
-        {Object.entries({ falls: { label: "UIAA Falls", color: T.accent }, gm: { label: "Weight (g/m)", color: T.blue } }).map(([k, c]) => (
+        {Object.entries({
+          ...(!onlyStatic ? { falls: { label: "UIAA Falls", color: T.accent } } : {}),
+          gm: { label: "Weight (g/m)", color: T.blue },
+          ...(hasStatic ? { breakStr: { label: "Break Strength (kN)", color: "#ecc94b" } } : {}),
+        }).map(([k, c]) => (
           <button key={k} onClick={() => { setMetric(k); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
             style={btnStyle(metric === k, c.color)}>{c.label}</button>
         ))}
@@ -377,8 +401,10 @@ export default function RopeScatterChart({ isMobile }) {
       </div>
 
       {/* Canvas */}
-      <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-        onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+      <div style={{ width: "100%", overflow: "hidden" }}>
+        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
+          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+      </div>
 
       {/* Tooltip */}
       <div ref={tipRef} style={{

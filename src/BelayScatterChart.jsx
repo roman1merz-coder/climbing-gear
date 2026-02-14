@@ -44,7 +44,7 @@ const ALL_BELAYS = BELAY_SEED.filter(d => d.price_uvp_eur && d.weight_g)
 /* ─── Chart Container ─── */
 function ChartContainer({ title, subtitle, children, style }) {
   return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", ...style }}>
+    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", ...style }}>
       {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
       {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
       {children}
@@ -320,8 +320,10 @@ export default function BelayScatterChart({ isMobile }) {
       </div>
 
       {/* Canvas */}
-      <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-        onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+      <div style={{ width: "100%", overflow: "hidden" }}>
+        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
+          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+      </div>
 
       {/* Tooltip */}
       <div ref={tipRef} style={{

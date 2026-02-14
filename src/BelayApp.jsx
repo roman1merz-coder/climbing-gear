@@ -825,6 +825,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
   const [filters, setFilters] = useState(_s.filters || {});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [sortKey, setSortKey] = useState(_s.sortKey || "best_match");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     sessionStorage.setItem(BELAY_STORAGE_KEY, JSON.stringify({ activeTypes, filters, sortKey }));
@@ -833,11 +834,21 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
 
   const groups = useMemo(() => getGroups(activeTypes), [activeTypes]);
 
-  const filtered = useMemo(() => {
+  const searchFiltered = useMemo(() => {
     let pool = belays;
     if (activeTypes.length) pool = pool.filter((b) => activeTypes.includes(b.device_type));
-    return score(pool, filters);
-  }, [belays, activeTypes, filters]);
+    if (!query.trim()) return pool;
+    const q = query.toLowerCase().trim();
+    return pool.filter((b) =>
+      b.brand?.toLowerCase().includes(q) ||
+      b.model?.toLowerCase().includes(q) ||
+      b.slug?.includes(q)
+    );
+  }, [belays, activeTypes, query]);
+
+  const filtered = useMemo(() => {
+    return score(searchFiltered, filters);
+  }, [searchFiltered, filters]);
 
   const displayResults = useMemo(() => {
     if (sortKey === "best_match") return filtered;
@@ -866,7 +877,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
         padding: isMobile ? "8px 12px" : "0 24px",
         minHeight: isMobile ? undefined : "50px",
         background: "rgba(13,17,23,.92)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #23272f",
+        borderBottom: "1px solid #1e2028",
       }}>
         {isMobile && (
           <button
@@ -883,13 +894,48 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
           </button>
         )}
 
-        <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap", marginLeft: isMobile ? "auto" : undefined }}>
+        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
+          <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+          <input
+            type="text"
+            placeholder="Search belay devices…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            style={{
+              width: "100%", padding: "8px 16px 8px 36px",
+              borderRadius: "8px", border: "1px solid #1e2028",
+              background: "#151820", color: "#f0f0f0",
+              fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
+            }}
+          />
+        </div>
+
+        {/* View toggle */}
+        <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+          {[
+            { key: "cards", icon: "▦", label: "Cards" },
+            { key: "chart", icon: "⊙", label: "Chart" },
+          ].map(v => (
+            <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+              padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
+              background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+              color: view === v.key ? "#E8734A" : "#6b7280",
+              fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+              display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <span style={{ fontSize: "13px" }}>{v.icon}</span>
+              {!isMobile && v.label}
+            </button>
+          ))}
+        </div>
+
+        <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
           {filtered.length} device{filtered.length !== 1 ? "s" : ""}
         </span>
 
-        {ac > 0 && (
+        {(ac > 0 || query) && (
           <button
-            onClick={() => { setFilters({}); setActiveTypes([]); }}
+            onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
             style={{
               padding: "6px 16px", borderRadius: "20px",
               border: "1px solid #3a3f47", background: "transparent",
@@ -967,21 +1013,11 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
 
         {/* Results */}
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px", flexWrap: "wrap", gap: "8px" }}>
-            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-              {displayResults.length} device{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
-            </span>
-            <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-              {[{ key: "cards", icon: "▦", label: "Cards" }, { key: "chart", icon: "⊙", label: "Chart" }].map(v => (
-                <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
-                  padding: "4px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "6px", border: "none", cursor: "pointer",
-                  background: view === v.key ? "rgba(255,255,255,.1)" : "transparent",
-                  color: view === v.key ? "#e8e9ec" : "#6b7280",
-                }}>{v.icon} {v.label}</button>
-              ))}
-              {view === "cards" && <SortDropdownGeneric value={sortKey} onChange={setSortKey} />}
-            </div>
+          {view === "cards" && (
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+            <SortDropdownGeneric value={sortKey} onChange={setSortKey} />
           </div>
+          )}
           {view === "chart" ? (
             <BelayScatterChart isMobile={isMobile} />
           ) : (

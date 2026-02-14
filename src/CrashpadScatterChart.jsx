@@ -42,7 +42,7 @@ const BRAND_COLORS = Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i
 /* ─── Chart Container ─── */
 function ChartContainer({ title, subtitle, children, style }) {
   return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", ...style }}>
+    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", ...style }}>
       {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
       {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
       {children}
@@ -319,8 +319,10 @@ export default function CrashpadScatterChart({ isMobile }) {
         ))}
       </div>
 
-      <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-        onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+      <div style={{ width: "100%", overflow: "hidden" }}>
+        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
+          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+      </div>
       <div ref={tipRef} style={{
         position: "fixed", pointerEvents: "none", background: "rgba(15,17,25,.95)", border: "1px solid rgba(99,179,237,.35)",
         borderRadius: "8px", padding: "10px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,

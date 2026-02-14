@@ -537,20 +537,16 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                 </div>
               </Section>
 
-              {certs.length > 0 && (
-                <Section title="Certifications">
+              {d.eco_design && d.eco_details && (
+                <Section title="Sustainability">
                   <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
-                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                      {certs.map((c) => (
-                        <Tag key={c} label={c.replace(/_/g, " ")} />
-                      ))}
-                    </div>
+                    <p style={{ color: T.muted, fontSize: "13px", margin: 0 }}>{d.eco_details}</p>
                   </div>
                 </Section>
               )}
             </div>
 
-            {/* Right: Safety Features + Sustainability */}
+            {/* Right: Safety Features + Certifications */}
             <div>
               <Section title="Safety Features">
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
@@ -562,10 +558,14 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                 </div>
               </Section>
 
-              {d.eco_design && d.eco_details && (
-                <Section title="Sustainability">
+              {certs.length > 0 && (
+                <Section title="Certifications">
                   <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
-                    <p style={{ color: T.muted, fontSize: "13px", margin: 0 }}>{d.eco_details}</p>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                      {certs.map((c) => (
+                        <Tag key={c} label={c.replace(/_/g, " ")} />
+                      ))}
+                    </div>
                   </div>
                 </Section>
               )}

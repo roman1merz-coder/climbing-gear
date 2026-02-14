@@ -3489,7 +3489,7 @@
       "Advanced boulderer. The Boostic is my go-to for overhanging gym and outdoor—the asymmetry and velcro are perfect.",
       "The midsole keeps my feet fresher than pure slippers during long sessions on roofs and pockets."
     ],
-    "image_url": null
+    "image_url": "https://scarpa.com/cdn/shop/files/70071-000-2_00_BOO_Blk-Azu.jpg?v=1770045265&width=1920"
   },
   {
     "brand": "Scarpa",
@@ -26764,5 +26764,1589 @@
       "The pressed molded sole edges better than any shoe in this price range."
     ],
     "image_url": null
+  },
+  {
+    "slug": "ocun-ozone",
+    "brand": "Ocun",
+    "model": "Ozone",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/y34pf6c3kz.04700-Ozone-1.jpg",
+    "shoe_type": "performance",
+    "closure": "velcro",
+    "rubber_type": "Vibram XS Grip 2",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "Vibram XS Grip 2",
+    "rubber_manufacturer": "Vibram",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "narrow",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "pocket"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab",
+      "overhang"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 470,
+    "size_range": "35-47",
+    "sizing": "Fits true to street size for a performance fit. 3-Force System powers toes onto micro-holds.",
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "High-performance precision shoe with patented 3-Force System for maximum power transfer. Asymmetrical last designed for narrow to regular feet, ideal for technical sport and bouldering.",
+    "pros": [
+      "Excellent power transfer via 3-Force System",
+      "Sticky Vibram rubber",
+      "Great on small edges",
+      "Lightweight construction"
+    ],
+    "cons": [
+      "Narrow fit not for everyone",
+      "Less comfort for all-day multipitch",
+      "Premium price point"
+    ],
+    "customer_voices": [
+      "The 3-Force System makes a real difference on micro-holds. Power transfer is noticeably better.",
+      "Great shoe for technical limestone. Edging is precise and rubber is sticky.",
+      "Runs narrow - if you have wide feet, go for the HV version instead."
+    ]
+  },
+  {
+    "slug": "ocun-ozone-hv",
+    "brand": "Ocun",
+    "model": "Ozone HV",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/ciwet6i05s.04701-Ozone-HV-1.jpg",
+    "shoe_type": "performance",
+    "closure": "velcro",
+    "rubber_type": "Vibram XS Grip 2",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "Vibram XS Grip 2",
+    "rubber_manufacturer": "Vibram",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "high",
+    "width": "wide",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_form": "roman",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "pocket"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab",
+      "overhang"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 480,
+    "size_range": "35-47",
+    "sizing": "High-volume variant fits wider feet and higher insteps. Street size for performance fit.",
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "High-volume variant of the Ozone for climbers with broader feet and higher insteps. Same 3-Force System and Vibram rubber, with Asymmetrix Plus last accommodating wider feet.",
+    "pros": [
+      "High performance with extra volume",
+      "Fits wider feet and high insteps",
+      "Same 3-Force System as Ozone",
+      "Vibram XS Grip 2 rubber"
+    ],
+    "cons": [
+      "Still performance-tight despite HV",
+      "Premium price point",
+      "Less precise than narrow Ozone"
+    ],
+    "customer_voices": [
+      "Finally a performance shoe that fits my wide feet. No more painful sessions.",
+      "All the performance of the Ozone but I can actually wear it comfortably.",
+      "Great option if the standard Ozone is too narrow."
+    ]
+  },
+  {
+    "slug": "ocun-bullit",
+    "brand": "Ocun",
+    "model": "Bullit",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/3qn1qelm9k.04576-BULLIT-1.jpg",
+    "shoe_type": "aggressive",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "soft",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "low",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "hook",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "granite",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof",
+      "vertical"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 440,
+    "size_range": "35-47",
+    "sizing": "Street size for snug performance fit. Soft rubber conforms quickly to foot shape.",
+    "price_uvp_eur": 140,
+    "current_price_eur": 125,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Aggressive bouldering shoe with soft midsole and 3D toe patch. Strong asymmetry and moderate downturn for powerful climbing on steep terrain and comp-style volumes.",
+    "pros": [
+      "Excellent smearing ability",
+      "Very good toe and heel hooking",
+      "Sensitive feedback on volumes",
+      "Lightweight"
+    ],
+    "cons": [
+      "Not for all-day comfort",
+      "Less edging precision than stiffer shoes",
+      "Best for shorter sessions"
+    ],
+    "customer_voices": [
+      "Smearing on volumes is incredible. Best gym bouldering shoe I've owned.",
+      "The soft rubber hooks really well but wears a bit faster.",
+      "Great for comp-style climbing with lots of volumes and slopers."
+    ]
+  },
+  {
+    "slug": "ocun-havoc",
+    "brand": "Ocun",
+    "model": "Havoc",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/xdqzug8ksr.04577-HAVOC-1.jpg",
+    "shoe_type": "allround",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "soft",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "slight",
+    "downturn": "moderate",
+    "toe_form": "roman",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "boulder",
+      "sport",
+      "gym"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang",
+      "slab"
+    ],
+    "break_in_period": "none",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 432,
+    "size_range": "35-47",
+    "sizing": "Comfortable at street size. No break-in needed - climbs great out of the box.",
+    "price_uvp_eur": 130,
+    "current_price_eur": 115,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Versatile all-around climbing shoe combining comfort with performance. Soft 2D midsole and dual Velcro provide comfort for extended sessions while maintaining precision.",
+    "pros": [
+      "Excellent comfort for all-day use",
+      "Versatile across disciplines",
+      "No break-in period needed",
+      "Good value for money"
+    ],
+    "cons": [
+      "Less aggressive than dedicated bouldering shoes",
+      "Soft sole wears faster outdoors",
+      "Limited edging on micro-holds"
+    ],
+    "customer_voices": [
+      "Best gym shoe I've owned. Comfortable enough for long sessions, precise enough for 7a+.",
+      "Great all-rounder that doesn't sacrifice too much comfort for performance.",
+      "No break-in needed. Felt great from the first session."
+    ]
+  },
+  {
+    "slug": "ocun-fury",
+    "brand": "Ocun",
+    "model": "Fury",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/y6fxgzfqz9.04332-FURY-1.jpg",
+    "shoe_type": "competition",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "soft",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "low",
+    "width": "narrow",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "low",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "boulder",
+      "competition"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "best_foothold_types": [
+      "hook",
+      "smear",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "break_in_period": "medium",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "low",
+      "moderate"
+    ],
+    "weight_g": 420,
+    "size_range": "34-47",
+    "sizing": "Size down 1-1.5 sizes for competition fit. Very aggressive downturn.",
+    "price_uvp_eur": 160,
+    "current_price_eur": 145,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Ultimate competition bouldering shoe with aggressive downturn. 3-Force System and fully rubberized toe/heel for extreme technical movements on steep terrain.",
+    "pros": [
+      "Maximum power on overhangs",
+      "Excellent hooking ability",
+      "Lightweight comp shoe",
+      "3-Force System for precision"
+    ],
+    "cons": [
+      "Very snug uncomfortable fit",
+      "Not for all-day wear",
+      "Steep learning curve",
+      "Soft rubber wears quickly"
+    ],
+    "customer_voices": [
+      "Beast of a comp shoe. Hooks like nothing else on steep problems.",
+      "The downturn is aggressive but effective. Not for long sessions.",
+      "Used it for finals and it delivered. Maximum toe power on tiny holds."
+    ]
+  },
+  {
+    "slug": "ocun-sigma",
+    "brand": "Ocun",
+    "model": "Sigma",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/x2zyldzb2g.05337-Sigma-1.jpg",
+    "shoe_type": "performance",
+    "closure": "lace",
+    "rubber_type": "Vibram XS Edge",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "Vibram XS Edge",
+    "rubber_manufacturer": "Vibram",
+    "rubber_hardness": [
+      "medium",
+      "hard"
+    ],
+    "feel": "stiff",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "tensioned",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "trad",
+      "multipitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "crack"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "high"
+    ],
+    "weight_g": 500,
+    "size_range": "35-47",
+    "sizing": "Street size for precision lace-up fit. Stiff midsole excels on small edges.",
+    "price_uvp_eur": 170,
+    "current_price_eur": 150,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Competition-grade sport climbing shoe with stiff midsole and precision lacing. Vibram XS Edge rubber excels on tiny limestone edges. Built for sending routes.",
+    "pros": [
+      "Excellent edging performance",
+      "Precise lacing control",
+      "Vibram XS Edge rubber",
+      "Very durable"
+    ],
+    "cons": [
+      "Heavier than competitors",
+      "Less sensitive for smearing",
+      "Stiff for bouldering",
+      "Premium price"
+    ],
+    "customer_voices": [
+      "The best edging shoe I've ever worn. Tiny holds feel secure.",
+      "Lacing gives perfect fit. Great for long sport routes.",
+      "Stiff enough for sustained vertical climbing. Not ideal for roof."
+    ]
+  },
+  {
+    "slug": "ocun-jett-qc",
+    "brand": "Ocun",
+    "model": "Jett QC",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/t0xgdja5c5.05442-Jett-QC-1.jpg",
+    "shoe_type": "allround",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "multipitch",
+      "gym"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "crack"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab",
+      "overhang"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 496,
+    "size_range": "35-47",
+    "sizing": "Street size for a balanced performance fit. Works for Egyptian, Greek, and Roman foot shapes.",
+    "price_uvp_eur": 110,
+    "current_price_eur": 99,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Versatile all-round shoe with dual Velcro for quick adjustment. Stiff midsole provides edging support while remaining comfortable for longer sessions. Accommodates multiple foot shapes.",
+    "pros": [
+      "Versatile all-around performance",
+      "Quick closure system",
+      "Good edging at a fair price",
+      "Fits multiple foot shapes"
+    ],
+    "cons": [
+      "Less sensitive than softer models",
+      "Heavier than slipper designs",
+      "Not for high-end performance"
+    ],
+    "customer_voices": [
+      "Great all-round shoe. Handles sport routes and gym sessions equally well.",
+      "Quick closure makes transitions easy during multi-discipline sessions.",
+      "Solid edging for the price. Good upgrade from beginner shoes."
+    ]
+  },
+  {
+    "slug": "ocun-jett-lu",
+    "brand": "Ocun",
+    "model": "Jett LU",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/4xw2uogb7u.05443-Jett-LU-1.jpg",
+    "shoe_type": "allround",
+    "closure": "lace",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "multipitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "crack"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 486,
+    "size_range": "35-47",
+    "sizing": "Street size for precise lace-up fit. Smart lacing cover protects laces during crack climbing.",
+    "price_uvp_eur": 110,
+    "current_price_eur": 99,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "All-around climbing shoe with lace-to-toe closure for precise fit customization. Smart lacing cover protects laces during crack climbing. Ideal for multipitch and trad.",
+    "pros": [
+      "Precise lacing control",
+      "Good all-day comfort",
+      "Protected laces for cracks",
+      "Versatile performance"
+    ],
+    "cons": [
+      "Lacing takes time for quick changes",
+      "Heavier than velcro models",
+      "Not aggressive enough for steep bouldering"
+    ],
+    "customer_voices": [
+      "Perfect multipitch shoe. Comfortable enough for long routes, precise enough for crux moves.",
+      "The lace cover is genius for crack climbing. No more shredded laces.",
+      "Best value all-round shoe from Ocun."
+    ]
+  },
+  {
+    "slug": "ocun-jett-crack",
+    "brand": "Ocun",
+    "model": "Jett Crack",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/j8fv6g4lk4.04578-JETT-CRACK-1.jpg",
+    "shoe_type": "performance",
+    "closure": "lace",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.5,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "stiff",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_form": "roman",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "full",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "trad",
+      "crack",
+      "multipitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "crack",
+      "edge",
+      "smear"
+    ],
+    "best_rock_types": [
+      "granite",
+      "sandstone",
+      "gritstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab"
+    ],
+    "break_in_period": "medium",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "high",
+      "very_high"
+    ],
+    "weight_g": 542,
+    "size_range": "35-47",
+    "sizing": "Street size for comfortable crack climbing. Extra reinforcement around toes and heel.",
+    "price_uvp_eur": 120,
+    "current_price_eur": 110,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "padded",
+    "description": "Specialized crack climbing shoe with protected lacing, extra reinforcement, and thicker 4.5mm rubber. Built to withstand the abuse of jamming while maintaining reliable edging.",
+    "pros": [
+      "Purpose-built for crack climbing",
+      "Extra durable construction",
+      "Protected lacing system",
+      "Padded ankle for comfort in jams"
+    ],
+    "cons": [
+      "Heaviest in the Jett line",
+      "Not ideal for precision face climbing",
+      "Overkill for gym use"
+    ],
+    "customer_voices": [
+      "The best crack shoe at this price point. Survived a season of Indian Creek.",
+      "Ankle padding makes a real difference in off-widths. No more bloody ankles.",
+      "Heavy but indestructible. Perfect for trad adventures."
+    ]
+  },
+  {
+    "slug": "ocun-striker-qc",
+    "brand": "Ocun",
+    "model": "Striker QC",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/aehlywby73.04835-STRIKER-QC-Rose-Mesa-1.jpg",
+    "shoe_type": "beginner",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.1",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.1",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "gym",
+      "beginner",
+      "indoor"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "break_in_period": "none",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 418,
+    "size_range": "34-48",
+    "sizing": "True to street size for comfortable all-day fit. Flat profile suits all foot shapes.",
+    "price_uvp_eur": 85,
+    "current_price_eur": 75,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": false,
+    "ankle_protection": "none",
+    "description": "Beginner-friendly climbing shoe with flat profile and comfortable Entratic last. Quick Velcro closure and mild asymmetry for all-day comfort without sacrificing basic performance.",
+    "pros": [
+      "Very comfortable for beginners",
+      "Easy on/off with velcro",
+      "Works for all foot shapes",
+      "Great budget option"
+    ],
+    "cons": [
+      "Limited performance at higher grades",
+      "Softer rubber wears faster",
+      "Not suitable for advanced climbing"
+    ],
+    "customer_voices": [
+      "Perfect first climbing shoe. Comfortable enough to wear all day at the gym.",
+      "Great value for the price. My girlfriend loves them for indoor climbing.",
+      "Easy to use velcro and comfortable flat shape. Ideal for beginners."
+    ]
+  },
+  {
+    "slug": "ocun-striker-lu",
+    "brand": "Ocun",
+    "model": "Striker LU",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/xix87r9etx.04836-STRIKER-LU-Green-Malachite-1.jpg",
+    "shoe_type": "beginner",
+    "closure": "lace",
+    "rubber_type": "CAT 1.1",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.1",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "gym",
+      "beginner",
+      "indoor"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "break_in_period": "none",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 409,
+    "size_range": "35-47",
+    "sizing": "True to street size. Full-length lacing allows precise fit adjustment.",
+    "price_uvp_eur": 90,
+    "current_price_eur": 80,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": false,
+    "ankle_protection": "none",
+    "description": "Beginner shoe with full-length lacing for precise fit customization. Flat profile and padded tongue provide all-day comfort for gym and beginner outdoor climbing.",
+    "pros": [
+      "Precise lacing control",
+      "Very comfortable",
+      "Best budget option from Ocun",
+      "Padded tongue"
+    ],
+    "cons": [
+      "Limited performance",
+      "Softer rubber wears faster",
+      "Lacing slower than velcro"
+    ],
+    "customer_voices": [
+      "Best budget climbing shoe. The lacing lets me get a perfect fit.",
+      "Great for gym climbing classes. Comfortable and easy to adjust.",
+      "Good starter shoe. Lasted me a full season of indoor climbing."
+    ]
+  },
+  {
+    "slug": "ocun-advancer-qc",
+    "brand": "Ocun",
+    "model": "Advancer QC",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/3ghb7zwast.04833-ADVANCER-QC-1.jpg",
+    "shoe_type": "allround",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "gym",
+      "indoor"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "pocket"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab",
+      "overhang"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 438,
+    "size_range": "35-47",
+    "sizing": "Street size for balanced performance and comfort. Ideal upgrade from beginner shoes.",
+    "price_uvp_eur": 105,
+    "current_price_eur": 95,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Intermediate all-round shoe with quick closure. Stiff midsole and asymmetrical shape provide power and precision. Perfect upgrade from beginner shoes.",
+    "pros": [
+      "Good performance upgrade path",
+      "Quick velcro closure",
+      "Balanced comfort and performance",
+      "Great value"
+    ],
+    "cons": [
+      "Stiff initially",
+      "Not for maximum performance",
+      "Average sensitivity"
+    ],
+    "customer_voices": [
+      "Perfect upgrade from my Strikers. Noticeably better edging.",
+      "Good all-rounder for the gym. Quick to get on between problems.",
+      "Balanced shoe that does everything well without excelling at one thing."
+    ]
+  },
+  {
+    "slug": "ocun-advancer-lu",
+    "brand": "Ocun",
+    "model": "Advancer LU",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/jm06qiofk7.04834-ADVANCER-LU-1.jpg",
+    "shoe_type": "allround",
+    "closure": "lace",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "sport",
+      "gym",
+      "indoor"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "pocket"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "slab",
+      "overhang"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 420,
+    "size_range": "35-47",
+    "sizing": "Street size. Lacing provides precise zone-specific tightening for a custom fit.",
+    "price_uvp_eur": 100,
+    "current_price_eur": 89,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Lace-closure variant of the Advancer with zone-specific tightening. Stiff midsole and asymmetrical shape for intermediate climbers seeking precise all-round performance.",
+    "pros": [
+      "Precise lacing control",
+      "Good performance upgrade",
+      "Lighter than QC variant",
+      "Good value"
+    ],
+    "cons": [
+      "Lacing takes time",
+      "Stiff initially",
+      "Not for maximum performance"
+    ],
+    "customer_voices": [
+      "Prefer the lacing over the QC version for the extra precision on edges.",
+      "Great intermediate shoe at a good price. Holds up well.",
+      "Good for sport climbing when you want precision lacing."
+    ]
+  },
+  {
+    "slug": "ocun-iris",
+    "brand": "Ocun",
+    "model": "Iris",
+    "gender": "women",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/coyn0qvmab.05338-Iris-1.jpg",
+    "shoe_type": "performance",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "soft",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "low",
+    "width": "narrow",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "low",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "boulder",
+      "sport",
+      "gym"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "hook",
+      "edge"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "vertical",
+      "roof"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 400,
+    "size_range": "32-42",
+    "sizing": "Street size. Slimtix last designed for narrow feet and low arches.",
+    "price_uvp_eur": 130,
+    "current_price_eur": 115,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Specialized slim-fit shoe for climbers with narrow feet. Low-volume Slimtix last with sensitive midsole for precision footwork. Excellent for bouldering and gym climbing.",
+    "pros": [
+      "Perfect for narrow feet",
+      "Very lightweight",
+      "High sensitivity",
+      "Great hooking ability"
+    ],
+    "cons": [
+      "Too tight for wider feet",
+      "Limited size range up to EU 42",
+      "Not for all foot shapes"
+    ],
+    "customer_voices": [
+      "Finally a shoe that fits my narrow feet perfectly. No dead space.",
+      "Lightweight and sensitive. Great for technical bouldering.",
+      "If you have narrow feet, this is the one. Nothing else comes close."
+    ]
+  },
+  {
+    "slug": "ocun-diamond-s",
+    "brand": "Ocun",
+    "model": "Diamond S",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/myqyrt7ls6.05440-Diamond-S-01.jpg",
+    "shoe_type": "performance",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "sport",
+      "boulder",
+      "gym"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "hook"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "weight_g": 450,
+    "size_range": "34-47",
+    "sizing": "Street size for performance fit. Strong asymmetry for power on small holds.",
+    "price_uvp_eur": 140,
+    "current_price_eur": 125,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "High-performance shoe with large 3D toe patch and Excentric 2.0 asymmetric last. Lateral and transverse rubber straps provide torsional stability for precision on technical terrain.",
+    "pros": [
+      "Excellent all-around performance",
+      "Very good edging and smearing",
+      "Durable 3D toe patch",
+      "Good torsional stability"
+    ],
+    "cons": [
+      "Strong asymmetry not for everyone",
+      "Premium price",
+      "Needs sizing attention"
+    ],
+    "customer_voices": [
+      "The 3D toe patch gives incredible precision. Best shoe I've tried from Ocun.",
+      "Great for sport climbing. Edges well and smears surprisingly well too.",
+      "The Excentric last fits my foot perfectly. Torsional stability is noticeable."
+    ]
+  },
+  {
+    "slug": "ocun-pearl-lu",
+    "brand": "Ocun",
+    "model": "Pearl LU",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/liwqu3q7i7.04832-PEARL-ANNIVERSARY-1.jpg",
+    "shoe_type": "performance",
+    "closure": "lace",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "soft",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "low",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "hook",
+      "edge"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "indoor",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof",
+      "vertical"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 430,
+    "size_range": "35-47",
+    "sizing": "Street size for aggressive fit. Aggressive downturn suited for steep terrain.",
+    "price_uvp_eur": 120,
+    "current_price_eur": 110,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Aggressive sport climbing shoe with radical last for steep terrain. Fast lacing system and padded tongue provide comfort despite the aggressive downturn. Great for overhanging routes.",
+    "pros": [
+      "Excellent on steep terrain",
+      "Very sensitive feedback",
+      "Aggressive downturn for overhangs",
+      "Fast lacing system"
+    ],
+    "cons": [
+      "Not for beginners",
+      "Limited comfort for long routes",
+      "Aggressive shape limits versatility"
+    ],
+    "customer_voices": [
+      "Handles steep limestone beautifully. The downturn pulls you into the rock.",
+      "Fast lacing is great for quick transitions. Very sensitive on small holds.",
+      "Impressive performance shoe at a reasonable price from Ocun."
+    ]
+  },
+  {
+    "slug": "ocun-oxi-qc",
+    "brand": "Ocun",
+    "model": "Oxi QC",
+    "gender": "unisex",
+    "image_url": null,
+    "shoe_type": "performance",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 4.0,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "feel": "medium",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "medium",
+    "width": "medium",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_form": "egyptian",
+    "toe_patch": "full",
+    "heel": "medium",
+    "heel_rubber_coverage": "full",
+    "rand": "tensioned",
+    "sensitivity": "high",
+    "use_cases": [
+      "sport",
+      "boulder",
+      "competition"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "best_foothold_types": [
+      "hook",
+      "edge",
+      "smear"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "vertical",
+      "roof"
+    ],
+    "break_in_period": "short",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 420,
+    "size_range": "35-47",
+    "sizing": "Street size for performance fit. Slingshot rand maximizes hooking power.",
+    "price_uvp_eur": 135,
+    "current_price_eur": 120,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": true,
+    "ankle_protection": "none",
+    "description": "Versatile performance shoe with highly rubberized toe-box and slingshot rand for powerful hooking. Dual Velcro and two-piece tongue for quick adjustment and secure fit.",
+    "pros": [
+      "Excellent heel and toe hooking",
+      "Versatile performance",
+      "Quick velcro closure",
+      "Durable rubber coverage"
+    ],
+    "cons": [
+      "Not ideal for all-day comfort",
+      "Limited comfort on long routes",
+      "Oxi line being phased out"
+    ],
+    "customer_voices": [
+      "The slingshot rand makes heel hooks feel bombproof.",
+      "Great competition shoe with excellent hooking.",
+      "Versatile enough for sport climbing and bouldering."
+    ]
+  },
+  {
+    "slug": "ocun-rental-qc",
+    "brand": "Ocun",
+    "model": "Rental QC",
+    "gender": "unisex",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/m3w5l5tiuz.05339-Rental-shoes-1.jpg",
+    "shoe_type": "beginner",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.1",
+    "rubber_thickness_mm": 6.0,
+    "rubber_compound": "CAT 1.1",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "hard"
+    ],
+    "feel": "stiff",
+    "midsole": "full",
+    "upper_material": "microfiber",
+    "volume": "high",
+    "width": "wide",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_form": "roman",
+    "toe_patch": "full",
+    "heel": "high",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "low",
+    "use_cases": [
+      "gym",
+      "beginner",
+      "rental"
+    ],
+    "skill_level": [
+      "beginner"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "break_in_period": "none",
+    "stretch_expectation": "none",
+    "durability": [
+      "very_high"
+    ],
+    "weight_g": 464,
+    "size_range": "34-49",
+    "sizing": "True to street size. Wide sizing range for rental programs. Size marking on heel loop.",
+    "price_uvp_eur": 65,
+    "current_price_eur": 55,
+    "vegan": true,
+    "kids_friendly": false,
+    "resoleable": false,
+    "ankle_protection": "none",
+    "description": "Specialized rental shoe with extra durability and comfort. 6mm toe rubber and reinforced construction built for gym rental programs. Fits all foot shapes with Entratic last.",
+    "pros": [
+      "Extremely durable for rental use",
+      "Comfortable for beginners",
+      "Widest size range",
+      "Clear size marking"
+    ],
+    "cons": [
+      "Not for personal performance use",
+      "Heavy construction",
+      "Very limited sensitivity"
+    ],
+    "customer_voices": [
+      "We use these at our gym. They last 3x longer than other rental shoes.",
+      "Perfect for rental programs. Easy to size and very durable.",
+      "Good introductory shoe. Comfortable enough that new climbers aren't put off."
+    ]
+  },
+  {
+    "slug": "ocun-ribbit",
+    "brand": "Ocun",
+    "model": "Ribbit",
+    "gender": "kids",
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/a5qontytjq.04731-Ribbit-Blue-1.jpg",
+    "shoe_type": "beginner",
+    "closure": "velcro",
+    "rubber_type": "CAT 1.5",
+    "rubber_thickness_mm": 3.3,
+    "rubber_compound": "CAT 1.5",
+    "rubber_manufacturer": "Ocun",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "feel": "soft",
+    "midsole": "partial",
+    "upper_material": "microfiber",
+    "volume": "low",
+    "width": "narrow",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_form": "roman",
+    "toe_patch": "partial",
+    "heel": "medium",
+    "heel_rubber_coverage": "partial",
+    "rand": "standard",
+    "sensitivity": "medium",
+    "use_cases": [
+      "gym",
+      "beginner",
+      "indoor"
+    ],
+    "skill_level": [
+      "beginner"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge",
+      "volume"
+    ],
+    "best_rock_types": [
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "break_in_period": "none",
+    "stretch_expectation": "minimal",
+    "durability": [
+      "moderate"
+    ],
+    "weight_g": 170,
+    "size_range": "24-35",
+    "sizing": "True to children's street size. Orthopedic design supports natural foot development.",
+    "price_uvp_eur": 65,
+    "current_price_eur": 55,
+    "vegan": true,
+    "kids_friendly": true,
+    "resoleable": false,
+    "ankle_protection": "none",
+    "description": "Children's climbing shoe with orthopedic design supporting natural foot development. Frog-shaped Velcro encourages independence. Ultra-lightweight at 170g per shoe.",
+    "pros": [
+      "Perfect for children",
+      "Orthopedic design",
+      "Very lightweight (170g)",
+      "Fun frog design"
+    ],
+    "cons": [
+      "Only for children sizes EU 24-35",
+      "Limited performance",
+      "Outgrown quickly"
+    ],
+    "customer_voices": [
+      "My daughter loves the frog design and can put them on herself.",
+      "Great kids shoe. Light enough that they don't complain about weight.",
+      "Good quality for a children's shoe. Holds up to weekly gym sessions."
+    ]
   }
 ]

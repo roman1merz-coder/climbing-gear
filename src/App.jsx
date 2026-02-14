@@ -963,14 +963,16 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       {/* Sub-header: search + filters */}
       <header
         style={{
-          padding: isMobile ? "8px 16px" : "10px 32px",
+          padding: isMobile ? "8px 12px" : "0 24px",
+          minHeight: isMobile ? undefined : "50px",
           borderBottom: "1px solid #1e2028",
           display: "flex",
           alignItems: "center",
           gap: isMobile ? "8px" : "16px",
+          flexWrap: isMobile ? "wrap" : "nowrap",
           position: "sticky",
           top: isMobile ? "44px" : "50px",
-          background: "rgba(19,21,26,.92)",
+          background: "rgba(14,16,21,.92)",
           backdropFilter: "blur(12px)",
           zIndex: 100,
         }}
@@ -979,54 +981,50 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           <button
             onClick={() => setShowMobileFilters(true)}
             style={{
-              padding: "6px 14px", borderRadius: "20px",
-              border: `1.5px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
-              background: ac > 0 ? "rgba(232,115,74,0.15)" : "transparent",
-              color: ac > 0 ? "#E8734A" : "#9ca3af",
-              fontSize: "12px", fontWeight: 600, cursor: "pointer",
-              fontFamily: "'DM Sans',sans-serif", display: "flex", alignItems: "center", gap: "4px",
-              flexShrink: 0,
+              padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 500,
+              color: ac > 0 ? "#E8734A" : "#6b7280",
+              cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
+              background: ac > 0 ? "rgba(232,115,74,0.1)" : "transparent",
+              fontFamily: "'DM Sans',sans-serif",
             }}
           >
-            Filters{ac > 0 ? ` (${ac})` : ""}
+            ☰ Filters{ac > 0 ? ` (${ac})` : ""}
           </button>
         )}
-        <div style={{ position: "relative", maxWidth: isMobile ? undefined : "320px", flex: 1 }}>
-          <span
-            style={{
-              position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)",
-              fontSize: "14px", color: "#6b7280", pointerEvents: "none",
-            }}
-          >
-            🔍
-          </span>
+        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
+          <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search brand, model, style..."
+            placeholder="Search shoes…"
             style={{
-              width: "100%", padding: "8px 12px 8px 36px", borderRadius: "12px",
-              border: "1.5px solid #2a2f38", background: "#1c1f26", color: "#f0f0f0",
-              fontSize: "13px", fontFamily: "'DM Sans',sans-serif", outline: "none",
-              transition: "border-color .2s",
+              width: "100%", padding: "8px 16px 8px 36px",
+              borderRadius: "8px", border: "1px solid #1e2028",
+              background: "#151820", color: "#f0f0f0",
+              fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
             }}
-            onFocus={(e) => (e.target.style.borderColor = "#E8734A")}
-            onBlur={(e) => (e.target.style.borderColor = "#2a2f38")}
           />
-          {query && (
-            <button
-              onClick={() => setQuery("")}
-              style={{
-                position: "absolute", right: "10px", top: "50%", transform: "translateY(-50%)",
-                background: "none", border: "none", color: "#6b7280", cursor: "pointer",
-                fontSize: "14px", padding: 0, lineHeight: 1,
-              }}
-            >
-              ×
-            </button>
-          )}
         </div>
+        {/* View toggle */}
+        <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+          {[
+            { key: "cards", icon: "▦", label: "Cards" },
+            { key: "chart", icon: "⊙", label: "Chart" },
+          ].map(v => (
+            <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+              padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
+              background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+              color: view === v.key ? "#E8734A" : "#6b7280",
+              fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+              display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <span style={{ fontSize: "13px" }}>{v.icon}</span>
+              {!isMobile && v.label}
+            </button>
+          ))}
+        </div>
+
         <span style={{ fontSize: isMobile ? "11px" : "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
           {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
           {!isMobile && ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
@@ -1402,30 +1400,12 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
           )}
 
-          {/* Sort controls + count row + view toggle */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
-            <span style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
-              {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}{ac > 0 ? ` · ${ac} filter${ac > 1 ? "s" : ""}` : ""}
-            </span>
-            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              {/* View toggle */}
-              <div style={{ display: "flex", gap: "2px", background: "#161920", borderRadius: "6px", padding: "2px" }}>
-                {[
-                  { key: "cards", icon: "▦", label: "Cards" },
-                  { key: "chart", icon: "⊙", label: "Chart" },
-                ].map(v => (
-                  <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
-                    padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
-                    background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
-                    color: view === v.key ? "#E8734A" : "#6b7280",
-                    fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
-                    display: "flex", alignItems: "center", gap: "4px",
-                  }}>{v.icon} {!isMobile && v.label}</button>
-                ))}
-              </div>
-              {view === "cards" && <SortDropdown value={sortKey} onChange={setSortKey} />}
-            </div>
+          {/* Sort controls */}
+          {view === "cards" && (
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+            <SortDropdown value={sortKey} onChange={setSortKey} />
           </div>
+          )}
 
           {view === "chart" ? (
             <ShoeScatterChart shoes={shoes} isMobile={isMobile} />
