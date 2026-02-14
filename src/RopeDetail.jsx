@@ -269,30 +269,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 />
               </div>
 
-              {/* Length Selector */}
-              <div>
-                <div style={{ fontSize: "11px", color: T.muted, letterSpacing: "1px", textTransform: "uppercase", fontWeight: 600, marginBottom: "10px" }}>
-                  Length
-                </div>
-                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                  {ensureArray(rope.available_lengths_m).map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => setSelectedLength(selectedLength === l ? null : l)}
-                      style={{
-                        padding: "6px 14px", borderRadius: "8px",
-                        fontSize: "13px", fontFamily: T.mono, fontWeight: 600,
-                        background: selectedLength === l ? T.accentSoft : "transparent",
-                        color: selectedLength === l ? T.accent : T.text,
-                        border: selectedLength === l ? `1.5px solid ${T.accent}` : `1px solid ${T.border}`,
-                        cursor: "pointer", transition: "all .15s",
-                      }}
-                    >
-                      {l}m
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* Length selector removed — coming back when price-per-length is implemented */}
             </div>
           </div>
         </div>
@@ -433,12 +410,21 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               const factors = [];
 
               // Factor 1: Price vs UVP
-              const ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
-              factors.push({
-                icon: ps >= 0.5 ? "🟢" : ps >= 0 ? "🟡" : "🔴",
-                name: "Price vs UVP",
-                detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${rope.price_uvp_per_meter_eur?.toFixed(2)}/m)` : "At or near full UVP"
-              });
+              const hasPrices = rope.price_per_meter_eur_min && rope.price_uvp_per_meter_eur;
+              if (hasPrices) {
+                const ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
+                factors.push({
+                  icon: ps >= 0.5 ? "🟢" : ps >= 0 ? "🟡" : "🔴",
+                  name: "Price vs UVP",
+                  detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${rope.price_uvp_per_meter_eur?.toFixed(2)}/m)` : "At or near full UVP"
+                });
+              } else {
+                factors.push({
+                  icon: "⏳",
+                  name: "Price vs UVP",
+                  detail: "Coming soon — price data collection in progress"
+                });
+              }
 
               // Factor 2: Model Lifecycle
               const currentYear = new Date().getFullYear();
@@ -503,6 +489,10 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 {!isDynamic && rope.working_elongation_pct && <StatRow label="Working Elongation" value={rope.working_elongation_pct} unit="%" />}
               </Section>
 
+            </div>
+
+            {/* Right column */}
+            <div>
               <Section title="Treatment & Technology">
                 <StatRow label="Dry Treatment" value={rope.dry_treatment_name || fmt(rope.dry_treatment)} />
                 <StatRow label="UIAA Water Repellent" value={rope.uiaa_water_repellent ? "Yes" : "No"} />
@@ -511,10 +501,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 <StatRow label="Aramid Protection" value={rope.aramid_protection ? "Yes" : "No"} />
                 <StatRow label="Middle Mark" value={fmt(rope.middle_mark)} />
               </Section>
-            </div>
 
-            {/* Right column */}
-            <div>
               <Section title="Sustainability">
                 <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
                   {rope.bluesign && <Tag variant="green">Bluesign</Tag>}
