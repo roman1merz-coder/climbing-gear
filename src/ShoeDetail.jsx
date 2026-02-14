@@ -666,13 +666,19 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
   // Factor 2: Stock availability (20%)
   const inStockCount = prices.filter(p => p.inStock).length;
   const totalRetailers = prices.length;
-  if (totalRetailers > 0) {
+  const hasRealRetailer = prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
+  if (totalRetailers > 0 && hasRealRetailer) {
     let ss = inStockCount <= 1 ? 0.8 : inStockCount <= 3 ? 0.3 : -0.2;
     factors.push({ name: "Stock Availability", score: ss, weight: 0.20,
       detail: `In stock at ${inStockCount} of ${totalRetailers} retailers`,
       icon: inStockCount <= 2 ? "\uD83D\uDD34" : inStockCount <= 4 ? "\uD83D\uDFE1" : "\uD83D\uDFE2",
     });
     totalScore += ss * 0.20; totalWeight += 0.20;
+  } else {
+    factors.push({ name: "Stock Availability", score: 0, weight: 0.20,
+      detail: "Coming soon \u2014 retailer stock tracking in progress",
+      icon: "\u23F3",
+    });
   }
 
   // Factor 3: Expected Price Development (15%)
@@ -976,7 +982,6 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: "12px", fontWeight: 700, color: T.text }}>{f.name}</div>
                     </div>
-                    <span style={{ fontSize: "10px", color: T.muted, fontFamily: T.mono }}>{Math.round(f.weight * 100)}%</span>
                   </div>
                   <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.5 }}>{f.detail}</div>
                 </div>
