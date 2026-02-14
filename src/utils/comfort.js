@@ -71,7 +71,7 @@ export function computeEdging(shoe) {
   const mid = MID_MAP[shoe.midsole] || 0.5;
   const cl = shoe.closure || "";
 
-  const compoundStiff = feelStiff * 0.45 + hardR * 0.30 + thickR * 0.15 + mid * 0.10;
+  const compoundStiff = feelStiff * 0.50 + hardR * 0.35 + mid * 0.15;
   const edgeDown = ({ flat: 0.15, moderate: 0.70, aggressive: 0.85 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.55, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
