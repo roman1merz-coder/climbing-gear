@@ -30,12 +30,26 @@ const RAND_MAP = { tensioned: 0.85, standard: 0.55, split: 0.35, relaxed: 0.15 }
 const STIFF_CLOSURE_MAP = { lace: 0.80, velcro: 0.50, slipper: 0.25 };
 const UPPER_MAP = { synthetic: 0.70, microfiber: 0.60, microsuede: 0.45, leather: 0.30 };
 
+/** Parse detailed upper_material description to base category for scoring */
+function upperCategory(mat) {
+  if (!mat) return null;
+  const m = mat.toLowerCase();
+  // Check simple exact matches first
+  if (UPPER_MAP[m] !== undefined) return m;
+  // Detailed descriptions: primary material determines stiffness
+  if (m.includes("leather")) return "leather";
+  if (m.includes("microsuede")) return "microsuede";
+  if (m.includes("microfiber") || m.includes("lorica") || m.includes("washtex")) return "microfiber";
+  if (m.includes("synthetic")) return "synthetic";
+  return null;
+}
+
 export function computeStiffness(shoe) {
   const mid = MID_MAP[shoe.midsole] || 0.5;
   const rand = RAND_MAP[shoe.rand] || 0.5;
   const thick = rubberThick(shoe);
   const cl = STIFF_CLOSURE_MAP[shoe.closure] || 0.5;
-  const upper = UPPER_MAP[shoe.upper_material] || 0.5;
+  const upper = UPPER_MAP[upperCategory(shoe.upper_material)] || 0.5;
   return mid * 0.40 + rand * 0.25 + thick * 0.15 + cl * 0.10 + upper * 0.10;
 }
 
@@ -150,7 +164,7 @@ export function getComfortScore(shoe) {
   const softComf = ({ soft: 0.95, "moderate-soft": 0.75, moderate: 0.50, "stiff-moderate": 0.25, stiff: 0.05 })[shoe.feel] || 0.5;
   const gentleDown = ({ flat: 1.0, moderate: 0.55, aggressive: 0.0 })[shoe.downturn] || 0.55;
   const gentleAsym = ({ none: 1.0, slight: 0.55, strong: 0.0 })[shoe.asymmetry] || 0.55;
-  const comfMat = ({ leather: 0.90, microfiber: 0.50, synthetic: 0.20 })[shoe.upper_material] || 0.50;
+  const comfMat = ({ leather: 0.90, microfiber: 0.50, microsuede: 0.60, synthetic: 0.20 })[upperCategory(shoe.upper_material)] || 0.50;
   const cl = shoe.closure || "";
   const comfCl = ({ lace: 0.85, velcro: 0.70, slipper: 0.30 })[cl] || 0.55;
   const mid = MID_MAP[shoe.midsole] || 0.5;

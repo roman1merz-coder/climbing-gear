@@ -65,6 +65,17 @@ function sSet(uvs, svs) {
   return uvs.filter((u) => v.includes(u)).length / uvs.length;
 }
 
+/** Map detailed upper_material descriptions to base category for filtering */
+function upperBase(mat) {
+  if (!mat) return mat;
+  const m = mat.toLowerCase();
+  if (m === "leather" || m === "microfiber" || m === "synthetic" || m === "microsuede") return m;
+  if (m.includes("leather")) return "leather";
+  if (m.includes("microsuede")) return "microsuede";
+  if (m.includes("microfiber") || m.includes("lorica") || m.includes("washtex")) return "microfiber";
+  return "synthetic";
+}
+
 function sRng(mn, mx, v) {
   if (v == null) return 0;
   if (v >= mn && v <= mx) return 1;
@@ -101,7 +112,7 @@ function score(shoes, filters) {
         } else if (ORD[k] && typeof val === "string") {
           s = sOrd(val, shoe[k], ORD[k]);
         } else if (Array.isArray(val) && val.length) {
-          s = sSet(val, shoe[k]);
+          s = sSet(val, k === "upper_material" ? upperBase(shoe[k]) : shoe[k]);
         } else if (typeof val === "object" && !Array.isArray(val)) {
           s = sRng(val.min ?? 0, val.max ?? Infinity, shoe[k]);
         } else if (typeof val === "boolean") {
