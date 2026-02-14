@@ -161,7 +161,7 @@ function Tag({ label, variant = "default" }) {
 
 // ═══ MAIN DETAIL ═══
 
-export default function BelayDetail({ belays = [] }) {
+export default function BelayDetail({ belays = [], priceData = {} }) {
   const { slug } = useParams();
   const d = belays.find((b) => b.slug === slug);
   const isMobile = useIsMobile();
@@ -329,6 +329,41 @@ export default function BelayDetail({ belays = [] }) {
                 })()}
               </div>
             </div>
+
+            {/* Retailer Links */}
+            {(() => {
+              const prices = priceData[d.slug] || [];
+              if (!prices.length) return null;
+              const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
+              return (
+                <div style={{ background: "#14171c", borderRadius: "12px", border: "1px solid #23272f", overflow: "hidden", marginBottom: "16px" }}>
+                  <div style={{ padding: "14px 20px", borderBottom: "1px solid #23272f", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ fontSize: "11px", fontWeight: 700, color: "#9ca3af", letterSpacing: "1px", textTransform: "uppercase" }}>Where to Buy</div>
+                  </div>
+                  {prices.map((p, i) => (
+                    <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+                      display: "grid", gridTemplateColumns: "1fr auto auto",
+                      alignItems: "center", padding: "12px 20px", gap: "12px",
+                      borderBottom: i < prices.length - 1 ? "1px solid #23272f" : "none",
+                      background: p.price === best && p.inStock ? "rgba(232,115,74,0.12)" : "transparent",
+                      textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+                      transition: "background .15s",
+                    }}>
+                      <div style={{ minWidth: 0 }}>
+                        <span style={{ fontSize: "13px", fontWeight: 600, color: "#f0f0f0", display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+                        {p.delivery && <span style={{ fontSize: "10px", color: "#9ca3af", display: "block" }}>{p.delivery}</span>}
+                      </div>
+                      <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? "#E8734A" : "#f0f0f0", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
+                        {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
+                      </span>
+                      {p.url && p.url !== "#" && (
+                        <span style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600 }}>{"\u2192"} Shop</span>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              );
+            })()}
 
             {/* Price Alert */}
             <PriceAlertForm gearType="belay" slug={d.slug} currentPrice={price} isMobile={isMobile} />

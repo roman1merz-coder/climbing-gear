@@ -317,13 +317,13 @@ function Root() {
               <Route path="/compare-pads" element={<CompareGeneric items={crashpads} type="crashpads" />} />
               {/* Rope routes */}
               <Route path="/ropes" element={<RopeApp ropes={ropes} src={ropeSrc} />} />
-              <Route path="/rope/:slug" element={<RopeDetail ropes={ropes} />} />
+              <Route path="/rope/:slug" element={<RopeDetail ropes={ropes} priceData={priceData} />} />
               {/* Belay device routes */}
               <Route path="/belays" element={<BelayApp belays={belays} src={belaySrc} />} />
-              <Route path="/belay/:slug" element={<BelayDetail belays={belays} />} />
+              <Route path="/belay/:slug" element={<BelayDetail belays={belays} priceData={priceData} />} />
               {/* Crashpad routes */}
               <Route path="/crashpads" element={<CrashpadApp crashpads={crashpads} src={crashpadSrc} />} />
-              <Route path="/crashpad/:slug" element={<CrashpadDetail crashpads={crashpads} />} />
+              <Route path="/crashpad/:slug" element={<CrashpadDetail crashpads={crashpads} priceData={priceData} />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/news" element={<GearNews />} />

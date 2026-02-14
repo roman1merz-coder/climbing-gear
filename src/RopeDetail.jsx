@@ -119,7 +119,7 @@ function RopeSVGDetail({ color1, color2, diameter, ropeType }) {
 // MAIN: Rope Detail Page
 // ═══════════════════════════════════════════════════════════════════
 
-export default function RopeDetail({ ropes = [] }) {
+export default function RopeDetail({ ropes = [], priceData = {} }) {
   const { slug } = useParams();
   const rope = ropes.find((r) => r.slug === slug);
   const [selectedLength, setSelectedLength] = useState(null);
@@ -392,6 +392,41 @@ export default function RopeDetail({ ropes = [] }) {
                   })()}
                 </div>
               </div>
+
+              {/* Retailer Links */}
+              {(() => {
+                const prices = priceData[rope.slug] || [];
+                if (!prices.length) return null;
+                const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
+                return (
+                  <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "16px" }}>
+                    <div style={{ padding: "14px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Where to Buy</div>
+                    </div>
+                    {prices.map((p, i) => (
+                      <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+                        display: "grid", gridTemplateColumns: "1fr auto auto",
+                        alignItems: "center", padding: "12px 20px", gap: "12px",
+                        borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+                        background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+                        textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+                        transition: "background .15s",
+                      }}>
+                        <div style={{ minWidth: 0 }}>
+                          <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+                          {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
+                        </div>
+                        <span style={{ fontSize: "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
+                          {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
+                        </span>
+                        {p.url && p.url !== "#" && (
+                          <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"} Shop</span>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                );
+              })()}
 
               {/* Price Alert */}
               <PriceAlertForm

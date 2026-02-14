@@ -567,18 +567,28 @@ function PriceComparison({ prices, shoe, compact }) {
         <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
       </div>
       {prices.map((p, i) => (
-        <div key={i} style={{
-          display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr 0.5fr",
+        <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+          display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
           alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
           gap: compact ? "8px" : "0",
           borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
           background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-        }}>
+          textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+          transition: "background .15s",
+        }}
+        onMouseEnter={e => { if (p.url && p.url !== "#") e.currentTarget.style.background = T.accentSoft; }}
+        onMouseLeave={e => { e.currentTarget.style.background = p.price === best && p.inStock ? T.accentSoft : "transparent"; }}
+        >
           <div style={{ minWidth: 0 }}>
             <span style={{ fontSize: compact ? "12px" : "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {p.shop}
             </span>
-            {compact && (
+            {p.delivery && (
+              <span style={{ fontSize: "10px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {p.delivery}
+              </span>
+            )}
+            {compact && !p.delivery && (
               <span style={{ fontSize: "10px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
                 {p.inStock ? "In stock" : "Out of stock"}
               </span>
@@ -592,8 +602,12 @@ function PriceComparison({ prices, shoe, compact }) {
               {p.inStock ? "In stock" : "Out"}
             </span>
           )}
-          {/* Shop links removed for now */}
-        </div>
+          {p.url && p.url !== "#" && (
+            <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600, whiteSpace: "nowrap" }}>
+              {"\u2192"} Shop
+            </span>
+          )}
+        </a>
       ))}
     </div>
   );
