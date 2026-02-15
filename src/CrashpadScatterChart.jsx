@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
 
 /* Thickness groups */
 const THICK_GROUPS = [
@@ -39,38 +40,22 @@ const BRAND_PAL = ["#63b3ed","#ed64a6","#48bb78","#ecc94b","#ed8936","#9f7aea","
 const BRAND_LIST = [...new Set(PADS.map(d => d.brand))].sort();
 const BRAND_COLORS = Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]]));
 
-/* ─── Chart Container ─── */
-function ChartContainer({ title, subtitle, children, style }) {
-  return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", ...style }}>
-      {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
-      {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
-      {children}
-    </div>
-  );
-}
-
 /* ─── Main Component ─── */
 export default function CrashpadScatterChart({ isMobile }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
   const [metric, setMetric] = useState("area_weight");
-  const [colorBy, setColorBy] = useState("layers"); // "layers" | "fold" | "brand" | "thickness"
+  const [colorBy, setColorBy] = useState("layers");
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
+  const [mobileItem, setMobileItem] = useState(null);
 
   /* ─── Clickable legend filter state ─── */
   const [hiddenLayers, setHiddenLayers] = useState(new Set());
   const [hiddenFolds, setHiddenFolds] = useState(new Set());
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
   const [hiddenThickness, setHiddenThickness] = useState(new Set());
-
-  const toggleHidden = (setter, key) => setter(prev => {
-    const next = new Set(prev);
-    next.has(key) ? next.delete(key) : next.add(key);
-    return next;
-  });
 
   const filteredPads = useMemo(() => PADS.filter(d =>
     !hiddenLayers.has(d.layers) && !hiddenFolds.has(d.fold) && !hiddenBrands.has(d.brand) && !hiddenThickness.has(d.tGroup)
@@ -166,7 +151,7 @@ export default function CrashpadScatterChart({ isMobile }) {
       const isH = hovered === d;
       const hex = getColor(d);
       const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-      const r = Math.max(3.5, Math.min(7, d.area * 3.5));
+      const r = isMobile ? Math.max(4.5, Math.min(8, d.area * 4)) : Math.max(3.5, Math.min(7, d.area * 3.5));
       ctx.beginPath(); ctx.arc(px, py, isH ? r + 2 : r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${cr},${cg},${cb},${isH ? 1 : 0.7})`; ctx.fill();
       ctx.strokeStyle = isH ? "#fff" : `rgba(${cr},${cg},${cb},0.3)`; ctx.lineWidth = isH ? 2 : 0.8; ctx.stroke();
@@ -179,57 +164,63 @@ export default function CrashpadScatterChart({ isMobile }) {
   const findClosest = useCallback((e) => {
     const canvas = canvasRef.current;
     if (!canvas) return null;
+    const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = isMobile ? 300 : 400;
     const PAD_C = { t: 20, r: 30, b: 44, l: 55 };
     const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
     const sx = x => PAD_C.l + (x - xMin) / (xMax - xMin) * (W - PAD_C.l - PAD_C.r);
     const sy = y => H - PAD_C.b - (y - yMin) / (yMax - yMin) * (H - PAD_C.t - PAD_C.b);
     let closest = null, best = Infinity;
+    const threshold = isMobile ? 30 : 24;
     filteredPads.forEach(d => {
       const dx = sx(d[xField]) - mx, dy = sy(d[yField]) - my, dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 24 && dist < best) { closest = d; best = dist; }
+      if (dist < threshold && dist < best) { closest = d; best = dist; }
     });
     return closest;
   }, [isMobile, cfg, filteredPads]);
 
+  /* Desktop tooltip */
   const showTip = useCallback((d, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
-    tip.innerHTML = `<b style="color:${T.accent}">${d.brand} ${d.model}</b><br/>`
-      + `${d.area.toFixed(2)}m² · ${d.weight}kg · €${d.price}<br/>`
-      + `€${d.eurM2}/m² · ${d.layers} foam layers · ${d.fold}<br/>`
-      + `<span style="color:#64748b;font-size:11px">${d.thickness}cm thick</span>`
-      + (pinned ? `<br/><a href="/crashpad/${d.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>` : "");
-    tip.style.opacity = "1";
-    tip.style.pointerEvents = pinned ? "auto" : "none";
-    tip.style.borderColor = pinned ? T.accent : "rgba(99,179,237,.35)";
-    let tx = x + 14, ty = y - 10;
-    if (tx + 280 > window.innerWidth) tx = x - 290;
-    if (ty + 140 > window.innerHeight) ty = y - 140;
-    tip.style.left = tx + "px"; tip.style.top = ty + "px";
-  }, []);
+    tip.innerHTML = buildTipHTML({
+      name: `${d.brand} ${d.model}`,
+      color: getColor(d),
+      stats: [
+        { label: "Area", value: d.area.toFixed(2) + " m²" },
+        { label: "Weight", value: d.weight + " kg" },
+        { label: "Price", value: "€" + d.price },
+        { label: "€/m²", value: "€" + d.eurM2 },
+      ],
+      details: `${d.layers} foam layers · ${d.fold.replace("_", "-")} · ${d.thickness}cm thick`,
+      link: `/crashpad/${d.slug}`,
+      pinned,
+    });
+    positionTip(tip, x, y, pinned);
+  }, [getColor]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
     if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
   }, []);
 
+  /* Mouse handlers (desktop) */
   const handleMove = useCallback((e) => {
-    if (pinnedRef.current) return;
+    if (isMobile || pinnedRef.current) return;
     const d = findClosest(e);
     if (d !== hovRef.current) { hovRef.current = d; draw(); }
-    if (d) showTip(d, e.clientX, e.clientY, false);
-    else hideTip();
-  }, [findClosest, draw, showTip, hideTip]);
+    if (d) showTip(d, e.clientX, e.clientY, false); else hideTip();
+  }, [isMobile, findClosest, draw, showTip, hideTip]);
 
   const handleLeave = useCallback(() => {
-    if (pinnedRef.current) return;
+    if (isMobile || pinnedRef.current) return;
     hovRef.current = null; draw(); hideTip();
-  }, [draw, hideTip]);
+  }, [isMobile, draw, hideTip]);
 
   const handleClick = useCallback((e) => {
+    if (isMobile) return;
     const d = findClosest(e);
     if (pinnedRef.current === d) {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
@@ -239,8 +230,22 @@ export default function CrashpadScatterChart({ isMobile }) {
     } else {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
     }
-  }, [findClosest, draw, showTip, hideTip]);
+  }, [isMobile, findClosest, draw, showTip, hideTip]);
 
+  /* Touch handlers (mobile) */
+  const handleTouch = useCallback((e) => {
+    if (!isMobile) return;
+    e.preventDefault();
+    const d = findClosest(e);
+    if (d) { hovRef.current = d; draw(); setMobileItem(d); }
+    else { hovRef.current = null; draw(); setMobileItem(null); }
+  }, [isMobile, findClosest, draw]);
+
+  const closeMobileSheet = useCallback(() => {
+    setMobileItem(null); hovRef.current = null; draw();
+  }, [draw]);
+
+  /* Close desktop tooltip on outside click */
   useEffect(() => {
     const onDocClick = (e) => {
       if (!pinnedRef.current) return;
@@ -263,7 +268,7 @@ export default function CrashpadScatterChart({ isMobile }) {
     return () => tip.removeEventListener("click", onClick);
   }, [navigate]);
 
-  /* ─── Legend data for current colorBy ─── */
+  /* ─── Legend data ─── */
   const layerKeys = [...new Set(PADS.map(d => d.layers))].sort((a, b) => a - b);
   const foldKeys = [...new Set(PADS.map(d => d.fold))].filter(k => k !== "unknown").sort();
 
@@ -274,36 +279,20 @@ export default function CrashpadScatterChart({ isMobile }) {
     { key: "eurm2_weight", label: "€/m² vs Weight", color: "#a78bfa" },
   ];
 
-  /* Reusable clickable legend pill */
-  const Pill = ({ color, label, hidden, onClick }) => (
-    <span onClick={onClick} style={{
-      fontSize: "10px", color: hidden ? "#4a5568" : T.muted, display: "flex", alignItems: "center", gap: "4px",
-      cursor: "pointer", padding: "2px 8px", borderRadius: "10px", userSelect: "none",
-      background: hidden ? "transparent" : "rgba(255,255,255,.04)",
-      border: `1px solid ${hidden ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.1)"}`,
-      opacity: hidden ? 0.4 : 1, textDecoration: hidden ? "line-through" : "none",
-      transition: "all .15s",
-    }}>
-      <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: color, display: "inline-block", opacity: hidden ? 0.3 : 1 }} />
-      {label}
-    </span>
-  );
-
   return (
     <ChartContainer title={cfg.label} subtitle={cfg.sub}>
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "4px", marginBottom: "10px", flexWrap: "wrap" }}>
         {metricButtons.map(m => (
-          <button key={m.key} onClick={() => { setMetric(m.key); pinnedRef.current = null; hovRef.current = null; hideTip(); }} style={{
+          <button key={m.key} onClick={() => { setMetric(m.key); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={{
             padding: "4px 12px", fontSize: "11px", fontWeight: 600, borderRadius: "6px", border: "none", cursor: "pointer",
             background: metric === m.key ? m.color : T.surface, color: metric === m.key ? "#fff" : T.muted,
           }}>{isMobile ? m.label.replace(" vs ", "/") : m.label}</button>
         ))}
       </div>
 
-      {/* Color-by toggle */}
+      {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
-        {/* Reset all */}
         {(hiddenLayers.size > 0 || hiddenFolds.size > 0 || hiddenBrands.size > 0 || hiddenThickness.size > 0) && (
           <button onClick={() => { setHiddenLayers(new Set()); setHiddenFolds(new Set()); setHiddenBrands(new Set()); setHiddenThickness(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
@@ -317,39 +306,80 @@ export default function CrashpadScatterChart({ isMobile }) {
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{{ layers: "Foam Layers", fold: "Fold Style", thickness: "Thickness", brand: "Brand" }[k]}</button>
         ))}
+        <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filteredPads.length} shown</span>
       </div>
 
+      {/* Canvas */}
       <div style={{ width: "100%", overflow: "hidden" }}>
-        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%", touchAction: "none" }}
+          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick}
+          onTouchStart={handleTouch} onTouchMove={handleTouch} />
       </div>
-      <div ref={tipRef} style={{
-        position: "fixed", pointerEvents: "none", background: "rgba(15,17,25,.95)", border: "1px solid rgba(99,179,237,.35)",
-        borderRadius: "8px", padding: "10px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
-        boxShadow: "0 8px 24px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .1s", maxWidth: "280px",
-      }} />
 
-      {/* Clickable legend — foam layers */}
+      {/* Desktop Tooltip */}
+      {!isMobile && <div ref={tipRef} style={TIP_STYLE} />}
+
+      {/* Mobile Bottom Sheet */}
+      {isMobile && (
+        <BottomSheet item={mobileItem} onClose={closeMobileSheet}
+          onNavigate={mobileItem ? () => navigate(`/crashpad/${mobileItem.slug}`) : null}>
+          {mobileItem && (
+            <>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
+                <b style={{ color: T.text, fontSize: "14px" }}>{mobileItem.brand} {mobileItem.model}</b>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", marginBottom: "6px" }}>
+                <div><span style={{ fontSize: "10px", color: T.muted }}>Area</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{mobileItem.area.toFixed(2)} m²</div></div>
+                <div><span style={{ fontSize: "10px", color: T.muted }}>Weight</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{mobileItem.weight} kg</div></div>
+                <div><span style={{ fontSize: "10px", color: T.muted }}>Price</span><div style={{ fontSize: "14px", fontWeight: 600 }}>€{mobileItem.price}</div></div>
+                <div><span style={{ fontSize: "10px", color: T.muted }}>€/m²</span><div style={{ fontSize: "14px", fontWeight: 600 }}>€{mobileItem.eurM2}</div></div>
+              </div>
+              <div style={{ fontSize: "11px", color: "#64748b" }}>
+                {mobileItem.layers} foam layers · {mobileItem.fold.replace("_", "-")} · {mobileItem.thickness}cm thick
+              </div>
+            </>
+          )}
+        </BottomSheet>
+      )}
+
+      {/* Legends */}
       {colorBy === "layers" && (
-        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {layerKeys.map(l => (
-            <Pill key={l} color={LAYER_COLORS[l] || "#94a3b8"} label={`${l} layer${l !== 1 ? "s" : ""}`}
-              hidden={hiddenLayers.has(l)} onClick={() => toggleHidden(setHiddenLayers, l)} />
-          ))}
-        </div>
+        layerKeys.length > 5 ? (
+          <LegendRow
+            items={layerKeys.map(l => ({ key: l, color: LAYER_COLORS[l] || "#94a3b8", label: `${l} layer${l !== 1 ? "s" : ""}` }))}
+            hiddenSet={hiddenLayers}
+            onToggle={(k) => toggleHidden(setHiddenLayers, k)}
+            onClearAll={() => setHiddenLayers(prev => prev.size === layerKeys.length ? new Set() : new Set(layerKeys))}
+          />
+        ) : (
+          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+            {layerKeys.map(l => (
+              <Pill key={l} color={LAYER_COLORS[l] || "#94a3b8"} label={`${l} layer${l !== 1 ? "s" : ""}`}
+                hidden={hiddenLayers.has(l)} onClick={() => toggleHidden(setHiddenLayers, l)} />
+            ))}
+          </div>
+        )
       )}
 
-      {/* Clickable legend — fold style */}
       {colorBy === "fold" && (
-        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {foldKeys.map(k => (
-            <Pill key={k} color={FOLD_COLORS[k] || "#6b7280"} label={k.replace("_", "-")}
-              hidden={hiddenFolds.has(k)} onClick={() => toggleHidden(setHiddenFolds, k)} />
-          ))}
-        </div>
+        foldKeys.length > 5 ? (
+          <LegendRow
+            items={foldKeys.map(k => ({ key: k, color: FOLD_COLORS[k] || "#6b7280", label: k.replace("_", "-") }))}
+            hiddenSet={hiddenFolds}
+            onToggle={(k) => toggleHidden(setHiddenFolds, k)}
+            onClearAll={() => setHiddenFolds(prev => prev.size === foldKeys.length ? new Set() : new Set(foldKeys))}
+          />
+        ) : (
+          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+            {foldKeys.map(k => (
+              <Pill key={k} color={FOLD_COLORS[k] || "#6b7280"} label={k.replace("_", "-")}
+                hidden={hiddenFolds.has(k)} onClick={() => toggleHidden(setHiddenFolds, k)} />
+            ))}
+          </div>
+        )
       )}
 
-      {/* Clickable legend — thickness */}
       {colorBy === "thickness" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
           {THICK_GROUPS.map(g => (
@@ -359,18 +389,19 @@ export default function CrashpadScatterChart({ isMobile }) {
         </div>
       )}
 
-      {/* Clickable legend — brands */}
       {colorBy === "brand" && (
-        <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {BRAND_LIST.map(b => (
-            <Pill key={b} color={BRAND_COLORS[b]} label={b}
-              hidden={hiddenBrands.has(b)} onClick={() => toggleHidden(setHiddenBrands, b)} />
-          ))}
-        </div>
+        <LegendRow
+          items={BRAND_LIST.map(b => ({ key: b, color: BRAND_COLORS[b], label: b }))}
+          hiddenSet={hiddenBrands}
+          onToggle={(k) => toggleHidden(setHiddenBrands, k)}
+          onClearAll={() => setHiddenBrands(prev => prev.size === BRAND_LIST.length ? new Set() : new Set(BRAND_LIST))}
+        />
       )}
 
       <div style={{ marginTop: "6px", textAlign: "center" }}>
-        <span style={{ fontSize: "10px", color: "#4a5568" }}>Click a dot for specs & detail link · Click legend to filter · Dot size = landing area</span>
+        <span style={{ fontSize: "10px", color: "#4a5568" }}>
+          {isMobile ? "Tap a dot for specs · Tap legend to filter · Dot size = landing area" : "Click a dot for specs & detail link · Click legend to filter · Dot size = landing area"}
+        </span>
       </div>
     </ChartContainer>
   );

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import ROPE_SEED from "./rope_seed_data.json";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
 
 /* ─── Color palettes ─── */
 const TYPE_COLORS = { single: "#60a5fa", half: "#ed64a6", twin: "#34d399", static: "#ecc94b" };
@@ -12,7 +13,7 @@ const BRAND_PAL = [
   "#81e6d9","#c4b5fd","#fca5a5","#bef264","#e879f9","#67e8f9",
 ];
 
-/* Pre-filter ropes that have the minimum data for charting */
+/* Pre-filter ropes */
 const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g)
   .map(r => ({
     brand: r.brand, model: r.model, slug: r.slug,
@@ -29,40 +30,6 @@ const CF=[2.585,2.949,3.288,3.601,3.892,4.163,4.415,4.651,4.872,5.082,5.281,5.47
 const CG=[41.154,41.905,42.67,43.449,44.243,45.05,45.872,46.707,47.557,48.421,49.3,50.192,51.098,52.019,52.954,53.903,54.866,55.843,56.835,57.84,58.86,59.894,60.942,62.004,63.08,64.171,65.275,66.394,67.527,68.674,69.835,71.01,72.2,73.404,74.621,75.853,77.099,78.36,79.634,80.923];
 const SF=1.316, SG=1.660;
 
-/* ─── Chart Container ─── */
-function ChartContainer({ title, subtitle, children, style }) {
-  return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", ...style }}>
-      {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
-      {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
-      {children}
-    </div>
-  );
-}
-
-/* ─── Reusable pill ─── */
-function Pill({ color, label, hidden, onClick, shape }) {
-  return (
-    <span onClick={onClick} style={{
-      fontSize: "10px", color: hidden ? "#4a5568" : T.muted, display: "flex", alignItems: "center", gap: "4px",
-      cursor: "pointer", padding: "2px 8px", borderRadius: "10px", userSelect: "none",
-      background: hidden ? "transparent" : "rgba(255,255,255,.04)",
-      border: `1px solid ${hidden ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.1)"}`,
-      opacity: hidden ? 0.4 : 1, textDecoration: hidden ? "line-through" : "none",
-      transition: "all .15s",
-    }}>
-      {shape === "diamond" ? (
-        <span style={{ width: "8px", height: "8px", background: color, display: "inline-block", opacity: hidden ? 0.3 : 1, transform: "rotate(45deg)", borderRadius: "1px" }} />
-      ) : shape === "triangle" ? (
-        <span style={{ width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent", borderBottom: `8px solid ${color}`, display: "inline-block", opacity: hidden ? 0.3 : 1 }} />
-      ) : (
-        <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: color, display: "inline-block", opacity: hidden ? 0.3 : 1 }} />
-      )}
-      {label}
-    </span>
-  );
-}
-
 /* ─── Main Component ─── */
 export default function RopeScatterChart({ isMobile }) {
   const navigate = useNavigate();
@@ -73,18 +40,17 @@ export default function RopeScatterChart({ isMobile }) {
 
   const [metric, setMetric] = useState("falls");
   const [colorBy, setColorBy] = useState("type");
+  const [mobileItem, setMobileItem] = useState(null);
 
-  /* Filter state — rope type toggles (single & half default ON, twin & static default OFF) */
+  /* Filter state */
   const [enabledTypes, setEnabledTypes] = useState(new Set(["single", "half"]));
-
-  /* Determine if static-only or has static */
   const onlyStatic = enabledTypes.size === 1 && enabledTypes.has("static");
   const hasStatic = enabledTypes.has("static");
 
-  /* Auto-switch metric when only static ropes are enabled (they have no falls data) */
   useEffect(() => {
     if (onlyStatic && metric === "falls") setMetric("gm");
   }, [onlyStatic, metric]);
+
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
   const [hiddenDry, setHiddenDry] = useState(new Set());
 
@@ -93,13 +59,8 @@ export default function RopeScatterChart({ isMobile }) {
     next.has(t) ? next.delete(t) : next.add(t);
     return next;
   });
-  const toggleHidden = (setter, key) => setter(prev => {
-    const next = new Set(prev);
-    next.has(key) ? next.delete(key) : next.add(key);
-    return next;
-  });
 
-  /* Brand list & colors (dynamic based on visible ropes) */
+  /* Brand list & colors */
   const BRAND_LIST = useMemo(() => [...new Set(ALL_ROPES.map(r => r.brand))].sort(), []);
   const BRAND_COLORS = useMemo(() => Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]])), [BRAND_LIST]);
 
@@ -112,9 +73,7 @@ export default function RopeScatterChart({ isMobile }) {
     if (!enabledTypes.has(r.type)) return false;
     if (hiddenBrands.has(r.brand)) return false;
     if (hiddenDry.has(r.dry)) return false;
-    // For falls metric, need falls data (static ropes have none)
     if (metric === "falls" && !r.falls) return false;
-    // For break strength metric, need break data
     if (metric === "breakStr" && !r.breakStr) return false;
     return true;
   }), [enabledTypes, hiddenBrands, hiddenDry, metric]);
@@ -161,7 +120,7 @@ export default function RopeScatterChart({ isMobile }) {
     return BRAND_COLORS[r.brand] || "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
-  /* Shape: circle for single, diamond for half, triangle for twin, square for static */
+  /* Shape: circle=single, diamond=half, triangle=twin, square=static */
   const drawShape = useCallback((ctx, r, px, py, size, isHovered) => {
     const hex = getColor(r);
     const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
@@ -181,10 +140,10 @@ export default function RopeScatterChart({ isMobile }) {
       const s = isHovered ? size * 1.3 : size * 0.85;
       ctx.beginPath(); ctx.rect(px - s, py - s, s * 2, s * 2); ctx.fill(); ctx.stroke();
     } else {
-      ctx.beginPath(); ctx.arc(px, py, isHovered ? size * 1.6 : size, 0, Math.PI * 2);
+      ctx.beginPath(); ctx.arc(px, py, isHovered ? size * 1.6 : (isMobile ? size * 1.2 : size), 0, Math.PI * 2);
       ctx.fill(); ctx.stroke();
     }
-  }, [getColor]);
+  }, [getColor, isMobile]);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -221,34 +180,31 @@ export default function RopeScatterChart({ isMobile }) {
     ctx.fillText("Diameter (mm)", W / 2, H - 6);
     ctx.save(); ctx.translate(12, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(cfg.yLabel, 0, 0); ctx.restore();
 
-    // Only show trend line for single ropes and when singles are enabled
+    // Trend line for single ropes
     if (enabledTypes.has("single") && curveY) {
-      // ±2σ band
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + 2 * std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - 2 * std));
       ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.03)"; ctx.fill();
-      // ±1σ band
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - std));
       ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.07)"; ctx.fill();
-      // Curve line
       ctx.strokeStyle = "rgba(99,179,237,.5)"; ctx.lineWidth = 2; ctx.setLineDash([]);
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i]); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       ctx.stroke();
     }
 
-    // Draw dots (non-hovered first, then hovered on top)
+    // Dots
     const hovered = hovRef.current;
     filtered.filter(r => r !== hovered).forEach(r => {
       const px = sx(r.dia), py = sy(r[yField]);
-      drawShape(ctx, r, px, py, 4, false);
+      drawShape(ctx, r, px, py, isMobile ? 5 : 4, false);
     });
     if (hovered && filtered.includes(hovered)) {
       const px = sx(hovered.dia), py = sy(hovered[yField]);
-      drawShape(ctx, hovered, px, py, 4, true);
+      drawShape(ctx, hovered, px, py, isMobile ? 5 : 4, true);
     }
   }, [metric, isMobile, cfg, filtered, axisBounds, enabledTypes, drawShape]);
 
@@ -258,60 +214,69 @@ export default function RopeScatterChart({ isMobile }) {
   const findClosest = useCallback((e) => {
     const canvas = canvasRef.current;
     if (!canvas) return null;
+    const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = isMobile ? 300 : 400;
     const PAD = { t: 20, r: 20, b: 44, l: 50 };
     const xMin = axisBounds.diaMin, xMax = axisBounds.diaMax;
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - cfg.yMin) / (cfg.yMax - cfg.yMin) * (H - PAD.t - PAD.b);
     let closest = null, best = Infinity;
+    const threshold = isMobile ? 30 : 20;
     filtered.forEach(r => {
       const dx = sx(r.dia) - mx, dy = sy(r[cfg.yField]) - my, d = Math.sqrt(dx * dx + dy * dy);
-      if (d < 20 && d < best) { closest = r; best = d; }
+      if (d < threshold && d < best) { closest = r; best = d; }
     });
     return closest;
   }, [isMobile, cfg, filtered, axisBounds]);
 
+  /* Desktop tooltip */
   const showTip = useCallback((r, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
-    const dry = (r.dry || "none").replace(/_/g, " ");
     const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
-    const fallsLine = r.falls ? ` · ${r.falls} falls` : "";
-    const impactLine = r.impact ? ` · Impact: ${r.impact}kN` : "";
-    const breakLine = r.breakStr ? ` · Break: ${r.breakStr}kN` : "";
-    const sheathLine = r.sheath ? ` · Sheath: ${r.sheath}%` : "";
-    tip.innerHTML = `<b style="color:${T.accent}">${r.brand} ${r.model}</b><br/><span style="color:${TYPE_COLORS[r.type]}">${typeLabel}</span> · ∅ ${r.dia}mm · ${r.gm}g/m${fallsLine}${impactLine}${breakLine}${sheathLine}<br/><span style="color:#64748b;font-size:11px">Dry: ${dry}${r.triple ? " · Triple rated" : ""}</span>`
-      + (pinned ? `<br/><a href="/rope/${r.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>` : "");
-    tip.style.opacity = "1";
-    tip.style.pointerEvents = pinned ? "auto" : "none";
-    tip.style.borderColor = pinned ? T.accent : "rgba(99,179,237,.35)";
-    let tx = x + 14, ty = y - 10;
-    if (tx + 280 > window.innerWidth) tx = x - 290;
-    if (ty + 130 > window.innerHeight) ty = y - 130;
-    tip.style.left = tx + "px"; tip.style.top = ty + "px";
-  }, []);
+    const stats = [
+      { label: "Diameter", value: r.dia + " mm" },
+      { label: "Weight", value: r.gm + " g/m" },
+    ];
+    if (r.falls) stats.push({ label: "UIAA Falls", value: String(r.falls) });
+    if (r.impact) stats.push({ label: "Impact", value: r.impact + " kN" });
+    if (r.breakStr) stats.push({ label: "Break Str.", value: r.breakStr + " kN" });
+    if (r.sheath) stats.push({ label: "Sheath", value: r.sheath + "%" });
+
+    const dry = (r.dry || "none").replace(/_/g, " ");
+    tip.innerHTML = buildTipHTML({
+      name: `${r.brand} ${r.model}`,
+      color: getColor(r),
+      stats,
+      details: `${typeLabel} · Dry: ${dry}${r.triple ? " · Triple rated" : ""}`,
+      link: `/rope/${r.slug}`,
+      pinned,
+    });
+    positionTip(tip, x, y, pinned);
+  }, [getColor]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
     if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
   }, []);
 
+  /* Mouse handlers (desktop) */
   const handleMove = useCallback((e) => {
-    if (pinnedRef.current) return;
+    if (isMobile || pinnedRef.current) return;
     const r = findClosest(e);
-    const prev = hovRef.current;
-    if (r !== prev) { hovRef.current = r; draw(); }
+    if (r !== hovRef.current) { hovRef.current = r; draw(); }
     if (r) showTip(r, e.clientX, e.clientY, false); else hideTip();
-  }, [findClosest, draw, showTip, hideTip]);
+  }, [isMobile, findClosest, draw, showTip, hideTip]);
 
   const handleLeave = useCallback(() => {
-    if (pinnedRef.current) return;
+    if (isMobile || pinnedRef.current) return;
     hovRef.current = null; draw(); hideTip();
-  }, [draw, hideTip]);
+  }, [isMobile, draw, hideTip]);
 
   const handleClick = useCallback((e) => {
+    if (isMobile) return;
     const r = findClosest(e);
     if (pinnedRef.current === r) {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
@@ -321,7 +286,20 @@ export default function RopeScatterChart({ isMobile }) {
     } else {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
     }
-  }, [findClosest, draw, showTip, hideTip]);
+  }, [isMobile, findClosest, draw, showTip, hideTip]);
+
+  /* Touch handlers (mobile) */
+  const handleTouch = useCallback((e) => {
+    if (!isMobile) return;
+    e.preventDefault();
+    const r = findClosest(e);
+    if (r) { hovRef.current = r; draw(); setMobileItem(r); }
+    else { hovRef.current = null; draw(); setMobileItem(null); }
+  }, [isMobile, findClosest, draw]);
+
+  const closeMobileSheet = useCallback(() => {
+    setMobileItem(null); hovRef.current = null; draw();
+  }, [draw]);
 
   useEffect(() => {
     const onDocClick = (e) => {
@@ -355,7 +333,6 @@ export default function RopeScatterChart({ isMobile }) {
     background: active ? "rgba(255,255,255,.1)" : "transparent", color: active ? T.text : T.muted,
   });
 
-  /* Shape legend items */
   const TYPE_SHAPES = { single: "circle", half: "diamond", twin: "triangle", static: "square" };
 
   return (
@@ -367,14 +344,13 @@ export default function RopeScatterChart({ isMobile }) {
           gm: { label: "Weight (g/m)", color: T.blue },
           ...(hasStatic ? { breakStr: { label: "Break Strength (kN)", color: "#ecc94b" } } : {}),
         }).map(([k, c]) => (
-          <button key={k} onClick={() => { setMetric(k); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
+          <button key={k} onClick={() => { setMetric(k); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }}
             style={btnStyle(metric === k, c.color)}>{c.label}</button>
         ))}
       </div>
 
       {/* Rope type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
-        {/* Reset all */}
         {(hiddenBrands.size > 0 || hiddenDry.size > 0 || !(enabledTypes.has("single") && enabledTypes.has("half") && !enabledTypes.has("twin") && !enabledTypes.has("static"))) && (
           <button onClick={() => { setEnabledTypes(new Set(["single", "half"])); setHiddenBrands(new Set()); setHiddenDry(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
@@ -389,7 +365,7 @@ export default function RopeScatterChart({ isMobile }) {
         </div>
       </div>
 
-      {/* Color-by toggle */}
+      {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
         {[["type", "Rope Type"], ["dry", "Treatment"], ["brand", "Brand"]].map(([k, l]) => (
@@ -398,20 +374,50 @@ export default function RopeScatterChart({ isMobile }) {
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{l}</button>
         ))}
+        <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filtered.length} shown</span>
       </div>
 
       {/* Canvas */}
       <div style={{ width: "100%", overflow: "hidden" }}>
-        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%", touchAction: "none" }}
+          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick}
+          onTouchStart={handleTouch} onTouchMove={handleTouch} />
       </div>
 
-      {/* Tooltip */}
-      <div ref={tipRef} style={{
-        position: "fixed", pointerEvents: "none", background: "rgba(15,17,25,.95)", border: "1px solid rgba(99,179,237,.35)",
-        borderRadius: "8px", padding: "10px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
-        boxShadow: "0 8px 24px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .1s", maxWidth: "280px",
-      }} />
+      {/* Desktop Tooltip */}
+      {!isMobile && <div ref={tipRef} style={TIP_STYLE} />}
+
+      {/* Mobile Bottom Sheet */}
+      {isMobile && (
+        <BottomSheet item={mobileItem} onClose={closeMobileSheet}
+          onNavigate={mobileItem ? () => navigate(`/rope/${mobileItem.slug}`) : null}>
+          {mobileItem && (() => {
+            const r = mobileItem;
+            const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
+            const dry = (r.dry || "none").replace(/_/g, " ");
+            return (
+              <>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(r), flexShrink: 0 }} />
+                  <b style={{ color: T.text, fontSize: "14px" }}>{r.brand} {r.model}</b>
+                  <span style={{ fontSize: "10px", fontWeight: 600, padding: "1px 6px", borderRadius: "4px", background: `${TYPE_COLORS[r.type]}20`, color: TYPE_COLORS[r.type] }}>{typeLabel}</span>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "4px 12px", marginBottom: "6px" }}>
+                  <div><span style={{ fontSize: "10px", color: T.muted }}>Diameter</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.dia} mm</div></div>
+                  <div><span style={{ fontSize: "10px", color: T.muted }}>Weight</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.gm} g/m</div></div>
+                  {r.falls && <div><span style={{ fontSize: "10px", color: T.muted }}>Falls</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.falls}</div></div>}
+                  {r.impact && <div><span style={{ fontSize: "10px", color: T.muted }}>Impact</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.impact} kN</div></div>}
+                  {r.breakStr && <div><span style={{ fontSize: "10px", color: T.muted }}>Break Str.</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.breakStr} kN</div></div>}
+                  {r.sheath && <div><span style={{ fontSize: "10px", color: T.muted }}>Sheath</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.sheath}%</div></div>}
+                </div>
+                <div style={{ fontSize: "11px", color: "#64748b" }}>
+                  Dry: {dry}{r.triple ? " · Triple rated" : ""}
+                </div>
+              </>
+            );
+          })()}
+        </BottomSheet>
+      )}
 
       {/* Legends */}
       {colorBy === "type" && (
@@ -422,25 +428,34 @@ export default function RopeScatterChart({ isMobile }) {
         </div>
       )}
       {colorBy === "dry" && (
-        <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {DRY_LIST.map(k => (
-            <Pill key={k} color={DRY_COLORS[k] || "#94a3b8"} label={DRY_LABELS[k] || k}
-              hidden={hiddenDry.has(k)} onClick={() => toggleHidden(setHiddenDry, k)} />
-          ))}
-        </div>
+        DRY_LIST.length > 5 ? (
+          <LegendRow
+            items={DRY_LIST.map(k => ({ key: k, color: DRY_COLORS[k] || "#94a3b8", label: DRY_LABELS[k] || k }))}
+            hiddenSet={hiddenDry}
+            onToggle={(k) => toggleHidden(setHiddenDry, k)}
+            onClearAll={() => setHiddenDry(prev => prev.size === DRY_LIST.length ? new Set() : new Set(DRY_LIST))}
+          />
+        ) : (
+          <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+            {DRY_LIST.map(k => (
+              <Pill key={k} color={DRY_COLORS[k] || "#94a3b8"} label={DRY_LABELS[k] || k}
+                hidden={hiddenDry.has(k)} onClick={() => toggleHidden(setHiddenDry, k)} />
+            ))}
+          </div>
+        )
       )}
       {colorBy === "brand" && (
-        <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {BRAND_LIST.map(b => (
-            <Pill key={b} color={BRAND_COLORS[b]} label={b}
-              hidden={hiddenBrands.has(b)} onClick={() => toggleHidden(setHiddenBrands, b)} />
-          ))}
-        </div>
+        <LegendRow
+          items={BRAND_LIST.map(b => ({ key: b, color: BRAND_COLORS[b], label: b }))}
+          hiddenSet={hiddenBrands}
+          onToggle={(k) => toggleHidden(setHiddenBrands, k)}
+          onClearAll={() => setHiddenBrands(prev => prev.size === BRAND_LIST.length ? new Set() : new Set(BRAND_LIST))}
+        />
       )}
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px" }}>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
-          Click a dot for specs & link · Click legend to filter
+          {isMobile ? "Tap a dot for specs · Tap legend to filter" : "Click a dot for specs & link · Click legend to filter"}
           {enabledTypes.has("single") && " · Trend line = single ropes only"}
         </span>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import BELAY_SEED from "./belay_seed_data.json";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
 
 /* ─── Device type styling ─── */
 const TYPE_COLORS = {
@@ -41,34 +42,6 @@ const ALL_BELAYS = BELAY_SEED.filter(d => d.price_uvp_eur && d.weight_g)
     ropeSlots: d.rope_slots, material: d.material,
   }));
 
-/* ─── Chart Container ─── */
-function ChartContainer({ title, subtitle, children, style }) {
-  return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", ...style }}>
-      {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
-      {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
-      {children}
-    </div>
-  );
-}
-
-/* ─── Pill ─── */
-function Pill({ color, label, hidden, onClick }) {
-  return (
-    <span onClick={onClick} style={{
-      fontSize: "10px", color: hidden ? "#4a5568" : T.muted, display: "flex", alignItems: "center", gap: "4px",
-      cursor: "pointer", padding: "2px 8px", borderRadius: "10px", userSelect: "none",
-      background: hidden ? "transparent" : "rgba(255,255,255,.04)",
-      border: `1px solid ${hidden ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.1)"}`,
-      opacity: hidden ? 0.4 : 1, textDecoration: hidden ? "line-through" : "none",
-      transition: "all .15s",
-    }}>
-      <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: color, display: "inline-block", opacity: hidden ? 0.3 : 1 }} />
-      {label}
-    </span>
-  );
-}
-
 /* ─── Main Component ─── */
 export default function BelayScatterChart({ isMobile }) {
   const navigate = useNavigate();
@@ -76,6 +49,7 @@ export default function BelayScatterChart({ isMobile }) {
   const tipRef = useRef(null);
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
+  const [mobileItem, setMobileItem] = useState(null);
 
   const [colorBy, setColorBy] = useState("type");
 
@@ -86,11 +60,6 @@ export default function BelayScatterChart({ isMobile }) {
   const toggleType = (t) => setEnabledTypes(prev => {
     const next = new Set(prev);
     next.has(t) ? next.delete(t) : next.add(t);
-    return next;
-  });
-  const toggleHidden = (setter, key) => setter(prev => {
-    const next = new Set(prev);
-    next.has(key) ? next.delete(key) : next.add(key);
     return next;
   });
 
@@ -116,12 +85,11 @@ export default function BelayScatterChart({ isMobile }) {
   const getColor = useCallback((d) => {
     if (colorBy === "type") return TYPE_COLORS[d.type] || "#94a3b8";
     if (colorBy === "brand") return BRAND_COLORS[d.brand] || "#94a3b8";
-    // discipline: use primary use case
     const uc = d.useCases[0];
     return DISC_COLORS[uc] || "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
-  /* Axis config: Price (€) vs Weight (g) */
+  /* Axis config */
   const axisBounds = useMemo(() => {
     if (!filtered.length) return { wMin: 50, wMax: 500, pMin: 10, pMax: 200 };
     const ws = filtered.map(d => d.weight);
@@ -173,11 +141,12 @@ export default function BelayScatterChart({ isMobile }) {
 
     // Dots
     const hovered = hovRef.current;
+    const dotR = isMobile ? 6 : 5;
     filtered.filter(d => d !== hovered).forEach(d => {
       const px = sx(d.weight), py = sy(d.price);
       const hex = getColor(d);
       const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-      ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2);
+      ctx.beginPath(); ctx.arc(px, py, dotR, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${cr},${cg},${cb},0.7)`; ctx.fill();
       ctx.strokeStyle = `rgba(${cr},${cg},${cb},0.3)`; ctx.lineWidth = 0.8; ctx.stroke();
     });
@@ -185,7 +154,7 @@ export default function BelayScatterChart({ isMobile }) {
       const px = sx(hovered.weight), py = sy(hovered.price);
       const hex = getColor(hovered);
       const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-      ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2);
+      ctx.beginPath(); ctx.arc(px, py, dotR + 2, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${cr},${cg},${cb},1)`; ctx.fill();
       ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
     }
@@ -197,55 +166,67 @@ export default function BelayScatterChart({ isMobile }) {
   const findClosest = useCallback((e) => {
     const canvas = canvasRef.current;
     if (!canvas) return null;
+    const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = isMobile ? 300 : 400;
     const PAD = { t: 20, r: 20, b: 44, l: 52 };
     const { wMin, wMax, pMin, pMax } = axisBounds;
     const sx = x => PAD.l + (x - wMin) / (wMax - wMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - pMin) / (pMax - pMin) * (H - PAD.t - PAD.b);
     let closest = null, best = Infinity;
+    const threshold = isMobile ? 30 : 20;
     filtered.forEach(d => {
       const dx = sx(d.weight) - mx, dy = sy(d.price) - my, dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 20 && dist < best) { closest = d; best = dist; }
+      if (dist < threshold && dist < best) { closest = d; best = dist; }
     });
     return closest;
   }, [isMobile, filtered, axisBounds]);
 
+  /* Desktop tooltip */
   const showTip = useCallback((d, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
     const typeLabel = TYPE_LABELS[d.type] || d.type;
     const features = [d.antiPanic && "Anti-panic", d.guideMode && "Guide mode"].filter(Boolean).join(", ");
-    tip.innerHTML = `<b style="color:${T.accent}">${d.brand} ${d.model}</b><br/><span style="color:${TYPE_COLORS[d.type] || T.muted}">${typeLabel}</span> · ${d.weight}g · €${d.price.toFixed(2)}${features ? `<br/><span style="color:#64748b;font-size:11px">${features}</span>` : ""}`
-      + (pinned ? `<br/><a href="/belay/${d.slug}" style="display:inline-block;margin-top:6px;padding:3px 10px;background:${T.accentSoft};color:${T.accent};border-radius:4px;font-size:11px;font-weight:600;text-decoration:none">View full specs →</a>` : "");
-    tip.style.opacity = "1";
-    tip.style.pointerEvents = pinned ? "auto" : "none";
-    tip.style.borderColor = pinned ? T.accent : "rgba(99,179,237,.35)";
-    let tx = x + 14, ty = y - 10;
-    if (tx + 280 > window.innerWidth) tx = x - 290;
-    if (ty + 100 > window.innerHeight) ty = y - 100;
-    tip.style.left = tx + "px"; tip.style.top = ty + "px";
-  }, []);
+    const stats = [
+      { label: "Weight", value: d.weight + " g" },
+      { label: "Price", value: "€" + d.price.toFixed(2) },
+    ];
+    if (d.ropeSlots) stats.push({ label: "Rope slots", value: String(d.ropeSlots) });
+    if (d.material) stats.push({ label: "Material", value: d.material });
+
+    tip.innerHTML = buildTipHTML({
+      name: `${d.brand} ${d.model}`,
+      color: getColor(d),
+      stats,
+      details: `${typeLabel}${features ? " · " + features : ""}`,
+      link: `/belay/${d.slug}`,
+      pinned,
+    });
+    positionTip(tip, x, y, pinned);
+  }, [getColor]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
     if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
   }, []);
 
+  /* Mouse handlers (desktop) */
   const handleMove = useCallback((e) => {
-    if (pinnedRef.current) return;
+    if (isMobile || pinnedRef.current) return;
     const d = findClosest(e);
     if (d !== hovRef.current) { hovRef.current = d; draw(); }
     if (d) showTip(d, e.clientX, e.clientY, false); else hideTip();
-  }, [findClosest, draw, showTip, hideTip]);
+  }, [isMobile, findClosest, draw, showTip, hideTip]);
 
   const handleLeave = useCallback(() => {
-    if (pinnedRef.current) return;
+    if (isMobile || pinnedRef.current) return;
     hovRef.current = null; draw(); hideTip();
-  }, [draw, hideTip]);
+  }, [isMobile, draw, hideTip]);
 
   const handleClick = useCallback((e) => {
+    if (isMobile) return;
     const d = findClosest(e);
     if (pinnedRef.current === d) {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
@@ -255,7 +236,20 @@ export default function BelayScatterChart({ isMobile }) {
     } else {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
     }
-  }, [findClosest, draw, showTip, hideTip]);
+  }, [isMobile, findClosest, draw, showTip, hideTip]);
+
+  /* Touch handlers (mobile) */
+  const handleTouch = useCallback((e) => {
+    if (!isMobile) return;
+    e.preventDefault();
+    const d = findClosest(e);
+    if (d) { hovRef.current = d; draw(); setMobileItem(d); }
+    else { hovRef.current = null; draw(); setMobileItem(null); }
+  }, [isMobile, findClosest, draw]);
+
+  const closeMobileSheet = useCallback(() => {
+    setMobileItem(null); hovRef.current = null; draw();
+  }, [draw]);
 
   useEffect(() => {
     const onDocClick = (e) => {
@@ -291,7 +285,6 @@ export default function BelayScatterChart({ isMobile }) {
     <ChartContainer title="Price vs Weight" subtitle={`${filtered.length} belay devices`}>
       {/* Device type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
-        {/* Reset all */}
         {(hiddenBrands.size > 0 || enabledTypes.size !== 5) && (
           <button onClick={() => { setEnabledTypes(new Set(["active_assisted", "passive_assisted", "tube_guide", "tube", "figure_eight"])); setHiddenBrands(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
@@ -308,7 +301,7 @@ export default function BelayScatterChart({ isMobile }) {
         </div>
       </div>
 
-      {/* Color-by toggle */}
+      {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
         {[["type", "Device Type"], ["discipline", "Discipline"], ["brand", "Brand"]].map(([k, l]) => (
@@ -317,20 +310,45 @@ export default function BelayScatterChart({ isMobile }) {
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{l}</button>
         ))}
+        <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filtered.length} shown</span>
       </div>
 
       {/* Canvas */}
       <div style={{ width: "100%", overflow: "hidden" }}>
-        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%" }}
-          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick} />
+        <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%", touchAction: "none" }}
+          onMouseMove={handleMove} onMouseLeave={handleLeave} onClick={handleClick}
+          onTouchStart={handleTouch} onTouchMove={handleTouch} />
       </div>
 
-      {/* Tooltip */}
-      <div ref={tipRef} style={{
-        position: "fixed", pointerEvents: "none", background: "rgba(15,17,25,.95)", border: "1px solid rgba(99,179,237,.35)",
-        borderRadius: "8px", padding: "10px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
-        boxShadow: "0 8px 24px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .1s", maxWidth: "280px",
-      }} />
+      {/* Desktop Tooltip */}
+      {!isMobile && <div ref={tipRef} style={TIP_STYLE} />}
+
+      {/* Mobile Bottom Sheet */}
+      {isMobile && (
+        <BottomSheet item={mobileItem} onClose={closeMobileSheet}
+          onNavigate={mobileItem ? () => navigate(`/belay/${mobileItem.slug}`) : null}>
+          {mobileItem && (() => {
+            const d = mobileItem;
+            const typeLabel = TYPE_LABELS[d.type] || d.type;
+            const features = [d.antiPanic && "Anti-panic", d.guideMode && "Guide mode"].filter(Boolean).join(", ");
+            return (
+              <>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(d), flexShrink: 0 }} />
+                  <b style={{ color: T.text, fontSize: "14px" }}>{d.brand} {d.model}</b>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", marginBottom: "6px" }}>
+                  <div><span style={{ fontSize: "10px", color: T.muted }}>Weight</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{d.weight} g</div></div>
+                  <div><span style={{ fontSize: "10px", color: T.muted }}>Price</span><div style={{ fontSize: "14px", fontWeight: 600 }}>€{d.price.toFixed(2)}</div></div>
+                  <div><span style={{ fontSize: "10px", color: T.muted }}>Type</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{typeLabel}</div></div>
+                  {d.material && <div><span style={{ fontSize: "10px", color: T.muted }}>Material</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{d.material}</div></div>}
+                </div>
+                {features && <div style={{ fontSize: "11px", color: "#64748b" }}>{features}</div>}
+              </>
+            );
+          })()}
+        </BottomSheet>
+      )}
 
       {/* Legends */}
       {colorBy === "type" && (
@@ -342,24 +360,35 @@ export default function BelayScatterChart({ isMobile }) {
         </div>
       )}
       {colorBy === "discipline" && (
-        <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {["gym", "sport_single", "trad", "alpine", "ice_mixed", "big_wall", "top_rope"].map(k => (
-            <Pill key={k} color={DISC_COLORS[k] || "#94a3b8"} label={k.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-              hidden={false} onClick={() => {}} />
-          ))}
-        </div>
+        DISC_LIST.length > 5 ? (
+          <LegendRow
+            items={DISC_LIST.map(k => ({ key: k, color: DISC_COLORS[k] || "#94a3b8", label: k.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase()) }))}
+            hiddenSet={new Set()}
+            onToggle={() => {}}
+            onClearAll={() => {}}
+          />
+        ) : (
+          <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+            {DISC_LIST.map(k => (
+              <Pill key={k} color={DISC_COLORS[k] || "#94a3b8"} label={k.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+                hidden={false} onClick={() => {}} />
+            ))}
+          </div>
+        )
       )}
       {colorBy === "brand" && (
-        <div style={{ display: "flex", gap: "5px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {BRAND_LIST.map(b => (
-            <Pill key={b} color={BRAND_COLORS[b]} label={b}
-              hidden={hiddenBrands.has(b)} onClick={() => toggleHidden(setHiddenBrands, b)} />
-          ))}
-        </div>
+        <LegendRow
+          items={BRAND_LIST.map(b => ({ key: b, color: BRAND_COLORS[b], label: b }))}
+          hiddenSet={hiddenBrands}
+          onToggle={(k) => toggleHidden(setHiddenBrands, k)}
+          onClearAll={() => setHiddenBrands(prev => prev.size === BRAND_LIST.length ? new Set() : new Set(BRAND_LIST))}
+        />
       )}
 
       <div style={{ marginTop: "6px", textAlign: "center" }}>
-        <span style={{ fontSize: "10px", color: "#4a5568" }}>Click a dot for specs & detail link · Click legend to filter</span>
+        <span style={{ fontSize: "10px", color: "#4a5568" }}>
+          {isMobile ? "Tap a dot for specs · Tap legend to filter" : "Click a dot for specs & detail link · Click legend to filter"}
+        </span>
       </div>
     </ChartContainer>
   );
