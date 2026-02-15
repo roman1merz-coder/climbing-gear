@@ -86,7 +86,6 @@ function sRng(mn, mx, v) {
 }
 
 function score(shoes, filters) {
-  console.log("[SCORE] filters:", JSON.stringify(filters), "shoes:", shoes.length);
   const active = Object.entries(filters).filter(([, v]) => {
     if (v == null) return false;
     if (Array.isArray(v) && !v.length) return false;
@@ -94,7 +93,6 @@ function score(shoes, filters) {
       return false;
     return true;
   });
-  console.log("[SCORE] active filters:", active.length, active.map(([k]) => k));
   if (!active.length)
     return shoes.map((s) => ({ shoe_data: s, match_score: -1 }));
   return shoes
@@ -1480,9 +1478,9 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               >
                 {displayResults.map((shoe, i) => (
                   <div
-                    key={shoe.shoe_data?.id || shoe.shoe_data?.slug || i}
+                    key={shoe.shoe_data?.slug || i}
                     style={{
-                      animation: `fadeUp .4s ease ${i * 40}ms both`,
+                      animation: `fadeUp .4s ease ${Math.min(i * 40, 600)}ms both`,
                       position: "relative",
                     }}
                   >
