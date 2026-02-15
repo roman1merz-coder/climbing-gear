@@ -62,13 +62,17 @@ Supabase (PostgreSQL)         ← CANONICAL source of truth
 | File | Contents | Count |
 |------|----------|-------|
 | `src/seed_data.json` | Climbing shoes | 344 |
-| `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 158 |
+| `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 156 |
 | `src/belay_seed_data.json` | Belay devices | 49 |
 | `src/crashpad_seed_data.json` | Crashpads | 112 (23 brands) |
 
+### Image Strategy
+
+All product images are static JPEGs in `public/images/{category}/{slug}.jpg`. The `image_url` field in Supabase holds the canonical path. All categories use `assignLocalImages()` in `main.jsx` for a consistent fallback chain: DB image_url → slug-derived path → SVG fallback. All images use `loading="lazy"`. Never use external image URLs — always download and store locally.
+
 ### Rules for Developers and AI Agents
 
-1. **When adding new products:** Insert into Supabase first (via REST API with service_role key), then regenerate the seed JSON file. Never edit seed files directly.
+1. **When adding new products:** Insert into Supabase first (via REST API with service_role key), then regenerate the seed JSON file. Add the product image to `public/images/{category}/{slug}.jpg` and set `image_url` in Supabase. Never edit seed files directly.
 
 2. **When building charts or articles:** Parse the seed JSON to compute real statistics. Never hardcode fabricated data arrays — always derive from actual data programmatically.
 
