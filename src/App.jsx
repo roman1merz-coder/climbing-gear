@@ -441,38 +441,27 @@ function Badge({ score: s, compact }) {
   const c = s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444";
   const bg =
     s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)";
-  const sz = compact ? 38 : 52;
+  // Inline pill badge — renders in card content area, not image overlay
   return (
-    <div
+    <span
       style={{
-        position: "absolute",
-        top: compact ? "8px" : "12px",
-        right: compact ? "38px" : "44px",
-        width: `${sz}px`,
-        height: `${sz}px`,
-        borderRadius: "50%",
-        background: bg,
-        border: `2px solid ${c}`,
-        display: "flex",
+        display: "inline-flex",
         alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        backdropFilter: "blur(8px)",
+        gap: "3px",
+        padding: compact ? "2px 7px" : "3px 10px",
+        borderRadius: "10px",
+        background: bg,
+        border: `1.5px solid ${c}`,
+        fontSize: compact ? "11px" : "12px",
+        fontWeight: 700,
+        color: c,
+        fontFamily: "'DM Mono',monospace",
+        lineHeight: 1.2,
+        whiteSpace: "nowrap",
       }}
     >
-      <span
-        style={{
-          fontSize: compact ? "12px" : "16px",
-          fontWeight: 700,
-          color: c,
-          fontFamily: "'DM Mono',monospace",
-          lineHeight: 1,
-        }}
-      >
-        {s}
-      </span>
-      <span style={{ fontSize: "8px", color: c, fontWeight: 500 }}>%</span>
-    </div>
+      {s}% match
+    </span>
   );
 }
 
@@ -584,25 +573,7 @@ function Card({ shoe, onClick, priceData, compact }) {
             pointerEvents: "none",
           }}
         />
-        <Badge score={s} compact={compact} />
-        {disc > 0 && (
-          <div
-            style={{
-              position: "absolute",
-              top: compact ? "8px" : "12px",
-              left: compact ? "8px" : "12px",
-              background: "#22c55e",
-              color: "#fff",
-              padding: compact ? "2px 7px" : "3px 10px",
-              borderRadius: "12px",
-              fontSize: compact ? "10px" : "11px",
-              fontWeight: 700,
-              fontFamily: "'DM Mono',monospace",
-            }}
-          >
-            -{disc}%
-          </div>
-        )}
+        {/* Discount badge moved to card content area */}
         {d.gender && d.gender !== "unisex" && !compact && (
           <div
             style={{
@@ -658,6 +629,27 @@ function Card({ shoe, onClick, priceData, compact }) {
         >
           {d.model}
         </div>
+        {/* Match score + discount badges row */}
+        {(s >= 0 || disc > 0) && (
+          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center", marginBottom: compact ? "4px" : "8px" }}>
+            <Badge score={s} compact={compact} />
+            {disc > 0 && (
+              <span style={{
+                display: "inline-flex", alignItems: "center",
+                padding: compact ? "2px 7px" : "3px 10px",
+                borderRadius: "10px",
+                background: "rgba(34,197,94,.1)",
+                border: "1.5px solid #22c55e",
+                fontSize: compact ? "11px" : "12px",
+                fontWeight: 700, color: "#22c55e",
+                fontFamily: "'DM Mono',monospace",
+                lineHeight: 1.2, whiteSpace: "nowrap",
+              }}>
+                -{disc}%
+              </span>
+            )}
+          </div>
+        )}
         {!compact && (
           <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
             {[d.closure, d.downturn, d.feel]
@@ -963,13 +955,13 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       {/* Sub-header: search + filters */}
       <header
         style={{
-          padding: isMobile ? "8px 12px" : "0 24px",
+          padding: isMobile ? "0" : "0 24px",
           minHeight: isMobile ? undefined : "50px",
           borderBottom: "1px solid #1e2028",
-          display: "flex",
+          display: isMobile ? "block" : "flex",
           alignItems: "center",
-          gap: isMobile ? "8px" : "16px",
-          flexWrap: isMobile ? "wrap" : "nowrap",
+          gap: "16px",
+          flexWrap: "nowrap",
           position: "sticky",
           top: isMobile ? "44px" : "50px",
           background: "rgba(14,16,21,.92)",
@@ -977,69 +969,133 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           zIndex: 100,
         }}
       >
-        {isMobile && (
-          <button
-            onClick={() => setShowMobileFilters(true)}
-            style={{
-              padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 500,
-              color: ac > 0 ? "#E8734A" : "#6b7280",
-              cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
-              background: ac > 0 ? "rgba(232,115,74,0.1)" : "transparent",
-              fontFamily: "'DM Sans',sans-serif",
-            }}
-          >
-            ☰ Filters{ac > 0 ? ` (${ac})` : ""}
-          </button>
-        )}
-        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
-          <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search shoes…"
-            style={{
-              width: "100%", padding: "8px 16px 8px 36px",
-              borderRadius: "8px", border: "1px solid #1e2028",
-              background: "#151820", color: "#f0f0f0",
-              fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
-            }}
-          />
-        </div>
-        {/* View toggle */}
-        <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
-          {[
-            { key: "cards", icon: "▦", label: "Cards" },
-            { key: "chart", icon: "⊙", label: "Chart" },
-          ].map(v => (
-            <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
-              padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
-              background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
-              color: view === v.key ? "#E8734A" : "#6b7280",
-              fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
-              display: "flex", alignItems: "center", gap: "4px",
-            }}>
-              <span style={{ fontSize: "13px" }}>{v.icon}</span>
-              {!isMobile && v.label}
-            </button>
-          ))}
-        </div>
+        {isMobile ? (
+          <>
+            {/* Mobile Row 1: Filters + Search */}
+            <div style={{ display: "flex", gap: "8px", alignItems: "center", padding: "8px 12px 0" }}>
+              <button
+                onClick={() => setShowMobileFilters(true)}
+                style={{
+                  padding: "7px 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
+                  color: ac > 0 ? "#E8734A" : "#9ca3af",
+                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#2a2f38"}`,
+                  background: ac > 0 ? "rgba(232,115,74,0.08)" : "#1a1d24",
+                  fontFamily: "'DM Sans',sans-serif",
+                  display: "flex", alignItems: "center", gap: "6px",
+                  whiteSpace: "nowrap", flexShrink: 0,
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2" fill="currentColor"/><circle cx="16" cy="12" r="2" fill="currentColor"/><circle cx="10" cy="18" r="2" fill="currentColor"/></svg>
+                Filters{ac > 0 ? ` (${ac})` : ""}
+              </button>
+              <div style={{ flex: 1, position: "relative" }}>
+                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search shoes…"
+                  style={{
+                    width: "100%", padding: "7px 12px 7px 32px",
+                    borderRadius: "8px", border: "1px solid #2a2f38",
+                    background: "#1a1d24", color: "#f0f0f0",
+                    fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
+                  }}
+                />
+              </div>
+            </div>
+            {/* Mobile Row 2: Count + Sort + View toggle */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px", gap: "8px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <span style={{ fontSize: "12px", color: "#6b7280", fontWeight: 500 }}>
+                  {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
+                </span>
+                {(ac > 0 || query) && (
+                  <button
+                    onClick={() => { setFilters({}); setQuery(""); }}
+                    style={{
+                      padding: "2px 8px", borderRadius: "10px", border: "1px solid #3a3f47",
+                      background: "transparent", color: "#9ca3af", fontSize: "10px",
+                      cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+                    }}
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                {view === "cards" && <SortDropdown value={sortKey} onChange={setSortKey} />}
+                <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+                  {[
+                    { key: "cards", icon: "▦" },
+                    { key: "chart", icon: "⊙" },
+                  ].map(v => (
+                    <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+                      padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
+                      background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+                      color: view === v.key ? "#E8734A" : "#6b7280",
+                      fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+                    }}>
+                      {v.icon}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ flex: 1, maxWidth: "400px", position: "relative" }}>
+              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search shoes…"
+                style={{
+                  width: "100%", padding: "8px 16px 8px 36px",
+                  borderRadius: "8px", border: "1px solid #1e2028",
+                  background: "#151820", color: "#f0f0f0",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
+                }}
+              />
+            </div>
+            {/* View toggle */}
+            <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+              {[
+                { key: "cards", icon: "▦", label: "Cards" },
+                { key: "chart", icon: "⊙", label: "Chart" },
+              ].map(v => (
+                <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+                  padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
+                  background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+                  color: view === v.key ? "#E8734A" : "#6b7280",
+                  fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+                  display: "flex", alignItems: "center", gap: "4px",
+                }}>
+                  <span style={{ fontSize: "13px" }}>{v.icon}</span>
+                  {v.label}
+                </button>
+              ))}
+            </div>
 
-        <span style={{ fontSize: isMobile ? "11px" : "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
-          {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
-          {!isMobile && ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
-        </span>
-        {(ac > 0 || query) && (
-          <button
-            onClick={() => { setFilters({}); setQuery(""); }}
-            style={{
-              padding: "6px 16px", borderRadius: "20px", border: "1px solid #3a3f47",
-              background: "transparent", color: "#9ca3af", fontSize: "12px",
-              cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
-            }}
-          >
-            Clear all
-          </button>
+            <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
+              {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
+              {ac > 0 && ` · ${ac} filter${ac > 1 ? "s" : ""}`}
+            </span>
+            {(ac > 0 || query) && (
+              <button
+                onClick={() => { setFilters({}); setQuery(""); }}
+                style={{
+                  padding: "6px 16px", borderRadius: "20px", border: "1px solid #3a3f47",
+                  background: "transparent", color: "#9ca3af", fontSize: "12px",
+                  cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+                }}
+              >
+                Clear all
+              </button>
+            )}
+          </>
         )}
       </header>
 
@@ -1400,9 +1456,9 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
           )}
 
-          {/* Sort controls */}
-          {view === "cards" && (
-          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>
+          {/* Sort controls — desktop only (mobile sort is in header) */}
+          {view === "cards" && !isMobile && (
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "16px" }}>
             <SortDropdown value={sortKey} onChange={setSortKey} />
           </div>
           )}
