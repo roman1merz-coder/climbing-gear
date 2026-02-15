@@ -377,6 +377,101 @@ export function drawLinearTrend(ctx, sx, sy, slope, intercept, std, xMin, xMax, 
   ctx.fillText(label, lx, ly + 3);
 }
 
+/* ─── LOESS (locally weighted) trend line with confidence bands ─── */
+export function drawLoessTrend(ctx, sx, sy, data, xField, yField, xMin, xMax, yMin, yMax, { color = "rgba(200,205,216,1)", label = "Trend", steps = 50, bandwidth = 0.4 } = {}) {
+  if (data.length < 4) return;
+  const [cr, cg, cb] = hex2rgb(color.startsWith("rgba") ? "#c8cdd8" : color);
+  const rgba = (a) => `rgba(${cr},${cg},${cb},${a})`;
+
+  // Tricube kernel
+  const tricube = (d) => { const ad = Math.abs(d); return ad >= 1 ? 0 : (1 - ad * ad * ad) ** 3; };
+
+  // LOESS: for each query x, do weighted linear regression
+  const xs = [];
+  for (let i = 0; i <= steps; i++) xs.push(xMin + (xMax - xMin) * i / steps);
+
+  const pts = data.map(d => ({ x: d[xField], y: d[yField] }));
+  const ys = [], stds = [];
+
+  for (const qx of xs) {
+    // Distances
+    const dists = pts.map(p => Math.abs(p.x - qx));
+    const sorted = [...dists].sort((a, b) => a - b);
+    const h = sorted[Math.min(Math.floor(bandwidth * pts.length), pts.length - 1)] || 1;
+    const hSafe = Math.max(h, 1e-6);
+
+    let sw = 0, swx = 0, swy = 0, swxx = 0, swxy = 0;
+    pts.forEach((p, i) => {
+      const w = tricube(dists[i] / hSafe);
+      sw += w; swx += w * p.x; swy += w * p.y;
+      swxx += w * p.x * p.x; swxy += w * p.x * p.y;
+    });
+    if (sw < 1e-10) { ys.push(null); stds.push(0); continue; }
+
+    const det = sw * swxx - swx * swx;
+    let yHat;
+    if (Math.abs(det) < 1e-10) {
+      yHat = swy / sw;
+    } else {
+      const b0 = (swxx * swy - swx * swxy) / det;
+      const b1 = (sw * swxy - swx * swy) / det;
+      yHat = b0 + b1 * qx;
+    }
+    ys.push(yHat);
+
+    // Weighted residual std
+    let wss = 0;
+    pts.forEach((p, i) => {
+      const w = tricube(dists[i] / hSafe);
+      wss += w * (p.y - yHat) ** 2;
+    });
+    stds.push(Math.sqrt(wss / sw));
+  }
+
+  // Draw 2σ band
+  ctx.beginPath();
+  let started = false;
+  for (let i = 0; i < xs.length; i++) { if (ys[i] == null) continue; const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] + 2 * stds[i]))); !started ? (ctx.moveTo(px, py), started = true) : ctx.lineTo(px, py); }
+  for (let i = xs.length - 1; i >= 0; i--) { if (ys[i] == null) continue; ctx.lineTo(sx(xs[i]), sy(Math.max(yMin, Math.min(yMax, ys[i] - 2 * stds[i])))); }
+  ctx.closePath();
+  const g2 = ctx.createLinearGradient(0, sy(yMax), 0, sy(yMin));
+  g2.addColorStop(0, rgba(.06)); g2.addColorStop(0.5, rgba(.04)); g2.addColorStop(1, rgba(.01));
+  ctx.fillStyle = g2; ctx.fill();
+
+  // 1σ band
+  ctx.beginPath(); started = false;
+  for (let i = 0; i < xs.length; i++) { if (ys[i] == null) continue; const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] + stds[i]))); !started ? (ctx.moveTo(px, py), started = true) : ctx.lineTo(px, py); }
+  for (let i = xs.length - 1; i >= 0; i--) { if (ys[i] == null) continue; ctx.lineTo(sx(xs[i]), sy(Math.max(yMin, Math.min(yMax, ys[i] - stds[i])))); }
+  ctx.closePath(); ctx.fillStyle = rgba(.08); ctx.fill();
+
+  // 1σ edge lines
+  ctx.strokeStyle = rgba(.2); ctx.lineWidth = 0.8; ctx.setLineDash([3, 4]);
+  ctx.beginPath(); started = false;
+  for (let i = 0; i < xs.length; i++) { if (ys[i] == null) continue; const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] + stds[i]))); !started ? (ctx.moveTo(px, py), started = true) : ctx.lineTo(px, py); }
+  ctx.stroke();
+  ctx.beginPath(); started = false;
+  for (let i = 0; i < xs.length; i++) { if (ys[i] == null) continue; const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] - stds[i]))); !started ? (ctx.moveTo(px, py), started = true) : ctx.lineTo(px, py); }
+  ctx.stroke(); ctx.setLineDash([]);
+
+  // Main trend curve
+  ctx.strokeStyle = rgba(.5); ctx.lineWidth = 2.5;
+  ctx.beginPath(); started = false;
+  for (let i = 0; i < xs.length; i++) { if (ys[i] == null) continue; const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i]))); !started ? (ctx.moveTo(px, py), started = true) : ctx.lineTo(px, py); }
+  ctx.stroke();
+
+  // Inline label
+  const li = Math.floor(xs.length * 0.65);
+  if (ys[li] != null) {
+    const lx = sx(xs[li]), ly = sy(Math.min(yMax, ys[li] + stds[li] + (yMax - yMin) * 0.04));
+    ctx.font = `600 10px ${FONT}`;
+    const lw = ctx.measureText(label).width + 10;
+    ctx.fillStyle = "rgba(15,17,25,.8)";
+    rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
+    ctx.fillStyle = rgba(.8); ctx.textAlign = "center";
+    ctx.fillText(label, lx, ly + 3);
+  }
+}
+
 /* ─── Crosshair guides for hovered dot ─── */
 export function drawCrosshair(ctx, px, py, P, W, H, xStr, yStr) {
   ctx.strokeStyle = "rgba(232,115,74,.25)"; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);

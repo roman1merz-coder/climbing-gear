@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import BELAY_SEED from "./belay_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLinearTrend } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLoessTrend } from "./ChartShared.jsx";
 
 /* ─── Device type styling ─── */
 const TYPE_COLORS = {
@@ -42,18 +42,7 @@ const ALL_BELAYS = BELAY_SEED.filter(d => d.price_uvp_eur && d.weight_g)
     ropeSlots: d.rope_slots, material: d.material,
   }));
 
-/* ─── Pre-computed linear regression: weight → price ─── */
-const BELAY_TREND = (() => {
-  const n = ALL_BELAYS.length;
-  const mw = ALL_BELAYS.reduce((s, d) => s + d.weight, 0) / n;
-  const mp = ALL_BELAYS.reduce((s, d) => s + d.price, 0) / n;
-  let num = 0, den = 0;
-  ALL_BELAYS.forEach(d => { num += (d.weight - mw) * (d.price - mp); den += (d.weight - mw) ** 2; });
-  const slope = num / den, intercept = mp - slope * mw;
-  const resid = ALL_BELAYS.map(d => d.price - (slope * d.weight + intercept));
-  const std = Math.sqrt(resid.reduce((s, r) => s + r * r, 0) / (n - 2));
-  return { slope, intercept, std };
-})();
+/* ─── (trend is now computed via LOESS at draw time) ─── */
 
 /* ─── Main Component ─── */
 export default function BelayScatterChart({ isMobile }) {
@@ -149,8 +138,8 @@ export default function BelayScatterChart({ isMobile }) {
     // Data count badge
     drawCountBadge(ctx, PAD, W, filtered.length, "devices");
 
-    // Linear trend line
-    drawLinearTrend(ctx, sx, sy, BELAY_TREND.slope, BELAY_TREND.intercept, BELAY_TREND.std, wMin, wMax, pMin, pMax, { color: "#c8cdd8", label: "Trend (all devices)" });
+    // LOESS trend curve
+    drawLoessTrend(ctx, sx, sy, ALL_BELAYS, "weight", "price", wMin, wMax, pMin, pMax, { color: "#c8cdd8", label: "Trend (all devices)", bandwidth: 0.4 });
 
     // Crosshair for hovered dot
     const hovered = hovRef.current;
