@@ -331,6 +331,56 @@ export function drawClusterBadges(ctx, pts) {
   });
 }
 
+/* ─── Linear trend line with confidence bands ─── */
+export function drawLinearTrend(ctx, sx, sy, slope, intercept, std, xMin, xMax, yMin, yMax, { color = "rgba(200,205,216,1)", label = "Trend", steps = 40 } = {}) {
+  const [cr, cg, cb] = hex2rgb(color.startsWith("rgba") ? "#c8cdd8" : color);
+  const rgba = (a) => `rgba(${cr},${cg},${cb},${a})`;
+
+  const xs = [];
+  for (let i = 0; i <= steps; i++) xs.push(xMin + (xMax - xMin) * i / steps);
+  const ys = xs.map(x => slope * x + intercept);
+
+  // 2σ band (gradient)
+  ctx.beginPath();
+  for (let i = 0; i < xs.length; i++) { const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] + 2 * std))); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+  for (let i = xs.length - 1; i >= 0; i--) ctx.lineTo(sx(xs[i]), sy(Math.max(yMin, Math.min(yMax, ys[i] - 2 * std))));
+  ctx.closePath();
+  const g2 = ctx.createLinearGradient(0, sy(yMax), 0, sy(yMin));
+  g2.addColorStop(0, rgba(.06)); g2.addColorStop(0.5, rgba(.04)); g2.addColorStop(1, rgba(.01));
+  ctx.fillStyle = g2; ctx.fill();
+
+  // 1σ band
+  ctx.beginPath();
+  for (let i = 0; i < xs.length; i++) { const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] + std))); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+  for (let i = xs.length - 1; i >= 0; i--) ctx.lineTo(sx(xs[i]), sy(Math.max(yMin, Math.min(yMax, ys[i] - std))));
+  ctx.closePath(); ctx.fillStyle = rgba(.08); ctx.fill();
+
+  // 1σ edge lines
+  ctx.strokeStyle = rgba(.2); ctx.lineWidth = 0.8; ctx.setLineDash([3, 4]);
+  ctx.beginPath();
+  for (let i = 0; i < xs.length; i++) { const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] + std))); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+  ctx.stroke();
+  ctx.beginPath();
+  for (let i = 0; i < xs.length; i++) { const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i] - std))); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+  ctx.stroke(); ctx.setLineDash([]);
+
+  // Main trend line
+  ctx.strokeStyle = rgba(.5); ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let i = 0; i < xs.length; i++) { const px = sx(xs[i]), py = sy(Math.max(yMin, Math.min(yMax, ys[i]))); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+  ctx.stroke();
+
+  // Inline label
+  const li = Math.floor(xs.length * 0.65);
+  const lx = sx(xs[li]), ly = sy(Math.min(yMax, ys[li] + std + (yMax - yMin) * 0.04));
+  ctx.font = `600 10px ${FONT}`;
+  const lw = ctx.measureText(label).width + 10;
+  ctx.fillStyle = "rgba(15,17,25,.8)";
+  rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
+  ctx.fillStyle = rgba(.8); ctx.textAlign = "center";
+  ctx.fillText(label, lx, ly + 3);
+}
+
 /* ─── Crosshair guides for hovered dot ─── */
 export function drawCrosshair(ctx, px, py, P, W, H, xStr, yStr) {
   ctx.strokeStyle = "rgba(232,115,74,.25)"; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);

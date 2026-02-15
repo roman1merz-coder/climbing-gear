@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import ROPE_SEED from "./rope_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, jitter, drawClusterBadges, drawCrosshair, hex2rgb, rrect } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, jitter, drawClusterBadges, drawCrosshair, hex2rgb, rrect, drawLinearTrend } from "./ChartShared.jsx";
 
 /* ─── Color palettes ─── */
 const TYPE_COLORS = { single: "#60a5fa", half: "#ed64a6", twin: "#34d399", static: "#ecc94b" };
@@ -29,6 +29,20 @@ const CX=[7.5,7.6,7.7,7.8,7.9,8.0,8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,9.0,9.1,9.
 const CF=[2.585,2.949,3.288,3.601,3.892,4.163,4.415,4.651,4.872,5.082,5.281,5.472,5.657,5.838,6.018,6.197,6.379,6.565,6.757,6.958,7.169,7.393,7.631,7.886,8.16,8.454,8.771,9.114,9.483,9.881,10.311,10.773,11.271,11.806,12.38,12.996,13.655,14.36,15.113,15.915];
 const CG=[41.154,41.905,42.67,43.449,44.243,45.05,45.872,46.707,47.557,48.421,49.3,50.192,51.098,52.019,52.954,53.903,54.866,55.843,56.835,57.84,58.86,59.894,60.942,62.004,63.08,64.171,65.275,66.394,67.527,68.674,69.835,71.01,72.2,73.404,74.621,75.853,77.099,78.36,79.634,80.923];
 const SF=1.316, SG=1.660;
+
+/* Linear regression for static ropes: diameter → break strength */
+const STATIC_BS_TREND = (() => {
+  const statics = ALL_ROPES.filter(r => r.type === "static" && r.breakStr);
+  if (statics.length < 3) return null;
+  const n = statics.length;
+  const md = statics.reduce((s, r) => s + r.dia, 0) / n;
+  const mb = statics.reduce((s, r) => s + r.breakStr, 0) / n;
+  let num = 0, den = 0;
+  statics.forEach(r => { num += (r.dia - md) * (r.breakStr - mb); den += (r.dia - md) ** 2; });
+  const slope = num / den, intercept = mb - slope * md;
+  const std = Math.sqrt(statics.reduce((s, r) => s + (r.breakStr - (slope * r.dia + intercept)) ** 2, 0) / (n - 2));
+  return { slope, intercept, std };
+})();
 
 /* ─── Main Component ─── */
 export default function RopeScatterChart({ isMobile }) {
@@ -239,6 +253,11 @@ export default function RopeScatterChart({ isMobile }) {
       rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
       ctx.fillStyle = "rgba(99,179,237,.8)"; ctx.textAlign = "center";
       ctx.fillText(lbl, lx, ly + 3);
+    }
+
+    // Linear trend for static ropes: break strength
+    if (metric === "breakStr" && enabledTypes.has("static") && STATIC_BS_TREND) {
+      drawLinearTrend(ctx, sx, sy, STATIC_BS_TREND.slope, STATIC_BS_TREND.intercept, STATIC_BS_TREND.std, xMin, xMax, yMin, yMax, { color: "#ecc94b", label: "Trend (static ropes)" });
     }
 
     // Crosshair for hovered dot

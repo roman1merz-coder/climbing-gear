@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLinearTrend } from "./ChartShared.jsx";
 
 /* Thickness groups */
 const THICK_GROUPS = [
@@ -27,6 +27,20 @@ const PADS = CRASHPAD_SEED.filter(p => p.length_open_cm && p.width_open_cm && p.
       thickness: p.thickness_cm || 10, tGroup: thickGroup(p.thickness_cm || 10),
     };
   });
+
+/* ─── Pre-computed linear regressions ─── */
+function linReg(data, xFn, yFn) {
+  const n = data.length;
+  const mx = data.reduce((s, d) => s + xFn(d), 0) / n;
+  const my = data.reduce((s, d) => s + yFn(d), 0) / n;
+  let num = 0, den = 0;
+  data.forEach(d => { num += (xFn(d) - mx) * (yFn(d) - my); den += (xFn(d) - mx) ** 2; });
+  const slope = num / den, intercept = my - slope * mx;
+  const std = Math.sqrt(data.reduce((s, d) => s + (yFn(d) - (slope * xFn(d) + intercept)) ** 2, 0) / (n - 2));
+  return { slope, intercept, std };
+}
+const PAD_TREND_WEIGHT = linReg(PADS, d => d.area, d => d.weight);
+const PAD_TREND_PRICE = linReg(PADS, d => d.area, d => d.price);
 
 /* Color palettes */
 const LAYER_COLORS = {
@@ -121,6 +135,13 @@ export default function CrashpadScatterChart({ isMobile }) {
 
     // Data count badge
     drawCountBadge(ctx, PAD, W, filteredPads.length, "pads");
+
+    // Trend lines for area_weight and area_price
+    if (metric === "area_weight") {
+      drawLinearTrend(ctx, sx, sy, PAD_TREND_WEIGHT.slope, PAD_TREND_WEIGHT.intercept, PAD_TREND_WEIGHT.std, xMin, xMax, yMin, yMax, { color: "#60a5fa", label: "Trend (all pads)" });
+    } else if (metric === "area_price") {
+      drawLinearTrend(ctx, sx, sy, PAD_TREND_PRICE.slope, PAD_TREND_PRICE.intercept, PAD_TREND_PRICE.std, xMin, xMax, yMin, yMax, { color: "#60a5fa", label: "Trend (all pads)" });
+    }
 
     // Crosshair for hovered dot
     const hovered = hovRef.current;
