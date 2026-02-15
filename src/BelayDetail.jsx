@@ -9,7 +9,7 @@ import useIsMobile from "./useIsMobile.js";
 function Img({ src, alt, style, fallback }) {
   const [err, setErr] = useState(false);
   if (!src || err) return fallback || null;
-  return <img src={src} alt={alt} onError={() => setErr(true)} style={style} />;
+  return <img src={src} alt={alt} loading="lazy" onError={() => setErr(true)} style={style} />;
 }
 
 // ─── Design Tokens ───────────────────────────────────────────────

@@ -223,7 +223,7 @@ function ScrollToTop() {
 }
 
 function Root() {
-  const [shoes, setShoes] = useState(SEED);
+  const [shoes, setShoes] = useState(assignLocalImages(SEED, "shoes"));
   const [src, setSrc] = useState("local");
   const [priceData, setPriceData] = useState({});
   const [priceHistory, setPriceHistory] = useState({});
@@ -235,7 +235,7 @@ function Root() {
   const [ropeSrc, setRopeSrc] = useState("seed");
   const [belays, setBelays] = useState(assignLocalImages(BELAY_SEED, "belays"));
   const [belaySrc, setBelaySrc] = useState("seed");
-  const [crashpads, setCrashpads] = useState(CRASHPAD_SEED);
+  const [crashpads, setCrashpads] = useState(assignLocalImages(CRASHPAD_SEED, "crashpads"));
   const [crashpadSrc, setCrashpadSrc] = useState("seed");
 
   useEffect(() => {
@@ -246,7 +246,7 @@ function Root() {
           const merged = data.map(mergeShoe).filter(s => SEED_MAP[s.slug]);
           const sbSlugs = new Set(data.map(s => s.slug));
           const extras = SEED.filter(s => !sbSlugs.has(s.slug));
-          setShoes([...merged, ...extras]);
+          setShoes(assignLocalImages([...merged, ...extras], "shoes"));
           setSrc("supabase+seed");
         }
       })
@@ -279,7 +279,7 @@ function Root() {
       .then((data) => {
         if (data?.length) {
           const merged = mergeDataset(data, CRASHPAD_SEED, CRASHPAD_SEED_MAP);
-          setCrashpads(merged);
+          setCrashpads(assignLocalImages(merged, "crashpads"));
           setCrashpadSrc(`supabase+seed · ${merged.length}`);
         }
       })
