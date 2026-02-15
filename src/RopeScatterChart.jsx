@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import ROPE_SEED from "./rope_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, jitter, drawClusterBadges, drawCrosshair, hex2rgb, rrect } from "./ChartShared.jsx";
 
 /* ─── Color palettes ─── */
 const TYPE_COLORS = { single: "#60a5fa", half: "#ed64a6", twin: "#34d399", static: "#ecc94b" };
@@ -120,28 +120,47 @@ export default function RopeScatterChart({ isMobile }) {
     return BRAND_COLORS[r.brand] || "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
-  /* Shape: circle=single, diamond=half, triangle=twin, square=static */
+  /* Shape: circle=single, diamond=half, triangle=twin, square=static — with glow */
   const drawShape = useCallback((ctx, r, px, py, size, isHovered) => {
     const hex = getColor(r);
-    const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-    const fill = `rgba(${cr},${cg},${cb},${isHovered ? 1 : 0.7})`;
-    const stroke = isHovered ? "#fff" : `rgba(${cr},${cg},${cb},0.3)`;
-    ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = isHovered ? 2 : 0.8;
+    const [cr, cg, cb] = hex2rgb(hex);
+
+    // Glow
+    ctx.shadowColor = `rgba(${cr},${cg},${cb},${isHovered ? 0.6 : 0.35})`;
+    ctx.shadowBlur = isHovered ? 14 : 6;
+
+    const fill = `rgba(${cr},${cg},${cb},${isHovered ? 1 : 0.85})`;
+    ctx.fillStyle = fill;
+
+    if (isHovered) {
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
+    }
 
     if (r.type === "half") {
       ctx.save(); ctx.translate(px, py); ctx.rotate(Math.PI / 4);
       const s = isHovered ? size * 1.3 : size * 0.85;
-      ctx.beginPath(); ctx.rect(-s, -s, s * 2, s * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+      ctx.beginPath(); ctx.rect(-s, -s, s * 2, s * 2); ctx.fill();
+      if (isHovered) ctx.stroke();
+      ctx.restore();
     } else if (r.type === "twin") {
       const s = isHovered ? size * 1.5 : size;
       ctx.beginPath(); ctx.moveTo(px, py - s); ctx.lineTo(px + s, py + s * 0.7); ctx.lineTo(px - s, py + s * 0.7); ctx.closePath();
-      ctx.fill(); ctx.stroke();
+      ctx.fill(); if (isHovered) ctx.stroke();
     } else if (r.type === "static") {
       const s = isHovered ? size * 1.3 : size * 0.85;
-      ctx.beginPath(); ctx.rect(px - s, py - s, s * 2, s * 2); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.rect(px - s, py - s, s * 2, s * 2); ctx.fill();
+      if (isHovered) ctx.stroke();
     } else {
       ctx.beginPath(); ctx.arc(px, py, isHovered ? size * 1.6 : (isMobile ? size * 1.2 : size), 0, Math.PI * 2);
-      ctx.fill(); ctx.stroke();
+      ctx.fill(); if (isHovered) ctx.stroke();
+    }
+
+    ctx.shadowBlur = 0;
+
+    // Extra hover rings for single (circle) type
+    if (isHovered && r.type === "single") {
+      ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(px, py, size * 1.6 + 5, 0, Math.PI * 2); ctx.stroke();
     }
   }, [getColor, isMobile]);
 
@@ -150,8 +169,8 @@ export default function RopeScatterChart({ isMobile }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 20, b: 44, l: 50 };
+    const W = rect.width, H = chartH(isMobile);
+    const PAD = chartPad(isMobile, { l: isMobile ? 46 : 54 });
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -162,46 +181,86 @@ export default function RopeScatterChart({ isMobile }) {
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
-    // Grid
-    ctx.strokeStyle = "rgba(255,255,255,.05)"; ctx.lineWidth = 1;
-    const xStep = (xMax - xMin) > 4 ? 1 : 0.5;
-    for (let x = Math.ceil(xMin / xStep) * xStep; x <= xMax; x += xStep) {
-      ctx.beginPath(); ctx.moveTo(sx(x), PAD.t); ctx.lineTo(sx(x), H - PAD.b); ctx.stroke();
-    }
-    for (let y = yMin; y <= yMax; y += yStep) {
-      ctx.beginPath(); ctx.moveTo(PAD.l, sy(y)); ctx.lineTo(W - PAD.r, sy(y)); ctx.stroke();
-    }
-    // Ticks
-    ctx.fillStyle = "#4a5568"; ctx.font = "10px system-ui"; ctx.textAlign = "center";
-    for (let x = Math.ceil(xMin / xStep) * xStep; x <= xMax; x += xStep) ctx.fillText(x.toFixed(1), sx(x), H - PAD.b + 14);
-    ctx.textAlign = "right";
-    for (let y = yMin; y <= yMax; y += yStep) ctx.fillText(y, PAD.l - 6, sy(y) + 3);
-    ctx.fillStyle = "#64748b"; ctx.font = "11px system-ui"; ctx.textAlign = "center";
-    ctx.fillText("Diameter (mm)", W / 2, H - 6);
-    ctx.save(); ctx.translate(12, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(cfg.yLabel, 0, 0); ctx.restore();
+    // Chart area frame
+    drawChartArea(ctx, PAD, W, H);
 
-    // Trend line for single ropes
+    // Grid
+    const xStep = (xMax - xMin) > 4 ? 1 : 0.5;
+    drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
+
+    // Ticks + axis labels
+    const xFmt = x => x.toFixed(1);
+    const yFmt = y => String(y);
+    const firstX = Math.ceil(xMin / xStep) * xStep;
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel: "Diameter (mm)", yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
+
+    // Data count badge
+    drawCountBadge(ctx, PAD, W, filtered.length, "ropes");
+
+    // Trend line for single ropes (polished)
     if (enabledTypes.has("single") && curveY) {
+      // 2σ band with gradient
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + 2 * std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - 2 * std));
-      ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.03)"; ctx.fill();
+      ctx.closePath();
+      const g2 = ctx.createLinearGradient(0, sy(yMax), 0, sy(yMin));
+      g2.addColorStop(0, "rgba(99,179,237,.06)"); g2.addColorStop(0.5, "rgba(99,179,237,.04)"); g2.addColorStop(1, "rgba(99,179,237,.01)");
+      ctx.fillStyle = g2; ctx.fill();
+
+      // 1σ band
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - std));
-      ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.07)"; ctx.fill();
-      ctx.strokeStyle = "rgba(99,179,237,.5)"; ctx.lineWidth = 2; ctx.setLineDash([]);
+      ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.08)"; ctx.fill();
+
+      // 1σ edge lines
+      ctx.strokeStyle = "rgba(99,179,237,.2)"; ctx.lineWidth = 0.8; ctx.setLineDash([3, 4]);
+      ctx.beginPath();
+      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+      ctx.stroke();
+      ctx.beginPath();
+      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] - std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
+      ctx.stroke(); ctx.setLineDash([]);
+
+      // Main trend line (thicker)
+      ctx.strokeStyle = "rgba(99,179,237,.6)"; ctx.lineWidth = 2.5;
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i]); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       ctx.stroke();
+
+      // Inline label
+      const li = Math.floor(CX.length * 0.65);
+      const lx = sx(CX[li]), ly = sy(curveY[li] + std + (yMax - yMin) * 0.04);
+      ctx.font = "600 10px 'Instrument Sans', system-ui";
+      const lbl = "Trend (single ropes)";
+      const lw = ctx.measureText(lbl).width + 10;
+      ctx.fillStyle = "rgba(15,17,25,.8)";
+      rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
+      ctx.fillStyle = "rgba(99,179,237,.8)"; ctx.textAlign = "center";
+      ctx.fillText(lbl, lx, ly + 3);
     }
 
-    // Dots
+    // Crosshair for hovered dot
     const hovered = hovRef.current;
-    filtered.filter(r => r !== hovered).forEach(r => {
-      const px = sx(r.dia), py = sy(r[yField]);
+    if (hovered && filtered.includes(hovered)) {
+      const hpx = sx(hovered.dia), hpy = sy(hovered[yField]);
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered.dia), yFmt(hovered[yField]));
+    }
+
+    // Dots with glow + jitter
+    const pixelPts = [];
+    filtered.filter(r => r !== hovered).forEach((r, i) => {
+      const j = jitter(i);
+      const px = sx(r.dia) + j.dx, py = sy(r[yField]) + j.dy;
+      pixelPts.push({ px, py });
       drawShape(ctx, r, px, py, isMobile ? 5 : 4, false);
     });
+
+    // Cluster badges
+    drawClusterBadges(ctx, pixelPts);
+
+    // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
       const px = sx(hovered.dia), py = sy(hovered[yField]);
       drawShape(ctx, hovered, px, py, isMobile ? 5 : 4, true);
@@ -217,11 +276,11 @@ export default function RopeScatterChart({ isMobile }) {
     const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
     const mx = clientX - rect.left, my = clientY - rect.top;
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 20, b: 44, l: 50 };
+    const W = rect.width, H = chartH(isMobile);
+    const P = chartPad(isMobile, { l: isMobile ? 46 : 54 });
     const xMin = axisBounds.diaMin, xMax = axisBounds.diaMax;
-    const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
-    const sy = y => H - PAD.b - (y - cfg.yMin) / (cfg.yMax - cfg.yMin) * (H - PAD.t - PAD.b);
+    const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
+    const sy = y => H - P.b - (y - cfg.yMin) / (cfg.yMax - cfg.yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 20;
     filtered.forEach(r => {

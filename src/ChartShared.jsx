@@ -159,3 +159,199 @@ export const toggleHidden = (setter, key) => setter(prev => {
   next.has(key) ? next.delete(key) : next.add(key);
   return next;
 });
+
+/* ═══════════════════════════════════════════════════════
+   Canvas drawing helpers — shared across all 4 charts
+   ═══════════════════════════════════════════════════════ */
+
+const FONT = "'Instrument Sans', system-ui";
+
+/* ─── roundRect path (no beginPath — caller decides fill/stroke) ─── */
+export function rrect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+/* ─── Responsive padding ─── */
+export function chartPad(isMobile, overrides) {
+  const base = isMobile
+    ? { t: 34, r: 16, b: 50, l: 46 }   // top: room for y-label; left: no rotated text
+    : { t: 22, r: 22, b: 48, l: 56 };
+  return { ...base, ...overrides };
+}
+
+/* ─── Chart height ─── */
+export function chartH(isMobile) { return isMobile ? 360 : 400; }
+
+/* ─── Draw inset chart area background + axis border lines ─── */
+export function drawChartArea(ctx, P, W, H) {
+  const grad = ctx.createLinearGradient(P.l, P.t, P.l, H - P.b);
+  grad.addColorStop(0, "rgba(0,0,0,.25)");
+  grad.addColorStop(1, "rgba(0,0,0,.15)");
+  ctx.fillStyle = grad;
+  rrect(ctx, P.l, P.t, W - P.l - P.r, H - P.t - P.b, 4); ctx.fill();
+  ctx.strokeStyle = "rgba(255,255,255,.12)"; ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(P.l, P.t); ctx.lineTo(P.l, H - P.b); ctx.lineTo(W - P.r, H - P.b);
+  ctx.stroke();
+}
+
+/* ─── Draw grid (dashed, 8 %, baseline emphasis) ─── */
+export function drawGrid(ctx, P, W, H, xMin, xMax, yMin, xStep, yStep, ySy) {
+  ctx.lineWidth = 1;
+  for (let x = xMin + xStep; x <= xMax + 0.001; x += xStep) {
+    ctx.strokeStyle = "rgba(255,255,255,.08)"; ctx.setLineDash([4, 6]);
+    ctx.beginPath(); ctx.moveTo(P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r), P.t);
+    ctx.lineTo(P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r), H - P.b); ctx.stroke();
+  }
+  ctx.setLineDash([]);
+  // Horizontal grid — emphasise baseline (yMin)
+  const yLines = [];
+  for (let y = yMin; y <= ySy.yMax + 0.001; y += yStep) yLines.push(y);
+  yLines.forEach(y => {
+    const isBase = Math.abs(y - yMin) < 0.001;
+    ctx.strokeStyle = isBase ? "rgba(255,255,255,.15)" : "rgba(255,255,255,.08)";
+    ctx.lineWidth = isBase ? 1.5 : 1;
+    if (!isBase) ctx.setLineDash([4, 6]);
+    ctx.beginPath(); ctx.moveTo(P.l, ySy.fn(y)); ctx.lineTo(W - P.r, ySy.fn(y)); ctx.stroke();
+    ctx.setLineDash([]);
+  });
+}
+
+/* ─── Tick labels + axis labels ─── */
+export function drawTicks(ctx, P, W, H, isMobile, {
+  xMin, xMax, yMin, yMax, xStep, yStep,
+  xFmt, yFmt, xLabel, yLabel, sxFn, syFn,
+}) {
+  const tickFont = isMobile ? `500 12px ${FONT}` : `500 11px ${FONT}`;
+  const axisFont = isMobile ? `600 12px ${FONT}` : `600 12px ${FONT}`;
+
+  // X ticks
+  ctx.fillStyle = "#5a6478"; ctx.font = tickFont; ctx.textAlign = "center";
+  for (let x = xMin; x <= xMax + 0.001; x += xStep) {
+    ctx.fillText(xFmt(x), sxFn(x), H - P.b + (isMobile ? 18 : 16));
+  }
+  // Y ticks
+  ctx.textAlign = "right";
+  for (let y = yMin; y <= yMax + 0.001; y += yStep) {
+    ctx.fillText(yFmt(y), P.l - 7, syFn(y) + 4);
+  }
+  // Axis labels
+  ctx.fillStyle = "#6b7a8e"; ctx.font = axisFont; ctx.textAlign = "center";
+  ctx.fillText(xLabel, W / 2, H - 6);
+  // Y label: horizontal on top for mobile, rotated for desktop
+  if (isMobile) {
+    ctx.textAlign = "left";
+    ctx.fillText(yLabel, P.l, P.t - 10);
+  } else {
+    ctx.save(); ctx.translate(13, H / 2); ctx.rotate(-Math.PI / 2);
+    ctx.fillText(yLabel, 0, 0); ctx.restore();
+  }
+}
+
+/* ─── Data count badge (top-right inside chart area) ─── */
+export function drawCountBadge(ctx, P, W, count, unit) {
+  ctx.font = `600 10px ${FONT}`;
+  const txt = `${count} ${unit}`;
+  const tw = ctx.measureText(txt).width + 14;
+  ctx.fillStyle = "rgba(232,115,74,.12)";
+  rrect(ctx, W - P.r - tw - 6, P.t + 6, tw, 18, 9); ctx.fill();
+  ctx.fillStyle = T.accent; ctx.textAlign = "center";
+  ctx.fillText(txt, W - P.r - tw / 2 - 6, P.t + 18);
+}
+
+/* ─── Parse hex → [r, g, b] ─── */
+export function hex2rgb(hex) {
+  return [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
+}
+
+/* ─── Draw a single dot with glow ─── */
+export function drawDot(ctx, px, py, r, hex, isHovered) {
+  const [cr, cg, cb] = hex2rgb(hex);
+  if (isHovered) {
+    // glow
+    ctx.shadowColor = `rgba(${cr},${cg},${cb},0.6)`; ctx.shadowBlur = 14;
+    ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cr},${cg},${cb},1)`; ctx.fill();
+    ctx.shadowBlur = 0;
+    // white ring
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(px, py, r + 4, 0, Math.PI * 2); ctx.stroke();
+    // outer subtle ring
+    ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(px, py, r + 8, 0, Math.PI * 2); ctx.stroke();
+  } else {
+    ctx.shadowColor = `rgba(${cr},${cg},${cb},0.35)`; ctx.shadowBlur = 6;
+    ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${cr},${cg},${cb},0.85)`; ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+/* ─── Deterministic jitter offset ─── */
+export function jitter(index) {
+  const angle = ((index * 2654435761) % 360) * Math.PI / 180;
+  return { dx: Math.cos(angle) * 2.5, dy: Math.sin(angle) * 2.5 };
+}
+
+/* ─── Draw cluster count badges ─── */
+export function drawClusterBadges(ctx, pts) {
+  // pts: [{px, py}]
+  const visited = new Set();
+  const clusters = [];
+  pts.forEach((p, i) => {
+    if (visited.has(i)) return;
+    let cnt = 1, sx = p.px, sy = p.py;
+    pts.forEach((q, j) => {
+      if (i === j || visited.has(j)) return;
+      if (Math.abs(p.px - q.px) < 8 && Math.abs(p.py - q.py) < 8) {
+        cnt++; visited.add(j); sx += q.px; sy += q.py;
+      }
+    });
+    if (cnt >= 3) clusters.push({ px: sx / cnt, py: sy / cnt, cnt });
+  });
+  clusters.forEach(c => {
+    ctx.font = `700 9px ${FONT}`;
+    const t = String(c.cnt);
+    const tw = ctx.measureText(t).width + 8;
+    ctx.fillStyle = "rgba(15,17,25,.85)";
+    rrect(ctx, c.px - tw / 2, c.py - 20, tw, 14, 7); ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,.3)"; ctx.lineWidth = 0.5;
+    rrect(ctx, c.px - tw / 2, c.py - 20, tw, 14, 7); ctx.stroke();
+    ctx.fillStyle = "#e8e9ec"; ctx.textAlign = "center";
+    ctx.fillText(t, c.px, c.py - 10);
+  });
+}
+
+/* ─── Crosshair guides for hovered dot ─── */
+export function drawCrosshair(ctx, px, py, P, W, H, xStr, yStr) {
+  ctx.strokeStyle = "rgba(232,115,74,.25)"; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(px, py + 8); ctx.lineTo(px, H - P.b); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(P.l, py); ctx.lineTo(px - 8, py); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.font = `600 10px ${FONT}`;
+  // X value pill
+  const xTw = ctx.measureText(xStr).width + 10;
+  ctx.fillStyle = "rgba(15,17,25,.85)";
+  rrect(ctx, px - xTw / 2, H - P.b + 1, xTw, 16, 3); ctx.fill();
+  ctx.strokeStyle = T.accent; ctx.lineWidth = 1;
+  rrect(ctx, px - xTw / 2, H - P.b + 1, xTw, 16, 3); ctx.stroke();
+  ctx.fillStyle = T.accent; ctx.textAlign = "center";
+  ctx.fillText(xStr, px, H - P.b + 12);
+  // Y value pill
+  const yTw = ctx.measureText(yStr).width + 10;
+  ctx.fillStyle = "rgba(15,17,25,.85)";
+  rrect(ctx, P.l - yTw - 4, py - 8, yTw, 16, 3); ctx.fill();
+  ctx.strokeStyle = T.accent; ctx.lineWidth = 1;
+  rrect(ctx, P.l - yTw - 4, py - 8, yTw, 16, 3); ctx.stroke();
+  ctx.fillStyle = T.accent; ctx.textAlign = "center";
+  ctx.fillText(yStr, P.l - yTw / 2 - 4, py + 3);
+}

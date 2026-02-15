@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import { buildPercentileMap } from "./utils/comfort.js";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb } from "./ChartShared.jsx";
 
 /* ─── Color palettes ─── */
 const CLOSURE_COLORS = { lace: "#60a5fa", velcro: "#E8734A", slipper: "#34d399" };
@@ -131,8 +131,8 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 20, b: 44, l: 52 };
+    const W = rect.width, H = chartH(isMobile);
+    const PAD = chartPad(isMobile);
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -142,58 +142,51 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
-    // Grid
-    ctx.strokeStyle = "rgba(255,255,255,.05)"; ctx.lineWidth = 1;
-    for (let x = xMin + xStep; x <= xMax + 0.001; x += xStep) {
-      ctx.beginPath(); ctx.moveTo(sx(x), PAD.t); ctx.lineTo(sx(x), H - PAD.b); ctx.stroke();
-    }
-    for (let y = yMin; y <= yMax + 0.001; y += yStep) {
-      ctx.beginPath(); ctx.moveTo(PAD.l, sy(y)); ctx.lineTo(W - PAD.r, sy(y)); ctx.stroke();
-    }
+    // Chart area frame
+    drawChartArea(ctx, PAD, W, H);
 
-    // Tick labels
-    ctx.fillStyle = "#4a5568"; ctx.font = "10px system-ui"; ctx.textAlign = "center";
-    for (let x = xMin; x <= xMax + 0.001; x += xStep) {
-      const lbl = (pctAxis || xPct) ? Math.round(x * 100) + "%" : x.toFixed(1);
-      ctx.fillText(lbl, sx(x), H - PAD.b + 14);
-    }
-    ctx.textAlign = "right";
-    for (let y = yMin; y <= yMax + 0.001; y += yStep) {
-      const lbl = pctAxis ? Math.round(y * 100) + "%" : cfg.yLabel.includes("€") ? "€" + Math.round(y) : Math.round(y);
-      ctx.fillText(lbl, PAD.l - 6, sy(y) + 3);
-    }
+    // Grid (dashed, 8%, baseline emphasis)
+    drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
-    // Axis labels
-    ctx.fillStyle = "#64748b"; ctx.font = "11px system-ui"; ctx.textAlign = "center";
-    ctx.fillText(cfg.xLabel, W / 2, H - 6);
-    ctx.save(); ctx.translate(12, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(cfg.yLabel, 0, 0); ctx.restore();
+    // Tick labels + axis labels
+    const xFmt = x => (pctAxis || xPct) ? Math.round(x * 100) + "%" : x.toFixed(1);
+    const yFmt = y => pctAxis ? Math.round(y * 100) + "%" : cfg.yLabel.includes("€") ? "€" + Math.round(y) : Math.round(y);
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel: cfg.xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
 
-    // "Best of both" zone for edging_comfort
-    if (metric === "edging_comfort") {
-      const x1 = sx(0.6), x2 = sx(1.0), y1 = sy(1.0), y2 = sy(0.6);
-      ctx.fillStyle = "rgba(34,197,94,.06)"; ctx.strokeStyle = "rgba(34,197,94,.3)";
-      ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
-      ctx.beginPath(); ctx.roundRect(x1, y1, x2 - x1, y2 - y1, 6); ctx.fill(); ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillStyle = "rgba(34,197,94,.6)"; ctx.font = "bold 9px system-ui";
-      ctx.fillText("Best of both", (x1 + x2) / 2, y1 + 12);
-    }
+    // Data count badge
+    drawCountBadge(ctx, PAD, W, filtered.length, "shoes");
 
-    // Dots
+    // Crosshair for hovered dot
     const hovered = hovRef.current;
-    filtered.forEach(d => {
+    if (hovered && hovered[xField] != null && hovered[yField] != null) {
+      const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
+      const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
+    }
+
+    // Dots with glow + jitter
+    const r = isMobile ? 5 : 4;
+    const pixelPts = [];
+    filtered.forEach((d, i) => {
       const xv = d[xField], yv = d[yField];
       if (xv == null || yv == null) return;
-      const px = sx(Math.max(xMin, Math.min(xMax, xv)));
-      const py = sy(Math.max(yMin, Math.min(yMax, yv)));
-      const isH = hovered === d;
-      const hex = getColor(d);
-      const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-      const r = isMobile ? 5 : 4;
-      ctx.beginPath(); ctx.arc(px, py, isH ? r + 2.5 : r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${cr},${cg},${cb},${isH ? 1 : 0.7})`; ctx.fill();
-      ctx.strokeStyle = isH ? "#fff" : `rgba(${cr},${cg},${cb},0.3)`; ctx.lineWidth = isH ? 2 : 0.8; ctx.stroke();
+      if (d === hovered) return; // draw last
+      const j = jitter(i);
+      const px = sx(Math.max(xMin, Math.min(xMax, xv))) + j.dx;
+      const py = sy(Math.max(yMin, Math.min(yMax, yv))) + j.dy;
+      pixelPts.push({ px, py });
+      drawDot(ctx, px, py, r, getColor(d), false);
     });
+
+    // Cluster badges
+    drawClusterBadges(ctx, pixelPts);
+
+    // Hovered dot on top
+    if (hovered && hovered[xField] != null && hovered[yField] != null) {
+      const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
+      const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
+      drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
+    }
   }, [metric, cfg, isMobile, getColor, filtered]);
 
   useEffect(() => { draw(); }, [draw]);
@@ -206,11 +199,11 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
     const mx = clientX - rect.left, my = clientY - rect.top;
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD_C = { t: 20, r: 20, b: 44, l: 52 };
+    const W = rect.width, H = chartH(isMobile);
+    const P = chartPad(isMobile);
     const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
-    const sx = x => PAD_C.l + (x - xMin) / (xMax - xMin) * (W - PAD_C.l - PAD_C.r);
-    const sy = y => H - PAD_C.b - (y - yMin) / (yMax - yMin) * (H - PAD_C.t - PAD_C.b);
+    const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
+    const sy = y => H - P.b - (y - yMin) / (yMax - yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 22;
     filtered.forEach(d => {

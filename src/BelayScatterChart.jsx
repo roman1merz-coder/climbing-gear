@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import BELAY_SEED from "./belay_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb } from "./ChartShared.jsx";
 
 /* ─── Device type styling ─── */
 const TYPE_COLORS = {
@@ -107,8 +107,8 @@ export default function BelayScatterChart({ isMobile }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 20, b: 44, l: 52 };
+    const W = rect.width, H = chartH(isMobile);
+    const PAD = chartPad(isMobile);
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -118,45 +118,49 @@ export default function BelayScatterChart({ isMobile }) {
     const sx = x => PAD.l + (x - wMin) / (wMax - wMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - pMin) / (pMax - pMin) * (H - PAD.t - PAD.b);
 
+    // Chart area frame
+    drawChartArea(ctx, PAD, W, H);
+
     // Grid
-    ctx.strokeStyle = "rgba(255,255,255,.05)"; ctx.lineWidth = 1;
     const wStep = (wMax - wMin) > 300 ? 50 : 25;
     const pStep = (pMax - pMin) > 150 ? 20 : 10;
-    for (let x = Math.ceil(wMin / wStep) * wStep; x <= wMax; x += wStep) {
-      ctx.beginPath(); ctx.moveTo(sx(x), PAD.t); ctx.lineTo(sx(x), H - PAD.b); ctx.stroke();
-    }
-    for (let y = Math.ceil(pMin / pStep) * pStep; y <= pMax; y += pStep) {
-      ctx.beginPath(); ctx.moveTo(PAD.l, sy(y)); ctx.lineTo(W - PAD.r, sy(y)); ctx.stroke();
-    }
+    const firstW = Math.ceil(wMin / wStep) * wStep;
+    const firstP = Math.ceil(pMin / pStep) * pStep;
+    drawGrid(ctx, PAD, W, H, wMin, wMax, pMin, wStep, pStep, { yMax: pMax, fn: sy });
 
-    // Ticks
-    ctx.fillStyle = "#4a5568"; ctx.font = "10px system-ui"; ctx.textAlign = "center";
-    for (let x = Math.ceil(wMin / wStep) * wStep; x <= wMax; x += wStep) ctx.fillText(x + "g", sx(x), H - PAD.b + 14);
-    ctx.textAlign = "right";
-    for (let y = Math.ceil(pMin / pStep) * pStep; y <= pMax; y += pStep) ctx.fillText("€" + y, PAD.l - 6, sy(y) + 3);
+    // Ticks + axis labels
+    const xFmt = x => x + "g";
+    const yFmt = y => "€" + y;
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstW, xMax: wMax, yMin: firstP, yMax: pMax, xStep: wStep, yStep: pStep, xFmt, yFmt, xLabel: "Weight (g)", yLabel: "Price (€)", sxFn: sx, syFn: sy });
 
-    ctx.fillStyle = "#64748b"; ctx.font = "11px system-ui"; ctx.textAlign = "center";
-    ctx.fillText("Weight (g)", W / 2, H - 6);
-    ctx.save(); ctx.translate(12, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText("Price (€)", 0, 0); ctx.restore();
+    // Data count badge
+    drawCountBadge(ctx, PAD, W, filtered.length, "devices");
 
-    // Dots
+    // Crosshair for hovered dot
     const hovered = hovRef.current;
+    if (hovered && filtered.includes(hovered)) {
+      const hpx = sx(hovered.weight), hpy = sy(hovered.price);
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, hovered.weight + "g", "€" + hovered.price.toFixed(0));
+    }
+
+    // Dots with glow + jitter
     const dotR = isMobile ? 6 : 5;
-    filtered.filter(d => d !== hovered).forEach(d => {
-      const px = sx(d.weight), py = sy(d.price);
-      const hex = getColor(d);
-      const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-      ctx.beginPath(); ctx.arc(px, py, dotR, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${cr},${cg},${cb},0.7)`; ctx.fill();
-      ctx.strokeStyle = `rgba(${cr},${cg},${cb},0.3)`; ctx.lineWidth = 0.8; ctx.stroke();
+    const pixelPts = [];
+    filtered.forEach((d, i) => {
+      if (d === hovered) return;
+      const j = jitter(i);
+      const px = sx(d.weight) + j.dx, py = sy(d.price) + j.dy;
+      pixelPts.push({ px, py });
+      drawDot(ctx, px, py, dotR, getColor(d), false);
     });
+
+    // Cluster badges
+    drawClusterBadges(ctx, pixelPts);
+
+    // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
       const px = sx(hovered.weight), py = sy(hovered.price);
-      const hex = getColor(hovered);
-      const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-      ctx.beginPath(); ctx.arc(px, py, dotR + 2, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${cr},${cg},${cb},1)`; ctx.fill();
-      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+      drawDot(ctx, px, py, dotR, getColor(hovered), true);
     }
   }, [isMobile, filtered, axisBounds, getColor]);
 
@@ -169,11 +173,11 @@ export default function BelayScatterChart({ isMobile }) {
     const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
     const mx = clientX - rect.left, my = clientY - rect.top;
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 20, b: 44, l: 52 };
+    const W = rect.width, H = chartH(isMobile);
+    const P = chartPad(isMobile);
     const { wMin, wMax, pMin, pMax } = axisBounds;
-    const sx = x => PAD.l + (x - wMin) / (wMax - wMin) * (W - PAD.l - PAD.r);
-    const sy = y => H - PAD.b - (y - pMin) / (pMax - pMin) * (H - PAD.t - PAD.b);
+    const sx = x => P.l + (x - wMin) / (wMax - wMin) * (W - P.l - P.r);
+    const sy = y => H - P.b - (y - pMin) / (pMax - pMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 20;
     filtered.forEach(d => {

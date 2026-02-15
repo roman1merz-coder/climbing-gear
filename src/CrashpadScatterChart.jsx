@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb } from "./ChartShared.jsx";
 
 /* Thickness groups */
 const THICK_GROUPS = [
@@ -97,8 +97,8 @@ export default function CrashpadScatterChart({ isMobile }) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD = { t: 20, r: 30, b: 44, l: 55 };
+    const W = rect.width, H = chartH(isMobile);
+    const PAD = chartPad(isMobile, { l: isMobile ? 48 : 58, r: isMobile ? 18 : 30 });
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -108,54 +108,50 @@ export default function CrashpadScatterChart({ isMobile }) {
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
+    // Chart area frame
+    drawChartArea(ctx, PAD, W, H);
+
     // Grid
-    ctx.strokeStyle = "rgba(255,255,255,.05)"; ctx.lineWidth = 1;
-    for (let x = xMin + xStep; x <= xMax; x += xStep) {
-      ctx.beginPath(); ctx.moveTo(sx(x), PAD.t); ctx.lineTo(sx(x), H - PAD.b); ctx.stroke();
-    }
-    for (let y = yMin; y <= yMax; y += yStep) {
-      ctx.beginPath(); ctx.moveTo(PAD.l, sy(y)); ctx.lineTo(W - PAD.r, sy(y)); ctx.stroke();
-    }
+    drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
-    // Tick labels
-    ctx.fillStyle = "#4a5568"; ctx.font = "10px system-ui"; ctx.textAlign = "center";
-    for (let x = xMin + xStep; x <= xMax; x += xStep) {
-      const label = cfg.xLabel.includes("m²") ? x.toFixed(1) : Math.round(x);
-      ctx.fillText(label, sx(x), H - PAD.b + 14);
-    }
-    ctx.textAlign = "right";
-    for (let y = yMin; y <= yMax; y += yStep) {
-      const label = cfg.yLabel.includes("€") ? "€" + y : y;
-      ctx.fillText(label, PAD.l - 6, sy(y) + 3);
-    }
-    ctx.fillStyle = "#64748b"; ctx.font = "11px system-ui"; ctx.textAlign = "center";
-    ctx.fillText(cfg.xLabel, W / 2, H - 6);
-    ctx.save(); ctx.translate(12, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(cfg.yLabel, 0, 0); ctx.restore();
+    // Ticks + axis labels
+    const xFmt = x => cfg.xLabel.includes("m²") ? x.toFixed(1) : String(Math.round(x));
+    const yFmt = y => cfg.yLabel.includes("€") ? "€" + y : String(y);
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin: xMin + xStep, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel: cfg.xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
 
-    // Sweet spot zone for area_eurm2 view
-    if (metric === "area_eurm2") {
-      const x1 = sx(1.0), x2 = sx(1.7), y1 = sy(220), y2 = sy(150);
-      ctx.fillStyle = "rgba(34,197,94,.06)"; ctx.strokeStyle = "rgba(34,197,94,.3)";
-      ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
-      ctx.beginPath(); ctx.roundRect(x1, y1, x2 - x1, y2 - y1, 6); ctx.fill(); ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillStyle = "rgba(34,197,94,.6)"; ctx.font = "bold 9px system-ui";
-      ctx.fillText("Sweet Spot", (x1 + x2) / 2, y1 + 12);
-    }
+    // Data count badge
+    drawCountBadge(ctx, PAD, W, filteredPads.length, "pads");
 
-    // Dots (filtered)
+    // Crosshair for hovered dot
     const hovered = hovRef.current;
-    filteredPads.forEach(d => {
-      const px = sx(Math.max(xMin, Math.min(xMax, d[xField])));
-      const py = sy(Math.max(yMin, Math.min(yMax, d[yField])));
-      const isH = hovered === d;
-      const hex = getColor(d);
-      const [cr, cg, cb] = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
+    if (hovered) {
+      const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
+      const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
+    }
+
+    // Dots with glow + jitter (area-based sizing preserved)
+    const pixelPts = [];
+    filteredPads.forEach((d, i) => {
+      if (d === hovered) return;
       const r = isMobile ? Math.max(4.5, Math.min(8, d.area * 4)) : Math.max(3.5, Math.min(7, d.area * 3.5));
-      ctx.beginPath(); ctx.arc(px, py, isH ? r + 2 : r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${cr},${cg},${cb},${isH ? 1 : 0.7})`; ctx.fill();
-      ctx.strokeStyle = isH ? "#fff" : `rgba(${cr},${cg},${cb},0.3)`; ctx.lineWidth = isH ? 2 : 0.8; ctx.stroke();
+      const j = jitter(i);
+      const px = sx(Math.max(xMin, Math.min(xMax, d[xField]))) + j.dx;
+      const py = sy(Math.max(yMin, Math.min(yMax, d[yField]))) + j.dy;
+      pixelPts.push({ px, py });
+      drawDot(ctx, px, py, r, getColor(d), false);
     });
+
+    // Cluster badges
+    drawClusterBadges(ctx, pixelPts);
+
+    // Hovered dot on top
+    if (hovered) {
+      const r = isMobile ? Math.max(4.5, Math.min(8, hovered.area * 4)) : Math.max(3.5, Math.min(7, hovered.area * 3.5));
+      const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
+      const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
+      drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
+    }
   }, [metric, colorBy, isMobile, cfg, getColor, filteredPads]);
 
   useEffect(() => { draw(); }, [draw]);
@@ -167,11 +163,11 @@ export default function CrashpadScatterChart({ isMobile }) {
     const { clientX, clientY } = getEventCoords(e);
     const rect = canvas.getBoundingClientRect();
     const mx = clientX - rect.left, my = clientY - rect.top;
-    const W = rect.width, H = isMobile ? 300 : 400;
-    const PAD_C = { t: 20, r: 30, b: 44, l: 55 };
+    const W = rect.width, H = chartH(isMobile);
+    const P = chartPad(isMobile, { l: isMobile ? 48 : 58, r: isMobile ? 18 : 30 });
     const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
-    const sx = x => PAD_C.l + (x - xMin) / (xMax - xMin) * (W - PAD_C.l - PAD_C.r);
-    const sy = y => H - PAD_C.b - (y - yMin) / (yMax - yMin) * (H - PAD_C.t - PAD_C.b);
+    const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
+    const sy = y => H - P.b - (y - yMin) / (yMax - yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 24;
     filteredPads.forEach(d => {
