@@ -113,6 +113,12 @@ Every product detail page includes an Amazon.de search link (with affiliate tag 
 
 When no real retailer price data exists (only Amazon search), the "in stock" status is hidden to avoid misleading users.
 
+### React Key Strategy
+
+The card grid uses `slug` as the React key (not `id`) to ensure stable reconciliation when data transitions from seed → Supabase-merged. Using `id` caused orphaned DOM nodes because Supabase IDs differ from seed IDs. The grid container also has a `key={grid-${shoes.length}}` to force a clean remount on data transitions.
+
+StrictMode was removed because React 18's concurrent rendering combined with data-loading state transitions caused orphaned DOM elements that weren't properly cleaned up.
+
 ### Supabase
 
 The app connects to Supabase using the anon key (public, read-only).
