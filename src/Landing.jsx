@@ -211,6 +211,14 @@ export default function Landing() {
             description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability."
           />
           <GearCard
+            icon={"\u{26D1}"} title="Helmet Selector"
+            description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability."
+          />
+          <GearCard
+            icon={"\u{1F4CE}"} title="Quickdraw Selector"
+            description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design."
+          />
+          <GearCard
             icon={"\u{1FA93}"} title="Harness Selector"
             description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability."
           />

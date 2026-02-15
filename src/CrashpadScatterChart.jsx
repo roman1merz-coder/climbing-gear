@@ -63,6 +63,7 @@ export default function CrashpadScatterChart({ isMobile }) {
   const [colorBy, setColorBy] = useState("layers");
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
+  const jitterMapRef = useRef(new Map()); // slug → {dx, dy} for hit detection
   const [mobileItem, setMobileItem] = useState(null);
 
   /* ─── Clickable legend filter state ─── */
@@ -112,7 +113,7 @@ export default function CrashpadScatterChart({ isMobile }) {
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
     const W = rect.width, H = chartH(isMobile);
-    const PAD = chartPad(isMobile, { l: isMobile ? 48 : 58, r: isMobile ? 18 : 30 });
+    const PAD = chartPad(isMobile, { l: isMobile ? 48 : 58, r: isMobile ? 28 : 30 });
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -153,15 +154,18 @@ export default function CrashpadScatterChart({ isMobile }) {
 
     // Dots with glow + jitter (area-based sizing preserved)
     const pixelPts = [];
+    const jMap = new Map();
     filteredPads.forEach((d, i) => {
       if (d === hovered) return;
       const r = isMobile ? Math.max(4.5, Math.min(8, d.area * 4)) : Math.max(3.5, Math.min(7, d.area * 3.5));
       const j = jitter(i);
+      jMap.set(d.slug, j);
       const px = sx(Math.max(xMin, Math.min(xMax, d[xField]))) + j.dx;
       const py = sy(Math.max(yMin, Math.min(yMax, d[yField]))) + j.dy;
       pixelPts.push({ px, py });
       drawDot(ctx, px, py, r, getColor(d), false);
     });
+    jitterMapRef.current = jMap;
 
     // Cluster badges
     drawClusterBadges(ctx, pixelPts);
@@ -185,14 +189,16 @@ export default function CrashpadScatterChart({ isMobile }) {
     const rect = canvas.getBoundingClientRect();
     const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = chartH(isMobile);
-    const P = chartPad(isMobile, { l: isMobile ? 48 : 58, r: isMobile ? 18 : 30 });
+    const P = chartPad(isMobile, { l: isMobile ? 48 : 58, r: isMobile ? 28 : 30 });
     const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
     const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
     const sy = y => H - P.b - (y - yMin) / (yMax - yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 24;
+    const jMap = jitterMapRef.current;
     filteredPads.forEach(d => {
-      const dx = sx(d[xField]) - mx, dy = sy(d[yField]) - my, dist = Math.sqrt(dx * dx + dy * dy);
+      const j = jMap.get(d.slug) || { dx: 0, dy: 0 };
+      const dx = sx(d[xField]) + j.dx - mx, dy = sy(d[yField]) + j.dy - my, dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < threshold && dist < best) { closest = d; best = dist; }
     });
     return closest;
