@@ -86,6 +86,7 @@ function sRng(mn, mx, v) {
 }
 
 function score(shoes, filters) {
+  console.log("[SCORE] filters:", JSON.stringify(filters), "shoes:", shoes.length);
   const active = Object.entries(filters).filter(([, v]) => {
     if (v == null) return false;
     if (Array.isArray(v) && !v.length) return false;
@@ -93,6 +94,7 @@ function score(shoes, filters) {
       return false;
     return true;
   });
+  console.log("[SCORE] active filters:", active.length, active.map(([k]) => k));
   if (!active.length)
     return shoes.map((s) => ({ shoe_data: s, match_score: -1 }));
   return shoes
