@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
-import { sortShoes, SortDropdown } from "./sorting.jsx";
+import { sortShoes, SortDropdown, SORT_OPTIONS } from "./sorting.jsx";
 import { fairShuffle } from "./randomizer.js";
 import CompareCheckbox from "./CompareCheckbox.jsx";
 import HeartButton from "./HeartButton.jsx";
@@ -774,6 +774,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
   const setQuery = extSetQuery || (() => {});
   const [openGroup, setOpenGroup] = useState("basics");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [showMobileSort, setShowMobileSort] = useState(false);
   const [sortKey, setSortKey] = useState("best_match");
 
   // ── Weighted text relevance scoring ──
@@ -942,12 +943,12 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       >
         {isMobile ? (
           <>
-            {/* Mobile Row 1: Filters + Search */}
-            <div style={{ display: "flex", gap: "8px", alignItems: "center", padding: "8px 12px 0" }}>
+            {/* Mobile Row 1: Filters + Sort icon + Search */}
+            <div style={{ display: "flex", gap: "6px", alignItems: "center", padding: "8px 12px 0" }}>
               <button
                 onClick={() => setShowMobileFilters(true)}
                 style={{
-                  padding: "7px 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
+                  height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
                   color: ac > 0 ? "#E8734A" : "#9ca3af",
                   cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#2a2f38"}`,
                   background: ac > 0 ? "rgba(232,115,74,0.08)" : "#1a1d24",
@@ -959,15 +960,33 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2" fill="currentColor"/><circle cx="16" cy="12" r="2" fill="currentColor"/><circle cx="10" cy="18" r="2" fill="currentColor"/></svg>
                 Filters{ac > 0 ? ` (${ac})` : ""}
               </button>
-              <div style={{ flex: 1, position: "relative" }}>
+              {view === "cards" && (
+                <button
+                  onClick={() => setShowMobileSort(true)}
+                  style={{
+                    height: "34px", padding: "0 10px", borderRadius: "8px",
+                    border: "1px solid #2a2f38", background: "#1a1d24",
+                    color: "#9ca3af", cursor: "pointer",
+                    display: "flex", alignItems: "center", gap: "4px",
+                    fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
+                    whiteSpace: "nowrap", flexShrink: 0,
+                  }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 6h18M3 12h12M3 18h6"/>
+                  </svg>
+                  {(SORT_OPTIONS.find(o => o.key === sortKey)?.label || "Sort").split(":")[0].replace("Biggest ", "").replace("Newest ", "New")}
+                </button>
+              )}
+              <div style={{ flex: 1, position: "relative", minWidth: 0 }}>
                 <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search shoes…"
+                  placeholder="Search…"
                   style={{
-                    width: "100%", padding: "7px 12px 7px 32px",
+                    width: "100%", height: "34px", padding: "0 12px 0 32px",
                     borderRadius: "8px", border: "1px solid #2a2f38",
                     background: "#1a1d24", color: "#f0f0f0",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
@@ -975,8 +994,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 />
               </div>
             </div>
-            {/* Mobile Row 2: Count + Sort + View toggle */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px", gap: "8px" }}>
+            {/* Mobile Row 2: Count + Clear | View toggle */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
                 <span style={{ fontSize: "12px", color: "#6b7280", fontWeight: 500 }}>
                   {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
@@ -994,23 +1013,20 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   </button>
                 )}
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                {view === "cards" && <SortDropdown value={sortKey} onChange={setSortKey} />}
-                <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
-                  {[
-                    { key: "cards", icon: "▦" },
-                    { key: "chart", icon: "⊙" },
-                  ].map(v => (
-                    <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
-                      padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
-                      background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
-                      color: view === v.key ? "#E8734A" : "#6b7280",
-                      fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
-                    }}>
-                      {v.icon}
-                    </button>
-                  ))}
-                </div>
+              <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+                {[
+                  { key: "cards", icon: "▦" },
+                  { key: "chart", icon: "⊙" },
+                ].map(v => (
+                  <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+                    padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
+                    background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+                    color: view === v.key ? "#E8734A" : "#6b7280",
+                    fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+                  }}>
+                    {v.icon}
+                  </button>
+                ))}
               </div>
             </div>
           </>
@@ -1130,6 +1146,40 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
           ))}
         </div>
+      )}
+
+      {/* Mobile sort bottom sheet */}
+      {isMobile && showMobileSort && (
+        <>
+          <div
+            onClick={() => setShowMobileSort(false)}
+            style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(0,0,0,.5)" }}
+          />
+          <div style={{
+            position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 201,
+            background: "#1c1f26", borderRadius: "16px 16px 0 0",
+            padding: "12px 0 calc(env(safe-area-inset-bottom, 16px) + 8px)",
+            boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
+          }}>
+            <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#3a3f47", margin: "0 auto 12px" }} />
+            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#f0f0f0" }}>Sort by</div>
+            {SORT_OPTIONS.map(o => (
+              <button
+                key={o.key}
+                onClick={() => { setSortKey(o.key); setShowMobileSort(false); }}
+                style={{
+                  width: "100%", padding: "14px 20px", background: "none", border: "none",
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+                  color: sortKey === o.key ? "#E8734A" : "#d1d5db", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
+                }}
+              >
+                {o.label}
+                {sortKey === o.key && <span style={{ color: "#E8734A", fontSize: "16px" }}>✓</span>}
+              </button>
+            ))}
+          </div>
+        </>
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
