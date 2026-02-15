@@ -6,7 +6,14 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 
 /* ─── Color palettes ─── */
 const CLOSURE_COLORS = { lace: "#60a5fa", velcro: "#E8734A", slipper: "#34d399" };
-const VEGAN_COLORS = { true: "#34d399", false: "#a78bfa" };
+const LEVEL_ORDER = ["beginner", "hobby", "intermediate", "advanced", "expert", "elite"];
+const LEVEL_COLORS = { beginner: "#34d399", hobby: "#60a5fa", intermediate: "#a78bfa", advanced: "#ecc94b", expert: "#E8734A", elite: "#ed64a6" };
+const LEVEL_LABELS = { beginner: "Beginner", hobby: "Hobby", intermediate: "Intermediate", advanced: "Advanced", expert: "Expert", elite: "Elite" };
+function topLevel(shoe) {
+  const lvls = shoe.skill_level || [];
+  for (let i = LEVEL_ORDER.length - 1; i >= 0; i--) if (lvls.includes(LEVEL_ORDER[i])) return LEVEL_ORDER[i];
+  return "intermediate";
+}
 const BRAND_PAL = [
   "#63b3ed","#ed64a6","#48bb78","#ecc94b","#ed8936","#9f7aea","#38b2ac","#fc8181",
   "#f6ad55","#68d391","#d53f8c","#4fd1c5","#b794f4","#90cdf4","#feb2b2","#fbd38d",
@@ -31,7 +38,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
   const [footShape, setFootShape] = useState("all");
   const [hiddenClosure, setHiddenClosure] = useState(new Set());
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
-  const [hiddenVegan, setHiddenVegan] = useState(new Set());
+  const [hiddenLevels, setHiddenLevels] = useState(new Set());
 
   /* Percentile-normalize scores across non-kids shoes */
   const scored = useMemo(() => {
@@ -45,7 +52,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
         _support: pct.support ?? 0.5,
         _comfort: pct.comfort ?? 0.5,
         _price: s.price_uvp_eur || 0,
-        _vegan: s.vegan ? "true" : "false",
+        _level: topLevel(s),
       };
     });
   }, [shoes]);
@@ -61,9 +68,9 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     if (footShape !== "all" && d.toe_form !== footShape) return false;
     if (hiddenClosure.has(d.closure)) return false;
     if (hiddenBrands.has(d.brand)) return false;
-    if (hiddenVegan.has(d._vegan)) return false;
+    if (hiddenLevels.has(d._level)) return false;
     return true;
-  }), [scored, hideKids, genderFilter, footShape, hiddenClosure, hiddenBrands, hiddenVegan]);
+  }), [scored, hideKids, genderFilter, footShape, hiddenClosure, hiddenBrands, hiddenLevels]);
 
   /* ─── Axis configurations ─── */
   const cfgs = useMemo(() => ({
@@ -121,7 +128,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
   /* Color function */
   const getColor = useCallback((d) => {
     if (colorBy === "closure") return CLOSURE_COLORS[d.closure] || "#94a3b8";
-    if (colorBy === "vegan") return VEGAN_COLORS[d._vegan] || "#94a3b8";
+    if (colorBy === "level") return LEVEL_COLORS[d._level] || "#94a3b8";
     return BRAND_COLORS[d.brand] || "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
@@ -314,7 +321,6 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
 
   /* ─── Legend data ─── */
   const closureKeys = ["lace", "velcro", "slipper"];
-  const veganKeys = ["true", "false"];
 
   const metricButtons = [
     { key: "edging_sensitivity", label: "Edging vs Sensitivity", short: "Edg/Sens", color: T.accent },
@@ -350,8 +356,8 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
 
       {/* Filters row */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
-        {(hideKids !== true || genderFilter !== "all" || footShape !== "all" || hiddenClosure.size > 0 || hiddenBrands.size > 0 || hiddenVegan.size > 0) && (
-          <button onClick={() => { setHideKids(true); setGenderFilter("all"); setFootShape("all"); setHiddenClosure(new Set()); setHiddenBrands(new Set()); setHiddenVegan(new Set()); }}
+        {(hideKids !== true || genderFilter !== "all" || footShape !== "all" || hiddenClosure.size > 0 || hiddenBrands.size > 0 || hiddenLevels.size > 0) && (
+          <button onClick={() => { setHideKids(true); setGenderFilter("all"); setFootShape("all"); setHiddenClosure(new Set()); setHiddenBrands(new Set()); setHiddenLevels(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
             ✕ Reset filters
           </button>
@@ -378,7 +384,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
-        {[["closure", "Closure"], ["vegan", "Vegan"], ["brand", "Brand"]].map(([k, l]) => (
+        {[["closure", "Closure"], ["level", "Level"], ["brand", "Brand"]].map(([k, l]) => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
@@ -430,11 +436,11 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
           ))}
         </div>
       )}
-      {colorBy === "vegan" && (
+      {colorBy === "level" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
-          {veganKeys.map(k => (
-            <Pill key={k} color={VEGAN_COLORS[k]} label={k === "true" ? "🌱 Vegan" : "Non-vegan"}
-              hidden={hiddenVegan.has(k)} onClick={() => toggleHidden(setHiddenVegan, k)} />
+          {LEVEL_ORDER.map(k => (
+            <Pill key={k} color={LEVEL_COLORS[k]} label={LEVEL_LABELS[k]}
+              hidden={hiddenLevels.has(k)} onClick={() => toggleHidden(setHiddenLevels, k)} />
           ))}
         </div>
       )}
