@@ -30,6 +30,21 @@ const CF=[2.585,2.949,3.288,3.601,3.892,4.163,4.415,4.651,4.872,5.082,5.281,5.47
 const CG=[41.154,41.905,42.67,43.449,44.243,45.05,45.872,46.707,47.557,48.421,49.3,50.192,51.098,52.019,52.954,53.903,54.866,55.843,56.835,57.84,58.86,59.894,60.942,62.004,63.08,64.171,65.275,66.394,67.527,68.674,69.835,71.01,72.2,73.404,74.621,75.853,77.099,78.36,79.634,80.923];
 const SF=1.316, SG=1.660;
 
+/* Linear regression for single ropes: weight → UIAA falls */
+const FALLS_VS_GM_TREND = (() => {
+  const singles = ALL_ROPES.filter(r => r.type === "single" && r.falls && r.gm);
+  if (singles.length < 3) return null;
+  const n = singles.length;
+  const mx = singles.reduce((s, r) => s + r.gm, 0) / n;
+  const my = singles.reduce((s, r) => s + r.falls, 0) / n;
+  let num = 0, den = 0;
+  singles.forEach(r => { num += (r.gm - mx) * (r.falls - my); den += (r.gm - mx) ** 2; });
+  const slope = num / den, intercept = my - slope * mx;
+  const ss = singles.reduce((s, r) => s + (r.falls - (slope * r.gm + intercept)) ** 2, 0);
+  const std = Math.sqrt(ss / (n - 2));
+  return { slope, intercept, std };
+})();
+
 /* Linear regression for static ropes: diameter → break strength */
 const STATIC_BS_TREND = (() => {
   const statics = ALL_ROPES.filter(r => r.type === "static" && r.breakStr);
@@ -52,17 +67,17 @@ export default function RopeScatterChart({ isMobile }) {
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
 
-  const [metric, setMetric] = useState("falls");
+  const [metric, setMetric] = useState("fallsVsGm");
   const [colorBy, setColorBy] = useState("type");
   const [mobileItem, setMobileItem] = useState(null);
 
   /* Filter state */
-  const [enabledTypes, setEnabledTypes] = useState(new Set(["single", "half"]));
+  const [enabledTypes, setEnabledTypes] = useState(new Set(["single"]));
   const onlyStatic = enabledTypes.size === 1 && enabledTypes.has("static");
   const hasStatic = enabledTypes.has("static");
 
   useEffect(() => {
-    if (onlyStatic && metric === "falls") setMetric("gm");
+    if (onlyStatic && (metric === "falls" || metric === "fallsVsGm")) setMetric("gm");
   }, [onlyStatic, metric]);
 
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
@@ -88,6 +103,7 @@ export default function RopeScatterChart({ isMobile }) {
     if (hiddenBrands.has(r.brand)) return false;
     if (hiddenDry.has(r.dry)) return false;
     if (metric === "falls" && !r.falls) return false;
+    if (metric === "fallsVsGm" && !r.falls) return false;
     if (metric === "breakStr" && !r.breakStr) return false;
     return true;
   }), [enabledTypes, hiddenBrands, hiddenDry, metric]);
@@ -112,15 +128,23 @@ export default function RopeScatterChart({ isMobile }) {
   }, [filtered]);
 
   const cfgs = useMemo(() => ({
+    fallsVsGm: {
+      xField: "gm", xLabel: "Weight (g/m)", xMin: axisBounds.gmMin, xMax: axisBounds.gmMax, xStep: 5,
+      yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
+      curveY: null, std: 0, sub: `${filtered.length} ropes · UIAA falls vs weight`, color: T.accent,
+    },
     falls: {
+      xField: "dia", xLabel: "Diameter (mm)", xMin: axisBounds.diaMin, xMax: axisBounds.diaMax, xStep: (axisBounds.diaMax - axisBounds.diaMin) > 4 ? 1 : 0.5,
       yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
       curveY: CF, std: SF, sub: `${filtered.length} ropes · Cubic fit · R² = 0.575`, color: T.accent,
     },
     gm: {
+      xField: "dia", xLabel: "Diameter (mm)", xMin: axisBounds.diaMin, xMax: axisBounds.diaMax, xStep: (axisBounds.diaMax - axisBounds.diaMin) > 4 ? 1 : 0.5,
       yField: "gm", yLabel: "Weight (g/m)", yMin: axisBounds.gmMin, yMax: axisBounds.gmMax, yStep: 5,
       curveY: CG, std: SG, sub: `${filtered.length} ropes · Quadratic fit · R² = 0.919`, color: T.blue,
     },
     breakStr: {
+      xField: "dia", xLabel: "Diameter (mm)", xMin: axisBounds.diaMin, xMax: axisBounds.diaMax, xStep: (axisBounds.diaMax - axisBounds.diaMin) > 4 ? 1 : 0.5,
       yField: "breakStr", yLabel: "Break Strength (kN)", yMin: axisBounds.bsMin, yMax: axisBounds.bsMax, yStep: 5,
       curveY: null, std: 0, sub: `${filtered.length} ropes · Static rope break strength`, color: "#ecc94b",
     },
@@ -190,8 +214,7 @@ export default function RopeScatterChart({ isMobile }) {
     ctx.setTransform(2, 0, 0, 2, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
-    const { yField, yMin, yMax, yStep, curveY, std } = cfg;
-    const xMin = axisBounds.diaMin, xMax = axisBounds.diaMax;
+    const { xField, xLabel, xMin, xMax, xStep, yField, yMin, yMax, yStep, curveY, std } = cfg;
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
@@ -199,20 +222,19 @@ export default function RopeScatterChart({ isMobile }) {
     drawChartArea(ctx, PAD, W, H);
 
     // Grid
-    const xStep = (xMax - xMin) > 4 ? 1 : 0.5;
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
     // Ticks + axis labels
-    const xFmt = x => x.toFixed(1);
+    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : (x => String(Math.round(x)));
     const yFmt = y => String(y);
     const firstX = Math.ceil(xMin / xStep) * xStep;
-    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel: "Diameter (mm)", yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
 
     // Data count badge
     drawCountBadge(ctx, PAD, W, filtered.length, "ropes");
 
-    // Trend line for single ropes (polished)
-    if (enabledTypes.has("single") && curveY) {
+    // Trend line for single ropes (polished) — only for diameter-based charts
+    if (enabledTypes.has("single") && curveY && xField === "dia") {
       // 2σ band with gradient
       ctx.beginPath();
       for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + 2 * std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
@@ -260,18 +282,23 @@ export default function RopeScatterChart({ isMobile }) {
       drawLinearTrend(ctx, sx, sy, STATIC_BS_TREND.slope, STATIC_BS_TREND.intercept, STATIC_BS_TREND.std, xMin, xMax, yMin, yMax, { color: "#ecc94b", label: "Trend (static ropes)" });
     }
 
+    // Linear trend for falls vs weight
+    if (metric === "fallsVsGm" && enabledTypes.has("single") && FALLS_VS_GM_TREND) {
+      drawLinearTrend(ctx, sx, sy, FALLS_VS_GM_TREND.slope, FALLS_VS_GM_TREND.intercept, FALLS_VS_GM_TREND.std, xMin, xMax, yMin, yMax, { color: T.accent, label: "Trend (single ropes)" });
+    }
+
     // Crosshair for hovered dot
     const hovered = hovRef.current;
     if (hovered && filtered.includes(hovered)) {
-      const hpx = sx(hovered.dia), hpy = sy(hovered[yField]);
-      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered.dia), yFmt(hovered[yField]));
+      const hpx = sx(hovered[xField]), hpy = sy(hovered[yField]);
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
     }
 
     // Dots with glow + jitter
     const pixelPts = [];
     filtered.filter(r => r !== hovered).forEach((r, i) => {
       const j = jitter(i);
-      const px = sx(r.dia) + j.dx, py = sy(r[yField]) + j.dy;
+      const px = sx(r[xField]) + j.dx, py = sy(r[yField]) + j.dy;
       pixelPts.push({ px, py });
       drawShape(ctx, r, px, py, isMobile ? 5 : 4, false);
     });
@@ -281,10 +308,10 @@ export default function RopeScatterChart({ isMobile }) {
 
     // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
-      const px = sx(hovered.dia), py = sy(hovered[yField]);
+      const px = sx(hovered[xField]), py = sy(hovered[yField]);
       drawShape(ctx, hovered, px, py, isMobile ? 5 : 4, true);
     }
-  }, [metric, isMobile, cfg, filtered, axisBounds, enabledTypes, drawShape]);
+  }, [metric, isMobile, cfg, filtered, enabledTypes, drawShape]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -297,17 +324,16 @@ export default function RopeScatterChart({ isMobile }) {
     const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = chartH(isMobile);
     const P = chartPad(isMobile, { l: isMobile ? 46 : 54 });
-    const xMin = axisBounds.diaMin, xMax = axisBounds.diaMax;
-    const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
+    const sx = x => P.l + (x - cfg.xMin) / (cfg.xMax - cfg.xMin) * (W - P.l - P.r);
     const sy = y => H - P.b - (y - cfg.yMin) / (cfg.yMax - cfg.yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 20;
     filtered.forEach(r => {
-      const dx = sx(r.dia) - mx, dy = sy(r[cfg.yField]) - my, d = Math.sqrt(dx * dx + dy * dy);
+      const dx = sx(r[cfg.xField]) - mx, dy = sy(r[cfg.yField]) - my, d = Math.sqrt(dx * dx + dy * dy);
       if (d < threshold && d < best) { closest = r; best = d; }
     });
     return closest;
-  }, [isMobile, cfg, filtered, axisBounds]);
+  }, [isMobile, cfg, filtered]);
 
   /* Desktop tooltip */
   const showTip = useCallback((r, x, y, pinned) => {
@@ -414,13 +440,14 @@ export default function RopeScatterChart({ isMobile }) {
   const TYPE_SHAPES = { single: "circle", half: "diamond", twin: "triangle", static: "square" };
 
   return (
-    <ChartContainer title="Rope Diameter Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
+    <ChartContainer title="Rope Spec Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
         {Object.entries({
-          ...(!onlyStatic ? { falls: { label: "UIAA Falls", color: T.accent } } : {}),
-          gm: { label: "Weight (g/m)", color: T.blue },
-          ...(hasStatic ? { breakStr: { label: "Break Strength (kN)", color: "#ecc94b" } } : {}),
+          ...(!onlyStatic ? { fallsVsGm: { label: "Falls vs Weight", color: T.accent } } : {}),
+          ...(!onlyStatic ? { falls: { label: "Falls vs Diameter", color: T.accent } } : {}),
+          gm: { label: "Weight vs Diameter", color: T.blue },
+          ...(hasStatic ? { breakStr: { label: "Break Strength", color: "#ecc94b" } } : {}),
         }).map(([k, c]) => (
           <button key={k} onClick={() => { setMetric(k); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }}
             style={btnStyle(metric === k, c.color)}>{c.label}</button>
@@ -429,8 +456,8 @@ export default function RopeScatterChart({ isMobile }) {
 
       {/* Rope type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
-        {(hiddenBrands.size > 0 || hiddenDry.size > 0 || !(enabledTypes.has("single") && enabledTypes.has("half") && !enabledTypes.has("twin") && !enabledTypes.has("static"))) && (
-          <button onClick={() => { setEnabledTypes(new Set(["single", "half"])); setHiddenBrands(new Set()); setHiddenDry(new Set()); }}
+        {(hiddenBrands.size > 0 || hiddenDry.size > 0 || !(enabledTypes.has("single") && !enabledTypes.has("half") && !enabledTypes.has("twin") && !enabledTypes.has("static"))) && (
+          <button onClick={() => { setEnabledTypes(new Set(["single"])); setHiddenBrands(new Set()); setHiddenDry(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
             ✕ Reset filters
           </button>
@@ -539,7 +566,7 @@ export default function RopeScatterChart({ isMobile }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px" }}>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
           {isMobile ? "Tap a dot for specs · Tap legend to filter" : "Click a dot for specs & link · Click legend to filter"}
-          {enabledTypes.has("single") && " · Trend line = single ropes only"}
+          {enabledTypes.has("single") && cfg.xField === "dia" && cfg.curveY && " · Trend line = single ropes only"}
         </span>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
           {enabledTypes.has("half") && "◇ Half"}{enabledTypes.has("half") && enabledTypes.has("twin") && " · "}{enabledTypes.has("twin") && "△ Twin"}{(enabledTypes.has("half") || enabledTypes.has("twin")) && enabledTypes.has("static") && " · "}{enabledTypes.has("static") && "□ Static"}
