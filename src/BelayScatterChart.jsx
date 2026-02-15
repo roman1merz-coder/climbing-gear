@@ -302,7 +302,7 @@ export default function BelayScatterChart({ isMobile }) {
   const TYPE_LIST = ["active_assisted", "passive_assisted", "tube_guide", "tube", "figure_eight"];
 
   return (
-    <ChartContainer title="Price vs Weight" subtitle={`${filtered.length} belay devices`}>
+    <ChartContainer title="Price vs Weight" subtitle={`${filtered.length} belay devices`} isMobile={isMobile}>
       {/* Device type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
         {(hiddenBrands.size > 0 || enabledTypes.size !== 5) && (

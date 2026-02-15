@@ -2,9 +2,9 @@ import { useState } from "react";
 import { T } from "./tokens.js";
 
 /* ─── Chart Container ─── */
-export function ChartContainer({ title, subtitle, children, style }) {
+export function ChartContainer({ title, subtitle, children, style, isMobile }) {
   return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", position: "relative", ...style }}>
+    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: isMobile ? "14px 10px 16px" : "24px", overflow: "hidden", minWidth: 0, maxWidth: "100%", position: "relative", ...style }}>
       {title && <div style={{ fontSize: "15px", fontWeight: 700, color: T.text, marginBottom: subtitle ? "4px" : "16px" }}>{title}</div>}
       {subtitle && <div style={{ fontSize: "12px", color: T.muted, marginBottom: "16px" }}>{subtitle}</div>}
       {children}
@@ -86,11 +86,12 @@ export function BottomSheet({ item, onClose, onNavigate, children }) {
   if (!item) return null;
   return (
     <div onClick={(e) => e.stopPropagation()} style={{
-      position: "absolute", bottom: 0, left: "-24px", right: "-24px", zIndex: 50,
+      position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 50,
       background: T.card, borderTop: `2px solid ${T.accent}`,
-      borderRadius: "14px 14px 0 0", padding: "14px 20px 16px",
+      borderRadius: "14px 14px 0 0", padding: "14px 16px 16px",
       boxShadow: "0 -8px 32px rgba(0,0,0,.6)",
       animation: "sheetUp .25s cubic-bezier(.16,1,.3,1)",
+      maxWidth: "100%", boxSizing: "border-box",
     }}>
       <div onClick={onClose} style={{ display: "flex", justifyContent: "center", marginBottom: "8px", cursor: "pointer", padding: "2px 0" }}>
         <div style={{ width: "32px", height: "3px", borderRadius: "2px", background: T.border }} />

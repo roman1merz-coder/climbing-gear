@@ -414,7 +414,7 @@ export default function RopeScatterChart({ isMobile }) {
   const TYPE_SHAPES = { single: "circle", half: "diamond", twin: "triangle", static: "square" };
 
   return (
-    <ChartContainer title="Rope Diameter Deep Dive" subtitle={cfg.sub}>
+    <ChartContainer title="Rope Diameter Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
         {Object.entries({

@@ -297,7 +297,7 @@ export default function CrashpadScatterChart({ isMobile }) {
   ];
 
   return (
-    <ChartContainer title={cfg.label} subtitle={cfg.sub}>
+    <ChartContainer title={cfg.label} subtitle={cfg.sub} isMobile={isMobile}>
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "4px", marginBottom: "10px", flexWrap: "wrap" }}>
         {metricButtons.map(m => (
