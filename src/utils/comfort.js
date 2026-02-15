@@ -89,22 +89,28 @@ const EDGING_OVERRIDES = {
   "la-sportiva-ondra-comp": 0.15,  // edges surprisingly well despite soft feel
 };
 
-/** Edging: geometric mean of SHAPE × STIFFNESS — need both for top scores.
- *  Uses structural stiffness (from computeStiffness) instead of subjective feel.
- *  Stiffness-dominant (60%): rigid platform is essential for micro-edging.
- *  Downturn-dominant shape (80%): downturn matters more than asymmetry for edging. */
+/** Edging: geometric mean of SHAPE × RIGIDITY — need both for top scores.
+ *  Rigidity combines structural stiffness with subjective feel (stiffness perception).
+ *  Soft-feeling shoes edge worse even with good structure (foot collapses on micro-edges).
+ *  Hard rubber improves edge precision. Lace closure locks the foot in place. */
 export function computeEdging(shoe) {
   const hardR = 1 - _hardnessVal(shoe);
+  const feelStiff = FEEL_STIFF_MAP[shoe.feel] || 0.5;
   const cl = shoe.closure || "";
 
   const stiffness = computeStiffness(shoe);
+  // Combine structural stiffness (60%) with perceived stiffness from feel (40%)
+  // This ensures soft-feeling shoes score lower even with partial midsole
+  const rigidity = stiffness * 0.60 + feelStiff * 0.40;
+
   const edgeDown = ({ flat: 0.15, moderate: 0.70, aggressive: 0.85 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.55, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
   const edgeShape = edgeDown * 0.80 + asymE * 0.20;
-  const edgeCore = Math.pow(edgeShape, 0.40) * Math.pow(stiffness, 0.60);
+  // Rigidity-dominant (65%): a stiff platform is essential for micro-edging
+  const edgeCore = Math.pow(edgeShape, 0.35) * Math.pow(rigidity, 0.65);
   const override = EDGING_OVERRIDES[shoe.slug] || 0;
-  return Math.min(1, edgeCore * 0.85 + edgeCl * 0.10 + hardR * 0.05 + override);
+  return Math.min(1, edgeCore * 0.82 + edgeCl * 0.10 + hardR * 0.08 + override);
 }
 
 /** Pocket ability: aggressive downturn + asymmetry + toe patch + stiffness + closure + hardness */
@@ -132,7 +138,9 @@ export function computeHooks(shoe) {
 }
 
 /** Sensitivity: how much rock feedback reaches your foot.
- *  Thin rubber matters more when rubber is soft (transmits texture). */
+ *  Thin rubber matters more when rubber is soft (transmits texture).
+ *  Structural stiffness DAMPENS sensitivity — a stiff platform isolates
+ *  the foot from the rock even if rubber is thin and soft. */
 export function computeSensitivity(shoe) {
   const softR = _hardnessVal(shoe);
   const feelSoft = FEEL_SCORE_MAP[shoe.feel] || 0.5;
@@ -141,8 +149,12 @@ export function computeSensitivity(shoe) {
   const mid = MID_MAP[shoe.midsole] || 0.5;
   const weightVal = shoe.weight_g ? Math.min(1, Math.max(0, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
 
+  // Structural stiffness penalty: stiff rand/midsole/closure damp feedback
+  const stiffness = computeStiffness(shoe);
+  const flexibility = 1 - stiffness; // high when shoe is structurally flexible
+
   const effectiveThin = thinR * (0.50 + softR * 0.50);
-  return Math.min(1, effectiveThin * 0.28 + (1 - mid) * 0.25 + feelSoft * 0.25 + softR * 0.10 + weightVal * 0.12);
+  return Math.min(1, effectiveThin * 0.20 + flexibility * 0.26 + feelSoft * 0.22 + softR * 0.10 + (1 - mid) * 0.12 + weightVal * 0.10);
 }
 
 /** Support: structural rigidity — stiff feel + hard rubber + thick rubber + full midsole + lace */
