@@ -342,18 +342,20 @@ export default function CrashpadScatterChart({ isMobile }) {
           onNavigate={mobileItem ? () => navigate(`/crashpad/${mobileItem.slug}`) : null}>
           {mobileItem && (
             <>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
-                <b style={{ color: T.text, fontSize: "14px" }}>{mobileItem.brand} {mobileItem.model}</b>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
+                <b style={{ color: T.text, fontSize: "13px" }}>{mobileItem.brand} {mobileItem.model}</b>
+                <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
+                  {mobileItem.layers} layers · {mobileItem.fold.replace("_", "-")}
+                </span>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", marginBottom: "6px" }}>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Area</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{mobileItem.area.toFixed(2)} m²</div></div>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Weight</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{mobileItem.weight} kg</div></div>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Price</span><div style={{ fontSize: "14px", fontWeight: 600 }}>€{mobileItem.price}</div></div>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>€/m²</span><div style={{ fontSize: "14px", fontWeight: 600 }}>€{mobileItem.eurM2}</div></div>
-              </div>
-              <div style={{ fontSize: "11px", color: "#64748b" }}>
-                {mobileItem.layers} foam layers · {mobileItem.fold.replace("_", "-")} · {mobileItem.thickness}cm thick
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "2px 8px" }}>
+                {[["Area", `${mobileItem.area.toFixed(2)} m²`], ["Weight", `${mobileItem.weight} kg`], ["Price", `€${mobileItem.price}`], ["€/m²", `€${mobileItem.eurM2}`]].map(([lbl, val]) => (
+                  <div key={lbl} style={{ textAlign: "center" }}>
+                    <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
+                    <div style={{ fontSize: "13px", fontWeight: 600 }}>{val}</div>
+                  </div>
+                ))}
               </div>
             </>
           )}

@@ -27,6 +27,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
   const tipRef = useRef(null);
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
+  const sheetRef = useRef(null);
 
   const [metric, setMetric] = useState("edging_sensitivity");
   const [colorBy, setColorBy] = useState("closure");
@@ -307,6 +308,19 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     return () => document.removeEventListener("click", onDocClick);
   }, [draw, hideTip]);
 
+  /* Close mobile sheet on outside tap (not on canvas or sheet) */
+  useEffect(() => {
+    if (!isMobile) return;
+    const onTouch = (e) => {
+      if (!mobileItem) return;
+      if (canvasRef.current?.contains(e.target)) return; // canvas handles its own
+      if (sheetRef.current?.contains(e.target)) return;  // tapping sheet itself
+      closeMobileSheet();
+    };
+    document.addEventListener("touchstart", onTouch, { passive: true });
+    return () => document.removeEventListener("touchstart", onTouch);
+  }, [isMobile, mobileItem, closeMobileSheet]);
+
   /* Navigate from tooltip link */
   useEffect(() => {
     const tip = tipRef.current;
@@ -405,22 +419,24 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
 
       {/* Mobile Bottom Sheet */}
       {isMobile && (
-        <BottomSheet item={mobileItem} onClose={closeMobileSheet}
+        <BottomSheet item={mobileItem} onClose={closeMobileSheet} sheetRef={sheetRef}
           onNavigate={mobileItem ? () => navigate(`/shoe/${mobileItem.slug}`) : null}>
           {mobileItem && (
             <>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
-                <b style={{ color: T.text, fontSize: "14px" }}>{mobileItem.brand} {mobileItem.model}</b>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
+                <b style={{ color: T.text, fontSize: "13px" }}>{mobileItem.brand} {mobileItem.model}</b>
+                <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
+                  {mobileItem.closure} · {mobileItem.feel}{mobileItem.price_uvp_eur ? ` · €${mobileItem.price_uvp_eur}` : ""}
+                </span>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", marginBottom: "6px" }}>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Edging</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{pct(mobileItem._edging)}</div></div>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Sensitivity</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{pct(mobileItem._sensitivity)}</div></div>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Comfort</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{pct(mobileItem._comfort)}</div></div>
-                <div><span style={{ fontSize: "10px", color: T.muted }}>Support</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{pct(mobileItem._support)}</div></div>
-              </div>
-              <div style={{ fontSize: "11px", color: "#64748b" }}>
-                {mobileItem.closure} · {mobileItem.downturn} · {mobileItem.feel} feel{mobileItem.price_uvp_eur ? ` · €${mobileItem.price_uvp_eur}` : ""}{mobileItem.vegan ? " · 🌱" : ""}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "2px 8px" }}>
+                {[["Edging", mobileItem._edging], ["Sensitivity", mobileItem._sensitivity], ["Comfort", mobileItem._comfort], ["Support", mobileItem._support]].map(([lbl, val]) => (
+                  <div key={lbl} style={{ textAlign: "center" }}>
+                    <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
+                    <div style={{ fontSize: "13px", fontWeight: 600 }}>{pct(val)}</div>
+                  </div>
+                ))}
               </div>
             </>
           )}

@@ -350,20 +350,21 @@ export default function BelayScatterChart({ isMobile }) {
           {mobileItem && (() => {
             const d = mobileItem;
             const typeLabel = TYPE_LABELS[d.type] || d.type;
-            const features = [d.antiPanic && "Anti-panic", d.guideMode && "Guide mode"].filter(Boolean).join(", ");
+            const features = [d.antiPanic && "Anti-panic", d.guideMode && "Guide mode"].filter(Boolean).join(" · ");
             return (
               <>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(d), flexShrink: 0 }} />
-                  <b style={{ color: T.text, fontSize: "14px" }}>{d.brand} {d.model}</b>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(d), flexShrink: 0 }} />
+                  <b style={{ color: T.text, fontSize: "13px" }}>{d.brand} {d.model}</b>
+                  <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
+                    {typeLabel}{features ? ` · ${features}` : ""}
+                  </span>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", marginBottom: "6px" }}>
-                  <div><span style={{ fontSize: "10px", color: T.muted }}>Weight</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{d.weight} g</div></div>
-                  <div><span style={{ fontSize: "10px", color: T.muted }}>Price</span><div style={{ fontSize: "14px", fontWeight: 600 }}>€{d.price.toFixed(2)}</div></div>
-                  <div><span style={{ fontSize: "10px", color: T.muted }}>Type</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{typeLabel}</div></div>
-                  {d.material && <div><span style={{ fontSize: "10px", color: T.muted }}>Material</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{d.material}</div></div>}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "2px 8px" }}>
+                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Weight</div><div style={{ fontSize: "13px", fontWeight: 600 }}>{d.weight} g</div></div>
+                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Price</div><div style={{ fontSize: "13px", fontWeight: 600 }}>€{d.price.toFixed(2)}</div></div>
+                  {d.material && <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Material</div><div style={{ fontSize: "13px", fontWeight: 600 }}>{d.material}</div></div>}
                 </div>
-                {features && <div style={{ fontSize: "11px", color: "#64748b" }}>{features}</div>}
               </>
             );
           })()}

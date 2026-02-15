@@ -82,29 +82,24 @@ export function LegendRow({ items, hiddenSet, onToggle, onClearAll, threshold = 
 }
 
 /* ─── Mobile Bottom Sheet ─── */
-export function BottomSheet({ item, onClose, onNavigate, children }) {
+export function BottomSheet({ item, onClose, onNavigate, children, sheetRef }) {
   if (!item) return null;
   return (
-    <div onClick={(e) => e.stopPropagation()} style={{
-      position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 50,
-      background: T.card, borderTop: `2px solid ${T.accent}`,
-      borderRadius: "14px 14px 0 0", padding: "14px 16px 16px",
-      boxShadow: "0 -8px 32px rgba(0,0,0,.6)",
-      animation: "sheetUp .25s cubic-bezier(.16,1,.3,1)",
+    <div ref={sheetRef} onClick={(e) => e.stopPropagation()} style={{
+      marginTop: "8px", background: T.surface, border: `1px solid ${T.border}`,
+      borderRadius: "10px", padding: "10px 12px",
+      animation: "sheetFade .2s ease-out",
       maxWidth: "100%", boxSizing: "border-box",
     }}>
-      <div onClick={onClose} style={{ display: "flex", justifyContent: "center", marginBottom: "8px", cursor: "pointer", padding: "2px 0" }}>
-        <div style={{ width: "32px", height: "3px", borderRadius: "2px", background: T.border }} />
-      </div>
       {children}
       {onNavigate && (
         <button onClick={onNavigate} style={{
-          display: "block", width: "100%", marginTop: "10px", padding: "8px", borderRadius: "8px",
+          display: "block", width: "100%", marginTop: "8px", padding: "6px", borderRadius: "6px",
           background: T.accentSoft, color: T.accent, border: "none", cursor: "pointer",
-          fontSize: "12px", fontWeight: 600, textAlign: "center",
+          fontSize: "11px", fontWeight: 600, textAlign: "center",
         }}>View full specs →</button>
       )}
-      <style>{`@keyframes sheetUp { from { transform: translateY(100%); opacity:0 } to { transform: translateY(0); opacity:1 } }`}</style>
+      <style>{`@keyframes sheetFade { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:translateY(0) } }`}</style>
     </div>
   );
 }

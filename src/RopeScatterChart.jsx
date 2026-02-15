@@ -473,23 +473,28 @@ export default function RopeScatterChart({ isMobile }) {
             const r = mobileItem;
             const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
             const dry = (r.dry || "none").replace(/_/g, " ");
+            const stats = [
+              ["Dia", `${r.dia} mm`], ["Weight", `${r.gm} g/m`],
+              ...(r.falls ? [["Falls", `${r.falls}`]] : []),
+              ...(r.impact ? [["Impact", `${r.impact} kN`]] : []),
+              ...(r.breakStr ? [["Break", `${r.breakStr} kN`]] : []),
+            ].slice(0, 4);
             return (
               <>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: getColor(r), flexShrink: 0 }} />
-                  <b style={{ color: T.text, fontSize: "14px" }}>{r.brand} {r.model}</b>
-                  <span style={{ fontSize: "10px", fontWeight: 600, padding: "1px 6px", borderRadius: "4px", background: `${TYPE_COLORS[r.type]}20`, color: TYPE_COLORS[r.type] }}>{typeLabel}</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(r), flexShrink: 0 }} />
+                  <b style={{ color: T.text, fontSize: "13px" }}>{r.brand} {r.model}</b>
+                  <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
+                    {typeLabel} · {dry}{r.triple ? " · Triple" : ""}
+                  </span>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "4px 12px", marginBottom: "6px" }}>
-                  <div><span style={{ fontSize: "10px", color: T.muted }}>Diameter</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.dia} mm</div></div>
-                  <div><span style={{ fontSize: "10px", color: T.muted }}>Weight</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.gm} g/m</div></div>
-                  {r.falls && <div><span style={{ fontSize: "10px", color: T.muted }}>Falls</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.falls}</div></div>}
-                  {r.impact && <div><span style={{ fontSize: "10px", color: T.muted }}>Impact</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.impact} kN</div></div>}
-                  {r.breakStr && <div><span style={{ fontSize: "10px", color: T.muted }}>Break Str.</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.breakStr} kN</div></div>}
-                  {r.sheath && <div><span style={{ fontSize: "10px", color: T.muted }}>Sheath</span><div style={{ fontSize: "14px", fontWeight: 600 }}>{r.sheath}%</div></div>}
-                </div>
-                <div style={{ fontSize: "11px", color: "#64748b" }}>
-                  Dry: {dry}{r.triple ? " · Triple rated" : ""}
+                <div style={{ display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: "2px 8px" }}>
+                  {stats.map(([lbl, val]) => (
+                    <div key={lbl} style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
+                      <div style={{ fontSize: "13px", fontWeight: 600 }}>{val}</div>
+                    </div>
+                  ))}
                 </div>
               </>
             );
