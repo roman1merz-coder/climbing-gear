@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
-import { sortItems, SortDropdownGeneric } from "./sorting.jsx";
+import { sortItems, SortDropdownGeneric, SORT_OPTIONS_GENERIC } from "./sorting.jsx";
 import CompareCheckbox from "./CompareCheckbox.jsx";
 import { useWL } from "./WishlistContext.jsx";
 import { useCompare } from "./CompareContext.jsx";
@@ -777,6 +777,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
   const [query, setQuery] = useState(_s.query || "");
   const [selectedLengths, setSelectedLengths] = useState({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [showMobileSort, setShowMobileSort] = useState(false);
   const [sortKey, setSortKey] = useState(_s.sortKey || "best_match");
 
   useEffect(() => {
@@ -852,79 +853,153 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
       {/* Sub-header: search + filters */}
       <header style={{
         position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
-        display: "flex", alignItems: "center", gap: isMobile ? "8px" : "16px",
-        flexWrap: isMobile ? "wrap" : "nowrap",
-        padding: isMobile ? "8px 12px" : "0 24px",
+        display: isMobile ? "block" : "flex", alignItems: "center", gap: "16px",
+        flexWrap: "nowrap",
+        padding: isMobile ? undefined : "0 24px",
         minHeight: isMobile ? undefined : "50px",
         background: "rgba(14,16,21,.92)", backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e2028",
       }}>
-        {isMobile && (
-          <button
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-            style={{
-              padding: "5px 10px", borderRadius: "6px", fontSize: "11px", fontWeight: 500,
-              color: ac > 0 ? "#E8734A" : "#6b7280",
-              cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#3a3f47"}`,
-              background: ac > 0 ? "rgba(232,115,74,0.1)" : "transparent",
-              fontFamily: "'DM Sans',sans-serif",
-            }}
-          >
-            ☰ Filters{ac > 0 ? ` (${ac})` : ""}
-          </button>
-        )}
-
-        <div style={{ flex: 1, maxWidth: isMobile ? undefined : "400px", position: "relative", width: isMobile ? "100%" : undefined, order: isMobile ? 10 : undefined }}>
-          <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
-          <input
-            type="text"
-            placeholder="Search ropes…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            style={{
-              width: "100%", padding: "8px 16px 8px 36px",
-              borderRadius: "8px", border: "1px solid #1e2028",
-              background: "#151820", color: "#f0f0f0",
-              fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
-            }}
-          />
-        </div>
-
-        {/* View toggle */}
-        <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
-          {[
-            { key: "cards", icon: "▦", label: "Cards" },
-            { key: "chart", icon: "⊙", label: "Chart" },
-          ].map(v => (
-            <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
-              padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
-              background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
-              color: view === v.key ? "#E8734A" : "#6b7280",
-              fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
-              display: "flex", alignItems: "center", gap: "4px",
-            }}>
-              <span style={{ fontSize: "13px" }}>{v.icon}</span>
-              {!isMobile && v.label}
-            </button>
-          ))}
-        </div>
-
-        <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
-          {results.length} ropes
-        </span>
-
-        {(ac > 0 || activeTypes.length > 0) && (
-          <button
-            onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
-            style={{
-              padding: "6px 16px", borderRadius: "20px",
-              border: "1px solid #3a3f47", background: "transparent",
-              color: "#9ca3af", fontSize: "12px", cursor: "pointer",
-              fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
-            }}
-          >
-            Clear all
-          </button>
+        {isMobile ? (
+          <>
+            {/* Mobile Row 1: Filters + Sort icon + Search */}
+            <div style={{ display: "flex", gap: "6px", alignItems: "center", padding: "8px 12px 0" }}>
+              <button
+                onClick={() => setShowMobileFilters(!showMobileFilters)}
+                style={{
+                  height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
+                  color: ac > 0 ? "#E8734A" : "#9ca3af",
+                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#2a2f38"}`,
+                  background: ac > 0 ? "rgba(232,115,74,0.08)" : "#1a1d24",
+                  fontFamily: "'DM Sans',sans-serif",
+                  display: "flex", alignItems: "center", gap: "6px",
+                  whiteSpace: "nowrap", flexShrink: 0,
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2" fill="currentColor"/><circle cx="16" cy="12" r="2" fill="currentColor"/><circle cx="10" cy="18" r="2" fill="currentColor"/></svg>
+                Filters{ac > 0 ? ` (${ac})` : ""}
+              </button>
+              {view === "cards" && (
+                <button
+                  onClick={() => setShowMobileSort(true)}
+                  style={{
+                    height: "34px", padding: "0 10px", borderRadius: "8px",
+                    border: "1px solid #2a2f38", background: "#1a1d24",
+                    color: "#9ca3af", cursor: "pointer",
+                    display: "flex", alignItems: "center", gap: "4px",
+                    fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
+                    whiteSpace: "nowrap", flexShrink: 0,
+                  }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 6h18M3 12h12M3 18h6"/>
+                  </svg>
+                  {(SORT_OPTIONS_GENERIC.find(o => o.key === sortKey)?.label || "Sort").split(":")[0].replace("Biggest ", "").replace("Newest ", "New")}
+                </button>
+              )}
+              <div style={{ flex: 1, position: "relative", minWidth: 0 }}>
+                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+                <input
+                  type="text"
+                  placeholder="Search…"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  style={{
+                    width: "100%", height: "34px", padding: "0 12px 0 32px",
+                    borderRadius: "8px", border: "1px solid #2a2f38",
+                    background: "#1a1d24", color: "#f0f0f0",
+                    fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
+                  }}
+                />
+              </div>
+            </div>
+            {/* Mobile Row 2: Count + Clear | View toggle */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <span style={{ fontSize: "12px", color: "#6b7280", fontWeight: 500 }}>
+                  {results.length} rope{results.length !== 1 ? "s" : ""}
+                </span>
+                {(ac > 0 || activeTypes.length > 0) && (
+                  <button
+                    onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
+                    style={{
+                      padding: "2px 8px", borderRadius: "10px", border: "1px solid #3a3f47",
+                      background: "transparent", color: "#9ca3af", fontSize: "10px",
+                      cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+                    }}
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+              <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+                {[
+                  { key: "cards", icon: "▦" },
+                  { key: "chart", icon: "⊙" },
+                ].map(v => (
+                  <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+                    padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
+                    background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+                    color: view === v.key ? "#E8734A" : "#6b7280",
+                    fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+                  }}>
+                    {v.icon}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ flex: 1, maxWidth: "400px", position: "relative" }}>
+              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+              <input
+                type="text"
+                placeholder="Search ropes…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                style={{
+                  width: "100%", padding: "8px 16px 8px 36px",
+                  borderRadius: "8px", border: "1px solid #1e2028",
+                  background: "#151820", color: "#f0f0f0",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
+                }}
+              />
+            </div>
+            <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+              {[
+                { key: "cards", icon: "▦", label: "Cards" },
+                { key: "chart", icon: "⊙", label: "Chart" },
+              ].map(v => (
+                <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
+                  padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
+                  background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
+                  color: view === v.key ? "#E8734A" : "#6b7280",
+                  fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+                  display: "flex", alignItems: "center", gap: "4px",
+                }}>
+                  <span style={{ fontSize: "13px" }}>{v.icon}</span>
+                  {v.label}
+                </button>
+              ))}
+            </div>
+            <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
+              {results.length} ropes
+            </span>
+            {(ac > 0 || activeTypes.length > 0) && (
+              <button
+                onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
+                style={{
+                  padding: "6px 16px", borderRadius: "20px",
+                  border: "1px solid #3a3f47", background: "transparent",
+                  color: "#9ca3af", fontSize: "12px", cursor: "pointer",
+                  fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
+                }}
+              >
+                Clear all
+              </button>
+            )}
+          </>
         )}
       </header>
 
@@ -1026,6 +1101,40 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Mobile sort bottom sheet */}
+      {isMobile && showMobileSort && (
+        <>
+          <div
+            onClick={() => setShowMobileSort(false)}
+            style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(0,0,0,.5)" }}
+          />
+          <div style={{
+            position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 201,
+            background: "#1c1f26", borderRadius: "16px 16px 0 0",
+            padding: "12px 0 calc(env(safe-area-inset-bottom, 16px) + 8px)",
+            boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
+          }}>
+            <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#3a3f47", margin: "0 auto 12px" }} />
+            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#f0f0f0" }}>Sort by</div>
+            {SORT_OPTIONS_GENERIC.map(o => (
+              <button
+                key={o.key}
+                onClick={() => { setSortKey(o.key); setShowMobileSort(false); }}
+                style={{
+                  width: "100%", padding: "14px 20px", background: "none", border: "none",
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+                  color: sortKey === o.key ? "#E8734A" : "#d1d5db", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
+                }}
+              >
+                {o.label}
+                {sortKey === o.key && <span style={{ color: "#E8734A", fontSize: "16px" }}>✓</span>}
+              </button>
+            ))}
+          </div>
+        </>
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
