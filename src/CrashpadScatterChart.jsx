@@ -79,7 +79,7 @@ export default function CrashpadScatterChart({ isMobile }) {
   const cfgs = {
     area_weight: {
       xField: "area", yField: "weight", xLabel: "Landing Area (m²)", yLabel: "Weight (kg)",
-      xMin: 0.3, xMax: 3.0, yMin: 0, yMax: 11, xStep: 0.5, yStep: 2,
+      xMin: 0.3, xMax: 3.0, yMin: 0, yMax: 12, xStep: 0.5, yStep: 2,
       label: "Area vs Weight", sub: `${filteredPads.length} crashpads — bigger = heavier, but by how much?`,
     },
     area_price: {
@@ -94,7 +94,7 @@ export default function CrashpadScatterChart({ isMobile }) {
     },
     eurm2_weight: {
       xField: "eurM2", yField: "weight", xLabel: "€ / m²", yLabel: "Weight (kg)",
-      xMin: 20, xMax: 450, yMin: 0, yMax: 11, xStep: 50, yStep: 2,
+      xMin: 20, xMax: 450, yMin: 0, yMax: 12, xStep: 50, yStep: 2,
       label: "€/m² vs Weight", sub: `${filteredPads.length} crashpads — cheap AND light is the sweet spot`,
     },
   };
