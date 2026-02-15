@@ -185,7 +185,7 @@ export function chartPad(isMobile, overrides) {
 }
 
 /* ─── Chart height ─── */
-export function chartH(isMobile) { return isMobile ? 360 : 400; }
+export function chartH(isMobile) { return isMobile ? 360 : 520; }
 
 /* ─── Draw inset chart area background + axis border lines ─── */
 export function drawChartArea(ctx, P, W, H) {
