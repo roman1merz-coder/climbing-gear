@@ -436,31 +436,21 @@ function Bool({ label, value, onChange }) {
   );
 }
 
-function Badge({ score: s, compact }) {
+function MatchOverlay({ score: s }) {
   if (s == null || s < 0) return null;
-  const c = s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444";
-  const bg =
-    s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)";
-  // Inline pill badge — renders in card content area, not image overlay
+  const bg = s >= 80 ? "rgba(34,197,94,.85)" : s >= 50 ? "rgba(232,115,74,.85)" : "rgba(239,68,68,.85)";
   return (
     <span
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "3px",
-        padding: compact ? "2px 7px" : "3px 10px",
-        borderRadius: "10px",
-        background: bg,
-        border: `1.5px solid ${c}`,
-        fontSize: compact ? "11px" : "12px",
-        fontWeight: 700,
-        color: c,
+        position: "absolute", top: "8px", right: "8px",
+        padding: "3px 8px", borderRadius: "8px",
+        background: bg, color: "#fff",
         fontFamily: "'DM Mono',monospace",
-        lineHeight: 1.2,
-        whiteSpace: "nowrap",
+        fontSize: "11px", fontWeight: 700, lineHeight: 1.2,
+        zIndex: 2,
       }}
     >
-      {s}% match
+      {s}%
     </span>
   );
 }
@@ -573,7 +563,7 @@ function Card({ shoe, onClick, priceData, compact }) {
             pointerEvents: "none",
           }}
         />
-        {/* Discount badge moved to card content area */}
+        <MatchOverlay score={s} />
         {d.gender && d.gender !== "unisex" && !compact && (
           <div
             style={{
@@ -595,63 +585,95 @@ function Card({ shoe, onClick, priceData, compact }) {
         )}
       </div>
       <div onClick={onClick} style={{ padding: compact ? "10px" : "16px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: compact ? "2px" : "4px" }}>
-          <div
-            style={{
-              width: "4px",
-              height: compact ? "10px" : "12px",
-              borderRadius: "2px",
-              background: BC[d.brand] || "#6b7280",
-            }}
-          />
+        {/* Row 1: brand left, current price right */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <div
+              style={{
+                width: "4px",
+                height: compact ? "10px" : "12px",
+                borderRadius: "2px",
+                background: BC[d.brand] || "#6b7280",
+              }}
+            />
+            <span
+              style={{
+                fontSize: compact ? "9px" : "10px",
+                color: "#6b7280",
+                fontWeight: 600,
+                letterSpacing: "1.5px",
+                textTransform: "uppercase",
+                fontFamily: "'DM Sans',sans-serif",
+              }}
+            >
+              {d.brand}
+            </span>
+          </div>
+          {effectivePrice ? (
+            <span
+              style={{
+                fontSize: compact ? "14px" : "16px",
+                fontWeight: 700,
+                color: "#E8734A",
+                fontFamily: "'DM Mono',monospace",
+                flexShrink: 0,
+              }}
+            >
+              €{Number(effectivePrice) % 1 === 0 ? Number(effectivePrice) : Number(effectivePrice).toFixed(2)}
+            </span>
+          ) : (
+            <span style={{ fontSize: "11px", fontWeight: 600, color: "#6b7280", fontStyle: "italic" }}>
+              Check retailers
+            </span>
+          )}
+        </div>
+        {/* Row 2: model left, strikethrough RRP + green discount right */}
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "8px" }}>
           <span
             style={{
-              fontSize: compact ? "9px" : "10px",
-              color: "#6b7280",
-              fontWeight: 600,
-              letterSpacing: "1.5px",
-              textTransform: "uppercase",
+              fontSize: compact ? "14px" : "17px",
+              fontWeight: 700,
+              color: "#f0f0f0",
               fontFamily: "'DM Sans',sans-serif",
+              lineHeight: 1.2,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              minWidth: 0,
             }}
           >
-            {d.brand}
+            {d.model}
           </span>
-        </div>
-        <div
-          style={{
-            fontSize: compact ? "14px" : "17px",
-            fontWeight: 700,
-            color: "#f0f0f0",
-            fontFamily: "'DM Sans',sans-serif",
-            marginBottom: compact ? "6px" : "12px",
-            lineHeight: 1.2,
-          }}
-        >
-          {d.model}
-        </div>
-        {/* Match score + discount badges row */}
-        {(s >= 0 || disc > 0) && (
-          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center", marginBottom: compact ? "4px" : "8px" }}>
-            <Badge score={s} compact={compact} />
-            {disc > 0 && (
-              <span style={{
-                display: "inline-flex", alignItems: "center",
-                padding: compact ? "2px 7px" : "3px 10px",
-                borderRadius: "10px",
-                background: "rgba(34,197,94,.1)",
-                border: "1.5px solid #22c55e",
-                fontSize: compact ? "11px" : "12px",
-                fontWeight: 700, color: "#22c55e",
-                fontFamily: "'DM Mono',monospace",
-                lineHeight: 1.2, whiteSpace: "nowrap",
-              }}>
-                -{disc}%
+          {effectivePrice && effectivePrice < d.price_uvp_eur && (
+            <div style={{ display: "flex", alignItems: "baseline", gap: "3px", flexShrink: 0 }}>
+              <span
+                style={{
+                  fontSize: "10px",
+                  color: "#6b7280",
+                  textDecoration: "line-through",
+                  fontFamily: "'DM Mono',monospace",
+                }}
+              >
+                €{d.price_uvp_eur}
               </span>
-            )}
-          </div>
-        )}
+              {disc > 0 && (
+                <span
+                  style={{
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    color: "#22c55e",
+                    fontFamily: "'DM Mono',monospace",
+                  }}
+                >
+                  -{disc}%
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+        {/* Desktop-only: tags + skill levels */}
         {!compact && (
-          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "12px" }}>
+          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginTop: "8px" }}>
             {[d.closure, d.downturn, d.feel]
               .filter(Boolean)
               .map((t) => (
@@ -670,40 +692,6 @@ function Card({ shoe, onClick, priceData, compact }) {
                   {String(t).replace(/-/g, " ")}
                 </span>
               ))}
-          </div>
-        )}
-        <div style={{ display: "flex", alignItems: "baseline", gap: compact ? "6px" : "8px", marginBottom: compact ? "4px" : "10px" }}>
-          {effectivePrice ? (
-            <span
-              style={{
-                fontSize: compact ? "16px" : "20px",
-                fontWeight: 700,
-                color: "#E8734A",
-                fontFamily: "'DM Mono',monospace",
-              }}
-            >
-              €{Number(effectivePrice) % 1 === 0 ? Number(effectivePrice) : Number(effectivePrice).toFixed(2)}
-            </span>
-          ) : (
-            <span style={{ fontSize: compact ? "12px" : "14px", fontWeight: 600, color: "#6b7280", fontStyle: "italic" }}>
-              Check retailers
-            </span>
-          )}
-          {effectivePrice && effectivePrice < d.price_uvp_eur && (
-            <span
-              style={{
-                fontSize: compact ? "11px" : "13px",
-                color: "#6b7280",
-                textDecoration: "line-through",
-                fontFamily: "'DM Mono',monospace",
-              }}
-            >
-              €{d.price_uvp_eur}
-            </span>
-          )}
-        </div>
-        {!compact && (
-          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
             {(d.skill_level || []).map((l) => (
               <span
                 key={l}
@@ -719,23 +707,6 @@ function Card({ shoe, onClick, priceData, compact }) {
                 }}
               >
                 {l}
-              </span>
-            ))}
-            {(d.use_cases || []).map((u) => (
-              <span
-                key={u}
-                style={{
-                  padding: "2px 8px",
-                  borderRadius: "8px",
-                  fontSize: "9px",
-                  fontWeight: 600,
-                  background: "rgba(34,197,94,.1)",
-                  color: "#22c55e",
-                  textTransform: "capitalize",
-                  fontFamily: "'DM Sans',sans-serif",
-                }}
-              >
-                {String(u).replace(/_/g, " ")}
               </span>
             ))}
           </div>
