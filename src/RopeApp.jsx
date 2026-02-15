@@ -460,17 +460,28 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
         display: "flex", alignItems: "center", justifyContent: "center",
         background: "#fff",
       }}>
-        {/* Match badge */}
+        {/* Type badge top-left */}
+        <span style={{
+          position: "absolute", top: "8px", left: "8px", zIndex: 3,
+          padding: "2px 6px", borderRadius: "6px",
+          fontSize: "8px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
+          fontFamily: "'JetBrains Mono','DM Mono',monospace",
+          background: TYPE_STYLES[d.rope_type]?.bg || "rgba(96,165,250,.12)",
+          color: TYPE_STYLES[d.rope_type]?.color || "#60a5fa",
+          border: `1px solid ${TYPE_STYLES[d.rope_type]?.border || "rgba(96,165,250,.25)"}`,
+          backdropFilter: "blur(4px)",
+        }}>
+          {d.rope_type}
+        </span>
+        {/* Match overlay top-right */}
         {s >= 0 && (
-          <div style={{
-            position: "absolute", top: "6px", left: "6px", zIndex: 3,
-            padding: "2px 6px", borderRadius: "8px",
-            background: s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)",
-            border: `1px solid ${s >= 80 ? "rgba(34,197,94,.25)" : s >= 50 ? "rgba(232,115,74,.25)" : "rgba(239,68,68,.25)"}`,
-          }}>
-            <span style={{ fontSize: "10px", fontWeight: 700, fontFamily: "'DM Mono',monospace",
-              color: s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444" }}>{s}%</span>
-          </div>
+          <span style={{
+            position: "absolute", top: "8px", right: "8px", zIndex: 3,
+            padding: "3px 8px", borderRadius: "8px",
+            background: s >= 80 ? "rgba(34,197,94,.85)" : s >= 50 ? "rgba(232,115,74,.85)" : "rgba(239,68,68,.85)",
+            color: "#fff", fontFamily: "'DM Mono',monospace",
+            fontSize: "11px", fontWeight: 700, lineHeight: 1.2,
+          }}>{s}%</span>
         )}
         <Img
           src={d.image_url}
@@ -479,37 +490,36 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           fallback={<RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />}
         />
       </div>
-      {/* Content */}
+      {/* Content — v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>
-        <div style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>
-          {d.brand}
-        </div>
-        <div style={{ fontSize: "13px", fontWeight: 700, color: "#f0f0f0", lineHeight: 1.2, marginBottom: "4px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-          {d.model}
-        </div>
-        <div style={{ fontSize: "10px", color: "#9ca3af", fontFamily: "'DM Mono',monospace", marginBottom: "6px" }}>
-          {d.diameter_mm}mm · {d.weight_per_meter_g}g/m
-        </div>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "4px" }}>
-          <span style={{ fontSize: "14px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
-            €{d.price_per_meter_eur_min?.toFixed(2)}
+        {/* Row 1: brand + price/m */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+            <div style={{ width: "3px", height: "10px", borderRadius: "2px", background: TYPE_STYLES[d.rope_type]?.color || "#60a5fa" }} />
+            <span style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
+          </div>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#E8734A", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
+            €{d.price_per_meter_eur_min?.toFixed(2)}<span style={{ fontSize: "9px", color: "#6b7280", fontWeight: 400 }}>/m</span>
           </span>
-          <span style={{ fontSize: "9px", color: "#6b7280" }}>/m</span>
-          {buyUrl && (
-            <span
-              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
-              style={{ fontSize: "10px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "2px", whiteSpace: "nowrap" }}
-            >→ Buy</span>
+        </div>
+        {/* Row 2: model + RRP/discount */}
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "6px" }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0f0f0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, lineHeight: 1.2 }}>
+            {d.model}
+          </span>
+          {hasDiscount && (
+            <div style={{ display: "flex", alignItems: "baseline", gap: "3px", flexShrink: 0 }}>
+              <span style={{ fontSize: "10px", color: "#6b7280", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>€{d.price_uvp_per_meter_eur?.toFixed(2)}</span>
+              <span style={{ fontSize: "10px", fontWeight: 700, color: "#22c55e", fontFamily: "'DM Mono',monospace" }}>-{discountPct}%</span>
+            </div>
           )}
         </div>
-        {hasDiscount && (
-          <div style={{ display: "flex", alignItems: "center", gap: "4px", marginTop: "2px" }}>
-            <span style={{ fontSize: "10px", color: "#6b7280", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>
-              €{d.price_uvp_per_meter_eur?.toFixed(2)}
-            </span>
-            <span style={{ fontSize: "10px", fontWeight: 600, color: "#22c55e" }}>-{discountPct}%</span>
-          </div>
-        )}
+        {/* Row 3: specs */}
+        <div style={{ display: "flex", gap: "4px", alignItems: "center", marginTop: "4px", fontSize: "10px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+          <span>{d.diameter_mm}mm</span>
+          <span style={{ color: "#3a3f47" }}>·</span>
+          <span>{d.weight_per_meter_g}g/m</span>
+        </div>
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
