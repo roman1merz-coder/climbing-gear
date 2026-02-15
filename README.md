@@ -66,7 +66,7 @@ src/*_seed_data.json          ← CANONICAL source of truth (checked into git)
 | `src/seed_data.json` | Climbing shoes | ~335 |
 | `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 156 (106 single, 28 half, 3 twin, 19 static) |
 | `src/belay_seed_data.json` | Belay devices | ~49 |
-| `src/crashpad_seed_data.json` | Crashpads | ~101 |
+| `src/crashpad_seed_data.json` | Crashpads | 112 (23 brands, verified against manufacturer sites) |
 
 ### Rules for Developers and AI Agents
 
@@ -112,6 +112,23 @@ Every product detail page includes an Amazon.de search link (with affiliate tag 
 - Crashpads: `crash pad {brand} {model}`
 
 When no real retailer price data exists (only Amazon search), the "in stock" status is hidden to avoid misleading users.
+
+### Crashpad Subjective Score Algorithms
+
+The 8 subjective scores for crashpads are calculated algorithmically from objective specs:
+
+| Score | Algorithm basis | Possible values |
+|-------|----------------|-----------------|
+| `pad_size_category` | Area (L×W) thresholds + thickness | sit_start, small, medium, large, oversized, slider |
+| `impact_protection` | Weighted: thickness 60% + foam layers 20% + area 20% | low, moderate, high, very_high |
+| `carry_comfort` | Carry features (straps/belt) minus weight penalty; inflatables & light pads (≤3kg) → excellent | basic, good, excellent |
+| `durability` | Shell denier + bottom coating composite | moderate, high |
+| `foam_firmness` | Foam type composition (closed=firm, open=soft, mixed by layers) | soft, moderate, firm |
+| `gear_storage` | Fold style + area + carry system; thin pads & inflatables → none | none, minimal, moderate, generous |
+| `approach_suitability` | Weight class × carry system quality matrix | roadside, moderate, long |
+| `best_use` | Thickness × area thresholds; drop lowball if ≥12cm+≥1.5m² | lowball, midrange, highball, traverse |
+
+Full algorithm documentation with formulas and justifications is in `crashpad_verification.xlsx` → "Algorithm Documentation" sheet.
 
 ### React Key Strategy
 
