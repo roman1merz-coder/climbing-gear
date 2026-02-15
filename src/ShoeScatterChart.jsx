@@ -30,7 +30,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
   const sheetRef = useRef(null);
 
   const [metric, setMetric] = useState("edging_sensitivity");
-  const [colorBy, setColorBy] = useState("closure");
+  const [colorBy, setColorBy] = useState("level");
   const [mobileItem, setMobileItem] = useState(null);
 
   /* Filter state */
@@ -398,7 +398,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
-        {[["closure", "Closure"], ["level", "Level"], ["brand", "Brand"]].map(([k, l]) => (
+        {[["level", "Level"], ["closure", "Closure"], ["brand", "Brand"]].map(([k, l]) => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
