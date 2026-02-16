@@ -201,41 +201,60 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
     const labelBoxes = [];
-    const fontSize = isMobile ? 10 : 11;
-    ctx.font = `bold ${fontSize}px Inter, system-ui, sans-serif`;
+    // Also treat each highlighted dot as an occupied box so labels don't overlap dots
+    hlDots.forEach(({ px, py, r }) => {
+      labelBoxes.push({ x: px - r - 2, y: py - r - 2, w: (r + 2) * 2, h: (r + 2) * 2 });
+    });
+    const fontSize = isMobile ? 10 : 12;
+    ctx.font = `600 ${fontSize}px 'Instrument Sans', Inter, system-ui, sans-serif`;
     ctx.textBaseline = "top";
-    const padX = 6, padY = 3;
+    const padX = 7, padY = 4;
     hlDots.forEach(({ d, px, py, r }) => {
       const label = `${d.brand} ${d.model}`;
       const tw = ctx.measureText(label).width;
       const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
-      // Candidate positions: right, left, above, below, above-right, below-right
-      const gap = 8;
+      // 12 candidate positions for better collision avoidance
+      const gap = 10;
       const candidates = [
         { bx: px + r + gap,            by: py - boxH / 2 },           // right
-        { bx: px - r - gap - boxW,     by: py - boxH / 2 },           // left
         { bx: px - boxW / 2,           by: py - r - gap - boxH },     // above
+        { bx: px - r - gap - boxW,     by: py - boxH / 2 },           // left
         { bx: px - boxW / 2,           by: py + r + gap },             // below
         { bx: px + r + gap,            by: py - r - gap - boxH },     // above-right
+        { bx: px - r - gap - boxW,     by: py - r - gap - boxH },     // above-left
         { bx: px + r + gap,            by: py + r + gap },             // below-right
+        { bx: px - r - gap - boxW,     by: py + r + gap },             // below-left
+        { bx: px + r + gap,            by: py - boxH - gap * 2 },     // far above-right
+        { bx: px + r + gap,            by: py + gap * 2 },             // far below-right
+        { bx: px - r - gap - boxW,     by: py - boxH - gap * 2 },     // far above-left
+        { bx: px - r - gap - boxW,     by: py + gap * 2 },             // far below-left
       ];
-      let best = candidates[0];
+      const rectsOverlap = (a, b) => !(a.x + a.w < b.x || a.x > b.x + b.w || a.y + a.h < b.y || a.y > b.y + b.h);
+      let best = null;
       for (const c of candidates) {
         const rect = { x: c.bx, y: c.by, w: boxW, h: boxH };
-        const overlaps = labelBoxes.some(b =>
-          !(rect.x + rect.w < b.x || rect.x > b.x + b.w || rect.y + rect.h < b.y || rect.y > b.y + b.h)
-        );
-        if (!overlaps) { best = c; break; }
+        if (!labelBoxes.some(b => rectsOverlap(rect, b))) { best = c; break; }
+      }
+      // If all positions overlap, nudge vertically until clear
+      if (!best) {
+        best = candidates[0];
+        let nudge = 0;
+        for (let step = 1; step <= 8; step++) {
+          const up = { x: candidates[0].bx, y: candidates[0].by - step * (boxH + 4), w: boxW, h: boxH };
+          if (!labelBoxes.some(b => rectsOverlap(up, b))) { best = { bx: up.x, by: up.y }; nudge = step; break; }
+          const dn = { x: candidates[0].bx, y: candidates[0].by + step * (boxH + 4), w: boxW, h: boxH };
+          if (!labelBoxes.some(b => rectsOverlap(dn, b))) { best = { bx: dn.x, by: dn.y }; nudge = step; break; }
+        }
       }
       const box = { x: best.bx, y: best.by, w: boxW, h: boxH };
       labelBoxes.push(box);
       // Connector line from dot to label edge
       const labelCx = box.x + box.w / 2, labelCy = box.y + box.h / 2;
-      ctx.strokeStyle = "rgba(234,179,8,0.4)"; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(labelCx, labelCy); ctx.stroke();
+      ctx.strokeStyle = "rgba(234,179,8,0.5)"; ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(labelCx, labelCy); ctx.stroke(); ctx.setLineDash([]);
       // Label background (manual rounded rect for compatibility)
-      const brd = 3;
-      ctx.fillStyle = "rgba(15,17,25,0.88)";
+      const brd = 4;
+      ctx.fillStyle = "rgba(12,14,22,0.92)";
       ctx.beginPath();
       ctx.moveTo(box.x + brd, box.y);
       ctx.lineTo(box.x + box.w - brd, box.y);
@@ -247,11 +266,11 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       ctx.lineTo(box.x, box.y + brd);
       ctx.quadraticCurveTo(box.x, box.y, box.x + brd, box.y);
       ctx.closePath(); ctx.fill();
-      // Thin gold border
-      ctx.strokeStyle = "rgba(234,179,8,0.5)"; ctx.lineWidth = 1;
+      // Gold border
+      ctx.strokeStyle = "rgba(234,179,8,0.6)"; ctx.lineWidth = 1.5;
       ctx.stroke();
-      // Label text
-      ctx.fillStyle = HL_COLOR;
+      // Label text — bright yellow for readability
+      ctx.fillStyle = "#fde68a";
       ctx.fillText(label, box.x + padX, box.y + padY);
     });
     ctx.restore();
