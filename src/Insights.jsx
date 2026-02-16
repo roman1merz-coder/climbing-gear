@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
+import CRASHPAD_SEED from "./crashpad_seed_data.json";
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -385,47 +386,38 @@ function KeyInsight({ children, color = T.accent }) {
     </div>
   );
 }
-/* ─── Inflatable vs Foam scatter: kg/m² for 10–16cm pads ─── */
-const INFLATABLE_DATA = [
-  // Foam pads (10–16cm thickness) — representative sample showing the spread
-  { name: "Metolius Basic", kg_m2: 3.06, thick: 10, inflatable: false },
-  { name: "Ocún Paddy Dominator", kg_m2: 3.17, thick: 10, inflatable: false },
-  { name: "Mammut Crashiano", kg_m2: 3.32, thick: 10, inflatable: false },
-  { name: "Petzl Nimbo", kg_m2: 3.38, thick: 10, inflatable: false },
-  { name: "Snap Rebound", kg_m2: 3.67, thick: 10, inflatable: false },
-  { name: "Beal Double Air Bag", kg_m2: 3.71, thick: 12, inflatable: false },
-  { name: "Moon Pluto", kg_m2: 3.85, thick: 12, inflatable: false },
-  { name: "Edelrid Crux III", kg_m2: 4.00, thick: 10, inflatable: false },
-  { name: "Mad Rock Mad Pad", kg_m2: 4.10, thick: 10, inflatable: false },
-  { name: "La Sportiva Maxi", kg_m2: 4.13, thick: 10, inflatable: false },
-  { name: "Petzl Alto", kg_m2: 4.23, thick: 10, inflatable: false },
-  { name: "Black Diamond Mondo", kg_m2: 4.35, thick: 10, inflatable: false },
-  { name: "Snap Wrap Original", kg_m2: 6.67, thick: 15, inflatable: false },
-  { name: "Ocún Paddy Moonwalk", kg_m2: 4.62, thick: 12, inflatable: false },
-  { name: "Moon Saturn", kg_m2: 4.86, thick: 12, inflatable: false },
-  { name: "BD Impact", kg_m2: 5.04, thick: 10, inflatable: false },
-  { name: "Metolius Session II", kg_m2: 5.15, thick: 11, inflatable: false },
-  { name: "Send Grand Illusion", kg_m2: 5.38, thick: 10, inflatable: false },
-  { name: "ZIGZAG Triple", kg_m2: 9.73, thick: 15, inflatable: false },
-  { name: "Edelrid Mantle IV", kg_m2: 5.50, thick: 10, inflatable: false },
-  { name: "Mad Rock Triple", kg_m2: 5.85, thick: 10, inflatable: false },
-  { name: "Kinetik Newton 4", kg_m2: 5.75, thick: 15, inflatable: false },
-  // Inflatable pads
-  { name: "Kailas Inflatable", kg_m2: 2.45, thick: 15, inflatable: true },
-  { name: "Snap Air Shock 1", kg_m2: 2.78, thick: 15, inflatable: true },
-];
+/* ─── Inflatable vs Foam scatter: computed from seed data ─── */
+const INFLATABLE_PADS = CRASHPAD_SEED
+  .filter(p => p.length_open_cm && p.width_open_cm && p.weight_kg && p.thickness_cm >= 10 && p.thickness_cm <= 16)
+  .map(p => {
+    const area = (p.length_open_cm * p.width_open_cm) / 10000;
+    const isInflatable = (p.foam_types || []).includes("air_chamber");
+    return {
+      name: `${p.brand} ${p.model}`, slug: p.slug,
+      kg_m2: +(p.weight_kg / area).toFixed(2),
+      thick: p.thickness_cm, area: +area.toFixed(2),
+      weight: p.weight_kg, layers: p.foam_layers || 0,
+      price: p.current_price_eur || p.price_uvp_eur,
+      inflatable: isInflatable,
+    };
+  });
 
 function InflatableChart({ isMobile }) {
+  const navigate = useNavigate();
+  const [active, setActive] = useState(null);
+  const [tipPos, setTipPos] = useState({ x: 0, y: 0 });
+  const containerRef = useState(null);
+
   const W = isMobile ? 340 : 700, H = isMobile ? 280 : 320;
-  const pad = { top: 30, right: 20, bottom: 44, left: 55 };
-  const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
+  const p = { top: 30, right: 20, bottom: 44, left: 55 };
+  const cw = W - p.left - p.right, ch = H - p.top - p.bottom;
 
   const xMin = 9, xMax = 16, yMin = 0, yMax = 10;
-  const sx = (v) => pad.left + ((v - xMin) / (xMax - xMin)) * cw;
-  const sy = (v) => pad.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
+  const sx = (v) => p.left + ((v - xMin) / (xMax - xMin)) * cw;
+  const sy = (v) => p.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
 
-  // Compute foam trendline (simple linear regression on non-inflatable)
-  const foam = INFLATABLE_DATA.filter(d => !d.inflatable);
+  // Linear regression on foam pads only
+  const foam = INFLATABLE_PADS.filter(d => !d.inflatable);
   const n = foam.length;
   const sumX = foam.reduce((s, d) => s + d.thick, 0);
   const sumY = foam.reduce((s, d) => s + d.kg_m2, 0);
@@ -434,64 +426,134 @@ function InflatableChart({ isMobile }) {
   const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
   const intercept = (sumY - slope * sumX) / n;
 
+  // Deterministic jitter to avoid overlap
+  const jitter = (idx) => {
+    const angle = ((idx * 2654435761) % 360) * Math.PI / 180;
+    return { dx: Math.cos(angle) * 3, dy: Math.sin(angle) * 3 };
+  };
+
+  const handleDotClick = (d, e) => {
+    const rect = e.currentTarget.closest("svg").getBoundingClientRect();
+    const j = jitter(INFLATABLE_PADS.indexOf(d));
+    setTipPos({
+      x: sx(d.thick) + j.dx,
+      y: sy(d.kg_m2) + j.dy,
+    });
+    setActive(active?.slug === d.slug ? null : d);
+  };
+
   return (
-    <ChartContainer title="kg/m² vs Thickness (10–16cm pads)" subtitle="76 pads with 10–16cm thickness — inflatables shatter the trendline">
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {/* Grid */}
-        {[0, 2, 4, 6, 8, 10].map(v => (
-          <g key={`y${v}`}>
-            <line x1={pad.left} y1={sy(v)} x2={W - pad.right} y2={sy(v)} stroke={T.border} strokeDasharray="3,3" opacity="0.5" />
-            <text x={pad.left - 8} y={sy(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">{v}</text>
-          </g>
-        ))}
-        {[10, 11, 12, 13, 14, 15, 16].map(v => (
-          <g key={`x${v}`}>
-            <line x1={sx(v)} y1={pad.top} x2={sx(v)} y2={pad.top + ch} stroke={T.border} strokeDasharray="3,3" opacity="0.3" />
-            <text x={sx(v)} y={H - pad.bottom + 16} fill={T.muted} fontSize="10" textAnchor="middle">{v}cm</text>
-          </g>
-        ))}
+    <ChartContainer title="kg/m² vs Thickness (10–16cm pads)" subtitle={`${INFLATABLE_PADS.length} pads with 10–16cm thickness — inflatables shatter the trendline`}>
+      <div style={{ position: "relative" }}>
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}
+          onClick={(e) => { if (e.target.tagName === "svg") setActive(null); }}>
+          {/* Grid */}
+          {[0, 2, 4, 6, 8, 10].map(v => (
+            <g key={`y${v}`}>
+              <line x1={p.left} y1={sy(v)} x2={W - p.right} y2={sy(v)} stroke={T.border} strokeDasharray="3,3" opacity="0.5" />
+              <text x={p.left - 8} y={sy(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">{v}</text>
+            </g>
+          ))}
+          {[10, 11, 12, 13, 14, 15, 16].map(v => (
+            <g key={`x${v}`}>
+              <line x1={sx(v)} y1={p.top} x2={sx(v)} y2={p.top + ch} stroke={T.border} strokeDasharray="3,3" opacity="0.3" />
+              <text x={sx(v)} y={H - p.bottom + 16} fill={T.muted} fontSize="10" textAnchor="middle">{v}cm</text>
+            </g>
+          ))}
 
-        {/* Foam average band */}
-        <rect x={pad.left} y={sy(5.5)} width={cw} height={sy(4.0) - sy(5.5)} rx="4" fill={T.muted} opacity="0.06" />
-        <text x={W - pad.right - 4} y={sy(5.2)} fill={T.muted} fontSize="9" textAnchor="end" fontWeight="600" opacity="0.6">Foam avg range</text>
+          {/* Foam average band */}
+          <rect x={p.left} y={sy(5.5)} width={cw} height={sy(4.0) - sy(5.5)} rx="4" fill={T.muted} opacity="0.06" />
+          <text x={W - p.right - 4} y={sy(5.2)} fill={T.muted} fontSize="9" textAnchor="end" fontWeight="600" opacity="0.6">Foam avg range</text>
 
-        {/* Trendline */}
-        <line
-          x1={sx(xMin)} y1={sy(slope * xMin + intercept)}
-          x2={sx(xMax)} y2={sy(slope * xMax + intercept)}
-          stroke={T.muted} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.5"
-        />
-        <text x={sx(13)} y={sy(slope * 13 + intercept) - 8} fill={T.muted} fontSize="9" textAnchor="middle" fontWeight="600">Foam trend</text>
+          {/* Trendline */}
+          <line x1={sx(xMin)} y1={sy(slope * xMin + intercept)} x2={sx(xMax)} y2={sy(slope * xMax + intercept)}
+            stroke={T.muted} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.5" />
+          <text x={sx(13)} y={sy(slope * 13 + intercept) - 8} fill={T.muted} fontSize="9" textAnchor="middle" fontWeight="600">Foam trend</text>
 
-        {/* Foam dots */}
-        {foam.map((d, i) => (
-          <circle key={i} cx={sx(d.thick)} cy={sy(d.kg_m2)} r={isMobile ? 4 : 5} fill={T.blue} opacity="0.5" />
-        ))}
+          {/* Foam dots — clickable */}
+          {foam.map((d, i) => {
+            const j = jitter(INFLATABLE_PADS.indexOf(d));
+            const isActive = active?.slug === d.slug;
+            return (
+              <g key={d.slug} style={{ cursor: "pointer" }} onClick={(e) => handleDotClick(d, e)}>
+                {isActive && <circle cx={sx(d.thick) + j.dx} cy={sy(d.kg_m2) + j.dy} r={isMobile ? 8 : 10} fill={T.blue} opacity="0.2" />}
+                <circle cx={sx(d.thick) + j.dx} cy={sy(d.kg_m2) + j.dy} r={isMobile ? 4 : 5}
+                  fill={T.blue} opacity={isActive ? 1 : 0.5} stroke={isActive ? "#fff" : "none"} strokeWidth="1.5" />
+              </g>
+            );
+          })}
 
-        {/* Inflatable dots — highlighted */}
-        {INFLATABLE_DATA.filter(d => d.inflatable).map((d, i) => (
-          <g key={`inf${i}`}>
-            <circle cx={sx(d.thick)} cy={sy(d.kg_m2)} r={isMobile ? 7 : 9} fill={T.yellow} opacity="0.25" />
-            <circle cx={sx(d.thick)} cy={sy(d.kg_m2)} r={isMobile ? 5 : 6} fill={T.yellow} opacity="0.9" />
-            <text
-              x={sx(d.thick) + (i === 0 ? -12 : 12)}
-              y={sy(d.kg_m2) + (i === 0 ? -12 : 14)}
-              fill={T.yellow} fontSize={isMobile ? "8" : "10"} fontWeight="700"
-              textAnchor={i === 0 ? "end" : "start"}
-            >{d.name}</text>
-          </g>
-        ))}
+          {/* Inflatable dots — highlighted + clickable */}
+          {INFLATABLE_PADS.filter(d => d.inflatable).map((d, i) => {
+            const j = jitter(INFLATABLE_PADS.indexOf(d));
+            const isActive = active?.slug === d.slug;
+            return (
+              <g key={d.slug} style={{ cursor: "pointer" }} onClick={(e) => handleDotClick(d, e)}>
+                <circle cx={sx(d.thick) + j.dx} cy={sy(d.kg_m2) + j.dy} r={isMobile ? 8 : 10} fill={T.yellow} opacity={isActive ? 0.4 : 0.2} />
+                <circle cx={sx(d.thick) + j.dx} cy={sy(d.kg_m2) + j.dy} r={isMobile ? 5 : 6}
+                  fill={T.yellow} opacity="0.9" stroke={isActive ? "#fff" : "none"} strokeWidth="1.5" />
+                <text
+                  x={sx(d.thick) + j.dx + (i === 0 ? -12 : 12)}
+                  y={sy(d.kg_m2) + j.dy + (i === 0 ? -12 : 14)}
+                  fill={T.yellow} fontSize={isMobile ? "8" : "10"} fontWeight="700"
+                  textAnchor={i === 0 ? "end" : "start"} style={{ pointerEvents: "none" }}
+                >{d.name}</text>
+              </g>
+            );
+          })}
 
-        {/* Axis labels */}
-        <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">Thickness (cm)</text>
-        <text x={14} y={H / 2} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600" transform={`rotate(-90,14,${H / 2})`}>kg / m²</text>
+          {/* Axis labels */}
+          <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">Thickness (cm)</text>
+          <text x={14} y={H / 2} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600" transform={`rotate(-90,14,${H / 2})`}>kg / m²</text>
 
-        {/* Legend */}
-        <circle cx={pad.left + 10} cy={pad.top + 8} r="4" fill={T.blue} opacity="0.5" />
-        <text x={pad.left + 18} y={pad.top + 12} fill={T.muted} fontSize="10">Foam pad</text>
-        <circle cx={pad.left + 80} cy={pad.top + 8} r="4" fill={T.yellow} />
-        <text x={pad.left + 88} y={pad.top + 12} fill={T.yellow} fontSize="10" fontWeight="600">Inflatable</text>
-      </svg>
+          {/* Legend */}
+          <circle cx={p.left + 10} cy={p.top + 8} r="4" fill={T.blue} opacity="0.5" />
+          <text x={p.left + 18} y={p.top + 12} fill={T.muted} fontSize="10">Foam pad</text>
+          <circle cx={p.left + 80} cy={p.top + 8} r="4" fill={T.yellow} />
+          <text x={p.left + 88} y={p.top + 12} fill={T.yellow} fontSize="10" fontWeight="600">Inflatable</text>
+        </svg>
+
+        {/* Tooltip popover */}
+        {active && (() => {
+          const svgW = W; // viewBox width
+          const pxRatio = 1; // SVG scales with container
+          const tx = (tipPos.x / svgW) * 100; // percentage position
+          const ty = (tipPos.y / H) * 100;
+          const flipX = tx > 65;
+          const flipY = ty < 30;
+          return (
+            <div style={{
+              position: "absolute",
+              left: `${tx}%`, top: `${ty}%`,
+              transform: `translate(${flipX ? "calc(-100% - 12px)" : "12px"}, ${flipY ? "8px" : "calc(-100% - 8px)"})`,
+              background: "rgba(15,17,25,.97)", border: `1px solid ${active.inflatable ? T.yellow : T.blue}`,
+              borderRadius: "10px", padding: "12px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
+              boxShadow: "0 8px 32px rgba(0,0,0,.6)", zIndex: 10, maxWidth: "240px", pointerEvents: "auto",
+              animation: "tipFade .15s ease-out",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
+                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: active.inflatable ? T.yellow : T.blue, flexShrink: 0 }} />
+                <b style={{ fontSize: "13px" }}>{active.name}</b>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px 14px" }}>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Area</div><div style={{ fontWeight: 600 }}>{active.area} m²</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Weight</div><div style={{ fontWeight: 600 }}>{active.weight} kg</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Thickness</div><div style={{ fontWeight: 600 }}>{active.thick} cm</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>kg/m²</div><div style={{ fontWeight: 600, color: active.inflatable ? T.yellow : T.blue }}>{active.kg_m2}</div></div>
+                {active.layers > 0 && <div><div style={{ fontSize: "10px", color: T.muted }}>Foam Layers</div><div style={{ fontWeight: 600 }}>{active.layers}</div></div>}
+                {active.price && <div><div style={{ fontSize: "10px", color: T.muted }}>Price</div><div style={{ fontWeight: 600 }}>€{active.price}</div></div>}
+              </div>
+              <Link to={`/crashpad/${active.slug}`} style={{
+                display: "block", width: "100%", marginTop: "10px", padding: "6px",
+                borderRadius: "6px", background: T.accentSoft, color: T.accent,
+                border: "none", cursor: "pointer", fontSize: "11px", fontWeight: 600,
+                textAlign: "center", textDecoration: "none",
+              }}>View full specs →</Link>
+              <style>{`@keyframes tipFade { from { opacity:0; transform:translateY(4px) } to { opacity:1; transform:translateY(0) } }`}</style>
+            </div>
+          );
+        })()}
+      </div>
     </ChartContainer>
   );
 }
