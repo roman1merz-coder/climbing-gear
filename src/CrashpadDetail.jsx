@@ -151,7 +151,7 @@ function EfficiencyRadar({ pad, allPads }) {
   const vol = (pad.length_open_cm * pad.width_open_cm * pad.thickness_cm) / 1000;
 
   const metrics = useMemo(() => {
-    // Compute for all pads
+    // Compute ratio metrics for all pads
     const all = allPads.map((p) => {
       const a = (p.length_open_cm * p.width_open_cm) / 10000;
       const v = (p.length_open_cm * p.width_open_cm * p.thickness_cm) / 1000;
@@ -186,30 +186,41 @@ function EfficiencyRadar({ pad, allPads }) {
       return 100 - ((val - min) / (max - min)) * 100;
     };
 
-    // Protection axis: impact_protection level / thickness (higher = better)
-    const impactScale = { low: 1, moderate: 2, high: 3, very_high: 4 };
-    const impactVal = (impactScale[pad.impact_protection] || 2) / (pad.thickness_cm || 1);
-    const allImpact = allPads.map((p) => (impactScale[p.impact_protection] || 2) / (p.thickness_cm || 1));
-    const impMin = Math.min(...allImpact);
-    const impMax = Math.max(...allImpact);
-    const protScore = impMax === impMin ? 50 : ((impactVal - impMin) / (impMax - impMin)) * 100;
+    // Protection axis: area × thickness × layer quality × robustness
+    const protRaw = (p) => {
+      const a = (p.length_open_cm * p.width_open_cm) / 10000;
+      const thickF = Math.min((p.thickness_cm || 1) / 12, 1.3);
+      const isInflatable = (p.foam_types || []).includes("air_chamber");
+      const layerF = isInflatable ? 0.75 : Math.max(0.33, Math.min((p.foam_layers || 0) / 3, 1.5));
+      const robust = isInflatable ? 0.85 : 1.0;
+      return a * thickF * layerF * robust;
+    };
+    const myProt = protRaw(pad);
+    const allProt = allPads.map(protRaw);
+    const protMin = Math.min(...allProt);
+    const protMax = Math.max(...allProt);
+    const protScore = protMax === protMin ? 50 : ((myProt - protMin) / (protMax - protMin)) * 100;
 
-    // Portability axis: inverse weight × carry_comfort × approach
-    const comfortScale = { basic: 1, good: 2, excellent: 3 };
-    const approachScale = { roadside: 1, moderate: 2, long: 3 };
-    const portVal = (1 / (pad.weight_kg || 1)) * (comfortScale[pad.carry_comfort] || 1) * (approachScale[pad.approach_suitability] || 1);
-    const allPort = allPads.map((p) => (1 / (p.weight_kg || 1)) * (comfortScale[p.carry_comfort] || 1) * (approachScale[p.approach_suitability] || 1));
+    // Portability axis: weight/area (primary, inverted) × carry_comfort discount
+    const portRaw = (p) => {
+      const a = (p.length_open_cm * p.width_open_cm) / 10000;
+      const wpa = p.weight_kg / (a || 1);
+      const comfortDiscount = { excellent: 0.85, good: 0.92, basic: 1.0 }[p.carry_comfort] || 1.0;
+      return wpa * comfortDiscount;
+    };
+    const myPort = portRaw(pad);
+    const allPort = allPads.map(portRaw);
     const portMin = Math.min(...allPort);
     const portMax = Math.max(...allPort);
-    const portScore = portMax === portMin ? 50 : ((portVal - portMin) / (portMax - portMin)) * 100;
+    const portScore = portMax === portMin ? 50 : 100 - ((myPort - portMin) / (portMax - portMin)) * 100;
 
     return [
       { label: "Cost/m²", value: norm(mine.eurPerArea, mins.eurPerArea, maxs.eurPerArea), detail: `€${mine.eurPerArea.toFixed(0)}/m²` },
       { label: "Weight/m²", value: norm(mine.kgPerArea, mins.kgPerArea, maxs.kgPerArea), detail: `${mine.kgPerArea.toFixed(1)}kg/m²` },
-      { label: "Protection", value: protScore, detail: fmt(pad.impact_protection) },
+      { label: "Protection", value: protScore, detail: `${area.toFixed(1)}m² · ${pad.thickness_cm}cm · ${pad.foam_layers || 0}L` },
       { label: "Cost/l", value: norm(mine.eurPerLiter, mins.eurPerLiter, maxs.eurPerLiter), detail: `€${mine.eurPerLiter.toFixed(1)}/l` },
       { label: "Weight/l", value: norm(mine.kgPerLiter, mins.kgPerLiter, maxs.kgPerLiter), detail: `${mine.kgPerLiter.toFixed(2)}kg/l` },
-      { label: "Portability", value: portScore, detail: fmt(pad.carry_comfort) },
+      { label: "Portability", value: portScore, detail: `${mine.kgPerArea.toFixed(1)}kg/m²` },
     ];
   }, [pad, allPads, area, vol]);
 

@@ -6,7 +6,6 @@
     "slug": "asana-focus",
     "year_released": 2025,
     "image_url": "/images/crashpads/asana-focus.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -47,7 +46,6 @@
     "price_uvp_eur": 199.0,
     "current_price_eur": 185.0,
     "discount_pct": 7.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -55,10 +53,8 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.67,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -68,7 +64,6 @@
     "slug": "asana-g5-big-pad",
     "year_released": 2025,
     "image_url": "/images/crashpads/asana-g5-big-pad.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -108,7 +103,6 @@
     "price_uvp_eur": 425.0,
     "current_price_eur": 399.0,
     "discount_pct": 6.1,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -116,10 +110,8 @@
     "kg_per_area": 4.6,
     "eur_per_liter": 2.25,
     "kg_per_liter": 0.038,
-    "description": null,
     "pros": "Massive landing zone with excellent foam quality\nComfortable carry system despite the large size\nGreat for highball bouldering\nAsana's attention to detail in construction",
     "cons": "Heavy and bulky — limited approach range\nPremium pricing for the size category\nOverkill for standard-height problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -129,7 +121,6 @@
     "slug": "asana-hero-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/asana-hero-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -170,7 +161,6 @@
     "price_uvp_eur": 249.0,
     "current_price_eur": 265.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -178,10 +168,8 @@
     "kg_per_area": 5.67,
     "eur_per_liter": 2.39,
     "kg_per_liter": 0.057,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.8kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -191,7 +179,6 @@
     "slug": "asana-rock-star-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/asana-rock-star-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -216,7 +203,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -228,7 +215,6 @@
     "price_uvp_eur": 79.0,
     "current_price_eur": 75.0,
     "discount_pct": 5.1,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -236,10 +222,8 @@
     "kg_per_area": 1.71,
     "eur_per_liter": 7.1,
     "kg_per_liter": 0.085,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.4kg for 0.5m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 3cm thick — limited protection on higher problems\nSmall 0.5m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -249,7 +233,6 @@
     "slug": "asana-sidekick",
     "year_released": 2023,
     "image_url": "/images/crashpads/asana-sidekick.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -290,7 +273,6 @@
     "price_uvp_eur": 195.0,
     "current_price_eur": 215.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -298,10 +280,8 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.94,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -311,7 +291,6 @@
     "slug": "asana-superhero",
     "year_released": 2024,
     "image_url": "/images/crashpads/asana-superhero.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -352,7 +331,6 @@
     "price_uvp_eur": 349.0,
     "current_price_eur": 399.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -360,10 +338,8 @@
     "kg_per_area": 4.6,
     "eur_per_liter": 2.7,
     "kg_per_liter": 0.046,
-    "description": null,
     "pros": "Most comfortable carry system of any crashpad tested\nExcellent weight distribution on long approaches\nHigh-quality foam and construction\nGenerous landing area for its weight class\nWell-thought-out design details",
     "cons": "Higher price point than similar-sized competitors\nLess widely available than major brands\nHinge fold has typical seam considerations",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -373,7 +349,6 @@
     "slug": "asana-triptick-trifold",
     "year_released": 2023,
     "image_url": "/images/crashpads/asana-triptick-trifold.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "tri_fold",
     "best_use": [
@@ -411,7 +386,6 @@
     "price_uvp_eur": 275.0,
     "current_price_eur": 275.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -419,10 +393,8 @@
     "kg_per_area": 3.84,
     "eur_per_liter": 2.36,
     "kg_per_liter": 0.055,
-    "description": null,
     "pros": "Massive 1.7m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (6.4kg for 1.7m²)\nCouch mode for comfortable resting between sessions\nReconfigurable design — can be used in multiple configurations\n1000D shell fabric is seriously tough — resists tears and abrasion",
     "cons": "Only 8cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo waist or chest straps — the pad bounces around on steep trails",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -432,7 +404,6 @@
     "slug": "asana-versapad",
     "year_released": 2024,
     "image_url": "/images/crashpads/asana-versapad.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "taco",
     "best_use": [
@@ -458,7 +429,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": true,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -470,7 +441,6 @@
     "price_uvp_eur": 199.0,
     "current_price_eur": 140.0,
     "discount_pct": 29.6,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -478,10 +448,8 @@
     "kg_per_area": 1.09,
     "eur_per_liter": 3.32,
     "kg_per_liter": 0.055,
-    "description": null,
     "pros": "Extremely versatile design with multiple configurations\nCan adapt to different bouldering scenarios\nGood balance of portability and protection\nInnovative approach to pad design",
     "cons": "Jack-of-all-trades means not best-in-class at anything\nReconfiguration takes time between problems\nComplexity adds potential failure points",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -491,7 +459,6 @@
     "slug": "asana-versapad-pro",
     "year_released": 2024,
     "image_url": "/images/crashpads/asana-versapad-pro.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "taco",
     "best_use": [
@@ -518,7 +485,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": true,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -530,7 +497,6 @@
     "price_uvp_eur": 199.0,
     "current_price_eur": 185.0,
     "discount_pct": 7.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -538,10 +504,8 @@
     "kg_per_area": 1.09,
     "eur_per_liter": 3.51,
     "kg_per_liter": 0.044,
-    "description": null,
     "pros": "Massive 2.1m² landing zone covers most boulder problem landings\nLight at only 2.3kg for the size\nReconfigurable design — can be used in multiple configurations\nAttaches to Asana SuperHero and Hero pads for transport",
     "cons": "Only 2.5cm thick — limited protection, supplemental pad only\nNo hinge protection\nBasic carry system — no straps, must attach to another pad\nNot standalone for any real height",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -551,7 +515,6 @@
     "slug": "beal-addition-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/beal-addition-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "taco",
     "best_use": [
@@ -576,7 +539,7 @@
     "bottom_coating": "pu_coated",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -588,7 +551,6 @@
     "price_uvp_eur": 46.0,
     "current_price_eur": 42.0,
     "discount_pct": 8.7,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -596,10 +558,8 @@
     "kg_per_area": 1.47,
     "eur_per_liter": 2.95,
     "kg_per_liter": 0.049,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (0.8kg for 0.4m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 3cm thick — limited protection on higher problems\nSmall 0.4m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -609,7 +569,6 @@
     "slug": "beal-air-light",
     "year_released": 2024,
     "image_url": "/images/crashpads/beal-air-light.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -648,7 +607,6 @@
     "price_uvp_eur": 195.0,
     "current_price_eur": 219.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -656,10 +614,8 @@
     "kg_per_area": 3.2,
     "eur_per_liter": 2.43,
     "kg_per_liter": 0.036,
-    "description": null,
     "pros": "Generous 1.3m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.2kg for 1.3m²)\nGood carry comfort for approaches\nWaist belt helps stabilize the pad on longer approaches",
     "cons": "No shoe wipe — bring a towel\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -669,7 +625,6 @@
     "slug": "beal-double-air-bag",
     "year_released": 2024,
     "image_url": "/images/crashpads/beal-double-air-bag.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -710,7 +665,6 @@
     "price_uvp_eur": 340.0,
     "current_price_eur": 299.0,
     "discount_pct": 12.1,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -718,10 +672,8 @@
     "kg_per_area": 4.46,
     "eur_per_liter": 1.64,
     "kg_per_liter": 0.032,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.2kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -731,7 +683,6 @@
     "slug": "beal-double-air-light",
     "year_released": 2024,
     "image_url": "/images/crashpads/beal-double-air-light.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -772,7 +723,6 @@
     "price_uvp_eur": 195.0,
     "current_price_eur": 285.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -780,10 +730,8 @@
     "kg_per_area": 4.46,
     "eur_per_liter": 1.57,
     "kg_per_liter": 0.032,
-    "description": null,
     "pros": "Generous 1.3m² landing area — good coverage for most problems\n14cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (5.4kg for 1.3m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -793,7 +741,6 @@
     "slug": "beal-jumbo-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/beal-jumbo-pad.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "hinge",
     "best_use": [
@@ -834,7 +781,6 @@
     "price_uvp_eur": 407.0,
     "current_price_eur": 339.0,
     "discount_pct": 16.7,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -842,10 +788,8 @@
     "kg_per_area": 3.28,
     "eur_per_liter": 1.45,
     "kg_per_liter": 0.027,
-    "description": null,
     "pros": "Massive 1.9m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (6.4kg for 1.9m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Bulky and not great for longer approaches — best for roadside boulders\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -855,7 +799,6 @@
     "slug": "beal-triple-air-light",
     "year_released": 2024,
     "image_url": "/images/crashpads/beal-triple-air-light.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "tri_fold",
     "best_use": [
@@ -895,7 +838,6 @@
     "price_uvp_eur": 195.0,
     "current_price_eur": 399.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -903,10 +845,8 @@
     "kg_per_area": 3.73,
     "eur_per_liter": 2.22,
     "kg_per_liter": 0.031,
-    "description": null,
     "pros": "Massive 2.0m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (10.5kg for 2.0m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Heavy at 10.5kg — long approaches become a workout\nBulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel\nFirm foam is harder on low-height falls — less forgiving on ankles",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -916,7 +856,6 @@
     "slug": "black-diamond-circuit",
     "year_released": 2024,
     "image_url": "/images/crashpads/black-diamond-circuit.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -956,7 +895,6 @@
     "price_uvp_eur": 249.0,
     "current_price_eur": 339.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -964,10 +902,8 @@
     "kg_per_area": 3.27,
     "eur_per_liter": 3.08,
     "kg_per_liter": 0.033,
-    "description": null,
     "pros": "Affordable entry point into bouldering\nLight enough for longer approaches\nSimple, reliable hinge design\nDecent foam quality for the price",
     "cons": "Smaller landing area limits coverage on bigger problems\nThinner foam than premium alternatives\nNot a standout performer in any single category\nBetter options available if budget allows",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -977,7 +913,6 @@
     "slug": "black-diamond-circuit-z",
     "year_released": 2024,
     "image_url": "/images/crashpads/black-diamond-circuit-z.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "tri_fold",
     "best_use": [
@@ -1017,7 +952,6 @@
     "price_uvp_eur": 349.0,
     "current_price_eur": 299.0,
     "discount_pct": 14.3,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -1025,10 +959,8 @@
     "kg_per_area": 4.79,
     "eur_per_liter": 1.61,
     "kg_per_liter": 0.044,
-    "description": null,
     "pros": "Tri-fold design creates no dead spot\nLarge landing zone\nQuality BD construction",
     "cons": "Heavy for its area\nTri-fold can be bulky when carried",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1038,7 +970,6 @@
     "slug": "black-diamond-drop-zone",
     "year_released": 2023,
     "image_url": "/images/crashpads/black-diamond-drop-zone.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -1077,7 +1008,6 @@
     "price_uvp_eur": 200.0,
     "current_price_eur": 180.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -1085,10 +1015,8 @@
     "kg_per_area": 3.78,
     "eur_per_liter": 1.58,
     "kg_per_liter": 0.042,
-    "description": null,
     "pros": "Ultra-compact and lightweight for easy transport\nExcellent as a supplementary pad to cover gaps\nBudget-friendly entry point\nEasy to carry alongside a larger pad",
     "cons": "Too small to serve as a primary landing pad\nMinimal foam thickness limits fall protection\nLanding area insufficient for most problems alone",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1098,7 +1026,6 @@
     "slug": "black-diamond-erratic",
     "year_released": 2024,
     "image_url": "/images/crashpads/black-diamond-erratic.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -1139,7 +1066,6 @@
     "price_uvp_eur": 449.0,
     "current_price_eur": 399.0,
     "discount_pct": 11.1,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -1147,10 +1073,8 @@
     "kg_per_area": 4.54,
     "eur_per_liter": 2.94,
     "kg_per_liter": 0.041,
-    "description": null,
     "pros": "Outstanding weight-to-size ratio for long approaches\nPremium Dynex grid fabric with TPU water-resistant coating\nHighly adjustable backpack carry system designed for heavy loads\nReinforced corners withstand abrasion on rough terrain\nSandwiched foam construction enhances water resistance",
     "cons": "Premium price point for a single pad\nDiscontinued at some retailers — limited availability\nHinge fold creates a seam in the landing zone",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1160,7 +1084,6 @@
     "slug": "black-diamond-gapstopper",
     "year_released": 2024,
     "image_url": "/images/crashpads/black-diamond-gapstopper.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -1184,7 +1107,6 @@
     "durability": "moderate",
     "shell_denier": 600,
     "bottom_coating": "none",
-    "closure_system": null,
     "reconfigurable": false,
     "carry_comfort": "excellent",
     "shoulder_straps": false,
@@ -1198,7 +1120,6 @@
     "price_uvp_eur": 69.0,
     "current_price_eur": 59.0,
     "discount_pct": 14.5,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1206,10 +1127,8 @@
     "kg_per_area": 5.13,
     "eur_per_liter": 2.24,
     "kg_per_liter": 0.057,
-    "description": null,
     "pros": "Fills gaps between pads\nLight enough to carry extra",
     "cons": "Narrow profile\nSupplementary only",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1219,7 +1138,6 @@
     "slug": "black-diamond-impact",
     "year_released": 2024,
     "image_url": "/images/crashpads/black-diamond-impact.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -1259,7 +1177,6 @@
     "price_uvp_eur": 290.0,
     "current_price_eur": 260.0,
     "discount_pct": 10.3,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -1267,10 +1184,8 @@
     "kg_per_area": 3.77,
     "eur_per_liter": 2.28,
     "kg_per_liter": 0.038,
-    "description": null,
     "pros": "One of the lightest full-size pads on the market\nExcellent portability for long approaches\nSolid foam for its weight class\nComfortable shoulder straps for hiking\nGood value at its price point",
     "cons": "Thinner foam means less protection on big falls\nLanding area is modest compared to larger pads\nNot ideal as a primary pad for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1280,7 +1195,6 @@
     "slug": "black-diamond-mondo",
     "year_released": 2023,
     "image_url": "/images/crashpads/black-diamond-mondo.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "hinge",
     "best_use": [
@@ -1320,7 +1234,6 @@
     "price_uvp_eur": 549.0,
     "current_price_eur": 380.0,
     "discount_pct": 30.8,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -1328,10 +1241,8 @@
     "kg_per_area": 3.89,
     "eur_per_liter": 1.71,
     "kg_per_liter": 0.032,
-    "description": null,
     "pros": "Massive 165x112cm landing zone — one of the largest pads available\nThick 12.5cm foam provides excellent highball protection\nProven design trusted by generations of boulderers\nDurable construction withstands heavy use\nGood coverage reduces the need for multiple pads",
     "cons": "At 9.3kg, it's heavy for anything but roadside bouldering\nHinge fold creates a seam through the landing zone\nBulky when folded — awkward on narrow trails\nFlap closure can come undone during approaches",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1341,7 +1252,6 @@
     "slug": "black-diamond-sitstarter",
     "year_released": 2024,
     "image_url": "/images/crashpads/black-diamond-sitstarter.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -1364,9 +1274,8 @@
     "durability": "moderate",
     "shell_denier": 600,
     "bottom_coating": "none",
-    "closure_system": null,
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -1378,7 +1287,6 @@
     "price_uvp_eur": 49.0,
     "current_price_eur": 39.0,
     "discount_pct": 20.4,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1386,10 +1294,8 @@
     "kg_per_area": 2.85,
     "eur_per_liter": 2.78,
     "kg_per_liter": 0.057,
-    "description": null,
     "pros": "Ultra lightweight\nProtects sit-starts\nAffordable",
     "cons": "Very small area\nNot standalone protection",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1399,7 +1305,6 @@
     "slug": "dmm-bit-pad",
     "year_released": 2022,
     "image_url": "/images/crashpads/dmm-bit-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "taco",
     "best_use": [
@@ -1425,7 +1330,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -1437,7 +1342,6 @@
     "price_uvp_eur": 75.0,
     "current_price_eur": 69.0,
     "discount_pct": 8.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1445,10 +1349,8 @@
     "kg_per_area": 3.0,
     "eur_per_liter": 2.76,
     "kg_per_liter": 0.06,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.5kg for 0.5m²)\n1000D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 5cm thick — limited protection on higher problems\nSmall 0.5m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1458,7 +1360,6 @@
     "slug": "dmm-dyno",
     "year_released": 2022,
     "image_url": "/images/crashpads/dmm-dyno.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -1498,7 +1399,6 @@
     "price_uvp_eur": 290.0,
     "current_price_eur": 265.0,
     "discount_pct": 8.6,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1506,10 +1406,8 @@
     "kg_per_area": 4.92,
     "eur_per_liter": 2.26,
     "kg_per_liter": 0.055,
-    "description": null,
     "pros": "Generous 1.3m² landing area — good coverage for most problems\nEfficient weight-to-area ratio (6.4kg for 1.3m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1519,7 +1417,6 @@
     "slug": "dmm-highball",
     "year_released": 2023,
     "image_url": "/images/crashpads/dmm-highball.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -1560,7 +1457,6 @@
     "price_uvp_eur": 195.0,
     "current_price_eur": 285.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1568,10 +1464,8 @@
     "kg_per_area": 4.47,
     "eur_per_liter": 2.36,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.4kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1581,7 +1475,6 @@
     "slug": "edelrid-crux-iii",
     "year_released": 2024,
     "image_url": "/images/crashpads/edelrid-crux-iii.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "taco",
     "best_use": [
@@ -1623,7 +1516,6 @@
     "price_uvp_eur": 359.0,
     "current_price_eur": 320.0,
     "discount_pct": 10.9,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -1631,10 +1523,8 @@
     "kg_per_area": 3.64,
     "eur_per_liter": 1.45,
     "kg_per_liter": 0.036,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.5kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1644,7 +1534,6 @@
     "slug": "edelrid-dead-point-ii",
     "year_released": 2023,
     "image_url": "/images/crashpads/edelrid-dead-point-ii.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "taco",
     "best_use": [
@@ -1685,7 +1574,6 @@
     "price_uvp_eur": 200.0,
     "current_price_eur": 299.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -1693,10 +1581,8 @@
     "kg_per_area": 3.73,
     "eur_per_liter": 1.86,
     "kg_per_liter": 0.037,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.0kg for 1.6m²)\nHigh impact protection rating\n4-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1706,7 +1592,6 @@
     "slug": "edelrid-mantle-iii",
     "year_released": 2024,
     "image_url": "/images/crashpads/edelrid-mantle-iii.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -1747,7 +1632,6 @@
     "price_uvp_eur": 254.0,
     "current_price_eur": 255.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -1755,10 +1639,8 @@
     "kg_per_area": 3.94,
     "eur_per_liter": 1.93,
     "kg_per_liter": 0.039,
-    "description": null,
     "pros": "Good all-around pad from a trusted German brand\nSolid foam and construction quality\nReasonable weight for its size\nWell-designed carry system",
     "cons": "Not widely stocked in many markets\nFaces stiff competition at its price point",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1768,7 +1650,6 @@
     "slug": "edelrid-sit-start-ii",
     "year_released": 2024,
     "image_url": "/images/crashpads/edelrid-sit-start-ii.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -1793,7 +1674,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": true,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -1805,7 +1686,6 @@
     "price_uvp_eur": 43.0,
     "current_price_eur": 52.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -1813,10 +1693,8 @@
     "kg_per_area": 2.02,
     "eur_per_liter": 2.1,
     "kg_per_liter": 0.04,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.1kg for 0.4m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open\nBluesign certified materials\nMade with partial recycled materials",
     "cons": "Only 6cm thick — limited protection on higher problems\nSmall 0.4m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1826,7 +1704,6 @@
     "slug": "escape-xl-zone-plus",
     "year_released": 2025,
     "image_url": "/images/crashpads/escape-xl-zone-plus.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -1865,7 +1742,6 @@
     "price_uvp_eur": 349.0,
     "current_price_eur": 369.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1873,10 +1749,8 @@
     "kg_per_area": 5.31,
     "eur_per_liter": 1.99,
     "kg_per_liter": 0.044,
-    "description": null,
     "pros": "Extra-large landing area with 5 inches of foam\nIncludes blubber pad for additional coverage\nDurable ripstop nylon construction\nPremium shoulder and hip strap system",
     "cons": "Heavy — best for roadside or short approaches\nNewer brand without established repair/warranty reputation",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1886,7 +1760,6 @@
     "slug": "escape-zone-plus",
     "year_released": 2025,
     "image_url": "/images/crashpads/escape-zone-plus.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -1926,7 +1799,6 @@
     "price_uvp_eur": 189.0,
     "current_price_eur": 279.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -1934,10 +1806,8 @@
     "kg_per_area": 5.76,
     "eur_per_liter": 2.09,
     "kg_per_liter": 0.048,
-    "description": null,
     "pros": "Extra-thick 5-inch dual-density foam for superior cushioning\nIncludes a bonus blubber pad for sit-starts and rock protection\nUpdated 2026 design with stronger straps and more comfortable hip pads\nGreat value for the thickness and included accessories",
     "cons": "Newer brand with less track record\nBasic carry system without chest strap",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -1947,7 +1817,6 @@
     "slug": "evolv-cap-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/evolv-cap-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -1972,7 +1841,7 @@
     "bottom_coating": "pu_coated",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": true,
     "waist_belt": false,
     "chest_strap": true,
@@ -1984,7 +1853,6 @@
     "price_uvp_eur": 199.0,
     "current_price_eur": 49.0,
     "discount_pct": 75.4,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -1992,10 +1860,8 @@
     "kg_per_area": 2.33,
     "eur_per_liter": 1.9,
     "kg_per_liter": 0.047,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.2kg for 0.5m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open\nMade with partial recycled materials",
     "cons": "Only 5cm thick — limited protection on higher problems\nSmall 0.5m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2005,7 +1871,6 @@
     "slug": "evolv-drop",
     "year_released": 2023,
     "image_url": "/images/crashpads/evolv-drop.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -2046,7 +1911,6 @@
     "price_uvp_eur": 229.0,
     "current_price_eur": 215.0,
     "discount_pct": 6.1,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -2054,10 +1918,7 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.61,
     "kg_per_liter": 0.038,
-    "description": null,
     "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.2m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
-    "cons": null,
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2067,7 +1928,6 @@
     "slug": "evolv-home-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/evolv-home-pad.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "tri_fold",
     "best_use": [
@@ -2108,7 +1968,6 @@
     "price_uvp_eur": 349.0,
     "current_price_eur": 275.0,
     "discount_pct": 21.2,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -2116,10 +1975,8 @@
     "kg_per_area": 5.04,
     "eur_per_liter": 0.73,
     "kg_per_liter": 0.04,
-    "description": null,
     "pros": "Massive 2.98m² landing zone covers most boulder problem landings\n12.7cm thick foam absorbs hard impacts from highball problems\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption\nTri-fold design with reconfigurable sections\nFull carry system with padded shoulder straps, waist belt, and sternum strap",
     "cons": "Heavy at 15.0kg — long approaches become a workout\nBulky tri-fold design not great for longer approaches — best for roadside boulders\nDesigned primarily for indoor use and short carries",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2129,7 +1986,6 @@
     "slug": "evolv-launch-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/evolv-launch-pad.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -2169,7 +2025,6 @@
     "price_uvp_eur": 389.0,
     "current_price_eur": 315.0,
     "discount_pct": 19.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -2177,10 +2032,7 @@
     "kg_per_area": 4.92,
     "eur_per_liter": 1.68,
     "kg_per_liter": 0.041,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.7kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
-    "cons": null,
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2190,7 +2042,6 @@
     "slug": "flashed-big-squishy",
     "year_released": 2023,
     "image_url": "/images/crashpads/flashed-big-squishy.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -2230,7 +2081,6 @@
     "price_uvp_eur": 472.0,
     "current_price_eur": 339.0,
     "discount_pct": 28.2,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2238,10 +2088,8 @@
     "kg_per_area": 4.94,
     "eur_per_liter": 1.52,
     "kg_per_liter": 0.038,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (8.5kg for 1.6m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Bulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2251,7 +2099,6 @@
     "slug": "flashed-drifter",
     "year_released": 2023,
     "image_url": "/images/crashpads/flashed-drifter.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -2292,7 +2139,6 @@
     "price_uvp_eur": 275.0,
     "current_price_eur": 209.0,
     "discount_pct": 24.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2300,10 +2146,8 @@
     "kg_per_area": 5.19,
     "eur_per_liter": 1.81,
     "kg_per_liter": 0.052,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2313,7 +2157,6 @@
     "slug": "flashed-hueco-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/flashed-hueco-pad.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "taco",
     "best_use": [
@@ -2355,7 +2198,6 @@
     "price_uvp_eur": 399.0,
     "current_price_eur": 369.0,
     "discount_pct": 7.5,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2363,10 +2205,8 @@
     "kg_per_area": 5.56,
     "eur_per_liter": 1.87,
     "kg_per_liter": 0.051,
-    "description": null,
     "pros": "Massive 1.8m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
     "cons": "Heavy at 10.0kg — long approaches become a workout\nBulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2376,7 +2216,6 @@
     "slug": "flashed-rambler",
     "year_released": 2024,
     "image_url": "/images/crashpads/flashed-rambler.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "hinge",
     "best_use": [
@@ -2402,7 +2241,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": true,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -2414,7 +2253,6 @@
     "price_uvp_eur": 69.0,
     "current_price_eur": 62.0,
     "discount_pct": 10.1,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2422,10 +2260,8 @@
     "kg_per_area": 1.38,
     "eur_per_liter": 2.68,
     "kg_per_liter": 0.069,
-    "description": null,
     "pros": "Generous 1.2m² landing area — good coverage for most problems\nEfficient weight-to-area ratio (1.6kg for 1.2m²)\nReconfigurable design — can be used in multiple configurations\n1680D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 2cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2435,7 +2271,6 @@
     "slug": "flashed-shield-half-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/flashed-shield-half-pad.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -2473,7 +2308,6 @@
     "price_uvp_eur": 121.0,
     "current_price_eur": 89.0,
     "discount_pct": 26.4,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2481,10 +2315,8 @@
     "kg_per_area": 4.29,
     "eur_per_liter": 1.53,
     "kg_per_liter": 0.043,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (2.5kg for 0.6m²)\n1680D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 8cm thick — limited protection on higher problems\nSmall 0.6m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2494,7 +2326,6 @@
     "slug": "kailas-inflatable",
     "year_released": 2022,
     "image_url": "/images/crashpads/kailas-inflatable.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "inflatable",
     "best_use": [
@@ -2521,7 +2352,7 @@
     "bottom_coating": "rubber",
     "closure_system": "velcro",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": true,
     "waist_belt": false,
     "chest_strap": false,
@@ -2533,7 +2364,6 @@
     "price_uvp_eur": 529.0,
     "current_price_eur": 249.0,
     "discount_pct": 52.9,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2541,10 +2371,8 @@
     "kg_per_area": 2.45,
     "eur_per_liter": 0.81,
     "kg_per_liter": 0.016,
-    "description": null,
     "pros": "Ultra-light at 2.5kg — packs down smaller than a sleeping bag\nPerfect for remote bouldering with long approaches\nQuick inflation with included pump\nInnovative alternative to traditional foam pads",
     "cons": "Puncture risk from sharp rocks and rough terrain\nLess predictable impact absorption vs layered foam\nRequires inflation time before each session\nNot suitable for highball bouldering",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2554,7 +2382,6 @@
     "slug": "kinetik-newton-4",
     "year_released": 2019,
     "image_url": "/images/crashpads/kinetik-newton-4.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "tri_fold",
     "best_use": [
@@ -2596,7 +2423,6 @@
     "price_uvp_eur": 229.0,
     "current_price_eur": 329.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2604,10 +2430,8 @@
     "kg_per_area": 5.27,
     "eur_per_liter": 2.94,
     "kg_per_liter": 0.053,
-    "description": null,
     "pros": "Ultra-tough 1680D ballistic nylon shell — built for alpine abuse\nOmni-flap closure protects straps from snow and mud\nComfortable carry system designed for heavy loads and long approaches\nMade in Colorado for high-alpine bouldering conditions",
     "cons": "Heavier than some competitors at this size due to burly shell\nLimited availability outside the US\nPremium price for the build quality",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2617,7 +2441,6 @@
     "slug": "la-sportiva-laspo",
     "year_released": 2022,
     "image_url": "/images/crashpads/la-sportiva-laspo.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -2657,7 +2480,6 @@
     "price_uvp_eur": 250.0,
     "current_price_eur": 219.0,
     "discount_pct": 12.4,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -2665,10 +2487,8 @@
     "kg_per_area": 5.22,
     "eur_per_liter": 1.9,
     "kg_per_liter": 0.052,
-    "description": null,
     "pros": "Innovative 45-degree hinge reduces accidental fold-overs at the crag\nDual-density PE/PU foam provides solid impact protection\nWaterproof inner cover keeps foam dry in wet conditions\nCompatible with La Sportiva Alpagota and Sittone for expanded coverage",
     "cons": "Modest landing area compared to similarly priced competitors\nBasic carry system — no chest strap\nLimited brand presence in the crashpad market",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2678,7 +2498,6 @@
     "slug": "mad-rock-duo",
     "year_released": 2023,
     "image_url": "/images/crashpads/mad-rock-duo.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -2718,7 +2537,6 @@
     "price_uvp_eur": 299.0,
     "current_price_eur": 299.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -2726,10 +2544,8 @@
     "kg_per_area": 4.94,
     "eur_per_liter": 1.51,
     "kg_per_liter": 0.038,
-    "description": null,
     "pros": "Can split into two separate pads — unique versatility\nExcellent carrying comfort for its combined size\nGood value for what is effectively a two-pad system\nConvenient for sharing with a climbing partner",
     "cons": "Each half is thin when used separately\nHeavier than a single pad of similar total area\nConnection system between halves can be fiddly",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2739,7 +2555,6 @@
     "slug": "mad-rock-mad-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/mad-rock-mad-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -2780,7 +2595,6 @@
     "price_uvp_eur": 200.0,
     "current_price_eur": 175.0,
     "discount_pct": 12.5,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -2788,10 +2602,8 @@
     "kg_per_area": 5.58,
     "eur_per_liter": 1.31,
     "kg_per_liter": 0.047,
-    "description": null,
     "pros": "Very affordable entry-level crashpad\nDecent protection for budget-conscious beginners\nLight enough for approaches\nSimple, no-frills design",
     "cons": "Foam quality is basic compared to premium options\nSmaller landing area than mid-range pads\nYou get what you pay for — limited longevity\nCarry system is basic",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2801,7 +2613,6 @@
     "slug": "mad-rock-r3",
     "year_released": 2023,
     "image_url": "/images/crashpads/mad-rock-r3.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "baffled",
     "best_use": [
@@ -2842,7 +2653,6 @@
     "price_uvp_eur": 250.0,
     "current_price_eur": 225.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -2850,10 +2660,8 @@
     "kg_per_area": 6.58,
     "eur_per_liter": 1.81,
     "kg_per_liter": 0.066,
-    "description": null,
     "pros": "R3 foam technology conforms to uneven landings exceptionally well\nGood at absorbing impact on lumpy, rocky terrain\nUnique construction approach in the market\nDecent weight-to-size ratio",
     "cons": "R3 foam is less effective on flat landings vs traditional layered foam\nNiche appeal — not everyone prefers the foam feel\nDurability concerns with R3 material over time",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2863,7 +2671,6 @@
     "slug": "mad-rock-triple-mad-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/mad-rock-triple-mad-pad.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "hinge",
     "best_use": [
@@ -2904,7 +2711,6 @@
     "price_uvp_eur": 349.0,
     "current_price_eur": 319.0,
     "discount_pct": 8.6,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -2912,10 +2718,8 @@
     "kg_per_area": 5.32,
     "eur_per_liter": 1.2,
     "kg_per_liter": 0.041,
-    "description": null,
     "pros": "Massive 2.0m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (9.5kg for 2.0m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Heavy at 9.5kg — long approaches become a workout\nBulky and not great for longer approaches — best for roadside boulders",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2925,7 +2729,6 @@
     "slug": "mad-rock-triplet",
     "year_released": 2024,
     "image_url": "/images/crashpads/mad-rock-triplet.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "tri_fold",
     "best_use": [
@@ -2951,7 +2754,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -2963,7 +2766,6 @@
     "price_uvp_eur": 59.0,
     "current_price_eur": 55.0,
     "discount_pct": 6.8,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -2971,10 +2773,8 @@
     "kg_per_area": 0.9,
     "eur_per_liter": 2.24,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Generous 1.2m² landing area — good coverage for most problems\nEfficient weight-to-area ratio (1.1kg for 1.2m²)\nReconfigurable design — can be used in multiple configurations\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 2cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -2984,7 +2784,6 @@
     "slug": "mammut-crashiano-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/mammut-crashiano-pad.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -3024,7 +2823,6 @@
     "price_uvp_eur": 380.0,
     "current_price_eur": 320.0,
     "discount_pct": 15.8,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -3032,10 +2830,8 @@
     "kg_per_area": 4.72,
     "eur_per_liter": 1.55,
     "kg_per_liter": 0.039,
-    "description": null,
     "pros": "Swiss engineering with attention to detail\nGood balance of weight and protection\nQuality materials and construction throughout\nComfortable carry system",
     "cons": "Premium price for what you get\nMammut is better known for ropes and alpine gear than pads",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3045,7 +2841,6 @@
     "slug": "mammut-slam-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/mammut-slam-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3085,7 +2880,6 @@
     "price_uvp_eur": 260.0,
     "current_price_eur": 220.0,
     "discount_pct": 15.4,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": true,
@@ -3093,10 +2887,8 @@
     "kg_per_area": 4.42,
     "eur_per_liter": 1.83,
     "kg_per_liter": 0.044,
-    "description": null,
     "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.9kg for 1.5m²)\nHigh impact protection rating\nExcellent carry comfort for approaches",
     "cons": "No shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3106,7 +2898,6 @@
     "slug": "metolius-basic-pad",
     "year_released": 2022,
     "image_url": "/images/crashpads/metolius-basic-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3146,7 +2937,6 @@
     "price_uvp_eur": 100.0,
     "current_price_eur": 85.0,
     "discount_pct": 15.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -3154,10 +2944,8 @@
     "kg_per_area": 3.06,
     "eur_per_liter": 0.77,
     "kg_per_liter": 0.031,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (2.1kg for 0.6m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 7.6cm thick — limited protection on higher problems\nSmall 0.6m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3167,7 +2955,6 @@
     "slug": "metolius-magnum",
     "year_released": 2023,
     "image_url": "/images/crashpads/metolius-magnum.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "tri_fold",
     "best_use": [
@@ -3209,7 +2996,6 @@
     "price_uvp_eur": 310.0,
     "current_price_eur": 280.0,
     "discount_pct": 9.7,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -3217,10 +3003,8 @@
     "kg_per_area": 3.98,
     "eur_per_liter": 1.31,
     "kg_per_liter": 0.04,
-    "description": null,
     "pros": "Very large landing area for highball protection\nGood foam thickness and quality\nTrusted Metolius construction\nVersatile for various bouldering styles",
     "cons": "One of the most difficult pads to hike with due to bulk\nVery heavy — strictly a roadside pad\nAwkward to maneuver through tight terrain\nCarry system struggles with the weight",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3230,7 +3014,6 @@
     "slug": "metolius-recon",
     "year_released": 2023,
     "image_url": "/images/crashpads/metolius-recon.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -3271,7 +3054,6 @@
     "price_uvp_eur": 250.0,
     "current_price_eur": 220.0,
     "discount_pct": 12.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -3279,10 +3061,8 @@
     "kg_per_area": 4.0,
     "eur_per_liter": 1.35,
     "kg_per_liter": 0.04,
-    "description": null,
     "pros": "Tri-fold design packs down very compact\nGood option for travel and airline transport\nDecent foam quality from a trusted brand\nVersatile folding allows creative stacking",
     "cons": "Two fold seams create potential weak points in landing zone\nNot as protective as single-fold pads of similar size\nTri-fold adds complexity to setup",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3292,7 +3072,6 @@
     "slug": "metolius-session-ii",
     "year_released": 2023,
     "image_url": "/images/crashpads/metolius-session-ii.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3332,7 +3111,6 @@
     "price_uvp_eur": 200.0,
     "current_price_eur": 180.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -3340,10 +3118,8 @@
     "kg_per_area": 3.69,
     "eur_per_liter": 1.62,
     "kg_per_liter": 0.037,
-    "description": null,
     "pros": "Excellent all-around performance at a fair price\nComfortable carry system for moderate approaches\nGood foam quality with reliable impact protection\nProven design refined over multiple generations\nSolid hinge construction",
     "cons": "Middle-of-the-road — doesn't excel in any single area\nHeavier than some competitors of similar size\nLanding area could be larger for the weight",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3353,7 +3129,6 @@
     "slug": "metolius-shortstop",
     "year_released": 2023,
     "image_url": "/images/crashpads/metolius-shortstop.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -3379,7 +3154,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -3391,7 +3166,6 @@
     "price_uvp_eur": 50.0,
     "current_price_eur": 45.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -3399,10 +3173,8 @@
     "kg_per_area": 1.52,
     "eur_per_liter": 4.26,
     "kg_per_liter": 0.076,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.5kg for 0.5m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 5cm thick — limited protection on higher problems\nSmall 0.5m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3412,7 +3184,6 @@
     "slug": "moon-cirrus",
     "year_released": 2024,
     "image_url": "/images/crashpads/moon-cirrus.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "tri_fold",
     "best_use": [
@@ -3450,7 +3221,6 @@
     "price_uvp_eur": 200.0,
     "current_price_eur": 185.0,
     "discount_pct": 7.5,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -3458,10 +3228,8 @@
     "kg_per_area": 1.67,
     "eur_per_liter": 3.85,
     "kg_per_liter": 0.083,
-    "description": null,
     "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (2.5kg for 1.5m²)\nReconfigurable design — can be used in multiple configurations\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 3cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3471,7 +3239,6 @@
     "slug": "moon-pluto",
     "year_released": 2024,
     "image_url": "/images/crashpads/moon-pluto.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -3511,7 +3278,6 @@
     "price_uvp_eur": 240.0,
     "current_price_eur": 219.0,
     "discount_pct": 8.8,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -3519,10 +3285,8 @@
     "kg_per_area": 5.0,
     "eur_per_liter": 2.43,
     "kg_per_liter": 0.056,
-    "description": null,
     "pros": "Decent 0.9m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.0kg for 0.9m²)\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "Landing area of 0.9m² can feel tight on problems with dynamic movement\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3532,7 +3296,6 @@
     "slug": "moon-saturn",
     "year_released": 2024,
     "image_url": "/images/crashpads/moon-saturn.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "taco",
     "best_use": [
@@ -3573,7 +3336,6 @@
     "price_uvp_eur": 470.0,
     "current_price_eur": 362.0,
     "discount_pct": 23.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -3581,10 +3343,8 @@
     "kg_per_area": 4.17,
     "eur_per_liter": 1.35,
     "kg_per_liter": 0.03,
-    "description": null,
     "pros": "Large landing area at a competitive weight\nMoon's reputation for quality bouldering gear\nGood foam layering for impact absorption\nSolid construction and durability",
     "cons": "Not the lightest option in its size class\nLess innovative than some newer designs",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3594,7 +3354,6 @@
     "slug": "moon-warrior",
     "year_released": 2024,
     "image_url": "/images/crashpads/moon-warrior.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -3635,7 +3394,6 @@
     "price_uvp_eur": 350.0,
     "current_price_eur": 289.0,
     "discount_pct": 17.4,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -3643,10 +3401,8 @@
     "kg_per_area": 4.62,
     "eur_per_liter": 2.02,
     "kg_per_liter": 0.042,
-    "description": null,
     "pros": "Thickest foam on the market at 5 inches — maximum protection\nOutstanding impact absorption for highball falls\nLarge landing area inspires confidence\nPremium build quality",
     "cons": "Taco-style fold can be harder to close with such thick foam\nVery heavy — strictly for short approaches\nThe thickness makes it less stable on uneven ground\nPremium price for the ultra-thick foam",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3656,7 +3412,6 @@
     "slug": "ocun-dominator-fts",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-dominator-fts.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3697,7 +3452,6 @@
     "price_uvp_eur": 337.0,
     "current_price_eur": 298.0,
     "discount_pct": 11.6,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
@@ -3705,10 +3459,8 @@
     "kg_per_area": 4.32,
     "eur_per_liter": 1.61,
     "kg_per_liter": 0.031,
-    "description": null,
     "pros": "FTS (Folding Transport System) is innovative and practical\nExcellent approach comfort with the FTS carry system\nLarge landing area for confident protection\nSolid foam quality from a respected European brand",
     "cons": "FTS system adds weight compared to simpler designs\nNot as widely available outside Europe\nHigher price than pads without the FTS feature",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3718,7 +3470,6 @@
     "slug": "ocun-incubator-fts",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-incubator-fts.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "tri_fold",
     "best_use": [
@@ -3758,7 +3509,6 @@
     "price_uvp_eur": 399.0,
     "current_price_eur": 369.0,
     "discount_pct": 7.5,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
@@ -3766,10 +3516,8 @@
     "kg_per_area": 3.99,
     "eur_per_liter": 1.69,
     "kg_per_liter": 0.04,
-    "description": null,
     "pros": "Combines the largest and smallest pad in Ocun's range\nFTS carry system makes the big pad manageable\nVersatile two-pad setup for complete coverage\nExcellent total coverage when both pads are deployed",
     "cons": "Very heavy as a combined system\nExpensive for the full package\nSmall pad alone is very limited",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3779,7 +3527,6 @@
     "slug": "ocun-joker-fts",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-joker-fts.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3817,7 +3564,6 @@
     "price_uvp_eur": 189.0,
     "current_price_eur": 175.0,
     "discount_pct": 7.4,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
@@ -3825,10 +3571,8 @@
     "kg_per_area": 4.26,
     "eur_per_liter": 1.86,
     "kg_per_liter": 0.043,
-    "description": null,
     "pros": "Decent 0.9m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.0kg for 0.9m²)\nHigh impact protection rating\nGood carry comfort for approaches",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3838,7 +3582,6 @@
     "slug": "ocun-moonwalk-fts",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-moonwalk-fts.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3877,7 +3620,6 @@
     "price_uvp_eur": 249.0,
     "current_price_eur": 229.0,
     "discount_pct": 8.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
@@ -3885,10 +3627,8 @@
     "kg_per_area": 3.79,
     "eur_per_liter": 1.73,
     "kg_per_liter": 0.038,
-    "description": null,
     "pros": "Generous 1.3m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.3m²)\nHigh impact protection rating\nGood carry comfort for approaches",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3898,7 +3638,6 @@
     "slug": "ocun-paddy-sundance",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-paddy-sundance.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3937,7 +3676,6 @@
     "price_uvp_eur": 200.0,
     "current_price_eur": 175.0,
     "discount_pct": 12.5,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": true,
     "bluesign": false,
@@ -3945,10 +3683,8 @@
     "kg_per_area": 4.0,
     "eur_per_liter": 1.62,
     "kg_per_liter": 0.044,
-    "description": null,
     "pros": "Decent 0.8m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (3.6kg for 0.8m²)\nGood carry comfort for approaches\nHinge protection prevents ground-strike through the fold",
     "cons": "Landing area of 0.8m² can feel tight on problems with dynamic movement\nMinimal gear storage — you'll need a separate bag for shoes and chalk\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -3958,7 +3694,6 @@
     "slug": "ocun-sitcase-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-sitcase-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -3995,7 +3730,6 @@
     "price_uvp_eur": 115.0,
     "current_price_eur": 72.0,
     "discount_pct": 37.4,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -4003,10 +3737,8 @@
     "kg_per_area": 1.74,
     "eur_per_liter": 1.23,
     "kg_per_liter": 0.029,
-    "description": null,
     "pros": "Decent 1.0m² landing area for the size category\nEfficient weight-to-area ratio (1.7kg for 1.0m²)\nBuilt-in shoe wipe keeps rubber clean between attempts\nReconfigurable design — can be used in multiple configurations\nDurable 600D shell fabric holds up well to rough ground",
     "cons": "Only 6cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4016,7 +3748,6 @@
     "slug": "ocun-sitpad",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-sitpad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -4041,7 +3772,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -4053,7 +3784,6 @@
     "price_uvp_eur": 50.0,
     "current_price_eur": 32.0,
     "discount_pct": 36.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -4061,10 +3791,8 @@
     "kg_per_area": 1.72,
     "eur_per_liter": 3.05,
     "kg_per_liter": 0.057,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (0.6kg for 0.3m²)\nBuilt-in shoe wipe keeps rubber clean between attempts\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 3cm thick — limited protection on higher problems\nSmall 0.3m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4074,7 +3802,6 @@
     "slug": "ocun-top-mat",
     "year_released": 2024,
     "image_url": "/images/crashpads/ocun-top-mat.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -4114,7 +3841,6 @@
     "price_uvp_eur": 259.0,
     "current_price_eur": 229.0,
     "discount_pct": 11.6,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4122,10 +3848,8 @@
     "kg_per_area": 4.62,
     "eur_per_liter": 1.76,
     "kg_per_liter": 0.046,
-    "description": null,
     "pros": "FTS foam tube technology\nGood all-round pad",
     "cons": "No chest strap\nMid-range area",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4135,7 +3859,6 @@
     "slug": "organic-airline-tri-fold-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-airline-tri-fold-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "tri_fold",
     "best_use": [
@@ -4176,7 +3899,6 @@
     "price_uvp_eur": 359.0,
     "current_price_eur": 335.0,
     "discount_pct": 6.7,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4184,10 +3906,8 @@
     "kg_per_area": 5.97,
     "eur_per_liter": 2.9,
     "kg_per_liter": 0.06,
-    "description": null,
     "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "No hinge protection — watch out for the fold gap on ground strikes\nNo waist or chest straps — the pad bounces around on steep trails\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4197,7 +3917,6 @@
     "slug": "organic-backfourty-big-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-backfourty-big-pad.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -4237,7 +3956,6 @@
     "price_uvp_eur": 429.0,
     "current_price_eur": 399.0,
     "discount_pct": 7.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4245,10 +3963,8 @@
     "kg_per_area": 5.29,
     "eur_per_liter": 1.78,
     "kg_per_liter": 0.041,
-    "description": null,
     "pros": "Massive 1.7m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
     "cons": "Heavy at 9.5kg — long approaches become a workout\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4258,7 +3974,6 @@
     "slug": "organic-backfourty-simple",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-backfourty-simple.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -4299,7 +4014,6 @@
     "price_uvp_eur": 299.0,
     "current_price_eur": 279.0,
     "discount_pct": 6.7,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4307,10 +4021,8 @@
     "kg_per_area": 4.86,
     "eur_per_liter": 2.51,
     "kg_per_liter": 0.049,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
     "cons": "7.3kg is heavy for the landing area you get\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4320,7 +4032,6 @@
     "slug": "organic-big-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-big-pad.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -4360,7 +4071,6 @@
     "price_uvp_eur": 339.0,
     "current_price_eur": 390.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4368,10 +4078,8 @@
     "kg_per_area": 5.29,
     "eur_per_liter": 1.81,
     "kg_per_liter": 0.042,
-    "description": null,
     "pros": "Enormous landing area for maximum coverage\nSame legendary Organic foam quality\nExcellent for highball bouldering\nReduces need for multiple pads\nBuilt to last with reinforced construction",
     "cons": "Very heavy — approaches need to be short\nExpensive investment\nBulky to transport and store",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4381,7 +4089,6 @@
     "slug": "organic-big-pad-4-inch",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-big-pad-4-inch.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -4422,7 +4129,6 @@
     "price_uvp_eur": 339.0,
     "current_price_eur": 309.0,
     "discount_pct": 8.8,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4430,10 +4136,8 @@
     "kg_per_area": 4.48,
     "eur_per_liter": 1.8,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Massive 1.7m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (8.6kg for 1.7m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Bulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4443,7 +4147,6 @@
     "slug": "organic-big-tri-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-big-tri-pad.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "tri_fold",
     "best_use": [
@@ -4482,7 +4185,6 @@
     "price_uvp_eur": 499.0,
     "current_price_eur": 469.0,
     "discount_pct": 6.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4490,10 +4192,8 @@
     "kg_per_area": 3.82,
     "eur_per_liter": 2.56,
     "kg_per_liter": 0.055,
-    "description": null,
     "pros": "Massive 2.6m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (10.0kg for 2.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "Heavy at 10.0kg — long approaches become a workout\nOnly 8cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBulky and not great for longer approaches — best for roadside boulders",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4503,7 +4203,6 @@
     "slug": "organic-blubber-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/organic-blubber-pad.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "tri_fold",
     "best_use": [
@@ -4541,7 +4240,6 @@
     "price_uvp_eur": 149.0,
     "current_price_eur": 139.0,
     "discount_pct": 6.7,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4549,10 +4247,8 @@
     "kg_per_area": 1.61,
     "eur_per_liter": 3.11,
     "kg_per_liter": 0.081,
-    "description": null,
     "pros": "Massive 2.2m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (3.6kg for 2.2m²)\nReconfigurable design — can be used in multiple configurations\n1000D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 3cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4562,7 +4258,6 @@
     "slug": "organic-briefcase-pad",
     "year_released": 2022,
     "image_url": "/images/crashpads/organic-briefcase-pad.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -4601,7 +4296,6 @@
     "price_uvp_eur": 109.0,
     "current_price_eur": 99.0,
     "discount_pct": 9.2,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4609,10 +4303,8 @@
     "kg_per_area": 4.14,
     "eur_per_liter": 2.55,
     "kg_per_liter": 0.059,
-    "description": null,
     "pros": "Ultra-portable briefcase-style carry\nFits easily in a car or on public transport\nPerfect gap-filler between larger pads\nQuality Organic foam in a compact package",
     "cons": "Too small for standalone use on most problems\nLimited protection due to compact size\nNiche use case — not a primary pad",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4622,7 +4314,6 @@
     "slug": "organic-full-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-full-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hybrid",
     "best_use": [
@@ -4663,7 +4354,6 @@
     "price_uvp_eur": 209.0,
     "current_price_eur": 280.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4671,10 +4361,8 @@
     "kg_per_area": 4.86,
     "eur_per_liter": 2.52,
     "kg_per_liter": 0.049,
-    "description": null,
     "pros": "Best-in-class foam quality — handmade in Oregon\nIncredibly durable construction that lasts for years\nExcellent balance of size, weight, and protection\nTaco fold provides seamless landing surface\nStrong community reputation and brand loyalty",
     "cons": "Higher price than mass-produced alternatives\nLimited availability — often has wait times\nHeavier than some similarly sized competitors",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4684,7 +4372,6 @@
     "slug": "organic-full-pad-combo",
     "year_released": 2023,
     "image_url": "/images/crashpads/organic-full-pad-combo.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -4725,7 +4412,6 @@
     "price_uvp_eur": 299.0,
     "current_price_eur": 279.0,
     "discount_pct": 6.7,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4733,10 +4419,8 @@
     "kg_per_area": 7.39,
     "eur_per_liter": 2.51,
     "kg_per_liter": 0.074,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "7.3kg is heavy for the landing area you get\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4746,7 +4430,6 @@
     "slug": "organic-half-pad",
     "year_released": 2022,
     "image_url": "/images/crashpads/organic-half-pad.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -4785,7 +4468,6 @@
     "price_uvp_eur": 99.0,
     "current_price_eur": 89.0,
     "discount_pct": 10.1,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4793,10 +4475,8 @@
     "kg_per_area": 5.76,
     "eur_per_liter": 2.29,
     "kg_per_liter": 0.082,
-    "description": null,
     "pros": "Light at 3.2kg — easy to carry on longer approaches\n3-layer foam system for progressive impact absorption\nHinge protection prevents ground-strike through the fold\n1050D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 8cm thick — limited protection on higher problems\nSmall 0.6m² landing area — best as a supplemental pad, not a primary\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4806,7 +4486,6 @@
     "slug": "organic-simple-pad",
     "year_released": 2024,
     "image_url": "/images/crashpads/organic-simple-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -4847,7 +4526,6 @@
     "price_uvp_eur": 189.0,
     "current_price_eur": 210.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4855,10 +4533,8 @@
     "kg_per_area": 4.86,
     "eur_per_liter": 1.89,
     "kg_per_liter": 0.049,
-    "description": null,
     "pros": "Outstanding value — premium Organic foam at a lower price\nLight and portable for long approaches\nSame quality foam as more expensive Organic pads\nCompact when folded\nGreat as a second pad",
     "cons": "Smaller landing area than the Full Pad\nFewer carry features than premium models\nNot sufficient as a sole pad for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4868,7 +4544,6 @@
     "slug": "organic-slider-pad",
     "year_released": 2022,
     "image_url": "/images/crashpads/organic-slider-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -4893,7 +4568,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -4905,7 +4580,6 @@
     "price_uvp_eur": 48.0,
     "current_price_eur": 45.0,
     "discount_pct": 6.3,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4913,10 +4587,8 @@
     "kg_per_area": 4.99,
     "eur_per_liter": 8.02,
     "kg_per_liter": 0.249,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.4kg for 0.3m²)\nBuilt-in shoe wipe keeps rubber clean between attempts\n1000D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open\nMade with partial recycled materials",
     "cons": "Only 3cm thick — limited protection on higher problems\nSmall 0.3m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4926,7 +4598,6 @@
     "slug": "organic-spot-pad",
     "year_released": 2022,
     "image_url": "/images/crashpads/organic-spot-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -4952,7 +4623,7 @@
     "bottom_coating": "none",
     "closure_system": "buckle",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": true,
     "waist_belt": false,
     "chest_strap": false,
@@ -4964,7 +4635,6 @@
     "price_uvp_eur": 165.0,
     "current_price_eur": 155.0,
     "discount_pct": 6.1,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -4972,10 +4642,8 @@
     "kg_per_area": 2.66,
     "eur_per_liter": 8.95,
     "kg_per_liter": 0.133,
-    "description": null,
     "pros": "Decent 0.9m² landing area for the size category\nEfficient weight-to-area ratio (2.3kg for 0.9m²)\nGood carry comfort for approaches\nUseful gear storage for shoes, chalk, and accessories\n1050D shell fabric is seriously tough — resists tears and abrasion",
     "cons": "Only 2cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nNo shoe wipe — bring a towel\nLimited impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -4985,7 +4653,6 @@
     "slug": "organic-super-simple-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/organic-super-simple-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -5026,7 +4693,6 @@
     "price_uvp_eur": 189.0,
     "current_price_eur": 159.0,
     "discount_pct": 15.9,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5034,10 +4700,8 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.43,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
     "cons": "Basic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5047,7 +4711,6 @@
     "slug": "organic-xl-slider-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/organic-xl-slider-pad.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -5073,7 +4736,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -5085,7 +4748,6 @@
     "price_uvp_eur": 89.0,
     "current_price_eur": 82.0,
     "discount_pct": 7.9,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5093,10 +4755,8 @@
     "kg_per_area": 2.51,
     "eur_per_liter": 3.81,
     "kg_per_liter": 0.084,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.8kg for 0.7m²)\nBuilt-in shoe wipe keeps rubber clean between attempts\n1000D shell fabric is seriously tough — resists tears and abrasion\nHinge fold creates a flat, even landing surface when open\nMade with partial recycled materials",
     "cons": "Only 3cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5106,7 +4766,6 @@
     "slug": "petzl-alto",
     "year_released": 2014,
     "image_url": "/images/crashpads/petzl-alto.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -5146,7 +4805,6 @@
     "price_uvp_eur": 299.0,
     "current_price_eur": 249.0,
     "discount_pct": 16.7,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5154,10 +4812,8 @@
     "kg_per_area": 4.83,
     "eur_per_liter": 2.11,
     "kg_per_liter": 0.048,
-    "description": null,
     "pros": "Innovative taco/zipper design creates seamless landing surface\nComfortable carry system with excellent weight distribution\nVersatile couch mode for resting between attempts\nHigh-quality 900D shell stands up to rough terrain\nThree-layer foam provides progressive impact absorption",
     "cons": "Landing area slightly undersized compared to competitors at this price\nZipper mechanism adds complexity vs simple hinge designs\nPremium price point for a medium-sized pad",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5167,7 +4823,6 @@
     "slug": "petzl-cirro",
     "year_released": 2014,
     "image_url": "/images/crashpads/petzl-cirro.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "taco",
     "best_use": [
@@ -5206,7 +4861,6 @@
     "price_uvp_eur": 400.0,
     "current_price_eur": 389.0,
     "discount_pct": 2.8,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5214,10 +4868,8 @@
     "kg_per_area": 5.38,
     "eur_per_liter": 1.78,
     "kg_per_liter": 0.043,
-    "description": null,
     "pros": "Massive landing area inspires confidence on highball problems\nThick multi-layer foam absorbs big falls effectively\nPremium build quality with reinforced shell\nExcellent gear storage capacity\nTaco fold eliminates hinge dead spots",
     "cons": "Heavy and bulky — best suited for short approaches\nPremium price makes it a significant investment\nOverkill for lowball sessions",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5227,7 +4879,6 @@
     "slug": "petzl-nimbo",
     "year_released": 2014,
     "image_url": "/images/crashpads/petzl-nimbo.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "taco",
     "best_use": [
@@ -5264,7 +4915,6 @@
     "price_uvp_eur": 100.0,
     "current_price_eur": 95.0,
     "discount_pct": 5.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5272,10 +4922,8 @@
     "kg_per_area": 1.87,
     "eur_per_liter": 8.44,
     "kg_per_liter": 0.062,
-    "description": null,
     "pros": "Decent 0.8m² landing area for the size category\nEfficient weight-to-area ratio (3.5kg for 0.8m²)\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches\nWaist belt helps stabilize the pad on longer approaches",
     "cons": "Landing area of 0.8m² can feel tight on problems with dynamic movement\nNo shoe wipe — bring a towel\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5285,7 +4933,6 @@
     "slug": "send-3x4-essential",
     "year_released": 2023,
     "image_url": "/images/crashpads/send-3x4-essential.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -5325,7 +4972,6 @@
     "price_uvp_eur": 259.0,
     "current_price_eur": 329.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5333,10 +4979,8 @@
     "kg_per_area": 4.86,
     "eur_per_liter": 3.12,
     "kg_per_liter": 0.051,
-    "description": null,
     "pros": "Same DistribuFrame and foam system as the Pro in a lighter package\nGreat all-around size for everyday bouldering\nPadLink compatible for multi-pad setups\nMore portable than the 4x4 for moderate approaches",
     "cons": "Lighter build than Pro — less heavy-duty for alpine use\nStill expensive compared to mainstream brands",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5346,7 +4990,6 @@
     "slug": "send-3x4-pro",
     "year_released": 2023,
     "image_url": "/images/crashpads/send-3x4-pro.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -5385,7 +5028,6 @@
     "price_uvp_eur": 279.0,
     "current_price_eur": 249.0,
     "discount_pct": 10.8,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5393,10 +5035,8 @@
     "kg_per_area": 5.31,
     "eur_per_liter": 2.36,
     "kg_per_liter": 0.056,
-    "description": null,
     "pros": "4-layer DistribuFrame foam\nQuality construction",
     "cons": "Smaller landing area\nHinge fold can create gap",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5406,7 +5046,6 @@
     "slug": "send-4x4-essential",
     "year_released": 2023,
     "image_url": "/images/crashpads/send-4x4-essential.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -5446,7 +5085,6 @@
     "price_uvp_eur": 359.0,
     "current_price_eur": 449.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5454,10 +5092,8 @@
     "kg_per_area": 4.57,
     "eur_per_liter": 3.18,
     "kg_per_liter": 0.048,
-    "description": null,
     "pros": "Massive square landing zone at a lighter weight than the Pro\nDistribuFrame technology for superior impact distribution\nPadLink system for seamless multi-pad coverage\nMore accessible price point than the 4x4 Pro",
     "cons": "Large and bulky for transport\nSquare shape less ergonomic to carry than rectangular pads",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5467,7 +5103,6 @@
     "slug": "send-4x4-pro",
     "year_released": 2022,
     "image_url": "/images/crashpads/send-4x4-pro.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -5507,7 +5142,6 @@
     "price_uvp_eur": 499.0,
     "current_price_eur": 499.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5515,10 +5149,8 @@
     "kg_per_area": 5.04,
     "eur_per_liter": 3.53,
     "kg_per_liter": 0.053,
-    "description": null,
     "pros": "Massive 1.49m² square landing zone — one of the largest available\nPatented DistribuFrame spreads impact across a wider area\n4-layer dual-density foam system for superior deceleration\nPadLink system lets you tether multiple Send pads together\nExpandable to 4x6 feet with optional Add-A-Pad",
     "cons": "Heavy and bulky — strictly for short approaches\nPremium price at $525 USD\nSquare shape can be awkward to carry on trails",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5528,7 +5160,6 @@
     "slug": "send-4x4-pro-highball",
     "year_released": 2023,
     "image_url": "/images/crashpads/send-4x4-pro-highball.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -5569,7 +5200,6 @@
     "price_uvp_eur": 599.0,
     "current_price_eur": 599.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5577,10 +5207,8 @@
     "kg_per_area": 6.05,
     "eur_per_liter": 3.1,
     "kg_per_liter": 0.047,
-    "description": null,
     "pros": "13cm of DistribuFrame-backed foam — maximum fall protection\nLargest and thickest pad in the Send system\nPadLink compatible for building out massive landing zones\nDesigned specifically for highball sends",
     "cons": "Very heavy at 9kg — roadside only\nHighest price in the lineup\nOverkill for moderate-height bouldering",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5590,7 +5218,6 @@
     "slug": "singing-rock-font",
     "year_released": 2023,
     "image_url": "/images/crashpads/singing-rock-font.jpg",
-    "images": null,
     "pad_size_category": "sit_start",
     "fold_style": "hinge",
     "best_use": [
@@ -5615,7 +5242,7 @@
     "bottom_coating": "none",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "basic",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -5627,7 +5254,6 @@
     "price_uvp_eur": 49.0,
     "current_price_eur": 45.0,
     "discount_pct": 8.2,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5635,10 +5261,8 @@
     "kg_per_area": 2.67,
     "eur_per_liter": 2.0,
     "kg_per_liter": 0.053,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.2kg for 0.5m²)\nBuilt-in shoe wipe keeps rubber clean between attempts\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open",
     "cons": "Only 5cm thick — limited protection on higher problems\nSmall 0.5m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5648,7 +5272,6 @@
     "slug": "singing-rock-hueco",
     "year_released": 2023,
     "image_url": "/images/crashpads/singing-rock-hueco.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "tri_fold",
     "best_use": [
@@ -5688,7 +5311,6 @@
     "price_uvp_eur": 249.0,
     "current_price_eur": 229.0,
     "discount_pct": 8.0,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5696,10 +5318,8 @@
     "kg_per_area": 4.47,
     "eur_per_liter": 1.53,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.7kg for 1.5m²)\nHigh impact protection rating\nGood carry comfort for approaches",
     "cons": "No hinge protection — watch out for the fold gap on ground strikes\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5709,7 +5329,6 @@
     "slug": "singing-rock-magic",
     "year_released": 2023,
     "image_url": "/images/crashpads/singing-rock-magic.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -5749,7 +5368,6 @@
     "price_uvp_eur": 180.0,
     "current_price_eur": 159.0,
     "discount_pct": 11.7,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -5757,10 +5375,8 @@
     "kg_per_area": 4.63,
     "eur_per_liter": 1.44,
     "kg_per_liter": 0.046,
-    "description": null,
     "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.3kg for 1.1m²)\nGood carry comfort for approaches\nWaist belt helps stabilize the pad on longer approaches",
     "cons": "No shoe wipe — bring a towel\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5770,7 +5386,6 @@
     "slug": "snap-air-shock-1",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-air-shock-1.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "inflatable",
     "best_use": [
@@ -5795,9 +5410,8 @@
     "durability": "moderate",
     "shell_denier": 600,
     "bottom_coating": "tpu_coated",
-    "closure_system": null,
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": true,
     "waist_belt": false,
     "chest_strap": false,
@@ -5809,7 +5423,6 @@
     "price_uvp_eur": 350.0,
     "current_price_eur": 320.0,
     "discount_pct": 8.6,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -5817,10 +5430,8 @@
     "kg_per_area": 2.78,
     "eur_per_liter": 1.19,
     "kg_per_liter": 0.019,
-    "description": null,
     "pros": "Massive 1.8m² landing zone covers most boulder problem landings\n15cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (4.0kg for 1.8m²)\nHigh impact protection rating\nGood carry comfort for approaches",
     "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5830,7 +5441,6 @@
     "slug": "snap-bounce",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-bounce.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "hinge",
     "best_use": [
@@ -5870,7 +5480,6 @@
     "price_uvp_eur": 65.0,
     "current_price_eur": 55.0,
     "discount_pct": 15.4,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5878,10 +5487,8 @@
     "kg_per_area": 5.0,
     "eur_per_liter": 0.33,
     "kg_per_liter": 0.045,
-    "description": null,
     "pros": "Efficient weight-to-area ratio (1.3kg for 0.5m²)\nDurable 600D shell fabric holds up well to rough ground\nHinge fold creates a flat, even landing surface when open\nBluesign certified materials\nMade with partial recycled materials",
     "cons": "Only 5cm thick — limited protection on higher problems\nSmall 0.5m² landing area — best as a supplemental pad, not a primary\nNo hinge protection — watch out for the fold gap on ground strikes\nBasic carry system — uncomfortable on approaches over 15 minutes",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5891,7 +5498,6 @@
     "slug": "snap-grand-guts",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-grand-guts.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "taco",
     "best_use": [
@@ -5931,7 +5537,6 @@
     "price_uvp_eur": 499.0,
     "current_price_eur": 449.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5939,10 +5544,8 @@
     "kg_per_area": 5.64,
     "eur_per_liter": 1.38,
     "kg_per_liter": 0.035,
-    "description": null,
     "pros": "Maximum protection at 16cm\nOversized landing zone\nPremium carry system",
     "cons": "Very heavy at 11.5kg\nPremium price\nOverkill for lowball",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -5952,7 +5555,6 @@
     "slug": "snap-grand-plaster",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-grand-plaster.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "taco",
     "best_use": [
@@ -5990,7 +5592,6 @@
     "price_uvp_eur": 149.0,
     "current_price_eur": 129.0,
     "discount_pct": 13.4,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -5998,10 +5599,8 @@
     "kg_per_area": 3.01,
     "eur_per_liter": 3.81,
     "kg_per_liter": 0.05,
-    "description": null,
     "pros": "Huge coverage area for traverse\nRelatively light for size",
     "cons": "Minimal protection thickness\nNot standalone for height",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6011,7 +5610,6 @@
     "slug": "snap-grand-stamina",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-grand-stamina.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "taco",
     "best_use": [
@@ -6051,7 +5649,6 @@
     "price_uvp_eur": 429.0,
     "current_price_eur": 389.0,
     "discount_pct": 9.3,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6059,10 +5656,8 @@
     "kg_per_area": 5.4,
     "eur_per_liter": 1.58,
     "kg_per_liter": 0.039,
-    "description": null,
     "pros": "Great balance of size and protection\nDurable construction",
     "cons": "Heavy for long approaches",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6072,7 +5667,6 @@
     "slug": "snap-grand-wham",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-grand-wham.jpg",
-    "images": null,
     "pad_size_category": "oversized",
     "fold_style": "taco",
     "best_use": [
@@ -6112,7 +5706,6 @@
     "price_uvp_eur": 399.0,
     "current_price_eur": 359.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6120,10 +5713,8 @@
     "kg_per_area": 5.0,
     "eur_per_liter": 1.42,
     "kg_per_liter": 0.036,
-    "description": null,
     "pros": "Wide landing zone\nPremium Snap construction",
     "cons": "Heavy for moderate approaches",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6133,7 +5724,6 @@
     "slug": "snap-guts",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-guts.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "taco",
     "best_use": [
@@ -6173,7 +5763,6 @@
     "price_uvp_eur": 260.0,
     "current_price_eur": 235.0,
     "discount_pct": 9.6,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -6181,10 +5770,8 @@
     "kg_per_area": 5.93,
     "eur_per_liter": 1.12,
     "kg_per_liter": 0.042,
-    "description": null,
     "pros": "Well-designed European pad with quality foam\nGood all-round performance for various scenarios\nDecent carry system for moderate approaches",
     "cons": "Limited brand recognition outside Europe\nMid-range in most performance categories",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6194,7 +5781,6 @@
     "slug": "snap-hop",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-hop.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -6234,7 +5820,6 @@
     "price_uvp_eur": 190.0,
     "current_price_eur": 169.0,
     "discount_pct": 11.1,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6242,10 +5827,8 @@
     "kg_per_area": 3.33,
     "eur_per_liter": 1.41,
     "kg_per_liter": 0.033,
-    "description": null,
     "pros": "Decent 0.8m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (3.5kg for 0.8m²)\nGood carry comfort for approaches\nHinge protection prevents ground-strike through the fold",
     "cons": "Landing area of 0.8m² can feel tight on problems with dynamic movement\nMinimal gear storage — you'll need a separate bag for shoes and chalk\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6255,7 +5838,6 @@
     "slug": "snap-one",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-one.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -6295,7 +5877,6 @@
     "price_uvp_eur": 270.0,
     "current_price_eur": 245.0,
     "discount_pct": 9.3,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6303,10 +5884,7 @@
     "kg_per_area": 3.5,
     "eur_per_liter": 2.45,
     "kg_per_liter": 0.035,
-    "description": null,
     "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.5kg for 1.2m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
-    "cons": null,
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6316,7 +5894,6 @@
     "slug": "snap-stamina",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-stamina.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "taco",
     "best_use": [
@@ -6356,7 +5933,6 @@
     "price_uvp_eur": 299.0,
     "current_price_eur": 269.0,
     "discount_pct": 10.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6364,10 +5940,8 @@
     "kg_per_area": 5.0,
     "eur_per_liter": 1.72,
     "kg_per_liter": 0.042,
-    "description": null,
     "pros": "Good mid-size all-rounder\nReasonable weight",
     "cons": "Moderate area for highball use",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6377,7 +5951,6 @@
     "slug": "snap-wham",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-wham.jpg",
-    "images": null,
     "pad_size_category": "large",
     "fold_style": "taco",
     "best_use": [
@@ -6418,7 +5991,6 @@
     "price_uvp_eur": 299.0,
     "current_price_eur": 330.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6426,10 +5998,7 @@
     "kg_per_area": 6.07,
     "eur_per_liter": 2.0,
     "kg_per_liter": 0.055,
-    "description": null,
     "pros": "Massive 1.6m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (7.8kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
-    "cons": null,
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6439,7 +6008,6 @@
     "slug": "snap-wrap-original",
     "year_released": 2024,
     "image_url": "/images/crashpads/snap-wrap-original.jpg",
-    "images": null,
     "pad_size_category": "slider",
     "fold_style": "taco",
     "best_use": [
@@ -6465,7 +6033,7 @@
     "bottom_coating": "tpu_coated",
     "closure_system": "strap",
     "reconfigurable": false,
-    "carry_comfort": "excellent",
+    "carry_comfort": "good",
     "shoulder_straps": false,
     "waist_belt": false,
     "chest_strap": false,
@@ -6477,7 +6045,6 @@
     "price_uvp_eur": 130.0,
     "current_price_eur": 115.0,
     "discount_pct": 11.5,
-    "current_price_url": null,
     "recycled_materials": "none",
     "hic_certified": false,
     "bluesign": false,
@@ -6485,10 +6052,8 @@
     "kg_per_area": 1.39,
     "eur_per_liter": 2.13,
     "kg_per_liter": 0.046,
-    "description": null,
     "pros": "Massive 1.8m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (2.5kg for 1.8m²)\nDurable 600D shell fabric holds up well to rough ground\nTaco fold is simple and reliable — no hinge gap to worry about\nBluesign certified materials",
     "cons": "Only 3cm thick — limited protection on higher problems\nBasic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6498,7 +6063,6 @@
     "slug": "so-ill-main-pad",
     "year_released": 2023,
     "image_url": "/images/crashpads/so-ill-main-pad.jpg",
-    "images": null,
     "pad_size_category": "medium",
     "fold_style": "hinge",
     "best_use": [
@@ -6538,7 +6102,6 @@
     "price_uvp_eur": 250.0,
     "current_price_eur": 195.0,
     "discount_pct": 22.0,
-    "current_price_url": null,
     "recycled_materials": "partial",
     "hic_certified": false,
     "bluesign": false,
@@ -6546,10 +6109,8 @@
     "kg_per_area": 4.3,
     "eur_per_liter": 1.61,
     "kg_per_liter": 0.043,
-    "description": null,
     "pros": "Decent 1.1m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.2kg for 1.1m²)\nGood carry comfort for approaches\nWaist belt helps stabilize the pad on longer approaches",
     "cons": "No shoe wipe — bring a towel\nModerate impact protection — not recommended for highball problems",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6559,7 +6120,6 @@
     "slug": "zigzag-double-link",
     "year_released": 2024,
     "image_url": "/images/crashpads/zigzag-double-link.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -6598,7 +6158,6 @@
     "price_uvp_eur": 187.0,
     "current_price_eur": 269.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -6606,10 +6165,8 @@
     "kg_per_area": 6.49,
     "eur_per_liter": 4.85,
     "kg_per_liter": 0.065,
-    "description": null,
     "pros": "Two modular pads that link together for flexible configurations\nSplit and share with a climbing partner\n100% recycled materials throughout\nLightweight system at 3.6kg total",
     "cons": "Combined area smaller than a traditional single pad\nSystem approach means higher total investment for full coverage",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6619,7 +6176,6 @@
     "slug": "zigzag-single-link",
     "year_released": 2024,
     "image_url": "/images/crashpads/zigzag-single-link.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -6658,7 +6214,6 @@
     "price_uvp_eur": 93.0,
     "current_price_eur": 149.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -6666,10 +6221,8 @@
     "kg_per_area": 3.24,
     "eur_per_liter": 2.68,
     "kg_per_liter": 0.032,
-    "description": null,
     "pros": "Patented 360 modularity — connect any side to any other LINK pad\n100% recycled REPREVE body fabric made from plastic bottles\nUltra-light at 1.8kg — easily portable\n5-layer symmetrical foam with recyclable IVEX PE core\nConnection strength over 680kg between linked pads",
     "cons": "Too small for standalone use on most problems\nRequires multiple LINK pads for adequate coverage\nModular system is an investment to build out",
-    "admin_flags": null,
     "data_confidence": {}
   },
   {
@@ -6679,7 +6232,6 @@
     "slug": "zigzag-triple-link",
     "year_released": 2024,
     "image_url": "/images/crashpads/zigzag-triple-link.jpg",
-    "images": null,
     "pad_size_category": "small",
     "fold_style": "hinge",
     "best_use": [
@@ -6718,7 +6270,6 @@
     "price_uvp_eur": 272.0,
     "current_price_eur": 379.0,
     "discount_pct": 0.0,
-    "current_price_url": null,
     "recycled_materials": "full",
     "hic_certified": false,
     "bluesign": false,
@@ -6726,10 +6277,8 @@
     "kg_per_area": 9.73,
     "eur_per_liter": 6.83,
     "kg_per_liter": 0.097,
-    "description": null,
     "pros": "Three modular pads for maximum configuration flexibility\n1.7m² total coverage when linked in a row\nFully recycled construction with 680kg+ connection strength\nConfigurable for any landing zone shape",
     "cons": "Narrow width when configured linearly\nPremium price for the full triple system\nComplex setup compared to a single traditional pad",
-    "admin_flags": null,
     "data_confidence": {}
   }
 ]
