@@ -38,32 +38,6 @@ function Collapsible({ title, defaultOpen = false, children }) {
   );
 }
 
-/* ─── Scroll-to-top button ─── */
-function ScrollToTop() {
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    const h = () => setShow(window.scrollY > 600);
-    window.addEventListener("scroll", h, { passive: true });
-    return () => window.removeEventListener("scroll", h);
-  }, []);
-  if (!show) return null;
-  return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      style={{
-        position: "fixed", bottom: "80px", right: "24px", zIndex: 50,
-        width: "40px", height: "40px", borderRadius: "50%",
-        background: T.accent, color: "#fff", border: "none",
-        fontSize: "18px", cursor: "pointer", boxShadow: "0 2px 12px rgba(0,0,0,.4)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        transition: "opacity 0.2s", opacity: 0.85,
-      }}
-      onMouseOver={e => e.currentTarget.style.opacity = "1"}
-      onMouseOut={e => e.currentTarget.style.opacity = "0.85"}
-      aria-label="Scroll to top"
-    >↑</button>
-  );
-}
 
 /* ═══════════════════════════════════════════════════════════════
    DATA — embedded from seed file analysis of 333 shoes,
@@ -561,7 +535,6 @@ export default function Insights() {
         </div>
 
       </div>
-      <ScrollToTop />
     </div>
   );
 }
