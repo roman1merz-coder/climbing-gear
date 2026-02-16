@@ -194,27 +194,40 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     ctx.font = `600 ${fontSize}px 'Instrument Sans', Inter, system-ui, sans-serif`;
     ctx.textBaseline = "top";
     const padX = 7, padY = 4;
-    hlDots.forEach(({ d, px, py, r }) => {
+    hlDots.forEach(({ d, px, py, r }, hlIdx) => {
       const label = `${d.brand} ${d.model}`;
       const tw = ctx.measureText(label).width;
       const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
-      // 12 candidate positions for better collision avoidance
-      // All positions keep the label clear of the dot (never centered over it)
+      // Candidate positions: always anchored left or right of the dot, never centered over it
+      // Alternate preferred direction: even=above-right first, odd=below-right first
       const gap = 14;
-      const candidates = [
-        { bx: px + r + gap,            by: py - boxH / 2 },           // right
-        { bx: px + r + gap,            by: py - r - gap - boxH },     // above-right
-        { bx: px + r + gap,            by: py + r + gap },             // below-right
-        { bx: px - r - gap - boxW,     by: py - boxH / 2 },           // left
-        { bx: px - r - gap - boxW,     by: py - r - gap - boxH },     // above-left
-        { bx: px - r - gap - boxW,     by: py + r + gap },             // below-left
-        { bx: px + r + gap,            by: py - boxH - gap * 2 },     // far above-right
-        { bx: px + r + gap,            by: py + gap * 2 },             // far below-right
-        { bx: px - r - gap - boxW,     by: py - boxH - gap * 2 },     // far above-left
-        { bx: px - r - gap - boxW,     by: py + gap * 2 },             // far below-left
-        { bx: px + r + gap * 2,        by: py - boxH / 2 },           // far right
-        { bx: px - r - gap * 2 - boxW, by: py - boxH / 2 },           // far left
+      const rightX = px + r + gap, leftX = px - r - gap - boxW;
+      const aboveY = py - r - gap - boxH, belowY = py + r + gap, midY = py - boxH / 2;
+      const farAboveY = py - boxH - gap * 3, farBelowY = py + gap * 3;
+      const baseCandidates = hlIdx % 2 === 0 ? [
+        { bx: rightX, by: aboveY },     // above-right (preferred for even)
+        { bx: rightX, by: midY },         // right
+        { bx: rightX, by: belowY },       // below-right
+        { bx: leftX,  by: aboveY },       // above-left
+        { bx: leftX,  by: midY },         // left
+        { bx: leftX,  by: belowY },       // below-left
+        { bx: rightX, by: farAboveY },    // far above-right
+        { bx: leftX,  by: farAboveY },    // far above-left
+        { bx: rightX, by: farBelowY },    // far below-right
+        { bx: leftX,  by: farBelowY },    // far below-left
+      ] : [
+        { bx: rightX, by: belowY },       // below-right (preferred for odd)
+        { bx: rightX, by: midY },         // right
+        { bx: rightX, by: aboveY },       // above-right
+        { bx: leftX,  by: belowY },       // below-left
+        { bx: leftX,  by: midY },         // left
+        { bx: leftX,  by: aboveY },       // above-left
+        { bx: rightX, by: farBelowY },    // far below-right
+        { bx: leftX,  by: farBelowY },    // far below-left
+        { bx: rightX, by: farAboveY },    // far above-right
+        { bx: leftX,  by: farAboveY },    // far above-left
       ];
+      const candidates = baseCandidates;
       const rectsOverlap = (a, b) => !(a.x + a.w < b.x || a.x > b.x + b.w || a.y + a.h < b.y || a.y > b.y + b.h);
       let best = null;
       for (const c of candidates) {
