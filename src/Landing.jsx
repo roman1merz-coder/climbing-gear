@@ -17,7 +17,7 @@ function useIsMobile() {
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase.js";
 
 // ─── Gear Selector Card ───
-function GearCard({ icon, title, description, to, active }) {
+function GearCard({ title, description, to, active }) {
   const isMobile = useIsMobile();
   return active ? (
     <Link to={to} style={{
@@ -30,7 +30,6 @@ function GearCard({ icon, title, description, to, active }) {
       onMouseOut={e => { e.currentTarget.style.borderColor = `${T.accent}40`; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
     >
       <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Live</div>
-      <div style={{ fontSize: isMobile ? "32px" : "38px" }}>{icon}</div>
       <div>
         <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
         <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>{description}</div>
@@ -46,7 +45,6 @@ function GearCard({ icon, title, description, to, active }) {
       display: "flex", flexDirection: "column", gap: "12px", position: "relative",
     }}>
       <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.muted, background: `${T.border}`, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Coming Soon</div>
-      <div style={{ fontSize: isMobile ? "32px" : "38px", filter: "grayscale(0.5)" }}>{icon}</div>
       <div>
         <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: T.muted, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
         <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6, opacity: 0.7 }}>{description}</div>
@@ -180,17 +178,17 @@ export default function Landing() {
         <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
           Gear Selectors
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "14px" }}>
-          <GearCard icon={"\u{1F45F}"} title="Shoe Selector" to="/shoes" active description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking." />
-          <GearCard icon={"\u{1FA22}"} title="Rope Selector" to="/ropes" active description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands." />
-          <GearCard icon={"\u{1F517}"} title="Belay Device Selector" to="/belays" active description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price." />
-          <GearCard icon={"\u{1F9FB}"} title="Crashpad Selector" to="/crashpads" active description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability." />
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: "14px" }}>
+          <GearCard title="Shoe Selector" to="/shoes" active description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking." />
+          <GearCard title="Rope Selector" to="/ropes" active description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands." />
+          <GearCard title="Belay Device Selector" to="/belays" active description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price." />
+          <GearCard title="Crashpad Selector" to="/crashpads" active description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability." />
           {showMore && <>
-            <GearCard icon={"\u{26D1}"} title="Helmet Selector" description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability." />
-            <GearCard icon={"\u{1F4CE}"} title="Quickdraw Selector" description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design." />
-            <GearCard icon={"\u{1FA93}"} title="Harness Selector" description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability." />
-            <GearCard icon={"\u{1F9D7}"} title="Pants Selector" description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout." />
-            <GearCard icon={"\u{1F9E5}"} title="Jacket Selector" description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability." />
+            <GearCard title="Helmet Selector" description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability." />
+            <GearCard title="Quickdraw Selector" description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design." />
+            <GearCard title="Harness Selector" description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability." />
+            <GearCard title="Pants Selector" description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout." />
+            <GearCard title="Jacket Selector" description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability." />
           </>}
         </div>
         <button onClick={() => setShowMore(v => !v)} style={{
@@ -221,13 +219,12 @@ export default function Landing() {
         {/* Stats strip */}
         <div style={{ display: "flex", gap: "14px", marginBottom: "32px", flexWrap: "wrap", justifyContent: "center" }}>
           {[
-            { icon: "\u{1F3AF}", number: "500+", label: "Products compared" },
-            { icon: "\u{1F3EA}", number: "20+", label: "Retailers tracked" },
-            { icon: "\u{1F3F7}", number: "Daily", label: "Price updates" },
-            { icon: "\u{1F6AB}", number: "0", label: "Ads or sponsored rankings" },
+            { number: "500+", label: "Products compared" },
+            { number: "20+", label: "Retailers tracked" },
+            { number: "Daily", label: "Price updates" },
+            { number: "0", label: "Ads or sponsored rankings" },
           ].map(s => (
             <div key={s.label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "10px", padding: "16px", textAlign: "center", flex: 1, minWidth: "110px" }}>
-              <div style={{ fontSize: "20px", marginBottom: "6px" }}>{s.icon}</div>
               <div style={{ fontSize: "20px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{s.number}</div>
               <div style={{ fontSize: "11px", color: T.muted, marginTop: "4px" }}>{s.label}</div>
             </div>
