@@ -185,10 +185,10 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
     const labelBoxes = [];
-    // Also treat each highlighted dot (including glow ring) as an occupied box so labels don't overlap dots
+    // Treat each highlighted dot (including white ring + generous margin) as occupied
     hlDots.forEach(({ px, py, r }) => {
-      const glowR = r + 6; // dot + white ring + glow blur
-      labelBoxes.push({ x: px - glowR, y: py - glowR, w: glowR * 2, h: glowR * 2 });
+      const margin = r + 12; // dot radius + white ring + safe clearance
+      labelBoxes.push({ x: px - margin, y: py - margin, w: margin * 2, h: margin * 2 });
     });
     const fontSize = isMobile ? 10 : 12;
     ctx.font = `600 ${fontSize}px 'Instrument Sans', Inter, system-ui, sans-serif`;
@@ -200,7 +200,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
       // Candidate positions: always anchored left or right of the dot, never centered over it
       // Alternate preferred direction: even=above-right first, odd=below-right first
-      const gap = 14;
+      const gap = 18;
       const rightX = px + r + gap, leftX = px - r - gap - boxW;
       const aboveY = py - r - gap - boxH, belowY = py + r + gap, midY = py - boxH / 2;
       const farAboveY = py - boxH - gap * 3, farBelowY = py + gap * 3;
