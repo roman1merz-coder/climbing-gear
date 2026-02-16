@@ -179,73 +179,11 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     // Cluster badges
     drawClusterBadges(ctx, pixelPts);
 
-    // Draw highlighted dots + labels. Labels drawn first, then dots redrawn on top so dots are always crisp.
+    // Draw highlighted dots — just yellow dots with white ring, no labels
     const HL_COLOR = "#eab308";
-    // First: position and draw labels (collision avoidance)
-    ctx.save();
-    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
-    const labelBoxes = [];
-    // Treat each highlighted dot (including white ring + generous margin) as occupied
-    hlDots.forEach(({ px, py, r }) => {
-      const margin = r + 12; // dot radius + white ring + safe clearance
-      labelBoxes.push({ x: px - margin, y: py - margin, w: margin * 2, h: margin * 2 });
-    });
-    const fontSize = isMobile ? 10 : 12;
-    ctx.font = `600 ${fontSize}px 'Instrument Sans', Inter, system-ui, sans-serif`;
-    ctx.textBaseline = "top";
-    const padX = 7, padY = 4;
-    hlDots.forEach(({ d, px, py, r }, hlIdx) => {
-      const label = `${d.brand} ${d.model}`;
-      const tw = ctx.measureText(label).width;
-      const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
-      // Simple: place label to the right of the dot, snug against it
-      const gap = 6;
-      const candidates = [
-        { bx: px + r + gap,           by: py - boxH / 2 },       // right
-        { bx: px + r + gap,           by: py - boxH - gap },     // above-right
-        { bx: px + r + gap,           by: py + gap },             // below-right
-        { bx: px - r - gap - boxW,    by: py - boxH / 2 },       // left
-        { bx: px - r - gap - boxW,    by: py - boxH - gap },     // above-left
-        { bx: px - r - gap - boxW,    by: py + gap },             // below-left
-      ];
-      const rectsOverlap = (a, b) => !(a.x + a.w < b.x || a.x > b.x + b.w || a.y + a.h < b.y || a.y > b.y + b.h);
-      let best = candidates[hlIdx % 2 === 0 ? 0 : 3]; // default: even=right, odd=left
-      for (const c of candidates) {
-        const rect = { x: c.bx, y: c.by, w: boxW, h: boxH };
-        if (!labelBoxes.some(b => rectsOverlap(rect, b))) { best = c; break; }
-      }
-      const box = { x: best.bx, y: best.by, w: boxW, h: boxH };
-      labelBoxes.push(box);
-      // Label background
-      const brd = 4;
-      ctx.fillStyle = "rgba(12,14,22,0.96)";
-      ctx.beginPath();
-      ctx.moveTo(box.x + brd, box.y);
-      ctx.lineTo(box.x + box.w - brd, box.y);
-      ctx.quadraticCurveTo(box.x + box.w, box.y, box.x + box.w, box.y + brd);
-      ctx.lineTo(box.x + box.w, box.y + box.h - brd);
-      ctx.quadraticCurveTo(box.x + box.w, box.y + box.h, box.x + box.w - brd, box.y + box.h);
-      ctx.lineTo(box.x + brd, box.y + box.h);
-      ctx.quadraticCurveTo(box.x, box.y + box.h, box.x, box.y + box.h - brd);
-      ctx.lineTo(box.x, box.y + brd);
-      ctx.quadraticCurveTo(box.x, box.y, box.x + brd, box.y);
-      ctx.closePath(); ctx.fill();
-      // Gold border
-      ctx.strokeStyle = "rgba(234,179,8,0.6)"; ctx.lineWidth = 1;
-      ctx.stroke();
-      // Label text
-      ctx.fillStyle = "#fde68a";
-      ctx.fillText(label, box.x + padX, box.y + padY);
-    });
-    ctx.restore();
-
-    // Redraw highlighted dots ON TOP of labels — no glow here, just crisp dot + white ring
     hlDots.forEach(({ d, px, py, r }) => {
-      // White ring
       ctx.strokeStyle = "#fff"; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2); ctx.stroke();
-      // Solid yellow dot
       ctx.beginPath(); ctx.arc(px, py, r + 1, 0, Math.PI * 2);
       ctx.fillStyle = HL_COLOR; ctx.fill();
     });
