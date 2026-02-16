@@ -274,16 +274,12 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     });
     ctx.restore();
 
-    // Redraw highlighted dots ON TOP of labels so dots are always crisp and visible
+    // Redraw highlighted dots ON TOP of labels — no glow here, just crisp dot + white ring
     hlDots.forEach(({ d, px, py, r }) => {
-      ctx.save();
-      ctx.shadowColor = "rgba(234,179,8,0.5)";
-      ctx.shadowBlur = 12;
-      ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(234,179,8,0.25)"; ctx.fill();
-      ctx.restore();
-      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
+      // White ring
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2); ctx.stroke();
+      // Solid yellow dot
       ctx.beginPath(); ctx.arc(px, py, r + 1, 0, Math.PI * 2);
       ctx.fillStyle = HL_COLOR; ctx.fill();
     });
