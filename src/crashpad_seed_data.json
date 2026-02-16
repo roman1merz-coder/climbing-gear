@@ -2371,8 +2371,8 @@
     "kg_per_area": 2.45,
     "eur_per_liter": 0.81,
     "kg_per_liter": 0.016,
-    "pros": "Massive 2.0m² landing zone at only 5kg — exceptional area-to-weight ratio\nPacks down small enough to fit inside your main pad or a daypack\nAdjustable firmness via air pressure — tune it to your preference\nGreat as a second pad to massively extend your landing zone\nDouble duty as a comfortable sleeping pad at the crag",
-    "cons": "Puncture risk on sharp rock — avoid as sole pad on rough terrain\nNot recommended as primary pad for highball bouldering — air lacks the progressive absorption of layered foam\nCan feel slippery on uneven terrain — perceived higher ankle sprain risk on non-flat landings\nRequires an air pump each session — fine if you already carry a blower for cleaning holds\nNo built-in gear storage — best carried inside your main pad or a separate bag",
+    "pros": "Massive 2.0m² landing zone at only 5kg — exceptional area-to-weight ratio\nPacks down to roughly sleeping-bag size, fits inside your main pad or a daypack\nAdjustable firmness via air pressure — pump more for harder impacts, softer for sit-starts\nDoubles as a comfortable sleeping mat at the crag — thick, insulating, and adjustable\nIdeal as a second pad to extend your landing zone without doubling your carry weight",
+    "cons": "Puncture risk on sharp rock edges or thorny ground — carry the included repair kit\nSurface can feel slippery on uneven or dusty terrain — best on flat, even ground\nAir compresses all at once rather than progressively — bouncier, less predictable landing feel\nNo built-in gear storage (no shoe pockets, chalk loops) — carry inside your main pad or a separate bag\nRequires an air pump each session — a battery blower inflates it in about 60 seconds",
     "data_confidence": {}
   },
   {
@@ -5430,8 +5430,8 @@
     "kg_per_area": 2.78,
     "eur_per_liter": 1.19,
     "kg_per_liter": 0.019,
-    "pros": "1.8m² landing zone at only 5kg — outstanding area-to-weight ratio\nPacks down flat — easily fits inside your main taco or hinge pad\nAdjustable firmness via air pressure\n600D recycled shell with TPU coating\nGreat as a supplementary pad to extend your landing zone",
-    "cons": "Not recommended as sole pad for highball bouldering — air lacks progressive foam absorption\nPuncture risk on sharp rock — best used on softer ground or layered over another pad\nCan feel slippery on uneven terrain — perceived higher ankle sprain risk\nRequires air pump each session — fine if you carry a blower for hold cleaning\nNo built-in gear storage — carry inside your main pad or a separate backpack",
+    "pros": "1.8m² landing zone at only 5kg — outstanding area-to-weight ratio for the coverage\nPacks down flat and compact — easily fits inside your main taco or hinge pad\nAdjustable firmness via air pressure — tune stiffness to problem height and landing style\n600D recycled shell with TPU coating for durability\nPerfect as a supplementary pad to cover gaps and extend your safe landing zone",
+    "cons": "Puncture risk on sharp rock — best used on softer ground or as a second layer over uneven terrain\nSurface can feel slippery when wet or dusty — more confident on flat, even landings\nAir gives a bouncier, less gradual landing feel than traditional pads — takes some getting used to\nNo built-in gear storage — best carried rolled up inside your main pad\nRequires air pump each session — a battery-powered blower makes this a 60-second job",
     "data_confidence": {}
   },
   {
