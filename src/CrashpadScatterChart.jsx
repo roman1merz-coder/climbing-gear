@@ -178,25 +178,9 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     // Cluster badges
     drawClusterBadges(ctx, pixelPts);
 
-    // Draw highlighted dots on top with glow + label
+    // Draw highlighted dots + labels. Labels drawn first, then dots redrawn on top so dots are always crisp.
     const HL_COLOR = "#eab308";
-    // First pass: draw all highlighted dots
-    hlDots.forEach(({ d, px, py, r }) => {
-      // Outer glow
-      ctx.save();
-      ctx.shadowColor = "rgba(234,179,8,0.5)";
-      ctx.shadowBlur = 14;
-      ctx.beginPath(); ctx.arc(px, py, r + 3, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(234,179,8,0.2)"; ctx.fill();
-      ctx.restore();
-      // White ring
-      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2); ctx.stroke();
-      // Solid dot
-      ctx.beginPath(); ctx.arc(px, py, r + 1, 0, Math.PI * 2);
-      ctx.fillStyle = HL_COLOR; ctx.fill();
-    });
-    // Second pass: position labels with collision avoidance (all shadow state cleared)
+    // First: position and draw labels (collision avoidance)
     ctx.save();
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
@@ -276,6 +260,20 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       ctx.fillText(label, box.x + padX, box.y + padY);
     });
     ctx.restore();
+
+    // Redraw highlighted dots ON TOP of labels so dots are always crisp and visible
+    hlDots.forEach(({ d, px, py, r }) => {
+      ctx.save();
+      ctx.shadowColor = "rgba(234,179,8,0.5)";
+      ctx.shadowBlur = 12;
+      ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(234,179,8,0.25)"; ctx.fill();
+      ctx.restore();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(px, py, r + 1, 0, Math.PI * 2);
+      ctx.fillStyle = HL_COLOR; ctx.fill();
+    });
 
     // Hovered dot on top
     if (hovered) {
