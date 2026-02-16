@@ -300,9 +300,9 @@ export default function Insights() {
             <StatCard label="Packed Volume" value="~5L" sub="Fits inside any taco pad" color={T.blue} />
           </div>
 
-          {/* ── Always visible: The Data ── */}
+          {/* ── Breaking the Trendline ── */}
           <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
-            📊 Breaking the Trendline
+            Breaking the Trendline
           </div>
 
           <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_weight" compact thicknessRange={[10, 16]} />
@@ -315,98 +315,124 @@ export default function Insights() {
             <strong>The weight advantage is real.</strong> A Snap Air Shock 1 delivers 1.8m² of 15cm-thick landing zone at just 5kg. A comparable foam pad (e.g. Snap Wrap Original: 1.5m², 15cm, 10kg) weighs twice as much for less area. That deflated Air Shock rolls up to roughly sleeping-bag size — meaning you can carry two full-size pads to the crag for barely more than the weight of one traditional pad.
           </KeyInsight>
 
-          {/* ── Collapsible: Cost per Area ── */}
-          <Collapsible title="💶 Cost per Area: Surprisingly Competitive">
-            <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_price" compact thicknessRange={[10, 16]} />
+          {/* ── Cost per Area ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            Cost per Area: Surprisingly Competitive
+          </div>
 
-            <Prose>
-              You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot area vs price for the same 10–16cm thickness range, the inflatables sit right on the trendline — competitive with foam pads of comparable landing area. You're not paying a premium for lighter weight — you're getting <em>more for the same money</em>.
-            </Prose>
+          <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_price" compact thicknessRange={[10, 16]} />
 
-            <KeyInsight color={T.green}>
-              <strong>Better value by every metric.</strong> Inflatables deliver roughly half the weight at a below-average €/m². In other words, the air-chamber technology doesn't just save weight — it saves money per square meter of landing zone too. That's genuinely rare in climbing gear.
-            </KeyInsight>
-          </Collapsible>
+          <Prose>
+            You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot area vs price for the same 10–16cm thickness range, the inflatables are competitive with foam pads of comparable landing area. You're not paying a premium for lighter weight.
+          </Prose>
 
-          {/* ── Collapsible: Packed Size ── */}
-          <Collapsible title="📦 Packed Size: Where It Gets Ridiculous">
-            <Prose>
-              When deflated, an inflatable crashpad rolls down to roughly the size of a sleeping bag — about 5 liters of volume. Compare that to a foam pad of similar landing area, which stays the same massive rectangle whether you're climbing on it or carrying it to the crag.
-            </Prose>
+          <KeyInsight color={T.green}>
+            <strong>Better value by every metric.</strong> Inflatables deliver roughly half the weight at a below-average €/m². In other words, the air-chamber technology doesn't just save weight — it saves money per square meter of landing zone too. That's genuinely rare in climbing gear.
+          </KeyInsight>
 
-            <Prose>
-              The practical implication is huge: an inflatable fits inside most taco-fold or hinge-fold pads. You're not strapping a second bulky pad to the outside of your first one, Tetris-ing gear on your back, or making a second trip. Just roll it up, tuck it in, and hike normally. For long approaches — think Fontainebleau, Rocklands, or Magic Wood — this alone can be the deciding factor.
-            </Prose>
+          {/* ── Packed Size ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            Packed Size: Where It Gets Ridiculous
+          </div>
 
-            <KeyInsight color={T.blue}>
-              <strong>Stacking made easy:</strong> Carry two full-size pads for the weight and bulk of roughly 1.3 traditional pads. That second pad doesn't just double your landing zone — it eliminates the gaps between pads, which is where most ankle injuries happen.
-            </KeyInsight>
-          </Collapsible>
+          <div style={{ borderRadius: T.radius, overflow: "hidden", margin: "20px 0", border: `1px solid ${T.border}` }}>
+            <img
+              src="/images/insights/inflatable-packed-size.jpg"
+              alt="Size comparison: a full-size foam crashpad next to a deflated inflatable rolled into a small bag"
+              style={{ width: "100%", height: "auto", display: "block" }}
+              loading="lazy"
+            />
+          </div>
+          <div style={{ fontSize: "11px", color: T.muted, marginTop: "-12px", marginBottom: "16px", fontStyle: "italic" }}>
+            A full-size foam pad next to a deflated inflatable of comparable landing area. The size difference speaks for itself.
+          </div>
 
-          {/* ── Collapsible: Inflation & Setup ── */}
-          <Collapsible title="🌬️ Inflation: Easier Than You'd Think">
-            <Prose>
-              The most common objection: "I don't want to sit there pumping up a pad for 10 minutes." Fair — but most boulderers already carry a battery-powered blower to clean holds. That same blower inflates an entire crashpad in about 60 seconds. Plug in, hit the button, done.
-            </Prose>
+          <Prose>
+            When deflated, an inflatable crashpad rolls down to roughly the size of a sleeping bag — about 5 liters of volume. Compare that to a foam pad of similar landing area, which stays the same massive rectangle whether you're climbing on it or carrying it to the crag.
+          </Prose>
 
-            <Prose>
-              And once it's inflated, you get something foam pads can't offer: adjustable firmness. Pump in more air for a firmer, more responsive landing surface on higher problems. Let some air out for a softer cushion on sit-starts or traverses. It's like having multiple pads in one.
-            </Prose>
-          </Collapsible>
+          <Prose>
+            The practical implication is huge: an inflatable fits inside most taco-fold or hinge-fold pads. You're not strapping a second bulky pad to the outside of your first one, Tetris-ing gear on your back, or making a second trip. Just roll it up, tuck it in, and hike normally. For long approaches this alone can be the deciding factor.
+          </Prose>
 
-          {/* ── Collapsible: Best Use Cases ── */}
-          <Collapsible title="✅ Where Inflatables Shine">
-            <div style={{ borderRadius: T.radius, overflow: "hidden", margin: "20px 0", border: `1px solid ${T.border}` }}>
-              <img
-                src="/images/insights/inflatable-bouldering.jpg"
-                alt="Bouldering on flat, even terrain — the ideal use case for inflatable crashpads"
-                style={{ width: "100%", height: "auto", display: "block" }}
-                onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }}
-              />
-              <div style={{ display: "none", background: T.surface, padding: "40px 24px", textAlign: "center", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                <div style={{ fontSize: "32px" }}>🧗</div>
-                <div style={{ fontSize: "13px", color: T.muted, fontWeight: 600 }}>Photo: Bouldering on flat, even terrain</div>
-              </div>
-            </div>
-            <div style={{ fontSize: "11px", color: T.muted, marginTop: "-12px", marginBottom: "16px", fontStyle: "italic" }}>
-              Flat, even landings — this is where inflatables truly excel.
-            </div>
+          <KeyInsight color={T.blue}>
+            <strong>Stacking made easy:</strong> Carry two full-size pads for the weight and bulk of roughly 1.5 traditional pads. Or three full-size pads at the weight of two — you can easily fit 2 inflatable pads into one conventional taco pad.
+          </KeyInsight>
 
-            <Prose>
-              Inflatables are at their best on flat, even terrain with relatively low problems. Think sandy bouldering areas, forest clearings with soft ground, or gym-style outdoor walls. They're also unbeatable for van-life and traveling boulderers — a deflated pad takes up barely any space in your vehicle compared to a foam pad that dominates the entire cargo area.
-            </Prose>
+          {/* ── Inflation ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            Inflation: Easier Than You'd Think
+          </div>
 
-            <Prose>
-              The comfort factor shouldn't be underestimated either. Inflatables make surprisingly decent sleeping mats — they're thick, insulating, and adjustable. If you're camping at the crag or doing a multi-day bouldering trip, your crashpad doubling as a comfortable mattress eliminates one more piece of gear from your pack.
-            </Prose>
-          </Collapsible>
+          <div style={{ borderRadius: T.radius, overflow: "hidden", margin: "20px 0", border: `1px solid ${T.border}` }}>
+            <img
+              src="/images/insights/inflatable-blower.jpg"
+              alt="Inflating a crashpad with a battery-powered blower — takes about 60 seconds"
+              style={{ width: "100%", height: "auto", display: "block" }}
+              loading="lazy"
+            />
+          </div>
+          <div style={{ fontSize: "11px", color: T.muted, marginTop: "-12px", marginBottom: "16px", fontStyle: "italic" }}>
+            A battery-powered blower inflates an entire crashpad in about 60 seconds.
+          </div>
 
-          {/* ── Collapsible: Honest Downsides ── */}
-          <Collapsible title="⚠️ The Honest Downsides">
-            <Prose>
-              Now for the part that matters most: where inflatables fall short. There are real limitations that every buyer should understand before dropping €200–300 on an air-filled pad.
-            </Prose>
+          <Prose>
+            Initially our biggest concern: "I don't want to sit there pumping up a pad for 10 minutes." Fair — but some boulderers already carry a battery-powered blower to clean holds. That same blower inflates an entire crashpad in about 60 seconds.
+          </Prose>
 
-            <KeyInsight color={T.red}>
-              <strong>Puncture risk is real.</strong> Sharp rock edges, thorny vegetation, or even a stray piece of metal can puncture an air chamber. Unlike a foam pad that still works with a tear, a punctured inflatable loses its primary function. Most come with repair kits, but patching a pad mid-session isn't anyone's idea of a good time. On sharp limestone or granite, we'd strongly recommend foam.
-            </KeyInsight>
+          <Prose>
+            And once it's inflated, you get something foam pads can't offer: adjustable firmness. Pump in more air for a firmer, more responsive landing surface on higher problems. Let some air out for a softer cushion on sit-starts or traverses.
+          </Prose>
 
-            <Prose>
-              The surface can feel slippery compared to textured foam pads, especially when wet or dusty. On uneven terrain — slopes, roots, small rocks — the pad tends to shift and wobble. Air also behaves differently from foam during impact: foam absorbs energy progressively, giving you gradual deceleration, while air compresses all at once, creating a bouncier, less predictable landing.
-            </Prose>
+          {/* ── Where Inflatables Shine ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            Where Inflatables Shine
+          </div>
 
-            <KeyInsight color={T.red}>
-              <strong>No built-in storage.</strong> Foam pads typically have shoe pockets, chalk bag loops, and gear compartments. Inflatables have none of that. Your options are to carry the deflated pad inside your main foam pad or bring a separate bag.
-            </KeyInsight>
+          <div style={{ borderRadius: T.radius, overflow: "hidden", margin: "20px 0", border: `1px solid ${T.border}` }}>
+            <img
+              src="/images/insights/inflatable-bouldering.jpg"
+              alt="Bouldering on flat, even terrain — the ideal use case for inflatable crashpads"
+              style={{ width: "100%", height: "auto", display: "block" }}
+              loading="lazy"
+            />
+          </div>
+          <div style={{ fontSize: "11px", color: T.muted, marginTop: "-12px", marginBottom: "16px", fontStyle: "italic" }}>
+            Flat, even landings — this is where inflatables truly excel.
+          </div>
 
-            <Prose>
-              Temperature also affects performance. In cold conditions, air contracts, making the pad softer. In extreme heat, the opposite happens — the pad may feel overly firm. Foam pads are impervious to these temperature swings.
-            </Prose>
-          </Collapsible>
+          <Prose>
+            Inflatables are at their best on flat, even terrain with relatively low problems. Think sandy bouldering areas, forest clearings with soft ground, or gym-style outdoor walls. They're also unbeatable for van-life and traveling boulderers — a deflated pad takes up barely any space in your vehicle compared to a foam pad that dominates the entire cargo area.
+          </Prose>
 
-          {/* ── Always visible: Verdict ── */}
+          <Prose>
+            The comfort factor shouldn't be underestimated either. Inflatables make surprisingly decent sleeping mats — they're thick and adjustable.
+          </Prose>
+
+          {/* ── The Honest Downsides ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            The Honest Downsides
+          </div>
+
+          <Prose>
+            Now for the part that matters most: where inflatables fall short. There are real limitations that every buyer should understand before dropping €200–300 on an air-filled pad.
+          </Prose>
+
+          <KeyInsight color={T.red}>
+            <strong>Puncture risk is real.</strong> Sharp rock edges, thorny vegetation, or even a stray piece of metal can puncture an air chamber. Unlike a foam pad that still works with a tear, a punctured inflatable loses its primary function. On sharp limestone or granite, we'd rather trust a good old foam pad.
+          </KeyInsight>
+
+          <Prose>
+            The surface can feel slippery compared to textured foam pads, especially when wet or dusty. On uneven terrain — slopes, roots, small rocks — the pad tends to shift and wobble. Air also behaves differently from foam during impact: foam absorbs energy progressively, giving you gradual deceleration, while air compresses all at once, creating a bouncier, less predictable landing.
+          </Prose>
+
+          <KeyInsight color={T.red}>
+            <strong>No built-in storage.</strong> Foam pads typically have shoe pockets, chalk bag loops, and gear compartments. Inflatables have none of that. Your options are to carry the deflated pad inside your main foam pad or bring a separate bag.
+          </KeyInsight>
+
+          {/* ── The Verdict ── */}
           <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "32px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
-            🎯 The Verdict
+            The Verdict
           </div>
 
           <Prose>
@@ -417,28 +443,26 @@ export default function Insights() {
             <strong>Our recommendation:</strong> If you boulder on flat terrain, travel often, or do long approaches — an inflatable pad is genuinely transformative. As a second pad, it's arguably the best value-for-weight investment in bouldering gear. But if you only own one pad and climb on rough, rocky terrain, stick with proven multi-layer foam. The peace of mind is worth the extra kilos.
           </KeyInsight>
 
-          {/* ── Collapsible: Pool float bonus ── */}
-          <Collapsible title="🏊 Bonus: The Best Pool Float Money Can Buy">
-            <div style={{ borderRadius: T.radius, overflow: "hidden", margin: "20px 0", border: `1px solid ${T.border}` }}>
-              <img
-                src="/images/insights/inflatable-swimming.jpg"
-                alt="Using an inflatable crashpad as a pool float — the unexpected bonus"
-                style={{ width: "100%", height: "auto", display: "block" }}
-                onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "flex"; }}
-              />
-              <div style={{ display: "none", background: T.surface, padding: "40px 24px", textAlign: "center", flexDirection: "column", alignItems: "center", gap: "8px" }}>
-                <div style={{ fontSize: "32px" }}>🏊</div>
-                <div style={{ fontSize: "13px", color: T.muted, fontWeight: 600 }}>Photo: Inflatable crashpad as pool float</div>
-              </div>
-            </div>
-            <div style={{ fontSize: "11px", color: T.muted, marginTop: "-12px", marginBottom: "16px", fontStyle: "italic" }}>
-              Not the intended use case, but we're not going to pretend we haven't tried it.
-            </div>
+          {/* ── Pool Float Bonus ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "28px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            Bonus: The Best Pool Float Money Can Buy
+          </div>
 
-            <Prose>
-              An inflatable crashpad is, fundamentally, a very large, very durable air mattress. Take it to the lake, the river, or the pool after a session and you've got the most luxurious float anyone at the beach has ever seen. It's 1.5–1.8m² of lounging surface — big enough to actually lie on comfortably. Is this a legitimate purchase justification? Probably not. Does it bring joy? Absolutely.
-            </Prose>
-          </Collapsible>
+          <div style={{ borderRadius: T.radius, overflow: "hidden", margin: "20px 0", border: `1px solid ${T.border}` }}>
+            <img
+              src="/images/insights/inflatable-swimming.jpg"
+              alt="Using an inflatable crashpad as a pool float at a lake"
+              style={{ width: "100%", height: "auto", display: "block" }}
+              loading="lazy"
+            />
+          </div>
+          <div style={{ fontSize: "11px", color: T.muted, marginTop: "-12px", marginBottom: "16px", fontStyle: "italic" }}>
+            Not the intended use case, but the kids loved it.
+          </div>
+
+          <Prose>
+            An inflatable crashpad is, fundamentally, a quite large, very durable air mattress. Take it to the lake, the river, or the pool after a session and you've got the most luxurious float at the beach. It's 1.5–1.8m² of lounging surface — big and stable enough to actually lie on comfortably. Is this a legitimate purchase justification? Probably not. Does it bring joy? Absolutely.
+          </Prose>
 
         </section>
 
