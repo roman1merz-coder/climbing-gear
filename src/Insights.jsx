@@ -398,6 +398,7 @@ const INFLATABLE_PADS = CRASHPAD_SEED
       thick: p.thickness_cm, area: +area.toFixed(2),
       weight: p.weight_kg, layers: p.foam_layers || 0,
       price: p.current_price_eur || p.price_uvp_eur,
+      eur_m2: +( (p.current_price_eur || p.price_uvp_eur || 0) / area ).toFixed(0),
       inflatable: isInflatable,
     };
   });
@@ -542,6 +543,160 @@ function InflatableChart({ isMobile }) {
                 <div><div style={{ fontSize: "10px", color: T.muted }}>kg/m²</div><div style={{ fontWeight: 600, color: active.inflatable ? T.yellow : T.blue }}>{active.kg_m2}</div></div>
                 {active.layers > 0 && <div><div style={{ fontSize: "10px", color: T.muted }}>Foam Layers</div><div style={{ fontWeight: 600 }}>{active.layers}</div></div>}
                 {active.price && <div><div style={{ fontSize: "10px", color: T.muted }}>Price</div><div style={{ fontWeight: 600 }}>€{active.price}</div></div>}
+              </div>
+              <Link to={`/crashpad/${active.slug}`} style={{
+                display: "block", width: "100%", marginTop: "10px", padding: "6px",
+                borderRadius: "6px", background: T.accentSoft, color: T.accent,
+                border: "none", cursor: "pointer", fontSize: "11px", fontWeight: 600,
+                textAlign: "center", textDecoration: "none",
+              }}>View full specs →</Link>
+              <style>{`@keyframes tipFade { from { opacity:0; transform:translateY(4px) } to { opacity:1; transform:translateY(0) } }`}</style>
+            </div>
+          );
+        })()}
+      </div>
+    </ChartContainer>
+  );
+}
+
+/* ─── Inflatable vs Foam: €/m² scatter chart ─── */
+function InflatableCostChart({ isMobile }) {
+  const navigate = useNavigate();
+  const [active, setActive] = useState(null);
+  const [tipPos, setTipPos] = useState({ x: 0, y: 0 });
+
+  // Filter to pads that have a price
+  const padsWithPrice = INFLATABLE_PADS.filter(d => d.price && d.eur_m2 > 0);
+
+  const W = isMobile ? 340 : 700, H = isMobile ? 280 : 320;
+  const p = { top: 30, right: 20, bottom: 44, left: 60 };
+  const cw = W - p.left - p.right, ch = H - p.top - p.bottom;
+
+  const xMin = 9, xMax = 16, yMin = 0, yMax = 450;
+  const sx = (v) => p.left + ((v - xMin) / (xMax - xMin)) * cw;
+  const sy = (v) => p.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
+
+  // Linear regression on foam pads only
+  const foam = padsWithPrice.filter(d => !d.inflatable);
+  const n = foam.length;
+  const sumX = foam.reduce((s, d) => s + d.thick, 0);
+  const sumY = foam.reduce((s, d) => s + d.eur_m2, 0);
+  const sumXY = foam.reduce((s, d) => s + d.thick * d.eur_m2, 0);
+  const sumXX = foam.reduce((s, d) => s + d.thick * d.thick, 0);
+  const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+  const intercept = (sumY - slope * sumX) / n;
+
+  const avgFoamEur = foam.length > 0 ? Math.round(sumY / n) : 0;
+  const avgInflatableEur = (() => {
+    const inf = padsWithPrice.filter(d => d.inflatable);
+    return inf.length > 0 ? Math.round(inf.reduce((s, d) => s + d.eur_m2, 0) / inf.length) : 0;
+  })();
+
+  const jitter = (idx) => {
+    const angle = ((idx * 2654435761) % 360) * Math.PI / 180;
+    return { dx: Math.cos(angle) * 3, dy: Math.sin(angle) * 3 };
+  };
+
+  const handleDotClick = (d, e) => {
+    const j = jitter(padsWithPrice.indexOf(d));
+    setTipPos({ x: sx(d.thick) + j.dx, y: sy(d.eur_m2) + j.dy });
+    setActive(active?.slug === d.slug ? null : d);
+  };
+
+  return (
+    <ChartContainer title="€/m² vs Thickness (10–16cm pads)" subtitle={`${padsWithPrice.length} pads with pricing data — how do inflatables compare on cost per area?`}>
+      <div style={{ position: "relative" }}>
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}
+          onClick={(e) => { if (e.target.tagName === "svg") setActive(null); }}>
+          {/* Grid */}
+          {[0, 100, 200, 300, 400].map(v => (
+            <g key={`y${v}`}>
+              <line x1={p.left} y1={sy(v)} x2={W - p.right} y2={sy(v)} stroke={T.border} strokeDasharray="3,3" opacity="0.5" />
+              <text x={p.left - 8} y={sy(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">€{v}</text>
+            </g>
+          ))}
+          {[10, 11, 12, 13, 14, 15, 16].map(v => (
+            <g key={`x${v}`}>
+              <line x1={sx(v)} y1={p.top} x2={sx(v)} y2={p.top + ch} stroke={T.border} strokeDasharray="3,3" opacity="0.3" />
+              <text x={sx(v)} y={H - p.bottom + 16} fill={T.muted} fontSize="10" textAnchor="middle">{v}cm</text>
+            </g>
+          ))}
+
+          {/* Trendline */}
+          <line x1={sx(xMin)} y1={sy(slope * xMin + intercept)} x2={sx(xMax)} y2={sy(slope * xMax + intercept)}
+            stroke={T.muted} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.5" />
+          <text x={sx(13)} y={sy(slope * 13 + intercept) - 8} fill={T.muted} fontSize="9" textAnchor="middle" fontWeight="600">Foam trend</text>
+
+          {/* Foam dots */}
+          {foam.map((d, i) => {
+            const j = jitter(padsWithPrice.indexOf(d));
+            const isActive = active?.slug === d.slug;
+            return (
+              <g key={d.slug} style={{ cursor: "pointer" }} onClick={(e) => handleDotClick(d, e)}>
+                {isActive && <circle cx={sx(d.thick) + j.dx} cy={sy(d.eur_m2) + j.dy} r={isMobile ? 8 : 10} fill={T.blue} opacity="0.2" />}
+                <circle cx={sx(d.thick) + j.dx} cy={sy(d.eur_m2) + j.dy} r={isMobile ? 4 : 5}
+                  fill={T.blue} opacity={isActive ? 1 : 0.5} stroke={isActive ? "#fff" : "none"} strokeWidth="1.5" />
+              </g>
+            );
+          })}
+
+          {/* Inflatable dots */}
+          {padsWithPrice.filter(d => d.inflatable).map((d, i) => {
+            const j = jitter(padsWithPrice.indexOf(d));
+            const isActive = active?.slug === d.slug;
+            return (
+              <g key={d.slug} style={{ cursor: "pointer" }} onClick={(e) => handleDotClick(d, e)}>
+                <circle cx={sx(d.thick) + j.dx} cy={sy(d.eur_m2) + j.dy} r={isMobile ? 8 : 10} fill={T.yellow} opacity={isActive ? 0.4 : 0.2} />
+                <circle cx={sx(d.thick) + j.dx} cy={sy(d.eur_m2) + j.dy} r={isMobile ? 5 : 6}
+                  fill={T.yellow} opacity="0.9" stroke={isActive ? "#fff" : "none"} strokeWidth="1.5" />
+                <text
+                  x={sx(d.thick) + j.dx + (i === 0 ? -12 : 12)}
+                  y={sy(d.eur_m2) + j.dy + (i === 0 ? -12 : 14)}
+                  fill={T.yellow} fontSize={isMobile ? "8" : "10"} fontWeight="700"
+                  textAnchor={i === 0 ? "end" : "start"} style={{ pointerEvents: "none" }}
+                >{d.name}</text>
+              </g>
+            );
+          })}
+
+          {/* Axis labels */}
+          <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">Thickness (cm)</text>
+          <text x={14} y={H / 2} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600" transform={`rotate(-90,14,${H / 2})`}>€ / m²</text>
+
+          {/* Legend */}
+          <circle cx={p.left + 10} cy={p.top + 8} r="4" fill={T.blue} opacity="0.5" />
+          <text x={p.left + 18} y={p.top + 12} fill={T.muted} fontSize="10">Foam pad</text>
+          <circle cx={p.left + 80} cy={p.top + 8} r="4" fill={T.yellow} />
+          <text x={p.left + 88} y={p.top + 12} fill={T.yellow} fontSize="10" fontWeight="600">Inflatable</text>
+        </svg>
+
+        {/* Tooltip popover */}
+        {active && (() => {
+          const tx = (tipPos.x / W) * 100;
+          const ty = (tipPos.y / H) * 100;
+          const flipX = tx > 65;
+          const flipY = ty < 30;
+          return (
+            <div style={{
+              position: "absolute",
+              left: `${tx}%`, top: `${ty}%`,
+              transform: `translate(${flipX ? "calc(-100% - 12px)" : "12px"}, ${flipY ? "8px" : "calc(-100% - 8px)"})`,
+              background: "rgba(15,17,25,.97)", border: `1px solid ${active.inflatable ? T.yellow : T.blue}`,
+              borderRadius: "10px", padding: "12px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
+              boxShadow: "0 8px 32px rgba(0,0,0,.6)", zIndex: 10, maxWidth: "240px", pointerEvents: "auto",
+              animation: "tipFade .15s ease-out",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
+                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: active.inflatable ? T.yellow : T.blue, flexShrink: 0 }} />
+                <b style={{ fontSize: "13px" }}>{active.name}</b>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px 14px" }}>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Area</div><div style={{ fontWeight: 600 }}>{active.area} m²</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Price</div><div style={{ fontWeight: 600 }}>€{active.price}</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Thickness</div><div style={{ fontWeight: 600 }}>{active.thick} cm</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>€/m²</div><div style={{ fontWeight: 600, color: active.inflatable ? T.yellow : T.blue }}>€{active.eur_m2}</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>Weight</div><div style={{ fontWeight: 600 }}>{active.weight} kg</div></div>
+                <div><div style={{ fontSize: "10px", color: T.muted }}>kg/m²</div><div style={{ fontWeight: 600 }}>{active.kg_m2}</div></div>
               </div>
               <Link to={`/crashpad/${active.slug}`} style={{
                 display: "block", width: "100%", marginTop: "10px", padding: "6px",
@@ -735,6 +890,25 @@ export default function Insights() {
 
           <KeyInsight color={T.yellow}>
             <strong>The weight advantage is real.</strong> A Snap Air Shock 1 delivers 1.8m² of 15cm-thick landing zone at just 5kg. A comparable foam pad (e.g. Snap Wrap Original: 1.5m², 15cm, 10kg) weighs twice as much for less area. That deflated Air Shock rolls up to roughly sleeping-bag size — meaning you can carry two full-size pads to the crag for barely more than the weight of one traditional pad.
+          </KeyInsight>
+
+          {/* ── Section: Cost per Area ── */}
+          <div style={{ fontSize: "16px", fontWeight: 700, color: T.text, marginTop: "32px", marginBottom: "12px", borderBottom: `1px solid ${T.border}`, paddingBottom: "8px" }}>
+            💶 Cost per Area: Surprisingly Competitive
+          </div>
+
+          <InflatableCostChart isMobile={isMobile} />
+
+          <Prose>
+            Here's where it gets interesting. You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot €/m² against thickness for the same 10–16cm range, inflatable pads land right in the middle of the foam pack. They're not the cheapest option, but they're far from the most expensive either.
+          </Prose>
+
+          <Prose>
+            Compare this to the weight chart above: inflatables shatter the trendline on kg/m² but sit comfortably within it on €/m². That means you're getting a dramatically lighter pad at a very normal price per square meter of landing zone. The value proposition becomes even clearer when you factor in the dual-use potential — your crashpad doubles as a sleeping mat, pool float, and van insulation.
+          </Prose>
+
+          <KeyInsight color={T.green}>
+            <strong>Price-to-weight ratio is where inflatables win big.</strong> You're paying a standard €/m² but getting roughly half the weight. In other words, the air-chamber technology doesn't cost extra — it just delivers the same landing area in a much lighter, more packable package. That's genuinely rare in climbing gear, where lighter almost always means more expensive.
           </KeyInsight>
 
           {/* ── Section: Packed Size ── */}
