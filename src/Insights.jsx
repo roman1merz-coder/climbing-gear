@@ -224,9 +224,9 @@ export default function Insights() {
     const hash = location.hash?.replace("#", "");
     if (!hash) return;
     const timer = setTimeout(() => {
-      const target = hash === "ropes" ? art2Ref.current : hash === "crashpads" ? art1Ref.current : null;
+      const target = hash === "ropes" ? art2Ref.current : hash === "crashpads" ? art1Ref.current : document.getElementById(hash);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+    }, 500);
     return () => clearTimeout(timer);
   }, [location.hash]);
 
