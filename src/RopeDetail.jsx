@@ -542,6 +542,20 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
           </div>
         )}
       </div>
+
+      {/* Legal disclaimer */}
+      <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", color: T.muted, lineHeight: 1.7, fontFamily: T.font, margin: 0, maxWidth: "800px" }}>
+            <strong style={{ color: T.muted, fontWeight: 600 }}>Disclaimer:</strong>{" "}
+            Climbing ropes are life-safety equipment. Always inspect your rope before each use and retire it according to the manufacturer{"\u2019"}s guidelines.
+            Specifications, prices, and availability on this site are for informational comparison only and may change without notice.
+            This site may contain affiliate links {"\u2014"} purchases through these links may earn us a commission at no extra cost to you.
+            Product data is sourced from manufacturers and retailers. Always verify details with the retailer before purchasing.
+          </p>
+        </div>
+      </div>
+
     </div>
   );
 }

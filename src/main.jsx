@@ -43,8 +43,16 @@ import { useState, useEffect, useLayoutEffect } from "react";
 
 import { supabaseFetch } from "./supabase.js";
 
+// Exclude internal-only columns from public queries to avoid leaking
+// editorial metadata (admin_flags, data_confidence) to the client.
+// If you add a sensitive column to any table, add it here too.
+const INTERNAL_COLS = ["admin_flags", "data_confidence"];
 async function supabaseSelect(table) {
-  return supabaseFetch(`/rest/v1/${table}?select=*`);
+  return supabaseFetch(`/rest/v1/${table}?select=*`)
+    .then(rows => rows.map(r => {
+      for (const col of INTERNAL_COLS) delete r[col];
+      return r;
+    }));
 }
 
 // Seed data — Vite imports JSON natively.
@@ -57,11 +65,7 @@ import CRASHPAD_SEED from "./crashpad_seed_data.json";
 // Populated by api/fetch-prices.js cron (SerpApi → Supabase)
 async function fetchLivePrices() {
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/prices?select=*&order=price_eur`, {
-      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
-    });
-    if (!res.ok) return {};
-    const rows = await res.json();
+    const rows = await supabaseFetch("/rest/v1/prices?select=shoe_slug,retailer,price_eur,old_price_eur,product_url,in_stock,delivery&order=price_eur");
     // Group by shoe_slug → array of {shop, price, url, inStock, ...}
     const grouped = {};
     for (const r of rows) {
@@ -82,12 +86,7 @@ async function fetchLivePrices() {
 
 async function fetchPriceHistory() {
   try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/price_history?select=shoe_slug,price_eur,recorded_at&order=recorded_at`,
-      { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } },
-    );
-    if (!res.ok) return {};
-    const rows = await res.json();
+    const rows = await supabaseFetch("/rest/v1/price_history?select=shoe_slug,price_eur,recorded_at&order=recorded_at");
     const grouped = {};
     for (const r of rows) {
       if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
@@ -360,6 +359,7 @@ function Root() {
               <Route path="/about" element={<About />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
+              <Route path="/terms" element={<Legal />} />
             </Routes>
             <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} />
             <Footer />

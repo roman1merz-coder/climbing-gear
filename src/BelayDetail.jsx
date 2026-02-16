@@ -578,6 +578,20 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
           </div>
         )}
       </div>
+
+      {/* Legal disclaimer */}
+      <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p style={{ fontSize: "11px", color: T.muted, lineHeight: 1.7, fontFamily: T.font, margin: 0, maxWidth: "800px" }}>
+            <strong style={{ color: T.muted, fontWeight: 600 }}>Disclaimer:</strong>{" "}
+            Belay devices are life-safety equipment. Proper training is essential {"\u2014"} always learn correct usage from a qualified instructor before belaying.
+            Specifications, prices, and availability on this site are for informational comparison only and may change without notice.
+            This site may contain affiliate links {"\u2014"} purchases through these links may earn us a commission at no extra cost to you.
+            Product data is sourced from manufacturers and retailers. Always verify compatibility with your rope and harness before purchasing.
+          </p>
+        </div>
+      </div>
+
     </div>
   );
 }

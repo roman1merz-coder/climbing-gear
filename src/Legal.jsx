@@ -109,13 +109,63 @@ function PrivacyPolicy() {
   );
 }
 
+function TermsOfService() {
+  return (
+    <>
+      <h1 style={S.h1}>Nutzungsbedingungen</h1>
+      <p style={S.subtitle}>Terms of Service</p>
+
+      <h2 style={S.h2}>1. Geltungsbereich</h2>
+      <p style={S.p}>
+        {"Diese Nutzungsbedingungen gelten f\u00fcr die Nutzung der Website climbing-gear.com, betrieben von Roman Merz. Mit dem Zugriff auf diese Website erkl\u00e4ren Sie sich mit diesen Bedingungen einverstanden."}
+      </p>
+
+      <h2 style={S.h2}>2. Informationszweck</h2>
+      <p style={S.p}>
+        {"Alle auf dieser Website bereitgestellten Daten \u2014 einschlie\u00dflich Produktspezifikationen, Bewertungen, Scores, Gr\u00f6\u00dfentabellen und Preise \u2014 dienen ausschlie\u00dflich zu Informations- und Vergleichszwecken. Sie stellen keine Kaufempfehlung, Sicherheitsberatung oder fachliche Beratung dar."}
+      </p>
+
+      <h2 style={S.h2}>3. Kein Ersatz f{"\u00fc"}r Fachberatung</h2>
+      <p style={S.p}>
+        {"Klettern ist eine inh\u00e4rent gef\u00e4hrliche Aktivit\u00e4t. Die auf dieser Website dargestellten Informationen ersetzen nicht die fachgerechte Einweisung durch qualifizierte Trainer, die professionelle Anpassung von Ausr\u00fcstung oder die Herstelleranweisungen. Verwenden Sie stets zertifizierte Ausr\u00fcstung (UIAA/EN) und pr\u00fcfen Sie Ihre Ausr\u00fcstung vor jedem Gebrauch."}
+      </p>
+
+      <h2 style={S.h2}>4. Haftungsbeschr{"\u00e4"}nkung</h2>
+      <p style={S.p}>
+        {"Die Nutzung der Website und aller bereitgestellten Informationen erfolgt auf eigenes Risiko. Der Betreiber \u00fcbernimmt keine Haftung f\u00fcr Sch\u00e4den, die aus der Nutzung oder dem Vertrauen auf die bereitgestellten Informationen entstehen \u2014 einschlie\u00dflich, aber nicht beschr\u00e4nkt auf Fehlk\u00e4ufe, Verletzungen oder Folgesch\u00e4den. Die auf der Website angezeigten Preise und Verf\u00fcgbarkeiten k\u00f6nnen von den tats\u00e4chlichen Angaben der H\u00e4ndler abweichen."}
+      </p>
+
+      <h2 style={S.h2}>5. Bewertungen und Scores</h2>
+      <p style={S.p}>
+        {"Alle Scores und Bewertungen sind algorithmische Sch\u00e4tzungen auf Basis \u00f6ffentlich verf\u00fcgbarer Herstellerangaben. Sie sind markenneutral und dienen als Orientierungshilfe. Individuelle Pr\u00e4ferenzen, K\u00f6rperma\u00dfe und Einsatzzwecke k\u00f6nnen zu abweichenden Erfahrungen f\u00fchren."}
+      </p>
+
+      <h2 style={S.h2}>6. Geistiges Eigentum</h2>
+      <p style={S.p}>
+        {"Produktbilder stammen von den jeweiligen Herstellern und werden zu Informationszwecken im Rahmen der Produktvorstellung verwendet. Alle sonstigen Inhalte (Texte, Scores, Algorithmen, Design) sind Eigentum von climbing-gear.com und d\u00fcrfen ohne Genehmigung nicht reproduziert werden."}
+      </p>
+
+      <h2 style={S.h2}>{"7. \u00c4nderungen"}</h2>
+      <p style={S.p}>
+        {"Wir behalten uns vor, diese Nutzungsbedingungen jederzeit zu \u00e4ndern. Die jeweils aktuelle Version ist auf dieser Seite einsehbar."}
+      </p>
+
+      <p style={{ ...S.p, marginTop: "32px", fontStyle: "italic" }}>Stand: Februar 2026</p>
+    </>
+  );
+}
+
 export default function Legal() {
   const location = useLocation();
   const isPrivacy = location.pathname === "/privacy";
-  usePageMeta(
-    isPrivacy ? "Privacy Policy" : "Impressum",
-    isPrivacy ? "Datenschutzerklärung — Privacy policy for climbing-gear.com" : "Legal notice (Impressum) for climbing-gear.com per § 5 TMG."
-  );
+  const isTerms = location.pathname === "/terms";
+  const title = isTerms ? "Terms of Service" : isPrivacy ? "Privacy Policy" : "Impressum";
+  const desc = isTerms
+    ? "Nutzungsbedingungen — Terms of Service for climbing-gear.com"
+    : isPrivacy
+    ? "Datenschutzerklärung — Privacy policy for climbing-gear.com"
+    : "Legal notice (Impressum) for climbing-gear.com per § 5 TMG.";
+  usePageMeta(title, desc);
 
   return (
     <div style={S.page}>
@@ -123,7 +173,7 @@ export default function Legal() {
         <Link to="/" style={S.back}>{"\u2190"} Home</Link>
       </header>
       <div style={S.wrap}>
-        {isPrivacy ? <PrivacyPolicy /> : <Impressum />}
+        {isTerms ? <TermsOfService /> : isPrivacy ? <PrivacyPolicy /> : <Impressum />}
       </div>
     </div>
   );

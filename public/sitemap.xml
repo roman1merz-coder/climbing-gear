@@ -49,6 +49,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.vercel.app/terms</loc>
+    <lastmod>2026-02-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.vercel.app/impressum</loc>
     <lastmod>2026-02-16</lastmod>
     <changefreq>yearly</changefreq>
