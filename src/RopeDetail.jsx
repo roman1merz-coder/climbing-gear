@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
+import usePageMeta from "./usePageMeta.js";
 import useIsMobile from "./useIsMobile.js";
 
 /** Image with graceful fallback on 404 */
@@ -122,6 +123,10 @@ function RopeSVGDetail({ color1, color2, diameter, ropeType }) {
 export default function RopeDetail({ ropes = [], priceData = {} }) {
   const { slug } = useParams();
   const rope = ropes.find((r) => r.slug === slug);
+  usePageMeta(
+    rope ? `${rope.brand} ${rope.model} — Rope Specs & Prices` : null,
+    rope ? `${rope.brand} ${rope.model}: diameter, weight, falls rated, elongation, and retailer price comparison.` : null
+  );
   const [selectedLength, setSelectedLength] = useState(null);
   const [activeTab, setActiveTab] = useState("overview");
   const isMobile = useIsMobile();

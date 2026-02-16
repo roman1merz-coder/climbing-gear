@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import useIsMobile from "./useIsMobile.js";
+import usePageMeta from "./usePageMeta.js";
 
 const S = {
   page: { minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text },
@@ -102,6 +103,7 @@ function AttrCard({ name, icon, children }) {
 
 /* ─── Full Methodology Page ─── */
 export default function Methodology() {
+  usePageMeta("Methodology", "How climbing-gear.com scores and ranks climbing shoes: our 10-axis performance model, data sources, and scoring algorithms.");
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
+import usePageMeta from "./usePageMeta.js";
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -384,6 +385,7 @@ function InflatableSpecTable({ isMobile }) {
    MAIN GEAR NEWS PAGE
    ═══════════════════════════════════════════════════════════════ */
 export default function GearNews() {
+  usePageMeta("Gear News", "Latest climbing gear news: new product releases, industry trends, and gear updates.");
   const isMobile = useIsMobile();
   const maxW = "820px";
   const section = {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import usePageMeta from "./usePageMeta.js";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 
@@ -158,6 +159,7 @@ function SuggestionHub() {
 // LANDING PAGE
 // ═══════════════════════════════════════════════════════════════
 export default function Landing() {
+  usePageMeta(null, null);
   const isMobile = useIsMobile();
   const pad = isMobile ? "20px 16px" : "0 32px";
   const [showMore, setShowMore] = useState(false);

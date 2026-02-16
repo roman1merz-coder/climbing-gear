@@ -5,6 +5,7 @@ import { fmt, cap, ensureArray } from "./utils/format.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport, getPercentileScores } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
+import usePageMeta from "./usePageMeta.js";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
@@ -773,6 +774,10 @@ const USE_CASE_TAG_VARIANT = {
 export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [] }) {
   const { slug } = useParams();
   const shoe = shoes.find(s => s.slug === slug);
+  usePageMeta(
+    shoe ? `${shoe.brand} ${shoe.model} — Specs, Scores & Prices` : null,
+    shoe ? `${shoe.brand} ${shoe.model} climbing shoe: detailed specs, 10-axis performance profile, and price comparison.` : null
+  );
   if (!shoe) {
     return (
       <div style={{ minHeight: "100vh", background: T.bg, padding: "40px", fontFamily: T.font }}>

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useWL } from "./WishlistContext.jsx";
 import useIsMobile from "./useIsMobile.js";
 import { T } from "./tokens.js";
+import usePageMeta from "./usePageMeta.js";
 
 const S = {
   page: {
@@ -41,6 +42,7 @@ function slug2label(slug) {
 }
 
 export default function Wishlist() {
+  usePageMeta("My Wishlist", "Your saved climbing gear wishlist on climbing-gear.com.");
   const { items, toggle, clear } = useWL();
   const navigate = useNavigate();
   const isMobile = useIsMobile();

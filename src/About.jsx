@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
+import usePageMeta from "./usePageMeta.js";
 
 const S = {
   page: { minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text },
@@ -158,6 +159,7 @@ function Principle({ icon, title, description }) {
 
 // ═══ ABOUT PAGE ═══
 export default function About() {
+  usePageMeta("About", "About climbing-gear.com: our mission, methodology, and the team behind the data-driven climbing gear comparison platform.");
   return (
     <div style={S.page}>
       <header style={S.header}>

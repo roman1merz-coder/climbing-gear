@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
+import usePageMeta from "./usePageMeta.js";
 import useIsMobile from "./useIsMobile.js";
 
 /** Image with graceful fallback on 404 */
@@ -180,6 +181,10 @@ function Tag({ label, variant = "default" }) {
 export default function BelayDetail({ belays = [], priceData = {} }) {
   const { slug } = useParams();
   const d = belays.find((b) => b.slug === slug);
+  usePageMeta(
+    d ? `${d.brand} ${d.model} — Belay Device Specs` : null,
+    d ? `${d.brand} ${d.model}: weight, rope compatibility, safety features, and price comparison.` : null
+  );
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 

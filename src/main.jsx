@@ -25,6 +25,7 @@ import { WishlistProvider } from "./WishlistContext.jsx";
 import { PriceAlertProvider } from "./PriceAlertContext.jsx";
 import Wishlist from "./Wishlist.jsx";
 import { T, GLOBAL_CSS } from "./tokens.js";
+import CookieConsent from "./CookieConsent.jsx";
 
 // ─── Data Bridge ─────────────────────────────────────────────
 // Both App (list) and ShoeDetail (detail) need access to shoes.
@@ -365,6 +366,7 @@ function Root() {
             <Footer />
             <ScrollUpButton />
             <FeedbackFAB />
+            <CookieConsent />
           </BrowserRouter>
         </CompareProvider>
         </PriceAlertProvider>

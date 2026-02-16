@@ -10,6 +10,7 @@ import { useWL } from "./WishlistContext.jsx";
 import { useCompare } from "./CompareContext.jsx";
 import { ScoringDisclaimer } from "./Methodology.jsx";
 import ShoeScatterChart from "./ShoeScatterChart.jsx";
+import usePageMeta from "./usePageMeta.js";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -763,6 +764,7 @@ function Card({ shoe, onClick, priceData, compact }) {
 const SESSION_ID = String(Date.now());
 
 export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {}, filters: extFilters, setFilters: extSetFilters, query: extQuery, setQuery: extSetQuery }) {
+  usePageMeta("Climbing Shoes — Compare 340+ Models", "Find the perfect climbing shoe. Compare specs, prices, and performance scores across 340+ models from La Sportiva, Scarpa, Evolv, and more.");
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();

@@ -4,6 +4,7 @@ import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
 import CrashpadScatterChart from "./CrashpadScatterChart.jsx";
 import RopeScatterChart from "./RopeScatterChart.jsx";
+import usePageMeta from "./usePageMeta.js";
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -211,6 +212,7 @@ const INFLATABLE_PADS = CRASHPAD_SEED
    MAIN INSIGHTS PAGE
    ═══════════════════════════════════════════════════════════════ */
 export default function Insights() {
+  usePageMeta("Gear Insights", "Data-driven insights from comparing every climbing product side by side. Discover trends, outliers, and surprising facts about climbing gear.");
   const isMobile = useIsMobile();
   const maxW = "820px";
   const art1Ref = useRef(null);

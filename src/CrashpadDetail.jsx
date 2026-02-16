@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
+import usePageMeta from "./usePageMeta.js";
 import useIsMobile from "./useIsMobile.js";
 
 // ─── Design Tokens ───────────────────────────────────────────────
@@ -351,6 +352,10 @@ function PriceComparison({ prices, compact, pad }) {
 export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const { slug } = useParams();
   const pad = crashpads.find((p) => p.slug === slug);
+  usePageMeta(
+    pad ? `${pad.brand} ${pad.model} — Crashpad Specs` : null,
+    pad ? `${pad.brand} ${pad.model}: dimensions, weight, foam type, and price comparison.` : null
+  );
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 

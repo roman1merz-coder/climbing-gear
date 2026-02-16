@@ -16,6 +16,7 @@
 import { useState, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { T } from "./tokens.js";
+import usePageMeta from "./usePageMeta.js";
 import { getPercentileScores } from "./utils/comfort.js";
 
 // ── Radar chart as inline SVG ──
@@ -288,6 +289,7 @@ const S = {
 
 // ═══ MAIN COMPONENT ═══
 export default function Compare({ shoes = [] }) {
+  usePageMeta("Compare Climbing Shoes", "Side-by-side comparison of climbing shoes. Compare specs, performance profiles, and prices for up to 4 shoes.");
   const [searchParams] = useSearchParams();
   const [showOverlay, setShowOverlay] = useState(false);
 

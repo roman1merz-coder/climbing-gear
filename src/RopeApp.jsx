@@ -7,6 +7,7 @@ import { sortItems, SortDropdownGeneric, SORT_OPTIONS_GENERIC } from "./sorting.
 import CompareCheckbox from "./CompareCheckbox.jsx";
 import { useWL } from "./WishlistContext.jsx";
 import { useCompare } from "./CompareContext.jsx";
+import usePageMeta from "./usePageMeta.js";
 
 // ─── SVG icons for action bar ───
 const HeartSVG = ({ filled, size = 16 }) => (
@@ -776,6 +777,7 @@ function loadRopeSession() {
 }
 
 export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
+  usePageMeta("Climbing Ropes — Compare 150+ Models", "Compare dynamic, static, half, and twin ropes. Filter by diameter, weight, falls rated, and dry treatment across all major brands.");
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();

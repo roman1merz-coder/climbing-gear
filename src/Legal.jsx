@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { T } from "./tokens.js";
+import usePageMeta from "./usePageMeta.js";
 
 const S = {
   page: { minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text },
@@ -111,6 +112,10 @@ function PrivacyPolicy() {
 export default function Legal() {
   const location = useLocation();
   const isPrivacy = location.pathname === "/privacy";
+  usePageMeta(
+    isPrivacy ? "Privacy Policy" : "Impressum",
+    isPrivacy ? "Datenschutzerklärung — Privacy policy for climbing-gear.com" : "Legal notice (Impressum) for climbing-gear.com per § 5 TMG."
+  );
 
   return (
     <div style={S.page}>
