@@ -162,12 +162,13 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     filteredPads.forEach((d, i) => {
       if (d === hovered) return;
       const r = isMobile ? Math.max(4.5, Math.min(8, d.area * 4)) : Math.max(3.5, Math.min(7, d.area * 3.5));
-      const j = jitter(i);
+      const isHL = hlSet.size > 0 && hlSet.has(d.slug);
+      const j = isHL ? { dx: 0, dy: 0 } : jitter(i); // no jitter on highlighted dots
       jMap.set(d.slug, j);
       const px = sx(Math.max(xMin, Math.min(xMax, d[xField]))) + j.dx;
       const py = sy(Math.max(yMin, Math.min(yMax, d[yField]))) + j.dy;
       pixelPts.push({ px, py });
-      if (hlSet.size > 0 && hlSet.has(d.slug)) {
+      if (isHL) {
         hlDots.push({ d, px, py, r }); // defer highlighted dots
       } else {
         drawDot(ctx, px, py, r, hlSet.size > 0 ? "#4a5568" : getColor(d), false);
@@ -198,60 +199,25 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       const label = `${d.brand} ${d.model}`;
       const tw = ctx.measureText(label).width;
       const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
-      // Candidate positions: always anchored left or right of the dot, never centered over it
-      // Alternate preferred direction: even=above-right first, odd=below-right first
-      const gap = 18;
-      const rightX = px + r + gap, leftX = px - r - gap - boxW;
-      const aboveY = py - r - gap - boxH, belowY = py + r + gap, midY = py - boxH / 2;
-      const farAboveY = py - boxH - gap * 3, farBelowY = py + gap * 3;
-      const baseCandidates = hlIdx % 2 === 0 ? [
-        { bx: rightX, by: aboveY },     // above-right (preferred for even)
-        { bx: rightX, by: midY },         // right
-        { bx: rightX, by: belowY },       // below-right
-        { bx: leftX,  by: aboveY },       // above-left
-        { bx: leftX,  by: midY },         // left
-        { bx: leftX,  by: belowY },       // below-left
-        { bx: rightX, by: farAboveY },    // far above-right
-        { bx: leftX,  by: farAboveY },    // far above-left
-        { bx: rightX, by: farBelowY },    // far below-right
-        { bx: leftX,  by: farBelowY },    // far below-left
-      ] : [
-        { bx: rightX, by: belowY },       // below-right (preferred for odd)
-        { bx: rightX, by: midY },         // right
-        { bx: rightX, by: aboveY },       // above-right
-        { bx: leftX,  by: belowY },       // below-left
-        { bx: leftX,  by: midY },         // left
-        { bx: leftX,  by: aboveY },       // above-left
-        { bx: rightX, by: farBelowY },    // far below-right
-        { bx: leftX,  by: farBelowY },    // far below-left
-        { bx: rightX, by: farAboveY },    // far above-right
-        { bx: leftX,  by: farAboveY },    // far above-left
+      // Simple: place label to the right of the dot, snug against it
+      const gap = 6;
+      const candidates = [
+        { bx: px + r + gap,           by: py - boxH / 2 },       // right
+        { bx: px + r + gap,           by: py - boxH - gap },     // above-right
+        { bx: px + r + gap,           by: py + gap },             // below-right
+        { bx: px - r - gap - boxW,    by: py - boxH / 2 },       // left
+        { bx: px - r - gap - boxW,    by: py - boxH - gap },     // above-left
+        { bx: px - r - gap - boxW,    by: py + gap },             // below-left
       ];
-      const candidates = baseCandidates;
       const rectsOverlap = (a, b) => !(a.x + a.w < b.x || a.x > b.x + b.w || a.y + a.h < b.y || a.y > b.y + b.h);
-      let best = null;
+      let best = candidates[hlIdx % 2 === 0 ? 0 : 3]; // default: even=right, odd=left
       for (const c of candidates) {
         const rect = { x: c.bx, y: c.by, w: boxW, h: boxH };
         if (!labelBoxes.some(b => rectsOverlap(rect, b))) { best = c; break; }
       }
-      // If all positions overlap, nudge vertically until clear
-      if (!best) {
-        best = candidates[0];
-        let nudge = 0;
-        for (let step = 1; step <= 8; step++) {
-          const up = { x: candidates[0].bx, y: candidates[0].by - step * (boxH + 4), w: boxW, h: boxH };
-          if (!labelBoxes.some(b => rectsOverlap(up, b))) { best = { bx: up.x, by: up.y }; nudge = step; break; }
-          const dn = { x: candidates[0].bx, y: candidates[0].by + step * (boxH + 4), w: boxW, h: boxH };
-          if (!labelBoxes.some(b => rectsOverlap(dn, b))) { best = { bx: dn.x, by: dn.y }; nudge = step; break; }
-        }
-      }
       const box = { x: best.bx, y: best.by, w: boxW, h: boxH };
       labelBoxes.push(box);
-      // Connector line from dot to label edge
-      const labelCx = box.x + box.w / 2, labelCy = box.y + box.h / 2;
-      ctx.strokeStyle = "rgba(234,179,8,0.5)"; ctx.lineWidth = 1.5;
-      ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(labelCx, labelCy); ctx.stroke(); ctx.setLineDash([]);
-      // Label background (manual rounded rect for compatibility)
+      // Label background
       const brd = 4;
       ctx.fillStyle = "rgba(12,14,22,0.96)";
       ctx.beginPath();
@@ -266,9 +232,9 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       ctx.quadraticCurveTo(box.x, box.y, box.x + brd, box.y);
       ctx.closePath(); ctx.fill();
       // Gold border
-      ctx.strokeStyle = "rgba(234,179,8,0.6)"; ctx.lineWidth = 1.5;
+      ctx.strokeStyle = "rgba(234,179,8,0.6)"; ctx.lineWidth = 1;
       ctx.stroke();
-      // Label text — bright yellow for readability
+      // Label text
       ctx.fillStyle = "#fde68a";
       ctx.fillText(label, box.x + padX, box.y + padY);
     });
