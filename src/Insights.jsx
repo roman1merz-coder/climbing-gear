@@ -489,40 +489,56 @@ export default function Insights() {
             Foam layers tell a clear story: each additional layer adds roughly €40–50 to the street price. The jump from 3 to 4 layers is the steepest — a 54% price increase for what amounts to marginal impact-absorption gains. For most boulderers on standard 3–4m problems, 2–3 foam layers are more than sufficient.
           </Prose>
         </section>
-        {/* ═══ ARTICLE 2: The Rope Sweet Spot ═══ */}
+        {/* ═══ ARTICLE 2: Rope Cost vs Performance vs Safety ═══ */}
         <section style={sectionStyle}>
           <ArticleHeader
             number={2}
             icon="🧵"
-            title="The 9.5–9.8mm Sweet Spot: 106 Ropes Expose the Best Value Band"
-            subtitle="106 single-certified ropes reveal a steady performance curve — and one diameter range where competition delivers the best deals."
+            title="Does Spending More Buy a Safer Rope? 106 Ropes Say: It's Complicated"
+            subtitle="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions — and exposes what specs can't tell you."
           />
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-            <StatCard label="Most Models" value="9.6–9.8" sub="31 ropes — fiercest competition" color={T.accent} />
-            <StatCard label="Best Balance" value="8.0 falls" sub="62 g/m avg in sweet spot" color={T.blue} />
-            <StatCard label="Gym Territory" value="≥11.0mm" sub="13.8 falls, 75 g/m — tanks" color={T.yellow} />
+            <StatCard label="Correlation" value="–0.44" sub="cost ↑ = falls ↓ (counterintuitive)" color={T.red} />
+            <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
+            <StatCard label="Best Band" value="9.5–9.8" sub="31 models — fiercest competition" color={T.accent} />
           </div>
 
           <Prose>
-            Analyzing 106 single-certified ropes — excluding half and twin ropes that use a lighter 55kg test mass — reveals no dramatic "cliff" or threshold. Instead, durability climbs steadily with diameter: from 4.8 avg falls at ≤8.7mm up to 13.8 at ≥11.0mm. The real insight isn't where a threshold lies, but where the market concentrates — and that tells you where the best deals are.
+            Here's the uncomfortable truth: across 106 single-certified ropes, spending more per gram of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is actually negative (r = –0.44). Thin, expensive alpine ropes at ≤8.9mm average 5.4 UIAA falls at 6.8¢/g, while budget-friendly 10mm+ ropes deliver 10–14 falls at just 3.4–3.8¢/g. So where does the money go?
+          </Prose>
+
+          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
+
+          <KeyInsight color={T.green}>
+            <strong>You're paying for lightweight engineering, not durability.</strong> The premium on thin ropes funds R&D in sheath construction, dry treatments, and weight-optimized cores. A 70m rope at 48 g/m (≤8.9mm) weighs 3.4kg — versus 5.3kg at 75 g/m (≥11mm). On a long alpine route, that 1.9kg difference is real. But on a fall rating chart, the thick rope wins by a mile.
+          </KeyInsight>
+
+          <Prose>
+            This creates a genuine dilemma. The UIAA fall test is the one standardized, repeatable metric we have for rope durability. Every rope must survive at least 5 falls for certification — and most exceed that comfortably. But the test uses an 80kg mass, a 5.5m fall on 2.8m of rope (factor 1.78), and a sharp 10mm edge. It's a worst-case lab scenario, not a real-world climbing fall. A rope rated for 7 falls isn't "less safe" than one rated for 13 — it simply reaches the test threshold sooner under extreme, repeated abuse.
           </Prose>
 
           <RopeTeaserChart isMobile={isMobile} />
 
-          <KeyInsight color={T.green}>
-            <strong>The Sweet Spot (9.5–9.8mm):</strong> This band holds 31 of 106 ropes — nearly a third of the entire market. More models means fiercer price competition and more choice. Average durability here is 8.0 UIAA falls at 61.6 g/m — a solid all-round spec. Below 9.0mm you're in ultralight specialist territory (4.8–6.2 falls); above 10.0mm the weight penalty outpaces durability gains.
+          <KeyInsight>
+            <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds 31 of 106 models, nearly a third of the entire market. More models means fiercer price wars and more choice. Average: 8.0 UIAA falls, 62 g/m, and moderate pricing. Below 9.0mm you're in specialist alpine territory; above 10.0mm, weight climbs faster than durability.
           </KeyInsight>
 
           <Prose>
-            Toggle to "Weight" above and the steady climb is clear: from 48.5 g/m at ≤8.7mm to 75.5 g/m at ≥11.0mm. On a 70m rope, that's the difference between 3.4kg and 5.3kg — nearly 2kg extra in your pack. Meanwhile, the falls curve flattens above 9.5mm: going from 9.5mm to 10.0mm adds only 0.4 extra UIAA falls but 5 g/m more weight.
+            Switch the scatter chart above to "Falls/Weight vs ¢/g" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per gram. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. The Trango Agility 9.8 stands out — 0.20 falls per g/m at just 3.8¢/g. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
           </Prose>
 
-          <KeyInsight>
-            <strong>The Dry Treatment Signal:</strong> 100% of ropes below 9.0mm have dry treatment — these are alpine tools built for mountain weather. By 9.6–9.8mm, dry treatment drops to 65%. Above 10mm it's a coin flip. This clearly separates alpine ropes (thin, dry, light) from sport/gym ropes (thick, untreated, durable).
+          <KeyInsight color={T.blue}>
+            <strong>What the data can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably more relevant for day-to-day longevity than the number on the fall test. Unfortunately, these properties can only be assessed through real-world product testing over time, not from a spec sheet. Until the industry develops a standardized abrasion test, no database (including ours) can give you the full picture.
           </KeyInsight>
 
-          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
+          <Prose>
+            The dry treatment pattern tells its own story. 100% of ropes below 9.0mm ship with dry treatment — these are mountain tools built for ice, mixed routes, and alpine weather where a wet rope can lose up to 40% of its dynamic strength. By 9.6–9.8mm the dry-treatment rate drops to 65%; above 10mm it's a coin flip. Dry treatment adds a 37% price premium (avg €3.06/m vs €2.24/m untreated) — a meaningful cost that's justified if you climb in wet conditions, but potentially wasted money if your rope lives mostly at the sport crag.
+          </Prose>
+
+          <KeyInsight color={T.yellow}>
+            <strong>Our honest take:</strong> Don't chase fall ratings. Every certified rope is safe. Instead, pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. The real differentiator between similar ropes in the same class is sheath longevity and handling — and for that, you'll need hands-on experience or trusted reviews, not spec sheets.
+          </KeyInsight>
         </section>
 
         {/* ═══ ARTICLE 3: Vibram XS Grip vs XS Edge ═══ */}
