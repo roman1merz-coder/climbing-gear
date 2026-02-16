@@ -413,7 +413,7 @@ function InflatableChart({ isMobile }) {
   const p = { top: 30, right: 20, bottom: 44, left: 55 };
   const cw = W - p.left - p.right, ch = H - p.top - p.bottom;
 
-  const xMin = 9, xMax = 16, yMin = 0, yMax = 10;
+  const xMin = 9, xMax = 16, yMin = 0, yMax = 11;
   const sx = (v) => p.left + ((v - xMin) / (xMax - xMin)) * cw;
   const sy = (v) => p.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
 
@@ -572,20 +572,15 @@ function InflatableCostChart({ isMobile }) {
   const p = { top: 30, right: 20, bottom: 44, left: 60 };
   const cw = W - p.left - p.right, ch = H - p.top - p.bottom;
 
-  const xMin = 9, xMax = 16, yMin = 0, yMax = 450;
+  const xMin = 9, xMax = 16, yMin = 0, yMax = 720;
   const sx = (v) => p.left + ((v - xMin) / (xMax - xMin)) * cw;
   const sy = (v) => p.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
 
-  // Linear regression on foam pads only
   const foam = padsWithPrice.filter(d => !d.inflatable);
   const n = foam.length;
-  const sumX = foam.reduce((s, d) => s + d.thick, 0);
   const sumY = foam.reduce((s, d) => s + d.eur_m2, 0);
-  const sumXY = foam.reduce((s, d) => s + d.thick * d.eur_m2, 0);
-  const sumXX = foam.reduce((s, d) => s + d.thick * d.thick, 0);
-  const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
-  const intercept = (sumY - slope * sumX) / n;
 
+  // Foam average line (trendline slope is nearly zero, so avg is more honest)
   const avgFoamEur = foam.length > 0 ? Math.round(sumY / n) : 0;
   const avgInflatableEur = (() => {
     const inf = padsWithPrice.filter(d => d.inflatable);
@@ -609,7 +604,7 @@ function InflatableCostChart({ isMobile }) {
         <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}
           onClick={(e) => { if (e.target.tagName === "svg") setActive(null); }}>
           {/* Grid */}
-          {[0, 100, 200, 300, 400].map(v => (
+          {[0, 100, 200, 300, 400, 500, 600, 700].map(v => (
             <g key={`y${v}`}>
               <line x1={p.left} y1={sy(v)} x2={W - p.right} y2={sy(v)} stroke={T.border} strokeDasharray="3,3" opacity="0.5" />
               <text x={p.left - 8} y={sy(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">€{v}</text>
@@ -622,10 +617,17 @@ function InflatableCostChart({ isMobile }) {
             </g>
           ))}
 
-          {/* Trendline */}
-          <line x1={sx(xMin)} y1={sy(slope * xMin + intercept)} x2={sx(xMax)} y2={sy(slope * xMax + intercept)}
-            stroke={T.muted} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.5" />
-          <text x={sx(13)} y={sy(slope * 13 + intercept) - 8} fill={T.muted} fontSize="9" textAnchor="middle" fontWeight="600">Foam trend</text>
+          {/* Foam average line */}
+          <line x1={p.left} y1={sy(avgFoamEur)} x2={W - p.right} y2={sy(avgFoamEur)}
+            stroke={T.blue} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.4" />
+          <text x={W - p.right - 4} y={sy(avgFoamEur) - 6} fill={T.blue} fontSize="9" textAnchor="end" fontWeight="600" opacity="0.7">Foam avg €{avgFoamEur}/m²</text>
+
+          {/* Inflatable average line */}
+          {avgInflatableEur > 0 && <>
+            <line x1={p.left} y1={sy(avgInflatableEur)} x2={W - p.right} y2={sy(avgInflatableEur)}
+              stroke={T.yellow} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.5" />
+            <text x={p.left + 4} y={sy(avgInflatableEur) - 6} fill={T.yellow} fontSize="9" textAnchor="start" fontWeight="600" opacity="0.8">Inflatable avg €{avgInflatableEur}/m²</text>
+          </>}
 
           {/* Foam dots */}
           {foam.map((d, i) => {
@@ -900,15 +902,15 @@ export default function Insights() {
           <InflatableCostChart isMobile={isMobile} />
 
           <Prose>
-            Here's where it gets interesting. You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot €/m² against thickness for the same 10–16cm range, inflatable pads land right in the middle of the foam pack. They're not the cheapest option, but they're far from the most expensive either.
+            Here's where it gets really interesting. You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot €/m² against thickness for the same 10–16cm range, inflatable pads actually sit <em>below</em> the foam average. At €122–178/m², both inflatables undercut the foam average of ~€{Math.round(INFLATABLE_PADS.filter(d => !d.inflatable && d.eur_m2 > 0).reduce((s,d) => s + d.eur_m2, 0) / INFLATABLE_PADS.filter(d => !d.inflatable && d.eur_m2 > 0).length)}/m². You're not paying more for less weight — you're paying <em>less</em>.
           </Prose>
 
           <Prose>
-            Compare this to the weight chart above: inflatables shatter the trendline on kg/m² but sit comfortably within it on €/m². That means you're getting a dramatically lighter pad at a very normal price per square meter of landing zone. The value proposition becomes even clearer when you factor in the dual-use potential — your crashpad doubles as a sleeping mat, pool float, and van insulation.
+            Compare this to the weight chart above: inflatables shatter the trendline on kg/m² <em>and</em> come in cheaper per square meter than the average foam pad. That's an extraordinary combination in climbing gear, where lighter almost always means more expensive. The value proposition becomes even clearer when you factor in the dual-use potential — your crashpad doubles as a sleeping mat, pool float, and van insulation.
           </Prose>
 
           <KeyInsight color={T.green}>
-            <strong>Price-to-weight ratio is where inflatables win big.</strong> You're paying a standard €/m² but getting roughly half the weight. In other words, the air-chamber technology doesn't cost extra — it just delivers the same landing area in a much lighter, more packable package. That's genuinely rare in climbing gear, where lighter almost always means more expensive.
+            <strong>Better value by every metric.</strong> Inflatables deliver roughly half the weight at a below-average €/m². In other words, the air-chamber technology doesn't just save weight — it saves money per square meter of landing zone too. That's genuinely rare in climbing gear.
           </KeyInsight>
 
           {/* ── Section: Packed Size ── */}
