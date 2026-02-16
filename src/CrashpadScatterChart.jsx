@@ -55,12 +55,13 @@ const BRAND_LIST = [...new Set(PADS.map(d => d.brand))].sort();
 const BRAND_COLORS = Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]]));
 
 /* ─── Main Component ─── */
-export default function CrashpadScatterChart({ isMobile }) {
+export default function CrashpadScatterChart({ isMobile, highlightSlugs, initialMetric, compact }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
-  const [metric, setMetric] = useState("area_weight");
+  const [metric, setMetric] = useState(initialMetric || "area_weight");
   const [colorBy, setColorBy] = useState("layers");
+  const hlSet = useMemo(() => new Set(highlightSlugs || []), [highlightSlugs]);
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
   const jitterMapRef = useRef(new Map()); // slug → {dx, dy} for hit detection
@@ -145,6 +146,7 @@ export default function CrashpadScatterChart({ isMobile }) {
     // Dots with glow + jitter (area-based sizing preserved)
     const pixelPts = [];
     const jMap = new Map();
+    const hlDots = []; // highlighted dots drawn on top
     filteredPads.forEach((d, i) => {
       if (d === hovered) return;
       const r = isMobile ? Math.max(4.5, Math.min(8, d.area * 4)) : Math.max(3.5, Math.min(7, d.area * 3.5));
@@ -153,12 +155,43 @@ export default function CrashpadScatterChart({ isMobile }) {
       const px = sx(Math.max(xMin, Math.min(xMax, d[xField]))) + j.dx;
       const py = sy(Math.max(yMin, Math.min(yMax, d[yField]))) + j.dy;
       pixelPts.push({ px, py });
-      drawDot(ctx, px, py, r, getColor(d), false);
+      if (hlSet.size > 0 && hlSet.has(d.slug)) {
+        hlDots.push({ d, px, py, r }); // defer highlighted dots
+      } else {
+        drawDot(ctx, px, py, r, hlSet.size > 0 ? "#4a5568" : getColor(d), false);
+      }
     });
     jitterMapRef.current = jMap;
 
     // Cluster badges
     drawClusterBadges(ctx, pixelPts);
+
+    // Draw highlighted dots on top with glow + label
+    const HL_COLOR = "#eab308";
+    hlDots.forEach(({ d, px, py, r }) => {
+      // Outer glow ring
+      ctx.shadowColor = `rgba(234,179,8,0.5)`; ctx.shadowBlur = 16;
+      ctx.beginPath(); ctx.arc(px, py, r + 4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(234,179,8,0.25)`; ctx.fill();
+      ctx.shadowBlur = 0;
+      // White outline
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2); ctx.stroke();
+      // Solid dot
+      ctx.beginPath(); ctx.arc(px, py, r + 1, 0, Math.PI * 2);
+      ctx.fillStyle = HL_COLOR; ctx.fill();
+      // Label
+      const label = `${d.brand} ${d.model}`;
+      ctx.font = `bold ${isMobile ? 9 : 11}px Inter, system-ui, sans-serif`;
+      const tw = ctx.measureText(label).width;
+      const lx = px + r + 8;
+      const ly = py + 3;
+      // Background for label
+      ctx.fillStyle = "rgba(15,17,25,0.85)";
+      ctx.beginPath(); ctx.roundRect(lx - 4, ly - 10, tw + 8, 14, 3); ctx.fill();
+      ctx.fillStyle = HL_COLOR;
+      ctx.fillText(label, lx, ly);
+    });
 
     // Hovered dot on top
     if (hovered) {
@@ -167,7 +200,7 @@ export default function CrashpadScatterChart({ isMobile }) {
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
       drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
     }
-  }, [metric, colorBy, isMobile, cfg, getColor, filteredPads]);
+  }, [metric, colorBy, isMobile, cfg, getColor, filteredPads, hlSet]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -302,8 +335,8 @@ export default function CrashpadScatterChart({ isMobile }) {
         ))}
       </div>
 
-      {/* Color-by toggle + count */}
-      <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
+      {/* Color-by toggle + count — hidden in compact/highlight mode */}
+      {!compact && <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
         {(hiddenLayers.size > 0 || hiddenFolds.size > 0 || hiddenBrands.size > 0 || hiddenThickness.size > 0) && (
           <button onClick={() => { setHiddenLayers(new Set()); setHiddenFolds(new Set()); setHiddenBrands(new Set()); setHiddenThickness(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
@@ -318,7 +351,18 @@ export default function CrashpadScatterChart({ isMobile }) {
           }}>{{ layers: "Foam Layers", fold: "Fold Style", thickness: "Thickness", brand: "Brand" }[k]}</button>
         ))}
         <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filteredPads.length} shown</span>
-      </div>
+      </div>}
+      {compact && hlSet.size > 0 && (
+        <div style={{ display: "flex", gap: "10px", marginBottom: "10px", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", color: T.muted }}>
+            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#4a5568", display: "inline-block" }} /> Foam pads
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", color: "#eab308", fontWeight: 600 }}>
+            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#eab308", display: "inline-block", boxShadow: "0 0 6px rgba(234,179,8,0.5)" }} /> Inflatable
+          </span>
+          <span style={{ fontSize: "10px", color: T.muted }}>{filteredPads.length} pads</span>
+        </div>
+      )}
 
       {/* Canvas */}
       <div style={{ width: "100%", overflow: "hidden" }}>
@@ -356,8 +400,8 @@ export default function CrashpadScatterChart({ isMobile }) {
         </BottomSheet>
       )}
 
-      {/* Legends */}
-      {colorBy === "layers" && (
+      {/* Legends — hidden in compact mode */}
+      {!compact && colorBy === "layers" && (
         layerKeys.length > 5 ? (
           <LegendRow
             items={layerKeys.map(l => ({ key: l, color: LAYER_COLORS[l] || "#94a3b8", label: `${l} layer${l !== 1 ? "s" : ""}` }))}
@@ -375,7 +419,7 @@ export default function CrashpadScatterChart({ isMobile }) {
         )
       )}
 
-      {colorBy === "fold" && (
+      {!compact && colorBy === "fold" && (
         foldKeys.length > 5 ? (
           <LegendRow
             items={foldKeys.map(k => ({ key: k, color: FOLD_COLORS[k] || "#6b7280", label: k.replace("_", "-") }))}
@@ -393,7 +437,7 @@ export default function CrashpadScatterChart({ isMobile }) {
         )
       )}
 
-      {colorBy === "thickness" && (
+      {!compact && colorBy === "thickness" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
           {THICK_GROUPS.map(g => (
             <Pill key={g.key} color={g.color} label={g.label}
@@ -402,7 +446,7 @@ export default function CrashpadScatterChart({ isMobile }) {
         </div>
       )}
 
-      {colorBy === "brand" && (
+      {!compact && colorBy === "brand" && (
         <LegendRow
           items={BRAND_LIST.map(b => ({ key: b, color: BRAND_COLORS[b], label: b }))}
           hiddenSet={hiddenBrands}
