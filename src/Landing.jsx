@@ -154,26 +154,13 @@ function SuggestionHub() {
   );
 }
 
-// ─── Principle card ───
-function Principle({ icon, title, description }) {
-  return (
-    <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "10px", padding: "20px", transition: "border-color 0.2s" }}
-      onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.3)"}
-      onMouseOut={e => e.currentTarget.style.borderColor = T.border}
-    >
-      <div style={{ fontSize: "20px", marginBottom: "10px" }}>{icon}</div>
-      <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "6px" }}>{title}</div>
-      <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.7 }}>{description}</div>
-    </div>
-  );
-}
-
 // ═══════════════════════════════════════════════════════════════
 // LANDING PAGE
 // ═══════════════════════════════════════════════════════════════
 export default function Landing() {
   const isMobile = useIsMobile();
   const pad = isMobile ? "20px 16px" : "0 32px";
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
@@ -194,159 +181,68 @@ export default function Landing() {
           Gear Selectors
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "14px" }}>
-          <GearCard
-            icon={"\u{1F45F}"} title="Shoe Selector" to="/shoes" active
-            description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking."
-          />
-          <GearCard
-            icon={"\u{1FA22}"} title="Rope Selector" to="/ropes" active
-            description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands."
-          />
-          <GearCard
-            icon={"\u{1F517}"} title="Belay Device Selector" to="/belays" active
-            description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price."
-          />
-          <GearCard
-            icon={"\u{1F9FB}"} title="Crashpad Selector" to="/crashpads" active
-            description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability."
-          />
-          <GearCard
-            icon={"\u{26D1}"} title="Helmet Selector"
-            description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability."
-          />
-          <GearCard
-            icon={"\u{1F4CE}"} title="Quickdraw Selector"
-            description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design."
-          />
-          <GearCard
-            icon={"\u{1FA93}"} title="Harness Selector"
-            description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability."
-          />
-          <GearCard
-            icon={"\u{1F9D7}"} title="Pants Selector"
-            description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout."
-          />
-          <GearCard
-            icon={"\u{1F9E5}"} title="Jacket Selector"
-            description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability."
-          />
-          <div
-            onClick={() => { const el = document.getElementById("suggestion-hub"); if (el) el.scrollIntoView({ behavior: "smooth" }); }}
-            style={{
-            background: T.surface, border: `1px dashed ${T.border}`, borderRadius: "14px",
-            padding: isMobile ? "24px 20px" : "32px 28px",
-            display: "flex", flexDirection: "column", justifyContent: "center", gap: "10px",
-            cursor: "pointer", transition: "border-color 0.25s",
-          }}
-            onMouseOver={e => e.currentTarget.style.borderColor = T.accent}
-            onMouseOut={e => e.currentTarget.style.borderColor = T.border}
-          >
-            <div style={{ fontSize: "16px", fontWeight: 700, color: T.text }}>Other difficult gear decisions?</div>
-            <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>
-              Tell us what gear selector you'd like to see next.
-            </div>
-            <span style={{
-              display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, marginTop: "4px",
-            }}>
-              {"\u{1F4AC}"} Go to Suggestion Hub {"\u2193"}
-            </span>
-          </div>
+          <GearCard icon={"\u{1F45F}"} title="Shoe Selector" to="/shoes" active description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking." />
+          <GearCard icon={"\u{1FA22}"} title="Rope Selector" to="/ropes" active description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands." />
+          <GearCard icon={"\u{1F517}"} title="Belay Device Selector" to="/belays" active description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price." />
+          <GearCard icon={"\u{1F9FB}"} title="Crashpad Selector" to="/crashpads" active description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability." />
+          {showMore && <>
+            <GearCard icon={"\u{26D1}"} title="Helmet Selector" description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability." />
+            <GearCard icon={"\u{1F4CE}"} title="Quickdraw Selector" description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design." />
+            <GearCard icon={"\u{1FA93}"} title="Harness Selector" description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability." />
+            <GearCard icon={"\u{1F9D7}"} title="Pants Selector" description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout." />
+            <GearCard icon={"\u{1F9E5}"} title="Jacket Selector" description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability." />
+          </>}
         </div>
+        <button onClick={() => setShowMore(v => !v)} style={{
+          display: "flex", alignItems: "center", gap: "6px", margin: "16px auto 0", padding: "10px 20px",
+          background: "none", border: `1px solid ${T.border}`, borderRadius: "8px",
+          color: T.muted, fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: T.font, transition: "all 0.2s",
+        }}
+          onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.color = T.accent; }}
+          onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.muted; }}
+        >
+          {showMore ? "Show less" : "5 more selectors coming soon"} <span style={{ fontSize: "10px", transition: "transform 0.2s", transform: showMore ? "rotate(180deg)" : "rotate(0)" }}>{"\u25BC"}</span>
+        </button>
       </section>
 
       {/* ─── Content Hub ─── */}
       <section style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "48px 16px" : "64px 32px"} 0` }}>
-        <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
-          More from climbing-gear.com
-        </h2>
         <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
           <ContentCard
             icon={"\u{1F4CA}"} title="Gear Insights" color={T.purple} to="/insights"
             tagline="You'd be surprised what emerges when you compare every climbing product side by side. Data-driven insights no catalog can give you."
           />
-          <ContentCard
-            icon={"\u{1F4F0}"} title="Gear News" color={T.blue} to="/news"
-            tagline="Latest and greatest gear additions. New models, updated specs, and noteworthy releases across all categories."
-          />
-          <ContentCard
-            icon={"\u{1F525}"} title="Gear Deals" color={T.green}
-            tagline="Top deals discovered while updating our prices. Real discounts on quality gear, refreshed daily."
-          />
         </div>
       </section>
 
-      {/* ─── About (prominent) ─── */}
+      {/* ─── About (condensed) ─── */}
       <section id="about" style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "48px 16px" : "64px 32px"} 0` }}>
 
-        {/* About heading */}
-        <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <h2 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, letterSpacing: "-0.5px", margin: "0 0 16px" }}>
-            Built by climbers, for climbers.
-          </h2>
-          <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.8, maxWidth: "600px", margin: "0 auto" }}>
-            climbing-gear.com exists for one reason: so you can spend more time climbing
-            and less time researching your gear. We compare every model, every spec,
-            every price {"\u2014"} with zero brand bias and full transparency.
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div style={{ display: "flex", gap: "14px", marginBottom: "40px", flexWrap: "wrap", justifyContent: "center" }}>
+        {/* Stats strip */}
+        <div style={{ display: "flex", gap: "14px", marginBottom: "32px", flexWrap: "wrap", justifyContent: "center" }}>
           {[
             { icon: "\u{1F3AF}", number: "500+", label: "Products compared" },
             { icon: "\u{1F3EA}", number: "20+", label: "Retailers tracked" },
             { icon: "\u{1F3F7}", number: "Daily", label: "Price updates" },
             { icon: "\u{1F6AB}", number: "0", label: "Ads or sponsored rankings" },
           ].map(s => (
-            <div key={s.label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "10px", padding: "20px", textAlign: "center", flex: 1, minWidth: "120px" }}>
-              <div style={{ fontSize: "22px", marginBottom: "8px" }}>{s.icon}</div>
-              <div style={{ fontSize: "22px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{s.number}</div>
+            <div key={s.label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "10px", padding: "16px", textAlign: "center", flex: 1, minWidth: "110px" }}>
+              <div style={{ fontSize: "20px", marginBottom: "6px" }}>{s.icon}</div>
+              <div style={{ fontSize: "20px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{s.number}</div>
               <div style={{ fontSize: "11px", color: T.muted, marginTop: "4px" }}>{s.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Why this exists */}
-        <div style={{ maxWidth: "820px", margin: "0 auto 40px" }}>
-          <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px" }}>Why this exists</h3>
-          <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "16px" }}>
-            If you've ever spent hours comparing climbing shoes across different shops, reading
-            conflicting reviews, and wondering whether that "sale" is actually a good deal {"\u2014"} you know
-            the pain. I built this tool because I was tired of doing exactly that.
+        {/* Who + mission in one compact card */}
+        <div style={{ maxWidth: "820px", margin: "0 auto 32px", background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: isMobile ? "24px 20px" : "28px 32px", textAlign: "center" }}>
+          <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, maxWidth: "560px", margin: "0 auto 8px" }}>
+            Built by Roman {"\u2014"} a climber in Palatine, Germany {"\u2014"} because comparing gear across shops was taking
+            longer than the actual climbing. No brand partnerships, no sponsored rankings. Just data.
           </p>
-          <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "16px" }}>
-            This is a community project. There's no company behind it, no investors to
-            please, and no brand partnerships influencing what gets shown first. Every shoe gets the
-            same treatment. Every price is tracked the same way. The sorting algorithm doesn't care
-            who made the shoe.
-          </p>
-          <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8 }}>
-            This site uses affiliate links {"\u2014"} if you purchase through one, we may earn a small
-            commission at no extra cost to you. Affiliate links never influence rankings,
-            recommendations, or which retailers appear first. Transparency is the whole point here.
-          </p>
-        </div>
-
-        {/* Principles */}
-        <div style={{ maxWidth: "820px", margin: "0 auto 40px" }}>
-          <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px" }}>Our principles</h3>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
-            <Principle icon={"\u{2696}"} title="Brand neutral" description="No brand pays us, sponsors us, or gets preferential placement. Every shoe is evaluated on the same criteria." />
-            <Principle icon={"\u{1F3EA}"} title="Shop neutral" description="We track prices across all retailers equally. The cheapest price wins, regardless of which shop it comes from." />
-            <Principle icon={"\u{1F50D}"} title="Full transparency" description="Our price tracking, scoring algorithm, and data sources are not hidden. If something looks off, tell us and we'll fix it." />
-            <Principle icon={"\u{1F91D}"} title="Community-driven" description="This tool gets better with your feedback. Found wrong data? Have a feature idea? That's exactly what the suggestion hub below is for." />
-          </div>
-        </div>
-
-        {/* Who's behind this */}
-        <div style={{ maxWidth: "820px", margin: "0 auto 40px", background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: isMobile ? "28px 20px" : "36px 32px", textAlign: "center" }}>
-          <div style={{ fontSize: "32px", marginBottom: "14px" }}>{"\u{26F0}"}</div>
-          <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "10px" }}>Who's behind this?</h3>
-          <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.7, maxWidth: "520px", margin: "0 auto" }}>
-            Hi, I'm Roman {"\u2014"} a climber based in beautiful Palatine, Germany. I built climbing-gear.com
-            because I wanted the tool I couldn't find anywhere else. If you have questions or just want
-            to chat about climbing gear, drop me a line at{" "}
-            <a href="mailto:roman@climbing-gear.com" style={{ color: T.accent, textDecoration: "none" }}>roman@climbing-gear.com</a>.
+          <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, margin: "0 auto" }}>
+            Affiliate links help keep the lights on but never influence rankings.{" "}
+            <a href="mailto:roman@climbing-gear.com" style={{ color: T.accent, textDecoration: "none" }}>roman@climbing-gear.com</a>
           </p>
         </div>
 
@@ -354,9 +250,8 @@ export default function Landing() {
         <div id="suggestion-hub" style={{ maxWidth: "820px", margin: "0 auto 40px", scrollMarginTop: "70px" }}>
           <h3 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px" }}>Help make it better</h3>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "20px" }}>
-            This is an open project. If you notice incorrect data, have an idea for a feature, or just
-            want to say what's working (or not) {"\u2014"} We'd genuinely love to hear it. Every piece of
-            feedback shapes what gets built next.
+            Found wrong data, have a feature idea, or just want to say what's working?
+            Every piece of feedback shapes what gets built next.
           </p>
           <SuggestionHub />
         </div>
