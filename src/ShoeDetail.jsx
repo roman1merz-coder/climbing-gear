@@ -9,8 +9,16 @@ import usePageMeta from "./usePageMeta.js";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 
 // ─── Custom foot icon (replaces emoji) ───
-function FootIcon({ size = 17 }) {
-  return <img src="/images/foot-icon.svg" alt="" style={{ width: size, height: size, objectFit: "contain", filter: "invert(1)", verticalAlign: "middle" }} />;
+function FootIcon({ size = 17, color = "#e8e9ec" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ verticalAlign: "middle", flexShrink: 0 }}>
+      <path d="M12 2C9.5 2 7.5 4 7 7c-.3 2 .2 4 .5 5.5.3 1.5.5 3 .2 4.5-.2 1-.5 2-.2 3 .3 1.2 1.5 2 3 2h1c1.5 0 2.5-.5 3.2-1.5.5-.7.8-1.5.8-2.5 0-1.5-.5-3-.2-4.5.3-1.5.8-3.5.5-5.5C15.5 5 14.5 2 12 2z" fill={color} opacity="0.9" />
+      <ellipse cx="7.5" cy="6" rx="1.8" ry="2.2" fill={color} opacity="0.85" />
+      <ellipse cx="5.8" cy="8.5" rx="1.5" ry="1.8" fill={color} opacity="0.8" />
+      <ellipse cx="5.5" cy="11.5" rx="1.3" ry="1.6" fill={color} opacity="0.75" />
+      <ellipse cx="6.2" cy="14" rx="1.2" ry="1.4" fill={color} opacity="0.7" />
+    </svg>
+  );
 }
 
 // ═══ DETAIL PAGE COMPONENTS ═══
