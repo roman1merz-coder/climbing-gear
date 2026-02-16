@@ -71,6 +71,20 @@ const FALLS_VS_CPG_TREND = (() => {
   return { slope, intercept, std };
 })();
 
+/* Linear regression for single ropes: ¢/g → falls/g */
+const FPG_VS_CPG_TREND = (() => {
+  const singles = ALL_ROPES.filter(r => r.type === "single" && r.fpg && r.centsPerG);
+  if (singles.length < 3) return null;
+  const n = singles.length;
+  const mx = singles.reduce((s, r) => s + r.centsPerG, 0) / n;
+  const my = singles.reduce((s, r) => s + r.fpg, 0) / n;
+  let num = 0, den = 0;
+  singles.forEach(r => { num += (r.centsPerG - mx) * (r.fpg - my); den += (r.centsPerG - mx) ** 2; });
+  const slope = num / den, intercept = my - slope * mx;
+  const std = Math.sqrt(singles.reduce((s, r) => s + (r.fpg - (slope * r.centsPerG + intercept)) ** 2, 0) / (n - 2));
+  return { slope, intercept, std };
+})();
+
 /* Linear regression for static ropes: diameter → break strength */
 const STATIC_BS_TREND = (() => {
   const statics = ALL_ROPES.filter(r => r.type === "static" && r.breakStr);
@@ -103,7 +117,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   const hasStatic = enabledTypes.has("static");
 
   useEffect(() => {
-    if (onlyStatic && (metric === "falls" || metric === "fallsVsGm" || metric === "fpgVsPrice")) setMetric("gm");
+    if (onlyStatic && (metric === "falls" || metric === "fallsVsGm" || metric === "fpgVsPrice" || metric === "fpgVsCpg")) setMetric("gm");
   }, [onlyStatic, metric]);
 
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
@@ -133,13 +147,14 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     if (metric === "falls" && !r.falls) return false;
     if (metric === "fallsVsGm" && !r.falls) return false;
     if (metric === "fpgVsPrice" && (!r.falls || !r.centsPerG)) return false;
+    if (metric === "fpgVsCpg" && (!r.fpg || !r.centsPerG)) return false;
     if (metric === "breakStr" && !r.breakStr) return false;
     return true;
   }), [enabledTypes, hiddenBrands, hiddenDry, hiddenDia, metric]);
 
   /* Dynamic axis bounds */
   const axisBounds = useMemo(() => {
-    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82, bsMin: 15, bsMax: 40, cpgMin: 1, cpgMax: 10 };
+    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82, bsMin: 15, bsMax: 40, cpgMin: 1, cpgMax: 10, fpgMin: 0.06, fpgMax: 0.22 };
     const dias = filtered.map(r => r.dia);
     const diaMin = Math.floor(Math.min(...dias) * 2 - 1) / 2;
     const diaMax = Math.ceil(Math.max(...dias) * 2 + 1) / 2;
@@ -147,6 +162,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     const gms = filtered.map(r => r.gm);
     const bss = filtered.filter(r => r.breakStr).map(r => r.breakStr);
     const cpgs = filtered.filter(r => r.centsPerG).map(r => r.centsPerG);
+    const fpgs = filtered.filter(r => r.fpg).map(r => r.fpg);
     return {
       diaMin: Math.max(5, diaMin), diaMax: Math.min(14, diaMax),
       fallsMax: Math.ceil((Math.max(...falls, 4)) / 2) * 2 + 2,
@@ -156,6 +172,8 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       bsMax: bss.length ? Math.ceil(Math.max(...bss) / 5) * 5 + 5 : 40,
       cpgMin: cpgs.length ? Math.floor(Math.min(...cpgs)) - 1 : 1,
       cpgMax: cpgs.length ? Math.ceil(Math.max(...cpgs)) + 1 : 10,
+      fpgMin: fpgs.length ? Math.floor(Math.min(...fpgs) * 50) / 50 - 0.02 : 0.06,
+      fpgMax: fpgs.length ? Math.ceil(Math.max(...fpgs) * 50) / 50 + 0.02 : 0.22,
     };
   }, [filtered]);
 
@@ -164,6 +182,11 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       xField: "centsPerG", xLabel: "Cost (¢/g)", xMin: axisBounds.cpgMin, xMax: axisBounds.cpgMax, xStep: 1,
       yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
       curveY: null, std: 0, sub: `${filtered.length} ropes · UIAA falls vs cost per gram — how much durability does your money buy?`, color: "#22c55e",
+    },
+    fpgVsCpg: {
+      xField: "centsPerG", xLabel: "Cost (¢/g)", xMin: axisBounds.cpgMin, xMax: axisBounds.cpgMax, xStep: 1,
+      yField: "fpg", yLabel: "Falls per g/m", yMin: axisBounds.fpgMin, yMax: axisBounds.fpgMax, yStep: 0.02,
+      curveY: null, std: 0, sub: `${filtered.length} ropes · Durability efficiency vs cost — top-right = best value`, color: "#a78bfa",
     },
     fallsVsGm: {
       xField: "gm", xLabel: "Weight (g/m)", xMin: axisBounds.gmMin, xMax: axisBounds.gmMax, xStep: 5,
@@ -330,6 +353,11 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       drawLinearTrend(ctx, sx, sy, FALLS_VS_CPG_TREND.slope, FALLS_VS_CPG_TREND.intercept, FALLS_VS_CPG_TREND.std, xMin, xMax, yMin, yMax, { color: "#22c55e", label: "Trend (single ropes)" });
     }
 
+    // Linear trend for falls/weight vs ¢/g
+    if (metric === "fpgVsCpg" && enabledTypes.has("single") && FPG_VS_CPG_TREND) {
+      drawLinearTrend(ctx, sx, sy, FPG_VS_CPG_TREND.slope, FPG_VS_CPG_TREND.intercept, FPG_VS_CPG_TREND.std, xMin, xMax, yMin, yMax, { color: "#a78bfa", label: "Trend (single ropes)" });
+    }
+
     // Crosshair for hovered dot
     const hovered = hovRef.current;
     if (hovered && filtered.includes(hovered)) {
@@ -488,7 +516,8 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
         {Object.entries({
-          ...(!onlyStatic ? { fpgVsPrice: { label: "Falls vs €/g", color: "#22c55e" } } : {}),
+          ...(!onlyStatic ? { fpgVsPrice: { label: "Falls vs ¢/g", color: "#22c55e" } } : {}),
+          ...(!onlyStatic ? { fpgVsCpg: { label: "Falls/Weight vs ¢/g", color: "#a78bfa" } } : {}),
           ...(!onlyStatic ? { fallsVsGm: { label: "Falls vs Weight", color: T.accent } } : {}),
           ...(!onlyStatic ? { falls: { label: "Falls vs Diameter", color: T.accent } } : {}),
           gm: { label: "Weight vs Diameter", color: T.blue },
