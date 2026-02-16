@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import usePageMeta from "./usePageMeta.js";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
+import SHOES from "./seed_data.json";
+import ROPES from "./rope_seed_data.json";
+import BELAYS from "./belay_seed_data.json";
+import PADS from "./crashpad_seed_data.json";
+
+const TOTAL_PRODUCTS = SHOES.length + ROPES.length + BELAYS.length + PADS.length;
 
 // ─── Responsive hook ───
 function useIsMobile() {
@@ -194,7 +200,7 @@ export default function Landing() {
         {/* Stats strip */}
         <div style={{ display: "flex", gap: "14px", marginBottom: "32px", flexWrap: "wrap", justifyContent: "center" }}>
           {[
-            { number: "500+", label: "Products compared" },
+            { number: String(TOTAL_PRODUCTS), label: "Products compared" },
             { number: "20+", label: "Retailers tracked" },
             { number: "Daily", label: "Price updates" },
             { number: "0", label: "Ads or sponsored rankings" },
