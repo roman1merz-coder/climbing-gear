@@ -27,9 +27,13 @@ import Wishlist from "./Wishlist.jsx";
 import { T, GLOBAL_CSS } from "./tokens.js";
 import CookieConsent from "./CookieConsent.jsx";
 import { inject as injectAnalytics } from "@vercel/analytics";
+import { initSentry, SentryErrorBoundary } from "./sentry.js";
 
 // Vercel Analytics — cookie-free, privacy-friendly page view tracking
 injectAnalytics();
+
+// Sentry error monitoring — activated when VITE_SENTRY_DSN env var is set
+initSentry();
 
 // ─── Data Bridge ─────────────────────────────────────────────
 // Both App (list) and ShoeDetail (detail) need access to shoes.
@@ -37,19 +41,10 @@ injectAnalytics();
 
 import { useState, useEffect, useLayoutEffect } from "react";
 
-const SUPABASE_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co";
-const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI";
+import { supabaseFetch } from "./supabase.js";
 
 async function supabaseSelect(table) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=*`, {
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-    },
-  });
-  if (!res.ok) throw new Error("fetch failed");
-  return res.json();
+  return supabaseFetch(`/rest/v1/${table}?select=*`);
 }
 
 // Seed data — Vite imports JSON natively.
@@ -381,5 +376,7 @@ function Root() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Root />
+  <SentryErrorBoundary fallback={<div style={{ padding: "40px", textAlign: "center", fontFamily: "DM Sans, sans-serif", color: "#ccc" }}>Something went wrong. Please reload the page.</div>}>
+    <Root />
+  </SentryErrorBoundary>
 );

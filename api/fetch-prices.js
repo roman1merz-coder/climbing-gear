@@ -177,9 +177,15 @@ export default async function handler(req, res) {
     const shoes = await getShoeList();
 
     // Optionally limit batch size (free tier = 100/month)
-    // Use ?limit=N query param to control batch size
-    const limit = parseInt(req.query.limit) || shoes.length;
-    const offset = parseInt(req.query.offset) || 0;
+    // Use ?limit=N&offset=N query params to control batch size
+    const rawLimit = parseInt(req.query.limit);
+    const rawOffset = parseInt(req.query.offset);
+    const limit = Number.isFinite(rawLimit) && rawLimit > 0
+      ? Math.min(rawLimit, 500)   // cap at 500 to prevent abuse
+      : shoes.length;
+    const offset = Number.isFinite(rawOffset) && rawOffset >= 0
+      ? Math.min(rawOffset, shoes.length)
+      : 0;
     const batch = shoes.slice(offset, offset + limit);
 
     const stats = { searched: 0, prices_found: 0, errors: [] };

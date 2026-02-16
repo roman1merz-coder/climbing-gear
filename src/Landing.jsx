@@ -14,9 +14,7 @@ function useIsMobile() {
   return m;
 }
 
-// ─── Supabase (for Suggestion Hub) ───
-const SB_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co";
-const SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase.js";
 
 // ─── Gear Selector Card ───
 function GearCard({ icon, title, description, to, active }) {
@@ -95,9 +93,9 @@ function SuggestionHub() {
     if (!message.trim() || status === "sending") return;
     setStatus("sending");
     try {
-      const res = await fetch(`${SB_URL}/rest/v1/feedback`, {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/feedback`, {
         method: "POST",
-        headers: { apikey: SB_ANON, Authorization: `Bearer ${SB_ANON}`, "Content-Type": "application/json", Prefer: "return=minimal" },
+        headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`, "Content-Type": "application/json", Prefer: "return=minimal" },
         body: JSON.stringify({ type, message: message.trim(), page_url: window.location.href }),
       });
       if (!res.ok) throw new Error(res.statusText);
