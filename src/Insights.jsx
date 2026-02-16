@@ -522,7 +522,7 @@ export default function Insights() {
             <strong>The Dry Treatment Signal:</strong> 100% of ropes below 9.0mm have dry treatment — these are alpine tools built for mountain weather. By 9.6–9.8mm, dry treatment drops to 65%. Above 10mm it's a coin flip. This clearly separates alpine ropes (thin, dry, light) from sport/gym ropes (thick, untreated, durable).
           </KeyInsight>
 
-          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" />
+          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
         </section>
 
         {/* ═══ ARTICLE 3: Vibram XS Grip vs XS Edge ═══ */}

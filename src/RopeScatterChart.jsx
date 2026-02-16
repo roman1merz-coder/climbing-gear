@@ -7,6 +7,15 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 /* ─── Color palettes ─── */
 const TYPE_COLORS = { single: "#60a5fa", half: "#ed64a6", twin: "#34d399", static: "#ecc94b" };
 const DRY_COLORS = { none: "#94a3b8", sheath: "#60a5fa", sheath_only: "#60a5fa", core: "#a78bfa", core_and_sheath: "#34d399", full_impregnation: "#E8734A" };
+const DIA_GROUPS = [
+  { key: "≤8.9", label: "≤8.9mm", min: 0, max: 8.99, color: "#a78bfa" },
+  { key: "9.0–9.4", label: "9.0–9.4mm", min: 9.0, max: 9.49, color: "#60a5fa" },
+  { key: "9.5–9.8", label: "9.5–9.8mm", min: 9.5, max: 9.89, color: "#22c55e" },
+  { key: "9.9–10.5", label: "9.9–10.5mm", min: 9.9, max: 10.59, color: "#E8734A" },
+  { key: "≥10.6", label: "≥10.6mm", min: 10.6, max: 99, color: "#ef4444" },
+];
+const diaGroup = mm => DIA_GROUPS.find(g => mm >= g.min && mm <= g.max)?.key || "9.5–9.8";
+const DIA_COLORS = Object.fromEntries(DIA_GROUPS.map(g => [g.key, g.color]));
 const BRAND_PAL = [
   "#63b3ed","#ed64a6","#48bb78","#ecc94b","#ed8936","#9f7aea","#38b2ac","#fc8181",
   "#f6ad55","#68d391","#d53f8c","#4fd1c5","#b794f4","#90cdf4","#feb2b2","#fbd38d",
@@ -77,7 +86,7 @@ const STATIC_BS_TREND = (() => {
 })();
 
 /* ─── Main Component ─── */
-export default function RopeScatterChart({ isMobile, initialMetric }) {
+export default function RopeScatterChart({ isMobile, initialMetric, initialColorBy }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
@@ -85,7 +94,7 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
   const pinnedRef = useRef(null);
 
   const [metric, setMetric] = useState(initialMetric || "fallsVsGm");
-  const [colorBy, setColorBy] = useState("type");
+  const [colorBy, setColorBy] = useState(initialColorBy || "type");
   const [mobileItem, setMobileItem] = useState(null);
 
   /* Filter state */
@@ -99,6 +108,7 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
 
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
   const [hiddenDry, setHiddenDry] = useState(new Set());
+  const [hiddenDia, setHiddenDia] = useState(new Set());
 
   const toggleType = (t) => setEnabledTypes(prev => {
     const next = new Set(prev);
@@ -119,12 +129,13 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
     if (!enabledTypes.has(r.type)) return false;
     if (hiddenBrands.has(r.brand)) return false;
     if (hiddenDry.has(r.dry)) return false;
+    if (hiddenDia.has(diaGroup(r.dia))) return false;
     if (metric === "falls" && !r.falls) return false;
     if (metric === "fallsVsGm" && !r.falls) return false;
     if (metric === "fpgVsPrice" && (!r.falls || !r.centsPerG)) return false;
     if (metric === "breakStr" && !r.breakStr) return false;
     return true;
-  }), [enabledTypes, hiddenBrands, hiddenDry, metric]);
+  }), [enabledTypes, hiddenBrands, hiddenDry, hiddenDia, metric]);
 
   /* Dynamic axis bounds */
   const axisBounds = useMemo(() => {
@@ -179,6 +190,7 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
 
   /* Color function */
   const getColor = useCallback((r) => {
+    if (colorBy === "diameter") return DIA_COLORS[diaGroup(r.dia)] || "#94a3b8";
     if (colorBy === "type") return TYPE_COLORS[r.type] || "#94a3b8";
     if (colorBy === "dry") return DRY_COLORS[r.dry] || "#94a3b8";
     return BRAND_COLORS[r.brand] || "#94a3b8";
@@ -489,8 +501,8 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
 
       {/* Rope type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
-        {(hiddenBrands.size > 0 || hiddenDry.size > 0 || !(enabledTypes.has("single") && !enabledTypes.has("half") && !enabledTypes.has("twin") && !enabledTypes.has("static"))) && (
-          <button onClick={() => { setEnabledTypes(new Set(["single"])); setHiddenBrands(new Set()); setHiddenDry(new Set()); }}
+        {(hiddenBrands.size > 0 || hiddenDry.size > 0 || hiddenDia.size > 0 || !(enabledTypes.has("single") && !enabledTypes.has("half") && !enabledTypes.has("twin") && !enabledTypes.has("static"))) && (
+          <button onClick={() => { setEnabledTypes(new Set(["single"])); setHiddenBrands(new Set()); setHiddenDry(new Set()); setHiddenDia(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
             ✕ Reset filters
           </button>
@@ -506,7 +518,7 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
       {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
-        {[["type", "Rope Type"], ["dry", "Treatment"], ["brand", "Brand"]].map(([k, l]) => (
+        {[["diameter", "Diameter"], ["type", "Rope Type"], ["dry", "Treatment"], ["brand", "Brand"]].map(([k, l]) => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
@@ -565,6 +577,14 @@ export default function RopeScatterChart({ isMobile, initialMetric }) {
       )}
 
       {/* Legends */}
+      {colorBy === "diameter" && (
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+          {DIA_GROUPS.map(g => (
+            <Pill key={g.key} color={g.color} label={g.label}
+              hidden={hiddenDia.has(g.key)} onClick={() => toggleHidden(setHiddenDia, g.key)} />
+          ))}
+        </div>
+      )}
       {colorBy === "type" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
           {Object.entries(TYPE_COLORS).filter(([k]) => enabledTypes.has(k)).map(([k, c]) => (
