@@ -8,6 +8,11 @@ import HeartButton from "./HeartButton.jsx";
 import usePageMeta from "./usePageMeta.js";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 
+// ─── Custom foot icon (replaces emoji) ───
+function FootIcon({ size = 17 }) {
+  return <img src="/images/foot-icon.svg" alt="" style={{ width: size, height: size, objectFit: "contain", filter: "invert(1)", verticalAlign: "middle" }} />;
+}
+
 // ═══ DETAIL PAGE COMPONENTS ═══
 
 // ─── Tag ───
@@ -384,9 +389,9 @@ function WhoIsThisFor({ shoe }) {
   if (ensureArray(shoe.use_cases).includes("trad_multipitch"))
     profiles.push({ icon: "\u26F0\uFE0F", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
   if (shoe.width === "wide" || shoe.volume === "high")
-    profiles.push({ icon: "\uD83D\uDC63", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
+    profiles.push({ icon: <FootIcon size={20} />, label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
   if (shoe.width === "narrow" || shoe.volume === "low")
-    profiles.push({ icon: "\uD83E\uDDB6", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
+    profiles.push({ icon: <FootIcon size={20} />, label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
 
   const shown = profiles.slice(0, 2);
   return (
@@ -888,7 +893,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SectionHeader icon={"\uD83D\uDCCB"} title="Overview" compact={isMobile} />
                 <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.8, marginBottom: "36px" }}>{shoe.description}</p>
 
-                <SectionHeader icon={"\uD83E\uDDB6"} title="Foot Shape & Sizing" compact={isMobile} />
+                <SectionHeader icon={<FootIcon />} title="Foot Shape & Sizing" compact={isMobile} />
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                   <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
                 </div>
