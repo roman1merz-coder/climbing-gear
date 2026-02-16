@@ -55,7 +55,7 @@ const BRAND_LIST = [...new Set(PADS.map(d => d.brand))].sort();
 const BRAND_COLORS = Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]]));
 
 /* ─── Main Component ─── */
-export default function CrashpadScatterChart({ isMobile, highlightSlugs, initialMetric, compact }) {
+export default function CrashpadScatterChart({ isMobile, highlightSlugs, initialMetric, compact, thicknessRange }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
@@ -73,20 +73,32 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
   const [hiddenThickness, setHiddenThickness] = useState(new Set());
 
-  const filteredPads = useMemo(() => PADS.filter(d =>
-    !hiddenLayers.has(d.layers) && !hiddenFolds.has(d.fold) && !hiddenBrands.has(d.brand) && !hiddenThickness.has(d.tGroup)
-  ), [hiddenLayers, hiddenFolds, hiddenBrands, hiddenThickness]);
+  /* thicknessRange: optional [min, max] to filter pads by thickness (e.g. [10, 16]) */
+  const basePads = useMemo(() => {
+    if (!thicknessRange) return PADS;
+    const [tMin, tMax] = thicknessRange;
+    return PADS.filter(d => d.thickness >= tMin && d.thickness <= tMax);
+  }, [thicknessRange]);
 
+  const filteredPads = useMemo(() => basePads.filter(d =>
+    !hiddenLayers.has(d.layers) && !hiddenFolds.has(d.fold) && !hiddenBrands.has(d.brand) && !hiddenThickness.has(d.tGroup)
+  ), [basePads, hiddenLayers, hiddenFolds, hiddenBrands, hiddenThickness]);
+
+  /* Recompute trend lines based on basePads (respects thickness filter) */
+  const trendWeight = useMemo(() => linReg(basePads, d => d.area, d => d.weight), [basePads]);
+  const trendPrice = useMemo(() => linReg(basePads, d => d.area, d => d.price), [basePads]);
+
+  const thickLabel = thicknessRange ? ` (${thicknessRange[0]}–${thicknessRange[1]}cm)` : "";
   const cfgs = {
     area_weight: {
       xField: "area", yField: "weight", xLabel: "Landing Area (m²)", yLabel: "Weight (kg)",
       xMin: 0.3, xMax: 3.5, yMin: 0, yMax: 16, xStep: 0.5, yStep: 2,
-      label: "Area vs Weight", sub: `${filteredPads.length} crashpads — bigger = heavier, but by how much?`,
+      label: `Area vs Weight${thickLabel}`, sub: `${filteredPads.length} pads${thickLabel} — bigger = heavier, but by how much?`,
     },
     area_price: {
       xField: "area", yField: "price", xLabel: "Landing Area (m²)", yLabel: "Price (€)",
       xMin: 0.3, xMax: 3.5, yMin: 0, yMax: 650, xStep: 0.5, yStep: 100,
-      label: "Area vs Price", sub: `${filteredPads.length} crashpads — what does more landing zone cost?`,
+      label: `Area vs Price${thickLabel}`, sub: `${filteredPads.length} pads${thickLabel} — what does more landing zone cost?`,
     },
   };
   const cfg = cfgs[metric];
@@ -128,11 +140,11 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     // Data count badge
     drawCountBadge(ctx, PAD, W, filteredPads.length, "pads");
 
-    // Trend lines for area_weight and area_price
+    // Trend lines for area_weight and area_price (uses thickness-filtered base)
     if (metric === "area_weight") {
-      drawLinearTrend(ctx, sx, sy, PAD_TREND_WEIGHT.slope, PAD_TREND_WEIGHT.intercept, PAD_TREND_WEIGHT.std, xMin, xMax, yMin, yMax, { color: "#60a5fa", label: "Trend (all pads)" });
+      drawLinearTrend(ctx, sx, sy, trendWeight.slope, trendWeight.intercept, trendWeight.std, xMin, xMax, yMin, yMax, { color: "#60a5fa", label: thicknessRange ? `Trend (${thicknessRange[0]}–${thicknessRange[1]}cm pads)` : "Trend (all pads)" });
     } else if (metric === "area_price") {
-      drawLinearTrend(ctx, sx, sy, PAD_TREND_PRICE.slope, PAD_TREND_PRICE.intercept, PAD_TREND_PRICE.std, xMin, xMax, yMin, yMax, { color: "#60a5fa", label: "Trend (all pads)" });
+      drawLinearTrend(ctx, sx, sy, trendPrice.slope, trendPrice.intercept, trendPrice.std, xMin, xMax, yMin, yMax, { color: "#60a5fa", label: thicknessRange ? `Trend (${thicknessRange[0]}–${thicknessRange[1]}cm pads)` : "Trend (all pads)" });
     }
 
     // Crosshair for hovered dot
@@ -168,29 +180,48 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
 
     // Draw highlighted dots on top with glow + label
     const HL_COLOR = "#eab308";
+    // First pass: draw all highlighted dots
     hlDots.forEach(({ d, px, py, r }) => {
-      // Outer glow ring
       ctx.shadowColor = `rgba(234,179,8,0.5)`; ctx.shadowBlur = 16;
       ctx.beginPath(); ctx.arc(px, py, r + 4, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(234,179,8,0.25)`; ctx.fill();
       ctx.shadowBlur = 0;
-      // White outline
       ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.arc(px, py, r + 2, 0, Math.PI * 2); ctx.stroke();
-      // Solid dot
       ctx.beginPath(); ctx.arc(px, py, r + 1, 0, Math.PI * 2);
       ctx.fillStyle = HL_COLOR; ctx.fill();
-      // Label
+    });
+    // Second pass: position labels with collision avoidance
+    const labelBoxes = [];
+    const fontSize = isMobile ? 9 : 11;
+    ctx.font = `bold ${fontSize}px Inter, system-ui, sans-serif`;
+    hlDots.forEach(({ d, px, py, r }, idx) => {
       const label = `${d.brand} ${d.model}`;
-      ctx.font = `bold ${isMobile ? 9 : 11}px Inter, system-ui, sans-serif`;
       const tw = ctx.measureText(label).width;
-      const lx = px + r + 8;
-      const ly = py + 3;
-      // Background for label
+      const padW = tw + 8, padH = fontSize + 5;
+      // Try positions: right, left, above, below — pick first that doesn't overlap
+      const candidates = [
+        { lx: px + r + 8,          ly: py - padH / 2 },     // right
+        { lx: px - r - 8 - padW,   ly: py - padH / 2 },     // left
+        { lx: px - padW / 2,       ly: py - r - 8 - padH },  // above
+        { lx: px - padW / 2,       ly: py + r + 8 },          // below
+      ];
+      let best = candidates[0]; // default: right
+      for (const c of candidates) {
+        const box = { x: c.lx - 4, y: c.ly, w: padW, h: padH };
+        const overlaps = labelBoxes.some(b =>
+          !(box.x + box.w < b.x || box.x > b.x + b.w || box.y + box.h < b.y || box.y > b.y + b.h)
+        );
+        if (!overlaps) { best = c; break; }
+      }
+      const box = { x: best.lx - 4, y: best.ly, w: padW, h: padH };
+      labelBoxes.push(box);
+      // Draw label background
       ctx.fillStyle = "rgba(15,17,25,0.85)";
-      ctx.beginPath(); ctx.roundRect(lx - 4, ly - 10, tw + 8, 14, 3); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(box.x, box.y, box.w, box.h, 3); ctx.fill();
+      // Draw label text
       ctx.fillStyle = HL_COLOR;
-      ctx.fillText(label, lx, ly);
+      ctx.fillText(label, best.lx, best.ly + fontSize);
     });
 
     // Hovered dot on top
@@ -200,7 +231,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
       drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
     }
-  }, [metric, colorBy, isMobile, cfg, getColor, filteredPads, hlSet]);
+  }, [metric, colorBy, isMobile, cfg, getColor, filteredPads, hlSet, trendWeight, trendPrice, thicknessRange]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -315,8 +346,8 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
   }, [navigate]);
 
   /* ─── Legend data ─── */
-  const layerKeys = [...new Set(PADS.map(d => d.layers))].sort((a, b) => a - b);
-  const foldKeys = [...new Set(PADS.map(d => d.fold))].filter(k => k !== "unknown").sort();
+  const layerKeys = [...new Set(basePads.map(d => d.layers))].sort((a, b) => a - b);
+  const foldKeys = [...new Set(basePads.map(d => d.fold))].filter(k => k !== "unknown").sort();
 
   const metricButtons = [
     { key: "area_weight", label: "Area vs Weight", color: T.accent },

@@ -576,14 +576,14 @@ export default function Insights() {
             📊 Breaking the Trendline
           </div>
 
-          <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_weight" compact />
+          <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_weight" compact thicknessRange={[10, 16]} />
 
           <Prose>
-            The chart above tells the story better than words can. Among the {INFLATABLE_PADS.length} pads in our database with 10–16cm thickness, the inflatables sit dramatically below the trendline. At roughly 2.5–2.8 kg/m², they're nearly half the weight of the average foam pad in the same thickness range (4.8 kg/m²). That's not a marginal improvement — it's a category break. Click on any dot to see the full specs of that pad.
+            The chart above tells the story better than words can. Among the {INFLATABLE_PADS.length} pads in our database with 10–16cm thickness, the inflatables sit dramatically below the weight trendline. At 3.5–5.0 kg for 1.8–2.0 m² of landing area, they weigh roughly half of what foam pads deliver for the same coverage. That's not a marginal improvement — it's a category break. Click on any dot to see the full specs of that pad.
           </Prose>
 
           <Prose>
-            To put this in perspective: a typical 12cm foam pad weighs around 4.5–5.5 kg/m². The inflatables match or exceed that thickness at barely 2.5 kg/m². The weight savings come from replacing dense PE and PU foam with air chambers — the same principle that makes inflatable sleeping mats lighter than foam rolls, but scaled up to crashpad dimensions.
+            To put this in perspective: a foam pad with 1.5–2.0 m² landing area and 10–16cm thickness typically weighs 6–10 kg. The inflatables deliver the same or more area at 3.5–5.0 kg. The weight savings come from replacing dense PE and PU foam with air chambers — the same principle that makes inflatable sleeping mats lighter than foam rolls, but scaled up to crashpad dimensions.
           </Prose>
 
           <KeyInsight color={T.yellow}>
@@ -595,14 +595,14 @@ export default function Insights() {
             💶 Cost per Area: Surprisingly Competitive
           </div>
 
-          <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_price" compact />
+          <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_price" compact thicknessRange={[10, 16]} />
 
           <Prose>
-            Here's where it gets really interesting. You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot €/m² against thickness for the same 10–16cm range, inflatable pads actually sit <em>below</em> the foam average. At €122–178/m², both inflatables undercut the foam average of ~€{Math.round(INFLATABLE_PADS.filter(d => !d.inflatable && d.eur_m2 > 0).reduce((s,d) => s + d.eur_m2, 0) / INFLATABLE_PADS.filter(d => !d.inflatable && d.eur_m2 > 0).length)}/m². You're not paying more for less weight — you're paying <em>less</em>.
+            Here's where it gets really interesting. You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot area vs price for the same 10–16cm thickness range, the inflatables sit right on the trendline — competitive with foam pads of comparable landing area. You're not paying a premium for lighter weight — you're getting <em>more for the same money</em>.
           </Prose>
 
           <Prose>
-            Compare this to the weight chart above: inflatables shatter the trendline on kg/m² <em>and</em> come in cheaper per square meter than the average foam pad. That's an extraordinary combination in climbing gear, where lighter almost always means more expensive. The value proposition becomes even clearer when you factor in the dual-use potential — your crashpad doubles as a sleeping mat, pool float, and van insulation.
+            Compare this to the weight chart above: inflatables sit dramatically below the foam weight trendline <em>and</em> remain competitively priced for their landing area. That's an extraordinary combination in climbing gear, where lighter almost always means more expensive. The value proposition becomes even clearer when you factor in the dual-use potential — your crashpad doubles as a sleeping mat, pool float, and van insulation.
           </Prose>
 
           <KeyInsight color={T.green}>
