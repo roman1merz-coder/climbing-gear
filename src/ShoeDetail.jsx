@@ -8,19 +8,6 @@ import HeartButton from "./HeartButton.jsx";
 import usePageMeta from "./usePageMeta.js";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 
-// ─── Custom foot icon (replaces emoji) ───
-function FootIcon({ size = 17, color = "#e8e9ec" }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ verticalAlign: "middle", flexShrink: 0 }}>
-      <path d="M12 2C9.5 2 7.5 4 7 7c-.3 2 .2 4 .5 5.5.3 1.5.5 3 .2 4.5-.2 1-.5 2-.2 3 .3 1.2 1.5 2 3 2h1c1.5 0 2.5-.5 3.2-1.5.5-.7.8-1.5.8-2.5 0-1.5-.5-3-.2-4.5.3-1.5.8-3.5.5-5.5C15.5 5 14.5 2 12 2z" fill={color} opacity="0.9" />
-      <ellipse cx="7.5" cy="6" rx="1.8" ry="2.2" fill={color} opacity="0.85" />
-      <ellipse cx="5.8" cy="8.5" rx="1.5" ry="1.8" fill={color} opacity="0.8" />
-      <ellipse cx="5.5" cy="11.5" rx="1.3" ry="1.6" fill={color} opacity="0.75" />
-      <ellipse cx="6.2" cy="14" rx="1.2" ry="1.4" fill={color} opacity="0.7" />
-    </svg>
-  );
-}
-
 // ═══ DETAIL PAGE COMPONENTS ═══
 
 // ─── Tag ───
@@ -191,7 +178,7 @@ function PriceChart({ data, width = 320, height = 100 }) {
   );
 }
 
-// ─── Foot Shape Visual (anatomical style with profile line) ───
+// ─── Foot Shape Visual (real illustrations from SVG) ───
 function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
   const descs = {
     egyptian: "Big toe longest, toes descend diagonally",
@@ -200,65 +187,13 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
   };
   const tf = toe_form || "egyptian";
 
-  // Toe tip Y positions define the profile (lower Y = higher toe)
-  const profiles = {
-    egyptian: [10, 18, 26, 34, 40],   // big toe highest, descending
-    greek:    [18, 8, 20, 32, 40],     // 2nd toe highest
-    roman:    [12, 12, 14, 30, 38],    // first 3 roughly equal
-  };
-  const tipY = profiles[tf] || profiles.egyptian;
-
-  // Profile line endpoints for the diagonal indicator
-  const lineEndpoints = {
-    egyptian: { x1: 14, y1: 6, x2: 88, y2: 44 },
-    greek:    { x1: 8, y1: 18, x2: 52, y2: 4 },
-    roman:    { x1: 8, y1: 8, x2: 68, y2: 10 },
-  };
-  const le = lineEndpoints[tf] || lineEndpoints.egyptian;
-
-  // Toe X positions (center) and widths
-  const toeX = [22, 40, 56, 70, 82];
-  const toeW = [14, 10, 9, 8, 7];
-
-  function Toe({ cx, halfW, tipYv, idx }) {
-    const baseY = 62;
-    const h = baseY - tipYv;
-    const nailY = tipYv + 4;
-    const nailH = Math.min(10, h * 0.25);
-    const jointY = tipYv + h * 0.5;
-    return (
-      <g>
-        {/* Toe body */}
-        <path d={`M${cx - halfW},${baseY} Q${cx - halfW - 1},${tipYv + h * 0.3} ${cx - halfW + 2},${tipYv + 2} Q${cx},${tipYv - 2} ${cx + halfW - 2},${tipYv + 2} Q${cx + halfW + 1},${tipYv + h * 0.3} ${cx + halfW},${baseY}`}
-          fill="none" stroke={T.accent} strokeWidth="1.6" strokeLinecap="round" />
-        {/* Toenail */}
-        <rect x={cx - halfW + 3} y={nailY} width={halfW * 2 - 6} height={nailH} rx="2"
-          fill="none" stroke={T.accent} strokeWidth="1" opacity="0.6" />
-        {/* Joint line */}
-        <line x1={cx - halfW + 2} y1={jointY} x2={cx + halfW - 2} y2={jointY}
-          stroke={T.accent} strokeWidth="0.8" opacity="0.35" strokeDasharray="2,2" />
-      </g>
-    );
-  }
-
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-      <svg width="90" height="155" viewBox="0 0 100 165" style={{ flexShrink: 0 }}>
-        {/* Foot body */}
-        <path d="M8,62 Q5,82 7,105 Q10,130 18,150 Q26,162 42,164 Q58,164 72,150 Q84,130 88,105 Q92,82 90,62"
-          fill={T.accentSoft} stroke={T.accent} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        {/* Toes */}
-        {toeX.map((cx, i) => (
-          <Toe key={i} cx={cx} halfW={toeW[i] / 2} tipYv={tipY[i]} idx={i} />
-        ))}
-        {/* Toe divider lines (subtle) */}
-        {[30, 47, 62, 75].map((x, i) => (
-          <line key={i} x1={x} y1={62} x2={x + (i < 2 ? 1 : 0)} y2={56} stroke={T.accent} strokeWidth="0.6" opacity="0.2" />
-        ))}
-        {/* Profile line (blue diagonal) */}
-        <line x1={le.x1} y1={le.y1} x2={le.x2} y2={le.y2}
-          stroke="#60a5fa" strokeWidth="1.8" strokeLinecap="round" opacity="0.7" />
-      </svg>
+      <img
+        src={`/images/foot-${tf}.png`}
+        alt={`${tf} foot shape`}
+        style={{ width: "90px", height: "auto", flexShrink: 0, filter: "brightness(0.95)" }}
+      />
       <div>
         <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.font, textTransform: "capitalize", marginBottom: "6px" }}>
           {tf} foot shape
@@ -397,9 +332,9 @@ function WhoIsThisFor({ shoe }) {
   if (ensureArray(shoe.use_cases).includes("trad_multipitch"))
     profiles.push({ icon: "\u26F0\uFE0F", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
   if (shoe.width === "wide" || shoe.volume === "high")
-    profiles.push({ icon: <FootIcon size={20} />, label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
+    profiles.push({ icon: "👣", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
   if (shoe.width === "narrow" || shoe.volume === "low")
-    profiles.push({ icon: <FootIcon size={20} />, label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
+    profiles.push({ icon: "🦶", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
 
   const shown = profiles.slice(0, 2);
   return (
@@ -901,7 +836,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SectionHeader icon={"\uD83D\uDCCB"} title="Overview" compact={isMobile} />
                 <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.8, marginBottom: "36px" }}>{shoe.description}</p>
 
-                <SectionHeader icon={<FootIcon />} title="Foot Shape & Sizing" compact={isMobile} />
+                <SectionHeader icon="🦶" title="Foot Shape & Sizing" compact={isMobile} />
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                   <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
                 </div>
