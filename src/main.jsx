@@ -26,6 +26,10 @@ import { PriceAlertProvider } from "./PriceAlertContext.jsx";
 import Wishlist from "./Wishlist.jsx";
 import { T, GLOBAL_CSS } from "./tokens.js";
 import CookieConsent from "./CookieConsent.jsx";
+import { inject as injectAnalytics } from "@vercel/analytics";
+
+// Vercel Analytics — cookie-free, privacy-friendly page view tracking
+injectAnalytics();
 
 // ─── Data Bridge ─────────────────────────────────────────────
 // Both App (list) and ShoeDetail (detail) need access to shoes.
