@@ -302,10 +302,10 @@ export default function Insights() {
 
         {/* Sticky jump nav */}
         <div style={{
-          position: "sticky", top: 0, zIndex: 20,
+          position: "sticky", top: "50px", zIndex: 20,
           display: "flex", justifyContent: "center", gap: "8px",
           padding: "10px 0", marginBottom: "24px",
-          background: `linear-gradient(${T.bg}, ${T.bg}e6 80%, transparent)`,
+          background: T.bg,
         }}>
           {jumpPill(1, "💨 Inflatable Crashpads", art1Ref)}
           {jumpPill(2, "🧵 Ropes: Cost vs Safety", art2Ref)}
