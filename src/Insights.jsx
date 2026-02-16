@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
 import CrashpadScatterChart from "./CrashpadScatterChart.jsx";
+import RopeScatterChart from "./RopeScatterChart.jsx";
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -520,6 +521,8 @@ export default function Insights() {
           <KeyInsight>
             <strong>The Dry Treatment Signal:</strong> 100% of ropes below 9.0mm have dry treatment — these are alpine tools built for mountain weather. By 9.6–9.8mm, dry treatment drops to 65%. Above 10mm it's a coin flip. This clearly separates alpine ropes (thin, dry, light) from sport/gym ropes (thick, untreated, durable).
           </KeyInsight>
+
+          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" />
         </section>
 
         {/* ═══ ARTICLE 3: Vibram XS Grip vs XS Edge ═══ */}

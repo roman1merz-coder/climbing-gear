@@ -22,6 +22,8 @@ const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g)
     dry: r.dry_treatment || "none",
     triple: !!r.triple_rated, sheath: r.sheath_percentage,
     type: r.rope_type || "single",
+    price: r.price_per_meter_eur_min || null,
+    fpg: (r.uiaa_falls && r.weight_per_meter_g) ? r.uiaa_falls / r.weight_per_meter_g : null,
   }));
 
 /* Polynomial curve data for single ropes (pre-computed) */
@@ -45,6 +47,20 @@ const FALLS_VS_GM_TREND = (() => {
   return { slope, intercept, std };
 })();
 
+/* Linear regression for single ropes: price → falls/gram */
+const FPG_VS_PRICE_TREND = (() => {
+  const singles = ALL_ROPES.filter(r => r.type === "single" && r.fpg && r.price);
+  if (singles.length < 3) return null;
+  const n = singles.length;
+  const mx = singles.reduce((s, r) => s + r.price, 0) / n;
+  const my = singles.reduce((s, r) => s + r.fpg, 0) / n;
+  let num = 0, den = 0;
+  singles.forEach(r => { num += (r.price - mx) * (r.fpg - my); den += (r.price - mx) ** 2; });
+  const slope = num / den, intercept = my - slope * mx;
+  const std = Math.sqrt(singles.reduce((s, r) => s + (r.fpg - (slope * r.price + intercept)) ** 2, 0) / (n - 2));
+  return { slope, intercept, std };
+})();
+
 /* Linear regression for static ropes: diameter → break strength */
 const STATIC_BS_TREND = (() => {
   const statics = ALL_ROPES.filter(r => r.type === "static" && r.breakStr);
@@ -60,14 +76,14 @@ const STATIC_BS_TREND = (() => {
 })();
 
 /* ─── Main Component ─── */
-export default function RopeScatterChart({ isMobile }) {
+export default function RopeScatterChart({ isMobile, initialMetric }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
 
-  const [metric, setMetric] = useState("fallsVsGm");
+  const [metric, setMetric] = useState(initialMetric || "fallsVsGm");
   const [colorBy, setColorBy] = useState("type");
   const [mobileItem, setMobileItem] = useState(null);
 
@@ -77,7 +93,7 @@ export default function RopeScatterChart({ isMobile }) {
   const hasStatic = enabledTypes.has("static");
 
   useEffect(() => {
-    if (onlyStatic && (metric === "falls" || metric === "fallsVsGm")) setMetric("gm");
+    if (onlyStatic && (metric === "falls" || metric === "fallsVsGm" || metric === "fpgVsPrice")) setMetric("gm");
   }, [onlyStatic, metric]);
 
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
@@ -104,19 +120,22 @@ export default function RopeScatterChart({ isMobile }) {
     if (hiddenDry.has(r.dry)) return false;
     if (metric === "falls" && !r.falls) return false;
     if (metric === "fallsVsGm" && !r.falls) return false;
+    if (metric === "fpgVsPrice" && (!r.fpg || !r.price)) return false;
     if (metric === "breakStr" && !r.breakStr) return false;
     return true;
   }), [enabledTypes, hiddenBrands, hiddenDry, metric]);
 
   /* Dynamic axis bounds */
   const axisBounds = useMemo(() => {
-    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82, bsMin: 15, bsMax: 40 };
+    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82, bsMin: 15, bsMax: 40, priceMin: 1.0, priceMax: 5.5, fpgMin: 0.05, fpgMax: 0.22 };
     const dias = filtered.map(r => r.dia);
     const diaMin = Math.floor(Math.min(...dias) * 2 - 1) / 2;
     const diaMax = Math.ceil(Math.max(...dias) * 2 + 1) / 2;
     const falls = filtered.filter(r => r.falls).map(r => r.falls);
     const gms = filtered.map(r => r.gm);
     const bss = filtered.filter(r => r.breakStr).map(r => r.breakStr);
+    const prices = filtered.filter(r => r.price).map(r => r.price);
+    const fpgs = filtered.filter(r => r.fpg).map(r => r.fpg);
     return {
       diaMin: Math.max(5, diaMin), diaMax: Math.min(14, diaMax),
       fallsMax: Math.ceil((Math.max(...falls, 4)) / 2) * 2 + 2,
@@ -124,10 +143,19 @@ export default function RopeScatterChart({ isMobile }) {
       gmMax: Math.ceil(Math.max(...gms) / 5) * 5 + 5,
       bsMin: bss.length ? Math.floor(Math.min(...bss) / 5) * 5 - 5 : 15,
       bsMax: bss.length ? Math.ceil(Math.max(...bss) / 5) * 5 + 5 : 40,
+      priceMin: prices.length ? Math.floor(Math.min(...prices) * 2) / 2 - 0.5 : 1.0,
+      priceMax: prices.length ? Math.ceil(Math.max(...prices) * 2) / 2 + 0.5 : 5.5,
+      fpgMin: fpgs.length ? Math.floor(Math.min(...fpgs) * 50) / 50 - 0.02 : 0.05,
+      fpgMax: fpgs.length ? Math.ceil(Math.max(...fpgs) * 50) / 50 + 0.02 : 0.22,
     };
   }, [filtered]);
 
   const cfgs = useMemo(() => ({
+    fpgVsPrice: {
+      xField: "price", xLabel: "Price (€/m)", xMin: axisBounds.priceMin, xMax: axisBounds.priceMax, xStep: 0.5,
+      yField: "fpg", yLabel: "UIAA Falls per g/m", yMin: axisBounds.fpgMin, yMax: axisBounds.fpgMax, yStep: 0.02,
+      curveY: null, std: 0, sub: `${filtered.length} ropes · Higher = more durable per gram of weight`, color: T.green,
+    },
     fallsVsGm: {
       xField: "gm", xLabel: "Weight (g/m)", xMin: axisBounds.gmMin, xMax: axisBounds.gmMax, xStep: 5,
       yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
@@ -208,7 +236,7 @@ export default function RopeScatterChart({ isMobile }) {
     const ctx = canvas.getContext("2d");
     const rect = canvas.parentElement.getBoundingClientRect();
     const W = rect.width, H = chartH(isMobile);
-    const PAD = chartPad(isMobile, { l: isMobile ? 46 : 54 });
+    const PAD = chartPad(isMobile, { l: isMobile ? 50 : 58 });
     canvas.width = W * 2; canvas.height = H * 2;
     canvas.style.width = W + "px"; canvas.style.height = H + "px";
     ctx.setTransform(2, 0, 0, 2, 0, 0);
@@ -225,8 +253,8 @@ export default function RopeScatterChart({ isMobile }) {
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
     // Ticks + axis labels
-    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : (x => String(Math.round(x)));
-    const yFmt = y => String(y);
+    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : xField === "price" ? (x => "€" + x.toFixed(1)) : (x => String(Math.round(x)));
+    const yFmt = yField === "fpg" ? (y => y.toFixed(2)) : (y => String(y));
     const firstX = Math.ceil(xMin / xStep) * xStep;
     drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
 
@@ -287,6 +315,11 @@ export default function RopeScatterChart({ isMobile }) {
       drawLinearTrend(ctx, sx, sy, FALLS_VS_GM_TREND.slope, FALLS_VS_GM_TREND.intercept, FALLS_VS_GM_TREND.std, xMin, xMax, yMin, yMax, { color: T.accent, label: "Trend (single ropes)" });
     }
 
+    // Linear trend for falls/gram vs price
+    if (metric === "fpgVsPrice" && enabledTypes.has("single") && FPG_VS_PRICE_TREND) {
+      drawLinearTrend(ctx, sx, sy, FPG_VS_PRICE_TREND.slope, FPG_VS_PRICE_TREND.intercept, FPG_VS_PRICE_TREND.std, xMin, xMax, yMin, yMax, { color: "#22c55e", label: "Trend (single ropes)" });
+    }
+
     // Crosshair for hovered dot
     const hovered = hovRef.current;
     if (hovered && filtered.includes(hovered)) {
@@ -323,7 +356,7 @@ export default function RopeScatterChart({ isMobile }) {
     const rect = canvas.getBoundingClientRect();
     const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = chartH(isMobile);
-    const P = chartPad(isMobile, { l: isMobile ? 46 : 54 });
+    const P = chartPad(isMobile, { l: isMobile ? 50 : 58 });
     const sx = x => P.l + (x - cfg.xMin) / (cfg.xMax - cfg.xMin) * (W - P.l - P.r);
     const sy = y => H - P.b - (y - cfg.yMin) / (cfg.yMax - cfg.yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
@@ -345,9 +378,10 @@ export default function RopeScatterChart({ isMobile }) {
       { label: "Weight", value: r.gm + " g/m" },
     ];
     if (r.falls) stats.push({ label: "UIAA Falls", value: String(r.falls) });
+    if (r.price) stats.push({ label: "Price", value: "€" + r.price.toFixed(2) + "/m" });
+    if (r.fpg) stats.push({ label: "Falls/g", value: r.fpg.toFixed(3) });
     if (r.impact) stats.push({ label: "Impact", value: r.impact + " kN" });
     if (r.breakStr) stats.push({ label: "Break Str.", value: r.breakStr + " kN" });
-    if (r.sheath) stats.push({ label: "Sheath", value: r.sheath + "%" });
 
     const dry = (r.dry || "none").replace(/_/g, " ");
     tip.innerHTML = buildTipHTML({
@@ -444,6 +478,7 @@ export default function RopeScatterChart({ isMobile }) {
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
         {Object.entries({
+          ...(!onlyStatic ? { fpgVsPrice: { label: "Falls/Weight vs Cost", color: "#22c55e" } } : {}),
           ...(!onlyStatic ? { fallsVsGm: { label: "Falls vs Weight", color: T.accent } } : {}),
           ...(!onlyStatic ? { falls: { label: "Falls vs Diameter", color: T.accent } } : {}),
           gm: { label: "Weight vs Diameter", color: T.blue },
@@ -503,6 +538,8 @@ export default function RopeScatterChart({ isMobile }) {
             const stats = [
               ["Dia", `${r.dia} mm`], ["Weight", `${r.gm} g/m`],
               ...(r.falls ? [["Falls", `${r.falls}`]] : []),
+              ...(r.price ? [["€/m", `€${r.price.toFixed(2)}`]] : []),
+              ...(r.fpg ? [["Falls/g", r.fpg.toFixed(3)]] : []),
               ...(r.impact ? [["Impact", `${r.impact} kN`]] : []),
               ...(r.breakStr ? [["Break", `${r.breakStr} kN`]] : []),
             ].slice(0, 4);
