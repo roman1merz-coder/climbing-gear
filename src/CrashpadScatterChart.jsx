@@ -214,20 +214,21 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       const tw = ctx.measureText(label).width;
       const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
       // 12 candidate positions for better collision avoidance
+      // All positions keep the label clear of the dot (never centered over it)
       const gap = 10;
       const candidates = [
         { bx: px + r + gap,            by: py - boxH / 2 },           // right
-        { bx: px - boxW / 2,           by: py - r - gap - boxH },     // above
-        { bx: px - r - gap - boxW,     by: py - boxH / 2 },           // left
-        { bx: px - boxW / 2,           by: py + r + gap },             // below
         { bx: px + r + gap,            by: py - r - gap - boxH },     // above-right
-        { bx: px - r - gap - boxW,     by: py - r - gap - boxH },     // above-left
         { bx: px + r + gap,            by: py + r + gap },             // below-right
+        { bx: px - r - gap - boxW,     by: py - boxH / 2 },           // left
+        { bx: px - r - gap - boxW,     by: py - r - gap - boxH },     // above-left
         { bx: px - r - gap - boxW,     by: py + r + gap },             // below-left
         { bx: px + r + gap,            by: py - boxH - gap * 2 },     // far above-right
         { bx: px + r + gap,            by: py + gap * 2 },             // far below-right
         { bx: px - r - gap - boxW,     by: py - boxH - gap * 2 },     // far above-left
         { bx: px - r - gap - boxW,     by: py + gap * 2 },             // far below-left
+        { bx: px + r + gap * 2,        by: py - boxH / 2 },           // far right
+        { bx: px - r - gap * 2 - boxW, by: py - boxH / 2 },           // far left
       ];
       const rectsOverlap = (a, b) => !(a.x + a.w < b.x || a.x > b.x + b.w || a.y + a.h < b.y || a.y > b.y + b.h);
       let best = null;
