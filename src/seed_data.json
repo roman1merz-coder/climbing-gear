@@ -13899,7 +13899,7 @@
     "brand": "Ocún",
     "model": "Sigma",
     "slug": "ocun-sigma",
-    "image_url": null,
+    "image_url": "https://www.ocun.com/assets/products/1_700x700/x2zyldzb2g.05337-Sigma-1.jpg",
     "images": null,
     "toe_form": "egyptian",
     "volume": "low",
@@ -21402,77 +21402,6 @@
   },
   {
     "brand": "Unparallel",
-    "model": "Engage Lace LV",
-    "slug": "unparallel-engage-lace-lv",
-    "image_url": "https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/shoe-images/unparallel-engage-lace-lv.jpg",
-    "images": null,
-    "toe_form": "egyptian",
-    "volume": "low",
-    "width": "narrow",
-    "heel": "narrow",
-    "skill_level": [
-      "hobby",
-      "intermediate"
-    ],
-    "use_cases": [
-      "trad_multipitch",
-      "sport"
-    ],
-    "best_rock_types": [
-      "granite",
-      "sandstone",
-      "limestone"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "crack",
-      "smear"
-    ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 119.0,
-    "discount_pct": 11.9,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "lace",
-    "asymmetry": "none",
-    "downturn": "flat",
-    "toe_patch": "medium",
-    "heel_rubber_coverage": "partial",
-    "ankle_protection": "none",
-    "durability": [
-      "high"
-    ],
-    "rubber_type": "RH rubber 4.5mm",
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_thickness_mm": 4.5,
-    "midsole": "full",
-    "rand": "relaxed",
-    "gender": "unisex",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 400,
-    "stretch_expectation": "none",
-    "break_in_period": "minimal",
-    "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Lace closure offers precise foot locking, ideal for technical trad_multipitch, sport. Engineered for narrow feet with low volume, Unparallel RH rubber grips everything from smearing to pockets. Low-volume construction suits climbers with narrower feet and lower insteps.",
-    "pros": "[\"Minimal downturn for slabs\", \"Precise lace-up control\", \"Vegan-friendly materials\", \"Resoleable for durability\"]",
-    "cons": "[\"Tight fit not for wide feet\", \"Low-volume cuts options for wide feet\"]",
-    "sizing": "Best for narrow feet and lower insteps. Size for a snug but comfortable fit.",
-    "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Unparallel.\", \"Perfect for long sport pitches. Comfort matters, and these deliver.\", \"As a climber with narrow feet, the LV fit finally feels right. No dead space, all performance.\"]",
-    "vegan": true,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {}
-  },
-  {
-    "brand": "Unparallel",
     "model": "Engage VCS",
     "slug": "unparallel-engage-vcs",
     "image_url": "https://www.unparallelsports.com/wp-content/uploads/2021/02/2858941049-600x600.png",
@@ -21959,77 +21888,6 @@
     "cons": "[\"Medium width may feel snug\", \"Moderate durability for frequent use\"]",
     "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Unparallel.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Unparallel really nailed this design.\"]",
-    "vegan": true,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {}
-  },
-  {
-    "brand": "Unparallel",
-    "model": "Leopard II LV",
-    "slug": "unparallel-leopard-ii-lv",
-    "image_url": "https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/shoe-images/unparallel-leopard-ii-lv.jpg",
-    "images": null,
-    "toe_form": "egyptian",
-    "volume": "low",
-    "width": "narrow",
-    "heel": "narrow",
-    "skill_level": [
-      "intermediate",
-      "advanced"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "indoor",
-      "sandstone"
-    ],
-    "best_wall_angles": [
-      "vertical",
-      "overhang"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear",
-      "pocket"
-    ],
-    "feel": "moderate",
-    "price_uvp_eur": 130.0,
-    "current_price_eur": null,
-    "discount_pct": 0.0,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "slipper",
-    "asymmetry": "slight",
-    "downturn": "moderate",
-    "toe_patch": "medium",
-    "heel_rubber_coverage": "full",
-    "ankle_protection": "none",
-    "durability": [
-      "low",
-      "moderate"
-    ],
-    "rubber_type": "UP VD sole / RS heel",
-    "rubber_hardness": [
-      "soft"
-    ],
-    "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
-    "rand": "tensioned",
-    "gender": "unisex",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 340,
-    "stretch_expectation": "none",
-    "break_in_period": "minimal",
-    "description": "A balanced performer with moderate downturn, the Leopard II LV delivers precision and comfort across varied wall angles. The slipper closure provides quick on-and-off convenience, perfect for sport, boulder. Engineered for narrow feet with low volume, Unparallel VD rubber grips everything from smearing to pockets. Low-volume construction suits climbers with narrower feet and lower insteps.",
-    "pros": "[\"Balanced downturn for versatility\", \"Soft rubber for excellent grip\", \"Quick slipper closure\", \"Vegan-friendly materials\", \"Resoleable for durability\"]",
-    "cons": "[\"Tight fit not for wide feet\", \"Moderate durability for frequent use\", \"Low-volume cuts options for wide feet\"]",
-    "sizing": "Best for narrow feet and lower insteps. Size for a snug but comfortable fit.",
-    "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Unparallel.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"As a climber with narrow feet, the LV fit finally feels right. No dead space, all performance.\"]",
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
@@ -23614,75 +23472,6 @@
     "cons": "[\"Medium width may feel snug\", \"Limited on steep overhangs\"]",
     "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Unparallel.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Unparallel really nailed this design.\"]",
-    "vegan": true,
-    "resoleable": false,
-    "admin_flags": null,
-    "data_confidence": {}
-  },
-  {
-    "brand": "Unparallel",
-    "model": "Vega LV",
-    "slug": "unparallel-vega-lv",
-    "image_url": "https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/shoe-images/unparallel-vega-lv.jpg",
-    "images": null,
-    "toe_form": "egyptian",
-    "volume": "low",
-    "width": "narrow",
-    "heel": "narrow",
-    "skill_level": [
-      "beginner",
-      "hobby"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "indoor",
-      "limestone"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 89.0,
-    "discount_pct": 10.1,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "none",
-    "downturn": "flat",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
-    "ankle_protection": "none",
-    "durability": [
-      "high"
-    ],
-    "rubber_type": "RH rubber 5mm",
-    "rubber_hardness": [
-      "hard"
-    ],
-    "rubber_thickness_mm": 5.0,
-    "midsole": "full",
-    "rand": "relaxed",
-    "gender": "unisex",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 400,
-    "stretch_expectation": "none",
-    "break_in_period": "minimal",
-    "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Velcro closure enables fast adjustments during intense climbing sessions. Engineered for narrow feet with low volume, Unparallel RH rubber grips everything from smearing to pockets. Low-volume construction suits climbers with narrower feet and lower insteps.",
-    "pros": "[\"Minimal downturn for slabs\", \"Durable hard rubber compound\", \"Fast velcro adjustment\", \"Vegan-friendly materials\"]",
-    "cons": "[\"Tight fit not for wide feet\", \"Low-volume cuts options for wide feet\"]",
-    "sizing": "Best for narrow feet and lower insteps. Size for a snug but comfortable fit.",
-    "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Unparallel.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"As a climber with narrow feet, the LV fit finally feels right. No dead space, all performance.\"]",
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
