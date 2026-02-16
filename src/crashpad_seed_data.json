@@ -2329,8 +2329,8 @@
     "pad_size_category": "oversized",
     "fold_style": "inflatable",
     "best_use": [
+      "lowball",
       "midrange",
-      "highball",
       "traverse"
     ],
     "approach_suitability": "moderate",
@@ -2340,7 +2340,7 @@
     "weight_kg": 5.0,
     "landing_area_sqm": 2.04,
     "volume_l": 306.0,
-    "impact_protection": "very_high",
+    "impact_protection": "high",
     "foam_firmness": "moderate",
     "foam_layers": 0,
     "foam_types": [
@@ -2371,8 +2371,8 @@
     "kg_per_area": 2.45,
     "eur_per_liter": 0.81,
     "kg_per_liter": 0.016,
-    "pros": "Ultra-light at 2.5kg — packs down smaller than a sleeping bag\nPerfect for remote bouldering with long approaches\nQuick inflation with included pump\nInnovative alternative to traditional foam pads",
-    "cons": "Puncture risk from sharp rocks and rough terrain\nLess predictable impact absorption vs layered foam\nRequires inflation time before each session\nNot suitable for highball bouldering",
+    "pros": "Massive 2.0m² landing zone at only 5kg — exceptional area-to-weight ratio\nPacks down small enough to fit inside your main pad or a daypack\nAdjustable firmness via air pressure — tune it to your preference\nGreat as a second pad to massively extend your landing zone\nDouble duty as a comfortable sleeping pad at the crag",
+    "cons": "Puncture risk on sharp rock — avoid as sole pad on rough terrain\nNot recommended as primary pad for highball bouldering — air lacks the progressive absorption of layered foam\nCan feel slippery on uneven terrain — perceived higher ankle sprain risk on non-flat landings\nRequires an air pump each session — fine if you already carry a blower for cleaning holds\nNo built-in gear storage — best carried inside your main pad or a separate bag",
     "data_confidence": {}
   },
   {
@@ -5389,8 +5389,8 @@
     "pad_size_category": "oversized",
     "fold_style": "inflatable",
     "best_use": [
+      "lowball",
       "midrange",
-      "highball",
       "traverse"
     ],
     "approach_suitability": "moderate",
@@ -5400,7 +5400,7 @@
     "weight_kg": 5.0,
     "landing_area_sqm": 1.8,
     "volume_l": 270.0,
-    "impact_protection": "very_high",
+    "impact_protection": "high",
     "foam_firmness": "moderate",
     "foam_layers": 0,
     "foam_types": [
@@ -5430,8 +5430,8 @@
     "kg_per_area": 2.78,
     "eur_per_liter": 1.19,
     "kg_per_liter": 0.019,
-    "pros": "Massive 1.8m² landing zone covers most boulder problem landings\n15cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (4.0kg for 1.8m²)\nGood protection coverage\nGood carry comfort for approaches",
-    "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
+    "pros": "1.8m² landing zone at only 5kg — outstanding area-to-weight ratio\nPacks down flat — easily fits inside your main taco or hinge pad\nAdjustable firmness via air pressure\n600D recycled shell with TPU coating\nGreat as a supplementary pad to extend your landing zone",
+    "cons": "Not recommended as sole pad for highball bouldering — air lacks progressive foam absorption\nPuncture risk on sharp rock — best used on softer ground or layered over another pad\nCan feel slippery on uneven terrain — perceived higher ankle sprain risk\nRequires air pump each session — fine if you carry a blower for hold cleaning\nNo built-in gear storage — carry inside your main pad or a separate backpack",
     "data_confidence": {}
   },
   {

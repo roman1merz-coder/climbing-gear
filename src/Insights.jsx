@@ -385,6 +385,117 @@ function KeyInsight({ children, color = T.accent }) {
     </div>
   );
 }
+/* ─── Inflatable vs Foam scatter: kg/m² for 10–16cm pads ─── */
+const INFLATABLE_DATA = [
+  // Foam pads (10–16cm thickness) — representative sample showing the spread
+  { name: "Metolius Basic", kg_m2: 3.06, thick: 10, inflatable: false },
+  { name: "Ocún Paddy Dominator", kg_m2: 3.17, thick: 10, inflatable: false },
+  { name: "Mammut Crashiano", kg_m2: 3.32, thick: 10, inflatable: false },
+  { name: "Petzl Nimbo", kg_m2: 3.38, thick: 10, inflatable: false },
+  { name: "Snap Rebound", kg_m2: 3.67, thick: 10, inflatable: false },
+  { name: "Beal Double Air Bag", kg_m2: 3.71, thick: 12, inflatable: false },
+  { name: "Moon Pluto", kg_m2: 3.85, thick: 12, inflatable: false },
+  { name: "Edelrid Crux III", kg_m2: 4.00, thick: 10, inflatable: false },
+  { name: "Mad Rock Mad Pad", kg_m2: 4.10, thick: 10, inflatable: false },
+  { name: "La Sportiva Maxi", kg_m2: 4.13, thick: 10, inflatable: false },
+  { name: "Petzl Alto", kg_m2: 4.23, thick: 10, inflatable: false },
+  { name: "Black Diamond Mondo", kg_m2: 4.35, thick: 10, inflatable: false },
+  { name: "Snap Wrap Original", kg_m2: 6.67, thick: 15, inflatable: false },
+  { name: "Ocún Paddy Moonwalk", kg_m2: 4.62, thick: 12, inflatable: false },
+  { name: "Moon Saturn", kg_m2: 4.86, thick: 12, inflatable: false },
+  { name: "BD Impact", kg_m2: 5.04, thick: 10, inflatable: false },
+  { name: "Metolius Session II", kg_m2: 5.15, thick: 11, inflatable: false },
+  { name: "Send Grand Illusion", kg_m2: 5.38, thick: 10, inflatable: false },
+  { name: "ZIGZAG Triple", kg_m2: 9.73, thick: 15, inflatable: false },
+  { name: "Edelrid Mantle IV", kg_m2: 5.50, thick: 10, inflatable: false },
+  { name: "Mad Rock Triple", kg_m2: 5.85, thick: 10, inflatable: false },
+  { name: "Kinetik Newton 4", kg_m2: 5.75, thick: 15, inflatable: false },
+  // Inflatable pads
+  { name: "Kailas Inflatable", kg_m2: 2.45, thick: 15, inflatable: true },
+  { name: "Snap Air Shock 1", kg_m2: 2.78, thick: 15, inflatable: true },
+];
+
+function InflatableChart({ isMobile }) {
+  const W = isMobile ? 340 : 700, H = isMobile ? 280 : 320;
+  const pad = { top: 30, right: 20, bottom: 44, left: 55 };
+  const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
+
+  const xMin = 9, xMax = 16, yMin = 0, yMax = 10;
+  const sx = (v) => pad.left + ((v - xMin) / (xMax - xMin)) * cw;
+  const sy = (v) => pad.top + ch - ((v - yMin) / (yMax - yMin)) * ch;
+
+  // Compute foam trendline (simple linear regression on non-inflatable)
+  const foam = INFLATABLE_DATA.filter(d => !d.inflatable);
+  const n = foam.length;
+  const sumX = foam.reduce((s, d) => s + d.thick, 0);
+  const sumY = foam.reduce((s, d) => s + d.kg_m2, 0);
+  const sumXY = foam.reduce((s, d) => s + d.thick * d.kg_m2, 0);
+  const sumXX = foam.reduce((s, d) => s + d.thick * d.thick, 0);
+  const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+  const intercept = (sumY - slope * sumX) / n;
+
+  return (
+    <ChartContainer title="kg/m² vs Thickness (10–16cm pads)" subtitle="76 pads with 10–16cm thickness — inflatables shatter the trendline">
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
+        {/* Grid */}
+        {[0, 2, 4, 6, 8, 10].map(v => (
+          <g key={`y${v}`}>
+            <line x1={pad.left} y1={sy(v)} x2={W - pad.right} y2={sy(v)} stroke={T.border} strokeDasharray="3,3" opacity="0.5" />
+            <text x={pad.left - 8} y={sy(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">{v}</text>
+          </g>
+        ))}
+        {[10, 11, 12, 13, 14, 15, 16].map(v => (
+          <g key={`x${v}`}>
+            <line x1={sx(v)} y1={pad.top} x2={sx(v)} y2={pad.top + ch} stroke={T.border} strokeDasharray="3,3" opacity="0.3" />
+            <text x={sx(v)} y={H - pad.bottom + 16} fill={T.muted} fontSize="10" textAnchor="middle">{v}cm</text>
+          </g>
+        ))}
+
+        {/* Foam average band */}
+        <rect x={pad.left} y={sy(5.5)} width={cw} height={sy(4.0) - sy(5.5)} rx="4" fill={T.muted} opacity="0.06" />
+        <text x={W - pad.right - 4} y={sy(5.2)} fill={T.muted} fontSize="9" textAnchor="end" fontWeight="600" opacity="0.6">Foam avg range</text>
+
+        {/* Trendline */}
+        <line
+          x1={sx(xMin)} y1={sy(slope * xMin + intercept)}
+          x2={sx(xMax)} y2={sy(slope * xMax + intercept)}
+          stroke={T.muted} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.5"
+        />
+        <text x={sx(13)} y={sy(slope * 13 + intercept) - 8} fill={T.muted} fontSize="9" textAnchor="middle" fontWeight="600">Foam trend</text>
+
+        {/* Foam dots */}
+        {foam.map((d, i) => (
+          <circle key={i} cx={sx(d.thick)} cy={sy(d.kg_m2)} r={isMobile ? 4 : 5} fill={T.blue} opacity="0.5" />
+        ))}
+
+        {/* Inflatable dots — highlighted */}
+        {INFLATABLE_DATA.filter(d => d.inflatable).map((d, i) => (
+          <g key={`inf${i}`}>
+            <circle cx={sx(d.thick)} cy={sy(d.kg_m2)} r={isMobile ? 7 : 9} fill={T.yellow} opacity="0.25" />
+            <circle cx={sx(d.thick)} cy={sy(d.kg_m2)} r={isMobile ? 5 : 6} fill={T.yellow} opacity="0.9" />
+            <text
+              x={sx(d.thick) + (i === 0 ? -12 : 12)}
+              y={sy(d.kg_m2) + (i === 0 ? -12 : 14)}
+              fill={T.yellow} fontSize={isMobile ? "8" : "10"} fontWeight="700"
+              textAnchor={i === 0 ? "end" : "start"}
+            >{d.name}</text>
+          </g>
+        ))}
+
+        {/* Axis labels */}
+        <text x={W / 2} y={H - 4} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600">Thickness (cm)</text>
+        <text x={14} y={H / 2} fill={T.muted} fontSize="11" textAnchor="middle" fontWeight="600" transform={`rotate(-90,14,${H / 2})`}>kg / m²</text>
+
+        {/* Legend */}
+        <circle cx={pad.left + 10} cy={pad.top + 8} r="4" fill={T.blue} opacity="0.5" />
+        <text x={pad.left + 18} y={pad.top + 12} fill={T.muted} fontSize="10">Foam pad</text>
+        <circle cx={pad.left + 80} cy={pad.top + 8} r="4" fill={T.yellow} />
+        <text x={pad.left + 88} y={pad.top + 12} fill={T.yellow} fontSize="10" fontWeight="600">Inflatable</text>
+      </svg>
+    </ChartContainer>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════
    MAIN INSIGHTS PAGE
    ═══════════════════════════════════════════════════════════════ */
@@ -411,7 +522,7 @@ export default function Insights() {
             What 380+ Products Reveal<br />About Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "520px", margin: "0 auto" }}>
-            We analyzed every crashpad, rope, and shoe in our database. Here are three findings that might change how you shop.
+            We analyzed every crashpad, rope, and shoe in our database. Here are four findings that might change how you shop.
           </p>
           <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginTop: "20px" }}>
             <span style={{ fontSize: "11px", color: T.accent, background: T.accentSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>333 Shoes</span>
@@ -530,6 +641,48 @@ export default function Insights() {
             <strong>The hidden third force:</strong> Look beyond Vibram and you'll find proprietary compounds carving out niches. Evolv's TRAX SAS (13 shoes, avg €167) commands the highest average price of any compound — suggesting brand-loyal buyers who aren't cross-shopping. Unparallel runs its own RH + RS compounds across 26 shoes, proving you don't need Vibram to compete.
           </KeyInsight>
         </section>
+        {/* ═══ ARTICLE 4: Inflatable Crashpads ═══ */}
+        <section style={sectionStyle}>
+          <ArticleHeader
+            number={4}
+            icon="💨"
+            title="Inflatable Crashpads: Game-Changer or Gimmick?"
+            subtitle="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?"
+          />
+
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
+            <StatCard label="Avg kg/m² (Inflatable)" value="2.6" sub="vs 4.8 for foam pads" color={T.yellow} />
+            <StatCard label="Weight Saving" value="46%" sub="Same thickness, half the weight" color={T.green} />
+            <StatCard label="Packed Volume" value="~5L" sub="Fits inside any taco pad" color={T.blue} />
+          </div>
+
+          <InflatableChart isMobile={isMobile} />
+
+          <Prose>
+            The chart above tells the story better than words can. Among the 76 pads in our database with 10–16cm thickness, the two inflatables — the Snap Air Shock 1 and Kailas Inflatable — sit dramatically below the trendline. At 2.45 and 2.78 kg/m², they're nearly half the weight of the average foam pad in the same thickness range (4.81 kg/m²). That's not a small improvement — it's a category break.
+          </Prose>
+
+          <KeyInsight color={T.yellow}>
+            <strong>The weight advantage is real.</strong> A Snap Air Shock 1 delivers 1.8m² of 15cm-thick landing zone at just 5kg. A comparable foam pad (e.g. Snap Wrap Original: 1.5m², 15cm, 10kg) weighs twice as much for less area. That deflated Air Shock easily fits inside your taco pad — meaning you can carry two full-size pads to the crag for barely more than the weight of one traditional pad.
+          </KeyInsight>
+
+          <Prose>
+            And the benefits keep stacking. Inflatable pads offer adjustable firmness via air pressure — pump more air for harder impacts, leave it softer for sit-starts. They pack down to roughly sleeping-bag size, making them trivial to fit in your car or van. They're comfortable enough to sleep on at the crag (seriously — better than most camping mats). And since they nest inside your main pad during the approach, you're not juggling extra bags.
+          </Prose>
+
+          <KeyInsight color={T.red}>
+            <strong>But here's where it gets real.</strong> An inflatable pad is not a foam pad. Air doesn't absorb impact progressively the way layered foam does — there's no soft-to-firm gradient. On sharp rock, a puncture isn't just inconvenient, it's a safety risk. The surface can feel slippery on uneven ground, and some climbers report a perceived higher risk of ankle sprains on non-flat landings. We would not recommend an inflatable as your sole pad for highball bouldering.
+          </KeyInsight>
+
+          <Prose>
+            There are practical trade-offs too. Inflatables have no built-in gear storage — no shoe pockets, no chalk bag loops. The best approach is to carry them inside your main pad or use a separate backpack. You'll also need an air pump every session, though if you already bring a blower to clean holds (and you should), that's not an extra hassle.
+          </Prose>
+
+          <KeyInsight color={T.green}>
+            <strong>The verdict:</strong> Inflatable pads are a genuine game-changer — but for specific use cases. They're ideal as a second pad to massively extend your landing zone, perfect for long approaches where every gram counts, and unbeatable for van-life boulderers who need to optimize space. They're also surprisingly great as pool floats. But if you only own one pad and boulder on rough terrain, stick with layered foam.
+          </KeyInsight>
+        </section>
+
         {/* ═══ FOOTER CTA ═══ */}
         <div style={{
           textAlign: "center", padding: "40px 24px",
