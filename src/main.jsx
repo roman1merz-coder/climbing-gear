@@ -138,16 +138,12 @@ const ROPE_SEED_MAP = Object.fromEntries(ROPE_SEED.map(r => [r.slug, r]));
 const BELAY_SEED_MAP = Object.fromEntries(BELAY_SEED.map(b => [b.slug, b]));
 const CRASHPAD_SEED_MAP = Object.fromEntries(CRASHPAD_SEED.map(c => [c.slug, c]));
 
-/** Merge Supabase row with seed data: Supabase wins for non-null fields, seed fills gaps.
- *  Exception: seed always wins for curated text fields (pros, cons, best_use, impact_protection)
- *  because seed data is updated more frequently than Supabase during development. */
-const SEED_PRIORITY_FIELDS = new Set(["pros", "cons", "best_use", "impact_protection"]);
+/** Merge Supabase row with seed data: Supabase wins for non-null fields, seed fills gaps */
 function mergeWithSeed(sbRow, seedMap) {
   const seed = seedMap[sbRow.slug] || {};
   const merged = { ...seed };
   for (const [key, val] of Object.entries(sbRow)) {
     if (val !== null && val !== undefined) {
-      if (SEED_PRIORITY_FIELDS.has(key) && seed[key] != null) continue;
       merged[key] = val;
     }
   }
