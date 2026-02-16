@@ -381,9 +381,10 @@ function Prose({ children }) {
 }
 
 function KeyInsight({ children, color = T.accent }) {
+  const softBg = color === T.yellow ? T.yellowSoft : color === T.green ? T.greenSoft : color === T.red ? T.redSoft : color === T.blue ? T.blueSoft : color === T.purple ? T.purpleSoft : T.accentSoft;
   return (
-    <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: "16px", margin: "20px 0", background: `${color}08`, borderRadius: "0 8px 8px 0", padding: "14px 16px" }}>
-      <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7 }}>{children}</div>
+    <div style={{ borderLeft: `3px solid ${color}`, margin: "20px 0", background: softBg, borderRadius: "0 8px 8px 0", padding: "14px 18px 14px 18px" }}>
+      <div style={{ fontSize: "13.5px", color: T.text, lineHeight: 1.75 }}>{children}</div>
     </div>
   );
 }
