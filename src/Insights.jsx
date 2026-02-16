@@ -17,44 +17,9 @@ function useIsMobile() {
    Crashpad data from curated analysis (DB table pending).
    ═══════════════════════════════════════════════════════════════ */
 // Crashpad inline scatter data removed — now lives in CrashpadScatterChart.jsx
-// Fold style aggregation
-const FOLD_DATA = [
-  { style: "Hinge", n: 64, avgPrice: 219, avgArea: 1.20, avgWeight: 4.9, avgEurM2: 178 },
-  { style: "Taco", n: 28, avgPrice: 271, avgArea: 1.29, avgWeight: 5.8, avgEurM2: 218 },
-  { style: "Tri-fold", n: 6, avgPrice: 296, avgArea: 1.66, avgWeight: 7.0, avgEurM2: 176 },
-  { style: "Hybrid", n: 2, avgPrice: 324, avgArea: 1.60, avgWeight: 6.7, avgEurM2: 214 },
-  { style: "Inflatable", n: 2, avgPrice: 284, avgArea: 1.50, avgWeight: 3.2, avgEurM2: 193 },
-];
-
-// Foam layers
-const FOAM_DATA = [
-  { layers: 1, n: 19, avgPrice: 122, avgEurM2: 117 },
-  { layers: 2, n: 26, avgPrice: 207, avgEurM2: 176 },
-  { layers: 3, n: 47, avgPrice: 283, avgEurM2: 206 },
-  { layers: 4, n: 5, avgPrice: 435, avgEurM2: 304 },
-  { layers: 5, n: 4, avgPrice: 274, avgEurM2: 292 },
-];
-
-// Article 4: Rubber compounds
-const RUBBER_DATA = [
-  { compound: "Vibram XS Grip 2", n: 68, avgPrice: 133, brands: "La Sportiva, Scarpa, Tenaya, +7" },
-  { compound: "Vibram XS Edge", n: 41, avgPrice: 146, brands: "La Sportiva, Scarpa, Tenaya" },
-  { compound: "Science Friction 3.0", n: 18, avgPrice: 120, brands: "Mad Rock" },
-  { compound: "FriXion RS", n: 17, avgPrice: 90, brands: "La Sportiva" },
-  { compound: "NEO Fuse", n: 16, avgPrice: 122, brands: "Black Diamond, Butora" },
-  { compound: "Unparallel RH", n: 14, avgPrice: 127, brands: "Unparallel" },
-  { compound: "TRAX SAS", n: 13, avgPrice: 167, brands: "Evolv" },
-  { compound: "Unparallel RS", n: 12, avgPrice: 145, brands: "Unparallel" },
-  { compound: "Stealth C4", n: 9, avgPrice: 127, brands: "Five Ten" },
-  { compound: "Vibram Vision", n: 8, avgPrice: 84, brands: "Scarpa" },
-  { compound: "TRAX HF", n: 8, avgPrice: 104, brands: "Evolv" },
-];
 /* ═══════════════════════════════════════════════════════════════
    SHARED CHART COMPONENTS
    ═══════════════════════════════════════════════════════════════ */
-
-const FOLD_COLORS = { taco: T.accent, hinge: T.blue, tri_fold: T.green, hybrid: T.purple, inflatable: T.yellow, baffled: "#94a3b8" };
-const FOAM_COLORS = { 0: T.muted, 1: "#60a5fa", 2: T.green, 3: T.accent, 4: "#ef4444", 5: T.purple, 7: T.yellow };
 
 function ChartContainer({ title, subtitle, children, style }) {
   return (
@@ -73,120 +38,6 @@ function StatCard({ label, value, sub, color = T.accent }) {
       <div style={{ fontSize: "24px", fontWeight: 800, color, letterSpacing: "-0.5px" }}>{value}</div>
       {sub && <div style={{ fontSize: "11px", color: T.muted, marginTop: "4px" }}>{sub}</div>}
     </div>
-  );
-}
-/* ─── Crashpad Teaser: €/m² by fold style (links to interactive chart) ─── */
-const PAD_TEASER = [
-  { style: "Hinge", eur: 178, n: 48, color: FOLD_COLORS.hinge },
-  { style: "Taco", eur: 218, n: 28, color: FOLD_COLORS.taco },
-  { style: "Tri-fold", eur: 176, n: 8, color: FOLD_COLORS.tri_fold },
-  { style: "Hybrid", eur: 198, n: 6, color: FOLD_COLORS.hybrid },
-  { style: "Inflatable", eur: 193, n: 3, color: FOLD_COLORS.inflatable },
-];
-
-function PadTeaserChart({ isMobile }) {
-  const W = isMobile ? 340 : 700, H = isMobile ? 200 : 210;
-  const pad = { top: 16, right: 20, bottom: 30, left: 80 };
-  const barH = 24, gap = 8;
-  const maxVal = 260;
-  const cw = W - pad.left - pad.right;
-
-  return (
-    <ChartContainer title="Avg €/m² by Fold Style" subtitle="101 crashpads · Fold style is a hidden price driver">
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {PAD_TEASER.map((d, i) => {
-          const yPos = pad.top + i * (barH + gap);
-          const barW = (d.eur / maxVal) * cw;
-          return (
-            <g key={d.style}>
-              <text x={pad.left - 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize="12" fontWeight="600" textAnchor="end">{d.style}</text>
-              <rect x={pad.left} y={yPos} width={barW} height={barH} rx="4" fill={d.color} opacity="0.85" />
-              <text x={pad.left + barW + 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize="12" fontWeight="700">€{d.eur}/m²</text>
-              <text x={pad.left + barW + 70} y={yPos + barH / 2 + 4} fill={T.muted} fontSize="10">n={d.n}</text>
-            </g>
-          );
-        })}
-      </svg>
-      {/* CTA to interactive chart */}
-      <Link to="/crashpads?view=chart" style={{
-        display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-        marginTop: "16px", padding: "10px 20px",
-        background: T.accentSoft, color: T.accent,
-        borderRadius: "8px", fontSize: "13px", fontWeight: 700,
-        textDecoration: "none", transition: "transform 0.15s",
-      }}
-        onMouseOver={e => e.currentTarget.style.transform = "translateY(-1px)"}
-        onMouseOut={e => e.currentTarget.style.transform = "translateY(0)"}
-      >
-        Explore all 101 crashpads interactively →
-      </Link>
-    </ChartContainer>
-  );
-}
-/* ─── Bar Chart: Fold Style Comparison ─── */
-function FoldStyleBars({ isMobile }) {
-  const W = isMobile ? 340 : 600, H = 220;
-  const pad = { left: 80, right: 20, top: 20, bottom: 30 };
-  const barH = 28, gap = 8;
-  const maxVal = 300;
-
-  return (
-    <ChartContainer title="The Fold-Style Tax" subtitle="Average €/m² by fold style — same foam, different folding, different price">
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {FOLD_DATA.map((d, i) => {
-          const yPos = pad.top + i * (barH + gap);
-          const barW = (d.avgEurM2 / maxVal) * (W - pad.left - pad.right);
-          const color = FOLD_COLORS[d.style.toLowerCase().replace("-", "_")] || T.muted;
-          return (
-            <g key={d.style}>
-              <text x={pad.left - 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize="12" fontWeight="600" textAnchor="end">{d.style}</text>
-              <rect x={pad.left} y={yPos} width={barW} height={barH} rx="4" fill={color} opacity="0.85" />
-              <text x={pad.left + barW + 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize="12" fontWeight="700">€{d.avgEurM2}/m²</text>
-              <text x={pad.left + barW + 75} y={yPos + barH / 2 + 4} fill={T.muted} fontSize="10">n={d.n} · {d.avgArea.toFixed(2)}m² · {d.avgWeight}kg</text>
-            </g>
-          );
-        })}
-      </svg>
-    </ChartContainer>
-  );
-}
-
-/* ─── Bar Chart: Foam Layers vs Price ─── */
-function FoamLayerChart({ isMobile }) {
-  const W = isMobile ? 340 : 500, H = 220;
-  const pad = { left: 50, right: 30, top: 20, bottom: 40 };
-  const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
-  const barW = Math.min(60, cw / FOAM_DATA.length - 12);
-
-  return (
-    <ChartContainer title="More Foam = More Money?" subtitle="Average price & €/m² by number of foam layers">
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {FOAM_DATA.map((d, i) => {
-          const cx = pad.left + (i + 0.5) * (cw / FOAM_DATA.length);
-          const priceH = (d.avgPrice / 450) * ch;
-          const eurH = (d.avgEurM2 / 450) * ch;
-          return (
-            <g key={d.layers}>
-              {/* Price bar */}
-              <rect x={cx - barW / 2 - 2} y={pad.top + ch - priceH} width={barW / 2 - 2} height={priceH} rx="3" fill={T.blue} opacity="0.7" />
-              {/* €/m² bar */}
-              <rect x={cx + 2} y={pad.top + ch - eurH} width={barW / 2 - 2} height={eurH} rx="3" fill={T.accent} opacity="0.7" />
-              {/* Label */}
-              <text x={cx} y={H - pad.bottom + 16} fill={T.text} fontSize="12" fontWeight="700" textAnchor="middle">{d.layers}L</text>
-              <text x={cx} y={H - pad.bottom + 28} fill={T.muted} fontSize="9" textAnchor="middle">n={d.n}</text>
-              {/* Values on top */}
-              <text x={cx - barW / 4} y={pad.top + ch - priceH - 4} fill={T.blue} fontSize="9" fontWeight="600" textAnchor="middle">€{d.avgPrice}</text>
-              <text x={cx + barW / 4} y={pad.top + ch - eurH - 4} fill={T.accent} fontSize="9" fontWeight="600" textAnchor="middle">€{d.avgEurM2}</text>
-            </g>
-          );
-        })}
-        {/* Legend */}
-        <circle cx={W - 120} cy={10} r="4" fill={T.blue} />
-        <text x={W - 112} y={14} fill={T.muted} fontSize="10">Avg Price</text>
-        <circle cx={W - 50} cy={10} r="4" fill={T.accent} />
-        <text x={W - 42} y={14} fill={T.muted} fontSize="10">€/m²</text>
-      </svg>
-    </ChartContainer>
   );
 }
 /* ─── Rope Diameter Data (for article teaser chart) ─── */
@@ -275,91 +126,6 @@ function RopeTeaserChart({ isMobile }) {
   );
 }
 
-/* ─── Horizontal Bar Chart: Rubber Compounds ─── */
-function RubberCompoundChart({ isMobile }) {
-  const W = isMobile ? 340 : 660, H = 380;
-  const padL = isMobile ? 110 : 160, padR = 80, padT = 10, padB = 20;
-  const barH = 26, gap = 6;
-  const maxN = 70;
-
-  const priceColors = (p) => p < 100 ? T.green : p < 130 ? T.blue : p < 150 ? T.accent : T.red;
-
-  return (
-    <ChartContainer title="Rubber Compound Market Share" subtitle="333 climbing shoes — which rubber dominates, and what does it cost?">
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {RUBBER_DATA.map((d, i) => {
-          const yPos = padT + i * (barH + gap);
-          const barW = (d.n / maxN) * (W - padL - padR);
-          const color = d.compound.includes("XS Grip") ? T.accent : d.compound.includes("XS Edge") ? "#ef4444" :
-            d.compound.includes("Science") ? T.purple : d.compound.includes("TRAX") ? T.yellow :
-            d.compound.includes("Stealth") ? T.green : d.compound.includes("Unparallel") ? T.blue : T.muted;
-          return (
-            <g key={d.compound}>
-              <text x={padL - 8} y={yPos + barH / 2 + 4} fill={T.text} fontSize={isMobile ? "9" : "11"} fontWeight="600" textAnchor="end">{d.compound}</text>
-              <rect x={padL} y={yPos} width={barW} height={barH} rx="4" fill={color} opacity="0.8" />
-              <text x={padL + barW + 6} y={yPos + barH / 2 + 1} fill={T.text} fontSize="11" fontWeight="700" dominantBaseline="middle">{d.n}</text>
-              {/* Price badge */}
-              <rect x={padL + barW + 30} y={yPos + 3} width="42" height="20" rx="4" fill={priceColors(d.avgPrice)} opacity="0.15" />
-              <text x={padL + barW + 51} y={yPos + barH / 2 + 1} fill={priceColors(d.avgPrice)} fontSize="10" fontWeight="700" textAnchor="middle" dominantBaseline="middle">€{d.avgPrice}</text>
-            </g>
-          );
-        })}
-      </svg>
-    </ChartContainer>
-  );
-}
-
-/* ─── Head-to-head: XS Grip vs XS Edge ─── */
-function GripVsEdge({ isMobile }) {
-  const data = [
-    { label: "Shoes using it", grip: 68, edge: 41, unit: "", max: 80 },
-    { label: "Avg shoe price", grip: 133, edge: 146, unit: "€", max: 180 },
-    { label: "Brands using it", grip: 10, edge: 3, unit: "", max: 12 },
-  ];
-
-  return (
-    <ChartContainer title="Head to Head: XS Grip 2 vs XS Edge" subtitle="The two most popular Vibram compounds go head-to-head">
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        {data.map(d => {
-          const gripPct = (d.grip / d.max) * 100;
-          const edgePct = (d.edge / d.max) * 100;
-          return (
-            <div key={d.label}>
-              <div style={{ fontSize: "12px", color: T.muted, marginBottom: "6px", fontWeight: 600 }}>{d.label}</div>
-              <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "3px" }}>
-                    <span style={{ fontSize: "11px", color: T.accent, fontWeight: 700 }}>XS Grip 2</span>
-                    <span style={{ fontSize: "13px", color: T.accent, fontWeight: 800 }}>{d.unit}{d.grip}</span>
-                  </div>
-                  <div style={{ height: "8px", background: T.surface, borderRadius: "4px", overflow: "hidden" }}>
-                    <div style={{ width: `${gripPct}%`, height: "100%", background: T.accent, borderRadius: "4px" }} />
-                  </div>
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "3px" }}>
-                    <span style={{ fontSize: "11px", color: T.red, fontWeight: 700 }}>XS Edge</span>
-                    <span style={{ fontSize: "13px", color: T.red, fontWeight: 800 }}>{d.unit}{d.edge}</span>
-                  </div>
-                  <div style={{ height: "8px", background: T.surface, borderRadius: "4px", overflow: "hidden" }}>
-                    <div style={{ width: `${edgePct}%`, height: "100%", background: T.red, borderRadius: "4px" }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div style={{ marginTop: "16px", padding: "12px 14px", background: T.surface, borderRadius: T.radiusSm, border: `1px solid ${T.border}` }}>
-        <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.7 }}>
-          <strong style={{ color: T.accent }}>XS Grip 2</strong> dominates with 68 shoes across 10 brands — the industry's go-to all-rounder. 
-          <strong style={{ color: T.red }}> XS Edge</strong> is the specialist pick: fewer shoes, higher average price (€146 vs €133), 
-          and exclusive to just 3 brands (La Sportiva, Scarpa, Tenaya) — signaling a premium, performance-focused positioning.
-        </div>
-      </div>
-    </ChartContainer>
-  );
-}
 /* ═══════════════════════════════════════════════════════════════
    ARTICLE SECTIONS
    ═══════════════════════════════════════════════════════════════ */
@@ -436,150 +202,21 @@ export default function Insights() {
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <div style={{ fontSize: "11px", fontWeight: 700, color: T.accent, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "12px" }}>Data-Driven Insights</div>
           <h1 style={{ fontSize: isMobile ? "28px" : "36px", fontWeight: 800, letterSpacing: "-0.5px", lineHeight: 1.2, margin: "0 0 12px", color: T.text }}>
-            What 380+ Products Reveal<br />About Climbing Gear
+            What the Data Actually Says<br />About Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "520px", margin: "0 auto" }}>
-            We analyzed every crashpad, rope, and shoe in our database. Here are four findings that might change how you shop.
+            We crunched specs across 100+ crashpads and 100+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions.
           </p>
           <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginTop: "20px" }}>
-            <span style={{ fontSize: "11px", color: T.accent, background: T.accentSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>333 Shoes</span>
-            <span style={{ fontSize: "11px", color: T.green, background: T.greenSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>141 Ropes</span>
-            <span style={{ fontSize: "11px", color: T.blue, background: T.blueSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>19 Belay Devices</span>
+            <span style={{ fontSize: "11px", color: T.yellow, background: T.yellowSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>101 Crashpads</span>
+            <span style={{ fontSize: "11px", color: T.green, background: T.greenSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>106 Ropes</span>
           </div>
         </div>
 
-        {/* ═══ ARTICLE 1: The €/m² Illusion ═══ */}
+        {/* ═══ ARTICLE 1: Inflatable Crashpads ═══ */}
         <section style={sectionStyle}>
           <ArticleHeader
             number={1}
-            icon="🧮"
-            title="The €/m² Illusion: Why the Cheapest Crashpad Might Cost You the Most"
-            subtitle="Price tags lie. Landing area per euro tells the real story — and fold style is the hidden variable nobody talks about."
-          />
-
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-            <StatCard label="Cheapest per m²" value="€45" sub="Mad Rock Triplet" color={T.green} />
-            <StatCard label="Most Expensive per m²" value="€402" sub="Send 4x4 Pro Highball" color={T.red} />
-            <StatCard label="9× Price Spread" value="9:1" sub="Same sport, same purpose" color={T.yellow} />
-          </div>
-
-          <Prose>
-            When you walk into a climbing shop and see a €55 crashpad next to a €599 one, the price gap seems absurd. But zoom in on what you actually get per square meter of landing zone, and the picture shifts dramatically. The Mad Rock Triplet delivers protection at just €45/m² — but with a single foam layer and minimal carry features. The Send 4x4 Pro Highball commands €402/m² with 4-layer foam and professional-grade features.
-          </Prose>
-
-          <PadTeaserChart isMobile={isMobile} />
-
-          <KeyInsight>
-            <strong>The Sweet Spot:</strong> Pads between 1.0–1.7m² and €150–220/m² offer the best balance of protection, portability, and value. This zone contains 60%+ of all crashpads — for good reason.
-          </KeyInsight>
-
-          <Prose>
-            But here's what most buyers miss: fold style is a hidden tax. Taco-fold pads average €218/m² — a 22% premium over hinge pads at €178/m². You're paying for the seamless landing surface, but the data shows hinge pads actually deliver more landing area per euro.
-          </Prose>
-
-          <FoldStyleBars isMobile={isMobile} />
-
-          <KeyInsight color={T.blue}>
-            <strong>Fold Style Tax:</strong> Taco pads cost 22% more per m² than hinge pads (€218 vs €178). Tri-folds break even on €/m² (€176) but give you 38% more landing area on average (1.66m² vs 1.20m²). If raw coverage matters most, tri-fold is the mathematically optimal choice.
-          </KeyInsight>
-
-          <FoamLayerChart isMobile={isMobile} />
-
-          <Prose>
-            Foam layers tell a clear story: each additional layer adds roughly €40–50 to the street price. The jump from 3 to 4 layers is the steepest — a 54% price increase for what amounts to marginal impact-absorption gains. For most boulderers on standard 3–4m problems, 2–3 foam layers are more than sufficient.
-          </Prose>
-        </section>
-        {/* ═══ ARTICLE 2: Rope Cost vs Performance vs Safety ═══ */}
-        <section style={sectionStyle}>
-          <ArticleHeader
-            number={2}
-            icon="🧵"
-            title="Does Spending More Buy a Safer Rope? 106 Ropes Say: It's Complicated"
-            subtitle="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions — and exposes what specs can't tell you."
-          />
-
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-            <StatCard label="Correlation" value="–0.44" sub="cost ↑ = falls ↓ (counterintuitive)" color={T.red} />
-            <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
-            <StatCard label="Best Band" value="9.5–9.8" sub="31 models — fiercest competition" color={T.accent} />
-          </div>
-
-          <Prose>
-            Here's the uncomfortable truth: across 106 single-certified ropes, spending more per gram of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is actually negative (r = –0.44). Thin, expensive alpine ropes at ≤8.9mm average 5.4 UIAA falls at 6.8¢/g, while budget-friendly 10mm+ ropes deliver 10–14 falls at just 3.4–3.8¢/g. So where does the money go?
-          </Prose>
-
-          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
-
-          <KeyInsight color={T.green}>
-            <strong>You're paying for lightweight engineering, not durability.</strong> The premium on thin ropes funds R&D in sheath construction, dry treatments, and weight-optimized cores. A 70m rope at 48 g/m (≤8.9mm) weighs 3.4kg — versus 5.3kg at 75 g/m (≥11mm). On a long alpine route, that 1.9kg difference is real. But on a fall rating chart, the thick rope wins by a mile.
-          </KeyInsight>
-
-          <Prose>
-            This creates a genuine dilemma. The UIAA fall test is the one standardized, repeatable metric we have for rope durability. Every rope must survive at least 5 falls for certification — and most exceed that comfortably. But the test uses an 80kg mass, a 5.5m fall on 2.8m of rope (factor 1.78), and a sharp 10mm edge. It's a worst-case lab scenario, not a real-world climbing fall. A rope rated for 7 falls isn't "less safe" than one rated for 13 — it simply reaches the test threshold sooner under extreme, repeated abuse.
-          </Prose>
-
-          <RopeTeaserChart isMobile={isMobile} />
-
-          <KeyInsight>
-            <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds 31 of 106 models, nearly a third of the entire market. More models means fiercer price wars and more choice. Average: 8.0 UIAA falls, 62 g/m, and moderate pricing. Below 9.0mm you're in specialist alpine territory; above 10.0mm, weight climbs faster than durability.
-          </KeyInsight>
-
-          <Prose>
-            Switch the scatter chart above to "Falls/Weight vs ¢/g" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per gram. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. The Trango Agility 9.8 stands out — 0.20 falls per g/m at just 3.8¢/g. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
-          </Prose>
-
-          <KeyInsight color={T.blue}>
-            <strong>What the data can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably more relevant for day-to-day longevity than the number on the fall test. Unfortunately, these properties can only be assessed through real-world product testing over time, not from a spec sheet. Until the industry develops a standardized abrasion test, no database (including ours) can give you the full picture.
-          </KeyInsight>
-
-          <Prose>
-            The dry treatment pattern tells its own story. 100% of ropes below 9.0mm ship with dry treatment — these are mountain tools built for ice, mixed routes, and alpine weather where a wet rope can lose up to 40% of its dynamic strength. By 9.6–9.8mm the dry-treatment rate drops to 65%; above 10mm it's a coin flip. Dry treatment adds a 37% price premium (avg €3.06/m vs €2.24/m untreated) — a meaningful cost that's justified if you climb in wet conditions, but potentially wasted money if your rope lives mostly at the sport crag.
-          </Prose>
-
-          <KeyInsight color={T.yellow}>
-            <strong>Our honest take:</strong> Don't chase fall ratings. Every certified rope is safe. Instead, pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. The real differentiator between similar ropes in the same class is sheath longevity and handling — and for that, you'll need hands-on experience or trusted reviews, not spec sheets.
-          </KeyInsight>
-        </section>
-
-        {/* ═══ ARTICLE 3: Vibram XS Grip vs XS Edge ═══ */}
-        <section style={sectionStyle}>
-          <ArticleHeader
-            number={3}
-            icon="👟"
-            title="Vibram XS Grip 2 vs XS Edge: The €13 Question Nobody Asks"
-            subtitle="Two compounds dominate 33% of all climbing shoes. Here's what the data says about choosing between them."
-          />
-
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-            <StatCard label="XS Grip 2 Shoes" value="68" sub="21% of all shoes" color={T.accent} />
-            <StatCard label="XS Edge Shoes" value="41" sub="13% of all shoes" color={T.red} />
-            <StatCard label="Price Gap" value="€13" sub="XS Edge costs more" color={T.yellow} />
-          </div>
-
-          <RubberCompoundChart isMobile={isMobile} />
-
-          <Prose>
-            The climbing shoe rubber market has a clear king: Vibram XS Grip 2 appears on 68 shoes across 10 different brands — from La Sportiva's flagship solutions to budget-friendly Simond models. XS Edge, its edging-focused sibling, shows up on 41 shoes but tells a different story through its distribution.
-          </Prose>
-
-          <GripVsEdge isMobile={isMobile} />
-
-          <KeyInsight color={T.red}>
-            <strong>Brand Exclusivity:</strong> XS Edge is used by only 3 brands (La Sportiva, Scarpa, Tenaya) — all premium European manufacturers. XS Grip 2 appears across 10 brands spanning every price tier. This suggests XS Edge is a deliberate premium choice, while XS Grip 2 is the universal "safe bet."
-          </KeyInsight>
-
-          <Prose>
-            The €13 average price difference (€133 vs €146) understates the real story. XS Edge shoes skew heavily toward performance and aggressive models — the shoes climbers buy second, not first. Meanwhile, XS Grip 2 spans everything from beginner-friendly all-rounders to comp-level downturned shoes. The compound choice isn't really about grip vs edge — it's about market positioning.
-          </Prose>
-
-          <KeyInsight color={T.purple}>
-            <strong>The hidden third force:</strong> Look beyond Vibram and you'll find proprietary compounds carving out niches. Evolv's TRAX SAS (13 shoes, avg €167) commands the highest average price of any compound — suggesting brand-loyal buyers who aren't cross-shopping. Unparallel runs its own RH + RS compounds across 26 shoes, proving you don't need Vibram to compete.
-          </KeyInsight>
-        </section>
-        {/* ═══ ARTICLE 4: Inflatable Crashpads ═══ */}
-        <section style={sectionStyle}>
-          <ArticleHeader
-            number={4}
             icon="💨"
             title="Inflatable Crashpads: Game-Changer or Gimmick?"
             subtitle="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?"
@@ -797,6 +434,58 @@ export default function Insights() {
 
         </section>
 
+        {/* ═══ ARTICLE 2: Rope Cost vs Performance vs Safety ═══ */}
+        <section style={sectionStyle}>
+          <ArticleHeader
+            number={2}
+            icon="🧵"
+            title="Does Spending More Buy a Safer Rope? 106 Ropes Say: It's Complicated"
+            subtitle="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions — and exposes what specs can't tell you."
+          />
+
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
+            <StatCard label="Correlation" value="–0.44" sub="cost ↑ = falls ↓ (counterintuitive)" color={T.red} />
+            <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
+            <StatCard label="Best Band" value="9.5–9.8" sub="31 models — fiercest competition" color={T.accent} />
+          </div>
+
+          <Prose>
+            Here's the uncomfortable truth: across 106 single-certified ropes, spending more per gram of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is actually negative (r = –0.44). Thin, expensive alpine ropes at ≤8.9mm average 5.4 UIAA falls at 6.8¢/g, while budget-friendly 10mm+ ropes deliver 10–14 falls at just 3.4–3.8¢/g. So where does the money go?
+          </Prose>
+
+          <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
+
+          <KeyInsight color={T.green}>
+            <strong>You're paying for lightweight engineering, not durability.</strong> The premium on thin ropes funds R&D in sheath construction, dry treatments, and weight-optimized cores. A 70m rope at 48 g/m (≤8.9mm) weighs 3.4kg — versus 5.3kg at 75 g/m (≥11mm). On a long alpine route, that 1.9kg difference is real. But on a fall rating chart, the thick rope wins by a mile.
+          </KeyInsight>
+
+          <Prose>
+            This creates a genuine dilemma. The UIAA fall test is the one standardized, repeatable metric we have for rope durability. Every rope must survive at least 5 falls for certification — and most exceed that comfortably. But the test uses an 80kg mass, a 5.5m fall on 2.8m of rope (factor 1.78), and a sharp 10mm edge. It's a worst-case lab scenario, not a real-world climbing fall. A rope rated for 7 falls isn't "less safe" than one rated for 13 — it simply reaches the test threshold sooner under extreme, repeated abuse.
+          </Prose>
+
+          <RopeTeaserChart isMobile={isMobile} />
+
+          <KeyInsight>
+            <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds 31 of 106 models, nearly a third of the entire market. More models means fiercer price wars and more choice. Average: 8.0 UIAA falls, 62 g/m, and moderate pricing. Below 9.0mm you're in specialist alpine territory; above 10.0mm, weight climbs faster than durability.
+          </KeyInsight>
+
+          <Prose>
+            Switch the scatter chart above to "Falls/Weight vs ¢/g" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per gram. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. The Trango Agility 9.8 stands out — 0.20 falls per g/m at just 3.8¢/g. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
+          </Prose>
+
+          <KeyInsight color={T.blue}>
+            <strong>What the data can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably more relevant for day-to-day longevity than the number on the fall test. Unfortunately, these properties can only be assessed through real-world product testing over time, not from a spec sheet. Until the industry develops a standardized abrasion test, no database (including ours) can give you the full picture.
+          </KeyInsight>
+
+          <Prose>
+            The dry treatment pattern tells its own story. 100% of ropes below 9.0mm ship with dry treatment — these are mountain tools built for ice, mixed routes, and alpine weather where a wet rope can lose up to 40% of its dynamic strength. By 9.6–9.8mm the dry-treatment rate drops to 65%; above 10mm it's a coin flip. Dry treatment adds a 37% price premium (avg €3.06/m vs €2.24/m untreated) — a meaningful cost that's justified if you climb in wet conditions, but potentially wasted money if your rope lives mostly at the sport crag.
+          </Prose>
+
+          <KeyInsight color={T.yellow}>
+            <strong>Our honest take:</strong> Don't chase fall ratings. Every certified rope is safe. Instead, pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. The real differentiator between similar ropes in the same class is sheath longevity and handling — and for that, you'll need hands-on experience or trusted reviews, not spec sheets.
+          </KeyInsight>
+        </section>
+
         {/* ═══ FOOTER CTA ═══ */}
         <div style={{
           textAlign: "center", padding: "40px 24px",
@@ -809,7 +498,6 @@ export default function Insights() {
           </p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             {[
-              { label: "Browse Shoes", to: "/shoes", icon: "👟" },
               { label: "Browse Crashpads", to: "/crashpads", icon: "🛏️" },
               { label: "Browse Ropes", to: "/ropes", icon: "🧵" },
             ].map(l => (
@@ -832,9 +520,9 @@ export default function Insights() {
         <div style={{ marginTop: "32px", padding: "20px", background: T.surface, borderRadius: T.radius, border: `1px solid ${T.border}` }}>
           <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>Methodology</div>
           <p style={{ fontSize: "12px", color: T.muted, lineHeight: 1.7, margin: 0 }}>
-            Data sourced from manufacturer specs and retailer listings across European markets. Prices reflect current street prices (or UVP where unavailable) as of early 2025. 
-            €/m² calculated as current_price ÷ (length_open × width_open). Foam layer counts from manufacturer datasheets. Rubber compound data from official shoe specifications. 
-            Rope analysis covers 106 single-certified ropes from seed database (EN 892, 80kg test mass). Half and twin ropes (35 total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Sample sizes noted on each chart. Analysis by climbing-gear.com.
+            Data sourced from manufacturer specs and retailer listings across European markets. Prices reflect current street prices (or UVP where unavailable) as of early 2025.
+            Crashpad €/m² calculated as current_price ÷ (length_open × width_open).
+            Rope analysis covers 106 single-certified ropes (EN 892, 80kg test mass). Half and twin ropes (35 total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Cost per gram (¢/g) = (price per meter ÷ weight per meter) × 100. Sample sizes noted on each chart. Analysis by climbing-gear.com.
           </p>
         </div>
 
