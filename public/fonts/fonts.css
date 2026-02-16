@@ -1,0 +1,125 @@
+/* DM Sans - Regular */
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('./dm-sans-400.woff2') format('woff2');
+}
+
+/* DM Sans - Medium */
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('./dm-sans-500.woff2') format('woff2');
+}
+
+/* DM Sans - Semibold */
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('./dm-sans-600.woff2') format('woff2');
+}
+
+/* DM Sans - Bold */
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('./dm-sans-700.woff2') format('woff2');
+}
+
+/* DM Mono - Regular */
+@font-face {
+  font-family: 'DM Mono';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('./dm-mono-400.woff2') format('woff2');
+}
+
+/* DM Mono - Medium */
+@font-face {
+  font-family: 'DM Mono';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('./dm-mono-500.woff2') format('woff2');
+}
+
+/* Instrument Sans - Regular */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('./instrument-sans-400.woff2') format('woff2');
+}
+
+/* Instrument Sans - Medium */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('./instrument-sans-500.woff2') format('woff2');
+}
+
+/* Instrument Sans - Semibold */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('./instrument-sans-600.woff2') format('woff2');
+}
+
+/* Instrument Sans - Bold */
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('./instrument-sans-700.woff2') format('woff2');
+}
+
+/* JetBrains Mono - Regular */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('./jetbrains-mono-400.woff2') format('woff2');
+}
+
+/* JetBrains Mono - Medium */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('./jetbrains-mono-500.woff2') format('woff2');
+}
+
+/* JetBrains Mono - Semibold */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('./jetbrains-mono-600.woff2') format('woff2');
+}
+
+/* JetBrains Mono - Bold */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('./jetbrains-mono-700.woff2') format('woff2');
+}

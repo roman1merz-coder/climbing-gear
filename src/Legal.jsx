@@ -42,12 +42,12 @@ function Impressum() {
 
       <h2 style={S.h2}>Affiliate-Links</h2>
       <p style={S.p}>
-        {"Diese Website enth\u00e4lt Affiliate-Links zu Partnerh\u00e4ndlern. Wenn Sie \u00fcber diese Links ein Produkt kaufen, erhalten wir m\u00f6glicherweise eine Provision. Der Preis f\u00fcr Sie \u00e4ndert sich dadurch nicht. Wir empfehlen nur Produkte, von denen wir \u00fcberzeugt sind."}
+        {"Diese Website kann Affiliate-Links zu H\u00e4ndlern enthalten. Wenn Sie \u00fcber solche Links ein Produkt kaufen, erhalten wir m\u00f6glicherweise eine Provision. Der Preis f\u00fcr Sie \u00e4ndert sich dadurch nicht. Affiliate-Einnahmen beeinflussen niemals unsere Bewertungen oder Rankings."}
       </p>
 
       <h2 style={S.h2}>Urheberrecht</h2>
       <p style={S.p}>
-        {"Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Produktbilder und -beschreibungen stammen von den jeweiligen Herstellern und H\u00e4ndlern und werden mit deren Genehmigung verwendet."}
+        {"Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Produktbilder stammen von den jeweiligen Herstellern und werden zu Informationszwecken im Rahmen der Produktvorstellung verwendet."}
       </p>
     </>
   );
@@ -85,17 +85,22 @@ function PrivacyPolicy() {
         Es werden keine personenbezogenen Daten zu Werbezwecken erhoben.
       </p>
 
-      <h2 style={S.h2}>5. Affiliate-Links</h2>
+      <h2 style={S.h2}>5. Lokale Speicherung</h2>
       <p style={S.p}>
-        {"Wenn Sie auf einen Affiliate-Link klicken, werden Sie auf die Website des jeweiligen H\u00e4ndlers weitergeleitet. Dort gelten die Datenschutzbestimmungen des H\u00e4ndlers. Der Affiliate-Partner (AWIN) setzt ggf. ein Cookie zur Zuordnung der Transaktion. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO."}
+        {"Diese Website nutzt den lokalen Speicher Ihres Browsers (localStorage und sessionStorage), um Ihre Filtereinstellungen und Wunschliste zu speichern. Diese Daten verbleiben ausschlie\u00dflich auf Ihrem Ger\u00e4t und werden nicht an unsere Server \u00fcbertragen. Es handelt sich dabei nicht um Cookies."}
       </p>
 
-      <h2 style={S.h2}>6. Ihre Rechte</h2>
+      <h2 style={S.h2}>6. Affiliate-Links</h2>
+      <p style={S.p}>
+        {"Diese Website kann Affiliate-Links zu H\u00e4ndlern enthalten. Wenn Sie auf einen solchen Link klicken, werden Sie auf die Website des jeweiligen H\u00e4ndlers weitergeleitet. Dort gelten dessen Datenschutzbestimmungen. Der Affiliate-Partner kann ggf. ein Cookie zur Zuordnung der Transaktion setzen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Sobald konkrete Affiliate-Partnerschaften bestehen, wird dieser Abschnitt entsprechend aktualisiert."}
+      </p>
+
+      <h2 style={S.h2}>7. Ihre Rechte</h2>
       <p style={S.p}>
         {"Sie haben das Recht auf Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung der Verarbeitung, Daten\u00fcbertragbarkeit und Widerspruch. Wenden Sie sich dazu an: roman@climbing-gear.com"}
       </p>
 
-      <h2 style={S.h2}>7. Beschwerderecht</h2>
+      <h2 style={S.h2}>8. Beschwerderecht</h2>
       <p style={S.p}>
         {"Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbeh\u00f6rde zu beschweren."}
       </p>

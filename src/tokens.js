@@ -25,7 +25,7 @@ export const BRAND_COLORS = {
 };
 
 export const GLOBAL_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+  /* Fonts self-hosted in /public/fonts/ — loaded via index.html <link> */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: ${T.bg}; }
   ::-webkit-scrollbar { width: 5px; }
