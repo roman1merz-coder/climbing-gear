@@ -18,6 +18,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { T } from "./tokens.js";
 import usePageMeta from "./usePageMeta.js";
 import { getPercentileScores } from "./utils/comfort.js";
+import { calcStretch } from "./utils/stretch.js";
 
 // ── Radar chart as inline SVG ──
 const RADAR_AXES = [
@@ -237,7 +238,7 @@ function getSpecSections(shoes) {
         { label: "Toe form",  values: shoes.map((s) => cap(s.toe_form)) },
         { label: "Width",     values: shoes.map((s) => cap(s.width)) },
         { label: "Volume",    values: shoes.map((s) => cap(s.volume)) },
-        { label: "Stretch",   values: shoes.map((s) => s.stretch_expectation || "\u2014") },
+        { label: "Stretch",   values: shoes.map((s) => calcStretch(s).label) },
       ],
     },
     {

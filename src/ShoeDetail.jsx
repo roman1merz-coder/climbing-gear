@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
+import { calcStretch } from "./utils/stretch.js";
 import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport, getPercentileScores } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
@@ -285,20 +286,9 @@ function SizingCalculator({ shoe, compact }) {
   );
 }
 
-// ─── Stretch Expectation ───
+// ─── Stretch Expectation (derived from shoe properties via algorithm) ───
 function StretchExpectation({ shoe }) {
-  const stretchMap = { none: 0, minimal: 0.2, quarter_size: 0.4, half_size: 0.6, full_size: 0.8 };
-  const stretchLabels = { none: "None", minimal: "Minimal", quarter_size: "\u00BC Size", half_size: "\u00BD Size", full_size: "Full Size" };
-  const stretchDescs = {
-    none: "No stretch expected \u2014 stays true to initial fit",
-    minimal: "Won\u2019t stretch much \u2014 size for day-one comfort",
-    quarter_size: "Stretches slightly \u2014 size down \u00BC for a snug fit",
-    half_size: "Noticeable stretch \u2014 size down \u00BD for performance fit",
-    full_size: "Significant stretch \u2014 size down a full size",
-  };
-  const val = stretchMap[shoe.stretch_expectation] ?? 0.2;
-  const label = stretchLabels[shoe.stretch_expectation] || cap(shoe.stretch_expectation || "minimal");
-  const desc = stretchDescs[shoe.stretch_expectation] || "Size for day-one comfort";
+  const { label, description: desc, barPos: val } = calcStretch(shoe);
 
   return (
     <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "16px 20px" }}>
