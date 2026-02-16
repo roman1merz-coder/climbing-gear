@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { T } from "./tokens.js";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
 import CrashpadScatterChart from "./CrashpadScatterChart.jsx";
@@ -217,6 +217,18 @@ export default function Insights() {
   const art1Ref = useRef(null);
   const art2Ref = useRef(null);
   const [activeArt, setActiveArt] = useState(1);
+  const location = useLocation();
+
+  /* Scroll to article if URL has a hash */
+  useEffect(() => {
+    const hash = location.hash?.replace("#", "");
+    if (!hash) return;
+    const timer = setTimeout(() => {
+      const target = hash === "ropes" ? art2Ref.current : hash === "crashpads" ? art1Ref.current : null;
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [location.hash]);
 
   /* Track which article is in view */
   useEffect(() => {
@@ -231,9 +243,11 @@ export default function Insights() {
     return () => obs.disconnect();
   }, []);
 
-  const scrollTo = useCallback((ref) => {
+  const navigate = useNavigate();
+  const scrollTo = useCallback((ref, hash) => {
     ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
+    if (hash) navigate(`/insights#${hash}`, { replace: true });
+  }, [navigate]);
 
   const sectionStyle = {
     background: T.surface,
@@ -243,10 +257,10 @@ export default function Insights() {
     marginBottom: "32px",
   };
 
-  const jumpPill = (n, label, ref) => (
+  const jumpPill = (n, label, ref, hash) => (
     <button
       key={n}
-      onClick={() => scrollTo(ref)}
+      onClick={() => scrollTo(ref, hash)}
       style={{
         padding: "6px 16px", fontSize: "12px", fontWeight: 600, borderRadius: "20px",
         border: "none", cursor: "pointer", transition: "all 0.15s",
@@ -282,12 +296,12 @@ export default function Insights() {
           padding: "10px 0", marginBottom: "24px",
           background: T.bg,
         }}>
-          {jumpPill(1, "Inflatable Crashpads", art1Ref)}
-          {jumpPill(2, "Ropes: Cost vs Safety", art2Ref)}
+          {jumpPill(1, "Inflatable Crashpads", art1Ref, "crashpads")}
+          {jumpPill(2, "Ropes: Cost vs Safety", art2Ref, "ropes")}
         </div>
 
         {/* ═══ ARTICLE 1: Inflatable Crashpads ═══ */}
-        <section ref={art1Ref} style={{ ...sectionStyle, scrollMarginTop: "60px" }}>
+        <section id="crashpads" ref={art1Ref} style={{ ...sectionStyle, scrollMarginTop: "60px" }}>
           <ArticleHeader
             number={1}
             title="Inflatable Crashpads: Game-Changer or Gimmick?"
@@ -467,7 +481,7 @@ export default function Insights() {
         </section>
 
         {/* ═══ ARTICLE 2: Rope Cost vs Performance vs Safety ═══ */}
-        <section ref={art2Ref} style={{ ...sectionStyle, scrollMarginTop: "60px" }}>
+        <section id="ropes" ref={art2Ref} style={{ ...sectionStyle, scrollMarginTop: "60px" }}>
           <ArticleHeader
             number={2}
             title="Does Spending More Buy a Safer Rope? 106 Ropes Say: It's Complicated"

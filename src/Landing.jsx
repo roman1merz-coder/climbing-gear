@@ -188,8 +188,8 @@ export default function Landing() {
           Gear Insights
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "14px" }}>
-          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" to="/insights" active cta="Read insight" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
-          <GearCard title="Does Spending More Buy a Safer Rope?" to="/insights" active cta="Read insight" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
+          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" to="/insights#crashpads" active cta="Read insight" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
+          <GearCard title="Does Spending More Buy a Safer Rope?" to="/insights#ropes" active cta="Read insight" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
           <GearCard title="More Insights in the Making" description="New data-driven articles are on the way. Got a topic you'd like us to cover? Drop us a suggestion below." />
         </div>
       </section>
