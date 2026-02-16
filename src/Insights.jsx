@@ -159,11 +159,10 @@ function RopeTeaserChart({ isMobile }) {
    ARTICLE SECTIONS
    ═══════════════════════════════════════════════════════════════ */
 
-function ArticleHeader({ number, title, subtitle, icon }) {
+function ArticleHeader({ number, title, subtitle }) {
   return (
     <div style={{ marginBottom: "24px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-        <span style={{ fontSize: "28px" }}>{icon}</span>
+      <div style={{ marginBottom: "8px" }}>
         <span style={{ fontSize: "11px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px" }}>INSIGHT #{number}</span>
       </div>
       <h2 style={{ fontSize: "24px", fontWeight: 800, color: T.text, letterSpacing: "-0.5px", lineHeight: 1.3, margin: "0 0 6px" }}>{title}</h2>
@@ -283,15 +282,14 @@ export default function Insights() {
           padding: "10px 0", marginBottom: "24px",
           background: T.bg,
         }}>
-          {jumpPill(1, "💨 Inflatable Crashpads", art1Ref)}
-          {jumpPill(2, "🧵 Ropes: Cost vs Safety", art2Ref)}
+          {jumpPill(1, "Inflatable Crashpads", art1Ref)}
+          {jumpPill(2, "Ropes: Cost vs Safety", art2Ref)}
         </div>
 
         {/* ═══ ARTICLE 1: Inflatable Crashpads ═══ */}
         <section ref={art1Ref} style={{ ...sectionStyle, scrollMarginTop: "60px" }}>
           <ArticleHeader
             number={1}
-            icon="💨"
             title="Inflatable Crashpads: Game-Changer or Gimmick?"
             subtitle="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?"
           />
@@ -448,7 +446,6 @@ export default function Insights() {
         <section ref={art2Ref} style={{ ...sectionStyle, scrollMarginTop: "60px" }}>
           <ArticleHeader
             number={2}
-            icon="🧵"
             title="Does Spending More Buy a Safer Rope? 106 Ropes Say: It's Complicated"
             subtitle="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions — and exposes what specs can't tell you."
           />
@@ -508,8 +505,8 @@ export default function Insights() {
           </p>
           <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
             {[
-              { label: "Browse Crashpads", to: "/crashpads", icon: "🛏️" },
-              { label: "Browse Ropes", to: "/ropes", icon: "🧵" },
+              { label: "Browse Crashpads", to: "/crashpads" },
+              { label: "Browse Ropes", to: "/ropes" },
             ].map(l => (
               <Link key={l.to} to={l.to} style={{
                 display: "inline-flex", alignItems: "center", gap: "6px",
@@ -520,7 +517,7 @@ export default function Insights() {
                 onMouseOver={e => e.currentTarget.style.transform = "translateY(-1px)"}
                 onMouseOut={e => e.currentTarget.style.transform = "translateY(0)"}
               >
-                {l.icon} {l.label}
+                {l.label}
               </Link>
             ))}
           </div>

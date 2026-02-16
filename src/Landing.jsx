@@ -17,7 +17,7 @@ function useIsMobile() {
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase.js";
 
 // ─── Gear Selector Card ───
-function GearCard({ title, description, to, active }) {
+function GearCard({ title, description, to, active, cta = "Open selector" }) {
   const isMobile = useIsMobile();
   return active ? (
     <Link to={to} style={{
@@ -35,7 +35,7 @@ function GearCard({ title, description, to, active }) {
         <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>{description}</div>
       </div>
       <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, marginTop: "auto" }}>
-        Open selector <span style={{ fontSize: "16px" }}>{"\u2192"}</span>
+        {cta} <span style={{ fontSize: "16px" }}>{"\u2192"}</span>
       </div>
     </Link>
   ) : (
@@ -50,33 +50,6 @@ function GearCard({ title, description, to, active }) {
         <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6, opacity: 0.7 }}>{description}</div>
       </div>
     </div>
-  );
-}
-
-// ─── Content Hub Card (Insights / News / Deals) ───
-function ContentCard({ icon, title, tagline, color, to }) {
-  const isMobile = useIsMobile();
-  const Wrap = to ? Link : "div";
-  const wrapProps = to ? { to, style: { textDecoration: "none" } } : {};
-  return (
-    <Wrap {...wrapProps} style={{
-      background: T.card, border: `1px solid ${to ? `${color}40` : T.border}`, borderRadius: "14px",
-      padding: isMobile ? "24px 20px" : "28px 24px", flex: 1, minWidth: "240px",
-      position: "relative", overflow: "hidden", textDecoration: "none",
-      cursor: to ? "pointer" : "default", transition: "all 0.25s",
-    }}
-      onMouseOver={to ? e => { e.currentTarget.style.borderColor = color; e.currentTarget.style.transform = "translateY(-2px)"; } : undefined}
-      onMouseOut={to ? e => { e.currentTarget.style.borderColor = `${color}40`; e.currentTarget.style.transform = "translateY(0)"; } : undefined}
-    >
-      {to
-        ? <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color, background: `${color}18`, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Live</div>
-        : <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.muted, background: T.border, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Coming Soon</div>
-      }
-      <div style={{ fontSize: "28px", marginBottom: "14px", width: "48px", height: "48px", borderRadius: "12px", background: `${color}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>{icon}</div>
-      <div style={{ fontSize: "16px", fontWeight: 800, color: T.text, letterSpacing: "-0.2px", marginBottom: "8px" }}>{title}</div>
-      <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7 }}>{tagline}</div>
-      {to && <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color, fontSize: "13px", fontWeight: 700, marginTop: "12px" }}>Read insights →</div>}
-    </Wrap>
   );
 }
 
@@ -203,13 +176,15 @@ export default function Landing() {
         </button>
       </section>
 
-      {/* ─── Content Hub ─── */}
+      {/* ─── Gear Insights ─── */}
       <section style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "48px 16px" : "64px 32px"} 0` }}>
-        <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-          <ContentCard
-            icon={"\u{1F4CA}"} title="Gear Insights" color={T.purple} to="/insights"
-            tagline="You'd be surprised what emerges when you compare every climbing product side by side. Data-driven insights no catalog can give you."
-          />
+        <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
+          Gear Insights
+        </h2>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "14px" }}>
+          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" to="/insights" active cta="Read insight" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
+          <GearCard title="Does Spending More Buy a Safer Rope?" to="/insights" active cta="Read insight" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
+          <GearCard title="More Insights in the Making" description="New data-driven articles are on the way. Got a topic you'd like us to cover? Drop us a suggestion below." />
         </div>
       </section>
 
