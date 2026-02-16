@@ -79,7 +79,7 @@
     "description": "Beal's workhorse static rope with Unicore bonding for canyoning, rappelling, and rope access. The 30 kN break strength and Unicore construction give excellent safety margins.",
     "pros": [
       "30 kN break strength",
-      "Unicore bonding \u2014 no sheath slip",
+      "Unicore bonding — no sheath slip",
       "Good value for static applications",
       "Available in long lengths"
     ],
@@ -648,12 +648,12 @@
       "Lightest twin system at 36g/m per strand",
       "Unicore safety bonding",
       "Golden Dry full impregnation",
-      "15 UIAA falls \u2014 excellent"
+      "15 UIAA falls — excellent"
     ],
     "cons": [
       "Must clip both strands together",
       "Tube belay only",
-      "Low durability \u2014 thin sheath",
+      "Low durability — thin sheath",
       "Expert-only handling"
     ],
     "ai_review": null,
@@ -739,7 +739,7 @@
     ],
     "description": "Beal's workhorse half rope for ice and alpine climbing. With an incredible 12 UIAA falls and Unicore bonding, it's one of the most durable half ropes you can buy. Golden Dry for wet conditions.",
     "pros": [
-      "12 UIAA falls \u2014 exceptional durability",
+      "12 UIAA falls — exceptional durability",
       "Unicore bonding",
       "Golden Dry treatment",
       "Great for ice climbing"
@@ -759,7 +759,7 @@
     "model": "Industrie 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.beal-planet.com/cdn/shop/files/BCSI11R_1.png?v=1725625250&width=1500",
+    "image_url": "/images/ropes/beal-industrie-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -843,7 +843,7 @@
     "model": "Intervention 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.beal-planet.com/cdn/shop/files/BCSN11_1.png?v=1725625262",
+    "image_url": "/images/ropes/beal-intervention-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -1004,7 +1004,7 @@
       "Excellent for multi-pitch"
     ],
     "cons": [
-      "Only 5 UIAA falls \u2014 limited lifespan",
+      "Only 5 UIAA falls — limited lifespan",
       "Thin diameter needs careful device selection",
       "Not great for top-roping"
     ],
@@ -1188,7 +1188,7 @@
       "CH",
       "FR"
     ],
-    "description": "The ultralight Opera is Beal's thinnest single rope, triple-rated for maximum versatility in alpine terrain. Unicore technology bonds the sheath to the core \u2014 if the sheath is cut, the rope remains functional. Golden Dry provides the highest level of water protection. Expert-only due to thin diameter.",
+    "description": "The ultralight Opera is Beal's thinnest single rope, triple-rated for maximum versatility in alpine terrain. Unicore technology bonds the sheath to the core — if the sheath is cut, the rope remains functional. Golden Dry provides the highest level of water protection. Expert-only due to thin diameter.",
     "pros": [
       "Triple rated (single/half/twin)",
       "Unicore sheath-core bonding",
@@ -1197,7 +1197,7 @@
     ],
     "cons": [
       "Only 5 UIAA falls",
-      "Low durability \u2014 thin sheath",
+      "Low durability — thin sheath",
       "Not compatible with most assisted braking devices",
       "Expert handling required"
     ],
@@ -1376,7 +1376,7 @@
     ],
     "description": "Beal's balanced sport rope with Unicore bonding and low impact force (7.8 kN). The 9.4mm diameter handles beautifully in any device while offering better durability than skinnier options.",
     "pros": [
-      "Low impact force (7.8 kN) \u2014 soft catches",
+      "Low impact force (7.8 kN) — soft catches",
       "Unicore bonding",
       "Good balance of weight and durability",
       "Excellent handling"
@@ -1663,7 +1663,7 @@
     ],
     "description": "Beal's durable everyday rope with Unicore bonding. At 10mm it's tough enough for gym and top-rope abuse, with an impressively low impact force of 7.6 kN for soft catches.",
     "pros": [
-      "8 UIAA falls \u2014 very durable",
+      "8 UIAA falls — very durable",
       "Lowest impact force in class (7.6 kN)",
       "Unicore bonding",
       "Great value"
@@ -1948,7 +1948,7 @@
     ],
     "description": "Purpose-built for climbing walls and gyms. The thick 10.5mm diameter with 47% sheath and Unicore bonding provides maximum abrasion resistance for top-roping, auto-belays, and heavy daily gym use. Available in shorter lengths optimized for indoor walls.",
     "pros": [
-      "47% sheath \u2014 maximum abrasion resistance",
+      "47% sheath — maximum abrasion resistance",
       "Unicore core-sheath bonding",
       "Purpose-built for gym use",
       "Available in short lengths"
@@ -2135,14 +2135,14 @@
     "description": "One of the thinnest twin ropes available at just 7.0mm and 36 g/m. The BD 7.0 Dry is designed for technical alpine climbing where two-rope redundancy is essential and every gram counts. Dry Performance treatment for wet and icy conditions.",
     "pros": [
       "Ultra-thin at 7.0mm / 36 g/m",
-      "15 UIAA falls \u2014 excellent twin durability",
+      "15 UIAA falls — excellent twin durability",
       "Dry Performance treatment",
       "Maximum weight savings for alpine"
     ],
     "cons": [
-      "Twin only \u2014 must clip both ropes",
+      "Twin only — must clip both ropes",
       "Expert-only technique required",
-      "Very thin \u2014 wears fast on sharp rock"
+      "Very thin — wears fast on sharp rock"
     ],
     "ai_review": null,
     "rope_color_1": "#0ea5e9",
@@ -3077,9 +3077,9 @@
       "AT",
       "CH"
     ],
-    "description": "A versatile American-made 9.7mm single rope excelling in sport, trad, and ice climbing. The Lightning Pro boasts 8 UIAA falls with a remarkably low 7.8 kN impact force \u2014 among the softest catches in its class. Double Dry treatment keeps it performing in wet conditions.",
+    "description": "A versatile American-made 9.7mm single rope excelling in sport, trad, and ice climbing. The Lightning Pro boasts 8 UIAA falls with a remarkably low 7.8 kN impact force — among the softest catches in its class. Double Dry treatment keeps it performing in wet conditions.",
     "pros": [
-      "8 UIAA falls \u2014 great durability",
+      "8 UIAA falls — great durability",
       "Very low 7.8 kN impact force",
       "Made in USA",
       "Available in Double Dry treatment"
@@ -3353,7 +3353,7 @@
     ],
     "description": "Edelrid's ultralight half rope for serious alpine objectives. Triple-rated with 9 UIAA falls (as half), it's one of the most capable thin ropes on the market. Pro Dry and partially recycled.",
     "pros": [
-      "Triple rated \u2014 maximum flexibility",
+      "Triple rated — maximum flexibility",
       "9 UIAA falls as half rope",
       "Pro Dry treatment",
       "Bluesign + recycled materials"
@@ -3455,7 +3455,7 @@
     "cons": [
       "No dry treatment available yet",
       "Slightly heavier than comparable ropes",
-      "New technology \u2014 long-term durability unproven"
+      "New technology — long-term durability unproven"
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
@@ -3532,7 +3532,7 @@
     "bluesign": true,
     "recycled_materials": "partial",
     "pfc_free": true,
-    "eco_label": "2R \u2014 Reuse (upcycled production yarns)",
+    "eco_label": "2R — Reuse (upcycled production yarns)",
     "price_uvp_per_meter_eur": 2.57,
     "price_per_meter_eur_min": 2.0,
     "price_per_meter_eur_max": 2.57,
@@ -3542,7 +3542,7 @@
       "AT",
       "CH"
     ],
-    "description": "The thinner sibling of the Boa Eco 9.8, now at 9.6mm for improved handling. Made from high-quality leftover yarns from Edelrid's own production \u2014 each rope looks unique. The '2R' designation means 'Reuse' in Edelrid's sustainability naming. Excellent all-rounder at a budget price.",
+    "description": "The thinner sibling of the Boa Eco 9.8, now at 9.6mm for improved handling. Made from high-quality leftover yarns from Edelrid's own production — each rope looks unique. The '2R' designation means 'Reuse' in Edelrid's sustainability naming. Excellent all-rounder at a budget price.",
     "pros": [
       "Eco-friendly upcycled materials",
       "Unique colorway per rope",
@@ -3552,7 +3552,7 @@
     "cons": [
       "No dry treatment",
       "Higher dynamic elongation (38%)",
-      "Each rope looks different \u2014 no color consistency"
+      "Each rope looks different — no color consistency"
     ],
     "ai_review": null,
     "rope_color_1": "#4ade80",
@@ -3638,11 +3638,11 @@
       "AT",
       "CH"
     ],
-    "description": "The greenest rope in the lineup \u2014 made entirely from recycled materials with Bluesign certification and no PFC treatment. The 9.8mm diameter and 9 UIAA falls make it a bombproof gym and single-pitch workhorse. Available in a short 40m gym length. The perfect first rope.",
+    "description": "The greenest rope in the lineup — made entirely from recycled materials with Bluesign certification and no PFC treatment. The 9.8mm diameter and 9 UIAA falls make it a bombproof gym and single-pitch workhorse. Available in a short 40m gym length. The perfect first rope.",
     "pros": [
       "100% recycled materials",
       "Best value per meter",
-      "9 UIAA falls \u2014 bombproof",
+      "9 UIAA falls — bombproof",
       "40m gym length available"
     ],
     "cons": [
@@ -3736,7 +3736,7 @@
     ],
     "description": "One of the thinnest and lightest single ropes available, also triple-rated for use as a half or twin rope. At 51 g/m the Canary Pro Dry is a specialist tool for alpine climbing and ice routes where every gram matters. Pro Dry treatment meets UIAA water repellent standard.",
     "pros": [
-      "Triple-rated \u2014 ultimate versatility",
+      "Triple-rated — ultimate versatility",
       "Ultra-light at 51 g/m",
       "Pro Dry meets UIAA water standard",
       "47% sheath for durability despite thin diameter"
@@ -3832,7 +3832,7 @@
     ],
     "description": "Edelrid's high-fall-count sport rope. With 9 UIAA falls it's one of the most durable 9.5mm ropes on the market. Pro Dry treatment, Bluesign certified, and partially made from recycled materials.",
     "pros": [
-      "9 UIAA falls \u2014 excellent durability",
+      "9 UIAA falls — excellent durability",
       "Pro Dry treatment",
       "Bluesign + partially recycled",
       "PFC-free"
@@ -3927,7 +3927,7 @@
     ],
     "description": "The most robust single rope in Edelrid's lineup. Aramid fibers woven into the sheath provide outstanding cut resistance for sharp rock and big wall climbing. 48-bobbin construction creates a compact, fine sheath. Pro Dry treatment meets UIAA water repellent standard.",
     "pros": [
-      "Aramid-reinforced sheath \u2014 maximum cut resistance",
+      "Aramid-reinforced sheath — maximum cut resistance",
       "8 UIAA falls with 48-bobbin construction",
       "Pro Dry UIAA treatment",
       "Ideal for big wall and demanding multi-pitch"
@@ -4020,9 +4020,9 @@
       "AT",
       "CH"
     ],
-    "description": "The world's first rope made from 100% recycled materials \u2014 both core and sheath. The NEO 100 3R closes the materials cycle using Edelrid's in-house factory waste from Isny, Germany. Combines mechanically and chemically recycled nylon for zero-compromise performance. Lowest carbon footprint of any Edelrid single rope.",
+    "description": "The world's first rope made from 100% recycled materials — both core and sheath. The NEO 100 3R closes the materials cycle using Edelrid's in-house factory waste from Isny, Germany. Combines mechanically and chemically recycled nylon for zero-compromise performance. Lowest carbon footprint of any Edelrid single rope.",
     "pros": [
-      "100% recycled materials \u2014 core and sheath",
+      "100% recycled materials — core and sheath",
       "Lowest carbon footprint in class",
       "No compromise on performance",
       "Bluesign + PFC-free"
@@ -4030,7 +4030,7 @@
     "cons": [
       "No dry treatment",
       "Only 6 UIAA falls",
-      "New product \u2014 limited availability"
+      "New product — limited availability"
     ],
     "ai_review": null,
     "rope_color_1": "#059669",
@@ -4208,7 +4208,7 @@
       "AT",
       "CH"
     ],
-    "description": "Edelrid's EN 1891 Type A static rope for rappelling, hauling, and rope access. The 10.5mm diameter provides excellent abrasion resistance with 45% sheath and 31kN breaking strength. Available in long cuts up to 200m for fixed line setups. NOT for lead climbing \u2014 no dynamic fall absorption.",
+    "description": "Edelrid's EN 1891 Type A static rope for rappelling, hauling, and rope access. The 10.5mm diameter provides excellent abrasion resistance with 45% sheath and 31kN breaking strength. Available in long cuts up to 200m for fixed line setups. NOT for lead climbing — no dynamic fall absorption.",
     "pros": [
       "31kN breaking strength",
       "Very high durability (45% sheath)",
@@ -4216,7 +4216,7 @@
       "Best value per meter"
     ],
     "cons": [
-      "\u26a0\ufe0f NOT for lead climbing",
+      "⚠️ NOT for lead climbing",
       "No dry treatment",
       "Heavy at 72g/m",
       "Limited to static applications"
@@ -4231,7 +4231,7 @@
     "model": "Performance Static 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://shopapi.edelrid.com/v1/media/image/edelrid/3657245/web-s",
+    "image_url": "/images/ropes/edelrid-performance-static-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -4310,7 +4310,7 @@
     "model": "Pintail 10",
     "year_released": null,
     "status": "active",
-    "image_url": "https://shopapi.edelrid.com/v1/media/image/edelrid/45305/web-s",
+    "image_url": "/images/ropes/edelrid-pintail-10.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -4664,7 +4664,7 @@
     "model": "Superstatic Link Tec 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.spidertechsupplies.com.au/assets/full/21945092.jpg?20210309031134",
+    "image_url": "/images/ropes/edelrid-superstatic-link-tec-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -5007,9 +5007,9 @@
       "AT",
       "CH"
     ],
-    "description": "The ultimate alpine half rope \u2014 triple-rated with a record 20 UIAA falls and aramid sheath protection. DuoTec bi-pattern for permanent middle marking. At 42% sheath, it's the most durable half rope on the market. Partially recycled with Bluesign certification.",
+    "description": "The ultimate alpine half rope — triple-rated with a record 20 UIAA falls and aramid sheath protection. DuoTec bi-pattern for permanent middle marking. At 42% sheath, it's the most durable half rope on the market. Partially recycled with Bluesign certification.",
     "pros": [
-      "20 UIAA falls \u2014 industry leading",
+      "20 UIAA falls — industry leading",
       "Triple rated",
       "Aramid protection + 42% sheath",
       "DuoTec bi-pattern"
@@ -5018,7 +5018,7 @@
       "Heavier for a half rope at 52g/m",
       "Premium price",
       "Pro Dry not PFC-free",
-      "Moderate handling \u2014 stiffer than competitors"
+      "Moderate handling — stiffer than competitors"
     ],
     "ai_review": null,
     "rope_color_1": "#2d5b4e",
@@ -5113,7 +5113,7 @@
     "cons": [
       "Heavier at 61g/m",
       "No short 50m option",
-      "Moderate handling \u2014 needs break-in"
+      "Moderate handling — needs break-in"
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
@@ -5659,7 +5659,7 @@
       "AT",
       "CH"
     ],
-    "description": "Edelweiss Elite 7.8 ultralight half/twin rope with Unicore and SuperEverdry treatment. Extreme alpine conditions demand extreme lightweight rope \u2014 this is it.",
+    "description": "Edelweiss Elite 7.8 ultralight half/twin rope with Unicore and SuperEverdry treatment. Extreme alpine conditions demand extreme lightweight rope — this is it.",
     "pros": [
       "Ultra-lightweight at 39g/m",
       "Unicore bonding",
@@ -5944,7 +5944,7 @@
     "description": "An outstanding half/twin rope that shines on ice and alpine climbs. SuperEverDry treatment on both sheath and core keeps it performing in the wettest and coldest conditions. At 46 g/m, it's one of the lightest half ropes available with an impressive 20 UIAA falls rating.",
     "pros": [
       "SuperEverDry on core + sheath",
-      "20 UIAA falls \u2014 exceptional durability",
+      "20 UIAA falls — exceptional durability",
       "Very light at 46 g/m",
       "Excellent for ice and alpine"
     ],
@@ -6133,7 +6133,7 @@
       "Ultra-lightweight alpine rope"
     ],
     "cons": [
-      "Low durability \u2014 thin sheath",
+      "Low durability — thin sheath",
       "Only 5 UIAA falls",
       "Expert handling required",
       "Premium pricing"
@@ -6974,7 +6974,7 @@
       "AT",
       "CH"
     ],
-    "description": "Mammut's burliest single rope. At 10.2mm it's thick, forgiving, and practically indestructible \u2014 perfect for gym rats, top-rope warriors, and anyone who values longevity over weight savings.",
+    "description": "Mammut's burliest single rope. At 10.2mm it's thick, forgiving, and practically indestructible — perfect for gym rats, top-rope warriors, and anyone who values longevity over weight savings.",
     "pros": [
       "Extremely durable",
       "Great for beginners and gyms",
@@ -7073,7 +7073,7 @@
       "Bluesign + PFC-free"
     ],
     "cons": [
-      "Expert-only \u2014 very thin",
+      "Expert-only — very thin",
       "Only 7 UIAA falls",
       "Short length options",
       "Not for beginners"
@@ -7439,7 +7439,7 @@
     "description": "Mammut's flagship half rope with aramid core protection for sharp-edge alpine terrain. At 8.0mm and 41g/m, it's remarkably light for a half rope with 12 UIAA falls. Dry treated and PFC-free. Used in pairs, clipped alternately for wandering trad and alpine routes.",
     "pros": [
       "Aramid core protection",
-      "12 UIAA falls \u2014 excellent for half rope",
+      "12 UIAA falls — excellent for half rope",
       "Light at 41g/m per strand",
       "PFC-free Dry treatment"
     ],
@@ -7813,7 +7813,7 @@
     ],
     "description": "Mammut's all-around performer with Dry treatment. The Infinity splits the difference between weight and durability at 9.5mm, with 8 UIAA falls and buttery handling. A crag workhorse.",
     "pros": [
-      "8 UIAA falls \u2014 above average durability",
+      "8 UIAA falls — above average durability",
       "Smooth handling",
       "Dry treatment included",
       "Versatile diameter"
@@ -7912,7 +7912,7 @@
     "pros": [
       "Excellent value for money",
       "8 UIAA falls for durability",
-      "Low impact force \u2014 soft catches",
+      "Low impact force — soft catches",
       "Bluesign certified"
     ],
     "cons": [
@@ -8289,7 +8289,7 @@
     ],
     "description": "The most cut-resistant climbing rope on the market. Mammut weaves aramid fibers into the sheath for unmatched protection against sharp rock edges. Ideal for alpine and trad climbing on rough terrain where rope durability is paramount.",
     "pros": [
-      "Aramid-reinforced sheath \u2014 most cut-resistant rope",
+      "Aramid-reinforced sheath — most cut-resistant rope",
       "Dry treatment for wet conditions",
       "Perfect for alpine and ice climbing",
       "Bluesign certified"
@@ -8381,9 +8381,9 @@
       "AT",
       "CH"
     ],
-    "description": "Mammut's triple-rated quiver-of-one rope. The 48-bobbin sheath creates a smooth, abrasion-resistant surface. UIAA Dry treatment keeps water absorption under 1.5%. Use as a single for sport, half for wandering trad, or twin for alpine \u2014 one rope does it all.",
+    "description": "Mammut's triple-rated quiver-of-one rope. The 48-bobbin sheath creates a smooth, abrasion-resistant surface. UIAA Dry treatment keeps water absorption under 1.5%. Use as a single for sport, half for wandering trad, or twin for alpine — one rope does it all.",
     "pros": [
-      "Triple-rated \u2014 ultimate versatility",
+      "Triple-rated — ultimate versatility",
       "48-bobbin abrasion-resistant sheath",
       "UIAA Dry certified",
       "Bluesign + PFC-free"
@@ -8575,7 +8575,7 @@
     ],
     "description": "Mammut's all-round rope with Protect sheath treatment for enhanced abrasion resistance. With 9 UIAA falls and BiCo Sense technology for instant middle mark detection, the Eternity Protect excels at versatile sport and trad climbing. Low 30% dynamic elongation.",
     "pros": [
-      "9 UIAA falls \u2014 great durability",
+      "9 UIAA falls — great durability",
       "Low 30% dynamic elongation",
       "Protect sheath treatment",
       "Bluesign + PFC-free"
@@ -8674,7 +8674,7 @@
     "description": "Mammut's best value rope for gym, top-roping, and beginner outdoor climbing. With 9 UIAA falls and a 10mm diameter, the Galaxy Classic delivers outstanding durability at an incredibly low price. Available in lengths from 40m to 80m. Bluesign certified.",
     "pros": [
       "Best value Mammut rope",
-      "9 UIAA falls \u2014 durable",
+      "9 UIAA falls — durable",
       "Available from 40m for indoor use",
       "Bluesign + PFC-free"
     ],
@@ -8789,7 +8789,7 @@
     "model": "Performance Static 10",
     "year_released": null,
     "status": "active",
-    "image_url": "https://static.mammut.com/cdn-cgi/image/width=4096,quality=85,f=auto,metadata=none/master/2010-00771-0255_main-grey_56963.jpg",
+    "image_url": "/images/ropes/mammut-performance-static-10.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -8868,7 +8868,7 @@
     "model": "Performance Static 10.5",
     "year_released": null,
     "status": "active",
-    "image_url": "https://static.mammut.com/cdn-cgi/image/width=4096,quality=85,f=auto,metadata=none/master/2010-00791-0001_main-grey_56965.jpg",
+    "image_url": "/images/ropes/mammut-performance-static-10-5.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -9308,7 +9308,7 @@
     "cons": [
       "No core dry treatment",
       "Heavier side at 64 g/m",
-      "US brand \u2014 limited EU availability"
+      "US brand — limited EU availability"
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
@@ -9496,7 +9496,7 @@
     ],
     "cons": [
       "Core-only dry treatment",
-      "Very thin \u2014 requires experience",
+      "Very thin — requires experience",
       "Made for specialists only"
     ],
     "ai_review": null,
@@ -9680,7 +9680,7 @@
     ],
     "description": "Ocun's gym and beginner rope, built for thousands of meters of climbing. The 10.0mm diameter provides maximum durability and a comfortable grip for top-roping and learning to lead. With 10 UIAA falls, it's one of the most durable ropes in its class.",
     "pros": [
-      "10 UIAA falls \u2014 outstanding durability",
+      "10 UIAA falls — outstanding durability",
       "Very affordable",
       "Thick and comfortable grip",
       "Perfect gym rope"
@@ -9868,7 +9868,7 @@
     ],
     "description": "Ocun's all-round single rope for experienced climbers. With 9 UIAA falls and a remarkably low 7.4 kN impact force, the Spirit delivers outstanding durability with soft catches. PFC-free water-repellent treatment keeps it performing in any conditions.",
     "pros": [
-      "9 UIAA falls \u2014 excellent durability",
+      "9 UIAA falls — excellent durability",
       "Very low 7.4 kN impact force",
       "PFC-free UIAA water repellent",
       "Great value for specs"
@@ -10057,7 +10057,7 @@
     ],
     "description": "Petzl's flagship sport rope with Duratec Dry treatment for all-weather performance. The tight weave and smooth handling make it a favourite for long days at the crag.",
     "pros": [
-      "Duratec Dry treatment \u2014 excellent water resistance",
+      "Duratec Dry treatment — excellent water resistance",
       "Smooth consistent handling",
       "Good durability at 9.5mm",
       "Petzl quality control"
@@ -10077,7 +10077,7 @@
     "model": "Axis 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.petzl.com/sfc/servlet.shepherd/version/download/068w0000003BFupAAG",
+    "image_url": "/images/ropes/petzl-axis-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -10322,7 +10322,7 @@
       "AT",
       "CH"
     ],
-    "description": "Petzl's gym-specific version of the Contact rope. Available in shorter lengths (30\u201350m) optimized for indoor walls. The Contact Wall has the same lightweight construction as the outdoor Contact but at a lower price point without dry treatment.",
+    "description": "Petzl's gym-specific version of the Contact rope. Available in shorter lengths (30–50m) optimized for indoor walls. The Contact Wall has the same lightweight construction as the outdoor Contact but at a lower price point without dry treatment.",
     "pros": [
       "Affordable gym rope",
       "Lightweight for its diameter",
@@ -10420,7 +10420,7 @@
     ],
     "description": "Petzl's gym workhorse. Thick and tough at 10.1mm, the Mambo takes abuse session after session. The ideal first rope or dedicated gym/top-rope line.",
     "pros": [
-      "8 UIAA falls \u2014 impressive for its diameter",
+      "8 UIAA falls — impressive for its diameter",
       "Extremely durable",
       "Good value entry-level rope",
       "Easy handling for beginners"
@@ -10441,7 +10441,7 @@
     "model": "Parallel 10.5",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.petzl.com/sfc/servlet.shepherd/version/download/068w0000003BFpLAAW",
+    "image_url": "/images/ropes/petzl-parallel-10-5.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -10598,7 +10598,7 @@
     ],
     "cons": [
       "Only 5 UIAA falls",
-      "Very thin \u2014 requires skilled belaying",
+      "Very thin — requires skilled belaying",
       "Expensive",
       "Limited to tube devices"
     ],
@@ -10612,7 +10612,7 @@
     "model": "Push 9",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.petzl.com/sfc/servlet.shepherd/version/download/0686800000Ys7x3AAB",
+    "image_url": "/images/ropes/petzl-push-9.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -10855,14 +10855,14 @@
     ],
     "description": "Petzl's versatile half rope for multi-pitch climbing and mountaineering. With 9 UIAA falls and 48-carrier construction, the Salsa 8.2 is one of the most durable half ropes available. Duratec Dry treatment ensures performance in all weather conditions.",
     "pros": [
-      "9 UIAA falls \u2014 excellent half rope durability",
+      "9 UIAA falls — excellent half rope durability",
       "48-carrier construction for smooth handling",
       "Duratec Dry treatment",
       "Great for wandering multi-pitch routes"
     ],
     "cons": [
-      "Only half/twin \u2014 not single-rated",
-      "31% sheath \u2014 lower than average",
+      "Only half/twin — not single-rated",
+      "31% sheath — lower than average",
       "Not PFC-free"
     ],
     "ai_review": null,
@@ -10947,7 +10947,7 @@
     ],
     "description": "Petzl's durable half rope for multi-pitch rock climbing. With 10 UIAA falls and a 48-carrier construction, the Tango 8.5 is one of the most durable half ropes available. The thick sheath provides excellent grip and great handling for belay devices.",
     "pros": [
-      "10 UIAA falls \u2014 exceptional durability",
+      "10 UIAA falls — exceptional durability",
       "48-carrier construction",
       "Excellent handling for half rope",
       "Good for rock-focused multipitch"
@@ -11044,7 +11044,7 @@
     ],
     "description": "Petzl's flagship triple-rated rope combines EverFlex thermal treatment for consistent handling with Duratec Dry water protection. At 9.2mm and 52g/m, it's light enough for alpine objectives while remaining compatible with assisted-braking devices. A do-everything rope for experienced climbers.",
     "pros": [
-      "Triple rated \u2014 maximum versatility",
+      "Triple rated — maximum versatility",
       "EverFlex consistent handling",
       "Light at 52g/m",
       "Works with GriGri and similar"
@@ -11142,7 +11142,7 @@
     "pros": [
       "Ultra-light at 52 g/m",
       "Triple-rated versatility",
-      "Guide Dry \u2014 Petzl's best dry treatment",
+      "Guide Dry — Petzl's best dry treatment",
       "Professional mountaineering rope"
     ],
     "cons": [
@@ -12000,7 +12000,7 @@
     "model": "Static R44 10.5",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.singingrock.com/data/katalog/big/L04/L0430KK-3.jpg",
+    "image_url": "/images/ropes/singing-rock-static-r44-10-5.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -12078,7 +12078,7 @@
     "model": "Static R44 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.singingrock.com/data/katalog/big/sta/static_r44_orange.jpg",
+    "image_url": "/images/ropes/singing-rock-static-r44-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -12511,8 +12511,8 @@
     ],
     "description": "Sterling's flagship sport rope, made in the USA. The 40% sheath gives exceptional durability for cragging, while DryXP sheath treatment adds water resistance. A favourite at American crags.",
     "pros": [
-      "Made in USA \u2014 Sterling quality",
-      "40% sheath \u2014 very durable",
+      "Made in USA — Sterling quality",
+      "40% sheath — very durable",
       "8 UIAA falls",
       "DryXP sheath treatment"
     ],
@@ -12625,7 +12625,7 @@
     "model": "HTP Static 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.wesspur.com/sc-product-images/ROP1HT71M_htp-11mm.default.jpg",
+    "image_url": "/images/ropes/sterling-htp-static-11.jpg",
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -12777,7 +12777,7 @@
       "AT",
       "CH"
     ],
-    "description": "Sterling's premium lightweight single rope with XEROS dry treatment that meets UIAA water repellent standard. The bi-pattern design makes middle identification instant \u2014 no fading marks. Excellent for multi-pitch climbing where you need reliable middle detection.",
+    "description": "Sterling's premium lightweight single rope with XEROS dry treatment that meets UIAA water repellent standard. The bi-pattern design makes middle identification instant — no fading marks. Excellent for multi-pitch climbing where you need reliable middle detection.",
     "pros": [
       "XEROS UIAA dry treatment",
       "BiColor pattern for instant middle ID",
@@ -12874,7 +12874,7 @@
     "description": "Sterling's professional static rope for guiding, rescue, and big wall operations. The 40% sheath and 28 kN break strength make it one of the toughest static lines available.",
     "pros": [
       "28 kN break strength",
-      "40% sheath \u2014 extremely durable",
+      "40% sheath — extremely durable",
       "NFPA certified for rescue use",
       "Available up to 200m"
     ],
@@ -12969,7 +12969,7 @@
     ],
     "description": "Sterling's beefy workhorse rope inspired by big wall climbers, designed to survive multiple gnarly expeditions. The T-10 combines 10mm durability with XEROS dry treatment for unmatched all-weather resilience. 8 UIAA falls with Bluesign-certified materials.",
     "pros": [
-      "8 UIAA falls \u2014 excellent durability",
+      "8 UIAA falls — excellent durability",
       "XEROS UIAA dry treatment",
       "Big wall-worthy toughness",
       "Bluesign certified"
@@ -13347,7 +13347,7 @@
     ],
     "description": "Tendon's trad and winter climbing specialist. 9 UIAA falls and 7.4 kN impact force give you the safety margin you want on runout routes. Complete Shield treatment handles wet and icy conditions.",
     "pros": [
-      "9 UIAA falls \u2014 excellent lifespan",
+      "9 UIAA falls — excellent lifespan",
       "Lowest impact force (7.4 kN)",
       "Complete Shield treatment",
       "Great value per meter"
@@ -13355,7 +13355,7 @@
     "cons": [
       "Heavier at 64 g/m",
       "Stiffer handling than premium ropes",
-      "Czech brand \u2014 less widely stocked"
+      "Czech brand — less widely stocked"
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
@@ -13822,7 +13822,7 @@
       "AT",
       "CH"
     ],
-    "description": "Tendon's budget workhorse rope \u2014 durable, reliable, and incredibly affordable. The Smart 10.0 offers 8 UIAA falls and low 5.7% static elongation at the lowest price point in its class. Perfect as a first rope or dedicated gym/top-rope cord.",
+    "description": "Tendon's budget workhorse rope — durable, reliable, and incredibly affordable. The Smart 10.0 offers 8 UIAA falls and low 5.7% static elongation at the lowest price point in its class. Perfect as a first rope or dedicated gym/top-rope cord.",
     "pros": [
       "Cheapest 10mm rope on the market",
       "8 UIAA falls for heavy use",
@@ -13918,7 +13918,7 @@
       "AT",
       "CH"
     ],
-    "description": "Tendon's budget-friendly all-rounder. The Smart Lite 9.8 is just as durable as any Tendon rope but at a fantastically low price \u2014 making it a great first rope for new outdoor climbers. Czech-made quality at an entry-level price.",
+    "description": "Tendon's budget-friendly all-rounder. The Smart Lite 9.8 is just as durable as any Tendon rope but at a fantastically low price — making it a great first rope for new outdoor climbers. Czech-made quality at an entry-level price.",
     "pros": [
       "Very affordable",
       "Czech-made quality",
@@ -13941,7 +13941,7 @@
     "model": "Static 10",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.mytendon.cz/UserFiles/Image/1554215006STATIC-100-L100TS41small.png",
+    "image_url": null,
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -14019,7 +14019,7 @@
     "model": "Static 11",
     "year_released": null,
     "status": "active",
-    "image_url": "https://www.mytendon.cz/UserFiles/Image/1554215190STATIC-100-L100TS41small.png",
+    "image_url": null,
     "product_url": null,
     "rope_type": "static",
     "triple_rated": false,
@@ -14266,13 +14266,13 @@
     ],
     "description": "Triple-rated for single, double, or twin use with an impressive 9 UIAA fall count. The Red Flag treatment marks the final five meters at each end with bright red dye for end-of-rope awareness. One of the most versatile ropes on the market at just 56 g/m.",
     "pros": [
-      "9 UIAA falls \u2014 excellent durability for diameter",
+      "9 UIAA falls — excellent durability for diameter",
       "Triple-rated versatility",
       "Red Flag end marking",
       "Duo Dry UIAA treatment"
     ],
     "cons": [
-      "Very expensive at \u20ac6.43/m",
+      "Very expensive at €6.43/m",
       "Limited availability",
       "Higher impact force than some competitors"
     ],
