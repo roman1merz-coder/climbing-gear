@@ -23,12 +23,41 @@ function useIsMobile() {
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase.js";
 
 // ─── Gear Selector Card ───
-function GearCard({ title, description, to, active, cta = "Open selector" }) {
+function GearCard({ title, shortTitle, count, description, to, active, cta = "Open selector", mobileCta = "Browse" }) {
   const isMobile = useIsMobile();
+
+  // Mobile compact 2×2 card
+  if (isMobile) {
+    return active ? (
+      <Link to={to} style={{
+        background: T.card, border: `1px solid ${T.accent}40`, borderRadius: "12px",
+        padding: "18px 16px", textDecoration: "none",
+        display: "flex", flexDirection: "column", gap: "4px",
+        transition: "all 0.25s ease", cursor: "pointer",
+      }}>
+        <div style={{ fontSize: "14px", fontWeight: 800, color: T.text }}>{shortTitle || title}</div>
+        {count && <div style={{ fontSize: "12px", color: T.muted }}>{count}</div>}
+        <div style={{ color: T.accent, fontSize: "12px", fontWeight: 700, marginTop: "10px" }}>
+          {mobileCta} {"\u2192"}
+        </div>
+      </Link>
+    ) : (
+      <div style={{
+        background: T.surface, border: `1px solid ${T.border}`, borderRadius: "12px",
+        padding: "18px 16px", opacity: 0.5,
+        display: "flex", flexDirection: "column", gap: "4px",
+      }}>
+        <div style={{ fontSize: "14px", fontWeight: 800, color: T.muted }}>{shortTitle || title}</div>
+        {count && <div style={{ fontSize: "12px", color: T.muted }}>{count}</div>}
+      </div>
+    );
+  }
+
+  // Desktop full card
   return active ? (
     <Link to={to} style={{
       background: T.card, border: `1px solid ${T.accent}40`, borderRadius: "14px",
-      padding: isMobile ? "24px 20px" : "32px 28px", textDecoration: "none",
+      padding: "32px 28px", textDecoration: "none",
       display: "flex", flexDirection: "column", gap: "12px",
       transition: "all 0.25s ease", cursor: "pointer", position: "relative", overflow: "hidden",
     }}
@@ -37,7 +66,7 @@ function GearCard({ title, description, to, active, cta = "Open selector" }) {
     >
       <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Live</div>
       <div>
-        <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
+        <div style={{ fontSize: "18px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
         <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>{description}</div>
       </div>
       <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, marginTop: "auto" }}>
@@ -47,12 +76,12 @@ function GearCard({ title, description, to, active, cta = "Open selector" }) {
   ) : (
     <div style={{
       background: T.surface, border: `1px solid ${T.border}`, borderRadius: "14px",
-      padding: isMobile ? "24px 20px" : "32px 28px", opacity: 0.6,
+      padding: "32px 28px", opacity: 0.6,
       display: "flex", flexDirection: "column", gap: "12px", position: "relative",
     }}>
       <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.muted, background: `${T.border}`, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Coming Soon</div>
       <div>
-        <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: T.muted, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
+        <div style={{ fontSize: "18px", fontWeight: 800, color: T.muted, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
         <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6, opacity: 0.7 }}>{description}</div>
       </div>
     </div>
@@ -157,17 +186,17 @@ export default function Landing() {
         <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
           Gear Selectors
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: "14px" }}>
-          <GearCard title="Shoe Selector" to="/shoes" active description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking." />
-          <GearCard title="Rope Selector" to="/ropes" active description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands." />
-          <GearCard title="Belay Device Selector" to="/belays" active description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price." />
-          <GearCard title="Crashpad Selector" to="/crashpads" active description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability." />
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? "10px" : "14px" }}>
+          <GearCard title="Shoe Selector" shortTitle="Shoes" count={`${SHOES.length} models`} to="/shoes" active description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking." />
+          <GearCard title="Rope Selector" shortTitle="Ropes" count={`${ROPES.length} models`} to="/ropes" active description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands." />
+          <GearCard title="Belay Device Selector" shortTitle="Belay Devices" count={`${BELAYS.length} models`} to="/belays" active description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price." />
+          <GearCard title="Crashpad Selector" shortTitle="Crashpads" count={`${PADS.length} models`} to="/crashpads" active description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability." />
           {showMore && <>
-            <GearCard title="Helmet Selector" description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability." />
-            <GearCard title="Quickdraw Selector" description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design." />
-            <GearCard title="Harness Selector" description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability." />
-            <GearCard title="Pants Selector" description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout." />
-            <GearCard title="Jacket Selector" description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability." />
+            <GearCard title="Helmet Selector" shortTitle="Helmets" description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability." />
+            <GearCard title="Quickdraw Selector" shortTitle="Quickdraws" description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design." />
+            <GearCard title="Harness Selector" shortTitle="Harnesses" description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability." />
+            <GearCard title="Pants Selector" shortTitle="Pants" description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout." />
+            <GearCard title="Jacket Selector" shortTitle="Jackets" description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability." />
           </>}
         </div>
         <button onClick={() => setShowMore(v => !v)} style={{
@@ -187,10 +216,10 @@ export default function Landing() {
         <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
           Gear Insights
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "14px" }}>
-          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" to="/insights#crashpads" active cta="Read insight" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
-          <GearCard title="Does Spending More Buy a Safer Rope?" to="/insights#ropes" active cta="Read insight" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
-          <GearCard title="More Insights in the Making" description="New data-driven articles are on the way. Got a topic you'd like us to cover? Drop us a suggestion below." />
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)", gap: isMobile ? "10px" : "14px" }}>
+          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" shortTitle="Inflatable Crashpads: Gimmick?" to="/insights#crashpads" active cta="Read insight" mobileCta="Read" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
+          <GearCard title="Does Spending More Buy a Safer Rope?" shortTitle="Does Price = Safer Rope?" to="/insights#ropes" active cta="Read insight" mobileCta="Read" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
+          {!isMobile && <GearCard title="More Insights in the Making" description="New data-driven articles are on the way. Got a topic you'd like us to cover? Drop us a suggestion below." />}
         </div>
       </section>
 
