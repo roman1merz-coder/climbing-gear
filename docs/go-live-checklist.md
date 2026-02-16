@@ -1,6 +1,6 @@
 # climbing-gear.com — Soft Launch Checklist
 
-> Created: Feb 16, 2026 | Status: Ready for soft launch
+> Created: Feb 16, 2026 | Status: **All items complete — ready for soft launch**
 
 ## Must Fix (Legal / Security) — ALL DONE
 
@@ -12,10 +12,17 @@
 ## Should Fix (SEO / Professionalism) — ALL DONE
 
 - [x] **`robots.txt`** — Allows all crawlers, points to sitemap.
-- [x] **`sitemap.xml`** — 669 URLs (10 static + 343 shoes + 156 ropes + 49 belays + 111 crashpads).
-- [x] **Per-page `<title>` and `<meta description>`** — usePageMeta hook on all 16 routes. Dynamic titles on product detail pages.
+- [x] **`sitemap.xml`** — 670 URLs (11 static + 343 shoes + 156 ropes + 49 belays + 111 crashpads).
+- [x] **Per-page `<title>` and `<meta description>`** — usePageMeta hook on all 17 routes. Dynamic titles on product detail pages.
 - [x] **Open Graph + Twitter Card meta tags** — og:title, og:description, og:image, og:url on every page. Static fallbacks in index.html for crawlers.
 - [x] **Proper favicon** — Mountain icon as SVG + ICO, replacing emoji.
+
+## Legal Hardening — ALL DONE
+
+- [x] **Nutzungsbedingungen (Terms of Service)** — New `/terms` page with limitation of liability, no-warranty for safety-critical gear data, scoring disclaimer, IP notice. Linked in footer + sitemap.
+- [x] **Safety disclaimers on all detail pages** — Category-specific disclaimers on ShoeDetail, RopeDetail ("life-safety equipment"), BelayDetail ("proper training essential"), CrashpadDetail ("reduces but doesn't eliminate injury risk").
+- [x] **General safety notice in footer** — Site-wide notice: climbing is inherently dangerous, data is for informational comparison only, does not replace training/fitting/manufacturer instructions.
+- [x] **Narrowed Supabase queries** — `admin_flags` and `data_confidence` stripped from client responses. Prices and price history use explicit field selects. All queries go through centralized `supabaseFetch()`.
 
 ## Nice to Have — ALL DONE
 
