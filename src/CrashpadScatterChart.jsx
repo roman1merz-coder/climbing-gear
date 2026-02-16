@@ -201,9 +201,10 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
     const labelBoxes = [];
-    // Also treat each highlighted dot as an occupied box so labels don't overlap dots
+    // Also treat each highlighted dot (including glow ring) as an occupied box so labels don't overlap dots
     hlDots.forEach(({ px, py, r }) => {
-      labelBoxes.push({ x: px - r - 2, y: py - r - 2, w: (r + 2) * 2, h: (r + 2) * 2 });
+      const glowR = r + 6; // dot + white ring + glow blur
+      labelBoxes.push({ x: px - glowR, y: py - glowR, w: glowR * 2, h: glowR * 2 });
     });
     const fontSize = isMobile ? 10 : 12;
     ctx.font = `600 ${fontSize}px 'Instrument Sans', Inter, system-ui, sans-serif`;
@@ -215,7 +216,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       const boxW = tw + padX * 2, boxH = fontSize + padY * 2;
       // 12 candidate positions for better collision avoidance
       // All positions keep the label clear of the dot (never centered over it)
-      const gap = 10;
+      const gap = 14;
       const candidates = [
         { bx: px + r + gap,            by: py - boxH / 2 },           // right
         { bx: px + r + gap,            by: py - r - gap - boxH },     // above-right
@@ -255,7 +256,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
       ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(labelCx, labelCy); ctx.stroke(); ctx.setLineDash([]);
       // Label background (manual rounded rect for compatibility)
       const brd = 4;
-      ctx.fillStyle = "rgba(12,14,22,0.92)";
+      ctx.fillStyle = "rgba(12,14,22,0.96)";
       ctx.beginPath();
       ctx.moveTo(box.x + brd, box.y);
       ctx.lineTo(box.x + box.w - brd, box.y);
