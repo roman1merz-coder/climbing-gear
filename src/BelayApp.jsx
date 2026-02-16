@@ -25,6 +25,7 @@ const CheckSVG = ({ size = 12 }) => (
   </svg>
 );
 import BelayScatterChart from "./BelayScatterChart.jsx";
+import { ScoringDisclaimer } from "./Methodology.jsx";
 
 /** Image with graceful fallback on 404 */
 function Img({ src, alt, style, fallback }) {
@@ -1140,7 +1141,10 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
           </div>
           )}
           {view === "chart" ? (
-            <BelayScatterChart isMobile={isMobile} />
+            <>
+              <ScoringDisclaimer category="belay" />
+              <BelayScatterChart isMobile={isMobile} />
+            </>
           ) : (
           <div
             style={{

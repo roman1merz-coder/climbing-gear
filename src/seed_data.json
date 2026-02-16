@@ -4591,75 +4591,6 @@
   },
   {
     "brand": "Evolv",
-    "model": "Cruzer Psyche",
-    "slug": "evolv-cruzer-psyche",
-    "image_url": null,
-    "images": null,
-    "toe_form": "egyptian",
-    "volume": "standard",
-    "width": "medium",
-    "heel": "medium",
-    "skill_level": [
-      "beginner",
-      "hobby"
-    ],
-    "use_cases": [
-      "sport"
-    ],
-    "best_rock_types": [
-      "granite",
-      "sandstone",
-      "limestone"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "stiff",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
-    "discount_pct": 12.7,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "lace",
-    "asymmetry": "none",
-    "downturn": "flat",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
-    "ankle_protection": "none",
-    "durability": [
-      "high"
-    ],
-    "rubber_type": "TRAX Enduro 5mm",
-    "rubber_hardness": [
-      "hard"
-    ],
-    "rubber_thickness_mm": 5.0,
-    "midsole": "full",
-    "rand": "relaxed",
-    "gender": "unisex",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 374,
-    "stretch_expectation": "none",
-    "break_in_period": "minimal",
-    "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Lace closure offers precise foot locking, ideal for technical sport. With standard volume and responsive TRAX Enduro rubber, this shoe handles all foothold types.",
-    "pros": "[\"Minimal downturn for slabs\", \"Durable hard rubber compound\", \"Precise lace-up control\", \"Vegan-friendly materials\"]",
-    "cons": "[\"Medium width may feel snug\", \"Limited on steep overhangs\"]",
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
-    "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Evolv.\", \"Perfect for long sport pitches. Comfort matters, and these deliver.\", \"Worth the investment. Evolv really nailed this design.\"]",
-    "vegan": true,
-    "resoleable": false,
-    "admin_flags": null,
-    "data_confidence": {}
-  },
-  {
-    "brand": "Evolv",
     "model": "Defy",
     "slug": "evolv-defy",
     "image_url": "/images/shoes/evolv-defy.jpg",
@@ -13968,7 +13899,7 @@
     "brand": "Ocún",
     "model": "Sigma",
     "slug": "ocun-sigma",
-    "image_url": "https://www.ocun.com/assets/products/1_700x700/x2zyldzb2g.05337-Sigma-1.jpg",
+    "image_url": null,
     "images": null,
     "toe_form": "egyptian",
     "volume": "low",

@@ -53,7 +53,7 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.67,
     "kg_per_liter": 0.045,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -168,7 +168,7 @@
     "kg_per_area": 5.67,
     "eur_per_liter": 2.39,
     "kg_per_liter": 0.057,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.8kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.8kg for 1.1m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -280,7 +280,7 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.94,
     "kg_per_liter": 0.045,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -672,7 +672,7 @@
     "kg_per_area": 4.46,
     "eur_per_liter": 1.64,
     "kg_per_liter": 0.032,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.2kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.2kg for 1.6m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -730,7 +730,7 @@
     "kg_per_area": 4.46,
     "eur_per_liter": 1.57,
     "kg_per_liter": 0.032,
-    "pros": "Generous 1.3m² landing area — good coverage for most problems\n14cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (5.4kg for 1.3m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.3m² landing area — good coverage for most problems\n14cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (5.4kg for 1.3m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -788,7 +788,7 @@
     "kg_per_area": 3.28,
     "eur_per_liter": 1.45,
     "kg_per_liter": 0.027,
-    "pros": "Massive 1.9m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (6.4kg for 1.9m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.9m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (6.4kg for 1.9m²)\nExcellent protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Bulky and not great for longer approaches — best for roadside boulders\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -845,7 +845,7 @@
     "kg_per_area": 3.73,
     "eur_per_liter": 2.22,
     "kg_per_liter": 0.031,
-    "pros": "Massive 2.0m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (10.5kg for 2.0m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 2.0m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (10.5kg for 2.0m²)\nExcellent protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Heavy at 10.5kg — long approaches become a workout\nBulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel\nFirm foam is harder on low-height falls — less forgiving on ankles",
     "data_confidence": {}
   },
@@ -1406,7 +1406,7 @@
     "kg_per_area": 4.92,
     "eur_per_liter": 2.26,
     "kg_per_liter": 0.055,
-    "pros": "Generous 1.3m² landing area — good coverage for most problems\nEfficient weight-to-area ratio (6.4kg for 1.3m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
+    "pros": "Generous 1.3m² landing area — good coverage for most problems\nEfficient weight-to-area ratio (6.4kg for 1.3m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -1464,7 +1464,7 @@
     "kg_per_area": 4.47,
     "eur_per_liter": 2.36,
     "kg_per_liter": 0.045,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.4kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.4kg for 1.6m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -1523,7 +1523,7 @@
     "kg_per_area": 3.64,
     "eur_per_liter": 1.45,
     "kg_per_liter": 0.036,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.5kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.5kg for 1.6m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -1581,7 +1581,7 @@
     "kg_per_area": 3.73,
     "eur_per_liter": 1.86,
     "kg_per_liter": 0.037,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.0kg for 1.6m²)\nHigh impact protection rating\n4-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.0kg for 1.6m²)\nGood protection coverage\n4-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -1918,7 +1918,7 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.61,
     "kg_per_liter": 0.038,
-    "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.2m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.2m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "data_confidence": {}
   },
   {
@@ -1975,7 +1975,7 @@
     "kg_per_area": 5.04,
     "eur_per_liter": 0.73,
     "kg_per_liter": 0.04,
-    "pros": "Massive 2.98m² landing zone covers most boulder problem landings\n12.7cm thick foam absorbs hard impacts from highball problems\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption\nTri-fold design with reconfigurable sections\nFull carry system with padded shoulder straps, waist belt, and sternum strap",
+    "pros": "Massive 2.98m² landing zone covers most boulder problem landings\n12.7cm thick foam absorbs hard impacts from highball problems\nExcellent protection coverage\n3-layer foam system for progressive impact absorption\nTri-fold design with reconfigurable sections\nFull carry system with padded shoulder straps, waist belt, and sternum strap",
     "cons": "Heavy at 15.0kg — long approaches become a workout\nBulky tri-fold design not great for longer approaches — best for roadside boulders\nDesigned primarily for indoor use and short carries",
     "data_confidence": {}
   },
@@ -2032,7 +2032,7 @@
     "kg_per_area": 4.92,
     "eur_per_liter": 1.68,
     "kg_per_liter": 0.041,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.7kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (7.7kg for 1.6m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "data_confidence": {}
   },
   {
@@ -2088,7 +2088,7 @@
     "kg_per_area": 4.94,
     "eur_per_liter": 1.52,
     "kg_per_liter": 0.038,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (8.5kg for 1.6m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (8.5kg for 1.6m²)\nExcellent protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Bulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -2146,7 +2146,7 @@
     "kg_per_area": 5.19,
     "eur_per_liter": 1.81,
     "kg_per_liter": 0.052,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -2205,7 +2205,7 @@
     "kg_per_area": 5.56,
     "eur_per_liter": 1.87,
     "kg_per_liter": 0.051,
-    "pros": "Massive 1.8m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
+    "pros": "Massive 1.8m² landing zone covers most boulder problem landings\nSolid 11cm foam thickness provides reliable fall protection\nExcellent protection coverage\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
     "cons": "Heavy at 10.0kg — long approaches become a workout\nBulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -2718,7 +2718,7 @@
     "kg_per_area": 5.32,
     "eur_per_liter": 1.2,
     "kg_per_liter": 0.041,
-    "pros": "Massive 2.0m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (9.5kg for 2.0m²)\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 2.0m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (9.5kg for 2.0m²)\nExcellent protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Heavy at 9.5kg — long approaches become a workout\nBulky and not great for longer approaches — best for roadside boulders",
     "data_confidence": {}
   },
@@ -2887,7 +2887,7 @@
     "kg_per_area": 4.42,
     "eur_per_liter": 1.83,
     "kg_per_liter": 0.044,
-    "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.9kg for 1.5m²)\nHigh impact protection rating\nExcellent carry comfort for approaches",
+    "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.9kg for 1.5m²)\nGood protection coverage\nExcellent carry comfort for approaches",
     "cons": "No shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -3571,7 +3571,7 @@
     "kg_per_area": 4.26,
     "eur_per_liter": 1.86,
     "kg_per_liter": 0.043,
-    "pros": "Decent 0.9m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.0kg for 0.9m²)\nHigh impact protection rating\nGood carry comfort for approaches",
+    "pros": "Decent 0.9m² landing area for the size category\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (4.0kg for 0.9m²)\nGood protection coverage\nGood carry comfort for approaches",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
     "data_confidence": {}
   },
@@ -3627,7 +3627,7 @@
     "kg_per_area": 3.79,
     "eur_per_liter": 1.73,
     "kg_per_liter": 0.038,
-    "pros": "Generous 1.3m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.3m²)\nHigh impact protection rating\nGood carry comfort for approaches",
+    "pros": "Generous 1.3m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.3m²)\nGood protection coverage\nGood carry comfort for approaches",
     "cons": "Minimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
     "data_confidence": {}
   },
@@ -3906,7 +3906,7 @@
     "kg_per_area": 5.97,
     "eur_per_liter": 2.9,
     "kg_per_liter": 0.06,
-    "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
+    "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nGood protection coverage\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "No hinge protection — watch out for the fold gap on ground strikes\nNo waist or chest straps — the pad bounces around on steep trails\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -3963,7 +3963,7 @@
     "kg_per_area": 5.29,
     "eur_per_liter": 1.78,
     "kg_per_liter": 0.041,
-    "pros": "Massive 1.7m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nExcellent impact protection rating\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
+    "pros": "Massive 1.7m² landing zone covers most boulder problem landings\n13cm thick foam absorbs hard impacts from highball problems\nExcellent protection coverage\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
     "cons": "Heavy at 9.5kg — long approaches become a workout\nNo shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -4021,7 +4021,7 @@
     "kg_per_area": 4.86,
     "eur_per_liter": 2.51,
     "kg_per_liter": 0.049,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nGood protection coverage\n3-layer foam system for progressive impact absorption\nExcellent carry comfort for approaches",
     "cons": "7.3kg is heavy for the landing area you get\nNo shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -4136,7 +4136,7 @@
     "kg_per_area": 4.48,
     "eur_per_liter": 1.8,
     "kg_per_liter": 0.045,
-    "pros": "Massive 1.7m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (8.6kg for 1.7m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.7m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (8.6kg for 1.7m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Bulky and not great for longer approaches — best for roadside boulders\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -4192,7 +4192,7 @@
     "kg_per_area": 3.82,
     "eur_per_liter": 2.56,
     "kg_per_liter": 0.055,
-    "pros": "Massive 2.6m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (10.0kg for 2.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
+    "pros": "Massive 2.6m² landing zone covers most boulder problem landings\nEfficient weight-to-area ratio (10.0kg for 2.6m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "Heavy at 10.0kg — long approaches become a workout\nOnly 8cm thick — limited protection on higher problems\nNo hinge protection — watch out for the fold gap on ground strikes\nBulky and not great for longer approaches — best for roadside boulders",
     "data_confidence": {}
   },
@@ -4419,7 +4419,7 @@
     "kg_per_area": 7.39,
     "eur_per_liter": 2.51,
     "kg_per_liter": 0.074,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nHigh impact protection rating\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nGood protection coverage\n3-layer foam system for progressive impact absorption\nGood carry comfort for approaches",
     "cons": "7.3kg is heavy for the landing area you get\nNo shoe wipe — bring a towel",
     "data_confidence": {}
   },
@@ -4700,7 +4700,7 @@
     "kg_per_area": 4.5,
     "eur_per_liter": 1.43,
     "kg_per_liter": 0.045,
-    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.1m² landing area — good coverage for most problems\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.0kg for 1.1m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "cons": "Basic carry system — uncomfortable on approaches over 15 minutes\nNo shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -5318,7 +5318,7 @@
     "kg_per_area": 4.47,
     "eur_per_liter": 1.53,
     "kg_per_liter": 0.045,
-    "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.7kg for 1.5m²)\nHigh impact protection rating\nGood carry comfort for approaches",
+    "pros": "Massive 1.5m² landing zone covers most boulder problem landings\nSolid 10cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (6.7kg for 1.5m²)\nGood protection coverage\nGood carry comfort for approaches",
     "cons": "No hinge protection — watch out for the fold gap on ground strikes\nMinimal gear storage — you'll need a separate bag for shoes and chalk",
     "data_confidence": {}
   },
@@ -5430,7 +5430,7 @@
     "kg_per_area": 2.78,
     "eur_per_liter": 1.19,
     "kg_per_liter": 0.019,
-    "pros": "Massive 1.8m² landing zone covers most boulder problem landings\n15cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (4.0kg for 1.8m²)\nHigh impact protection rating\nGood carry comfort for approaches",
+    "pros": "Massive 1.8m² landing zone covers most boulder problem landings\n15cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (4.0kg for 1.8m²)\nGood protection coverage\nGood carry comfort for approaches",
     "cons": "No shoe wipe — bring a towel\nMinimal gear storage — you'll need a separate bag for shoes and chalk\nSingle foam layer provides less progressive absorption than multi-layer designs",
     "data_confidence": {}
   },
@@ -5884,7 +5884,7 @@
     "kg_per_area": 3.5,
     "eur_per_liter": 2.45,
     "kg_per_liter": 0.035,
-    "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.5kg for 1.2m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Generous 1.2m² landing area — good coverage for most problems\nSolid 11cm foam thickness provides reliable fall protection\nEfficient weight-to-area ratio (5.5kg for 1.2m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "data_confidence": {}
   },
   {
@@ -5998,7 +5998,7 @@
     "kg_per_area": 6.07,
     "eur_per_liter": 2.0,
     "kg_per_liter": 0.055,
-    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (7.8kg for 1.6m²)\nHigh impact protection rating\n3-layer foam system for progressive impact absorption",
+    "pros": "Massive 1.6m² landing zone covers most boulder problem landings\n12cm thick foam absorbs hard impacts from highball problems\nEfficient weight-to-area ratio (7.8kg for 1.6m²)\nGood protection coverage\n3-layer foam system for progressive impact absorption",
     "data_confidence": {}
   },
   {

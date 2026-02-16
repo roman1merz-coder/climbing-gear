@@ -25,6 +25,7 @@ const CheckSVG = ({ size = 12 }) => (
   </svg>
 );
 import RopeScatterChart from "./RopeScatterChart.jsx";
+import { ScoringDisclaimer } from "./Methodology.jsx";
 
 /** Image with graceful fallback on 404 */
 function Img({ src, alt, style, fallback }) {
@@ -1306,7 +1307,10 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
           )}
 
           {view === "chart" ? (
-            <RopeScatterChart isMobile={isMobile} />
+            <>
+              <ScoringDisclaimer category="ropes" />
+              <RopeScatterChart isMobile={isMobile} />
+            </>
           ) : (
             <>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: isMobile ? "10px" : "16px" }}>

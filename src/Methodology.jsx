@@ -14,8 +14,36 @@ const S = {
 };
 
 /* ─── Collapsible panel (reused for inline version) ─── */
-export function ScoringDisclaimer({ defaultOpen = false }) {
+const CATEGORY_TEXT = {
+  shoes: {
+    title: "How we score shoes",
+    body: "Our performance scores are calculated from shoe specifications — downturn, rubber type & thickness, midsole, closure, and more — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Every foot is different, every rock is different, and every climber has preferences that no formula can capture. Treat these as directional — a way to narrow down your options before you try them on.",
+    neutral: "We have no brand affiliations or sponsorships. Every shoe is scored by the same formulas using the same data.",
+  },
+  crashpads: {
+    title: "How we score crashpads",
+    body: "Our performance scores are calculated from pad specifications — area, thickness, foam layers, weight, and carry system — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Landing zones, terrain, and personal preference all play a role that no formula can capture. Treat these scores as directional — a way to narrow down your options before you try them in the field.",
+    neutral: "We have no brand affiliations or sponsorships. Every pad is scored by the same formulas using the same data.",
+  },
+  belay: {
+    title: "How we score belay devices",
+    body: "Our performance scores are calculated from device specifications — weight, braking mechanism, rope compatibility, and more — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Personal belay style, rope preferences, and intended use all matter in ways no formula can capture. Treat these scores as directional — a way to narrow down your options.",
+    neutral: "We have no brand affiliations or sponsorships. Every device is scored by the same formulas using the same data.",
+  },
+  ropes: {
+    title: "How we score ropes",
+    body: "Our performance scores are calculated from rope specifications — diameter, weight, UIAA falls, sheath percentage, elongation, and more — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Handling feel, durability, and personal preference all play a role that no formula can fully capture. Treat these scores as directional — a way to narrow down your options.",
+    neutral: "We have no brand affiliations or sponsorships. Every rope is scored by the same formulas using the same data.",
+  },
+};
+
+export function ScoringDisclaimer({ defaultOpen = false, category = "shoes" }) {
   const [open, setOpen] = useState(defaultOpen);
+  const txt = CATEGORY_TEXT[category] || CATEGORY_TEXT.shoes;
   return (
     <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: T.radius, overflow: "hidden", marginBottom: "16px" }}>
       <button
@@ -30,7 +58,7 @@ export function ScoringDisclaimer({ defaultOpen = false }) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={T.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
           </svg>
-          How we score shoes
+          {txt.title}
         </span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={T.muted} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
           style={{ transition: "transform .2s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -39,18 +67,9 @@ export function ScoringDisclaimer({ defaultOpen = false }) {
       </button>
       {open && (
         <div style={{ padding: "0 18px 18px", fontSize: "13px", lineHeight: 1.8, color: T.muted }}>
-          <p style={{ marginBottom: "12px" }}>
-            Our performance scores are calculated from shoe specifications — downturn, rubber type &amp; thickness,
-            midsole, closure, and more — using algorithms we've developed and refined with input from experienced
-            climbers. They're designed to give you a useful starting point, not the final word.
-          </p>
-          <p style={{ marginBottom: "12px" }}>
-            Every foot is different, every rock is different, and every climber has preferences that no formula
-            can capture. Treat these as directional — a way to narrow down your options before you try them on.
-          </p>
-          <p style={{ marginBottom: "16px" }}>
-            We have no brand affiliations or sponsorships. Every shoe is scored by the same formulas using the same data.
-          </p>
+          <p style={{ marginBottom: "12px" }}>{txt.body}</p>
+          <p style={{ marginBottom: "12px" }}>{txt.caveat}</p>
+          <p style={{ marginBottom: "16px" }}>{txt.neutral}</p>
           <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", fontSize: "12px" }}>
             <Link to="/methodology" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>
               How each score works →

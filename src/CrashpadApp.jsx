@@ -35,6 +35,7 @@ const CheckSVG = ({ size = 12 }) => (
   </svg>
 );
 import CrashpadScatterChart from "./CrashpadScatterChart.jsx";
+import { ScoringDisclaimer } from "./Methodology.jsx";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -1267,7 +1268,10 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
           )}
 
           {view === "chart" ? (
-            <CrashpadScatterChart isMobile={isMobile} />
+            <>
+              <ScoringDisclaimer category="crashpads" />
+              <CrashpadScatterChart isMobile={isMobile} />
+            </>
           ) : (
             <>
               {/* Result count + sort */}

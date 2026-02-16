@@ -1485,10 +1485,13 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           )}
 
           {view === "chart" ? (
-            <ShoeScatterChart shoes={shoes} isMobile={isMobile} />
+            <>
+              <ScoringDisclaimer category="shoes" />
+              <ShoeScatterChart shoes={shoes} isMobile={isMobile} />
+            </>
           ) : (
             <>
-              <ScoringDisclaimer />
+              <ScoringDisclaimer category="shoes" />
 
               <div
                 key={`grid-${shoes.length}`}

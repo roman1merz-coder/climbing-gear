@@ -517,7 +517,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
                   <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                     <div style={{ fontSize: "11px", fontWeight: 700, color: T.green, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Strengths</div>
-                    {(Array.isArray(pad.pros) ? pad.pros : String(pad.pros || "").split(". ").filter(Boolean)).map((p, i) => (
+                    {(Array.isArray(pad.pros) ? pad.pros : String(pad.pros || "").split(/\n|(?<=\w)\. /).filter(Boolean)).map((p, i) => (
                       <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
                         <span style={{ color: T.green, flexShrink: 0, fontWeight: 700 }}>+</span> {typeof p === "string" ? p.replace(/\.$/, "") : p}
                       </div>
@@ -525,7 +525,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                   </div>
                   <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                     <div style={{ fontSize: "11px", fontWeight: 700, color: T.red, marginBottom: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>Trade-offs</div>
-                    {(Array.isArray(pad.cons) ? pad.cons : String(pad.cons || "").split(". ").filter(Boolean)).map((c, i) => (
+                    {(Array.isArray(pad.cons) ? pad.cons : String(pad.cons || "").split(/\n|(?<=\w)\. /).filter(Boolean)).map((c, i) => (
                       <div key={i} style={{ display: "flex", gap: "8px", marginBottom: "10px", fontSize: "13px", color: T.text, lineHeight: 1.5 }}>
                         <span style={{ color: T.red, flexShrink: 0, fontWeight: 700 }}>−</span> {typeof c === "string" ? c.replace(/\.$/, "") : c}
                       </div>
