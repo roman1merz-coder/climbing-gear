@@ -51,7 +51,7 @@ function ScrollToTop() {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       style={{
-        position: "fixed", bottom: "24px", right: "24px", zIndex: 50,
+        position: "fixed", bottom: "80px", right: "24px", zIndex: 50,
         width: "40px", height: "40px", borderRadius: "50%",
         background: T.accent, color: "#fff", border: "none",
         fontSize: "18px", cursor: "pointer", boxShadow: "0 2px 12px rgba(0,0,0,.4)",
