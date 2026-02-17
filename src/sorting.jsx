@@ -8,6 +8,8 @@ export const SORT_OPTIONS = [
   { key: "price_asc",    label: "Price: Low \u2192 High" },
   { key: "price_desc",   label: "Price: High \u2192 Low" },
   { key: "discount",     label: "Biggest Discount" },
+  { key: "weight_asc",   label: "Weight: Light \u2192 Heavy" },
+  { key: "weight_desc",  label: "Weight: Heavy \u2192 Light" },
   { key: "newest",       label: "Newest Models" },
   { key: "brand_az",     label: "Brand A\u2013Z" },
 ];
@@ -54,6 +56,12 @@ export function sortShoes(shoes, sortKey, priceData = {}) {
         const db = (b.price_uvp_eur && b.current_price_eur) ? (b.price_uvp_eur - b.current_price_eur) / b.price_uvp_eur : 0;
         return db - da;
       });
+      break;
+    case "weight_asc":
+      sorted.sort((a, b) => (a.weight_g || Infinity) - (b.weight_g || Infinity));
+      break;
+    case "weight_desc":
+      sorted.sort((a, b) => (b.weight_g || 0) - (a.weight_g || 0));
       break;
     case "newest":
       sorted.sort((a, b) => (b.year_released || 0) - (a.year_released || 0));
