@@ -178,7 +178,7 @@ const GROUPS = [
         key: "gender",
         label: "Gender",
         type: "multi",
-        options: ["man", "women", "kids"],
+        options: ["mens", "womens", "unisex"],
       },
       {
         key: "toe_form",
