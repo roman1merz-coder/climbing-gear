@@ -9277,7 +9277,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 175,
+    "weight_g": 225,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The Otaki Women's balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -9289,9 +9289,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "note": "weighmyrack shows 175g but user reports 470g pair - NEEDS MANUAL REVIEW",
-      "weight_verified": false,
-      "needs_manual_review": true
+      "weight_source": "User verified - 225g single",
+      "weight_verified": true
     }
   },
   {
