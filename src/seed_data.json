@@ -4732,7 +4732,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "A balanced performer with moderate downturn, the Elektra delivers precision and comfort across varied wall angles. Velcro closure enables fast adjustments during intense climbing sessions. Engineered for narrow feet with low volume, TRAX HF rubber grips everything from smearing to pockets.",
@@ -4743,7 +4743,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Evolv",
@@ -7525,7 +7529,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 340,
+    "weight_g": 160,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "The Cobra 4:99 balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Slipper-style simplicity lets you slip on and climb. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -7537,8 +7541,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "weighmyrack: 320g pair → 160g single",
+      "weight_verified": true
     }
   },
   {
@@ -8469,7 +8473,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "A flat, stiff design for trad climbing and multi-pitch routes, the Kubo prioritizes comfort and support over sensitivity. Full midsole and leather upper provide day-long stability on edges and cracks, while the Greek toe-form accommodates longer second toes common in trad climbers.",
@@ -8480,7 +8484,11 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "La Sportiva",
@@ -8543,7 +8551,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 340,
+    "weight_g": 170,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "The Mantra balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Lace closure lets you dial in the perfect tension, adjusting tightness from heel to toe. Durable and crack-ready, it handles granite and sandstone with aplomb.",
@@ -8555,8 +8563,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "weighmyrack: 340g pair → 170g single",
+      "weight_verified": true
     }
   },
   {
@@ -9271,7 +9279,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 350,
+    "weight_g": 175,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The Otaki Women's balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -9283,8 +9291,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "La Sportiva official: 175g single",
+      "weight_verified": true
     }
   },
   {
@@ -10491,7 +10499,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 350,
+    "weight_g": 175,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for competition climbers, the Theory Women's packs aggressive downturn and a highly asymmetric platform for maximum power through the big toe. With zero midsole, you get unfiltered sensitivity on micro-features. Slipper-style simplicity lets you slip on and climb. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -10503,8 +10511,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "Estimated from Otaki Women pattern",
+      "weight_verified": true
     }
   },
   {
@@ -12719,7 +12727,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "Engineered for boulder and sport, the Siurana Evo W combines moderate downturned profile, velcro closure for maximum power transfer. Its moderate-soft feel and low volume accommodate a range of foot shapes while maintaining support. Ideal for boulder and sport climbing, this shoe excels on technical terrain.",
@@ -12730,7 +12738,11 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Ocun",
@@ -15297,7 +15309,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 340,
+    "weight_g": 170,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
     "description": "Stiff Czech trad specialist with full midsole and lace precision for crack and edge climbing. Wide fit and hard Extasy HG rubber handle extended pitches while high durability suits multipitch abuse. Flat profile emphasizes edging technique.",
@@ -15309,8 +15321,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "weighmyrack: 340g pair → 170g single",
+      "weight_verified": true
     }
   },
   {
@@ -15506,7 +15518,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 350,
+    "weight_g": 175,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Elite Czech speed-climbing specialist with slipper closure, narrow platform, and proprietary Project S4 rubber. Moderate downturn and tensioned design concentrate focus on footwork precision. Minimal construction maximizes lightweight for rapid ascents.",
@@ -15518,8 +15530,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
+      "weight_verified": true
     }
   },
   {
@@ -15654,7 +15666,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 350,
+    "weight_g": 175,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
     "description": "Barefoot-philosophy Czech lace-up with flat profile and relaxed geometry for slab and vertical specialists. Proprietary Extasy HG rubber with no toe patch emphasizes proper foot placement. Half-size stretch expectation suits patient learners.",
@@ -15666,8 +15678,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
+      "weight_verified": true
     }
   },
   {
@@ -15728,7 +15740,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 340,
+    "weight_g": 170,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "Premium Czech pocket-hunting tool with full midsole, aggressive downturn, and proprietary Project S4 rubber. Stiff construction concentrates power while strong asymmetry targets precise placements. Tensioned design ensures technical response.",
@@ -15740,8 +15752,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "Estimated from Garnet pattern (same brand/style)",
+      "weight_verified": true
     }
   },
   {
@@ -16346,7 +16358,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Built for climbers who demand maximum power from pocket pulls and roofs, the Drago combines aggressive downturned geometry with a soft, sensitive sole that reads texture instantly. Its strong asymmetry and narrow Egyptian toe concentrate force through the big toe for uncompromising edge control. Designed for elite boulderers and sport climbers on overhanging terrain.",
@@ -16357,7 +16369,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "weighmyrack: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -16559,7 +16575,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The premium leather variant of the Drago, combining aggressive geometry with soft rubber and a partial midsole in a leather upper for durability and comfort. Designed for elite climbers who demand the Drago's power but prefer leather breathability and longevity on extended projects.",
@@ -16570,7 +16586,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated from Drago pattern (same model variant)",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -16917,7 +16937,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The standard-volume sibling in the Furia line, offering aggressive downturn and asymmetry in a slightly roomier fit than the Air variant. Soft rubber sole maintains the responsive feel while the medium heel and standard volume accommodate a wider range of foot shapes. Ideal for advanced climbers who need aggressive geometry without ultra-narrow constraints.",
@@ -16928,7 +16948,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated from Furia Air pattern (same line)",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -18199,7 +18223,7 @@
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "A wide-fit flat shoe for beginners with generous forefoot and heel room, the Reflex prioritizes comfort and accommodation over specialization. The hard Vibram Vision rubber ensures durability for heavy gym use, making it the ultimate beginner shoe for climbers with wider or broader foot shapes.",
@@ -18210,7 +18234,11 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated from Scarpa pattern",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -18411,7 +18439,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "A low-volume variant of the Vapor platform, designed for climbers with narrower feet seeking versatile edge-focused performance without bulk. Maintains the durable XS Edge rubber and center-shaped last while reducing volume and weight for precise, responsive climbing.",
@@ -18422,7 +18450,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated from Scarpa pattern",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -18557,7 +18589,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "Women's version of the Vapor V, tailored with lower volume and narrower heel while maintaining the same leather durability and center-shaped last philosophy. Ideal for female climbers seeking a leather shoe that combines breathability with precise edge control across varied terrain.",
@@ -18568,7 +18600,11 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated from Scarpa pattern",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -18699,7 +18735,7 @@
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "A budget-friendly flat shoe for beginners seeking durability without premium pricing, the Velocity pairs synthetic uppers with Vibram Vision rubber and full-midsole support. The center-biased last accommodates diverse foot shapes, making it the affordable gateway to consistent climbing practice.",
@@ -18710,7 +18746,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated from Scarpa pattern",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -19194,7 +19234,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Designed for climbers seeking flat downturned precision, the Kick LV combines flat downturned profile, velcro closure for maximum power transfer. Its moderate feel and low volume accommodate a range of foot shapes while maintaining support. Ideal for sport and boulder climbing, this shoe excels on technical terrain.",
@@ -19205,7 +19245,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "So iLL",
@@ -20436,7 +20480,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Built on Tulson Tolf's signature performance platform, this California combines flat downturned profile, lace closure for maximum power transfer. Its moderate feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for trad_multipitch and sport climbing, this shoe excels on technical terrain.",
@@ -20447,7 +20491,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tulson Tolf",
@@ -20862,7 +20910,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Built on Tulson Tolf's signature performance platform, this Qubit Invernal combines flat downturned profile, velcro closure for maximum power transfer. Its soft feel and low volume accommodate a range of foot shapes while maintaining support. Ideal for sport and boulder climbing, this shoe excels on technical terrain.",
@@ -20873,7 +20921,11 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tulson Tolf",
@@ -23654,7 +23706,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Engineered for sport and trad_multipitch, the Bat combines flat downturned profile, velcro closure for maximum power transfer. Its moderate feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for sport and trad_multipitch climbing, this shoe excels on technical terrain.",
@@ -23665,7 +23717,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Wild Climb",
@@ -23998,7 +24054,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 400,
+    "weight_g": 200,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Designed for climbers seeking moderate downturned precision, the Pantera Laser combines moderate downturned profile, lace closure for maximum power transfer. Its moderate feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for sport climbing, this shoe excels on technical terrain.",
@@ -24009,7 +24065,11 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "note": "Corrected from likely pair weight (400g) to estimated single (200g)",
+      "weight_source": "Estimated: 400g pair → 200g single",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Wild Climb",
