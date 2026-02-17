@@ -74,13 +74,14 @@ export function sortShoes(shoes, sortKey, priceData = {}) {
 
 /**
  * Generic sort for any gear type.
- * Pass accessor functions for price fields, or use defaults (shoe-style).
+ * Pass accessor functions for price, weight fields, or use defaults (shoe-style).
  */
-export function sortItems(items, sortKey, { getPrice, getUvp, getBrand, getModel } = {}) {
+export function sortItems(items, sortKey, { getPrice, getUvp, getBrand, getModel, getWeight } = {}) {
   const gp = getPrice || (i => i.current_price_eur);
   const gu = getUvp || (i => i.price_uvp_eur);
   const gb = getBrand || (i => i.brand);
   const gm = getModel || (i => i.model);
+  const gw = getWeight || (i => i.weight_g || i.weight_per_meter_g || i.weight_kg);
   const sorted = [...items];
   switch (sortKey) {
     case "price_asc":
@@ -95,6 +96,12 @@ export function sortItems(items, sortKey, { getPrice, getUvp, getBrand, getModel
         const db = (gu(b) && gp(b)) ? (gu(b) - gp(b)) / gu(b) : 0;
         return db - da;
       });
+      break;
+    case "weight_asc":
+      sorted.sort((a, b) => (gw(a) || Infinity) - (gw(b) || Infinity));
+      break;
+    case "weight_desc":
+      sorted.sort((a, b) => (gw(b) || 0) - (gw(a) || 0));
       break;
     case "brand_az":
       sorted.sort((a, b) => {
@@ -114,6 +121,8 @@ export const SORT_OPTIONS_GENERIC = [
   { key: "price_asc",    label: "Price: Low → High" },
   { key: "price_desc",   label: "Price: High → Low" },
   { key: "discount",     label: "Biggest Discount" },
+  { key: "weight_asc",   label: "Weight: Light → Heavy" },
+  { key: "weight_desc",  label: "Weight: Heavy → Light" },
   { key: "brand_az",     label: "Brand A–Z" },
 ];
 

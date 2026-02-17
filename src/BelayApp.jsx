@@ -872,6 +872,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
     const sorted = sortItems(items, sortKey, {
       getPrice: i => i.price_eur_min || i.price_uvp_eur,
       getUvp: i => i.price_uvp_eur,
+      getWeight: i => i.weight_g,
     });
     return sorted.map(s => filtered.find(r => r.belay_data.slug === s.slug) || { belay_data: s, match_score: -1 });
   }, [filtered, sortKey]);

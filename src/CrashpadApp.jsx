@@ -824,6 +824,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
     const sorted = sortItems(items, sortKey, {
       getPrice: i => i.current_price_eur,
       getUvp: i => i.price_uvp_eur,
+      getWeight: i => i.weight_kg,
     });
     return sorted.map(s => results.find(r => r.pad_data.slug === s.slug) || { pad_data: s, match_score: -1 });
   }, [results, sortKey]);

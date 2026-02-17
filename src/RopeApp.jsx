@@ -831,6 +831,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
     const sorted = sortItems(items, sortKey, {
       getPrice: i => i.price_per_meter_eur_min,
       getUvp: i => i.price_uvp_per_meter_eur,
+      getWeight: i => i.weight_per_meter_g,
     });
     return sorted.map(s => results.find(r => r.rope_data.slug === s.slug) || { rope_data: s, match_score: -1 });
   }, [results, sortKey]);
