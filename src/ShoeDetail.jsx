@@ -506,6 +506,14 @@ function AmazonSearchLink({ productType, brand, model, style = {} }) {
 // ─── Price Comparison Table ───
 function PriceComparison({ prices, shoe, compact }) {
   const hasRealRetailer = prices && prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
+  // Helper to ensure Amazon URLs include product category search terms
+  const getRetailerUrl = (url) => {
+    if (!url || url === "#") return undefined;
+    if (url.toLowerCase().includes('amazon')) {
+      return amazonSearchUrl("climbing shoe", shoe.brand, shoe.model);
+    }
+    return url;
+  };
   if (!prices || !prices.length) {
     return (
       <div>
@@ -525,7 +533,7 @@ function PriceComparison({ prices, shoe, compact }) {
           <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
         </div>
         {prices.map((p, i) => (
-          <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+          <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
             display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
             alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
             gap: compact ? "8px" : "0",

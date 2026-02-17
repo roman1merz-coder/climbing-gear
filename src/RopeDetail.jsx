@@ -227,6 +227,12 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 const prices = priceData[rope.slug] || [];
                 const hasRealRetailer = prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
                 const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`climbing rope ${rope.brand} ${rope.model}`.trim())}&tag=climbinggear0e-21`;
+                // Helper to ensure Amazon URLs include product category search terms
+                const getRetailerUrl = (url) => {
+                  if (!url || url === "#") return undefined;
+                  if (url.toLowerCase().includes('amazon')) return amazonUrl;
+                  return url;
+                };
                 const amazonLink = (
                   <a href={amazonUrl} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
@@ -253,7 +259,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                         )}
                       </div>
                       {prices.map((p, i) => (
-                        <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+                        <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
                           display: "grid", gridTemplateColumns: hasRealRetailer ? "1fr auto auto auto" : "1fr auto auto",
                           alignItems: "center", padding: "12px 16px", gap: "12px",
                           borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",

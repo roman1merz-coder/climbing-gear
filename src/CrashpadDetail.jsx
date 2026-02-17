@@ -297,6 +297,12 @@ function EfficiencyRadar({ pad, allPads }) {
 // ─── Price Comparison (inline card) ───────────────────────────────
 function PriceComparison({ prices, compact, pad }) {
   const amazonUrl = pad ? `https://www.amazon.de/s?k=${encodeURIComponent(`crash pad ${pad.brand} ${pad.model}`.trim())}&tag=climbinggear0e-21` : null;
+  // Helper to ensure Amazon URLs include product category search terms
+  const getRetailerUrl = (url) => {
+    if (!url || url === "#") return undefined;
+    if (url.toLowerCase().includes('amazon')) return amazonUrl;
+    return url;
+  };
   const amazonLink = amazonUrl && (
     <a href={amazonUrl} target="_blank" rel="noopener noreferrer"
       style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
@@ -319,7 +325,7 @@ function PriceComparison({ prices, compact, pad }) {
           <Tag variant="green">Best: €{best}</Tag>
         </div>
         {prices.map((p, i) => (
-          <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+          <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
             display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1fr auto auto",
             alignItems: "center", padding: compact ? "10px 16px" : "10px 16px", gap: "8px",
             borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",

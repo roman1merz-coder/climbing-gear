@@ -282,6 +282,12 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
               {(() => {
                 const prices = priceData[d.slug] || [];
                 const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`belay device ${d.brand} ${d.model}`.trim())}&tag=climbinggear0e-21`;
+                // Helper to ensure Amazon URLs include product category search terms
+                const getRetailerUrl = (url) => {
+                  if (!url || url === "#") return undefined;
+                  if (url.toLowerCase().includes('amazon')) return amazonUrl;
+                  return url;
+                };
                 const amazonLink = (
                   <a href={amazonUrl} target="_blank" rel="noopener noreferrer"
                     style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
@@ -304,7 +310,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                         <Tag label={`Best: €${best}`} variant="green" />
                       </div>
                       {prices.slice(0, 3).map((p, i) => (
-                        <a key={i} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+                        <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
                           display: "grid", gridTemplateColumns: "1fr auto auto",
                           alignItems: "center", padding: "10px 16px", gap: "12px",
                           borderBottom: i < Math.min(3, prices.length - 1) ? `1px solid ${T.border}` : "none",
