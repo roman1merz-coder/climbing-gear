@@ -175,6 +175,12 @@ const GROUPS = [
     icon: "🦶",
     filters: [
       {
+        key: "gender",
+        label: "Gender",
+        type: "multi",
+        options: ["man", "women", "kids"],
+      },
+      {
         key: "toe_form",
         label: "Toe Shape",
         type: "single",

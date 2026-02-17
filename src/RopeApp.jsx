@@ -114,6 +114,10 @@ function score(ropes, filters) {
         let s = 0;
         if (k === "available_lengths_m" && typeof val === "number") {
           s = sContains(val, rope[k]);
+        } else if (k === "price_70m_eur" && typeof val === "object" && !Array.isArray(val)) {
+          // Computed field: calculate 70m price from per-meter price
+          const price70m = rope.price_per_meter_eur_min ? rope.price_per_meter_eur_min * 70 : null;
+          s = sRng(val.min ?? 0, val.max ?? Infinity, price70m);
         } else if (PROX[k] && Array.isArray(val)) {
           const sv = Array.isArray(rope[k]) ? rope[k] : [rope[k]];
           s = sProx(val, sv, PROX[k]);
@@ -204,6 +208,7 @@ function getGroups(activeTypes) {
         { key: "recycled_materials", label: "Recycled Materials", type: "multi", options: ["none", "partial", "full"] },
         { key: "pfc_free", label: "PFC-Free", type: "bool" },
         { key: "price_per_meter_eur_min", label: "Price (€/m)", type: "range", min: 1.0, max: 5.0, step: 0.1 },
+        { key: "price_70m_eur", label: "Price (70m)", type: "range", min: 70, max: 350, step: 10 },
       ],
     },
   ];
