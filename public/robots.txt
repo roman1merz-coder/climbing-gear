@@ -1,4 +1,10 @@
+# climbing-gear.com robots.txt
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://climbing-gear.vercel.app/sitemap.xml
+
+# Block admin/test pages if any
+Disallow: /admin/
+Disallow: /test/
