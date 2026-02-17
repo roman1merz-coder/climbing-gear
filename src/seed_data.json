@@ -6081,9 +6081,9 @@
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
-    "kids_friendly": false,
+    "kids_friendly": true,
     "upper_material": "synthetic",
-    "weight_g": 300,
+    "weight_g": 119,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive TRAX HF rubber, this shoe handles all foothold types.",
@@ -9632,7 +9632,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 342,
+    "weight_g": 171,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Advanced climbers appreciate the Skwama Women's's aggressive downturn and direct foot feel for pocketed terrain and overhangs. Velcro closure ensures a locked-down fit without fiddling. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -9643,7 +9643,10 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com + La Sportiva official",
+      "weight_verified": true
+    }
   },
   {
     "brand": "La Sportiva",
@@ -14994,7 +14997,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 300,
+    "weight_g": 150,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "Stiff Czech Enigma variant with proprietary Extasy HG rubber and partial midsole for intermediate-to-advanced versatility. Slight asymmetry suits broader skill range while flat downturn handles slab-to-overhang. Lightweight construction enables rapid movement.",
@@ -15006,8 +15009,9 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "weighmyrack.com",
+      "correction_note": "300g pair → 150g single",
+      "weight_verified": true
     }
   },
   {
@@ -15072,7 +15076,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 300,
+    "weight_g": 150,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Moderate-feel Enigma variant balancing responsive feedback with extended climbing comfort. Proprietary Extasy HG rubber with partial midsole suits intermediate climbers exploring sport and trad. Minimal break-in enables rapid skill development.",
@@ -15084,8 +15088,9 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "weighmyrack.com",
+      "correction_note": "300g pair → 150g single",
+      "weight_verified": true
     }
   },
   {
@@ -15148,7 +15153,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 300,
+    "weight_g": 150,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Soft Czech aggressive specialist with no midsole and 3.5mm Extasy HG for ultimate ground feel. Moderate downturn and soft microfiber suit bouldering and sport specialists seeking maximum feedback. Minimal break-in enables quick progression.",
@@ -15160,8 +15165,9 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_note": "Suspicious round number - needs manual verification",
-      "weight_verified": false
+      "weight_source": "weighmyrack.com",
+      "correction_note": "300g pair → 150g single",
+      "weight_verified": true
     }
   },
   {
@@ -16836,7 +16842,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 300,
+    "weight_g": 150,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Ultra-lightweight aggressive performer with zero midsole, the Furia Air is a minimalist's dream for sport climbing and bouldering. At just 300g, it delivers the sensitivity of a slipper with the precision of a lace shoe, using Vibram's softest grip rubber for texture feedback. The mid-depth toe patch balances durability with minimal bulk.",
