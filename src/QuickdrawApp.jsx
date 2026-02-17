@@ -8,6 +8,7 @@ import CompareCheckbox from "./CompareCheckbox.jsx";
 import { useWL } from "./WishlistContext.jsx";
 import { useCompare } from "./CompareContext.jsx";
 import usePageMeta from "./usePageMeta.js";
+import QuickdrawScatterChart from "./QuickdrawScatterChart.jsx";
 
 // ─── SVG icons for action bar ───
 const HeartSVG = ({ filled, size = 16 }) => (
@@ -1043,9 +1044,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
           </div>
           )}
           {view === "chart" ? (
-            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#6b7280" }}>
-              <div style={{ fontSize: "16px" }}>Chart view coming soon</div>
-            </div>
+            <QuickdrawScatterChart isMobile={isMobile} quickdraws={quickdraws} />
           ) : (
           <div
             style={{
