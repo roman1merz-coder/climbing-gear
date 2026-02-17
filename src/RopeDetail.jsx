@@ -410,9 +410,10 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                         <div style={{ display: "flex", gap: "8px", fontSize: "12px", color: T.muted, marginBottom: "8px" }}>
                           <span>⌀ {r.diameter_mm}mm</span>
                           <span>{r.weight_per_meter_g}g/m</span>
+                          <span>€{r.price_per_meter_eur_min?.toFixed(2)}/m</span>
                         </div>
                         <span style={{ fontSize: "16px", fontWeight: 700, color: T.accent, fontFamily: T.mono }}>
-                          €{r.price_per_meter_eur_min?.toFixed(2)}/m
+                          €{r.price_per_meter_eur_min ? (r.price_per_meter_eur_min * 70).toFixed(0) : '—'} <span style={{ fontSize: "11px", color: T.muted, fontWeight: 400 }}>(70m)</span>
                         </span>
                       </div>
                     </Link>
@@ -447,7 +448,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 factors.push({
                   icon: ps >= 0.5 ? "🟢" : ps >= 0 ? "🟡" : "🔴",
                   name: "Price vs UVP",
-                  detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${rope.price_uvp_per_meter_eur?.toFixed(2)}/m)` : "At or near full UVP"
+                  detail: discount > 0.01 ? `${Math.round(discount * 100)}% below UVP (€${(rope.price_uvp_per_meter_eur * 70).toFixed(0)} for 70m)` : "At or near full UVP"
                 });
               } else {
                 factors.push({
