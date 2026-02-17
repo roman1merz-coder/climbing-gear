@@ -1,0 +1,2630 @@
+[
+  {
+    "slug": "beal-pulp-express",
+    "brand": "Beal",
+    "model": "Pulp Express",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      17
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 105,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 18.95,
+    "price_set_eur": 104.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#e74c3c",
+    "color_2": "#c0392b",
+    "description": "French-made sport quickdraw with hot-forged keylock carabiners. Clean design from the same company known for premium ropes.",
+    "pros": [
+      "Hot forged",
+      "Dual keylock",
+      "Made by a respected rope manufacturer"
+    ],
+    "cons": [
+      "Middle of the pack on weight",
+      "Less widely available"
+    ]
+  },
+  {
+    "slug": "black-diamond-hotforge",
+    "brand": "Black Diamond",
+    "model": "HotForge",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      16
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 103,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 20.95,
+    "price_set_eur": 119.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#e74c3c",
+    "color_2": "#2c3e50",
+    "description": "Hot-forged keylock quickdraw with snag-free nose on both carabiners. A reliable sport climbing workhorse at an excellent price point.",
+    "pros": [
+      "Dual keylock for snag-free cleaning",
+      "Hot forged for strength",
+      "Good value"
+    ],
+    "cons": [
+      "Not the lightest",
+      "Only 2 length options"
+    ]
+  },
+  {
+    "slug": "black-diamond-hotforge-hybrid",
+    "brand": "Black Diamond",
+    "model": "HotForge Hybrid",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      16
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 25,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 100,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 19.95,
+    "price_set_eur": 114.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#3498db",
+    "color_2": "#2c3e50",
+    "description": "Hybrid quickdraw combining a hot-forged keylock bolt-end carabiner with a lighter wiregate rope-end carabiner. Best value sport draw on the market.",
+    "pros": [
+      "Best value in sport draws",
+      "Solid gate bolt-end, wire rope-end combo",
+      "Hot forged construction"
+    ],
+    "cons": [
+      "Rope-end biner not keylock",
+      "Only 2 length options"
+    ]
+  },
+  {
+    "slug": "black-diamond-hotwire",
+    "brand": "Black Diamond",
+    "model": "HotWire",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      16
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 25,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 25,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 94,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 18.95,
+    "price_set_eur": 109.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#27ae60",
+    "color_2": "#2c3e50",
+    "description": "Dual wiregate quickdraw with hot-forged carabiners. Lighter than the HotForge with wide gate openings for easy clipping.",
+    "pros": [
+      "Lighter than solid gate HotForge",
+      "Wide gate openings",
+      "Budget-friendly"
+    ],
+    "cons": [
+      "No keylock — can snag when cleaning",
+      "Wire gates less durable long-term"
+    ]
+  },
+  {
+    "slug": "black-diamond-litewire",
+    "brand": "Black Diamond",
+    "model": "LiteWire",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      16
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 22,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 79,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 15.95,
+    "price_set_eur": 89.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#f39c12",
+    "color_2": "#2c3e50",
+    "description": "Budget-friendly wiregate quickdraw. Light and simple — a solid first quickdraw set for gym-to-outdoor transition.",
+    "pros": [
+      "Very affordable",
+      "Light for the price",
+      "Good for beginners"
+    ],
+    "cons": [
+      "No keylock",
+      "Not as durable as hot-forged options"
+    ]
+  },
+  {
+    "slug": "black-diamond-miniwire",
+    "brand": "Black Diamond",
+    "model": "MiniWire",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "trad",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 21,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 53,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 20.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2020,
+    "color_1": "#95a5a6",
+    "color_2": "#7f8c8d",
+    "description": "Ultralight trad quickdraw weighing only 53g. Minimalist MiniWire carabiners are among the lightest full-size biners available.",
+    "pros": [
+      "Incredibly light at 53g",
+      "Full-size gate opening despite small size",
+      "Ideal for trad racks"
+    ],
+    "cons": [
+      "Not as durable for sport use",
+      "No keylock",
+      "Single length only"
+    ]
+  },
+  {
+    "slug": "black-diamond-miniwire-alpine",
+    "brand": "Black Diamond",
+    "model": "MiniWire Alpine",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 8,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 600,
+    "available_lengths_cm": [
+      60
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 21,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 65,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": true,
+    "price_uvp_eur": 24.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "ice"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2020,
+    "color_1": "#8e44ad",
+    "color_2": "#7f8c8d",
+    "description": "Alpine quickdraw with 60cm Dynex sling for extending placements. Uses ultralight MiniWire carabiners to minimize rack weight.",
+    "pros": [
+      "Long sling reduces rope drag",
+      "Ultralight",
+      "Versatile for alpine/trad"
+    ],
+    "cons": [
+      "Long sling requires management",
+      "No rubber keeper"
+    ]
+  },
+  {
+    "slug": "black-diamond-positron",
+    "brand": "Black Diamond",
+    "model": "Positron",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      16
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 23,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 110,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 17.95,
+    "price_set_eur": 99.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2019,
+    "color_1": "#e67e22",
+    "color_2": "#34495e",
+    "description": "Entry-level keylock quickdraw. Dual solid gates provide smooth clipping and easy cleaning at a budget-friendly price.",
+    "pros": [
+      "Dual keylock for easy cleaning",
+      "Very affordable",
+      "Great for beginners"
+    ],
+    "cons": [
+      "Heavier than premium options",
+      "Not hot forged"
+    ]
+  },
+  {
+    "slug": "camp-dyon-express-ks",
+    "brand": "Camp",
+    "model": "Dyon Express KS",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      11,
+      18
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 26,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 26,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 11,
+    "weight_g": 85,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 34.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "competition"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2023,
+    "color_1": "#e74c3c",
+    "color_2": "#c0392b",
+    "description": "Premium quickdraw with Camp's innovative KeyWire two-part gate combining smooth wire action with keylock closure. Exceptional 11kN open-gate strength.",
+    "pros": [
+      "Innovative KeyWire gate",
+      "11kN open gate strength",
+      "26mm gate opening",
+      "Very smooth action"
+    ],
+    "cons": [
+      "Premium price",
+      "Two-part gate needs getting used to"
+    ]
+  },
+  {
+    "slug": "camp-nano-22-express-ks-dyneema",
+    "brand": "Camp",
+    "model": "Nano 22 Express KS Dyneema",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 8,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 220,
+    "available_lengths_cm": [
+      22
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 20,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 20,
+    "strength_major_kn": 20,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 57,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 17.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2020,
+    "color_1": "#f39c12",
+    "color_2": "#e67e22",
+    "description": "Minimalist alpine quickdraw with Nano 22 micro carabiners. Extended 22cm sling helps reduce rope drag on wandering routes.",
+    "pros": [
+      "Extremely light at 57g",
+      "Keylock despite micro size",
+      "Extended sling length"
+    ],
+    "cons": [
+      "Small gate opening",
+      "Not for sport climbing",
+      "Lower strength ratings"
+    ]
+  },
+  {
+    "slug": "camp-orbit-wire-express-ks",
+    "brand": "Camp",
+    "model": "Orbit Wire Express KS",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18,
+      25
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 25,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 25,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 9,
+    "weight_g": 82,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 15.95,
+    "price_set_eur": 89.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#1abc9c",
+    "color_2": "#16a085",
+    "description": "Versatile wiregate quickdraw with keylock on both biners. Wide gate opening and affordable price make it a great all-rounder.",
+    "pros": [
+      "Keylock on both biners",
+      "Wide 25mm gate opening",
+      "Affordable",
+      "3 length options"
+    ],
+    "cons": [
+      "Not hot forged",
+      "Wire gates less robust for fixed use"
+    ]
+  },
+  {
+    "slug": "camp-photon-mixed-express-ks-dyneema",
+    "brand": "Camp",
+    "model": "Photon Mixed Express KS Dyneema",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 26,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 9,
+    "weight_g": 74,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 19.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#3498db",
+    "color_2": "#2980b9",
+    "description": "Hybrid quickdraw with solid-gate Photon on top and wire-gate Photon on the rope end. Combines durability with light weight.",
+    "pros": [
+      "Solid gate on bolt end for durability",
+      "Keylock on both biners",
+      "Dyneema sling"
+    ],
+    "cons": [
+      "Slightly heavier than all-wire version"
+    ]
+  },
+  {
+    "slug": "camp-photon-wire-express-ks-dyneema",
+    "brand": "Camp",
+    "model": "Photon Wire Express KS Dyneema",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 26,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 26,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 9,
+    "weight_g": 69,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 18.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#e67e22",
+    "color_2": "#d35400",
+    "description": "Lightweight quickdraw with keylock wire Photon carabiners on a Dyneema sling. Excellent gate opening at 26mm despite low weight.",
+    "pros": [
+      "Wide 26mm gate opening",
+      "Keylock on both biners",
+      "Very light at 69g",
+      "Excellent value"
+    ],
+    "cons": [
+      "Cold-forged, not hot-forged",
+      "Dyneema less durable than nylon for fixed draws"
+    ]
+  },
+  {
+    "slug": "climbing-technology-lime-set",
+    "brand": "Climbing Technology",
+    "model": "Lime Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      17,
+      22
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 9,
+    "weight_g": 96,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 16.95,
+    "price_set_eur": 94.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#2ecc71",
+    "color_2": "#27ae60",
+    "description": "Italian-made sport quickdraw with dual keylock solid gates. Hot-forged carabiners at an entry-level price — exceptional value.",
+    "pros": [
+      "Hot forged at budget price",
+      "Dual keylock",
+      "3 length options",
+      "Good build quality"
+    ],
+    "cons": [
+      "Not widely available outside Europe",
+      "Heavier than wire alternatives"
+    ]
+  },
+  {
+    "slug": "cypher-firefly-ii",
+    "brand": "Cypher",
+    "model": "Firefly II",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "trad",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      11,
+      16
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 22,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 75,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 12.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "ice"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#f39c12",
+    "color_2": "#e67e22",
+    "description": "Budget-friendly alpine/trad quickdraw. Wiregate carabiners on Dyneema sling keep weight low for rack-heavy days.",
+    "pros": [
+      "Very affordable",
+      "Light at 75g",
+      "Good for ice climbing (no gate freeze)"
+    ],
+    "cons": [
+      "No keylock",
+      "Basic construction",
+      "Less refined handling"
+    ]
+  },
+  {
+    "slug": "dmm-alpha-sport",
+    "brand": "DMM",
+    "model": "Alpha Sport",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 20,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18,
+      25
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 25,
+    "strength_major_kn": 25,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 112,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 32.95,
+    "price_set_eur": 189.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "competition"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#e74c3c",
+    "color_2": "#c0392b",
+    "description": "Premium sport quickdraw made in Wales. I-beam construction with grippy back bars and deep rope baskets for confident clipping on hard routes.",
+    "pros": [
+      "Exceptional handling quality",
+      "I-beam construction",
+      "Available in 25cm length",
+      "Made in UK"
+    ],
+    "cons": [
+      "Heaviest in class at 112g",
+      "Most expensive sport draw"
+    ]
+  },
+  {
+    "slug": "dmm-phantom",
+    "brand": "DMM",
+    "model": "Phantom",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18,
+      25
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "notchless",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "notchless",
+    "gate_opening_lower_mm": 21,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 65,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 24.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2020,
+    "color_1": "#1abc9c",
+    "color_2": "#16a085",
+    "description": "Ultra-lightweight trad/alpine draw. I-beam Phantom carabiners weigh just 28g each with reduced gate notch to prevent snagging.",
+    "pros": [
+      "Only 65g per draw",
+      "I-beam construction",
+      "Reduced gate notch"
+    ],
+    "cons": [
+      "Not ideal for heavy sport use",
+      "No keylock",
+      "More expensive than basic draws"
+    ]
+  },
+  {
+    "slug": "dmm-shadow",
+    "brand": "DMM",
+    "model": "Shadow",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18,
+      25
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 99,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 28.95,
+    "price_set_eur": 164.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#2c3e50",
+    "color_2": "#34495e",
+    "description": "Pure sport quickdraw with dual keylock solid gates. Grooved gates provide extra grip for controlled clipping on steep routes.",
+    "pros": [
+      "Dual keylock closure",
+      "Grooved gates for grip",
+      "I-beam construction"
+    ],
+    "cons": [
+      "Pricier than competitors",
+      "Heavier than wire alternatives"
+    ]
+  },
+  {
+    "slug": "dmm-shadow-spectre-hybrid",
+    "brand": "DMM",
+    "model": "Shadow/Spectre Hybrid",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18,
+      25
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 86,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 26.95,
+    "price_set_eur": 149.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "trad"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#3498db",
+    "color_2": "#2980b9",
+    "description": "Hybrid quickdraw combining a Shadow solid gate on the bolt end with a lighter Spectre wiregate on the rope end. Ideal for weight-conscious sport climbing.",
+    "pros": [
+      "Good weight-to-performance ratio",
+      "Solid bolt-end, wire rope-end",
+      "I-beam construction",
+      "3 length options"
+    ],
+    "cons": [
+      "Rope-end not keylock",
+      "Mid-range price"
+    ]
+  },
+  {
+    "slug": "dmm-spectre",
+    "brand": "DMM",
+    "model": "Spectre 2",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "trad",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18,
+      25
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "notchless",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "notchless",
+    "gate_opening_lower_mm": 22,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 7,
+    "weight_g": 75,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 21.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2019,
+    "color_1": "#9b59b6",
+    "color_2": "#8e44ad",
+    "description": "Versatile trad quickdraw with I-beam wire carabiners. A solid middle-ground between the ultralight Phantom and the sport-oriented Alpha.",
+    "pros": [
+      "Great all-rounder",
+      "I-beam construction",
+      "Good value",
+      "DMM build quality"
+    ],
+    "cons": [
+      "Heavier than Phantom",
+      "No keylock nose"
+    ]
+  },
+  {
+    "slug": "edelrid-bulletproof",
+    "brand": "Edelrid",
+    "model": "Bulletproof",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 22,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 23,
+    "strength_major_kn": 25,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 117,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 34.95,
+    "price_set_eur": 199.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2018,
+    "color_1": "#2ecc71",
+    "color_2": "#27ae60",
+    "description": "The most durable quickdraw on the market. Steel insert in the rope-end carabiner prevents rope groove wear, dramatically extending lifespan.",
+    "pros": [
+      "Steel insert prevents rope groove wear",
+      "Outlasts all competitors",
+      "Perfect for project draws left on routes"
+    ],
+    "cons": [
+      "Heaviest in class at 117g",
+      "Premium price",
+      "Overkill for occasional use"
+    ]
+  },
+  {
+    "slug": "edelrid-nineteen-g",
+    "brand": "Edelrid",
+    "model": "Nineteen G Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 8,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      18
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 18,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 18,
+    "strength_major_kn": 20,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 46,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 21.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad"
+    ],
+    "skill_level": [
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#f1c40f",
+    "color_2": "#f39c12",
+    "description": "The world's lightest quickdraw at just 46g. Uses the 19.5g Nineteen G carabiner — the lightest full-strength biner on the market.",
+    "pros": [
+      "Lightest quickdraw in existence at 46g",
+      "Full CE-certified strength",
+      "Perfect for alpine minimalism"
+    ],
+    "cons": [
+      "Small gate opening",
+      "Minimal durability for sport use",
+      "Lower major axis strength at 20kN"
+    ]
+  },
+  {
+    "slug": "edelrid-pure-set",
+    "brand": "Edelrid",
+    "model": "Pure Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "polyester",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 23,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 101,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 15.95,
+    "price_set_eur": 89.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#e74c3c",
+    "color_2": "#c0392b",
+    "description": "Solid-gate keylock quickdraw at an entry-level price. The Pure carabiner offers great handling for new climbers at outstanding value.",
+    "pros": [
+      "Dual keylock solid gates",
+      "Very affordable",
+      "Good for beginners"
+    ],
+    "cons": [
+      "Heavier than premium draws",
+      "Not hot forged"
+    ]
+  },
+  {
+    "slug": "edelrid-pure-wire-set",
+    "brand": "Edelrid",
+    "model": "Pure Wire Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "polyester",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 87,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 14.95,
+    "price_set_eur": 84.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#2ecc71",
+    "color_2": "#27ae60",
+    "description": "Lightweight wire-gate version of the Pure Set. Wire gates offer lighter weight and better performance in cold conditions.",
+    "pros": [
+      "Keylock wire gates",
+      "Very affordable",
+      "Lighter than solid gate Pure"
+    ],
+    "cons": [
+      "Wire gates less durable long-term",
+      "Basic construction"
+    ]
+  },
+  {
+    "slug": "edelrid-slash-wire",
+    "brand": "Edelrid",
+    "model": "Slash Wire Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      18
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 22,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 88,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 13.95,
+    "price_set_eur": 79.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2023,
+    "color_1": "#3498db",
+    "color_2": "#2980b9",
+    "description": "Entry-level quickdraw with keylock wire gates. The best budget option for climbers buying their first quickdraw set.",
+    "pros": [
+      "Best value on the market",
+      "Keylock on both biners",
+      "Sold in packs of 5/6"
+    ],
+    "cons": [
+      "Not hot forged",
+      "Basic sling",
+      "Limited lengths"
+    ]
+  },
+  {
+    "slug": "fixe-montgrony-express",
+    "brand": "Fixe",
+    "model": "Montgrony Express",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      17
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 102,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 17.95,
+    "price_set_eur": 99.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#e74c3c",
+    "color_2": "#c0392b",
+    "description": "Spanish-made sport quickdraw from the bolt and anchor specialists. Hot-forged keylock carabiners at a very competitive price.",
+    "pros": [
+      "Made by bolt experts",
+      "Hot forged",
+      "Dual keylock",
+      "Good value"
+    ],
+    "cons": [
+      "Limited availability outside Spain/Europe"
+    ]
+  },
+  {
+    "slug": "grivel-all-round-beta",
+    "brand": "Grivel",
+    "model": "All Round Beta",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      11,
+      17
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 98,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 19.95,
+    "price_set_eur": 109.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#f1c40f",
+    "color_2": "#2c3e50",
+    "description": "Italian-made sport quickdraw with dual keylock closure. Hot-forged carabiners provide smooth action and durability at a competitive price.",
+    "pros": [
+      "Hot forged",
+      "Dual keylock",
+      "Good value Italian craftsmanship"
+    ],
+    "cons": [
+      "Limited length options",
+      "Not as widely reviewed as BD/Petzl"
+    ]
+  },
+  {
+    "slug": "kong-rush-quickdraw",
+    "brand": "Kong",
+    "model": "Rush",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      11,
+      17
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 100,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 18.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#e67e22",
+    "color_2": "#d35400",
+    "description": "Italian-made sport quickdraw with hot-forged Rush carabiners. Dual keylock gates and smooth action from a heritage climbing brand.",
+    "pros": [
+      "Hot forged",
+      "Dual keylock",
+      "Italian heritage brand"
+    ],
+    "cons": [
+      "Limited international distribution"
+    ]
+  },
+  {
+    "slug": "mad-rock-concorde-express",
+    "brand": "Mad Rock",
+    "model": "Concorde Express",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 27,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 87,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 16.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#2c3e50",
+    "color_2": "#34495e",
+    "description": "Exceptionally strong quickdraw with 27kN major axis rating. Wire gates eliminate gate flutter for consistent performance.",
+    "pros": [
+      "Highest strength rating at 27kN",
+      "Light for the strength",
+      "Affordable"
+    ],
+    "cons": [
+      "No keylock",
+      "Single length only",
+      "Less refined handling"
+    ]
+  },
+  {
+    "slug": "mammut-crag-keylock-indicator",
+    "brand": "Mammut",
+    "model": "Crag Keylock Indicator Express Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      15
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 105,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 21.95,
+    "price_set_eur": 124.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#e74c3c",
+    "color_2": "#2c3e50",
+    "description": "Sport quickdraw with color-coded indicator to distinguish bolt-end from rope-end. Dual keylock gates prevent snagging.",
+    "pros": [
+      "Color-coded indicator for orientation",
+      "Dual keylock gates",
+      "Good value"
+    ],
+    "cons": [
+      "Not the lightest",
+      "Only 2 length options"
+    ]
+  },
+  {
+    "slug": "mammut-crag-wire-indicator",
+    "brand": "Mammut",
+    "model": "Crag Wire Indicator Express Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      15
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 82,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 18.95,
+    "price_set_eur": 104.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "trad",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#3498db",
+    "color_2": "#2c3e50",
+    "description": "Lightweight wiregate quickdraw with keylock closure and color-coded orientation indicator. A solid all-round quickdraw.",
+    "pros": [
+      "Keylock wire gates",
+      "Color-coded indicator",
+      "Light and affordable"
+    ],
+    "cons": [
+      "Wire gates less durable for fixed use"
+    ]
+  },
+  {
+    "slug": "metolius-bravo-ii",
+    "brand": "Metolius",
+    "model": "Bravo II",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "trad",
+    "sling_type": "nylon",
+    "sling_width_mm": 12,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 150,
+    "available_lengths_cm": [
+      15
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 22,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 79,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 19.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2020,
+    "color_1": "#e67e22",
+    "color_2": "#d35400",
+    "description": "Lightweight trad quickdraw with flexible sling. Simple, reliable wiregate carabiners at a reasonable price.",
+    "pros": [
+      "Good value",
+      "Light for trad use",
+      "Flexible sling"
+    ],
+    "cons": [
+      "No keylock",
+      "Single length only",
+      "Basic construction"
+    ]
+  },
+  {
+    "slug": "metolius-captive-eye",
+    "brand": "Metolius",
+    "model": "Captive Eye",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 150,
+    "available_lengths_cm": [
+      15
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 21,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 86,
+    "rubber_keeper": false,
+    "captive_eye": true,
+    "extendable": false,
+    "price_uvp_eur": 29.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2019,
+    "color_1": "#27ae60",
+    "color_2": "#2ecc71",
+    "description": "Safety-focused quickdraw with a permanently captured bolt-end carabiner. The captive eye design prevents cross-loading and incorrect clipping.",
+    "pros": [
+      "Captive eye prevents cross-loading",
+      "Great safety feature for beginners",
+      "Simple design"
+    ],
+    "cons": [
+      "Can't separate biners from sling",
+      "Single length only",
+      "No keylock"
+    ]
+  },
+  {
+    "slug": "ocun-hawk-qd-wire",
+    "brand": "Ocun",
+    "model": "Hawk QD Wire",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      16
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 85,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 16.95,
+    "price_set_eur": 94.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#e74c3c",
+    "color_2": "#c0392b",
+    "description": "Czech-made quickdraw with keylock wire gates. Hot-forged Hawk carabiners offer excellent handling at an outstanding price.",
+    "pros": [
+      "Hot forged at budget price",
+      "Keylock wire gates",
+      "Light at 85g"
+    ],
+    "cons": [
+      "Less widely available",
+      "Czech brand not as well-known"
+    ]
+  },
+  {
+    "slug": "petzl-ange-finesse",
+    "brand": "Petzl",
+    "model": "Ange Finesse",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      17
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 23,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 26,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 63,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 27.95,
+    "price_set_eur": 159.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2023,
+    "color_1": "#d4a72c",
+    "color_2": "#555555",
+    "description": "Ultra-lightweight quickdraw with Petzl's MonoFil keylock wiregate technology. Ideal when every gram counts on long alpine and multi-pitch routes.",
+    "pros": [
+      "Extremely lightweight at 63g",
+      "MonoFil keylock prevents snagging",
+      "Dyneema sling for minimal weight"
+    ],
+    "cons": [
+      "MonoFil gate requires practice to clip smoothly",
+      "Not as durable as solid gate draws",
+      "Higher price per gram"
+    ]
+  },
+  {
+    "slug": "petzl-djinn-axess",
+    "brand": "Petzl",
+    "model": "Djinn Axess",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 20,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      12,
+      17,
+      25
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 24,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 27,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 103,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 18.95,
+    "price_set_eur": 109.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym",
+      "trad"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#e8734a",
+    "color_2": "#333333",
+    "description": "Durable workhorse quickdraw for sport climbing. Large keylock carabiners with generous gate openings make it one of the easiest draws to clip.",
+    "pros": [
+      "Large gate openings for easy clipping",
+      "Excellent durability",
+      "Great value for money",
+      "Rubber keeper for correct orientation"
+    ],
+    "cons": [
+      "Heavier than premium draws",
+      "Slightly bulkier"
+    ]
+  },
+  {
+    "slug": "petzl-spirit-express",
+    "brand": "Petzl",
+    "model": "Spirit Express",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 24,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      11,
+      17,
+      25
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 25,
+    "strength_major_kn": 25,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 9,
+    "weight_g": 95,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 22.95,
+    "price_set_eur": 129.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2020,
+    "color_1": "#4a90d9",
+    "color_2": "#2c3e50",
+    "description": "The benchmark sport climbing quickdraw. Smooth keylock gates on both carabiners make clipping and cleaning effortless. Wide dogbone provides stability.",
+    "pros": [
+      "Exceptionally smooth clipping action",
+      "Keylock on both biners prevents snagging",
+      "Wide dogbone for stable lower biner",
+      "Available in 3 lengths"
+    ],
+    "cons": [
+      "Not the lightest option",
+      "Higher price point than budget draws"
+    ]
+  },
+  {
+    "slug": "salewa-hot-g3-express-set",
+    "brand": "Salewa",
+    "model": "Hot G3 Express Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      17
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 98,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 19.95,
+    "price_set_eur": 109.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#f39c12",
+    "color_2": "#2c3e50",
+    "description": "Italian-engineered sport quickdraw with hot-forged keylock carabiners. G3 design provides ergonomic clipping at a competitive price.",
+    "pros": [
+      "Hot forged",
+      "Dual keylock",
+      "Good price-to-performance"
+    ],
+    "cons": [
+      "Not as refined as Petzl/DMM",
+      "Limited international availability"
+    ]
+  },
+  {
+    "slug": "simond-rocky-quickdraw",
+    "brand": "Simond",
+    "model": "Rocky Quickdraw",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      17
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 23,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 89,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 9.99,
+    "price_set_eur": 54.99,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2023,
+    "color_1": "#3498db",
+    "color_2": "#2980b9",
+    "description": "The most affordable quickdraw on the market from Decathlon's climbing brand. Solid CE-certified performance at an unbeatable price.",
+    "pros": [
+      "Lowest price on market",
+      "Fully certified",
+      "Available at Decathlon stores worldwide"
+    ],
+    "cons": [
+      "No keylock",
+      "Basic construction",
+      "Not hot forged"
+    ]
+  },
+  {
+    "slug": "singing-rock-vision-set",
+    "brand": "Singing Rock",
+    "model": "Vision Set",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 110,
+    "available_lengths_cm": [
+      11,
+      16
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 21,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 23,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
+    "weight_g": 105,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 15.95,
+    "price_set_eur": 89.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#3498db",
+    "color_2": "#2c3e50",
+    "description": "Czech-made sport quickdraw with dual keylock solid gates. Hot-forged construction at an impressive price point.",
+    "pros": [
+      "Hot forged at entry-level price",
+      "Dual keylock",
+      "Good build quality"
+    ],
+    "cons": [
+      "Heavier than premium draws",
+      "Limited availability outside Europe"
+    ]
+  },
+  {
+    "slug": "trango-phase-alpine",
+    "brand": "Trango",
+    "model": "Phase Alpine",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "alpine",
+    "sling_type": "dyneema",
+    "sling_width_mm": 11,
+    "hot_forged": false,
+    "carabiner_shape": "D",
+    "sling_length_mm": 600,
+    "available_lengths_cm": [
+      60
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 23,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 26,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 80,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": true,
+    "price_uvp_eur": 24.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "alpine",
+      "trad",
+      "ice"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#8e44ad",
+    "color_2": "#9b59b6",
+    "description": "Alpine quickdraw with 60cm Dyneema sling for extending placements. Color-coded biners help distinguish bolt and rope ends.",
+    "pros": [
+      "Long sling reduces rope drag",
+      "Color-coded carabiners",
+      "Good value"
+    ],
+    "cons": [
+      "No keylock",
+      "Requires sling management skills"
+    ]
+  },
+  {
+    "slug": "wild-country-astro",
+    "brand": "Wild Country",
+    "model": "Astro",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "trad",
+    "sling_type": "dyneema",
+    "sling_width_mm": 10,
+    "hot_forged": true,
+    "carabiner_shape": "D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      15,
+      20
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "clean",
+    "gate_opening_upper_mm": 24,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "clean",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 65,
+    "rubber_keeper": false,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 22.95,
+    "price_set_eur": null,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "trad",
+      "alpine",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "expert"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2021,
+    "color_1": "#e67e22",
+    "color_2": "#d35400",
+    "description": "Lightweight trad quickdraw with hot-forged Astro carabiners featuring a hooded nose to minimize bolt snagging. Wide 24mm gate opening.",
+    "pros": [
+      "Hooded nose reduces snagging",
+      "Wide 24mm gate opening",
+      "Hot forged and light",
+      "3 length options"
+    ],
+    "cons": [
+      "Not keylock — hooded nose is close but different",
+      "No rubber keeper"
+    ]
+  },
+  {
+    "slug": "wild-country-helium",
+    "brand": "Wild Country",
+    "model": "Helium",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 18,
+    "hot_forged": true,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 100,
+    "available_lengths_cm": [
+      10,
+      15,
+      20
+    ],
+    "upper_gate_type": "solid_straight",
+    "upper_nose_type": "keylock",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "solid_bent",
+    "lower_nose_type": "keylock",
+    "gate_opening_lower_mm": 24,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 95,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 24.95,
+    "price_set_eur": 139.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "sport_multi_pitch"
+    ],
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#9b59b6",
+    "color_2": "#8e44ad",
+    "description": "Sport quickdraw with hot-forged Helium carabiners. Dual keylock solid gates provide smooth, snag-free clipping and cleaning.",
+    "pros": [
+      "Dual keylock",
+      "Hot forged",
+      "Good weight for a solid-gate draw",
+      "3 length options"
+    ],
+    "cons": [
+      "Mid-range price",
+      "Slightly smaller gate opening than competitors"
+    ]
+  },
+  {
+    "slug": "wild-country-session",
+    "brand": "Wild Country",
+    "model": "Session",
+    "status": "active",
+    "image_url": null,
+    "quickdraw_type": "sport",
+    "sling_type": "nylon",
+    "sling_width_mm": 16,
+    "hot_forged": false,
+    "carabiner_shape": "offset_D",
+    "sling_length_mm": 120,
+    "available_lengths_cm": [
+      12,
+      18
+    ],
+    "upper_gate_type": "wire_straight",
+    "upper_nose_type": "hooked",
+    "gate_opening_upper_mm": 22,
+    "lower_gate_type": "wire_bent",
+    "lower_nose_type": "hooked",
+    "gate_opening_lower_mm": 22,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 75,
+    "rubber_keeper": true,
+    "captive_eye": false,
+    "extendable": false,
+    "price_uvp_eur": 14.95,
+    "price_set_eur": 84.95,
+    "price_eur_min": null,
+    "best_use_cases": [
+      "sport_single_pitch",
+      "gym"
+    ],
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "certification": [
+      "EN_12275",
+      "EN_566"
+    ],
+    "year_released": 2022,
+    "color_1": "#1abc9c",
+    "color_2": "#16a085",
+    "description": "Entry-level wiregate quickdraw. Light, affordable, and effective — ideal for gym climbers transitioning to outdoor sport climbing.",
+    "pros": [
+      "Very affordable",
+      "Light weight",
+      "Good for beginners"
+    ],
+    "cons": [
+      "No keylock",
+      "Not hot forged",
+      "Basic construction"
+    ]
+  }
+]

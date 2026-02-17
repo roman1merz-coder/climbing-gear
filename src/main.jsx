@@ -9,6 +9,8 @@ import BelayApp from "./BelayApp.jsx";
 import BelayDetail from "./BelayDetail.jsx";
 import CrashpadApp from "./CrashpadApp.jsx";
 import CrashpadDetail from "./CrashpadDetail.jsx";
+import QuickdrawApp from "./QuickdrawApp.jsx";
+import QuickdrawDetail from "./QuickdrawDetail.jsx";
 import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
 import CompareGeneric from "./CompareGeneric.jsx";
@@ -60,6 +62,7 @@ import SEED from "./seed_data.json";
 import ROPE_SEED from "./rope_seed_data.json";
 import BELAY_SEED from "./belay_seed_data.json";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
+import QUICKDRAW_SEED from "./quickdraw_seed_data.json";
 
 // ─── Price Data (fetched live from Supabase) ─────────────────
 // Populated by api/fetch-prices.js cron (SerpApi → Supabase)
@@ -136,6 +139,7 @@ const SEED_MAP = Object.fromEntries(SEED.map(s => [s.slug, s]));
 const ROPE_SEED_MAP = Object.fromEntries(ROPE_SEED.map(r => [r.slug, r]));
 const BELAY_SEED_MAP = Object.fromEntries(BELAY_SEED.map(b => [b.slug, b]));
 const CRASHPAD_SEED_MAP = Object.fromEntries(CRASHPAD_SEED.map(c => [c.slug, c]));
+const QUICKDRAW_SEED_MAP = Object.fromEntries(QUICKDRAW_SEED.map(q => [q.slug, q]));
 
 /** Merge Supabase row with seed data: Supabase wins for non-null fields, seed fills gaps */
 function mergeWithSeed(sbRow, seedMap) {
@@ -263,6 +267,8 @@ function Root() {
   const [belaySrc, setBelaySrc] = useState("seed");
   const [crashpads, setCrashpads] = useState(assignLocalImages(CRASHPAD_SEED, "crashpads"));
   const [crashpadSrc, setCrashpadSrc] = useState("seed");
+  const [quickdraws, setQuickdraws] = useState(assignLocalImages(QUICKDRAW_SEED, "quickdraws"));
+  const [quickdrawSrc, setQuickdrawSrc] = useState("seed");
 
   useEffect(() => {
     // Fetch shoes from Supabase
@@ -311,6 +317,17 @@ function Root() {
       })
       .catch(() => {});
 
+    // Fetch quickdraws — merge with seed
+    supabaseSelect("quickdraws")
+      .then((data) => {
+        if (data?.length) {
+          const merged = mergeDataset(data, QUICKDRAW_SEED, QUICKDRAW_SEED_MAP);
+          setQuickdraws(assignLocalImages(merged, "quickdraws"));
+          setQuickdrawSrc(`supabase+seed · ${merged.length}`);
+        }
+      })
+      .catch(() => {});
+
     // Fetch live prices
     fetchLivePrices().then(setPriceData);
     fetchPriceHistory().then(setPriceHistory);
@@ -352,6 +369,10 @@ function Root() {
               {/* Crashpad routes */}
               <Route path="/crashpads" element={<CrashpadApp crashpads={crashpads} src={crashpadSrc} />} />
               <Route path="/crashpad/:slug" element={<CrashpadDetail crashpads={crashpads} priceData={priceData} />} />
+              {/* Quickdraw routes — hidden from nav/landing until Roman reviews */}
+              <Route path="/quickdraws" element={<QuickdrawApp quickdraws={quickdraws} src={quickdrawSrc} />} />
+              <Route path="/quickdraw/:slug" element={<QuickdrawDetail quickdraws={quickdraws} priceData={priceData} />} />
+              <Route path="/compare-quickdraws" element={<CompareGeneric items={quickdraws} type="quickdraws" />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/news" element={<GearNews />} />
@@ -361,7 +382,7 @@ function Root() {
               <Route path="/privacy" element={<Legal />} />
               <Route path="/terms" element={<Legal />} />
             </Routes>
-            <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} />
+            <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} quickdraws={quickdraws} />
             <Footer />
             <ScrollUpButton />
             <FeedbackFAB />
