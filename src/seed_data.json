@@ -1678,7 +1678,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Boreal",
@@ -2468,7 +2471,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Boreal",
@@ -3314,7 +3320,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Climb X",
@@ -4587,7 +4596,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Evolv",
@@ -4645,7 +4657,7 @@
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 215,
+    "weight_g": 241,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive TRAX XE rubber, this shoe handles all foothold types.",
@@ -4656,7 +4668,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Evolv",
@@ -5372,7 +5387,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Evolv",
@@ -6076,7 +6094,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Evolv",
@@ -7073,7 +7094,7 @@
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "synthetic",
-    "weight_g": 300,
+    "weight_g": 134,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. The slipper closure provides quick on-and-off convenience, perfect for sport, boulder. With standard volume and responsive Stealth Onyxx rubber, this shoe handles all foothold types. Youth-friendly design grows with young climbers.",
@@ -7084,7 +7105,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Five Ten",
@@ -7512,7 +7536,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "La Sportiva",
@@ -8072,7 +8099,7 @@
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "synthetic",
-    "weight_g": 200,
+    "weight_g": 110,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for newcomers, the Gripit keeps climbing comfortable with its flat profile and supportive full midsole, ideal for learning technique. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -8083,7 +8110,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "La Sportiva",
@@ -8524,7 +8554,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "La Sportiva",
@@ -9249,7 +9282,10 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "La Sportiva",
@@ -9887,7 +9923,7 @@
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "synthetic",
-    "weight_g": 200,
+    "weight_g": 112,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for newcomers, the Stickit keeps climbing comfortable with its flat profile and supportive full midsole, ideal for learning technique. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -9898,7 +9934,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "La Sportiva",
@@ -10460,7 +10499,10 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Lowa",
@@ -13893,7 +13935,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Ocún",
@@ -14960,7 +15005,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Saltic",
@@ -15035,7 +15083,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Saltic",
@@ -15108,7 +15159,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Saltic",
@@ -15248,7 +15302,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Saltic",
@@ -15454,7 +15511,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Saltic",
@@ -15599,7 +15659,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Saltic",
@@ -15670,7 +15733,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -16138,7 +16204,10 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Scarpa",
@@ -16340,7 +16409,7 @@
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "synthetic",
-    "weight_g": 300,
+    "weight_g": 110,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "A youth-sized version of the legendary Drago, maintaining aggressive asymmetric geometry and soft rubber in a kid-friendly package. Perfect for young athletes with natural talent or intensive training programs seeking performance climbing shoes before adulthood.",
@@ -16351,7 +16420,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Scarpa",
@@ -16631,7 +16703,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -16772,7 +16847,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Scarpa",
@@ -18696,7 +18774,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Simond",
@@ -19402,7 +19483,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tenaya",
@@ -19546,7 +19630,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tenaya",
@@ -19980,77 +20067,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
-  },
-  {
-    "brand": "Tenaya",
-    "model": "Oasi Kids",
-    "slug": "tenaya-oasi-kids",
-    "image_url": "/images/shoes/tenaya-oasi-kids.jpg",
-    "images": null,
-    "toe_form": "greek",
-    "volume": "standard",
-    "width": "medium",
-    "heel": "medium",
-    "skill_level": [
-      "beginner",
-      "hobby"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "indoor",
-      "limestone"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "moderate",
-    "price_uvp_eur": 69,
-    "current_price_eur": 59,
-    "discount_pct": 14.5,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "moderate",
-    "toe_patch": "medium",
-    "heel_rubber_coverage": "partial",
-    "ankle_protection": "none",
-    "durability": [
-      "moderate",
-      "high"
-    ],
-    "rubber_type": "SXR Dynamics 4mm",
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_thickness_mm": 4,
-    "midsole": "partial",
-    "rand": "tensioned",
-    "gender": "unisex",
-    "kids_friendly": true,
-    "upper_material": "synthetic",
-    "weight_g": 250,
-    "stretch_expectation": "none",
-    "break_in_period": "minimal",
-    "description": "Targeting sport and boulder performance, this 250g velcro shoe pairs moderate downturn with SXR Dynamics rubber for reliable grip. At 250g per pair with SXR Dynamics rubber, it balances power and precision.",
-    "pros": "[\"One-handed velcro adjustment\", \"Trustworthy smearing on polished rock\", \"Moderate downturn balances power and comfort\", \"Exceptional edge performance\", \"Long-lasting rubber compounds\"]",
-    "cons": "[\"Limited midsole reduces foot arch support\", \"Minimal ankle protection on rocky terrain\", \"Cannot be resoled when worn through\"]",
-    "sizing": "True to size with minimal stretching expected.",
-    "customer_voices": "[\"Perfect for my boulder sessions. Comfortable enough I can climb for hours without foot pain.\", \"The precision and support are unmatched at this level. These shoes keep up with my ambitions.\", \"These work equally well in the gym and outdoors. Solid everyday climbing shoe that delivers performance.\"]",
-    "vegan": true,
-    "resoleable": false,
-    "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tenaya",
@@ -20124,7 +20144,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tenaya",
@@ -20196,7 +20219,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tenaya",
@@ -20265,7 +20291,10 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tenaya",
@@ -20338,7 +20367,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Tulson Tolf",
@@ -21947,7 +21979,10 @@
     "vegan": null,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Unparallel",
@@ -21993,7 +22028,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 237,
+    "weight_g": 270,
     "stretch_expectation": null,
     "break_in_period": null,
     "description": null,
@@ -22004,7 +22039,10 @@
     "vegan": null,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Unparallel",
@@ -22061,7 +22099,10 @@
     "vegan": null,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_source": "weighmyrack.com or official specs",
+      "weight_verified": true
+    }
   },
   {
     "brand": "Unparallel",
@@ -22353,7 +22394,10 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {
+      "weight_note": "Suspicious round number - needs manual verification",
+      "weight_verified": false
+    }
   },
   {
     "brand": "Unparallel",
