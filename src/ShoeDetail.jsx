@@ -7,6 +7,7 @@ import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, compute
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildShoeSchema } from "./useStructuredData.js";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
@@ -724,6 +725,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
     shoe ? `${shoe.brand} ${shoe.model} — Specs, Scores & Prices` : null,
     shoe ? `${shoe.brand} ${shoe.model} climbing shoe: detailed specs, 10-axis performance profile, and price comparison.` : null
   );
+  useStructuredData(buildShoeSchema(shoe, priceData));
   if (!shoe) {
     return (
       <div style={{ minHeight: "100vh", background: T.bg, padding: "40px", fontFamily: T.font }}>

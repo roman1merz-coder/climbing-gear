@@ -4,6 +4,7 @@ import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildRopeSchema } from "./useStructuredData.js";
 import useIsMobile from "./useIsMobile.js";
 
 /** Image with graceful fallback on 404 */
@@ -127,6 +128,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
     rope ? `${rope.brand} ${rope.model} — Rope Specs & Prices` : null,
     rope ? `${rope.brand} ${rope.model}: diameter, weight, falls rated, elongation, and retailer price comparison.` : null
   );
+  useStructuredData(buildRopeSchema(rope, priceData));
   const [selectedLength, setSelectedLength] = useState(null);
   const [activeTab, setActiveTab] = useState("overview");
   const isMobile = useIsMobile();

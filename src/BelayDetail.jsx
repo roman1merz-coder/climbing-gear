@@ -4,6 +4,7 @@ import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildBelaySchema } from "./useStructuredData.js";
 import useIsMobile from "./useIsMobile.js";
 
 /** Image with graceful fallback on 404 */
@@ -185,6 +186,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
     d ? `${d.brand} ${d.model} — Belay Device Specs` : null,
     d ? `${d.brand} ${d.model}: weight, rope compatibility, safety features, and price comparison.` : null
   );
+  useStructuredData(buildBelaySchema(d, priceData));
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 

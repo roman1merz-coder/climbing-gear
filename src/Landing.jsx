@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildWebsiteSchema } from "./useStructuredData.js";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import SHOES from "./seed_data.json";
@@ -164,6 +165,7 @@ function SuggestionHub() {
 // ═══════════════════════════════════════════════════════════════
 export default function Landing() {
   usePageMeta(null, null);
+  useStructuredData(buildWebsiteSchema());
   const isMobile = useIsMobile();
   const pad = isMobile ? "20px 16px" : "0 32px";
   const [showMore, setShowMore] = useState(false);
