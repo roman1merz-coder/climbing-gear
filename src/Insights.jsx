@@ -489,13 +489,13 @@ export default function Insights() {
           />
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-            <StatCard label="Correlation" value="–0.44" sub="cost ↑ = falls ↓ (counterintuitive)" color={T.red} />
+            <StatCard label="Correlation" value="–0.19" sub="cost ↑ ≠ more falls (counterintuitive)" color={T.red} />
             <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
             <StatCard label="Best Band" value="9.5–9.8" sub="31 models — fiercest competition" color={T.accent} />
           </div>
 
           <Prose>
-            Here's the uncomfortable truth: across 106 single-certified ropes, spending more per gram of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is actually negative (r = –0.44). Thin, expensive alpine ropes at ≤8.9mm average 5.4 UIAA falls at 6.8¢/g, while budget-friendly 10mm+ ropes deliver 10–14 falls at just 3.4–3.8¢/g. So where does the money go?
+            Here's the uncomfortable truth: across 106 single-certified ropes, spending more per metre of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is weak and negative (r = –0.19). Thin, expensive alpine ropes at ≤8.9mm average 5.6 UIAA falls at 341¢/m, while budget-friendly 10mm+ ropes deliver 9–10 falls at just 258¢/m. So where does the money go?
           </Prose>
 
           <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
@@ -515,7 +515,7 @@ export default function Insights() {
           </KeyInsight>
 
           <Prose>
-            Switch the scatter chart above to "Falls/Weight vs ¢/g" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per gram. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. The Trango Agility 9.8 stands out — 0.20 falls per g/m at just 3.8¢/g. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
+            Switch the scatter chart above to "Falls/Weight vs ¢/m" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per metre. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
           </Prose>
 
           <KeyInsight color={T.blue}>
@@ -567,7 +567,7 @@ export default function Insights() {
           <p style={{ fontSize: "12px", color: T.muted, lineHeight: 1.7, margin: 0 }}>
             Data sourced from manufacturer specs and retailer listings across European markets. Prices reflect current street prices (or UVP where unavailable) as of early 2025.
             Crashpad €/m² calculated as current_price ÷ (length_open × width_open).
-            Rope analysis covers 106 single-certified ropes (EN 892, 80kg test mass). Half and twin ropes (35 total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Cost per gram (¢/g) = (price per meter ÷ weight per meter) × 100. Sample sizes noted on each chart. Analysis by climbing-gear.com.
+            Rope analysis covers 106 single-certified ropes (EN 892, 80kg test mass). Half and twin ropes (35 total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Cost per metre (¢/m) = price per metre × 100. Sample sizes noted on each chart. Analysis by climbing-gear.com.
           </p>
         </div>
 

@@ -8,6 +8,7 @@ const TYPE_CONFIG = {
   ropes:     { label: "ropes",   singular: "rope",     path: "/compare-ropes", backPath: "/ropes",   icon: "🪢" },
   belays:    { label: "devices", singular: "device",   path: "/compare-belays", backPath: "/belays", icon: "🔗" },
   crashpads: { label: "pads",    singular: "pad",      path: "/compare-pads",  backPath: "/crashpads", icon: "🛏️" },
+  quickdraws: { label: "draws",  singular: "draw",     path: "/compare-quickdraws", backPath: "/quickdraws", icon: "🔗" },
 };
 
 // Detect which type the user is currently browsing
@@ -16,10 +17,11 @@ function useActiveType() {
   if (pathname.startsWith("/rope"))     return "ropes";
   if (pathname.startsWith("/belay"))    return "belays";
   if (pathname.startsWith("/crashpad")) return "crashpads";
+  if (pathname.startsWith("/quickdraw")) return "quickdraws";
   return "shoes";
 }
 
-export default function CompareBar({ shoes = [], ropes = [], belays = [], crashpads = [] }) {
+export default function CompareBar({ shoes = [], ropes = [], belays = [], crashpads = [], quickdraws = [] }) {
   const { getList, getCount, removeFromCompare, clearCompare } = useCompare();
   const navigate = useNavigate();
   const activeType = useActiveType();
@@ -31,7 +33,7 @@ export default function CompareBar({ shoes = [], ropes = [], belays = [], crashp
   const compareList = getList(activeType);
 
   // Resolve slugs to items
-  const allItems = { shoes, ropes, belays, crashpads };
+  const allItems = { shoes, ropes, belays, crashpads, quickdraws };
   const pool = allItems[activeType] || [];
   const selectedItems = compareList
     .map((slug) => pool.find((s) => s.slug === slug))

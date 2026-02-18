@@ -450,10 +450,11 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
         />
       )}
 
-      <div style={{ marginTop: "6px", textAlign: "center" }}>
+      <div style={{ marginTop: "6px", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
           {isMobile ? "Tap a dot for specs · Tap legend to filter · Dot size = landing area" : "Click a dot for specs & detail link · Click legend to filter · Dot size = landing area"}
         </span>
+        <a href="/methodology" style={{ fontSize: "10px", color: T.accent, textDecoration: "none", fontWeight: 600 }}>How we score →</a>
       </div>
     </ChartContainer>
   );
