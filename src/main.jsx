@@ -268,30 +268,6 @@ function ScrollToTop() {
   return null;
 }
 
-/* ─── Beta Banner ─── */
-function BetaBanner() {
-  const [dismissed, setDismissed] = useState(() => {
-    try { return sessionStorage.getItem("beta-dismissed") === "1"; } catch { return false; }
-  });
-  if (dismissed) return null;
-  return (
-    <div style={{
-      background: "linear-gradient(90deg, #E8734A22, #60a5fa22)",
-      borderBottom: `1px solid ${T.border}`,
-      padding: "6px 16px",
-      display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-      fontFamily: T.font, fontSize: "12px", color: T.muted,
-      position: "relative",
-    }}>
-      <span style={{ background: T.accent, color: "#fff", fontSize: "9px", fontWeight: 800, padding: "2px 6px", borderRadius: "4px", letterSpacing: "0.5px", flexShrink: 0 }}>BETA</span>
-      <span>Data is still being verified. Specs may contain inaccuracies.</span>
-      <button onClick={() => { setDismissed(true); try { sessionStorage.setItem("beta-dismissed", "1"); } catch {} }}
-        style={{ background: "none", border: "none", color: T.muted, cursor: "pointer", fontSize: "14px", padding: "0 4px", lineHeight: 1, flexShrink: 0, marginLeft: "4px" }}
-        title="Dismiss">{"\u2715"}</button>
-    </div>
-  );
-}
-
 function Root() {
   const [shoes, setShoes] = useState(assignLocalImages(SEED.map(normalizeShoeFields), "shoes"));
   const [src, setSrc] = useState("local");
@@ -382,7 +358,6 @@ function Root() {
         <CompareProvider>
           <BrowserRouter>
             <ScrollToTop />
-            <BetaBanner />
             <NavBar priceData={priceData} />
             <Routes>
               <Route path="/" element={<Landing />} />
