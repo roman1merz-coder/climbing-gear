@@ -4,7 +4,7 @@
     "brand": "Beal",
     "model": "Pulp Express",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/beal-pulp-express.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -56,14 +56,16 @@
     "cons": [
       "Middle of the pack on weight",
       "Less widely available"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-hotforge",
     "brand": "Black Diamond",
     "model": "HotForge",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-hotforge.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -116,14 +118,16 @@
     "cons": [
       "Not the lightest",
       "Only 2 length options"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-hotforge-hybrid",
     "brand": "Black Diamond",
     "model": "HotForge Hybrid",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-hotforge-hybrid.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -176,14 +180,16 @@
     "cons": [
       "Rope-end biner not keylock",
       "Only 2 length options"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-hotwire",
     "brand": "Black Diamond",
     "model": "HotWire",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-hotwire.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -236,14 +242,16 @@
     "cons": [
       "No keylock — can snag when cleaning",
       "Wire gates less durable long-term"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-litewire",
     "brand": "Black Diamond",
     "model": "LiteWire",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-litewire.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -295,14 +303,16 @@
     "cons": [
       "No keylock",
       "Not as durable as hot-forged options"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-miniwire",
     "brand": "Black Diamond",
     "model": "MiniWire",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-miniwire.jpg",
     "quickdraw_type": "trad",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -355,14 +365,16 @@
       "Not as durable for sport use",
       "No keylock",
       "Single length only"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-miniwire-alpine",
     "brand": "Black Diamond",
     "model": "MiniWire Alpine",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-miniwire-alpine.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 8,
@@ -414,14 +426,16 @@
     "cons": [
       "Long sling requires management",
       "No rubber keeper"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "black-diamond-positron",
     "brand": "Black Diamond",
     "model": "Positron",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/black-diamond-positron.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -472,14 +486,16 @@
     "cons": [
       "Heavier than premium options",
       "Not hot forged"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "camp-dyon-express-ks",
     "brand": "Camp",
     "model": "Dyon Express KS",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/camp-dyon-express-ks.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -532,14 +548,16 @@
     "cons": [
       "Premium price",
       "Two-part gate needs getting used to"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "camp-nano-22-express-ks-dyneema",
     "brand": "Camp",
     "model": "Nano 22 Express KS Dyneema",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/camp-nano-22-express-ks-dyneema.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 8,
@@ -590,14 +608,16 @@
       "Small gate opening",
       "Not for sport climbing",
       "Lower strength ratings"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "camp-orbit-wire-express-ks",
     "brand": "Camp",
     "model": "Orbit Wire Express KS",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/camp-orbit-wire-express-ks.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -652,14 +672,16 @@
     "cons": [
       "Not hot forged",
       "Wire gates less robust for fixed use"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "camp-photon-mixed-express-ks-dyneema",
     "brand": "Camp",
     "model": "Photon Mixed Express KS Dyneema",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/camp-photon-mixed-express-ks-dyneema.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -710,14 +732,16 @@
     ],
     "cons": [
       "Slightly heavier than all-wire version"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "camp-photon-wire-express-ks-dyneema",
     "brand": "Camp",
     "model": "Photon Wire Express KS Dyneema",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/camp-photon-wire-express-ks-dyneema.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -770,14 +794,16 @@
     "cons": [
       "Cold-forged, not hot-forged",
       "Dyneema less durable than nylon for fixed draws"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "climbing-technology-lime-set",
     "brand": "Climbing Technology",
     "model": "Lime Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/climbing-technology-lime-set.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -832,14 +858,16 @@
     "cons": [
       "Not widely available outside Europe",
       "Heavier than wire alternatives"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "cypher-firefly-ii",
     "brand": "Cypher",
     "model": "Firefly II",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/cypher-firefly-ii.jpg",
     "quickdraw_type": "trad",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -892,14 +920,16 @@
       "No keylock",
       "Basic construction",
       "Less refined handling"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "dmm-alpha-sport",
     "brand": "DMM",
     "model": "Alpha Sport",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/dmm-alpha-sport.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 20,
@@ -954,14 +984,16 @@
     "cons": [
       "Heaviest in class at 112g",
       "Most expensive sport draw"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "dmm-phantom",
     "brand": "DMM",
     "model": "Phantom",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/dmm-phantom.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -1016,14 +1048,16 @@
       "Not ideal for heavy sport use",
       "No keylock",
       "More expensive than basic draws"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "dmm-shadow",
     "brand": "DMM",
     "model": "Shadow",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/dmm-shadow.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -1076,14 +1110,16 @@
     "cons": [
       "Pricier than competitors",
       "Heavier than wire alternatives"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "dmm-shadow-spectre-hybrid",
     "brand": "DMM",
     "model": "Shadow/Spectre Hybrid",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/dmm-shadow-spectre-hybrid.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -1138,14 +1174,16 @@
     "cons": [
       "Rope-end not keylock",
       "Mid-range price"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "dmm-spectre",
     "brand": "DMM",
     "model": "Spectre 2",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/dmm-spectre.jpg",
     "quickdraw_type": "trad",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -1199,14 +1237,16 @@
     "cons": [
       "Heavier than Phantom",
       "No keylock nose"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "edelrid-bulletproof",
     "brand": "Edelrid",
     "model": "Bulletproof",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/edelrid-bulletproof.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 22,
@@ -1259,14 +1299,16 @@
       "Heaviest in class at 117g",
       "Premium price",
       "Overkill for occasional use"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "edelrid-nineteen-g",
     "brand": "Edelrid",
     "model": "Nineteen G Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/edelrid-nineteen-g.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 8,
@@ -1318,14 +1360,16 @@
       "Small gate opening",
       "Minimal durability for sport use",
       "Lower major axis strength at 20kN"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "edelrid-pure-set",
     "brand": "Edelrid",
     "model": "Pure Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/edelrid-pure-set.jpg",
     "quickdraw_type": "sport",
     "sling_type": "polyester",
     "sling_width_mm": 16,
@@ -1376,14 +1420,16 @@
     "cons": [
       "Heavier than premium draws",
       "Not hot forged"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "edelrid-pure-wire-set",
     "brand": "Edelrid",
     "model": "Pure Wire Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/edelrid-pure-wire-set.jpg",
     "quickdraw_type": "sport",
     "sling_type": "polyester",
     "sling_width_mm": 16,
@@ -1435,14 +1481,16 @@
     "cons": [
       "Wire gates less durable long-term",
       "Basic construction"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "edelrid-slash-wire",
     "brand": "Edelrid",
     "model": "Slash Wire Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/edelrid-slash-wire.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1494,14 +1542,16 @@
       "Not hot forged",
       "Basic sling",
       "Limited lengths"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "fixe-montgrony-express",
     "brand": "Fixe",
     "model": "Montgrony Express",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/fixe-montgrony-express.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1553,14 +1603,16 @@
     ],
     "cons": [
       "Limited availability outside Spain/Europe"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "grivel-all-round-beta",
     "brand": "Grivel",
     "model": "All Round Beta",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/grivel-all-round-beta.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1612,14 +1664,16 @@
     "cons": [
       "Limited length options",
       "Not as widely reviewed as BD/Petzl"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "kong-rush-quickdraw",
     "brand": "Kong",
     "model": "Rush",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/kong-rush-quickdraw.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1670,14 +1724,16 @@
     ],
     "cons": [
       "Limited international distribution"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "mad-rock-concorde-express",
     "brand": "Mad Rock",
     "model": "Concorde Express",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/mad-rock-concorde-express.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1728,14 +1784,16 @@
       "No keylock",
       "Single length only",
       "Less refined handling"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "mammut-crag-keylock-indicator",
     "brand": "Mammut",
     "model": "Crag Keylock Indicator Express Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/mammut-crag-keylock-indicator.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -1788,14 +1846,16 @@
     "cons": [
       "Not the lightest",
       "Only 2 length options"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "mammut-crag-wire-indicator",
     "brand": "Mammut",
     "model": "Crag Wire Indicator Express Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/mammut-crag-wire-indicator.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1846,14 +1906,16 @@
     ],
     "cons": [
       "Wire gates less durable for fixed use"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "metolius-bravo-ii",
     "brand": "Metolius",
     "model": "Bravo II",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/metolius-bravo-ii.jpg",
     "quickdraw_type": "trad",
     "sling_type": "nylon",
     "sling_width_mm": 12,
@@ -1905,14 +1967,16 @@
       "No keylock",
       "Single length only",
       "Basic construction"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "metolius-captive-eye",
     "brand": "Metolius",
     "model": "Captive Eye",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/metolius-captive-eye.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -1963,14 +2027,16 @@
       "Can't separate biners from sling",
       "Single length only",
       "No keylock"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "ocun-hawk-qd-wire",
     "brand": "Ocun",
     "model": "Hawk QD Wire",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/ocun-hawk-qd-wire.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -2022,14 +2088,16 @@
     "cons": [
       "Less widely available",
       "Czech brand not as well-known"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "petzl-ange-finesse",
     "brand": "Petzl",
     "model": "Ange Finesse",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/petzl-ange-finesse.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -2083,14 +2151,16 @@
       "MonoFil gate requires practice to clip smoothly",
       "Not as durable as solid gate draws",
       "Higher price per gram"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "petzl-djinn-axess",
     "brand": "Petzl",
     "model": "Djinn Axess",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/petzl-djinn-axess.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 20,
@@ -2146,14 +2216,16 @@
     "cons": [
       "Heavier than premium draws",
       "Slightly bulkier"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "petzl-spirit-express",
     "brand": "Petzl",
     "model": "Spirit Express",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/petzl-spirit-express.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 24,
@@ -2209,14 +2281,16 @@
     "cons": [
       "Not the lightest option",
       "Higher price point than budget draws"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "salewa-hot-g3-express-set",
     "brand": "Salewa",
     "model": "Hot G3 Express Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/salewa-hot-g3-express-set.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -2268,14 +2342,16 @@
     "cons": [
       "Not as refined as Petzl/DMM",
       "Limited international availability"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "simond-rocky-quickdraw",
     "brand": "Simond",
     "model": "Rocky Quickdraw",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/simond-rocky-quickdraw.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -2327,14 +2403,16 @@
       "No keylock",
       "Basic construction",
       "Not hot forged"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "singing-rock-vision-set",
     "brand": "Singing Rock",
     "model": "Vision Set",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/singing-rock-vision-set.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -2385,14 +2463,16 @@
     "cons": [
       "Heavier than premium draws",
       "Limited availability outside Europe"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "trango-phase-alpine",
     "brand": "Trango",
     "model": "Phase Alpine",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/trango-phase-alpine.jpg",
     "quickdraw_type": "alpine",
     "sling_type": "dyneema",
     "sling_width_mm": 11,
@@ -2444,14 +2524,16 @@
     "cons": [
       "No keylock",
       "Requires sling management skills"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "wild-country-astro",
     "brand": "Wild Country",
     "model": "Astro",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/wild-country-astro.jpg",
     "quickdraw_type": "trad",
     "sling_type": "dyneema",
     "sling_width_mm": 10,
@@ -2506,14 +2588,16 @@
     "cons": [
       "Not keylock — hooded nose is close but different",
       "No rubber keeper"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "wild-country-helium",
     "brand": "Wild Country",
     "model": "Helium",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/wild-country-helium.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 18,
@@ -2566,14 +2650,16 @@
     "cons": [
       "Mid-range price",
       "Slightly smaller gate opening than competitors"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   },
   {
     "slug": "wild-country-session",
     "brand": "Wild Country",
     "model": "Session",
     "status": "active",
-    "image_url": null,
+    "image_url": "/images/quickdraws/wild-country-session.jpg",
     "quickdraw_type": "sport",
     "sling_type": "nylon",
     "sling_width_mm": 16,
@@ -2625,6 +2711,8 @@
       "No keylock",
       "Not hot forged",
       "Basic construction"
-    ]
+    ],
+    "admin_flags": null,
+    "data_confidence": null
   }
 ]
