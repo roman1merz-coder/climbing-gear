@@ -508,10 +508,11 @@ export default function ShoeFinder({ shoes = [] }) {
     if (step < TOTAL_STEPS) {
       setStep(step + 1);
       if (step === TOTAL_STEPS - 1) updateURL();
+      window.scrollTo(0, 0);
     }
   };
-  const prevStep = () => { if (step > 0) setStep(step - 1); };
-  const goToStep = (s) => setStep(s);
+  const prevStep = () => { if (step > 0) { setStep(step - 1); window.scrollTo(0, 0); } };
+  const goToStep = (s) => { setStep(s); window.scrollTo(0, 0); };
 
   // Clear rock type when switching away from outdoor
   useEffect(() => {
