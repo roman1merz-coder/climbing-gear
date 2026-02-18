@@ -406,7 +406,7 @@ export default function ShoeFinder({ shoes = [] }) {
   const [width, setWidth] = useState("");
   const [heelVolume, setHeelVolume] = useState("");
   const [weightKg, setWeightKg] = useState(70);
-  const [brandFilter, setBrandFilter] = useState("all");
+  const [brandFilter, setBrandFilter] = useState([]);  // empty = all brands; array of selected brand names
   const [closureFilter, setClosureFilter] = useState("all");
   const [showAllResults, setShowAllResults] = useState(false);
   const [editingTrait, setEditingTrait] = useState(null); // which trait row is expanded for inline edit
@@ -460,7 +460,7 @@ export default function ShoeFinder({ shoes = [] }) {
 
   const filteredResults = useMemo(() => {
     let r = allResults;
-    if (brandFilter !== "all") r = r.filter(x => x.shoe.brand === brandFilter);
+    if (brandFilter.length) r = r.filter(x => brandFilter.includes(x.shoe.brand));
     if (closureFilter !== "all") r = r.filter(x => (x.shoe.closure || "").toLowerCase() === closureFilter);
     return r;
   }, [allResults, brandFilter, closureFilter]);
@@ -1035,6 +1035,7 @@ export default function ShoeFinder({ shoes = [] }) {
         id: "shape",
         value: dtAsymLabel,
         reason: `${level} level + ${preference} preference`,
+        hint: "More downturn and asymmetry means better precision on small holds and steep terrain — but less comfort for longer sessions.",
         editor: () => (
           <div>
             <div style={{ fontSize: "11px", color: T.muted, marginBottom: "2px" }}>Downturn</div>
@@ -1050,6 +1051,7 @@ export default function ShoeFinder({ shoes = [] }) {
         id: "closure",
         value: `${cap(effectiveClosures.join(" / "))} closure`,
         reason: disciplineLabel.toLowerCase(),
+        hint: "Slippers are fastest on/off but least adjustable. Laces offer the most precise fit. Velcro balances convenience and adjustability.",
         editor: () => (
           <InlinePills multi options={["slipper", "velcro", "lace"].map(c => ({ id: c, label: cap(c) }))}
             value={effectiveClosures} onChange={v => setClosureOverride(v.length ? v : null)} />
@@ -1059,6 +1061,7 @@ export default function ShoeFinder({ shoes = [] }) {
         id: "midsole",
         value: `${cap(targetMidsole)} midsole`,
         reason: `${disciplineLabel.toLowerCase()} + ${weightKg} kg`,
+        hint: "More midsole means more support on small edges and long routes, but less sensitivity and poorer smearing ability.",
         editor: () => (
           <InlinePills options={MIDSOLE_LABELS.map((m, i) => ({ id: String(i), label: cap(m) }))}
             value={String(effectiveMidsoleNum)} onChange={v => setMidsoleOverride(Number(v))} />
@@ -1068,6 +1071,7 @@ export default function ShoeFinder({ shoes = [] }) {
         id: "rubber",
         value: `~${targetRubber} mm rubber`,
         reason: `${weightKg} kg body weight`,
+        hint: "Thicker rubber adds support and durability but reduces sensitivity. Thinner rubber lets you feel the rock better for precise footwork.",
         editor: () => (
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
             <input type="range" min="2.5" max="5.5" step="0.5" value={effectiveRubber}
@@ -1087,6 +1091,7 @@ export default function ShoeFinder({ shoes = [] }) {
         reason: effectiveEnv === "outdoor" && rockType
           ? `rock type determines rubber compound`
           : effectiveEnv === "indoor" ? "gym walls, soft rubber, easy on/off" : "versatile all-rounder",
+        hint: "Soft rubber conforms to holds and excels on smears but wears faster. Hard rubber lasts longer and edges better on micro holds like granite.",
         editor: () => (
           <div>
             <div style={{ fontSize: "11px", color: T.muted, marginBottom: "2px" }}>Rubber hardness</div>
@@ -1154,6 +1159,11 @@ export default function ShoeFinder({ shoes = [] }) {
                   </div>
                   {isEditing && (
                     <div style={{ marginTop: "8px", paddingTop: "8px", borderTop: `1px solid ${T.border}` }}>
+                      {t.hint && (
+                        <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.5, marginBottom: "10px", fontStyle: "italic" }}>
+                          {t.hint}
+                        </div>
+                      )}
                       {t.editor()}
                     </div>
                   )}
@@ -1169,11 +1179,13 @@ export default function ShoeFinder({ shoes = [] }) {
           <span style={{ fontSize: "13px", color: T.muted, fontFamily: T.mono }}>{allResults.length} results</span>
         </div>
 
-        {/* Brand filter chips */}
+        {/* Brand filter chips — multi-select */}
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "10px" }}>
-          <FilterChip label="All brands" active={brandFilter === "all"} onClick={() => setBrandFilter("all")} />
+          <FilterChip label="All brands" active={brandFilter.length === 0} onClick={() => setBrandFilter([])} />
           {brandCounts.map(([brand, count]) => (
-            <FilterChip key={brand} label={brand} count={count} active={brandFilter === brand} onClick={() => setBrandFilter(brand)} />
+            <FilterChip key={brand} label={brand} count={count} active={brandFilter.includes(brand)} onClick={() => {
+              setBrandFilter(prev => prev.includes(brand) ? prev.filter(b => b !== brand) : [...prev, brand]);
+            }} />
           ))}
         </div>
 
