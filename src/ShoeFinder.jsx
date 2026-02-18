@@ -790,7 +790,17 @@ export default function ShoeFinder({ shoes = [] }) {
             <input type="range" min="45" max="110" value={weightKg}
               onChange={e => setWeightKg(Number(e.target.value))}
               style={{ flex: 1, accentColor: T.accent, height: "6px" }} />
-            <span style={{ fontFamily: T.mono, fontSize: "15px", fontWeight: 600, color: T.accent, minWidth: "55px", textAlign: "right" }}>{weightKg} kg</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0 }}>
+              <input type="number" min="45" max="110" value={weightKg}
+                onChange={e => { const v = Math.max(45, Math.min(110, Number(e.target.value) || 45)); setWeightKg(v); }}
+                style={{
+                  width: "48px", fontFamily: T.mono, fontSize: "15px", fontWeight: 600,
+                  color: T.accent, background: T.surface, border: `1px solid ${T.border}`,
+                  borderRadius: T.radiusXs, padding: "4px 6px", textAlign: "right",
+                  outline: "none",
+                }} />
+              <span style={{ fontSize: "13px", color: T.muted }}>kg</span>
+            </div>
           </div>
 
           <div style={{ display: "flex", marginTop: "14px", paddingTop: "14px", borderTop: `1px solid ${T.border}` }}>
@@ -901,28 +911,35 @@ export default function ShoeFinder({ shoes = [] }) {
             )}
           </div>
 
+          <div style={{ fontSize: "11px", color: T.muted, marginTop: "16px", paddingTop: "12px", borderTop: `1px solid ${T.border}`, marginBottom: "6px" }}>
+            Click any tag to adjust that criterion:
+          </div>
           <div style={{
             display: "flex", gap: "10px", flexWrap: "wrap",
-            marginTop: "16px", paddingTop: "16px", borderTop: `1px solid ${T.border}`,
           }}>
             {[
-              { label: "Downturn", value: targetDownturn },
-              { label: "Asymmetry", value: targetAsymmetry },
-              { label: "Midsole", value: targetMidsole },
-              { label: "Rubber", value: `~${targetRubber}mm` },
-              forefootVolume && { label: "Forefoot vol.", value: forefootVolume },
-              toeForm && { label: "Toe", value: toeForm },
-              width && { label: "Width", value: width },
-              heelVolume && { label: "Heel vol.", value: heelVolume },
-              { label: "Env.", value: environment },
+              { label: "Discipline", value: disciplineLabel, step: 0 },
+              { label: "Env.", value: environment, step: 1 },
+              { label: "Level", value: level, step: 2 },
+              { label: "Preference", value: preference > 60 ? "Performance" : preference < 40 ? "Comfort" : "Balanced", step: 3 },
+              toeForm && { label: "Toe", value: toeForm, step: 4 },
+              forefootVolume && { label: "Forefoot vol.", value: forefootVolume, step: 4 },
+              width && { label: "Width", value: width, step: 4 },
+              heelVolume && { label: "Heel vol.", value: heelVolume, step: 4 },
+              { label: "Weight", value: `${weightKg} kg`, step: 5 },
             ].filter(Boolean).map(chip => (
-              <div key={chip.label} style={{
+              <div key={chip.label} onClick={() => goToStep(chip.step)} style={{
                 display: "flex", alignItems: "center", gap: "6px",
                 padding: "5px 11px", background: T.surface,
                 border: `1px solid ${T.border}`, borderRadius: "20px", fontSize: "11px",
-              }}>
+                cursor: "pointer", transition: "all 0.2s",
+              }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.background = T.accentSoft; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.background = T.surface; }}
+              >
                 <span style={{ color: "#6b7280" }}>{chip.label}</span>
                 <span style={{ color: T.text, fontWeight: 600 }}>{chip.value}</span>
+                <span style={{ color: T.accent, fontSize: "10px", marginLeft: "2px" }}>✎</span>
               </div>
             ))}
           </div>
