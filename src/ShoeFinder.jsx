@@ -34,17 +34,17 @@ const LEVELS = [
 ];
 
 const TOE_FORMS = [
-  { id: "",        icon: "🤷", title: "Not sure / Skip", desc: "That's fine — we won't filter by toe shape." },
-  { id: "egyptian",icon: "📐", title: "Egyptian",        desc: "Big toe longest, then tapers down. Most common shape — fits most shoes." },
-  { id: "roman",   icon: "▬",  title: "Roman (Square)",  desc: "First 2–3 toes roughly equal length. Needs a wider toe box." },
-  { id: "greek",   icon: "△",  title: "Greek (Morton's)", desc: "Second toe longest. Can cause hotspots in asymmetric shoes." },
+  { id: "",        img: null,                   title: "Not sure / Skip", desc: "That's fine — we won't filter by toe shape." },
+  { id: "egyptian",img: "/images/foot-egyptian.png", title: "Egyptian",        desc: "Big toe longest, then tapers down. Most common shape — fits most shoes." },
+  { id: "roman",   img: "/images/foot-roman.png",   title: "Roman (Square)",  desc: "First 2–3 toes roughly equal length. Needs a wider toe box." },
+  { id: "greek",   img: "/images/foot-greek.png",   title: "Greek (Morton's)", desc: "Second toe longest. Can cause hotspots in asymmetric shoes." },
 ];
 
 const VOLUMES = [
-  { id: "",         icon: "🤷", title: "Not sure / Skip", desc: "We'll show all volumes." },
-  { id: "standard", icon: "👟", title: "Standard",         desc: "Average width, standard arch and instep. The most options live here." },
-  { id: "low",      icon: "👠", title: "Low Volume",       desc: "Narrow heel, low instep, slim forefoot. Women's & LV models." },
-  { id: "high",     icon: "🦶", title: "Wide / High Vol.",  desc: "Wide forefoot, high arch. Fewer shoes, but the right fit matters most." },
+  { id: "",         title: "Not sure / Skip", desc: "We'll show all forefoot volumes." },
+  { id: "standard", title: "Standard",         desc: "Average forefoot depth. Fits most foot shapes — the widest selection lives here." },
+  { id: "low",      title: "Low",              desc: "Flat forefoot, low instep. Women's & LV models are built for this." },
+  { id: "high",     title: "High",             desc: "Deep forefoot, high arch. Fewer options, but the right fit matters most." },
 ];
 
 const WIDTHS = [
@@ -54,7 +54,7 @@ const WIDTHS = [
   { id: "wide",   title: "Wide" },
 ];
 
-const HEELS = [
+const HEEL_VOLUMES = [
   { id: "",       title: "Not sure" },
   { id: "narrow", title: "Narrow" },
   { id: "medium", title: "Medium" },
@@ -122,7 +122,7 @@ function parseArray(val) {
   return [];
 }
 
-function scoreShoe(shoe, { disciplines, environment, level, preference, volume, toeForm, width, heel, weightKg }) {
+function scoreShoe(shoe, { disciplines, environment, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg }) {
   let score = 0;
 
   // ── 1. Discipline match (35 pts) — hard filter + score ──
@@ -223,26 +223,26 @@ function scoreShoe(shoe, { disciplines, environment, level, preference, volume, 
     if (shoeWidth === width) score += 3;
     else if (!shoeWidth || shoeWidth === "medium") score += 1;
   }
-  // Heel match (2 pts)
-  if (heel) {
-    const shoeHeel = (shoe.heel || "").toLowerCase();
-    if (shoeHeel === heel) score += 2;
+  // Heel volume match (2 pts)
+  if (heelVolume) {
+    const shoeHeel = (shoe.heel_volume || shoe.heel || "").toLowerCase();
+    if (shoeHeel === heelVolume) score += 2;
     else if (!shoeHeel || shoeHeel === "medium") score += 1;
   }
-  // Volume is handled as a filter, not scored
-  if (!toeForm && !width && !heel) score += 5; // neutral bonus when no foot prefs set
+  // Forefoot volume is handled as a filter, not scored
+  if (!toeForm && !width && !heelVolume) score += 5; // neutral bonus when no foot prefs set
 
   return Math.round(score);
 }
 
-// ─── Volume filter helper ─────────────────────────────────────
-function matchesVolume(shoe, volume) {
-  if (!volume) return true;
-  const vol = (shoe.volume || "").toLowerCase();
+// ─── Forefoot volume filter helper ────────────────────────────
+function matchesVolume(shoe, forefootVolume) {
+  if (!forefootVolume) return true;
+  const vol = (shoe.forefoot_volume || shoe.volume || "").toLowerCase();
   const gender = (shoe.gender || "").toLowerCase();
-  if (volume === "standard") return vol !== "low" || gender === "unisex";
-  if (volume === "low") return vol === "low" || gender === "women" || gender === "womens";
-  if (volume === "high") return vol === "high" || vol === "wide";
+  if (forefootVolume === "standard") return vol !== "low" || gender === "unisex";
+  if (forefootVolume === "low") return vol === "low" || gender === "women" || gender === "womens";
+  if (forefootVolume === "high") return vol === "high" || vol === "wide";
   return true;
 }
 
@@ -253,10 +253,10 @@ function encodeFinderState(s) {
   if (s.environment) p.set("e", s.environment);
   if (s.level) p.set("l", s.level);
   if (s.preference !== 50) p.set("p", String(s.preference));
-  if (s.volume) p.set("v", s.volume);
+  if (s.forefootVolume) p.set("v", s.forefootVolume);
   if (s.toeForm) p.set("tf", s.toeForm);
   if (s.width) p.set("wd", s.width);
-  if (s.heel) p.set("hl", s.heel);
+  if (s.heelVolume) p.set("hl", s.heelVolume);
   if (s.weightKg !== 70) p.set("w", String(s.weightKg));
   return p.toString();
 }
@@ -268,10 +268,10 @@ function decodeFinderState(search) {
     environment: p.get("e") || "both",
     level: p.get("l") || "intermediate",
     preference: p.has("p") ? Number(p.get("p")) : 50,
-    volume: p.get("v") || "",
+    forefootVolume: p.get("v") || "",
     toeForm: p.get("tf") || "",
     width: p.get("wd") || "",
-    heel: p.get("hl") || "",
+    heelVolume: p.get("hl") || "",
     weightKg: p.has("w") ? Number(p.get("w")) : 70,
   };
 }
@@ -290,10 +290,10 @@ export default function ShoeFinder({ shoes = [] }) {
   const [environment, setEnvironment] = useState("both");
   const [level, setLevel] = useState("intermediate");
   const [preference, setPreference] = useState(50);
-  const [volume, setVolume] = useState("");
+  const [forefootVolume, setForefootVolume] = useState("");
   const [toeForm, setToeForm] = useState("");
   const [width, setWidth] = useState("");
-  const [heel, setHeel] = useState("");
+  const [heelVolume, setHeelVolume] = useState("");
   const [weightKg, setWeightKg] = useState(70);
   const [brandFilter, setBrandFilter] = useState("all");
   const [closureFilter, setClosureFilter] = useState("all");
@@ -306,12 +306,12 @@ export default function ShoeFinder({ shoes = [] }) {
     if (s.environment) setEnvironment(s.environment);
     if (s.level) setLevel(s.level);
     if (s.preference !== 50) setPreference(s.preference);
-    if (s.volume) setVolume(s.volume);
+    if (s.forefootVolume) setForefootVolume(s.forefootVolume);
     if (s.toeForm) setToeForm(s.toeForm);
     if (s.width) setWidth(s.width);
-    if (s.heel) setHeel(s.heel);
+    if (s.heelVolume) setHeelVolume(s.heelVolume);
     if (s.weightKg !== 70) setWeightKg(s.weightKg);
-    if (s.disciplines.length && s.volume) setStep(TOTAL_STEPS);
+    if (s.disciplines.length && s.forefootVolume) setStep(TOTAL_STEPS);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // SEO
@@ -322,19 +322,19 @@ export default function ShoeFinder({ shoes = [] }) {
 
   // ─── Computed ───────────────────────────────────────────────
   const params = useMemo(() => ({
-    disciplines, environment, level, preference, volume, toeForm, width, heel, weightKg,
-  }), [disciplines, environment, level, preference, volume, toeForm, width, heel, weightKg]);
+    disciplines, environment, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg,
+  }), [disciplines, environment, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg]);
 
   const allResults = useMemo(() => {
     return shoes
-      .filter(s => matchesVolume(s, volume))
+      .filter(s => matchesVolume(s, forefootVolume))
       .map(s => {
         const sc = scoreShoe(s, params);
         return sc !== null ? { shoe: s, score: sc } : null;
       })
       .filter(Boolean)
       .sort((a, b) => b.score - a.score);
-  }, [shoes, params, volume]);
+  }, [shoes, params, forefootVolume]);
 
   const filteredResults = useMemo(() => {
     let r = allResults;
@@ -343,15 +343,7 @@ export default function ShoeFinder({ shoes = [] }) {
     return r;
   }, [allResults, brandFilter, closureFilter]);
 
-  const matchCount = useMemo(() => {
-    if (step < TOTAL_STEPS) {
-      return shoes.filter(s => {
-        if (!matchesVolume(s, volume)) return false;
-        return scoreShoe(s, params) !== null;
-      }).length;
-    }
-    return allResults.length;
-  }, [shoes, params, step, allResults, volume]);
+  // matchCount removed — Counter component no longer displayed
 
   const brandCounts = useMemo(() => {
     const counts = {};
@@ -374,9 +366,9 @@ export default function ShoeFinder({ shoes = [] }) {
   const targetRubber = computeTargetRubber(disciplines, weightKg).toFixed(1);
 
   const updateURL = useCallback(() => {
-    const qs = encodeFinderState({ disciplines, environment, level, preference, volume, toeForm, width, heel, weightKg });
+    const qs = encodeFinderState({ disciplines, environment, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg });
     setSearchParams(qs, { replace: true });
-  }, [disciplines, environment, level, preference, volume, toeForm, width, heel, weightKg, setSearchParams]);
+  }, [disciplines, environment, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg, setSearchParams]);
 
   const nextStep = () => {
     if (step < TOTAL_STEPS) {
@@ -395,7 +387,7 @@ export default function ShoeFinder({ shoes = [] }) {
   const greenBorder = "rgba(34,197,94,0.2)";
 
   // ─── Sub-components ─────────────────────────────────────────
-  const OptionCard = ({ selected, onClick, icon, title, desc }) => (
+  const OptionCard = ({ selected, onClick, icon, img, title, desc }) => (
     <div
       onClick={onClick}
       style={{
@@ -414,7 +406,8 @@ export default function ShoeFinder({ shoes = [] }) {
           fontSize: "11px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700,
         }}>✓</div>
       )}
-      {icon && <div style={{ fontSize: "22px", lineHeight: 1 }}>{icon}</div>}
+      {img && <img src={img} alt={title} style={{ width: "52px", height: "auto", filter: "brightness(0.95)", marginBottom: "2px" }} />}
+      {icon && !img && <div style={{ fontSize: "22px", lineHeight: 1 }}>{icon}</div>}
       <div style={{ fontSize: "14px", fontWeight: 700, letterSpacing: "-0.2px", color: T.text }}>{title}</div>
       {desc && <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.45 }}>{desc}</div>}
     </div>
@@ -452,15 +445,13 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  const Counter = ({ count }) => (
+  // Explanation box for foot shape sections
+  const ExplainBox = ({ children }) => (
     <div style={{
-      display: "inline-flex", alignItems: "center", gap: "6px",
-      background: T.accentSoft, border: `1px solid ${accentBorder}`,
-      padding: "6px 14px", borderRadius: "20px",
-      fontSize: "13px", fontWeight: 600, color: T.accent, marginTop: "20px",
-    }}>
-      <span style={{ fontFamily: T.mono, fontSize: "15px" }}>{count}</span> shoes match
-    </div>
+      background: T.surface, border: `1px solid ${T.border}`, borderRadius: T.radiusSm,
+      padding: "10px 14px", marginBottom: "4px",
+      fontSize: "12px", color: T.muted, lineHeight: 1.5,
+    }}>{children}</div>
   );
 
   const StepNumber = ({ n }) => (
@@ -550,7 +541,6 @@ export default function ShoeFinder({ shoes = [] }) {
           />
         ))}
       </div>
-      <Counter count={matchCount} />
       <Tip>
         Selecting <strong style={{ color: T.text, fontWeight: 600 }}>multiple disciplines</strong> shows
         versatile shoes that work across them. A bouldering + sport combo finds shoes that handle
@@ -580,7 +570,6 @@ export default function ShoeFinder({ shoes = [] }) {
           />
         ))}
       </div>
-      <Counter count={matchCount} />
       <Tip>
         <strong style={{ color: T.text, fontWeight: 600 }}>Outdoor shoes</strong> tend to have harder, more durable rubber for natural rock texture.{" "}
         <strong style={{ color: T.text, fontWeight: 600 }}>Indoor shoes</strong> favor softer rubber for better grip on plastic holds.{" "}
@@ -606,7 +595,6 @@ export default function ShoeFinder({ shoes = [] }) {
             icon={l.icon} title={l.title} desc={l.desc} />
         ))}
       </div>
-      <Counter count={matchCount} />
       {/* Downturn range visual */}
       <div style={{
         display: "flex", justifyContent: "space-between", alignItems: "flex-end",
@@ -705,7 +693,6 @@ export default function ShoeFinder({ shoes = [] }) {
           </div>
         </div>
 
-        <Counter count={matchCount} />
         <Tip>
           <strong style={{ color: T.text, fontWeight: 600 }}>{level.charAt(0).toUpperCase() + level.slice(1)} + {preference > 60 ? "performance-leaning" : preference < 40 ? "comfort-leaning" : "balanced"}</strong>
           {" "}
@@ -718,7 +705,7 @@ export default function ShoeFinder({ shoes = [] }) {
     );
   };
 
-  // STEP 4 — Foot Shape (expanded: toe form, volume, width, heel)
+  // STEP 4 — Foot Shape (expanded: toe form, forefoot volume, width, heel volume)
   const renderStep4 = () => (
     <div>
       <StepNumber n={5} />
@@ -736,33 +723,44 @@ export default function ShoeFinder({ shoes = [] }) {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap: "10px" }}>
           {TOE_FORMS.map(t => (
             <OptionCard key={t.id} selected={toeForm === t.id} onClick={() => setToeForm(t.id)}
-              icon={t.icon} title={t.title} desc={t.desc} />
+              img={t.img} title={t.title} desc={t.desc} />
           ))}
         </div>
       </div>
 
-      {/* Volume */}
+      {/* Forefoot Volume */}
       <div style={{ marginBottom: "24px" }}>
-        <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "6px" }}>Volume</div>
-        <div style={{ fontSize: "12px", color: T.muted, marginBottom: "12px" }}>Overall foot volume — combines instep height, heel width, and forefoot width.</div>
+        <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "6px" }}>Forefoot volume</div>
+        <div style={{ fontSize: "12px", color: T.muted, marginBottom: "12px" }}>How deep is the space above your forefoot? This filters by shoe last shape.</div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap: "10px" }}>
           {VOLUMES.map(v => (
-            <OptionCard key={v.id} selected={volume === v.id} onClick={() => setVolume(v.id)}
-              icon={v.icon} title={v.title} desc={v.desc} />
+            <OptionCard key={v.id} selected={forefootVolume === v.id} onClick={() => setForefootVolume(v.id)}
+              title={v.title} desc={v.desc} />
           ))}
         </div>
       </div>
 
       {/* Width (pills) */}
-      <PillSelect label="Forefoot width" options={WIDTHS} value={width} onChange={setWidth} />
+      <div style={{ marginBottom: "20px" }}>
+        <PillSelect label="Forefoot width" options={WIDTHS} value={width} onChange={setWidth} />
+        <ExplainBox>
+          How wide is the ball of your foot? If your toes get squeezed in most shoes, try <strong style={{ color: T.text }}>Wide</strong>.
+          If you feel sloppy side-to-side movement, try <strong style={{ color: T.text }}>Narrow</strong>.
+        </ExplainBox>
+      </div>
 
-      {/* Heel (pills) */}
-      <PillSelect label="Heel width" options={HEELS} value={heel} onChange={setHeel} />
+      {/* Heel Volume (pills) */}
+      <div style={{ marginBottom: "20px" }}>
+        <PillSelect label="Heel volume" options={HEEL_VOLUMES} value={heelVolume} onChange={setHeelVolume} />
+        <ExplainBox>
+          Does your heel slip out of most shoes, or does it feel pinched? A <strong style={{ color: T.text }}>Narrow</strong> heel cup wraps tighter for precision hooking.
+          <strong style={{ color: T.text }}> Wide</strong> accommodates thicker Achilles pads and broader heel bones.
+        </ExplainBox>
+      </div>
 
-      <Counter count={matchCount} />
       <Tip>
-        <strong style={{ color: T.text, fontWeight: 600 }}>Not sure about volume?</strong> If rental shoes always feel baggy in the heel, try Low Volume.
-        If your toes get crushed but the heel is fine, try Wide. Standard works for most people.
+        <strong style={{ color: T.text, fontWeight: 600 }}>Not sure about forefoot volume?</strong> If rental shoes always feel baggy on top of your foot, try Low.
+        If your toes get crushed but nothing else feels tight, try High. Standard works for most people.
       </Tip>
       <NavButtons />
     </div>
@@ -861,7 +859,7 @@ export default function ShoeFinder({ shoes = [] }) {
             <div style={{ fontSize: "28px" }}>🎯</div>
             <div>
               <div style={{ fontSize: "17px", fontWeight: 700, letterSpacing: "-0.3px", color: T.text }}>
-                {targetDownturn.charAt(0).toUpperCase() + targetDownturn.slice(1)}, {volume === "low" ? "low-volume" : volume === "high" ? "high-volume" : "standard"}, {targetMidsole}-midsole shoe
+                {targetDownturn.charAt(0).toUpperCase() + targetDownturn.slice(1)}, {forefootVolume === "low" ? "low-volume" : forefootVolume === "high" ? "high-volume" : "standard"}, {targetMidsole}-midsole shoe
               </div>
               <div style={{ fontSize: "12px", color: T.muted, marginTop: "2px" }}>
                 For {disciplineLabel.toLowerCase()} · {envLabel.toLowerCase()} · {level} level
@@ -891,13 +889,13 @@ export default function ShoeFinder({ shoes = [] }) {
             {targetMidsole === "full" && " gives maximum stiffness for edge support on long routes."}
             {targetMidsole === "partial" && " gives the right balance: enough stiffness for thin edges, flexible enough to feel the rock."}
             {targetMidsole === "none" && " gives maximum sensitivity and flexibility for smearing and feeling the rock."}
-            {(toeForm || width || heel) && (
+            {(toeForm || width || heelVolume) && (
               <>
                 <br /><br />
                 Your foot profile
                 {toeForm && <> (<strong style={{ color: T.text, fontWeight: 600 }}>{toeForm}</strong> toe shape)</>}
                 {width && <>{toeForm ? "," : ""} <strong style={{ color: T.text, fontWeight: 600 }}>{width}</strong> forefoot</>}
-                {heel && <>{(toeForm || width) ? "," : ""} <strong style={{ color: T.text, fontWeight: 600 }}>{heel}</strong> heel</>}
+                {heelVolume && <>{(toeForm || width) ? "," : ""} <strong style={{ color: T.text, fontWeight: 600 }}>{heelVolume}</strong> heel</>}
                 {" "}helps us rank shoes built on matching lasts higher.
               </>
             )}
@@ -912,10 +910,10 @@ export default function ShoeFinder({ shoes = [] }) {
               { label: "Asymmetry", value: targetAsymmetry },
               { label: "Midsole", value: targetMidsole },
               { label: "Rubber", value: `~${targetRubber}mm` },
-              volume && { label: "Volume", value: volume },
+              forefootVolume && { label: "Forefoot vol.", value: forefootVolume },
               toeForm && { label: "Toe", value: toeForm },
               width && { label: "Width", value: width },
-              heel && { label: "Heel", value: heel },
+              heelVolume && { label: "Heel vol.", value: heelVolume },
               { label: "Env.", value: environment },
             ].filter(Boolean).map(chip => (
               <div key={chip.label} style={{
@@ -933,7 +931,7 @@ export default function ShoeFinder({ shoes = [] }) {
         {/* Results header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
           <h3 style={{ fontSize: "16px", fontWeight: 700, color: T.text }}>Top matches</h3>
-          <Counter count={allResults.length} />
+          <span style={{ fontSize: "13px", color: T.muted, fontFamily: T.mono }}>{allResults.length} results</span>
         </div>
 
         {/* Brand filter chips */}

@@ -16,9 +16,9 @@ import usePageMeta from "./usePageMeta.js";
 
 const ORD = {
   toe_form: ["egyptian", "roman", "greek"],
-  volume: ["low", "standard", "high"],
+  forefoot_volume: ["low", "standard", "high"],
   width: ["narrow", "medium", "wide"],
-  heel: ["narrow", "medium", "wide"],
+  heel_volume: ["narrow", "medium", "wide"],
   feel: ["stiff", "stiff-moderate", "moderate", "moderate-soft", "soft"],
   asymmetry: ["none", "slight", "strong"],
   downturn: ["flat", "moderate", "aggressive"],
@@ -186,16 +186,16 @@ const GROUPS = [
         type: "single",
         options: ["egyptian", "roman", "greek"],
       },
-      { key: "volume", label: "Volume", type: "single", options: ["low", "standard", "high"] },
+      { key: "forefoot_volume", label: "Forefoot Volume", type: "single", options: ["low", "standard", "high"] },
       {
         key: "width",
-        label: "Width",
+        label: "Forefoot Width",
         type: "single",
         options: ["narrow", "medium", "wide"],
       },
       {
-        key: "heel",
-        label: "Heel",
+        key: "heel_volume",
+        label: "Heel Volume",
         type: "single",
         options: ["narrow", "medium", "wide"],
       },

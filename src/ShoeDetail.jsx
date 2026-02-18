@@ -181,7 +181,7 @@ function PriceChart({ data, width = 320, height = 100 }) {
 }
 
 // ─── Foot Shape Visual (real illustrations from SVG) ───
-function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
+function FootShapeDiagram({ toe_form, forefoot_volume, width: w, heel_volume }) {
   const descs = {
     egyptian: "Big toe longest, toes descend diagonally",
     greek: "Second toe longest (Morton\u2019s toe)",
@@ -205,8 +205,8 @@ function FootShapeDiagram({ toe_form, volume, width: w, heel }) {
         </div>
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
           <Tag small variant={w === "narrow" ? "accent" : "default"}>{w} width</Tag>
-          <Tag small variant={volume === "low" ? "accent" : "default"}>{volume} volume</Tag>
-          <Tag small variant={heel === "narrow" ? "blue" : heel === "wide" ? "yellow" : "default"}>{heel} heel</Tag>
+          <Tag small variant={forefoot_volume === "low" ? "accent" : "default"}>{forefoot_volume} forefoot vol.</Tag>
+          <Tag small variant={heel_volume === "narrow" ? "blue" : heel_volume === "wide" ? "yellow" : "default"}>{heel_volume} heel vol.</Tag>
         </div>
       </div>
     </div>
@@ -322,9 +322,9 @@ function WhoIsThisFor({ shoe }) {
     profiles.push({ icon: "\uD83C\uDFC6", label: "Competition / elite", desc: "Maximum performance for comp climbing and limit sends" });
   if (ensureArray(shoe.use_cases).includes("trad_multipitch"))
     profiles.push({ icon: "\u26F0\uFE0F", label: "Trad & multi-pitch", desc: "All-day comfort, crack protection, durable rubber" });
-  if (shoe.width === "wide" || shoe.volume === "high")
+  if (shoe.width === "wide" || shoe.forefoot_volume === "high")
     profiles.push({ icon: "👣", label: "Wide / high-volume feet", desc: "Generous fit that accommodates broader foot shapes" });
-  if (shoe.width === "narrow" || shoe.volume === "low")
+  if (shoe.width === "narrow" || shoe.forefoot_volume === "low")
     profiles.push({ icon: "🦶", label: "Narrow / low-volume feet", desc: "Snug fit designed for slimmer foot shapes" });
 
   const shown = profiles.slice(0, 2);
@@ -838,7 +838,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
                 <SectionHeader icon="🦶" title="Foot Shape & Sizing" compact={isMobile} />
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
-                  <FootShapeDiagram toe_form={shoe.toe_form} volume={shoe.volume} width={shoe.width} heel={shoe.heel} />
+                  <FootShapeDiagram toe_form={shoe.toe_form} forefoot_volume={shoe.forefoot_volume} width={shoe.width} heel_volume={shoe.heel_volume} />
                 </div>
               </div>
 

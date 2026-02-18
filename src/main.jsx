@@ -153,7 +153,22 @@ function mergeWithSeed(sbRow, seedMap) {
   }
   return merged;
 }
-function mergeShoe(sbShoe) { return mergeWithSeed(sbShoe, SEED_MAP); }
+/** Normalize shoe field names: DB columns → canonical JS names.
+ *  Remove this mapping once Supabase columns are renamed via:
+ *    ALTER TABLE shoes RENAME COLUMN volume TO forefoot_volume;
+ *    ALTER TABLE shoes RENAME COLUMN heel TO heel_volume;
+ */
+function normalizeShoeFields(shoe) {
+  const s = { ...shoe };
+  if (s.volume !== undefined && s.forefoot_volume === undefined) {
+    s.forefoot_volume = s.volume;
+  }
+  if (s.heel !== undefined && s.heel_volume === undefined) {
+    s.heel_volume = s.heel;
+  }
+  return s;
+}
+function mergeShoe(sbShoe) { return normalizeShoeFields(mergeWithSeed(sbShoe, SEED_MAP)); }
 
 /** Merge Supabase array with seed: update existing by slug, keep seed-only extras */
 function mergeDataset(sbData, seedArr, seedMap) {
@@ -254,7 +269,7 @@ function ScrollToTop() {
 }
 
 function Root() {
-  const [shoes, setShoes] = useState(assignLocalImages(SEED, "shoes"));
+  const [shoes, setShoes] = useState(assignLocalImages(SEED.map(normalizeShoeFields), "shoes"));
   const [src, setSrc] = useState("local");
   const [priceData, setPriceData] = useState({});
   const [priceHistory, setPriceHistory] = useState({});
