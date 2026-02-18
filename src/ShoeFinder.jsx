@@ -107,21 +107,54 @@ const MIDSOLE_LABELS = ["none", "partial", "full"];
 // Level + Preference → numeric value for downturn/asymmetry
 const LEVEL_NUM = { beginner: 0, intermediate: 1, advanced: 2 };
 const PREF_NUM = { comfort: 0, balanced: 1, performance: 2 };
-const DOWNTURN_LABELS = ["flat", "moderate", "aggressive"];
-const ASYM_LABELS = ["none", "slight", "strong"];
+const DOWNTURN_ORDER = ["flat", "moderate", "aggressive"]; // DB values, indices 0-2
+const ASYM_ORDER = ["none", "slight", "strong"];           // DB values, indices 0-2
+
+// 5-tier system: level (0-2) + preference (0-2) = sum (0-4)
+// sum 0 → zero, 1 → slight, 2 → moderate, 3 → high, 4 → ultra
+const TIER_NAMES = ["zero", "slight", "moderate", "high", "ultra"];
+
+// Fractional index into DB scale (0-2) — used for scoring distance
+const TIER_DOWNTURN_IDX  = [0, 0.5, 1, 1.5, 2]; // zero→flat(0), slight→0.5, moderate→mod(1), high→1.5, ultra→agg(2)
+const TIER_ASYMMETRY_IDX = [0, 0.5, 1, 1.5, 2]; // zero→none(0), slight→0.5, moderate→slight(1), high→1.5, ultra→strong(2)
+
+// Human-readable labels for display
+const TIER_DOWNTURN_LABEL = {
+  zero: "flat",
+  slight: "flat–moderate",
+  moderate: "moderate",
+  high: "moderate–aggressive",
+  ultra: "aggressive",
+};
+const TIER_ASYMMETRY_LABEL = {
+  zero: "none",
+  slight: "none–slight",
+  moderate: "slight",
+  high: "slight–strong",
+  ultra: "strong",
+};
+
+function combinedTier(level, preference) {
+  const sum = (LEVEL_NUM[level] ?? 1) + (PREF_NUM[preference] ?? 1);
+  return TIER_NAMES[Math.min(sum, 4)];
+}
 
 function computeTargetDownturn(level, preference) {
-  const combined = ((LEVEL_NUM[level] ?? 1) + (PREF_NUM[preference] ?? 1)) / 2;
-  if (combined <= 0.5) return "flat";
-  if (combined <= 1.25) return "moderate";
-  return "aggressive";
+  return combinedTier(level, preference);
 }
 
 function computeTargetAsymmetry(level, preference) {
-  const combined = ((LEVEL_NUM[level] ?? 1) + (PREF_NUM[preference] ?? 1)) / 2;
-  if (combined <= 0.5) return "none";
-  if (combined <= 1.25) return "slight";
-  return "strong";
+  return combinedTier(level, preference);
+}
+
+// Fractional index for scoring — maps tier to 0-2 scale
+function downturnTargetIdx(level, preference) {
+  const sum = (LEVEL_NUM[level] ?? 1) + (PREF_NUM[preference] ?? 1);
+  return TIER_DOWNTURN_IDX[Math.min(sum, 4)];
+}
+function asymmetryTargetIdx(level, preference) {
+  const sum = (LEVEL_NUM[level] ?? 1) + (PREF_NUM[preference] ?? 1);
+  return TIER_ASYMMETRY_IDX[Math.min(sum, 4)];
 }
 
 function computeTargetMidsole(disciplines, weightKg) {
@@ -234,31 +267,30 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
     else score += 5;
   }
 
-  // ── 4. Downturn fit (15 pts) — level + preference combined ──
-  const targetDownturn = computeTargetDownturn(level, preference);
+  // ── 4. Downturn fit (15 pts) — fractional 5-tier system ──
+  const dtTarget = downturnTargetIdx(level, preference); // 0-2 fractional
   const shoeDownturn = (shoe.downturn || "").toLowerCase();
-  const dtOrder = ["flat", "moderate", "aggressive"];
-  const dtTargetIdx = dtOrder.indexOf(targetDownturn);
-  const dtShoeIdx = dtOrder.indexOf(shoeDownturn);
-  if (dtTargetIdx >= 0 && dtShoeIdx >= 0) {
-    const dist = Math.abs(dtTargetIdx - dtShoeIdx);
-    if (dist === 0) score += 15;
-    else if (dist === 1) score += 8;
+  const dtShoeIdx = DOWNTURN_ORDER.indexOf(shoeDownturn);
+  if (dtShoeIdx >= 0) {
+    const dist = Math.abs(dtTarget - dtShoeIdx);
+    // dist 0 = perfect, 0.5 = adjacent half-step, 1 = one full step, 1.5+2 = far
+    if (dist <= 0.25) score += 15;
+    else if (dist <= 0.75) score += 12;
+    else if (dist <= 1.25) score += 7;
     else score += 2;
   } else {
     score += 6;
   }
 
-  // ── 5. Asymmetry fit (10 pts) — level + preference combined ──
-  const targetAsym = computeTargetAsymmetry(level, preference);
+  // ── 5. Asymmetry fit (10 pts) — fractional 5-tier system ──
+  const aTarget = asymmetryTargetIdx(level, preference); // 0-2 fractional
   const shoeAsym = (shoe.asymmetry || "").toLowerCase();
-  const asymOrder = ["none", "slight", "strong"];
-  const aTargetIdx = asymOrder.indexOf(targetAsym);
-  const aShoeIdx = asymOrder.indexOf(shoeAsym);
-  if (aTargetIdx >= 0 && aShoeIdx >= 0) {
-    const asymDist = Math.abs(aTargetIdx - aShoeIdx);
-    if (asymDist === 0) score += 10;
-    else if (asymDist === 1) score += 5;
+  const aShoeIdx = ASYM_ORDER.indexOf(shoeAsym);
+  if (aShoeIdx >= 0) {
+    const asymDist = Math.abs(aTarget - aShoeIdx);
+    if (asymDist <= 0.25) score += 10;
+    else if (asymDist <= 0.75) score += 8;
+    else if (asymDist <= 1.25) score += 4;
     else score += 1;
   } else {
     score += 4;
@@ -433,8 +465,10 @@ export default function ShoeFinder({ shoes = [] }) {
   }, [allResults]);
 
   // Computed targets for display
-  const targetDownturn = computeTargetDownturn(level, preference);
-  const targetAsymmetry = computeTargetAsymmetry(level, preference);
+  const targetDownturnTier = computeTargetDownturn(level, preference);
+  const targetAsymmetryTier = computeTargetAsymmetry(level, preference);
+  const targetDownturn = TIER_DOWNTURN_LABEL[targetDownturnTier] || targetDownturnTier;
+  const targetAsymmetry = TIER_ASYMMETRY_LABEL[targetAsymmetryTier] || targetAsymmetryTier;
   const targetMidsoleNum = computeTargetMidsole(disciplines, weightKg);
   const targetMidsole = MIDSOLE_LABELS[targetMidsoleNum];
   const targetRubber = computeTargetRubberThickness(disciplines, weightKg).toFixed(1);
@@ -694,42 +728,50 @@ export default function ShoeFinder({ shoes = [] }) {
         ))}
       </div>
 
-      {/* Combined downturn preview */}
-      <div style={{
-        display: "flex", justifyContent: "space-between", alignItems: "flex-end",
-        padding: "16px 8px", marginTop: "16px",
-        background: T.surface, borderRadius: T.radiusSm, border: `1px solid ${T.border}`,
-      }}>
-        {["Flat", "Moderate", "Aggressive"].map((label, i) => {
-          const dt = computeTargetDownturn(level, preference);
-          const key = label.toLowerCase();
-          const isTarget = dt === key;
-          return (
-            <div key={label} style={{ textAlign: "center", flex: 1 }}>
-              <svg width="60" height="28" viewBox="0 0 60 28">
-                <path
-                  d={i === 0 ? "M4 24 Q14 24 28 23 Q46 22 56 22" :
-                     i === 1 ? "M4 24 Q14 22 28 18 Q46 14 56 18" :
-                              "M4 24 Q14 18 28 10 Q46 4 56 12"}
-                  fill="none"
-                  stroke={isTarget ? T.accent : "#444"}
-                  strokeWidth={isTarget ? "3" : "2"} strokeLinecap="round"
-                />
-              </svg>
-              <div style={{
-                fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.3px",
-                color: isTarget ? T.accent : "#555",
-                fontWeight: isTarget ? 700 : 400,
-              }}>{label}</div>
+      {/* Combined downturn preview — 5 tiers */}
+      {(() => {
+        const tier = computeTargetDownturn(level, preference);
+        const tierIdx = TIER_NAMES.indexOf(tier);
+        const tiers = [
+          { label: "Zero", path: "M4 24 Q30 24 56 24" },
+          { label: "Slight", path: "M4 24 Q14 23 28 22 Q46 21 56 22" },
+          { label: "Moderate", path: "M4 24 Q14 22 28 18 Q46 14 56 18" },
+          { label: "High", path: "M4 24 Q14 20 28 14 Q46 8 56 14" },
+          { label: "Ultra", path: "M4 24 Q14 18 28 10 Q46 4 56 12" },
+        ];
+        return (
+          <>
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "flex-end",
+              padding: "16px 4px", marginTop: "16px",
+              background: T.surface, borderRadius: T.radiusSm, border: `1px solid ${T.border}`,
+            }}>
+              {tiers.map((t, i) => {
+                const isTarget = i === tierIdx;
+                return (
+                  <div key={t.label} style={{ textAlign: "center", flex: 1 }}>
+                    <svg width={isMobile ? "44" : "52"} height="28" viewBox="0 0 60 28">
+                      <path d={t.path} fill="none"
+                        stroke={isTarget ? T.accent : "#444"}
+                        strokeWidth={isTarget ? "3" : "2"} strokeLinecap="round" />
+                    </svg>
+                    <div style={{
+                      fontSize: isMobile ? "8px" : "9px", textTransform: "uppercase", letterSpacing: "0.3px",
+                      color: isTarget ? T.accent : "#555",
+                      fontWeight: isTarget ? 700 : 400,
+                    }}>{t.label}</div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
-      <div style={{ textAlign: "center", marginTop: "8px" }}>
-        <span style={{ fontSize: "10px", color: T.accent, fontWeight: 600 }}>
-          {level.charAt(0).toUpperCase() + level.slice(1)} + {preference} → {targetDownturn} downturn
-        </span>
-      </div>
+            <div style={{ textAlign: "center", marginTop: "8px" }}>
+              <span style={{ fontSize: "10px", color: T.accent, fontWeight: 600 }}>
+                {level.charAt(0).toUpperCase() + level.slice(1)} + {preference} → {TIER_DOWNTURN_LABEL[tier]} downturn
+              </span>
+            </div>
+          </>
+        );
+      })()}
 
       <Tip>
         <strong style={{ color: T.text, fontWeight: 600 }}>Level + Preference</strong> combine to set your target.
@@ -768,8 +810,8 @@ export default function ShoeFinder({ shoes = [] }) {
           <div style={{ fontSize: "12px", color: T.muted, marginBottom: "10px" }}>With your settings:</div>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
             {[
-              { label: "Downturn", value: dt },
-              { label: "Asymmetry", value: asym },
+              { label: "Downturn", value: TIER_DOWNTURN_LABEL[dt] || dt },
+              { label: "Asymmetry", value: TIER_ASYMMETRY_LABEL[asym] || asym },
             ].map(t => (
               <div key={t.label} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ fontSize: "11px", color: "#6b7280" }}>{t.label}:</span>
@@ -781,10 +823,12 @@ export default function ShoeFinder({ shoes = [] }) {
 
         <Tip>
           <strong style={{ color: T.text, fontWeight: 600 }}>{level.charAt(0).toUpperCase() + level.slice(1)} + {preference}</strong> →{" "}
-          {dt} downturn, {asym} asymmetry.
-          {dt === "flat" && " Flat, symmetric shoes maximize comfort for long sessions."}
+          {TIER_DOWNTURN_LABEL[dt]} downturn, {TIER_ASYMMETRY_LABEL[asym]} asymmetry.
+          {dt === "zero" && " Flat, symmetric shoes maximize comfort for long sessions."}
+          {dt === "slight" && " Minimal curve — comfort-first with a hint of precision."}
           {dt === "moderate" && " Enough curve for precision without the pain of an aggressive shoe."}
-          {dt === "aggressive" && " Maximum power on small holds and overhangs."}
+          {dt === "high" && " Significant curve and toe power for hard climbing."}
+          {dt === "ultra" && " Maximum downturn and asymmetry — pure performance on steep terrain."}
         </Tip>
         <NavButtons />
       </div>
