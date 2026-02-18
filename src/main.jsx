@@ -284,7 +284,7 @@ function BetaBanner() {
       position: "relative",
     }}>
       <span style={{ background: T.accent, color: "#fff", fontSize: "9px", fontWeight: 800, padding: "2px 6px", borderRadius: "4px", letterSpacing: "0.5px", flexShrink: 0 }}>BETA</span>
-      <span>Data is still being verified — a full review by our AI team is in progress. Specs may contain inaccuracies.</span>
+      <span>Data is still being verified. Specs may contain inaccuracies.</span>
       <button onClick={() => { setDismissed(true); try { sessionStorage.setItem("beta-dismissed", "1"); } catch {} }}
         style={{ background: "none", border: "none", color: T.muted, cursor: "pointer", fontSize: "14px", padding: "0 4px", lineHeight: 1, flexShrink: 0, marginLeft: "4px" }}
         title="Dismiss">{"\u2715"}</button>
