@@ -1036,6 +1036,24 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   </button>
                 ))}
               </div>
+              <button
+                onClick={() => navigate("/find")}
+                title="Guided search — answer 6 questions, get matched"
+                style={{
+                  height: "28px", padding: "0 8px", borderRadius: "6px", border: "1px solid #E8734A",
+                  background: "rgba(232,115,74,0.10)", color: "#E8734A", cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: "4px",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
+                  whiteSpace: "nowrap", flexShrink: 0,
+                }}
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/>
+                  <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+                  <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+                </svg>
+                Guided
+              </button>
             </div>
           </>
         ) : (
@@ -1073,6 +1091,24 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 </button>
               ))}
             </div>
+            <button
+              onClick={() => navigate("/find")}
+              title="Guided search — answer 6 questions, get matched"
+              style={{
+                height: "32px", padding: "0 12px", borderRadius: "8px", border: "1px solid #E8734A",
+                background: "rgba(232,115,74,0.10)", color: "#E8734A", cursor: "pointer",
+                display: "flex", alignItems: "center", gap: "5px",
+                fontFamily: "'DM Sans',sans-serif", fontSize: "12px", fontWeight: 600,
+                whiteSpace: "nowrap", flexShrink: 0,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/>
+                <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+                <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+              </svg>
+              Guided search
+            </button>
 
             <span style={{ fontSize: "13px", color: "#6b7280", whiteSpace: "nowrap" }}>
               {displayResults.length} shoe{displayResults.length !== 1 ? "s" : ""}
