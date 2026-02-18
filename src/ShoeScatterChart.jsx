@@ -19,16 +19,33 @@ function skillGroup(shoe) {
   return "beginner";
 }
 
-/* ─── Zone definitions for Edging × Sensitivity chart (6-zone: 2 skill cols × 3 sens rows) ─── */
-const ZONE_GRID = [
-  // row 0 = sensitive (top), row 1 = balanced (mid), row 2 = supportive (bottom)
-  // col 0 = beginner-intermediate (left / low edging), col 1 = advanced-elite (right / high edging)
-  { id: "1-sens", col: 0, row: 0, label: "Gym Progression",    emoji: "🧗", bg: "rgba(52,211,153,0.08)" },
-  { id: "2-sens", col: 1, row: 0, label: "Overhang Specialist", emoji: "💪", bg: "rgba(232,115,74,0.08)" },
-  { id: "1-bal",  col: 0, row: 1, label: "Allrounder",          emoji: "⭐", bg: "rgba(52,211,153,0.05)" },
-  { id: "2-bal",  col: 1, row: 1, label: "Advanced Allrounder", emoji: "🎯", bg: "rgba(232,115,74,0.05)" },
-  { id: "1-sup",  col: 0, row: 2, label: "Multi-Pitch Comfort", emoji: "🏔", bg: "rgba(52,211,153,0.03)" },
-  { id: "2-sup",  col: 1, row: 2, label: "Edging Machine",      emoji: "🔪", bg: "rgba(232,115,74,0.03)" },
+/* ─── Zone definitions for Edging × Sensitivity chart (6 irregular polygons) ─── */
+// Zones follow the natural data distribution — the boundary between beginner
+// (left) and advanced (right) curves leftward at high sensitivity where soft
+// aggressive shoes cluster, and rightward in mid-range where overlap is larger.
+// Coordinates are [edging, sensitivity] in 0→1 percentile space.
+//
+// Key boundary vertices (bottom→top along the diagonal):
+//   V1(0.42, 0) → V2(0.48, 0.32) → V3(0.42, 0.65) → V4(0.28, 1.0)
+const ZONE_POLYS = [
+  { id: "1-sup",  label: "Multi-Pitch Comfort", emoji: "🏔",  side: "beg",
+    poly: [[0,0], [0.42,0], [0.48,0.32], [0,0.32]],
+    bg: "rgba(52,211,153,0.06)" },
+  { id: "2-sup",  label: "Edging Machine",      emoji: "🔪", side: "adv",
+    poly: [[0.42,0], [1,0], [1,0.30], [0.48,0.32]],
+    bg: "rgba(232,115,74,0.06)" },
+  { id: "1-bal",  label: "Allrounder",           emoji: "⭐", side: "beg",
+    poly: [[0,0.32], [0.48,0.32], [0.42,0.65], [0,0.65]],
+    bg: "rgba(52,211,153,0.05)" },
+  { id: "2-bal",  label: "Advanced Allrounder",  emoji: "🎯", side: "adv",
+    poly: [[0.48,0.32], [1,0.30], [1,0.68], [0.42,0.65]],
+    bg: "rgba(232,115,74,0.05)" },
+  { id: "1-sens", label: "Gym Progression",      emoji: "🧗", side: "beg",
+    poly: [[0,0.65], [0.42,0.65], [0.28,1], [0,1]],
+    bg: "rgba(52,211,153,0.08)" },
+  { id: "2-sens", label: "Overhang Specialist",  emoji: "💪", side: "adv",
+    poly: [[0.42,0.65], [1,0.68], [1,1], [0.28,1]],
+    bg: "rgba(232,115,74,0.08)" },
 ];
 const ZONE_DESCRIPTIONS = {
   "1-sens": "Modern bouldering gym shoe for beginners. Minimal downturn and asymmetry, but thin, soft sole for maximum rock feel. Less supportive — your feet may tire faster at first — but builds toe strength and footwork skills faster than a stiff shoe.",
@@ -186,69 +203,70 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
 
     // ── 6-zone overlay (edging_sensitivity + insightsMode + showZones) ──
     if (metric === "edging_sensitivity" && insightsMode && showZones) {
-      // Grid boundaries: x split at 0.5 (beginner left, advanced right), y splits at 0.33 & 0.67
-      const xMid = sx(0.5);
-      const yRows = [PAD.t, sy(0.67), sy(0.33), H - PAD.b]; // top, sens/bal boundary, bal/sup boundary, bottom
+      // Helper: convert polygon from data-space [edging, sensitivity] to pixel coords
+      const polyToPx = poly => poly.map(([ex, se]) => [sx(ex), sy(se)]);
+      const drawPoly = (pxPoly, fill, stroke) => {
+        ctx.beginPath();
+        pxPoly.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
+        ctx.closePath();
+        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+        if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.setLineDash([6, 4]); ctx.stroke(); ctx.setLineDash([]); }
+      };
 
-      // Draw 6 zone rectangles
-      ZONE_GRID.forEach(z => {
-        const x0 = z.col === 0 ? PAD.l : xMid;
-        const x1 = z.col === 0 ? xMid : W - PAD.r;
-        const y0 = yRows[z.row];
-        const y1 = yRows[z.row + 1];
-        ctx.save();
-        ctx.fillStyle = z.bg;
-        ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
-        ctx.restore();
+      // Draw filled zone polygons
+      ZONE_POLYS.forEach(z => {
+        drawPoly(polyToPx(z.poly), z.bg, null);
       });
 
-      // Dashed divider lines
+      // Draw dashed boundary lines along the shared edges
       ctx.save();
-      ctx.strokeStyle = "rgba(255,255,255,0.15)";
+      ctx.strokeStyle = "rgba(255,255,255,0.13)";
       ctx.lineWidth = 1;
       ctx.setLineDash([6, 4]);
-      // Vertical divider at x = 0.5
-      ctx.beginPath(); ctx.moveTo(xMid, PAD.t); ctx.lineTo(xMid, H - PAD.b); ctx.stroke();
-      // Horizontal dividers at y = 0.33 and 0.67
-      [sy(0.33), sy(0.67)].forEach(yy => {
-        ctx.beginPath(); ctx.moveTo(PAD.l, yy); ctx.lineTo(W - PAD.r, yy); ctx.stroke();
-      });
+      // Diagonal boundary (V1→V2→V3→V4)
+      const diag = [[0.42,0], [0.48,0.32], [0.42,0.65], [0.28,1]].map(([ex,se]) => [sx(ex), sy(se)]);
+      ctx.beginPath(); diag.forEach(([x,y], i) => i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y)); ctx.stroke();
+      // Left horizontal splits
+      ctx.beginPath(); ctx.moveTo(sx(0), sy(0.32)); ctx.lineTo(sx(0.48), sy(0.32)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(sx(0), sy(0.65)); ctx.lineTo(sx(0.42), sy(0.65)); ctx.stroke();
+      // Right horizontal splits
+      ctx.beginPath(); ctx.moveTo(sx(0.48), sy(0.32)); ctx.lineTo(sx(1), sy(0.30)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(sx(0.42), sy(0.65)); ctx.lineTo(sx(1), sy(0.68)); ctx.stroke();
       ctx.restore();
 
-      // Zone labels centered in each cell
+      // Zone labels at polygon centroids
       const labelSize = isMobile ? 8 : 10;
       ctx.save();
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ZONE_GRID.forEach(z => {
-        const x0 = z.col === 0 ? PAD.l : xMid;
-        const x1 = z.col === 0 ? xMid : W - PAD.r;
-        const y0 = yRows[z.row];
-        const y1 = yRows[z.row + 1];
-        const cx = (x0 + x1) / 2;
-        const cy = (y0 + y1) / 2;
+      ZONE_POLYS.forEach(z => {
+        // Centroid = average of vertices
+        const pxPoly = polyToPx(z.poly);
+        const cx = pxPoly.reduce((s, p) => s + p[0], 0) / pxPoly.length;
+        const cy = pxPoly.reduce((s, p) => s + p[1], 0) / pxPoly.length;
         // Emoji
         ctx.font = `${isMobile ? 12 : 16}px sans-serif`;
         ctx.globalAlpha = 0.6;
         ctx.fillText(z.emoji, cx, cy - (isMobile ? 7 : 10));
         // Label
         ctx.font = `700 ${labelSize}px ${T.font}`;
-        ctx.fillStyle = z.col === 0 ? "#34d399" : "#E8734A";
+        ctx.fillStyle = z.side === "beg" ? "#34d399" : "#E8734A";
         ctx.globalAlpha = 0.55;
         ctx.fillText(z.label, cx, cy + (isMobile ? 7 : 10));
       });
       ctx.restore();
 
-      // Axis-side group labels (above chart)
+      // Group labels above chart
       ctx.save();
       ctx.font = `600 ${isMobile ? 8 : 9}px ${T.font}`;
       ctx.globalAlpha = 0.5;
       ctx.textBaseline = "bottom";
       ctx.textAlign = "center";
+      const xDivMid = sx(0.35); // visual midpoint of diagonal boundary
       ctx.fillStyle = "#34d399";
-      ctx.fillText("← Beginner – Intermediate", (PAD.l + xMid) / 2, PAD.t - 3);
+      ctx.fillText("← Beginner – Intermediate", (PAD.l + xDivMid) / 2, PAD.t - 3);
       ctx.fillStyle = "#E8734A";
-      ctx.fillText("Advanced – Elite →", (xMid + W - PAD.r) / 2, PAD.t - 3);
+      ctx.fillText("Advanced – Elite →", (xDivMid + W - PAD.r) / 2, PAD.t - 3);
       ctx.restore();
     }
 
@@ -585,8 +603,8 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       {/* Zone guide (only in insights mode when edging_sensitivity + zones visible) */}
       {insightsMode && metric === "edging_sensitivity" && showZones && (
         <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "8px" }}>
-          {ZONE_GRID.map(z => {
-            const isAdv = z.col === 1;
+          {ZONE_POLYS.map(z => {
+            const isAdv = z.side === "adv";
             const bandColor = isAdv ? "#E8734A" : "#34d399";
             return (
               <div key={z.id} style={{
