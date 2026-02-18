@@ -61,10 +61,11 @@ Supabase (PostgreSQL)         ← CANONICAL source of truth
 
 | File | Contents | Count |
 |------|----------|-------|
-| `src/seed_data.json` | Climbing shoes | 344 |
-| `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 156 |
+| `src/seed_data.json` | Climbing shoes | 340 |
+| `src/rope_seed_data.json` | Ropes (single, half, twin, static) | 155 |
 | `src/belay_seed_data.json` | Belay devices | 49 |
-| `src/crashpad_seed_data.json` | Crashpads | 112 (23 brands) |
+| `src/crashpad_seed_data.json` | Crashpads | 111 |
+| `src/quickdraw_seed_data.json` | Quickdraws | 44 |
 
 ### Image Strategy
 
@@ -102,6 +103,7 @@ Each detail page shows "Similar" or "You May Also Like" products at the bottom. 
 | **Ropes** | Same `rope_type` AND overlapping `best_use_cases` | 3 |
 | **Belay devices** | Same `device_type` | 3 |
 | **Crashpads** | Same `pad_size_category` OR overlapping `best_use` | 3 |
+| **Quickdraws** | Same `gate_type` OR same `use_case` | 3 |
 
 No scoring or ranking is applied — the first N matches from the dataset are shown. The current product is always excluded.
 
@@ -112,6 +114,7 @@ Every product detail page includes an Amazon.de search link (with affiliate tag 
 - Ropes: `climbing rope {brand} {model}`
 - Belays: `belay device {brand} {model}`
 - Crashpads: `crash pad {brand} {model}`
+- Quickdraws: `quickdraw {brand} {model}`
 
 When no real retailer price data exists (only Amazon search), the "in stock" status is hidden to avoid misleading users.
 
