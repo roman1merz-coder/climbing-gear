@@ -191,7 +191,7 @@ export default function InsightShoes() {
         The scatter chart below defaults to Edging vs Sensitivity with six annotated zones. Green dots are beginner-to-intermediate shoes, orange dots are advanced-to-elite. Each zone corresponds to a distinct shoe archetype — hover the zone cards below the chart for details. Switch metrics, change the colour mode, and click any dot to see the full spec sheet.
       </Prose>
 
-      <ShoeScatterChart shoes={SHOE_SEED} isMobile={isMobile} />
+      <ShoeScatterChart shoes={SHOE_SEED} isMobile={isMobile} insightsMode />
 
       <div style={{ marginTop: "20px" }}>
         <Link to="/shoes?finder=1" style={{

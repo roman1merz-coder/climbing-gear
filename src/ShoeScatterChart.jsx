@@ -19,15 +19,16 @@ function skillGroup(shoe) {
   return "beginner";
 }
 
-/* ─── Zone definitions for Edging × Sensitivity chart ─── */
-const ZONE_BOUNDARIES = { sensLow: 0.33, sensHigh: 0.67 };
-const ZONE_LABELS = [
-  { id: "1-sens", col: 2, row: 0, label: "Gym Progression", emoji: "🧗" },
-  { id: "1-bal",  col: 1, row: 0, label: "Allrounder", emoji: "⭐" },
-  { id: "1-sup",  col: 0, row: 0, label: "Multi-Pitch Comfort", emoji: "🏔" },
-  { id: "2-sens", col: 2, row: 1, label: "Overhang Specialist", emoji: "💪" },
-  { id: "2-bal",  col: 1, row: 1, label: "Advanced Allrounder", emoji: "🎯" },
-  { id: "2-sup",  col: 0, row: 1, label: "Edging Machine", emoji: "🔪" },
+/* ─── Zone definitions for Edging × Sensitivity chart (6-zone: 2 skill cols × 3 sens rows) ─── */
+const ZONE_GRID = [
+  // row 0 = sensitive (top), row 1 = balanced (mid), row 2 = supportive (bottom)
+  // col 0 = beginner-intermediate (left / low edging), col 1 = advanced-elite (right / high edging)
+  { id: "1-sens", col: 0, row: 0, label: "Gym Progression",    emoji: "🧗", bg: "rgba(52,211,153,0.08)" },
+  { id: "2-sens", col: 1, row: 0, label: "Overhang Specialist", emoji: "💪", bg: "rgba(232,115,74,0.08)" },
+  { id: "1-bal",  col: 0, row: 1, label: "Allrounder",          emoji: "⭐", bg: "rgba(52,211,153,0.05)" },
+  { id: "2-bal",  col: 1, row: 1, label: "Advanced Allrounder", emoji: "🎯", bg: "rgba(232,115,74,0.05)" },
+  { id: "1-sup",  col: 0, row: 2, label: "Multi-Pitch Comfort", emoji: "🏔", bg: "rgba(52,211,153,0.03)" },
+  { id: "2-sup",  col: 1, row: 2, label: "Edging Machine",      emoji: "🔪", bg: "rgba(232,115,74,0.03)" },
 ];
 const ZONE_DESCRIPTIONS = {
   "1-sens": "Modern bouldering gym shoe for beginners. Minimal downturn and asymmetry, but thin, soft sole for maximum rock feel. Less supportive — your feet may tire faster at first — but builds toe strength and footwork skills faster than a stiff shoe.",
@@ -49,7 +50,7 @@ const BRAND_PAL = [
 ];
 
 /* ─── Main Component ─── */
-export default function ShoeScatterChart({ shoes = [], isMobile }) {
+export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = false }) {
   const navigate = useNavigate();
   const canvasRef = useRef(null);
   const tipRef = useRef(null);
@@ -58,8 +59,8 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
   const sheetRef = useRef(null);
 
   const [metric, setMetric] = useState("edging_sensitivity");
-  const [colorBy, setColorBy] = useState("skill");
-  const [showZones, setShowZones] = useState(true);
+  const [colorBy, setColorBy] = useState(insightsMode ? "skill" : "level");
+  const [showZones, setShowZones] = useState(insightsMode);
   const [mobileItem, setMobileItem] = useState(null);
 
   /* Filter state */
@@ -183,53 +184,71 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
     // Chart area frame
     drawChartArea(ctx, PAD, W, H);
 
-    // ── Zone overlays (edging_sensitivity + showZones only) ──
-    if (metric === "edging_sensitivity" && showZones) {
-      const chartW = W - PAD.l - PAD.r;
-      const chartHt = H - PAD.t - PAD.b;
-      const sensLowY = sy(ZONE_BOUNDARIES.sensLow);
-      const sensHighY = sy(ZONE_BOUNDARIES.sensHigh);
+    // ── 6-zone overlay (edging_sensitivity + insightsMode + showZones) ──
+    if (metric === "edging_sensitivity" && insightsMode && showZones) {
+      // Grid boundaries: x split at 0.5 (beginner left, advanced right), y splits at 0.33 & 0.67
+      const xMid = sx(0.5);
+      const yRows = [PAD.t, sy(0.67), sy(0.33), H - PAD.b]; // top, sens/bal boundary, bal/sup boundary, bottom
 
-      // 3 horizontal bands: supportive (bottom), balanced (mid), sensitive (top)
-      const bands = [
-        { y0: sensLowY,  y1: PAD.t + chartHt, color: "#60a5fa" }, // supportive (blue)
-        { y0: sensHighY, y1: sensLowY,         color: "#a78bfa" }, // balanced (purple)
-        { y0: PAD.t,     y1: sensHighY,        color: "#34d399" }, // sensitive (green)
-      ];
-      bands.forEach(b => {
+      // Draw 6 zone rectangles
+      ZONE_GRID.forEach(z => {
+        const x0 = z.col === 0 ? PAD.l : xMid;
+        const x1 = z.col === 0 ? xMid : W - PAD.r;
+        const y0 = yRows[z.row];
+        const y1 = yRows[z.row + 1];
         ctx.save();
-        ctx.globalAlpha = 0.06;
-        ctx.fillStyle = b.color;
-        ctx.fillRect(PAD.l, b.y0, chartW, b.y1 - b.y0);
+        ctx.fillStyle = z.bg;
+        ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
         ctx.restore();
       });
 
-      // Divider lines at the boundaries
+      // Dashed divider lines
       ctx.save();
-      ctx.strokeStyle = "rgba(255,255,255,0.12)";
+      ctx.strokeStyle = "rgba(255,255,255,0.15)";
       ctx.lineWidth = 1;
       ctx.setLineDash([6, 4]);
-      [sensLowY, sensHighY].forEach(yy => {
+      // Vertical divider at x = 0.5
+      ctx.beginPath(); ctx.moveTo(xMid, PAD.t); ctx.lineTo(xMid, H - PAD.b); ctx.stroke();
+      // Horizontal dividers at y = 0.33 and 0.67
+      [sy(0.33), sy(0.67)].forEach(yy => {
         ctx.beginPath(); ctx.moveTo(PAD.l, yy); ctx.lineTo(W - PAD.r, yy); ctx.stroke();
       });
       ctx.restore();
 
-      // Zone labels (right edge, centered in each band)
-      const labelSize = isMobile ? 9 : 10;
+      // Zone labels centered in each cell
+      const labelSize = isMobile ? 8 : 10;
       ctx.save();
-      ctx.font = `600 ${labelSize}px ${T.font}`;
-      ctx.textAlign = "right";
-      const labelX = W - PAD.r - 6;
-      // Supportive band
-      ctx.fillStyle = "#60a5fa";
-      ctx.globalAlpha = 0.7;
-      ctx.fillText("Supportive ↓", labelX, (sensLowY + PAD.t + chartHt) / 2 + 4);
-      // Balanced band
-      ctx.fillStyle = "#a78bfa";
-      ctx.fillText("Balanced", labelX, (sensHighY + sensLowY) / 2 + 4);
-      // Sensitive band
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ZONE_GRID.forEach(z => {
+        const x0 = z.col === 0 ? PAD.l : xMid;
+        const x1 = z.col === 0 ? xMid : W - PAD.r;
+        const y0 = yRows[z.row];
+        const y1 = yRows[z.row + 1];
+        const cx = (x0 + x1) / 2;
+        const cy = (y0 + y1) / 2;
+        // Emoji
+        ctx.font = `${isMobile ? 12 : 16}px sans-serif`;
+        ctx.globalAlpha = 0.6;
+        ctx.fillText(z.emoji, cx, cy - (isMobile ? 7 : 10));
+        // Label
+        ctx.font = `700 ${labelSize}px ${T.font}`;
+        ctx.fillStyle = z.col === 0 ? "#34d399" : "#E8734A";
+        ctx.globalAlpha = 0.55;
+        ctx.fillText(z.label, cx, cy + (isMobile ? 7 : 10));
+      });
+      ctx.restore();
+
+      // Axis-side group labels (above chart)
+      ctx.save();
+      ctx.font = `600 ${isMobile ? 8 : 9}px ${T.font}`;
+      ctx.globalAlpha = 0.5;
+      ctx.textBaseline = "bottom";
+      ctx.textAlign = "center";
       ctx.fillStyle = "#34d399";
-      ctx.fillText("Sensitive ↑", labelX, (PAD.t + sensHighY) / 2 + 4);
+      ctx.fillText("← Beginner – Intermediate", (PAD.l + xMid) / 2, PAD.t - 3);
+      ctx.fillStyle = "#E8734A";
+      ctx.fillText("Advanced – Elite →", (xMid + W - PAD.r) / 2, PAD.t - 3);
       ctx.restore();
     }
 
@@ -275,7 +294,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
       drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
     }
-  }, [metric, cfg, isMobile, getColor, filtered, showZones]);
+  }, [metric, cfg, isMobile, getColor, filtered, showZones, insightsMode]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -484,7 +503,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{l}</button>
         ))}
-        {metric === "edging_sensitivity" && (
+        {insightsMode && metric === "edging_sensitivity" && (
           <label style={{ fontSize: "11px", color: T.muted, cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", marginLeft: "6px" }}>
             <input type="checkbox" checked={showZones} onChange={e => setShowZones(e.target.checked)}
               style={{ accentColor: T.accent, width: "13px", height: "13px" }} />
@@ -563,12 +582,12 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
         />
       )}
 
-      {/* Zone guide (only when edging_sensitivity + zones visible) */}
-      {metric === "edging_sensitivity" && showZones && (
+      {/* Zone guide (only in insights mode when edging_sensitivity + zones visible) */}
+      {insightsMode && metric === "edging_sensitivity" && showZones && (
         <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "8px" }}>
-          {ZONE_LABELS.map(z => {
-            const isAdv = z.row === 1;
-            const bandColor = z.col === 0 ? "#60a5fa" : z.col === 1 ? "#a78bfa" : "#34d399";
+          {ZONE_GRID.map(z => {
+            const isAdv = z.col === 1;
+            const bandColor = isAdv ? "#E8734A" : "#34d399";
             return (
               <div key={z.id} style={{
                 background: T.surface, border: `1px solid ${T.border}`, borderRadius: "8px",
