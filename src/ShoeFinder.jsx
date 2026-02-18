@@ -315,10 +315,10 @@ export default function ShoeFinder({ shoes = [] }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // SEO
-  usePageMeta({
-    title: "Climbing Shoe Finder — Find Your Perfect Shoe | climbing-gear.com",
-    description: "Answer 6 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data.",
-  });
+  usePageMeta(
+    "Climbing Shoe Finder — Find Your Perfect Shoe",
+    "Answer 6 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data."
+  );
 
   // ─── Computed ───────────────────────────────────────────────
   const params = useMemo(() => ({
