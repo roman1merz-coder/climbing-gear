@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const SITE = "climbing-gear.com";
-const BASE_URL = "https://climbing-gear.vercel.app";
+const BASE_URL = "https://climbing-gear.com";
 const DEFAULT_TITLE = `${SITE} — Scroll less. Climb more.`;
 const DEFAULT_DESC =
   "Compare 500+ climbing products — shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.";
@@ -16,6 +16,18 @@ function setMeta(attr, key, value) {
     document.head.appendChild(el);
   }
   el.content = value;
+  return el;
+}
+
+/** Helper: set or create a <link> tag by rel attribute */
+function setLink(rel, href) {
+  let el = document.querySelector(`link[rel="${rel}"]`);
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", rel);
+    document.head.appendChild(el);
+  }
+  el.href = href;
   return el;
 }
 
@@ -39,11 +51,15 @@ export default function usePageMeta(title, description, og) {
     // Standard meta
     const metaDesc = setMeta("name", "description", desc);
 
+    // Canonical URL (use climbing-gear.com even if accessed via vercel.app)
+    const canonicalUrl = `${BASE_URL}${window.location.pathname}`;
+    const canonicalLink = setLink("canonical", canonicalUrl);
+
     // Open Graph
     setMeta("property", "og:title", fullTitle);
     setMeta("property", "og:description", desc);
     setMeta("property", "og:type", "website");
-    setMeta("property", "og:url", window.location.href);
+    setMeta("property", "og:url", canonicalUrl);
     setMeta("property", "og:image", image);
     setMeta("property", "og:site_name", SITE);
 
@@ -57,6 +73,7 @@ export default function usePageMeta(title, description, og) {
     return () => {
       document.title = DEFAULT_TITLE;
       metaDesc.content = DEFAULT_DESC;
+      canonicalLink.href = BASE_URL;
       setMeta("property", "og:title", DEFAULT_TITLE);
       setMeta("property", "og:description", DEFAULT_DESC);
       setMeta("property", "og:url", BASE_URL);

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://climbing-gear.vercel.app/sitemap.xml
+Sitemap: https://climbing-gear.com/sitemap.xml
 
 # Block admin/test pages if any
 Disallow: /admin/
