@@ -820,24 +820,42 @@ export default function ShoeFinder({ shoes = [] }) {
           ))}
         </div>
 
-        {/* Live target preview */}
-        <div style={{
-          marginTop: "18px", padding: "16px 20px",
-          background: T.surface, borderRadius: T.radiusSm, border: `1px solid ${T.border}`,
-        }}>
-          <div style={{ fontSize: "12px", color: T.muted, marginBottom: "10px" }}>With your settings:</div>
-          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            {[
-              { label: "Downturn", value: TIER_DOWNTURN_LABEL[dt] || dt },
-              { label: "Asymmetry", value: TIER_ASYMMETRY_LABEL[asym] || asym },
-            ].map(t => (
-              <div key={t.label} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span style={{ fontSize: "11px", color: "#6b7280" }}>{t.label}:</span>
-                <span style={{ fontSize: "13px", fontWeight: 700, color: T.accent }}>{t.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* 5-tier performance profile */}
+        {(() => {
+          const tierIdx = TIER_NAMES.indexOf(dt);
+          const tiers = [
+            { label: "Zero", path: "M4 24 Q30 24 56 24" },
+            { label: "Slight", path: "M4 24 Q14 23 28 22 Q46 21 56 22" },
+            { label: "Moderate", path: "M4 24 Q14 22 28 18 Q46 14 56 18" },
+            { label: "High", path: "M4 24 Q14 20 28 14 Q46 8 56 14" },
+            { label: "Ultra", path: "M4 24 Q14 18 28 10 Q46 4 56 12" },
+          ];
+          return (
+            <div style={{
+              display: "flex", justifyContent: "space-between", alignItems: "flex-end",
+              padding: "16px 4px", marginTop: "18px",
+              background: T.surface, borderRadius: T.radiusSm, border: `1px solid ${T.border}`,
+            }}>
+              {tiers.map((t, i) => {
+                const isTarget = i === tierIdx;
+                return (
+                  <div key={t.label} style={{ textAlign: "center", flex: 1 }}>
+                    <svg width={isMobile ? "44" : "52"} height="28" viewBox="0 0 60 28">
+                      <path d={t.path} fill="none"
+                        stroke={isTarget ? T.accent : "#444"}
+                        strokeWidth={isTarget ? "3" : "2"} strokeLinecap="round" />
+                    </svg>
+                    <div style={{
+                      fontSize: isMobile ? "8px" : "9px", textTransform: "uppercase", letterSpacing: "0.3px",
+                      color: isTarget ? T.accent : "#555",
+                      fontWeight: isTarget ? 700 : 400,
+                    }}>{t.label}</div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })()}
 
         <Tip>
           <strong style={{ color: T.text, fontWeight: 600 }}>{level.charAt(0).toUpperCase() + level.slice(1)} + {preference}</strong> →{" "}
@@ -1062,15 +1080,31 @@ export default function ShoeFinder({ shoes = [] }) {
       {
         id: "env",
         value: effectiveEnv === "outdoor" && rockType
-          ? `Outdoor · ${cap(rockType)}`
-          : cap(effectiveEnv),
+          ? `Outdoor · ${cap(rockType)} → ${rockType === "granite" ? "hard" : rockType === "sandstone" ? "soft" : "medium"} rubber`
+          : effectiveEnv === "indoor" ? "Indoor — soft rubber"
+          : effectiveEnv === "outdoor" ? "Outdoor"
+          : "Indoor & outdoor",
         reason: effectiveEnv === "outdoor" && rockType
-          ? `${rockType} → ${rockType === "granite" ? "hard" : rockType === "sandstone" ? "soft" : "medium"} rubber`
-          : effectiveEnv === "indoor" ? "soft rubber, easy on/off" : "versatile all-rounder",
+          ? `rock type determines rubber compound`
+          : effectiveEnv === "indoor" ? "gym walls, soft rubber, easy on/off" : "versatile all-rounder",
         editor: () => (
-          <InlinePills options={[
-            { id: "outdoor", label: "Outdoor" }, { id: "indoor", label: "Indoor" }, { id: "both", label: "Both" },
-          ]} value={effectiveEnv} onChange={v => setEnvOverride(v)} />
+          <div>
+            <div style={{ fontSize: "11px", color: T.muted, marginBottom: "2px" }}>Rubber hardness</div>
+            <InlinePills options={[
+              { id: "soft", label: "Soft (indoor / sandstone)" },
+              { id: "medium", label: "Medium (limestone / mixed)" },
+              { id: "hard", label: "Hard (granite / outdoor)" },
+            ]} value={
+              effectiveEnv === "indoor" ? "soft"
+                : effectiveEnv === "outdoor" && rockType === "granite" ? "hard"
+                : effectiveEnv === "outdoor" && rockType === "sandstone" ? "soft"
+                : "medium"
+            } onChange={v => {
+              if (v === "soft") { setEnvOverride("indoor"); }
+              else if (v === "hard") { setEnvOverride("outdoor"); setRockType("granite"); }
+              else { setEnvOverride("outdoor"); setRockType("limestone"); }
+            }} />
+          </div>
         ),
       },
     ];
@@ -1143,13 +1177,7 @@ export default function ShoeFinder({ shoes = [] }) {
           ))}
         </div>
 
-        {/* Closure filter chips */}
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "16px" }}>
-          <FilterChip label="All closures" active={closureFilter === "all"} onClick={() => setClosureFilter("all")} />
-          {closureCounts.map(([closure, count]) => (
-            <FilterChip key={closure} label={closure.charAt(0).toUpperCase() + closure.slice(1)} count={count} active={closureFilter === closure} onClick={() => setClosureFilter(closure)} />
-          ))}
-        </div>
+        {/* Closure filter removed — users can adjust closure via inline edit above */}
 
         {/* Result cards */}
         <div style={{ display: "grid", gap: "10px" }}>
@@ -1288,7 +1316,7 @@ export default function ShoeFinder({ shoes = [] }) {
         </p>
       </div>
 
-      {step < TOTAL_STEPS && <ProgressBar />}
+      <ProgressBar />
 
       {step === 0 && renderStep0()}
       {step === 1 && renderStep1()}
