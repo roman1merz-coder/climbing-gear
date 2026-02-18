@@ -486,7 +486,7 @@ function ImageGallery({ shoe, compact }) {
 // ─── Amazon Search Link ───
 function amazonSearchUrl(productType, brand, model) {
   const q = encodeURIComponent(`${productType} ${brand} ${model}`.trim());
-  return `https://www.amazon.de/s?k=${q}&tag=climbinggear0e-21`;
+  return `https://www.amazon.de/s?k=${q}&tag=climbinggear-21`;
 }
 
 function AmazonSearchLink({ productType, brand, model, style = {} }) {

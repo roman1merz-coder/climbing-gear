@@ -262,7 +262,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
               {/* Inline Price Comparison + Amazon Link */}
               {(() => {
                 const prices = priceData[d.slug] || [];
-                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`quickdraw ${d.brand} ${d.model}`.trim())}&tag=climbinggear0e-21`;
+                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`quickdraw ${d.brand} ${d.model}`.trim())}&tag=climbinggear-21`;
                 const getRetailerUrl = (url) => {
                   if (!url || url === "#") return undefined;
                   if (url.toLowerCase().includes('amazon')) return amazonUrl;

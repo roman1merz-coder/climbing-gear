@@ -228,7 +228,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               {(() => {
                 const prices = priceData[rope.slug] || [];
                 const hasRealRetailer = prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
-                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`climbing rope ${rope.brand} ${rope.model}`.trim())}&tag=climbinggear0e-21`;
+                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`climbing rope ${rope.brand} ${rope.model}`.trim())}&tag=climbinggear-21`;
                 // Helper to ensure Amazon URLs include product category search terms
                 const getRetailerUrl = (url) => {
                   if (!url || url === "#") return undefined;

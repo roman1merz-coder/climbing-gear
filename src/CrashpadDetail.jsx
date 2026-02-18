@@ -297,7 +297,7 @@ function EfficiencyRadar({ pad, allPads }) {
 
 // ─── Price Comparison (inline card) ───────────────────────────────
 function PriceComparison({ prices, compact, pad }) {
-  const amazonUrl = pad ? `https://www.amazon.de/s?k=${encodeURIComponent(`crash pad ${pad.brand} ${pad.model}`.trim())}&tag=climbinggear0e-21` : null;
+  const amazonUrl = pad ? `https://www.amazon.de/s?k=${encodeURIComponent(`crash pad ${pad.brand} ${pad.model}`.trim())}&tag=climbinggear-21` : null;
   // Helper to ensure Amazon URLs include product category search terms
   const getRetailerUrl = (url) => {
     if (!url || url === "#") return undefined;

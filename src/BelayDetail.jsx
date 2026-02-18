@@ -283,7 +283,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
               {/* Inline Price Comparison + Amazon Link */}
               {(() => {
                 const prices = priceData[d.slug] || [];
-                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`belay device ${d.brand} ${d.model}`.trim())}&tag=climbinggear0e-21`;
+                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`belay device ${d.brand} ${d.model}`.trim())}&tag=climbinggear-21`;
                 // Helper to ensure Amazon URLs include product category search terms
                 const getRetailerUrl = (url) => {
                   if (!url || url === "#") return undefined;

@@ -109,7 +109,7 @@ No scoring or ranking is applied — the first N matches from the dataset are sh
 
 ### Amazon Search Links
 
-Every product detail page includes an Amazon.de search link (with affiliate tag `climbinggear0e-21`). The search query includes the product type for better results:
+Every product detail page includes an Amazon.de search link (with affiliate tag `climbinggear-21`). The search query includes the product type for better results:
 - Shoes: `climbing shoe {brand} {model}`
 - Ropes: `climbing rope {brand} {model}`
 - Belays: `belay device {brand} {model}`
