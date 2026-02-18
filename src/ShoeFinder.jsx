@@ -197,7 +197,8 @@ const TOTAL_STEPS = 6;
 
 // ─── Scoring Engine V2 ─────────────────────────────────────────
 
-function scoreShoe(shoe, { disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg }) {
+function scoreShoe(shoe, { disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg,
+  downturnTierOvr, asymmetryTierOvr, closureOvr, midsoleOvr, rubberOvr, envOvr }) {
   let score = 0;
 
   // ── 1. Discipline use-case match (20 pts) — HARD FILTER ──
@@ -220,7 +221,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   }
 
   // ── 2. Closure fit (10 pts) — discipline → preferred closure ──
-  const targetClosures = computeTargetClosures(disciplines);
+  const targetClosures = closureOvr || computeTargetClosures(disciplines);
   const shoeClosure = (shoe.closure || "").toLowerCase();
   if (targetClosures.includes(shoeClosure)) {
     score += 10;
@@ -232,13 +233,14 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   }
 
   // ── 3. Environment + Rock type (10 pts) ──
+  const effEnv = envOvr || environment;
   const bestRock = parseArray(shoe.best_rock_types).map(r => r.toLowerCase());
-  if (environment === "indoor") {
+  if (effEnv === "indoor") {
     // Indoor: favor shoes with indoor tags, soft rubber shoes
     if (bestRock.some(r => r.includes("indoor"))) score += 10;
     else if (!bestRock.length) score += 5;
     else score += 3;
-  } else if (environment === "outdoor") {
+  } else if (effEnv === "outdoor") {
     // Outdoor: remove indoor-specific shoes (soft filter — lower score, not hard exclude)
     const isIndoorOnly = bestRock.length > 0 && bestRock.every(r => r.includes("indoor"));
     if (isIndoorOnly) {
@@ -268,12 +270,13 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   }
 
   // ── 4. Downturn fit (15 pts) — fractional 5-tier system ──
-  const dtTarget = downturnTargetIdx(level, preference); // 0-2 fractional
+  const dtTarget = downturnTierOvr != null
+    ? TIER_DOWNTURN_IDX[TIER_NAMES.indexOf(downturnTierOvr)] ?? downturnTargetIdx(level, preference)
+    : downturnTargetIdx(level, preference);
   const shoeDownturn = (shoe.downturn || "").toLowerCase();
   const dtShoeIdx = DOWNTURN_ORDER.indexOf(shoeDownturn);
   if (dtShoeIdx >= 0) {
     const dist = Math.abs(dtTarget - dtShoeIdx);
-    // dist 0 = perfect, 0.5 = adjacent half-step, 1 = one full step, 1.5+2 = far
     if (dist <= 0.25) score += 15;
     else if (dist <= 0.75) score += 12;
     else if (dist <= 1.25) score += 7;
@@ -283,7 +286,9 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   }
 
   // ── 5. Asymmetry fit (10 pts) — fractional 5-tier system ──
-  const aTarget = asymmetryTargetIdx(level, preference); // 0-2 fractional
+  const aTarget = asymmetryTierOvr != null
+    ? TIER_ASYMMETRY_IDX[TIER_NAMES.indexOf(asymmetryTierOvr)] ?? asymmetryTargetIdx(level, preference)
+    : asymmetryTargetIdx(level, preference);
   const shoeAsym = (shoe.asymmetry || "").toLowerCase();
   const aShoeIdx = ASYM_ORDER.indexOf(shoeAsym);
   if (aShoeIdx >= 0) {
@@ -297,7 +302,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   }
 
   // ── 6. Midsole / stiffness fit (15 pts) — discipline + weight ──
-  const targetMidsole = computeTargetMidsole(disciplines, weightKg);
+  const targetMidsole = midsoleOvr != null ? midsoleOvr : computeTargetMidsole(disciplines, weightKg);
   const shoeMidsole = MIDSOLE_NAMES[shoe.midsole?.toLowerCase()] ?? 1;
   const midsoleDist = Math.abs(targetMidsole - shoeMidsole);
   if (midsoleDist === 0) score += 15;
@@ -305,7 +310,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   else score += 2;
 
   // ── 7. Rubber thickness fit (10 pts) — weight + discipline ──
-  const targetRubber = computeTargetRubberThickness(disciplines, weightKg);
+  const targetRubber = rubberOvr != null ? rubberOvr : computeTargetRubberThickness(disciplines, weightKg);
   const shoeRubber = shoe.rubber_thickness_mm;
   if (shoeRubber) {
     const rubberDist = Math.abs(shoeRubber - targetRubber);
@@ -404,6 +409,14 @@ export default function ShoeFinder({ shoes = [] }) {
   const [brandFilter, setBrandFilter] = useState("all");
   const [closureFilter, setClosureFilter] = useState("all");
   const [showAllResults, setShowAllResults] = useState(false);
+  const [editingTrait, setEditingTrait] = useState(null); // which trait row is expanded for inline edit
+  // Overrides: if user manually adjusts a trait on the results page, these take priority
+  const [downturnOverride, setDownturnOverride] = useState(null); // tier name or null
+  const [asymmetryOverride, setAsymmetryOverride] = useState(null);
+  const [closureOverride, setClosureOverride] = useState(null); // array or null
+  const [midsoleOverride, setMidsoleOverride] = useState(null); // 0/1/2 or null
+  const [rubberOverride, setRubberOverride] = useState(null); // number or null
+  const [envOverride, setEnvOverride] = useState(null); // string or null
 
   // Restore from URL on mount
   useEffect(() => {
@@ -429,7 +442,10 @@ export default function ShoeFinder({ shoes = [] }) {
   // ─── Computed ───────────────────────────────────────────────
   const params = useMemo(() => ({
     disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg,
-  }), [disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg]);
+    downturnTierOvr: downturnOverride, asymmetryTierOvr: asymmetryOverride,
+    closureOvr: closureOverride, midsoleOvr: midsoleOverride, rubberOvr: rubberOverride, envOvr: envOverride,
+  }), [disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg,
+    downturnOverride, asymmetryOverride, closureOverride, midsoleOverride, rubberOverride, envOverride]);
 
   const allResults = useMemo(() => {
     return shoes
@@ -464,15 +480,17 @@ export default function ShoeFinder({ shoes = [] }) {
     return Object.entries(counts).sort((a, b) => b[1] - a[1]);
   }, [allResults]);
 
-  // Computed targets for display
-  const targetDownturnTier = computeTargetDownturn(level, preference);
-  const targetAsymmetryTier = computeTargetAsymmetry(level, preference);
-  const targetDownturn = TIER_DOWNTURN_LABEL[targetDownturnTier] || targetDownturnTier;
-  const targetAsymmetry = TIER_ASYMMETRY_LABEL[targetAsymmetryTier] || targetAsymmetryTier;
-  const targetMidsoleNum = computeTargetMidsole(disciplines, weightKg);
-  const targetMidsole = MIDSOLE_LABELS[targetMidsoleNum];
-  const targetRubber = computeTargetRubberThickness(disciplines, weightKg).toFixed(1);
-  const targetClosures = computeTargetClosures(disciplines);
+  // Computed targets for display (respect overrides)
+  const effectiveDtTier = downturnOverride || computeTargetDownturn(level, preference);
+  const effectiveAsymTier = asymmetryOverride || computeTargetAsymmetry(level, preference);
+  const targetDownturn = TIER_DOWNTURN_LABEL[effectiveDtTier] || effectiveDtTier;
+  const targetAsymmetry = TIER_ASYMMETRY_LABEL[effectiveAsymTier] || effectiveAsymTier;
+  const effectiveMidsoleNum = midsoleOverride != null ? midsoleOverride : computeTargetMidsole(disciplines, weightKg);
+  const targetMidsole = MIDSOLE_LABELS[effectiveMidsoleNum];
+  const effectiveRubber = rubberOverride != null ? rubberOverride : computeTargetRubberThickness(disciplines, weightKg);
+  const targetRubber = effectiveRubber.toFixed(1);
+  const effectiveClosures = closureOverride || computeTargetClosures(disciplines);
+  const effectiveEnv = envOverride || environment;
 
   const updateURL = useCallback(() => {
     const qs = encodeFinderState({ disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg });
@@ -949,6 +967,33 @@ export default function ShoeFinder({ shoes = [] }) {
     );
   };
 
+  // ─── Inline editor pill helper ─────────────────────────────
+  const InlinePills = ({ options, value, onChange, multi }) => (
+    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px" }}>
+      {options.map(o => {
+        const id = typeof o === "string" ? o : o.id;
+        const label = typeof o === "string" ? o : o.label;
+        const isActive = multi ? (value || []).includes(id) : value === id;
+        return (
+          <button key={id} onClick={() => {
+            if (multi) {
+              const cur = value || [];
+              onChange(isActive ? cur.filter(x => x !== id) : [...cur, id]);
+            } else {
+              onChange(id);
+            }
+          }} style={{
+            padding: "5px 14px", borderRadius: "20px", fontSize: "12px", fontWeight: isActive ? 700 : 500,
+            background: isActive ? "rgba(232,115,74,0.15)" : T.surface,
+            color: isActive ? T.accent : T.muted,
+            border: `1.5px solid ${isActive ? T.accent : T.border}`,
+            cursor: "pointer", transition: "all 0.15s",
+          }}>{label}</button>
+        );
+      })}
+    </div>
+  );
+
   // ─── Results view ────────────────────────────────────────────
   const renderResults = () => {
     const disciplineLabel = disciplines.map(d => {
@@ -958,51 +1003,77 @@ export default function ShoeFinder({ shoes = [] }) {
 
     const displayResults = showAllResults ? filteredResults : filteredResults.slice(0, 10);
 
-    // Build "defined by your answers" trait list with explanations
-    const traitLines = [
+    // Capitalize first letter
+    const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : "";
+
+    // Combined downturn+asymmetry display label
+    const dtAsymLabel = targetDownturn === targetAsymmetry
+      ? `${cap(targetDownturn)} downturn & asymmetry`
+      : `${cap(targetDownturn)} downturn, ${targetAsymmetry} asymmetry`;
+
+    // Build trait rows (no foot shape rows)
+    const traitRows = [
       {
-        label: "Downturn",
-        value: targetDownturn,
+        id: "shape",
+        value: dtAsymLabel,
         reason: `${level} level + ${preference} preference`,
-        step: 2,
+        editor: () => (
+          <div>
+            <div style={{ fontSize: "11px", color: T.muted, marginBottom: "2px" }}>Downturn</div>
+            <InlinePills options={TIER_NAMES.map(t => ({ id: t, label: TIER_DOWNTURN_LABEL[t] }))}
+              value={effectiveDtTier} onChange={v => setDownturnOverride(v)} />
+            <div style={{ fontSize: "11px", color: T.muted, marginTop: "10px", marginBottom: "2px" }}>Asymmetry</div>
+            <InlinePills options={TIER_NAMES.map(t => ({ id: t, label: TIER_ASYMMETRY_LABEL[t] }))}
+              value={effectiveAsymTier} onChange={v => setAsymmetryOverride(v)} />
+          </div>
+        ),
       },
       {
-        label: "Asymmetry",
-        value: targetAsymmetry,
-        reason: `${level} level + ${preference} preference`,
-        step: 3,
-      },
-      {
-        label: "Closure",
-        value: targetClosures.join(" / "),
+        id: "closure",
+        value: `${cap(effectiveClosures.join(" / "))} closure`,
         reason: disciplineLabel.toLowerCase(),
-        step: 0,
+        editor: () => (
+          <InlinePills multi options={["slipper", "velcro", "lace"].map(c => ({ id: c, label: cap(c) }))}
+            value={effectiveClosures} onChange={v => setClosureOverride(v.length ? v : null)} />
+        ),
       },
       {
-        label: "Midsole",
-        value: targetMidsole,
+        id: "midsole",
+        value: `${cap(targetMidsole)} midsole`,
         reason: `${disciplineLabel.toLowerCase()} + ${weightKg} kg`,
-        step: 5,
+        editor: () => (
+          <InlinePills options={MIDSOLE_LABELS.map((m, i) => ({ id: String(i), label: cap(m) }))}
+            value={String(effectiveMidsoleNum)} onChange={v => setMidsoleOverride(Number(v))} />
+        ),
       },
       {
-        label: "Rubber",
-        value: `~${targetRubber} mm`,
+        id: "rubber",
+        value: `~${targetRubber} mm rubber`,
         reason: `${weightKg} kg body weight`,
-        step: 5,
+        editor: () => (
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
+            <input type="range" min="2.5" max="5.5" step="0.5" value={effectiveRubber}
+              onChange={e => setRubberOverride(Number(e.target.value))}
+              style={{ flex: 1, accentColor: T.accent }} />
+            <span style={{ fontSize: "12px", fontWeight: 700, color: T.accent, minWidth: "48px" }}>{effectiveRubber.toFixed(1)} mm</span>
+          </div>
+        ),
       },
       {
-        label: "Environment",
-        value: environment === "outdoor" && rockType ? `outdoor · ${rockType}` : environment,
-        reason: environment === "outdoor" && rockType
+        id: "env",
+        value: effectiveEnv === "outdoor" && rockType
+          ? `Outdoor · ${cap(rockType)}`
+          : cap(effectiveEnv),
+        reason: effectiveEnv === "outdoor" && rockType
           ? `${rockType} → ${rockType === "granite" ? "hard" : rockType === "sandstone" ? "soft" : "medium"} rubber`
-          : environment === "indoor" ? "soft rubber, easy on/off" : "versatile all-rounder",
-        step: 1,
+          : effectiveEnv === "indoor" ? "soft rubber, easy on/off" : "versatile all-rounder",
+        editor: () => (
+          <InlinePills options={[
+            { id: "outdoor", label: "Outdoor" }, { id: "indoor", label: "Indoor" }, { id: "both", label: "Both" },
+          ]} value={effectiveEnv} onChange={v => setEnvOverride(v)} />
+        ),
       },
     ];
-    if (toeForm) traitLines.push({ label: "Toe shape", value: toeForm, reason: "matched to shoe last", step: 4 });
-    if (forefootVolume) traitLines.push({ label: "Forefoot vol.", value: forefootVolume, reason: "hard filter on shoe volume", step: 4 });
-    if (width) traitLines.push({ label: "Width", value: width, reason: "matched to shoe width", step: 4 });
-    if (heelVolume) traitLines.push({ label: "Heel vol.", value: heelVolume, reason: "matched to heel cup", step: 4 });
 
     return (
       <div>
@@ -1022,34 +1093,39 @@ export default function ShoeFinder({ shoes = [] }) {
             </div>
           </div>
 
-          {/* Trait rows — each clickable to edit */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-            {traitLines.map(t => (
-              <div
-                key={t.label}
-                onClick={() => goToStep(t.step)}
-                style={{
-                  display: "flex", alignItems: "center", gap: "10px",
-                  padding: "8px 12px", borderRadius: T.radiusSm,
-                  background: T.surface, border: `1px solid ${T.border}`,
-                  cursor: "pointer", transition: "all 0.2s",
-                }}
-                onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; }}
-                onMouseOut={e => { e.currentTarget.style.borderColor = T.border; }}
-              >
-                <span style={{ fontWeight: 700, color: T.accent, fontSize: "13px", minWidth: isMobile ? "80px" : "100px" }}>
-                  {t.value}
-                </span>
-                <span style={{ fontSize: "12px", color: T.muted, flex: 1 }}>
-                  {t.label} — <em>{t.reason}</em>
-                </span>
-                <span style={{ color: T.accent, fontSize: "12px", flexShrink: 0 }}>✎</span>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ fontSize: "11px", color: T.muted, marginTop: "12px", textAlign: "center" }}>
-            Click any row to change that criterion
+          {/* Trait rows — two-line format with inline edit */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            {traitRows.map(t => {
+              const isEditing = editingTrait === t.id;
+              return (
+                <div key={t.id} style={{
+                  padding: "10px 14px", borderRadius: T.radiusSm,
+                  background: T.surface, border: `1px solid ${isEditing ? T.accent : T.border}`,
+                  transition: "all 0.2s",
+                }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontWeight: 700, color: T.accent, fontSize: "14px", lineHeight: 1.4 }}>
+                        {t.value}
+                      </div>
+                      <div style={{ fontSize: "12px", color: T.muted, marginTop: "2px" }}>
+                        {t.reason}
+                      </div>
+                    </div>
+                    <button onClick={() => setEditingTrait(isEditing ? null : t.id)} style={{
+                      background: "none", border: "none", cursor: "pointer", padding: "4px",
+                      color: isEditing ? T.accent : T.muted, fontSize: "14px", flexShrink: 0,
+                      transition: "color 0.15s",
+                    }}>✎</button>
+                  </div>
+                  {isEditing && (
+                    <div style={{ marginTop: "8px", paddingTop: "8px", borderTop: `1px solid ${T.border}` }}>
+                      {t.editor()}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
