@@ -458,6 +458,15 @@ export default function ShoeFinder({ shoes = [] }) {
       .sort((a, b) => b.score - a.score);
   }, [shoes, params, forefootVolume]);
 
+  const { topBrands, otherBrands, otherCount } = useMemo(() => {
+    const counts = {};
+    for (const { shoe } of allResults) counts[shoe.brand] = (counts[shoe.brand] || 0) + 1;
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const top = sorted.slice(0, 8);
+    const rest = sorted.slice(8);
+    return { topBrands: top, otherBrands: rest.map(([b]) => b), otherCount: rest.reduce((s, [, c]) => s + c, 0) };
+  }, [allResults]);
+
   const filteredResults = useMemo(() => {
     let r = allResults;
     if (brandFilter.length) {
@@ -468,15 +477,6 @@ export default function ShoeFinder({ shoes = [] }) {
     if (closureFilter !== "all") r = r.filter(x => (x.shoe.closure || "").toLowerCase() === closureFilter);
     return r;
   }, [allResults, brandFilter, closureFilter, otherBrands]);
-
-  const { topBrands, otherBrands, otherCount } = useMemo(() => {
-    const counts = {};
-    for (const { shoe } of allResults) counts[shoe.brand] = (counts[shoe.brand] || 0) + 1;
-    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-    const top = sorted.slice(0, 8);
-    const rest = sorted.slice(8);
-    return { topBrands: top, otherBrands: rest.map(([b]) => b), otherCount: rest.reduce((s, [, c]) => s + c, 0) };
-  }, [allResults]);
 
   const closureCounts = useMemo(() => {
     const counts = {};
