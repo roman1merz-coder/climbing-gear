@@ -9,3 +9,6 @@ dist
 # Shoe images - committed to git for Vercel deployment (74MB total)
 scrape_images.mjs
 scrape_images.py
+
+# Contains API keys and tokens — kept locally only
+CLAUDE-README.md
