@@ -703,7 +703,7 @@ export default function Insights() {
           </Collapsible>
 
           <KeyInsight color={T.green}>
-            <strong>The central trade-off in every climbing shoe:</strong> sensitivity vs. support, and smearing vs. edging. A shoe that scores 90th percentile on edging will typically sit below 30th on smearing. A shoe built for maximum sensitivity sacrifices support. Understanding this trade-off is more important than chasing the "best" shoe — because the best shoe is the one that matches <em>your</em> climbing style.
+            <strong>The central trade-off in every climbing shoe:</strong> sensitivity vs. support, and smearing vs. edging. A shoe that scores 90th percentile on edging will typically sit below 30th on smearing. A shoe built for maximum sensitivity sacrifices support. Understanding this trade-off is more important than chasing the "best" shoe — because the best shoe is the one that matches <em>your</em> climbing style. The chart below maps all 340 shoes into six zones — toggle "Zones" to see where each archetype lives.
           </KeyInsight>
 
           {/* ── Foot Shape ── */}
@@ -729,7 +729,7 @@ export default function Insights() {
           </div>
 
           <Prose>
-            The scatter chart below plots all 340 shoes across our performance axes. Switch metrics, colour by category, and click any dot to see the full spec sheet. Use it to spot outliers, compare shoes you're considering, or just explore how the market is distributed.
+            The scatter chart below defaults to Edging vs Sensitivity with six annotated zones. Green dots are beginner-to-intermediate shoes, orange dots are advanced-to-elite. Each zone corresponds to a distinct shoe archetype — hover the zone cards below the chart for details. Switch metrics, change the colour mode, and click any dot to see the full spec sheet.
           </Prose>
 
           <ShoeScatterChart shoes={SHOE_SEED} isMobile={isMobile} />

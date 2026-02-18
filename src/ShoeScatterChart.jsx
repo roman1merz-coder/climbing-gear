@@ -9,6 +9,34 @@ const CLOSURE_COLORS = { lace: "#60a5fa", velcro: "#E8734A", slipper: "#34d399" 
 const LEVEL_ORDER = ["beginner", "hobby", "intermediate", "advanced", "expert", "elite"];
 const LEVEL_COLORS = { beginner: "#34d399", hobby: "#60a5fa", intermediate: "#a78bfa", advanced: "#ecc94b", expert: "#E8734A", elite: "#ed64a6" };
 const LEVEL_LABELS = { beginner: "Beginner", hobby: "Hobby", intermediate: "Intermediate", advanced: "Advanced", expert: "Expert", elite: "Elite" };
+
+/* ─── Skill-group colors (2 groups) ─── */
+const SKILL_GROUP_COLORS = { "beginner": "#34d399", "advanced": "#E8734A" };
+const SKILL_GROUP_LABELS = { "beginner": "Beginner – Intermediate", "advanced": "Advanced – Elite" };
+function skillGroup(shoe) {
+  const lvls = shoe.skill_level || [];
+  if (lvls.includes("elite") || lvls.includes("expert") || lvls.includes("advanced")) return "advanced";
+  return "beginner";
+}
+
+/* ─── Zone definitions for Edging × Sensitivity chart ─── */
+const ZONE_BOUNDARIES = { sensLow: 0.33, sensHigh: 0.67 };
+const ZONE_LABELS = [
+  { id: "1-sens", col: 2, row: 0, label: "Gym Progression", emoji: "🧗" },
+  { id: "1-bal",  col: 1, row: 0, label: "Allrounder", emoji: "⭐" },
+  { id: "1-sup",  col: 0, row: 0, label: "Multi-Pitch Comfort", emoji: "🏔" },
+  { id: "2-sens", col: 2, row: 1, label: "Overhang Specialist", emoji: "💪" },
+  { id: "2-bal",  col: 1, row: 1, label: "Advanced Allrounder", emoji: "🎯" },
+  { id: "2-sup",  col: 0, row: 1, label: "Edging Machine", emoji: "🔪" },
+];
+const ZONE_DESCRIPTIONS = {
+  "1-sens": "Modern bouldering gym shoe for beginners. Minimal downturn and asymmetry, but thin, soft sole for maximum rock feel. Less supportive — your feet may tire faster at first — but builds toe strength and footwork skills faster than a stiff shoe.",
+  "1-bal": "The beginner allrounder that does it all. Enough support for long sessions, enough sensitivity and grip for indoor bouldering. The safest first-shoe pick for climbers who want one pair that works everywhere.",
+  "1-sup": "Very comfortable for all-day use, but limited feedback from the rock surface. Better suited for easy sport climbing, multi-pitch, and trad than for indoor bouldering — a common mismatch we see with new climbers buying \"comfortable\" shoes for the gym.",
+  "2-sens": "Aggressive shape meets soft construction — surprisingly comfortable for its profile. Excels on steep, overhanging terrain and modern-style bouldering where toe hooks and precision on small holds matter more than standing on edges.",
+  "2-bal": "The advanced allrounder. Enough downturn and asymmetry for demanding sport routes, enough sensitivity for technical slab, enough support for longer pitches. The shoe that can do everything well when you know how to use it.",
+  "2-sup": "The edging machine. Stiff platform channels maximum force through a small contact point. Excels on micro-edges, thin cracks, and small pockets — vertical-to-slightly-overhung terrain where precision beats flexibility. More at home on sport crags than in the bouldering gym.",
+};
 function topLevel(shoe) {
   const lvls = shoe.skill_level || [];
   for (let i = LEVEL_ORDER.length - 1; i >= 0; i--) if (lvls.includes(LEVEL_ORDER[i])) return LEVEL_ORDER[i];
@@ -30,7 +58,8 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
   const sheetRef = useRef(null);
 
   const [metric, setMetric] = useState("edging_sensitivity");
-  const [colorBy, setColorBy] = useState("level");
+  const [colorBy, setColorBy] = useState("skill");
+  const [showZones, setShowZones] = useState(true);
   const [mobileItem, setMobileItem] = useState(null);
 
   /* Filter state */
@@ -128,6 +157,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
 
   /* Color function */
   const getColor = useCallback((d) => {
+    if (colorBy === "skill") return SKILL_GROUP_COLORS[skillGroup(d)] || "#94a3b8";
     if (colorBy === "closure") return CLOSURE_COLORS[d.closure] || "#94a3b8";
     if (colorBy === "level") return LEVEL_COLORS[d._level] || "#94a3b8";
     return BRAND_COLORS[d.brand] || "#94a3b8";
@@ -152,6 +182,56 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
 
     // Chart area frame
     drawChartArea(ctx, PAD, W, H);
+
+    // ── Zone overlays (edging_sensitivity + showZones only) ──
+    if (metric === "edging_sensitivity" && showZones) {
+      const chartW = W - PAD.l - PAD.r;
+      const chartHt = H - PAD.t - PAD.b;
+      const sensLowY = sy(ZONE_BOUNDARIES.sensLow);
+      const sensHighY = sy(ZONE_BOUNDARIES.sensHigh);
+
+      // 3 horizontal bands: supportive (bottom), balanced (mid), sensitive (top)
+      const bands = [
+        { y0: sensLowY,  y1: PAD.t + chartHt, color: "#60a5fa" }, // supportive (blue)
+        { y0: sensHighY, y1: sensLowY,         color: "#a78bfa" }, // balanced (purple)
+        { y0: PAD.t,     y1: sensHighY,        color: "#34d399" }, // sensitive (green)
+      ];
+      bands.forEach(b => {
+        ctx.save();
+        ctx.globalAlpha = 0.06;
+        ctx.fillStyle = b.color;
+        ctx.fillRect(PAD.l, b.y0, chartW, b.y1 - b.y0);
+        ctx.restore();
+      });
+
+      // Divider lines at the boundaries
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,0.12)";
+      ctx.lineWidth = 1;
+      ctx.setLineDash([6, 4]);
+      [sensLowY, sensHighY].forEach(yy => {
+        ctx.beginPath(); ctx.moveTo(PAD.l, yy); ctx.lineTo(W - PAD.r, yy); ctx.stroke();
+      });
+      ctx.restore();
+
+      // Zone labels (right edge, centered in each band)
+      const labelSize = isMobile ? 9 : 10;
+      ctx.save();
+      ctx.font = `600 ${labelSize}px ${T.font}`;
+      ctx.textAlign = "right";
+      const labelX = W - PAD.r - 6;
+      // Supportive band
+      ctx.fillStyle = "#60a5fa";
+      ctx.globalAlpha = 0.7;
+      ctx.fillText("Supportive ↓", labelX, (sensLowY + PAD.t + chartHt) / 2 + 4);
+      // Balanced band
+      ctx.fillStyle = "#a78bfa";
+      ctx.fillText("Balanced", labelX, (sensHighY + sensLowY) / 2 + 4);
+      // Sensitive band
+      ctx.fillStyle = "#34d399";
+      ctx.fillText("Sensitive ↑", labelX, (PAD.t + sensHighY) / 2 + 4);
+      ctx.restore();
+    }
 
     // Grid (dashed, 8%, baseline emphasis)
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
@@ -195,7 +275,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
       drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
     }
-  }, [metric, cfg, isMobile, getColor, filtered]);
+  }, [metric, cfg, isMobile, getColor, filtered, showZones]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -396,14 +476,21 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       </div>
 
       {/* Color-by toggle + count */}
-      <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
-        {[["level", "Level"], ["closure", "Closure"], ["brand", "Brand"]].map(([k, l]) => (
+        {[["skill", "Skill Group"], ["level", "Level"], ["closure", "Closure"], ["brand", "Brand"]].map(([k, l]) => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
             background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{l}</button>
         ))}
+        {metric === "edging_sensitivity" && (
+          <label style={{ fontSize: "11px", color: T.muted, cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", marginLeft: "6px" }}>
+            <input type="checkbox" checked={showZones} onChange={e => setShowZones(e.target.checked)}
+              style={{ accentColor: T.accent, width: "13px", height: "13px" }} />
+            Zones
+          </label>
+        )}
         <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filtered.length} shown</span>
       </div>
 
@@ -444,6 +531,13 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
       )}
 
       {/* Legends */}
+      {colorBy === "skill" && (
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
+          {Object.entries(SKILL_GROUP_COLORS).map(([k, c]) => (
+            <Pill key={k} color={c} label={SKILL_GROUP_LABELS[k]} />
+          ))}
+        </div>
+      )}
       {colorBy === "closure" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
           {closureKeys.map(k => (
@@ -467,6 +561,35 @@ export default function ShoeScatterChart({ shoes = [], isMobile }) {
           onToggle={(k) => toggleHidden(setHiddenBrands, k)}
           onClearAll={() => setHiddenBrands(prev => prev.size === BRAND_LIST.length ? new Set() : new Set(BRAND_LIST))}
         />
+      )}
+
+      {/* Zone guide (only when edging_sensitivity + zones visible) */}
+      {metric === "edging_sensitivity" && showZones && (
+        <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "8px" }}>
+          {ZONE_LABELS.map(z => {
+            const isAdv = z.row === 1;
+            const bandColor = z.col === 0 ? "#60a5fa" : z.col === 1 ? "#a78bfa" : "#34d399";
+            return (
+              <div key={z.id} style={{
+                background: T.surface, border: `1px solid ${T.border}`, borderRadius: "8px",
+                padding: "10px 12px", borderLeft: `3px solid ${bandColor}`,
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}>
+                  <span style={{ fontSize: "14px" }}>{z.emoji}</span>
+                  <span style={{ fontSize: "12px", fontWeight: 700, color: T.text }}>{z.label}</span>
+                  <span style={{
+                    fontSize: "9px", fontWeight: 600, padding: "1px 6px", borderRadius: "4px", marginLeft: "auto",
+                    background: isAdv ? "rgba(232,115,74,0.15)" : "rgba(52,211,153,0.15)",
+                    color: isAdv ? "#E8734A" : "#34d399",
+                  }}>{isAdv ? "Advanced–Elite" : "Beginner–Intermediate"}</span>
+                </div>
+                <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6 }}>
+                  {ZONE_DESCRIPTIONS[z.id]}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       )}
 
       <div style={{ marginTop: "6px", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
