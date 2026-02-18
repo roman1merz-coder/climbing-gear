@@ -460,15 +460,22 @@ export default function ShoeFinder({ shoes = [] }) {
 
   const filteredResults = useMemo(() => {
     let r = allResults;
-    if (brandFilter.length) r = r.filter(x => brandFilter.includes(x.shoe.brand));
+    if (brandFilter.length) {
+      const showOther = brandFilter.includes("__other__");
+      const named = brandFilter.filter(b => b !== "__other__");
+      r = r.filter(x => named.includes(x.shoe.brand) || (showOther && otherBrands.includes(x.shoe.brand)));
+    }
     if (closureFilter !== "all") r = r.filter(x => (x.shoe.closure || "").toLowerCase() === closureFilter);
     return r;
-  }, [allResults, brandFilter, closureFilter]);
+  }, [allResults, brandFilter, closureFilter, otherBrands]);
 
-  const brandCounts = useMemo(() => {
+  const { topBrands, otherBrands, otherCount } = useMemo(() => {
     const counts = {};
     for (const { shoe } of allResults) counts[shoe.brand] = (counts[shoe.brand] || 0) + 1;
-    return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const top = sorted.slice(0, 8);
+    const rest = sorted.slice(8);
+    return { topBrands: top, otherBrands: rest.map(([b]) => b), otherCount: rest.reduce((s, [, c]) => s + c, 0) };
   }, [allResults]);
 
   const closureCounts = useMemo(() => {
@@ -1182,11 +1189,16 @@ export default function ShoeFinder({ shoes = [] }) {
         {/* Brand filter chips — multi-select */}
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "10px" }}>
           <FilterChip label="All brands" active={brandFilter.length === 0} onClick={() => setBrandFilter([])} />
-          {brandCounts.map(([brand, count]) => (
+          {topBrands.map(([brand, count]) => (
             <FilterChip key={brand} label={brand} count={count} active={brandFilter.includes(brand)} onClick={() => {
               setBrandFilter(prev => prev.includes(brand) ? prev.filter(b => b !== brand) : [...prev, brand]);
             }} />
           ))}
+          {otherCount > 0 && (
+            <FilterChip label="Other" count={otherCount} active={brandFilter.includes("__other__")} onClick={() => {
+              setBrandFilter(prev => prev.includes("__other__") ? prev.filter(b => b !== "__other__") : [...prev, "__other__"]);
+            }} />
+          )}
         </div>
 
         {/* Closure filter removed — users can adjust closure via inline edit above */}
