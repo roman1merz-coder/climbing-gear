@@ -213,6 +213,36 @@ export default function Landing() {
         </button>
       </section>
 
+      {/* ─── Shoe Finder CTA ─── */}
+      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "32px 16px" : "48px 32px"} 0` }}>
+        <Link to="/find" style={{
+          display: "flex", alignItems: isMobile ? "flex-start" : "center",
+          flexDirection: isMobile ? "column" : "row",
+          gap: isMobile ? "12px" : "24px",
+          background: `linear-gradient(135deg, ${T.card}, ${T.surface})`,
+          border: `1.5px solid ${T.accent}40`,
+          borderRadius: "16px", padding: isMobile ? "20px" : "28px 32px",
+          textDecoration: "none", transition: "all 0.3s ease",
+          position: "relative", overflow: "hidden",
+        }}
+          onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 8px 32px ${T.accent}20`; }}
+          onMouseOut={e => { e.currentTarget.style.borderColor = `${T.accent}40`; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+        >
+          <div style={{ fontSize: "36px", flexShrink: 0 }}>🎯</div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", marginBottom: "4px" }}>
+              Guided Shoe Finder
+            </div>
+            <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>
+              Answer 5 quick questions about your climbing style, experience, and foot shape — our algorithm scores {SHOES.length} shoes and shows your top matches. Zero opinions, just data.
+            </div>
+          </div>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "14px", fontWeight: 700, whiteSpace: "nowrap", flexShrink: 0 }}>
+            Find your shoe <span style={{ fontSize: "18px" }}>{"\u2192"}</span>
+          </div>
+        </Link>
+      </section>
+
       {/* ─── Gear Insights ─── */}
       <section style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "48px 16px" : "64px 32px"} 0` }}>
         <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>

@@ -26,6 +26,7 @@ import CompareBar from "./CompareBar.jsx";
 import { WishlistProvider } from "./WishlistContext.jsx";
 import { PriceAlertProvider } from "./PriceAlertContext.jsx";
 import Wishlist from "./Wishlist.jsx";
+import ShoeFinder from "./ShoeFinder.jsx";
 import { T, GLOBAL_CSS } from "./tokens.js";
 import CookieConsent from "./CookieConsent.jsx";
 import { inject as injectAnalytics } from "@vercel/analytics";
@@ -373,6 +374,7 @@ function Root() {
               <Route path="/quickdraws" element={<QuickdrawApp quickdraws={quickdraws} src={quickdrawSrc} />} />
               <Route path="/quickdraw/:slug" element={<QuickdrawDetail quickdraws={quickdraws} priceData={priceData} />} />
               <Route path="/compare-quickdraws" element={<CompareGeneric items={quickdraws} type="quickdraws" />} />
+              <Route path="/find" element={<ShoeFinder shoes={shoes} />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/news" element={<GearNews />} />
