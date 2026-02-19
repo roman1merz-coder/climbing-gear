@@ -20,32 +20,27 @@ function skillGroup(shoe) {
 }
 
 /* ─── Zone definitions for Edging × Sensitivity chart (6 irregular polygons) ─── */
-// Zones follow the natural data distribution — the boundary between beginner
-// (left) and advanced (right) curves leftward at high sensitivity where soft
-// aggressive shoes cluster, and rightward in mid-range where overlap is larger.
+// Zones follow the natural data distribution — the diagonal boundary between
+// beginner (left) and advanced (right) trends consistently from right at the
+// bottom (high edging separation at low sensitivity) to left at the top (soft
+// aggressive shoes cluster at low edging + high sensitivity).
 // Coordinates are [edging, sensitivity] in 0→1 percentile space.
 //
 // Key boundary vertices (bottom→top along the diagonal):
-//   V1(0.42, 0) → V2(0.48, 0.32) → V3(0.42, 0.65) → V4(0.28, 1.0)
+//   V1(0.55, 0) → V2(0.52, 0.32) → V3(0.42, 0.65) → V4(0.30, 1.0)
 const ZONE_POLYS = [
   { id: "1-sup",  label: "Multi-Pitch Comfort", emoji: "🏔",  side: "beg",
-    poly: [[0,0], [0.42,0], [0.48,0.32], [0,0.32]],
-    bg: "rgba(52,211,153,0.06)" },
+    poly: [[0,0], [0.55,0], [0.52,0.32], [0,0.32]] },
   { id: "2-sup",  label: "Edging Machine",      emoji: "🔪", side: "adv",
-    poly: [[0.42,0], [1,0], [1,0.30], [0.48,0.32]],
-    bg: "rgba(232,115,74,0.06)" },
+    poly: [[0.55,0], [1,0], [1,0.30], [0.52,0.32]] },
   { id: "1-bal",  label: "Allrounder",           emoji: "⭐", side: "beg",
-    poly: [[0,0.32], [0.48,0.32], [0.42,0.65], [0,0.65]],
-    bg: "rgba(52,211,153,0.05)" },
+    poly: [[0,0.32], [0.52,0.32], [0.42,0.65], [0,0.65]] },
   { id: "2-bal",  label: "Advanced Allrounder",  emoji: "🎯", side: "adv",
-    poly: [[0.48,0.32], [1,0.30], [1,0.68], [0.42,0.65]],
-    bg: "rgba(232,115,74,0.05)" },
+    poly: [[0.52,0.32], [1,0.30], [1,0.68], [0.42,0.65]] },
   { id: "1-sens", label: "Gym Progression",      emoji: "🧗", side: "beg",
-    poly: [[0,0.65], [0.42,0.65], [0.28,1], [0,1]],
-    bg: "rgba(52,211,153,0.08)" },
+    poly: [[0,0.65], [0.42,0.65], [0.30,1], [0,1]] },
   { id: "2-sens", label: "Overhang Specialist",  emoji: "💪", side: "adv",
-    poly: [[0.42,0.65], [1,0.68], [1,1], [0.28,1]],
-    bg: "rgba(232,115,74,0.08)" },
+    poly: [[0.42,0.65], [1,0.68], [1,1], [0.30,1]] },
 ];
 const ZONE_DESCRIPTIONS = {
   "1-sens": "Modern bouldering gym shoe for beginners. Minimal downturn and asymmetry, but thin, soft sole for maximum rock feel. Less supportive — your feet may tire faster at first — but builds toe strength and footwork skills faster than a stiff shoe.",
@@ -202,72 +197,39 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
     drawChartArea(ctx, PAD, W, H);
 
     // ── 6-zone overlay (edging_sensitivity + insightsMode + showZones) ──
+    // Style: watermark labels behind data + colored polygon outlines on top
     if (metric === "edging_sensitivity" && insightsMode && showZones) {
-      // Helper: convert polygon from data-space [edging, sensitivity] to pixel coords
       const polyToPx = poly => poly.map(([ex, se]) => [sx(ex), sy(se)]);
-      const drawPoly = (pxPoly, fill, stroke) => {
+      const centroid = pxPoly => [
+        pxPoly.reduce((s, p) => s + p[0], 0) / pxPoly.length,
+        pxPoly.reduce((s, p) => s + p[1], 0) / pxPoly.length,
+      ];
+      const tracePoly = pxPoly => {
         ctx.beginPath();
         pxPoly.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
         ctx.closePath();
-        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
-        if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.setLineDash([6, 4]); ctx.stroke(); ctx.setLineDash([]); }
       };
 
-      // Draw filled zone polygons
-      ZONE_POLYS.forEach(z => {
-        drawPoly(polyToPx(z.poly), z.bg, null);
-      });
-
-      // Draw dashed boundary lines along the shared edges
-      ctx.save();
-      ctx.strokeStyle = "rgba(255,255,255,0.13)";
-      ctx.lineWidth = 1;
-      ctx.setLineDash([6, 4]);
-      // Diagonal boundary (V1→V2→V3→V4)
-      const diag = [[0.42,0], [0.48,0.32], [0.42,0.65], [0.28,1]].map(([ex,se]) => [sx(ex), sy(se)]);
-      ctx.beginPath(); diag.forEach(([x,y], i) => i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y)); ctx.stroke();
-      // Left horizontal splits
-      ctx.beginPath(); ctx.moveTo(sx(0), sy(0.32)); ctx.lineTo(sx(0.48), sy(0.32)); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(sx(0), sy(0.65)); ctx.lineTo(sx(0.42), sy(0.65)); ctx.stroke();
-      // Right horizontal splits
-      ctx.beginPath(); ctx.moveTo(sx(0.48), sy(0.32)); ctx.lineTo(sx(1), sy(0.30)); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(sx(0.42), sy(0.65)); ctx.lineTo(sx(1), sy(0.68)); ctx.stroke();
-      ctx.restore();
-
-      // Zone labels at polygon centroids
-      const labelSize = isMobile ? 8 : 10;
+      // Layer 1: Large faded watermark labels (drawn BEFORE dots)
       ctx.save();
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ZONE_POLYS.forEach(z => {
-        // Centroid = average of vertices
         const pxPoly = polyToPx(z.poly);
-        const cx = pxPoly.reduce((s, p) => s + p[0], 0) / pxPoly.length;
-        const cy = pxPoly.reduce((s, p) => s + p[1], 0) / pxPoly.length;
-        // Emoji
-        ctx.font = `${isMobile ? 12 : 16}px sans-serif`;
-        ctx.globalAlpha = 0.6;
-        ctx.fillText(z.emoji, cx, cy - (isMobile ? 7 : 10));
-        // Label
-        ctx.font = `700 ${labelSize}px ${T.font}`;
+        const [cx, cy] = centroid(pxPoly);
+        // Big faded emoji
+        ctx.font = `${isMobile ? 22 : 32}px sans-serif`;
+        ctx.globalAlpha = 0.06;
+        ctx.fillStyle = "#fff";
+        ctx.fillText(z.emoji, cx, cy - (isMobile ? 4 : 6));
+        // Large uppercase label
+        ctx.font = `800 ${isMobile ? 8 : 11}px ${T.font}`;
         ctx.fillStyle = z.side === "beg" ? "#34d399" : "#E8734A";
-        ctx.globalAlpha = 0.55;
-        ctx.fillText(z.label, cx, cy + (isMobile ? 7 : 10));
+        ctx.globalAlpha = 0.13;
+        ctx.fillText(z.label.toUpperCase(), cx, cy + (isMobile ? 12 : 18));
       });
       ctx.restore();
 
-      // Group labels above chart
-      ctx.save();
-      ctx.font = `600 ${isMobile ? 8 : 9}px ${T.font}`;
-      ctx.globalAlpha = 0.5;
-      ctx.textBaseline = "bottom";
-      ctx.textAlign = "center";
-      const xDivMid = sx(0.35); // visual midpoint of diagonal boundary
-      ctx.fillStyle = "#34d399";
-      ctx.fillText("← Beginner – Intermediate", (PAD.l + xDivMid) / 2, PAD.t - 3);
-      ctx.fillStyle = "#E8734A";
-      ctx.fillText("Advanced – Elite →", (xDivMid + W - PAD.r) / 2, PAD.t - 3);
-      ctx.restore();
     }
 
     // Grid (dashed, 8%, baseline emphasis)
@@ -311,6 +273,23 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
       drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
+    }
+
+    // Layer 3: Zone outlines ON TOP of dots (colored polygon borders)
+    if (metric === "edging_sensitivity" && insightsMode && showZones) {
+      const polyToPx = poly => poly.map(([ex, se]) => [sx(ex), sy(se)]);
+      ctx.save();
+      ZONE_POLYS.forEach(z => {
+        const pxPoly = polyToPx(z.poly);
+        ctx.beginPath();
+        pxPoly.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
+        ctx.closePath();
+        ctx.strokeStyle = z.side === "beg" ? "rgba(52,211,153,0.28)" : "rgba(232,115,74,0.28)";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([]);
+        ctx.stroke();
+      });
+      ctx.restore();
     }
   }, [metric, cfg, isMobile, getColor, filtered, showZones, insightsMode]);
 
