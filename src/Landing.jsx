@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import usePageMeta from "./usePageMeta.js";
 import useStructuredData, { buildWebsiteSchema } from "./useStructuredData.js";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
+import { motion } from "framer-motion";
 import SHOES from "./seed_data.json";
 import ROPES from "./rope_seed_data.json";
 import BELAYS from "./belay_seed_data.json";
@@ -10,7 +11,7 @@ import PADS from "./crashpad_seed_data.json";
 
 const TOTAL_PRODUCTS = SHOES.length + ROPES.length + BELAYS.length + PADS.length;
 
-// ─── Responsive hook ───
+// Responsive hook
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
   useEffect(() => {
@@ -23,73 +24,259 @@ function useIsMobile() {
 
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase.js";
 
-// ─── Gear Selector Card ───
-function GearCard({ title, shortTitle, count, description, to, active, cta = "Open selector", mobileCta = "Browse" }) {
-  const isMobile = useIsMobile();
+// ─── SVG Icons (inline, avoids external icon library) ───
+function IconChart({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>);
+}
+function IconStore({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>);
+}
+function IconRadar({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>);
+}
+function IconClock({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>);
+}
+function IconArrow({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>);
+}
+function IconTarget({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>);
+}
+function IconBook({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>);
+}
+function IconShoe({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 16v-2a4 4 0 0 1 4-4h2l2-4h4l2 4h2a4 4 0 0 1 4 4v2" /><path d="M2 16h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z" /></svg>);
+}
+function IconRope({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20" /><path d="M8 6c0 0 2 2 4 2s4-2 4-2" /><path d="M8 14c0 0 2 2 4 2s4-2 4-2" /></svg>);
+}
+function IconShield({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>);
+}
+function IconLayers({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>);
+}
 
-  // Mobile compact 2×2 card
-  if (isMobile) {
-    return active ? (
-      <Link to={to} style={{
-        background: T.card, border: `1px solid ${T.accent}40`, borderRadius: "12px",
-        padding: "18px 16px", textDecoration: "none",
-        display: "flex", flexDirection: "column", gap: "4px",
-        transition: "all 0.25s ease", cursor: "pointer",
-      }}>
-        <div style={{ fontSize: "14px", fontWeight: 800, color: T.text }}>{shortTitle || title}</div>
-        {count && <div style={{ fontSize: "12px", color: T.muted }}>{count}</div>}
-        <div style={{ color: T.accent, fontSize: "12px", fontWeight: 700, marginTop: "10px" }}>
-          {mobileCta} {"\u2192"}
+// ─── Data arrays ───
+const STATS = [
+  { value: `${TOTAL_PRODUCTS}+`, label: "Products", Icon: IconChart },
+  { value: "20+", label: "Retailers", Icon: IconStore },
+  { value: "7", label: "Perf. Axes", Icon: IconRadar },
+  { value: "24h", label: "Price Cycle", Icon: IconClock },
+];
+
+const SELECTORS = [
+  { title: "Shoe Selector", count: `${SHOES.length}+`, to: "/shoes", description: `${SHOES.length}+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking.`, Icon: IconShoe, finderTo: "/find" },
+  { title: "Rope Selector", count: `${ROPES.length}+`, to: "/ropes", description: "Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands.", Icon: IconRope },
+  { title: "Belay Device Selector", count: `${BELAYS.length}+`, to: "/belays", description: "Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price.", Icon: IconShield },
+  { title: "Crashpad Selector", count: `${PADS.length}+`, to: "/crashpads", description: "Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability.", Icon: IconLayers },
+];
+
+const INSIGHTS = [
+  { title: "How We Score 340 Climbing Shoes \u2014 and How to Pick Yours", description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
+  { title: "Inflatable Crashpads: Game-Changer or Gimmick?", description: "They shatter the weight curve, fit inside your backpack, and inflate in minutes. But how safe are they really?", to: "/insights/inflatable-crashpads" },
+  { title: "Does Spending More Buy a Safer Rope?", description: "We crunched cost-per-gram, UIAA falls, and impact force across 200+ ropes to find out.", to: "/insights/rope-cost-vs-safety" },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// HERO SECTION
+// ═══════════════════════════════════════════════════════════════
+function HeroSection({ isMobile }) {
+  return (
+    <section style={{ position: "relative", minHeight: isMobile ? "100svh" : "90vh", display: "flex", alignItems: "center", overflow: "hidden", paddingBottom: isMobile ? "112px" : "96px" }}>
+      {/* Background image */}
+      <div style={{ position: "absolute", inset: 0 }}>
+        <img src="/images/hero-mountain.jpg" alt="Climber on mountain rock face at golden hour" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" />
+        <div style={{ position: "absolute", inset: 0, background: isMobile
+          ? "linear-gradient(to bottom, rgba(14,16,21,0.88) 0%, rgba(14,16,21,0.65) 50%, rgba(14,16,21,0.2) 100%)"
+          : "linear-gradient(to right, rgba(14,16,21,0.88) 0%, rgba(14,16,21,0.65) 45%, transparent 100%)" }} />
+      </div>
+
+      {/* Content */}
+      <div style={{ position: "relative", zIndex: 10, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "80px 20px 0" : "96px 40px 0" }}>
+        <div style={{ maxWidth: "640px" }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 14px", fontSize: isMobile ? "10px" : "11px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", borderRadius: "20px", background: `${T.accent}20`, color: "#fff", border: `1px solid ${T.accent}30`, fontFamily: T.font }}>
+              <IconChart size={14} color={T.accent} />
+              Data-Driven Gear Comparison
+            </span>
+          </motion.div>
+
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            style={{ fontSize: isMobile ? "32px" : "64px", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-1px", color: "#fff", margin: isMobile ? "16px 0" : "24px 0", fontFamily: T.font }}>
+            Scroll less.<br /><span style={{ fontStyle: "italic" }}>Climb more.</span>
+          </motion.h1>
+
+          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            style={{ fontSize: isMobile ? "15px" : "18px", color: "rgba(255,255,255,0.8)", lineHeight: 1.7, maxWidth: "500px", fontFamily: T.font, marginBottom: isMobile ? "24px" : "32px" }}>
+            Every model, every spec, every price {"\u2014"} with zero brand bias and full transparency. Compare climbing gear the smart way.
+          </motion.p>
+
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "10px" : "12px" }}>
+            <Link to="/shoes" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", fontFamily: T.font, transition: "opacity 0.2s" }}>
+              Explore Gear Selectors <IconArrow size={16} />
+            </Link>
+            <Link to="/find" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s" }}>
+              <IconTarget size={16} /> Guided Shoe Finder
+            </Link>
+            <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", fontFamily: T.font, transition: "color 0.2s" }}>
+              <IconBook size={16} /> Explore Insights
+            </a>
+          </motion.div>
         </div>
-      </Link>
-    ) : (
-      <div style={{
-        background: T.surface, border: `1px solid ${T.border}`, borderRadius: "12px",
-        padding: "18px 16px", opacity: 0.5,
-        display: "flex", flexDirection: "column", gap: "4px",
-      }}>
-        <div style={{ fontSize: "14px", fontWeight: 800, color: T.muted }}>{shortTitle || title}</div>
-        {count && <div style={{ fontSize: "12px", color: T.muted }}>{count}</div>}
       </div>
-    );
-  }
 
-  // Desktop full card
-  return active ? (
-    <Link to={to} style={{
-      background: T.card, border: `1px solid ${T.accent}40`, borderRadius: "14px",
-      padding: "32px 28px", textDecoration: "none",
-      display: "flex", flexDirection: "column", gap: "12px",
-      transition: "all 0.25s ease", cursor: "pointer", position: "relative", overflow: "hidden",
-    }}
-      onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 8px 32px ${T.accent}20`; }}
-      onMouseOut={e => { e.currentTarget.style.borderColor = `${T.accent}40`; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-    >
-      <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Live</div>
-      <div>
-        <div style={{ fontSize: "18px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
-        <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>{description}</div>
-      </div>
-      <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "13px", fontWeight: 700, marginTop: "auto" }}>
-        {cta} <span style={{ fontSize: "16px" }}>{"\u2192"}</span>
-      </div>
-    </Link>
-  ) : (
-    <div style={{
-      background: T.surface, border: `1px solid ${T.border}`, borderRadius: "14px",
-      padding: "32px 28px", opacity: 0.6,
-      display: "flex", flexDirection: "column", gap: "12px", position: "relative",
-    }}>
-      <div style={{ position: "absolute", top: "12px", right: "14px", fontSize: "10px", fontWeight: 700, color: T.muted, background: `${T.border}`, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px", textTransform: "uppercase" }}>Coming Soon</div>
-      <div>
-        <div style={{ fontSize: "18px", fontWeight: 800, color: T.muted, letterSpacing: "-0.3px", marginBottom: "6px" }}>{title}</div>
-        <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6, opacity: 0.7 }}>{description}</div>
-      </div>
-    </div>
+      {/* Stats bar at bottom */}
+      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
+        style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 10 }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", borderRadius: isMobile ? "14px 14px 0 0" : "18px 18px 0 0", overflow: "hidden" }}>
+            {STATS.map(({ value, label, Icon }) => (
+              <div key={label} style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? "4px" : "12px", padding: isMobile ? "12px 8px" : "18px 24px", background: "rgba(28,32,41,0.92)", backdropFilter: "blur(12px)", borderTop: `1px solid ${T.border}50`, textAlign: isMobile ? "center" : "left" }}>
+                <Icon size={isMobile ? 14 : 18} color={T.accent} />
+                <div>
+                  <div style={{ fontSize: isMobile ? "14px" : "20px", fontWeight: 800, color: T.text, fontFamily: T.font }}>{value}</div>
+                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: T.muted, lineHeight: 1.2 }}>{label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </section>
   );
 }
 
-// ─── Suggestion Hub ───
+// ═══════════════════════════════════════════════════════════════
+// GEAR SELECTORS SECTION
+// ═══════════════════════════════════════════════════════════════
+function GearSelectorsSection({ isMobile }) {
+  return (
+    <section style={{ padding: isMobile ? "48px 16px" : "80px 40px", maxWidth: "1200px", margin: "0 auto" }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: isMobile ? "24px" : "40px" }}>
+        <span style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: T.accent, display: "block", marginBottom: "10px" }}>Compare & Choose</span>
+        <h2 style={{ fontSize: isMobile ? "24px" : "38px", fontWeight: 800, color: T.text, letterSpacing: "-0.5px", margin: 0, fontFamily: T.font }}>Gear Selectors</h2>
+        <p style={{ marginTop: "12px", color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "520px" }}>Every piece of gear, broken down by specs. No opinions {"\u2014"} just data to help you decide.</p>
+      </motion.div>
+
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: isMobile ? "12px" : "16px" }}>
+        {SELECTORS.map((sel, i) => (
+          <motion.div key={sel.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}>
+            <Link to={sel.to} style={{ display: "flex", flexDirection: "column", padding: isMobile ? "20px" : "24px", borderRadius: "16px", background: T.card, border: `1px solid ${T.border}`, textDecoration: "none", transition: "all 0.3s ease", height: "100%" }}
+              onMouseOver={e => { e.currentTarget.style.borderColor = `${T.accent}60`; e.currentTarget.style.boxShadow = `0 8px 32px ${T.accent}08`; }}
+              onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+                <div style={{ width: "42px", height: "42px", borderRadius: "12px", background: `${T.accent}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <sel.Icon size={20} color={T.accent} />
+                </div>
+                <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: T.green, background: `${T.green}15`, padding: "4px 10px", borderRadius: "12px" }}>Live</span>
+              </div>
+              <h3 style={{ fontSize: "16px", fontWeight: 800, color: T.text, marginBottom: "8px", fontFamily: T.font }}>{sel.title}</h3>
+              <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.65, flex: 1 }}>{sel.description}</p>
+              {sel.finderTo && (
+                <Link to={sel.finderTo} onClick={e => e.stopPropagation()} style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "14px", padding: "10px 12px", borderRadius: "10px", background: `${T.accent}12`, textDecoration: "none", transition: "background 0.2s" }}
+                  onMouseOver={e => e.currentTarget.style.background = `${T.accent}22`}
+                  onMouseOut={e => e.currentTarget.style.background = `${T.accent}12`}>
+                  <IconTarget size={14} color={T.accent} />
+                  <span style={{ fontSize: "12px", fontWeight: 700, color: T.accent }}>Guided Shoe Finder</span>
+                  <span style={{ marginLeft: "auto" }}><IconArrow size={12} color={T.accent} /></span>
+                </Link>
+              )}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "18px", paddingTop: "14px", borderTop: `1px solid ${T.border}` }}>
+                <span style={{ fontSize: "13px", fontWeight: 700, color: T.accent }}>{sel.count} models</span>
+                <IconArrow size={14} color={T.muted} />
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ textAlign: "center", color: T.muted, fontSize: "13px", marginTop: "24px" }}>
+        5 more selectors coming soon {"\u2014"} Harnesses, Pants, Helmets & more
+      </motion.p>
+    </section>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+// GUIDED FINDER CTA
+// ═══════════════════════════════════════════════════════════════
+function GuidedFinderSection({ isMobile }) {
+  return (
+    <section style={{ padding: isMobile ? "0 16px 48px" : "0 40px 80px", maxWidth: "1200px", margin: "0 auto" }}>
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+        style={{ position: "relative", overflow: "hidden", borderRadius: "20px", background: `linear-gradient(135deg, ${T.accent}18, ${T.accent}08)`, border: `1px solid ${T.accent}30`, padding: isMobile ? "28px 20px" : "48px 56px" }}>
+        {/* Decorative blur */}
+        <div style={{ position: "absolute", top: "-64px", right: "-64px", width: "200px", height: "200px", borderRadius: "50%", background: `${T.accent}12`, filter: "blur(60px)" }} />
+
+        <div style={{ position: "relative", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "20px" : "48px" }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+              <div style={{ width: "44px", height: "44px", borderRadius: "14px", background: `${T.accent}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <IconTarget size={22} color={T.accent} />
+              </div>
+              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: T.muted }}>Personalized</span>
+            </div>
+            <h2 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, color: T.text, lineHeight: 1.15, marginBottom: "12px", fontFamily: T.font }}>Guided Shoe Finder</h2>
+            <p style={{ color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "480px" }}>
+              Answer 5 quick questions about your climbing style, experience, and foot shape {"\u2014"} our algorithm scores {SHOES.length} shoes and shows your top matches.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "14px", fontSize: "12px", color: T.muted }}>
+              {"\u2728"} Zero opinions, just data
+            </div>
+          </div>
+          <Link to="/find" style={{ display: "inline-flex", alignItems: "center", gap: "12px", padding: isMobile ? "14px 28px" : "16px 32px", borderRadius: "14px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: isMobile ? "14px" : "15px", textDecoration: "none", fontFamily: T.font, whiteSpace: "nowrap", flexShrink: 0, transition: "transform 0.2s" }}
+            onMouseOver={e => e.currentTarget.style.transform = "scale(1.02)"}
+            onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
+            Find your shoe <IconArrow size={18} />
+          </Link>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INSIGHTS SECTION
+// ═══════════════════════════════════════════════════════════════
+function InsightsSection({ isMobile }) {
+  return (
+    <section id="insights" style={{ padding: isMobile ? "48px 16px" : "80px 40px", maxWidth: "1200px", margin: "0 auto", scrollMarginTop: "60px" }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: isMobile ? "24px" : "40px" }}>
+        <span style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: T.accent, display: "block", marginBottom: "10px" }}>Learn & Decide</span>
+        <h2 style={{ fontSize: isMobile ? "24px" : "38px", fontWeight: 800, color: T.text, letterSpacing: "-0.5px", margin: 0, fontFamily: T.font }}>Gear Insights</h2>
+        <p style={{ marginTop: "12px", color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "520px" }}>Deep dives into specs, safety data, and performance {"\u2014"} so you know exactly what you're buying.</p>
+      </motion.div>
+
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? "12px" : "16px" }}>
+        {INSIGHTS.map((insight, i) => (
+          <motion.div key={insight.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}>
+            <Link to={insight.to} style={{ display: "flex", flexDirection: "column", padding: isMobile ? "20px" : "24px", borderRadius: "16px", border: `1px solid ${T.border}`, background: T.card, textDecoration: "none", transition: "all 0.3s ease", height: "100%" }}
+              onMouseOver={e => { e.currentTarget.style.borderColor = `${T.accent}40`; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)"; }}
+              onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+                <IconBook size={14} color={T.accent} />
+                <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: T.accent }}>Insight</span>
+              </div>
+              <h3 style={{ fontSize: "16px", fontWeight: 800, color: T.text, lineHeight: 1.35, marginBottom: "10px", fontFamily: T.font }}>{insight.title}</h3>
+              <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.65, flex: 1 }}>{insight.description}</p>
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "16px", fontSize: "13px", fontWeight: 700, color: T.accent }}>
+                Read insight <IconArrow size={14} color={T.accent} />
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SUGGESTION HUB (preserved from original)
+// ═══════════════════════════════════════════════════════════════
 function SuggestionHub() {
   const [type, setType] = useState("feature");
   const [message, setMessage] = useState("");
@@ -116,16 +303,16 @@ function SuggestionHub() {
   };
 
   const types = [
-    { key: "question", label: "Gear question", icon: "\u{2753}" },
-    { key: "feature", label: "Feature idea", icon: "\u{1F4A1}" },
-    { key: "bug", label: "Bug report", icon: "\u{1F41B}" },
-    { key: "data", label: "Data correction", icon: "\u{1F4CA}" },
-    { key: "general", label: "General feedback", icon: "\u{1F4AC}" },
+    { key: "question", label: "Gear question", icon: "\u2753" },
+    { key: "feature", label: "Feature idea", icon: "\uD83D\uDCA1" },
+    { key: "bug", label: "Bug report", icon: "\uD83D\uDC1B" },
+    { key: "data", label: "Data correction", icon: "\uD83D\uDCCA" },
+    { key: "general", label: "General feedback", icon: "\uD83D\uDCAC" },
   ];
 
   return (
     <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: "32px" }}>
-      <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 6px", letterSpacing: "-0.3px" }}>{"\u{1F4E8}"} Suggestion Hub</h3>
+      <h3 style={{ fontSize: "20px", fontWeight: 800, margin: "0 0 6px", letterSpacing: "-0.3px" }}>{"\uD83D\uDCE8"} Suggestion Hub</h3>
       <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, margin: "0 0 24px" }}>Got a gear question? An idea? Found wrong data? Ask anything or help us build a better tool for the climbing community.</p>
       <form onSubmit={handleSubmit}>
         <div style={{ display: "flex", gap: "8px", marginBottom: "16px", flexWrap: "wrap" }}>
@@ -152,7 +339,7 @@ function SuggestionHub() {
             color: (status === "success" || status === "error" || message.trim()) ? "#fff" : T.muted,
             fontSize: "13px", fontWeight: 700, cursor: message.trim() && status !== "sending" ? "pointer" : "not-allowed", fontFamily: T.font, transition: "all 0.2s",
           }}>
-            {status === "sending" ? "Sending..." : status === "success" ? "\u{2713} Sent!" : status === "error" ? "Failed" : type === "question" ? "Ask question" : "Send suggestion"}
+            {status === "sending" ? "Sending..." : status === "success" ? "\u2713 Sent!" : status === "error" ? "Failed" : type === "question" ? "Ask question" : "Send suggestion"}
           </button>
         </div>
       </form>
@@ -167,113 +354,32 @@ export default function Landing() {
   usePageMeta(null, null);
   useStructuredData(buildWebsiteSchema());
   const isMobile = useIsMobile();
-  const pad = isMobile ? "20px 16px" : "0 32px";
-  const [showMore, setShowMore] = useState(false);
 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
+      <HeroSection isMobile={isMobile} />
+      <GearSelectorsSection isMobile={isMobile} />
+      <GuidedFinderSection isMobile={isMobile} />
+      <InsightsSection isMobile={isMobile} />
 
-      {/* ─── Hero ─── */}
-      <section style={{ textAlign: "center", padding: isMobile ? "48px 20px 40px" : "72px 32px 56px", maxWidth: "800px", margin: "0 auto" }}>
-        <h1 style={{ fontSize: isMobile ? "28px" : "42px", fontWeight: 800, letterSpacing: "-0.8px", margin: "0 0 18px", lineHeight: 1.15 }}>
-          Scroll less. Climb more.
-        </h1>
-        <p style={{ fontSize: isMobile ? "14px" : "16px", color: T.muted, lineHeight: 1.8, maxWidth: "620px", margin: "0 auto" }}>
-          Data-driven comparison tools for every piece of climbing gear. Every model, every spec, every price {"\u2014"} with zero brand bias and full transparency.
-        </p>
-      </section>
-
-      {/* ─── Gear Selectors ─── */}
-      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: pad }}>
-        <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
-          Gear Selectors
-        </h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: isMobile ? "10px" : "14px" }}>
-          <GearCard title="Shoe Selector" shortTitle="Shoes" count={`${SHOES.length} models`} to="/shoes" active description="330+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking." />
-          <GearCard title="Rope Selector" shortTitle="Ropes" count={`${ROPES.length} models`} to="/ropes" active description="Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands." />
-          <GearCard title="Belay Device Selector" shortTitle="Belay Devices" count={`${BELAYS.length} models`} to="/belays" active description="Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price." />
-          <GearCard title="Crashpad Selector" shortTitle="Crashpads" count={`${PADS.length} models`} to="/crashpads" active description="Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability." />
-          {showMore && <>
-            <GearCard title="Helmet Selector" shortTitle="Helmets" description="Climbing helmets for sport, trad, and alpine. Compare weight, ventilation, protection rating, and adjustability." />
-            <GearCard title="Quickdraw Selector" shortTitle="Quickdraws" description="Sport and alpine quickdraws. Compare gate type, weight, sling length, and carabiner nose design." />
-            <GearCard title="Harness Selector" shortTitle="Harnesses" description="Sport, trad, alpine, and big wall harnesses. Compare weight, gear loops, comfort, and adjustability." />
-            <GearCard title="Pants Selector" shortTitle="Pants" description="Climbing pants and shorts. Compare stretch, durability, weather protection, and pocket layout." />
-            <GearCard title="Jacket Selector" shortTitle="Jackets" description="Shell, softshell, and insulation layers. Compare breathability, waterproofing, and packability." />
-          </>}
-        </div>
-        <button onClick={() => setShowMore(v => !v)} style={{
-          display: "flex", alignItems: "center", gap: "6px", margin: "16px auto 0", padding: "10px 20px",
-          background: "none", border: `1px solid ${T.border}`, borderRadius: "8px",
-          color: T.muted, fontSize: "13px", fontWeight: 600, cursor: "pointer", fontFamily: T.font, transition: "all 0.2s",
-        }}
-          onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.color = T.accent; }}
-          onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.muted; }}
-        >
-          {showMore ? "Show less" : "5 more selectors coming soon"} <span style={{ fontSize: "10px", transition: "transform 0.2s", transform: showMore ? "rotate(180deg)" : "rotate(0)" }}>{"\u25BC"}</span>
-        </button>
-      </section>
-
-      {/* ─── Shoe Finder CTA ─── */}
-      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "32px 16px" : "48px 32px"} 0` }}>
-        <Link to="/find" style={{
-          display: "flex", alignItems: isMobile ? "flex-start" : "center",
-          flexDirection: isMobile ? "column" : "row",
-          gap: isMobile ? "12px" : "24px",
-          background: `linear-gradient(135deg, ${T.card}, ${T.surface})`,
-          border: `1.5px solid ${T.accent}40`,
-          borderRadius: "16px", padding: isMobile ? "20px" : "28px 32px",
-          textDecoration: "none", transition: "all 0.3s ease",
-          position: "relative", overflow: "hidden",
-        }}
-          onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 8px 32px ${T.accent}20`; }}
-          onMouseOut={e => { e.currentTarget.style.borderColor = `${T.accent}40`; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-        >
-          <div style={{ fontSize: "36px", flexShrink: 0 }}>🎯</div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", marginBottom: "4px" }}>
-              Guided Shoe Finder
-            </div>
-            <div style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6 }}>
-              Answer 5 quick questions about your climbing style, experience, and foot shape — our algorithm scores {SHOES.length} shoes and shows your top matches. Zero opinions, just data.
-            </div>
-          </div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", color: T.accent, fontSize: "14px", fontWeight: 700, whiteSpace: "nowrap", flexShrink: 0 }}>
-            Find your shoe <span style={{ fontSize: "18px" }}>{"\u2192"}</span>
-          </div>
-        </Link>
-      </section>
-
-      {/* ─── Gear Insights ─── */}
-      <section style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "48px 16px" : "64px 32px"} 0` }}>
-        <h2 style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 700, marginBottom: "20px", paddingLeft: isMobile ? 0 : "4px" }}>
-          Gear Insights
-        </h2>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)", gap: isMobile ? "10px" : "14px" }}>
-          <GearCard title="How We Score 340 Climbing Shoes — and How to Pick Yours" shortTitle="How We Score 340 Shoes" to="/insights/climbing-shoe-guide" active cta="Read insight" mobileCta="Read" description="Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance and what foot shape means for fit." />
-          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" shortTitle="Inflatable Crashpads: Gimmick?" to="/insights/inflatable-crashpads" active cta="Read insight" mobileCta="Read" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
-          <GearCard title="Does Spending More Buy a Safer Rope?" shortTitle="Does Price = Safer Rope?" to="/insights/rope-cost-vs-safety" active cta="Read insight" mobileCta="Read" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
-        </div>
-      </section>
-
-      {/* ─── About (condensed) ─── */}
-      <section id="about" style={{ maxWidth: "1100px", margin: "0 auto", padding: `${isMobile ? "48px 16px" : "64px 32px"} 0` }}>
-
+      {/* About section */}
+      <section id="about" style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "48px 16px" : "80px 40px" }}>
         {/* Stats strip */}
-        <div style={{ display: "flex", gap: "14px", marginBottom: "32px", flexWrap: "wrap", justifyContent: "center" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginBottom: "32px" }}>
           {[
             { number: String(TOTAL_PRODUCTS), label: "Products compared" },
             { number: "20+", label: "Retailers tracked" },
             { number: "Daily", label: "Price updates" },
             { number: "0", label: "Ads or sponsored rankings" },
           ].map(s => (
-            <div key={s.label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "10px", padding: "16px", textAlign: "center", flex: 1, minWidth: "110px" }}>
-              <div style={{ fontSize: "20px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{s.number}</div>
+            <div key={s.label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "18px", textAlign: "center" }}>
+              <div style={{ fontSize: "22px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{s.number}</div>
               <div style={{ fontSize: "11px", color: T.muted, marginTop: "4px" }}>{s.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Who + mission in one compact card */}
+        {/* Who + mission */}
         <div style={{ maxWidth: "820px", margin: "0 auto 32px", background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: isMobile ? "24px 20px" : "28px 32px", textAlign: "center" }}>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, maxWidth: "560px", margin: "0 auto 8px" }}>
             Built by Roman {"\u2014"} a climber in Palatine, Germany {"\u2014"} because comparing gear across shops was taking
@@ -296,7 +402,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ─── Disclaimer ─── */}
+      {/* Disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <p style={{ fontSize: "11px", color: T.muted, lineHeight: 1.7, fontFamily: T.font, margin: 0, maxWidth: "800px" }}>
@@ -309,22 +415,6 @@ export default function Landing() {
           </p>
         </div>
       </div>
-
-      {/* ─── Footer ─── */}
-      <footer style={{
-        padding: isMobile ? "16px" : "24px 32px", borderTop: `1px solid ${T.border}`,
-        display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "8px" : 0,
-        justifyContent: "space-between", alignItems: "center",
-        fontSize: "12px", color: T.muted, fontFamily: T.font, maxWidth: "1100px", margin: "0 auto",
-      }}>
-        <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
-        <div style={{ display: "flex", gap: "20px" }}>
-          <a href="#about" style={{ color: T.muted, textDecoration: "none" }}>About</a>
-          <Link to="/impressum" style={{ color: T.muted, textDecoration: "none" }}>Impressum</Link>
-          <Link to="/privacy" style={{ color: T.muted, textDecoration: "none" }}>Datenschutz</Link>
-        </div>
-      </footer>
-
     </div>
   );
 }
