@@ -252,7 +252,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
     }
 
     // Dots with glow + jitter
-    const r = isMobile ? 5 : 4;
+    const r = isMobile ? 3 : 4;
     const pixelPts = [];
     filtered.forEach((d, i) => {
       const xv = d[xField], yv = d[yField];

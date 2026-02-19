@@ -257,7 +257,7 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
     }
 
     // Dots with glow + jitter
-    const dotR = isMobile ? 6 : 5;
+    const dotR = isMobile ? 3.5 : 5;
     const pixelPts = [];
     filtered.forEach((d, i) => {
       if (d === hovered) return;

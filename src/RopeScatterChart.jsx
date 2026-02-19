@@ -371,7 +371,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       const j = jitter(i);
       const px = sx(r[xField]) + j.dx, py = sy(r[yField]) + j.dy;
       pixelPts.push({ px, py });
-      drawShape(ctx, r, px, py, isMobile ? 5 : 4, false);
+      drawShape(ctx, r, px, py, isMobile ? 3 : 4, false);
     });
 
     // Cluster badges
@@ -380,7 +380,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
       const px = sx(hovered[xField]), py = sy(hovered[yField]);
-      drawShape(ctx, hovered, px, py, isMobile ? 5 : 4, true);
+      drawShape(ctx, hovered, px, py, isMobile ? 3 : 4, true);
     }
   }, [metric, isMobile, cfg, filtered, enabledTypes, drawShape]);
 

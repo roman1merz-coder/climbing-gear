@@ -133,13 +133,13 @@ export default function InsightShoes() {
 
       <Collapsible title="Edging — standing on tiny holds" defaultOpen={true}>
         <Prose>
-          Edging is about transferring your weight through a small contact point. The score is rigidity-dominant: <strong>stiffness</strong> matters most, driven by midsole type, rand tension, rubber thickness, closure, and upper material. A full midsole with a tensioned rand and lace closure creates the stiffest platform. <strong>Shape</strong> plays a secondary role — moderate-to-aggressive shoes concentrate force at the toe. Hard rubber adds a small bonus for edge precision. The best edging shoes combine a stiff platform with a moderate-to-aggressive profile: think La Sportiva TC Pro or Scarpa Maestro.
+          Edging is about transferring your weight through a small contact point. The score uses a geometric mean of <strong>rigidity</strong> (55%) and <strong>shape</strong> (45%) — you need both for a top score. Rigidity blends structural stiffness (midsole, rand tension, closure) with perceived stiffness from the shoe's feel. Shape rewards moderate-to-aggressive downturn and strong asymmetry. Hard rubber and lace closure each add smaller bonuses. The top edgers in our database — Black Diamond Focus, Wild Climb Pantera 2.0, and the Unparallel TN Pro — all combine stiff construction with aggressive profiles. A flat shoe like the Scarpa Maestro has the stiffness but lacks the shape; conversely, a soft aggressive shoe has shape but not rigidity.
         </Prose>
       </Collapsible>
 
       <Collapsible title="Smearing — friction on flat rock">
         <Prose>
-          Smearing is the opposite story. <strong>Conformability</strong> dominates — an equal blend of rubber softness and a soft feel, because the foot needs to deform around the rock surface. Rubber thickness is the next biggest factor, especially when the rubber is soft, because more material can mould to the surface. Flat shoes with no asymmetry smear better than aggressive shapes that concentrate pressure at the toe. The ideal smearer: soft rubber, soft feel, flat profile, thick sole. Shoes like the La Sportiva Mythos or Five Ten Moccasym define this archetype.
+          Smearing is the opposite story. <strong>Conformability</strong> dominates (72% of the score) — an equal blend of rubber softness and structural flexibility (low stiffness), because the foot needs to deform around the rock surface. Rubber thickness is the next biggest factor (20%), especially when the rubber is soft, because more material can mould to the surface. Flat shape with no asymmetry adds a small bonus (8%). The ideal smearer: soft rubber, soft feel, no midsole, flat profile. Top scorers include the Andrea Boldrini Scorpio, La Sportiva Cobra, and Five Ten Niad Moccasym — all soft, minimal shoes. Stiffer shoes like the La Sportiva Mythos score poorly here despite their flat profile, because the full midsole and stiff-moderate feel kill conformability.
         </Prose>
       </Collapsible>
 
