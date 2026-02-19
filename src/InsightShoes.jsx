@@ -151,7 +151,7 @@ export default function InsightShoes() {
 
       <Collapsible title="Hooks & heel/toe performance">
         <Prose>
-          Hooking requires rubber coverage more than anything else. Heel rubber (30%) and toe patch (25%) together account for over half the score — which part matters more depends on the route. Downturn adds 20%: aggressive shapes let you load hooks harder. Sensitivity (15%) rewards soft-feeling shoes that transmit feedback, helping you feel whether a hook is secure. Slippers score well for closure (10%): their flexibility lets you wrap the shoe around features.
+          Hooking requires rubber coverage more than anything else. Heel rubber (30%) and toe patch (25%) together account for over half the score — which part matters more depends on the route. Downturn adds 20%: aggressive shapes let you load hooks harder. Sensitivity (15%) rewards soft-feeling shoes that transmit feedback, helping you feel whether a hook is secure. Closure contributes 10%, but its real influence is indirect: it constrains how much rubber can cover the upper. Single-velcro shoes tend to have the largest toe patches because the strap sits out of the way — making them the most versatile hookable shoes, especially for bouldering. Slippers need a flexible upper to get your foot in and out, which limits how much rubber can wrap the shoe. Lace-ups only gain an advantage when laces extend to the front, but that same front coverage blocks a full toe patch. In practice, velcro hits the sweet spot between closure security and maximum rubber real estate.
         </Prose>
       </Collapsible>
 
