@@ -72,7 +72,7 @@ export default function CompareBar({ shoes = [], ropes = [], belays = [], crashp
       <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
         <button onClick={() => clearCompare(activeType)} style={{
           background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px",
-          color: "#8a9485", fontSize: "12px", fontWeight: 600, padding: "8px 14px",
+          color: "#a3b09a", fontSize: "12px", fontWeight: 600, padding: "8px 14px",
           cursor: "pointer", fontFamily: T.font,
         }}>Clear</button>
         <button onClick={() => {

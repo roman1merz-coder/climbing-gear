@@ -172,7 +172,7 @@ function Chip({ label, active, onClick }) {
         padding: "6px 14px", borderRadius: "20px",
         border: active ? "1.5px solid #c98a42" : "1.5px solid #d5cdbf",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
-        color: active ? "#c98a42" : "#8a8373",
+        color: active ? "#c98a42" : "#645b4f",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         fontWeight: active ? 600 : 400, cursor: "pointer",
         transition: "all .2s", textTransform: "capitalize", whiteSpace: "nowrap",
@@ -305,7 +305,7 @@ function TypeBadge({ type }) {
 
 function SmallTag({ label, variant = "default" }) {
   const styles = {
-    default: { bg: "rgba(122,116,98,0.12)", color: "#8a8373" },
+    default: { bg: "rgba(122,116,98,0.12)", color: "#645b4f" },
     feature: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6" },
     sling: { bg: "rgba(34,197,94,0.15)", color: "#22c55e" },
   };
@@ -510,7 +510,7 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
             <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "4px" }}>
               <TypeBadge type={q.quickdraw_type} />
             </div>
-            <div style={{ color: "#8a8373", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
+            <div style={{ color: "#645b4f", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
               {q.brand}
             </div>
             <div style={{ color: "#2c3227", fontSize: "16px", fontWeight: 700, fontFamily: "'DM Sans',sans-serif" }}>
@@ -696,7 +696,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
               <div style={{ padding: "8px 12px 16px", display: "flex", flexDirection: "column", gap: "14px" }}>
                 {g.filters.map((f) => (
                   <div key={f.key}>
-                    <div style={{ color: "#8a8373", fontSize: "11px", fontWeight: 500, marginBottom: "6px" }}>
+                    <div style={{ color: "#645b4f", fontSize: "11px", fontWeight: 500, marginBottom: "6px" }}>
                       {f.label}
                     </div>
                     {f.type === "multi" && (
@@ -804,7 +804,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
-                  color: ac > 0 ? "#c98a42" : "#8a8373",
+                  color: ac > 0 ? "#c98a42" : "#645b4f",
                   cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#d5cdbf"}`,
                   background: ac > 0 ? "rgba(201,138,66,0.08)" : "#ffffff",
                   fontFamily: "'DM Sans',sans-serif",
@@ -821,7 +821,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                   style={{
                     height: "34px", padding: "0 10px", borderRadius: "8px",
                     border: "1px solid #d5cdbf", background: "#ffffff",
-                    color: "#8a8373", cursor: "pointer",
+                    color: "#645b4f", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "4px",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
                     whiteSpace: "nowrap", flexShrink: 0,
@@ -860,7 +860,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                     onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
                     style={{
                       padding: "2px 8px", borderRadius: "10px", border: "1px solid #d5cdbf",
-                      background: "transparent", color: "#8a8373", fontSize: "10px",
+                      background: "transparent", color: "#645b4f", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
                   >
@@ -928,7 +928,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 style={{
                   padding: "6px 16px", borderRadius: "20px",
                   border: "1px solid #d5cdbf", background: "transparent",
-                  color: "#8a8373", fontSize: "12px", cursor: "pointer",
+                  color: "#645b4f", fontSize: "12px", cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                   marginLeft: "auto",
                 }}
@@ -959,7 +959,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
               <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
-                style={{ background: "none", border: "none", color: "#8a8373", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+                style={{ background: "none", border: "none", color: "#645b4f", fontSize: "22px", cursor: "pointer", padding: "4px" }}
               >×</button>
             </div>
             <div style={{ padding: "16px 20px" }}>

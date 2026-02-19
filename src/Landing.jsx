@@ -139,7 +139,7 @@ function HeroSection({ isMobile }) {
                 <Icon size={isMobile ? 14 : 18} color={T.accent} />
                 <div>
                   <div style={{ fontSize: isMobile ? "14px" : "20px", fontWeight: 800, color: "#e8e5df", fontFamily: T.font }}>{value}</div>
-                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: "#8a9485", lineHeight: 1.2 }}>{label}</div>
+                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: "#a3b09a", lineHeight: 1.2 }}>{label}</div>
                 </div>
               </div>
             ))}

@@ -17,7 +17,7 @@ function Img({ src, alt, style, fallback }) {
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
   bg: "#f5f0e8", surface: "#ede7db", card: "#ffffff", border: "#d5cdbf",
-  text: "#f0f0f0", muted: "#9ca3af", dim: "#6b7280",
+  text: "#2c3227", muted: "#7a7462", dim: "#5c5647",
   accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
   green: "#22c55e", greenSoft: "rgba(34,197,94,0.08)",
   blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.08)",
@@ -36,7 +36,7 @@ const TYPE_COLORS = {
   active_assisted: { bg: "rgba(239,68,68,0.15)", color: "#ef4444", icon: "⚡" },
   passive_assisted: { bg: "rgba(168,85,247,0.15)", color: "#a855f7", icon: "🔒" },
   tube_guide: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6", icon: "🔄" },
-  tube: { bg: "rgba(107,114,128,0.15)", color: "#9ca3af", icon: "⊘" },
+  tube: { bg: "rgba(107,114,128,0.15)", color: "#7a7462", icon: "⊘" },
 };
 
 function TypeBadge({ type, size = "sm" }) {

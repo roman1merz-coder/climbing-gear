@@ -11,7 +11,7 @@ export const T = {
   blue: "#4a7fb5", blueSoft: "rgba(74,127,181,0.08)",
   purple: "#7c5cbf", purpleSoft: "rgba(124,92,191,0.08)",
   // Nav stays dark for contrast
-  navBg: "#2c3227", navText: "#e8e5df", navMuted: "#8a9485",
+  navBg: "#2c3227", navText: "#e8e5df", navMuted: "#a3b09a",
   font: "'DM Sans', 'Instrument Sans', system-ui, sans-serif",
   display: "'Playfair Display', Georgia, serif",
   mono: "'JetBrains Mono', 'DM Mono', monospace",

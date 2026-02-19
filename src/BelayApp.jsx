@@ -195,7 +195,7 @@ function Chip({ label, active, onClick }) {
         padding: "6px 14px", borderRadius: "20px",
         border: active ? "1.5px solid #c98a42" : "1.5px solid #d5cdbf",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
-        color: active ? "#c98a42" : "#8a8373",
+        color: active ? "#c98a42" : "#645b4f",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         fontWeight: active ? 600 : 400, cursor: "pointer",
         transition: "all .2s", textTransform: "capitalize", whiteSpace: "nowrap",
@@ -295,7 +295,7 @@ function BelaySVG({ device, width = 120, height = 100 }) {
         {/* Lever */}
         <rect x="68" y="50" width="22" height="8" rx="4" fill={c2} opacity="0.7" />
         {/* Carabiner hole */}
-        <circle cx="52" cy="75" r="5" fill="none" stroke="#8a8373" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="52" cy="75" r="5" fill="none" stroke="#645b4f" strokeWidth="1.5" opacity="0.5" />
         {/* Rope line */}
         <path d="M52 10 Q48 22 52 40 Q56 58 52 75" stroke="#c98a42" strokeWidth="1.5" fill="none" strokeDasharray="3,2" opacity="0.4" />
       </svg>
@@ -320,7 +320,7 @@ function BelaySVG({ device, width = 120, height = 100 }) {
         {/* Thumb loop */}
         <path d="M65 55 Q78 50 75 65 Q72 75 65 72" stroke={c2} strokeWidth="2" fill="none" opacity="0.7" />
         {/* Cable/attachment */}
-        <circle cx="52" cy="70" r="4" fill="none" stroke="#8a8373" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="52" cy="70" r="4" fill="none" stroke="#645b4f" strokeWidth="1.5" opacity="0.5" />
         {/* Brake assist indicator */}
         <circle cx="42" cy="60" r="2" fill={c2} opacity="0.6" />
       </svg>
@@ -343,10 +343,10 @@ function BelaySVG({ device, width = 120, height = 100 }) {
       {device.rope_slots === 2 && <ellipse cx="63" cy="38" rx="6" ry="10" fill="#f5f0e8" opacity="0.6" />}
       {/* Guide mode loop (if applicable) */}
       {device.guide_mode && (
-        <path d="M53 20 Q53 12 60 12 Q67 12 67 20" stroke="#8a8373" strokeWidth="1.5" fill="none" opacity="0.5" />
+        <path d="M53 20 Q53 12 60 12 Q67 12 67 20" stroke="#645b4f" strokeWidth="1.5" fill="none" opacity="0.5" />
       )}
       {/* Cable/attachment */}
-      <circle cx="53" cy="66" r="4" fill="none" stroke="#8a8373" strokeWidth="1.5" opacity="0.5" />
+      <circle cx="53" cy="66" r="4" fill="none" stroke="#645b4f" strokeWidth="1.5" opacity="0.5" />
     </svg>
   );
 }
@@ -357,7 +357,7 @@ const TYPE_COLORS = {
   active_assisted: { bg: "rgba(239,68,68,0.15)", color: "#ef4444", icon: "⚡" },
   passive_assisted: { bg: "rgba(168,85,247,0.15)", color: "#a855f7", icon: "🔒" },
   tube_guide: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6", icon: "🔄" },
-  tube: { bg: "rgba(122,116,98,0.12)", color: "#8a8373", icon: "⊘" },
+  tube: { bg: "rgba(122,116,98,0.12)", color: "#645b4f", icon: "⊘" },
 };
 
 function TypeBadge({ type }) {
@@ -382,7 +382,7 @@ function TypeBadge({ type }) {
 
 function SmallTag({ label, variant = "default" }) {
   const styles = {
-    default: { bg: "rgba(122,116,98,0.12)", color: "#8a8373" },
+    default: { bg: "rgba(122,116,98,0.12)", color: "#645b4f" },
     safety: { bg: "rgba(34,197,94,0.15)", color: "#22c55e" },
     feature: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6" },
     eco: { bg: "rgba(34,197,94,0.15)", color: "#22c55e" },
@@ -598,7 +598,7 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
             <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap", marginBottom: "4px" }}>
               <TypeBadge type={d.device_type} />
             </div>
-            <div style={{ color: "#8a8373", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
+            <div style={{ color: "#645b4f", fontSize: "11px", fontWeight: 500, letterSpacing: "0.5px", textTransform: "uppercase" }}>
               {d.brand}
             </div>
             <div style={{ color: "#2c3227", fontSize: "16px", fontWeight: 700, fontFamily: "'DM Sans',sans-serif" }}>
@@ -706,7 +706,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
     { key: "active_assisted", label: "Cam ⚡", color: "#ef4444" },
     { key: "passive_assisted", label: "Passive 🔒", color: "#a855f7" },
     { key: "tube_guide", label: "Tube Guide 🔄", color: "#3b82f6" },
-    { key: "tube", label: "Tube ⊘", color: "#8a8373" },
+    { key: "tube", label: "Tube ⊘", color: "#645b4f" },
   ];
 
   return (
@@ -793,7 +793,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
               <div style={{ padding: "8px 12px 16px", display: "flex", flexDirection: "column", gap: "14px" }}>
                 {g.filters.map((f) => (
                   <div key={f.key}>
-                    <div style={{ color: "#8a8373", fontSize: "11px", fontWeight: 500, marginBottom: "6px" }}>
+                    <div style={{ color: "#645b4f", fontSize: "11px", fontWeight: 500, marginBottom: "6px" }}>
                       {f.label}
                     </div>
                     {f.type === "multi" && (
@@ -904,7 +904,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
-                  color: ac > 0 ? "#c98a42" : "#8a8373",
+                  color: ac > 0 ? "#c98a42" : "#645b4f",
                   cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#d5cdbf"}`,
                   background: ac > 0 ? "rgba(201,138,66,0.08)" : "#ffffff",
                   fontFamily: "'DM Sans',sans-serif",
@@ -921,7 +921,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                   style={{
                     height: "34px", padding: "0 10px", borderRadius: "8px",
                     border: "1px solid #d5cdbf", background: "#ffffff",
-                    color: "#8a8373", cursor: "pointer",
+                    color: "#645b4f", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "4px",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
                     whiteSpace: "nowrap", flexShrink: 0,
@@ -960,7 +960,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                     onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
                     style={{
                       padding: "2px 8px", borderRadius: "10px", border: "1px solid #d5cdbf",
-                      background: "transparent", color: "#8a8373", fontSize: "10px",
+                      background: "transparent", color: "#645b4f", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
                   >
@@ -1028,7 +1028,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 style={{
                   padding: "6px 16px", borderRadius: "20px",
                   border: "1px solid #d5cdbf", background: "transparent",
-                  color: "#8a8373", fontSize: "12px", cursor: "pointer",
+                  color: "#645b4f", fontSize: "12px", cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                   marginLeft: "auto",
                 }}
@@ -1059,7 +1059,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
               <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
-                style={{ background: "none", border: "none", color: "#8a8373", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+                style={{ background: "none", border: "none", color: "#645b4f", fontSize: "22px", cursor: "pointer", padding: "4px" }}
               >×</button>
             </div>
             <div style={{ padding: "16px 20px" }}>

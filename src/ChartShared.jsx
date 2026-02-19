@@ -107,7 +107,7 @@ export function BottomSheet({ item, onClose, onNavigate, children, sheetRef }) {
 /* ─── Structured desktop tooltip HTML builder ─── */
 export function buildTipHTML({ name, color, stats, details, link, pinned }) {
   const statsHtml = stats.map(s => (
-    `<div style="min-width:0"><div style="font-size:10px;color:#8a9485;margin-bottom:1px">${s.label}</div><div style="font-size:13px;font-weight:600;color:${s.color || "#e8e5df"}">${s.value}</div></div>`
+    `<div style="min-width:0"><div style="font-size:10px;color:#a3b09a;margin-bottom:1px">${s.label}</div><div style="font-size:13px;font-weight:600;color:${s.color || "#e8e5df"}">${s.value}</div></div>`
   )).join("");
   const detailHtml = details ? `<div style="color:#64748b;font-size:11px;margin-top:4px">${details}</div>` : "";
   const linkHtml = pinned && link ? `<a href="${link}" style="display:inline-block;margin-top:8px;padding:4px 12px;background:${T.accentSoft};color:${T.accent};border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;width:100%;text-align:center;box-sizing:border-box">View full specs →</a>` : "";

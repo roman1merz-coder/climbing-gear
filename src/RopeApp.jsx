@@ -225,7 +225,7 @@ function Chip({ label, active, onClick }) {
         padding: "6px 14px", borderRadius: "20px",
         border: active ? "1.5px solid #c98a42" : "1.5px solid #d5cdbf",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
-        color: active ? "#c98a42" : "#8a8373",
+        color: active ? "#c98a42" : "#645b4f",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         fontWeight: active ? 600 : 400, cursor: "pointer",
         transition: "all .2s", textTransform: "capitalize", whiteSpace: "nowrap",
@@ -245,7 +245,7 @@ function TypePill({ icon, label, active, onClick }) {
         padding: "8px 14px", borderRadius: "8px",
         border: active ? "1.5px solid #22d3ee" : "1.5px solid #d5cdbf",
         background: active ? "rgba(34,211,238,0.08)" : "transparent",
-        color: active ? "#22d3ee" : "#8a8373",
+        color: active ? "#22d3ee" : "#645b4f",
         fontSize: "12px", fontWeight: 500, cursor: "pointer",
         fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
       }}
@@ -323,7 +323,7 @@ function Bool({ label, value, onChange }) {
         padding: "8px 14px", borderRadius: "20px",
         border: value ? "1.5px solid #c98a42" : "1.5px solid #d5cdbf",
         background: value ? "rgba(201,138,66,0.15)" : "transparent",
-        color: value ? "#c98a42" : "#8a8373",
+        color: value ? "#c98a42" : "#645b4f",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         cursor: "pointer", transition: "all .2s",
       }}
@@ -422,7 +422,7 @@ function TypeBadge({ type, tripleRated }) {
 
 function SmallTag({ children, variant = "default" }) {
   const styles = {
-    default: { bg: "#ede7db", color: "#8a8373", border: "#d5cdbf" },
+    default: { bg: "#ede7db", color: "#645b4f", border: "#d5cdbf" },
     eco: { bg: "rgba(34,197,94,.08)", color: "#22c55e", border: "rgba(34,197,94,.2)" },
     dry: { bg: "rgba(96,165,250,.08)", color: "#60a5fa", border: "rgba(96,165,250,.2)" },
     tech: { bg: "rgba(167,139,250,.08)", color: "#a78bfa", border: "rgba(167,139,250,.2)" },
@@ -634,27 +634,27 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
 
         {/* Specs row */}
         <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "10px" }}>
-          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+          <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
             ⌀ <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.diameter_mm}mm</span>
           </span>
-          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+          <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
             <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.weight_per_meter_g}</span> g/m
           </span>
-          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+          <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
             <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>€{d.price_per_meter_eur_min?.toFixed(2)}</span>/m
           </span>
           {isDynamic && d.uiaa_falls && (
-            <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
               <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.uiaa_falls}</span> falls
             </span>
           )}
           {isDynamic && d.impact_force_kn && (
-            <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
               <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.impact_force_kn}</span> kN
             </span>
           )}
           {!isDynamic && d.breaking_strength_kn && (
-            <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
               <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.breaking_strength_kn}</span> kN break
             </span>
           )}
@@ -683,7 +683,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
                 padding: "3px 8px", borderRadius: "6px",
                 fontSize: "11px", fontFamily: "'DM Mono',monospace",
                 background: selLen === l ? "rgba(201,138,66,0.15)" : "#ede7db",
-                color: selLen === l ? "#c98a42" : "#8a8373",
+                color: selLen === l ? "#c98a42" : "#645b4f",
                 border: selLen === l ? "1px solid #c98a42" : "1px solid #d5cdbf",
                 cursor: "pointer", transition: "all .15s", fontWeight: selLen === l ? 600 : 400,
               }}
@@ -881,7 +881,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
-                  color: ac > 0 ? "#c98a42" : "#8a8373",
+                  color: ac > 0 ? "#c98a42" : "#645b4f",
                   cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#d5cdbf"}`,
                   background: ac > 0 ? "rgba(201,138,66,0.08)" : "#ffffff",
                   fontFamily: "'DM Sans',sans-serif",
@@ -898,7 +898,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                   style={{
                     height: "34px", padding: "0 10px", borderRadius: "8px",
                     border: "1px solid #d5cdbf", background: "#ffffff",
-                    color: "#8a8373", cursor: "pointer",
+                    color: "#645b4f", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "4px",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
                     whiteSpace: "nowrap", flexShrink: 0,
@@ -937,7 +937,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                     onClick={() => { setFilters({}); setQuery(""); setActiveTypes([]); setSelectedLengths({}); }}
                     style={{
                       padding: "2px 8px", borderRadius: "10px", border: "1px solid #d5cdbf",
-                      background: "transparent", color: "#8a8373", fontSize: "10px",
+                      background: "transparent", color: "#645b4f", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
                   >
@@ -1005,7 +1005,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                 style={{
                   padding: "6px 16px", borderRadius: "20px",
                   border: "1px solid #d5cdbf", background: "transparent",
-                  color: "#8a8373", fontSize: "12px", cursor: "pointer",
+                  color: "#645b4f", fontSize: "12px", cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                 }}
               >
@@ -1035,7 +1035,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
               <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
-                style={{ background: "none", border: "none", color: "#8a8373", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+                style={{ background: "none", border: "none", color: "#645b4f", fontSize: "22px", cursor: "pointer", padding: "4px" }}
               >×</button>
             </div>
 
@@ -1086,7 +1086,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                   <div style={{ padding: "0 20px 16px" }}>
                     {g.filters.map((f) => (
                       <div key={f.key} style={{ marginBottom: "16px" }}>
-                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#8a8373", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
+                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#645b4f", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
                         {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
                         {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
                         {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} />}
@@ -1220,7 +1220,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                   <div style={{ padding: "0 20px 16px" }}>
                     {g.filters.map((f) => (
                       <div key={f.key} style={{ marginBottom: "16px" }}>
-                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#8a8373", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>
+                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#645b4f", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>
                           {f.label}
                         </div>
                         {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
@@ -1247,7 +1247,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
               ].map((x) => (
                 <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
                   <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: x.c }} />
-                  <span style={{ fontSize: "11px", color: "#8a8373" }}>{x.l} — {x.d}</span>
+                  <span style={{ fontSize: "11px", color: "#645b4f" }}>{x.l} — {x.d}</span>
                 </div>
               ))}
             </div>
@@ -1279,7 +1279,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                   borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                   background: "rgba(96,165,250,.1)", border: "1px solid rgba(96,165,250,.3)", color: "#60a5fa",
                 }}>
-                  <span style={{ color: "#8a8373" }}>search:</span> "{query}"
+                  <span style={{ color: "#645b4f" }}>search:</span> "{query}"
                   <button onClick={() => setQuery("")} style={{ background: "none", border: "none", color: "#60a5fa", cursor: "pointer", fontSize: "14px", padding: 0, lineHeight: 1 }}>×</button>
                 </span>
               )}
@@ -1299,7 +1299,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                     borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                     background: "rgba(201,138,66,.1)", border: "1px solid rgba(201,138,66,.3)", color: "#c98a42",
                   }}>
-                    <span style={{ color: "#8a8373" }}>{fmt(k)}:</span>
+                    <span style={{ color: "#645b4f" }}>{fmt(k)}:</span>
                     <span style={{ textTransform: "capitalize" }}>{String(d).replace(/_/g, " ")}</span>
                     <button onClick={() => set(k, null)} style={{ background: "none", border: "none", color: "#c98a42", cursor: "pointer", fontSize: "14px", padding: 0, lineHeight: 1 }}>×</button>
                   </span>
