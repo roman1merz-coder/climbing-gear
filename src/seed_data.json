@@ -12661,8 +12661,8 @@
       "medium"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
-    "rand": "tensioned",
+    "midsole": "partial",
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
@@ -12734,8 +12734,8 @@
       "medium"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
-    "rand": "tensioned",
+    "midsole": "partial",
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
@@ -16836,9 +16836,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm / XS Grip 2 (heel)",
+    "rubber_type": "Vibram XS Grip 2 3.5mm / M50 SRT (forefoot)",
     "rubber_hardness": [
-      "hard"
+      "medium"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
