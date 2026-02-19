@@ -426,12 +426,12 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
   /* ─── Styles ─── */
   const filterBtn = (active) => ({
     padding: "3px 8px", fontSize: "10px", fontWeight: 600, borderRadius: "4px", border: "none", cursor: "pointer",
-    background: active ? "rgba(255,255,255,.1)" : "transparent", color: active ? T.text : T.muted,
+    background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
   });
 
   const metricBtn = (active) => ({
     padding: "4px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
-    background: active ? "rgba(255,255,255,.1)" : "transparent", color: active ? T.text : T.muted,
+    background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
   });
 
   const TYPE_LIST = ["sport", "alpine", "trad"];
@@ -473,7 +473,7 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
         {[["type", "Type"], ["gate", "Gate Style"], ["brand", "Brand"]].map(([k, l]) => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
-            background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
+            background: colorBy === k ? "rgba(44,50,39,.08)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{l}</button>
         ))}
         <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filtered.length} shown</span>

@@ -342,7 +342,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
         {["layers", "fold", "thickness", "brand"].map(k => (
           <button key={k} onClick={() => setColorBy(k)} style={{
             padding: "3px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
-            background: colorBy === k ? "rgba(255,255,255,.1)" : "transparent", color: colorBy === k ? T.text : T.muted,
+            background: colorBy === k ? "rgba(44,50,39,.08)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{{ layers: "Foam Layers", fold: "Fold Style", thickness: "Thickness", brand: "Brand" }[k]}</button>
         ))}
         <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filteredPads.length} shown</span>

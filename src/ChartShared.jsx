@@ -16,10 +16,10 @@ export function ChartContainer({ title, subtitle, children, style, isMobile }) {
 export function Pill({ color, label, hidden, onClick, shape }) {
   return (
     <span onClick={onClick} style={{
-      fontSize: "10px", color: hidden ? "#4a5568" : T.muted, display: "flex", alignItems: "center", gap: "4px",
+      fontSize: "10px", color: hidden ? "#9e9787" : T.muted, display: "flex", alignItems: "center", gap: "4px",
       cursor: "pointer", padding: "2px 8px", borderRadius: "10px", userSelect: "none",
-      background: hidden ? "transparent" : "rgba(255,255,255,.04)",
-      border: `1px solid ${hidden ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.1)"}`,
+      background: hidden ? "transparent" : T.card,
+      border: `1px solid ${hidden ? T.border : T.border}`,
       opacity: hidden ? 0.4 : 1, textDecoration: hidden ? "line-through" : "none",
       transition: "all .15s",
     }}>
@@ -107,18 +107,18 @@ export function BottomSheet({ item, onClose, onNavigate, children, sheetRef }) {
 /* ─── Structured desktop tooltip HTML builder ─── */
 export function buildTipHTML({ name, color, stats, details, link, pinned }) {
   const statsHtml = stats.map(s => (
-    `<div style="min-width:0"><div style="font-size:10px;color:#717889;margin-bottom:1px">${s.label}</div><div style="font-size:13px;font-weight:600;color:${s.color || T.text}">${s.value}</div></div>`
+    `<div style="min-width:0"><div style="font-size:10px;color:#8a9485;margin-bottom:1px">${s.label}</div><div style="font-size:13px;font-weight:600;color:${s.color || "#e8e5df"}">${s.value}</div></div>`
   )).join("");
   const detailHtml = details ? `<div style="color:#64748b;font-size:11px;margin-top:4px">${details}</div>` : "";
   const linkHtml = pinned && link ? `<a href="${link}" style="display:inline-block;margin-top:8px;padding:4px 12px;background:${T.accentSoft};color:${T.accent};border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;width:100%;text-align:center;box-sizing:border-box">View full specs →</a>` : "";
-  return `<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></span><b style="color:${T.text};font-size:13px;line-height:1.2">${name}</b></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px 14px">${statsHtml}</div>${detailHtml}${linkHtml}`;
+  return `<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></span><b style="color:#e8e5df;font-size:13px;line-height:1.2">${name}</b></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px 14px">${statsHtml}</div>${detailHtml}${linkHtml}`;
 }
 
 /* ─── Position desktop tooltip safely ─── */
 export function positionTip(tip, x, y, pinned) {
   tip.style.opacity = "1";
   tip.style.pointerEvents = pinned ? "auto" : "none";
-  tip.style.borderColor = pinned ? T.accent : "rgba(99,179,237,.35)";
+  tip.style.borderColor = pinned ? T.accent : "rgba(201,138,66,.30)";
   const tipW = 300, tipH = 200;
   let tx = x + 14, ty = y - 10;
   if (tx + tipW > window.innerWidth - 8) tx = x - tipW - 14;
@@ -132,9 +132,9 @@ export function positionTip(tip, x, y, pinned) {
 /* ─── Desktop tooltip style ─── */
 export const TIP_STYLE = {
   position: "fixed", pointerEvents: "none",
-  background: "rgba(15,17,25,.97)", border: "1px solid rgba(99,179,237,.35)",
-  borderRadius: "10px", padding: "12px 14px", fontSize: "12px", lineHeight: 1.5, color: T.text,
-  boxShadow: "0 8px 32px rgba(0,0,0,.6)", zIndex: 999, opacity: 0, transition: "opacity .15s",
+  background: "rgba(44,50,39,.97)", border: "1px solid rgba(201,138,66,.30)",
+  borderRadius: "10px", padding: "12px 14px", fontSize: "12px", lineHeight: 1.5, color: "#e8e5df",
+  boxShadow: "0 8px 32px rgba(0,0,0,.25)", zIndex: 999, opacity: 0, transition: "opacity .15s",
   maxWidth: "300px",
 };
 
@@ -190,11 +190,11 @@ export function chartH(isMobile) { return isMobile ? 360 : 520; }
 /* ─── Draw inset chart area background + axis border lines ─── */
 export function drawChartArea(ctx, P, W, H) {
   const grad = ctx.createLinearGradient(P.l, P.t, P.l, H - P.b);
-  grad.addColorStop(0, "rgba(0,0,0,.25)");
-  grad.addColorStop(1, "rgba(0,0,0,.15)");
+  grad.addColorStop(0, "rgba(237,231,219,.6)");
+  grad.addColorStop(1, "rgba(237,231,219,.3)");
   ctx.fillStyle = grad;
   rrect(ctx, P.l, P.t, W - P.l - P.r, H - P.t - P.b, 4); ctx.fill();
-  ctx.strokeStyle = "rgba(255,255,255,.12)"; ctx.lineWidth = 1;
+  ctx.strokeStyle = "rgba(44,50,39,.12)"; ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(P.l, P.t); ctx.lineTo(P.l, H - P.b); ctx.lineTo(W - P.r, H - P.b);
   ctx.stroke();
@@ -204,7 +204,7 @@ export function drawChartArea(ctx, P, W, H) {
 export function drawGrid(ctx, P, W, H, xMin, xMax, yMin, xStep, yStep, ySy) {
   ctx.lineWidth = 1;
   for (let x = xMin + xStep; x <= xMax + 0.001; x += xStep) {
-    ctx.strokeStyle = "rgba(255,255,255,.08)"; ctx.setLineDash([4, 6]);
+    ctx.strokeStyle = "rgba(44,50,39,.10)"; ctx.setLineDash([4, 6]);
     ctx.beginPath(); ctx.moveTo(P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r), P.t);
     ctx.lineTo(P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r), H - P.b); ctx.stroke();
   }
@@ -214,7 +214,7 @@ export function drawGrid(ctx, P, W, H, xMin, xMax, yMin, xStep, yStep, ySy) {
   for (let y = yMin; y <= ySy.yMax + 0.001; y += yStep) yLines.push(y);
   yLines.forEach(y => {
     const isBase = Math.abs(y - yMin) < 0.001;
-    ctx.strokeStyle = isBase ? "rgba(255,255,255,.15)" : "rgba(255,255,255,.08)";
+    ctx.strokeStyle = isBase ? "rgba(44,50,39,.18)" : "rgba(44,50,39,.10)";
     ctx.lineWidth = isBase ? 1.5 : 1;
     if (!isBase) ctx.setLineDash([4, 6]);
     ctx.beginPath(); ctx.moveTo(P.l, ySy.fn(y)); ctx.lineTo(W - P.r, ySy.fn(y)); ctx.stroke();
@@ -231,7 +231,7 @@ export function drawTicks(ctx, P, W, H, isMobile, {
   const axisFont = isMobile ? `600 12px ${FONT}` : `600 12px ${FONT}`;
 
   // X ticks
-  ctx.fillStyle = "#5a6478"; ctx.font = tickFont; ctx.textAlign = "center";
+  ctx.fillStyle = "#7a7462"; ctx.font = tickFont; ctx.textAlign = "center";
   for (let x = xMin; x <= xMax + 0.001; x += xStep) {
     ctx.fillText(xFmt(x), sxFn(x), H - P.b + (isMobile ? 18 : 16));
   }
@@ -241,7 +241,7 @@ export function drawTicks(ctx, P, W, H, isMobile, {
     ctx.fillText(yFmt(y), P.l - 7, syFn(y) + 4);
   }
   // Axis labels
-  ctx.fillStyle = "#6b7a8e"; ctx.font = axisFont; ctx.textAlign = "center";
+  ctx.fillStyle = "#7a7462"; ctx.font = axisFont; ctx.textAlign = "center";
   ctx.fillText(xLabel, W / 2, H - 6);
   // Y label: horizontal on top for mobile, rotated for desktop
   if (isMobile) {
@@ -282,7 +282,7 @@ export function drawDot(ctx, px, py, r, hex, isHovered) {
     ctx.strokeStyle = "#fff"; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.arc(px, py, r + 4, 0, Math.PI * 2); ctx.stroke();
     // outer subtle ring
-    ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(44,50,39,.15)"; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(px, py, r + 8, 0, Math.PI * 2); ctx.stroke();
   } else {
     ctx.shadowColor = `rgba(${cr},${cg},${cb},0.35)`; ctx.shadowBlur = 6;
@@ -318,9 +318,9 @@ export function drawClusterBadges(ctx, pts) {
     ctx.font = `700 9px ${FONT}`;
     const t = String(c.cnt);
     const tw = ctx.measureText(t).width + 8;
-    ctx.fillStyle = "rgba(15,17,25,.85)";
+    ctx.fillStyle = "rgba(44,50,39,.85)";
     rrect(ctx, c.px - tw / 2, c.py - 20, tw, 14, 7); ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,.3)"; ctx.lineWidth = 0.5;
+    ctx.strokeStyle = "rgba(255,255,255,.6)"; ctx.lineWidth = 0.5;
     rrect(ctx, c.px - tw / 2, c.py - 20, tw, 14, 7); ctx.stroke();
     ctx.fillStyle = "#e8e9ec"; ctx.textAlign = "center";
     ctx.fillText(t, c.px, c.py - 10);
@@ -371,7 +371,7 @@ export function drawLinearTrend(ctx, sx, sy, slope, intercept, std, xMin, xMax, 
   const lx = sx(xs[li]), ly = sy(Math.min(yMax, ys[li] + std + (yMax - yMin) * 0.04));
   ctx.font = `600 10px ${FONT}`;
   const lw = ctx.measureText(label).width + 10;
-  ctx.fillStyle = "rgba(15,17,25,.8)";
+  ctx.fillStyle = "rgba(44,50,39,.8)";
   rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
   ctx.fillStyle = rgba(.8); ctx.textAlign = "center";
   ctx.fillText(label, lx, ly + 3);
@@ -465,7 +465,7 @@ export function drawLoessTrend(ctx, sx, sy, data, xField, yField, xMin, xMax, yM
     const lx = sx(xs[li]), ly = sy(Math.min(yMax, ys[li] + stds[li] + (yMax - yMin) * 0.04));
     ctx.font = `600 10px ${FONT}`;
     const lw = ctx.measureText(label).width + 10;
-    ctx.fillStyle = "rgba(15,17,25,.8)";
+    ctx.fillStyle = "rgba(44,50,39,.8)";
     rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
     ctx.fillStyle = rgba(.8); ctx.textAlign = "center";
     ctx.fillText(label, lx, ly + 3);
@@ -481,7 +481,7 @@ export function drawCrosshair(ctx, px, py, P, W, H, xStr, yStr) {
   ctx.font = `600 10px ${FONT}`;
   // X value pill
   const xTw = ctx.measureText(xStr).width + 10;
-  ctx.fillStyle = "rgba(15,17,25,.85)";
+  ctx.fillStyle = "rgba(44,50,39,.85)";
   rrect(ctx, px - xTw / 2, H - P.b + 1, xTw, 16, 3); ctx.fill();
   ctx.strokeStyle = T.accent; ctx.lineWidth = 1;
   rrect(ctx, px - xTw / 2, H - P.b + 1, xTw, 16, 3); ctx.stroke();
@@ -489,7 +489,7 @@ export function drawCrosshair(ctx, px, py, P, W, H, xStr, yStr) {
   ctx.fillText(xStr, px, H - P.b + 12);
   // Y value pill
   const yTw = ctx.measureText(yStr).width + 10;
-  ctx.fillStyle = "rgba(15,17,25,.85)";
+  ctx.fillStyle = "rgba(44,50,39,.85)";
   rrect(ctx, P.l - yTw - 4, py - 8, yTw, 16, 3); ctx.fill();
   ctx.strokeStyle = T.accent; ctx.lineWidth = 1;
   rrect(ctx, P.l - yTw - 4, py - 8, yTw, 16, 3); ctx.stroke();

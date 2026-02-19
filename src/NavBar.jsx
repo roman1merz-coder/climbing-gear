@@ -41,9 +41,9 @@ export default function NavBar({ priceData = {} }) {
       gap: isMobile ? "8px" : "16px",
       padding: isMobile ? "8px 12px" : "0 24px",
       minHeight: isMobile ? "44px" : "50px",
-      background: "rgba(15,26,20,0.95)",
+      background: T.navBg,
       backdropFilter: "blur(14px)",
-      borderBottom: `1px solid ${T.border}`,
+      borderBottom: "1px solid rgba(255,255,255,0.08)",
       fontFamily: T.font,
     }}>
       {/* Logo */}
@@ -58,7 +58,7 @@ export default function NavBar({ priceData = {} }) {
         {!isMobile && (
           <span style={{
             fontSize: "15px", fontWeight: 800,
-            letterSpacing: "-0.3px", color: T.text,
+            letterSpacing: "-0.3px", color: T.navText,
           }}>
             climbing-gear<span style={{ color: T.accent }}>.com</span>
           </span>
@@ -68,7 +68,7 @@ export default function NavBar({ priceData = {} }) {
       {/* Gear tabs */}
       <div style={{
         display: "flex", gap: "2px",
-        background: T.surface, borderRadius: "8px", padding: "3px",
+        background: "rgba(255,255,255,0.06)", borderRadius: "8px", padding: "3px",
         marginLeft: isMobile ? "0" : "12px",
         overflow: "auto", flexShrink: isMobile ? 1 : 0,
         WebkitOverflowScrolling: "touch",
@@ -84,13 +84,13 @@ export default function NavBar({ priceData = {} }) {
               <span key={tab.key} style={{
                 padding: "5px 14px",
                 borderRadius: "6px", fontSize: "11px",
-                fontWeight: 500, color: T.muted, opacity: 0.45,
+                fontWeight: 500, color: T.navMuted, opacity: 0.45,
                 fontFamily: T.font, whiteSpace: "nowrap",
                 display: "flex", alignItems: "center", gap: "3px",
               }}>
                 {tab.label}
                 <span style={{
-                  fontSize: "7px", background: T.border, color: T.muted,
+                  fontSize: "7px", background: "rgba(255,255,255,0.1)", color: T.navMuted,
                   padding: "1px 4px", borderRadius: "3px", fontWeight: 700,
                   letterSpacing: "0.3px", textTransform: "uppercase",
                 }}>soon</span>
@@ -107,9 +107,9 @@ export default function NavBar({ priceData = {} }) {
                 borderRadius: "6px",
                 fontSize: isMobile ? "11px" : "12px",
                 fontWeight: isCurrent ? 600 : 500,
-                color: isCurrent ? T.text : T.muted,
+                color: isCurrent ? "#fff" : T.navMuted,
                 cursor: "pointer", border: "none",
-                background: isCurrent ? T.card : "none",
+                background: isCurrent ? "rgba(255,255,255,0.12)" : "none",
                 boxShadow: isCurrent ? "0 1px 3px rgba(0,0,0,.3)" : "none",
                 fontFamily: T.font, transition: "all .2s",
                 whiteSpace: "nowrap",
@@ -151,19 +151,19 @@ export default function NavBar({ priceData = {} }) {
       {!isMobile && (
         <div style={{ display: "flex", gap: "16px", fontSize: "12px", flexShrink: 0 }}>
           <Link to="/insights" style={{
-            color: pathname === "/insights" ? T.accent : T.muted,
+            color: pathname === "/insights" ? T.accent : T.navMuted,
             textDecoration: "none", fontWeight: 600,
           }}>Insights</Link>
           <Link to="/news" style={{
-            color: pathname === "/news" ? T.accent : T.muted,
+            color: pathname === "/news" ? T.accent : T.navMuted,
             textDecoration: "none", fontWeight: 600,
           }}>News</Link>
           <Link to="/about" style={{
-            color: pathname === "/about" ? T.text : T.muted,
+            color: pathname === "/about" ? T.navText : T.navMuted,
             textDecoration: "none", fontWeight: 500,
           }}>About</Link>
           <Link to="/impressum" style={{
-            color: pathname === "/impressum" ? T.text : T.muted,
+            color: pathname === "/impressum" ? T.navText : T.navMuted,
             textDecoration: "none", fontWeight: 500,
           }}>Impressum</Link>
         </div>

@@ -199,7 +199,7 @@ function Chip({ label, active, onClick }) {
         padding: "6px 14px", borderRadius: "20px",
         border: active ? "1.5px solid #c98a42" : "1.5px solid #3a3f47",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
-        color: active ? "#c98a42" : "#9ca3af",
+        color: active ? "#c98a42" : "#8a8373",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         fontWeight: active ? 600 : 400, cursor: "pointer",
         transition: "all .2s", textTransform: "capitalize", whiteSpace: "nowrap",
@@ -264,7 +264,7 @@ function Bool({ label, value, onChange }) {
         padding: "8px 14px", borderRadius: "20px",
         border: value ? "1.5px solid #c98a42" : "1.5px solid #3a3f47",
         background: value ? "rgba(201,138,66,0.15)" : "transparent",
-        color: value ? "#c98a42" : "#9ca3af",
+        color: value ? "#c98a42" : "#8a8373",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         cursor: "pointer", transition: "all .2s",
       }}
@@ -381,7 +381,7 @@ function CrashpadSVG({ pad }) {
 
 function SmallTag({ children, variant = "default" }) {
   const styles = {
-    default: { bg: "#252830", color: "#9ca3af", border: "#2a2f38" },
+    default: { bg: "#252830", color: "#8a8373", border: "#2a2f38" },
     eco: { bg: "rgba(34,197,94,.08)", color: "#22c55e", border: "rgba(34,197,94,.2)" },
     feature: { bg: "rgba(96,165,250,.08)", color: "#60a5fa", border: "rgba(96,165,250,.2)" },
     protection: { bg: "rgba(201,138,66,.08)", color: "#c98a42", border: "rgba(201,138,66,.2)" },
@@ -476,7 +476,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
         </div>
         {/* Row 2: model + RRP/discount */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "6px" }}>
-          <span style={{ fontSize: "14px", fontWeight: 700, color: "#e8e5df", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, lineHeight: 1.2 }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, lineHeight: 1.2 }}>
             {d.model}
           </span>
           {hasDiscount && (
@@ -592,7 +592,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
 
         {/* Model */}
         <div style={{
-          fontSize: "16px", fontWeight: 700, color: "#e8e5df",
+          fontSize: "16px", fontWeight: 700, color: "#2c3227",
           fontFamily: "'DM Sans',sans-serif", marginBottom: "10px", lineHeight: 1.3,
         }}>
           {d.model}
@@ -600,17 +600,17 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
 
         {/* Specs row */}
         <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "10px" }}>
-          <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{d.length_open_cm}×{d.width_open_cm}</span> cm
+          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.length_open_cm}×{d.width_open_cm}</span> cm
           </span>
-          <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{d.thickness_cm}</span> cm thick
+          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.thickness_cm}</span> cm thick
           </span>
-          <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{d.weight_kg}</span> kg
+          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.weight_kg}</span> kg
           </span>
-          <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{area}</span> m²
+          <span style={{ fontSize: "11px", color: "#8a8373", display: "flex", alignItems: "center", gap: "4px" }}>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{area}</span> m²
           </span>
         </div>
 
@@ -736,7 +736,7 @@ function SizePill({ cat, active, onClick }) {
         padding: "8px 14px", borderRadius: "8px",
         border: active ? `1.5px solid ${sc.color}` : "1.5px solid #3a3f47",
         background: active ? sc.bg : "transparent",
-        color: active ? sc.color : "#9ca3af",
+        color: active ? sc.color : "#8a8373",
         fontSize: "12px", fontWeight: 500, cursor: "pointer",
         fontFamily: "'DM Sans',sans-serif", transition: "all .2s",
       }}
@@ -841,7 +841,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
   };
 
   return (
-    <div style={{ background: "#0f1a14", minHeight: "100vh", color: "#e8e5df" }}>
+    <div style={{ background: "#f5f0e8", minHeight: "100vh", color: "#2c3227" }}>
       {/* Sub-header */}
       <header style={{
         position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
@@ -849,7 +849,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
         flexWrap: "nowrap",
         padding: isMobile ? undefined : "0 24px",
         minHeight: isMobile ? undefined : "50px",
-        background: "rgba(15,26,20,.92)", backdropFilter: "blur(12px)",
+        background: "rgba(245,240,232,0.95)", backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e2028",
       }}>
         {isMobile ? (
@@ -860,9 +860,9 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
-                  color: ac > 0 ? "#c98a42" : "#9ca3af",
+                  color: ac > 0 ? "#c98a42" : "#8a8373",
                   cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#2a2f38"}`,
-                  background: ac > 0 ? "rgba(201,138,66,0.08)" : "#1a1d24",
+                  background: ac > 0 ? "rgba(201,138,66,0.08)" : "#ffffff",
                   fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "6px",
                   whiteSpace: "nowrap", flexShrink: 0,
@@ -876,8 +876,8 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   onClick={() => setShowMobileSort(true)}
                   style={{
                     height: "34px", padding: "0 10px", borderRadius: "8px",
-                    border: "1px solid #2a2f38", background: "#1a1d24",
-                    color: "#9ca3af", cursor: "pointer",
+                    border: "1px solid #2a2f38", background: "#ffffff",
+                    color: "#8a8373", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "4px",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
                     whiteSpace: "nowrap", flexShrink: 0,
@@ -899,7 +899,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   style={{
                     width: "100%", height: "34px", padding: "0 12px 0 32px",
                     borderRadius: "8px", border: "1px solid #2a2f38",
-                    background: "#1a1d24", color: "#e8e5df",
+                    background: "#ffffff", color: "#2c3227",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                   }}
                 />
@@ -916,7 +916,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                     onClick={() => { setFilters({}); setQuery(""); setActiveSizes([]); }}
                     style={{
                       padding: "2px 8px", borderRadius: "10px", border: "1px solid #3a3f47",
-                      background: "transparent", color: "#9ca3af", fontSize: "10px",
+                      background: "transparent", color: "#8a8373", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
                   >
@@ -924,7 +924,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   </button>
                 )}
               </div>
-              <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+              <div style={{ display: "flex", gap: "2px", background: "#ffffff", borderRadius: "6px", padding: "2px" }}>
                 {[
                   { key: "cards", icon: "▦" },
                   { key: "chart", icon: "⊙" },
@@ -953,12 +953,12 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 style={{
                   width: "100%", padding: "8px 16px 8px 36px",
                   borderRadius: "8px", border: "1px solid #1e2028",
-                  background: "#151820", color: "#e8e5df",
+                  background: "#151820", color: "#2c3227",
                   fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                 }}
               />
             </div>
-            <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+            <div style={{ display: "flex", gap: "2px", background: "#ffffff", borderRadius: "6px", padding: "2px" }}>
               {[
                 { key: "cards", icon: "▦", label: "Cards" },
                 { key: "chart", icon: "⊙", label: "Chart" },
@@ -984,7 +984,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 style={{
                   padding: "6px 16px", borderRadius: "20px",
                   border: "1px solid #3a3f47", background: "transparent",
-                  color: "#9ca3af", fontSize: "12px", cursor: "pointer",
+                  color: "#8a8373", fontSize: "12px", cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                 }}
               >
@@ -1011,10 +1011,10 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
             onClick={(e) => e.stopPropagation()}
           >
             <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #1e2028" }}>
-              <span style={{ fontSize: "14px", fontWeight: 700, color: "#e8e5df" }}>Filters</span>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
-                style={{ background: "none", border: "none", color: "#9ca3af", fontSize: "22px", cursor: "pointer", padding: "4px" }}
+                style={{ background: "none", border: "none", color: "#8a8373", fontSize: "22px", cursor: "pointer", padding: "4px" }}
               >×</button>
             </div>
 
@@ -1043,7 +1043,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   style={{
                     width: "100%", padding: "14px 20px",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "transparent", border: "none", color: "#e8e5df",
+                    background: "transparent", border: "none", color: "#2c3227",
                     cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
                   }}
                 >
@@ -1060,7 +1060,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   <div style={{ padding: "0 20px 16px" }}>
                     {g.filters.map((f) => (
                       <div key={f.key} style={{ marginBottom: "16px" }}>
-                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
+                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#8a8373", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
                         {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
                         {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
                         {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} />}
@@ -1103,7 +1103,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
             boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
           }}>
             <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#3a3f47", margin: "0 auto 12px" }} />
-            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#e8e5df" }}>Sort by</div>
+            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#2c3227" }}>Sort by</div>
             {CRASHPAD_SORT_OPTIONS.map(o => (
               <button
                 key={o.key}
@@ -1163,7 +1163,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   style={{
                     width: "100%", padding: "14px 20px",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "transparent", border: "none", color: "#e8e5df",
+                    background: "transparent", border: "none", color: "#2c3227",
                     cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
                   }}
                 >
@@ -1182,7 +1182,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   <div style={{ padding: "0 20px 16px" }}>
                     {g.filters.map((f) => (
                       <div key={f.key} style={{ marginBottom: "16px" }}>
-                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>
+                        <div style={{ fontSize: "11px", fontWeight: 600, color: "#8a8373", letterSpacing: ".5px", marginBottom: "8px", textTransform: "uppercase" }}>
                           {f.label}
                         </div>
                         {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
@@ -1208,7 +1208,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
               ].map((x) => (
                 <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
                   <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: x.c }} />
-                  <span style={{ fontSize: "11px", color: "#9ca3af" }}>{x.l} — {x.d}</span>
+                  <span style={{ fontSize: "11px", color: "#8a8373" }}>{x.l} — {x.d}</span>
                 </div>
               ))}
             </div>
@@ -1243,7 +1243,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                   background: "rgba(96,165,250,.1)", border: "1px solid rgba(96,165,250,.3)", color: "#60a5fa",
                 }}>
-                  <span style={{ color: "#9ca3af" }}>search:</span> "{query}"
+                  <span style={{ color: "#8a8373" }}>search:</span> "{query}"
                   <button onClick={() => setQuery("")} style={{ background: "none", border: "none", color: "#60a5fa", cursor: "pointer", fontSize: "14px", padding: 0, lineHeight: 1 }}>×</button>
                 </span>
               )}
@@ -1261,7 +1261,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                     borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
                     background: "rgba(201,138,66,.1)", border: "1px solid rgba(201,138,66,.3)", color: "#c98a42",
                   }}>
-                    <span style={{ color: "#9ca3af" }}>{fmt(k)}:</span>
+                    <span style={{ color: "#8a8373" }}>{fmt(k)}:</span>
                     <span style={{ textTransform: "capitalize" }}>{String(d).replace(/_/g, " ")}</span>
                     <button onClick={() => set(k, null)} style={{ background: "none", border: "none", color: "#c98a42", cursor: "pointer", fontSize: "14px", padding: 0, lineHeight: 1 }}>×</button>
                   </span>

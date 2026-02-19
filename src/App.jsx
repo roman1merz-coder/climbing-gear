@@ -332,7 +332,7 @@ function Chip({ label, active, onClick }) {
         borderRadius: "20px",
         border: active ? "1.5px solid #c98a42" : "1.5px solid #354840",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
-        color: active ? "#c98a42" : "#9ca3af",
+        color: active ? "#c98a42" : "#8a8373",
         fontSize: "12px",
         fontFamily: "'DM Sans',sans-serif",
         fontWeight: active ? 600 : 400,
@@ -431,7 +431,7 @@ function Bool({ label, value, onChange }) {
         borderRadius: "20px",
         border: value ? "1.5px solid #c98a42" : "1.5px solid #354840",
         background: value ? "rgba(201,138,66,0.15)" : "transparent",
-        color: value ? "#c98a42" : "#9ca3af",
+        color: value ? "#c98a42" : "#8a8373",
         fontSize: "12px",
         fontFamily: "'DM Sans',sans-serif",
         cursor: "pointer",
@@ -525,7 +525,7 @@ function Card({ shoe, onClick, priceData, compact }) {
         background: "#1c1f26",
         borderRadius: "16px",
         overflow: "hidden",
-        border: "1px solid #2a3830",
+        border: "1px solid #d5cdbf",
         transition: "all .3s",
         position: "relative",
         cursor: "pointer",
@@ -535,7 +535,7 @@ function Card({ shoe, onClick, priceData, compact }) {
         e.currentTarget.style.transform = "translateY(-2px)";
       }}
       onMouseOut={(e) => {
-        e.currentTarget.style.border = "1px solid #2a3830";
+        e.currentTarget.style.border = "1px solid #d5cdbf";
         e.currentTarget.style.transform = "translateY(0)";
       }}
     >
@@ -640,7 +640,7 @@ function Card({ shoe, onClick, priceData, compact }) {
             style={{
               fontSize: compact ? "14px" : "17px",
               fontWeight: 700,
-              color: "#f0f0f0",
+              color: "#2c3227",
               fontFamily: "'DM Sans',sans-serif",
               lineHeight: 1.2,
               whiteSpace: "nowrap",
@@ -690,7 +690,7 @@ function Card({ shoe, onClick, priceData, compact }) {
                     padding: "3px 10px",
                     borderRadius: "12px",
                     background: "#252830",
-                    color: "#9ca3af",
+                    color: "#8a8373",
                     fontSize: "10px",
                     fontFamily: "'DM Sans',sans-serif",
                     textTransform: "capitalize",
@@ -720,13 +720,13 @@ function Card({ shoe, onClick, priceData, compact }) {
         )}
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
-      <div style={{ display: "flex", borderTop: "1px solid #2a3830" }}>
+      <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.stopPropagation(); toggleWL("shoe", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: compact ? "10px 6px" : "12px 8px",
-            background: "none", border: "none", borderRight: "1px solid #2a3830",
+            background: "none", border: "none", borderRight: "1px solid #d5cdbf",
             cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
             fontSize: compact ? "11px" : "12px", fontWeight: 600,
             color: saved ? "#ef4444" : "#717889",
@@ -929,7 +929,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
         minHeight: "100vh",
         background: "#13151a",
         fontFamily: "'DM Sans',sans-serif",
-        color: "#f0f0f0",
+        color: "#2c3227",
       }}
     >
       {/* Sub-header: search + filters */}
@@ -944,7 +944,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           flexWrap: "nowrap",
           position: "sticky",
           top: isMobile ? "44px" : "50px",
-          background: "rgba(15,26,20,.92)",
+          background: "rgba(245,240,232,0.95)",
           backdropFilter: "blur(12px)",
           zIndex: 100,
         }}
@@ -957,9 +957,9 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 onClick={() => setShowMobileFilters(true)}
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
-                  color: ac > 0 ? "#c98a42" : "#9ca3af",
-                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#2a3830"}`,
-                  background: ac > 0 ? "rgba(201,138,66,0.08)" : "#1a1d24",
+                  color: ac > 0 ? "#c98a42" : "#8a8373",
+                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#d5cdbf"}`,
+                  background: ac > 0 ? "rgba(201,138,66,0.08)" : "#ffffff",
                   fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "6px",
                   whiteSpace: "nowrap", flexShrink: 0,
@@ -973,8 +973,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   onClick={() => setShowMobileSort(true)}
                   style={{
                     height: "34px", padding: "0 10px", borderRadius: "8px",
-                    border: "1px solid #2a3830", background: "#1a1d24",
-                    color: "#9ca3af", cursor: "pointer",
+                    border: "1px solid #d5cdbf", background: "#ffffff",
+                    color: "#8a8373", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "4px",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
                     whiteSpace: "nowrap", flexShrink: 0,
@@ -995,8 +995,8 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   placeholder="Search…"
                   style={{
                     width: "100%", height: "34px", padding: "0 12px 0 32px",
-                    borderRadius: "8px", border: "1px solid #2a3830",
-                    background: "#1a1d24", color: "#f0f0f0",
+                    borderRadius: "8px", border: "1px solid #d5cdbf",
+                    background: "#ffffff", color: "#2c3227",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                   }}
                 />
@@ -1013,7 +1013,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                     onClick={() => { setFilters({}); setQuery(""); }}
                     style={{
                       padding: "2px 8px", borderRadius: "10px", border: "1px solid #354840",
-                      background: "transparent", color: "#9ca3af", fontSize: "10px",
+                      background: "transparent", color: "#8a8373", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
                   >
@@ -1021,7 +1021,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   </button>
                 )}
               </div>
-              <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+              <div style={{ display: "flex", gap: "2px", background: "#ffffff", borderRadius: "6px", padding: "2px" }}>
                 {[
                   { key: "cards", icon: "▦" },
                   { key: "chart", icon: "⊙" },
@@ -1068,13 +1068,13 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 style={{
                   width: "100%", padding: "8px 16px 8px 36px",
                   borderRadius: "8px", border: "1px solid #1e2028",
-                  background: "#151820", color: "#f0f0f0",
+                  background: "#151820", color: "#2c3227",
                   fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                 }}
               />
             </div>
             {/* View toggle */}
-            <div style={{ display: "flex", gap: "2px", background: "#1a1d24", borderRadius: "6px", padding: "2px" }}>
+            <div style={{ display: "flex", gap: "2px", background: "#ffffff", borderRadius: "6px", padding: "2px" }}>
               {[
                 { key: "cards", icon: "▦", label: "Cards" },
                 { key: "chart", icon: "⊙", label: "Chart" },
@@ -1119,7 +1119,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 onClick={() => { setFilters({}); setQuery(""); }}
                 style={{
                   padding: "6px 16px", borderRadius: "20px", border: "1px solid #354840",
-                  background: "transparent", color: "#9ca3af", fontSize: "12px",
+                  background: "transparent", color: "#8a8373", fontSize: "12px",
                   cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                 }}
               >
@@ -1141,12 +1141,12 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             display: "flex", justifyContent: "space-between", alignItems: "center",
             position: "sticky", top: 0, background: "rgba(19,21,26,.95)", backdropFilter: "blur(12px)", zIndex: 1,
           }}>
-            <span style={{ fontSize: "16px", fontWeight: 700, color: "#f0f0f0" }}>Filters</span>
+            <span style={{ fontSize: "16px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
               {ac > 0 && (
                 <button onClick={() => setFilters({})} style={{
                   padding: "6px 14px", borderRadius: "16px", border: "1px solid #354840",
-                  background: "transparent", color: "#9ca3af", fontSize: "12px", cursor: "pointer",
+                  background: "transparent", color: "#8a8373", fontSize: "12px", cursor: "pointer",
                 }}>Clear all</button>
               )}
               <button onClick={() => setShowMobileFilters(false)} style={{
@@ -1162,7 +1162,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 style={{
                   width: "100%", padding: "14px 20px", display: "flex", alignItems: "center",
                   justifyContent: "space-between", background: "transparent", border: "none",
-                  color: "#f0f0f0", cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
+                  color: "#2c3227", cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
                 }}
               >
                 <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -1178,7 +1178,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 <div style={{ padding: "0 20px 16px" }}>
                   {g.filters.map((f) => (
                     <div key={f.key} style={{ marginBottom: "16px" }}>
-                      <div style={{ fontSize: "11px", fontWeight: 600, color: "#9ca3af", letterSpacing: "0.5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
+                      <div style={{ fontSize: "11px", fontWeight: 600, color: "#8a8373", letterSpacing: "0.5px", marginBottom: "8px", textTransform: "uppercase" }}>{f.label}</div>
                       {f.type === "single" && <Single options={f.options} value={filters[f.key] ?? null} onChange={(v) => set(f.key, v)} />}
                       {f.type === "multi" && <Multi options={f.options} value={filters[f.key] ?? []} onChange={(v) => set(f.key, v)} />}
                       {f.type === "range" && <Range min={f.min} max={f.max} step={f.step || 1} value={filters[f.key]} onChange={(v) => set(f.key, v)} unit={f.key.includes("price") ? "€" : ""} />}
@@ -1206,7 +1206,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
           }}>
             <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#354840", margin: "0 auto 12px" }} />
-            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#f0f0f0" }}>Sort by</div>
+            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#2c3227" }}>Sort by</div>
             {SORT_OPTIONS.map(o => (
               <button
                 key={o.key}
@@ -1267,7 +1267,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   borderRadius: "12px",
                   border: "1px solid #354840",
                   background: "transparent",
-                  color: "#9ca3af",
+                  color: "#8a8373",
                   fontSize: "11px",
                   cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif",
@@ -1279,7 +1279,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.borderColor = "#354840";
-                  e.currentTarget.style.color = "#9ca3af";
+                  e.currentTarget.style.color = "#8a8373";
                 }}
               >
                 Clear all
@@ -1299,7 +1299,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                   justifyContent: "space-between",
                   background: "transparent",
                   border: "none",
-                  color: "#f0f0f0",
+                  color: "#2c3227",
                   cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif",
                 }}
@@ -1341,7 +1341,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                         style={{
                           fontSize: "11px",
                           fontWeight: 600,
-                          color: "#9ca3af",
+                          color: "#8a8373",
                           letterSpacing: "0.5px",
                           marginBottom: "8px",
                           textTransform: "uppercase",
@@ -1422,7 +1422,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                     background: x.c,
                   }}
                 />
-                <span style={{ fontSize: "11px", color: "#9ca3af" }}>
+                <span style={{ fontSize: "11px", color: "#8a8373" }}>
                   {x.l} – {x.d}
                 </span>
               </div>
@@ -1457,7 +1457,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                     color: "#60a5fa",
                   }}
                 >
-                  <span style={{ color: "#9ca3af" }}>search:</span> "{query}"
+                  <span style={{ color: "#8a8373" }}>search:</span> "{query}"
                   <button
                     onClick={() => setQuery("")}
                     style={{
@@ -1497,7 +1497,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                       color: "#c98a42",
                     }}
                   >
-                    <span style={{ color: "#9ca3af" }}>{k.replace(/_/g, " ")}:</span>{" "}
+                    <span style={{ color: "#8a8373" }}>{k.replace(/_/g, " ")}:</span>{" "}
                     <span style={{ textTransform: "capitalize" }}>
                       {String(d).replace(/_/g, " ")}
                     </span>
@@ -1581,7 +1581,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       </div>
 
       {/* Legal disclaimer */}
-      <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: "1px solid #2a3830", background: "#0f1a14" }}>
+      <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: "1px solid #d5cdbf", background: "#f5f0e8" }}>
         <p style={{ fontSize: "11px", color: "#717889", lineHeight: 1.7, fontFamily: "'DM Sans',sans-serif", margin: 0, maxWidth: "800px" }}>
           <strong style={{ color: "#717889", fontWeight: 600 }}>Disclaimer:</strong>{" "}
           Prices, availability, and product data are provided for informational purposes only and may change without notice.
@@ -1592,7 +1592,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
 
       {/* Footer */}
       <footer style={{
-        padding: isMobile ? "16px" : "24px 32px", borderTop: "1px solid #2a3830",
+        padding: isMobile ? "16px" : "24px 32px", borderTop: "1px solid #d5cdbf",
         display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "8px" : 0,
         justifyContent: "space-between", alignItems: isMobile ? "center" : "center",
         fontSize: "12px", color: "#717889", fontFamily: "'DM Sans',sans-serif",

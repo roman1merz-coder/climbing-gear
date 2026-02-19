@@ -43,8 +43,8 @@ export default function CompareBar({ shoes = [], ropes = [], belays = [], crashp
     <div
       style={{
         position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 100,
-        background: "rgba(15,26,20,0.96)", backdropFilter: "blur(16px)",
-        borderTop: `1px solid ${T.border}`, padding: "14px 24px",
+        background: "rgba(44,50,39,0.96)", backdropFilter: "blur(16px)",
+        borderTop: "1px solid rgba(255,255,255,0.08)", padding: "14px 24px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         gap: "16px", animation: "compareSlideUp 0.25s ease-out",
       }}
@@ -71,8 +71,8 @@ export default function CompareBar({ shoes = [], ropes = [], belays = [], crashp
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
         <button onClick={() => clearCompare(activeType)} style={{
-          background: "none", border: `1px solid ${T.border}`, borderRadius: "8px",
-          color: T.muted, fontSize: "12px", fontWeight: 600, padding: "8px 14px",
+          background: "none", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px",
+          color: "#8a9485", fontSize: "12px", fontWeight: 600, padding: "8px 14px",
           cursor: "pointer", fontFamily: T.font,
         }}>Clear</button>
         <button onClick={() => {

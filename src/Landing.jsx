@@ -90,8 +90,8 @@ function HeroSection({ isMobile }) {
       <div style={{ position: "absolute", inset: 0 }}>
         <img src="/images/hero-mountain.jpg" alt="Climber on mountain rock face at golden hour" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" />
         <div style={{ position: "absolute", inset: 0, background: isMobile
-          ? "linear-gradient(to bottom, rgba(15,26,20,0.88) 0%, rgba(15,26,20,0.65) 50%, rgba(15,26,20,0.2) 100%)"
-          : "linear-gradient(to right, rgba(15,26,20,0.88) 0%, rgba(15,26,20,0.65) 45%, transparent 100%)" }} />
+          ? "linear-gradient(to bottom, rgba(44,50,39,0.88) 0%, rgba(44,50,39,0.65) 50%, rgba(44,50,39,0.2) 100%)"
+          : "linear-gradient(to right, rgba(44,50,39,0.88) 0%, rgba(44,50,39,0.65) 45%, transparent 100%)" }} />
       </div>
 
       {/* Content */}
@@ -135,11 +135,11 @@ function HeroSection({ isMobile }) {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", borderRadius: isMobile ? "14px 14px 0 0" : "18px 18px 0 0", overflow: "hidden" }}>
             {STATS.map(({ value, label, Icon }) => (
-              <div key={label} style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? "4px" : "12px", padding: isMobile ? "12px 8px" : "18px 24px", background: "rgba(26,39,31,0.92)", backdropFilter: "blur(12px)", borderTop: `1px solid ${T.border}50`, textAlign: isMobile ? "center" : "left" }}>
+              <div key={label} style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? "4px" : "12px", padding: isMobile ? "12px 8px" : "18px 24px", background: "rgba(44,50,39,0.92)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(255,255,255,0.08)", textAlign: isMobile ? "center" : "left" }}>
                 <Icon size={isMobile ? 14 : 18} color={T.accent} />
                 <div>
-                  <div style={{ fontSize: isMobile ? "14px" : "20px", fontWeight: 800, color: T.text, fontFamily: T.font }}>{value}</div>
-                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: T.muted, lineHeight: 1.2 }}>{label}</div>
+                  <div style={{ fontSize: isMobile ? "14px" : "20px", fontWeight: 800, color: "#e8e5df", fontFamily: T.font }}>{value}</div>
+                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: "#8a9485", lineHeight: 1.2 }}>{label}</div>
                 </div>
               </div>
             ))}

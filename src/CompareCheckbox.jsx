@@ -27,7 +27,7 @@ export default function CompareCheckbox({ type = "shoes", slug, compact }) {
         height: compact ? "24px" : "28px",
         borderRadius: "6px",
         border: `1.5px solid ${checked ? T.accent : T.border}`,
-        background: checked ? T.accent : "rgba(15,26,20,0.7)",
+        background: checked ? T.accent : "rgba(44,50,39,0.7)",
         backdropFilter: "blur(8px)",
         cursor: disabled ? "not-allowed" : "pointer",
         display: "flex",
@@ -44,8 +44,8 @@ export default function CompareCheckbox({ type = "shoes", slug, compact }) {
         </svg>
       ) : (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M2 11L7 3L12 11" stroke={T.muted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <line x1="4" y1="9" x2="10" y2="9" stroke={T.muted} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M2 11L7 3L12 11" stroke="#c8c0b0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="4" y1="9" x2="10" y2="9" stroke="#c8c0b0" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       )}
     </button>

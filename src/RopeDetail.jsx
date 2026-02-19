@@ -16,7 +16,7 @@ function Img({ src, alt, style, fallback }) {
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
-  bg: "#0f1a14", surface: "#152019", card: "#1a271f", border: "#2a3830",
+  bg: "#f5f0e8", surface: "#ede7db", card: "#ffffff", border: "#d5cdbf",
   text: "#f0f0f0", muted: "#9ca3af", dim: "#6b7280",
   accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
   green: "#22c55e", greenSoft: "rgba(34,197,94,0.08)",

@@ -1,15 +1,17 @@
-// ═══ Design Tokens — Nature palette (dark mode) ═══
-// Derived from nature-s-landing: deep greens, warm earth accent, organic feel
+// ═══ Design Tokens — Earth palette (light mode) ═══
+// Derived from nature-s-landing :root theme: warm parchment, sand, forest green accents
 export const T = {
-  bg: "#0f1a14", surface: "#152019", card: "#1a271f", border: "#2a3830",
-  text: "#e8e5df", muted: "#8a9485",
-  accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
-  primary: "#3fa66b", primarySoft: "rgba(63,166,107,0.12)",
-  green: "#3fa66b", greenSoft: "rgba(63,166,107,0.12)",
-  red: "#ef4444", redSoft: "rgba(239,68,68,0.12)",
-  yellow: "#d4a84b", yellowSoft: "rgba(212,168,75,0.12)",
-  blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.12)",
-  purple: "#a78bfa", purpleSoft: "rgba(167,139,250,0.12)",
+  bg: "#f5f0e8", surface: "#ede7db", card: "#ffffff", border: "#d5cdbf",
+  text: "#2c3227", muted: "#7a7462",
+  accent: "#c98a42", accentSoft: "rgba(201,138,66,0.10)",
+  primary: "#3d7a52", primarySoft: "rgba(61,122,82,0.08)",
+  green: "#3d7a52", greenSoft: "rgba(61,122,82,0.08)",
+  red: "#c0392b", redSoft: "rgba(192,57,43,0.08)",
+  yellow: "#b8860b", yellowSoft: "rgba(184,134,11,0.08)",
+  blue: "#4a7fb5", blueSoft: "rgba(74,127,181,0.08)",
+  purple: "#7c5cbf", purpleSoft: "rgba(124,92,191,0.08)",
+  // Nav stays dark for contrast
+  navBg: "#2c3227", navText: "#e8e5df", navMuted: "#8a9485",
   font: "'DM Sans', 'Instrument Sans', system-ui, sans-serif",
   display: "'Playfair Display', Georgia, serif",
   mono: "'JetBrains Mono', 'DM Mono', monospace",
@@ -18,19 +20,19 @@ export const T = {
 
 export const BRAND_COLORS = {
   Scarpa: "#c2392a",
-  "La Sportiva": "#f5b800",
-  Unparallel: "#3b82f6",
-  "Mad Rock": "#8b5cf6",
-  Butora: "#10b981",
-  Evolv: "#f59e0b",
-  Tenaya: "#ec4899",
+  "La Sportiva": "#b8960e",
+  Unparallel: "#3b6fb6",
+  "Mad Rock": "#7c5cbf",
+  Butora: "#3d7a52",
+  Evolv: "#c98a42",
+  Tenaya: "#b5446e",
   "Black Diamond": "#6b7280",
 };
 
 export const GLOBAL_CSS = `
-  /* Fonts self-hosted in /public/fonts/ — loaded via index.html <link> */
+  /* Fonts loaded via index.html <link> */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: ${T.bg}; }
+  body { background: ${T.bg}; color: ${T.text}; }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: ${T.border}; border-radius: 3px; }
