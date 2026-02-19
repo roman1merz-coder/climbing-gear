@@ -367,8 +367,7 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "intermediate"
     ],
     "use_cases": [
       "trad_multipitch"
@@ -7709,8 +7708,7 @@
     "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": [
-      "advanced",
-      "elite"
+      "intermediate"
     ],
     "use_cases": [
       "boulder",
@@ -17533,8 +17531,7 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "intermediate"
     ],
     "use_cases": [
       "trad_multipitch"
@@ -17603,8 +17600,7 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "intermediate"
     ],
     "use_cases": [
       "trad_multipitch"
