@@ -126,16 +126,16 @@ export function computePockets(shoe) {
   return Math.min(1, dt * 0.23 + asymE * 0.23 + tp * 0.18 + feelStiff * 0.14 + pockCl * 0.12 + hardR * 0.10);
 }
 
-/** Hooking ability: heel rubber + toe rubber + downturn + sensitivity + closure */
+/** Hooking ability: heel rubber + toe rubber + sensitivity + closure
+ *  Downturn removed: helps heel hooks but hurts toe hooks — net effect is neutral. */
 export function computeHooks(shoe) {
   const feelStiff = FEEL_STIFF_MAP[shoe.feel] || 0.5;
-  const dt = ({ flat: 0.1, moderate: 0.5, aggressive: 0.9 })[shoe.downturn] || 0.5;
   const tp = ({ none: 0.1, medium: 0.5, full: 0.9 })[shoe.toe_patch] || 0.5;
   const heelR = ({ none: 0.1, partial: 0.5, full: 0.9 })[shoe.heel_rubber_coverage] || 0.5;
   const cl = shoe.closure || "";
   const hookSens = 1 - feelStiff;
   const hookCl = ({ slipper: 0.8, velcro: 0.5, lace: 0.3 })[cl] || 0.5;
-  return Math.min(1, heelR * 0.30 + tp * 0.25 + dt * 0.20 + hookSens * 0.15 + hookCl * 0.10);
+  return Math.min(1, heelR * 0.35 + tp * 0.35 + hookSens * 0.18 + hookCl * 0.12);
 }
 
 /** Sensitivity: how much rock feedback reaches your foot.
