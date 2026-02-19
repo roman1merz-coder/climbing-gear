@@ -118,7 +118,7 @@ export default function InsightShoes() {
       </Prose>
 
       <Prose>
-        The 100 points break down into eight categories. <strong>Discipline</strong> (20 pts) matches your climbing style to ideal closure types — bouldering favours slippers and velcro for quick on/off, sport climbing suits velcro and lace, and trad climbing rewards lace-ups for all-day precision. <strong>Downturn</strong> (15 pts) and <strong>asymmetry</strong> (10 pts) use a five-tier system that combines your experience level and comfort preference into a single target profile — beginners who want comfort land at the flat/symmetric end, while advanced climbers chasing performance are pushed toward aggressive/asymmetric shapes. <strong>Midsole stiffness</strong> (15 pts) is tuned by both discipline and body weight: heavier climbers need more support, and trad routes demand stiffer platforms than bouldering. The remaining points go to <strong>environment</strong> (10 pts), <strong>closure</strong> (10 pts), <strong>rubber thickness</strong> (10 pts), and <strong>foot shape</strong> (10 pts).
+        The 100 points break down into eight categories. <strong>Discipline</strong> carries the most weight, matching your climbing style to ideal closure types — bouldering favours slippers and velcro for quick on/off, sport climbing suits velcro and lace, and trad climbing rewards lace-ups for all-day precision. <strong>Downturn</strong> and <strong>asymmetry</strong> use a five-tier system that combines your experience level and comfort preference into a single target profile — beginners who want comfort land at the flat/symmetric end, while advanced climbers chasing performance are pushed toward aggressive/asymmetric shapes. <strong>Midsole stiffness</strong> is tuned by both discipline and body weight: heavier climbers need more support, and trad routes demand stiffer platforms than bouldering. The remaining points go to <strong>environment</strong>, <strong>closure</strong>, <strong>rubber thickness</strong>, and <strong>foot shape</strong>.
       </Prose>
 
       <KeyInsight>
@@ -133,37 +133,37 @@ export default function InsightShoes() {
 
       <Collapsible title="Edging — standing on tiny holds" defaultOpen={true}>
         <Prose>
-          Edging is about transferring your weight through a small contact point. The formula is rigidity-dominant: 65% structural stiffness, 35% shape. <strong>Stiffness</strong> comes from midsole type (40%), rand tension (25%), rubber thickness (15%), closure (10%), and upper material (10%). A full midsole with a tensioned rand and lace closure creates the stiffest platform. <strong>Shape</strong> is driven 80% by downturn and 20% by asymmetry — moderate-to-aggressive shoes concentrate force at the toe. Hard rubber adds a small bonus for edge precision. The best edging shoes combine a stiff platform with a moderate-to-aggressive profile: think La Sportiva TC Pro or Scarpa Maestro.
+          Edging is about transferring your weight through a small contact point. The score is rigidity-dominant: <strong>stiffness</strong> matters most, driven by midsole type, rand tension, rubber thickness, closure, and upper material. A full midsole with a tensioned rand and lace closure creates the stiffest platform. <strong>Shape</strong> plays a secondary role — moderate-to-aggressive shoes concentrate force at the toe. Hard rubber adds a small bonus for edge precision. The best edging shoes combine a stiff platform with a moderate-to-aggressive profile: think La Sportiva TC Pro or Scarpa Maestro.
         </Prose>
       </Collapsible>
 
       <Collapsible title="Smearing — friction on flat rock">
         <Prose>
-          Smearing is the opposite story. The formula is 72% conformability, 20% rubber thickness, 8% shape. <strong>Conformability</strong> is an equal blend of rubber softness and a soft feel — the foot needs to deform around the rock surface. Thick rubber helps <em>more</em> when it's soft, because more material can mould to the surface. Flat shoes with no asymmetry smear better than aggressive shapes that concentrate pressure at the toe. The ideal smearer: soft rubber, soft feel, flat profile, thick sole. Shoes like the La Sportiva Mythos or Five Ten Moccasym define this archetype.
+          Smearing is the opposite story. <strong>Conformability</strong> dominates — an equal blend of rubber softness and a soft feel, because the foot needs to deform around the rock surface. Rubber thickness is the next biggest factor, especially when the rubber is soft, because more material can mould to the surface. Flat shoes with no asymmetry smear better than aggressive shapes that concentrate pressure at the toe. The ideal smearer: soft rubber, soft feel, flat profile, thick sole. Shoes like the La Sportiva Mythos or Five Ten Moccasym define this archetype.
         </Prose>
       </Collapsible>
 
       <Collapsible title="Pockets — hooking toes into holes">
         <Prose>
-          Pocket performance needs a curled, stiff toe that can hook into small openings. Downturn (23%) and asymmetry (23%) are the biggest drivers, followed by toe patch coverage (18%), perceived stiffness (14%), closure (12%), and rubber hardness (10%). Aggressive, asymmetric shoes with a full toe patch dominate — but interestingly, slippers score higher for closure here than lace-ups, because the flexible upper lets the toe curl more naturally into pockets.
+          Pocket performance needs a curled, stiff toe that can hook into small openings. Downturn and asymmetry are the biggest drivers, followed by toe patch coverage, perceived stiffness, closure, and rubber hardness. Aggressive, asymmetric shoes with a full toe patch dominate — but interestingly, slippers score higher for closure here than lace-ups, because the flexible upper lets the toe curl more naturally into pockets.
         </Prose>
       </Collapsible>
 
       <Collapsible title="Hooks & heel/toe performance">
         <Prose>
-          Hooking requires rubber coverage more than anything else. Heel rubber coverage is the biggest factor at 30%, followed by toe patch (25%), downturn (20%), sensitivity (15%), and closure (10%). Soft-feeling shoes score higher on the sensitivity component — they transmit feedback from the rock, helping you feel whether a heel hook is secure. Slippers again score well for closure: their flexibility lets you wrap the shoe around features.
+          Hooking requires rubber coverage more than anything else. Heel rubber coverage is the biggest factor, followed by toe patch, downturn, sensitivity, and closure. Soft-feeling shoes score higher on the sensitivity component — they transmit feedback from the rock, helping you feel whether a heel hook is secure. Slippers again score well for closure: their flexibility lets you wrap the shoe around features.
         </Prose>
       </Collapsible>
 
       <Collapsible title="Sensitivity — feeling the rock through your shoe">
         <Prose>
-          Sensitivity measures rock feedback reaching your foot. It's driven by structural flexibility (26%), soft feel (22%), thin rubber (20%), rubber softness (10%), minimal midsole (12%), and light weight (10%). Notice the tension with edging: the specs that maximise sensitivity (thin, soft, no midsole) are exactly the ones that minimise stiffness. This is the fundamental climbing shoe trade-off — you can't have maximum edging <em>and</em> maximum sensitivity in the same shoe.
+          Sensitivity measures rock feedback reaching your foot. It's driven by structural flexibility, soft feel, thin rubber, rubber softness, minimal midsole, and light weight. Notice the tension with edging: the specs that maximise sensitivity (thin, soft, no midsole) are exactly the ones that minimise stiffness. This is the fundamental climbing shoe trade-off — you can't have maximum edging <em>and</em> maximum sensitivity in the same shoe.
         </Prose>
       </Collapsible>
 
       <Collapsible title="Comfort & Support — the other side of the coin">
         <Prose>
-          Comfort is a weighted blend of soft feel (20%), flat downturn (20%), gentle asymmetry (16%), upper material (10% — leather scores highest), closure convenience (10%), light weight (8%), midsole cushioning (8%), and rubber thickness (8%). <strong>Support</strong> is essentially the inverse of sensitivity: stiff feel, hard rubber, thick soles, full midsole, and lace closure all maximise it. For multi-pitch trad routes, support prevents foot fatigue over hours of climbing. For bouldering sessions, comfort matters more for the time between attempts than during the climb itself.
+          Comfort blends soft feel, flat downturn, gentle asymmetry, upper material (leather scores highest), closure convenience, light weight, midsole cushioning, and rubber thickness. <strong>Support</strong> is essentially the inverse of sensitivity: stiff feel, hard rubber, thick soles, full midsole, and lace closure all maximise it. For multi-pitch trad routes, support prevents foot fatigue over hours of climbing. For bouldering sessions, comfort matters more for the time between attempts than during the climb itself.
         </Prose>
       </Collapsible>
 
@@ -174,11 +174,11 @@ export default function InsightShoes() {
       <SectionHeading>Why Foot Shape Matters More Than You Think</SectionHeading>
 
       <Prose>
-        Of our 331 adult shoes, 197 (60%) have an Egyptian last — longest big toe, tapering down. 118 (36%) use a Roman (square) last with the first 2–3 toes roughly equal. Only 10 shoes (3%) target a Greek (Morton's) foot where the second toe is longest. If you have Greek toes, your options are genuinely limited, and choosing a mismatched last will cause hot spots and pain regardless of how well the shoe scores on performance.
+        Of our 331 adult shoes, the majority have an Egyptian last — longest big toe, tapering down. About a third use a Roman (square) last with the first 2–3 toes roughly equal. Only a handful target a Greek (Morton's) foot where the second toe is longest. If you have Greek toes, your options are genuinely limited, and choosing a mismatched last will cause hot spots and pain regardless of how well the shoe scores on performance.
       </Prose>
 
       <Prose>
-        Width and volume matter just as much. 194 shoes (59%) have a medium heel volume, while 118 (36%) are narrow. If you have wide heels, only 13 shoes in our database will fit comfortably — and no amount of break-in will fix a heel cup that's fundamentally too narrow. Similarly, 219 shoes (67%) target a standard forefoot volume, 78 (24%) are low-volume, and only 28 (9%) accommodate high-volume forefeet. Our Finder awards up to 10 bonus points for foot shape matches, but the more important role of foot data is <em>filtering out</em> shoes that will never fit.
+        Width and volume matter just as much. Most shoes have a medium heel volume, while roughly a third are narrow. If you have wide heels, only a small fraction of shoes in our database will fit comfortably — and no amount of break-in will fix a heel cup that's fundamentally too narrow. Similarly, most shoes target a standard forefoot volume, with far fewer options for low-volume or high-volume forefeet. Our Finder rewards foot shape matches, but the more important role of foot data is <em>filtering out</em> shoes that will never fit.
       </Prose>
 
       <KeyInsight color={T.blue}>
