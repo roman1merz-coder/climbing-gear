@@ -79,7 +79,7 @@ export function SectionHeading({ children }) {
 
 /* ─── Prose ─── */
 export function Prose({ children }) {
-  return <div style={{ fontSize: "14px", color: "#c0c4ce", lineHeight: 1.8, margin: "20px 0" }}>{children}</div>;
+  return <div style={{ fontSize: "14px", color: T.text, lineHeight: 1.8, margin: "20px 0" }}>{children}</div>;
 }
 
 /* ─── Key insight callout ─── */

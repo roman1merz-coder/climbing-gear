@@ -47,10 +47,10 @@ function IconBook({ size = 16, color = "currentColor" }) {
   return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>);
 }
 function IconShoe({ size = 16, color = "currentColor" }) {
-  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 16v-2a4 4 0 0 1 4-4h2l2-4h4l2 4h2a4 4 0 0 1 4 4v2" /><path d="M2 16h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z" /></svg>);
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18h18a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-2l-1.5-3a2 2 0 0 0-1.8-1.1H13L11.5 7a1.5 1.5 0 0 0-1.3-.8H8.5A2.5 2.5 0 0 0 6 8.7V13H4a2 2 0 0 0-2 2v2a1 1 0 0 0 1 1z" /><path d="M6 13h3" /><path d="M3 18v1" /><path d="M21 18v1" /></svg>);
 }
 function IconRope({ size = 16, color = "currentColor" }) {
-  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20" /><path d="M8 6c0 0 2 2 4 2s4-2 4-2" /><path d="M8 14c0 0 2 2 4 2s4-2 4-2" /></svg>);
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3c0 0 3 2.5 6 2.5S18 3 18 3" /><path d="M6 8c0 0 3 2.5 6 2.5S18 8 18 8" /><path d="M6 13c0 0 3 2.5 6 2.5S18 13 18 13" /><path d="M6 18c0 0 3 2.5 6 2.5S18 18 18 18" /><circle cx="4" cy="3" r="1.2" fill={color} /><circle cx="4" cy="21" r="1.2" fill={color} /><path d="M4 3v18" /></svg>);
 }
 function IconShield({ size = 16, color = "currentColor" }) {
   return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>);
@@ -122,7 +122,7 @@ function HeroSection({ isMobile }) {
             <Link to="/find" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s" }}>
               <IconTarget size={16} /> Guided Shoe Finder
             </Link>
-            <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", fontFamily: T.font, transition: "color 0.2s" }}>
+            <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", fontFamily: T.font, transition: "color 0.2s" }}>
               <IconBook size={16} /> Explore Insights
             </a>
           </motion.div>
@@ -359,7 +359,6 @@ export default function Landing() {
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       <HeroSection isMobile={isMobile} />
       <GearSelectorsSection isMobile={isMobile} />
-      <GuidedFinderSection isMobile={isMobile} />
       <InsightsSection isMobile={isMobile} />
 
       {/* About section */}

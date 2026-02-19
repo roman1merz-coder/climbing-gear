@@ -1,7 +1,7 @@
 // ═══ Design Tokens — Earth palette (light mode) ═══
 // Derived from nature-s-landing :root theme: warm parchment, sand, forest green accents
 export const T = {
-  bg: "#f5f0e8", surface: "#ede7db", card: "#ffffff", border: "#d5cdbf",
+  bg: "#f5f0e8", surface: "#ffffff", card: "#ffffff", border: "#d5cdbf",
   text: "#2c3227", muted: "#7a7462",
   accent: "#c98a42", accentSoft: "rgba(201,138,66,0.10)",
   primary: "#3d7a52", primarySoft: "rgba(61,122,82,0.08)",

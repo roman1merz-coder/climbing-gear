@@ -87,7 +87,7 @@ export default function Insights() {
               </p>
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                 {a.stats.map(s => (
-                  <span key={s} style={{ fontSize: "10px", color: T.muted, background: "rgba(255,255,255,.05)", padding: "3px 10px", borderRadius: "4px", fontWeight: 600 }}>
+                  <span key={s} style={{ fontSize: "10px", color: T.muted, background: T.bg, padding: "3px 10px", borderRadius: "4px", fontWeight: 600 }}>
                     {s}
                   </span>
                 ))}
