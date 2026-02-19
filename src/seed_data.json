@@ -20152,9 +20152,9 @@
     "durability": [
       "low"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -20227,9 +20227,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "SXR Dynamics 4mm",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -20296,9 +20296,9 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "SXR Dynamics 5mm",
+    "rubber_type": "Vibram XS Grip 4mm",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 4,
     "midsole": "full",
@@ -20372,9 +20372,9 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 4mm",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -20446,9 +20446,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 4mm (forefoot) / XS Edge (heel)",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -20520,9 +20520,9 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 4mm",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -20597,9 +20597,9 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 4mm",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -20672,9 +20672,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "SXR Dynamics 4mm",
+    "rubber_type": "Vibram XS Grip 4mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 4,
     "midsole": "partial",
@@ -20744,7 +20744,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "SXR Dynamics 4.5mm",
+    "rubber_type": "Tenaya proprietary rubber 4mm",
     "rubber_hardness": [
       "medium"
     ],
@@ -20820,9 +20820,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm (forefoot) / XS Grip 2 (heel)",
+    "rubber_type": "Vibram XS Grip 3.5mm",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
