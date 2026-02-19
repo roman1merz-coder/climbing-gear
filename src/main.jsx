@@ -119,14 +119,14 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.error) {
       return (
-        <div style={{ padding: "40px", color: "#ef4444", background: "#0e1015", minHeight: "100vh", fontFamily: "monospace" }}>
+        <div style={{ padding: "40px", color: "#ef4444", background: "#0f1a14", minHeight: "100vh", fontFamily: "monospace" }}>
           <h2>Something went wrong</h2>
           <pre style={{ fontSize: "13px", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
             {String(this.state.error)}
           </pre>
           <button
             onClick={() => { this.setState({ error: null }); window.location.href = "/shoes"; }}
-            style={{ marginTop: "20px", padding: "10px 20px", background: "#E8734A", color: "#fff", border: "none", borderRadius: "8px", cursor: "pointer" }}
+            style={{ marginTop: "20px", padding: "10px 20px", background: "#c98a42", color: "#fff", border: "none", borderRadius: "8px", cursor: "pointer" }}
           >
             ← Back to search
           </button>

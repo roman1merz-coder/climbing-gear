@@ -6,7 +6,7 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 
 /* ─── Device type styling ─── */
 const TYPE_COLORS = {
-  active_assisted: "#E8734A", passive_assisted: "#60a5fa",
+  active_assisted: "#c98a42", passive_assisted: "#60a5fa",
   tube_guide: "#34d399", tube: "#a78bfa", tubular: "#a78bfa", figure_eight: "#94a3b8",
 };
 const TYPE_LABELS = {
@@ -16,7 +16,7 @@ const TYPE_LABELS = {
 
 /* Discipline colors */
 const DISC_COLORS = {
-  gym: "#60a5fa", sport_single: "#E8734A", sport_multi: "#ed64a6",
+  gym: "#60a5fa", sport_single: "#c98a42", sport_multi: "#ed64a6",
   trad: "#34d399", trad_multi: "#22c55e", alpine: "#ecc94b",
   ice_mixed: "#38b2ac", ice: "#38b2ac", ice_climbing: "#38b2ac",
   big_wall: "#9f7aea", top_rope: "#f59e0b", mountaineering: "#6b7280",

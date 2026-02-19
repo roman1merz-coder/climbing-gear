@@ -1,14 +1,17 @@
-// ═══ Design Tokens ═══
+// ═══ Design Tokens — Nature palette (dark mode) ═══
+// Derived from nature-s-landing: deep greens, warm earth accent, organic feel
 export const T = {
-  bg: "#0e1015", surface: "#161920", card: "#1c2029", border: "#252a35",
-  text: "#e8e9ec", muted: "#717889",
-  accent: "#E8734A", accentSoft: "rgba(232,115,74,0.12)",
-  green: "#34d399", greenSoft: "rgba(52,211,153,0.12)",
+  bg: "#0f1a14", surface: "#152019", card: "#1a271f", border: "#2a3830",
+  text: "#e8e5df", muted: "#8a9485",
+  accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
+  primary: "#3fa66b", primarySoft: "rgba(63,166,107,0.12)",
+  green: "#3fa66b", greenSoft: "rgba(63,166,107,0.12)",
   red: "#ef4444", redSoft: "rgba(239,68,68,0.12)",
-  yellow: "#fbbf24", yellowSoft: "rgba(251,191,36,0.12)",
+  yellow: "#d4a84b", yellowSoft: "rgba(212,168,75,0.12)",
   blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.12)",
   purple: "#a78bfa", purpleSoft: "rgba(167,139,250,0.12)",
-  font: "'Instrument Sans', 'DM Sans', system-ui, sans-serif",
+  font: "'DM Sans', 'Instrument Sans', system-ui, sans-serif",
+  display: "'Playfair Display', Georgia, serif",
   mono: "'JetBrains Mono', 'DM Mono', monospace",
   radius: "14px", radiusSm: "10px", radiusXs: "6px",
 };

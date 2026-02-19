@@ -27,7 +27,7 @@ export default function CompareCheckbox({ type = "shoes", slug, compact }) {
         height: compact ? "24px" : "28px",
         borderRadius: "6px",
         border: `1.5px solid ${checked ? T.accent : T.border}`,
-        background: checked ? T.accent : "rgba(14,16,21,0.7)",
+        background: checked ? T.accent : "rgba(15,26,20,0.7)",
         backdropFilter: "blur(8px)",
         cursor: disabled ? "not-allowed" : "pointer",
         display: "flex",

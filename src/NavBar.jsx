@@ -41,7 +41,7 @@ export default function NavBar({ priceData = {} }) {
       gap: isMobile ? "8px" : "16px",
       padding: isMobile ? "8px 12px" : "0 24px",
       minHeight: isMobile ? "44px" : "50px",
-      background: "rgba(14,16,21,0.95)",
+      background: "rgba(15,26,20,0.95)",
       backdropFilter: "blur(14px)",
       borderBottom: `1px solid ${T.border}`,
       fontFamily: T.font,

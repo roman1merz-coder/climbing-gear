@@ -124,7 +124,7 @@ function RadarSVG({ scores, color = T.accent, size = 120, showLabels = true }) {
 }
 
 // ── Overlay: all shoes on one radar ──
-const SHOE_COLORS = ["#E8734A", "#4A9CE8", "#4AE89C", "#E8D44A"];
+const SHOE_COLORS = ["#c98a42", "#4A9CE8", "#4AE89C", "#E8D44A"];
 
 function RadarOverlaySVG({ shoesList, size = 260 }) {
   const cx = size / 2, cy = size / 2, r = size * 0.35;
@@ -345,7 +345,7 @@ export default function Compare({ shoes = [] }) {
           <button
             onClick={() => setShowOverlay(!showOverlay)}
             style={{
-              background: showOverlay ? T.accentSoft || "rgba(232,115,74,0.12)" : "transparent",
+              background: showOverlay ? T.accentSoft || "rgba(201,138,66,0.12)" : "transparent",
               border: `1px solid ${showOverlay ? T.accent : T.border}`,
               borderRadius: "8px", padding: "7px 14px", cursor: "pointer",
               color: showOverlay ? T.accent : T.muted, fontSize: "12px",

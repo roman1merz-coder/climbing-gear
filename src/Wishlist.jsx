@@ -29,7 +29,7 @@ const S = {
 };
 
 const TYPE_STYLE = {
-  shoe: { bg: "rgba(232,115,74,0.12)", color: "#E8734A" },
+  shoe: { bg: "rgba(201,138,66,0.12)", color: "#c98a42" },
   rope: { bg: "rgba(96,165,250,0.12)", color: "#60a5fa" },
   belay: { bg: "rgba(167,139,250,0.12)", color: "#a78bfa" },
   crashpad: { bg: "rgba(34,197,94,0.12)", color: "#22c55e" },

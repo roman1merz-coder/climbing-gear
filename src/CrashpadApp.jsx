@@ -197,9 +197,9 @@ function Chip({ label, active, onClick }) {
       onClick={onClick}
       style={{
         padding: "6px 14px", borderRadius: "20px",
-        border: active ? "1.5px solid #E8734A" : "1.5px solid #3a3f47",
-        background: active ? "rgba(232,115,74,0.15)" : "transparent",
-        color: active ? "#E8734A" : "#9ca3af",
+        border: active ? "1.5px solid #c98a42" : "1.5px solid #3a3f47",
+        background: active ? "rgba(201,138,66,0.15)" : "transparent",
+        color: active ? "#c98a42" : "#9ca3af",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         fontWeight: active ? 600 : 400, cursor: "pointer",
         transition: "all .2s", textTransform: "capitalize", whiteSpace: "nowrap",
@@ -240,16 +240,16 @@ function Range({ min, max, value, onChange, step = 1 }) {
   return (
     <div style={{ padding: "4px 0" }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-        <span style={{ fontSize: "12px", color: "#E8734A", fontFamily: "'DM Mono',monospace" }}>{lo}</span>
-        <span style={{ fontSize: "12px", color: "#E8734A", fontFamily: "'DM Mono',monospace" }}>{hi}</span>
+        <span style={{ fontSize: "12px", color: "#c98a42", fontFamily: "'DM Mono',monospace" }}>{lo}</span>
+        <span style={{ fontSize: "12px", color: "#c98a42", fontFamily: "'DM Mono',monospace" }}>{hi}</span>
       </div>
       <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
         <input type="range" min={min} max={max} step={step} value={lo}
           onChange={(e) => onChange({ min: +e.target.value, max: hi })}
-          style={{ flex: 1, accentColor: "#E8734A" }} />
+          style={{ flex: 1, accentColor: "#c98a42" }} />
         <input type="range" min={min} max={max} step={step} value={hi}
           onChange={(e) => onChange({ min: lo, max: +e.target.value })}
-          style={{ flex: 1, accentColor: "#E8734A" }} />
+          style={{ flex: 1, accentColor: "#c98a42" }} />
       </div>
     </div>
   );
@@ -262,9 +262,9 @@ function Bool({ label, value, onChange }) {
       style={{
         display: "flex", alignItems: "center", gap: "8px",
         padding: "8px 14px", borderRadius: "20px",
-        border: value ? "1.5px solid #E8734A" : "1.5px solid #3a3f47",
-        background: value ? "rgba(232,115,74,0.15)" : "transparent",
-        color: value ? "#E8734A" : "#9ca3af",
+        border: value ? "1.5px solid #c98a42" : "1.5px solid #3a3f47",
+        background: value ? "rgba(201,138,66,0.15)" : "transparent",
+        color: value ? "#c98a42" : "#9ca3af",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
         cursor: "pointer", transition: "all .2s",
       }}
@@ -276,8 +276,8 @@ function Bool({ label, value, onChange }) {
 
 function Badge({ score: s }) {
   if (s == null || s < 0) return null;
-  const c = s >= 80 ? "#22c55e" : s >= 50 ? "#E8734A" : "#ef4444";
-  const bg = s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(232,115,74,.12)" : "rgba(239,68,68,.12)";
+  const c = s >= 80 ? "#22c55e" : s >= 50 ? "#c98a42" : "#ef4444";
+  const bg = s >= 80 ? "rgba(34,197,94,.12)" : s >= 50 ? "rgba(201,138,66,.12)" : "rgba(239,68,68,.12)";
   return (
     <div style={{
       position: "absolute", top: "10px", right: "36px", zIndex: 3,
@@ -384,7 +384,7 @@ function SmallTag({ children, variant = "default" }) {
     default: { bg: "#252830", color: "#9ca3af", border: "#2a2f38" },
     eco: { bg: "rgba(34,197,94,.08)", color: "#22c55e", border: "rgba(34,197,94,.2)" },
     feature: { bg: "rgba(96,165,250,.08)", color: "#60a5fa", border: "rgba(96,165,250,.2)" },
-    protection: { bg: "rgba(232,115,74,.08)", color: "#E8734A", border: "rgba(232,115,74,.2)" },
+    protection: { bg: "rgba(201,138,66,.08)", color: "#c98a42", border: "rgba(201,138,66,.2)" },
     carry: { bg: "rgba(167,139,250,.08)", color: "#a78bfa", border: "rgba(167,139,250,.2)" },
   };
   const s = styles[variant] || styles.default;
@@ -456,7 +456,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
           <span style={{
             position: "absolute", top: "8px", right: "8px", zIndex: 3,
             padding: "3px 8px", borderRadius: "8px",
-            background: s >= 80 ? "rgba(34,197,94,.85)" : s >= 50 ? "rgba(232,115,74,.85)" : "rgba(239,68,68,.85)",
+            background: s >= 80 ? "rgba(34,197,94,.85)" : s >= 50 ? "rgba(201,138,66,.85)" : "rgba(239,68,68,.85)",
             color: "#fff", fontFamily: "'DM Mono',monospace",
             fontSize: "11px", fontWeight: 700, lineHeight: 1.2,
           }}>{s}%</span>
@@ -470,13 +470,13 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
             <div style={{ width: "3px", height: "10px", borderRadius: "2px", background: sizeColor }} />
             <span style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
           </div>
-          <span style={{ fontSize: "14px", fontWeight: 700, color: "#E8734A", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
             €{d.current_price_eur}
           </span>
         </div>
         {/* Row 2: model + RRP/discount */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "6px" }}>
-          <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0f0f0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, lineHeight: 1.2 }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#e8e5df", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, lineHeight: 1.2 }}>
             {d.model}
           </span>
           {hasDiscount && (
@@ -517,11 +517,11 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "10px 6px",
-            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            background: compared ? "rgba(201,138,66,0.06)" : "none",
             border: "none", cursor: compareFull ? "not-allowed" : "pointer",
             fontFamily: "'DM Sans',sans-serif",
             fontSize: "11px", fontWeight: 600,
-            color: compared ? "#E8734A" : "#717889",
+            color: compared ? "#c98a42" : "#717889",
             opacity: compareFull ? 0.4 : 1,
             transition: "all .15s",
           }}
@@ -557,7 +557,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
         border: "1px solid #2a2f38", transition: "all .3s",
         position: "relative", cursor: "pointer",
       }}
-      onMouseOver={(e) => { e.currentTarget.style.border = "1px solid #E8734A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+      onMouseOver={(e) => { e.currentTarget.style.border = "1px solid #c98a42"; e.currentTarget.style.transform = "translateY(-2px)"; }}
       onMouseOut={(e) => { e.currentTarget.style.border = "1px solid #2a2f38"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
       {/* Visual header with product image */}
@@ -592,7 +592,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
 
         {/* Model */}
         <div style={{
-          fontSize: "16px", fontWeight: 700, color: "#f0f0f0",
+          fontSize: "16px", fontWeight: 700, color: "#e8e5df",
           fontFamily: "'DM Sans',sans-serif", marginBottom: "10px", lineHeight: 1.3,
         }}>
           {d.model}
@@ -601,16 +601,16 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
         {/* Specs row */}
         <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "10px" }}>
           <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#f0f0f0" }}>{d.length_open_cm}×{d.width_open_cm}</span> cm
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{d.length_open_cm}×{d.width_open_cm}</span> cm
           </span>
           <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#f0f0f0" }}>{d.thickness_cm}</span> cm thick
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{d.thickness_cm}</span> cm thick
           </span>
           <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#f0f0f0" }}>{d.weight_kg}</span> kg
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{d.weight_kg}</span> kg
           </span>
           <span style={{ fontSize: "11px", color: "#9ca3af", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#f0f0f0" }}>{area}</span> m²
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#e8e5df" }}>{area}</span> m²
           </span>
         </div>
 
@@ -634,8 +634,8 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
             <span key={u} style={{
               padding: "2px 8px", borderRadius: "8px",
               fontSize: "10px", fontWeight: 500,
-              background: "rgba(232,115,74,.08)", color: "#E8734A",
-              border: "1px solid rgba(232,115,74,.2)",
+              background: "rgba(201,138,66,.08)", color: "#c98a42",
+              border: "1px solid rgba(201,138,66,.2)",
               textTransform: "capitalize",
             }}>
               {fmt(u)}
@@ -646,13 +646,13 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
         {/* Price row */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid #2a2f38" }}>
           <div>
-            <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#E8734A" }}>
+            <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#c98a42" }}>
               €{d.current_price_eur}
             </span>
             {buyUrl && (
               <span
                 onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
-                style={{ fontSize: "11px", color: "#E8734A", fontWeight: 600, cursor: "pointer", marginLeft: "6px", whiteSpace: "nowrap" }}
+                style={{ fontSize: "11px", color: "#c98a42", fontWeight: 600, cursor: "pointer", marginLeft: "6px", whiteSpace: "nowrap" }}
               >→ Buy</span>
             )}
           </div>
@@ -695,16 +695,16 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "12px 8px",
-            background: compared ? "rgba(232,115,74,0.06)" : "none",
+            background: compared ? "rgba(201,138,66,0.06)" : "none",
             border: "none", cursor: compareFull ? "not-allowed" : "pointer",
             fontFamily: "'DM Sans',sans-serif",
             fontSize: "12px", fontWeight: 600,
-            color: compared ? "#E8734A" : "#717889",
+            color: compared ? "#c98a42" : "#717889",
             opacity: compareFull ? 0.4 : 1,
             transition: "all .15s",
           }}
           onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; } }}
-          onMouseOut={e => { e.currentTarget.style.color = compared ? "#E8734A" : "#717889"; e.currentTarget.style.background = compared ? "rgba(232,115,74,0.06)" : "none"; }}
+          onMouseOut={e => { e.currentTarget.style.color = compared ? "#c98a42" : "#717889"; e.currentTarget.style.background = compared ? "rgba(201,138,66,0.06)" : "none"; }}
         >
           <CompareSVG size={16} />
           {compared && <CheckSVG size={12} />}
@@ -841,7 +841,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
   };
 
   return (
-    <div style={{ background: "#0e1015", minHeight: "100vh", color: "#f0f0f0" }}>
+    <div style={{ background: "#0f1a14", minHeight: "100vh", color: "#e8e5df" }}>
       {/* Sub-header */}
       <header style={{
         position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
@@ -849,7 +849,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
         flexWrap: "nowrap",
         padding: isMobile ? undefined : "0 24px",
         minHeight: isMobile ? undefined : "50px",
-        background: "rgba(14,16,21,.92)", backdropFilter: "blur(12px)",
+        background: "rgba(15,26,20,.92)", backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e2028",
       }}>
         {isMobile ? (
@@ -860,9 +860,9 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
-                  color: ac > 0 ? "#E8734A" : "#9ca3af",
-                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#E8734A" : "#2a2f38"}`,
-                  background: ac > 0 ? "rgba(232,115,74,0.08)" : "#1a1d24",
+                  color: ac > 0 ? "#c98a42" : "#9ca3af",
+                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#2a2f38"}`,
+                  background: ac > 0 ? "rgba(201,138,66,0.08)" : "#1a1d24",
                   fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "6px",
                   whiteSpace: "nowrap", flexShrink: 0,
@@ -899,7 +899,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   style={{
                     width: "100%", height: "34px", padding: "0 12px 0 32px",
                     borderRadius: "8px", border: "1px solid #2a2f38",
-                    background: "#1a1d24", color: "#f0f0f0",
+                    background: "#1a1d24", color: "#e8e5df",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                   }}
                 />
@@ -931,8 +931,8 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 ].map(v => (
                   <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
                     padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
-                    background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
-                    color: view === v.key ? "#E8734A" : "#6b7280",
+                    background: view === v.key ? "rgba(201,138,66,0.15)" : "transparent",
+                    color: view === v.key ? "#c98a42" : "#6b7280",
                     fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
                   }}>
                     {v.icon}
@@ -953,7 +953,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 style={{
                   width: "100%", padding: "8px 16px 8px 36px",
                   borderRadius: "8px", border: "1px solid #1e2028",
-                  background: "#151820", color: "#f0f0f0",
+                  background: "#151820", color: "#e8e5df",
                   fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                 }}
               />
@@ -965,8 +965,8 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
               ].map(v => (
                 <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
                   padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
-                  background: view === v.key ? "rgba(232,115,74,0.15)" : "transparent",
-                  color: view === v.key ? "#E8734A" : "#6b7280",
+                  background: view === v.key ? "rgba(201,138,66,0.15)" : "transparent",
+                  color: view === v.key ? "#c98a42" : "#6b7280",
                   fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "4px",
                 }}>
@@ -1011,7 +1011,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
             onClick={(e) => e.stopPropagation()}
           >
             <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #1e2028" }}>
-              <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0f0f0" }}>Filters</span>
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#e8e5df" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
                 style={{ background: "none", border: "none", color: "#9ca3af", fontSize: "22px", cursor: "pointer", padding: "4px" }}
@@ -1043,7 +1043,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   style={{
                     width: "100%", padding: "14px 20px",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "transparent", border: "none", color: "#f0f0f0",
+                    background: "transparent", border: "none", color: "#e8e5df",
                     cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
                   }}
                 >
@@ -1052,7 +1052,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                     <span style={{ fontSize: "14px", fontWeight: 600 }}>{g.label}</span>
                     {g.filters.some(
                       (f) => filters[f.key] != null && (!Array.isArray(filters[f.key]) || filters[f.key].length > 0)
-                    ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#E8734A" }} />}
+                    ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#c98a42" }} />}
                   </span>
                   <span style={{ color: "#6b7280", fontSize: "18px", transition: "transform .2s", transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)" }}>‹</span>
                 </button>
@@ -1078,7 +1078,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                 onClick={() => setShowMobileFilters(false)}
                 style={{
                   width: "100%", padding: "12px", borderRadius: "10px",
-                  background: "#E8734A", color: "#fff", border: "none",
+                  background: "#c98a42", color: "#fff", border: "none",
                   fontSize: "14px", fontWeight: 600, cursor: "pointer",
                 }}
               >
@@ -1103,7 +1103,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
             boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
           }}>
             <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#3a3f47", margin: "0 auto 12px" }} />
-            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#f0f0f0" }}>Sort by</div>
+            <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#e8e5df" }}>Sort by</div>
             {CRASHPAD_SORT_OPTIONS.map(o => (
               <button
                 key={o.key}
@@ -1112,11 +1112,11 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   width: "100%", padding: "14px 20px", background: "none", border: "none",
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
-                  color: sortKey === o.key ? "#E8734A" : "#d1d5db", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
+                  color: sortKey === o.key ? "#c98a42" : "#d1d5db", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
                 }}
               >
                 {o.label}
-                {sortKey === o.key && <span style={{ color: "#E8734A", fontSize: "16px" }}>✓</span>}
+                {sortKey === o.key && <span style={{ color: "#c98a42", fontSize: "16px" }}>✓</span>}
               </button>
             ))}
           </div>
@@ -1163,7 +1163,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   style={{
                     width: "100%", padding: "14px 20px",
                     display: "flex", alignItems: "center", justifyContent: "space-between",
-                    background: "transparent", border: "none", color: "#f0f0f0",
+                    background: "transparent", border: "none", color: "#e8e5df",
                     cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
                   }}
                 >
@@ -1172,7 +1172,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                     <span style={{ fontSize: "14px", fontWeight: 600 }}>{g.label}</span>
                     {g.filters.some(
                       (f) => filters[f.key] != null && (!Array.isArray(filters[f.key]) || filters[f.key].length > 0)
-                    ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#E8734A" }} />}
+                    ) && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#c98a42" }} />}
                   </span>
                   <span style={{ color: "#6b7280", fontSize: "18px", transition: "transform .2s", transform: openGroup === g.id ? "rotate(180deg)" : "rotate(0)" }}>
                     ‹
@@ -1203,7 +1203,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
               </div>
               {[
                 { c: "#22c55e", l: "80–100%", d: "Great match" },
-                { c: "#E8734A", l: "50–79%", d: "Partial" },
+                { c: "#c98a42", l: "50–79%", d: "Partial" },
                 { c: "#ef4444", l: "0–49%", d: "Weak" },
               ].map((x) => (
                 <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
@@ -1259,11 +1259,11 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
                   <span key={k} style={{
                     display: "flex", alignItems: "center", gap: "6px", padding: "4px 12px",
                     borderRadius: "16px", fontSize: "11px", whiteSpace: "nowrap",
-                    background: "rgba(232,115,74,.1)", border: "1px solid rgba(232,115,74,.3)", color: "#E8734A",
+                    background: "rgba(201,138,66,.1)", border: "1px solid rgba(201,138,66,.3)", color: "#c98a42",
                   }}>
                     <span style={{ color: "#9ca3af" }}>{fmt(k)}:</span>
                     <span style={{ textTransform: "capitalize" }}>{String(d).replace(/_/g, " ")}</span>
-                    <button onClick={() => set(k, null)} style={{ background: "none", border: "none", color: "#E8734A", cursor: "pointer", fontSize: "14px", padding: 0, lineHeight: 1 }}>×</button>
+                    <button onClick={() => set(k, null)} style={{ background: "none", border: "none", color: "#c98a42", cursor: "pointer", fontSize: "14px", padding: 0, lineHeight: 1 }}>×</button>
                   </span>
                 );
               })}

@@ -15,9 +15,9 @@ function Img({ src, alt, style, fallback }) {
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
-  bg: "#0e1015", surface: "#151820", card: "#1c1f26", border: "#2a2f38",
+  bg: "#0f1a14", surface: "#152019", card: "#1a271f", border: "#2a3830",
   text: "#f0f0f0", muted: "#9ca3af", dim: "#6b7280",
-  accent: "#E8734A", accentSoft: "rgba(232,115,74,0.12)",
+  accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
   green: "#22c55e", greenSoft: "rgba(34,197,94,0.08)",
   blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.08)",
   purple: "#a78bfa", purpleSoft: "rgba(167,139,250,0.08)",
@@ -32,7 +32,7 @@ const T = {
 // ═══ TYPE BADGE ═══
 
 const TYPE_COLORS = {
-  sport: { bg: "rgba(232,115,74,0.15)", color: "#E8734A", icon: "⚡" },
+  sport: { bg: "rgba(201,138,66,0.15)", color: "#c98a42", icon: "⚡" },
   alpine: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6", icon: "🏔️" },
   trad: { bg: "rgba(16,185,129,0.15)", color: "#10b981", icon: "🪨" },
   hybrid: { bg: "rgba(168,85,247,0.15)", color: "#a855f7", icon: "🔄" },
@@ -62,7 +62,7 @@ function TypeBadge({ type, size = "sm" }) {
 
 function QuickdrawSVGDetail({ quickdraw, compact }) {
   const c1 = quickdraw.color_1 || "#4a4a4a";
-  const c2 = quickdraw.color_2 || "#e8734a";
+  const c2 = quickdraw.color_2 || "#c98a42";
   const svgW = compact ? 200 : 300;
   const svgH = compact ? 160 : 240;
 
@@ -100,7 +100,7 @@ function QuickdrawSVGDetail({ quickdraw, compact }) {
       <circle cx="130" cy="102" r="3" fill="rgba(255,255,255,0.3)" />
 
       {/* Connecting Lines (visual depth) */}
-      <path d="M70 62 Q90 75 130 90" stroke="rgba(232,115,74,0.2)" strokeWidth="1" fill="none" opacity="0.4" />
+      <path d="M70 62 Q90 75 130 90" stroke="rgba(201,138,66,0.2)" strokeWidth="1" fill="none" opacity="0.4" />
 
       {/* Label */}
       <text x="100" y="152" textAnchor="middle" fill={T.dim} fontSize="10" fontFamily={T.mono}>QUICKDRAW</text>

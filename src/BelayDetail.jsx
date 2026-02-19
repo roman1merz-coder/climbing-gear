@@ -16,9 +16,9 @@ function Img({ src, alt, style, fallback }) {
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
-  bg: "#0e1015", surface: "#151820", card: "#1c1f26", border: "#2a2f38",
+  bg: "#0f1a14", surface: "#152019", card: "#1a271f", border: "#2a3830",
   text: "#f0f0f0", muted: "#9ca3af", dim: "#6b7280",
-  accent: "#E8734A", accentSoft: "rgba(232,115,74,0.12)",
+  accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
   green: "#22c55e", greenSoft: "rgba(34,197,94,0.08)",
   blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.08)",
   purple: "#a78bfa", purpleSoft: "rgba(167,139,250,0.08)",
@@ -62,7 +62,7 @@ function TypeBadge({ type, size = "sm" }) {
 
 function BelaySVGDetail({ device, compact }) {
   const c1 = device.device_color_1 || "#4a4a4a";
-  const c2 = device.device_color_2 || "#e8734a";
+  const c2 = device.device_color_2 || "#c98a42";
   const isActive = device.device_type === "active_assisted";
   const isPassive = device.device_type === "passive_assisted";
   const svgW = compact ? 200 : 300;
@@ -82,7 +82,7 @@ function BelaySVGDetail({ device, compact }) {
         <path d="M80 62 Q95 85 115 62" stroke={c2} strokeWidth="3.5" fill="none" opacity="0.8" />
         <rect x="115" y="80" width="36" height="12" rx="6" fill={c2} opacity="0.7" />
         <circle cx="90" cy="118" r="8" fill="none" stroke={T.muted} strokeWidth="2" opacity="0.5" />
-        <path d="M90 12 Q84 32 90 62 Q96 92 90 118" stroke="#e8734a" strokeWidth="2" fill="none" strokeDasharray="4,3" opacity="0.35" />
+        <path d="M90 12 Q84 32 90 62 Q96 92 90 118" stroke="#c98a42" strokeWidth="2" fill="none" strokeDasharray="4,3" opacity="0.35" />
         <text x="90" y="152" textAnchor="middle" fill={T.dim} fontSize="10" fontFamily={T.mono}>CAM DEVICE</text>
       </svg>
     );
@@ -421,7 +421,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
                   {d.customer_voices.slice(0, 4).map((v, i) => (
                     <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
-                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(201,138,66,0.25)"}
                       onMouseLeave={e => e.currentTarget.style.borderColor = T.border}>
                       <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>"</div>
                       <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>

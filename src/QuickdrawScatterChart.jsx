@@ -5,7 +5,7 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 
 /* ─── Quickdraw type colors ─── */
 const TYPE_COLORS = {
-  sport: "#E8734A", alpine: "#3b82f6", trad: "#10b981",
+  sport: "#c98a42", alpine: "#3b82f6", trad: "#10b981",
 };
 const TYPE_LABELS = {
   sport: "Sport", alpine: "Alpine", trad: "Trad",
@@ -13,7 +13,7 @@ const TYPE_LABELS = {
 
 /* ─── Gate style colors (wire/solid/mixed) ─── */
 const GATE_COLORS = {
-  wire: "#60a5fa", solid: "#E8734A", mixed: "#a78bfa",
+  wire: "#60a5fa", solid: "#c98a42", mixed: "#a78bfa",
 };
 const GATE_LABELS = {
   wire: "Wire Gate", solid: "Solid Gate", mixed: "Mixed",

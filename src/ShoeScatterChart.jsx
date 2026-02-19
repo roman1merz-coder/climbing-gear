@@ -5,13 +5,13 @@ import { buildPercentileMap } from "./utils/comfort.js";
 import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb } from "./ChartShared.jsx";
 
 /* ─── Color palettes ─── */
-const CLOSURE_COLORS = { lace: "#60a5fa", velcro: "#E8734A", slipper: "#34d399" };
+const CLOSURE_COLORS = { lace: "#60a5fa", velcro: "#c98a42", slipper: "#34d399" };
 const LEVEL_ORDER = ["beginner", "hobby", "intermediate", "advanced", "expert", "elite"];
-const LEVEL_COLORS = { beginner: "#34d399", hobby: "#60a5fa", intermediate: "#a78bfa", advanced: "#ecc94b", expert: "#E8734A", elite: "#ed64a6" };
+const LEVEL_COLORS = { beginner: "#34d399", hobby: "#60a5fa", intermediate: "#a78bfa", advanced: "#ecc94b", expert: "#c98a42", elite: "#ed64a6" };
 const LEVEL_LABELS = { beginner: "Beginner", hobby: "Hobby", intermediate: "Intermediate", advanced: "Advanced", expert: "Expert", elite: "Elite" };
 
 /* ─── Skill-group colors (2 groups) ─── */
-const SKILL_GROUP_COLORS = { "beginner": "#34d399", "advanced": "#E8734A" };
+const SKILL_GROUP_COLORS = { "beginner": "#34d399", "advanced": "#c98a42" };
 const SKILL_GROUP_LABELS = { "beginner": "Beginner – Intermediate", "advanced": "Advanced – Elite" };
 function skillGroup(shoe) {
   const lvls = shoe.skill_level || [];
@@ -224,7 +224,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
         ctx.fillText(z.emoji, cx, cy - (isMobile ? 4 : 6));
         // Large uppercase label
         ctx.font = `800 ${isMobile ? 8 : 11}px ${T.font}`;
-        ctx.fillStyle = z.side === "beg" ? "#34d399" : "#E8734A";
+        ctx.fillStyle = z.side === "beg" ? "#34d399" : "#c98a42";
         ctx.globalAlpha = 0.13;
         ctx.fillText(z.label.toUpperCase(), cx, cy + (isMobile ? 12 : 18));
       });
@@ -284,7 +284,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
         ctx.beginPath();
         pxPoly.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
         ctx.closePath();
-        ctx.strokeStyle = z.side === "beg" ? "rgba(52,211,153,0.28)" : "rgba(232,115,74,0.28)";
+        ctx.strokeStyle = z.side === "beg" ? "rgba(52,211,153,0.28)" : "rgba(201,138,66,0.28)";
         ctx.lineWidth = 1.5;
         ctx.setLineDash([]);
         ctx.stroke();
@@ -584,7 +584,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
         <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "8px" }}>
           {ZONE_POLYS.map(z => {
             const isAdv = z.side === "adv";
-            const bandColor = isAdv ? "#E8734A" : "#34d399";
+            const bandColor = isAdv ? "#c98a42" : "#34d399";
             return (
               <div key={z.id} style={{
                 background: T.surface, border: `1px solid ${T.border}`, borderRadius: "8px",
@@ -595,8 +595,8 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
                   <span style={{ fontSize: "12px", fontWeight: 700, color: T.text }}>{z.label}</span>
                   <span style={{
                     fontSize: "9px", fontWeight: 600, padding: "1px 6px", borderRadius: "4px", marginLeft: "auto",
-                    background: isAdv ? "rgba(232,115,74,0.15)" : "rgba(52,211,153,0.15)",
-                    color: isAdv ? "#E8734A" : "#34d399",
+                    background: isAdv ? "rgba(201,138,66,0.15)" : "rgba(52,211,153,0.15)",
+                    color: isAdv ? "#c98a42" : "#34d399",
                   }}>{isAdv ? "Advanced–Elite" : "Beginner–Intermediate"}</span>
                 </div>
                 <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.6 }}>

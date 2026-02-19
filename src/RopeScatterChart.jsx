@@ -6,12 +6,12 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 
 /* ─── Color palettes ─── */
 const TYPE_COLORS = { single: "#60a5fa", half: "#ed64a6", twin: "#34d399", static: "#ecc94b" };
-const DRY_COLORS = { none: "#94a3b8", sheath: "#60a5fa", sheath_only: "#60a5fa", core: "#a78bfa", core_and_sheath: "#34d399", full_impregnation: "#E8734A" };
+const DRY_COLORS = { none: "#94a3b8", sheath: "#60a5fa", sheath_only: "#60a5fa", core: "#a78bfa", core_and_sheath: "#34d399", full_impregnation: "#c98a42" };
 const DIA_GROUPS = [
   { key: "≤8.9", label: "≤8.9mm", min: 0, max: 8.99, color: "#a78bfa" },
   { key: "9.0–9.4", label: "9.0–9.4mm", min: 9.0, max: 9.49, color: "#60a5fa" },
   { key: "9.5–9.8", label: "9.5–9.8mm", min: 9.5, max: 9.89, color: "#22c55e" },
-  { key: "9.9–10.5", label: "9.9–10.5mm", min: 9.9, max: 10.59, color: "#E8734A" },
+  { key: "9.9–10.5", label: "9.9–10.5mm", min: 9.9, max: 10.59, color: "#c98a42" },
   { key: "≥10.6", label: "≥10.6mm", min: 10.6, max: 99, color: "#ef4444" },
 ];
 const diaGroup = mm => DIA_GROUPS.find(g => mm >= g.min && mm <= g.max)?.key || "9.5–9.8";

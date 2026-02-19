@@ -16,7 +16,7 @@ import PriceAlertForm from "./PriceAlertForm.jsx";
 function Tag({ children, variant = "default", icon, small }) {
   const styles = {
     default: { bg: T.card, color: T.muted, border: T.border },
-    accent: { bg: T.accentSoft, color: T.accent, border: "rgba(232,115,74,0.20)" },
+    accent: { bg: T.accentSoft, color: T.accent, border: "rgba(201,138,66,0.20)" },
     green: { bg: T.greenSoft, color: T.green, border: "rgba(52,211,153,0.20)" },
     red: { bg: T.redSoft, color: T.red, border: "rgba(239,68,68,0.20)" },
     yellow: { bg: T.yellowSoft, color: T.yellow, border: "rgba(251,191,36,0.20)" },
@@ -272,7 +272,7 @@ function SizingCalculator({ shoe, compact }) {
           <label style={{ fontSize: "11px", color: T.muted, display: "block", marginBottom: "4px" }}>Recommended {shoe.brand || ""} size</label>
           <div style={{
             padding: "10px 12px", borderRadius: T.radiusXs, background: suggestion ? T.accentSoft : T.surface,
-            border: `1px solid ${suggestion ? "rgba(232,115,74,0.25)" : T.border}`,
+            border: `1px solid ${suggestion ? "rgba(201,138,66,0.25)" : T.border}`,
             fontSize: "14px", fontWeight: 700, fontFamily: T.mono, color: suggestion ? T.accent : T.muted,
             minHeight: "40px", display: "flex", alignItems: "center",
           }}>
@@ -300,7 +300,7 @@ function StretchExpectation({ shoe }) {
       </div>
       <div style={{ height: "6px", background: T.border, borderRadius: "3px", position: "relative", margin: "12px 0 8px" }}>
         <div style={{ height: "100%", borderRadius: "3px", position: "absolute", top: 0, left: 0, width: `${val * 100}%`, background: `linear-gradient(90deg, ${T.green}, ${T.yellow}, ${T.accent})` }} />
-        <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: T.accent, border: `2px solid ${T.bg}`, position: "absolute", top: "-4px", left: `calc(${val * 100}% - 7px)`, boxShadow: "0 0 8px rgba(232,115,74,0.4)" }} />
+        <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: T.accent, border: `2px solid ${T.bg}`, position: "absolute", top: "-4px", left: `calc(${val * 100}% - 7px)`, boxShadow: "0 0 8px rgba(201,138,66,0.4)" }} />
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "9px", color: T.muted, fontFamily: T.mono }}>
         <span>None</span><span>Minimal</span><span>{"\u00BC"} size</span><span>{"\u00BD"} size</span><span>Full size</span>
@@ -396,7 +396,7 @@ function PerformanceDNA({ shoe, compact }) {
     <div style={{ display: "grid", gridTemplateColumns: compact ? "1fr 1fr" : "repeat(4, 1fr)", gap: compact ? "10px" : "14px" }}>
       {cards.map((c, ci) => (
         <div key={ci} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "18px", transition: "border-color 0.2s" }}
-          onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.3)"}
+          onMouseOver={e => e.currentTarget.style.borderColor = "rgba(201,138,66,0.3)"}
           onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
           <div style={{ fontSize: "18px", marginBottom: "10px" }}>{c.icon}</div>
           <div style={{ fontSize: "10px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "10px" }}>{c.label}</div>
@@ -419,7 +419,7 @@ function CustomerVoices({ shoe, stacked }) {
         const text = typeof v === "object" && v !== null ? v.text : v;
         return (
           <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
-            onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+            onMouseOver={e => e.currentTarget.style.borderColor = "rgba(201,138,66,0.25)"}
             onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
             <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
             <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{text}</div>
@@ -892,7 +892,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                   <div style={{ fontSize: "12px", fontWeight: 700, color: T.text, letterSpacing: "0.5px" }}>Size Selection</div>
                   <span style={{
                     fontSize: "9px", fontWeight: 700, color: T.accent, letterSpacing: "1px", textTransform: "uppercase",
-                    background: T.accentSoft, padding: "3px 8px", borderRadius: "6px", border: `1px solid rgba(232,115,74,0.2)`,
+                    background: T.accentSoft, padding: "3px 8px", borderRadius: "6px", border: `1px solid rgba(201,138,66,0.2)`,
                   }}>Coming Soon</span>
                 </div>
                 {/* Fake size pills */}
@@ -919,7 +919,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                   <div style={{ fontSize: "12px", fontWeight: 700, color: T.text, letterSpacing: "0.5px" }}>Stock Availability</div>
                   <span style={{
                     fontSize: "9px", fontWeight: 700, color: T.accent, letterSpacing: "1px", textTransform: "uppercase",
-                    background: T.accentSoft, padding: "3px 8px", borderRadius: "6px", border: `1px solid rgba(232,115,74,0.2)`,
+                    background: T.accentSoft, padding: "3px 8px", borderRadius: "6px", border: `1px solid rgba(201,138,66,0.2)`,
                   }}>Coming Soon</span>
                 </div>
                 {/* Fake retailer stock rows */}

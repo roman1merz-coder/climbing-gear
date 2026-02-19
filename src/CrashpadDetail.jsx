@@ -9,9 +9,9 @@ import useIsMobile from "./useIsMobile.js";
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
-  bg: "#0e1015", surface: "#151820", card: "#1c1f26", border: "#2a2f38",
+  bg: "#0f1a14", surface: "#152019", card: "#1a271f", border: "#2a3830",
   text: "#f0f0f0", muted: "#9ca3af", dim: "#6b7280",
-  accent: "#E8734A", accentSoft: "rgba(232,115,74,0.12)",
+  accent: "#c98a42", accentSoft: "rgba(201,138,66,0.12)",
   green: "#22c55e", greenSoft: "rgba(34,197,94,0.08)",
   blue: "#60a5fa", blueSoft: "rgba(96,165,250,0.08)",
   purple: "#a78bfa", purpleSoft: "rgba(167,139,250,0.08)",
@@ -36,7 +36,7 @@ const SIZE_COLORS = {
 function Tag({ children, variant = "default" }) {
   const styles = {
     default: { bg: T.card, color: T.muted, border: T.border },
-    accent: { bg: T.accentSoft, color: T.accent, border: "rgba(232,115,74,0.20)" },
+    accent: { bg: T.accentSoft, color: T.accent, border: "rgba(201,138,66,0.20)" },
     green: { bg: T.greenSoft, color: T.green, border: "rgba(34,197,94,0.20)" },
     blue: { bg: T.blueSoft, color: T.blue, border: "rgba(96,165,250,0.20)" },
     purple: { bg: T.purpleSoft, color: T.purple, border: "rgba(167,139,250,0.20)" },
@@ -259,7 +259,7 @@ function EfficiencyRadar({ pad, allPads }) {
             return <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke={T.border} strokeWidth="0.5" />;
           })}
           {/* Data polygon */}
-          <path d={dataPath} fill="rgba(232,115,74,0.15)" stroke={T.accent} strokeWidth="2" />
+          <path d={dataPath} fill="rgba(201,138,66,0.15)" stroke={T.accent} strokeWidth="2" />
           {/* Data dots */}
           {dataPoints.map((p, i) => (
             <circle key={i} cx={p.x} cy={p.y} r="3.5" fill={T.accent} />
@@ -563,7 +563,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
                   {pad.customer_voices.slice(0, 4).map((v, i) => (
                     <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
-                      onMouseOver={e => e.currentTarget.style.borderColor = "rgba(232,115,74,0.25)"}
+                      onMouseOver={e => e.currentTarget.style.borderColor = "rgba(201,138,66,0.25)"}
                       onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
                       <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>"</div>
                       <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>

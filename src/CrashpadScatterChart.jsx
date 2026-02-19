@@ -8,7 +8,7 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 const THICK_GROUPS = [
   { key: "≤5", label: "≤5 cm", min: 0, max: 5.9, color: "#60a5fa" },
   { key: "6–9", label: "6–9 cm", min: 6, max: 9.9, color: "#22c55e" },
-  { key: "10–11", label: "10–11 cm", min: 10, max: 11.9, color: "#E8734A" },
+  { key: "10–11", label: "10–11 cm", min: 10, max: 11.9, color: "#c98a42" },
   { key: "12–15", label: "12–15 cm", min: 12, max: 99, color: "#a78bfa" },
 ];
 const thickGroup = cm => THICK_GROUPS.find(g => cm >= g.min && cm <= g.max)?.key || "10–11";
@@ -44,10 +44,10 @@ const PAD_TREND_PRICE = linReg(PADS, d => d.area, d => d.price);
 
 /* Color palettes */
 const LAYER_COLORS = {
-  0: "#94a3b8", 1: "#60a5fa", 2: "#22c55e", 3: "#E8734A", 4: "#ef4444", 5: "#a78bfa", 7: "#eab308",
+  0: "#94a3b8", 1: "#60a5fa", 2: "#22c55e", 3: "#c98a42", 4: "#ef4444", 5: "#a78bfa", 7: "#eab308",
 };
 const FOLD_COLORS = {
-  taco: "#E8734A", hinge: "#60a5fa", tri_fold: "#22c55e", hybrid: "#a78bfa",
+  taco: "#c98a42", hinge: "#60a5fa", tri_fold: "#22c55e", hybrid: "#a78bfa",
   inflatable: "#eab308", baffled: "#94a3b8", unknown: "#6b7280",
 };
 const BRAND_PAL = ["#63b3ed","#ed64a6","#48bb78","#ecc94b","#ed8936","#9f7aea","#38b2ac","#fc8181","#f6ad55","#68d391","#d53f8c","#4fd1c5","#b794f4","#90cdf4","#feb2b2","#fbd38d","#81e6d9","#c4b5fd","#fca5a5","#bef264"];
