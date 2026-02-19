@@ -16599,20 +16599,32 @@
     "slug": "scarpa-booster",
     "image_url": "/images/shoes/scarpa-booster.jpg",
     "images": null,
-    "toe_form": null,
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
     ],
-    "use_cases": null,
-    "best_rock_types": null,
-    "best_wall_angles": null,
-    "best_foothold_types": null,
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": null,
+    "price_uvp_eur": 184.95,
     "current_price_eur": null,
     "discount_pct": 0.0,
     "size_range": null,
@@ -16624,7 +16636,9 @@
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": null,
-    "durability": null,
+    "durability": [
+      "moderate"
+    ],
     "rubber_type": "Vibram XS Grip 2 3.5mm / M50 (heel)",
     "rubber_hardness": [
       "soft"
@@ -16636,12 +16650,12 @@
     "kids_friendly": false,
     "upper_material": "microfiber",
     "weight_g": 420,
-    "stretch_expectation": null,
-    "break_in_period": null,
-    "description": null,
-    "pros": null,
-    "cons": null,
-    "sizing": null,
+    "stretch_expectation": "none",
+    "break_in_period": "moderate",
+    "description": "The Booster is an aggressively downturned, asymmetrical bouldering and sport climbing shoe built for steep, overhanging terrain. Featuring Vibram XS Grip 2 rubber and Scarpa's PAF system with DTS Tension rand, it delivers precision and power on small footholds while the full rubber coverage enables confident toe and heel hooks.",
+    "pros": "[\"Excellent precision on small footholds in steep terrain\", \"Outstanding heel and toe hooking with full rubber coverage\", \"Lightweight and sensitive for an aggressive shoe\", \"PAF system reduces pressure points for better comfort\"]",
+    "cons": "[\"Not suitable for all-day wear or long multi-pitches\", \"Limited versatility on vertical and slab terrain\", \"Demanding break-in period with initial stiffness\"]",
+    "sizing": "Size down 0.5-1 from street shoe. Synthetic upper means minimal stretch — fit should be snug but not painful from the start.",
     "customer_voices": null,
     "vegan": null,
     "resoleable": null,
@@ -16732,10 +16746,10 @@
     "slug": "scarpa-boostic-r",
     "image_url": "/images/shoes/scarpa-boostic.jpg",
     "images": null,
-    "toe_form": null,
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "toe_form": "egyptian",
+    "forefoot_volume": "high",
+    "width": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "advanced",
       "elite"
@@ -16744,9 +16758,18 @@
       "sport",
       "boulder"
     ],
-    "best_rock_types": null,
-    "best_wall_angles": null,
-    "best_foothold_types": null,
+    "best_rock_types": [
+      "granite",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
     "feel": "stiff-moderate",
     "price_uvp_eur": 189.95,
     "current_price_eur": null,
@@ -16760,7 +16783,9 @@
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": null,
-    "durability": null,
+    "durability": [
+      "high"
+    ],
     "rubber_type": "Vibram XS Edge 4mm",
     "rubber_hardness": [
       "hard"
@@ -16772,12 +16797,12 @@
     "kids_friendly": false,
     "upper_material": "microfiber",
     "weight_g": 490,
-    "stretch_expectation": null,
-    "break_in_period": null,
-    "description": null,
-    "pros": null,
-    "cons": null,
-    "sizing": null,
+    "stretch_expectation": "minimal",
+    "break_in_period": "extended",
+    "description": "The Boostic R is a high-performance edging specialist with an aggressive downturn and Vibram XS Edge rubber on a full-length curved midsole. The V-Tension system concentrates power into the big toe for elite precision on micro holds, making it the go-to choice for vertical and slightly overhanging sport routes on granite and limestone.",
+    "pros": "[\"Elite micro-edging precision on tiny footholds\", \"Full-length midsole provides exceptional support and power transfer\", \"V-Tension system concentrates force into big toe\", \"Durable XS Edge rubber maintains shape over time\"]",
+    "cons": "[\"Very demanding break-in period of 10-15 pitches\", \"Too stiff for smearing, volumes, or flexible footwork\", \"Aggressive shape limits comfort for extended sessions\"]",
+    "sizing": "Fit tight with toes bunched against the end for proper power delivery. Size down 1-1.5 from street shoe. The high-volume toe box compensates for the aggressive downturn.",
     "customer_voices": null,
     "vegan": false,
     "resoleable": true,
