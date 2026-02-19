@@ -170,7 +170,7 @@ function Chip({ label, active, onClick }) {
       onClick={onClick}
       style={{
         padding: "6px 14px", borderRadius: "20px",
-        border: active ? "1.5px solid #c98a42" : "1.5px solid #3a3f47",
+        border: active ? "1.5px solid #c98a42" : "1.5px solid #d5cdbf",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
         color: active ? "#c98a42" : "#8a8373",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
@@ -206,18 +206,18 @@ function Range({ min, max, step, value = {}, onChange }) {
         onChange={(e) => onChange({ ...value, min: e.target.value ? Number(e.target.value) : null })}
         style={{
           width: "72px", padding: "6px 8px", borderRadius: "8px",
-          border: "1px solid #3a3f47", background: "#1a1d23", color: "#e5e7eb",
+          border: "1px solid #d5cdbf", background: "#ede7db", color: "#e5e7eb",
           fontSize: "12px", fontFamily: "'DM Mono',monospace",
         }}
       />
-      <span style={{ color: "#6b7280", fontSize: "12px" }}>–</span>
+      <span style={{ color: "#7a7462", fontSize: "12px" }}>–</span>
       <input
         type="number" placeholder={max} min={min} max={max} step={step}
         value={value.max ?? ""}
         onChange={(e) => onChange({ ...value, max: e.target.value ? Number(e.target.value) : null })}
         style={{
           width: "72px", padding: "6px 8px", borderRadius: "8px",
-          border: "1px solid #3a3f47", background: "#1a1d23", color: "#e5e7eb",
+          border: "1px solid #d5cdbf", background: "#ede7db", color: "#e5e7eb",
           fontSize: "12px", fontFamily: "'DM Mono',monospace",
         }}
       />
@@ -252,7 +252,7 @@ function QuickdrawSVG({ quickdraw, width = 120, height = 100 }) {
       {/* Upper carabiner body */}
       <ellipse cx="35" cy="30" rx="12" ry="15" fill={`url(#qd-${quickdraw.slug})`} opacity="0.85" />
       {/* Upper carabiner gate */}
-      <path d="M45 25 Q50 28 48 35 Q46 40 40 38" stroke="#0d1117" strokeWidth="2" fill="none" opacity="0.7" />
+      <path d="M45 25 Q50 28 48 35 Q46 40 40 38" stroke="#f5f0e8" strokeWidth="2" fill="none" opacity="0.7" />
       {/* Upper nose */}
       <circle cx="35" cy="25" r="3" fill={c2} opacity="0.8" />
 
@@ -263,7 +263,7 @@ function QuickdrawSVG({ quickdraw, width = 120, height = 100 }) {
       {/* Lower carabiner body */}
       <ellipse cx="80" cy="70" rx="12" ry="15" fill={`url(#qd-${quickdraw.slug})`} opacity="0.85" />
       {/* Lower carabiner gate */}
-      <path d="M70 65 Q65 68 67 75 Q69 80 75 78" stroke="#0d1117" strokeWidth="2" fill="none" opacity="0.7" />
+      <path d="M70 65 Q65 68 67 75 Q69 80 75 78" stroke="#f5f0e8" strokeWidth="2" fill="none" opacity="0.7" />
       {/* Lower nose */}
       <circle cx="80" cy="65" r="3" fill={c2} opacity="0.8" />
 
@@ -305,7 +305,7 @@ function TypeBadge({ type }) {
 
 function SmallTag({ label, variant = "default" }) {
   const styles = {
-    default: { bg: "rgba(107,114,128,0.15)", color: "#8a8373" },
+    default: { bg: "rgba(122,116,98,0.12)", color: "#8a8373" },
     feature: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6" },
     sling: { bg: "rgba(34,197,94,0.15)", color: "#22c55e" },
   };
@@ -351,8 +351,8 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
 
   return (
     <div style={{
-      background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
-      border: "1px solid #2a2f38", cursor: "pointer", position: "relative",
+      background: "#ffffff", borderRadius: "12px", overflow: "hidden",
+      border: "1px solid #d5cdbf", cursor: "pointer", position: "relative",
     }}>
       {/* Visual header: product image or SVG fallback */}
       <div onClick={onClick} style={{
@@ -396,7 +396,7 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
             <div style={{ width: "3px", height: "10px", borderRadius: "2px", background: (TYPE_COLORS[q.quickdraw_type] || TYPE_COLORS.sport).color }} />
-            <span style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{q.brand}</span>
+            <span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{q.brand}</span>
           </div>
           <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
             €{fmt(price)}
@@ -409,23 +409,23 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
           </span>
         </div>
         {/* Row 3: specs */}
-        <div style={{ display: "flex", gap: "4px", alignItems: "center", marginTop: "4px", fontSize: "10px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+        <div style={{ display: "flex", gap: "4px", alignItems: "center", marginTop: "4px", fontSize: "10px", color: "#7a7462", fontFamily: "'DM Mono',monospace" }}>
           <span>{q.weight_g}g</span>
-          <span style={{ color: "#3a3f47" }}>·</span>
+          <span style={{ color: "#d5cdbf" }}>·</span>
           <span>{q.strength_major_kn}kN</span>
         </div>
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
-      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+      <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "10px 6px",
-            background: "none", border: "none", borderRight: "1px solid #252a35",
+            background: "none", border: "none", borderRight: "1px solid #d5cdbf",
             cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
             fontSize: "11px", fontWeight: 600,
-            color: saved ? "#ef4444" : "#717889",
+            color: saved ? "#ef4444" : "#7a7462",
             transition: "all .15s",
           }}
         >
@@ -441,7 +441,7 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
             border: "none", cursor: compareFull ? "not-allowed" : "pointer",
             fontFamily: "'DM Sans',sans-serif",
             fontSize: "11px", fontWeight: 600,
-            color: compared ? "#c98a42" : "#717889",
+            color: compared ? "#c98a42" : "#7a7462",
             opacity: compareFull ? 0.4 : 1,
             transition: "all .15s",
           }}
@@ -473,13 +473,13 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
   return (
     <div
       style={{
-        background: "#1c1f26", borderRadius: "16px", overflow: "hidden",
-        border: "1px solid #2a2f38", cursor: "pointer",
+        background: "#ffffff", borderRadius: "16px", overflow: "hidden",
+        border: "1px solid #d5cdbf", cursor: "pointer",
         transition: "all .3s", position: "relative",
         display: "flex", flexDirection: "column",
       }}
       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#c98a42"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2f38"; e.currentTarget.style.transform = "none"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#d5cdbf"; e.currentTarget.style.transform = "none"; }}
     >
       <div onClick={onClick} style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "12px", flex: 1 }}>
         {/* Match badge */}
@@ -520,7 +520,7 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
         </div>
 
         {/* Quick specs */}
-        <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+        <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#7a7462", fontFamily: "'DM Mono',monospace" }}>
           <span>{q.weight_g}g</span>
           <span>{q.strength_major_kn}kN</span>
           <span>{q.sling_type ? String(q.sling_type).replace(/_/g, " ") : "sling"}</span>
@@ -549,20 +549,20 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
         </div>
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
-      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+      <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "12px 8px",
-            background: "none", border: "none", borderRight: "1px solid #252a35",
+            background: "none", border: "none", borderRight: "1px solid #d5cdbf",
             cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
             fontSize: "12px", fontWeight: 600,
-            color: saved ? "#ef4444" : "#717889",
+            color: saved ? "#ef4444" : "#7a7462",
             transition: "all .15s",
           }}
-          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
-          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#717889"; e.currentTarget.style.background = "none"; }}
+          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#2c3227"; e.currentTarget.style.background = "rgba(44,50,39,0.04)"; }}
+          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#7a7462"; e.currentTarget.style.background = "none"; }}
         >
           <HeartSVG filled={saved} size={16} />
           {saved ? "Saved" : "Save"}
@@ -577,12 +577,12 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
             border: "none", cursor: compareFull ? "not-allowed" : "pointer",
             fontFamily: "'DM Sans',sans-serif",
             fontSize: "12px", fontWeight: 600,
-            color: compared ? "#c98a42" : "#717889",
+            color: compared ? "#c98a42" : "#7a7462",
             opacity: compareFull ? 0.4 : 1,
             transition: "all .15s",
           }}
-          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; } }}
-          onMouseOut={e => { e.currentTarget.style.color = compared ? "#c98a42" : "#717889"; e.currentTarget.style.background = compared ? "rgba(201,138,66,0.06)" : "none"; }}
+          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#2c3227"; e.currentTarget.style.background = "rgba(44,50,39,0.04)"; } }}
+          onMouseOut={e => { e.currentTarget.style.color = compared ? "#c98a42" : "#7a7462"; e.currentTarget.style.background = compared ? "rgba(201,138,66,0.06)" : "none"; }}
         >
           <CompareSVG size={16} />
           {compared && <CheckSVG size={12} />}
@@ -616,7 +616,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
     <>
       {/* Hard filter: Quickdraw type */}
       <div style={{ marginBottom: "20px" }}>
-        <div style={{ color: "#6b7280", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
+        <div style={{ color: "#7a7462", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
           Quickdraw Type
         </div>
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
@@ -632,9 +632,9 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
                 }
                 style={{
                   padding: "5px 12px", borderRadius: "16px",
-                  border: `1.5px solid ${active ? color : "#3a3f47"}`,
+                  border: `1.5px solid ${active ? color : "#d5cdbf"}`,
                   background: active ? `${color}22` : "transparent",
-                  color: active ? color : "#6b7280",
+                  color: active ? color : "#7a7462",
                   fontSize: "11px", fontWeight: active ? 600 : 400,
                   cursor: "pointer", transition: "all .2s",
                 }}
@@ -654,7 +654,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
           }}
           style={{
             width: "100%", padding: "6px", borderRadius: "8px",
-            border: "1px solid #3a3f47", background: "transparent",
+            border: "1px solid #d5cdbf", background: "transparent",
             color: "#ef4444", fontSize: "11px", cursor: "pointer",
             marginBottom: "12px",
           }}
@@ -680,7 +680,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
               style={{
                 width: "100%", display: "flex", alignItems: "center", gap: "8px",
                 padding: "10px 12px", borderRadius: "10px",
-                border: "none", background: isOpen ? "#1a1d23" : "transparent",
+                border: "none", background: isOpen ? "#ede7db" : "transparent",
                 color: "#e5e7eb", fontSize: "13px", fontWeight: 500,
                 cursor: "pointer", textAlign: "left", transition: "all .15s",
               }}
@@ -690,7 +690,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
               {groupActive && (
                 <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#c98a42" }} />
               )}
-              <span style={{ color: "#6b7280", fontSize: "11px" }}>{isOpen ? "▾" : "▸"}</span>
+              <span style={{ color: "#7a7462", fontSize: "11px" }}>{isOpen ? "▾" : "▸"}</span>
             </button>
             {isOpen && (
               <div style={{ padding: "8px 12px 16px", display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -785,7 +785,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
   }).length;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0d1117", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "#f5f0e8", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
       {/* Sub-header: filters + count */}
       <header style={{
         position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
@@ -793,8 +793,8 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
         flexWrap: "nowrap",
         padding: isMobile ? undefined : "0 24px",
         minHeight: isMobile ? undefined : "50px",
-        background: "rgba(13,17,23,.92)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #1e2028",
+        background: "rgba(245,240,232,0.95)", backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #d5cdbf",
       }}>
         {isMobile ? (
           <>
@@ -805,7 +805,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 style={{
                   height: "34px", padding: "0 12px", borderRadius: "8px", fontSize: "12px", fontWeight: 600,
                   color: ac > 0 ? "#c98a42" : "#8a8373",
-                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#2a2f38"}`,
+                  cursor: "pointer", border: `1px solid ${ac > 0 ? "#c98a42" : "#d5cdbf"}`,
                   background: ac > 0 ? "rgba(201,138,66,0.08)" : "#ffffff",
                   fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "6px",
@@ -820,7 +820,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                   onClick={() => setShowMobileSort(true)}
                   style={{
                     height: "34px", padding: "0 10px", borderRadius: "8px",
-                    border: "1px solid #2a2f38", background: "#ffffff",
+                    border: "1px solid #d5cdbf", background: "#ffffff",
                     color: "#8a8373", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "4px",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
@@ -834,7 +834,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 </button>
               )}
               <div style={{ flex: 1, position: "relative", minWidth: 0 }}>
-                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#7a7462", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
                 <input
                   type="text"
                   placeholder="Search…"
@@ -842,7 +842,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                   onChange={(e) => setQuery(e.target.value)}
                   style={{
                     width: "100%", height: "34px", padding: "0 12px 0 32px",
-                    borderRadius: "8px", border: "1px solid #2a2f38",
+                    borderRadius: "8px", border: "1px solid #d5cdbf",
                     background: "#ffffff", color: "#2c3227",
                     fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                   }}
@@ -852,14 +852,14 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
             {/* Mobile Row 2: Count + Clear | View toggle */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <span style={{ fontSize: "12px", color: "#6b7280", fontWeight: 500 }}>
+                <span style={{ fontSize: "12px", color: "#7a7462", fontWeight: 500 }}>
                   {filtered.length} quickdraw{filtered.length !== 1 ? "s" : ""}
                 </span>
                 {(ac > 0 || query) && (
                   <button
                     onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
                     style={{
-                      padding: "2px 8px", borderRadius: "10px", border: "1px solid #3a3f47",
+                      padding: "2px 8px", borderRadius: "10px", border: "1px solid #d5cdbf",
                       background: "transparent", color: "#8a8373", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
@@ -876,7 +876,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                   <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
                     padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
                     background: view === v.key ? "rgba(201,138,66,0.15)" : "transparent",
-                    color: view === v.key ? "#c98a42" : "#6b7280",
+                    color: view === v.key ? "#c98a42" : "#7a7462",
                     fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
                   }}>
                     {v.icon}
@@ -888,7 +888,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
         ) : (
           <>
             <div style={{ flex: 1, maxWidth: "400px", position: "relative" }}>
-              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#7a7462", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
               <input
                 type="text"
                 placeholder="Search quickdraws…"
@@ -896,8 +896,8 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 onChange={(e) => setQuery(e.target.value)}
                 style={{
                   width: "100%", padding: "8px 16px 8px 36px",
-                  borderRadius: "8px", border: "1px solid #1e2028",
-                  background: "#151820", color: "#2c3227",
+                  borderRadius: "8px", border: "1px solid #d5cdbf",
+                  background: "#ede7db", color: "#2c3227",
                   fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                 }}
               />
@@ -910,7 +910,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
                   padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
                   background: view === v.key ? "rgba(201,138,66,0.15)" : "transparent",
-                  color: view === v.key ? "#c98a42" : "#6b7280",
+                  color: view === v.key ? "#c98a42" : "#7a7462",
                   fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "4px",
                 }}>
@@ -919,7 +919,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 </button>
               ))}
             </div>
-            <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
+            <span style={{ fontSize: "11px", color: "#7a7462", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
               {filtered.length} quickdraw{filtered.length !== 1 ? "s" : ""}
             </span>
             {(ac > 0 || query) && (
@@ -927,7 +927,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                 onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
                 style={{
                   padding: "6px 16px", borderRadius: "20px",
-                  border: "1px solid #3a3f47", background: "transparent",
+                  border: "1px solid #d5cdbf", background: "transparent",
                   color: "#8a8373", fontSize: "12px", cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                   marginLeft: "auto",
@@ -949,13 +949,13 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
           <div
             style={{
               position: "absolute", top: 0, right: 0, bottom: 0,
-              width: "85vw", maxWidth: "340px", background: "#14171c",
-              overflowY: "auto", borderLeft: "1px solid #23272f",
+              width: "85vw", maxWidth: "340px", background: "#ede7db",
+              overflowY: "auto", borderLeft: "1px solid #d5cdbf",
               animation: "slideInRight .25s ease",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #23272f" }}>
+            <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d5cdbf" }}>
               <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
@@ -996,11 +996,11 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
           />
           <div style={{
             position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 201,
-            background: "#1c1f26", borderRadius: "16px 16px 0 0",
+            background: "#ffffff", borderRadius: "16px 16px 0 0",
             padding: "12px 0 calc(env(safe-area-inset-bottom, 16px) + 8px)",
             boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
           }}>
-            <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#3a3f47", margin: "0 auto 12px" }} />
+            <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#d5cdbf", margin: "0 auto 12px" }} />
             <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#2c3227" }}>Sort by</div>
             {SORT_OPTIONS_GENERIC.map(o => (
               <button
@@ -1010,7 +1010,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
                   width: "100%", padding: "14px 20px", background: "none", border: "none",
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
-                  color: sortKey === o.key ? "#c98a42" : "#d1d5db", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
+                  color: sortKey === o.key ? "#c98a42" : "#2c3227", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
                 }}
               >
                 {o.label}
@@ -1075,7 +1075,7 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
           </div>
           )}
           {!displayResults.length && (
-            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#6b7280" }}>
+            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#7a7462" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🎣</div>
               <div style={{ fontSize: "16px" }}>No quickdraws match your filters</div>
               <div style={{ fontSize: "13px", marginTop: "8px" }}>Try broadening your criteria</div>

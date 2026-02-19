@@ -193,7 +193,7 @@ function Chip({ label, active, onClick }) {
       onClick={onClick}
       style={{
         padding: "6px 14px", borderRadius: "20px",
-        border: active ? "1.5px solid #c98a42" : "1.5px solid #3a3f47",
+        border: active ? "1.5px solid #c98a42" : "1.5px solid #d5cdbf",
         background: active ? "rgba(201,138,66,0.15)" : "transparent",
         color: active ? "#c98a42" : "#8a8373",
         fontSize: "12px", fontFamily: "'DM Sans',sans-serif",
@@ -239,18 +239,18 @@ function Range({ min, max, step, value = {}, onChange }) {
         onChange={(e) => onChange({ ...value, min: e.target.value ? Number(e.target.value) : null })}
         style={{
           width: "72px", padding: "6px 8px", borderRadius: "8px",
-          border: "1px solid #3a3f47", background: "#1a1d23", color: "#e5e7eb",
+          border: "1px solid #d5cdbf", background: "#ede7db", color: "#e5e7eb",
           fontSize: "12px", fontFamily: "'DM Mono',monospace",
         }}
       />
-      <span style={{ color: "#6b7280", fontSize: "12px" }}>–</span>
+      <span style={{ color: "#7a7462", fontSize: "12px" }}>–</span>
       <input
         type="number" placeholder={max} min={min} max={max} step={step}
         value={value.max ?? ""}
         onChange={(e) => onChange({ ...value, max: e.target.value ? Number(e.target.value) : null })}
         style={{
           width: "72px", padding: "6px 8px", borderRadius: "8px",
-          border: "1px solid #3a3f47", background: "#1a1d23", color: "#e5e7eb",
+          border: "1px solid #d5cdbf", background: "#ede7db", color: "#e5e7eb",
           fontSize: "12px", fontFamily: "'DM Mono',monospace",
         }}
       />
@@ -289,7 +289,7 @@ function BelaySVG({ device, width = 120, height = 100 }) {
         {/* Body */}
         <rect x="25" y="15" width="55" height="65" rx="12" fill={`url(#bg-${device.slug})`} opacity="0.9" />
         {/* Plate opening */}
-        <rect x="35" y="22" width="35" height="18" rx="5" fill="#0d1117" opacity="0.6" />
+        <rect x="35" y="22" width="35" height="18" rx="5" fill="#f5f0e8" opacity="0.6" />
         {/* Cam arc */}
         <path d="M50 40 Q60 55 70 40" stroke={c2} strokeWidth="2.5" fill="none" opacity="0.8" />
         {/* Lever */}
@@ -315,8 +315,8 @@ function BelaySVG({ device, width = 120, height = 100 }) {
         {/* Body — thinner than active */}
         <rect x="30" y="18" width="45" height="55" rx="8" fill={`url(#bg-${device.slug})`} opacity="0.9" />
         {/* Rope slots */}
-        <ellipse cx="45" cy="35" rx="6" ry="9" fill="#0d1117" opacity="0.6" />
-        {device.rope_slots === 2 && <ellipse cx="60" cy="35" rx="6" ry="9" fill="#0d1117" opacity="0.6" />}
+        <ellipse cx="45" cy="35" rx="6" ry="9" fill="#f5f0e8" opacity="0.6" />
+        {device.rope_slots === 2 && <ellipse cx="60" cy="35" rx="6" ry="9" fill="#f5f0e8" opacity="0.6" />}
         {/* Thumb loop */}
         <path d="M65 55 Q78 50 75 65 Q72 75 65 72" stroke={c2} strokeWidth="2" fill="none" opacity="0.7" />
         {/* Cable/attachment */}
@@ -339,8 +339,8 @@ function BelaySVG({ device, width = 120, height = 100 }) {
       {/* Body — slim plate shape */}
       <rect x="28" y="20" width="50" height="50" rx="10" fill={`url(#bg-${device.slug})`} opacity="0.9" />
       {/* Rope slots */}
-      <ellipse cx="43" cy="38" rx="6" ry="10" fill="#0d1117" opacity="0.6" />
-      {device.rope_slots === 2 && <ellipse cx="63" cy="38" rx="6" ry="10" fill="#0d1117" opacity="0.6" />}
+      <ellipse cx="43" cy="38" rx="6" ry="10" fill="#f5f0e8" opacity="0.6" />
+      {device.rope_slots === 2 && <ellipse cx="63" cy="38" rx="6" ry="10" fill="#f5f0e8" opacity="0.6" />}
       {/* Guide mode loop (if applicable) */}
       {device.guide_mode && (
         <path d="M53 20 Q53 12 60 12 Q67 12 67 20" stroke="#8a8373" strokeWidth="1.5" fill="none" opacity="0.5" />
@@ -357,7 +357,7 @@ const TYPE_COLORS = {
   active_assisted: { bg: "rgba(239,68,68,0.15)", color: "#ef4444", icon: "⚡" },
   passive_assisted: { bg: "rgba(168,85,247,0.15)", color: "#a855f7", icon: "🔒" },
   tube_guide: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6", icon: "🔄" },
-  tube: { bg: "rgba(107,114,128,0.15)", color: "#8a8373", icon: "⊘" },
+  tube: { bg: "rgba(122,116,98,0.12)", color: "#8a8373", icon: "⊘" },
 };
 
 function TypeBadge({ type }) {
@@ -382,7 +382,7 @@ function TypeBadge({ type }) {
 
 function SmallTag({ label, variant = "default" }) {
   const styles = {
-    default: { bg: "rgba(107,114,128,0.15)", color: "#8a8373" },
+    default: { bg: "rgba(122,116,98,0.12)", color: "#8a8373" },
     safety: { bg: "rgba(34,197,94,0.15)", color: "#22c55e" },
     feature: { bg: "rgba(59,130,246,0.15)", color: "#3b82f6" },
     eco: { bg: "rgba(34,197,94,0.15)", color: "#22c55e" },
@@ -432,7 +432,7 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
 
   return (
     <div style={{
-      background: "#1c1f26", borderRadius: "12px", overflow: "hidden",
+      background: "#ffffff", borderRadius: "12px", overflow: "hidden",
       border: "1px solid #d5cdbf", cursor: "pointer", position: "relative",
     }}>
       {/* Visual header: product image or SVG fallback */}
@@ -477,7 +477,7 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
             <div style={{ width: "3px", height: "10px", borderRadius: "2px", background: (TYPE_COLORS[d.device_type] || TYPE_COLORS.tube).color }} />
-            <span style={{ fontSize: "9px", color: "#6b7280", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
+            <span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
           </div>
           <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
             €{fmt(price)}
@@ -490,29 +490,29 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
           </span>
           {hasDiscount && (
             <div style={{ display: "flex", alignItems: "baseline", gap: "3px", flexShrink: 0 }}>
-              <span style={{ fontSize: "10px", color: "#6b7280", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>€{fmt(d.price_uvp_eur)}</span>
+              <span style={{ fontSize: "10px", color: "#7a7462", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>€{fmt(d.price_uvp_eur)}</span>
               <span style={{ fontSize: "10px", fontWeight: 700, color: "#22c55e", fontFamily: "'DM Mono',monospace" }}>-{discountPct}%</span>
             </div>
           )}
         </div>
         {/* Row 3: specs */}
-        <div style={{ display: "flex", gap: "4px", alignItems: "center", marginTop: "4px", fontSize: "10px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+        <div style={{ display: "flex", gap: "4px", alignItems: "center", marginTop: "4px", fontSize: "10px", color: "#7a7462", fontFamily: "'DM Mono',monospace" }}>
           <span>{d.weight_g}g</span>
-          <span style={{ color: "#3a3f47" }}>·</span>
+          <span style={{ color: "#d5cdbf" }}>·</span>
           <span>{d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm</span>
         </div>
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
-      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+      <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.stopPropagation(); toggleWL("belay", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "10px 6px",
-            background: "none", border: "none", borderRight: "1px solid #252a35",
+            background: "none", border: "none", borderRight: "1px solid #d5cdbf",
             cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
             fontSize: "11px", fontWeight: 600,
-            color: saved ? "#ef4444" : "#717889",
+            color: saved ? "#ef4444" : "#7a7462",
             transition: "all .15s",
           }}
         >
@@ -528,7 +528,7 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
             border: "none", cursor: compareFull ? "not-allowed" : "pointer",
             fontFamily: "'DM Sans',sans-serif",
             fontSize: "11px", fontWeight: 600,
-            color: compared ? "#c98a42" : "#717889",
+            color: compared ? "#c98a42" : "#7a7462",
             opacity: compareFull ? 0.4 : 1,
             transition: "all .15s",
           }}
@@ -561,7 +561,7 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
   return (
     <div
       style={{
-        background: "#1c1f26", borderRadius: "16px", overflow: "hidden",
+        background: "#ffffff", borderRadius: "16px", overflow: "hidden",
         border: "1px solid #d5cdbf", cursor: "pointer",
         transition: "all .3s", position: "relative",
         display: "flex", flexDirection: "column",
@@ -608,7 +608,7 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
         </div>
 
         {/* Quick specs */}
-        <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace" }}>
+        <div style={{ display: "flex", gap: "16px", fontSize: "11px", color: "#7a7462", fontFamily: "'DM Mono',monospace" }}>
           <span>{d.weight_g}g</span>
           <span>{d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm</span>
           <span>{d.rope_slots === 2 ? "2 slots" : "1 slot"}</span>
@@ -636,7 +636,7 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
           )}
           {hasDiscount && (
             <>
-              <span style={{ color: "#6b7280", fontSize: "12px", textDecoration: "line-through" }}>
+              <span style={{ color: "#7a7462", fontSize: "12px", textDecoration: "line-through" }}>
                 €{fmt(d.price_uvp_eur)}
               </span>
               <span style={{ color: "#22c55e", fontSize: "11px", fontWeight: 600 }}>
@@ -647,20 +647,20 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
         </div>
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
-      <div style={{ display: "flex", borderTop: "1px solid #252a35" }}>
+      <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.stopPropagation(); toggleWL("belay", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "12px 8px",
-            background: "none", border: "none", borderRight: "1px solid #252a35",
+            background: "none", border: "none", borderRight: "1px solid #d5cdbf",
             cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
             fontSize: "12px", fontWeight: 600,
-            color: saved ? "#ef4444" : "#717889",
+            color: saved ? "#ef4444" : "#7a7462",
             transition: "all .15s",
           }}
-          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
-          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#717889"; e.currentTarget.style.background = "none"; }}
+          onMouseOver={e => { if (!saved) e.currentTarget.style.color = "#2c3227"; e.currentTarget.style.background = "rgba(44,50,39,0.04)"; }}
+          onMouseOut={e => { e.currentTarget.style.color = saved ? "#ef4444" : "#7a7462"; e.currentTarget.style.background = "none"; }}
         >
           <HeartSVG filled={saved} size={16} />
           {saved ? "Saved" : "Save"}
@@ -675,12 +675,12 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
             border: "none", cursor: compareFull ? "not-allowed" : "pointer",
             fontFamily: "'DM Sans',sans-serif",
             fontSize: "12px", fontWeight: 600,
-            color: compared ? "#c98a42" : "#717889",
+            color: compared ? "#c98a42" : "#7a7462",
             opacity: compareFull ? 0.4 : 1,
             transition: "all .15s",
           }}
-          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#e8e9ec"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; } }}
-          onMouseOut={e => { e.currentTarget.style.color = compared ? "#c98a42" : "#717889"; e.currentTarget.style.background = compared ? "rgba(201,138,66,0.06)" : "none"; }}
+          onMouseOver={e => { if (!compared && !compareFull) { e.currentTarget.style.color = "#2c3227"; e.currentTarget.style.background = "rgba(44,50,39,0.04)"; } }}
+          onMouseOut={e => { e.currentTarget.style.color = compared ? "#c98a42" : "#7a7462"; e.currentTarget.style.background = compared ? "rgba(201,138,66,0.06)" : "none"; }}
         >
           <CompareSVG size={16} />
           {compared && <CheckSVG size={12} />}
@@ -713,7 +713,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
     <>
       {/* Hard filter: Device type */}
       <div style={{ marginBottom: "20px" }}>
-        <div style={{ color: "#6b7280", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
+        <div style={{ color: "#7a7462", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>
           Device Type
         </div>
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
@@ -729,9 +729,9 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
                 }
                 style={{
                   padding: "5px 12px", borderRadius: "16px",
-                  border: `1.5px solid ${active ? color : "#3a3f47"}`,
+                  border: `1.5px solid ${active ? color : "#d5cdbf"}`,
                   background: active ? `${color}22` : "transparent",
-                  color: active ? color : "#6b7280",
+                  color: active ? color : "#7a7462",
                   fontSize: "11px", fontWeight: active ? 600 : 400,
                   cursor: "pointer", transition: "all .2s",
                 }}
@@ -751,7 +751,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
           }}
           style={{
             width: "100%", padding: "6px", borderRadius: "8px",
-            border: "1px solid #3a3f47", background: "transparent",
+            border: "1px solid #d5cdbf", background: "transparent",
             color: "#ef4444", fontSize: "11px", cursor: "pointer",
             marginBottom: "12px",
           }}
@@ -777,7 +777,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
               style={{
                 width: "100%", display: "flex", alignItems: "center", gap: "8px",
                 padding: "10px 12px", borderRadius: "10px",
-                border: "none", background: isOpen ? "#1a1d23" : "transparent",
+                border: "none", background: isOpen ? "#ede7db" : "transparent",
                 color: "#e5e7eb", fontSize: "13px", fontWeight: 500,
                 cursor: "pointer", textAlign: "left", transition: "all .15s",
               }}
@@ -787,7 +787,7 @@ function FilterSidebarContent({ groups, filters, setFilter, activeTypes, setActi
               {groupActive && (
                 <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#c98a42" }} />
               )}
-              <span style={{ color: "#6b7280", fontSize: "11px" }}>{isOpen ? "▾" : "▸"}</span>
+              <span style={{ color: "#7a7462", fontSize: "11px" }}>{isOpen ? "▾" : "▸"}</span>
             </button>
             {isOpen && (
               <div style={{ padding: "8px 12px 16px", display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -885,7 +885,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
   }).length;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0d1117", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "#f5f0e8", color: "#e5e7eb", fontFamily: "'DM Sans',sans-serif" }}>
       {/* Sub-header: filters + count */}
       <header style={{
         position: "sticky", top: isMobile ? "44px" : "50px", zIndex: 100,
@@ -893,8 +893,8 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
         flexWrap: "nowrap",
         padding: isMobile ? undefined : "0 24px",
         minHeight: isMobile ? undefined : "50px",
-        background: "rgba(13,17,23,.92)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #1e2028",
+        background: "rgba(245,240,232,0.95)", backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #d5cdbf",
       }}>
         {isMobile ? (
           <>
@@ -934,7 +934,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 </button>
               )}
               <div style={{ flex: 1, position: "relative", minWidth: 0 }}>
-                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#7a7462", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
                 <input
                   type="text"
                   placeholder="Search…"
@@ -952,14 +952,14 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
             {/* Mobile Row 2: Count + Clear | View toggle */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <span style={{ fontSize: "12px", color: "#6b7280", fontWeight: 500 }}>
+                <span style={{ fontSize: "12px", color: "#7a7462", fontWeight: 500 }}>
                   {filtered.length} device{filtered.length !== 1 ? "s" : ""}
                 </span>
                 {(ac > 0 || query) && (
                   <button
                     onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
                     style={{
-                      padding: "2px 8px", borderRadius: "10px", border: "1px solid #3a3f47",
+                      padding: "2px 8px", borderRadius: "10px", border: "1px solid #d5cdbf",
                       background: "transparent", color: "#8a8373", fontSize: "10px",
                       cursor: "pointer", fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                     }}
@@ -976,7 +976,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                   <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
                     padding: "4px 8px", borderRadius: "4px", border: "none", cursor: "pointer",
                     background: view === v.key ? "rgba(201,138,66,0.15)" : "transparent",
-                    color: view === v.key ? "#c98a42" : "#6b7280",
+                    color: view === v.key ? "#c98a42" : "#7a7462",
                     fontSize: "12px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
                   }}>
                     {v.icon}
@@ -988,7 +988,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
         ) : (
           <>
             <div style={{ flex: 1, maxWidth: "400px", position: "relative" }}>
-              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#6b7280", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
+              <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#7a7462", fontSize: "14px", pointerEvents: "none" }}>⌕</span>
               <input
                 type="text"
                 placeholder="Search belay devices…"
@@ -996,8 +996,8 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 onChange={(e) => setQuery(e.target.value)}
                 style={{
                   width: "100%", padding: "8px 16px 8px 36px",
-                  borderRadius: "8px", border: "1px solid #1e2028",
-                  background: "#151820", color: "#2c3227",
+                  borderRadius: "8px", border: "1px solid #d5cdbf",
+                  background: "#ede7db", color: "#2c3227",
                   fontFamily: "'DM Sans',sans-serif", fontSize: "13px", outline: "none",
                 }}
               />
@@ -1010,7 +1010,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 <button key={v.key} onClick={() => { setView(v.key); setSearchParams(v.key === "chart" ? { view: "chart" } : {}); }} style={{
                   padding: "4px 10px", borderRadius: "4px", border: "none", cursor: "pointer",
                   background: view === v.key ? "rgba(201,138,66,0.15)" : "transparent",
-                  color: view === v.key ? "#c98a42" : "#6b7280",
+                  color: view === v.key ? "#c98a42" : "#7a7462",
                   fontSize: "11px", fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
                   display: "flex", alignItems: "center", gap: "4px",
                 }}>
@@ -1019,7 +1019,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 </button>
               ))}
             </div>
-            <span style={{ fontSize: "11px", color: "#6b7280", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
+            <span style={{ fontSize: "11px", color: "#7a7462", fontFamily: "'DM Mono',monospace", whiteSpace: "nowrap" }}>
               {filtered.length} device{filtered.length !== 1 ? "s" : ""}
             </span>
             {(ac > 0 || query) && (
@@ -1027,7 +1027,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                 onClick={() => { setFilters({}); setActiveTypes([]); setQuery(""); }}
                 style={{
                   padding: "6px 16px", borderRadius: "20px",
-                  border: "1px solid #3a3f47", background: "transparent",
+                  border: "1px solid #d5cdbf", background: "transparent",
                   color: "#8a8373", fontSize: "12px", cursor: "pointer",
                   fontFamily: "'DM Sans',sans-serif", whiteSpace: "nowrap",
                   marginLeft: "auto",
@@ -1049,13 +1049,13 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
           <div
             style={{
               position: "absolute", top: 0, right: 0, bottom: 0,
-              width: "85vw", maxWidth: "340px", background: "#14171c",
-              overflowY: "auto", borderLeft: "1px solid #23272f",
+              width: "85vw", maxWidth: "340px", background: "#ede7db",
+              overflowY: "auto", borderLeft: "1px solid #d5cdbf",
               animation: "slideInRight .25s ease",
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #23272f" }}>
+            <div style={{ padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid #d5cdbf" }}>
               <span style={{ fontSize: "14px", fontWeight: 700, color: "#2c3227" }}>Filters</span>
               <button
                 onClick={() => setShowMobileFilters(false)}
@@ -1096,11 +1096,11 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
           />
           <div style={{
             position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 201,
-            background: "#1c1f26", borderRadius: "16px 16px 0 0",
+            background: "#ffffff", borderRadius: "16px 16px 0 0",
             padding: "12px 0 calc(env(safe-area-inset-bottom, 16px) + 8px)",
             boxShadow: "0 -4px 24px rgba(0,0,0,.4)",
           }}>
-            <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#3a3f47", margin: "0 auto 12px" }} />
+            <div style={{ width: "36px", height: "4px", borderRadius: "2px", background: "#d5cdbf", margin: "0 auto 12px" }} />
             <div style={{ padding: "0 20px 8px", fontSize: "13px", fontWeight: 700, color: "#2c3227" }}>Sort by</div>
             {SORT_OPTIONS_GENERIC.map(o => (
               <button
@@ -1110,7 +1110,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
                   width: "100%", padding: "14px 20px", background: "none", border: "none",
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   cursor: "pointer", fontFamily: "'DM Sans',sans-serif",
-                  color: sortKey === o.key ? "#c98a42" : "#d1d5db", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
+                  color: sortKey === o.key ? "#c98a42" : "#2c3227", fontSize: "14px", fontWeight: sortKey === o.key ? 700 : 400,
                 }}
               >
                 {o.label}
@@ -1178,7 +1178,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
           </div>
           )}
           {!displayResults.length && (
-            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#6b7280" }}>
+            <div style={{ textAlign: "center", padding: isMobile ? "40px 12px" : "80px 20px", color: "#7a7462" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🔗</div>
               <div style={{ fontSize: "16px" }}>No devices match your filters</div>
               <div style={{ fontSize: "13px", marginTop: "8px" }}>Try broadening your criteria</div>

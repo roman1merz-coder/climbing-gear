@@ -78,7 +78,7 @@ function BelaySVGDetail({ device, compact }) {
           </linearGradient>
         </defs>
         <rect x="45" y="20" width="90" height="105" rx="18" fill="url(#detail-bg)" opacity="0.9" />
-        <rect x="58" y="32" width="60" height="30" rx="8" fill="#0d1117" opacity="0.6" />
+        <rect x="58" y="32" width="60" height="30" rx="8" fill="#2c3227" opacity="0.5" />
         <path d="M80 62 Q95 85 115 62" stroke={c2} strokeWidth="3.5" fill="none" opacity="0.8" />
         <rect x="115" y="80" width="36" height="12" rx="6" fill={c2} opacity="0.7" />
         <circle cx="90" cy="118" r="8" fill="none" stroke={T.muted} strokeWidth="2" opacity="0.5" />
@@ -98,8 +98,8 @@ function BelaySVGDetail({ device, compact }) {
           </linearGradient>
         </defs>
         <rect x="50" y="25" width="80" height="90" rx="14" fill="url(#detail-bg)" opacity="0.9" />
-        <ellipse cx="75" cy="55" rx="10" ry="15" fill="#0d1117" opacity="0.6" />
-        {device.rope_slots === 2 && <ellipse cx="100" cy="55" rx="10" ry="15" fill="#0d1117" opacity="0.6" />}
+        <ellipse cx="75" cy="55" rx="10" ry="15" fill="#2c3227" opacity="0.5" />
+        {device.rope_slots === 2 && <ellipse cx="100" cy="55" rx="10" ry="15" fill="#2c3227" opacity="0.5" />}
         <path d="M110 88 Q130 82 126 102 Q122 118 110 114" stroke={c2} strokeWidth="2.5" fill="none" opacity="0.7" />
         <circle cx="90" cy="110" r="6" fill="none" stroke={T.muted} strokeWidth="2" opacity="0.5" />
         <circle cx="72" cy="95" r="3" fill={c2} opacity="0.6" />
@@ -118,8 +118,8 @@ function BelaySVGDetail({ device, compact }) {
         </linearGradient>
       </defs>
       <rect x="48" y="28" width="85" height="85" rx="16" fill="url(#detail-bg)" opacity="0.9" />
-      <ellipse cx="72" cy="60" rx="10" ry="16" fill="#0d1117" opacity="0.6" />
-      {device.rope_slots === 2 && <ellipse cx="108" cy="60" rx="10" ry="16" fill="#0d1117" opacity="0.6" />}
+      <ellipse cx="72" cy="60" rx="10" ry="16" fill="#2c3227" opacity="0.5" />
+      {device.rope_slots === 2 && <ellipse cx="108" cy="60" rx="10" ry="16" fill="#2c3227" opacity="0.5" />}
       {device.guide_mode && (
         <path d="M90 28 Q90 16 100 16 Q110 16 110 28" stroke={T.muted} strokeWidth="2" fill="none" opacity="0.5" />
       )}
