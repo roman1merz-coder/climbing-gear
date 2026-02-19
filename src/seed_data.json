@@ -656,8 +656,7 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "advanced",
-      "elite"
+      "advanced"
     ],
     "use_cases": [
       "sport"
@@ -4888,7 +4887,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 386g pair \u2192 193g single",
+      "weight_source": "weighmyrack: 386g pair → 193g single",
       "weight_verified": true
     }
   },
@@ -7771,7 +7770,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 320g pair \u2192 160g single",
+      "weight_source": "weighmyrack: 320g pair → 160g single",
       "weight_verified": true
     }
   },
@@ -8822,7 +8821,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
+      "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     }
   },
@@ -13201,7 +13200,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Advancer QC",
     "slug": "ocun-advancer-qc",
     "image_url": "/images/shoes/ocun-advancer-qc.jpg",
@@ -13276,7 +13275,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Bullit",
     "slug": "ocun-bullit",
     "image_url": "/images/shoes/ocun-bullit.jpg",
@@ -13349,7 +13348,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Diamond S",
     "slug": "ocun-diamond-s",
     "image_url": "/images/shoes/ocun-diamond-s.jpg",
@@ -13423,7 +13422,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Fury",
     "slug": "ocun-fury",
     "image_url": "/images/shoes/ocun-fury.jpg",
@@ -13497,7 +13496,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Havoc",
     "slug": "ocun-havoc",
     "image_url": "/images/shoes/ocun-havoc.jpg",
@@ -13572,7 +13571,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Iris",
     "slug": "ocun-iris",
     "image_url": "/images/shoes/ocun-iris.jpg",
@@ -13645,7 +13644,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Jett Crack",
     "slug": "ocun-jett-crack",
     "image_url": "/images/shoes/ocun-jett-crack.jpg",
@@ -13792,7 +13791,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Jett QC",
     "slug": "ocun-jett-qc",
     "image_url": "/images/shoes/ocun-jett-qc.jpg",
@@ -13944,7 +13943,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Ozone",
     "slug": "ocun-ozone",
     "image_url": "/images/shoes/ocun-ozone.jpg",
@@ -14020,7 +14019,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Ozone HV",
     "slug": "ocun-ozone-hv",
     "image_url": "/images/shoes/ocun-ozone-hv.jpg",
@@ -14096,7 +14095,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Pearl",
     "slug": "ocun-pearl",
     "image_url": "/images/shoes/ocun-pearl.jpg",
@@ -14378,7 +14377,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Sigma",
     "slug": "ocun-sigma",
     "image_url": "/images/shoes/ocun-sigma.jpg",
@@ -14520,7 +14519,7 @@
     }
   },
   {
-    "brand": "Oc\u00fan",
+    "brand": "Ocún",
     "model": "Striker QC",
     "slug": "ocun-striker-qc",
     "image_url": "/images/shoes/ocun-striker-qc.jpg",
@@ -14659,7 +14658,7 @@
     "pros": "[\"Exceptional all-day comfort for long sessions\", \"Neutral asymmetry fits most foot shapes\", \"Breathable TPE mesh + hemp footbed blocks odours\", \"Versatile for gym, sport, and multi-pitch\", \"Double velcro for quick on/off between climbs\"]",
     "cons": "[\"Not aggressive enough for steep roof climbing\", \"Suede leather stretches more than synthetic\", \"Moderate edging on thin edges\"]",
     "sizing": "Fits true to street shoe size. Suede leather stretches roughly a quarter size over time. Wide toe box suits most foot shapes without discomfort.",
-    "customer_voices": "[\"Perfect for long boulder circuits without foot pain.\", \"Bridged the gap between comfort and performance \u2014 great for all-day gym sessions.\", \"Best shoe for everyday climbing and projecting on varied terrain.\"]",
+    "customer_voices": "[\"Perfect for long boulder circuits without foot pain.\", \"Bridged the gap between comfort and performance — great for all-day gym sessions.\", \"Best shoe for everyday climbing and projecting on varied terrain.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -15553,7 +15552,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     }
   },
@@ -15632,7 +15631,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     }
   },
@@ -15647,8 +15646,7 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "intermediate"
     ],
     "use_cases": [
       "boulder",
@@ -15709,7 +15707,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     }
   },
@@ -15855,7 +15853,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
+      "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     }
   },
@@ -16221,7 +16219,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "Estimated from brand pattern: 350g pair \u2192 175g",
+      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
       "weight_verified": true
     }
   },
@@ -17520,7 +17518,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 440g pair \u2192 220g single",
+      "weight_source": "weighmyrack: 440g pair → 220g single",
       "weight_verified": true
     }
   },
@@ -21427,8 +21425,8 @@
     "width": "medium",
     "heel_volume": "narrow",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "beginner",
+      "intermediate"
     ],
     "use_cases": [
       "sport",
@@ -21498,8 +21496,8 @@
     "width": "medium",
     "heel_volume": "narrow",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "beginner",
+      "intermediate"
     ],
     "use_cases": [
       "sport",
@@ -21557,7 +21555,7 @@
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 330g pair \u2192 165g single",
+      "weight_source": "weighmyrack: 330g pair → 165g single",
       "weight_verified": true
     }
   },
@@ -23548,7 +23546,7 @@
     "description": "A versatile lace-up with a high-volume toe box suited for wider feet. The Up Beat delivers solid edging performance through its precision-pressed 4.2mm RH outsole and full-length midsole. Great for sport, trad, and gym climbing with excellent durability and a comfortable fit that works all day.",
     "pros": "[\"High-volume fit for wider feet\", \"Excellent edging support\", \"Durable 4.2mm RH rubber\", \"Versatile lace closure for fine-tuning\"]",
     "cons": "[\"Less aggressive than competition shoes\", \"Heavier for bouldering sessions\", \"Moderate downturn limits roof performance\"]",
-    "sizing": "High-volume toe box\u2014ideal for wide feet. Lace closure allows precise adjustment. Minimal stretch.",
+    "sizing": "High-volume toe box—ideal for wide feet. Lace closure allows precise adjustment. Minimal stretch.",
     "customer_voices": "[\"Finally a performance shoe that fits my wide feet without cramping.\", \"The pressed molded sole edges better than any shoe in this price range.\"]",
     "vegan": true,
     "resoleable": true,
