@@ -114,7 +114,7 @@ export default function InsightShoes() {
       <SectionHeading>How Our Guided Search Scores Every Shoe</SectionHeading>
 
       <Prose>
-        Our <Link to="/shoes?finder=1" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> walks you through six questions — discipline, environment, experience, preference, foot shape, and body weight — then scores all 340 shoes out of 100 points. The scoring isn't a black box: it maps your answers to concrete specs, then rewards shoes whose construction matches what you need.
+        Our <Link to="/find" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> walks you through six questions — discipline, environment, experience, preference, foot shape, and body weight — then scores all 340 shoes out of 100 points. The scoring isn't a black box: it maps your answers to concrete specs, then rewards shoes whose construction matches what you need.
       </Prose>
 
       <Prose>
@@ -182,7 +182,7 @@ export default function InsightShoes() {
       </Prose>
 
       <KeyInsight color={T.blue}>
-        <strong>Know your foot before you shop.</strong> Stand on a piece of paper, trace your foot, and identify your toe form (Egyptian, Roman, or Greek). Try on shoes at a local shop to learn your width and volume. Then use these parameters in our <Link to="/shoes?finder=1" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> — they'll eliminate mismatches before you ever look at performance scores.
+        <strong>Know your foot before you shop.</strong> Stand on a piece of paper, trace your foot, and identify your toe form (Egyptian, Roman, or Greek). Try on shoes at a local shop to learn your width and volume. Then use these parameters in our <Link to="/find" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> — they'll eliminate mismatches before you ever look at performance scores.
       </KeyInsight>
 
       <SectionHeading>Explore the Full Shoe Database</SectionHeading>
@@ -194,7 +194,7 @@ export default function InsightShoes() {
       <ShoeScatterChart shoes={SHOE_SEED} isMobile={isMobile} insightsMode />
 
       <div style={{ marginTop: "20px" }}>
-        <Link to="/shoes?finder=1" style={{
+        <Link to="/find" style={{
           display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
           padding: "12px 24px", background: T.accent, color: "#fff",
           borderRadius: "8px", fontSize: "14px", fontWeight: 700,
