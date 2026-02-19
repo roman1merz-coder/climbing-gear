@@ -151,7 +151,7 @@ export default function InsightShoes() {
 
       <Collapsible title="Hooks & heel/toe performance">
         <Prose>
-          Hooking requires rubber coverage more than anything else. Heel rubber coverage is the biggest factor, followed by toe patch, downturn, sensitivity, and closure. Soft-feeling shoes score higher on the sensitivity component — they transmit feedback from the rock, helping you feel whether a heel hook is secure. Slippers again score well for closure: their flexibility lets you wrap the shoe around features.
+          Hooking requires rubber coverage more than anything else. Heel rubber (30%) and toe patch (25%) together account for over half the score — which part matters more depends on the route. Downturn adds 20%: aggressive shapes let you load hooks harder. Sensitivity (15%) rewards soft-feeling shoes that transmit feedback, helping you feel whether a hook is secure. Slippers score well for closure (10%): their flexibility lets you wrap the shoe around features.
         </Prose>
       </Collapsible>
 
