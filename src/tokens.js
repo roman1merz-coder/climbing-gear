@@ -10,8 +10,8 @@ export const T = {
   yellow: "#b8860b", yellowSoft: "rgba(184,134,11,0.08)",
   blue: "#4a7fb5", blueSoft: "rgba(74,127,181,0.08)",
   purple: "#7c5cbf", purpleSoft: "rgba(124,92,191,0.08)",
-  // Nav stays dark for contrast
-  navBg: "#2c3227", navText: "#e8e5df", navMuted: "#a3b09a",
+  // Nav — light cream, blends with page
+  navBg: "rgba(245,240,232,0.92)", navText: "#2c3227", navMuted: "#7a7462",
   font: "'DM Sans', 'Instrument Sans', system-ui, sans-serif",
   display: "'Playfair Display', Georgia, serif",
   mono: "'JetBrains Mono', 'DM Mono', monospace",

@@ -43,7 +43,7 @@ export default function NavBar({ priceData = {} }) {
       minHeight: isMobile ? "44px" : "50px",
       background: T.navBg,
       backdropFilter: "blur(14px)",
-      borderBottom: "1px solid rgba(255,255,255,0.08)",
+      borderBottom: `1px solid ${T.border}`,
       fontFamily: T.font,
     }}>
       {/* Logo */}
@@ -60,7 +60,7 @@ export default function NavBar({ priceData = {} }) {
             fontSize: "15px", fontWeight: 800,
             letterSpacing: "-0.3px", color: T.navText,
           }}>
-            climbing-gear<span style={{ color: T.accent }}>.com</span>
+            climbing-gear<span style={{ color: T.primary }}>.com</span>
           </span>
         )}
       </div>
@@ -68,7 +68,7 @@ export default function NavBar({ priceData = {} }) {
       {/* Gear tabs */}
       <div style={{
         display: "flex", gap: "2px",
-        background: "rgba(255,255,255,0.06)", borderRadius: "8px", padding: "3px",
+        background: "rgba(44,50,39,0.06)", borderRadius: "8px", padding: "3px",
         marginLeft: isMobile ? "0" : "12px",
         overflow: "auto", flexShrink: isMobile ? 1 : 0,
         WebkitOverflowScrolling: "touch",
@@ -90,7 +90,7 @@ export default function NavBar({ priceData = {} }) {
               }}>
                 {tab.label}
                 <span style={{
-                  fontSize: "7px", background: "rgba(255,255,255,0.1)", color: T.navMuted,
+                  fontSize: "7px", background: "rgba(44,50,39,0.08)", color: T.navMuted,
                   padding: "1px 4px", borderRadius: "3px", fontWeight: 700,
                   letterSpacing: "0.3px", textTransform: "uppercase",
                 }}>soon</span>
@@ -106,11 +106,11 @@ export default function NavBar({ priceData = {} }) {
                 padding: isMobile ? "4px 10px" : "5px 16px",
                 borderRadius: "6px",
                 fontSize: isMobile ? "11px" : "12px",
-                fontWeight: isCurrent ? 600 : 500,
-                color: isCurrent ? "#fff" : T.navMuted,
+                fontWeight: isCurrent ? 700 : 500,
+                color: isCurrent ? T.navText : T.navMuted,
                 cursor: "pointer", border: "none",
-                background: isCurrent ? "rgba(255,255,255,0.12)" : "none",
-                boxShadow: isCurrent ? "0 1px 3px rgba(0,0,0,.3)" : "none",
+                background: isCurrent ? "#fff" : "none",
+                boxShadow: isCurrent ? "0 1px 4px rgba(0,0,0,.08)" : "none",
                 fontFamily: T.font, transition: "all .2s",
                 whiteSpace: "nowrap",
               }}
@@ -129,8 +129,8 @@ export default function NavBar({ priceData = {} }) {
           style={{
             display: "flex", alignItems: "center", gap: "4px",
             cursor: "pointer", padding: isMobile ? "4px 8px" : "5px 12px",
-            borderRadius: "16px", background: "rgba(232,115,74,0.1)",
-            border: "1px solid rgba(232,115,74,0.25)", flexShrink: 0,
+            borderRadius: "16px", background: "rgba(201,138,66,0.1)",
+            border: "1px solid rgba(201,138,66,0.2)", flexShrink: 0,
             transition: "all .2s",
           }}
         >
@@ -151,11 +151,11 @@ export default function NavBar({ priceData = {} }) {
       {!isMobile && (
         <div style={{ display: "flex", gap: "16px", fontSize: "12px", flexShrink: 0 }}>
           <Link to="/insights" style={{
-            color: pathname === "/insights" ? T.accent : T.navMuted,
+            color: pathname === "/insights" ? T.primary : T.navMuted,
             textDecoration: "none", fontWeight: 600,
           }}>Insights</Link>
           <Link to="/news" style={{
-            color: pathname === "/news" ? T.accent : T.navMuted,
+            color: pathname === "/news" ? T.primary : T.navMuted,
             textDecoration: "none", fontWeight: 600,
           }}>News</Link>
           <Link to="/about" style={{

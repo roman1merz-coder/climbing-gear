@@ -90,23 +90,23 @@ function HeroSection({ isMobile }) {
       <div style={{ position: "absolute", inset: 0 }}>
         <img src="/images/hero-mountain.jpg" alt="Climber on mountain rock face at golden hour" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" />
         <div style={{ position: "absolute", inset: 0, background: isMobile
-          ? "linear-gradient(to bottom, rgba(44,50,39,0.88) 0%, rgba(44,50,39,0.65) 50%, rgba(44,50,39,0.2) 100%)"
-          : "linear-gradient(to right, rgba(44,50,39,0.88) 0%, rgba(44,50,39,0.65) 45%, transparent 100%)" }} />
+          ? "linear-gradient(to bottom, rgba(18,16,14,0.92) 0%, rgba(18,16,14,0.72) 50%, rgba(18,16,14,0.25) 100%)"
+          : "linear-gradient(to right, rgba(18,16,14,0.92) 0%, rgba(18,16,14,0.72) 40%, rgba(18,16,14,0.25) 70%, transparent 100%)" }} />
       </div>
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 10, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "80px 20px 0" : "96px 40px 0" }}>
         <div style={{ maxWidth: "640px" }}>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 14px", fontSize: isMobile ? "10px" : "11px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", borderRadius: "20px", background: `${T.accent}20`, color: "#fff", border: `1px solid ${T.accent}30`, fontFamily: T.font }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "6px 14px", fontSize: isMobile ? "10px" : "11px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", borderRadius: "20px", background: "rgba(201,138,66,0.18)", color: T.accent, border: "1px solid rgba(201,138,66,0.25)", fontFamily: T.font }}>
               <IconChart size={14} color={T.accent} />
               Data-Driven Gear Comparison
             </span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            style={{ fontSize: isMobile ? "32px" : "64px", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-1px", color: "#fff", margin: isMobile ? "16px 0" : "24px 0", fontFamily: T.font }}>
-            Scroll less.<br /><span style={{ fontStyle: "italic" }}>Climb more.</span>
+            style={{ fontSize: isMobile ? "32px" : "64px", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-1px", color: "#ffffff", margin: isMobile ? "16px 0" : "24px 0", fontFamily: T.font }}>
+            Scroll less.<br /><span style={{ fontStyle: "italic", color: T.accent }}>Climb more.</span>
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
@@ -135,11 +135,11 @@ function HeroSection({ isMobile }) {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", borderRadius: isMobile ? "14px 14px 0 0" : "18px 18px 0 0", overflow: "hidden" }}>
             {STATS.map(({ value, label, Icon }) => (
-              <div key={label} style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? "4px" : "12px", padding: isMobile ? "12px 8px" : "18px 24px", background: "rgba(44,50,39,0.92)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(255,255,255,0.08)", textAlign: isMobile ? "center" : "left" }}>
+              <div key={label} style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: "center", gap: isMobile ? "4px" : "12px", padding: isMobile ? "12px 8px" : "18px 24px", background: "rgba(245,240,232,0.92)", backdropFilter: "blur(12px)", borderTop: `1px solid ${T.border}`, textAlign: isMobile ? "center" : "left" }}>
                 <Icon size={isMobile ? 14 : 18} color={T.accent} />
                 <div>
-                  <div style={{ fontSize: isMobile ? "14px" : "20px", fontWeight: 800, color: "#e8e5df", fontFamily: T.font }}>{value}</div>
-                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: "#a3b09a", lineHeight: 1.2 }}>{label}</div>
+                  <div style={{ fontSize: isMobile ? "14px" : "20px", fontWeight: 800, color: T.text, fontFamily: T.font }}>{value}</div>
+                  <div style={{ fontSize: isMobile ? "9px" : "11px", color: T.muted, lineHeight: 1.2 }}>{label}</div>
                 </div>
               </div>
             ))}
