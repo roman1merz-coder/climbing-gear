@@ -14623,7 +14623,7 @@
       "edge",
       "volume"
     ],
-    "feel": "moderate-soft",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 110,
     "current_price_eur": null,
     "discount_pct": 0,
@@ -14644,7 +14644,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 2,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -14770,7 +14770,7 @@
       "edge",
       "smear"
     ],
-    "feel": "moderate",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 115,
     "current_price_eur": 99,
     "discount_pct": 13.9,
@@ -14787,7 +14787,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 4mm",
+    "rubber_type": "RX-1 ALLROUND 4mm",
     "rubber_hardness": [
       "medium"
     ],
@@ -14918,7 +14918,7 @@
       "smear",
       "edge"
     ],
-    "feel": "moderate",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 95,
     "current_price_eur": 85,
     "discount_pct": 10.5,
@@ -14934,12 +14934,12 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Red Chili RCR rubber 4mm",
+    "rubber_type": "RX-2 TECHGRIP 4mm",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -14993,7 +14993,7 @@
       "smear",
       "crack"
     ],
-    "feel": "moderate",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 129,
     "current_price_eur": 115,
     "discount_pct": 10.9,
@@ -15010,12 +15010,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 4mm",
+    "rubber_type": "RX-2 TECHGRIP 4mm",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -15151,7 +15151,7 @@
     "current_price_url": null,
     "closure": "lace",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
