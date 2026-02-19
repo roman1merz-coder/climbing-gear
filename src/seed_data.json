@@ -1132,13 +1132,23 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 499,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
-    "description": "Moderate downturn provides versatility across varied terrain and multiple climbing disciplines. NEO Fuse with lace closure and stiff feel creates reliable grip and responsive feedback. Versatile fit works across different climbing styles and foot shapes.",
-    "pros": "[\"Exceptional edge performance\", \"Stiff support for powerful edging\", \"Long-lasting rubber compounds\", \"Moderate downturn balances power and comfort\"]",
-    "cons": "[\"Moderate break-in period required\", \"Minimal ankle protection on rocky terrain\"]",
+    "description": "Stiff, slightly downturned sport shoe with dual-velcro closure. Thick 4.3mm injection-molded NeoFuse rubber and a full midsole create a rigid edging platform. Leather upper with knit tongue for breathability. Stabilizer rands on both sides improve precision. Best on vertical-to-slightly-overhanging terrain where stiff support matters more than sensitivity.",
+    "pros": [
+      "Stiff platform for sustained vertical edging",
+      "Durable 4.3mm injection-molded rubber",
+      "Printed toe rubber for hooks without bulk",
+      "Stabilizer rands improve lateral precision"
+    ],
+    "cons": [
+      "Low sensitivity — thick rubber dampens feedback",
+      "Painful break-in period",
+      "Heel fit can feel sloppy",
+      "Not suited for crack climbing or slab"
+    ],
     "sizing": "True to size with minimal stretching expected.",
     "customer_voices": "[\"The precision and support are unmatched at this level. These shoes keep up with my ambitions.\", \"These work equally well in the gym and outdoors. Solid everyday climbing shoe that delivers performance.\"]",
     "vegan": true,
