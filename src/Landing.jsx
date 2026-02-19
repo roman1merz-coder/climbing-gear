@@ -249,9 +249,9 @@ export default function Landing() {
           Gear Insights
         </h2>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)", gap: isMobile ? "10px" : "14px" }}>
-          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" shortTitle="Inflatable Crashpads: Gimmick?" to="/insights#crashpads" active cta="Read insight" mobileCta="Read" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
-          <GearCard title="Does Spending More Buy a Safer Rope?" shortTitle="Does Price = Safer Rope?" to="/insights#ropes" active cta="Read insight" mobileCta="Read" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
-          {!isMobile && <GearCard title="More Insights in the Making" description="New data-driven articles are on the way. Got a topic you'd like us to cover? Drop us a suggestion below." />}
+          <GearCard title="How We Score 340 Climbing Shoes — and How to Pick Yours" shortTitle="How We Score 340 Shoes" to="/insights/climbing-shoe-guide" active cta="Read insight" mobileCta="Read" description="Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance and what foot shape means for fit." />
+          <GearCard title="Inflatable Crashpads: Game-Changer or Gimmick?" shortTitle="Inflatable Crashpads: Gimmick?" to="/insights/inflatable-crashpads" active cta="Read insight" mobileCta="Read" description="They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?" />
+          <GearCard title="Does Spending More Buy a Safer Rope?" shortTitle="Does Price = Safer Rope?" to="/insights/rope-cost-vs-safety" active cta="Read insight" mobileCta="Read" description="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions." />
         </div>
       </section>
 
