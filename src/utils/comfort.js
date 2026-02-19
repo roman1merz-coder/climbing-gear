@@ -107,8 +107,9 @@ export function computeEdging(shoe) {
   const asymE = ({ none: 0.15, slight: 0.55, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
   const edgeShape = edgeDown * 0.80 + asymE * 0.20;
-  // Rigidity-dominant (65%): a stiff platform is essential for micro-edging
-  const edgeCore = Math.pow(edgeShape, 0.35) * Math.pow(rigidity, 0.65);
+  // Geometric mean: shape (45%) × rigidity (55%) — balanced so soft aggressive
+  // shoes (Theory, Futura, etc.) aren't over-penalised for low stiffness
+  const edgeCore = Math.pow(edgeShape, 0.45) * Math.pow(rigidity, 0.55);
   const override = EDGING_OVERRIDES[shoe.slug] || 0;
   return Math.min(1, edgeCore * 0.82 + edgeCl * 0.10 + hardR * 0.08 + override);
 }
