@@ -30,9 +30,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 139,
-    "discount_pct": 6.7,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -49,7 +48,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -98,9 +97,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 149,
-    "discount_pct": 0,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -117,7 +115,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -171,9 +169,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 109,
-    "current_price_eur": 129,
-    "discount_pct": 0,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -241,9 +238,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 115,
-    "current_price_eur": 135,
-    "discount_pct": 0,
+    "price_uvp_eur": 115.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -315,9 +311,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 145,
-    "current_price_eur": 139,
-    "discount_pct": 4.1,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -387,9 +382,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119,
-    "current_price_eur": 119,
-    "discount_pct": 0,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -458,9 +452,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 119,
-    "current_price_eur": 109,
-    "discount_pct": 8.4,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -532,9 +525,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 105,
-    "discount_pct": 0,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 105.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -603,9 +595,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 105,
-    "discount_pct": 0,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 105.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -673,9 +664,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 119,
-    "current_price_eur": 119,
-    "discount_pct": 0,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -747,9 +737,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 89,
-    "current_price_eur": 85,
-    "discount_pct": 4.5,
+    "price_uvp_eur": 89.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -766,7 +755,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -821,9 +810,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 85,
-    "current_price_eur": 89,
-    "discount_pct": 0,
+    "price_uvp_eur": 85.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -840,7 +828,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -892,9 +880,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 125,
-    "current_price_eur": 129,
-    "discount_pct": 0,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -963,9 +950,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 109,
-    "current_price_eur": 129,
-    "discount_pct": 0,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1036,9 +1022,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 135,
-    "current_price_eur": 125,
-    "discount_pct": 7.4,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1108,9 +1093,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 175,
-    "current_price_eur": 155,
-    "discount_pct": 11.4,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1137,18 +1121,8 @@
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "Stiff, slightly downturned sport shoe with dual-velcro closure. Thick 4.3mm injection-molded NeoFuse rubber and a full midsole create a rigid edging platform. Leather upper with knit tongue for breathability. Stabilizer rands on both sides improve precision. Best on vertical-to-slightly-overhanging terrain where stiff support matters more than sensitivity.",
-    "pros": [
-      "Stiff platform for sustained vertical edging",
-      "Durable 4.3mm injection-molded rubber",
-      "Printed toe rubber for hooks without bulk",
-      "Stabilizer rands improve lateral precision"
-    ],
-    "cons": [
-      "Low sensitivity — thick rubber dampens feedback",
-      "Painful break-in period",
-      "Heel fit can feel sloppy",
-      "Not suited for crack climbing or slab"
-    ],
+    "pros": "[\"Stiff platform for sustained vertical edging\", \"Durable 4.3mm injection-molded rubber\", \"Printed toe rubber for hooks without bulk\", \"Stabilizer rands improve lateral precision\"]",
+    "cons": "[\"Low sensitivity — thick rubber dampens feedback\", \"Painful break-in period\", \"Heel fit can feel sloppy\", \"Not suited for crack climbing or slab\"]",
     "sizing": "True to size with minimal stretching expected.",
     "customer_voices": "[\"The precision and support are unmatched at this level. These shoes keep up with my ambitions.\", \"These work equally well in the gym and outdoors. Solid everyday climbing shoe that delivers performance.\"]",
     "vegan": true,
@@ -1192,9 +1166,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129,
-    "current_price_eur": 119,
-    "discount_pct": 7.8,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1268,9 +1241,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 145,
-    "current_price_eur": 135,
-    "discount_pct": 6.9,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1341,9 +1313,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 95,
-    "current_price_eur": 85,
-    "discount_pct": 10.5,
+    "price_uvp_eur": 95.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1409,9 +1380,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 95,
+    "price_uvp_eur": 95.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1481,9 +1451,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
+    "price_uvp_eur": 150.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1553,9 +1522,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1623,9 +1591,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1694,9 +1661,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 130,
+    "price_uvp_eur": 130.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1769,9 +1735,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1844,9 +1809,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 165,
-    "current_price_eur": 145,
-    "discount_pct": 12.1,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1919,9 +1883,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 129,
-    "current_price_eur": 109,
-    "discount_pct": 15.5,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1994,9 +1957,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 139,
-    "discount_pct": 12.6,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2013,7 +1975,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2071,9 +2033,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155,
-    "current_price_eur": 135,
-    "discount_pct": 12.9,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2090,7 +2051,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2146,9 +2107,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2166,7 +2126,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2222,9 +2182,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2242,7 +2201,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2292,9 +2251,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 79,
-    "current_price_eur": 65,
-    "discount_pct": 17.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 65.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2311,7 +2269,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2367,9 +2325,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145,
-    "current_price_eur": 125,
-    "discount_pct": 13.8,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2387,7 +2344,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2444,9 +2401,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 129,
-    "discount_pct": 13.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2464,7 +2420,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2514,9 +2470,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 69,
-    "current_price_eur": 59,
-    "discount_pct": 14.5,
+    "price_uvp_eur": 69.0,
+    "current_price_eur": 59.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2534,7 +2489,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2586,9 +2541,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 89,
-    "current_price_eur": 72,
-    "discount_pct": 19.1,
+    "price_uvp_eur": 89.0,
+    "current_price_eur": 72.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2605,7 +2559,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2658,9 +2612,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 82,
-    "discount_pct": 17.2,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 82.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2729,9 +2682,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 165,
-    "discount_pct": 5.7,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2749,7 +2701,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2797,9 +2749,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55,
-    "current_price_eur": 49,
-    "discount_pct": 10.9,
+    "price_uvp_eur": 55.0,
+    "current_price_eur": 49.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2816,7 +2767,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2874,9 +2825,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105,
-    "current_price_eur": 99,
-    "discount_pct": 5.7,
+    "price_uvp_eur": 105.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2894,7 +2844,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2950,9 +2900,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 150,
-    "current_price_eur": 145,
-    "discount_pct": 3.3,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2969,7 +2918,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -3023,9 +2972,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 85,
-    "current_price_eur": 79,
-    "discount_pct": 7.1,
+    "price_uvp_eur": 85.0,
+    "current_price_eur": 79.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3042,7 +2990,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -3095,9 +3043,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 120,
-    "current_price_eur": 115,
-    "discount_pct": 4.2,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3167,9 +3114,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 99,
+    "price_uvp_eur": 99.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3186,7 +3132,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -3242,9 +3188,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75,
+    "price_uvp_eur": 75.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3262,7 +3207,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -3318,9 +3263,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75,
+    "price_uvp_eur": 75.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3338,7 +3282,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -3388,9 +3332,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 39,
+    "price_uvp_eur": 39.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3458,9 +3401,8 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 79,
+    "price_uvp_eur": 79.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3478,7 +3420,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "womens",
@@ -3529,9 +3471,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 45,
+    "price_uvp_eur": 45.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3599,9 +3540,8 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75,
+    "price_uvp_eur": 75.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3619,7 +3559,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "mens",
@@ -3673,9 +3613,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 99,
+    "price_uvp_eur": 99.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3692,7 +3631,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -3746,9 +3685,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75,
+    "price_uvp_eur": 75.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3765,7 +3703,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -3815,9 +3753,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 45,
+    "price_uvp_eur": 45.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3890,9 +3827,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 140,
-    "current_price_eur": 119,
-    "discount_pct": 15,
+    "price_uvp_eur": 140.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3910,7 +3846,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -3967,9 +3903,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110,
-    "current_price_eur": 95,
-    "discount_pct": 13.6,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3987,7 +3922,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
@@ -4045,9 +3980,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 110,
-    "current_price_eur": 95,
-    "discount_pct": 13.6,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4064,7 +3998,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4117,9 +4051,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75,
-    "current_price_eur": 65,
-    "discount_pct": 13.3,
+    "price_uvp_eur": 75.0,
+    "current_price_eur": 65.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4136,7 +4069,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -4196,9 +4129,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 100,
-    "current_price_eur": 85,
-    "discount_pct": 15,
+    "price_uvp_eur": 100.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4216,7 +4148,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4273,9 +4205,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145,
-    "current_price_eur": 125,
-    "discount_pct": 13.8,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4292,7 +4223,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4349,9 +4280,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 135,
-    "current_price_eur": 115,
-    "discount_pct": 14.8,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4368,7 +4298,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4419,9 +4349,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55,
-    "current_price_eur": 49,
-    "discount_pct": 10.9,
+    "price_uvp_eur": 55.0,
+    "current_price_eur": 49.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4438,7 +4367,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -4488,9 +4417,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 130,
-    "current_price_eur": 109,
-    "discount_pct": 16.2,
+    "price_uvp_eur": 130.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4507,7 +4435,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4562,9 +4490,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105,
-    "current_price_eur": 89,
-    "discount_pct": 15.2,
+    "price_uvp_eur": 105.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4582,7 +4509,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4639,9 +4566,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 105,
-    "current_price_eur": 89,
-    "discount_pct": 15.2,
+    "price_uvp_eur": 105.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4658,7 +4584,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4712,9 +4638,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 69,
-    "current_price_eur": 62,
-    "discount_pct": 10.1,
+    "price_uvp_eur": 69.0,
+    "current_price_eur": 62.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4731,7 +4656,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4784,9 +4709,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 89,
-    "current_price_eur": 79,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 89.0,
+    "current_price_eur": 79.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4858,9 +4782,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125,
-    "current_price_eur": 109,
-    "discount_pct": 12.8,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4878,7 +4801,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -4931,9 +4854,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 89,
-    "current_price_eur": 79,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 89.0,
+    "current_price_eur": 79.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5004,9 +4926,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5024,7 +4945,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -5079,9 +5000,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125,
-    "current_price_eur": 109,
-    "discount_pct": 12.8,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5099,7 +5019,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -5155,9 +5075,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119,
-    "current_price_eur": 105,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 105.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5175,7 +5094,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5232,9 +5151,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5252,7 +5170,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5307,9 +5225,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 165,
-    "current_price_eur": 149,
-    "discount_pct": 9.7,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5326,7 +5243,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5378,9 +5295,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185,
+    "price_uvp_eur": 185.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5449,9 +5365,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185,
+    "price_uvp_eur": 185.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5523,9 +5438,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129,
-    "current_price_eur": 115,
-    "discount_pct": 10.9,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5543,7 +5457,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5593,9 +5507,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "discount_pct": 12.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 69.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5612,7 +5525,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -5670,9 +5583,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5689,7 +5601,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -5743,9 +5655,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 170,
+    "price_uvp_eur": 170.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5820,9 +5731,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5839,7 +5749,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -5893,9 +5803,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185,
+    "price_uvp_eur": 185.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5965,9 +5874,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185,
+    "price_uvp_eur": 185.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6037,9 +5945,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6057,7 +5964,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6109,9 +6016,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165,
+    "price_uvp_eur": 165.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6181,9 +6087,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165,
+    "price_uvp_eur": 165.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6254,9 +6159,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 59,
-    "current_price_eur": 52,
-    "discount_pct": 11.9,
+    "price_uvp_eur": 59.0,
+    "current_price_eur": 52.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6274,7 +6178,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -6331,9 +6235,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 165,
-    "current_price_eur": 149,
-    "discount_pct": 9.7,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6351,7 +6254,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6407,9 +6310,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 179,
-    "current_price_eur": 165,
-    "discount_pct": 7.8,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6480,9 +6382,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185,
+    "price_uvp_eur": 185.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6556,9 +6457,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 135,
-    "discount_pct": 10,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6576,7 +6476,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6631,9 +6531,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6707,9 +6606,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165,
-    "current_price_eur": 149,
-    "discount_pct": 9.7,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6726,7 +6624,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6782,9 +6680,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6802,7 +6699,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6855,9 +6752,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 100,
-    "current_price_eur": 89,
-    "discount_pct": 11,
+    "price_uvp_eur": 100.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6929,9 +6825,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120,
-    "current_price_eur": 105,
-    "discount_pct": 12.5,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": 105.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6949,7 +6844,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7005,9 +6900,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 140,
-    "current_price_eur": 125,
-    "discount_pct": 10.7,
+    "price_uvp_eur": 140.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7025,7 +6919,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7081,9 +6975,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 135,
-    "discount_pct": 10,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7100,7 +6993,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7157,9 +7050,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 170,
-    "current_price_eur": 155,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 170.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7226,9 +7118,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 90,
-    "current_price_eur": 79,
-    "discount_pct": 12.2,
+    "price_uvp_eur": 90.0,
+    "current_price_eur": 79.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7295,9 +7186,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 59,
-    "current_price_eur": 52,
-    "discount_pct": 11.9,
+    "price_uvp_eur": 59.0,
+    "current_price_eur": 52.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7315,7 +7205,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -7371,9 +7261,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 135,
-    "discount_pct": 10,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7391,7 +7280,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7446,9 +7335,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 110,
-    "current_price_eur": 99,
-    "discount_pct": 10,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7465,7 +7353,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7522,9 +7410,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 135,
-    "discount_pct": 10,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7542,7 +7429,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7592,9 +7479,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 85,
-    "current_price_eur": 75,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 85.0,
+    "current_price_eur": 75.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7611,7 +7497,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -7666,9 +7552,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 129,
-    "current_price_eur": 109,
-    "discount_pct": 15.5,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7681,11 +7566,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "FriXion RS 4mm",
+    "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 3.5,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7740,9 +7625,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7758,7 +7642,7 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "none",
@@ -7815,9 +7699,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 129,
-    "current_price_eur": 109,
-    "discount_pct": 15.5,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7830,11 +7713,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "FriXion RS 4mm (recycled)",
+    "rubber_type": "FriXion Eco 3mm (recycled)",
     "rubber_hardness": [
-      "soft"
+      "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7891,9 +7774,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7910,7 +7792,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -7965,9 +7847,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7984,7 +7865,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -8039,9 +7920,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8058,7 +7938,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -8115,9 +7995,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8134,7 +8013,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -8191,9 +8070,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8208,7 +8086,7 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "none",
@@ -8262,9 +8140,8 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109,
-    "current_price_eur": 99,
-    "discount_pct": 9.2,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8282,7 +8159,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -8335,9 +8212,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 59,
-    "current_price_eur": 52,
-    "discount_pct": 11.9,
+    "price_uvp_eur": 59.0,
+    "current_price_eur": 52.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8355,7 +8231,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -8412,9 +8288,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 139,
-    "discount_pct": 12.6,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8486,9 +8361,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 139,
-    "discount_pct": 12.6,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8563,9 +8437,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 139,
-    "discount_pct": 12.6,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8640,9 +8513,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 139,
-    "discount_pct": 12.6,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8715,9 +8587,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 129,
-    "discount_pct": 13.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8734,7 +8605,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -8791,9 +8662,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 155,
-    "discount_pct": 11.4,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8809,7 +8679,7 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3.5mm (forefoot) / XS Edge (rand)",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -8869,9 +8739,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 169,
-    "current_price_eur": 149,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8888,7 +8757,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -8944,9 +8813,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8964,7 +8832,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -9020,9 +8888,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9040,7 +8907,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -9098,9 +8965,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 169,
-    "current_price_eur": 149,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9117,7 +8983,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -9169,9 +9035,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 145,
-    "current_price_eur": 125,
-    "discount_pct": 13.8,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9188,7 +9053,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -9243,9 +9108,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9262,7 +9126,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -9317,9 +9181,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9336,7 +9199,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -9389,9 +9252,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 200,
+    "price_uvp_eur": 200.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9407,7 +9269,7 @@
     ],
     "rubber_type": "Vibram XS Grip2 3.5mm + SenseGrip",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "none",
@@ -9466,9 +9328,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 169,
-    "current_price_eur": 149,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9482,11 +9343,11 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm (forefoot) / XS Edge (heel+rand)",
+    "rubber_type": "Vibram XS Edge 4mm",
     "rubber_hardness": [
-      "medium"
+      "hard"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -9543,9 +9404,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 169,
-    "current_price_eur": 149,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9559,9 +9419,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm (forefoot) / XS Edge (heel+rand)",
+    "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -9619,9 +9479,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155,
-    "current_price_eur": 135,
-    "discount_pct": 12.9,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9634,11 +9493,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "FriXion RS 4mm",
+    "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 3.5,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -9696,9 +9555,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175,
-    "current_price_eur": 155,
-    "discount_pct": 11.4,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9715,7 +9573,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -9763,9 +9621,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 130,
+    "price_uvp_eur": 130.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9783,13 +9640,13 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
-    "weight_g": 380,
+    "weight_g": 410,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The Skwama Lite grows with you, offering intermediate climbers enough sensitivity for technical walls without overwhelming complexity. Slipper-style simplicity lets you slip on and climb.",
@@ -9801,8 +9658,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
+      "weight_source": "Retailer sources - 205g single shoe",
+      "weight_verified": true
     }
   },
   {
@@ -9837,9 +9694,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 180,
+    "price_uvp_eur": 180.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9854,7 +9710,7 @@
     ],
     "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -9914,9 +9770,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175,
-    "current_price_eur": 155,
-    "discount_pct": 11.4,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9933,7 +9788,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -9990,9 +9845,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185,
-    "current_price_eur": 169,
-    "discount_pct": 8.6,
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 169.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10007,7 +9861,7 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -10067,9 +9921,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10085,7 +9938,7 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -10142,9 +9995,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10160,7 +10012,7 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -10213,9 +10065,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55,
-    "current_price_eur": 49,
-    "discount_pct": 10.9,
+    "price_uvp_eur": 55.0,
+    "current_price_eur": 49.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10233,7 +10084,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -10286,9 +10137,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "discount_pct": 12.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 69.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10305,7 +10155,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -10358,9 +10208,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "discount_pct": 12.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 69.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10377,7 +10226,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -10431,9 +10280,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "discount_pct": 12.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 69.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10450,7 +10298,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -10504,9 +10352,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "discount_pct": 12.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 69.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10523,7 +10370,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -10577,9 +10424,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 189,
-    "current_price_eur": 169,
-    "discount_pct": 10.6,
+    "price_uvp_eur": 189.0,
+    "current_price_eur": 169.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10596,7 +10442,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -10650,9 +10496,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 189,
-    "current_price_eur": 169,
-    "discount_pct": 10.6,
+    "price_uvp_eur": 189.0,
+    "current_price_eur": 169.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10669,7 +10514,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -10725,9 +10570,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 189,
-    "current_price_eur": 175,
-    "discount_pct": 7.4,
+    "price_uvp_eur": 189.0,
+    "current_price_eur": 175.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10742,9 +10586,9 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
-    "rubber_thickness_mm": 3,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "mens",
@@ -10797,9 +10641,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 189,
-    "current_price_eur": 175,
-    "discount_pct": 7.4,
+    "price_uvp_eur": 189.0,
+    "current_price_eur": 175.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10814,9 +10657,9 @@
     ],
     "rubber_type": "Vibram XS Grip 2 3mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
-    "rubber_thickness_mm": 3,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "womens",
@@ -10870,9 +10713,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
+    "price_uvp_eur": 150.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10890,7 +10732,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -10946,9 +10788,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
+    "price_uvp_eur": 150.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10966,7 +10807,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -11018,9 +10859,8 @@
       "edge"
     ],
     "feel": "soft",
-    "price_uvp_eur": 70,
+    "price_uvp_eur": 70.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11037,7 +10877,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "mens",
@@ -11087,9 +10927,8 @@
       "smear"
     ],
     "feel": "soft",
-    "price_uvp_eur": 60,
+    "price_uvp_eur": 60.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11161,9 +11000,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 150,
+    "price_uvp_eur": 150.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11180,7 +11018,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -11236,9 +11074,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 160,
+    "price_uvp_eur": 160.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11309,9 +11146,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 160,
+    "price_uvp_eur": 160.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11382,9 +11218,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150,
+    "price_uvp_eur": 150.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11402,7 +11237,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -11455,9 +11290,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 170,
+    "price_uvp_eur": 170.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11475,7 +11309,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -11530,9 +11364,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11607,9 +11440,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11680,9 +11512,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 149,
-    "current_price_eur": 139,
-    "discount_pct": 6.7,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11754,9 +11585,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 149,
-    "current_price_eur": 139,
-    "discount_pct": 6.7,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11831,9 +11661,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 159,
-    "current_price_eur": 149,
-    "discount_pct": 6.3,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11908,9 +11737,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 159,
-    "current_price_eur": 149,
-    "discount_pct": 6.3,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11980,9 +11808,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 89,
-    "current_price_eur": 59,
-    "discount_pct": 33.7,
+    "price_uvp_eur": 89.0,
+    "current_price_eur": 59.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12000,7 +11827,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -12056,9 +11883,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12082,7 +11908,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 500,
+    "weight_g": 476,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
     "description": "Sharp aggressive downturn targets steep boulder problems and overhanging routes with precision power. Science Friction 3.0 with velcro closure and soft feel creates reliable grip and responsive feedback. Versatile fit works across different climbing styles and foot shapes.",
@@ -12093,10 +11919,7 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
-    }
+    "data_confidence": "{\"weight_source\": \"weighmyrack.com\", \"weight_verified\": true}"
   },
   {
     "brand": "Mad Rock",
@@ -12132,9 +11955,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 109,
-    "current_price_eur": 109,
-    "discount_pct": 0,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12205,9 +12027,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 109,
-    "current_price_eur": 109,
-    "discount_pct": 0,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12231,7 +12052,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 440,
+    "weight_g": 476,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
     "description": "Moderate downturn provides versatility across varied terrain and multiple climbing disciplines. Science Friction 3.0 with slipper closure and soft feel creates reliable grip and responsive feedback. Low-volume construction locks your foot in place, rewarding precise footwork on technical terrain.",
@@ -12242,7 +12063,7 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": "{\"weight_source\": \"weighmyrack.com\", \"weight_verified\": true}"
   },
   {
     "brand": "Mad Rock",
@@ -12278,9 +12099,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12351,9 +12171,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12425,9 +12244,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79,
-    "current_price_eur": 69,
-    "discount_pct": 12.7,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 69.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12445,7 +12263,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -12502,9 +12320,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12578,9 +12395,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12650,9 +12466,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119,
-    "current_price_eur": 89,
-    "discount_pct": 25.2,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12723,9 +12538,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119,
-    "current_price_eur": 89,
-    "discount_pct": 25.2,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12799,9 +12613,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 119,
-    "discount_pct": 25.2,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12869,9 +12682,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55,
+    "price_uvp_eur": 55.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12944,9 +12756,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 95,
+    "price_uvp_eur": 95.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12963,7 +12774,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -13016,9 +12827,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 110,
+    "price_uvp_eur": 110.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13035,7 +12845,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -13091,9 +12901,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 110,
+    "price_uvp_eur": 110.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13110,7 +12919,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -13165,9 +12974,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 100,
-    "current_price_eur": 89,
-    "discount_pct": 11,
+    "price_uvp_eur": 100.0,
+    "current_price_eur": 89.0,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -13185,7 +12993,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -13240,9 +13048,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105,
-    "current_price_eur": 85,
-    "discount_pct": 19,
+    "price_uvp_eur": 105.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13260,7 +13067,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -13313,9 +13120,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 140,
-    "current_price_eur": 115,
-    "discount_pct": 17.9,
+    "price_uvp_eur": 140.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13333,7 +13139,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -13388,9 +13194,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 135,
-    "discount_pct": 10,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13407,7 +13212,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -13461,9 +13266,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 140,
-    "current_price_eur": 119,
-    "discount_pct": 15,
+    "price_uvp_eur": 140.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13481,7 +13285,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -13537,9 +13341,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 130,
-    "current_price_eur": 109,
-    "discount_pct": 16.2,
+    "price_uvp_eur": 130.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13556,7 +13359,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -13610,9 +13413,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 130,
-    "current_price_eur": 105,
-    "discount_pct": 19.2,
+    "price_uvp_eur": 130.0,
+    "current_price_eur": 105.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13629,7 +13431,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -13682,9 +13484,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 130,
-    "current_price_eur": 109,
-    "discount_pct": 16.2,
+    "price_uvp_eur": 130.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13701,7 +13502,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -13756,9 +13557,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110,
-    "current_price_eur": 99,
-    "discount_pct": 10,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": 99.0,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -13776,7 +13576,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -13834,9 +13634,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110,
-    "current_price_eur": 95,
-    "discount_pct": 13.6,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13854,7 +13653,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -13909,9 +13708,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 135,
-    "current_price_eur": 120,
-    "discount_pct": 11.1,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": 120.0,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -13928,7 +13726,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -13984,9 +13782,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 125,
-    "discount_pct": 16.7,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14004,7 +13801,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -14060,9 +13857,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 150,
-    "current_price_eur": 125,
-    "discount_pct": 16.7,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14080,7 +13876,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -14135,9 +13931,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120,
-    "current_price_eur": 99,
-    "discount_pct": 17.5,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14154,7 +13949,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14206,9 +14001,8 @@
       "edge"
     ],
     "feel": "soft",
-    "price_uvp_eur": 120,
-    "current_price_eur": 110,
-    "discount_pct": 8.3,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": 110.0,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -14225,7 +14019,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -14278,7 +14072,6 @@
     "feel": "stiff",
     "price_uvp_eur": null,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14343,9 +14136,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 65,
-    "current_price_eur": 55,
-    "discount_pct": 15.4,
+    "price_uvp_eur": 65.0,
+    "current_price_eur": 55.0,
     "size_range": "24-35",
     "year_released": null,
     "current_price_url": null,
@@ -14415,9 +14207,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 170,
-    "current_price_eur": 139,
-    "discount_pct": 18.2,
+    "price_uvp_eur": 170.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14435,7 +14226,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -14485,9 +14276,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 90,
-    "current_price_eur": 80,
-    "discount_pct": 11.1,
+    "price_uvp_eur": 90.0,
+    "current_price_eur": 80.0,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -14504,7 +14294,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14557,9 +14347,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 90,
-    "current_price_eur": 79,
-    "discount_pct": 12.2,
+    "price_uvp_eur": 90.0,
+    "current_price_eur": 79.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14577,7 +14366,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14634,9 +14423,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 110,
+    "price_uvp_eur": 110.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14653,7 +14441,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 2,
+    "rubber_thickness_mm": 2.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14706,9 +14494,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 125,
-    "current_price_eur": 115,
-    "discount_pct": 8,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14781,9 +14568,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 115,
-    "current_price_eur": 99,
-    "discount_pct": 13.9,
+    "price_uvp_eur": 115.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14801,7 +14587,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14856,9 +14642,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14929,9 +14714,8 @@
       "edge"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 95,
-    "current_price_eur": 85,
-    "discount_pct": 10.5,
+    "price_uvp_eur": 95.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14948,7 +14732,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -15004,9 +14788,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 129,
-    "current_price_eur": 115,
-    "discount_pct": 10.9,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15024,7 +14807,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -15077,9 +14860,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15097,7 +14879,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15153,9 +14935,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 149,
-    "current_price_eur": 135,
-    "discount_pct": 9.4,
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15173,7 +14954,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15226,9 +15007,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15246,7 +15026,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 3,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15302,9 +15082,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129,
+    "price_uvp_eur": 129.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15321,7 +15100,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15377,9 +15156,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119,
+    "price_uvp_eur": 119.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15396,7 +15174,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15446,9 +15224,8 @@
       "smear"
     ],
     "feel": "soft",
-    "price_uvp_eur": 99,
+    "price_uvp_eur": 99.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15465,7 +15242,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -15521,9 +15298,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 139,
+    "price_uvp_eur": 139.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15541,7 +15317,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15600,9 +15376,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139,
+    "price_uvp_eur": 139.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15620,7 +15395,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15676,9 +15451,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 139,
+    "price_uvp_eur": 139.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15751,9 +15525,8 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109,
+    "price_uvp_eur": 109.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15771,7 +15544,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -15824,9 +15597,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 99,
+    "price_uvp_eur": 99.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15843,7 +15615,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -15893,9 +15665,8 @@
       "smear"
     ],
     "feel": "soft",
-    "price_uvp_eur": 99,
+    "price_uvp_eur": 99.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15912,7 +15683,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -15969,9 +15740,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 119,
+    "price_uvp_eur": 119.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15989,7 +15759,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -16039,9 +15809,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139,
+    "price_uvp_eur": 139.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16115,9 +15884,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 159,
+    "price_uvp_eur": 159.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16135,7 +15903,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -16189,9 +15957,8 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109,
+    "price_uvp_eur": 109.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16209,7 +15976,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -16263,9 +16030,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 149,
+    "price_uvp_eur": 149.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16283,7 +16049,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -16338,9 +16104,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16358,7 +16123,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -16412,9 +16177,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145,
+    "price_uvp_eur": 145.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16486,9 +16250,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145,
+    "price_uvp_eur": 145.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16561,9 +16324,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16581,7 +16343,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -16636,7 +16398,6 @@
     "feel": "stiff-moderate",
     "price_uvp_eur": 184.95,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16708,9 +16469,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 189,
-    "current_price_eur": 169,
-    "discount_pct": 10.6,
+    "price_uvp_eur": 189.0,
+    "current_price_eur": 169.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16783,7 +16543,6 @@
     "feel": "stiff-moderate",
     "price_uvp_eur": 189.95,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": 2025,
     "current_price_url": null,
@@ -16800,7 +16559,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -16855,9 +16614,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185,
-    "current_price_eur": 165,
-    "discount_pct": 10.8,
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16931,9 +16689,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 185,
-    "current_price_eur": 165,
-    "discount_pct": 10.8,
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17003,9 +16760,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 100,
+    "price_uvp_eur": 100.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17078,9 +16834,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 185,
-    "current_price_eur": 165,
-    "discount_pct": 10.8,
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17147,9 +16902,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 195,
+    "price_uvp_eur": 195.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17219,9 +16973,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120,
+    "price_uvp_eur": 120.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17238,7 +16991,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "mens",
@@ -17291,9 +17044,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 69,
-    "current_price_eur": 59,
-    "discount_pct": 14.5,
+    "price_uvp_eur": 69.0,
+    "current_price_eur": 59.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17311,7 +17063,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -17364,9 +17116,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120,
+    "price_uvp_eur": 120.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17383,7 +17134,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "womens",
@@ -17439,9 +17190,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 189,
-    "current_price_eur": 169,
-    "discount_pct": 10.6,
+    "price_uvp_eur": 189.0,
+    "current_price_eur": 169.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17458,7 +17208,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -17514,9 +17264,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 185,
-    "current_price_eur": 165,
-    "discount_pct": 10.8,
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17586,9 +17335,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 135,
-    "discount_pct": 12.9,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 135.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17605,7 +17353,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -17654,9 +17402,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 165,
-    "current_price_eur": 145,
-    "discount_pct": 12.1,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17673,7 +17420,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -17729,9 +17476,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 155,
-    "discount_pct": 11.4,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17804,9 +17550,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 169,
-    "current_price_eur": 149,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17880,9 +17625,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 169,
-    "current_price_eur": 149,
-    "discount_pct": 11.8,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17955,9 +17699,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18028,9 +17771,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18105,9 +17847,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18178,9 +17919,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18249,9 +17989,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 175,
-    "current_price_eur": 155,
-    "discount_pct": 11.4,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18268,7 +18007,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -18322,9 +18061,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 165,
-    "current_price_eur": 145,
-    "discount_pct": 12.1,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18341,7 +18079,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -18393,9 +18131,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 185,
-    "current_price_eur": 165,
-    "discount_pct": 10.8,
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 165.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18412,7 +18149,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -18466,9 +18203,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 165,
-    "current_price_eur": 145,
-    "discount_pct": 12.1,
+    "price_uvp_eur": 165.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18485,7 +18221,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -18541,9 +18277,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 179,
-    "current_price_eur": 159,
-    "discount_pct": 11.2,
+    "price_uvp_eur": 179.0,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18615,9 +18350,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18634,7 +18368,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -18688,9 +18422,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18707,7 +18440,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -18764,9 +18497,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 159,
-    "current_price_eur": 139,
-    "discount_pct": 12.6,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18783,7 +18515,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -18832,9 +18564,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18903,9 +18634,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 85,
-    "discount_pct": 14.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18978,9 +18708,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19049,9 +18778,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 170,
+    "price_uvp_eur": 170.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19125,9 +18853,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19201,9 +18928,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175,
-    "current_price_eur": 149,
-    "discount_pct": 14.9,
+    "price_uvp_eur": 175.0,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19276,9 +19002,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 139,
-    "current_price_eur": 119,
-    "discount_pct": 14.4,
+    "price_uvp_eur": 139.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19296,7 +19021,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19347,9 +19072,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 109,
-    "current_price_eur": 95,
-    "discount_pct": 12.8,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19366,7 +19090,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -19420,9 +19144,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 109,
-    "current_price_eur": 95,
-    "discount_pct": 12.8,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19439,7 +19162,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -19494,9 +19217,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 65,
-    "current_price_eur": 60,
-    "discount_pct": 7.7,
+    "price_uvp_eur": 65.0,
+    "current_price_eur": 60.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19513,7 +19235,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19561,9 +19283,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 30,
-    "current_price_eur": 30,
-    "discount_pct": 0,
+    "price_uvp_eur": 30.0,
+    "current_price_eur": 30.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19580,7 +19301,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -19631,9 +19352,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 35,
-    "current_price_eur": 35,
-    "discount_pct": 0,
+    "price_uvp_eur": 35.0,
+    "current_price_eur": 35.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19650,7 +19370,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -19704,9 +19424,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 55,
-    "current_price_eur": 55,
-    "discount_pct": 0,
+    "price_uvp_eur": 55.0,
+    "current_price_eur": 55.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19724,7 +19443,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19776,9 +19495,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 169,
-    "current_price_eur": 155,
-    "discount_pct": 8.3,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19851,9 +19569,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105,
-    "current_price_eur": 95,
-    "discount_pct": 9.5,
+    "price_uvp_eur": 105.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19924,9 +19641,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19944,7 +19660,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19999,9 +19715,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125,
-    "current_price_eur": 115,
-    "discount_pct": 8,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20018,7 +19733,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20072,9 +19787,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 95,
-    "current_price_eur": 85,
-    "discount_pct": 10.5,
+    "price_uvp_eur": 95.0,
+    "current_price_eur": 85.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20091,7 +19805,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20148,7 +19862,6 @@
     "feel": "stiff-moderate",
     "price_uvp_eur": 114.95,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20165,7 +19878,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20222,8 +19935,7 @@
     ],
     "feel": "soft",
     "price_uvp_eur": 169.95,
-    "current_price_eur": 159,
-    "discount_pct": 6.4,
+    "current_price_eur": 159.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20296,8 +20008,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 184.95,
-    "current_price_eur": 109,
-    "discount_pct": 41.1,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20366,8 +20077,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 141.5,
-    "current_price_eur": 65,
-    "discount_pct": 54.1,
+    "current_price_eur": 65.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20384,7 +20094,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20443,7 +20153,6 @@
     "feel": "moderate",
     "price_uvp_eur": 141.5,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20461,7 +20170,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -20519,8 +20228,7 @@
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 179.95,
-    "current_price_eur": 129,
-    "discount_pct": 28.3,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20592,8 +20300,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 174.95,
-    "current_price_eur": 139,
-    "discount_pct": 20.5,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20667,8 +20374,7 @@
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 164.95,
-    "current_price_eur": 149,
-    "discount_pct": 9.7,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20744,8 +20450,7 @@
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 164.95,
-    "current_price_eur": 149,
-    "discount_pct": 9.7,
+    "current_price_eur": 149.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20818,8 +20523,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 141.5,
-    "current_price_eur": 99,
-    "discount_pct": 30,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20837,7 +20541,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -20894,7 +20598,6 @@
     "feel": "moderate",
     "price_uvp_eur": 141.5,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20912,7 +20615,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -20966,8 +20669,7 @@
     ],
     "feel": "stiff-moderate",
     "price_uvp_eur": 99.95,
-    "current_price_eur": 75,
-    "discount_pct": 25,
+    "current_price_eur": 75.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20984,7 +20686,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21039,7 +20741,6 @@
     "feel": "stiff-moderate",
     "price_uvp_eur": 99.95,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21056,7 +20757,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21113,8 +20814,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 164.95,
-    "current_price_eur": 129,
-    "discount_pct": 21.8,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21190,7 +20890,6 @@
     "feel": "moderate-soft",
     "price_uvp_eur": 149.5,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21207,7 +20906,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21262,9 +20961,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110,
-    "current_price_eur": 110,
-    "discount_pct": 0,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": 110.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21281,7 +20979,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21336,9 +21034,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125,
-    "current_price_eur": 125,
-    "discount_pct": 0,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21356,7 +21053,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21409,9 +21106,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125,
-    "current_price_eur": 125,
-    "discount_pct": 0,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21429,7 +21125,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21481,9 +21177,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 95,
-    "current_price_eur": 95,
-    "discount_pct": 0,
+    "price_uvp_eur": 95.0,
+    "current_price_eur": 95.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21500,7 +21195,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21552,9 +21247,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 100,
-    "current_price_eur": 100,
-    "discount_pct": 0,
+    "price_uvp_eur": 100.0,
+    "current_price_eur": 100.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21571,7 +21265,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21626,9 +21320,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 99,
-    "current_price_eur": 99,
-    "discount_pct": 0,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21645,7 +21338,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 2,
+    "rubber_thickness_mm": 2.0,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21697,9 +21390,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 109,
-    "current_price_eur": 109,
-    "discount_pct": 0,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21716,7 +21408,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 2,
+    "rubber_thickness_mm": 2.0,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21770,9 +21462,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 79,
-    "current_price_eur": 79,
-    "discount_pct": 0,
+    "price_uvp_eur": 79.0,
+    "current_price_eur": 79.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21789,7 +21480,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21840,9 +21531,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 89,
-    "current_price_eur": 89,
-    "discount_pct": 0,
+    "price_uvp_eur": 89.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21859,7 +21549,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21913,9 +21603,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 125,
-    "current_price_eur": 125,
-    "discount_pct": 0,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21932,7 +21621,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21987,9 +21676,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 115,
-    "current_price_eur": 115,
-    "discount_pct": 0,
+    "price_uvp_eur": 115.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22006,7 +21694,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22058,9 +21746,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 115,
-    "current_price_eur": 115,
-    "discount_pct": 0,
+    "price_uvp_eur": 115.0,
+    "current_price_eur": 115.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22077,7 +21764,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22131,9 +21818,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 120,
-    "current_price_eur": 120,
-    "discount_pct": 0,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": 120.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22150,7 +21836,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22199,9 +21885,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 120,
-    "current_price_eur": 120,
-    "discount_pct": 0,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": 120.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22218,7 +21903,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -22270,9 +21955,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 135,
-    "current_price_eur": 119,
-    "discount_pct": 11.9,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22344,9 +22028,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 135,
-    "current_price_eur": 119,
-    "discount_pct": 11.9,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22418,9 +22101,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 135,
-    "current_price_eur": 119,
-    "discount_pct": 11.9,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22493,9 +22175,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 169,
-    "current_price_eur": 155,
-    "discount_pct": 8.3,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22512,7 +22193,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22568,9 +22249,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 169,
-    "current_price_eur": 155,
-    "discount_pct": 8.3,
+    "price_uvp_eur": 169.0,
+    "current_price_eur": 155.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22587,7 +22267,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22639,9 +22319,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155,
+    "price_uvp_eur": 155.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22710,9 +22389,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155,
+    "price_uvp_eur": 155.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22783,9 +22461,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 130,
+    "price_uvp_eur": 130.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22827,6 +22504,147 @@
   },
   {
     "brand": "Unparallel",
+    "model": "Lyra",
+    "slug": "unparallel-lyra",
+    "image_url": "/images/shoes/unparallel-lyra.jpg",
+    "images": null,
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "vertical",
+      "slab"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "moderate",
+    "price_uvp_eur": 165.0,
+    "current_price_eur": null,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "aggressive",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "UP RS 3.5mm",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.5,
+    "midsole": "partial",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 444,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Built on the Vega last, the Lyra ushers in a new era of all-round performance. Its aggressive downturn drives power to the toe for horizontal climbing, while the medium-stiff midsole fights fatigue on vertical pitches. The 2:1 V-shaped velcro closure combines lace precision with velcro convenience.",
+    "pros": "[\"Excellent all-round performance\", \"Wrap-over randing for precise toe hooks\", \"Easy on/off with 2:1 closure system\", \"Sticky RS rubber for grip on any surface\"]",
+    "cons": "[\"May be too aggressive for pure beginners\", \"Limited availability at some retailers\"]",
+    "sizing": "Synthetic upper with minimal stretch. True to size or 0.5 down for snug fit.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": "{\"weight_source\": \"weighmyrack.com + unparallelsports.com\", \"weight_verified\": true}"
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Newtro Lace",
+    "slug": "unparallel-newtro-lace",
+    "image_url": "/images/shoes/unparallel-newtro-lace.jpg",
+    "images": null,
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 155.0,
+    "current_price_eur": null,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "UP RA 3.5mm",
+    "rubber_hardness": [
+      "hard"
+    ],
+    "rubber_thickness_mm": 3.5,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 428,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Newtro Lace is built for caves and steeply overhanging routes. Its aggressive toe profile drives power forward while the precision lacing system locks the foot in place. The UP RA rubber (Shore A 80-84) is Unparallel's hardest compound, delivering exceptional edging precision and long-lasting durability.",
+    "pros": "[\"Excellent edging with RA rubber\", \"Precision lace closure\", \"Durable construction for aggressive climbing\", \"Low-volume heel for secure heel hooks\"]",
+    "cons": "[\"Stiffer feel may reduce sensitivity\", \"Aggressive fit not ideal for all-day comfort\"]",
+    "sizing": "Synthetic upper with minimal stretch. Size close to street size or 0.5 down for performance fit.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}"
+  },
+  {
+    "brand": "Unparallel",
     "model": "Orbit",
     "slug": "unparallel-orbit",
     "image_url": "/images/shoes/unparallel-orbit.jpg",
@@ -22848,7 +22666,6 @@
     "feel": "stiff",
     "price_uvp_eur": 148.26,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22908,7 +22725,6 @@
     "feel": "stiff",
     "price_uvp_eur": 185.33,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22968,7 +22784,6 @@
     "feel": "stiff",
     "price_uvp_eur": 189.95,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23039,9 +22854,8 @@
       "volume"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23114,9 +22928,8 @@
       "volume"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23190,9 +23003,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145,
-    "current_price_eur": 129,
-    "discount_pct": 11,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23210,7 +23022,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -23267,9 +23079,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145,
-    "current_price_eur": 129,
-    "discount_pct": 11,
+    "price_uvp_eur": 145.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23287,7 +23098,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -23341,9 +23152,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 155,
+    "price_uvp_eur": 155.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23414,9 +23224,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 155,
+    "price_uvp_eur": 155.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23476,9 +23285,8 @@
     "best_wall_angles": null,
     "best_foothold_types": null,
     "feel": "stiff-moderate",
-    "price_uvp_eur": 193,
-    "current_price_eur": 150,
-    "discount_pct": 22.3,
+    "price_uvp_eur": 193.0,
+    "current_price_eur": 150.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": "https://www.unparallelsports.com/product/tn-finity/",
@@ -23546,9 +23354,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 155,
+    "price_uvp_eur": 155.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23617,9 +23424,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 155,
+    "price_uvp_eur": 155.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23693,9 +23499,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 155,
-    "current_price_eur": 140,
-    "discount_pct": 9.7,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 140.0,
     "size_range": "35.5-47.5",
     "year_released": null,
     "current_price_url": null,
@@ -23710,7 +23515,7 @@
     ],
     "rubber_type": "RH 4.2mm pressed molded outsole",
     "rubber_hardness": [
-      "medium"
+      "hard"
     ],
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
@@ -23767,9 +23572,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 170,
-    "current_price_eur": 155,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 170.0,
+    "current_price_eur": 155.0,
     "size_range": "37-48.5",
     "year_released": null,
     "current_price_url": null,
@@ -23839,9 +23643,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 135,
+    "price_uvp_eur": 135.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23911,9 +23714,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 135,
+    "price_uvp_eur": 135.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23983,9 +23785,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 115,
+    "price_uvp_eur": 115.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24056,9 +23857,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 115,
+    "price_uvp_eur": 115.0,
     "current_price_eur": null,
-    "discount_pct": 0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24133,9 +23933,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24153,7 +23952,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24210,9 +24009,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159,
-    "current_price_eur": 145,
-    "discount_pct": 8.8,
+    "price_uvp_eur": 159.0,
+    "current_price_eur": 145.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24230,7 +24028,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24286,9 +24084,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24306,7 +24103,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24362,9 +24159,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 155,
-    "current_price_eur": 139,
-    "discount_pct": 10.3,
+    "price_uvp_eur": 155.0,
+    "current_price_eur": 139.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24382,7 +24178,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24435,9 +24231,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 89,
-    "discount_pct": 10.1,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 89.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24454,7 +24249,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -24475,6 +24270,76 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     }
+  },
+  {
+    "brand": "Unparallel",
+    "model": "Vim",
+    "slug": "unparallel-vim",
+    "image_url": "/images/shoes/unparallel-vim.jpg",
+    "images": null,
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge"
+    ],
+    "feel": "moderate-soft",
+    "price_uvp_eur": 145.0,
+    "current_price_eur": null,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "slipper",
+    "asymmetry": "slight",
+    "downturn": "aggressive",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "UP RS 3.5mm",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.5,
+    "midsole": "partial",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 408,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Comfort meets performance without sacrifice. The Vim is a slipper-style shoe with an aggressive downturn and extended toe rand for maximum friction on steep terrain. The elastic closure provides secure heel hooking without slippage, while the RS rubber delivers exceptional grip on edges and crystals.",
+    "pros": "[\"Easy slipper closure for quick on/off\", \"Excellent smearing with RS rubber\", \"Extended toe rand for steep terrain\", \"Lightweight and sensitive\"]",
+    "cons": "[\"Less adjustability than lace or velcro\", \"Slipper closure may stretch over time\"]",
+    "sizing": "Synthetic upper with minimal stretch. Size down 0.5 for performance fit.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}"
   },
   {
     "brand": "Wild Climb",
@@ -24507,9 +24372,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119,
-    "current_price_eur": 119,
-    "discount_pct": 0,
+    "price_uvp_eur": 119.0,
+    "current_price_eur": 119.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24527,7 +24391,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24582,9 +24446,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 99,
-    "current_price_eur": 99,
-    "discount_pct": 0,
+    "price_uvp_eur": 99.0,
+    "current_price_eur": 99.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24601,7 +24464,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -24653,9 +24516,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 125,
-    "current_price_eur": 125,
-    "discount_pct": 0,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24672,7 +24534,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24724,9 +24586,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 125,
-    "current_price_eur": 125,
-    "discount_pct": 0,
+    "price_uvp_eur": 125.0,
+    "current_price_eur": 125.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24743,7 +24604,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24792,9 +24653,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 134,
-    "current_price_eur": 134,
-    "discount_pct": 0,
+    "price_uvp_eur": 134.0,
+    "current_price_eur": 134.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24811,7 +24671,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24861,9 +24721,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 131,
-    "current_price_eur": 131,
-    "discount_pct": 0,
+    "price_uvp_eur": 131.0,
+    "current_price_eur": 131.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24881,7 +24740,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24934,9 +24793,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129,
-    "current_price_eur": 129,
-    "discount_pct": 0,
+    "price_uvp_eur": 129.0,
+    "current_price_eur": 129.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24954,7 +24812,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -25006,9 +24864,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109,
-    "current_price_eur": 109,
-    "discount_pct": 0,
+    "price_uvp_eur": 109.0,
+    "current_price_eur": 109.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -25026,7 +24883,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -25079,9 +24936,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 134,
-    "current_price_eur": 134,
-    "discount_pct": 0,
+    "price_uvp_eur": 134.0,
+    "current_price_eur": 134.0,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -25099,7 +24955,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
