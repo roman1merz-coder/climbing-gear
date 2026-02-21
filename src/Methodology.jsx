@@ -167,12 +167,12 @@ export default function Methodology() {
         </AttrCard>
 
         <AttrCard name="Comfort" icon="☁️">
-          How wearable the shoe is for longer sessions. Flat shape, soft feel, good cushioning, and
+          How wearable the shoe is for longer sessions. Flat shape, flexible construction, good cushioning, and
           closure all contribute. Aggressive shoes score lower here by design.
         </AttrCard>
 
         <AttrCard name="Support" icon="🏗️">
-          Structural rigidity and stability. Stiff feel, hard rubber, thick sole, full midsole, and
+          Structural rigidity and stability. Stiff construction, hard rubber, thick sole, full midsole, and
           lace closure all add support. Often the opposite of sensitivity.
         </AttrCard>
 

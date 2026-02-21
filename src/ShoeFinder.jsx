@@ -107,30 +107,30 @@ const MIDSOLE_LABELS = ["none", "partial", "full"];
 // Level + Preference → numeric value for downturn/asymmetry
 const LEVEL_NUM = { beginner: 0, intermediate: 1, advanced: 2 };
 const PREF_NUM = { comfort: 0, balanced: 1, performance: 2 };
-const DOWNTURN_ORDER = ["flat", "moderate", "aggressive"]; // DB values, indices 0-2
-const ASYM_ORDER = ["none", "slight", "strong"];           // DB values, indices 0-2
+const DOWNTURN_ORDER = ["flat", "slight", "moderate", "aggressive"]; // DB values, indices 0-3
+const ASYM_ORDER = ["none", "slight", "moderate", "strong"];         // DB values, indices 0-3
 
 // 5-tier system: level (0-2) + preference (0-2) = sum (0-4)
-// sum 0 → zero, 1 → slight, 2 → moderate, 3 → high, 4 → ultra
-const TIER_NAMES = ["zero", "slight", "moderate", "high", "ultra"];
+// sum 0 → zero, 1 → low, 2 → mid, 3 → high, 4 → ultra
+const TIER_NAMES = ["zero", "low", "mid", "high", "ultra"];
 
-// Fractional index into DB scale (0-2) — used for scoring distance
-const TIER_DOWNTURN_IDX  = [0, 0.5, 1, 1.5, 2]; // zero→flat(0), slight→0.5, moderate→mod(1), high→1.5, ultra→agg(2)
-const TIER_ASYMMETRY_IDX = [0, 0.5, 1, 1.5, 2]; // zero→none(0), slight→0.5, moderate→slight(1), high→1.5, ultra→strong(2)
+// Fractional index into DB scale (0-3) — used for scoring distance
+const TIER_DOWNTURN_IDX  = [0, 0.75, 1.5, 2.25, 3]; // zero→flat(0), low→0.75, mid→slight-moderate, high→2.25, ultra→aggressive(3)
+const TIER_ASYMMETRY_IDX = [0, 0.75, 1.5, 2.25, 3]; // zero→none(0), low→0.75, mid→slight-moderate, high→2.25, ultra→strong(3)
 
 // Human-readable labels for display
 const TIER_DOWNTURN_LABEL = {
   zero: "flat",
-  slight: "flat–moderate",
-  moderate: "moderate",
+  low: "flat–slight",
+  mid: "slight–moderate",
   high: "moderate–aggressive",
   ultra: "aggressive",
 };
 const TIER_ASYMMETRY_LABEL = {
   zero: "none",
-  slight: "none–slight",
-  moderate: "slight",
-  high: "slight–strong",
+  low: "none–slight",
+  mid: "slight–moderate",
+  high: "moderate–strong",
   ultra: "strong",
 };
 

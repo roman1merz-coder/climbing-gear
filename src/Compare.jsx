@@ -212,7 +212,6 @@ function getSpecSections(shoes) {
         { label: "Downturn",  values: shoes.map((s) => cap(s.downturn)) },
         { label: "Asymmetry", values: shoes.map((s) => cap(s.asymmetry)) },
         { label: "Closure",   values: shoes.map((s) => cap(s.closure)) },
-        { label: "Feel",      values: shoes.map((s) => cap(s.feel)) },
         {
           label: "Weight (pair)",
           values: shoes.map((s) => fmtWeight(s.weight_g)),

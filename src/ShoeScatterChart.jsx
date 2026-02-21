@@ -334,7 +334,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
         { label: "Comfort", value: pct(d._comfort) },
         { label: "Support", value: pct(d._support) },
       ],
-      details: `${d.closure} · ${d.downturn} · ${d.feel} feel${d.price_uvp_eur ? " · €" + d.price_uvp_eur : ""}${d.vegan ? " · 🌱" : ""}`,
+      details: `${d.closure} · ${d.downturn}${d.price_uvp_eur ? " · €" + d.price_uvp_eur : ""}${d.vegan ? " · 🌱" : ""}`,
       link: `/shoe/${d.slug}`,
       pinned,
     });
@@ -530,7 +530,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
                 <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
                 <b style={{ color: T.text, fontSize: "13px" }}>{mobileItem.brand} {mobileItem.model}</b>
                 <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
-                  {mobileItem.closure} · {mobileItem.feel}{mobileItem.price_uvp_eur ? ` · €${mobileItem.price_uvp_eur}` : ""}
+                  {mobileItem.closure} · {mobileItem.downturn}{mobileItem.price_uvp_eur ? ` · €${mobileItem.price_uvp_eur}` : ""}
                 </span>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "2px 8px" }}>

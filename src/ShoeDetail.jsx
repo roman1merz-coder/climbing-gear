@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
 import { calcStretch } from "./utils/stretch.js";
-import { getComfortScore, getComfortLabel, FEEL_SCORE_MAP, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport, getPercentileScores } from "./utils/comfort.js";
+import { getComfortScore, getComfortLabel, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport, getPercentileScores } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import usePageMeta from "./usePageMeta.js";

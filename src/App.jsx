@@ -19,9 +19,9 @@ const ORD = {
   forefoot_volume: ["low", "standard", "high"],
   width: ["narrow", "medium", "wide"],
   heel_volume: ["narrow", "medium", "wide"],
-  feel: ["stiff", "stiff-moderate", "moderate", "moderate-soft", "soft"],
-  asymmetry: ["none", "slight", "strong"],
-  downturn: ["flat", "moderate", "aggressive"],
+  // feel removed — derived from structural stiffness (midsole/rand/rubber/closure/upper)
+  asymmetry: ["none", "slight", "moderate", "strong"],
+  downturn: ["flat", "slight", "moderate", "aggressive"],
 };
 
 const PROX = {
@@ -218,19 +218,13 @@ const GROUPS = [
         key: "downturn",
         label: "Downturn",
         type: "single",
-        options: ["flat", "moderate", "aggressive"],
+        options: ["flat", "slight", "moderate", "aggressive"],
       },
       {
         key: "asymmetry",
         label: "Asymmetry",
         type: "single",
-        options: ["none", "slight", "strong"],
-      },
-      {
-        key: "feel",
-        label: "Feel",
-        type: "single",
-        options: ["stiff", "stiff-moderate", "moderate", "moderate-soft", "soft"],
+        options: ["none", "slight", "moderate", "strong"],
       },
       {
         key: "upper_material",
@@ -682,7 +676,7 @@ function Card({ shoe, onClick, priceData, compact }) {
         </div>
         {/* Desktop-only: tags + skill levels — max 4 visible */}
         {!compact && (() => {
-          const specTags = [d.closure, d.downturn, d.feel].filter(Boolean);
+          const specTags = [d.closure, d.downturn].filter(Boolean);
           const skillTags = (d.skill_level || []);
           const allTags = [
             ...specTags.map(t => ({ key: t, label: String(t).replace(/-/g, " "), type: "spec" })),
@@ -798,7 +792,6 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           ...(ensureArray(s.best_foothold_types).map((v) => fmt(v).toLowerCase())),
           (s.closure || "").toLowerCase(),
           (s.downturn || "").toLowerCase(),
-          (s.feel || "").replace(/-/g, " ").toLowerCase(),
           (s.upper_material || "").toLowerCase(),
           (s.rubber_type || "").toLowerCase(),
           (s.rubber_compound || "").toLowerCase(),
@@ -819,7 +812,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
           if (brand === term) best = Math.max(best, 25); // exact brand match
           else if (brand.includes(term)) best = Math.max(best, 15); // substring in brand
 
-          // Meta fields (use cases, closure, feel, etc.)
+          // Meta fields (use cases, closure, etc.)
           if (meta.includes(term)) best = Math.max(best, 10);
           else if (meta.split(/\s+/).some((w) => w === term)) best = Math.max(best, 8);
 

@@ -1,3 +1,5 @@
+import { computeStiffness } from "./comfort.js";
+
 /**
  * Stretch expectation algorithm — derives expected stretch from shoe properties.
  *
@@ -7,7 +9,7 @@
  *   3. Closure type: lace-ups stretch more, velcro constrains
  *   4. Break-in period: longer break-in = more stretch potential
  *   5. Downturn: flat shoes stretch more, aggressive less
- *   6. Feel/stiffness: soft shoes deform more under load
+ *   6. Structural stiffness: flexible shoes deform more under load
  *
  * Returns { score, category, label, description } where score is 0–1 and
  * category is one of: none, minimal, quarter_size, half_size, full_size.
@@ -20,8 +22,7 @@ const MATERIAL_SCORES  = { synthetic: 0.12, microfiber: 0.22, leather: 0.65 };
 const RAND_MOD         = { relaxed: 0.12, tensioned: -0.05, split: -0.05 };
 const CLOSURE_MOD      = { lace: 0.08, slipper: 0.03, velcro: -0.03 };
 const BREAKIN_MOD      = { extended: 0.15, moderate: 0.05, minimal: 0 };
-const DOWNTURN_MOD     = { flat: 0.05, moderate: 0, aggressive: -0.05 };
-const FEEL_MOD         = { soft: 0.12, "moderate-soft": 0.04, moderate: 0, "stiff-moderate": -0.04, stiff: -0.06 };
+const DOWNTURN_MOD     = { flat: 0.05, slight: 0.025, moderate: 0, aggressive: -0.05 };
 
 const LABELS = {
   none:         "None",
@@ -43,7 +44,7 @@ const DESCS = {
 const BAR_POS = { none: 0, minimal: 0.2, quarter_size: 0.4, half_size: 0.6, full_size: 0.8 };
 
 /**
- * @param {Object} shoe - shoe object with upper_material, rand, closure, break_in_period, downturn, feel
+ * @param {Object} shoe - shoe object with upper_material, rand, closure, break_in_period, downturn, midsole
  * @returns {{ score: number, category: string, label: string, description: string, barPos: number }}
  */
 export function calcStretch(shoe) {
@@ -52,7 +53,9 @@ export function calcStretch(shoe) {
   score += CLOSURE_MOD[shoe.closure]       ?? 0;
   score += BREAKIN_MOD[shoe.break_in_period] ?? 0;
   score += DOWNTURN_MOD[shoe.downturn]     ?? 0;
-  score += FEEL_MOD[shoe.feel]             ?? 0;
+  // Stiffness modifier: flexible shoes stretch more, stiff shoes resist
+  // Maps ~0.15 (soft) → +0.11 to ~0.85 (stiff) → -0.06
+  score += 0.15 - computeStiffness(shoe) * 0.25;
 
   let category;
   if      (score < 0.08) category = "none";

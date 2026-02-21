@@ -157,7 +157,7 @@ export default function InsightShoes() {
 
       <Collapsible title="Sensitivity — feeling the rock through your shoe">
         <Prose>
-          Sensitivity measures rock feedback reaching your foot. It's driven by structural flexibility, soft feel, thin rubber, rubber softness, minimal midsole, and light weight. Notice the tension with edging: the specs that maximise sensitivity (thin, soft, no midsole) are exactly the ones that minimise stiffness. This is the fundamental climbing shoe trade-off — you can't have maximum edging <em>and</em> maximum sensitivity in the same shoe.
+          Sensitivity measures rock feedback reaching your foot. It's driven by structural flexibility, thin rubber, rubber softness, minimal midsole, and light weight. Notice the tension with edging: the specs that maximise sensitivity (thin, soft, no midsole) are exactly the ones that minimise stiffness. This is the fundamental climbing shoe trade-off — you can't have maximum edging <em>and</em> maximum sensitivity in the same shoe.
         </Prose>
       </Collapsible>
 
