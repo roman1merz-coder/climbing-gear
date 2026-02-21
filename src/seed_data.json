@@ -30,8 +30,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -48,7 +48,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -97,8 +97,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -115,7 +115,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -169,8 +169,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -192,7 +192,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 455,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -238,8 +238,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 115.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 115,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -261,7 +261,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 455,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -311,8 +311,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -334,7 +334,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -382,8 +382,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -405,7 +405,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -452,8 +452,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -475,7 +475,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -525,8 +525,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 105.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 105,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -548,7 +548,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -595,8 +595,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 105.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 105,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -618,7 +618,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -664,8 +664,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -687,7 +687,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 382,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -737,8 +737,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 89.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 89,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -755,12 +755,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -810,8 +810,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 85.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 85,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -828,12 +828,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -880,8 +880,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -903,7 +903,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 465,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -950,8 +950,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -973,7 +973,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 530,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -1022,8 +1022,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 135,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1093,8 +1093,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1166,8 +1166,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1190,7 +1190,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -1241,8 +1241,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1264,7 +1264,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 460,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -1313,8 +1313,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 95.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 95,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1380,7 +1380,7 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 95.0,
+    "price_uvp_eur": 95,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -1451,7 +1451,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
+    "price_uvp_eur": 150,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -1522,8 +1522,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1545,7 +1545,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -1591,8 +1591,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1661,7 +1661,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 130.0,
+    "price_uvp_eur": 130,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -1735,8 +1735,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1809,8 +1809,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1883,8 +1883,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1957,8 +1957,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -1975,7 +1975,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2033,8 +2033,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2051,7 +2051,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2107,8 +2107,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2126,7 +2126,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2182,8 +2182,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2201,7 +2201,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2251,8 +2251,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 65.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 65,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2269,7 +2269,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2325,8 +2325,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2344,7 +2344,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2401,8 +2401,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2420,7 +2420,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2470,8 +2470,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 69.0,
-    "current_price_eur": 59.0,
+    "price_uvp_eur": 69,
+    "current_price_eur": 59,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2489,7 +2489,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2541,8 +2541,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 89.0,
-    "current_price_eur": 72.0,
+    "price_uvp_eur": 89,
+    "current_price_eur": 72,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2559,7 +2559,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2612,8 +2612,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 82.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 82,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2682,8 +2682,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2701,7 +2701,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2749,8 +2749,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55.0,
-    "current_price_eur": 49.0,
+    "price_uvp_eur": 55,
+    "current_price_eur": 49,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2767,7 +2767,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2825,8 +2825,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 105,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2844,7 +2844,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -2900,8 +2900,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2918,7 +2918,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -2972,8 +2972,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 85.0,
-    "current_price_eur": 79.0,
+    "price_uvp_eur": 85,
+    "current_price_eur": 79,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -2990,7 +2990,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -3043,8 +3043,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 120.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 120,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3114,7 +3114,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 99.0,
+    "price_uvp_eur": 99,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3132,7 +3132,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -3188,7 +3188,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75.0,
+    "price_uvp_eur": 75,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3207,7 +3207,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -3263,7 +3263,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75.0,
+    "price_uvp_eur": 75,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3282,7 +3282,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -3332,7 +3332,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 39.0,
+    "price_uvp_eur": 39,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3401,7 +3401,7 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 79.0,
+    "price_uvp_eur": 79,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3420,7 +3420,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "womens",
@@ -3471,7 +3471,7 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 45.0,
+    "price_uvp_eur": 45,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3540,7 +3540,7 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75.0,
+    "price_uvp_eur": 75,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3559,7 +3559,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "mens",
@@ -3613,7 +3613,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 99.0,
+    "price_uvp_eur": 99,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3631,7 +3631,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -3685,7 +3685,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75.0,
+    "price_uvp_eur": 75,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3703,7 +3703,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -3753,7 +3753,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 45.0,
+    "price_uvp_eur": 45,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -3827,8 +3827,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 140.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 140,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3846,12 +3846,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 580,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -3903,8 +3903,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 110,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3922,12 +3922,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 370,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -3980,8 +3980,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 110.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 110,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -3998,12 +3998,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -4051,8 +4051,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 75.0,
-    "current_price_eur": 65.0,
+    "price_uvp_eur": 75,
+    "current_price_eur": 65,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4069,12 +4069,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -4129,8 +4129,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 100.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 100,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4148,12 +4148,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 860,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -4205,8 +4205,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4223,12 +4223,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 860,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -4280,8 +4280,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 135,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4298,12 +4298,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 840,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -4349,8 +4349,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55.0,
-    "current_price_eur": 49.0,
+    "price_uvp_eur": 55,
+    "current_price_eur": 49,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4367,12 +4367,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 810,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -4417,8 +4417,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 130.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 130,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4435,12 +4435,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 860,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -4490,8 +4490,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 105,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4509,12 +4509,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -4566,8 +4566,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 105.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 105,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4584,12 +4584,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 460,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -4638,8 +4638,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 69.0,
-    "current_price_eur": 62.0,
+    "price_uvp_eur": 69,
+    "current_price_eur": 62,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4656,7 +4656,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -4709,8 +4709,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 89.0,
-    "current_price_eur": 79.0,
+    "price_uvp_eur": 89,
+    "current_price_eur": 79,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4782,8 +4782,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4801,7 +4801,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -4854,8 +4854,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 89.0,
-    "current_price_eur": 79.0,
+    "price_uvp_eur": 89,
+    "current_price_eur": 79,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4926,8 +4926,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -4945,7 +4945,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -5000,8 +5000,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5019,7 +5019,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -5075,8 +5075,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 105.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 105,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5094,7 +5094,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5151,8 +5151,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5170,7 +5170,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5225,8 +5225,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5243,7 +5243,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5295,7 +5295,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185.0,
+    "price_uvp_eur": 185,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -5365,7 +5365,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185.0,
+    "price_uvp_eur": 185,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -5438,8 +5438,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5457,7 +5457,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -5507,8 +5507,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 69,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5525,7 +5525,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -5583,8 +5583,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5601,7 +5601,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -5655,7 +5655,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 170.0,
+    "price_uvp_eur": 170,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -5731,8 +5731,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5749,7 +5749,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -5803,7 +5803,7 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185.0,
+    "price_uvp_eur": 185,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -5874,7 +5874,7 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185.0,
+    "price_uvp_eur": 185,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -5945,8 +5945,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -5964,7 +5964,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6016,7 +6016,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165.0,
+    "price_uvp_eur": 165,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -6087,7 +6087,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165.0,
+    "price_uvp_eur": 165,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -6159,8 +6159,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 59.0,
-    "current_price_eur": 52.0,
+    "price_uvp_eur": 59,
+    "current_price_eur": 52,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6178,7 +6178,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -6235,8 +6235,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6254,7 +6254,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6310,8 +6310,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6382,7 +6382,7 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185.0,
+    "price_uvp_eur": 185,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -6457,8 +6457,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6476,7 +6476,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6531,8 +6531,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6606,8 +6606,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6624,7 +6624,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6680,8 +6680,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6699,7 +6699,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6752,8 +6752,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 100.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 100,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6825,8 +6825,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120.0,
-    "current_price_eur": 105.0,
+    "price_uvp_eur": 120,
+    "current_price_eur": 105,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6844,7 +6844,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6900,8 +6900,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 140.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 140,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6919,7 +6919,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6975,8 +6975,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -6993,7 +6993,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7050,8 +7050,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 170.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 170,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7118,8 +7118,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 90.0,
-    "current_price_eur": 79.0,
+    "price_uvp_eur": 90,
+    "current_price_eur": 79,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7186,8 +7186,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 59.0,
-    "current_price_eur": 52.0,
+    "price_uvp_eur": 59,
+    "current_price_eur": 52,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7205,7 +7205,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -7261,8 +7261,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7280,7 +7280,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7335,8 +7335,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 110.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 110,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7353,7 +7353,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7410,8 +7410,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7429,7 +7429,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7479,8 +7479,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 85.0,
-    "current_price_eur": 75.0,
+    "price_uvp_eur": 85,
+    "current_price_eur": 75,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7497,7 +7497,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -7552,8 +7552,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7625,8 +7625,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7658,7 +7658,7 @@
     "cons": "[\"Less durable than stiffer models\", \"Less support on long climbs\", \"Less adjustability than lace\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one.",
     "customer_voices": "[\"Solid progression shoe. Comfortable enough for 2-3 hour sessions while building technique.\", \"Gym climber here. Love how Cobra 4:99 locks onto jugs and volumes without my heel slipping.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -7699,14 +7699,14 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "slipper",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -7717,7 +7717,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7731,7 +7731,7 @@
     "cons": "[\"Less support on long climbs\", \"Less adjustability than lace\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"Solid progression shoe. Comfortable enough for 2-3 hour sessions while building technique.\", \"Gym climber here. Love how Cobra Eco locks onto jugs and volumes without my heel slipping.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -7774,8 +7774,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -7788,11 +7788,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "Vibram XS Edge 5mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -7847,13 +7847,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -7865,7 +7865,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -7920,13 +7920,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -7938,7 +7938,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -7995,8 +7995,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8009,11 +8009,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "Vibram XS Edge 5mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -8070,8 +8070,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8088,12 +8088,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 3,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 440,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -8102,7 +8102,7 @@
     "cons": "[\"Less durable than stiffer models\", \"Less support on long climbs\", \"Less adjustability than lace\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one.",
     "customer_voices": "[\"Advanced sport climber \\u00e2\\u20ac\\u201d Futura nails steep terrain with its asymmetric design. Precision is insane.\", \"Gym climber here. Love how Futura locks onto jugs and volumes without my heel slipping.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -8140,8 +8140,8 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8159,7 +8159,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -8173,7 +8173,7 @@
     "cons": "[\"Velcro may wear over time\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"Solid progression shoe. Comfortable enough for 2-3 hour sessions while building technique.\", \"Gym rat confirmed; GeckoGym's soft rubber sticks on plastic like nothing else I've tried.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -8212,8 +8212,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 59.0,
-    "current_price_eur": 52.0,
+    "price_uvp_eur": 59,
+    "current_price_eur": 52,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8231,7 +8231,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -8245,7 +8245,7 @@
     "cons": "[\"Velcro may wear over time\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"Great all-around shoe. I can do 4-hour gym sessions without my feet crying.\", \"Gym rat confirmed; Gripit's soft rubber sticks on plastic like nothing else I've tried.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -8288,8 +8288,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8361,8 +8361,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8437,8 +8437,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8456,13 +8456,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 490,
+    "weight_g": 470,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "The Katana balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -8513,8 +8513,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8538,7 +8538,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 450,
+    "weight_g": 470,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "The Katana Women's balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -8587,13 +8587,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
@@ -8605,13 +8605,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 400,
+    "weight_g": 452,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "A flat, stiff design for trad climbing and multi-pitch routes, the Kubo prioritizes comfort and support over sensitivity. Full midsole and leather upper provide day-long stability on edges and cracks, while the Greek toe-form accommodates longer second toes common in trad climbers.",
@@ -8662,14 +8662,14 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "lace",
+    "closure": "slipper",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -8695,7 +8695,7 @@
     "cons": "[\"Synthetic less breathable than leather\", \"Less arch support than newer models\", \"Not as durable as leather alternatives\"]",
     "sizing": "Minimal stretch expected; wear your true street size. True-to-size for average feet.",
     "customer_voices": "[\"Solid multi-pitch option. Supportive enough for long days but still lets me feel the wall.\", \"Took these on a granite multi-pitch \\u00e2\\u20ac\\u201d Mantra handled cracks and slab flawlessly.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -8739,8 +8739,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8757,7 +8757,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -8813,14 +8813,14 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -8832,7 +8832,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -8888,14 +8888,14 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -8907,7 +8907,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -8965,8 +8965,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -8983,7 +8983,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -9035,8 +9035,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9053,7 +9053,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -9108,8 +9108,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9122,17 +9122,17 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "Vibram XS Edge 5mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 510,
+    "weight_g": 450,
     "stretch_expectation": "full_size",
     "break_in_period": "extended",
     "description": "A dependable all-rounder, the Mythos suits intermediate climbers tackling multi-pitch routes or longer gym sessions with its supportive full midsole. Lace closure lets you dial in the perfect tension, adjusting tightness from heel to toe. Durable and crack-ready, it handles granite and sandstone with aplomb.",
@@ -9181,8 +9181,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9195,11 +9195,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "Vibram XS Edge 5mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -9252,7 +9252,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 200.0,
+    "price_uvp_eur": 200,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -9328,8 +9328,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9347,13 +9347,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 436,
+    "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The Otaki balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Velcro closure ensures a locked-down fit without fiddling. Its flat profile shines on slab, rewarding precise footwork.",
@@ -9404,8 +9404,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9419,7 +9419,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Edge 3.5mm",
     "rubber_hardness": [
       "soft"
     ],
@@ -9479,8 +9479,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9555,8 +9555,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9573,13 +9573,13 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 420,
+    "weight_g": 480,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Advanced climbers appreciate the Skwama's aggressive downturn and direct foot feel for pocketed terrain and overhangs. Velcro closure ensures a locked-down fit without fiddling. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -9621,12 +9621,12 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 130.0,
+    "price_uvp_eur": 130,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "slight",
     "downturn": "moderate",
     "toe_patch": "medium",
@@ -9640,12 +9640,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 410,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -9694,7 +9694,7 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 180.0,
+    "price_uvp_eur": 180,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -9770,8 +9770,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9788,7 +9788,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -9845,8 +9845,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 185.0,
-    "current_price_eur": 169.0,
+    "price_uvp_eur": 185,
+    "current_price_eur": 169,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9869,7 +9869,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 516,
+    "weight_g": 420,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for competition climbers, the Solution Comp packs aggressive downturn and a highly asymmetric platform for maximum power through the big toe. A partial midsole balances performance with enough support for dynamic moves. Velcro closure ensures a locked-down fit without fiddling. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -9921,8 +9921,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -9995,8 +9995,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10065,8 +10065,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55.0,
-    "current_price_eur": 49.0,
+    "price_uvp_eur": 55,
+    "current_price_eur": 49,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10084,7 +10084,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -10098,7 +10098,7 @@
     "cons": "[\"Velcro may wear over time\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"Great all-around shoe. I can do 4-hour gym sessions without my feet crying.\", \"Gym rat confirmed; Stickit's soft rubber sticks on plastic like nothing else I've tried.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -10137,8 +10137,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 69,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10155,7 +10155,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -10169,7 +10169,7 @@
     "cons": "[\"Velcro may wear over time\", \"Synthetic less breathable than leather\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"Great all-around shoe. I can do 4-hour gym sessions without my feet crying.\", \"Gym rat confirmed; Tarantula's soft rubber sticks on plastic like nothing else I've tried.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -10208,8 +10208,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 69,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10226,7 +10226,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -10240,7 +10240,7 @@
     "cons": "[\"Velcro may wear over time\", \"Synthetic less breathable than leather\", \"May feel tight for wider feet\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. No stretch; synthetic holds its shape from day one. Perfect for narrow, lower-volume feet.",
     "customer_voices": "[\"Great all-around shoe. I can do 4-hour gym sessions without my feet crying.\", \"Gym rat confirmed; Tarantula Women's's soft rubber sticks on plastic like nothing else I've tried.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -10280,8 +10280,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 69,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10298,12 +10298,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 490,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -10312,7 +10312,7 @@
     "cons": "[\"Synthetic less breathable than leather\", \"Not as durable as leather alternatives\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"Great all-around shoe. I can do 4-hour gym sessions without my feet crying.\", \"Took these on a granite multi-pitch \\u00e2\\u20ac\\u201d Tarantulace handled cracks and slab flawlessly.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -10352,8 +10352,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 69,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10370,12 +10370,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 440,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -10384,7 +10384,7 @@
     "cons": "[\"Synthetic less breathable than leather\", \"May feel tight for wider feet\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. No stretch; synthetic holds its shape from day one. Perfect for narrow, lower-volume feet.",
     "customer_voices": "[\"Great all-around shoe. I can do 4-hour gym sessions without my feet crying.\", \"Took these on a granite multi-pitch \\u00e2\\u20ac\\u201d Tarantulace Women's handled cracks and slab flawlessly.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -10424,8 +10424,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 169.0,
+    "price_uvp_eur": 189,
+    "current_price_eur": 169,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10442,13 +10442,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 494,
+    "weight_g": 530,
     "stretch_expectation": "half_size",
     "break_in_period": "extended",
     "description": "The TC Pro balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Lace closure lets you dial in the perfect tension, adjusting tightness from heel to toe. Durable and crack-ready, it handles granite and sandstone with aplomb.",
@@ -10496,8 +10496,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 169.0,
+    "price_uvp_eur": 189,
+    "current_price_eur": 169,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10514,13 +10514,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 460,
+    "weight_g": 530,
     "stretch_expectation": "half_size",
     "break_in_period": "extended",
     "description": "The TC Pro Women's balances performance with accessibility, suited to advanced climbers seeking precision without sacrificing all-day comfort. Lace closure lets you dial in the perfect tension, adjusting tightness from heel to toe. Durable and crack-ready, it handles granite and sandstone with aplomb.",
@@ -10570,12 +10570,12 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 175.0,
+    "price_uvp_eur": 189,
+    "current_price_eur": 175,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "medium",
@@ -10588,13 +10588,13 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 430,
+    "weight_g": 400,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for competition climbers, the Theory packs aggressive downturn and a highly asymmetric platform for maximum power through the big toe. With zero midsole, you get unfiltered sensitivity on micro-features. Slipper-style simplicity lets you slip on and climb. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -10641,8 +10641,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 175.0,
+    "price_uvp_eur": 189,
+    "current_price_eur": 175,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -10659,13 +10659,13 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 350,
+    "weight_g": 400,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for competition climbers, the Theory Women's packs aggressive downturn and a highly asymmetric platform for maximum power through the big toe. With zero midsole, you get unfiltered sensitivity on micro-features. Slipper-style simplicity lets you slip on and climb. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -10713,7 +10713,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
+    "price_uvp_eur": 150,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -10732,12 +10732,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -10788,7 +10788,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
+    "price_uvp_eur": 150,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -10807,12 +10807,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -10859,7 +10859,7 @@
       "edge"
     ],
     "feel": "soft",
-    "price_uvp_eur": 70.0,
+    "price_uvp_eur": 70,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -10877,7 +10877,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "mens",
@@ -10927,7 +10927,7 @@
       "smear"
     ],
     "feel": "soft",
-    "price_uvp_eur": 60.0,
+    "price_uvp_eur": 60,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -10950,7 +10950,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 460,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
@@ -11000,7 +11000,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 150.0,
+    "price_uvp_eur": 150,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -11018,12 +11018,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -11074,7 +11074,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 160.0,
+    "price_uvp_eur": 160,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -11146,7 +11146,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 160.0,
+    "price_uvp_eur": 160,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -11218,7 +11218,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 150.0,
+    "price_uvp_eur": 150,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -11237,12 +11237,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 520,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -11290,7 +11290,7 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 170.0,
+    "price_uvp_eur": 170,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -11309,12 +11309,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -11364,8 +11364,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11440,8 +11440,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11512,8 +11512,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11585,8 +11585,8 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11661,8 +11661,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11737,8 +11737,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11808,8 +11808,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 89.0,
-    "current_price_eur": 59.0,
+    "price_uvp_eur": 89,
+    "current_price_eur": 59,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11827,7 +11827,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -11883,8 +11883,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -11955,8 +11955,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12027,8 +12027,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12099,8 +12099,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12171,8 +12171,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12244,8 +12244,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 69.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 69,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12263,7 +12263,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -12320,8 +12320,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12395,8 +12395,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12466,8 +12466,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12538,8 +12538,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12613,8 +12613,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -12682,7 +12682,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 55.0,
+    "price_uvp_eur": 55,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -12756,7 +12756,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 95.0,
+    "price_uvp_eur": 95,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -12774,7 +12774,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -12827,7 +12827,7 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 110.0,
+    "price_uvp_eur": 110,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -12845,12 +12845,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 446,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -12901,7 +12901,7 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 110.0,
+    "price_uvp_eur": 110,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -12919,12 +12919,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -12974,8 +12974,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 100.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 100,
+    "current_price_eur": 89,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -12993,12 +12993,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13048,8 +13048,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 105,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13067,12 +13067,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 438,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13120,8 +13120,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 140.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 140,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13139,12 +13139,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13194,8 +13194,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13212,12 +13212,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 450,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13266,8 +13266,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 140.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 140,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13285,12 +13285,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13341,8 +13341,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 130.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 130,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13359,12 +13359,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 432,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13413,8 +13413,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 130.0,
-    "current_price_eur": 105.0,
+    "price_uvp_eur": 130,
+    "current_price_eur": 105,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13431,12 +13431,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 410,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13484,8 +13484,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 130.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 130,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13502,12 +13502,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 376,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -13557,8 +13557,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 110,
+    "current_price_eur": 99,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -13576,12 +13576,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 486,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13634,8 +13634,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 110,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13653,12 +13653,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13708,8 +13708,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 120.0,
+    "price_uvp_eur": 135,
+    "current_price_eur": 120,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -13726,12 +13726,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -13782,8 +13782,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13801,12 +13801,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -13857,8 +13857,8 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 150.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 150,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13876,12 +13876,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -13931,8 +13931,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 120,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -13949,12 +13949,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 430,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -14001,8 +14001,8 @@
       "edge"
     ],
     "feel": "soft",
-    "price_uvp_eur": 120.0,
-    "current_price_eur": 110.0,
+    "price_uvp_eur": 120,
+    "current_price_eur": 110,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -14019,12 +14019,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 430,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -14136,8 +14136,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 65.0,
-    "current_price_eur": 55.0,
+    "price_uvp_eur": 65,
+    "current_price_eur": 55,
     "size_range": "24-35",
     "year_released": null,
     "current_price_url": null,
@@ -14159,7 +14159,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 340,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -14207,8 +14207,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 170.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 170,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14226,12 +14226,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -14276,8 +14276,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 90.0,
-    "current_price_eur": 80.0,
+    "price_uvp_eur": 90,
+    "current_price_eur": 80,
     "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
@@ -14294,12 +14294,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 409,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -14347,8 +14347,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 90.0,
-    "current_price_eur": 79.0,
+    "price_uvp_eur": 90,
+    "current_price_eur": 79,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14366,12 +14366,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 429,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -14423,7 +14423,7 @@
       "volume"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 110.0,
+    "price_uvp_eur": 110,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -14441,7 +14441,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 2.0,
+    "rubber_thickness_mm": 2,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14494,8 +14494,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14568,8 +14568,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 115.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 115,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14587,7 +14587,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14642,8 +14642,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14714,8 +14714,8 @@
       "edge"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 95.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 95,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14732,7 +14732,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14788,8 +14788,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14807,7 +14807,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14860,8 +14860,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14879,7 +14879,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -14935,8 +14935,8 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 149.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 149,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -14954,7 +14954,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15007,8 +15007,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -15026,7 +15026,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -15082,7 +15082,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129.0,
+    "price_uvp_eur": 129,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15100,12 +15100,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 360,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -15156,7 +15156,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119.0,
+    "price_uvp_eur": 119,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15174,12 +15174,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 360,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -15224,7 +15224,7 @@
       "smear"
     ],
     "feel": "soft",
-    "price_uvp_eur": 99.0,
+    "price_uvp_eur": 99,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15242,12 +15242,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 370,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -15298,7 +15298,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 139.0,
+    "price_uvp_eur": 139,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15317,12 +15317,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 320,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -15376,7 +15376,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139.0,
+    "price_uvp_eur": 139,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15395,12 +15395,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 320,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -15451,7 +15451,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 139.0,
+    "price_uvp_eur": 139,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15475,7 +15475,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 320,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -15525,7 +15525,7 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109.0,
+    "price_uvp_eur": 109,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15544,12 +15544,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 380,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -15597,7 +15597,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 99.0,
+    "price_uvp_eur": 99,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15615,12 +15615,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 340,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
@@ -15665,7 +15665,7 @@
       "smear"
     ],
     "feel": "soft",
-    "price_uvp_eur": 99.0,
+    "price_uvp_eur": 99,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15683,12 +15683,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 370,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
@@ -15740,7 +15740,7 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 119.0,
+    "price_uvp_eur": 119,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15759,12 +15759,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 360,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -15809,7 +15809,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 139.0,
+    "price_uvp_eur": 139,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15832,7 +15832,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 350,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -15884,7 +15884,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 159.0,
+    "price_uvp_eur": 159,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15903,12 +15903,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 370,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -15957,7 +15957,7 @@
       "edge"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109.0,
+    "price_uvp_eur": 109,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -15976,12 +15976,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 350,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
@@ -16030,7 +16030,7 @@
       "pocket"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 149.0,
+    "price_uvp_eur": 149,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -16049,12 +16049,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 340,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -16104,8 +16104,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16123,13 +16123,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
-    "weight_g": 488,
+    "upper_material": "synthetic",
+    "weight_g": 380,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "A lightweight introduction to technical climbing, the Arpia combines moderate downturn with Vibram XS Edge rubber and exceptional value in a men's-specific package. The rounded toe box and symmetrical design suit climbers with balanced foot geometry transitioning from beginner to intermediate.",
@@ -16137,7 +16137,7 @@
     "cons": "[\"Moderate downturn only\", \"Partial heel coverage\", \"Less asymmetric than peers\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Size to a snug fit. Quick break-in expected.",
     "customer_voices": "[\"Beginner to intermediate climber. The Arpia is approachable, durable, and doesn't demand a lot of foot shaping skill.\", \"Good bang for buck\\u00e2\\u20ac\\u201dthe XS Edge rubber lasts, and the balanced design works across wall angles.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16177,7 +16177,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145.0,
+    "price_uvp_eur": 145,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -16192,7 +16192,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "hard"
     ],
@@ -16201,7 +16201,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 488,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -16210,7 +16210,7 @@
     "cons": "[\"Moderate downturn only\", \"Partial heel coverage\", \"Heavier than slippers\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Size to snug, supportive fit.",
     "customer_voices": "[\"Intermediate sport climber. The Arpia V gives me support and durability for full-day outdoor sessions.\", \"The XS Edge rubber ages beautifully, and the midsole keeps my feet fresher than pure slippers.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16250,7 +16250,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145.0,
+    "price_uvp_eur": 145,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -16274,7 +16274,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 450,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -16283,7 +16283,7 @@
     "cons": "[\"Low volume not for wider feet\", \"Moderate downturn only\", \"Heavier than pure slippers\"]",
     "sizing": "Low-volume fit ideal for narrow to medium-narrow feet. Minimal stretch. Size snug from day one.",
     "customer_voices": "[\"Narrow-footed intermediate. The Arpia V LV fits perfectly and supports me through long climbing sessions.\", \"The weight and fit make these my everyday climbing shoe for gym and crag.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16324,8 +16324,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16343,12 +16343,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 450,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -16357,7 +16357,7 @@
     "cons": "[\"Lower volume limits appeal\", \"Partial rubber coverage\", \"Moderate downturn\"]",
     "sizing": "Women's-specific low volume and narrow heel. Minimal stretch. Size for a snug, supportive fit.",
     "customer_voices": "[\"Female beginner. The Arpia Women's fits my narrow heel perfectly and has enough downturn to feel special without being overwhelming.\", \"Intermediate female climber. These work for gym and outdoor, and at this price, I can rotate multiple pairs.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16419,8 +16419,8 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
-    "weight_g": 420,
+    "upper_material": "synthetic",
+    "weight_g": 490,
     "stretch_expectation": "none",
     "break_in_period": "moderate",
     "description": "The Booster is an aggressively downturned, asymmetrical bouldering and sport climbing shoe built for steep, overhanging terrain. Featuring Vibram XS Grip 2 rubber and Scarpa's PAF system with DTS Tension rand, it delivers precision and power on small footholds while the full rubber coverage enables confident toe and heel hooks.",
@@ -16469,14 +16469,14 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 169.0,
+    "price_uvp_eur": 189,
+    "current_price_eur": 169,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -16493,7 +16493,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 488,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -16502,7 +16502,7 @@
     "cons": "[\"Velcro limits fine adjustment\", \"Not for beginner climbers\", \"Heavier than pure slippers\"]",
     "sizing": "Standard volume, medium width; narrow heel. Minimal stretch. Velcro closure for quick adjustment. Size snug from day one.",
     "customer_voices": "[\"Advanced boulderer. The Boostic is my go-to for overhanging gym and outdoor\\u00e2\\u20ac\\u201dthe asymmetry and velcro are perfect.\", \"The midsole keeps my feet fresher than pure slippers during long sessions on roofs and pockets.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16559,12 +16559,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 490,
     "stretch_expectation": "minimal",
     "break_in_period": "extended",
@@ -16614,8 +16614,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 185,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16638,7 +16638,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 450,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -16647,7 +16647,7 @@
     "cons": "[\"Steep learning curve\", \"Narrow fit limits appeal\", \"Not beginner-friendly\"]",
     "sizing": "Standard volume with narrow heel; minimal stretch. Lace for precision. Size to snug, advanced fit.",
     "customer_voices": "[\"Elite sport climber. The Chimera is sharp\\u00e2\\u20ac\\u201devery inch of the shoe works to maximize power through the big toe.\", \"The lace system and aggressive geometry suit climbers who know what they want from their shoe.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16689,8 +16689,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 185.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 185,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16712,7 +16712,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -16721,7 +16721,7 @@
     "cons": "[\"Not comfortable for all-day use\", \"Minimal stretch limits size adjustment\", \"Lower durability rating\"]",
     "sizing": "Runs true to size; microfiber upper has minimal stretch. Size to a snug fit from day one.",
     "customer_voices": "[\"I use these exclusively for bouldering indoors\\u00e2\\u20ac\\u201dthe downturn and edge sensitivity are unreal for small holds and powerful sequences.\", \"As an intermediate climber moving into sport climbing, the Drago feels aggressive to me, but my feet are narrower and they fit like a glove.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16760,13 +16760,13 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 100.0,
+    "price_uvp_eur": 100,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -16792,7 +16792,7 @@
     "cons": "[\"Very specialized aggressive design\", \"Low-volume fit tight\", \"Not for beginner kids\"]",
     "sizing": "Youth sizing (28-35); low-volume. Size with room for growth; minimal stretch expected.",
     "customer_voices": "[\"Youth competitive climber. The Drago Kid gives my child the aggressive geometry they need to progress.\", \"Climbing coach. These shoes show young talent that equipment matters, and they're durable for intense training.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16834,8 +16834,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 185.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 185,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -16857,8 +16857,8 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
-    "weight_g": 430,
+    "upper_material": "leather/synthetic",
+    "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "The low-volume variant of Scarpa's most aggressive performer, the Drago LV strips down the shoe for climbers with narrower, lower-volume feet. Identical downturn and asymmetry to its sibling, but in a sleeker package that improves heel lock and reduces weight. Perfect for elite athletes chasing ounces on rock and plastic.",
@@ -16866,7 +16866,7 @@
     "cons": "[\"Very narrow fit limits appeal\", \"Not beginner-friendly\", \"Minimal midsole support\"]",
     "sizing": "Suits lower-volume and narrower feet. Size to a snug fit; minimal stretch expected. Consider LV if you find standard Drago loose in the heel.",
     "customer_voices": "[\"I have narrow feet and finally found a shoe that doesn't slip\\u00e2\\u20ac\\u201dthe LV is my go-to for overhanging problems.\", \"Advanced boulderer here. The Drago LV is sharper than the standard Drago, which I prefer for technical climbing on small pockets.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {}
@@ -16902,7 +16902,7 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 195.0,
+    "price_uvp_eur": 195,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -16925,7 +16925,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -16934,7 +16934,7 @@
     "cons": "[\"Premium price point\", \"Leather requires care\", \"Low volume limits appeal\"]",
     "sizing": "Leather upper adds durability; minimal stretch expected. Size to a snug, supportive fit. Low-volume for narrow feet.",
     "customer_voices": "[\"Elite sport climber. The Drago XT is the aggressive geometry I love with leather comfort and longevity.\", \"The soft rubber and partial midsole extend use on big project days compared to pure slippers.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16973,7 +16973,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120.0,
+    "price_uvp_eur": 120,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -16991,12 +16991,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -17005,7 +17005,7 @@
     "cons": "[\"Flat design minimal sensitivity\", \"Heavier than aggressive shoes\", \"Velcro-only closure\"]",
     "sizing": "Broad last with medium width. Minimal stretch. Size to comfortable, snug fit.",
     "customer_voices": "[\"Beginner climber with broader feet. The Force V fits well and doesn't feel restrictive while I'm learning.\", \"Gym regular. Good durability, works across wall angles, and the price lets me buy multiple pairs.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17044,8 +17044,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 69.0,
-    "current_price_eur": 59.0,
+    "price_uvp_eur": 69,
+    "current_price_eur": 59,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17063,7 +17063,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -17077,7 +17077,7 @@
     "cons": "[\"Flat design lacks sensitivity\", \"Limited size range\", \"Basic performance level\"]",
     "sizing": "Kids shoe sized 28-35. Size with slight room to grow; expect minimal growth accommodation.",
     "customer_voices": "[\"Parent introducing my 8-year-old to climbing. The Force V Kids fits perfectly and the velcro is easy for little hands.\", \"Youth climbing coach. These are tough, affordable, and perfect for teaching kids the basics before specialization.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -17116,7 +17116,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 120.0,
+    "price_uvp_eur": 120,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -17134,12 +17134,12 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 450,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -17148,7 +17148,7 @@
     "cons": "[\"Lower volume limits appeal\", \"Flat design minimal sensitivity\", \"Heavier shoe overall\"]",
     "sizing": "Women's-specific low volume, narrow heel. Minimal stretch. Size to comfortable, supportive fit.",
     "customer_voices": "[\"Female beginner. The Force V Women's fits my foot shape and doesn't feel overwhelming for learning.\", \"The price point makes it easy to invest in climbing without breaking the bank.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17190,8 +17190,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 169.0,
+    "price_uvp_eur": 189,
+    "current_price_eur": 169,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17208,12 +17208,12 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 300,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -17222,7 +17222,7 @@
     "cons": "[\"Very low-volume shoe\", \"Minimal rubber reduces durability\", \"Slipper-only closure limits adjustability\"]",
     "sizing": "Low-volume and narrow fit; no stretch. Size to snug fit from day one. Recommended for narrow to medium-narrow feet.",
     "customer_voices": "[\"Lightweight, responsive, and I can feel every bump on the wall\\u00e2\\u20ac\\u201dperfect for my climbing style on overhanging routes.\", \"The Furia Air is my second shoe for routes where I know every edge. The fit took some getting used to because of the low volume.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17264,8 +17264,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 185.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 185,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17287,7 +17287,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -17296,7 +17296,7 @@
     "cons": "[\"Not suitable for wider feet\", \"Minimal midsole reduces support\", \"Less durable than sport shoes\"]",
     "sizing": "Standard volume with narrow width. Microfiber has minimal stretch. Size to a snug fit; expect no break-in period.",
     "customer_voices": "[\"I boulder hard and the Furia S gives me the aggressive downturn I crave without feeling claustrophobic like the Air.\", \"Advanced sport climber. The soft rubber is amazing for reading texture on limestone, and the fit is predictable right out of the box.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17335,14 +17335,14 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 135.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 135,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "lace",
-    "asymmetry": "none",
-    "downturn": "flat",
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "moderate",
     "toe_patch": "medium",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -17353,13 +17353,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 550,
+    "weight_g": 570,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "A workhorse laced trad shoe combining flat geometry with full-midsole support and durable leather for all-day multi-pitch climbing. The balanced toe-form and moderate heel accommodate diverse foot shapes while the lace closure enables precise fit control across the entire foot.",
@@ -17402,14 +17402,14 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "none",
-    "downturn": "flat",
+    "asymmetry": "slight",
+    "downturn": "moderate",
     "toe_patch": "medium",
     "heel_rubber_coverage": "full",
     "ankle_protection": "high",
@@ -17420,7 +17420,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -17476,8 +17476,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17491,7 +17491,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm / XS Grip 2 2mm (heel)",
+    "rubber_type": "Vibram XS Edge 4mm",
     "rubber_hardness": [
       "hard"
     ],
@@ -17500,7 +17500,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -17509,7 +17509,7 @@
     "cons": "[\"Laces require fine-tuning\", \"Heavier than slipper versions\", \"Less responsive on micro-holds\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Lace closure allows progressive tightening. Size to a snug midfoot with secure heel.",
     "customer_voices": "[\"Sport climber here. The lace system lets me dial in pressure exactly where I need it for full pitches.\", \"I use these for trad climbing\\u00e2\\u20ac\\u201dthe crack-edge geometry and lace fit inspire confidence on slab and vertical terrain.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17550,8 +17550,8 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17573,7 +17573,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -17582,7 +17582,7 @@
     "cons": "[\"No midsole support\", \"Slipper closure limits adjustment\", \"Not durable for outdoor abuse\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Slipper fit is forgiving. Size snug from day one.",
     "customer_voices": "[\"My go-to gym shoe\\u00e2\\u20ac\\u201dthe S is light, responsive, and the wide fit means no cramping after hours.\", \"Intermediate climber. The S gives me enough edge control without the weight and bulk of a midsole.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17625,8 +17625,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17648,8 +17648,8 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
-    "weight_g": 460,
+    "upper_material": "synthetic",
+    "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "A slipper-only interpretation of the Instinct platform, the SR removes the partial midsole for direct foot-to-rock feedback while retaining the moderate downturn and wide-fit design. Soft Grip 2 rubber and minimal break-in make it an accessible gateway to performance climbing.",
@@ -17657,7 +17657,7 @@
     "cons": "[\"No midsole support\", \"Less durable than VS\", \"Slipper lacks fine adjustment\"]",
     "sizing": "Standard volume, medium width; minimal stretch expected. Slipper fit accommodates quick on-off. Size to a snug, comfortable fit.",
     "customer_voices": "[\"Intermediate boulderer\\u00e2\\u20ac\\u201dthe SR is my second pair for volume climbing when I don't need the support of a midsole.\", \"I like the slipper convenience, and the soft rubber gives me feedback I need on smears and pockets.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17699,8 +17699,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17723,7 +17723,7 @@
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 460,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -17732,7 +17732,7 @@
     "cons": "[\"Heavier than aggressive models\", \"Less responsive on micro-holds\", \"Velcro only limits fine adjustment\"]",
     "sizing": "Runs true to size with minimal stretch. The wide-fit last suits normal to broader feet. Snug but not restrictive from day one.",
     "customer_voices": "[\"These are my everyday climbing shoe\\u00e2\\u20ac\\u201dversatile enough for indoor walls and solid enough for outdoor granite routes.\", \"The partial midsole and durable rubber mean I can wear these for full sessions without worry, and the edge control is solid.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {}
@@ -17771,8 +17771,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17795,7 +17795,7 @@
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -17804,7 +17804,7 @@
     "cons": "[\"Lower volume limits appeal\", \"Moderate downturn less aggressive\", \"Heavier than slipper options\"]",
     "sizing": "Women's-specific fit with low volume and narrow heel. Minimal stretch expected. Size to a snug, supportive fit.",
     "customer_voices": "[\"Finally, a shoe engineered for my foot shape\\u00e2\\u20ac\\u201dthe heel doesn't slip and the volume is perfect for women with narrower feet.\", \"I use VS for training and projects. The durable rubber means multiple sessions a week without premature wear.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17847,8 +17847,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17870,7 +17870,7 @@
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 460,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -17879,7 +17879,7 @@
     "cons": "[\"Softer rubber wears faster\", \"Less edge bite than VS\", \"Heavier shoe overall\"]",
     "sizing": "Standard volume with medium width; minimal stretch. Wide-fit last accommodates diverse foot shapes. Size to a supportive, snug fit.",
     "customer_voices": "[\"I prefer the softer rubber\\u00e2\\u20ac\\u201dthe VSR reads texture so well on varied rock that I'm more confident on smears.\", \"Indoor gym climber here. The full Grip 2 sole feels great for edging, and the wide fit means no hot spots during long sessions.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {}
@@ -17919,8 +17919,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -17942,7 +17942,7 @@
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather/synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -17951,7 +17951,7 @@
     "cons": "[\"Lower volume not ideal for wider feet\", \"Softer rubber reduces durability\", \"Less edge-focused than VS\"]",
     "sizing": "Women's-specific low volume and narrow fit. Minimal stretch. Size for a snug, supportive feel from day one.",
     "customer_voices": "[\"As a woman climber, I appreciate shoes designed for my foot structure. The VSR is my go-to for anything that isn't pure overhanging bouldering.\", \"The soft rubber is forgiving on my feet during long gym sessions, and the fit is supportive without being tight.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17989,8 +17989,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18007,7 +18007,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -18061,8 +18061,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18079,7 +18079,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -18131,8 +18131,8 @@
       "crack"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 185.0,
-    "current_price_eur": 165.0,
+    "price_uvp_eur": 185,
+    "current_price_eur": 165,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18149,13 +18149,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 550,
+    "weight_g": 580,
     "stretch_expectation": "half_size",
     "break_in_period": "extended",
     "description": "A mid-height variant of the Maestro Alpine, adding ankle support without full alpine bulk. Leather upper, full midsole, and lace closure offer precision and durability for trad climbers who want protection without mountaineering weight.",
@@ -18203,8 +18203,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 165.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 165,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18221,7 +18221,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -18277,14 +18277,14 @@
       "crack"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 179.0,
-    "current_price_eur": 159.0,
+    "price_uvp_eur": 179,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "slight",
-    "downturn": "moderate",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -18301,8 +18301,8 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
-    "weight_g": 470,
+    "upper_material": "synthetic",
+    "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "A laced sport shoe bridging aggression and all-day wearability, the Mago combines moderate downturn with XS Edge/Grip 2 rubber and a partial midsole. Strong asymmetry and narrow heel make it ideal for advanced climbers tackling varied terrain from slabs to pockets without midsole bulk.",
@@ -18310,7 +18310,7 @@
     "cons": "[\"Laces require fine adjustment\", \"Heavier than slipper options\", \"Not aggressive enough for elite\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Lace allows progressive tightening. Moderate break-in expected.",
     "customer_voices": "[\"Advanced sport climber. The Mago laces up tight, has enough downturn to feel special, and lasts full sessions.\", \"I appreciate shoes that balance aggression and wearability\\u00e2\\u20ac\\u201dthe Mago hits that sweet spot.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -18350,13 +18350,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "lace",
-    "asymmetry": "none",
+    "closure": "velcro",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -18364,17 +18364,17 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram Vision 4mm",
+    "rubber_type": "Vision 5mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 430,
+    "weight_g": 510,
     "stretch_expectation": "full_size",
     "break_in_period": "moderate",
     "description": "An accessible entry shoe for beginners, the Origin combines real leather with a comfortable, flat last and full-midsole support for learning foundational technique. The center-biased last accommodates diverse foot shapes, making it ideal for climbers discovering their style on sport and trad routes.",
@@ -18422,13 +18422,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "lace",
-    "asymmetry": "none",
+    "closure": "velcro",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -18436,11 +18436,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram Vision 4mm",
+    "rubber_type": "Vision 5mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -18497,8 +18497,8 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18515,7 +18515,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -18529,7 +18529,7 @@
     "cons": "[\"Synthetic less breathable\", \"Asymmetry not extreme\", \"Moderate downturn only\"]",
     "sizing": "Synthetic upper has no stretch. Size to a snug, accurate fit from day one. Medium width, standard volume.",
     "customer_voices": "[\"Intermediate climber moving into sport. The Quantix SF pairs soft rubber with enough asymmetry to feel special, no break-in needed.\", \"I appreciate that the synthetic dries fast and doesn't require conditioning like leather does.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {}
@@ -18564,13 +18564,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -18578,7 +18578,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram Vision 4.5mm",
+    "rubber_type": "Vision 4mm",
     "rubber_hardness": [
       "medium"
     ],
@@ -18587,7 +18587,7 @@
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather/synthetic",
     "weight_g": 400,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -18596,7 +18596,7 @@
     "cons": "[\"Flat design lacks sensitivity\", \"Not resoleable\", \"Heavy for day climbs\"]",
     "sizing": "Wide fit with relaxed volume. Synthetic has no stretch. Size to accurate, comfortable fit.",
     "customer_voices": "[\"Wider feet climber. Finally, a shoe that fits my foot without jamming my toes. The Reflex works beautifully.\", \"Beginner with broader feet. These are comfortable, durable, and I don't feel squeezed.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -18634,13 +18634,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -18648,7 +18648,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram Vision 4.5mm",
+    "rubber_type": "Vision 4mm",
     "rubber_hardness": [
       "medium"
     ],
@@ -18657,7 +18657,7 @@
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather/synthetic",
     "weight_g": 380,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -18666,7 +18666,7 @@
     "cons": "[\"Flat design minimal sensitivity\", \"Not resoleable\", \"Heavier shoe overall\"]",
     "sizing": "Women's-specific low volume with generous width. Synthetic no stretch. Size for comfortable, spacious fit.",
     "customer_voices": "[\"Female climber with wider feet. The Reflex Women's finally gives me the room I need without squishing.\", \"Beginner woman. These are forgiving, durable, and let me focus on learning technique instead of foot pain.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -18708,8 +18708,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18733,7 +18733,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 430,
+    "weight_g": 460,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "The laced interpretation of the Vapor platform, offering precise fit control via lacing while retaining the versatile edge-focused design ideal for trad multi-pitch and sport climbing. Leather upper and XS Edge rubber ensure durability, while the center-shaped last accommodates diverse foot structures.",
@@ -18778,7 +18778,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 170.0,
+    "price_uvp_eur": 170,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -18802,7 +18802,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -18811,7 +18811,7 @@
     "cons": "[\"Low volume not for wider feet\", \"Partial midsole only\", \"Velcro-only closure\"]",
     "sizing": "Low-volume fit ideal for narrow to medium-narrow feet. Minimal stretch. Size snug from day one.",
     "customer_voices": "[\"Narrow-footed intermediate climber. The Vapor LV fits me perfectly and has enough edge control for my progression.\", \"The lighter weight and narrow fit make these my go-to for all-day climbing sessions.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -18853,8 +18853,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18877,8 +18877,8 @@
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
-    "upper_material": "leather",
-    "weight_g": 480,
+    "upper_material": "synthetic",
+    "weight_g": 450,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "A leather-upper workhorse for sport climbing, the Vapor V pairs real hide with Vibram's versatile XS Edge rubber and a partial midsole designed to shine on slabs and edges. The center-shaped last suits climbers with Morton's toe or longer second toes, making it the thinking person's all-rounder.",
@@ -18928,8 +18928,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 175.0,
-    "current_price_eur": 149.0,
+    "price_uvp_eur": 175,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -18952,7 +18952,7 @@
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "leather",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
@@ -19002,8 +19002,8 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 139,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19021,13 +19021,13 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
-    "weight_g": 420,
+    "upper_material": "synthetic",
+    "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "An affordable entry to performance climbing, the Veloce pairs moderate downturn with XS Edge rubber and a partial midsole suitable for intermediate gym climbers and casual outdoor tourists. Wide-fit last and accessible price make it an excellent beginner-to-intermediate shoe for establishing fundamentals across diverse angles.",
@@ -19072,13 +19072,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "none",
+    "closure": "lace",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -19086,11 +19086,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram Vision 4mm",
+    "rubber_type": "S72 Rubber 4mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -19144,13 +19144,13 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "none",
+    "closure": "lace",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -19158,11 +19158,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram Vision 4mm",
+    "rubber_type": "S72 Rubber 4mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -19217,8 +19217,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 65.0,
-    "current_price_eur": 60.0,
+    "price_uvp_eur": 65,
+    "current_price_eur": 60,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19235,7 +19235,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19283,8 +19283,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 30.0,
-    "current_price_eur": 30.0,
+    "price_uvp_eur": 30,
+    "current_price_eur": 30,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19301,7 +19301,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -19352,8 +19352,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 35.0,
-    "current_price_eur": 35.0,
+    "price_uvp_eur": 35,
+    "current_price_eur": 35,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19370,7 +19370,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -19424,8 +19424,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 55.0,
-    "current_price_eur": 55.0,
+    "price_uvp_eur": 55,
+    "current_price_eur": 55,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19443,7 +19443,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19495,8 +19495,8 @@
       "volume"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19569,8 +19569,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 105,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19641,8 +19641,8 @@
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19660,7 +19660,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -19715,8 +19715,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19733,12 +19733,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -19787,8 +19787,8 @@
       "edge"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 95.0,
-    "current_price_eur": 85.0,
+    "price_uvp_eur": 95,
+    "current_price_eur": 85,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -19805,7 +19805,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -19878,7 +19878,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -19935,7 +19935,7 @@
     ],
     "feel": "soft",
     "price_uvp_eur": 169.95,
-    "current_price_eur": 159.0,
+    "current_price_eur": 159,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20008,7 +20008,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 184.95,
-    "current_price_eur": 109.0,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20077,7 +20077,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 141.5,
-    "current_price_eur": 65.0,
+    "current_price_eur": 65,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20094,7 +20094,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20170,7 +20170,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -20228,7 +20228,7 @@
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 179.95,
-    "current_price_eur": 129.0,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20300,7 +20300,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 174.95,
-    "current_price_eur": 139.0,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20374,7 +20374,7 @@
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 164.95,
-    "current_price_eur": 149.0,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20450,7 +20450,7 @@
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 164.95,
-    "current_price_eur": 149.0,
+    "current_price_eur": 149,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20523,7 +20523,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 141.5,
-    "current_price_eur": 99.0,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20541,7 +20541,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -20615,7 +20615,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -20669,7 +20669,7 @@
     ],
     "feel": "stiff-moderate",
     "price_uvp_eur": 99.95,
-    "current_price_eur": 75.0,
+    "current_price_eur": 75,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20686,7 +20686,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20757,7 +20757,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -20814,7 +20814,7 @@
     ],
     "feel": "moderate",
     "price_uvp_eur": 164.95,
-    "current_price_eur": 129.0,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20906,7 +20906,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -20961,8 +20961,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 110.0,
-    "current_price_eur": 110.0,
+    "price_uvp_eur": 110,
+    "current_price_eur": 110,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -20979,7 +20979,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21034,8 +21034,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21053,7 +21053,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21106,8 +21106,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21125,7 +21125,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21177,8 +21177,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 95.0,
-    "current_price_eur": 95.0,
+    "price_uvp_eur": 95,
+    "current_price_eur": 95,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21195,7 +21195,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21247,8 +21247,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 100.0,
-    "current_price_eur": 100.0,
+    "price_uvp_eur": 100,
+    "current_price_eur": 100,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21265,7 +21265,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21320,8 +21320,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21338,7 +21338,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 2.0,
+    "rubber_thickness_mm": 2,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21390,8 +21390,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21408,7 +21408,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 2.0,
+    "rubber_thickness_mm": 2,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21462,8 +21462,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 79.0,
-    "current_price_eur": 79.0,
+    "price_uvp_eur": 79,
+    "current_price_eur": 79,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21480,7 +21480,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21531,8 +21531,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 89.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 89,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21549,7 +21549,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21603,8 +21603,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21621,7 +21621,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21676,8 +21676,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 115.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 115,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21694,7 +21694,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21746,8 +21746,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 115.0,
-    "current_price_eur": 115.0,
+    "price_uvp_eur": 115,
+    "current_price_eur": 115,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21764,7 +21764,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21818,8 +21818,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 120.0,
-    "current_price_eur": 120.0,
+    "price_uvp_eur": 120,
+    "current_price_eur": 120,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21836,7 +21836,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -21885,8 +21885,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 120.0,
-    "current_price_eur": 120.0,
+    "price_uvp_eur": 120,
+    "current_price_eur": 120,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -21903,7 +21903,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -21955,8 +21955,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 135,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22028,8 +22028,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 135,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22101,8 +22101,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 135.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 135,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22175,8 +22175,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22193,7 +22193,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22249,8 +22249,8 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 169.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 169,
+    "current_price_eur": 155,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22267,7 +22267,7 @@
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -22319,7 +22319,7 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -22389,7 +22389,7 @@
       "smear"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -22461,7 +22461,7 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 130.0,
+    "price_uvp_eur": 130,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -22536,7 +22536,7 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 165.0,
+    "price_uvp_eur": 165,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -22606,7 +22606,7 @@
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -22854,8 +22854,8 @@
       "volume"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -22928,8 +22928,8 @@
       "volume"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23003,8 +23003,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23022,7 +23022,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -23079,8 +23079,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 145.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 145,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23098,7 +23098,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -23152,7 +23152,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23224,7 +23224,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23285,8 +23285,8 @@
     "best_wall_angles": null,
     "best_foothold_types": null,
     "feel": "stiff-moderate",
-    "price_uvp_eur": 193.0,
-    "current_price_eur": 150.0,
+    "price_uvp_eur": 193,
+    "current_price_eur": 150,
     "size_range": null,
     "year_released": null,
     "current_price_url": "https://www.unparallelsports.com/product/tn-finity/",
@@ -23354,7 +23354,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23424,7 +23424,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 155.0,
+    "price_uvp_eur": 155,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23499,8 +23499,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 140.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 140,
     "size_range": "35.5-47.5",
     "year_released": null,
     "current_price_url": null,
@@ -23572,8 +23572,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 170.0,
-    "current_price_eur": 155.0,
+    "price_uvp_eur": 170,
+    "current_price_eur": 155,
     "size_range": "37-48.5",
     "year_released": null,
     "current_price_url": null,
@@ -23643,7 +23643,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 135.0,
+    "price_uvp_eur": 135,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23714,7 +23714,7 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 135.0,
+    "price_uvp_eur": 135,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23785,7 +23785,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 115.0,
+    "price_uvp_eur": 115,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23857,7 +23857,7 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 115.0,
+    "price_uvp_eur": 115,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -23933,8 +23933,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -23952,7 +23952,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24009,8 +24009,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 159.0,
-    "current_price_eur": 145.0,
+    "price_uvp_eur": 159,
+    "current_price_eur": 145,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24028,7 +24028,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24084,8 +24084,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24103,7 +24103,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24159,8 +24159,8 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 155.0,
-    "current_price_eur": 139.0,
+    "price_uvp_eur": 155,
+    "current_price_eur": 139,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24178,7 +24178,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24231,8 +24231,8 @@
       "smear"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 89.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 89,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24249,7 +24249,7 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -24304,7 +24304,7 @@
       "edge"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 145.0,
+    "price_uvp_eur": 145,
     "current_price_eur": null,
     "size_range": null,
     "year_released": null,
@@ -24372,8 +24372,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 119.0,
-    "current_price_eur": 119.0,
+    "price_uvp_eur": 119,
+    "current_price_eur": 119,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24391,12 +24391,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -24446,8 +24446,8 @@
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 99.0,
+    "price_uvp_eur": 99,
+    "current_price_eur": 99,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24464,12 +24464,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -24516,8 +24516,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24534,7 +24534,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24586,8 +24586,8 @@
       "pocket"
     ],
     "feel": "soft",
-    "price_uvp_eur": 125.0,
-    "current_price_eur": 125.0,
+    "price_uvp_eur": 125,
+    "current_price_eur": 125,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24604,7 +24604,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24653,8 +24653,8 @@
       "smear"
     ],
     "feel": "stiff",
-    "price_uvp_eur": 134.0,
-    "current_price_eur": 134.0,
+    "price_uvp_eur": 134,
+    "current_price_eur": 134,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24671,12 +24671,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 430,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
@@ -24721,8 +24721,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 131.0,
-    "current_price_eur": 131.0,
+    "price_uvp_eur": 131,
+    "current_price_eur": 131,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24740,7 +24740,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -24793,8 +24793,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 129.0,
-    "current_price_eur": 129.0,
+    "price_uvp_eur": 129,
+    "current_price_eur": 129,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24812,12 +24812,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -24864,8 +24864,8 @@
       "pocket"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 109.0,
-    "current_price_eur": 109.0,
+    "price_uvp_eur": 109,
+    "current_price_eur": 109,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24883,12 +24883,12 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -24936,8 +24936,8 @@
       "pocket"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 134.0,
-    "current_price_eur": 134.0,
+    "price_uvp_eur": 134,
+    "current_price_eur": 134,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
@@ -24955,7 +24955,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
