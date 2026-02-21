@@ -545,7 +545,7 @@ function Card({ shoe, onClick, priceData, compact }) {
         onClick={onClick}
         style={{
           aspectRatio: "4/3",
-          background: "#f5f5f5",
+          background: "#fff",
           position: "relative",
           display: "flex",
           alignItems: "center",

@@ -427,7 +427,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
         height: "110px", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center",
         overflow: "hidden",
-        background: d.image_url ? "#ede7db" : "transparent",
+        background: d.image_url ? "#fff" : "transparent",
       }}>
         {d.image_url ? (
           <img src={d.image_url} alt={d.model} loading="lazy"
@@ -563,7 +563,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
       {/* Visual header with product image */}
       <div onClick={onClick} style={{
         height: "200px", position: "relative", overflow: "hidden",
-        background: d.image_url ? "#ede7db" : "transparent",
+        background: d.image_url ? "#fff" : "transparent",
       }}>
         {d.image_url ? (
           <img src={d.image_url} alt={d.model} loading="lazy"
