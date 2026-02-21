@@ -614,19 +614,33 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
           </span>
         </div>
 
-        {/* Feature tags */}
-        <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "10px" }}>
-          <SmallTag variant="default">{fmt(d.fold_style)}</SmallTag>
-          <SmallTag variant="protection">{fmt(d.impact_protection)} impact</SmallTag>
-          {d.carry_comfort === "excellent" && <SmallTag variant="carry">Excellent carry</SmallTag>}
-          {d.waist_belt && <SmallTag variant="feature">Waist belt</SmallTag>}
-          {d.couch_mode && <SmallTag variant="feature">Couch mode</SmallTag>}
-          {d.shoe_wipe && <SmallTag variant="feature">Shoe wipe</SmallTag>}
-          {d.has_hinge_protection && <SmallTag variant="protection">Hinge prot.</SmallTag>}
-          {d.hic_certified && <SmallTag variant="eco">HIC</SmallTag>}
-          {d.bluesign && <SmallTag variant="eco">Bluesign</SmallTag>}
-          {d.recycled_materials !== "none" && <SmallTag variant="eco">{fmt(d.recycled_materials)} recycled</SmallTag>}
-        </div>
+        {/* Feature tags — max 4 visible, prioritized */}
+        {(() => {
+          const allTags = [
+            { label: fmt(d.fold_style), variant: "default" },
+            { label: `${fmt(d.impact_protection)} impact`, variant: "protection" },
+            ...(d.carry_comfort === "excellent" ? [{ label: "Excellent carry", variant: "carry" }] : []),
+            ...(d.waist_belt ? [{ label: "Waist belt", variant: "feature" }] : []),
+            ...(d.couch_mode ? [{ label: "Couch mode", variant: "feature" }] : []),
+            ...(d.shoe_wipe ? [{ label: "Shoe wipe", variant: "feature" }] : []),
+            ...(d.has_hinge_protection ? [{ label: "Hinge prot.", variant: "protection" }] : []),
+            ...(d.hic_certified ? [{ label: "HIC", variant: "eco" }] : []),
+            ...(d.bluesign ? [{ label: "Bluesign", variant: "eco" }] : []),
+            ...(d.recycled_materials !== "none" ? [{ label: `${fmt(d.recycled_materials)} recycled`, variant: "eco" }] : []),
+          ];
+          const visible = allTags.slice(0, 4);
+          const overflow = allTags.length - visible.length;
+          return (
+            <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "10px" }}>
+              {visible.map((t, i) => <SmallTag key={i} variant={t.variant}>{t.label}</SmallTag>)}
+              {overflow > 0 && (
+                <span style={{ padding: "2px 8px", borderRadius: "8px", fontSize: "10px", fontWeight: 600, background: "rgba(44,50,39,0.06)", color: "#7a7462", fontFamily: "'DM Sans',sans-serif" }}>
+                  +{overflow}
+                </span>
+              )}
+            </div>
+          );
+        })()}
 
         {/* Use cases */}
         <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "12px" }}>

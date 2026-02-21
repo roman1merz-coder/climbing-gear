@@ -73,7 +73,7 @@ export default function Insights() {
             >
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
                 <span style={{ fontSize: "11px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px" }}>
-                  INSIGHT #{i + 1}
+                  INSIGHT {["I", "II", "III", "IV", "V"][i]}
                 </span>
                 <span style={{ fontSize: "10px", fontWeight: 600, color: a.tagColor, background: `${a.tagColor}15`, padding: "2px 8px", borderRadius: "4px" }}>
                   {a.tag}

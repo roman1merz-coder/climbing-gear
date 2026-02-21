@@ -447,20 +447,20 @@ function Bool({ label, value, onChange }) {
 
 function MatchOverlay({ score: s }) {
   if (s == null || s < 0) return null;
-  const bg = s >= 80 ? "rgba(34,197,94,.85)" : s >= 50 ? "rgba(201,138,66,.85)" : "rgba(239,68,68,.85)";
+  const c = s >= 70 ? "#22c55e" : s >= 40 ? "#c98a42" : "#ef4444";
+  const bg = s >= 70 ? "rgba(34,197,94,.12)" : s >= 40 ? "rgba(201,138,66,.12)" : "rgba(239,68,68,.12)";
   return (
-    <span
+    <div
       style={{
-        position: "absolute", top: "8px", right: "8px",
-        padding: "3px 8px", borderRadius: "8px",
-        background: bg, color: "#fff",
-        fontFamily: "'DM Mono',monospace",
-        fontSize: "11px", fontWeight: 700, lineHeight: 1.2,
-        zIndex: 2,
+        position: "absolute", top: "10px", right: "10px", zIndex: 3,
+        width: "38px", height: "38px", borderRadius: "50%",
+        background: bg, border: `2px solid ${c}`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        backdropFilter: "blur(8px)",
       }}
     >
-      {s}%
-    </span>
+      <span style={{ fontSize: "12px", fontWeight: 800, color: c, fontFamily: "'DM Mono',monospace", lineHeight: 1 }}>{s}</span>
+    </div>
   );
 }
 
@@ -680,46 +680,37 @@ function Card({ shoe, onClick, priceData, compact }) {
             </div>
           )}
         </div>
-        {/* Desktop-only: tags + skill levels */}
-        {!compact && (
-          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginTop: "8px" }}>
-            {[d.closure, d.downturn, d.feel]
-              .filter(Boolean)
-              .map((t) => (
-                <span
-                  key={t}
-                  style={{
-                    padding: "3px 10px",
-                    borderRadius: "12px",
-                    background: "#ede7db",
-                    color: "#645b4f",
-                    fontSize: "10px",
-                    fontFamily: "'DM Sans',sans-serif",
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {String(t).replace(/-/g, " ")}
+        {/* Desktop-only: tags + skill levels — max 4 visible */}
+        {!compact && (() => {
+          const specTags = [d.closure, d.downturn, d.feel].filter(Boolean);
+          const skillTags = (d.skill_level || []);
+          const allTags = [
+            ...specTags.map(t => ({ key: t, label: String(t).replace(/-/g, " "), type: "spec" })),
+            ...skillTags.map(l => ({ key: l, label: l, type: "skill" })),
+          ];
+          const visible = allTags.slice(0, 4);
+          const overflow = allTags.length - visible.length;
+          return (
+            <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginTop: "8px" }}>
+              {visible.map((t) =>
+                t.type === "spec" ? (
+                  <span key={t.key} style={{ padding: "3px 10px", borderRadius: "12px", background: "#ede7db", color: "#645b4f", fontSize: "10px", fontFamily: "'DM Sans',sans-serif", textTransform: "capitalize" }}>
+                    {t.label}
+                  </span>
+                ) : (
+                  <span key={t.key} style={{ padding: "2px 8px", borderRadius: "8px", fontSize: "9px", fontWeight: 600, background: "rgba(201,138,66,.1)", color: "#c98a42", textTransform: "capitalize", fontFamily: "'DM Sans',sans-serif" }}>
+                    {t.label}
+                  </span>
+                )
+              )}
+              {overflow > 0 && (
+                <span style={{ padding: "2px 8px", borderRadius: "8px", fontSize: "9px", fontWeight: 600, background: "rgba(44,50,39,0.06)", color: "#7a7462", fontFamily: "'DM Sans',sans-serif" }}>
+                  +{overflow}
                 </span>
-              ))}
-            {(d.skill_level || []).map((l) => (
-              <span
-                key={l}
-                style={{
-                  padding: "2px 8px",
-                  borderRadius: "8px",
-                  fontSize: "9px",
-                  fontWeight: 600,
-                  background: "rgba(201,138,66,.1)",
-                  color: "#c98a42",
-                  textTransform: "capitalize",
-                  fontFamily: "'DM Sans',sans-serif",
-                }}
-              >
-                {l}
-              </span>
-            ))}
-          </div>
-        )}
+              )}
+            </div>
+          );
+        })()}
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>

@@ -63,7 +63,7 @@ function IconLayers({ size = 16, color = "currentColor" }) {
 const STATS = [
   { value: `${TOTAL_PRODUCTS}+`, label: "Products", Icon: IconChart },
   { value: "20+", label: "Retailers", Icon: IconStore },
-  { value: "7", label: "Perf. Axes", Icon: IconRadar },
+  { value: "0", label: "Bias", Icon: IconRadar },
   { value: "24h", label: "Price Cycle", Icon: IconClock },
 ];
 
@@ -195,7 +195,7 @@ function GearSelectorsSection({ isMobile }) {
       </div>
 
       <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ textAlign: "center", color: T.muted, fontSize: "13px", marginTop: "24px" }}>
-        5 more selectors coming soon {"\u2014"} Harnesses, Pants, Helmets & more
+        More selectors coming soon {"\u2014"} Helmets & more
       </motion.p>
     </section>
   );
@@ -259,7 +259,7 @@ function InsightsSection({ isMobile }) {
               onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
                 <IconBook size={14} color={T.accent} />
-                <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: T.accent }}>Insight</span>
+                <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: T.accent }}>Insight {["I", "II", "III"][i]}</span>
               </div>
               <h3 style={{ fontSize: "16px", fontWeight: 800, color: T.text, lineHeight: 1.35, marginBottom: "10px", fontFamily: T.font }}>{insight.title}</h3>
               <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.65, flex: 1 }}>{insight.description}</p>
@@ -363,20 +363,7 @@ export default function Landing() {
 
       {/* About section */}
       <section id="about" style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "48px 16px" : "80px 40px" }}>
-        {/* Stats strip */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: "12px", marginBottom: "32px" }}>
-          {[
-            { number: String(TOTAL_PRODUCTS), label: "Products compared" },
-            { number: "20+", label: "Retailers tracked" },
-            { number: "Daily", label: "Price updates" },
-            { number: "0", label: "Ads or sponsored rankings" },
-          ].map(s => (
-            <div key={s.label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: "12px", padding: "18px", textAlign: "center" }}>
-              <div style={{ fontSize: "22px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{s.number}</div>
-              <div style={{ fontSize: "11px", color: T.muted, marginTop: "4px" }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
+        {/* (Stats strip removed — consolidated into hero stats bar) */}
 
         {/* Who + mission */}
         <div style={{ maxWidth: "820px", margin: "0 auto 32px", background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: isMobile ? "24px 20px" : "28px 32px", textAlign: "center" }}>
