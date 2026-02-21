@@ -70,10 +70,12 @@ function sSet(uvs, svs) {
 function upperBase(mat) {
   if (!mat) return mat;
   const m = mat.toLowerCase();
-  if (m === "leather" || m === "microfiber" || m === "synthetic" || m === "microsuede") return m;
+  if (m === "leather" || m === "synthetic" || m === "leather/synthetic" || m === "microsuede") return m;
+  if (m === "microfiber") return "synthetic";
+  if (m.includes("leather") && m.includes("synthetic")) return "leather/synthetic";
   if (m.includes("leather")) return "leather";
   if (m.includes("microsuede")) return "microsuede";
-  if (m.includes("microfiber") || m.includes("lorica") || m.includes("washtex")) return "microfiber";
+  if (m.includes("microfiber") || m.includes("lorica") || m.includes("washtex")) return "synthetic";
   return "synthetic";
 }
 
@@ -234,7 +236,7 @@ const GROUPS = [
         key: "upper_material",
         label: "Upper",
         type: "multi",
-        options: ["leather", "microfiber", "synthetic"],
+        options: ["leather", "leather/synthetic", "synthetic"],
       },
       { key: "weight_g", label: "Weight (g)", type: "range", min: 300, max: 700 },
       { key: "vegan", label: "Vegan", type: "bool" },

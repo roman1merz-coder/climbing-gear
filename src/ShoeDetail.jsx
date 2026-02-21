@@ -979,7 +979,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Midsole" value={cap(shoe.midsole)} />
                 <SpecRow label="Rand" value={cap(shoe.rand)} />
                 <SpecRow label="Upper Material" value={cap(shoe.upper_material)} />
-                <SpecRow label="Weight" value={shoe.weight_g ? `${shoe.weight_g}g` : null} />
+                <SpecRow label="Weight (pair)" value={shoe.weight_g ? `${shoe.weight_g}g` : null} />
                 <SpecRow label="Break-in" value={cap(shoe.break_in_period)} />
               </div>
             </div>

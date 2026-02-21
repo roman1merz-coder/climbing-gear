@@ -214,7 +214,7 @@ function getSpecSections(shoes) {
         { label: "Closure",   values: shoes.map((s) => cap(s.closure)) },
         { label: "Feel",      values: shoes.map((s) => cap(s.feel)) },
         {
-          label: "Weight",
+          label: "Weight (pair)",
           values: shoes.map((s) => fmtWeight(s.weight_g)),
           winnerIdx: findWinner(shoes, (s) => s.weight_g || Infinity, "min"),
         },
