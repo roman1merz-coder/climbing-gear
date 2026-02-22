@@ -21566,7 +21566,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "flat",
+    "downturn": "slight",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -21591,14 +21591,14 @@
     "cons": "[\"Not aggressive enough for steep terrain\", \"Limited sensitivity compared to performance shoes\"]",
     "sizing": "True to size. Wide foot adaptability (5/5 rating). Padded tongue for comfort.",
     "customer_voices": null,
-    "vegan": true,
+    "vegan": null,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -21654,7 +21654,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -21667,14 +21667,14 @@
     "cons": "[\"Minimal ankle protection on rocky terrain\", \"No midsole for technical support\", \"Lower durability under heavy use\"]",
     "sizing": "True to size with minimal stretching expected.",
     "customer_voices": "[\"The downturn really shines on overhanging problems. After a few sessions, I realized these are exactly what I'd been looking for.\", \"Incredible foot sensitivity on tiny features. When I need to trust my placements, I reach for these.\", \"These work equally well in the gym and outdoors. Solid everyday climbing shoe that delivers performance.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
       "weight_note": "Suspicious round number - needs manual verification",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Tenaya",
@@ -21730,7 +21730,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -21750,7 +21750,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Tenaya",
@@ -21820,7 +21820,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -21878,7 +21878,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -21898,7 +21898,7 @@
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Tenaya",
@@ -21941,9 +21941,9 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
-    "asymmetry": "slight",
-    "downturn": "moderate",
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -21955,7 +21955,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -21972,7 +21972,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Tenaya",
@@ -22016,7 +22016,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "moderate",
     "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -22030,7 +22030,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22047,7 +22047,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -22092,8 +22092,8 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "strong",
-    "downturn": "aggressive",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -22105,7 +22105,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22125,7 +22125,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -22170,8 +22170,8 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "strong",
-    "downturn": "aggressive",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -22183,7 +22183,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22203,7 +22203,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -22246,7 +22246,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "slight",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -22259,7 +22259,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22279,7 +22279,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Tenaya",
@@ -22322,7 +22322,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "slight",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -22335,7 +22335,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -22355,7 +22355,7 @@
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Tenaya",
@@ -22395,7 +22395,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -22428,7 +22428,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -22468,7 +22468,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -22501,7 +22501,7 @@
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tenaya",
@@ -22544,7 +22544,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "slight",
+    "asymmetry": "moderate",
     "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -22558,7 +22558,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22578,7 +22578,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Tenaya",
@@ -22634,7 +22634,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22654,7 +22654,7 @@
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Tulson Tolf",
