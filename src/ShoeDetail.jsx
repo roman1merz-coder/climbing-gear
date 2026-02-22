@@ -451,7 +451,7 @@ function ImageGallery({ shoe, compact }) {
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
         position: "relative", border: `1px solid ${T.border}`,
-        background: activeUrl ? "#f5f5f5" : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        background: activeUrl ? "#ffffff" : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         {activeUrl && <img
@@ -478,7 +478,7 @@ function ImageGallery({ shoe, compact }) {
           <button key={i} onClick={() => setActive(i)} style={{
             flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
             border: i === active ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
-            background: thumbHasImage(i) ? "#f5f5f5" : T.surface,
+            background: thumbHasImage(i) ? "#ffffff" : T.surface,
             cursor: "pointer", opacity: i === active ? 1 : 0.5,
             transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
             flexDirection: "column", gap: "2px", overflow: "hidden",
