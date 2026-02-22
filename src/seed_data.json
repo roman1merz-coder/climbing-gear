@@ -16702,7 +16702,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -16785,7 +16785,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -16948,7 +16948,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -17031,7 +17031,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -17186,7 +17186,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -17263,7 +17263,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -17343,7 +17343,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "forefoot",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
@@ -17416,7 +17416,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "full",
+    "midsole": "forefoot",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
@@ -17495,7 +17495,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "forefoot",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
@@ -17578,7 +17578,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.0,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -18047,7 +18047,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -18129,7 +18129,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -18205,7 +18205,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -18289,7 +18289,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -18370,7 +18370,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -18454,7 +18454,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -18535,7 +18535,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -18619,7 +18619,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -18988,7 +18988,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -19069,7 +19069,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "three_quarter",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
@@ -19150,7 +19150,7 @@
       "soft"
     ],
     "rubber_thickness_mm": null,
-    "midsole": "partial",
+    "midsole": "three_quarter",
     "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
@@ -19228,7 +19228,7 @@
       "soft"
     ],
     "rubber_thickness_mm": null,
-    "midsole": "partial",
+    "midsole": "three_quarter",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
@@ -19306,7 +19306,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "three_quarter",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
@@ -19382,7 +19382,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -20022,7 +20022,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -20186,7 +20186,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -20266,7 +20266,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "three_quarter",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -20346,7 +20346,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "three_quarter",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -20426,7 +20426,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
