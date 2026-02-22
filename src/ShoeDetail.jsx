@@ -432,64 +432,82 @@ function CustomerVoices({ shoe, stacked }) {
 
 // ─── Image Gallery ───
 function ImageGallery({ shoe, compact }) {
+  // Build unified gallery: hero image first, then any extra images from DB
+  const gallery = React.useMemo(() => {
+    const imgs = [];
+    const hasHero = shoe.image_url && shoe.image_url.startsWith("/images/");
+    if (hasHero) imgs.push({ url: shoe.image_url, label: "Main" });
+    if (Array.isArray(shoe.images)) {
+      for (const entry of shoe.images) {
+        try {
+          const obj = typeof entry === "string" ? JSON.parse(entry) : entry;
+          if (obj && obj.url && obj.url !== shoe.image_url) imgs.push(obj);
+        } catch { /* skip malformed */ }
+      }
+    }
+    return imgs;
+  }, [shoe.image_url, shoe.images]);
+
   const [active, setActive] = useState(0);
-  // Use images array if available, otherwise fall back to single hero image
-  // images may come from Supabase as text[] (array of JSON strings) — parse if needed
-  const rawImages = Array.isArray(shoe.images) && shoe.images.length > 0 ? shoe.images : null;
-  const gallery = rawImages ? rawImages.map(img => {
-    if (typeof img === "string") { try { return JSON.parse(img); } catch { return null; } }
-    return img;
-  }).filter(Boolean) : null;
-  const galleryReady = gallery && gallery.length > 0 ? gallery : null;
-  const hasImage = shoe.image_url && shoe.image_url.startsWith("/images/");
-  const views = galleryReady ? galleryReady.map(img => img.label || "View") : ["Side view", "Top view", "Sole", "Heel"];
-  const activeUrl = galleryReady ? galleryReady[active]?.url : (hasImage ? shoe.image_url : null);
-  const thumbHasImage = (i) => galleryReady ? !!galleryReady[i]?.url : (i === 0 && hasImage);
-  const thumbUrl = (i) => galleryReady ? galleryReady[i]?.url : shoe.image_url;
+  const safeIdx = Math.min(active, Math.max(0, gallery.length - 1));
+  const currentImg = gallery[safeIdx];
+  const multiImage = gallery.length > 1;
+  if (gallery.length === 0) {
+    return (
+      <div style={{
+        width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
+        border: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{ textAlign: "center" }}>
+          <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>{"\uD83D\uDC5F"}</div>
+          <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>No image available</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
-        position: "relative", border: `1px solid ${T.border}`,
-        background: activeUrl ? "#ffffff" : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        position: "relative", border: `1px solid ${T.border}`, background: "#f5f5f5",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        {activeUrl && <img
-          src={activeUrl}
-          alt={`${shoe.brand} ${shoe.model} - ${views[active]}`}
+        <img
+          src={currentImg.url}
+          alt={`${shoe.brand} ${shoe.model} – ${currentImg.label || ""}`}
           style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
-        />}
-        {!activeUrl && <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>{"\uD83D\uDC5F"}</div>
-          <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>{views[active]}</div>
-        </div>}
-        {views.length > 1 && <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
-          {views.map((_, i) => (
-            <button key={i} onClick={() => setActive(i)} style={{
-              width: i === active ? "24px" : "8px", height: "8px", borderRadius: "4px",
-              background: i === active ? T.accent : "rgba(255,255,255,0.3)",
-              border: "none", cursor: "pointer", transition: "all 0.3s ease",
-            }} />
-          ))}
-        </div>}
+        />
+        {multiImage && (
+          <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
+            {gallery.map((_, i) => (
+              <button key={i} onClick={() => setActive(i)} style={{
+                width: i === safeIdx ? "24px" : "8px", height: "8px", borderRadius: "4px",
+                background: i === safeIdx ? T.accent : "rgba(255,255,255,0.3)",
+                border: "none", cursor: "pointer", transition: "all 0.3s ease",
+              }} />
+            ))}
+          </div>
+        )}
       </div>
-      {views.length > 1 && <div style={{ display: "flex", gap: compact ? "6px" : "8px", marginTop: compact ? "8px" : "10px" }}>
-        {views.map((v, i) => (
-          <button key={i} onClick={() => setActive(i)} style={{
-            flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
-            border: i === active ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
-            background: thumbHasImage(i) ? "#ffffff" : T.surface,
-            cursor: "pointer", opacity: i === active ? 1 : 0.5,
-            transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
-            flexDirection: "column", gap: "2px", overflow: "hidden",
-          }}>
-            {thumbHasImage(i) && <img src={thumbUrl(i)} alt={`${shoe.model} ${v}`}
-              style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }} />}
-            {!thumbHasImage(i) && <span style={{ fontSize: "18px", opacity: 0.5 }}>{"\uD83D\uDC5F"}</span>}
-            {!thumbHasImage(i) && <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>}
-          </button>
-        ))}
-      </div>}
+      {multiImage && (
+        <div style={{ display: "flex", gap: compact ? "6px" : "8px", marginTop: compact ? "8px" : "10px" }}>
+          {gallery.map((img, i) => (
+            <button key={i} onClick={() => setActive(i)} style={{
+              flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
+              border: i === safeIdx ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
+              background: "#f5f5f5",
+              cursor: "pointer", opacity: i === safeIdx ? 1 : 0.6,
+              transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
+              overflow: "hidden",
+            }}>
+              <img src={img.url} alt={img.label || `View ${i + 1}`}
+                style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }} />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
