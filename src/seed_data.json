@@ -11489,7 +11489,14 @@
     "model": "D2.ONE HV",
     "slug": "mad-rock-d2-one-hv",
     "image_url": "/images/shoes/mad-rock-d2-one-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-hv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-hv-B.jpg\",\"label\":\"Back\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-hv-C.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-hv-D.jpg\",\"label\":\"Alternate\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-hv-E.jpg\",\"label\":\"Detail\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -11566,7 +11573,14 @@
     "model": "D2.ONE LV",
     "slug": "mad-rock-d2-one-lv",
     "image_url": "/images/shoes/mad-rock-d2-one-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-lv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-lv-B.jpg\",\"label\":\"Back\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-lv-C.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-lv-D.jpg\",\"label\":\"Alternate\"}",
+      "{\"url\":\"/images/shoes/mad-rock-d2-one-lv-E.jpg\",\"label\":\"Detail\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -11643,7 +11657,14 @@
     "model": "Drone 2 HV",
     "slug": "mad-rock-drone-2-hv",
     "image_url": "/images/shoes/mad-rock-drone-2-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-C.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-D.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-E.jpg\",\"label\":\"Alternate\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -11717,7 +11738,14 @@
     "model": "Drone 2 LV",
     "slug": "mad-rock-drone-2-lv",
     "image_url": "/images/shoes/mad-rock-drone-2-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-C.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-D.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-E.jpg\",\"label\":\"Alternate\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -11791,7 +11819,12 @@
     "model": "Drone CS HV",
     "slug": "mad-rock-drone-cs-hv",
     "image_url": "/images/shoes/mad-rock-drone-cs-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-hv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-hv-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-hv-C.jpg\",\"label\":\"Bottom\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -11868,7 +11901,13 @@
     "model": "Drone CS LV",
     "slug": "mad-rock-drone-cs-lv",
     "image_url": "/images/shoes/mad-rock-drone-cs-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-lv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-lv-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-lv-C.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-drone-cs-lv-D.jpg\",\"label\":\"Alternate\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -11942,7 +11981,13 @@
     "model": "Phoenix",
     "slug": "mad-rock-phoenix",
     "image_url": "/images/shoes/mad-rock-phoenix.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-phoenix.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-phoenix-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-phoenix-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-phoenix-C.jpg\",\"label\":\"Lace detail\"}",
+      "{\"url\":\"/images/shoes/mad-rock-phoenix-D.jpg\",\"label\":\"Leather detail\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -12017,7 +12062,13 @@
     "model": "RedLine Strap",
     "slug": "mad-rock-redline-strap",
     "image_url": "/images/shoes/mad-rock-redline-strap.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap-A.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap-B.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap-C.jpg\",\"label\":\"Alternate\"}",
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap-D.jpg\",\"label\":\"Detail\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -12090,7 +12141,13 @@
     "model": "Remora HV",
     "slug": "mad-rock-remora-hv",
     "image_url": "/images/shoes/mad-rock-remora-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-remora-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-hv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-hv-B.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-hv-C.jpg\",\"label\":\"Downturn detail\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-hv-D.jpg\",\"label\":\"Alternate\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -12163,7 +12220,13 @@
     "model": "Remora LV",
     "slug": "mad-rock-remora-lv",
     "image_url": "/images/shoes/mad-rock-remora-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-remora-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-lv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-lv-B.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-lv-C.jpg\",\"label\":\"Downturn detail\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-lv-D.jpg\",\"label\":\"Alternate\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -12236,7 +12299,15 @@
     "model": "Remora Pro HV",
     "slug": "mad-rock-remora-pro-hv",
     "image_url": "/images/shoes/mad-rock-remora-pro-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv-A.jpg\",\"label\":\"Left\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv-B.jpg\",\"label\":\"Right\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv-C.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv-D.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv-E.jpg\",\"label\":\"Inside pads\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-hv-F.jpg\",\"label\":\"Closure detail\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -12309,7 +12380,15 @@
     "model": "Remora Pro LV",
     "slug": "mad-rock-remora-pro-lv",
     "image_url": "/images/shoes/mad-rock-remora-pro-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv-B.jpg\",\"label\":\"Back\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv-C.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv-D.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv-E.jpg\",\"label\":\"Inside pads\"}",
+      "{\"url\":\"/images/shoes/mad-rock-remora-pro-lv-F.jpg\",\"label\":\"Closure detail\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -12385,7 +12464,13 @@
     "model": "Rover",
     "slug": "mad-rock-rover",
     "image_url": "/images/shoes/mad-rock-rover.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-rover.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-rover-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-rover-B.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-rover-C.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-rover-D.jpg\",\"label\":\"Sole detail\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -12459,7 +12544,13 @@
     "model": "Shark 3 HV",
     "slug": "mad-rock-shark-3-hv",
     "image_url": "/images/shoes/mad-rock-shark-3-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-hv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-hv-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-hv-C.jpg\",\"label\":\"Bottom\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-hv-D.jpg\",\"label\":\"Outside\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -12535,7 +12626,12 @@
     "model": "Shark 3 LV",
     "slug": "mad-rock-shark-3-lv",
     "image_url": "/images/shoes/mad-rock-shark-3-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-lv-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-lv-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-shark-3-lv-C.jpg\",\"label\":\"Outside\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -12611,7 +12707,10 @@
     "model": "Talaria HV",
     "slug": "mad-rock-talaria-hv",
     "image_url": "/images/shoes/mad-rock-talaria-hv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-talaria-hv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-talaria-hv-A.jpg\",\"label\":\"Top\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
@@ -12684,7 +12783,10 @@
     "model": "Talaria LV",
     "slug": "mad-rock-talaria-lv",
     "image_url": "/images/shoes/mad-rock-talaria-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-talaria-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-talaria-lv-A.jpg\",\"label\":\"Top\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -12757,7 +12859,15 @@
     "model": "Villain",
     "slug": "mad-rock-villain",
     "image_url": "/images/shoes/mad-rock-villain.jpg",
-    "images": null,
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-villain.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-B.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-C.jpg\",\"label\":\"Outside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-D.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-E.jpg\",\"label\":\"Midsole\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-F.jpg\",\"label\":\"Upper detail\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
