@@ -13559,50 +13559,51 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Advancer QC",
     "slug": "ocun-advancer-qc",
     "image_url": "/images/shoes/ocun-advancer-qc.jpg",
     "images": null,
-    "toe_form": "egyptian",
+    "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "beginner",
-      "hobby",
-      "intermediate"
+      "intermediate",
+      "advanced"
     ],
     "use_cases": [
       "sport",
-      "boulder"
+      "trad_multipitch"
     ],
     "best_rock_types": [
-      "indoor",
+      "granite",
       "limestone",
-      "sandstone"
+      "indoor"
     ],
     "best_wall_angles": [
-      "slab",
-      "vertical"
+      "vertical",
+      "overhang",
+      "slab"
     ],
     "best_foothold_types": [
       "edge",
+      "pocket",
       "smear"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 105.0,
+    "price_uvp_eur": 100.0,
     "current_price_eur": 85.0,
-    "discount_pct": 19.0,
-    "size_range": null,
+    "discount_pct": 15.0,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "flat",
+    "downturn": "moderate",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -13610,12 +13611,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -13623,7 +13624,7 @@
     "weight_g": 438,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Beginner-to-intermediate Czech introduction with versatile geometry and quick-cuff convenience. Flat profile and relaxed fit prioritize learning fundamentals while CAT Rubber medium hardness provides consistent grip. Accessible price point removes equipment anxiety.",
+    "description": "Comfortable velcro variant of the Advancer designed for advanced climbers. Built on the Advantic last with slight asymmetry and moderate downturn, combining a stiffer 2D Fit Hard midsole with CAT 1.5 rubber for precision on edges and multi-pitch routes.",
     "pros": "[\"Beginner-friendly geometry\", \"Quick-cuff convenience\", \"Affordable entry point\", \"Medium rubber versatile\"]",
     "cons": "[\"Flat geometry lacks specialization\", \"Partial heel rubber coverage\", \"Quick-cuff can loosen over time\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width suits typical beginner and intermediate feet without extremes.",
@@ -13635,10 +13636,10 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Bullit",
     "slug": "ocun-bullit",
     "image_url": "/images/shoes/ocun-bullit.jpg",
@@ -13657,39 +13658,41 @@
     ],
     "best_rock_types": [
       "indoor",
-      "limestone"
+      "limestone",
+      "granite"
     ],
     "best_wall_angles": [
       "overhang",
-      "vertical"
+      "vertical",
+      "roof"
     ],
     "best_foothold_types": [
       "smear",
+      "edge",
       "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 140.0,
+    "price_uvp_eur": 120.0,
     "current_price_eur": 115.0,
-    "discount_pct": 17.9,
-    "size_range": null,
+    "discount_pct": 4.2,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
     "downturn": "moderate",
     "toe_patch": "full",
-    "heel_rubber_coverage": "full",
+    "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
     "durability": [
-      "low",
       "moderate"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -13697,7 +13700,7 @@
     "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Aggressive Czech boulderer targeting steep terrain with strong asymmetry and moderate downturn. Soft CAT Rubber 1.5 with microfiber upper creates sensitive feedback on overhanging problem. Velcro convenience and minimal break-in make quick attempts possible while maintaining responsiveness.",
+    "description": "Soft performance shoe built on the Asymmetrix last with moderate downturn and strong asymmetry. The 3D toe patch and CAT 1.5 rubber provide excellent grip on volumes and during dynamic moves. Single velcro strap with slim profile prevents shoe rotation.",
     "pros": "[\"Soft CAT Rubber for feel\", \"Strong asymmetry for pockets\", \"Velcro convenience\", \"Minimal break-in period\"]",
     "cons": "[\"Low durability limits lifespan\", \"Moderate downturn restricts slab\", \"Aggressive geometry polarizing\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size immediately. Standard width suits typical feet; soft nature provides additional comfort.",
@@ -13709,10 +13712,10 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Diamond S",
     "slug": "ocun-diamond-s",
     "image_url": "/images/shoes/ocun-diamond-s.jpg",
@@ -13720,34 +13723,34 @@
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
-      "advanced",
-      "elite"
+      "advanced"
     ],
     "use_cases": [
       "boulder",
       "sport"
     ],
     "best_rock_types": [
+      "indoor",
       "limestone",
-      "granite",
-      "indoor"
+      "granite"
     ],
     "best_wall_angles": [
       "overhang",
-      "roof"
+      "roof",
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",
-      "pocket",
+      "smear",
       "volume"
     ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 150.0,
+    "feel": "moderate",
+    "price_uvp_eur": 140.0,
     "current_price_eur": 135.0,
-    "discount_pct": 10.0,
-    "size_range": null,
+    "discount_pct": 3.6,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
@@ -13759,20 +13762,20 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 450,
     "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "description": "Czech precision engineering elevates elite performance through aggressive microfiber construction and CAT Rubber 1.5 responsiveness. Tensioned design with strong asymmetry targets pocket and volume climbing where margin matters. Microfiber upper maintains shape through intensive session cycling.",
+    "break_in_period": "moderate",
+    "description": "High-performance bouldering shoe designed for maximum precision. The asymmetric Excentric 2.0 last supports compressed toes for outstanding edge precision on micro-holds. Features innovative 3D midsole for efficient power transfer and large 3D-shaped CAT Rubber toe patch for precise toe hooks.",
     "pros": "[\"Aggressive asymmetric profile for pockets\", \"Microfiber upper stays consistent\", \"CAT Rubber responsive feedback\", \"Czech quality engineering\"]",
     "cons": "[\"Stiff microfiber demands break-in\", \"Steep price tag\", \"Medium volume restricts roomy feet\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Medium volume suits standard feet; narrow feet find perfect snugness here.",
@@ -13784,10 +13787,10 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Fury",
     "slug": "ocun-fury",
     "image_url": "/images/shoes/ocun-fury.jpg",
@@ -13795,9 +13798,8 @@
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
-      "intermediate",
       "advanced"
     ],
     "use_cases": [
@@ -13806,22 +13808,23 @@
     ],
     "best_rock_types": [
       "indoor",
-      "limestone"
+      "limestone",
+      "granite"
     ],
     "best_wall_angles": [
       "overhang",
       "roof"
     ],
     "best_foothold_types": [
+      "edge",
       "smear",
-      "volume",
-      "pocket"
+      "volume"
     ],
     "feel": "soft",
-    "price_uvp_eur": 140.0,
+    "price_uvp_eur": 130.0,
     "current_price_eur": 119.0,
-    "discount_pct": 15.0,
-    "size_range": null,
+    "discount_pct": 8.5,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
@@ -13831,23 +13834,22 @@
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
     "durability": [
-      "low",
       "moderate"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 420,
     "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "description": "Soft, aggressive Czech energy for intermediate-to-advanced boulderers dominating roofs and overhangs. CAT Rubber 1.5 delivers ground feel while strong asymmetry powers pocket sequences. Velcro closure allows rapid adjustments between attempts while soft microfiber molds to foot shape.",
+    "break_in_period": "moderate",
+    "description": "Aggressive bouldering shoe built on the Competition last for maximum precision on steep terrain. Features aggressive downturn, stiff toe zone and soft construction for sensitivity. Full rubber coverage on toe and heel for reliable hooking. 3 Force System enhances torsional stability.",
     "pros": "[\"Soft rubber reads texture detail\", \"Aggressive downturn for roofs\", \"Quick velcro adjustments\", \"CAT Rubber responsiveness\"]",
     "cons": "[\"Low durability on aggressive use\", \"Soft rubber wears faster\", \"Aggressive profile unsuitable for slab\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size immediately. Standard width accommodates typical feet; soft nature molds over sessions.",
@@ -13859,71 +13861,70 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Havoc",
     "slug": "ocun-havoc",
     "image_url": "/images/shoes/ocun-havoc.jpg",
     "images": null,
-    "toe_form": "greek",
+    "toe_form": "roman",
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
-      "hobby",
-      "intermediate",
-      "advanced"
+      "intermediate"
     ],
     "use_cases": [
-      "boulder",
-      "sport"
+      "sport",
+      "boulder"
     ],
     "best_rock_types": [
       "indoor",
       "limestone",
-      "sandstone"
+      "granite"
     ],
     "best_wall_angles": [
       "vertical",
+      "slab",
       "overhang"
     ],
     "best_foothold_types": [
       "smear",
-      "edge",
-      "volume"
+      "volume",
+      "edge"
     ],
-    "feel": "moderate-soft",
-    "price_uvp_eur": 130.0,
+    "feel": "soft",
+    "price_uvp_eur": 110.0,
     "current_price_eur": 109.0,
-    "discount_pct": 16.2,
-    "size_range": null,
+    "discount_pct": 0.9,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "moderate",
+    "asymmetry": "moderate",
+    "downturn": "flat",
     "toe_patch": "full",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
-    "rand": "tensioned",
+    "midsole": "toe",
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 432,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Accessible intermediate Czech shoe with moderate asymmetry and relaxed profile for broad-skill-range boulderers. Greek toe form with moderate asymmetry suits varied foot shapes while soft CAT Rubber 1.5 maintains feedback. Velcro system and minimal break-in enable rapid skill progression.",
+    "description": "Balanced all-round performance shoe with moderate asymmetry and neutral downturn. Built on the All-round last for normal to wide feet. The 3D toe patch from CAT 1.5 rubber provides precision for toe hooks. Dual velcro straps ensure quick and precise fitting.",
     "pros": "[\"Greek form accommodates variations\", \"Soft CAT Rubber responsive\", \"Minimal break-in period\", \"Accessible price point\"]",
     "cons": "[\"Moderate durability\", \"Moderate asymmetry limits specialization\", \"Standard geometry\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width and volume accommodate typical foot shapes without extremes.",
@@ -13935,10 +13936,10 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Iris",
     "slug": "ocun-iris",
     "image_url": "/images/shoes/ocun-iris.jpg",
@@ -13952,52 +13953,53 @@
       "advanced"
     ],
     "use_cases": [
-      "boulder",
-      "sport"
+      "sport",
+      "boulder"
     ],
     "best_rock_types": [
       "indoor",
-      "limestone"
+      "limestone",
+      "granite"
     ],
     "best_wall_angles": [
+      "vertical",
       "overhang",
-      "vertical"
+      "slab"
     ],
     "best_foothold_types": [
       "edge",
-      "pocket",
-      "volume"
+      "smear"
     ],
-    "feel": "moderate-soft",
-    "price_uvp_eur": 130.0,
+    "feel": "soft",
+    "price_uvp_eur": 120.0,
     "current_price_eur": 105.0,
-    "discount_pct": 19.2,
-    "size_range": null,
+    "discount_pct": 12.5,
+    "size_range": "33-43",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "strong",
+    "asymmetry": "moderate",
     "downturn": "moderate",
     "toe_patch": "full",
-    "heel_rubber_coverage": "full",
+    "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 410,
+    "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Narrow Czech specialist for pointed-foot climbers targeting overhangs and boulders with precision geometry. Strong asymmetry and aggressive downturn concentrate power while narrow volume accommodates Egyptian foot form naturally. CAT Rubber 1.5 delivers responsive feedback.",
+    "description": "Technical climbing shoe designed specifically for narrow feet. Built on the Slimtix last with reduced volume in instep and heel, moderate asymmetry and a relatively flat profile. Features 3D toe patch for toe hooks and soft midsole for enhanced comfort. Lightweight at 400g.",
     "pros": "[\"Narrow fit for Egyptian feet\", \"Strong asymmetry for power\", \"Aggressive downturn precise\", \"CAT Rubber sensitivity\"]",
     "cons": "[\"Narrow volume excludes wider feet\", \"Aggressive geometry limiting\", \"Limited size range\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Narrow width and volume ideal for Egyptian foot form; oversizing negates fit benefits.",
@@ -14009,68 +14011,69 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Jett Crack",
     "slug": "ocun-jett-crack",
     "image_url": "/images/shoes/ocun-jett-crack.jpg",
     "images": null,
-    "toe_form": "egyptian",
+    "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "hobby",
-      "intermediate"
+      "intermediate",
+      "advanced"
     ],
     "use_cases": [
       "trad_multipitch"
     ],
     "best_rock_types": [
       "granite",
-      "sandstone"
+      "sandstone",
+      "limestone"
     ],
     "best_wall_angles": [
-      "slab",
-      "vertical"
+      "vertical",
+      "slab"
     ],
     "best_foothold_types": [
       "crack",
       "edge",
       "smear"
     ],
-    "feel": "stiff",
-    "price_uvp_eur": 130.0,
+    "feel": "moderate",
+    "price_uvp_eur": 120.0,
     "current_price_eur": 109.0,
-    "discount_pct": 16.2,
-    "size_range": null,
+    "discount_pct": 9.2,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "slight",
+    "asymmetry": "moderate",
     "downturn": "flat",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "full",
     "ankle_protection": "low",
     "durability": [
       "high"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 376,
+    "weight_g": 542,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
-    "description": "Stiff Czech trad specialist with full midsole and flat profile engineered for crack and edge climbing. No toe patch forces authentic foot placement while high durability and tensioned construction handle demanding traditional climbing. CAT Rubber medium hardness maintains edge feel on granite.",
+    "description": "Dedicated crack and trad climbing shoe with hidden lacing and extended rubber coverage to prevent abrasion. Built on the All-round last with moderate asymmetry and neutral downturn. Thicker 4.5mm CAT 1.5 rubber and stiff 2D Fit Hard midsole provide all-day support.",
     "pros": "[\"Stiff midsole for crack climbing\", \"Full midsole supports long pitches\", \"High durability for trad abuse\", \"No toe patch builds technique\"]",
     "cons": "[\"Stiff midsole limits bouldering\", \"No toe patch learning curve\", \"Moderate break-in period required\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size with lacing. Standard width accommodates typical feet; stiff nature requires proper sizing.",
@@ -14082,7 +14085,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Ocun",
@@ -14158,37 +14161,33 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Jett QC",
     "slug": "ocun-jett-qc",
     "image_url": "/images/shoes/ocun-jett-qc.jpg",
     "images": null,
-    "toe_form": "egyptian",
-    "forefoot_volume": "standard",
+    "toe_form": "roman",
+    "forefoot_volume": "high",
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "beginner",
-      "hobby",
       "intermediate"
     ],
     "use_cases": [
       "sport",
-      "boulder",
       "trad_multipitch"
     ],
     "best_rock_types": [
-      "indoor",
+      "granite",
       "limestone",
-      "sandstone",
-      "granite"
+      "sandstone"
     ],
     "best_wall_angles": [
-      "slab",
-      "vertical"
+      "vertical",
+      "slab"
     ],
     "best_foothold_types": [
       "edge",
@@ -14199,11 +14198,11 @@
     "price_uvp_eur": 110.0,
     "current_price_eur": 95.0,
     "discount_pct": 13.6,
-    "size_range": null,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "moderate",
     "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
@@ -14212,20 +14211,20 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "CAT Rubber 1.5 4mm",
+    "rubber_type": "CAT 1.5",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 420,
+    "weight_g": 496,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Quick-cuff versatility for sport, boulder, and trad with flat Egyptian geometry and relaxed fit. Quick closure mechanism enables rapid transitions between climbing styles while CAT Rubber 1.5 medium hardness handles varied rock types. Multi-wall-angle competency suits adventure climbers.",
+    "description": "Comfortable sport climbing shoe with dual velcro closure. Built on the All-round last with moderate asymmetry and more volume in the instep and toe area. The stiffer 2D Fit Hard midsole provides stability and support on small holds.",
     "pros": "[\"Quick-cuff system saves time\", \"Flat profile for varied terrain\", \"Medium CAT Rubber versatility\", \"Broad skill-level range\"]",
     "cons": "[\"Quick-cuff can loosen over session\", \"Flat geometry limits specialization\", \"Partial heel rubber coverage\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width accommodates typical feet with quick-cuff adjustment capability.",
@@ -14237,7 +14236,78 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
+  },
+  {
+    "brand": "Ocun",
+    "model": "Jett S",
+    "slug": "ocun-jett-s",
+    "image_url": "/images/shoes/ocun-jett-s.jpg",
+    "images": null,
+    "toe_form": "roman",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "moderate",
+    "price_uvp_eur": 115.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": "35-47",
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "flat",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "CAT 1.5",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": "relaxed",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 443,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Technical bouldering shoe with split sole design for enhanced flexibility and sensitivity. Built on the All-round last with moderate asymmetry and neutral downturn. The split sole increases arch flexibility while the 2D Fit Hard midsole maintains support on small holds. Single velcro strap for quick sessions.",
+    "pros": "[\"Split sole for flexibility\", \"Good sensitivity for bouldering\", \"Supportive midsole\", \"Versatile all-round last\"]",
+    "cons": "[\"Less aggressive than dedicated boulder shoes\", \"Split sole reduces edging power slightly\"]",
+    "sizing": "Half size down from street size for performance fit.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Ocun",
@@ -14292,7 +14362,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -14312,10 +14382,10 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Ozone",
     "slug": "ocun-ozone",
     "image_url": "/images/shoes/ocun-ozone.jpg",
@@ -14323,11 +14393,10 @@
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
-      "advanced",
-      "elite"
+      "advanced"
     ],
     "use_cases": [
       "sport",
@@ -14339,19 +14408,19 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "vertical",
-      "overhang"
+      "overhang",
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",
       "pocket",
-      "volume"
+      "smear"
     ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 150.0,
+    "feel": "moderate",
+    "price_uvp_eur": 140.0,
     "current_price_eur": 125.0,
-    "discount_pct": 16.7,
-    "size_range": null,
+    "discount_pct": 10.7,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
@@ -14364,12 +14433,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 4mm",
+    "rubber_type": "Vibram",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -14377,7 +14446,7 @@
     "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
-    "description": "Versatile Czech intermediate-to-advanced performer balancing sport and boulder on vertical through overhanging terrain. Egyptian toe form with tapered flat design provides noted sensitivity while Vibram XS Grip 4mm and medium hardness deliver consistency. Tensioned rand ensures edge precision.",
+    "description": "Technical micro-hold specialist with Vibram rubber sole and 3 Force System. Built on the Asymmetrix last with moderate downturn and strong asymmetry. Features rubber toe patch and precisely fitting heel for confidence on demanding rock lines.",
     "pros": "[\"Tapered Egyptian foot suits many\", \"Medium rubber versatile on surfaces\", \"Excellent vertical to overhang range\", \"Consistent Vibram XS Grip\"]",
     "cons": "[\"Moderate break-in period\", \"Moderate durability for heavy use\", \"Generic versatility\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Standard width and volume suit most feet; taper accommodates varied foot shapes.",
@@ -14389,22 +14458,21 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Ozone HV",
     "slug": "ocun-ozone-hv",
     "image_url": "/images/shoes/ocun-ozone-hv.jpg",
     "images": null,
-    "toe_form": "egyptian",
+    "toe_form": "roman",
     "forefoot_volume": "high",
     "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
-      "advanced",
-      "elite"
+      "advanced"
     ],
     "use_cases": [
       "sport",
@@ -14416,23 +14484,23 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "vertical",
-      "overhang"
+      "overhang",
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",
       "pocket",
-      "volume"
+      "smear"
     ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 150.0,
+    "feel": "moderate",
+    "price_uvp_eur": 140.0,
     "current_price_eur": 125.0,
-    "discount_pct": 16.7,
-    "size_range": null,
+    "discount_pct": 10.7,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "strong",
+    "asymmetry": "moderate",
     "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -14441,12 +14509,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 4mm",
+    "rubber_type": "Vibram",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -14454,7 +14522,7 @@
     "weight_g": 480,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
-    "description": "Wide-volume variant of Ozone geometry for climbers with roomy feet seeking tapered Czech design. Elevated heel fit and increased volume maintain the tapered Egyptian profile while accommodating broader foot shapes. Vibram XS Grip 4mm and medium hardness unchanged from standard Ozone.",
+    "description": "High-volume version of the Ozone for climbers with wider feet and higher insteps. Built on the Asymmetrix Plus last with more toe box volume. Features Vibram rubber, 3 Force System for stability, and 3D midsole for power transfer.",
     "pros": "[\"Wide volume for roomy feet\", \"Maintains Egyptian taper benefits\", \"Medium hardness consistent\", \"Versatile wall angle range\"]",
     "cons": "[\"Moderate break-in still required\", \"Volume may be excessive for narrow feet\", \"Slightly heavier than standard\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Elevated volume and width suit climbers with broad forefeet and higher instep.",
@@ -14466,10 +14534,10 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Pearl",
     "slug": "ocun-pearl",
     "image_url": "/images/shoes/ocun-pearl.jpg",
@@ -14521,7 +14589,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -14538,7 +14606,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Ocun",
@@ -14663,13 +14731,13 @@
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": null,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": null,
+    "weight_g": 464,
     "stretch_expectation": null,
     "break_in_period": "minimal",
     "description": "Purpose-built rental shoe designed for climbing gyms.",
@@ -14681,7 +14749,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Ocun",
@@ -14737,7 +14805,7 @@
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "synthetic",
-    "weight_g": 340,
+    "weight_g": 170,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Children's climbing shoe with orthopedic design supporting natural foot development. Frog-shaped Velcro encourages independence. Ultra-lightweight at 170g per shoe.",
@@ -14755,40 +14823,39 @@
     "midsole_stiffness": null
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Sigma",
     "slug": "ocun-sigma",
     "image_url": "/images/shoes/ocun-sigma.jpg",
     "images": null,
     "toe_form": "egyptian",
-    "forefoot_volume": "low",
-    "width": "narrow",
+    "forefoot_volume": "standard",
+    "width": "medium",
     "heel_volume": "narrow",
     "skill_level": [
-      "advanced",
-      "elite"
+      "advanced"
     ],
     "use_cases": [
-      "sport"
+      "sport",
+      "boulder"
     ],
     "best_rock_types": [
       "limestone",
-      "granite",
-      "sandstone"
+      "granite"
     ],
     "best_wall_angles": [
-      "vertical",
-      "overhang"
+      "overhang",
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",
       "pocket"
     ],
     "feel": "stiff-moderate",
-    "price_uvp_eur": 170.0,
+    "price_uvp_eur": 150.0,
     "current_price_eur": 139.0,
-    "discount_pct": 18.2,
-    "size_range": null,
+    "discount_pct": 7.3,
+    "size_range": "35-47",
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
@@ -14801,20 +14868,20 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 4mm (split sole)",
+    "rubber_type": "Vibram",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 500,
     "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "description": "Ultimate Czech response to technical sport climbing and gym competition. Narrow microfiber platform paired with split-sole Vibram XS Grip and aggressive lacing creates millimeter precision for hard routes. Medium rubber hardness and elite skill requirement mark this as a serious specialist.",
+    "break_in_period": "moderate",
+    "description": "Maximum precision technical shoe built on the Competition last with lace closure. Features a two-part 3D Fit Hard midsole supporting both toes and arch for enhanced stability. Vibram rubber delivers reliable grip. 3D toe patch for precise hooking.",
     "pros": "[\"Lace precision for foot control\", \"Split sole allows flex management\", \"Medium rubber balances grip and sensitivity\", \"Lightweight construction\"]",
     "cons": "[\"Narrow fit excludes most climbers\", \"Split sole requires technique adjustment\", \"Elite-only approach\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size with tight lacing. Narrow heel and volume suit pointed Czech feet ideally.",
@@ -14823,7 +14890,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Ocun",
@@ -14896,81 +14963,80 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
-    "brand": "Ocún",
+    "brand": "Ocun",
     "model": "Striker QC",
     "slug": "ocun-striker-qc",
     "image_url": "/images/shoes/ocun-striker-qc.jpg",
     "images": null,
-    "toe_form": "egyptian",
+    "toe_form": "roman",
     "forefoot_volume": "standard",
-    "width": "wide",
+    "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
       "beginner",
-      "hobby"
+      "intermediate"
     ],
     "use_cases": [
-      "sport",
-      "boulder"
+      "sport"
     ],
     "best_rock_types": [
       "indoor",
       "limestone"
     ],
     "best_wall_angles": [
-      "slab",
-      "vertical"
+      "vertical",
+      "slab"
     ],
     "best_foothold_types": [
       "edge",
-      "smear"
+      "smear",
+      "volume"
     ],
-    "feel": "stiff",
+    "feel": "moderate",
     "price_uvp_eur": 90.0,
     "current_price_eur": 79.0,
     "discount_pct": 12.2,
-    "size_range": null,
+    "size_range": "35-50",
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
     "durability": [
-      "moderate",
-      "high"
+      "moderate"
     ],
-    "rubber_type": "Grippin rubber 4mm",
+    "rubber_type": "CAT 1.1",
     "rubber_hardness": [
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 429,
+    "weight_g": 418,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Budget-conscious Czech beginner shoe with wide fit and stiff proprietary Grippin rubber for durable gym foundation building. Flat geometry with no asymmetry suits technique development while quick-cuff system enables rapid attempts. Relaxed approach prioritizes approachability.",
+    "description": "Beginner-friendly all-day climbing shoe with comfortable Entratic last and flat profile. Features slight asymmetry for natural foot position, CAT 1.1 rubber for balanced grip and durability, and dual velcro for quick adjustment. Available in extended size range up to UK 15.",
     "pros": "[\"Budget price point accessible\", \"Wide fit comfortable\", \"Stiff Grippin rubber durable\", \"Quick-cuff convenience\"]",
     "cons": "[\"Stiff rubber less sensitive\", \"Flat geometry uninspiring\", \"Partial heel coverage limits durability\"]",
     "sizing": "Microfiber minimal stretch fits true-to-size. Wide width and standard volume suit broader feet and casual climbers.",
     "customer_voices": "[\"Affordable entry without compromise. Grippin rubber is surprisingly durable.\", \"Wide fit made gym climbing comfortable while learning.\"]",
     "vegan": true,
-    "resoleable": true,
+    "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
