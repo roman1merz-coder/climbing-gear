@@ -21530,7 +21530,11 @@
     "model": "Araí",
     "slug": "tenaya-arai",
     "image_url": "/images/shoes/tenaya-arai.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-arai.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-arai-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-arai-vista-superior.jpg\", \"label\": \"Top view\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "wide",
@@ -21605,7 +21609,13 @@
     "model": "Iati",
     "slug": "tenaya-iati",
     "image_url": "/images/shoes/tenaya-iati.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-iati.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-iati-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-iati-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-iati-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-iati-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -21681,7 +21691,12 @@
     "model": "Indalo",
     "slug": "tenaya-indalo",
     "image_url": "/images/shoes/tenaya-indalo.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-indalo.jpg\", \"label\": \"Side view\"}",
+      "{\"url\": \"/images/shoes/tenaya-indalo-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-indalo-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-indalo-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -21757,7 +21772,13 @@
     "model": "Inti",
     "slug": "tenaya-inti",
     "image_url": "/images/shoes/tenaya-inti.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-inti.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-inti-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-inti-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-inti-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-inti-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "high",
     "width": "wide",
@@ -21827,7 +21848,13 @@
     "model": "Masai",
     "slug": "tenaya-masai",
     "image_url": "/images/shoes/tenaya-masai.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-masai.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-masai-vista-lateral.jpg\", \"label\": \"Side view\"}",
+      "{\"url\": \"/images/shoes/tenaya-masai-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-masai-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-masai-vista-trasera.jpg\", \"label\": \"Heel view\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -21905,7 +21932,13 @@
     "model": "Mastia",
     "slug": "tenaya-mastia",
     "image_url": "/images/shoes/tenaya-mastia.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-mastia.jpg\", \"label\": \"Side view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mastia-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mastia-vista-superior2.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mastia-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mastia-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -21979,7 +22012,13 @@
     "model": "Mundaka",
     "slug": "tenaya-mundaka",
     "image_url": "/images/shoes/tenaya-mundaka.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-mundaka.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-mundaka-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mundaka-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mundaka-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-mundaka-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -22054,7 +22093,13 @@
     "model": "Oasi",
     "slug": "tenaya-oasi",
     "image_url": "/images/shoes/tenaya-oasi.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-oasi.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -22132,7 +22177,13 @@
     "model": "Oasi LV",
     "slug": "tenaya-oasi-lv",
     "image_url": "/images/shoes/tenaya-oasi-lv.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-oasi-lv.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-lv-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-lv-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-lv-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-oasi-lv-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -22210,7 +22261,13 @@
     "model": "Ra",
     "slug": "tenaya-ra",
     "image_url": "/images/shoes/tenaya-ra.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-ra.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "wide",
@@ -22286,7 +22343,13 @@
     "model": "Ra Woman",
     "slug": "tenaya-ra-woman",
     "image_url": "/images/shoes/tenaya-ra-woman.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-ra-woman.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-woman-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-woman-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-woman-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-ra-woman-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -22362,7 +22425,13 @@
     "model": "Tanta",
     "slug": "tenaya-tanta",
     "image_url": "/images/shoes/tenaya-tanta.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-tanta.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-vista-suela.jpg\", \"label\": \"Sole\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-tanta-green.jpg\", \"label\": \"Green colorway\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -22435,7 +22504,12 @@
     "model": "Tanta Laces",
     "slug": "tenaya-tanta-laces",
     "image_url": "/images/shoes/tenaya-tanta-laces.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-tanta-laces.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-laces-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-laces-vista-suela.jpg\", \"label\": \"Sole\"}",
+      "{\"url\": \"/images/shoes/tenaya-tanta-laces-tanta-lx-green.jpg\", \"label\": \"Green colorway\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "wide",
@@ -22508,7 +22582,13 @@
     "model": "Tarifa",
     "slug": "tenaya-tarifa",
     "image_url": "/images/shoes/tenaya-tarifa.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-tarifa.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-tarifa-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tarifa-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tarifa-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tarifa-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -22585,7 +22665,13 @@
     "model": "Tatanka",
     "slug": "tenaya-tatanka",
     "image_url": "/images/shoes/tenaya-tatanka.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/tenaya-tatanka.jpg\", \"label\": \"Main\"}",
+      "{\"url\": \"/images/shoes/tenaya-tatanka-vista-escorzo.jpg\", \"label\": \"Three-quarter view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tatanka-vista-superior.jpg\", \"label\": \"Top view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tatanka-vista-trasera.jpg\", \"label\": \"Heel view\"}",
+      "{\"url\": \"/images/shoes/tenaya-tatanka-vista-suela.jpg\", \"label\": \"Sole\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
