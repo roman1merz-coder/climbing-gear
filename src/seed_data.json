@@ -24156,8 +24156,7 @@
       "advanced"
     ],
     "use_cases": [
-      "sport",
-      "boulder"
+      "sport"
     ],
     "best_rock_types": [
       "limestone",
@@ -24240,8 +24239,7 @@
       "advanced"
     ],
     "use_cases": [
-      "sport",
-      "boulder"
+      "sport"
     ],
     "best_rock_types": [
       "limestone",
@@ -24628,7 +24626,6 @@
     ],
     "use_cases": [
       "sport",
-      "boulder",
       "trad_multipitch"
     ],
     "best_rock_types": [
