@@ -434,12 +434,18 @@ function CustomerVoices({ shoe, stacked }) {
 function ImageGallery({ shoe, compact }) {
   const [active, setActive] = useState(0);
   // Use images array if available, otherwise fall back to single hero image
-  const gallery = Array.isArray(shoe.images) && shoe.images.length > 0 ? shoe.images : null;
+  // images may come from Supabase as text[] (array of JSON strings) — parse if needed
+  const rawImages = Array.isArray(shoe.images) && shoe.images.length > 0 ? shoe.images : null;
+  const gallery = rawImages ? rawImages.map(img => {
+    if (typeof img === "string") { try { return JSON.parse(img); } catch { return null; } }
+    return img;
+  }).filter(Boolean) : null;
+  const galleryReady = gallery && gallery.length > 0 ? gallery : null;
   const hasImage = shoe.image_url && shoe.image_url.startsWith("/images/");
-  const views = gallery ? gallery.map(img => img.label || "View") : ["Side view", "Top view", "Sole", "Heel"];
-  const activeUrl = gallery ? gallery[active]?.url : (hasImage ? shoe.image_url : null);
-  const thumbHasImage = (i) => gallery ? !!gallery[i]?.url : (i === 0 && hasImage);
-  const thumbUrl = (i) => gallery ? gallery[i]?.url : shoe.image_url;
+  const views = galleryReady ? galleryReady.map(img => img.label || "View") : ["Side view", "Top view", "Sole", "Heel"];
+  const activeUrl = galleryReady ? galleryReady[active]?.url : (hasImage ? shoe.image_url : null);
+  const thumbHasImage = (i) => galleryReady ? !!galleryReady[i]?.url : (i === 0 && hasImage);
+  const thumbUrl = (i) => galleryReady ? galleryReady[i]?.url : shoe.image_url;
   return (
     <div>
       <div style={{
