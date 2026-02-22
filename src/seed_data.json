@@ -16481,81 +16481,6 @@
   },
   {
     "brand": "Scarpa",
-    "model": "Arpia",
-    "slug": "scarpa-arpia",
-    "image_url": "/images/shoes/scarpa-arpia.jpg",
-    "images": null,
-    "toe_form": "roman",
-    "forefoot_volume": "standard",
-    "width": "medium",
-    "heel_volume": "medium",
-    "skill_level": [
-      "hobby",
-      "intermediate"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "limestone",
-      "granite",
-      "indoor"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical",
-      "overhang"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "moderate-soft",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
-    "discount_pct": 14.4,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "slight",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "full",
-    "ankle_protection": "none",
-    "durability": [
-      "moderate",
-      "high"
-    ],
-    "rubber_type": "Vibram XS Grip2",
-    "rubber_hardness": [
-      "hard"
-    ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
-    "rand": "tensioned",
-    "gender": "mens",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 380,
-    "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "description": "A lightweight introduction to technical climbing, the Arpia combines moderate downturn with Vibram XS Edge rubber and exceptional value in a men's-specific package. The rounded toe box and symmetrical design suit climbers with balanced foot geometry transitioning from beginner to intermediate.",
-    "pros": "[\"Excellent value proposition\", \"Durable XS Edge rubber\", \"Versatile rounded toe\", \"Lightweight at 280g\"]",
-    "cons": "[\"Moderate downturn only\", \"Partial heel coverage\", \"Less asymmetric than peers\"]",
-    "sizing": "Standard volume, medium width; minimal stretch. Size to a snug fit. Quick break-in expected.",
-    "customer_voices": "[\"Beginner to intermediate climber. The Arpia is approachable, durable, and doesn't demand a lot of foot shaping skill.\", \"Good bang for buck\\u00e2\\u20ac\\u201dthe XS Edge rubber lasts, and the balanced design works across wall angles.\"]",
-    "vegan": false,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
-    }
-  },
-  {
-    "brand": "Scarpa",
     "model": "Arpia V",
     "slug": "scarpa-arpia-v",
     "image_url": "/images/shoes/scarpa-arpia-v.jpg",
@@ -16612,7 +16537,7 @@
     ],
     "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
@@ -16623,8 +16548,8 @@
     "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "An updated intermediate-level variant of the Arpia, blending moderate downturn with XS Edge rubber and a partial midsole for extended comfort and support. The rounded toe box suits diverse foot shapes, making it ideal for intermediate climbers tackling everything from gyms to outdoor sport.",
-    "pros": "[\"Durable XS Edge rubber\", \"Moderate midsole support\", \"Versatile rounded toe\", \"Intermediate balance\"]",
+    "description": "An updated intermediate-level variant of the Arpia, blending moderate downturn with XS Grip 2 rubber and a partial midsole for extended comfort and support. The rounded toe box suits diverse foot shapes, making it ideal for intermediate climbers tackling everything from gyms to outdoor sport.",
+    "pros": "[\"Durable XS Grip 2 rubber\", \"Moderate midsole support\", \"Versatile rounded toe\", \"Intermediate balance\"]",
     "cons": "[\"Moderate downturn only\", \"Partial heel coverage\", \"Heavier than slippers\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Size to snug, supportive fit.",
     "customer_voices": "[\"Intermediate sport climber. The Arpia V gives me support and durability for full-day outdoor sessions.\", \"The XS Edge rubber ages beautifully, and the midsole keeps my feet fresher than pure slippers.\"]",
@@ -16694,7 +16619,7 @@
     ],
     "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
@@ -16705,86 +16630,11 @@
     "weight_g": 450,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "The low-volume variant of the Arpia V, designed for intermediate climbers with narrower feet seeking support and versatility without bulk. Maintains the same XS Edge rubber and partial midsole philosophy while reducing volume for improved heel fit and lighter weight.",
-    "pros": "[\"Perfect for narrow feet\", \"Durable XS Edge rubber\", \"Partial midsole support\", \"Intermediate versatile\"]",
+    "description": "The low-volume variant of the Arpia V, designed for intermediate climbers with narrower feet seeking support and versatility without bulk. Maintains the same XS Grip 2 rubber and partial midsole philosophy while reducing volume for improved heel fit and lighter weight.",
+    "pros": "[\"Perfect for narrow feet\", \"Durable XS Grip 2 rubber\", \"Partial midsole support\", \"Intermediate versatile\"]",
     "cons": "[\"Low volume not for wider feet\", \"Moderate downturn only\", \"Heavier than pure slippers\"]",
     "sizing": "Low-volume fit ideal for narrow to medium-narrow feet. Minimal stretch. Size snug from day one.",
     "customer_voices": "[\"Narrow-footed intermediate. The Arpia V LV fits perfectly and supports me through long climbing sessions.\", \"The weight and fit make these my everyday climbing shoe for gym and crag.\"]",
-    "vegan": false,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
-    }
-  },
-  {
-    "brand": "Scarpa",
-    "model": "Arpia Women's",
-    "slug": "scarpa-arpia-womens",
-    "image_url": "/images/shoes/scarpa-arpia-womens.jpg",
-    "images": null,
-    "toe_form": "roman",
-    "forefoot_volume": "low",
-    "width": "narrow",
-    "heel_volume": "narrow",
-    "skill_level": [
-      "hobby",
-      "intermediate"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "limestone",
-      "granite",
-      "indoor"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical",
-      "overhang"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "moderate-soft",
-    "price_uvp_eur": 139.0,
-    "current_price_eur": 119.0,
-    "discount_pct": 14.4,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "slight",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "full",
-    "ankle_protection": "none",
-    "durability": [
-      "moderate",
-      "high"
-    ],
-    "rubber_type": "Vibram XS Grip2",
-    "rubber_hardness": [
-      "hard"
-    ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
-    "rand": "tensioned",
-    "gender": "womens",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 450,
-    "stretch_expectation": "minimal",
-    "break_in_period": "minimal",
-    "description": "The women's-specific Arpia, engineered with lower volume and narrower heel while maintaining the same approachable design and durable XS Edge rubber. Ideal for female climbers seeking a lightweight, forgiving intermediate shoe that doesn't sacrifice performance.",
-    "pros": "[\"Women's-engineered fit\", \"Durable XS Edge\", \"Lightweight design\", \"Accessible for skill progression\"]",
-    "cons": "[\"Lower volume limits appeal\", \"Partial rubber coverage\", \"Moderate downturn\"]",
-    "sizing": "Women's-specific low volume and narrow heel. Minimal stretch. Size for a snug, supportive fit.",
-    "customer_voices": "[\"Female beginner. The Arpia Women's fits my narrow heel perfectly and has enough downturn to feel special without being overwhelming.\", \"Intermediate female climber. These work for gym and outdoor, and at this price, I can rotate multiple pairs.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -18276,7 +18126,7 @@
     ],
     "rubber_type": "Vibram XS Grip2 / M50 (forefoot)",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
@@ -18350,7 +18200,7 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Edge",
+    "rubber_type": "Vibram XS Grip 2",
     "rubber_hardness": [
       "soft"
     ],
@@ -19133,9 +18983,9 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2",
+    "rubber_type": "Vibram XS Grip 2 / M50 (toe patch)",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
@@ -19146,7 +18996,7 @@
     "weight_g": 420,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
-    "description": "A laced sport shoe bridging aggression and all-day wearability, the Mago combines moderate downturn with XS Edge/Grip 2 rubber and a partial midsole. Strong asymmetry and narrow heel make it ideal for advanced climbers tackling varied terrain from slabs to pockets without midsole bulk.",
+    "description": "A laced sport shoe bridging aggression and all-day wearability, the Mago combines moderate downturn with XS Grip 2 rubber and M50 toe patch for grip and sensitivity. Strong asymmetry and narrow heel make it ideal for advanced climbers tackling varied terrain from slabs to pockets.",
     "pros": "[\"Strong asymmetry for power\", \"Lace precision control\", \"Mixed rubber for versatility\", \"Moderate supportive midsole\"]",
     "cons": "[\"Laces require fine adjustment\", \"Heavier than slipper options\", \"Not aggressive enough for elite\"]",
     "sizing": "Standard volume, medium width; minimal stretch. Lace allows progressive tightening. Moderate break-in expected.",
@@ -19847,7 +19697,7 @@
     ],
     "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
@@ -19858,8 +19708,8 @@
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "A low-volume variant of the Vapor platform, designed for climbers with narrower feet seeking versatile edge-focused performance without bulk. Maintains the durable XS Edge rubber and center-shaped last while reducing volume and weight for precise, responsive climbing.",
-    "pros": "[\"Perfect for narrower feet\", \"Durable XS Edge rubber\", \"Lighter and more responsive\", \"Versatile edge focus\"]",
+    "description": "A low-volume variant of the Vapor platform, designed for climbers with narrower feet seeking versatile edge-focused performance without bulk. Maintains the durable XS Grip 2 rubber and center-shaped last while reducing volume and weight for precise, responsive climbing.",
+    "pros": "[\"Perfect for narrower feet\", \"Durable XS Grip 2 rubber\", \"Lighter and more responsive\", \"Versatile edge focus\"]",
     "cons": "[\"Low volume not for wider feet\", \"Partial midsole only\", \"Velcro-only closure\"]",
     "sizing": "Low-volume fit ideal for narrow to medium-narrow feet. Minimal stretch. Size snug from day one.",
     "customer_voices": "[\"Narrow-footed intermediate climber. The Vapor LV fits me perfectly and has enough edge control for my progression.\", \"The lighter weight and narrow fit make these my go-to for all-day climbing sessions.\"]",
