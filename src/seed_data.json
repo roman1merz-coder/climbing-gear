@@ -23758,7 +23758,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -23840,7 +23840,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -23922,7 +23922,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -24005,7 +24005,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24088,7 +24088,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24166,7 +24166,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24245,7 +24245,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24305,7 +24305,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "none"
   },
   {
     "brand": "Unparallel",
@@ -24387,7 +24387,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Unparallel",
@@ -24466,7 +24466,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}",
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Unparallel",
@@ -24530,7 +24530,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24598,7 +24598,7 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24665,7 +24665,7 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24732,7 +24732,7 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24815,7 +24815,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -24899,7 +24899,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -24983,7 +24983,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -25063,7 +25063,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Unparallel",
@@ -25132,7 +25132,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -25211,7 +25211,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25290,7 +25290,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25373,7 +25373,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25437,7 +25437,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -25519,7 +25519,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25578,7 +25578,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Unparallel",
@@ -25658,7 +25658,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25738,7 +25738,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25801,7 +25801,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -25879,7 +25879,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Unparallel",
@@ -25942,7 +25942,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -26027,7 +26027,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Unparallel",
@@ -26111,7 +26111,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -26195,7 +26195,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -26259,7 +26259,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -26323,7 +26323,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -26403,7 +26403,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Unparallel",
@@ -26482,7 +26482,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}",
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Wild Climb",
