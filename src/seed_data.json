@@ -11663,7 +11663,7 @@
       "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-B.jpg\",\"label\":\"Top\"}",
       "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-C.jpg\",\"label\":\"Bottom\"}",
       "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-D.jpg\",\"label\":\"Heel\"}",
-      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-E.jpg\",\"label\":\"Alternate\"}"
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-hv-E.jpg\",\"label\":\"Detail\"}"
     ],
     "toe_form": "roman",
     "forefoot_volume": "high",
@@ -11744,7 +11744,7 @@
       "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-B.jpg\",\"label\":\"Top\"}",
       "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-C.jpg\",\"label\":\"Bottom\"}",
       "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-D.jpg\",\"label\":\"Heel\"}",
-      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-E.jpg\",\"label\":\"Alternate\"}"
+      "{\"url\":\"/images/shoes/mad-rock-drone-2-lv-E.jpg\",\"label\":\"Detail\"}"
     ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
@@ -11978,6 +11978,81 @@
   },
   {
     "brand": "Mad Rock",
+    "model": "Mad Monkey 3",
+    "slug": "mad-rock-mad-monkey-3",
+    "image_url": "/images/shoes/mad-rock-mad-monkey-3.jpg",
+    "images": [
+      "{\"url\":\"/images/shoes/mad-rock-mad-monkey-3.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/mad-rock-mad-monkey-3-A.jpg\",\"label\":\"Inside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-mad-monkey-3-B.jpg\",\"label\":\"Top\"}"
+    ],
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "beginner"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "soft",
+    "price_uvp_eur": 45,
+    "current_price_eur": 45,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "Science Friction 3.0 (sole + toe) / Science Friction R2 (heel rand)",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": null,
+    "midsole": "full",
+    "rand": "relaxed",
+    "gender": "unisex",
+    "kids_friendly": true,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Purpose-built kids' climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and soft feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
+    "pros": "[\"Adjustable heel strap grows with the child\",\"3D molded toe cap for comfort and protection\",\"Lightweight and easy to put on\",\"Affordable entry point for young climbers\",\"Sticky Science Friction rubber for confidence on holds\"]",
+    "cons": "[\"Limited to easy terrain and indoor walls\",\"No advanced features for progressing technique\",\"Minimal angle views available\"]",
+    "sizing": "Available in US Toddler 12 through US Kids 5. Hook-and-loop closure makes fitting easy for small hands.",
+    "customer_voices": "[\"My kid loves these — easy to get on and off, and she feels confident on the wall.\",\"Great starter shoe. The adjustable heel means we won t need to replace them every few months.\",\"Perfect for our Saturday climbing sessions. Comfortable enough that he actually wants to wear them.\"]",
+    "vegan": true,
+    "resoleable": false,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Specs from Mad Rock product page. Weight not listed.",
+      "weight_verified": false
+    }
+  },
+  {
+    "brand": "Mad Rock",
     "model": "Phoenix",
     "slug": "mad-rock-phoenix",
     "image_url": "/images/shoes/mad-rock-phoenix.jpg",
@@ -12066,8 +12141,8 @@
       "{\"url\":\"/images/shoes/mad-rock-redline-strap.jpg\",\"label\":\"Side view\"}",
       "{\"url\":\"/images/shoes/mad-rock-redline-strap-A.jpg\",\"label\":\"Top\"}",
       "{\"url\":\"/images/shoes/mad-rock-redline-strap-B.jpg\",\"label\":\"Inside\"}",
-      "{\"url\":\"/images/shoes/mad-rock-redline-strap-C.jpg\",\"label\":\"Alternate\"}",
-      "{\"url\":\"/images/shoes/mad-rock-redline-strap-D.jpg\",\"label\":\"Detail\"}"
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap-C.jpg\",\"label\":\"Detail\"}",
+      "{\"url\":\"/images/shoes/mad-rock-redline-strap-D.jpg\",\"label\":\"Action\"}"
     ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
@@ -12863,10 +12938,10 @@
       "{\"url\":\"/images/shoes/mad-rock-villain.jpg\",\"label\":\"Side view\"}",
       "{\"url\":\"/images/shoes/mad-rock-villain-A.jpg\",\"label\":\"Inside\"}",
       "{\"url\":\"/images/shoes/mad-rock-villain-B.jpg\",\"label\":\"Top\"}",
-      "{\"url\":\"/images/shoes/mad-rock-villain-C.jpg\",\"label\":\"Outside\"}",
+      "{\"url\":\"/images/shoes/mad-rock-villain-C.jpg\",\"label\":\"Detail\"}",
       "{\"url\":\"/images/shoes/mad-rock-villain-D.jpg\",\"label\":\"Heel\"}",
       "{\"url\":\"/images/shoes/mad-rock-villain-E.jpg\",\"label\":\"Midsole\"}",
-      "{\"url\":\"/images/shoes/mad-rock-villain-F.jpg\",\"label\":\"Upper detail\"}"
+      "{\"url\":\"/images/shoes/mad-rock-villain-F.jpg\",\"label\":\"Upper\"}"
     ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
