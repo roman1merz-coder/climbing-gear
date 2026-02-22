@@ -7729,6 +7729,63 @@
   },
   {
     "brand": "La Sportiva",
+    "model": "Aragon Woman",
+    "slug": "la-sportiva-aragon-woman",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": null,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": "La Sportiva FriXion Black",
+    "rubber_hardness": null,
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": null,
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": "Women's specific velcro shoe with FriXion Black rubber and suede leather upper in tubular construction. LaSpoFlex 1.1mm midsole for supportive all-round performance.",
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": null,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
     "model": "Cobra",
     "slug": "la-sportiva-cobra",
     "image_url": "/images/shoes/la-sportiva-cobra.jpg",
@@ -7775,7 +7832,7 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
@@ -7851,12 +7908,12 @@
       "low",
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -7926,11 +7983,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "FriXion Eco 3mm (recycled)",
+    "rubber_type": "FriXion Eco",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -8003,7 +8060,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "medium"
     ],
@@ -8078,7 +8135,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "La Sportiva FriXion RS",
     "rubber_hardness": [
       "medium"
     ],
@@ -8153,7 +8210,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "La Sportiva FriXion RS",
     "rubber_hardness": [
       "medium"
     ],
@@ -8230,7 +8287,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "medium"
     ],
@@ -8307,11 +8364,11 @@
     "durability": [
       "low"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -8380,7 +8437,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "FriXion RS 4mm",
+    "rubber_type": "La Sportiva FriXion RS",
     "rubber_hardness": [
       "medium"
     ],
@@ -8454,7 +8511,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "FriXion RS 4mm",
+    "rubber_type": "La Sportiva FriXion RS",
     "rubber_hardness": [
       "medium"
     ],
@@ -8532,12 +8589,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -8607,7 +8664,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -8685,12 +8742,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -8763,12 +8820,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -8838,7 +8895,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "hard"
     ],
@@ -8916,11 +8973,11 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm (forefoot) / XS Edge (rand)",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 1.8,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -8941,6 +8998,120 @@
       "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Mistral",
+    "slug": "la-sportiva-mistral",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": null,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": "La Sportiva FriXion Eco",
+    "rubber_hardness": null,
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": null,
+    "gender": "mens",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": "Versatile velcro shoe featuring La Sportiva's FriXion Eco rubber and P3 System. Microfiber upper with SkinLike insole for a sustainable, high-performance option.",
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": null,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Mistral Women's",
+    "slug": "la-sportiva-mistral-womens",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": null,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": "La Sportiva FriXion Eco",
+    "rubber_hardness": null,
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": null,
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": "Women's version of the Mistral with FriXion Eco rubber and P3 System. Microfiber upper with SkinLike insole, designed for a women's specific fit.",
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": null,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -8994,7 +9165,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -9071,7 +9242,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -9148,7 +9319,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -9226,7 +9397,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -9298,7 +9469,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm (recycled)",
+    "rubber_type": "La Sportiva Eco-Rubber",
     "rubber_hardness": [
       "medium"
     ],
@@ -9308,7 +9479,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 466,
+    "weight_g": 220,
     "stretch_expectation": "full_size",
     "break_in_period": "extended",
     "description": "A dependable all-rounder, the Mythos Eco suits intermediate climbers tackling multi-pitch routes or longer gym sessions with its supportive full midsole. Lace closure lets you dial in the perfect tension, adjusting tightness from heel to toe. Durable and crack-ready, it handles granite and sandstone with aplomb.",
@@ -9323,6 +9494,64 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Mythos Eco Women's",
+    "slug": "la-sportiva-mythos-eco-womens",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": [
+      "beginner",
+      "hobby",
+      "intermediate"
+    ],
+    "use_cases": [
+      "trad_multipitch",
+      "sport"
+    ],
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": null,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "none",
+    "downturn": "flat",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": "La Sportiva Eco-Rubber",
+    "rubber_hardness": null,
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": null,
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": 220,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": "Women's version of the eco-friendly Mythos with Perwanger ecologically tanned suede and recycled Eco-Rubber sole. Full LaSpoFlex 1.1mm midsole for all-day comfort.",
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": null,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -9373,11 +9602,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -9448,7 +9677,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 5mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "medium"
     ],
@@ -9522,7 +9751,7 @@
       "low",
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip2 3.5mm + SenseGrip",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
@@ -9532,7 +9761,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 420,
+    "weight_g": 210,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Built for competition climbers, the Ondra Comp packs aggressive downturn and a highly asymmetric platform for maximum power through the big toe. With zero midsole, you get unfiltered sensitivity on micro-features. Velcro closure ensures a locked-down fit without fiddling. Built for roofs and overhangs, this shoe powers through steeper terrain.",
@@ -9600,7 +9829,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -9678,12 +9907,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -9754,7 +9983,7 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
@@ -9832,11 +10061,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "FriXion RS 4mm (forefoot) / Vibram XS Grip 2 (heel)",
+    "rubber_type": "La Sportiva FriXion RS",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
@@ -10053,12 +10282,12 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "FriXion RS 4mm (forefoot) / Vibram XS Grip 2 (heel)",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "rubber_thickness_mm": 3.5,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -10130,7 +10359,7 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
@@ -10209,7 +10438,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
@@ -10285,7 +10514,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip 2 3.5mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
@@ -10357,7 +10586,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "FriXion RS 4mm",
+    "rubber_type": "La Sportiva FriXion RS",
     "rubber_hardness": [
       "medium"
     ],
@@ -10382,6 +10611,62 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Tarantula Boulder Women's",
+    "slug": "la-sportiva-tarantula-boulder-womens",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": [
+      "beginner",
+      "hobby"
+    ],
+    "use_cases": [
+      "boulder"
+    ],
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": null,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "none",
+    "downturn": "flat",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": "La Sportiva FriXion Black",
+    "rubber_hardness": null,
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": null,
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": "Women's entry-level bouldering shoe with suede upper and LaSpoFlex 1.1mm midsole. Comfortable and easy to use for beginning boulderers.",
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": null,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -10430,7 +10715,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "La Sportiva FriXion Black",
     "rubber_hardness": [
       "medium"
     ],
@@ -10503,11 +10788,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "La Sportiva FriXion Black",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -10577,11 +10862,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "La Sportiva FriXion Black",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "mens",
@@ -10651,17 +10936,17 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "FriXion RS 5mm",
+    "rubber_type": "La Sportiva FriXion Black",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 440,
+    "weight_g": 210,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built for newcomers, the Tarantulace Women's keeps climbing comfortable with its flat profile and supportive full midsole, ideal for learning technique. Lace closure lets you dial in the perfect tension, adjusting tightness from heel to toe. Durable and crack-ready, it handles granite and sandstone with aplomb.",
@@ -10676,6 +10961,62 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "TC Extreme",
+    "slug": "la-sportiva-tc-extreme",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "trad_multipitch"
+    ],
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": null,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "none",
+    "downturn": "flat",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": "Vibram XS Grip2",
+    "rubber_hardness": null,
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": "High-top alpine climbing shoe with suede calf leather upper, thermal lining, and gaiter. Vibram XS Grip2 sole with P3 System for all-day trad and multi-pitch performance.",
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": null,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -10725,7 +11066,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -10799,7 +11140,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge 4mm",
+    "rubber_type": "Vibram XS Edge",
     "rubber_hardness": [
       "hard"
     ],
@@ -10875,11 +11216,11 @@
     "durability": [
       "low"
     ],
-    "rubber_type": "Vibram XS Grip 2 3mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "mens",
@@ -10948,7 +11289,7 @@
     "durability": [
       "low"
     ],
-    "rubber_type": "Vibram XS Grip 2 3mm",
+    "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
       "soft"
     ],
