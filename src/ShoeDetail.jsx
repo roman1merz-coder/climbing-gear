@@ -433,7 +433,7 @@ function CustomerVoices({ shoe, stacked }) {
 // ─── Image Gallery ───
 function ImageGallery({ shoe, compact }) {
   // Build unified gallery: hero image first, then any extra images from DB
-  const gallery = React.useMemo(() => {
+  const gallery = useMemo(() => {
     const imgs = [];
     const hasHero = shoe.image_url && shoe.image_url.startsWith("/images/");
     if (hasHero) imgs.push({ url: shoe.image_url, label: "Main" });
