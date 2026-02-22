@@ -433,26 +433,31 @@ function CustomerVoices({ shoe, stacked }) {
 // ─── Image Gallery ───
 function ImageGallery({ shoe, compact }) {
   const [active, setActive] = useState(0);
-  const views = ["Side view", "Top view", "Sole", "Heel"];
+  // Use images array if available, otherwise fall back to single hero image
+  const gallery = Array.isArray(shoe.images) && shoe.images.length > 0 ? shoe.images : null;
   const hasImage = shoe.image_url && shoe.image_url.startsWith("/images/");
+  const views = gallery ? gallery.map(img => img.label || "View") : ["Side view", "Top view", "Sole", "Heel"];
+  const activeUrl = gallery ? gallery[active]?.url : (hasImage ? shoe.image_url : null);
+  const thumbHasImage = (i) => gallery ? !!gallery[i]?.url : (i === 0 && hasImage);
+  const thumbUrl = (i) => gallery ? gallery[i]?.url : shoe.image_url;
   return (
     <div>
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
         position: "relative", border: `1px solid ${T.border}`,
-        background: hasImage ? "#f5f5f5" : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        background: activeUrl ? "#f5f5f5" : `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        {hasImage && <img
-          src={shoe.image_url}
-          alt={`${shoe.brand} ${shoe.model}`}
+        {activeUrl && <img
+          src={activeUrl}
+          alt={`${shoe.brand} ${shoe.model} - ${views[active]}`}
           style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
         />}
-        {!hasImage && <div style={{ textAlign: "center" }}>
+        {!activeUrl && <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: "64px", marginBottom: "8px", opacity: 0.6 }}>{"\uD83D\uDC5F"}</div>
           <div style={{ fontSize: "11px", color: T.muted, fontFamily: T.font }}>{views[active]}</div>
         </div>}
-        <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
+        {views.length > 1 && <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
           {views.map((_, i) => (
             <button key={i} onClick={() => setActive(i)} style={{
               width: i === active ? "24px" : "8px", height: "8px", borderRadius: "4px",
@@ -460,25 +465,25 @@ function ImageGallery({ shoe, compact }) {
               border: "none", cursor: "pointer", transition: "all 0.3s ease",
             }} />
           ))}
-        </div>
+        </div>}
       </div>
-      <div style={{ display: "flex", gap: compact ? "6px" : "8px", marginTop: compact ? "8px" : "10px" }}>
+      {views.length > 1 && <div style={{ display: "flex", gap: compact ? "6px" : "8px", marginTop: compact ? "8px" : "10px" }}>
         {views.map((v, i) => (
           <button key={i} onClick={() => setActive(i)} style={{
             flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
             border: i === active ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
-            background: i === 0 && hasImage ? "#f5f5f5" : T.surface,
+            background: thumbHasImage(i) ? "#f5f5f5" : T.surface,
             cursor: "pointer", opacity: i === active ? 1 : 0.5,
             transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
             flexDirection: "column", gap: "2px", overflow: "hidden",
           }}>
-            {i === 0 && hasImage && <img src={shoe.image_url} alt={shoe.model}
+            {thumbHasImage(i) && <img src={thumbUrl(i)} alt={`${shoe.model} ${v}`}
               style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }} />}
-            {!(i === 0 && hasImage) && <span style={{ fontSize: "18px", opacity: 0.5 }}>{"\uD83D\uDC5F"}</span>}
-            {!(i === 0 && hasImage) && <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>}
+            {!thumbHasImage(i) && <span style={{ fontSize: "18px", opacity: 0.5 }}>{"\uD83D\uDC5F"}</span>}
+            {!thumbHasImage(i) && <span style={{ fontSize: "8px", color: T.muted }}>{v}</span>}
           </button>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }
