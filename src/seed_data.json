@@ -66,7 +66,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -137,7 +138,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -207,7 +209,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -280,7 +283,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -354,7 +358,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -426,7 +431,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -497,7 +503,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -568,7 +575,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -642,7 +650,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -712,7 +721,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -786,7 +796,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -857,7 +868,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -928,7 +940,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -1002,7 +1015,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1075,7 +1089,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1147,7 +1162,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1222,7 +1238,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1297,7 +1314,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1367,7 +1385,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1438,7 +1457,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1508,7 +1528,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1579,7 +1600,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1652,7 +1674,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Black Diamond",
@@ -1724,7 +1747,8 @@
     "data_confidence": {
       "weight_note": "Suspicious round number - needs manual verification",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -1798,7 +1822,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -1873,7 +1898,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -1948,7 +1974,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2023,7 +2050,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2100,7 +2128,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2176,7 +2205,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2252,7 +2282,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2321,7 +2352,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2397,7 +2429,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2471,7 +2504,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2544,7 +2578,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2615,7 +2650,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Boreal",
@@ -2684,7 +2720,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Butora",
@@ -2756,7 +2793,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Butora",
@@ -2826,7 +2864,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Butora",
@@ -2904,7 +2943,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Butora",
@@ -2979,7 +3019,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Butora",
@@ -3052,7 +3093,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Butora",
@@ -3121,7 +3163,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3196,7 +3239,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3272,7 +3316,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3348,7 +3393,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3417,7 +3463,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3488,7 +3535,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3558,7 +3606,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3629,7 +3678,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3702,7 +3752,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3775,7 +3826,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Climb X",
@@ -3844,7 +3896,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -3920,7 +3973,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -3997,7 +4051,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4074,7 +4129,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4146,7 +4202,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4226,7 +4283,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4302,7 +4360,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4378,7 +4437,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4445,7 +4505,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4517,7 +4578,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4592,7 +4654,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "EB",
@@ -4668,7 +4731,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -4741,7 +4805,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -4813,7 +4878,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -4888,7 +4954,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack: 386g pair → 193g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -4957,7 +5024,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5034,7 +5102,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5109,7 +5178,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5185,7 +5255,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5259,7 +5330,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5336,7 +5408,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5407,7 +5480,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5478,7 +5552,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5553,7 +5628,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5622,7 +5698,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5699,7 +5776,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5772,7 +5850,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5849,7 +5928,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5922,7 +6002,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -5991,7 +6072,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6067,7 +6149,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6139,7 +6222,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6211,7 +6295,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6284,7 +6369,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6361,7 +6447,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6436,7 +6523,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Evolv",
@@ -6509,7 +6597,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -6586,7 +6675,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -6660,7 +6750,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -6736,7 +6827,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -6812,7 +6904,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -6884,7 +6977,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -6959,7 +7053,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7032,7 +7127,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7110,7 +7206,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7184,7 +7281,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7252,7 +7350,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7325,7 +7424,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7401,7 +7501,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7475,7 +7576,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7552,7 +7654,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Five Ten",
@@ -7621,7 +7724,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -7695,7 +7799,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -7770,7 +7875,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack: 320g pair → 160g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -7844,7 +7950,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -7920,7 +8027,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -7994,7 +8102,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8068,7 +8177,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8144,7 +8254,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8220,7 +8331,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8292,7 +8404,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8365,7 +8478,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8439,7 +8553,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8516,7 +8631,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8593,7 +8709,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8670,7 +8787,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8744,7 +8862,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8821,7 +8940,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8898,7 +9018,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -8974,7 +9095,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9050,7 +9172,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9124,7 +9247,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9198,7 +9322,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9272,7 +9397,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9346,7 +9472,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9419,7 +9546,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9496,7 +9624,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9573,7 +9702,8 @@
     "data_confidence": {
       "weight_source": "User verified - 225g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9648,7 +9778,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9722,7 +9853,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9793,7 +9925,8 @@
     "data_confidence": {
       "weight_source": "Retailer sources - 205g single shoe",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9866,7 +9999,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -9943,7 +10077,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com + La Sportiva official",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10019,7 +10154,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10094,7 +10230,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10172,7 +10309,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10243,7 +10381,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10315,7 +10454,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10387,7 +10527,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10460,7 +10601,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10533,7 +10675,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10606,7 +10749,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10679,7 +10823,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10751,7 +10896,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "La Sportiva",
@@ -10826,7 +10972,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -10900,7 +11047,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -10976,7 +11124,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11047,7 +11196,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11116,7 +11266,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11190,7 +11341,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11263,7 +11415,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11336,7 +11489,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11412,7 +11566,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Lowa",
@@ -11482,7 +11637,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -11566,7 +11722,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -11650,7 +11807,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -11731,7 +11889,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -11812,7 +11971,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -11894,7 +12054,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -11974,7 +12135,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12049,7 +12211,8 @@
     "data_confidence": {
       "note": "Specs from Mad Rock product page. Weight not listed.",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12130,7 +12293,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12209,7 +12373,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": "{\"weight_source\": \"weighmyrack.com\", \"weight_verified\": true}"
+    "data_confidence": "{\"weight_source\": \"weighmyrack.com\", \"weight_verified\": true}",
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12288,7 +12453,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12367,7 +12533,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": "{\"weight_source\": \"weighmyrack.com\", \"weight_verified\": true}"
+    "data_confidence": "{\"weight_source\": \"weighmyrack.com\", \"weight_verified\": true}",
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12448,7 +12615,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12532,7 +12700,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12612,7 +12781,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12694,7 +12864,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12775,7 +12946,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12852,7 +13024,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -12929,7 +13102,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Mad Rock",
@@ -13012,7 +13186,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Millet",
@@ -13082,7 +13257,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Millet",
@@ -13154,7 +13330,8 @@
     "vegan": false,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Millet",
@@ -13229,7 +13406,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Millet",
@@ -13304,7 +13482,8 @@
     "data_confidence": {
       "note": "Reverting estimate - not on weighmyrack",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -13379,7 +13558,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13454,7 +13634,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13527,7 +13708,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13601,7 +13783,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13675,7 +13858,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13750,7 +13934,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13823,7 +14008,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -13895,7 +14081,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -13970,7 +14157,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -14048,7 +14236,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -14122,7 +14311,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -14198,7 +14388,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -14274,7 +14465,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -14345,7 +14537,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -14419,7 +14612,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -14486,7 +14680,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -14556,7 +14751,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -14626,7 +14822,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocun",
@@ -14698,7 +14895,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Ocún",
@@ -14771,7 +14969,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -14844,7 +15043,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -14919,7 +15119,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -14995,7 +15196,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -15069,7 +15271,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -15142,7 +15345,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -15215,7 +15419,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -15291,7 +15496,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -15367,7 +15573,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Red Chili",
@@ -15440,7 +15647,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15515,7 +15723,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15590,7 +15799,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15659,7 +15869,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15736,7 +15947,8 @@
       "weight_source": "weighmyrack.com",
       "correction_note": "300g pair → 150g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15815,7 +16027,8 @@
       "weight_source": "weighmyrack.com",
       "correction_note": "300g pair → 150g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15891,7 +16104,8 @@
       "weight_source": "weighmyrack.com",
       "correction_note": "300g pair → 150g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -15965,7 +16179,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16037,7 +16252,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16106,7 +16322,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16183,7 +16400,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16252,7 +16470,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16329,7 +16548,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16403,7 +16623,8 @@
     "data_confidence": {
       "weight_source": "Estimated from brand pattern: 350g pair → 175g",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Saltic",
@@ -16477,7 +16698,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Scarpa",
@@ -16559,7 +16781,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -16641,7 +16864,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -16721,7 +16945,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -16804,7 +17029,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -16884,7 +17110,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -16967,7 +17194,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -17050,7 +17278,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Scarpa",
@@ -17122,7 +17351,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": "none"
   },
   {
     "brand": "Scarpa",
@@ -17202,7 +17432,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Scarpa",
@@ -17282,7 +17513,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Scarpa",
@@ -17362,7 +17594,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -17435,7 +17668,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -17514,7 +17748,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -17597,7 +17832,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Scarpa",
@@ -17672,7 +17908,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack: 440g pair → 220g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": "none"
   },
   {
     "brand": "Scarpa",
@@ -17749,7 +17986,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -17828,7 +18066,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -17905,7 +18144,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -17982,7 +18222,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -18066,7 +18307,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18148,7 +18390,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18224,7 +18467,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18305,7 +18549,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18389,7 +18634,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18470,7 +18716,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18554,7 +18801,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18635,7 +18883,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -18706,7 +18955,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -18779,7 +19029,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -18850,7 +19101,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -18923,7 +19175,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -19007,7 +19260,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -19088,7 +19342,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -19166,7 +19421,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -19244,7 +19500,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -19325,7 +19582,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -19398,7 +19656,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -19477,7 +19736,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -19556,7 +19816,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Scarpa",
@@ -19637,7 +19898,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -19719,7 +19981,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -19800,7 +20063,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -19881,7 +20145,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -19965,7 +20230,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -20041,7 +20307,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -20122,7 +20389,8 @@
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -20202,7 +20470,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -20282,7 +20551,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -20362,7 +20632,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Scarpa",
@@ -20442,7 +20713,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Scarpa",
@@ -20515,7 +20787,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Scarpa",
@@ -20588,7 +20861,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "Simond",
@@ -20659,7 +20933,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Simond",
@@ -20729,7 +21004,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Simond",
@@ -20796,7 +21072,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Simond",
@@ -20870,7 +21147,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "So iLL",
@@ -20945,7 +21223,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "So iLL",
@@ -21019,7 +21298,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "So iLL",
@@ -21093,7 +21373,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "So iLL",
@@ -21167,7 +21448,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "So iLL",
@@ -21240,7 +21522,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21314,7 +21597,8 @@
     "data_confidence": {
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21389,7 +21673,8 @@
     "data_confidence": {
       "weight_note": "Suspicious round number - needs manual verification",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21464,7 +21749,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21533,7 +21819,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21610,7 +21897,8 @@
     "data_confidence": {
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21683,7 +21971,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21757,7 +22046,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21834,7 +22124,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21911,7 +22202,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -21986,7 +22278,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -22061,7 +22354,8 @@
     "data_confidence": {
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -22133,7 +22427,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -22205,7 +22500,8 @@
     "data_confidence": {
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -22281,7 +22577,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tenaya",
@@ -22356,7 +22653,8 @@
     "data_confidence": {
       "note": "Specs from tenaya.net Feb 2026",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22430,7 +22728,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22505,7 +22804,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22575,7 +22875,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22646,7 +22947,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22720,7 +23022,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22791,7 +23094,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22865,7 +23169,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack: 330g pair → 165g single",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -22935,7 +23240,8 @@
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -23008,7 +23314,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -23081,7 +23388,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -23152,7 +23460,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -23226,7 +23535,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -23296,7 +23606,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Tulson Tolf",
@@ -23364,7 +23675,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23445,7 +23757,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23526,7 +23839,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23607,7 +23921,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23689,7 +24004,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23771,7 +24087,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23848,7 +24165,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23926,7 +24244,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -23985,7 +24304,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24066,7 +24386,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24144,7 +24465,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}"
+    "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}",
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24207,7 +24529,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24274,7 +24597,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24340,7 +24664,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24406,7 +24731,8 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24488,7 +24814,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24571,7 +24898,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24654,7 +24982,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24733,7 +25062,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24801,7 +25131,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24879,7 +25210,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -24957,7 +25289,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25039,7 +25372,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25102,7 +25436,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25183,7 +25518,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25241,7 +25577,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25320,7 +25657,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25399,7 +25737,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25461,7 +25800,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25538,7 +25878,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25600,7 +25941,8 @@
     "vegan": false,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25684,7 +26026,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25767,7 +26110,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25850,7 +26194,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25913,7 +26258,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -25976,7 +26322,8 @@
     "vegan": true,
     "resoleable": null,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -26055,7 +26402,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Unparallel",
@@ -26133,7 +26481,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}"
+    "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}",
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26206,7 +26555,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26280,7 +26630,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26351,7 +26702,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26419,7 +26771,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26487,7 +26840,8 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26560,7 +26914,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26633,7 +26988,8 @@
     "data_confidence": {
       "note": "Reverting estimate - not on weighmyrack",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26705,7 +27061,8 @@
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
-    }
+    },
+    "midsole_stiffness": null
   },
   {
     "brand": "Wild Climb",
@@ -26775,6 +27132,7 @@
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
-    "data_confidence": {}
+    "data_confidence": {},
+    "midsole_stiffness": null
   }
 ]

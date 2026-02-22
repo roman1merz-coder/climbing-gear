@@ -3,7 +3,7 @@
 // All 10 axes use compound scores with multiple inputs for continuous distribution.
 // Percentile normalization maps raw scores to 0→1 rank across the full shoe set.
 
-const MID_MAP = { full: 0.9, partial: 0.45, none: 0.1 };
+const MID_MAP = { full: 0.9, three_quarter: 0.75, half: 0.55, forefoot: 0.40, toe: 0.20, none: 0.1, partial: 0.45 };
 
 // ═══ STRUCTURAL STIFFNESS ═══
 // Derived entirely from physical construction — no subjective `feel` input.
@@ -154,7 +154,7 @@ export function getComfortScore(shoe) {
   const comfMat = ({ leather: 0.90, microfiber: 0.50, microsuede: 0.60, synthetic: 0.20 })[upperCategory(shoe.upper_material)] || 0.50;
   const cl = shoe.closure || "";
   const comfCl = ({ lace: 0.85, velcro: 0.70, slipper: 0.30 })[cl] || 0.55;
-  const midComf = ({ full: 0.70, partial: 0.50, none: 0.30 })[shoe.midsole] || 0.50;
+  const midComf = ({ full: 0.70, three_quarter: 0.63, half: 0.55, forefoot: 0.48, toe: 0.38, none: 0.30, partial: 0.50 })[shoe.midsole] || 0.50;
   const weightVal = shoe.weight_g ? Math.min(1, Math.max(0, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
   const thickR = rubberThick(shoe);
   return Math.min(1, flex * 0.20 + gentleDown * 0.20 + gentleAsym * 0.16 + comfMat * 0.10 + weightVal * 0.08 + comfCl * 0.10 + midComf * 0.08 + thickR * 0.08);

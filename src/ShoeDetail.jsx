@@ -988,6 +988,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Toe Patch" value={cap(shoe.toe_patch)} />
                 <SpecRow label="Heel Rubber" value={cap(shoe.heel_rubber_coverage)} />
                 <SpecRow label="Midsole" value={cap(shoe.midsole)} />
+                <SpecRow label="Midsole Stiffness" value={cap(shoe.midsole_stiffness)} />
                 <SpecRow label="Rand" value={cap(shoe.rand)} />
                 <SpecRow label="Upper Material" value={cap(shoe.upper_material)} />
                 <SpecRow label="Weight (pair)" value={shoe.weight_g ? `${shoe.weight_g}g` : null} />

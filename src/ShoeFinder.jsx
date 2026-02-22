@@ -101,7 +101,7 @@ const MIDSOLE_BASE = {
   trad_multipitch: 2,   // stiff: full
 };
 
-const MIDSOLE_NAMES = { none: 0, partial: 1, full: 2 };
+const MIDSOLE_NAMES = { none: 0, toe: 0.4, forefoot: 0.8, half: 1.1, three_quarter: 1.5, full: 2, partial: 1 };
 const MIDSOLE_LABELS = ["none", "partial", "full"];
 
 // Level + Preference → numeric value for downturn/asymmetry
@@ -305,8 +305,8 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   const targetMidsole = midsoleOvr != null ? midsoleOvr : computeTargetMidsole(disciplines, weightKg);
   const shoeMidsole = MIDSOLE_NAMES[shoe.midsole?.toLowerCase()] ?? 1;
   const midsoleDist = Math.abs(targetMidsole - shoeMidsole);
-  if (midsoleDist === 0) score += 15;
-  else if (midsoleDist === 1) score += 7;
+  if (midsoleDist <= 0.5) score += 15;
+  else if (midsoleDist <= 1) score += 7;
   else score += 2;
 
   // ── 7. Rubber thickness fit (10 pts) — weight + discipline ──

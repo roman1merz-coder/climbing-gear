@@ -276,9 +276,9 @@ const GROUPS = [
       },
       {
         key: "midsole",
-        label: "Midsole",
+        label: "Midsole Coverage",
         type: "multi",
-        options: ["none", "partial", "full"],
+        options: ["none", "toe", "forefoot", "half", "three_quarter", "full"],
       },
     ],
   },
