@@ -7870,7 +7870,13 @@
     "model": "Cobra 4:99",
     "slug": "la-sportiva-cobra-499",
     "image_url": "/images/shoes/la-sportiva-cobra-499.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-499-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-499-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-499-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-499-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-499-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "narrow",
@@ -8945,6 +8951,86 @@
     "cons": "[\"Very stiff \\u2014 minimal sensitivity\", \"Heavy\", \"Not suited for steep or technical climbing\"]",
     "sizing": "Leather stretches 0.5 EU. Size down from street size. Extended break-in (4-5 sessions) required; suits Greek/longer second toe.",
     "customer_voices": "[\"My go-to for long trad days. I can wear these for 8 hours without foot pain.\", \"Perfect for granite crack climbing. The stiff sole edges well and the leather moulds to fit.\"]",
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Not verified against weighmyrack.com - fix when error spotted",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Kubo Woman",
+    "slug": "la-sportiva-kubo-woman",
+    "image_url": "/images/shoes/la-sportiva-kubo-woman.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-kubo-woman-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-kubo-woman-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-kubo-woman-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-kubo-woman-5.jpg\", \"label\": \"View 5\"}"
+    ],
+    "toe_form": "greek",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "hobby",
+      "intermediate"
+    ],
+    "use_cases": [
+      "trad_multipitch",
+      "sport"
+    ],
+    "best_rock_types": [
+      "granite",
+      "sandstone",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "crack",
+      "smear"
+    ],
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 149.0,
+    "current_price_eur": 129.0,
+    "discount_pct": 13.4,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "Vibram XS Grip2",
+    "rubber_hardness": [
+      "hard"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": "relaxed",
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": 452,
+    "stretch_expectation": "half_size",
+    "break_in_period": "moderate",
+    "description": "The Kubo Woman is the women's-specific version of La Sportiva's all-round climbing shoe, built on a narrower last with the same versatile flat profile and comfortable fit. The unlined microfiber upper molds to your foot over time, making it an excellent choice for long days at the crag or gym sessions where comfort matters as much as performance.",
+    "pros": "[\"Comfortable women's-specific last that accommodates narrower feet well\", \"Unlined microfiber upper stretches and molds for a custom fit over time\", \"Versatile flat profile works across many climbing styles and angles\"]",
+    "cons": "[\"Flat profile limits performance on steep overhangs\", \"Unlined upper stretch means sizing requires careful consideration\", \"Not aggressive enough for technical bouldering projects\"]",
+    "sizing": "Leather stretches 0.5 EU. Size down from street size. Extended break-in (4-5 sessions) required; suits Greek/longer second toe.",
+    "customer_voices": "[\"Finally a women's shoe that fits my narrow heel without being too tight in the toe box. The Kubo Woman is my go-to for everything from multi-pitch days to gym sessions.\", \"I sized down half a size and after a few sessions the microfiber stretched to a perfect fit. Great all-day comfort shoe.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -10314,6 +10400,86 @@
   },
   {
     "brand": "La Sportiva",
+    "model": "Skwama Vegan Woman",
+    "slug": "la-sportiva-skwama-vegan-woman",
+    "image_url": "/images/shoes/la-sportiva-skwama-vegan-woman.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-vegan-woman-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-vegan-woman-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-vegan-woman-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-vegan-woman-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-vegan-woman-6.jpg\", \"label\": \"View 6\"}"
+    ],
+    "toe_form": "greek",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "pocket"
+    ],
+    "feel": "moderate-soft",
+    "price_uvp_eur": 180.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "Vibram XS Grip2",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.5,
+    "midsole": "partial",
+    "rand": "relaxed",
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 460,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Skwama Vegan Woman combines the aggressive performance profile of the Skwama with an entirely animal-free construction on a women's-specific last. The synthetic Microbase SkinLike upper provides consistent fit without stretch, paired with La Sportiva's S-Heel system and P3 platform for powerful heel hooks and maintained downturn over the shoe's lifespan.",
+    "pros": "[\"Aggressive performance without any animal products\", \"Women's-specific last with narrower heel and forefoot\", \"S-Heel system provides excellent heel hooking power and sensitivity\"]",
+    "cons": "[\"Aggressive downturn limits comfort on longer routes\", \"Synthetic upper doesn't breathe as well as leather versions\", \"Narrow fit may not suit wider feet even with women's last\"]",
+    "sizing": "Minimal stretch expected; wear your true street size. True-to-size for average feet.",
+    "customer_voices": "[\"As a vegan climber, I've been waiting for a high-performance women's shoe like this. The heel hooking is incredible and I don't have to compromise my values.\", \"Runs narrow even for a women's shoe. I went up half a size and the fit is perfect for steep bouldering.\"]",
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Not verified against weighmyrack.com - fix when error spotted",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
     "model": "Skwama Women's",
     "slug": "la-sportiva-skwama-womens",
     "image_url": "/images/shoes/la-sportiva-skwama-womens.jpg",
@@ -10470,6 +10636,89 @@
     "cons": "[\"Painful for extended wear\", \"Expensive\", \"Aggressive shape limits versatility\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
     "customer_voices": "[\"The heel system is the best in any climbing shoe. Period. Locks in for hooks and never shifts.\", \"My comp shoe. The Fast Lacing lets me tighten between problems without wasting time.\"]",
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Not verified against weighmyrack.com - fix when error spotted",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Solution Comp Woman",
+    "slug": "la-sportiva-solution-comp-woman",
+    "image_url": "/images/shoes/la-sportiva-solution-comp-woman.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-solution-comp-woman-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-comp-woman-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-comp-woman-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-comp-woman-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-comp-woman-6.jpg\", \"label\": \"View 6\"}"
+    ],
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "pocket",
+      "volume",
+      "edge"
+    ],
+    "feel": "moderate-soft",
+    "price_uvp_eur": 185.0,
+    "current_price_eur": 169.0,
+    "discount_pct": 8.6,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "Vibram XS Grip2",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.5,
+    "midsole": "partial",
+    "rand": "tensioned",
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": 420,
+    "stretch_expectation": "none",
+    "break_in_period": "minimal",
+    "description": "The Solution Comp Woman is La Sportiva's competition-grade bouldering shoe built on a women's-specific last. It combines an extremely downturned profile with minimal construction for maximum sensitivity on tiny footholds. The Fast Lacing System and Lock-Harness System provide a secure, adjustable fit while the P3 platform prevents deformation over time.",
+    "pros": "[\"Competition-level sensitivity and precision on micro footholds\", \"Women's last provides better fit for narrower feet\", \"Fast Lacing System allows quick, precise fit adjustments\"]",
+    "cons": "[\"Aggressive downturn makes it unsuitable for anything but short boulder problems\", \"Thin rubber wears faster than thicker-soled shoes\", \"Takes time to break in the stiff initial fit\"]",
+    "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
+    "customer_voices": "[\"This is the shoe that took my comp climbing to the next level. The sensitivity on tiny volumes is unmatched, and the women's fit finally means my heel doesn't slip.\", \"Not a shoe you'd want for a full session \\u2014 I swap between these and a comfort shoe. But for sending hard problems, nothing else compares.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
