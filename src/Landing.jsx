@@ -8,8 +8,9 @@ import SHOES from "./seed_data.json";
 import ROPES from "./rope_seed_data.json";
 import BELAYS from "./belay_seed_data.json";
 import PADS from "./crashpad_seed_data.json";
+import DRAWS from "./quickdraw_seed_data.json";
 
-const TOTAL_PRODUCTS = SHOES.length + ROPES.length + BELAYS.length + PADS.length;
+const TOTAL_PRODUCTS = SHOES.length + ROPES.length + BELAYS.length + PADS.length + DRAWS.length;
 
 // Responsive hook
 function useIsMobile() {
@@ -58,6 +59,9 @@ function IconShield({ size = 16, color = "currentColor" }) {
 function IconLayers({ size = 16, color = "currentColor" }) {
   return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>);
 }
+function IconLink({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>);
+}
 
 // ─── Data arrays ───
 const STATS = [
@@ -72,6 +76,7 @@ const SELECTORS = [
   { title: "Rope Selector", count: `${ROPES.length}+`, to: "/ropes", description: "Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands.", Icon: IconRope },
   { title: "Belay Device Selector", count: `${BELAYS.length}+`, to: "/belays", description: "Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price.", Icon: IconShield },
   { title: "Crashpad Selector", count: `${PADS.length}+`, to: "/crashpads", description: "Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability.", Icon: IconLayers },
+  { title: "Quickdraw Selector", count: `${DRAWS.length}+`, to: "/quickdraws", description: "Sport and trad quickdraws. Compare weight, gate type, sling length, and carabiner specs across all major brands.", Icon: IconLink },
 ];
 
 const INSIGHTS = [

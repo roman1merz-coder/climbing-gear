@@ -22,6 +22,7 @@ const TABS = [
   { key: "ropes",  label: "Ropes",      path: "/ropes",  match: ["/ropes", "/rope/"],  active: true },
   { key: "belays", label: "Belays",     path: "/belays", match: ["/belays", "/belay/"], active: true },
   { key: "pads",   label: "Crashpads",  path: "/crashpads", match: ["/crashpads", "/crashpad/"], active: true },
+  { key: "draws",  label: "Quickdraws", path: "/quickdraws", match: ["/quickdraws", "/quickdraw/"], active: true },
 ];
 
 export default function NavBar({ priceData = {} }) {
@@ -95,7 +96,7 @@ export default function NavBar({ priceData = {} }) {
               </span>
             );
           }
-          const mobileLabel = isMobile && tab.key === "pads" ? "Pads" : tab.label;
+          const mobileLabel = isMobile && tab.key === "pads" ? "Pads" : isMobile && tab.key === "draws" ? "Draws" : tab.label;
           return (
             <button
               key={tab.key}
