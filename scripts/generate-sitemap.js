@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BASE_URL = 'https://climbing-gear.vercel.app';
+const BASE_URL = 'https://climbing-gear.com';
 const TODAY = new Date().toISOString().split('T')[0];
 
 // Priority levels
@@ -35,113 +35,74 @@ function loadJSON(filename) {
 function generateSitemap() {
   const urls = [];
 
-  // Add homepage
-  urls.push({
-    loc: BASE_URL,
-    lastmod: TODAY,
-    changefreq: FREQ.home,
-    priority: PRIORITY.home,
-  });
+  // Homepage
+  urls.push({ loc: BASE_URL, lastmod: TODAY, changefreq: FREQ.home, priority: PRIORITY.home });
 
-  // Add category pages
-  const categories = [
-    { path: '/shoes', name: 'Climbing Shoes' },
-    { path: '/ropes', name: 'Ropes' },
-    { path: '/crashpads', name: 'Crash Pads' },
-    { path: '/belays', name: 'Belay Devices' },
+  // Category list pages (plural)
+  for (const cat of ['/shoes', '/ropes', '/crashpads', '/belays', '/quickdraws']) {
+    urls.push({ loc: `${BASE_URL}${cat}`, lastmod: TODAY, changefreq: FREQ.category, priority: PRIORITY.category });
+  }
+
+  // Product detail pages — SINGULAR route prefix must match React Router
+  // /shoe/:slug, /rope/:slug, /belay/:slug, /crashpad/:slug, /quickdraw/:slug
+  const datasets = [
+    { file: 'seed_data.json',         prefix: '/shoe' },
+    { file: 'rope_seed_data.json',    prefix: '/rope' },
+    { file: 'crashpad_seed_data.json', prefix: '/crashpad' },
+    { file: 'belay_seed_data.json',   prefix: '/belay' },
+    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw' },
   ];
 
-  categories.forEach(cat => {
-    urls.push({
-      loc: `${BASE_URL}${cat.path}`,
-      lastmod: TODAY,
-      changefreq: FREQ.category,
-      priority: PRIORITY.category,
-    });
-  });
+  let productCount = 0;
+  for (const { file, prefix } of datasets) {
+    const items = loadJSON(file);
+    for (const item of items) {
+      urls.push({
+        loc: `${BASE_URL}${prefix}/${item.slug}`,
+        lastmod: TODAY,
+        changefreq: FREQ.product,
+        priority: PRIORITY.product,
+      });
+      productCount++;
+    }
+  }
 
-  // Add all product detail pages
-  const shoes = loadJSON('seed_data.json');
-  shoes.forEach(shoe => {
-    urls.push({
-      loc: `${BASE_URL}/shoes/${shoe.slug}`,
-      lastmod: TODAY,
-      changefreq: FREQ.product,
-      priority: PRIORITY.product,
-    });
-  });
-
-  const ropes = loadJSON('rope_seed_data.json');
-  ropes.forEach(rope => {
-    urls.push({
-      loc: `${BASE_URL}/ropes/${rope.slug}`,
-      lastmod: TODAY,
-      changefreq: FREQ.product,
-      priority: PRIORITY.product,
-    });
-  });
-
-  const crashpads = loadJSON('crashpad_seed_data.json');
-  crashpads.forEach(pad => {
-    urls.push({
-      loc: `${BASE_URL}/crashpads/${pad.slug}`,
-      lastmod: TODAY,
-      changefreq: FREQ.product,
-      priority: PRIORITY.product,
-    });
-  });
-
-  const belays = loadJSON('belay_seed_data.json');
-  belays.forEach(belay => {
-    urls.push({
-      loc: `${BASE_URL}/belays/${belay.slug}`,
-      lastmod: TODAY,
-      changefreq: FREQ.product,
-      priority: PRIORITY.product,
-    });
-  });
-
-  // Add static pages
-  const staticPages = [
-    '/about',
-    '/methodology',
+  // Static pages
+  for (const page of [
+    '/find',
     '/insights',
-    '/gear-news',
-    '/legal',
-    '/wishlist',
-  ];
-
-  staticPages.forEach(page => {
-    urls.push({
-      loc: `${BASE_URL}${page}`,
-      lastmod: TODAY,
-      changefreq: FREQ.static,
-      priority: PRIORITY.static,
-    });
-  });
+    '/insights/climbing-shoe-guide',
+    '/insights/inflatable-crashpads',
+    '/insights/rope-cost-vs-safety',
+    '/news',
+    '/methodology',
+    '/about',
+    '/impressum',
+    '/privacy',
+    '/terms',
+  ]) {
+    urls.push({ loc: `${BASE_URL}${page}`, lastmod: TODAY, changefreq: FREQ.static, priority: PRIORITY.static });
+  }
 
   // Generate XML
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-
-  urls.forEach(url => {
+  for (const url of urls) {
     xml += '  <url>\n';
     xml += `    <loc>${url.loc}</loc>\n`;
     xml += `    <lastmod>${url.lastmod}</lastmod>\n`;
     xml += `    <changefreq>${url.changefreq}</changefreq>\n`;
     xml += `    <priority>${url.priority}</priority>\n`;
     xml += '  </url>\n';
-  });
-
+  }
   xml += '</urlset>';
 
-  // Write to public folder
   const outputPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf8');
 
   console.log(`✓ Generated sitemap with ${urls.length} URLs`);
+  console.log(`  Products: ${productCount}`);
   console.log(`  Location: public/sitemap.xml`);
-  console.log(`  Products: ${shoes.length} shoes, ${ropes.length} ropes, ${crashpads.length} crashpads, ${belays.length} belays`);
 }
 
 generateSitemap();
