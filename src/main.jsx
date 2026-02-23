@@ -69,24 +69,65 @@ import CRASHPAD_SEED from "./crashpad_seed_data.json";
 import QUICKDRAW_SEED from "./quickdraw_seed_data.json";
 
 // ─── Price Data (fetched live from Supabase) ─────────────────
-// Populated by api/fetch-prices.js cron (SerpApi → Supabase)
+// Category-specific price tables populated by crawlers
+const PRICE_TABLES = [
+  "shoe_prices", "rope_prices", "crashpad_prices", "belay_prices", "quickdraw_prices"
+];
+const PRICE_SELECT = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock";
+const PRICE_FILTER = "product_slug=not.is.null&price_eur=gt.0&order=price_eur&limit=5000";
+
 async function fetchLivePrices() {
   try {
-    const rows = await supabaseFetch("/rest/v1/prices?select=shoe_slug,retailer,price_eur,old_price_eur,product_url,in_stock,delivery&order=price_eur");
-    // Group by shoe_slug → array of {shop, price, url, inStock, ...}
+    // Fetch all category price tables in parallel
+    const results = await Promise.allSettled(
+      PRICE_TABLES.map(t =>
+        supabaseFetch(`/rest/v1/${t}?select=${PRICE_SELECT}&${PRICE_FILTER}`)
+      )
+    );
+    // Also fetch legacy prices table for any older data
+    const legacyResult = await Promise.allSettled([
+      supabaseFetch("/rest/v1/prices?select=shoe_slug,retailer,price_eur,old_price_eur,product_url,in_stock,delivery&order=price_eur")
+    ]);
+
     const grouped = {};
-    for (const r of rows) {
-      if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
-      grouped[r.shoe_slug].push({
-        shop: r.retailer,
-        price: Number(r.price_eur),
-        oldPrice: r.old_price_eur ? Number(r.old_price_eur) : null,
-        url: r.product_url || "#",
-        inStock: r.in_stock !== false,
-        shipping: "",
-        delivery: r.delivery || "",
-      });
+
+    // Process new category-specific tables
+    for (const result of results) {
+      if (result.status !== "fulfilled") continue;
+      for (const r of result.value) {
+        const slug = r.product_slug;
+        if (!slug) continue;
+        if (!grouped[slug]) grouped[slug] = [];
+        grouped[slug].push({
+          shop: r.retailer,
+          price: Number(r.price_eur),
+          oldPrice: r.original_price_eur ? Number(r.original_price_eur) : null,
+          url: r.product_url || "#",
+          inStock: r.in_stock !== false,
+          shipping: "",
+          delivery: "",
+        });
+      }
     }
+
+    // Merge legacy prices (only for slugs not already covered)
+    if (legacyResult[0]?.status === "fulfilled") {
+      for (const r of legacyResult[0].value) {
+        const slug = r.shoe_slug;
+        if (!slug || grouped[slug]) continue;
+        if (!grouped[slug]) grouped[slug] = [];
+        grouped[slug].push({
+          shop: r.retailer,
+          price: Number(r.price_eur),
+          oldPrice: r.old_price_eur ? Number(r.old_price_eur) : null,
+          url: r.product_url || "#",
+          inStock: r.in_stock !== false,
+          shipping: "",
+          delivery: r.delivery || "",
+        });
+      }
+    }
+
     return grouped;
   } catch { return {}; }
 }
