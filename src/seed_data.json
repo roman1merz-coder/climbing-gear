@@ -7958,7 +7958,13 @@
     "model": "Cobra Eco",
     "slug": "la-sportiva-cobra-eco",
     "image_url": "/images/shoes/la-sportiva-cobra-eco.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-eco-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-eco-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-eco-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-eco-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-eco-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -8099,156 +8105,6 @@
     "cons": "[\"Heavy at 480g\", \"Stiff \\u2014 less sensitivity on small features\", \"Needs break-in time\"]",
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": "[\"Bought these as my first outdoor shoe. Still going strong after a year of gym and crag use.\", \"The lacing makes a huge difference for fit. I can loosen up for approaches and crank down for harder pitches.\"]",
-    "vegan": false,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
-    },
-    "midsole_stiffness": null
-  },
-  {
-    "brand": "La Sportiva",
-    "model": "Finale VS",
-    "slug": "la-sportiva-finale-vs-mens",
-    "image_url": "/images/shoes/la-sportiva-finale-vs-mens.jpg",
-    "images": null,
-    "toe_form": "roman",
-    "forefoot_volume": "standard",
-    "width": "medium",
-    "heel_volume": "medium",
-    "skill_level": [
-      "beginner",
-      "hobby",
-      "intermediate"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "indoor",
-      "limestone",
-      "granite"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
-    "discount_pct": 14.1,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "flat",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
-    "ankle_protection": "none",
-    "durability": [
-      "high"
-    ],
-    "rubber_type": "La Sportiva FriXion RS",
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_thickness_mm": 5.0,
-    "midsole": "full",
-    "rand": "relaxed",
-    "gender": "mens",
-    "kids_friendly": false,
-    "upper_material": "leather",
-    "weight_g": 480,
-    "stretch_expectation": "half_size",
-    "break_in_period": "moderate",
-    "description": "Velcro version of the Finale with FriXion RS rubber. Same supportive full midsole and flat profile, but quicker to get on and off between burns. A solid gym workhorse for intermediate climbers who want support without lacing up every time.",
-    "pros": "[\"Quick velcro on-off between climbs\", \"Supportive full midsole\", \"Durable 5mm rubber\", \"Comfortable for longer sessions\"]",
-    "cons": "[\"FriXion RS not as sticky as Vibram compounds\", \"Less precise fit than lace version\", \"Heavy for its class\"]",
-    "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
-    "customer_voices": "[\"My gym shoe. Strap in, climb, strap out. Supportive enough for 3-hour sessions.\", \"Good beginner-to-intermediate shoe. The velcro is way more convenient than laces for indoor climbing.\"]",
-    "vegan": false,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
-    },
-    "midsole_stiffness": null
-  },
-  {
-    "brand": "La Sportiva",
-    "model": "Finale VS Women's",
-    "slug": "la-sportiva-finale-vs-womens",
-    "image_url": "/images/shoes/la-sportiva-finale-vs-womens.jpg",
-    "images": null,
-    "toe_form": "roman",
-    "forefoot_volume": "low",
-    "width": "narrow",
-    "heel_volume": "narrow",
-    "skill_level": [
-      "beginner",
-      "hobby",
-      "intermediate"
-    ],
-    "use_cases": [
-      "sport",
-      "boulder"
-    ],
-    "best_rock_types": [
-      "indoor",
-      "limestone",
-      "granite"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "smear"
-    ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 99.0,
-    "current_price_eur": 85.0,
-    "discount_pct": 14.1,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "flat",
-    "toe_patch": "none",
-    "heel_rubber_coverage": "partial",
-    "ankle_protection": "none",
-    "durability": [
-      "high"
-    ],
-    "rubber_type": "La Sportiva FriXion RS",
-    "rubber_hardness": [
-      "medium"
-    ],
-    "rubber_thickness_mm": 5.0,
-    "midsole": "full",
-    "rand": "relaxed",
-    "gender": "womens",
-    "kids_friendly": false,
-    "upper_material": "leather",
-    "weight_g": 440,
-    "stretch_expectation": "half_size",
-    "break_in_period": "moderate",
-    "description": "Women's velcro all-rounder with FriXion RS rubber and full midsole. Flat, supportive, and easy to get on — a reliable gym shoe for climbers building skills without foot pain.",
-    "pros": "[\"Comfortable women's-specific fit\", \"Supportive full midsole\", \"Quick velcro closure\", \"Durable rubber\"]",
-    "cons": "[\"FriXion RS less sticky than Vibram\", \"Not much sensitivity\", \"Can feel wide on narrow feet\"]",
-    "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
-    "customer_voices": "[\"Finally a shoe that doesn't destroy my feet after an hour. Good support and the velcro is so convenient.\", \"Solid gym shoe. Not fancy but does the job well for V2-V4 bouldering.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -8429,7 +8285,14 @@
     "model": "GeckoGym",
     "slug": "la-sportiva-geckogym",
     "image_url": "/images/shoes/la-sportiva-geckogym.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-geckogym-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-geckogym-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-geckogym-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-geckogym-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-geckogym-6.jpg\", \"label\": \"View 6\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-geckogym-7.jpg\", \"label\": \"View 7\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -8502,7 +8365,13 @@
     "model": "Gripit",
     "slug": "la-sportiva-gripit",
     "image_url": "/images/shoes/la-sportiva-gripit.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-gripit-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-gripit-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-gripit-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-gripit-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-gripit-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -10166,7 +10035,13 @@
     "model": "Python",
     "slug": "la-sportiva-python",
     "image_url": "/images/shoes/la-sportiva-python.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-python-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-python-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-python-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-python-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-python-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -10322,7 +10197,12 @@
     "model": "Skwama Lite",
     "slug": "la-sportiva-skwama-lite",
     "image_url": "/images/shoes/la-sportiva-skwama-lite.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-lite-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-lite-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-lite-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-lite-5.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -10971,7 +10851,13 @@
     "model": "Stickit",
     "slug": "la-sportiva-stickit",
     "image_url": "/images/shoes/la-sportiva-stickit.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-stickit-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-stickit-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-stickit-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-stickit-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-stickit-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -11552,80 +11438,6 @@
     "cons": "[\"Heavy at 530g\", \"Stiff \\u2014 limited sensitivity\", \"Long break-in period\", \"Overkill for gym use\"]",
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
     "customer_voices": "[\"The definitive big-wall shoe. I've done 20+ pitch days in Yosemite and my feet feel fine.\", \"The ankle padding saves your ankles in finger cracks. No other shoe does this as well.\"]",
-    "vegan": false,
-    "resoleable": true,
-    "admin_flags": null,
-    "data_confidence": {
-      "note": "Not verified against weighmyrack.com - fix when error spotted",
-      "weight_verified": false
-    },
-    "midsole_stiffness": null
-  },
-  {
-    "brand": "La Sportiva",
-    "model": "TC Pro Women's",
-    "slug": "la-sportiva-tc-pro-womens",
-    "image_url": "/images/shoes/la-sportiva-tc-pro-womens.jpg",
-    "images": null,
-    "toe_form": "roman",
-    "forefoot_volume": "low",
-    "width": "narrow",
-    "heel_volume": "narrow",
-    "skill_level": [
-      "intermediate",
-      "advanced"
-    ],
-    "use_cases": [
-      "trad_multipitch"
-    ],
-    "best_rock_types": [
-      "granite",
-      "sandstone",
-      "limestone"
-    ],
-    "best_wall_angles": [
-      "slab",
-      "vertical"
-    ],
-    "best_foothold_types": [
-      "edge",
-      "crack",
-      "smear"
-    ],
-    "feel": "stiff-moderate",
-    "price_uvp_eur": 189.0,
-    "current_price_eur": 169.0,
-    "discount_pct": 10.6,
-    "size_range": null,
-    "year_released": null,
-    "current_price_url": null,
-    "closure": "lace",
-    "asymmetry": "slight",
-    "downturn": "moderate",
-    "toe_patch": "medium",
-    "heel_rubber_coverage": "full",
-    "ankle_protection": "low",
-    "durability": [
-      "high"
-    ],
-    "rubber_type": "Vibram XS Edge",
-    "rubber_hardness": [
-      "hard"
-    ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "full",
-    "rand": "relaxed",
-    "gender": "womens",
-    "kids_friendly": false,
-    "upper_material": "leather",
-    "weight_g": 530,
-    "stretch_expectation": "half_size",
-    "break_in_period": "extended",
-    "description": "Women's version of the TC Pro with the same ankle protection, XS Edge rubber, and full midsole. Built for trad and multi-pitch in a women's-specific last. A rare option for women who climb long routes and big walls.",
-    "pros": "[\"Ankle protection for crack climbing\", \"Women's-specific last\", \"All-day support\", \"Durable construction\"]",
-    "cons": "[\"Heavy\", \"Very stiff\", \"Long break-in\", \"Limited use outside trad\"]",
-    "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
-    "customer_voices": "[\"There are so few women's trad shoes with ankle protection. This fills a real gap.\", \"Comfortable for long days on granite. The women's fit is noticeably better in the heel than the men's.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
