@@ -16089,7 +16089,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": null,
@@ -16104,8 +16106,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -16162,7 +16164,7 @@
     ],
     "rubber_type": "Red Chili RX-1 Allround",
     "rubber_hardness": [
-      "soft"
+      "medium"
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
@@ -16214,7 +16216,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-2 Techgrip",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
     "rand": null,
@@ -16229,8 +16233,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "soft"
@@ -16265,7 +16269,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
     "rand": null,
@@ -16280,8 +16286,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -16337,7 +16343,7 @@
     ],
     "rubber_type": "Vibram XS Grip",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
@@ -16392,7 +16398,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": null,
@@ -16407,8 +16415,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium"
@@ -16472,8 +16480,8 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "leather",
-    "weight_g": 450,
+    "upper_material": "leather/synthetic",
+    "weight_g": 524,
     "stretch_expectation": "full_size",
     "break_in_period": "moderate",
     "description": "Affordably accessible climbing without sacrifice, the Fusion delivers moderate performance through leather construction and relaxed sizing. Wide platform and full midsole provide approachable comfort for intermediate climbers balancing sensitivity with all-day wear. Vibram rubber handles varied indoor gym surfaces.",
@@ -16520,13 +16528,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 520,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -16535,8 +16545,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium"
@@ -16571,13 +16581,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Vibram XS Grip",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "soft"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 528,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -16586,8 +16598,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium"
@@ -16642,15 +16654,15 @@
     ],
     "rubber_type": "Vibram XS Grip",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "leather",
-    "weight_g": 460,
+    "upper_material": "microfiber",
+    "weight_g": 436,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "Built for elite climbers chasing cutting-edge performance on overhanging terrain. Aggressive downturned geometry paired with tensioned leather upper and Vibram XS Grip 3.5mm rubber creates an uncompromising edge tool. This aggressive profile dominates pockets and demands precision footwork on roofs and steep overhangs.",
@@ -16658,7 +16670,7 @@
     "cons": "[\"Stiff leather requires patient break-in\", \"Narrow fit excludes wider feet\", \"Premium price point\"]",
     "sizing": "German engineering delivers minimal stretch. Leather upper means half-size give after break-in; size true to street for immediate precision.",
     "customer_voices": "[\"The downturned profile locked me into roofs I didn't think possible. Leather is demanding but legendary once it molds.\", \"My toes felt pointed but powerful. Worth the price for comp season.\"]",
-    "vegan": false,
+    "vegan": true,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -16697,13 +16709,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-3 Endurance",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 3.0,
     "midsole": "none",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": true,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": null,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -16712,8 +16726,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": true,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "none"
@@ -16748,13 +16762,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": true,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 276,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -16763,8 +16779,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": true,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_soft"
@@ -16799,7 +16815,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": null,
@@ -16814,8 +16832,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -16850,13 +16868,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "soft"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 512,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -16865,8 +16885,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "soft"
@@ -16901,7 +16921,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": null,
@@ -16916,8 +16938,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -16952,7 +16974,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-1 Allround",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": null,
@@ -16967,8 +16991,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -17003,7 +17027,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-3 Endurance",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": null,
@@ -17018,8 +17044,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": true,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -17054,13 +17080,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-2 Techgrip",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": null,
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 486,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -17069,8 +17097,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": true,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -17131,7 +17159,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "leather",
+    "upper_material": "microfiber",
     "weight_g": 508,
     "stretch_expectation": "full_size",
     "break_in_period": "moderate",
@@ -17140,7 +17168,7 @@
     "cons": "[\"No toe patch requires floor edging\", \"Limited heel rubber coverage\", \"Flat profile restricts steep climbing\"]",
     "sizing": "Leather stretches to full size. Start half-size down from street shoe for proper heel fit that widens as it breaks in.",
     "customer_voices": "[\"My first real climbing shoe. Wide enough to climb pain-free while learning proper foot placement.\", \"No-frills approach lets you focus on technique, not gear anxiety.\"]",
-    "vegan": false,
+    "vegan": true,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17179,7 +17207,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Red Chili RX-2 Techgrip",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
     "rand": null,
@@ -17194,8 +17224,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": true,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard"
@@ -17260,7 +17290,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 530,
+    "weight_g": 486,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Breathable synthetic lacing shoe engineered for all-day sport climbing and trad multipitch adventures. Flat profile and narrow heel suit precision edging on varied rock while vented upper keeps feet cool during long sessions. Relaxed rand philosophy emphasizes comfort over aggression.",
@@ -17326,14 +17356,14 @@
     ],
     "rubber_type": "Vibram XS Grip",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 496,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -17342,7 +17372,7 @@
     "cons": "[\"Less sensitive than leather models\", \"Moderate downturn limits steep routes\", \"Bulkier profile\"]",
     "sizing": "Minimal synthetic stretch means true-to-size fit immediately. High volume accommodates roomy feet and thick socks.",
     "customer_voices": "[\"My first pair lasted two seasons of non-stop climbing. Synthetic doesn't coddle like leather but it endures.\", \"Wide enough for my Greek feet, versatile enough for everything I throw at it.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17403,15 +17433,15 @@
     ],
     "rubber_type": "Vibram XS Grip",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 540,
+    "upper_material": "leather/synthetic",
+    "weight_g": 520,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "Where traditional climbing meets sport performance, the lace system delivers precise midfoot control that velcro can't match. Microfiber upper with moderate downturn excels on slab and vertical faces while maintaining the German philosophy of practical comfort. Tensioned rand ensures consistent edging.",
@@ -17419,7 +17449,7 @@
     "cons": "[\"Laces require adjustments between pitches\", \"Synthetic uppers less responsive than leather\", \"Moderate break-in period\"]",
     "sizing": "Synthetic fabric gives minimal stretch. True-to-size fit with tight lace tension at ankle for trad climbing security.",
     "customer_voices": "[\"Finally, a lace shoe that doesn't overtighten my forefoot. Cracks and slabs feel locked in.\", \"The lacing precision was game-changing for my trad multipitch style.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -17458,13 +17488,15 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Vibram XS Grip",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "soft"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": null,
     "gender": "womens",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 460,
     "stretch_expectation": null,
     "break_in_period": null,
@@ -17473,8 +17505,8 @@
     "cons": null,
     "sizing": null,
     "customer_voices": null,
-    "vegan": null,
-    "resoleable": null,
+    "vegan": false,
+    "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium"
@@ -17528,15 +17560,15 @@
     ],
     "rubber_type": "Vibram XS Grip",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 500,
+    "upper_material": "microfiber",
+    "weight_g": 464,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Peak German aggression meets minimalist design in this elite downturning tool. No midsole allows maximal ground feel while soft synthetic upper and aggressive geometry dominate overhanging boulder problems. Vibram XS Grip 3mm rubber delivers edge precision on indoor and limestone.",
