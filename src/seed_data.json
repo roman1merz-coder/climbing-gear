@@ -7795,7 +7795,13 @@
     "model": "Cobra",
     "slug": "la-sportiva-cobra",
     "image_url": "/images/shoes/la-sportiva-cobra.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-cobra-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -8257,7 +8263,13 @@
     "model": "Finale Women's",
     "slug": "la-sportiva-finale-womens",
     "image_url": "/images/shoes/la-sportiva-finale-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-finale-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-finale-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-finale-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-finale-womens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-finale-womens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -8334,7 +8346,13 @@
     "model": "Futura",
     "slug": "la-sportiva-futura",
     "image_url": "/images/shoes/la-sportiva-futura.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-futura-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-futura-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-futura-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-futura-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-futura-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "narrow",
@@ -8639,7 +8657,13 @@
     "model": "Katana Lace Women's",
     "slug": "la-sportiva-katana-lace-womens",
     "image_url": "/images/shoes/la-sportiva-katana-lace-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-katana-lace-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-katana-lace-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-katana-lace-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-katana-lace-womens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-katana-lace-womens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -9255,7 +9279,13 @@
     "model": "Miura",
     "slug": "la-sportiva-miura-mens",
     "image_url": "/images/shoes/la-sportiva-miura-mens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-miura-mens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-mens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-mens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-mens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-mens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -9333,7 +9363,13 @@
     "model": "Miura VS",
     "slug": "la-sportiva-miura-vs-mens",
     "image_url": "/images/shoes/la-sportiva-miura-vs-mens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-mens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-mens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-mens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-mens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-mens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -9410,7 +9446,13 @@
     "model": "Miura VS Women's",
     "slug": "la-sportiva-miura-vs-womens",
     "image_url": "/images/shoes/la-sportiva-miura-vs-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-womens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-vs-womens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -9487,7 +9529,13 @@
     "model": "Miura Women's",
     "slug": "la-sportiva-miura-womens",
     "image_url": "/images/shoes/la-sportiva-miura-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-miura-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-womens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-miura-womens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -9707,7 +9755,13 @@
     "model": "Mythos",
     "slug": "la-sportiva-mythos-mens",
     "image_url": "/images/shoes/la-sportiva-mythos-mens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-mens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-mens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-mens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-mens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-mens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -9782,7 +9836,13 @@
     "model": "Mythos Women's",
     "slug": "la-sportiva-mythos-womens",
     "image_url": "/images/shoes/la-sportiva-mythos-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-womens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mythos-womens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -9938,7 +9998,13 @@
     "model": "Otaki",
     "slug": "la-sportiva-otaki-mens",
     "image_url": "/images/shoes/la-sportiva-otaki-mens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-otaki-mens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-otaki-mens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-otaki-mens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-otaki-mens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-otaki-mens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -10176,7 +10242,12 @@
     "model": "Skwama",
     "slug": "la-sportiva-skwama",
     "image_url": "/images/shoes/la-sportiva-skwama.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-skwama-5.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -10815,7 +10886,13 @@
     "model": "Solution Women's",
     "slug": "la-sportiva-solution-womens",
     "image_url": "/images/shoes/la-sportiva-solution-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-solution-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-womens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-solution-womens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -11186,7 +11263,13 @@
     "model": "Tarantulace",
     "slug": "la-sportiva-tarantulace-mens",
     "image_url": "/images/shoes/la-sportiva-tarantulace-mens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-tarantulace-mens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantulace-mens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantulace-mens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantulace-mens-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantulace-mens-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -11403,7 +11486,13 @@
     "model": "TC Pro",
     "slug": "la-sportiva-tc-pro",
     "image_url": "/images/shoes/la-sportiva-tc-pro.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-tc-pro-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tc-pro-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tc-pro-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tc-pro-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tc-pro-6.jpg\", \"label\": \"View 6\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -11551,7 +11640,10 @@
     "model": "Theory",
     "slug": "la-sportiva-theory",
     "image_url": "/images/shoes/la-sportiva-theory.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-theory-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-theory-3.jpg\", \"label\": \"View 3\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "narrow",
@@ -11624,7 +11716,12 @@
     "model": "Theory Women's",
     "slug": "la-sportiva-theory-womens",
     "image_url": "/images/shoes/la-sportiva-theory-womens.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-theory-womens-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-theory-womens-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-theory-womens-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-theory-womens-5.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "narrow",
