@@ -93,6 +93,21 @@ All product images are static JPEGs in `public/images/{category}/{slug}.jpg`. Th
    const ROPE_DIAMETER = [ ... ];
    ```
 
+### Midsole System (Two Fields)
+
+Shoes have two separate midsole columns in Supabase:
+
+| Field | Meaning | Valid values |
+|-------|---------|-------------|
+| `midsole` | Coverage — how much of the sole has midsole material | `none`, `toe`, `forefoot`, `partial`, `half`, `three_quarter`, `full` |
+| `midsole_stiffness` | Stiffness rating of the midsole | `none`, `soft`, `medium_soft`, `medium`, `medium_hard`, `hard` |
+
+Both are displayed on the detail page (`ShoeDetail.jsx` → "Build Details" section).
+
+**Coverage note:** Older entries use the simplified set (`none`, `toe`, `partial`, `full`). Newer entries use the expanded set (`forefoot`, `half`, `three_quarter`). When querying midsole data, always include both fields.
+
+**Population status (Feb 2026):** `midsole_stiffness` is populated for Mad Rock, Ocun, Scarpa, Tenaya, and Unparallel. La Sportiva and several other brands still have null stiffness values.
+
 ### Similar Products Logic
 
 Each detail page shows "Similar" or "You May Also Like" products at the bottom. The matching logic varies by product type:
