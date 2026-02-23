@@ -25909,6 +25909,89 @@
   },
   {
     "brand": "Unparallel",
+    "model": "Regulus",
+    "slug": "unparallel-regulus",
+    "image_url": "/images/shoes/unparallel-regulus.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/unparallel-regulus-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/unparallel-regulus-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/unparallel-regulus-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/unparallel-regulus-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/unparallel-regulus-6.jpg\", \"label\": \"View 6\"}"
+    ],
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "smear"
+    ],
+    "feel": "stiff",
+    "price_uvp_eur": 161.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "Unparallel RH",
+    "rubber_hardness": [
+      "hard"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 483,
+    "stretch_expectation": "none",
+    "break_in_period": "moderate",
+    "description": "Unparallel's stiffest downturned shoe, built for precision on all angles. The unlined synthetic upper provides a snug, secure fit without stretch. 4.2 mm RH rubber sole delivers exceptional edging on small footholds, while the extended toe rand rubber enhances toe-hooking friction. Highly tensioned heel with slingshot randing locks the foot in place for powerful heel hooks. A favourite among climbers transitioning from Five Ten Hiangles.",
+    "pros": "[\"Outstanding edging on small holds\", \"Extended toe rubber for strong toe hooks\", \"Tensioned heel locks foot securely\", \"Synthetic upper maintains shape over time\"]",
+    "cons": "[\"Long break-in period\", \"Stiff rubber takes time to soften\", \"Single velcro strap can feel less adjustable\"]",
+    "sizing": "Synthetic upper won't stretch. Size true-to-size or half size down from street shoe. Comparable to Five Ten Hiangle sizing.",
+    "customer_voices": "[\"Like a Hiangle and Five Ten Team had a child — sticky and comfortable for sending projects.\", \"My go-to bouldering shoe. Works great outdoors and indoors. Similar to old blue Hiangle but with softer midsole and stickier rubber.\"]",
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Specs from Unparallel official website Feb 2026",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Unparallel",
     "model": "Regulus LV",
     "slug": "unparallel-regulus-lv",
     "image_url": "/images/shoes/unparallel-regulus-lv.jpg",
