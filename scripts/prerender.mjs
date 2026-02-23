@@ -198,7 +198,7 @@ function qdNoscript(q) {
 
 // ─── Category list pages ─────────────────────────────────────
 const CATEGORIES = [
-  { route: '/shoes', title: 'Climbing Shoes — Compare 500+ Models', desc: 'Find the perfect climbing shoe. Compare specs, performance scores, and prices across 500+ models from La Sportiva, Scarpa, Evolv, and more.' },
+  { route: '/shoes', title: 'Climbing Shoes — Compare 750+ Models', desc: 'Find the perfect climbing shoe. Compare specs, performance scores, and prices across 750+ models from La Sportiva, Scarpa, Evolv, and more.' },
   { route: '/ropes', title: 'Climbing Ropes — Compare 190+ Models', desc: 'Compare dynamic, static, half, and twin ropes. Filter by diameter, weight, falls rated, and dry treatment.' },
   { route: '/crashpads', title: 'Crashpads — Compare 110+ Models', desc: 'Compare bouldering crashpads by size, thickness, weight, foam type, and price.' },
   { route: '/belays', title: 'Belay Devices — Compare 50+ Models', desc: 'Compare belay devices: assisted-braking, tube, and guide. Filter by weight, rope range, and safety features.' },
@@ -207,9 +207,9 @@ const CATEGORIES = [
 
 // ─── Static pages ────────────────────────────────────────────
 const STATIC = [
-  { route: '/find', title: 'Climbing Shoe Finder — Find Your Perfect Shoe', desc: 'Answer a few questions and get personalized climbing shoe recommendations based on 500+ shoes and our scoring algorithms.' },
+  { route: '/find', title: 'Climbing Shoe Finder — Find Your Perfect Shoe', desc: 'Answer a few questions and get personalized climbing shoe recommendations based on 750+ shoes and our scoring algorithms.' },
   { route: '/insights', title: 'Climbing Gear Insights — Data-Driven Articles', desc: 'Data-driven articles and guides about climbing gear: shoe selection, crashpad analysis, rope safety, and more.' },
-  { route: '/insights/climbing-shoe-guide', title: 'How to Choose Climbing Shoes: Data-Driven Guide', desc: 'A comprehensive guide to choosing climbing shoes, backed by data from 500+ models. Learn what specs actually matter.' },
+  { route: '/insights/climbing-shoe-guide', title: 'How to Choose Climbing Shoes: Data-Driven Guide', desc: 'A comprehensive guide to choosing climbing shoes, backed by data from 750+ models. Learn what specs actually matter.' },
   { route: '/insights/inflatable-crashpads', title: 'Inflatable Crashpads: Are They Worth It?', desc: 'Data analysis of inflatable vs traditional crashpads. Compare weight, packability, protection, and value.' },
   { route: '/insights/rope-cost-vs-safety', title: 'Rope Cost vs Safety: What the Data Says', desc: 'Analyzing whether expensive climbing ropes are actually safer. Data from 190+ ropes compared.' },
   { route: '/news', title: 'Gear News — Latest Climbing Equipment Updates', desc: 'Latest climbing gear news: new product releases, industry trends, and equipment updates.' },

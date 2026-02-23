@@ -93,7 +93,7 @@ function PrivacyPolicy() {
 
       <h2 style={S.h2}>6. Affiliate-Links</h2>
       <p style={S.p}>
-        {"Diese Website kann Affiliate-Links zu H\u00e4ndlern enthalten. Wenn Sie auf einen solchen Link klicken, werden Sie auf die Website des jeweiligen H\u00e4ndlers weitergeleitet. Dort gelten dessen Datenschutzbestimmungen. Der Affiliate-Partner kann ggf. ein Cookie zur Zuordnung der Transaktion setzen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Sobald konkrete Affiliate-Partnerschaften bestehen, wird dieser Abschnitt entsprechend aktualisiert."}
+        {"Diese Website enth\u00e4lt Affiliate-Links zu H\u00e4ndlern (z.\u00a0B. \u00fcber das Awin-Netzwerk). Wenn Sie auf einen solchen Link klicken, werden Sie auf die Website des jeweiligen H\u00e4ndlers weitergeleitet. Dort gelten dessen Datenschutzbestimmungen. Der Affiliate-Partner setzt ggf. ein Cookie zur Zuordnung der Transaktion. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Finanzierung des Angebots). Affiliate-Einnahmen beeinflussen niemals unsere Bewertungen oder Rankings."}
       </p>
 
       <h2 style={S.h2}>7. Ihre Rechte</h2>

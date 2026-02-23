@@ -180,7 +180,7 @@ export default function About() {
 
         {/* Stats */}
         <div style={{ display: "flex", gap: "14px", marginBottom: "48px", flexWrap: "wrap" }}>
-          <StatCard icon={"\u{1F3AF}"} number="500+" label="Products compared" />
+          <StatCard icon={"\u{1F3AF}"} number="750+" label="Products compared" />
           <StatCard icon={"\u{1F3EA}"} number="20+" label="Retailers tracked" />
           <StatCard icon={"\u{1F3F7}"} number="Daily" label="Price updates" />
           <StatCard icon={"\u{1F6AB}"} number="0" label="Ads or sponsored rankings" />

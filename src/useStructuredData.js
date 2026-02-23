@@ -192,7 +192,7 @@ export function buildWebsiteSchema() {
     "@type": "WebSite",
     name: "climbing-gear.com",
     url: BASE_URL,
-    description: "Compare 500+ climbing products — shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.",
+    description: "Compare 750+ climbing products — shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.",
     potentialAction: {
       "@type": "SearchAction",
       target: `${BASE_URL}/shoes?q={search_term_string}`,

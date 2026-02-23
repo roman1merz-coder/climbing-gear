@@ -29,6 +29,14 @@ export default function Footer() {
         </p>
       </div>
 
+      {/* Affiliate disclosure */}
+      <div style={{ padding: isMobile ? "0 16px 16px" : "0 32px 20px" }}>
+        <p style={{ maxWidth: "800px", margin: "0 auto", fontSize: "11px", color: T.muted, lineHeight: 1.7 }}>
+          <strong style={{ fontWeight: 600 }}>Affiliate disclosure:</strong> Some links on this site may earn us a small
+          commission at no extra cost to you. This never influences our scores, rankings, or recommendations.
+        </p>
+      </div>
+
       {/* Safety notice */}
       <div style={{ padding: isMobile ? "0 16px 16px" : "0 32px 20px" }}>
         <p style={{ maxWidth: "800px", margin: "0 auto", fontSize: "11px", color: T.muted, lineHeight: 1.7 }}>

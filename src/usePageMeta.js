@@ -4,7 +4,7 @@ const SITE = "climbing-gear.com";
 const BASE_URL = "https://climbing-gear.com";
 const DEFAULT_TITLE = `${SITE} — Scroll less. Climb more.`;
 const DEFAULT_DESC =
-  "Compare 500+ climbing products — shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.";
+  "Compare 750+ climbing products — shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 /** Helper: set or create a <meta> tag */
