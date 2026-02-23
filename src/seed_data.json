@@ -7729,6 +7729,86 @@
   },
   {
     "brand": "La Sportiva",
+    "model": "Aragon",
+    "slug": "la-sportiva-aragon",
+    "image_url": "/images/shoes/la-sportiva-aragon.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-aragon-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-aragon-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-aragon-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-aragon-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-aragon-6.jpg\", \"label\": \"View 6\"}"
+    ],
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "beginner",
+      "intermediate"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "moderate",
+    "price_uvp_eur": 110.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "La Sportiva FriXion RS",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 5.0,
+    "midsole": "full",
+    "rand": "relaxed",
+    "gender": "mens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": 440,
+    "stretch_expectation": "half_size",
+    "break_in_period": "minimal",
+    "description": "A comfortable velcro shoe for beginner to intermediate climbers. The Aragon features dual hook-and-loop straps for fast, secure closure and a roomy last (PN 45) that accommodates wider feet. 5 mm FriXion RS rubber provides durability for indoor and outdoor use. Full-length LaspoFlex midsole offers support for all-day sessions. P3 system ensures the moderate downturn holds its shape.",
+    "pros": "[\"Comfortable wide-foot-friendly fit\", \"Dual velcro for fast on/off\", \"Durable 5 mm rubber lasts long\", \"Good all-round gym shoe\"]",
+    "cons": "[\"Thick sole reduces sensitivity\", \"Not aggressive enough for steep routes\", \"Limited edging precision\"]",
+    "sizing": "Leather upper will stretch roughly 0.5 EU. Size true-to-size for comfort or half size down for performance.",
+    "customer_voices": "[\"Perfect first real climbing shoe — comfortable enough for long gym sessions but still edges well.\", \"The dual velcro is great for quick transitions between boulder problems.\"]",
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Specs from La Sportiva official + web research Feb 2026",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
     "model": "Aragon Woman",
     "slug": "la-sportiva-aragon-woman",
     "image_url": "/images/shoes/la-sportiva-aragon-woman.jpg",
@@ -8362,6 +8442,87 @@
   },
   {
     "brand": "La Sportiva",
+    "model": "Genius",
+    "slug": "la-sportiva-genius",
+    "image_url": "/images/shoes/la-sportiva-genius.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-genius-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-genius-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-genius-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-genius-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-genius-6.jpg\", \"label\": \"View 6\"}"
+    ],
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge",
+      "pocket"
+    ],
+    "feel": "soft",
+    "price_uvp_eur": 175.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "Vibram XS Grip2",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.0,
+    "midsole": "partial",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 480,
+    "stretch_expectation": "none",
+    "break_in_period": "minimal",
+    "description": "La Sportiva's No-Edge lace shoe for high-end sport climbing. The Genius pairs the No-Edge concept — maximising rubber-to-rock contact on irregular footholds — with a precise lace closure for fine volume adjustment. P3 system maintains downturn over the shoe's lifespan. Vibram XS Grip2 sole at 3 mm for maximum sensitivity. Ideal for technical face climbing, smearing on granite, and pocketed limestone.",
+    "pros": "[\"No-Edge technology for superb smearing\", \"Lace closure for precise fit adjustment\", \"P3 system maintains shape over time\", \"Excellent sensitivity on technical terrain\"]",
+    "cons": "[\"Soft sole wears faster on rough rock\", \"Not ideal for crack climbing\", \"Premium price point\"]",
+    "sizing": "Synthetic upper won't stretch. Size true-to-size or half size down for performance fit.",
+    "customer_voices": "[\"The No-Edge smearing is incredible on granite slabs. Nothing else comes close.\", \"Laces let me dial in the fit perfectly — way better than velcro for all-day sport routes.\"]",
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Specs from La Sportiva official + web research Feb 2026",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
     "model": "Gripit",
     "slug": "la-sportiva-gripit",
     "image_url": "/images/shoes/la-sportiva-gripit.jpg",
@@ -8929,6 +9090,88 @@
     "admin_flags": null,
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
+      "weight_verified": false
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Mandala",
+    "slug": "la-sportiva-mandala",
+    "image_url": "/images/shoes/la-sportiva-mandala.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-mandala-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mandala-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mandala-5.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-mandala-6.jpg\", \"label\": \"View 5\"}"
+    ],
+    "toe_form": "egyptian",
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "smear",
+      "edge",
+      "pocket",
+      "volume"
+    ],
+    "feel": "soft",
+    "price_uvp_eur": 170.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "Vibram XS Grip2",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.0,
+    "midsole": "partial",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 500,
+    "stretch_expectation": "none",
+    "break_in_period": "minimal",
+    "description": "The newest member of La Sportiva's No-Edge family, designed for modern boulderers. The Mandala maximises toe-hooking area with an oversized rubber toe patch and ultra-grippy Vibram XS Grip2 at 3 mm. P3 system maintains aggressive downturn. Velcro closure for fast on/off at the boulder. Minimal thickness between foot and rock delivers outstanding sensitivity.",
+    "pros": "[\"Excellent toe-hooking surface area\", \"No-Edge gives superb smearing\", \"Fast velcro on/off for bouldering\", \"P3 maintains downturn shape\"]",
+    "cons": "[\"Soft rubber wears quickly on rough rock\", \"Not suited for long multi-pitch routes\", \"Narrow fit may not suit wide feet\"]",
+    "sizing": "Synthetic upper won't stretch. Size true-to-size or slightly down for aggressive bouldering fit.",
+    "customer_voices": "[\"The toe hooking on this shoe is next level — massive rubber patch that just sticks.\", \"Finally a No-Edge shoe with velcro. Perfect for bouldering sessions.\"]",
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Specs from La Sportiva official + web research Feb 2026",
       "weight_verified": false
     },
     "midsole_stiffness": null
@@ -10921,6 +11164,85 @@
     "data_confidence": {
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
+    },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "La Sportiva",
+    "model": "Tarantula Boulder",
+    "slug": "la-sportiva-tarantula-boulder",
+    "image_url": "/images/shoes/la-sportiva-tarantula-boulder.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-2.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-3.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-4.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-5.jpg\", \"label\": \"View 5\"}",
+      "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-6.jpg\", \"label\": \"View 6\"}"
+    ],
+    "toe_form": "roman",
+    "forefoot_volume": "high",
+    "width": "wide",
+    "heel_volume": "medium",
+    "skill_level": [
+      "beginner",
+      "hobby"
+    ],
+    "use_cases": [
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "stiff",
+    "price_uvp_eur": 100.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "none",
+    "downturn": "flat",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "La Sportiva FriXion RS",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 5.0,
+    "midsole": "full",
+    "rand": "relaxed",
+    "gender": "mens",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": 460,
+    "stretch_expectation": "half_size",
+    "break_in_period": "minimal",
+    "description": "An entry-level bouldering shoe with a neutral, flat profile that suits all foot shapes. Dual velcro straps in opposite directions ensure secure, quick closure. 5 mm FriXion RS rubber offers durability for high-volume gym sessions. Full-length LaspoFlex midsole provides support and comfort. Enhanced toe and heel rubber patches improve hooking capabilities for beginners learning technique.",
+    "pros": "[\"Fits wide feet comfortably\", \"Very durable rubber for beginners\", \"Affordable entry into bouldering\", \"Enhanced toe/heel patches for hooking\"]",
+    "cons": "[\"Flat profile limits steep wall performance\", \"Thick sole reduces sensitivity\", \"Will be outgrown skill-wise quickly\"]",
+    "sizing": "Leather upper stretches roughly 0.5 EU. Size true-to-size for comfort-first bouldering.",
+    "customer_voices": "[\"Great starter shoe for gym bouldering. Comfortable enough to wear all session.\", \"My first climbing shoe — the velcro makes it easy to take on and off between problems.\"]",
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {
+      "note": "Specs from La Sportiva official + web research Feb 2026",
+      "weight_verified": false
     },
     "midsole_stiffness": null
   },
