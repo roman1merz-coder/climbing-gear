@@ -16108,7 +16108,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -16182,7 +16182,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -16233,7 +16233,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Red Chili",
@@ -16284,7 +16284,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -16360,7 +16360,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -16411,7 +16411,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -16488,7 +16488,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -16539,7 +16539,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -16590,7 +16590,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -16665,7 +16665,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -16699,7 +16699,7 @@
     "rubber_type": "Red Chili RX-3 Endurance",
     "rubber_hardness": null,
     "rubber_thickness_mm": 3.0,
-    "midsole": null,
+    "midsole": "none",
     "rand": null,
     "gender": "unisex",
     "kids_friendly": true,
@@ -16716,7 +16716,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "none"
   },
   {
     "brand": "Red Chili",
@@ -16767,7 +16767,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Red Chili",
@@ -16818,7 +16818,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -16869,7 +16869,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "Red Chili",
@@ -16920,7 +16920,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -16971,7 +16971,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -17022,7 +17022,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -17073,7 +17073,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -17147,7 +17147,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -17198,7 +17198,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -17272,7 +17272,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "Red Chili",
@@ -17349,7 +17349,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -17426,7 +17426,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -17477,7 +17477,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium"
   },
   {
     "brand": "Red Chili",
@@ -17551,7 +17551,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "Saltic",
