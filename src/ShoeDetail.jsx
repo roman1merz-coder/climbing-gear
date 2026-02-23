@@ -892,9 +892,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {isMobile && <PerformanceRadar shoe={shoe} allShoes={shoes} />}
             <PerformanceDNA shoe={shoe} compact={isMobile} />
 
-            {/* Full-width: Customer Voices */}
+            {/* Full-width: Customer Voices — hidden until content is improved
             <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" compact={isMobile} />
             <CustomerVoices shoe={shoe} stacked={isMobile} />
+            */}
           </div>
         )}
 

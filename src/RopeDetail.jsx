@@ -376,7 +376,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* What Climbers Say */}
+            {/* What Climbers Say — hidden until content is improved
             {rope.customer_voices?.length > 0 && (
               <Section title="💬 What Climbers Say">
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
@@ -391,6 +391,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 </div>
               </Section>
             )}
+            */}
 
             {/* Similar Ropes */}
             {similar.length > 0 && (

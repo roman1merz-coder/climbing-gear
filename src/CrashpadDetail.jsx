@@ -557,7 +557,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* What Climbers Say */}
+            {/* What Climbers Say — hidden until content is improved
             {pad.customer_voices?.length > 0 && (
               <Section title="What Climbers Say">
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
@@ -572,6 +572,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                 </div>
               </Section>
             )}
+            */}
 
             {/* Similar Crashpads */}
             {similar.length > 0 && (
