@@ -26,8 +26,8 @@ These rules are NON-NEGOTIABLE and must always be followed.
 | Compound | DB value | Shore | Notes |
 |----------|----------|-------|-------|
 | Vibram XS Grip | `soft` | ~45° | Stickiest, performance, high-end models |
-| RX-1 ALLROUND | `medium` | 50° | Balanced friction/edge/durability |
-| RX-2 TECHGRIP | `medium_hard` | ~55° | Edge stability, more rigid |
+| RX-1 ALLROUND | `soft` | 50° | Balanced friction/edge/durability — soft in industry context |
+| RX-2 TECHGRIP | `medium` | ~55° | Edge stability, more rigid |
 | RX-3 ENDURANCE | `hard` | ~60°+ | Max durability, rental/gym shoes |
 
 ## Closure Rule (NON-NEGOTIABLE)
