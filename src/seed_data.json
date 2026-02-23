@@ -16063,8 +16063,13 @@
     "brand": "Red Chili",
     "model": "Charger",
     "slug": "red-chili-charger",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-charger.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-charger-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-charger-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-charger-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-charger-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "low",
     "width": "medium",
@@ -16117,7 +16122,12 @@
     "model": "Circuit",
     "slug": "red-chili-circuit",
     "image_url": "/images/shoes/red-chili-circuit.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-circuit-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "wide",
@@ -16190,8 +16200,13 @@
     "brand": "Red Chili",
     "model": "Circuit Junior",
     "slug": "red-chili-circuit-junior",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-circuit-junior.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-circuit-junior-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-junior-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-junior-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-junior-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -16243,8 +16258,13 @@
     "brand": "Red Chili",
     "model": "Circuit LV",
     "slug": "red-chili-circuit-lv",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-circuit-lv.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-circuit-lv-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-lv-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-lv-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-circuit-lv-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "wide",
@@ -16297,7 +16317,12 @@
     "model": "Clue",
     "slug": "red-chili-clue",
     "image_url": "/images/shoes/red-chili-clue.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-clue-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-clue-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-clue-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-clue-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "narrow",
@@ -16372,8 +16397,10 @@
     "brand": "Red Chili",
     "model": "Fusion LV",
     "slug": "red-chili-fusion-lv",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-fusion-lv.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-fusion-lv-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "narrow",
@@ -16426,7 +16453,9 @@
     "model": "Fusion",
     "slug": "red-chili-fusion-vcr",
     "image_url": "/images/shoes/red-chili-fusion-vcr.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-fusion-vcr-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "wide",
@@ -16502,8 +16531,11 @@
     "brand": "Red Chili",
     "model": "Magnet",
     "slug": "red-chili-magnet",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-magnet.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-magnet-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-magnet-B.jpg\", \"label\": \"View 3\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "medium",
@@ -16555,8 +16587,13 @@
     "brand": "Red Chili",
     "model": "Magnet Lace",
     "slug": "red-chili-magnet-lace",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-magnet-lace.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-magnet-lace-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-magnet-lace-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-magnet-lace-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-magnet-lace-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "medium",
@@ -16609,7 +16646,11 @@
     "model": "Mystix",
     "slug": "red-chili-mystix",
     "image_url": "/images/shoes/red-chili-mystix.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-mystix-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-mystix-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-mystix-C.jpg\", \"label\": \"View 4\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "narrow",
@@ -16683,8 +16724,12 @@
     "brand": "Red Chili",
     "model": "Pulpo",
     "slug": "red-chili-pulpo",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-pulpo.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-pulpo-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-pulpo-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-pulpo-C.jpg\", \"label\": \"View 4\"}"
+    ],
     "toe_form": null,
     "forefoot_volume": null,
     "width": null,
@@ -16736,8 +16781,11 @@
     "brand": "Red Chili",
     "model": "Puzzle",
     "slug": "red-chili-puzzle",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-puzzle.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-puzzle-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-puzzle-B.jpg\", \"label\": \"View 3\"}"
+    ],
     "toe_form": null,
     "forefoot_volume": null,
     "width": null,
@@ -16789,8 +16837,10 @@
     "brand": "Red Chili",
     "model": "Sausalito",
     "slug": "red-chili-sausalito",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-sausalito.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-sausalito-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "wide",
@@ -16842,8 +16892,13 @@
     "brand": "Red Chili",
     "model": "Sensor",
     "slug": "red-chili-sensor",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-sensor.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-sensor-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-sensor-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-sensor-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-sensor-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "narrow",
@@ -16895,8 +16950,10 @@
     "brand": "Red Chili",
     "model": "Session 4",
     "slug": "red-chili-session-4",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-session-4.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-session-4-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "wide",
@@ -16948,8 +17005,10 @@
     "brand": "Red Chili",
     "model": "Session 4 Kids",
     "slug": "red-chili-session-4-kids",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-session-4-kids.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-session-4-kids-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": null,
     "forefoot_volume": null,
     "width": null,
@@ -17001,8 +17060,11 @@
     "brand": "Red Chili",
     "model": "Session Air",
     "slug": "red-chili-session-air",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-session-air.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-session-air-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-session-air-B.jpg\", \"label\": \"View 3\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "wide",
@@ -17054,8 +17116,10 @@
     "brand": "Red Chili",
     "model": "Spirit LV",
     "slug": "red-chili-spirit-lv",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-spirit-lv.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-spirit-lv-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "low",
     "width": "narrow",
@@ -17108,7 +17172,9 @@
     "model": "Spirit",
     "slug": "red-chili-spirit-vcr",
     "image_url": "/images/shoes/red-chili-spirit-vcr.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-spirit-vcr-A.jpg\", \"label\": \"View 2\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "low",
     "width": "medium",
@@ -17181,8 +17247,13 @@
     "brand": "Red Chili",
     "model": "Ventic Air",
     "slug": "red-chili-ventic-air",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-ventic-air.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "roman",
     "forefoot_volume": "low",
     "width": "wide",
@@ -17235,7 +17306,12 @@
     "model": "Ventic Air Lace",
     "slug": "red-chili-ventic-air-lace",
     "image_url": "/images/shoes/red-chili-ventic-air-lace.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-lace-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-lace-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-lace-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-ventic-air-lace-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "greek",
     "forefoot_volume": "standard",
     "width": "medium",
@@ -17309,7 +17385,12 @@
     "model": "Voltage 3",
     "slug": "red-chili-voltage-2",
     "image_url": "/images/shoes/red-chili-voltage-2.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-voltage-2-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-2-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-2-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-2-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "wide",
@@ -17386,7 +17467,12 @@
     "model": "Voltage Lace",
     "slug": "red-chili-voltage-lace",
     "image_url": "/images/shoes/red-chili-voltage-lace.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-voltage-lace-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-lace-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-lace-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-lace-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "standard",
     "width": "wide",
@@ -17462,8 +17548,13 @@
     "brand": "Red Chili",
     "model": "Voltage LV",
     "slug": "red-chili-voltage-lv",
-    "image_url": null,
-    "images": null,
+    "image_url": "/images/shoes/red-chili-voltage-lv.jpg",
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-voltage-lv-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-lv-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-lv-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-lv-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "narrow",
@@ -17516,7 +17607,12 @@
     "model": "Voltage X",
     "slug": "red-chili-voltage-x",
     "image_url": "/images/shoes/red-chili-voltage-x.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/red-chili-voltage-x-A.jpg\", \"label\": \"View 2\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-x-B.jpg\", \"label\": \"View 3\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-x-C.jpg\", \"label\": \"View 4\"}",
+      "{\"url\": \"/images/shoes/red-chili-voltage-x-D.jpg\", \"label\": \"View 5\"}"
+    ],
     "toe_form": "egyptian",
     "forefoot_volume": "high",
     "width": "wide",
