@@ -2055,6 +2055,57 @@
   },
   {
     "brand": "Boreal",
+    "model": "Crux",
+    "slug": "boreal-crux",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 130.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Boreal",
     "model": "Dharma",
     "slug": "boreal-dharma",
     "image_url": "/images/shoes/boreal-dharma.jpg",
@@ -2129,6 +2180,108 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Boreal",
+    "model": "Indo",
+    "slug": "boreal-indo",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Boreal",
+    "model": "Joker",
+    "slug": "boreal-joker",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 100.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "slight",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "leather/synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -2583,6 +2736,108 @@
   },
   {
     "brand": "Boreal",
+    "model": "Ninja Junior Vent",
+    "slug": "boreal-ninja-junior-vent",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 70.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "slight",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": true,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Boreal",
+    "model": "Satori",
+    "slug": "boreal-satori",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Boreal",
     "model": "Silex",
     "slug": "boreal-silex",
     "image_url": "/images/shoes/boreal-silex.jpg",
@@ -2651,6 +2906,57 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Boreal",
+    "model": "Synergy",
+    "slug": "boreal-synergy",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 148.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -4732,6 +5038,57 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Evolv",
+    "model": "Agro",
+    "slug": "evolv-agro",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 120.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -7805,7 +8162,7 @@
       "note": "Specs from La Sportiva official + web research Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -7868,7 +8225,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -7929,7 +8286,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -7949,7 +8306,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -8011,7 +8368,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "toe",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -8031,7 +8388,7 @@
       "weight_source": "weighmyrack: 320g pair → 160g single",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -8092,7 +8449,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 3.0,
-    "midsole": "none",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -8112,7 +8469,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -8192,7 +8549,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8275,7 +8632,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8338,7 +8695,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -8358,7 +8715,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8418,7 +8775,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -8438,7 +8795,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "La Sportiva",
@@ -8499,7 +8856,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -8519,7 +8876,7 @@
       "note": "Specs from La Sportiva official + web research Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8579,7 +8936,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "full",
+    "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
@@ -8599,7 +8956,7 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "none"
   },
   {
     "brand": "La Sportiva",
@@ -8680,7 +9037,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8744,7 +9101,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -8764,7 +9121,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8848,7 +9205,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -8932,7 +9289,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9012,7 +9369,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9092,7 +9449,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9154,7 +9511,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.0,
-    "midsole": "partial",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -9174,7 +9531,7 @@
       "note": "Specs from La Sportiva official + web research Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9238,7 +9595,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 1.8,
-    "midsole": "partial",
+    "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -9258,7 +9615,7 @@
       "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "none"
   },
   {
     "brand": "La Sportiva",
@@ -9321,7 +9678,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9384,7 +9741,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9448,7 +9805,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -9468,7 +9825,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9531,7 +9888,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -9551,7 +9908,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9614,7 +9971,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -9634,7 +9991,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9698,7 +10055,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -9715,7 +10072,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9796,7 +10153,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9860,7 +10217,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -9941,7 +10298,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -10022,7 +10379,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -10083,7 +10440,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -10103,7 +10460,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -10167,7 +10524,7 @@
       "hard"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -10187,7 +10544,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -10271,7 +10628,7 @@
       "weight_source": "User verified - 225g single",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -10333,7 +10690,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -10353,7 +10710,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -10416,7 +10773,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -10433,7 +10790,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -10490,7 +10847,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -10510,7 +10867,7 @@
       "weight_source": "Retailer sources - 205g single shoe",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -10570,7 +10927,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -10590,7 +10947,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -10650,7 +11007,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
@@ -10670,7 +11027,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -10754,7 +11111,7 @@
       "weight_source": "weighmyrack.com + La Sportiva official",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "soft"
   },
   {
     "brand": "La Sportiva",
@@ -10817,7 +11174,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -10837,7 +11194,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "La Sportiva",
@@ -10900,7 +11257,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -10920,7 +11277,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "La Sportiva",
@@ -10985,7 +11342,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -11002,7 +11359,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -11067,7 +11424,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "partial",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -11087,7 +11444,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_soft"
   },
   {
     "brand": "La Sportiva",
@@ -11145,7 +11502,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "full",
+    "midsole": "none",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
@@ -11165,7 +11522,7 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "none"
   },
   {
     "brand": "La Sportiva",
@@ -11244,7 +11601,7 @@
       "note": "Specs from La Sportiva official + web research Feb 2026",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -11306,7 +11663,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -11385,7 +11742,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "La Sportiva",
@@ -11464,7 +11821,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "La Sportiva",
@@ -11544,7 +11901,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "La Sportiva",
@@ -11624,7 +11981,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "hard"
   },
   {
     "brand": "La Sportiva",
@@ -11687,7 +12044,7 @@
     "resoleable": null,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -11767,7 +12124,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null
+    "midsole_stiffness": "medium_hard"
   },
   {
     "brand": "La Sportiva",
@@ -11843,7 +12200,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": null
+    "midsole_stiffness": "none"
   },
   {
     "brand": "La Sportiva",
@@ -11924,6 +12281,57 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": "none"
+  },
+  {
+    "brand": "LACD",
+    "model": "Splash",
+    "slug": "lacd-splash",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 90.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -14677,6 +15085,57 @@
   },
   {
     "brand": "Ocun",
+    "model": "Crest QC",
+    "slug": "ocun-crest-qc",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 50.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Ocun",
     "model": "Diamond S",
     "slug": "ocun-diamond-s",
     "image_url": "/images/shoes/ocun-diamond-s.jpg",
@@ -15839,6 +16298,57 @@
   },
   {
     "brand": "Ocun",
+    "model": "Rival",
+    "slug": "ocun-rival",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 70.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": true,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Ocun",
     "model": "Sigma",
     "slug": "ocun-sigma",
     "image_url": "/images/shoes/ocun-sigma.jpg",
@@ -16135,6 +16645,57 @@
   },
   {
     "brand": "Red Chili",
+    "model": "Circuit LV",
+    "slug": "red-chili-circuit-lv",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "medium",
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 110.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "none",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Red Chili",
     "model": "Clue",
     "slug": "red-chili-clue",
     "image_url": "/images/shoes/red-chili-clue.jpg",
@@ -16207,6 +16768,108 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Red Chili",
+    "model": "Fusion II",
+    "slug": "red-chili-fusion-ii",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 104.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Red Chili",
+    "model": "Fusion LV II",
+    "slug": "red-chili-fusion-lv-ii",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 104.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
@@ -16288,6 +16951,57 @@
   },
   {
     "brand": "Red Chili",
+    "model": "Magnet",
+    "slug": "red-chili-magnet",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 135.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "slight",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Red Chili",
     "model": "Mystix",
     "slug": "red-chili-mystix",
     "image_url": "/images/shoes/red-chili-mystix.jpg",
@@ -16359,6 +17073,108 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Red Chili",
+    "model": "Sensor",
+    "slug": "red-chili-sensor",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": null,
+    "width": null,
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 150.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": null
+  },
+  {
+    "brand": "Red Chili",
+    "model": "Spirit LV",
+    "slug": "red-chili-spirit-lv",
+    "image_url": null,
+    "images": null,
+    "toe_form": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": null,
+    "skill_level": null,
+    "use_cases": null,
+    "best_rock_types": null,
+    "best_wall_angles": null,
+    "best_foothold_types": null,
+    "feel": null,
+    "price_uvp_eur": 110.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "slight",
+    "downturn": "slight",
+    "toe_patch": null,
+    "heel_rubber_coverage": null,
+    "ankle_protection": null,
+    "durability": null,
+    "rubber_type": null,
+    "rubber_hardness": null,
+    "rubber_thickness_mm": null,
+    "midsole": null,
+    "rand": null,
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": null,
+    "break_in_period": null,
+    "description": null,
+    "pros": null,
+    "cons": null,
+    "sizing": null,
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
     "midsole_stiffness": null
   },
   {
