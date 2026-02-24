@@ -82,25 +82,26 @@ export function computeEdging(shoe) {
 
   const edgeDown = ({ flat: 0.15, slight: 0.42, moderate: 0.70, aggressive: 0.85 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.45, moderate: 0.65, strong: 0.90 })[shoe.asymmetry] || 0.5;
-  const edgeCl = ({ lace: 0.80, velcro: 0.55, slipper: 0.30 })[cl] || 0.5;
   const edgeShape = edgeDown * 0.80 + asymE * 0.20;
   // Geometric mean: shape (45%) × rigidity (55%) — balanced so soft aggressive
-  // shoes (Theory, Futura, etc.) aren't over-penalised for low stiffness
+  // shoes (Theory, Futura, etc.) aren't over-penalised for low stiffness.
+  // Closure removed as standalone — already embedded in rigidity via computeStiffness.
   const edgeCore = Math.pow(edgeShape, 0.45) * Math.pow(rigidity, 0.55);
   const override = EDGING_OVERRIDES[shoe.slug] || 0;
-  return Math.min(1, edgeCore * 0.82 + edgeCl * 0.10 + hardR * 0.08 + override);
+  return Math.min(1, edgeCore * 0.88 + hardR * 0.12 + override);
 }
 
-/** Pocket ability: aggressive downturn + asymmetry + toe patch + stiffness + closure + hardness */
+/** Pocket ability: aggressive downturn + asymmetry + toe patch + closure + stiffness.
+ *  Hard rubber removed — pockets don't require hard rubber (soft rubber grips
+ *  inside pockets just as well). Stiffness reduced to differentiate from edging. */
 export function computePockets(shoe) {
-  const hardR = 1 - _hardnessVal(shoe);
   const stiff = computeStiffness(shoe);
   const dt = ({ flat: 0.1, slight: 0.3, moderate: 0.5, aggressive: 0.9 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.45, moderate: 0.65, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const tp = ({ none: 0.1, medium: 0.5, full: 0.9 })[shoe.toe_patch] || 0.5;
   const cl = shoe.closure || "";
   const pockCl = ({ slipper: 0.7, velcro: 0.5, lace: 0.3 })[cl] || 0.5;
-  return Math.min(1, dt * 0.23 + asymE * 0.23 + tp * 0.18 + stiff * 0.14 + pockCl * 0.12 + hardR * 0.10);
+  return Math.min(1, dt * 0.25 + asymE * 0.25 + tp * 0.25 + pockCl * 0.15 + stiff * 0.10);
 }
 
 /** Hooking ability: heel rubber + toe rubber + flexibility + closure
