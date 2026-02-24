@@ -54,11 +54,18 @@ Examples:
 
 ## Vegan Determination (NON-NEGOTIABLE)
 
-Must check ALL materials, not just upper:
-- Upper, Lining, Footbed, Tongue — if ANY contain leather/suede → NOT vegan
+`vegan` does **NOT** depend only on upper material. ALL components matter:
+- Upper, Lining, Footbed, Tongue, Glues, Insole, Rand materials
+- If ANY component contains leather/suede/animal-derived material → NOT vegan
 - "Suede leather footbed" = NOT vegan (even if upper is synthetic)
+- A synthetic/microfiber upper alone does NOT make a shoe vegan
+- Only mark `vegan = true` if manufacturer explicitly markets it as vegan or ALL components confirmed animal-free
+- When in doubt, leave `vegan = false`
 
-## Weight Convention
+## Shoe Weight Rule (NON-NEGOTIABLE)
 
-- Manufacturer specs list **single shoe** weight
-- Database stores **pair** weight (multiply by 2)
+`weight_g` in the `shoes` table is **ALWAYS pair weight** (both shoes combined).
+- The site displays pair weight everywhere — never single shoe weight
+- Manufacturers often list single-shoe weight in specs — ALWAYS multiply by 2 before storing
+- Any adult (non-kids) shoe under ~300g pair weight is suspicious and must be verified
+- When sourcing weight from retailer pages, check whether they state "per shoe" or "per pair"
