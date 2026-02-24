@@ -19311,7 +19311,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -20144,7 +20144,7 @@
     },
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -20302,7 +20302,7 @@
     },
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -20628,7 +20628,7 @@
     },
     "midsole_stiffness": "hard",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -20875,7 +20875,7 @@
     },
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -20960,7 +20960,7 @@
     },
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -21123,7 +21123,7 @@
     "data_confidence": {},
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -21210,7 +21210,7 @@
     },
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -21294,7 +21294,7 @@
     "data_confidence": {},
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -21381,7 +21381,7 @@
     },
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -21936,7 +21936,7 @@
     },
     "midsole_stiffness": "medium",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -22182,7 +22182,7 @@
     },
     "midsole_stiffness": "medium",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -22340,6 +22340,8 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
+      "egyptian",
+      "greek",
       "roman"
     ]
   },
@@ -22422,7 +22424,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -22506,7 +22508,7 @@
     "data_confidence": {},
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -22591,7 +22593,7 @@
     },
     "midsole_stiffness": "medium",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -22675,7 +22677,7 @@
     "data_confidence": {},
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -22759,7 +22761,7 @@
     "data_confidence": {},
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -22846,7 +22848,7 @@
     },
     "midsole_stiffness": "medium",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -22925,7 +22927,7 @@
     },
     "midsole_stiffness": "medium",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
@@ -23009,7 +23011,7 @@
     "data_confidence": {},
     "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "greek"
     ]
   },
   {
