@@ -96,9 +96,9 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
 
 // ─── Performance Radar (single 6-axis, percentile-normalized) ───
 function PerformanceRadar({ shoe, allShoes }) {
-  const dims = ["Edging", "Smearing", "Pockets", "Hooks", "Comfort", "Crack"];
+  const dims = ["Edging", "Smearing", "Pockets", "Hooks", "Comfort", "Sensitivity", "Crack"];
   const pct = getPercentileScores(shoe, allShoes);
-  const values = [pct.edging, pct.smearing, pct.pockets, pct.hooks, pct.comfort, pct.crack];
+  const values = [pct.edging, pct.smearing, pct.pockets, pct.hooks, pct.comfort, pct.sensitivity, pct.crack];
 
   return (
     <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "16px", border: `1px solid ${T.border}`, textAlign: "center" }}>

@@ -198,6 +198,7 @@ const RAW_FNS = [
   ["comfort", getComfortScore],
   ["sensitivity", computeSensitivity],
   ["crack", computeCrack],
+  ["support", computeSupport],
 ];
 
 let _cachedShoes = null;

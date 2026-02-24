@@ -27,6 +27,7 @@ const RADAR_AXES = [
   { key: "pockets",     label: "Pockets" },
   { key: "hooks",       label: "Hooks" },
   { key: "comfort",     label: "Comfort" },
+  { key: "sensitivity", label: "Sensitivity" },
   { key: "crack",       label: "Crack" },
 ];
 
@@ -40,6 +41,7 @@ function shoeToRadarScores(shoe, allShoes) {
     pockets:     pct.pockets,
     hooks:       pct.hooks,
     comfort:     pct.comfort,
+    sensitivity: pct.sensitivity,
     crack:       pct.crack,
   };
 }

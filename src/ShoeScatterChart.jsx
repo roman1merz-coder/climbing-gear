@@ -91,6 +91,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       return {
         ...s,
         _edging: pct.edging ?? 0.5,
+        _sensitivity: pct.sensitivity ?? 0.5,
         _crack: pct.crack ?? 0.5,
         _comfort: pct.comfort ?? 0.5,
         _price: s.price_uvp_eur || 0,
@@ -116,6 +117,14 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
 
   /* ─── Axis configurations ─── */
   const cfgs = useMemo(() => ({
+    edging_sensitivity: {
+      xField: "_edging", yField: "_sensitivity",
+      xLabel: "Edging", yLabel: "Sensitivity",
+      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
+      pctAxis: true,
+      label: "Edging vs Sensitivity",
+      sub: `${filtered.length} shoes — stiff precision vs soft feedback`,
+    },
     edging_comfort: {
       xField: "_edging", yField: "_comfort",
       xLabel: "Edging", yLabel: "Comfort",
@@ -425,8 +434,9 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
 
   const metricButtons = [
     { key: "edging_comfort", label: "Edging vs Comfort", short: "Edg/Comf", color: T.accent },
-    { key: "edging_crack", label: "Edging vs Crack", short: "Edg/Crack", color: T.blue },
-    { key: "crack_comfort", label: "Crack vs Comfort", short: "Crack/Comf", color: T.green },
+    { key: "edging_sensitivity", label: "Edging vs Sensitivity", short: "Edg/Sens", color: T.blue },
+    { key: "edging_crack", label: "Edging vs Crack", short: "Edg/Crack", color: T.green },
+    { key: "crack_comfort", label: "Crack vs Comfort", short: "Crack/Comf", color: "#38b2ac" },
     { key: "edging_price", label: "Edging vs Price", short: "Edg/€", color: "#ecc94b" },
     { key: "crack_price", label: "Crack vs Price", short: "Crack/€", color: "#a78bfa" },
   ];
