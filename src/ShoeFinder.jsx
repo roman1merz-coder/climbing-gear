@@ -5,13 +5,14 @@ import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
 
 // ═══════════════════════════════════════════════════════════════
-// GUIDED SHOE FINDER — 6-step wizard with trait-based scoring
-// Step 1: Discipline (boulder/sport/trad) — multi-select
-// Step 2: Environment (outdoor/indoor/both) + rock type if outdoor
-// Step 3: Experience level
-// Step 4: Preference (comfort/balanced/performance)
-// Step 5: Foot shape (toe form, volume, width, heel)
-// Step 6: Weight (stiffness bias)
+// GUIDED SHOE FINDER — 7-step wizard with trait-based scoring
+// Step 1: Gender/audience (adult/men/women/kid)
+// Step 2: Discipline (boulder/sport/trad) — multi-select
+// Step 3: Environment (outdoor/indoor/both) + rock type if outdoor
+// Step 4: Experience level
+// Step 5: Preference (comfort/balanced/performance)
+// Step 6: Foot shape (toe form, volume, width, heel)
+// Step 7: Weight (stiffness bias)
 //
 // SCORING V2 — Each input defines target traits, then shoes are
 // scored against those targets. Total: 100 pts.
@@ -83,6 +84,13 @@ const HEEL_VOLUMES = [
   { id: "narrow", title: "Narrow" },
   { id: "medium", title: "Medium" },
   { id: "wide",   title: "Wide" },
+];
+
+const GENDERS = [
+  { id: "adult",  icon: "👟", title: "Adult (any)",  desc: "Show all adult climbing shoes — men's, women's, and unisex models." },
+  { id: "men",    icon: "🧔", title: "Men's",        desc: "Men's and unisex models. Typically higher volume, wider forefoot." },
+  { id: "women",  icon: "👩", title: "Women's",      desc: "Women's and unisex models. Typically lower volume, narrower fit." },
+  { id: "kid",    icon: "🧒", title: "Kids",         desc: "Shoes designed for children — smaller sizes, softer construction." },
 ];
 
 // ─── Target Trait Computation ──────────────────────────────────
@@ -193,7 +201,7 @@ function parseArray(val) {
   return [];
 }
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 // ─── Scoring Engine V2 ─────────────────────────────────────────
 
@@ -357,6 +365,7 @@ function matchesVolume(shoe, forefootVolume) {
 // ─── URL encode/decode ────────────────────────────────────────
 function encodeFinderState(s) {
   const p = new URLSearchParams();
+  if (s.gender && s.gender !== "adult") p.set("g", s.gender);
   if (s.disciplines.length) p.set("d", s.disciplines.join(","));
   if (s.environment) p.set("e", s.environment);
   if (s.rockType) p.set("rt", s.rockType);
@@ -373,6 +382,7 @@ function encodeFinderState(s) {
 function decodeFinderState(search) {
   const p = new URLSearchParams(search);
   return {
+    gender: p.get("g") || "adult",
     disciplines: p.get("d") ? p.get("d").split(",").filter(Boolean) : [],
     environment: p.get("e") || "both",
     rockType: p.get("rt") || "",
@@ -386,6 +396,23 @@ function decodeFinderState(search) {
   };
 }
 
+// ─── Gender hard filter ──────────────────────────────────────
+function matchesGender(shoe, gender) {
+  if (!gender || gender === "adult") {
+    // Adult = all non-kids (but include kids_friendly shoes that are also adult-sized)
+    const g = (shoe.gender || "").toLowerCase();
+    // Exclude shoes that are ONLY for kids (no adult gender)
+    return g !== "kids";
+  }
+  if (gender === "kid") {
+    return shoe.kids_friendly === true || (shoe.gender || "").toLowerCase() === "kids";
+  }
+  const g = (shoe.gender || "").toLowerCase();
+  if (gender === "men") return g === "mens" || g === "men" || g === "unisex";
+  if (gender === "women") return g === "womens" || g === "women" || g === "unisex";
+  return true;
+}
+
 // ═══════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════
@@ -396,6 +423,7 @@ export default function ShoeFinder({ shoes = [] }) {
 
   // State
   const [step, setStep] = useState(0);
+  const [gender, setGender] = useState("adult");
   const [disciplines, setDisciplines] = useState([]);
   const [environment, setEnvironment] = useState("both");
   const [rockType, setRockType] = useState("");
@@ -421,6 +449,7 @@ export default function ShoeFinder({ shoes = [] }) {
   // Restore from URL on mount
   useEffect(() => {
     const s = decodeFinderState(searchParams.toString());
+    if (s.gender) setGender(s.gender);
     if (s.disciplines.length) setDisciplines(s.disciplines);
     if (s.environment) setEnvironment(s.environment);
     if (s.rockType) setRockType(s.rockType);
@@ -436,7 +465,7 @@ export default function ShoeFinder({ shoes = [] }) {
 
   usePageMeta(
     "Climbing Shoe Finder — Find Your Perfect Shoe",
-    "Answer 6 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data."
+    "Answer 7 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data."
   );
 
   // ─── Computed ───────────────────────────────────────────────
@@ -449,6 +478,7 @@ export default function ShoeFinder({ shoes = [] }) {
 
   const allResults = useMemo(() => {
     return shoes
+      .filter(s => matchesGender(s, gender))
       .filter(s => matchesVolume(s, forefootVolume))
       .map(s => {
         const sc = scoreShoe(s, params);
@@ -456,7 +486,7 @@ export default function ShoeFinder({ shoes = [] }) {
       })
       .filter(Boolean)
       .sort((a, b) => b.score - a.score);
-  }, [shoes, params, forefootVolume]);
+  }, [shoes, params, forefootVolume, gender]);
 
   const { topBrands, otherBrands, otherCount } = useMemo(() => {
     const counts = {};
@@ -500,9 +530,9 @@ export default function ShoeFinder({ shoes = [] }) {
   const effectiveEnv = envOverride || environment;
 
   const updateURL = useCallback(() => {
-    const qs = encodeFinderState({ disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg });
+    const qs = encodeFinderState({ gender, disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg });
     setSearchParams(qs, { replace: true });
-  }, [disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg, setSearchParams]);
+  }, [gender, disciplines, environment, rockType, level, preference, forefootVolume, toeForm, width, heelVolume, weightKg, setSearchParams]);
 
   const nextStep = () => {
     if (step < TOTAL_STEPS) {
@@ -620,7 +650,7 @@ export default function ShoeFinder({ shoes = [] }) {
   );
 
   // ─── Progress bar ───────────────────────────────────────────
-  const stepNames = ["Discipline", "Where", "Level", "Preference", "Foot", "Weight"];
+  const stepNames = ["Who", "Discipline", "Where", "Level", "Preference", "Foot", "Weight"];
   const ProgressBar = () => (
     <div style={{ marginBottom: "40px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
@@ -652,10 +682,45 @@ export default function ShoeFinder({ shoes = [] }) {
   // STEP RENDERERS
   // ═══════════════════════════════════════════════════════════
 
-  // STEP 0 — Discipline (multi-select)
-  const renderStep0 = () => (
+  // STEP 0 — Gender / Who is this for?
+  const renderGenderStep = () => (
     <div>
       <StepNumber n={1} />
+      <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
+        Who are you shopping for?
+      </h2>
+      <p style={{ fontSize: "13px", color: T.muted, marginBottom: "20px", lineHeight: 1.5 }}>
+        This filters the catalog so we only show relevant models.
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap: "12px" }}>
+        {GENDERS.map(g => (
+          <OptionCard
+            key={g.id}
+            selected={gender === g.id}
+            onClick={() => setGender(g.id)}
+            icon={g.icon} title={g.title} desc={g.desc}
+          />
+        ))}
+      </div>
+      <div style={{
+        background: T.surface, border: `1px solid ${T.border}`, borderRadius: T.radiusSm,
+        padding: "12px 14px", marginTop: "16px", display: "flex", gap: "10px", alignItems: "flex-start",
+      }}>
+        <span style={{ fontSize: "14px", flexShrink: 0, marginTop: "1px" }}>💡</span>
+        <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.5 }}>
+          We believe climbing shoes should fit your <strong style={{ color: T.text, fontWeight: 600 }}>foot shape and weight</strong>, not your sex — there
+          are men with narrow, low-volume feet and women with wide, high-volume feet.
+          If you don't mind the colorway, choose <strong style={{ color: T.text, fontWeight: 600 }}>Adult (any)</strong> for the widest selection.
+        </div>
+      </div>
+      <NavButtons canBack={false} />
+    </div>
+  );
+
+  // STEP 1 — Discipline (multi-select)
+  const renderStep0 = () => (
+    <div>
+      <StepNumber n={2} />
       <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
         What do you climb?
       </h2>
@@ -688,10 +753,10 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 1 — Environment + Rock Type sub-question
+  // STEP 2 — Environment + Rock Type sub-question
   const renderStep1 = () => (
     <div>
-      <StepNumber n={2} />
+      <StepNumber n={3} />
       <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
         Where do you climb most?
       </h2>
@@ -737,10 +802,10 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 2 — Experience Level
+  // STEP 3 — Experience Level
   const renderStep2 = () => (
     <div>
-      <StepNumber n={3} />
+      <StepNumber n={4} />
       <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
         How long have you been climbing?
       </h2>
@@ -807,14 +872,14 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 3 — Preference (3 cards)
+  // STEP 4 — Preference (3 cards)
   const renderStep3 = () => {
     const dt = computeTargetDownturn(level, preference);
     const asym = computeTargetAsymmetry(level, preference);
 
     return (
       <div>
-        <StepNumber n={4} />
+        <StepNumber n={5} />
         <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
           Comfort or performance?
         </h2>
@@ -879,10 +944,10 @@ export default function ShoeFinder({ shoes = [] }) {
     );
   };
 
-  // STEP 4 — Foot Shape (toe form, volume, width, heel)
+  // STEP 5 — Foot Shape (toe form, volume, width, heel)
   const renderStep4 = () => (
     <div>
-      <StepNumber n={5} />
+      <StepNumber n={6} />
       <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
         Tell us about your feet
       </h2>
@@ -921,13 +986,13 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 5 — Weight
+  // STEP 6 — Weight
   const renderStep5 = () => {
     const zone = weightKg < 60 ? "light" : weightKg > 85 ? "heavy" : "medium";
 
     return (
       <div>
-        <StepNumber n={6} />
+        <StepNumber n={7} />
         <h2 style={{ fontSize: "20px", fontWeight: 700, letterSpacing: "-0.3px", marginBottom: "6px", color: T.text }}>
           How much do you weigh?
         </h2>
@@ -1337,18 +1402,19 @@ export default function ShoeFinder({ shoes = [] }) {
           letterSpacing: "-0.5px", marginBottom: "8px",
         }}>Find Your Climbing Shoe</h1>
         <p style={{ color: T.muted, fontSize: "15px", maxWidth: "520px", margin: "0 auto" }}>
-          6 questions, {shoes.length} shoes, 0 opinions. Tell us how you climb — we'll match you with data.
+          7 questions, {shoes.length} shoes, 0 opinions. Tell us how you climb — we'll match you with data.
         </p>
       </div>
 
       <ProgressBar />
 
-      {step === 0 && renderStep0()}
-      {step === 1 && renderStep1()}
-      {step === 2 && renderStep2()}
-      {step === 3 && renderStep3()}
-      {step === 4 && renderStep4()}
-      {step === 5 && renderStep5()}
+      {step === 0 && renderGenderStep()}
+      {step === 1 && renderStep0()}
+      {step === 2 && renderStep1()}
+      {step === 3 && renderStep2()}
+      {step === 4 && renderStep3()}
+      {step === 5 && renderStep4()}
+      {step === 6 && renderStep5()}
       {step === TOTAL_STEPS && renderResults()}
     </div>
   );
