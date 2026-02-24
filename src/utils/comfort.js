@@ -132,6 +132,21 @@ export function computeSensitivity(shoe) {
   return Math.min(1, effectiveThin * 0.20 + flexibility * 0.48 + softR * 0.10 + (1 - mid) * 0.12 + weightVal * 0.10);
 }
 
+/** Crack/Crag: stiff + flat + toe rubber + ankle protection + lace + heel rubber.
+ *  Designed for trad/crack climbing where foot protection, stiffness for
+ *  standing in cracks, and flat profile for jamming are paramount. */
+export function computeCrack(shoe) {
+  const stiff = computeStiffness(shoe);
+  const flatDown = ({ flat: 1.0, slight: 0.70, moderate: 0.35, aggressive: 0.05 })[shoe.downturn] || 0.5;
+  const tp = ({ none: 0.15, medium: 0.55, full: 0.95 })[shoe.toe_patch] || 0.5;
+  const ankle = ({ none: 0.10, low: 0.65, high: 1.0 })[shoe.ankle_protection] || 0.10;
+  const heelR = ({ none: 0.10, partial: 0.55, full: 0.90 })[shoe.heel_rubber_coverage] || 0.5;
+  const cl = shoe.closure || "";
+  const laceCrack = ({ lace: 0.90, velcro: 0.45, slipper: 0.15 })[cl] || 0.5;
+  const thickR = rubberThick(shoe);
+  return Math.min(1, stiff * 0.25 + flatDown * 0.25 + tp * 0.15 + ankle * 0.10 + heelR * 0.10 + laceCrack * 0.10 + thickR * 0.05);
+}
+
 /** Support: structural rigidity — stiffness + hard rubber + thick rubber + full midsole + lace */
 export function computeSupport(shoe) {
   const softR = _hardnessVal(shoe);
@@ -182,7 +197,7 @@ const RAW_FNS = [
   ["hooks", computeHooks],
   ["comfort", getComfortScore],
   ["sensitivity", computeSensitivity],
-  ["support", computeSupport],
+  ["crack", computeCrack],
 ];
 
 let _cachedShoes = null;

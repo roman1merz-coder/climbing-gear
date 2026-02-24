@@ -70,7 +70,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   const pinnedRef = useRef(null);
   const sheetRef = useRef(null);
 
-  const [metric, setMetric] = useState("edging_sensitivity");
+  const [metric, setMetric] = useState("edging_comfort");
   const [colorBy, setColorBy] = useState(insightsMode ? "skill" : "level");
   const [showZones, setShowZones] = useState(insightsMode);
   const [mobileItem, setMobileItem] = useState(null);
@@ -91,8 +91,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       return {
         ...s,
         _edging: pct.edging ?? 0.5,
-        _sensitivity: pct.sensitivity ?? 0.5,
-        _support: pct.support ?? 0.5,
+        _crack: pct.crack ?? 0.5,
         _comfort: pct.comfort ?? 0.5,
         _price: s.price_uvp_eur || 0,
         _level: topLevel(s),
@@ -117,14 +116,6 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
 
   /* ─── Axis configurations ─── */
   const cfgs = useMemo(() => ({
-    edging_sensitivity: {
-      xField: "_edging", yField: "_sensitivity",
-      xLabel: "Edging", yLabel: "Sensitivity",
-      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
-      pctAxis: true,
-      label: "Edging vs Sensitivity",
-      sub: `${filtered.length} shoes — stiff precision vs soft feedback`,
-    },
     edging_comfort: {
       xField: "_edging", yField: "_comfort",
       xLabel: "Edging", yLabel: "Comfort",
@@ -133,13 +124,21 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       label: "Edging vs Comfort",
       sub: `${filtered.length} shoes — the classic trade-off`,
     },
-    support_sensitivity: {
-      xField: "_support", yField: "_sensitivity",
-      xLabel: "Support", yLabel: "Sensitivity",
+    edging_crack: {
+      xField: "_edging", yField: "_crack",
+      xLabel: "Edging", yLabel: "Crack",
       xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
       pctAxis: true,
-      label: "Support vs Sensitivity",
-      sub: `${filtered.length} shoes — rigid structure vs rock feel`,
+      label: "Edging vs Crack",
+      sub: `${filtered.length} shoes — sport precision vs trad protection`,
+    },
+    crack_comfort: {
+      xField: "_crack", yField: "_comfort",
+      xLabel: "Crack", yLabel: "Comfort",
+      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
+      pctAxis: true,
+      label: "Crack vs Comfort",
+      sub: `${filtered.length} shoes — trad all-day performance`,
     },
     edging_price: {
       xField: "_edging", yField: "_price",
@@ -149,21 +148,13 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       label: "Edging vs Price",
       sub: `${filtered.length} shoes — does expensive mean better edging?`,
     },
-    sensitivity_price: {
-      xField: "_sensitivity", yField: "_price",
-      xLabel: "Sensitivity", yLabel: "Price (€)",
+    crack_price: {
+      xField: "_crack", yField: "_price",
+      xLabel: "Crack", yLabel: "Price (€)",
       xMin: 0, xMax: 1, yMin: 20, yMax: 210, xStep: 0.2, yStep: 30,
       pctAxis: false, xPct: true,
-      label: "Sensitivity vs Price",
-      sub: `${filtered.length} shoes — feel more for less?`,
-    },
-    support_price: {
-      xField: "_support", yField: "_price",
-      xLabel: "Support", yLabel: "Price (€)",
-      xMin: 0, xMax: 1, yMin: 20, yMax: 210, xStep: 0.2, yStep: 30,
-      pctAxis: false, xPct: true,
-      label: "Support vs Price",
-      sub: `${filtered.length} shoes — stiffness at every price point`,
+      label: "Crack vs Price",
+      sub: `${filtered.length} shoes — trad performance at every price`,
     },
   }), [filtered.length]);
   const cfg = cfgs[metric];
@@ -433,12 +424,11 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   const closureKeys = ["lace", "velcro", "slipper"];
 
   const metricButtons = [
-    { key: "edging_sensitivity", label: "Edging vs Sensitivity", short: "Edg/Sens", color: T.accent },
-    { key: "edging_comfort", label: "Edging vs Comfort", short: "Edg/Comf", color: T.blue },
-    { key: "support_sensitivity", label: "Support vs Sensitivity", short: "Sup/Sens", color: T.green },
+    { key: "edging_comfort", label: "Edging vs Comfort", short: "Edg/Comf", color: T.accent },
+    { key: "edging_crack", label: "Edging vs Crack", short: "Edg/Crack", color: T.blue },
+    { key: "crack_comfort", label: "Crack vs Comfort", short: "Crack/Comf", color: T.green },
     { key: "edging_price", label: "Edging vs Price", short: "Edg/€", color: "#ecc94b" },
-    { key: "sensitivity_price", label: "Sensitivity vs Price", short: "Sens/€", color: "#a78bfa" },
-    { key: "support_price", label: "Support vs Price", short: "Sup/€", color: "#38b2ac" },
+    { key: "crack_price", label: "Crack vs Price", short: "Crack/€", color: "#a78bfa" },
   ];
 
   const btnStyle = (active, color) => ({

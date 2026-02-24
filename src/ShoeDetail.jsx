@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
 import { calcStretch } from "./utils/stretch.js";
-import { getComfortScore, getComfortLabel, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeSupport, getPercentileScores } from "./utils/comfort.js";
+import { getComfortScore, getComfortLabel, _hardnessVal, computeSmearing, computeEdging, computePockets, computeHooks, computeSensitivity, computeCrack, getPercentileScores } from "./utils/comfort.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
 import usePageMeta from "./usePageMeta.js";
@@ -96,9 +96,9 @@ function SpiderNet({ dims, values, size = 180, color = T.accent, softColor = T.a
 
 // ─── Performance Radar (single 6-axis, percentile-normalized) ───
 function PerformanceRadar({ shoe, allShoes }) {
-  const dims = ["Edging", "Smearing", "Pockets", "Hooks", "Comfort", "Sensitivity"];
+  const dims = ["Edging", "Smearing", "Pockets", "Hooks", "Comfort", "Crack"];
   const pct = getPercentileScores(shoe, allShoes);
-  const values = [pct.edging, pct.smearing, pct.pockets, pct.hooks, pct.comfort, pct.sensitivity];
+  const values = [pct.edging, pct.smearing, pct.pockets, pct.hooks, pct.comfort, pct.crack];
 
   return (
     <div style={{ background: T.card, borderRadius: T.radiusSm, padding: "16px", border: `1px solid ${T.border}`, textAlign: "center" }}>
