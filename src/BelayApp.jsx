@@ -470,6 +470,7 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
           style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
           fallback={<BelaySVG device={d} width={70} height={58} />}
         />
+        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
       </div>
       {/* Content — v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>

@@ -496,6 +496,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
           fallback={<RopeSVG color1={d.rope_color_1 || "#888"} color2={d.rope_color_2 || "#666"} diameter={d.diameter_mm} ropeType={d.rope_type} />}
         />
+        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
       </div>
       {/* Content — v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>
