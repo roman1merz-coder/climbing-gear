@@ -1867,19 +1867,55 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-athletic-bouldering-1</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-catch</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.com/shoe/so-ill-free-range-pro</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://climbing-gear.com/shoe/so-ill-kick-lv</loc>
+    <loc>https://climbing-gear.com/shoe/so-ill-roam-rigid</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://climbing-gear.com/shoe/so-ill-new-zero-pro</loc>
+    <loc>https://climbing-gear.com/shoe/so-ill-roam-soft</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-start</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-stay</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-stay-lv</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-step</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -1891,7 +1927,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://climbing-gear.com/shoe/so-ill-the-runner</loc>
+    <loc>https://climbing-gear.com/shoe/so-ill-street-lv</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-torque</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/shoe/so-ill-torque-lv</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -3709,6 +3757,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.com/crashpad/organic-big-five-pad</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.com/crashpad/organic-big-pad</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -3746,6 +3800,12 @@
   </url>
   <url>
     <loc>https://climbing-gear.com/crashpad/organic-full-pad-combo</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/crashpad/organic-half-blubber-pad</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

@@ -571,6 +571,7 @@ function Card({ shoe, onClick, priceData, compact }) {
             position: "absolute",
             inset: 0,
             background: "linear-gradient(to bottom, transparent 60%, #ffffff)",
+            boxShadow: "inset 0 0 30px 15px #ffffff",
             pointerEvents: "none",
           }}
         />

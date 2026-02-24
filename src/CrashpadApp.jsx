@@ -438,6 +438,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
             <CrashpadSVG pad={d} />
           </div>
         )}
+        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
         {/* Size badge */}
         <span style={{
           position: "absolute", top: "6px", left: "6px", zIndex: 3,
