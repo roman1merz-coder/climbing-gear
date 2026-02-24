@@ -484,6 +484,7 @@ function ImageGallery({ shoe, compact }) {
           alt={`${shoe.brand} ${shoe.model} – ${currentImg.label || ""}`}
           style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
         />
+        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 40px 20px #f5f5f5", pointerEvents: "none" }} />
         {multiImage && (
           <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
             {gallery.map((_, i) => (
@@ -616,33 +617,114 @@ function PriceComparison({ prices, shoe, compact }) {
   );
 }
 
-// ─── Similar / Alternatives MiniCard ───
-function MiniCard({ shoe, onClick, matchLabel }) {
+// ─── Similar Products Card (with hero image) ───
+function SimilarCard({ shoe, onClick, similarity }) {
   const discount = shoe.price_uvp_eur && shoe.current_price_eur
     ? Math.round(((shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur) * 100) : 0;
+  const img = shoe.image_url || "/images/placeholder.svg";
   return (
     <button onClick={onClick} style={{
-      background: T.card, borderRadius: T.radiusSm, padding: "16px",
+      background: T.card, borderRadius: "12px", overflow: "hidden",
       border: `1px solid ${T.border}`, cursor: "pointer", textAlign: "left",
-      transition: "all 0.2s ease", width: "100%",
+      transition: "all 0.2s ease", width: "100%", padding: 0,
     }}
       onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
       onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
     >
-      {matchLabel && (
-        <div style={{ fontSize: "9px", fontWeight: 700, color: T.accent, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "6px" }}>{matchLabel}</div>
-      )}
-      <div style={{ fontSize: "10px", color: T.muted, fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "2px" }}>{shoe.brand}</div>
-      <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "8px" }}>{shoe.model}</div>
-      <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "10px" }}>
-        {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
+      {/* Image */}
+      <div style={{
+        aspectRatio: "4/3", background: "#fff", position: "relative",
+        display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+      }}>
+        <img src={img} alt={`${shoe.brand} ${shoe.model}`} loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "10px" }} />
+        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
+        {similarity > 0 && (
+          <span style={{
+            position: "absolute", top: "8px", right: "8px", zIndex: 3,
+            padding: "3px 8px", borderRadius: "8px",
+            background: similarity >= 80 ? "rgba(34,197,94,.85)" : similarity >= 60 ? "rgba(201,138,66,.85)" : "rgba(107,114,128,.7)",
+            color: "#fff", fontFamily: T.mono, fontSize: "11px", fontWeight: 700,
+          }}>{similarity}%</span>
+        )}
       </div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-        <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>
-        {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>}
+      {/* Content */}
+      <div style={{ padding: "12px 14px" }}>
+        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{shoe.brand}</div>
+        <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{shoe.model}</div>
+        <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "8px" }}>
+          {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
+        </div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
+          {shoe.current_price_eur && <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>}
+          {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>}
+        </div>
       </div>
     </button>
   );
+}
+
+// ─── Similarity scoring: find shoes with closest specs across all brands ───
+function getSimilarShoes(targetShoe, allShoes, count = 6) {
+  const tSkills = ensureArray(targetShoe.skill_level);
+  const tUse = ensureArray(targetShoe.use_cases);
+  const tWall = ensureArray(targetShoe.best_wall_angles);
+  const tFoot = ensureArray(targetShoe.best_foothold_types);
+  const tRock = ensureArray(targetShoe.best_rock_types);
+
+  const scored = allShoes
+    .filter(s => s.slug !== targetShoe.slug)
+    .map(s => {
+      let score = 0;
+      // Downturn match (25 pts)
+      if (s.downturn && s.downturn === targetShoe.downturn) score += 25;
+      else if (s.downturn && targetShoe.downturn) {
+        const levels = ["flat", "slight", "moderate", "aggressive"];
+        const diff = Math.abs(levels.indexOf(s.downturn) - levels.indexOf(targetShoe.downturn));
+        if (diff === 1) score += 12;
+      }
+      // Asymmetry match (15 pts)
+      if (s.asymmetry && s.asymmetry === targetShoe.asymmetry) score += 15;
+      else if (s.asymmetry && targetShoe.asymmetry) {
+        const levels = ["none", "slight", "moderate", "strong"];
+        const diff = Math.abs(levels.indexOf(s.asymmetry) - levels.indexOf(targetShoe.asymmetry));
+        if (diff === 1) score += 7;
+      }
+      // Skill level overlap (15 pts)
+      const sSkills = ensureArray(s.skill_level);
+      const skillOverlap = sSkills.filter(l => tSkills.includes(l)).length;
+      if (skillOverlap > 0) score += Math.min(15, skillOverlap * 8);
+      // Use case overlap (10 pts)
+      const sUse = ensureArray(s.use_cases);
+      const useOverlap = sUse.filter(u => tUse.includes(u)).length;
+      if (useOverlap > 0) score += Math.min(10, useOverlap * 5);
+      // Closure match (10 pts)
+      if (s.closure && s.closure === targetShoe.closure) score += 10;
+      // Wall angle overlap (5 pts)
+      const sWall = ensureArray(s.best_wall_angles);
+      if (sWall.some(w => tWall.includes(w))) score += 5;
+      // Foothold type overlap (5 pts)
+      const sFoot = ensureArray(s.best_foothold_types);
+      if (sFoot.some(f => tFoot.includes(f))) score += 5;
+      // Rock type overlap (5 pts)
+      const sRock = ensureArray(s.best_rock_types);
+      if (sRock.some(r => tRock.includes(r))) score += 5;
+      // Rubber thickness proximity (5 pts)
+      if (s.rubber_thickness_mm && targetShoe.rubber_thickness_mm) {
+        const diff = Math.abs(s.rubber_thickness_mm - targetShoe.rubber_thickness_mm);
+        if (diff <= 0.3) score += 5;
+        else if (diff <= 0.7) score += 2;
+      }
+      // Width match (5 pts)
+      if (s.width && s.width === targetShoe.width) score += 5;
+      // Different brand bonus (prioritize cross-brand discovery)
+      if (s.brand !== targetShoe.brand) score += 3;
+      return { shoe: s, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, count);
+
+  return scored;
 }
 
 // ═══ PRICE INTELLIGENCE ═══
@@ -1057,27 +1139,16 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         )}
       </div>
 
-      {/* Footer with similar shoes
-           SIMILAR PRODUCTS LOGIC:
-           Shows up to 4 shoes that match EITHER:
-           1. Same skill_level (any overlap) — e.g. both "intermediate" shoes
-           2. Same downturn — e.g. both "aggressive" shoes
-           First matches shown, no scoring/ranking applied. */}
+      {/* Similar shoes — scored by spec similarity, cross-brand */}
       <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit" compact={isMobile} />
-          <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
-            {shoes
-              .filter(s => s.slug !== slug && (
-                (ensureArray(s.skill_level).some(l => ensureArray(shoe.skill_level).includes(l))) ||
-                (s.downturn === shoe.downturn)
-              ))
-              .slice(0, 4)
-              .map(s => (
-                <div key={s.slug} style={{ minWidth: isMobile ? "200px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
-                  <MiniCard shoe={s} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
-                </div>
-              ))}
+          <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit across brands" compact={isMobile} />
+          <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
+            {getSimilarShoes(shoe, shoes, 6).map(({ shoe: s, score }) => (
+              <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                <SimilarCard shoe={s} similarity={score} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
