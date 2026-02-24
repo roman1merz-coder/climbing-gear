@@ -146,18 +146,19 @@ export function computeSupport(shoe) {
 
 /** Overall comfort score 0–1.
  *  Moderate downturn (0.55) — gentle curve is still wearable.
- *  Velcro raised (0.70) — convenience matters for comfort. */
+ *  Velcro raised (0.70) — convenience matters for comfort.
+ *  Weight and upper material intentionally excluded — they don't meaningfully
+ *  predict comfort in climbing shoes (modern synthetics can be very comfortable,
+ *  and shoe weight has near-zero impact on on-foot comfort). */
 export function getComfortScore(shoe) {
   const flex = 1 - computeStiffness(shoe);
   const gentleDown = ({ flat: 1.0, slight: 0.78, moderate: 0.55, aggressive: 0.0 })[shoe.downturn] || 0.55;
   const gentleAsym = ({ none: 1.0, slight: 0.78, moderate: 0.55, strong: 0.0 })[shoe.asymmetry] || 0.55;
-  const comfMat = ({ leather: 0.90, microfiber: 0.50, microsuede: 0.60, synthetic: 0.20 })[upperCategory(shoe.upper_material)] || 0.50;
   const cl = shoe.closure || "";
   const comfCl = ({ lace: 0.85, velcro: 0.70, slipper: 0.30 })[cl] || 0.55;
   const midComf = ({ full: 0.70, three_quarter: 0.63, half: 0.55, forefoot: 0.48, toe: 0.38, none: 0.30, partial: 0.50 })[shoe.midsole] || 0.50;
-  const weightVal = shoe.weight_g ? Math.min(1, Math.max(0, 1 - (shoe.weight_g - 200) / 690)) : 0.5;
   const thickR = rubberThick(shoe);
-  return Math.min(1, flex * 0.20 + gentleDown * 0.20 + gentleAsym * 0.16 + comfMat * 0.10 + weightVal * 0.08 + comfCl * 0.10 + midComf * 0.08 + thickR * 0.08);
+  return Math.min(1, flex * 0.24 + gentleDown * 0.24 + gentleAsym * 0.20 + comfCl * 0.12 + midComf * 0.10 + thickR * 0.10);
 }
 
 /** Comfort label from score */
