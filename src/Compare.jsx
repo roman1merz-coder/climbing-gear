@@ -234,7 +234,7 @@ function getSpecSections(shoes) {
     {
       title: "FIT",
       rows: [
-        { label: "Toe form",  values: shoes.map((s) => cap(s.toe_form)) },
+        { label: "Toe form",  values: shoes.map((s) => Array.isArray(s.toe_form) ? s.toe_form.map(t => cap(t)).join(", ") : cap(s.toe_form)) },
         { label: "Width",     values: shoes.map((s) => cap(s.width)) },
         { label: "Forefoot Vol.",    values: shoes.map((s) => cap(s.forefoot_volume)) },
         { label: "Stretch",   values: shoes.map((s) => calcStretch(s).label) },

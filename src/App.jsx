@@ -34,10 +34,18 @@ const PROX = {
 function sOrd(uv, sv, sc) {
   if (!sv) return 0;
   const a = sc.indexOf(uv);
-  const b = sc.indexOf(sv);
-  if (a < 0 || b < 0) return 0;
-  const d = Math.abs(a - b);
-  return d === 0 ? 1 : d === 1 ? 0.5 : 0;
+  if (a < 0) return 0;
+  // Handle array values (e.g. toe_form can be ["egyptian","greek"])
+  const vals = Array.isArray(sv) ? sv : [sv];
+  let best = 0;
+  for (const v of vals) {
+    const b = sc.indexOf(v);
+    if (b < 0) continue;
+    const d = Math.abs(a - b);
+    const s = d === 0 ? 1 : d === 1 ? 0.5 : 0;
+    if (s > best) best = s;
+  }
+  return best;
 }
 
 function sProx(uvs, svs, sc) {

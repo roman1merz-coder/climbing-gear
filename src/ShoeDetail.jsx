@@ -187,21 +187,26 @@ function FootShapeDiagram({ toe_form, forefoot_volume, width: w, heel_volume }) 
     greek: "Second toe longest (Morton\u2019s toe)",
     roman: "First three toes roughly equal length",
   };
-  const tf = toe_form || "egyptian";
+  const tfs = Array.isArray(toe_form) ? toe_form : (toe_form ? [toe_form] : ["egyptian"]);
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-      <img
-        src={`/images/foot-${tf}.png`}
-        alt={`${tf} foot shape`}
-        style={{ width: "90px", height: "auto", flexShrink: 0, filter: "brightness(0.95)" }}
-      />
+      <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
+        {tfs.map(tf => (
+          <img
+            key={tf}
+            src={`/images/foot-${tf}.png`}
+            alt={`${tf} foot shape`}
+            style={{ width: tfs.length > 1 ? "70px" : "90px", height: "auto", filter: "brightness(0.95)" }}
+          />
+        ))}
+      </div>
       <div>
         <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, fontFamily: T.font, textTransform: "capitalize", marginBottom: "6px" }}>
-          {tf} foot shape
+          {tfs.join(" & ")} foot shape{tfs.length > 1 ? "s" : ""}
         </div>
         <div style={{ fontSize: "12px", color: T.muted, fontFamily: T.font, lineHeight: 1.6, marginBottom: "12px" }}>
-          {descs[tf] || descs.egyptian}
+          {tfs.map(tf => descs[tf] || descs.egyptian).join(". ")}
         </div>
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
           <Tag small variant={w === "narrow" ? "accent" : "default"}>{w} width</Tag>

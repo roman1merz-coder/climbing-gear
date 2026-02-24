@@ -323,9 +323,9 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
 
   // ── 8. Foot shape bonuses (up to 10 pts) ──
   if (toeForm) {
-    const shoeToe = (shoe.toe_form || "").toLowerCase();
-    if (shoeToe === toeForm) score += 3;
-    else if (!shoeToe) score += 1;
+    const shoeToes = Array.isArray(shoe.toe_form) ? shoe.toe_form.map(t => t.toLowerCase()) : (shoe.toe_form ? [shoe.toe_form.toLowerCase()] : []);
+    if (shoeToes.includes(toeForm)) score += 3;
+    else if (!shoeToes.length) score += 1;
   }
   if (width) {
     const shoeWidth = (shoe.width || "").toLowerCase();

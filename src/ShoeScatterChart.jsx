@@ -108,7 +108,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   const filtered = useMemo(() => scored.filter(d => {
     if (hideKids && d.kids_friendly) return false;
     if (genderFilter !== "all" && d.gender !== genderFilter) return false;
-    if (footShape !== "all" && d.toe_form !== footShape) return false;
+    if (footShape !== "all" && !(Array.isArray(d.toe_form) ? d.toe_form.includes(footShape) : d.toe_form === footShape)) return false;
     if (hiddenClosure.has(d.closure)) return false;
     if (hiddenBrands.has(d.brand)) return false;
     if (hiddenLevels.has(d._level)) return false;
