@@ -1182,7 +1182,7 @@
     "break_in_period": "moderate",
     "description": "Stiff, slightly downturned sport shoe with dual-velcro closure. Thick 4.3mm injection-molded NeoFuse rubber and a full midsole create a rigid edging platform. Leather upper with knit tongue for breathability. Stabilizer rands on both sides improve precision. Best on vertical-to-slightly-overhanging terrain where stiff support matters more than sensitivity.",
     "pros": "[\"Stiff platform for sustained vertical edging\", \"Durable 4.3mm injection-molded rubber\", \"Printed toe rubber for hooks without bulk\", \"Stabilizer rands improve lateral precision\"]",
-    "cons": "[\"Low sensitivity — thick rubber dampens feedback\", \"Painful break-in period\", \"Heel fit can feel sloppy\", \"Not suited for crack climbing or slab\"]",
+    "cons": "[\"Low sensitivity \u2014 thick rubber dampens feedback\", \"Painful break-in period\", \"Heel fit can feel sloppy\", \"Not suited for crack climbing or slab\"]",
     "sizing": "True to size with minimal stretching expected.",
     "customer_voices": "[\"The precision and support are unmatched at this level. These shoes keep up with my ambitions.\", \"These work equally well in the gym and outdoors. Solid everyday climbing shoe that delivers performance.\"]",
     "vegan": true,
@@ -5083,7 +5083,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 386g pair → 193g single",
+      "weight_source": "weighmyrack: 386g pair \u2192 193g single",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -8006,7 +8006,7 @@
     "pros": "[\"Comfortable wide-foot-friendly fit\", \"Dual velcro for fast on/off\", \"Durable 5 mm rubber lasts long\", \"Good all-round gym shoe\"]",
     "cons": "[\"Thick sole reduces sensitivity\", \"Not aggressive enough for steep routes\", \"Limited edging precision\"]",
     "sizing": "Leather upper will stretch roughly 0.5 EU. Size true-to-size for comfort or half size down for performance.",
-    "customer_voices": "[\"Perfect first real climbing shoe — comfortable enough for long gym sessions but still edges well.\", \"The dual velcro is great for quick transitions between boulder problems.\"]",
+    "customer_voices": "[\"Perfect first real climbing shoe \u2014 comfortable enough for long gym sessions but still edges well.\", \"The dual velcro is great for quick transitions between boulder problems.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -8070,7 +8070,7 @@
     "weight_g": null,
     "stretch_expectation": null,
     "break_in_period": null,
-    "description": "Women's velcro shoe with FriXion Black rubber and suede leather upper. Full LaSpoFlex 1.1mm midsole with moderate downturn — a versatile women's-specific option for indoor and outdoor sport climbing.",
+    "description": "Women's velcro shoe with FriXion Black rubber and suede leather upper. Full LaSpoFlex 1.1mm midsole with moderate downturn \u2014 a versatile women's-specific option for indoor and outdoor sport climbing.",
     "pros": "[\"Women's-specific last\", \"Full midsole for support\", \"Quick velcro closure\", \"Suede leather moulds to foot\"]",
     "cons": "[\"FriXion Black less sticky than Vibram\", \"Moderate downturn limits steep performance\", \"No lace option for fine-tuning fit\"]",
     "sizing": null,
@@ -8148,7 +8148,7 @@
     "weight_g": 420,
     "stretch_expectation": "half_size",
     "break_in_period": "minimal",
-    "description": "A sensitive slipper for gym and sport climbing. No midsole means direct contact with holds, and the XS Grip2 rubber sticks well on plastic and rock. Simple pull-on design — no straps, no fuss. Best for climbers past the beginner stage who want more feel underfoot.",
+    "description": "A sensitive slipper for gym and sport climbing. No midsole means direct contact with holds, and the XS Grip2 rubber sticks well on plastic and rock. Simple pull-on design \u2014 no straps, no fuss. Best for climbers past the beginner stage who want more feel underfoot.",
     "pros": "[\"Very sensitive \\u2014 no midsole means direct rock feel\", \"Quick to put on and take off\", \"Grippy XS Grip2 rubber\", \"Comfortable leather upper moulds to your foot\"]",
     "cons": "[\"No support for long routes\", \"No adjustability \\u2014 fit depends on sizing it right\", \"Stretches with use\"]",
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
@@ -8241,7 +8241,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 320g pair → 160g single",
+      "weight_source": "weighmyrack: 320g pair \u2192 160g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -8315,7 +8315,7 @@
     "weight_g": 430,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Eco-friendly version of the Cobra slipper. FriXion Eco rubber is recycled but still grips well on indoor holds. No midsole, flat last — a comfortable, sustainable option for gym climbing and easy outdoor routes.",
+    "description": "Eco-friendly version of the Cobra slipper. FriXion Eco rubber is recycled but still grips well on indoor holds. No midsole, flat last \u2014 a comfortable, sustainable option for gym climbing and easy outdoor routes.",
     "pros": "[\"Sustainable recycled rubber\", \"Good sensitivity without midsole\", \"Comfortable flat profile\", \"Easy pull-on design\"]",
     "cons": "[\"FriXion Eco wears faster than Vibram compounds\", \"No support for longer climbs\", \"Less sticky than XS Grip2\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
@@ -8397,7 +8397,7 @@
     "weight_g": 480,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "Sturdy lace-up all-rounder with thick 5mm XS Edge rubber and a full midsole. Built for long days on rock — gym sessions, outdoor sport, even easy trad. The lacing lets you fine-tune fit across the whole foot. Suede upper in tubular construction breaks in to a custom shape.",
+    "description": "Sturdy lace-up all-rounder with thick 5mm XS Edge rubber and a full midsole. Built for long days on rock \u2014 gym sessions, outdoor sport, even easy trad. The lacing lets you fine-tune fit across the whole foot. Suede upper in tubular construction breaks in to a custom shape.",
     "pros": "[\"Thick 5mm rubber lasts a long time\", \"Full midsole supports on long routes\", \"Precise lace adjustment\", \"Durable suede construction\"]",
     "cons": "[\"Heavy at 480g\", \"Stiff \\u2014 less sensitivity on small features\", \"Needs break-in time\"]",
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
@@ -8482,7 +8482,7 @@
     "weight_g": 450,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "Women's lace-up all-rounder with 5mm XS Edge rubber. Full midsole, flat last, suede leather — a comfortable shoe for long gym sessions and outdoor multi-pitch days. Lacing allows precise fit adjustment.",
+    "description": "Women's lace-up all-rounder with 5mm XS Edge rubber. Full midsole, flat last, suede leather \u2014 a comfortable shoe for long gym sessions and outdoor multi-pitch days. Lacing allows precise fit adjustment.",
     "pros": "[\"Thick 5mm rubber is very durable\", \"Full midsole for all-day support\", \"Precise lace fit\", \"Women's-specific last\"]",
     "cons": "[\"Heavy for a women's shoe at 450g\", \"Stiff \\u2014 sacrifices sensitivity\", \"Break-in period for suede\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
@@ -8649,7 +8649,7 @@
     "weight_g": 470,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Indoor-focused velcro shoe with FriXion RS rubber optimised for plastic holds. Partial midsole gives some support without killing feel. Flat profile and synthetic upper — a straightforward gym shoe for beginners and regulars.",
+    "description": "Indoor-focused velcro shoe with FriXion RS rubber optimised for plastic holds. Partial midsole gives some support without killing feel. Flat profile and synthetic upper \u2014 a straightforward gym shoe for beginners and regulars.",
     "pros": "[\"FriXion RS grips well on plastic\", \"Quick velcro on-off\", \"Affordable entry point\", \"Partial midsole balances support and feel\"]",
     "cons": "[\"Not ideal for outdoor rock\", \"Synthetic upper doesn't stretch to fit\", \"Less durable than leather shoes\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
@@ -8732,11 +8732,11 @@
     "weight_g": 480,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "La Sportiva's No-Edge lace shoe for high-end sport climbing. The Genius pairs the No-Edge concept — maximising rubber-to-rock contact on irregular footholds — with a precise lace closure for fine volume adjustment. P3 system maintains downturn over the shoe's lifespan. Vibram XS Grip2 sole at 3 mm for maximum sensitivity. Ideal for technical face climbing, smearing on granite, and pocketed limestone.",
+    "description": "La Sportiva's No-Edge lace shoe for high-end sport climbing. The Genius pairs the No-Edge concept \u2014 maximising rubber-to-rock contact on irregular footholds \u2014 with a precise lace closure for fine volume adjustment. P3 system maintains downturn over the shoe's lifespan. Vibram XS Grip2 sole at 3 mm for maximum sensitivity. Ideal for technical face climbing, smearing on granite, and pocketed limestone.",
     "pros": "[\"No-Edge technology for superb smearing\", \"Lace closure for precise fit adjustment\", \"P3 system maintains shape over time\", \"Excellent sensitivity on technical terrain\"]",
     "cons": "[\"Soft sole wears faster on rough rock\", \"Not ideal for crack climbing\", \"Premium price point\"]",
     "sizing": "Synthetic upper won't stretch. Size true-to-size or half size down for performance fit.",
-    "customer_voices": "[\"The No-Edge smearing is incredible on granite slabs. Nothing else comes close.\", \"Laces let me dial in the fit perfectly — way better than velcro for all-day sport routes.\"]",
+    "customer_voices": "[\"The No-Edge smearing is incredible on granite slabs. Nothing else comes close.\", \"Laces let me dial in the fit perfectly \u2014 way better than velcro for all-day sport routes.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -8814,7 +8814,7 @@
     "weight_g": 220,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Kids' climbing shoe with a single velcro strap. Full midsole provides support for developing feet, and FriXion RS rubber grips gym holds. Lightweight at 220g — designed so young climbers can focus on having fun.",
+    "description": "Kids' climbing shoe with a single velcro strap. Full midsole provides support for developing feet, and FriXion RS rubber grips gym holds. Lightweight at 220g \u2014 designed so young climbers can focus on having fun.",
     "pros": "[\"Lightweight for small feet\", \"Easy single-strap closure for kids\", \"Full midsole protects developing feet\", \"Grippy on indoor holds\"]",
     "cons": "[\"Kids outgrow them quickly\", \"Only for indoor/easy outdoor use\", \"Limited sizing range\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
@@ -8900,7 +8900,7 @@
     "weight_g": 500,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "A do-everything lace shoe with XS Edge rubber and full midsole with P3 System. The lacing runs the length of the foot for precise fit — great for long trad days, multi-pitch, and outdoor sport. Suede upper is durable and moulds to your foot shape.",
+    "description": "A do-everything lace shoe with XS Edge rubber and full midsole with P3 System. The lacing runs the length of the foot for precise fit \u2014 great for long trad days, multi-pitch, and outdoor sport. Suede upper is durable and moulds to your foot shape.",
     "pros": "[\"Full-length lacing for precise fit\", \"P3 System maintains shoe shape\", \"Versatile \\u2014 works on most rock types\", \"Durable XS Edge rubber\"]",
     "cons": "[\"Slower to put on than velcro\", \"Heavy for bouldering\", \"Takes time to break in suede\"]",
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
@@ -8983,7 +8983,7 @@
     "weight_g": 430,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "Women's lace version of the Katana with XS Edge rubber and partial midsole. Precise lace fit for long outdoor days — trad, multi-pitch, sport. Women's-specific last for a better heel and forefoot fit.",
+    "description": "Women's lace version of the Katana with XS Edge rubber and partial midsole. Precise lace fit for long outdoor days \u2014 trad, multi-pitch, sport. Women's-specific last for a better heel and forefoot fit.",
     "pros": "[\"Precise lace fit\", \"Versatile on different rock types\", \"Women's-specific last\", \"Durable XS Edge rubber\"]",
     "cons": "[\"Slower on-off than velcro\", \"Partial midsole less supportive than men's full version\", \"Break-in needed\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
@@ -9237,7 +9237,7 @@
     "weight_g": 452,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "A flat, supportive trad shoe with XS Grip2 rubber and full midsole. Leather upper moulds to your foot. The flat profile and stiff construction are built for long days on granite edges and cracks. Not a performance shoe — a comfort-first workhorse.",
+    "description": "A flat, supportive trad shoe with XS Grip2 rubber and full midsole. Leather upper moulds to your foot. The flat profile and stiff construction are built for long days on granite edges and cracks. Not a performance shoe \u2014 a comfort-first workhorse.",
     "pros": "[\"All-day comfort on multi-pitch\", \"Full midsole for edge support\", \"Durable leather construction\", \"Grippy XS Grip2 rubber\"]",
     "cons": "[\"Very stiff \\u2014 minimal sensitivity\", \"Heavy\", \"Not suited for steep or technical climbing\"]",
     "sizing": "Leather stretches 0.5 EU. Size down from street size. Extended break-in (4-5 sessions) required; suits Greek/longer second toe.",
@@ -9407,7 +9407,7 @@
     "pros": "[\"Excellent toe-hooking surface area\", \"No-Edge gives superb smearing\", \"Fast velcro on/off for bouldering\", \"P3 maintains downturn shape\"]",
     "cons": "[\"Soft rubber wears quickly on rough rock\", \"Not suited for long multi-pitch routes\", \"Narrow fit may not suit wide feet\"]",
     "sizing": "Synthetic upper won't stretch. Size true-to-size or slightly down for aggressive bouldering fit.",
-    "customer_voices": "[\"The toe hooking on this shoe is next level — massive rubber patch that just sticks.\", \"Finally a No-Edge shoe with velcro. Perfect for bouldering sessions.\"]",
+    "customer_voices": "[\"The toe hooking on this shoe is next level \u2014 massive rubber patch that just sticks.\", \"Finally a No-Edge shoe with velcro. Perfect for bouldering sessions.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -9498,7 +9498,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair → 170g single",
+      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -9557,7 +9557,7 @@
     "weight_g": null,
     "stretch_expectation": null,
     "break_in_period": null,
-    "description": "Vegan-friendly velcro shoe with La Sportiva's FriXion Eco rubber and P3 System. Microfiber upper with SkinLike insole — sustainable materials without sacrificing the performance of a modern intermediate shoe. Full midsole for support.",
+    "description": "Vegan-friendly velcro shoe with La Sportiva's FriXion Eco rubber and P3 System. Microfiber upper with SkinLike insole \u2014 sustainable materials without sacrificing the performance of a modern intermediate shoe. Full midsole for support.",
     "pros": "[\"Fully vegan construction\", \"P3 System holds shape\", \"Eco-friendly FriXion Eco rubber\", \"Comfortable full midsole\"]",
     "cons": "[\"FriXion Eco less durable than Vibram\", \"Microfiber doesn't stretch like leather\", \"New model \\u2014 less proven\"]",
     "sizing": null,
@@ -9701,7 +9701,7 @@
     "weight_g": 478,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "A legendary edging shoe. XS Edge rubber at 4mm, partial midsole, moderate downturn — the Miura has been a sport climbing staple for decades. Lace closure for precise fit. Excels on technical face climbing, pockets, and small edges on limestone and granite.",
+    "description": "A legendary edging shoe. XS Edge rubber at 4mm, partial midsole, moderate downturn \u2014 the Miura has been a sport climbing staple for decades. Lace closure for precise fit. Excels on technical face climbing, pockets, and small edges on limestone and granite.",
     "pros": "[\"Outstanding edging performance\", \"Precise lace fit\", \"Proven design \\u2014 decades of refinement\", \"Works on most rock types\"]",
     "cons": "[\"Needs significant break-in\", \"Not ideal for steep overhangs\", \"Narrow fit \\u2014 not for wide feet\"]",
     "sizing": "Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. True-to-size for average feet.",
@@ -9871,7 +9871,7 @@
     "weight_g": 470,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "Women's aggressive velcro shoe with XS Edge rubber and partial midsole. Same Miura VS performance in a women's-specific last — steep sport climbing and bouldering with quick on-off convenience.",
+    "description": "Women's aggressive velcro shoe with XS Edge rubber and partial midsole. Same Miura VS performance in a women's-specific last \u2014 steep sport climbing and bouldering with quick on-off convenience.",
     "pros": "[\"Aggressive downturn for steep climbing\", \"Quick velcro closure\", \"Women's-specific heel fit\", \"XS Edge edging performance\"]",
     "cons": "[\"Not comfortable for extended wear\", \"Aggressive shape takes getting used to\", \"Narrow fit\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
@@ -9957,7 +9957,7 @@
     "weight_g": 446,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "Women's lace version of the Miura. XS Edge rubber, partial midsole, moderate downturn — a technical shoe for face climbing and edging. Lace closure allows precise fit adjustment. Women's last for narrower heels and forefoot.",
+    "description": "Women's lace version of the Miura. XS Edge rubber, partial midsole, moderate downturn \u2014 a technical shoe for face climbing and edging. Lace closure allows precise fit adjustment. Women's last for narrower heels and forefoot.",
     "pros": "[\"Precise edging on small features\", \"Lace fit for full adjustability\", \"Women's-specific last\", \"Durable XS Edge rubber\"]",
     "cons": "[\"Needs break-in\", \"Not great on steep terrain\", \"Narrow \\u2014 not for wider feet\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. Leather will stretch roughly 0.5 EU; consider sizing down 0.5 if between sizes. Perfect for narrow, lower-volume feet.",
@@ -10527,7 +10527,7 @@
     "weight_g": 350,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Women's Otaki with XS Grip2 rubber and full midsole — slightly different spec from the men's version with stickier rubber and more support. Versatile moderate downturn for gym and outdoor climbing. Women's-specific last.",
+    "description": "Women's Otaki with XS Grip2 rubber and full midsole \u2014 slightly different spec from the men's version with stickier rubber and more support. Versatile moderate downturn for gym and outdoor climbing. Women's-specific last.",
     "pros": "[\"Sticky XS Grip2 rubber\", \"Full midsole for support\", \"Versatile moderate downturn\", \"Women's-specific fit\"]",
     "cons": "[\"Full midsole reduces sensitivity\", \"Not aggressive enough for steep terrain\", \"Can run narrow\"]",
     "sizing": "Women's-specific cut with narrower volumes and heels. Minimal stretch expected; wear your true street size. Perfect for narrow, lower-volume feet.",
@@ -10611,7 +10611,7 @@
     "weight_g": 440,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "A sensitive slipper with moderate downturn and partial midsole. XS Grip2 rubber at 3.5mm grips well on steep holds. Leather upper stretches to fit. Sits between the flat Cobra and aggressive competition shoes — a versatile choice for intermediate to advanced gym and sport climbing.",
+    "description": "A sensitive slipper with moderate downturn and partial midsole. XS Grip2 rubber at 3.5mm grips well on steep holds. Leather upper stretches to fit. Sits between the flat Cobra and aggressive competition shoes \u2014 a versatile choice for intermediate to advanced gym and sport climbing.",
     "pros": "[\"Good sensitivity with some support\", \"XS Grip2 sticks on steep holds\", \"Leather moulds to foot\", \"Moderate downturn is versatile\"]",
     "cons": "[\"No adjustability as a slipper\", \"Stretches over time\", \"Not enough downturn for hard overhangs\"]",
     "sizing": "No stretch; synthetic holds its shape from day one. True-to-size for average feet.",
@@ -10772,7 +10772,7 @@
     "weight_g": 410,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Lighter, vegan-friendly version of the Skwama with FriXion Black rubber and synthetic upper. Velcro closure, partial midsole, moderate downturn — toned down from the original Skwama's aggression for a wider range of climbing.",
+    "description": "Lighter, vegan-friendly version of the Skwama with FriXion Black rubber and synthetic upper. Velcro closure, partial midsole, moderate downturn \u2014 toned down from the original Skwama's aggression for a wider range of climbing.",
     "pros": "[\"Vegan construction\", \"Lighter than original Skwama\", \"FriXion Black grips well\", \"Moderate downturn is versatile\"]",
     "cons": "[\"Synthetic upper doesn't mould like leather\", \"FriXion Black less durable\", \"Less aggressive than original Skwama\"]",
     "sizing": "Minimal stretch expected; wear your true street size. True-to-size for average feet.",
@@ -10854,7 +10854,7 @@
     "weight_g": 460,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Fully vegan Skwama with XS Grip2 rubber, synthetic upper, and P3 System. Aggressive downturn and partial midsole — maintains the Skwama's steep-terrain performance without leather or animal products.",
+    "description": "Fully vegan Skwama with XS Grip2 rubber, synthetic upper, and P3 System. Aggressive downturn and partial midsole \u2014 maintains the Skwama's steep-terrain performance without leather or animal products.",
     "pros": "[\"Vegan with no performance compromise\", \"Sticky XS Grip2 rubber\", \"P3 System holds shape\", \"Aggressive for steep climbing\"]",
     "cons": "[\"Synthetic doesn't stretch like leather\", \"Aggressive fit is uncomfortable quickly\", \"Expensive\"]",
     "sizing": "Minimal stretch expected; wear your true street size. True-to-size for average feet.",
@@ -11528,7 +11528,7 @@
     "pros": "[\"Fits wide feet comfortably\", \"Very durable rubber for beginners\", \"Affordable entry into bouldering\", \"Enhanced toe/heel patches for hooking\"]",
     "cons": "[\"Flat profile limits steep wall performance\", \"Thick sole reduces sensitivity\", \"Will be outgrown skill-wise quickly\"]",
     "sizing": "Leather upper stretches roughly 0.5 EU. Size true-to-size for comfort-first bouldering.",
-    "customer_voices": "[\"Great starter shoe for gym bouldering. Comfortable enough to wear all session.\", \"My first climbing shoe — the velcro makes it easy to take on and off between problems.\"]",
+    "customer_voices": "[\"Great starter shoe for gym bouldering. Comfortable enough to wear all session.\", \"My first climbing shoe \u2014 the velcro makes it easy to take on and off between problems.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -11591,7 +11591,7 @@
     "weight_g": null,
     "stretch_expectation": null,
     "break_in_period": null,
-    "description": "Women's entry-level boulder shoe with velcro closure, FriXion Black rubber, and full LaSpoFlex 1.1mm midsole. Flat, comfortable, and simple — designed for women starting to boulder indoors.",
+    "description": "Women's entry-level boulder shoe with velcro closure, FriXion Black rubber, and full LaSpoFlex 1.1mm midsole. Flat, comfortable, and simple \u2014 designed for women starting to boulder indoors.",
     "pros": "[\"Comfortable for beginners\", \"Women's-specific fit\", \"Easy velcro on-off\", \"Full midsole supports new climbers\"]",
     "cons": "[\"Flat \\u2014 limited on steep terrain\", \"FriXion Black less sticky\", \"Will be outgrown quickly by progressing climbers\"]",
     "sizing": null,
@@ -13499,11 +13499,11 @@
     "weight_g": null,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Purpose-built kids’ climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
+    "description": "Purpose-built kids\u2019 climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
     "pros": "[\"Adjustable heel strap grows with the child\",\"3D molded toe cap for comfort and protection\",\"Lightweight and easy to put on\",\"Affordable entry point for young climbers\",\"Sticky Science Friction rubber for confidence on holds\"]",
     "cons": "[\"Limited to easy terrain and indoor walls\",\"No advanced features for progressing technique\",\"Minimal angle views available\"]",
     "sizing": "Available in US Toddler 12 through US Kids 5. Hook-and-loop closure makes fitting easy for small hands.",
-    "customer_voices": "[\"My kid loves these — easy to get on and off, and she feels confident on the wall.\",\"Great starter shoe. The adjustable heel means we won t need to replace them every few months.\",\"Perfect for our Saturday climbing sessions. Comfortable enough that he actually wants to wear them.\"]",
+    "customer_voices": "[\"My kid loves these \u2014 easy to get on and off, and she feels confident on the wall.\",\"Great starter shoe. The adjustable heel means we won t need to replace them every few months.\",\"Perfect for our Saturday climbing sessions. Comfortable enough that he actually wants to wear them.\"]",
     "vegan": true,
     "resoleable": false,
     "admin_flags": null,
@@ -16628,7 +16628,7 @@
     "pros": "[\"Exceptional all-day comfort for long sessions\", \"Neutral asymmetry fits most foot shapes\", \"Breathable TPE mesh + hemp footbed blocks odours\", \"Versatile for gym, sport, and multi-pitch\", \"Double velcro for quick on/off between climbs\"]",
     "cons": "[\"Not aggressive enough for steep roof climbing\", \"Suede leather stretches more than synthetic\", \"Moderate edging on thin edges\"]",
     "sizing": "Fits true to street shoe size. Suede leather stretches roughly a quarter size over time. Wide toe box suits most foot shapes without discomfort.",
-    "customer_voices": "[\"Perfect for long boulder circuits without foot pain.\", \"Bridged the gap between comfort and performance — great for all-day gym sessions.\", \"Best shoe for everyday climbing and projecting on varied terrain.\"]",
+    "customer_voices": "[\"Perfect for long boulder circuits without foot pain.\", \"Bridged the gap between comfort and performance \u2014 great for all-day gym sessions.\", \"Best shoe for everyday climbing and projecting on varied terrain.\"]",
     "vegan": false,
     "resoleable": true,
     "admin_flags": null,
@@ -18463,7 +18463,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair → 150g single",
+      "correction_note": "300g pair \u2192 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -18545,7 +18545,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair → 150g single",
+      "correction_note": "300g pair \u2192 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -18624,7 +18624,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair → 150g single",
+      "correction_note": "300g pair \u2192 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -18776,7 +18776,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair → 170g single",
+      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -19157,7 +19157,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
+      "weight_source": "Estimated from brand pattern: 350g pair \u2192 175g",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -19481,7 +19481,7 @@
     "description": "The Booster is an aggressively downturned, asymmetrical bouldering and sport climbing shoe built for steep, overhanging terrain. Featuring Vibram XS Grip 2 rubber and Scarpa's PAF system with DTS Tension rand, it delivers precision and power on small footholds while the full rubber coverage enables confident toe and heel hooks.",
     "pros": "[\"Excellent precision on small footholds in steep terrain\", \"Outstanding heel and toe hooking with full rubber coverage\", \"Lightweight and sensitive for an aggressive shoe\", \"PAF system reduces pressure points for better comfort\"]",
     "cons": "[\"Not suitable for all-day wear or long multi-pitches\", \"Limited versatility on vertical and slab terrain\", \"Demanding break-in period with initial stiffness\"]",
-    "sizing": "Size down 0.5-1 from street shoe. Synthetic upper means minimal stretch — fit should be snug but not painful from the start.",
+    "sizing": "Size down 0.5-1 from street shoe. Synthetic upper means minimal stretch \u2014 fit should be snug but not painful from the start.",
     "customer_voices": null,
     "vegan": false,
     "resoleable": true,
@@ -20474,7 +20474,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 440g pair → 220g single",
+      "weight_source": "weighmyrack: 440g pair \u2192 220g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -20790,7 +20790,7 @@
     "weight_g": 500,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "The women's Generator brings the same trad-focused DNA — stiff XS Edge sole, full midsole, lace closure — in a lower-volume last shaped for narrower heels and smaller feet. Built for multi-pitch days on granite and sandstone where edging precision and toe protection matter more than sensitivity.",
+    "description": "The women's Generator brings the same trad-focused DNA \u2014 stiff XS Edge sole, full midsole, lace closure \u2014 in a lower-volume last shaped for narrower heels and smaller feet. Built for multi-pitch days on granite and sandstone where edging precision and toe protection matter more than sensitivity.",
     "pros": "[\"Precise lace fit for crack climbing\", \"Full midsole for all-day support\", \"Durable leather handles abrasion well\", \"Lighter than men's Generator at 500g\"]",
     "cons": "[\"Leather upper needs break-in time\", \"Stiff platform limits smearing sensitivity\", \"Overkill for single-pitch sport\"]",
     "sizing": null,
@@ -22019,7 +22019,7 @@
     "weight_g": 460,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "A modern rethink of the classic Origin, swapping leather for microfiber and Vision rubber for Scarpa's sticky S72 compound. The result is a beginner shoe that smears like a mid-range performer — the M50 toe cap and full rubber heel bring tech usually reserved for advanced models. Best suited to gym sessions where grip on volumes and plastic matters more than outdoor edge precision.",
+    "description": "A modern rethink of the classic Origin, swapping leather for microfiber and Vision rubber for Scarpa's sticky S72 compound. The result is a beginner shoe that smears like a mid-range performer \u2014 the M50 toe cap and full rubber heel bring tech usually reserved for advanced models. Best suited to gym sessions where grip on volumes and plastic matters more than outdoor edge precision.",
     "pros": "[\"Microfiber upper holds shape without stretching out\", \"S72 rubber sticks to gym volumes and smeary holds\", \"M50 toe cap borrows tech from performance models\", \"Comfortable out of the box with zero break-in\"]",
     "cons": "[\"S72 wears faster than XS Edge on outdoor rock\", \"Flat last offers no advantage on steep terrain\", \"Microfiber traps heat on warm days\"]",
     "sizing": null,
@@ -22100,8 +22100,8 @@
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Women's version of the Origin VS, keeping the same sticky S72 sole and M50 toe cap in a lower-volume fit. Where the leather Origin needs weeks to mold, this microfiber version fits well from day one — making it ideal for newer climbers who want to focus on technique rather than fighting their shoes.",
-    "pros": "[\"Shaped for lower-volume female feet\", \"S72 rubber outgrips most beginner shoes\", \"No break-in — comfortable from session one\", \"M50 toe patch for surprisingly good toe hooks\"]",
+    "description": "Women's version of the Origin VS, keeping the same sticky S72 sole and M50 toe cap in a lower-volume fit. Where the leather Origin needs weeks to mold, this microfiber version fits well from day one \u2014 making it ideal for newer climbers who want to focus on technique rather than fighting their shoes.",
+    "pros": "[\"Shaped for lower-volume female feet\", \"S72 rubber outgrips most beginner shoes\", \"No break-in \u2014 comfortable from session one\", \"M50 toe patch for surprisingly good toe hooks\"]",
     "cons": "[\"Soft S72 rubber wears quicker outdoors\", \"Flat profile limits steep-wall performance\", \"Can run warm with microfiber upper\"]",
     "sizing": null,
     "customer_voices": null,
@@ -22679,9 +22679,9 @@
     "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "The softest, stickiest shoe in the Vapor family. Where the V uses hard XS Edge for edging, the S runs full-length XS Grip 2 for grip and sensitivity — yet the Bi-Tension rand and full midsole keep it surprisingly stable underfoot. Reviewers consistently note it edges better than the rubber suggests, while smearing and toe hooking are in a different league. The removable Nano Strap doubles as a slipper when you want zero bulk.",
+    "description": "The softest, stickiest shoe in the Vapor family. Where the V uses hard XS Edge for edging, the S runs full-length XS Grip 2 for grip and sensitivity \u2014 yet the Bi-Tension rand and full midsole keep it surprisingly stable underfoot. Reviewers consistently note it edges better than the rubber suggests, while smearing and toe hooking are in a different league. The removable Nano Strap doubles as a slipper when you want zero bulk.",
     "pros": "[\"XS Grip 2 sole smears better than any Vapor sibling\", \"Full midsole still edges surprisingly well for soft rubber\", \"Nano Strap can be removed for slipper-like feel\", \"M50 toe patch sticks to hooks like glue\"]",
-    "cons": "[\"Softer rubber wears faster than XS Edge on the V\", \"Less edge precision than the Vapor V on micro holds\", \"Microfiber upper stretches less than leather — size carefully\"]",
+    "cons": "[\"Softer rubber wears faster than XS Edge on the V\", \"Less edge precision than the Vapor V on micro holds\", \"Microfiber upper stretches less than leather \u2014 size carefully\"]",
     "sizing": null,
     "customer_voices": null,
     "vegan": false,
@@ -22763,7 +22763,7 @@
     "weight_g": 400,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Women's take on the Vapor S, pairing the same sticky XS Grip 2 sole and M50 toe patch with a lower-volume last. The Bi-Tension system gives it more structure than the rubber softness implies — strong enough to edge on thin holds, sensitive enough to trust on smeary volumes. A genuine do-everything shoe for intermediate to advanced female climbers.",
+    "description": "Women's take on the Vapor S, pairing the same sticky XS Grip 2 sole and M50 toe patch with a lower-volume last. The Bi-Tension system gives it more structure than the rubber softness implies \u2014 strong enough to edge on thin holds, sensitive enough to trust on smeary volumes. A genuine do-everything shoe for intermediate to advanced female climbers.",
     "pros": "[\"Soft XS Grip 2 reads texture through the sole\", \"Lower volume eliminates heel slip common in unisex Vapors\", \"Nano Strap converts to slipper mode\", \"Full midsole prevents foot fatigue on long sessions\"]",
     "cons": "[\"Grip 2 rubber wears faster than Edge on real rock\", \"Slight downturn may feel odd for pure beginners\", \"Narrower fit won't suit wider feet\"]",
     "sizing": null,
@@ -23013,7 +23013,7 @@
     "weight_g": 400,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
-    "description": "The women's lace Vapor — Scarpa's answer for female trad and sport climbers who want the Vapor platform with granular fit control. XS Edge rubber and a full midsole prioritize edging and support over sensitivity, making it the workhorse choice for long routes where you need to trust tiny footholds pitch after pitch.",
+    "description": "The women's lace Vapor \u2014 Scarpa's answer for female trad and sport climbers who want the Vapor platform with granular fit control. XS Edge rubber and a full midsole prioritize edging and support over sensitivity, making it the workhorse choice for long routes where you need to trust tiny footholds pitch after pitch.",
     "pros": "[\"Lace closure dials in fit for cracks and long pitches\", \"XS Edge rubber provides durable edging\", \"Full midsole supports all-day multi-pitch use\", \"Lower-volume last fits female feet without dead space\"]",
     "cons": "[\"Laces are slower than velcro at belays\", \"Leather/synthetic upper needs a few sessions to soften\", \"Heavier feel than the Vapor S\"]",
     "sizing": null,
@@ -23179,7 +23179,7 @@
     "weight_g": 390,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "The lace version of the Veloce takes Scarpa's gym-focused platform and adds real fit tunability. The offset lace pattern tracks the shoe's slight asymmetry, while the M50 rand wraps the forefoot for toe hooks you wouldn't expect from a comfort shoe. S72 rubber is the star — stickier than most performance compounds on plastic, though it pays for that grip with faster outdoor wear.",
+    "description": "The lace version of the Veloce takes Scarpa's gym-focused platform and adds real fit tunability. The offset lace pattern tracks the shoe's slight asymmetry, while the M50 rand wraps the forefoot for toe hooks you wouldn't expect from a comfort shoe. S72 rubber is the star \u2014 stickier than most performance compounds on plastic, though it pays for that grip with faster outdoor wear.",
     "pros": "[\"S72 rubber is absurdly sticky on gym plastic\", \"Lace system adapts to almost any foot shape\", \"Offset lace pattern follows the shoe's asymmetry\", \"Feels like a slipper despite being a lace shoe\"]",
     "cons": "[\"S72 wears fast on outdoor rock\", \"Soft sole struggles on tiny outdoor edges\", \"Primarily an indoor shoe despite lace versatility\"]",
     "sizing": null,
@@ -23262,9 +23262,9 @@
     "weight_g": 350,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Women's lace Veloce, offering the same sticky S72 sole in a lower-volume build. The lace closure is the main draw over the velcro version — it adapts to narrower or wider forefeet without the all-or-nothing fit of a strap. At 350g it's one of the lighter lace shoes in the range, built for gym climbers who want adjustability without weight.",
+    "description": "Women's lace Veloce, offering the same sticky S72 sole in a lower-volume build. The lace closure is the main draw over the velcro version \u2014 it adapts to narrower or wider forefeet without the all-or-nothing fit of a strap. At 350g it's one of the lighter lace shoes in the range, built for gym climbers who want adjustability without weight.",
     "pros": "[\"S72 rubber grips gym holds better than most\", \"Laces let you tune volume and width precisely\", \"Light at 350g for a lace shoe\", \"Comfortable enough for 2+ hour sessions\"]",
-    "cons": "[\"S72 compound is indoor-focused — wears outdoors\", \"Soft platform won't edge well on real rock\", \"Slight asymmetry may feel odd to total beginners\"]",
+    "cons": "[\"S72 compound is indoor-focused \u2014 wears outdoors\", \"Soft platform won't edge well on real rock\", \"Slight asymmetry may feel odd to total beginners\"]",
     "sizing": null,
     "customer_voices": null,
     "vegan": true,
@@ -23345,7 +23345,7 @@
     "weight_g": 330,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "The lightest shoe in the Veloce family, designed for women who climb indoors regularly and want something they can throw on between routes without fuss. The S72 sole grips plastic better than shoes twice its price, while the single velcro keeps weight down. Not a crag shoe — but for gym sessions and intro outdoor days, it punches above its class.",
+    "description": "The lightest shoe in the Veloce family, designed for women who climb indoors regularly and want something they can throw on between routes without fuss. The S72 sole grips plastic better than shoes twice its price, while the single velcro keeps weight down. Not a crag shoe \u2014 but for gym sessions and intro outdoor days, it punches above its class.",
     "pros": "[\"Lightest Veloce at 330g\", \"S72 rubber sticks to volumes and slopers\", \"Quick velcro for fast transitions\", \"Vegan-friendly microfiber upper\"]",
     "cons": "[\"S72 wears faster than harder compounds outdoors\", \"Single strap offers less fit control than lace\", \"Limited edging ability on small holds\"]",
     "sizing": null,
@@ -23877,8 +23877,10 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium_soft",
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -23952,8 +23954,11 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian",
+      "roman"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24028,9 +24033,9 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": null,
+    "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -24104,8 +24109,11 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian",
+      "roman"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24179,8 +24187,11 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "none",
+    "toe_form": [
+      "egyptian",
+      "roman"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24254,8 +24265,11 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium_hard",
+    "toe_form": [
+      "roman",
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24329,8 +24343,10 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24404,8 +24420,10 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24479,8 +24497,11 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium_hard",
+    "toe_form": [
+      "roman",
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24551,9 +24572,9 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": "{\"note\": \"Verified from So iLL website Feb 2026\", \"weight_verified\": true}",
-    "midsole_stiffness": null,
+    "midsole_stiffness": "medium_soft",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -24628,8 +24649,10 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium_soft",
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24703,8 +24726,10 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium_hard",
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "So iLL",
@@ -24778,12 +24803,14 @@
       "note": "Extracted from So iLL website Feb 2026",
       "weight_verified": true
     },
-    "midsole_stiffness": null,
-    "toe_form": null
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "Tenaya",
-    "model": "Araí",
+    "model": "Ara\u00ed",
     "slug": "tenaya-arai",
     "image_url": "/images/shoes/tenaya-arai.jpg",
     "images": [
@@ -25012,7 +25039,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "The most aggressive shoe in Tenaya's Aerial Plus line, built for micro-edges and thin cracks on steep terrain. Split sole with six different rubber formulations maximises grip in every position — toe, heel, and rand each use purpose-specific compounds. Draxtor velcro closure and breathable five-layer tongue round out a shoe designed for hard sport climbing and bouldering.",
+    "description": "The most aggressive shoe in Tenaya's Aerial Plus line, built for micro-edges and thin cracks on steep terrain. Split sole with six different rubber formulations maximises grip in every position \u2014 toe, heel, and rand each use purpose-specific compounds. Draxtor velcro closure and breathable five-layer tongue round out a shoe designed for hard sport climbing and bouldering.",
     "pros": "[\"Split sole flexes through the arch for better rock contact\", \"Six rubber formulations optimise grip across the whole shoe\", \"Breathable perforated tongue keeps feet cool on long burns\", \"Draxtor closure for fast, precise adjustment\", \"High-angle toe box excels in thin cracks and shallow pockets\"]",
     "cons": "[\"Aggressive shape limits comfort on long multi-pitch days\", \"Split sole reduces support on tiny edges compared to full-sole shoes\"]",
     "sizing": "True to size with minimal stretching expected.",
@@ -25427,7 +25454,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Tenaya's most versatile curved shoe, born from a two-year development project to work equally well on friction slabs, vertical walls, and steep overhangs. Semi-split sole with 3.5mm Vibram XS Grip rubber and a five-layer insole relay every nuance of the rock surface. Draxtor velcro closure enables rapid, precise adjustment. Alex Megos' weapon of choice for hard bouldering — used to send V15.",
+    "description": "Tenaya's most versatile curved shoe, born from a two-year development project to work equally well on friction slabs, vertical walls, and steep overhangs. Semi-split sole with 3.5mm Vibram XS Grip rubber and a five-layer insole relay every nuance of the rock surface. Draxtor velcro closure enables rapid, precise adjustment. Alex Megos' weapon of choice for hard bouldering \u2014 used to send V15.",
     "pros": "[\"Genuinely versatile \\u2014 performs on slab through to roof\", \"Draxtor closure for one-motion precision fit\", \"Semi-split sole provides both sensitivity and support\", \"Lycra tongue for a close, comfortable fit\", \"Proven at the highest level of competition climbing\"]",
     "cons": "[\"Jack-of-all-trades means specialists will out-edge or out-smear it\", \"Semi-split sole less supportive than full-sole designs on tiny edges\"]",
     "sizing": "True to size with minimal stretching expected.",
@@ -25513,7 +25540,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Low-volume version of the Oasi, refined for narrower feet. Shares all of the Oasi's design DNA — semi-split sole, Vibram XS Grip 3.5mm rubber, and Draxtor closure — in a tighter-fitting package. The reduced volume eliminates dead space, translating to better precision and less foot movement inside the shoe on technical terrain.",
+    "description": "Low-volume version of the Oasi, refined for narrower feet. Shares all of the Oasi's design DNA \u2014 semi-split sole, Vibram XS Grip 3.5mm rubber, and Draxtor closure \u2014 in a tighter-fitting package. The reduced volume eliminates dead space, translating to better precision and less foot movement inside the shoe on technical terrain.",
     "pros": "[\"Low-volume fit eliminates dead space for narrow feet\", \"Same semi-split sole and rubber as the Oasi\", \"Draxtor closure adjusts across different parts of the shoe independently\", \"Lycra tongue conforms to foot shape\", \"Versatile across all wall angles\"]",
     "cons": "[\"Too narrow for average or wide feet\", \"Semi-split sole less supportive than full-sole on micro-edges\"]",
     "sizing": "True to size with minimal stretching expected. Ideal for narrow feet and climbers preferring snug fits.",
@@ -25597,7 +25624,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "The shoe that put Tenaya on the map — a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ramón Julián's shoe of choice.",
+    "description": "The shoe that put Tenaya on the map \u2014 a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ram\u00f3n Juli\u00e1n's shoe of choice.",
     "pros": "[\"Versatile enough for slab, vertical, and moderate overhang\", \"Integrated tongue for a clean, comfortable fit\", \"Rubber toe reinforcement improves toe-hooking durability\", \"Full midsole provides dependable support\", \"Proven on the hardest routes across five continents\"]",
     "cons": "[\"Slight downturn lacks power on steep roof climbing\", \"Not as sensitive as split-sole designs\"]",
     "sizing": "True to size with minimal stretching expected. Best for wide feet and those seeking roomy, all-day comfort.",
@@ -25681,7 +25708,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Women's-specific version of the iconic Ra, with a last adapted to female foot anatomy — narrower heel and adjusted volume throughout. Same Vibram XS Grip 4mm rubber, integrated tongue, and full-length midsole that make the Ra such a versatile all-rounder. Delivers balanced performance from slab to moderate overhangs without sacrificing all-day comfort.",
+    "description": "Women's-specific version of the iconic Ra, with a last adapted to female foot anatomy \u2014 narrower heel and adjusted volume throughout. Same Vibram XS Grip 4mm rubber, integrated tongue, and full-length midsole that make the Ra such a versatile all-rounder. Delivers balanced performance from slab to moderate overhangs without sacrificing all-day comfort.",
     "pros": "[\"Women's-specific last with narrower heel\", \"Same rubber and construction quality as the unisex Ra\", \"Versatile across slab, vertical, and moderate overhang\", \"Full midsole for dependable support\", \"Comfortable enough for extended sessions\"]",
     "cons": "[\"Slight downturn limits power on steep terrain\", \"Women's sizing may run different from the unisex Ra\"]",
     "sizing": "Women's-specific sizing. True to size with minimal stretch. Narrower heel cup than unisex Ra.",
@@ -25927,7 +25954,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "moderate",
-    "description": "Developed in parallel with the Oasi, the Tarifa is a lace-up performance shoe that trades the Oasi's velcro for traditional lacing — giving sport climbers and trad enthusiasts finer volume control. Curved shape with a slightly stiffer forefoot than the Oasi handles micro-edges without losing friction capability. Split sole with 3.5mm Vibram XS Grip rubber and multiple rubber formulations from heel to toe.",
+    "description": "Developed in parallel with the Oasi, the Tarifa is a lace-up performance shoe that trades the Oasi's velcro for traditional lacing \u2014 giving sport climbers and trad enthusiasts finer volume control. Curved shape with a slightly stiffer forefoot than the Oasi handles micro-edges without losing friction capability. Split sole with 3.5mm Vibram XS Grip rubber and multiple rubber formulations from heel to toe.",
     "pros": "[\"Lace closure for precise, customisable fit\", \"Stiffer forefoot than the Oasi \\u2014 better on micro-edges\", \"Split sole with mixed rubber formulations\", \"Curved shape performs well from vertical to overhanging\", \"Good for sport climbing and moderate trad\"]",
     "cons": "[\"Laces slower to adjust than Draxtor velcro\", \"Split sole less supportive than full-sole designs on sustained edging\"]",
     "sizing": "True to size with minimal stretching expected.",
@@ -26011,7 +26038,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Lace-up version of the Inti, developed as Ramón Julián's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
+    "description": "Lace-up version of the Inti, developed as Ram\u00f3n Juli\u00e1n's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
     "pros": "[\"Softer than the Masai \\u2014 better sensitivity on smears and volumes\", \"Lace closure for precise, secure fit\", \"Asymmetric toe provides good power transfer\", \"Comfortable enough for long routes and multi-pitch\", \"4mm Vibram XS Grip lasts well on rough rock\"]",
     "cons": "[\"Softer sole means less support on micro-edges than the Masai\", \"Laces slower to adjust mid-session\"]",
     "sizing": "True to size. Lace closure provides adjustable fit across foot shapes.",
@@ -26550,7 +26577,7 @@
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 330g pair → 165g single",
+      "weight_source": "weighmyrack: 330g pair \u2192 165g single",
       "weight_verified": true
     },
     "midsole_stiffness": null,
@@ -28224,7 +28251,7 @@
     "pros": "[\"Outstanding edging on small holds\", \"Extended toe rubber for strong toe hooks\", \"Tensioned heel locks foot securely\", \"Synthetic upper maintains shape over time\"]",
     "cons": "[\"Long break-in period\", \"Stiff rubber takes time to soften\", \"Single velcro strap can feel less adjustable\"]",
     "sizing": "Synthetic upper won't stretch. Size true-to-size or half size down from street shoe. Comparable to Five Ten Hiangle sizing.",
-    "customer_voices": "[\"Like a Hiangle and Five Ten Team had a child — sticky and comfortable for sending projects.\", \"My go-to bouldering shoe. Works great outdoors and indoors. Similar to old blue Hiangle but with softer midsole and stickier rubber.\"]",
+    "customer_voices": "[\"Like a Hiangle and Five Ten Team had a child \u2014 sticky and comfortable for sending projects.\", \"My go-to bouldering shoe. Works great outdoors and indoors. Similar to old blue Hiangle but with softer midsole and stickier rubber.\"]",
     "vegan": true,
     "resoleable": true,
     "admin_flags": null,
@@ -28878,7 +28905,7 @@
     "description": "A versatile lace-up with a high-volume toe box suited for wider feet. The Up Beat delivers solid edging performance through its precision-pressed 4.2mm RH outsole and full-length midsole. Great for sport, trad, and gym climbing with excellent durability and a comfortable fit that works all day.",
     "pros": "[\"High-volume fit for wider feet\", \"Excellent edging support\", \"Durable 4.2mm RH rubber\", \"Versatile lace closure for fine-tuning\"]",
     "cons": "[\"Less aggressive than competition shoes\", \"Heavier for bouldering sessions\", \"Moderate downturn limits roof performance\"]",
-    "sizing": "High-volume toe box—ideal for wide feet. Lace closure allows precise adjustment. Minimal stretch.",
+    "sizing": "High-volume toe box\u2014ideal for wide feet. Lace closure allows precise adjustment. Minimal stretch.",
     "customer_voices": "[\"Finally a performance shoe that fits my wide feet without cramping.\", \"The pressed molded sole edges better than any shoe in this price range.\"]",
     "vegan": true,
     "resoleable": true,
