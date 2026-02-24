@@ -82,7 +82,7 @@ export function computeEdging(shoe) {
 
   const edgeDown = ({ flat: 0.15, slight: 0.42, moderate: 0.70, aggressive: 0.85 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.45, moderate: 0.65, strong: 0.90 })[shoe.asymmetry] || 0.5;
-  const edgeShape = edgeDown * 0.80 + asymE * 0.20;
+  const edgeShape = edgeDown * 0.90 + asymE * 0.10;
   // Geometric mean: shape (45%) × rigidity (55%) — balanced so soft aggressive
   // shoes (Theory, Futura, etc.) aren't over-penalised for low stiffness.
   // Closure removed as standalone — already embedded in rigidity via computeStiffness.
@@ -101,7 +101,7 @@ export function computePockets(shoe) {
   const tp = ({ none: 0.1, medium: 0.5, full: 0.9 })[shoe.toe_patch] || 0.5;
   const cl = shoe.closure || "";
   const pockCl = ({ slipper: 0.7, velcro: 0.5, lace: 0.3 })[cl] || 0.5;
-  return Math.min(1, dt * 0.25 + asymE * 0.25 + tp * 0.25 + pockCl * 0.15 + stiff * 0.10);
+  return Math.min(1, asymE * 0.30 + dt * 0.20 + tp * 0.25 + pockCl * 0.15 + stiff * 0.10);
 }
 
 /** Hooking ability: heel rubber + toe rubber + flexibility + closure
