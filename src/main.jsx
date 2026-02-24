@@ -74,19 +74,33 @@ const PRICE_TABLES = [
   "shoe_prices", "rope_prices", "crashpad_prices", "belay_prices", "quickdraw_prices"
 ];
 const PRICE_SELECT = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock";
-const PRICE_FILTER = "product_slug=not.is.null&price_eur=gt.0&order=price_eur&limit=5000";
+const PRICE_FILTER = "product_slug=not.is.null&price_eur=gt.0&order=price_eur";
+const PRICE_PAGE_SIZE = 1000; // Supabase default max rows per request
+
+// Fetch all rows from a table, paginating if needed (Supabase caps at 1000 per request)
+async function fetchAllRows(path) {
+  const rows = [];
+  let offset = 0;
+  while (true) {
+    const page = await supabaseFetch(`${path}&limit=${PRICE_PAGE_SIZE}&offset=${offset}`);
+    rows.push(...page);
+    if (page.length < PRICE_PAGE_SIZE) break; // last page
+    offset += PRICE_PAGE_SIZE;
+  }
+  return rows;
+}
 
 async function fetchLivePrices() {
   try {
-    // Fetch all category price tables in parallel
+    // Fetch all category price tables in parallel (with pagination)
     const results = await Promise.allSettled(
       PRICE_TABLES.map(t =>
-        supabaseFetch(`/rest/v1/${t}?select=${PRICE_SELECT}&${PRICE_FILTER}`)
+        fetchAllRows(`/rest/v1/${t}?select=${PRICE_SELECT}&${PRICE_FILTER}`)
       )
     );
     // Also fetch legacy prices table for any older data
     const legacyResult = await Promise.allSettled([
-      supabaseFetch("/rest/v1/prices?select=shoe_slug,retailer,price_eur,old_price_eur,product_url,in_stock,delivery&order=price_eur")
+      fetchAllRows("/rest/v1/prices?select=shoe_slug,retailer,price_eur,old_price_eur,product_url,in_stock,delivery&order=price_eur")
     ]);
 
     const grouped = {};
@@ -110,11 +124,12 @@ async function fetchLivePrices() {
       }
     }
 
-    // Merge legacy prices (only for slugs not already covered)
+    // Merge legacy prices (only for slugs not already covered by new tables)
+    const newTableSlugs = new Set(Object.keys(grouped));
     if (legacyResult[0]?.status === "fulfilled") {
       for (const r of legacyResult[0].value) {
         const slug = r.shoe_slug;
-        if (!slug || grouped[slug]) continue;
+        if (!slug || newTableSlugs.has(slug)) continue;
         if (!grouped[slug]) grouped[slug] = [];
         grouped[slug].push({
           shop: r.retailer,
