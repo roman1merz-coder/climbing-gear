@@ -8409,7 +8409,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -8494,7 +8494,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -9883,7 +9883,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "egyptian"
+      "greek"
     ]
   },
   {
@@ -10114,7 +10114,10 @@
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard",
-    "toe_form": null
+    "toe_form": [
+      "egyptian",
+      "greek"
+    ]
   },
   {
     "brand": "La Sportiva",
@@ -10196,7 +10199,8 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "roman"
+      "egyptian",
+      "greek"
     ]
   },
   {
@@ -10362,8 +10366,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "egyptian",
-      "greek"
+      "egyptian"
     ]
   },
   {
@@ -10449,7 +10452,8 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "egyptian"
+      "egyptian",
+      "greek"
     ]
   },
   {
@@ -10862,7 +10866,7 @@
     },
     "midsole_stiffness": "soft",
     "toe_form": [
-      "greek"
+      "egyptian"
     ]
   },
   {
@@ -10944,7 +10948,7 @@
     },
     "midsole_stiffness": "soft",
     "toe_form": [
-      "greek"
+      "egyptian"
     ]
   },
   {
@@ -11532,7 +11536,7 @@
     },
     "midsole_stiffness": "medium_hard",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -11595,7 +11599,9 @@
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard",
-    "toe_form": null
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "La Sportiva",
@@ -11675,6 +11681,8 @@
     },
     "midsole_stiffness": "hard",
     "toe_form": [
+      "egyptian",
+      "greek",
       "roman"
     ]
   },
@@ -11756,6 +11764,8 @@
     },
     "midsole_stiffness": "hard",
     "toe_form": [
+      "egyptian",
+      "greek",
       "roman"
     ]
   },
@@ -11838,7 +11848,7 @@
     },
     "midsole_stiffness": "hard",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -11920,7 +11930,7 @@
     },
     "midsole_stiffness": "hard",
     "toe_form": [
-      "roman"
+      "egyptian"
     ]
   },
   {
@@ -11984,7 +11994,9 @@
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium_hard",
-    "toe_form": null
+    "toe_form": [
+      "egyptian"
+    ]
   },
   {
     "brand": "La Sportiva",
@@ -12143,7 +12155,9 @@
     "data_confidence": {},
     "midsole_stiffness": "none",
     "toe_form": [
-      "egyptian"
+      "egyptian",
+      "greek",
+      "roman"
     ]
   },
   {
@@ -12226,7 +12240,7 @@
     },
     "midsole_stiffness": "none",
     "toe_form": [
-      "egyptian"
+      "roman"
     ]
   },
   {
