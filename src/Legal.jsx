@@ -19,36 +19,36 @@ const S = {
 function Impressum() {
   return (
     <>
-      <h1 style={S.h1}>Impressum</h1>
-      <p style={S.subtitle}>{"Angaben gem\u00e4\u00df \u00a7 5 TMG"}</p>
+      <h1 style={S.h1}>Legal Notice</h1>
+      <p style={S.subtitle}>Information pursuant to Section 5 TMG (German Telemedia Act)</p>
 
-      <h2 style={S.h2}>Verantwortlich</h2>
+      <h2 style={S.h2}>Responsible Person</h2>
       <p style={S.p}>
         Roman Merz<br />
-        {"Von-Hutten-Stra\u00dfe 22"}<br />
+        Von-Hutten-Strasse 22<br />
         67489 Kirrweiler<br />
-        Deutschland
+        Germany
       </p>
 
-      <h2 style={S.h2}>Kontakt</h2>
-      <p style={S.p}>E-Mail: roman@climbing-gear.com</p>
+      <h2 style={S.h2}>Contact</h2>
+      <p style={S.p}>Email: roman@climbing-gear.com</p>
 
-      <h2 style={S.h2}>Haftungsausschluss</h2>
+      <h2 style={S.h2}>Disclaimer</h2>
       <p style={S.p}>
-        {"Die Inhalte dieser Website werden mit gr\u00f6\u00dftm\u00f6glicher Sorgfalt erstellt. Der Anbieter \u00fcbernimmt jedoch keine Gew\u00e4hr f\u00fcr die Richtigkeit, Vollst\u00e4ndigkeit und Aktualit\u00e4t der bereitgestellten Inhalte."}
+        The content of this website is created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the information provided.
       </p>
       <p style={S.p}>
-        {"Als Diensteanbieter sind wir gem\u00e4\u00df \u00a7 7 Abs. 1 TMG f\u00fcr eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach \u00a7\u00a7 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, \u00fcbermittelte oder gespeicherte fremde Informationen zu \u00fcberwachen."}
+        As a service provider, we are responsible for our own content on these pages under general law pursuant to Section 7(1) TMG. Under Sections 8 to 10 TMG, however, we are not obligated to monitor transmitted or stored third-party information.
       </p>
 
-      <h2 style={S.h2}>Affiliate-Links</h2>
+      <h2 style={S.h2}>Affiliate Links</h2>
       <p style={S.p}>
-        {"Diese Website kann Affiliate-Links zu H\u00e4ndlern enthalten. Wenn Sie \u00fcber solche Links ein Produkt kaufen, erhalten wir m\u00f6glicherweise eine Provision. Der Preis f\u00fcr Sie \u00e4ndert sich dadurch nicht. Affiliate-Einnahmen beeinflussen niemals unsere Bewertungen oder Rankings."}
+        This website contains affiliate links to retailers (e.g. via the AWIN network). If you purchase a product through such a link, we may receive a commission. The price you pay remains the same. Affiliate revenue never influences our ratings or rankings.
       </p>
 
-      <h2 style={S.h2}>Urheberrecht</h2>
+      <h2 style={S.h2}>Copyright</h2>
       <p style={S.p}>
-        {"Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Produktbilder stammen von den jeweiligen Herstellern und werden zu Informationszwecken im Rahmen der Produktvorstellung verwendet."}
+        The content and works created by the site operator are subject to copyright. Product images are sourced from the respective manufacturers and are used for informational purposes as part of product presentation.
       </p>
     </>
   );
@@ -57,53 +57,53 @@ function Impressum() {
 function PrivacyPolicy() {
   return (
     <>
-      <h1 style={S.h1}>{"Datenschutzerkl\u00e4rung"}</h1>
-      <p style={S.subtitle}>Privacy Policy</p>
+      <h1 style={S.h1}>Privacy Policy</h1>
+      <p style={S.subtitle}>How we handle your data</p>
 
-      <h2 style={S.h2}>1. Verantwortlicher</h2>
+      <h2 style={S.h2}>1. Data Controller</h2>
       <p style={S.p}>
-        {"Verantwortlich f\u00fcr die Datenverarbeitung auf dieser Website ist:"}<br />
-        Roman Merz {"\u2014"} roman@climbing-gear.com
+        The person responsible for data processing on this website is:<br />
+        Roman Merz — roman@climbing-gear.com
       </p>
 
       <h2 style={S.h2}>2. Hosting</h2>
       <p style={S.p}>
-        Diese Website wird bei Vercel Inc. (San Francisco, USA) gehostet.
-        Beim Besuch der Website werden automatisch Informationen (z.B. IP-Adresse,
-        Browsertyp, Zeitpunkt des Zugriffs) in Server-Logfiles gespeichert.
-        Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+        This website is hosted by Vercel Inc. (San Francisco, USA). When you visit the website, certain information (e.g. IP address, browser type, time of access) is automatically stored in server log files. Legal basis: Art. 6(1)(f) GDPR (legitimate interest).
       </p>
 
-      <h2 style={S.h2}>3. Datenbank</h2>
+      <h2 style={S.h2}>3. Analytics</h2>
       <p style={S.p}>
-        Produktdaten werden bei Supabase (Singapore Pte. Ltd.) gespeichert.
-        Es werden keine personenbezogenen Daten der Nutzer in der Datenbank erfasst.
+        We use Vercel Web Analytics, a privacy-friendly analytics tool that does not use cookies and does not collect personal data. It provides aggregated page view statistics only. No individual user tracking takes place.
       </p>
 
-      <h2 style={S.h2}>4. Cookies</h2>
+      <h2 style={S.h2}>4. Database</h2>
       <p style={S.p}>
-        Diese Website verwendet keine Cookies und keine Tracking-Tools.
-        Es werden keine personenbezogenen Daten zu Werbezwecken erhoben.
+        Product data is stored with Supabase (Singapore Pte. Ltd.). No personal user data is collected or stored in the database.
       </p>
 
-      <h2 style={S.h2}>5. Lokale Speicherung</h2>
+      <h2 style={S.h2}>5. Cookies</h2>
       <p style={S.p}>
-        {"Diese Website nutzt den lokalen Speicher Ihres Browsers (localStorage und sessionStorage), um Ihre Filtereinstellungen und Wunschliste zu speichern. Diese Daten verbleiben ausschlie\u00dflich auf Ihrem Ger\u00e4t und werden nicht an unsere Server \u00fcbertragen. Es handelt sich dabei nicht um Cookies."}
+        This website does not set any first-party cookies. When you click an affiliate link, the affiliate partner (e.g. AWIN) may set a cookie on the retailer's website to attribute the transaction. This is governed by the retailer's own privacy policy.
       </p>
 
-      <h2 style={S.h2}>6. Affiliate-Links</h2>
+      <h2 style={S.h2}>6. Local Storage</h2>
       <p style={S.p}>
-        {"Diese Website enth\u00e4lt Affiliate-Links zu H\u00e4ndlern (z.\u00a0B. \u00fcber das Awin-Netzwerk). Wenn Sie auf einen solchen Link klicken, werden Sie auf die Website des jeweiligen H\u00e4ndlers weitergeleitet. Dort gelten dessen Datenschutzbestimmungen. Der Affiliate-Partner setzt ggf. ein Cookie zur Zuordnung der Transaktion. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Finanzierung des Angebots). Affiliate-Einnahmen beeinflussen niemals unsere Bewertungen oder Rankings."}
+        This website uses your browser's local storage (localStorage and sessionStorage) to save your filter settings and wishlist. This data stays entirely on your device and is never transmitted to our servers. It is not a cookie.
       </p>
 
-      <h2 style={S.h2}>7. Ihre Rechte</h2>
+      <h2 style={S.h2}>7. Affiliate Links</h2>
       <p style={S.p}>
-        {"Sie haben das Recht auf Auskunft, Berichtigung, L\u00f6schung, Einschr\u00e4nkung der Verarbeitung, Daten\u00fcbertragbarkeit und Widerspruch. Wenden Sie sich dazu an: roman@climbing-gear.com"}
+        This website contains affiliate links to retailers (e.g. via the AWIN network). When you click such a link, you are redirected to the retailer's website, where their privacy policy applies. The affiliate partner may set a cookie to attribute the transaction. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in funding the service). Affiliate revenue never influences our ratings or rankings.
       </p>
 
-      <h2 style={S.h2}>8. Beschwerderecht</h2>
+      <h2 style={S.h2}>8. Your Rights</h2>
       <p style={S.p}>
-        {"Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbeh\u00f6rde zu beschweren."}
+        You have the right to access, rectification, erasure, restriction of processing, data portability, and objection. To exercise these rights, contact: roman@climbing-gear.com
+      </p>
+
+      <h2 style={S.h2}>9. Right to Complain</h2>
+      <p style={S.p}>
+        You have the right to lodge a complaint with a data protection supervisory authority.
       </p>
     </>
   );
@@ -112,45 +112,45 @@ function PrivacyPolicy() {
 function TermsOfService() {
   return (
     <>
-      <h1 style={S.h1}>Nutzungsbedingungen</h1>
-      <p style={S.subtitle}>Terms of Service</p>
+      <h1 style={S.h1}>Terms of Service</h1>
+      <p style={S.subtitle}>Please read before using this website</p>
 
-      <h2 style={S.h2}>1. Geltungsbereich</h2>
+      <h2 style={S.h2}>1. Scope</h2>
       <p style={S.p}>
-        {"Diese Nutzungsbedingungen gelten f\u00fcr die Nutzung der Website climbing-gear.com, betrieben von Roman Merz. Mit dem Zugriff auf diese Website erkl\u00e4ren Sie sich mit diesen Bedingungen einverstanden."}
+        These terms apply to the use of climbing-gear.com, operated by Roman Merz. By accessing this website, you agree to these terms.
       </p>
 
-      <h2 style={S.h2}>2. Informationszweck</h2>
+      <h2 style={S.h2}>2. Informational Purpose</h2>
       <p style={S.p}>
-        {"Alle auf dieser Website bereitgestellten Daten \u2014 einschlie\u00dflich Produktspezifikationen, Bewertungen, Scores, Gr\u00f6\u00dfentabellen und Preise \u2014 dienen ausschlie\u00dflich zu Informations- und Vergleichszwecken. Sie stellen keine Kaufempfehlung, Sicherheitsberatung oder fachliche Beratung dar."}
+        All data provided on this website — including product specifications, ratings, scores, size charts, and prices — is for informational and comparison purposes only. It does not constitute a purchase recommendation, safety advice, or professional consultation.
       </p>
 
-      <h2 style={S.h2}>3. Kein Ersatz f{"\u00fc"}r Fachberatung</h2>
+      <h2 style={S.h2}>3. Not a Substitute for Professional Advice</h2>
       <p style={S.p}>
-        {"Klettern ist eine inh\u00e4rent gef\u00e4hrliche Aktivit\u00e4t. Die auf dieser Website dargestellten Informationen ersetzen nicht die fachgerechte Einweisung durch qualifizierte Trainer, die professionelle Anpassung von Ausr\u00fcstung oder die Herstelleranweisungen. Verwenden Sie stets zertifizierte Ausr\u00fcstung (UIAA/EN) und pr\u00fcfen Sie Ihre Ausr\u00fcstung vor jedem Gebrauch."}
+        Climbing is an inherently dangerous activity. The information on this website does not replace proper instruction by qualified trainers, professional equipment fitting, or manufacturer guidelines. Always use certified equipment (UIAA/EN) and inspect your gear before every use.
       </p>
 
-      <h2 style={S.h2}>4. Haftungsbeschr{"\u00e4"}nkung</h2>
+      <h2 style={S.h2}>4. Limitation of Liability</h2>
       <p style={S.p}>
-        {"Die Nutzung der Website und aller bereitgestellten Informationen erfolgt auf eigenes Risiko. Der Betreiber \u00fcbernimmt keine Haftung f\u00fcr Sch\u00e4den, die aus der Nutzung oder dem Vertrauen auf die bereitgestellten Informationen entstehen \u2014 einschlie\u00dflich, aber nicht beschr\u00e4nkt auf Fehlk\u00e4ufe, Verletzungen oder Folgesch\u00e4den. Die auf der Website angezeigten Preise und Verf\u00fcgbarkeiten k\u00f6nnen von den tats\u00e4chlichen Angaben der H\u00e4ndler abweichen."}
+        Use of this website and all information provided is at your own risk. The operator assumes no liability for damages arising from the use of or reliance on the information provided — including but not limited to incorrect purchases, injuries, or consequential damages. Prices and availability shown may differ from the actual retailer listings.
       </p>
 
-      <h2 style={S.h2}>5. Bewertungen und Scores</h2>
+      <h2 style={S.h2}>5. Ratings and Scores</h2>
       <p style={S.p}>
-        {"Alle Scores und Bewertungen sind algorithmische Sch\u00e4tzungen auf Basis \u00f6ffentlich verf\u00fcgbarer Herstellerangaben. Sie sind markenneutral und dienen als Orientierungshilfe. Individuelle Pr\u00e4ferenzen, K\u00f6rperma\u00dfe und Einsatzzwecke k\u00f6nnen zu abweichenden Erfahrungen f\u00fchren."}
+        All scores and ratings are algorithmic estimates based on publicly available manufacturer data. They are brand-neutral and serve as a guide. Individual preferences, body measurements, and intended use may lead to different experiences.
       </p>
 
-      <h2 style={S.h2}>6. Geistiges Eigentum</h2>
+      <h2 style={S.h2}>6. Intellectual Property</h2>
       <p style={S.p}>
-        {"Produktbilder stammen von den jeweiligen Herstellern und werden zu Informationszwecken im Rahmen der Produktvorstellung verwendet. Alle sonstigen Inhalte (Texte, Scores, Algorithmen, Design) sind Eigentum von climbing-gear.com und d\u00fcrfen ohne Genehmigung nicht reproduziert werden."}
+        Product images are sourced from the respective manufacturers and used for informational purposes as part of product presentation. All other content (text, scores, algorithms, design) is the property of climbing-gear.com and may not be reproduced without permission.
       </p>
 
-      <h2 style={S.h2}>{"7. \u00c4nderungen"}</h2>
+      <h2 style={S.h2}>7. Changes</h2>
       <p style={S.p}>
-        {"Wir behalten uns vor, diese Nutzungsbedingungen jederzeit zu \u00e4ndern. Die jeweils aktuelle Version ist auf dieser Seite einsehbar."}
+        We reserve the right to modify these terms at any time. The current version is always available on this page.
       </p>
 
-      <p style={{ ...S.p, marginTop: "32px", fontStyle: "italic" }}>Stand: Februar 2026</p>
+      <p style={{ ...S.p, marginTop: "32px", fontStyle: "italic" }}>Last updated: February 2026</p>
     </>
   );
 }
@@ -159,12 +159,12 @@ export default function Legal() {
   const location = useLocation();
   const isPrivacy = location.pathname === "/privacy";
   const isTerms = location.pathname === "/terms";
-  const title = isTerms ? "Terms of Service" : isPrivacy ? "Privacy Policy" : "Impressum";
+  const title = isTerms ? "Terms of Service" : isPrivacy ? "Privacy Policy" : "Legal Notice";
   const desc = isTerms
-    ? "Nutzungsbedingungen — Terms of Service for climbing-gear.com"
+    ? "Terms of Service for climbing-gear.com"
     : isPrivacy
-    ? "Datenschutzerklärung — Privacy policy for climbing-gear.com"
-    : "Legal notice (Impressum) for climbing-gear.com per § 5 TMG.";
+    ? "Privacy policy for climbing-gear.com"
+    : "Legal notice (Impressum) for climbing-gear.com per Section 5 TMG.";
   usePageMeta(title, desc);
 
   return (
