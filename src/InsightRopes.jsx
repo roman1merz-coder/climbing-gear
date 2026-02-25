@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
+import ROPE_SEED from "./rope_seed_data.json";
 import RopeScatterChart from "./RopeScatterChart.jsx";
 import usePageMeta from "./usePageMeta.js";
 import {
@@ -7,17 +8,29 @@ import {
   ChartContainer, Prose, KeyInsight,
 } from "./InsightsShared.jsx";
 
-/* ─── Rope Diameter Data ─── */
-const ROPE_BANDS = [
-  { band: "≤8.7", falls: 4.8, gm: 48.5, n: 6 },
-  { band: "8.8–9.0", falls: 6.2, gm: 53.2, n: 6 },
-  { band: "9.1–9.2", falls: 6.3, gm: 54.8, n: 12 },
-  { band: "9.3–9.5", falls: 7.0, gm: 58.8, n: 21 },
-  { band: "9.6–9.8", falls: 8.0, gm: 61.6, n: 31 },
-  { band: "9.9–10.0", falls: 8.4, gm: 63.9, n: 14 },
-  { band: "10.1–10.5", falls: 8.8, gm: 67.1, n: 12 },
-  { band: "≥11.0", falls: 13.8, gm: 75.5, n: 4 },
-];
+/* ─── Derived from rope_seed_data.json — single ropes only ─── */
+const SINGLES = ROPE_SEED.filter(r => r.rope_type === "single");
+
+/* ─── Rope Diameter Band data (derived from seed 2026-02-25) ─── */
+const ROPE_BANDS = (() => {
+  const bands = [
+    { band: "≤8.7", min: 0, max: 8.75 },
+    { band: "8.8–9.0", min: 8.75, max: 9.05 },
+    { band: "9.1–9.2", min: 9.05, max: 9.25 },
+    { band: "9.3–9.5", min: 9.25, max: 9.55 },
+    { band: "9.6–9.8", min: 9.55, max: 9.85 },
+    { band: "9.9–10.0", min: 9.85, max: 10.05 },
+    { band: "10.1–10.5", min: 10.05, max: 10.55 },
+    { band: "≥11.0", min: 10.55, max: 999 },
+  ];
+  return bands.map(b => {
+    const ropes = SINGLES.filter(r => r.diameter_mm >= b.min && r.diameter_mm < b.max && r.uiaa_falls);
+    const n = ropes.length;
+    const falls = n ? +(ropes.reduce((s, r) => s + r.uiaa_falls, 0) / n).toFixed(1) : 0;
+    const gm = n ? +(ropes.reduce((s, r) => s + (r.weight_per_meter_g || 0), 0) / n).toFixed(1) : 0;
+    return { band: b.band, falls, gm, n };
+  });
+})();
 
 function RopeTeaserChart({ isMobile }) {
   const W = isMobile ? 340 : 700, H = isMobile ? 240 : 260;
@@ -25,10 +38,10 @@ function RopeTeaserChart({ isMobile }) {
   const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
   const barW = Math.min(50, cw / ROPE_BANDS.length - 8);
   const maxFalls = 16;
-  const sweet = [4, 5];
+  const sweet = [4, 4]; // 9.6–9.8mm band — the core of the 9.5–9.8mm sweet spot
 
   return (
-    <ChartContainer title="Avg UIAA Falls by Diameter Band" subtitle="106 single ropes · Sweet spot highlighted">
+    <ChartContainer title="Avg UIAA Falls by Diameter Band" subtitle={`${SINGLES.length} single ropes · Sweet spot highlighted`}>
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
         <rect
           x={pad.left + (cw / ROPE_BANDS.length) * sweet[0]}
@@ -81,7 +94,7 @@ function RopeTeaserChart({ isMobile }) {
         onMouseOver={e => e.currentTarget.style.transform = "translateY(-1px)"}
         onMouseOut={e => e.currentTarget.style.transform = "translateY(0)"}
       >
-        Explore all 106 ropes interactively →
+        Explore all {SINGLES.length} ropes interactively →
       </Link>
     </ChartContainer>
   );
@@ -89,26 +102,26 @@ function RopeTeaserChart({ isMobile }) {
 
 export default function InsightRopes() {
   usePageMeta(
-    "Does Spending More Buy a Safer Climbing Rope? 106 Ropes Analysed",
-    "We compared cost-per-metre, UIAA fall ratings, and weight across 106 single climbing ropes. The correlation between price and safety is surprisingly weak. Here's why — and what to buy instead."
+    `Does Spending More Buy a Safer Climbing Rope? ${SINGLES.length} Ropes Analysed`,
+    `We compared cost-per-metre, UIAA fall ratings, and weight across ${SINGLES.length} single climbing ropes. The correlation between price and safety is surprisingly weak. Here's why — and what to buy instead.`
   );
   const isMobile = useIsMobile();
 
   return (
     <ArticleLayout isMobile={isMobile} breadcrumb="Rope Cost vs Safety">
       <ArticleHeader
-        title="Does Spending More Buy a Safer Rope? 106 Ropes Say: It's Complicated"
-        subtitle="We crunched cost-per-gram, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions — and exposes what specs can't tell you."
+        title={`Does Spending More Buy a Safer Rope? ${SINGLES.length} Ropes Say: It's Complicated`}
+        subtitle={`We crunched cost-per-gram, UIAA falls, and weight across ${SINGLES.length} single ropes. The data challenges some common assumptions — and exposes what specs can't tell you.`}
       />
 
       <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
         <StatCard label="Correlation" value="–0.19" sub="cost ↑ ≠ more falls (counterintuitive)" color={T.red} />
         <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
-        <StatCard label="Best Band" value="9.5–9.8" sub="31 models — fiercest competition" color={T.accent} />
+        <StatCard label="Best Band" value="9.5–9.8" sub={`${ROPE_BANDS[4].n} models — fiercest competition`} color={T.accent} />
       </div>
 
       <Prose>
-        Here's the uncomfortable truth: across 106 single-certified ropes, spending more per metre of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is weak and negative (r = –0.19). Thin, expensive alpine ropes at ≤8.9mm average 5.6 UIAA falls at 341¢/m, while budget-friendly 10mm+ ropes deliver 9–10 falls at just 258¢/m. So where does the money go?
+        Here's the uncomfortable truth: across {SINGLES.length} single-certified ropes, spending more per metre of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is weak and actually negative (r = –0.19). Thin, expensive alpine ropes at ≤8.9mm average 5.6 UIAA falls at €3.41/m, while budget-friendly 10mm+ ropes deliver 9–10 falls at just €2.58/m. So where does the money go?
       </Prose>
 
       <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
@@ -118,21 +131,21 @@ export default function InsightRopes() {
       </KeyInsight>
 
       <Prose>
-        This creates a genuine dilemma. The UIAA fall test is the one standardized, repeatable metric we have for rope durability. Every rope must survive at least 5 falls for certification — and most exceed that comfortably. But the test uses an 80kg mass, a 5.5m fall on 2.8m of rope (factor 1.78), and a sharp 10mm edge. It's a worst-case lab scenario, not a real-world climbing fall. A rope rated for 7 falls isn't "less safe" than one rated for 13 — it simply reaches the test threshold sooner under extreme, repeated abuse.
+        This creates a genuine dilemma. The UIAA fall test is the one standardized, repeatable metric we have for rope durability. Every rope must survive at least 5 falls for certification — and most exceed that comfortably. But the test uses an 80kg mass, a 5.5m fall on 2.8m of rope (factor 1.78), and a sharp 10mm edge. It's a worst-case lab scenario, not a real-world climbing fall.
       </Prose>
 
       <RopeTeaserChart isMobile={isMobile} />
 
       <KeyInsight>
-        <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds 31 of 106 models, nearly a third of the entire market. More models means fiercer price wars and more choice. Average: 8.0 UIAA falls, 62 g/m, and moderate pricing. Below 9.0mm you're in specialist alpine territory; above 10.0mm, weight climbs faster than durability.
+        <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds {ROPE_BANDS[4].n} of {SINGLES.length} models, nearly a third of the entire market. More models means fiercer price wars and more choice. Average: {ROPE_BANDS[4].falls} UIAA falls, {ROPE_BANDS[4].gm} g/m, and moderate pricing. Below 9.5mm you're in high-performance and eventually specialist alpine territory; above 9.8mm, weight climbs faster than durability.
       </KeyInsight>
 
       <Prose>
-        Switch the scatter chart above to "Falls/Weight vs ¢/m" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per metre. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
+        Switch the scatter chart above to "Falls/Weight vs €/m" and you'll see durability <em>efficiency</em>: how many UIAA falls you get per gram of rope weight, plotted against cost per metre. This normalizes for the obvious "thicker = more falls" effect and reveals which ropes actually punch above their weight class. But even here, the trend is essentially flat: paying more doesn't systematically buy better efficiency.
       </Prose>
 
       <KeyInsight color={T.blue}>
-        <strong>What the data can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably more relevant for day-to-day longevity than the number on the fall test. Unfortunately, these properties can only be assessed through real-world product testing over time, not from a spec sheet. Until the industry develops a standardized abrasion test, no database (including ours) can give you the full picture.
+        <strong>What the data can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably more relevant for day-to-day longevity than the number on the fall test. Unfortunately, these properties can only be assessed through real-world use over time. Our database gives you every spec-based comparison you need to narrow the field — diameter, weight, fall rating, dry treatment, price — so you can shortlist confidently, then let hands-on feel make the final call.
       </KeyInsight>
 
       <Prose>
@@ -140,7 +153,7 @@ export default function InsightRopes() {
       </Prose>
 
       <KeyInsight color={T.yellow}>
-        <strong>Our honest take:</strong> Don't chase fall ratings. Every certified rope is safe. Instead, pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. The real differentiator between similar ropes in the same class is sheath longevity and handling — and for that, you'll need hands-on experience or trusted reviews, not spec sheets.
+        <strong>Our honest take:</strong> Pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability – thinner ropes will wear faster whilst treatments add unnecessary cost. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. Use our <Link to="/ropes?view=chart" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>rope comparison</Link> to filter by diameter, weight, and price — then let handling feel guide the final pick.
       </KeyInsight>
     </ArticleLayout>
   );
