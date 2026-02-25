@@ -14,14 +14,12 @@ const SINGLES = ROPE_SEED.filter(r => r.rope_type === "single");
 /* ─── Rope Diameter Band data (derived from seed 2026-02-25) ─── */
 const ROPE_BANDS = (() => {
   const bands = [
-    { band: "≤8.7", min: 0, max: 8.75 },
-    { band: "8.8–9.0", min: 8.75, max: 9.05 },
-    { band: "9.1–9.2", min: 9.05, max: 9.25 },
-    { band: "9.3–9.5", min: 9.25, max: 9.55 },
-    { band: "9.6–9.8", min: 9.55, max: 9.85 },
-    { band: "9.9–10.0", min: 9.85, max: 10.05 },
-    { band: "10.1–10.5", min: 10.05, max: 10.55 },
-    { band: "≥11.0", min: 10.55, max: 999 },
+    { band: "≤8.7",      min: 0,     max: 8.75  },
+    { band: "8.8–9.1",   min: 8.75,  max: 9.15  },
+    { band: "9.1–9.4",   min: 9.15,  max: 9.45  },
+    { band: "9.5–9.8",   min: 9.45,  max: 9.85  },
+    { band: "9.9–10.2",  min: 9.85,  max: 10.25 },
+    { band: "≥10.3",     min: 10.25, max: 999   },
   ];
   return bands.map(b => {
     const ropes = SINGLES.filter(r => r.diameter_mm >= b.min && r.diameter_mm < b.max && r.uiaa_falls);
@@ -38,7 +36,7 @@ function RopeTeaserChart({ isMobile }) {
   const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
   const barW = Math.min(50, cw / ROPE_BANDS.length - 8);
   const maxFalls = 16;
-  const sweet = [4, 4]; // 9.6–9.8mm band — the core of the 9.5–9.8mm sweet spot
+  const sweet = [3, 3]; // 9.5–9.8mm band
 
   return (
     <ChartContainer title="Avg UIAA Falls by Diameter Band" subtitle={`${SINGLES.length} single ropes · Sweet spot highlighted`}>
@@ -117,7 +115,7 @@ export default function InsightRopes() {
       <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
         <StatCard label="Correlation" value="–0.19" sub="cost ↑ ≠ more falls (counterintuitive)" color={T.red} />
         <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
-        <StatCard label="Best Band" value="9.5–9.8" sub={`${ROPE_BANDS[4].n} models — fiercest competition`} color={T.accent} />
+        <StatCard label="Best Band" value="9.5–9.8" sub={`${ROPE_BANDS[3].n} models — fiercest competition`} color={T.accent} />
       </div>
 
       <Prose>
@@ -137,7 +135,7 @@ export default function InsightRopes() {
       <RopeTeaserChart isMobile={isMobile} />
 
       <KeyInsight>
-        <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds {ROPE_BANDS[4].n} of {SINGLES.length} models, nearly a third of the entire market. More models means fiercer price wars and more choice. Average: {ROPE_BANDS[4].falls} UIAA falls, {ROPE_BANDS[4].gm} g/m, and moderate pricing. Below 9.5mm you're in high-performance and eventually specialist alpine territory; above 9.8mm, weight climbs faster than durability.
+        <strong>The 9.5–9.8mm sweet spot is real — and it's driven by competition, not physics.</strong> This band holds {ROPE_BANDS[3].n} of {SINGLES.length} models. More models means fiercer price wars and more choice. Average: {ROPE_BANDS[3].falls} UIAA falls, {ROPE_BANDS[3].gm} g/m, and moderate pricing. Below 9.5mm you're in high-performance and eventually specialist alpine territory; above 9.8mm, weight climbs faster than durability.
       </KeyInsight>
 
       <Prose>
