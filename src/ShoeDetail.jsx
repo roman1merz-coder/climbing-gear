@@ -667,61 +667,85 @@ function SimilarCard({ shoe, onClick, similarity, compact }) {
 }
 
 // ─── Similarity scoring: find shoes with closest specs across all brands ───
+// Stiffness is king — a soft shoe should never recommend a hard shoe.
+// Shape (downturn+asymmetry) defines the character. Use cases & skill level refine further.
 function getSimilarShoes(targetShoe, allShoes, count = 6) {
+  const STIFFNESS = ["none", "soft", "medium_soft", "medium", "medium_hard", "hard"];
+  const DOWNTURN  = ["flat", "slight", "moderate", "aggressive"];
+  const ASYMMETRY = ["none", "slight", "moderate", "strong"];
+
   const tSkills = ensureArray(targetShoe.skill_level);
   const tUse = ensureArray(targetShoe.use_cases);
-  const tWall = ensureArray(targetShoe.best_wall_angles);
-  const tFoot = ensureArray(targetShoe.best_foothold_types);
-  const tRock = ensureArray(targetShoe.best_rock_types);
+  const tIdx = STIFFNESS.indexOf(targetShoe.midsole_stiffness);
+  const tDIdx = DOWNTURN.indexOf(targetShoe.downturn);
+  const tAIdx = ASYMMETRY.indexOf(targetShoe.asymmetry);
 
   const scored = allShoes
     .filter(s => s.slug !== targetShoe.slug)
     .map(s => {
       let score = 0;
-      // Downturn match (25 pts)
-      if (s.downturn && s.downturn === targetShoe.downturn) score += 25;
-      else if (s.downturn && targetShoe.downturn) {
-        const levels = ["flat", "slight", "moderate", "aggressive"];
-        const diff = Math.abs(levels.indexOf(s.downturn) - levels.indexOf(targetShoe.downturn));
-        if (diff === 1) score += 12;
+      const maxScore = 100; // normalize to percentage
+
+      // ── Midsole stiffness (20 pts) — most critical: soft shoe ≠ stiff shoe ──
+      if (s.midsole_stiffness && targetShoe.midsole_stiffness) {
+        const sIdx = STIFFNESS.indexOf(s.midsole_stiffness);
+        if (tIdx >= 0 && sIdx >= 0) {
+          const diff = Math.abs(sIdx - tIdx);
+          if (diff === 0) score += 20;
+          else if (diff === 1) score += 12;
+          else if (diff === 2) score += 4;
+          // diff >= 3: 0 pts — totally different feel
+        }
       }
-      // Asymmetry match (15 pts)
-      if (s.asymmetry && s.asymmetry === targetShoe.asymmetry) score += 15;
-      else if (s.asymmetry && targetShoe.asymmetry) {
-        const levels = ["none", "slight", "moderate", "strong"];
-        const diff = Math.abs(levels.indexOf(s.asymmetry) - levels.indexOf(targetShoe.asymmetry));
-        if (diff === 1) score += 7;
+
+      // ── Downturn match (20 pts) — defines shoe character ──
+      if (s.downturn && targetShoe.downturn) {
+        const diff = Math.abs(DOWNTURN.indexOf(s.downturn) - tDIdx);
+        if (diff === 0) score += 20;
+        else if (diff === 1) score += 10;
+        else if (diff === 2) score += 3;
       }
-      // Skill level overlap (15 pts)
-      const sSkills = ensureArray(s.skill_level);
-      const skillOverlap = sSkills.filter(l => tSkills.includes(l)).length;
-      if (skillOverlap > 0) score += Math.min(15, skillOverlap * 8);
-      // Use case overlap (10 pts)
+
+      // ── Asymmetry match (15 pts) ──
+      if (s.asymmetry && targetShoe.asymmetry) {
+        const diff = Math.abs(ASYMMETRY.indexOf(s.asymmetry) - tAIdx);
+        if (diff === 0) score += 15;
+        else if (diff === 1) score += 7;
+      }
+
+      // ── Use case overlap (15 pts) — sport/trad/boulder/gym etc. ──
       const sUse = ensureArray(s.use_cases);
       const useOverlap = sUse.filter(u => tUse.includes(u)).length;
-      if (useOverlap > 0) score += Math.min(10, useOverlap * 5);
-      // Closure match (10 pts)
-      if (s.closure && s.closure === targetShoe.closure) score += 10;
-      // Wall angle overlap (5 pts)
-      const sWall = ensureArray(s.best_wall_angles);
-      if (sWall.some(w => tWall.includes(w))) score += 5;
-      // Foothold type overlap (5 pts)
-      const sFoot = ensureArray(s.best_foothold_types);
-      if (sFoot.some(f => tFoot.includes(f))) score += 5;
-      // Rock type overlap (5 pts)
-      const sRock = ensureArray(s.best_rock_types);
-      if (sRock.some(r => tRock.includes(r))) score += 5;
-      // Rubber thickness proximity (5 pts)
+      const useTotal = Math.max(tUse.length, 1);
+      score += Math.round((useOverlap / useTotal) * 15);
+
+      // ── Skill level overlap (10 pts) ──
+      const sSkills = ensureArray(s.skill_level);
+      const skillOverlap = sSkills.filter(l => tSkills.includes(l)).length;
+      if (skillOverlap > 0) score += Math.min(10, skillOverlap * 5);
+
+      // ── Closure match (5 pts) ──
+      if (s.closure && s.closure === targetShoe.closure) score += 5;
+
+      // ── Price proximity (5 pts) ──
+      if (s.current_price_eur && targetShoe.current_price_eur) {
+        const ratio = Math.min(s.current_price_eur, targetShoe.current_price_eur) /
+                      Math.max(s.current_price_eur, targetShoe.current_price_eur);
+        if (ratio >= 0.8) score += 5;
+        else if (ratio >= 0.6) score += 2;
+      }
+
+      // ── Rubber thickness proximity (5 pts) ──
       if (s.rubber_thickness_mm && targetShoe.rubber_thickness_mm) {
         const diff = Math.abs(s.rubber_thickness_mm - targetShoe.rubber_thickness_mm);
         if (diff <= 0.3) score += 5;
         else if (diff <= 0.7) score += 2;
       }
-      // Width match (5 pts)
-      if (s.width && s.width === targetShoe.width) score += 5;
-      // Different brand bonus (prioritize cross-brand discovery)
-      if (s.brand !== targetShoe.brand) score += 3;
-      return { shoe: s, score };
+
+      // ── Different brand bonus (5 pts) — cross-brand discovery ──
+      if (s.brand !== targetShoe.brand) score += 5;
+
+      return { shoe: s, score: Math.round((score / maxScore) * 100) };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, count);
