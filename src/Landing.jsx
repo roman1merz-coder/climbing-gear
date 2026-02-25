@@ -80,9 +80,9 @@ const SELECTORS = [
 ];
 
 const INSIGHTS = [
-  { title: "How We Score 340 Climbing Shoes \u2014 and How to Pick Yours", description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
+  { title: `How We Score ${SHOES.length} Climbing Shoes \u2014 and How to Pick Yours`, description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
   { title: "Inflatable Crashpads: Game-Changer or Gimmick?", description: "They shatter the weight curve, fit inside your backpack, and inflate in minutes. But how safe are they really?", to: "/insights/inflatable-crashpads" },
-  { title: "Does Spending More Buy a Safer Rope?", description: "We crunched cost-per-gram, UIAA falls, and impact force across 200+ ropes to find out.", to: "/insights/rope-cost-vs-safety" },
+  { title: "Does Spending More Buy a Safer Rope?", description: `We crunched cost-per-gram, UIAA falls, and impact force across ${ROPES.length}+ ropes to find out.`, to: "/insights/rope-cost-vs-safety" },
 ];
 
 // ═══════════════════════════════════════════════════════════════

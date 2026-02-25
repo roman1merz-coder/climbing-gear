@@ -774,7 +774,7 @@ function loadSession() {
 }
 
 export default function CrashpadApp({ crashpads = [], src = "local", priceData = {} }) {
-  usePageMeta("Crashpads — Compare 110+ Models", "Compare bouldering crashpads. Filter by size, weight, foam system, and price across all major brands.");
+  usePageMeta(`Crashpads — Compare ${crashpads.length}+ Models`, "Compare bouldering crashpads. Filter by size, weight, foam system, and price across all major brands.");
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();

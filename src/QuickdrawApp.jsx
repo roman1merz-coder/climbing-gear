@@ -730,7 +730,7 @@ function loadQuickdrawSession() {
 // ═══ MAIN APP ═══
 
 export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
-  usePageMeta("Quickdraws — Compare 100+ Models", "Compare quickdraws: sport, alpine, trad, hybrid, competition. Filter by weight, strength, gate type, sling material, and features.");
+  usePageMeta(`Quickdraws — Compare ${quickdraws.length}+ Models`, "Compare quickdraws: sport, alpine, trad, hybrid, competition. Filter by weight, strength, gate type, sling material, and features.");
   const nav = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();

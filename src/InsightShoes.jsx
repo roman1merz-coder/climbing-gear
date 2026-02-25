@@ -81,20 +81,20 @@ function ShoePriceTeaserChart({ isMobile }) {
 
 export default function InsightShoes() {
   usePageMeta(
-    "How to Choose Climbing Shoes: Data-Driven Guide (340 Shoes Analysed)",
-    "We scored 340 climbing shoes across 7 performance axes. Learn how downturn, rubber, and midsole affect edging, smearing, and comfort — plus what foot shape means for fit. Interactive chart and shoe finder included."
+    `How to Choose Climbing Shoes: Data-Driven Guide (${SHOE_SEED.length} Shoes Analysed)`,
+    `We scored ${SHOE_SEED.length} climbing shoes across 7 performance axes. Learn how downturn, rubber, and midsole affect edging, smearing, and comfort — plus what foot shape means for fit. Interactive chart and shoe finder included.`
   );
   const isMobile = useIsMobile();
 
   return (
     <ArticleLayout isMobile={isMobile} breadcrumb="Climbing Shoe Guide">
       <ArticleHeader
-        title="How We Score 340 Climbing Shoes — and How to Pick Yours"
+        title={`How We Score ${SHOE_SEED.length} Climbing Shoes — and How to Pick Yours`}
         subtitle="Our guided search scores every shoe across 7 performance axes. Here's what the algorithm actually measures, how shoe specs translate to real-world performance, and what your foot shape means for fit."
       />
 
       <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-        <StatCard label="Database" value="340" sub="shoes from 25+ brands" color={T.accent} />
+        <StatCard label="Database" value={String(SHOE_SEED.length)} sub="shoes from 25+ brands" color={T.accent} />
         <StatCard label="Price Gap" value="€47" sub="flat avg €109 → aggressive €156" color={T.yellow} />
         <StatCard label="Performance Axes" value="7" sub="edging · smearing · pockets · hooks · comfort · sensitivity · support" color={T.green} />
       </div>
@@ -114,7 +114,7 @@ export default function InsightShoes() {
       <SectionHeading>How Our Guided Search Scores Every Shoe</SectionHeading>
 
       <Prose>
-        Our <Link to="/find" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> walks you through six questions — discipline, environment, experience, preference, foot shape, and body weight — then scores all 340 shoes out of 100 points. The scoring isn't a black box: it maps your answers to concrete specs, then rewards shoes whose construction matches what you need.
+        Our <Link to="/find" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> walks you through six questions — discipline, environment, experience, preference, foot shape, and body weight — then scores all {SHOE_SEED.length} shoes out of 100 points. The scoring isn't a black box: it maps your answers to concrete specs, then rewards shoes whose construction matches what you need.
       </Prose>
 
       <Prose>
@@ -168,7 +168,7 @@ export default function InsightShoes() {
       </Collapsible>
 
       <KeyInsight color={T.green}>
-        <strong>The central trade-off in every climbing shoe:</strong> sensitivity vs. support, and smearing vs. edging. A shoe that scores 90th percentile on edging will typically sit below 30th on smearing. A shoe built for maximum sensitivity sacrifices support. Understanding this trade-off is more important than chasing the "best" shoe — because the best shoe is the one that matches <em>your</em> climbing style. The chart below maps all 340 shoes into six zones — toggle "Zones" to see where each archetype lives.
+        <strong>The central trade-off in every climbing shoe:</strong> sensitivity vs. support, and smearing vs. edging. A shoe that scores 90th percentile on edging will typically sit below 30th on smearing. A shoe built for maximum sensitivity sacrifices support. Understanding this trade-off is more important than chasing the "best" shoe — because the best shoe is the one that matches <em>your</em> climbing style. The chart below maps all {SHOE_SEED.length} shoes into six zones — toggle "Zones" to see where each archetype lives.
       </KeyInsight>
 
       <SectionHeading>Why Foot Shape Matters More Than You Think</SectionHeading>

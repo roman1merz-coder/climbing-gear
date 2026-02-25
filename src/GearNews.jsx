@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import usePageMeta from "./usePageMeta.js";
+import SHOES from "./seed_data.json";
+import ROPES from "./rope_seed_data.json";
+import BELAYS from "./belay_seed_data.json";
+import PADS from "./crashpad_seed_data.json";
+import DRAWS from "./quickdraw_seed_data.json";
+const TOTAL_PRODUCTS = SHOES.length + ROPES.length + BELAYS.length + PADS.length + DRAWS.length;
 
 function useIsMobile() {
   const [m, setM] = useState(window.innerWidth < 768);
@@ -404,7 +410,7 @@ export default function GearNews() {
             What's New in Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "540px", margin: "0 auto" }}>
-            Record-breaking announcements, upcoming releases, and emerging technologies — cross-referenced with our database of 380+ products.
+            Record-breaking announcements, upcoming releases, and emerging technologies — cross-referenced with our database of {TOTAL_PRODUCTS}+ products.
           </p>
         </div>
 

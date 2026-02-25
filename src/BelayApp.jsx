@@ -830,7 +830,7 @@ function loadBelaySession() {
 }
 
 export default function BelayApp({ belays = [], src, priceData = {} }) {
-  usePageMeta("Belay Devices — Compare 49 Models", "Compare belay devices: cam, passive-assist, tube, and guide. Filter by weight, rope range, safety features, and price.");
+  usePageMeta(`Belay Devices — Compare ${belays.length}+ Models`, "Compare belay devices: cam, passive-assist, tube, and guide. Filter by weight, rope range, safety features, and price.");
   const nav = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();

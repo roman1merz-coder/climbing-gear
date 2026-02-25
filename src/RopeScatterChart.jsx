@@ -33,7 +33,7 @@ const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g)
     type: r.rope_type || "single",
     price: r.price_per_meter_eur_min || null,
     fpg: (r.uiaa_falls && r.weight_per_meter_g) ? r.uiaa_falls / r.weight_per_meter_g : null,
-    centsPerM: r.price_per_meter_eur_min ? r.price_per_meter_eur_min * 100 : null,
+    eurPerM: r.price_per_meter_eur_min || null,
   }));
 
 /* Polynomial curve data for single ropes (pre-computed) */
@@ -59,29 +59,29 @@ const FALLS_VS_GM_TREND = (() => {
 
 /* Linear regression for single ropes: ¢/m → UIAA falls */
 const FALLS_VS_CPM_TREND = (() => {
-  const singles = ALL_ROPES.filter(r => r.type === "single" && r.falls && r.centsPerM);
+  const singles = ALL_ROPES.filter(r => r.type === "single" && r.falls && r.eurPerM);
   if (singles.length < 3) return null;
   const n = singles.length;
-  const mx = singles.reduce((s, r) => s + r.centsPerM, 0) / n;
+  const mx = singles.reduce((s, r) => s + r.eurPerM, 0) / n;
   const my = singles.reduce((s, r) => s + r.falls, 0) / n;
   let num = 0, den = 0;
-  singles.forEach(r => { num += (r.centsPerM - mx) * (r.falls - my); den += (r.centsPerM - mx) ** 2; });
+  singles.forEach(r => { num += (r.eurPerM - mx) * (r.falls - my); den += (r.eurPerM - mx) ** 2; });
   const slope = num / den, intercept = my - slope * mx;
-  const std = Math.sqrt(singles.reduce((s, r) => s + (r.falls - (slope * r.centsPerM + intercept)) ** 2, 0) / (n - 2));
+  const std = Math.sqrt(singles.reduce((s, r) => s + (r.falls - (slope * r.eurPerM + intercept)) ** 2, 0) / (n - 2));
   return { slope, intercept, std };
 })();
 
 /* Linear regression for single ropes: ¢/m → falls/g */
 const FPG_VS_CPM_TREND = (() => {
-  const singles = ALL_ROPES.filter(r => r.type === "single" && r.fpg && r.centsPerM);
+  const singles = ALL_ROPES.filter(r => r.type === "single" && r.fpg && r.eurPerM);
   if (singles.length < 3) return null;
   const n = singles.length;
-  const mx = singles.reduce((s, r) => s + r.centsPerM, 0) / n;
+  const mx = singles.reduce((s, r) => s + r.eurPerM, 0) / n;
   const my = singles.reduce((s, r) => s + r.fpg, 0) / n;
   let num = 0, den = 0;
-  singles.forEach(r => { num += (r.centsPerM - mx) * (r.fpg - my); den += (r.centsPerM - mx) ** 2; });
+  singles.forEach(r => { num += (r.eurPerM - mx) * (r.fpg - my); den += (r.eurPerM - mx) ** 2; });
   const slope = num / den, intercept = my - slope * mx;
-  const std = Math.sqrt(singles.reduce((s, r) => s + (r.fpg - (slope * r.centsPerM + intercept)) ** 2, 0) / (n - 2));
+  const std = Math.sqrt(singles.reduce((s, r) => s + (r.fpg - (slope * r.eurPerM + intercept)) ** 2, 0) / (n - 2));
   return { slope, intercept, std };
 })();
 
@@ -146,8 +146,8 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     if (hiddenDia.has(diaGroup(r.dia))) return false;
     if (metric === "falls" && !r.falls) return false;
     if (metric === "fallsVsGm" && !r.falls) return false;
-    if (metric === "fpgVsPrice" && (!r.falls || !r.centsPerM)) return false;
-    if (metric === "fpgVsCpg" && (!r.fpg || !r.centsPerM)) return false;
+    if (metric === "fpgVsPrice" && (!r.falls || !r.eurPerM)) return false;
+    if (metric === "fpgVsCpg" && (!r.fpg || !r.eurPerM)) return false;
     if (metric === "breakStr" && !r.breakStr) return false;
     return true;
   }), [enabledTypes, hiddenBrands, hiddenDry, hiddenDia, metric]);
@@ -161,7 +161,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     const falls = filtered.filter(r => r.falls).map(r => r.falls);
     const gms = filtered.map(r => r.gm);
     const bss = filtered.filter(r => r.breakStr).map(r => r.breakStr);
-    const cpgs = filtered.filter(r => r.centsPerM).map(r => r.centsPerM);
+    const cpgs = filtered.filter(r => r.eurPerM).map(r => r.eurPerM);
     const fpgs = filtered.filter(r => r.fpg).map(r => r.fpg);
     return {
       diaMin: Math.max(5, diaMin), diaMax: Math.min(14, diaMax),
@@ -179,12 +179,12 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
 
   const cfgs = useMemo(() => ({
     fpgVsPrice: {
-      xField: "centsPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
+      xField: "eurPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
       yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
       curveY: null, std: 0, sub: `${filtered.length} ropes · UIAA falls vs cost per metre — how much durability does your money buy?`, color: "#22c55e",
     },
     fpgVsCpg: {
-      xField: "centsPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
+      xField: "eurPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
       yField: "fpg", yLabel: "Falls per g/m", yMin: axisBounds.fpgMin, yMax: axisBounds.fpgMax, yStep: 0.02,
       curveY: null, std: 0, sub: `${filtered.length} ropes · Durability efficiency vs cost — top-right = best value`, color: "#a78bfa",
     },
@@ -286,7 +286,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
     // Ticks + axis labels
-    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : xField === "centsPerM" ? (x => "€" + (x / 100).toFixed(2)) : (x => String(Math.round(x)));
+    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : xField === "eurPerM" ? (x => "€" + x.toFixed(2)) : (x => String(Math.round(x)));
     const yFmt = yField === "fpg" ? (y => y.toFixed(2)) : (y => String(y));
     const firstX = Math.ceil(xMin / xStep) * xStep;
     drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
@@ -417,7 +417,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     ];
     if (r.falls) stats.push({ label: "UIAA Falls", value: String(r.falls) });
     if (r.price) stats.push({ label: "Price", value: "€" + r.price.toFixed(2) + "/m" });
-    if (r.centsPerM) stats.push({ label: "€/m", value: "€" + (r.centsPerM / 100).toFixed(2) });
+    if (r.eurPerM) stats.push({ label: "€/m", value: "€" + r.eurPerM.toFixed(2) });
     if (r.impact) stats.push({ label: "Impact", value: r.impact + " kN" });
     if (r.breakStr) stats.push({ label: "Break Str.", value: r.breakStr + " kN" });
 
@@ -578,7 +578,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
               ["Dia", `${r.dia} mm`], ["Weight", `${r.gm} g/m`],
               ...(r.falls ? [["Falls", `${r.falls}`]] : []),
               ...(r.price ? [["€/m", `€${r.price.toFixed(2)}`]] : []),
-              ...(r.centsPerM ? [["€/m", `€${(r.centsPerM / 100).toFixed(2)}`]] : []),
+              ...(r.eurPerM ? [["€/m", `€${r.eurPerM.toFixed(2)}`]] : []),
               ...(r.impact ? [["Impact", `${r.impact} kN`]] : []),
               ...(r.breakStr ? [["Break", `${r.breakStr} kN`]] : []),
             ].slice(0, 4);

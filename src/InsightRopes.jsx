@@ -11,6 +11,48 @@ import {
 /* ─── Derived from rope_seed_data.json — single ropes only ─── */
 const SINGLES = ROPE_SEED.filter(r => r.rope_type === "single");
 
+/* ─── Computed stats for article text (all derived from seed) ─── */
+const STATS = (() => {
+  const withPrice = SINGLES.filter(r => r.price_per_meter_eur_min && r.uiaa_falls);
+  const thin = SINGLES.filter(r => r.diameter_mm <= 8.9 && r.uiaa_falls && r.price_per_meter_eur_min);
+  const thick = SINGLES.filter(r => r.diameter_mm >= 10.0 && r.uiaa_falls && r.price_per_meter_eur_min);
+  const thinGm = SINGLES.filter(r => r.diameter_mm <= 8.9);
+  const thickGm = SINGLES.filter(r => r.diameter_mm >= 11.0);
+  const dry = SINGLES.filter(r => r.dry_treatment && r.dry_treatment !== "none" && r.price_per_meter_eur_min);
+  const noDry = SINGLES.filter(r => (!r.dry_treatment || r.dry_treatment === "none") && r.price_per_meter_eur_min);
+  const avg = (arr, fn) => arr.length ? arr.reduce((s, r) => s + fn(r), 0) / arr.length : 0;
+  // Correlation (price vs falls)
+  const n = withPrice.length, mx = avg(withPrice, r => r.price_per_meter_eur_min), my = avg(withPrice, r => r.uiaa_falls);
+  let num = 0, dx2 = 0, dy2 = 0;
+  withPrice.forEach(r => { const dx = r.price_per_meter_eur_min - mx, dy = r.uiaa_falls - my; num += dx * dy; dx2 += dx * dx; dy2 += dy * dy; });
+  const corr = (dx2 && dy2) ? num / (Math.sqrt(dx2) * Math.sqrt(dy2)) : 0;
+  const avgDryPrice = avg(dry, r => r.price_per_meter_eur_min);
+  const avgNoDryPrice = avg(noDry, r => r.price_per_meter_eur_min);
+  const dryPremium = avgNoDryPrice ? Math.round((avgDryPrice - avgNoDryPrice) / avgNoDryPrice * 100) : 0;
+  // Dry rates by diameter
+  const sub9 = SINGLES.filter(r => r.diameter_mm < 9.0);
+  const sub9Dry = sub9.filter(r => r.dry_treatment && r.dry_treatment !== "none");
+  const mid = SINGLES.filter(r => r.diameter_mm >= 9.55 && r.diameter_mm <= 9.85);
+  const midDry = mid.filter(r => r.dry_treatment && r.dry_treatment !== "none");
+  return {
+    corr: (corr < 0 ? "–" : "") + Math.abs(corr).toFixed(2),
+    thinFalls: avg(thin, r => r.uiaa_falls).toFixed(1),
+    thinPrice: avg(thin, r => r.price_per_meter_eur_min).toFixed(2),
+    thickFalls: `${Math.floor(avg(thick, r => r.uiaa_falls))}–${Math.ceil(avg(thick, r => r.uiaa_falls) + 0.5)}`,
+    thickPrice: avg(thick, r => r.price_per_meter_eur_min).toFixed(2),
+    thinAvgGm: avg(thinGm, r => r.weight_per_meter_g).toFixed(0),
+    thin70kg: (avg(thinGm, r => r.weight_per_meter_g) * 70 / 1000).toFixed(1),
+    thickAvgGm: avg(thickGm, r => r.weight_per_meter_g).toFixed(0),
+    thick70kg: (avg(thickGm, r => r.weight_per_meter_g) * 70 / 1000).toFixed(1),
+    weightDiff: ((avg(thickGm, r => r.weight_per_meter_g) - avg(thinGm, r => r.weight_per_meter_g)) * 70 / 1000).toFixed(1),
+    avgDryPrice: avgDryPrice.toFixed(2),
+    avgNoDryPrice: avgNoDryPrice.toFixed(2),
+    dryPremium,
+    sub9DryPct: sub9.length ? Math.round(sub9Dry.length / sub9.length * 100) : 0,
+    midDryPct: mid.length ? Math.round(midDry.length / mid.length * 100) : 0,
+  };
+})();
+
 /* ─── Rope Diameter Band data (derived from seed 2026-02-25) ─── */
 const ROPE_BANDS = (() => {
   const bands = [
@@ -113,19 +155,19 @@ export default function InsightRopes() {
       />
 
       <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
-        <StatCard label="Correlation" value="–0.19" sub="cost ↑ ≠ more falls (counterintuitive)" color={T.red} />
-        <StatCard label="Dry Premium" value="+37%" sub="dry-treated ropes cost €3.06 vs €2.24/m" color={T.blue} />
+        <StatCard label="Correlation" value={STATS.corr} sub="cost ↑ ≠ more falls (counterintuitive)" color={T.red} />
+        <StatCard label="Dry Premium" value={`+${STATS.dryPremium}%`} sub={`dry-treated ropes cost €${STATS.avgDryPrice} vs €${STATS.avgNoDryPrice}/m`} color={T.blue} />
         <StatCard label="Best Band" value="9.5–9.8" sub={`${ROPE_BANDS[3].n} models — fiercest competition`} color={T.accent} />
       </div>
 
       <Prose>
-        Here's the uncomfortable truth: across {SINGLES.length} single-certified ropes, spending more per metre of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is weak and actually negative (r = –0.19). Thin, expensive alpine ropes at ≤8.9mm average 5.6 UIAA falls at €3.41/m, while budget-friendly 10mm+ ropes deliver 9–10 falls at just €2.58/m. So where does the money go?
+        Here's the uncomfortable truth: across {SINGLES.length} single-certified ropes, spending more per metre of rope does <em>not</em> buy you more UIAA fall ratings. The correlation is weak and actually negative (r&nbsp;=&nbsp;{STATS.corr}). Thin, expensive alpine ropes at ≤8.9mm average {STATS.thinFalls} UIAA falls at €{STATS.thinPrice}/m, while budget-friendly 10mm+ ropes deliver {STATS.thickFalls} falls at just €{STATS.thickPrice}/m. So where does the money go?
       </Prose>
 
       <RopeScatterChart isMobile={isMobile} initialMetric="fpgVsPrice" initialColorBy="diameter" />
 
       <KeyInsight color={T.green}>
-        <strong>You're paying for lightweight engineering, not durability.</strong> The premium on thin ropes funds R&D in sheath construction, dry treatments, and weight-optimized cores. A 70m rope at 48 g/m (≤8.9mm) weighs 3.4kg — versus 5.3kg at 75 g/m (≥11mm). On a long alpine route, that 1.9kg difference is real. But on a fall rating chart, the thick rope wins by a mile.
+        <strong>You're paying for lightweight engineering, not durability.</strong> The premium on thin ropes funds R&D in sheath construction, dry treatments, and weight-optimized cores. A 70m rope at {STATS.thinAvgGm}&nbsp;g/m (≤8.9mm) weighs {STATS.thin70kg}kg — versus {STATS.thick70kg}kg at {STATS.thickAvgGm}&nbsp;g/m (≥11mm). On a long alpine route, that {STATS.weightDiff}kg difference is real. But on a fall rating chart, the thick rope wins by a mile.
       </KeyInsight>
 
       <Prose>
@@ -147,7 +189,7 @@ export default function InsightRopes() {
       </KeyInsight>
 
       <Prose>
-        The dry treatment pattern tells its own story. 100% of ropes below 9.0mm ship with dry treatment — these are mountain tools built for ice, mixed routes, and alpine weather where a wet rope can lose up to 40% of its dynamic strength. By 9.6–9.8mm the dry-treatment rate drops to 65%; above 10mm it's a coin flip. Dry treatment adds a 37% price premium (avg €3.06/m vs €2.24/m untreated) — a meaningful cost that's justified if you climb in wet conditions, but potentially wasted money if your rope lives mostly at the sport crag.
+        The dry treatment pattern tells its own story. {STATS.sub9DryPct}% of ropes below 9.0mm ship with dry treatment — these are mountain tools built for ice, mixed routes, and alpine weather where a wet rope can lose up to 40% of its dynamic strength. By 9.6–9.8mm the dry-treatment rate drops to {STATS.midDryPct}%; above 10mm it's a coin flip. Dry treatment adds a {STATS.dryPremium}% price premium (avg €{STATS.avgDryPrice}/m vs €{STATS.avgNoDryPrice}/m untreated) — a meaningful cost that's justified if you climb in wet conditions, but potentially wasted money if your rope lives mostly at the sport crag.
       </Prose>
 
       <KeyInsight color={T.yellow}>
