@@ -4447,6 +4447,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.com/quickdraw/beal-zest</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.com/quickdraw/black-diamond-hotforge</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -4478,6 +4484,12 @@
   </url>
   <url>
     <loc>https://climbing-gear.com/quickdraw/black-diamond-miniwire-alpine</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/black-diamond-oz</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -4519,13 +4531,61 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-fly-weight-evo-alpine-set</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-fly-weight-evo-long</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-fly-weight-evo-set-ul</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.com/quickdraw/climbing-technology-lime-set</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-morfo-set-ul-pro</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-salto-set-ny</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-salto-set-ul</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/climbing-technology-tricky</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.com/quickdraw/cypher-firefly-ii</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/dmm-aether</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -4556,6 +4616,12 @@
   </url>
   <url>
     <loc>https://climbing-gear.com/quickdraw/dmm-spectre</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/dmm-wisp</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -4603,6 +4669,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://climbing-gear.com/quickdraw/grivel-alpine-plume</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/grivel-alpine-plume-evo</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://climbing-gear.com/quickdraw/kong-rush-quickdraw</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -4622,6 +4700,24 @@
   </url>
   <url>
     <loc>https://climbing-gear.com/quickdraw/mammut-crag-wire-indicator</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/mammut-sender-keylock</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/mammut-sender-wire</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://climbing-gear.com/quickdraw/mammut-workhorse-keylock</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
