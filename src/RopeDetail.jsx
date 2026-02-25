@@ -6,6 +6,7 @@ import PriceAlertForm from "./PriceAlertForm.jsx";
 import usePageMeta from "./usePageMeta.js";
 import useStructuredData, { buildRopeSchema } from "./useStructuredData.js";
 import useIsMobile from "./useIsMobile.js";
+import { getShippingLabel, getReturnLabel } from "./retailers.js";
 
 /** Image with graceful fallback on 404 */
 function Img({ src, alt, style, fallback }) {
@@ -233,14 +234,17 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: "11px", fontWeight: 800, color: T.muted,
                     }}>{initial}</div>
-                    <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                      {p.shop}
-                    </span>
+                    <div style={{ minWidth: 0 }}>
+                      <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", display: "block" }}>
+                        {p.shop}
+                      </span>
+                      {(() => { const s = getShippingLabel(p.shop, p.price); const r = getReturnLabel(p.shop); return (s || r) ? <span style={{ fontSize: "9px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{[s, r].filter(Boolean).join(" · ")}</span> : null; })()}
+                    </div>
                     {isBest && (
                       <span style={{
                         fontSize: "9px", fontWeight: 700, color: "#3d7a52",
                         background: "rgba(61,122,82,0.08)", border: "1px solid rgba(61,122,82,0.2)",
-                        padding: "1px 6px", borderRadius: "4px", whiteSpace: "nowrap",
+                        padding: "1px 6px", borderRadius: "4px", whiteSpace: "nowrap", flexShrink: 0,
                       }}>Best price</span>
                     )}
                   </div>
@@ -320,6 +324,7 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
           }}>
             <div style={{ minWidth: 0 }}>
               <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+              {(() => { const s = getShippingLabel(p.shop, p.price); const r = getReturnLabel(p.shop); return (s || r) ? <span style={{ fontSize: "9px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{[s, r].filter(Boolean).join(" · ")}</span> : null; })()}
             </div>
             <span style={{ fontSize: "11px", color: T.muted, whiteSpace: "nowrap" }}>
               {p.inStock ? "In stock" : "Out of stock"}

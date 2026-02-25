@@ -6,6 +6,7 @@ import PriceAlertForm from "./PriceAlertForm.jsx";
 import usePageMeta from "./usePageMeta.js";
 import useStructuredData from "./useStructuredData.js";
 import useIsMobile from "./useIsMobile.js";
+import { getShippingLabel, getReturnLabel } from "./retailers.js";
 
 // ─── Design Tokens ───────────────────────────────────────────────
 const T = {
@@ -336,6 +337,7 @@ function PriceComparison({ prices, compact, pad }) {
           }}>
             <div style={{ minWidth: 0 }}>
               <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+              {(() => { const s = getShippingLabel(p.shop, p.price); const r = getReturnLabel(p.shop); return (s || r) ? <span style={{ fontSize: "9px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{[s, r].filter(Boolean).join(" · ")}</span> : null; })()}
               {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
             </div>
             <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>

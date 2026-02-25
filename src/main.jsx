@@ -73,7 +73,7 @@ import QUICKDRAW_SEED from "./quickdraw_seed_data.json";
 const PRICE_TABLES = [
   "shoe_prices", "rope_prices", "crashpad_prices", "belay_prices", "quickdraw_prices"
 ];
-const PRICE_SELECT = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock,length_m";
+const PRICE_SELECT = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock,length_m,eur_size";
 const PRICE_FILTER = "product_slug=not.is.null&price_eur=gt.0&order=price_eur";
 const PRICE_PAGE_SIZE = 1000; // Supabase default max rows per request
 
@@ -121,6 +121,7 @@ async function fetchLivePrices() {
           shipping: "",
           delivery: "",
           length_m: r.length_m ? Number(r.length_m) : null,
+          eur_size: r.eur_size ? Number(r.eur_size) : null,
         });
       }
     }

@@ -9,6 +9,7 @@ import HeartButton from "./HeartButton.jsx";
 import usePageMeta from "./usePageMeta.js";
 import useStructuredData, { buildShoeSchema } from "./useStructuredData.js";
 import PriceAlertForm from "./PriceAlertForm.jsx";
+import { getShippingLabel, getReturnLabel } from "./retailers.js";
 
 // ═══ DETAIL PAGE COMPONENTS ═══
 
@@ -539,9 +540,75 @@ function AmazonSearchLink({ productType, brand, model, style = {} }) {
   );
 }
 
+// ─── Retailer Policy Info (shared across detail pages) ───
+function RetailerPolicyInfo({ shop, price }) {
+  const shipping = getShippingLabel(shop, price);
+  const returns = getReturnLabel(shop);
+  if (!shipping && !returns) return null;
+  return (
+    <span style={{ fontSize: "9px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginTop: "1px" }}>
+      {[shipping, returns].filter(Boolean).join(" · ")}
+    </span>
+  );
+}
+
+// ─── Size Selector Pills (shoe sizes, mirrors rope length pills) ───
+function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
+  const pricesWithSize = useMemo(
+    () => prices.filter(p => p.eur_size && p.price > 0),
+    [prices]
+  );
+  const sizes = useMemo(
+    () => [...new Set(pricesWithSize.map(p => p.eur_size))].sort((a, b) => a - b),
+    [pricesWithSize]
+  );
+  const cheapestBySize = useMemo(() => {
+    const m = {};
+    for (const sz of sizes) {
+      const inStock = pricesWithSize.filter(p => p.eur_size === sz && p.inStock);
+      const pool = inStock.length ? inStock : pricesWithSize.filter(p => p.eur_size === sz);
+      if (pool.length) m[sz] = Math.min(...pool.map(p => p.price));
+    }
+    return m;
+  }, [sizes, pricesWithSize]);
+
+  if (sizes.length <= 1) return null;
+  return (
+    <div style={{ marginBottom: "12px" }}>
+      <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: "8px" }}>EU Size</div>
+      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+        {sizes.map(sz => {
+          const isActive = sz === selectedSize;
+          const hasStock = pricesWithSize.some(p => p.eur_size === sz && p.inStock);
+          return (
+            <button key={sz} onClick={() => setSelectedSize(sz)} style={{
+              display: "flex", flexDirection: "column", alignItems: "center",
+              padding: compact ? "6px 10px" : "8px 14px", borderRadius: "8px",
+              border: isActive ? "2px solid #3d7a52" : `1px solid ${T.border}`,
+              background: isActive ? "rgba(61,122,82,0.08)" : T.card,
+              cursor: "pointer", transition: "all 0.15s", minWidth: compact ? "52px" : "60px",
+              fontFamily: T.font, opacity: hasStock ? 1 : 0.5,
+            }}>
+              <span style={{ fontSize: compact ? "12px" : "14px", fontWeight: 800, fontFamily: T.mono, color: isActive ? "#3d7a52" : T.text }}>
+                {sz % 1 === 0 ? sz : sz.toFixed(1)}
+              </span>
+              {cheapestBySize[sz] && (
+                <span style={{ fontSize: "9px", fontWeight: 600, marginTop: "1px", color: isActive ? "#3d7a52" : T.muted }}>
+                  {"\u20AC"}{Math.floor(cheapestBySize[sz])}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ─── Price Comparison Table ───
-function PriceComparison({ prices, shoe, compact }) {
+function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize, allPrices }) {
   const hasRealRetailer = prices && prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
+  const hasSizeData = allPrices && allPrices.some(p => p.eur_size);
   // Helper to ensure Amazon URLs include product category search terms
   const getRetailerUrl = (url) => {
     if (!url || url === "#") return undefined;
@@ -563,6 +630,9 @@ function PriceComparison({ prices, shoe, compact }) {
   const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
   return (
     <div>
+      {hasSizeData && (
+        <SizeSelector prices={allPrices} selectedSize={selectedSize} setSelectedSize={setSelectedSize} compact={compact} />
+      )}
       <div style={{ background: T.card, borderRadius: T.radius, border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "8px" }}>
         <div style={{ padding: "16px 20px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
@@ -585,6 +655,7 @@ function PriceComparison({ prices, shoe, compact }) {
               <span style={{ fontSize: compact ? "12px" : "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {p.shop}
               </span>
+              <RetailerPolicyInfo shop={p.shop} price={p.price} />
               {p.delivery && (
                 <span style={{ fontSize: "10px", color: T.muted, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {p.delivery}
@@ -883,7 +954,13 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
-  const prices = priceData[slug] || [];
+  const [selectedSize, setSelectedSize] = useState(null);
+  const allPrices = priceData[slug] || [];
+  const prices = useMemo(() => {
+    if (!selectedSize) return allPrices;
+    const sized = allPrices.filter(p => p.eur_size === selectedSize);
+    return sized.length ? sized : allPrices;
+  }, [allPrices, selectedSize]);
   const history = priceHistory[slug] || [];
 
   // Compute live best price from retailer data
@@ -948,7 +1025,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
               {/* Price Comparison in Hero */}
               <div style={{ marginBottom: isMobile ? "16px" : "20px" }}>
-                <PriceComparison prices={prices} shoe={shoe} compact={isMobile} />
+                <PriceComparison prices={prices} shoe={shoe} compact={isMobile} selectedSize={selectedSize} setSelectedSize={setSelectedSize} allPrices={allPrices} />
               </div>
 
               {/* Price Alert */}
