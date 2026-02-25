@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import usePageMeta from "./usePageMeta.js";
 import { useIsMobile } from "./InsightsShared.jsx";
+import SHOES from "./seed_data.json";
+import ROPES from "./rope_seed_data.json";
+import PADS from "./crashpad_seed_data.json";
 
 /* ═══════════════════════════════════════════════════════════════
    INSIGHTS HUB — index page linking to individual articles.
@@ -12,30 +15,30 @@ const ARTICLES = [
   {
     to: "/insights/climbing-shoe-guide",
     tag: "Shoes", tagColor: T.accent,
-    title: "How We Score 340 Climbing Shoes — and How to Pick Yours",
+    title: `How We Score ${SHOES.length} Climbing Shoes — and How to Pick Yours`,
     desc: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance and what foot shape means for fit.",
-    stats: ["340 shoes", "7 performance axes", "6 shoe zones"],
+    stats: [`${SHOES.length} shoes`, "7 performance axes", "6 shoe zones"],
   },
   {
     to: "/insights/inflatable-crashpads",
     tag: "Crashpads", tagColor: T.yellow,
     title: "Inflatable Crashpads: Game-Changer or Gimmick?",
     desc: "They shatter the weight curve, fit inside your main pad, and double as a mattress. But would you trust one on sharp rock?",
-    stats: ["101 crashpads", "46% weight saving", "~5L packed"],
+    stats: [`${PADS.length} crashpads`, "46% weight saving", "~5L packed"],
   },
   {
     to: "/insights/rope-cost-vs-safety",
     tag: "Ropes", tagColor: T.green,
     title: "Does Spending More Buy a Safer Rope?",
-    desc: "We crunched cost-per-metre, UIAA falls, and weight across 106 single ropes. The data challenges some common assumptions.",
-    stats: ["106 ropes", "r = –0.19 correlation", "9.5–9.8mm sweet spot"],
+    desc: `We crunched cost-per-metre, UIAA falls, and weight across ${ROPES.filter(r => r.rope_type === "single").length} single ropes. The data challenges some common assumptions.`,
+    stats: [`${ROPES.length} ropes`, "r = –0.19 correlation", "9.5–9.8mm sweet spot"],
   },
 ];
 
 export default function Insights() {
   usePageMeta(
     "Gear Insights",
-    "Data-driven insights from comparing 340+ climbing shoes, 100+ crashpads, and 100+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions."
+    `Data-driven insights from comparing ${SHOES.length}+ climbing shoes, ${PADS.length}+ crashpads, and ${ROPES.length}+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions.`
   );
   const isMobile = useIsMobile();
 
@@ -50,12 +53,12 @@ export default function Insights() {
             What the Data Actually Says<br />About Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "520px", margin: "0 auto" }}>
-            We crunched specs across 340 shoes, 100+ crashpads and 100+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions.
+            We crunched specs across {SHOES.length} shoes, {PADS.length}+ crashpads and {ROPES.length}+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions.
           </p>
           <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginTop: "16px" }}>
-            <span style={{ fontSize: "11px", color: T.accent, background: T.accentSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>340 Shoes</span>
-            <span style={{ fontSize: "11px", color: T.yellow, background: T.yellowSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>101 Crashpads</span>
-            <span style={{ fontSize: "11px", color: T.green, background: T.greenSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>106 Ropes</span>
+            <span style={{ fontSize: "11px", color: T.accent, background: T.accentSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>{SHOES.length} Shoes</span>
+            <span style={{ fontSize: "11px", color: T.yellow, background: T.yellowSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>{PADS.length} Crashpads</span>
+            <span style={{ fontSize: "11px", color: T.green, background: T.greenSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>{ROPES.length} Ropes</span>
           </div>
         </div>
 
@@ -137,7 +140,7 @@ export default function Insights() {
             Data sourced from manufacturer specs and retailer listings across European markets. Prices reflect current street prices (or UVP where unavailable) as of early 2026.
             Shoe performance scores (edging, smearing, pockets, hooks, comfort, sensitivity, support) are computed from physical specs using weighted formulas, then percentile-normalised across 331 adult shoes.
             Crashpad €/m² calculated as current_price ÷ (length_open × width_open).
-            Rope analysis covers 106 single-certified ropes (EN 892, 80kg test mass). Half and twin ropes (35 total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Cost per metre (¢/m) = price per metre × 100. Sample sizes noted on each chart. Analysis by climbing-gear.com.
+            Rope analysis covers {ROPES.filter(r => r.rope_type === "single").length} single-certified ropes (EN 892, 80kg test mass). Half and twin ropes ({ROPES.filter(r => r.rope_type === "half" || r.rope_type === "twin").length} total) use a lighter 55kg test mass and are excluded to avoid inflated fall counts. Cost per metre in €/m. Sample sizes noted on each chart. Analysis by climbing-gear.com.
           </p>
         </div>
 

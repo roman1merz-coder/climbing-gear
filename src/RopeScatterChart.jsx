@@ -179,12 +179,12 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
 
   const cfgs = useMemo(() => ({
     fpgVsPrice: {
-      xField: "centsPerM", xLabel: "Cost (¢/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
+      xField: "centsPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
       yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
       curveY: null, std: 0, sub: `${filtered.length} ropes · UIAA falls vs cost per metre — how much durability does your money buy?`, color: "#22c55e",
     },
     fpgVsCpg: {
-      xField: "centsPerM", xLabel: "Cost (¢/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
+      xField: "centsPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
       yField: "fpg", yLabel: "Falls per g/m", yMin: axisBounds.fpgMin, yMax: axisBounds.fpgMax, yStep: 0.02,
       curveY: null, std: 0, sub: `${filtered.length} ropes · Durability efficiency vs cost — top-right = best value`, color: "#a78bfa",
     },
@@ -286,7 +286,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
     // Ticks + axis labels
-    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : xField === "centsPerM" ? (x => x.toFixed(1) + "¢") : (x => String(Math.round(x)));
+    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : xField === "centsPerM" ? (x => "€" + (x / 100).toFixed(2)) : (x => String(Math.round(x)));
     const yFmt = yField === "fpg" ? (y => y.toFixed(2)) : (y => String(y));
     const firstX = Math.ceil(xMin / xStep) * xStep;
     drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
@@ -417,7 +417,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     ];
     if (r.falls) stats.push({ label: "UIAA Falls", value: String(r.falls) });
     if (r.price) stats.push({ label: "Price", value: "€" + r.price.toFixed(2) + "/m" });
-    if (r.centsPerM) stats.push({ label: "¢/m", value: r.centsPerM.toFixed(1) + "¢" });
+    if (r.centsPerM) stats.push({ label: "€/m", value: "€" + (r.centsPerM / 100).toFixed(2) });
     if (r.impact) stats.push({ label: "Impact", value: r.impact + " kN" });
     if (r.breakStr) stats.push({ label: "Break Str.", value: r.breakStr + " kN" });
 
@@ -516,8 +516,8 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       {/* Metric buttons */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
         {Object.entries({
-          ...(!onlyStatic ? { fpgVsPrice: { label: "Falls vs ¢/m", color: "#22c55e" } } : {}),
-          ...(!onlyStatic ? { fpgVsCpg: { label: "Falls/Weight vs ¢/m", color: "#a78bfa" } } : {}),
+          ...(!onlyStatic ? { fpgVsPrice: { label: "Falls vs €/m", color: "#22c55e" } } : {}),
+          ...(!onlyStatic ? { fpgVsCpg: { label: "Falls/Weight vs €/m", color: "#a78bfa" } } : {}),
           ...(!onlyStatic ? { fallsVsGm: { label: "Falls vs Weight", color: T.accent } } : {}),
           ...(!onlyStatic ? { falls: { label: "Falls vs Diameter", color: T.accent } } : {}),
           gm: { label: "Weight vs Diameter", color: T.blue },
@@ -578,7 +578,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
               ["Dia", `${r.dia} mm`], ["Weight", `${r.gm} g/m`],
               ...(r.falls ? [["Falls", `${r.falls}`]] : []),
               ...(r.price ? [["€/m", `€${r.price.toFixed(2)}`]] : []),
-              ...(r.centsPerM ? [["¢/m", `${r.centsPerM.toFixed(1)}¢`]] : []),
+              ...(r.centsPerM ? [["€/m", `€${(r.centsPerM / 100).toFixed(2)}`]] : []),
               ...(r.impact ? [["Impact", `${r.impact} kN`]] : []),
               ...(r.breakStr ? [["Break", `${r.breakStr} kN`]] : []),
             ].slice(0, 4);
