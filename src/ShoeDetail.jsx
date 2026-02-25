@@ -618,7 +618,7 @@ function PriceComparison({ prices, shoe, compact }) {
 }
 
 // ─── Similar Products Card (with hero image) ───
-function SimilarCard({ shoe, onClick, similarity }) {
+function SimilarCard({ shoe, onClick, similarity, compact }) {
   const discount = shoe.price_uvp_eur && shoe.current_price_eur
     ? Math.round(((shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur) * 100) : 0;
   const img = shoe.image_url || "/images/placeholder.svg";
@@ -633,7 +633,7 @@ function SimilarCard({ shoe, onClick, similarity }) {
     >
       {/* Image */}
       <div style={{
-        aspectRatio: "4/3", background: "#fff", position: "relative",
+        ...(compact ? { height: "80px" } : { aspectRatio: "4/3" }), background: "#fff", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
       }}>
         <img src={img} alt={`${shoe.brand} ${shoe.model}`} loading="lazy"
@@ -649,15 +649,17 @@ function SimilarCard({ shoe, onClick, similarity }) {
         )}
       </div>
       {/* Content */}
-      <div style={{ padding: "12px 14px" }}>
-        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{shoe.brand}</div>
-        <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{shoe.model}</div>
-        <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "8px" }}>
-          {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
-        </div>
+      <div style={{ padding: compact ? "8px 10px" : "12px 14px" }}>
+        <div style={{ fontSize: compact ? "8px" : "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{shoe.brand}</div>
+        <div style={{ fontSize: compact ? "12px" : "14px", fontWeight: 700, color: T.text, marginBottom: compact ? "4px" : "6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{shoe.model}</div>
+        {!compact && (
+          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "8px" }}>
+            {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
+          </div>
+        )}
         <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-          {shoe.current_price_eur && <span style={{ fontSize: "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>}
-          {discount > 0 && <span style={{ fontSize: "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>}
+          {shoe.current_price_eur && <span style={{ fontSize: compact ? "13px" : "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>}
+          {discount > 0 && <span style={{ fontSize: compact ? "10px" : "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>}
         </div>
       </div>
     </button>
@@ -1146,7 +1148,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: isMobile ? "10px" : "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
             {getSimilarShoes(shoe, shoes, 6).map(({ shoe: s, score }) => (
               <div key={s.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
-                <SimilarCard shoe={s} similarity={score} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+                <SimilarCard shoe={s} similarity={score} compact={isMobile} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
               </div>
             ))}
           </div>

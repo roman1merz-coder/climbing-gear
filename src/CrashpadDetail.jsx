@@ -815,17 +815,17 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                             border: `1px solid ${psc.border || "transparent"}`,
                           }}>{String(p.pad_size_category).replace(/_/g, " ")}</span>
                         </div>
-                        <div style={{ padding: "10px 12px" }}>
-                          <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{p.brand}</div>
-                          <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.model}</div>
-                          <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                        <div style={{ padding: isMobile ? "8px 8px" : "10px 12px" }}>
+                          <div style={{ fontSize: isMobile ? "8px" : "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{p.brand}</div>
+                          <div style={{ fontSize: isMobile ? "11px" : "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.model}</div>
+                          <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: isMobile ? "9px" : "10px", color: T.muted, fontFamily: T.mono, marginBottom: isMobile ? "4px" : "6px" }}>
                             <span>{((p.length_open_cm * p.width_open_cm) / 10000).toFixed(1)}m²</span>
                             <span style={{ color: T.border }}>·</span>
                             <span>{p.thickness_cm}cm</span>
                             <span style={{ color: T.border }}>·</span>
                             <span>{p.weight_kg}kg</span>
                           </div>
-                          <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                          <span style={{ fontSize: isMobile ? "12px" : "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
                             €{p.current_price_eur}
                           </span>
                         </div>

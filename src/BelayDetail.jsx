@@ -656,15 +656,15 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                           }}>{String(s.device_type).replace(/_/g, " ").replace("active ", "").replace("passive ", "")}</span>
                         ); })()}
                       </div>
-                      <div style={{ padding: "10px 12px" }}>
-                        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{s.brand}</div>
-                        <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.model}</div>
-                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                      <div style={{ padding: isMobile ? "8px 8px" : "10px 12px" }}>
+                        <div style={{ fontSize: isMobile ? "8px" : "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{s.brand}</div>
+                        <div style={{ fontSize: isMobile ? "11px" : "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.model}</div>
+                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: isMobile ? "9px" : "10px", color: T.muted, fontFamily: T.mono, marginBottom: isMobile ? "4px" : "6px" }}>
                           <span>{s.weight_g}g</span>
                           <span style={{ color: T.border }}>·</span>
                           <span>{s.rope_diameter_min_mm}–{s.rope_diameter_max_mm}mm</span>
                         </div>
-                        <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                        <span style={{ fontSize: isMobile ? "12px" : "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
                           €{fmt(s.price_eur_min || s.price_uvp_eur)}
                         </span>
                       </div>

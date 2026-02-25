@@ -620,15 +620,15 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                         ); })()}
                       </div>
                       {/* Content */}
-                      <div style={{ padding: "10px 12px" }}>
-                        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{r.brand}</div>
-                        <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.model}</div>
-                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                      <div style={{ padding: isMobile ? "8px 8px" : "10px 12px" }}>
+                        <div style={{ fontSize: isMobile ? "8px" : "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{r.brand}</div>
+                        <div style={{ fontSize: isMobile ? "11px" : "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.model}</div>
+                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: isMobile ? "9px" : "10px", color: T.muted, fontFamily: T.mono, marginBottom: isMobile ? "4px" : "6px" }}>
                           <span>{r.diameter_mm}mm</span>
                           <span style={{ color: T.border }}>·</span>
                           <span>{r.weight_per_meter_g}g/m</span>
                         </div>
-                        <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                        <span style={{ fontSize: isMobile ? "12px" : "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
                           €{r.price_per_meter_eur_min ? (r.price_per_meter_eur_min * 70).toFixed(0) : "—"}
                           <span style={{ fontSize: "9px", color: T.muted, fontWeight: 400 }}> (70m)</span>
                         </span>
