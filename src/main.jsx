@@ -73,8 +73,15 @@ import QUICKDRAW_SEED from "./quickdraw_seed_data.json";
 const PRICE_TABLES = [
   "shoe_prices", "rope_prices", "crashpad_prices", "belay_prices", "quickdraw_prices"
 ];
-const PRICE_SELECT = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock,length_m";
-const PRICE_SELECT_SHOES = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock,length_m,eur_size";
+// Each table has different optional columns; only request columns that exist
+const PRICE_BASE = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock";
+const PRICE_SELECT = {
+  shoe_prices:      `${PRICE_BASE},eur_size`,
+  rope_prices:      `${PRICE_BASE},length_m`,
+  crashpad_prices:  PRICE_BASE,
+  belay_prices:     PRICE_BASE,
+  quickdraw_prices: PRICE_BASE,
+};
 const PRICE_FILTER = "product_slug=not.is.null&price_eur=gt.0&order=price_eur";
 const PRICE_PAGE_SIZE = 1000; // Supabase default max rows per request
 
@@ -96,7 +103,7 @@ async function fetchLivePrices() {
     // Fetch all category price tables in parallel (with pagination)
     const results = await Promise.allSettled(
       PRICE_TABLES.map(t =>
-        fetchAllRows(`/rest/v1/${t}?select=${t === "shoe_prices" ? PRICE_SELECT_SHOES : PRICE_SELECT}&${PRICE_FILTER}`)
+        fetchAllRows(`/rest/v1/${t}?select=${PRICE_SELECT[t]}&${PRICE_FILTER}`)
       )
     );
     // Also fetch legacy prices table for any older data
