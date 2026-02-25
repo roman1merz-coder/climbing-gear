@@ -254,7 +254,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
       </header>
 
       {/* Hero Section */}
-      <div style={{ padding: isMobile ? "20px 16px" : "40px 32px", borderBottom: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)` }}>
+      <div style={{ padding: isMobile ? "20px 16px" : "40px 32px", borderBottom: `1px solid ${T.border}`, background: T.bg }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", alignItems: "start" }}>
             {/* Left: Product Image */}

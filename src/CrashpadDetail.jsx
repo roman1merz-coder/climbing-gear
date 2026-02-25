@@ -468,7 +468,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
       {/* Hero Section */}
       <div style={{
         padding: isMobile ? "20px 16px" : "40px 32px",
-        background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        background: T.bg,
         borderBottom: `1px solid ${T.border}`,
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", alignItems: "start" }}>
