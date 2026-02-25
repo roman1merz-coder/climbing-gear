@@ -85,7 +85,7 @@
     "cons": [
       "NEVER for lead climbing",
       "Heavy at 70 g/m",
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Keep it physically separated from lead ropes in storage"
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
@@ -175,7 +175,7 @@
       "High fall rating",
       "Thicker diameter for protection",
       "Feeds through devices smoothly",
-      "Dry-treated sheath sheds moisture in wet conditions",
+      "Water rolls off the treated outer layer",
       "Made with recycled materials"
     ],
     "cons": [
@@ -369,7 +369,7 @@
       "Premium handling",
       "High fall rating",
       "Fall rating well above average for the diameter",
-      "Pliable rope that ties and clips easily"
+      "Clips into quickdraws smoothly"
     ],
     "cons": [
       "Slightly heavier",
@@ -555,11 +555,11 @@
     "description": "Cette corde fine compile un grand nombre de qualit\u00e9s apportant une grande satisfaction lors de son utilisation. \u00c0 la fois compacte, fluide et ultra l\u00e9g\u00e8re, cette corde se faufile partout. Avec une force de choc basse et con\u00e7ue pour supporter un nombre de chutes \u00e9lev\u00e9e, la corde BOOSTER III deviendra bient\u00f4t votre meill",
     "pros": [
       "Low impact force makes falls less jarring",
-      "Treated to resist water and dirt penetration",
+      "Protected surface reduces internal contamination",
       "Unicore bonding prevents sheath slippage"
     ],
     "cons": [
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Heavier pull through alpine terrain with ledges and corners"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -826,9 +826,9 @@
     ],
     "description": "The DIABLO 9.8MM rope is an improved and thinner version of its big sister the DIABLO 10.2. With its new very thin sheath, it is even more efficient when taking in slack and carabiners, and better than the more traditional smaller diameter ropes, with a lower weight. Its resistance to abrasion has also been improved. I",
     "pros": [
-      "Dry treatment resists water absorption",
+      "Sheath doesn't soak up moisture like untreated alternatives",
       "Unicore tech for added safety if the sheath gets damaged",
-      "Reliable construction from an established brand"
+      "Made by a company with decades of rope-making experience"
     ],
     "cons": [
       "Replace sooner due to fewer rated falls"
@@ -917,7 +917,7 @@
     "description": "With its modern design incorporating the latest B\u00c9AL innovations, the FLYER 10.2MM rope offers a good grip and relatively light weight while providing increased resistance to abrasion and moisture. The FLYER 10.2MM is positioned as an intermediate model between the TIGER and TOP GUN, allowing climbers to gradually get",
     "pros": [
       "Low impact force makes falls less jarring",
-      "Reliable construction from an established brand",
+      "Comes from a brand with proven quality control",
       "Suitable for its intended use case"
     ],
     "cons": [
@@ -1194,7 +1194,7 @@
     "pros": [
       "Low stretch for precise rappel and rescue work",
       "Reliable for top-rope setups and fixed lines",
-      "Treated to resist water and dirt penetration"
+      "Treatment blocks moisture and grit from getting into the core"
     ],
     "cons": [
       "Never use for lead climbing - zero dynamic elongation"
@@ -1280,10 +1280,10 @@
     "pros": [
       "Minimal bounce for comfortable jugging",
       "Minimal elongation for efficient ascending",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Doesn't gain weight from moisture like untreated ropes"
     ],
     "cons": [
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Label or color-code carefully to prevent dangerous mix-ups"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -1468,7 +1468,7 @@
       "Unicore construction keeps sheath and core locked together"
     ],
     "cons": [
-      "Limited color options"
+      "Not much variety in the color range"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -1739,7 +1739,7 @@
     ],
     "description": "With its weight of 48 grams per meter, the OPERA 8.5 is the lightest and thinnest single rope on the market. The first to weigh less than 50 grams. A true concentrate of all B\u00c9AL&#39;s know-how, it combines several technological innovations to offer a resistant rope that is both ultra-light and ultra-fluid. With its low im",
     "pros": [
-      "Dry-treated sheath sheds moisture in wet conditions",
+      "Sheath repels water on wet rock and ice",
       "Unicore construction keeps sheath and core locked together",
       "Triple certification gives maximum flexibility in the mountains"
     ],
@@ -2112,8 +2112,8 @@
     "description": "Versatile, light and fluid, this 9.4MM rope offers an intermediate diameter in the thin ropes range. This rope has been reinforced with our UNICORE technology, which provides resistance to friction and increased safety. A model designed for high level climbing but also adapted to mountaineering.",
     "pros": [
       "Handles well without being floppy",
-      "Dry treatment resists water absorption",
-      "Reliable construction from an established brand"
+      "Holds its weight and handling feel in wet weather",
+      "Trusted construction from a well-known manufacturer"
     ],
     "cons": [
       "Low UIAA fall count limits lifespan"
@@ -2301,7 +2301,7 @@
     "pros": [
       "Oeko-Tex certified",
       "Good balance",
-      "Reliable construction from an established brand"
+      "Made by a company with decades of rope-making experience"
     ],
     "cons": [
       "Heavier rope to haul on big walls"
@@ -2396,7 +2396,7 @@
       "Lowest impact force in class (7.6 kN)",
       "Great value",
       "Low impact force for softer catches",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Doesn't gain weight from moisture like untreated ropes"
     ],
     "cons": [
       "Heavier than performance ropes",
@@ -2485,9 +2485,9 @@
     ],
     "description": "The TIGER 10MM is an ideal rope in terms of versatility. In climbing, it is the first choice rope for climbers starting using thin ropes. It is characterized by its ease of handling and its ease of clipping. It is good to know that it also has a diameter suitable for all self-locking belay devices. The TIGER 10MM is no",
     "pros": [
-      "Dry treatment resists water absorption",
+      "Water resistance extends the rope's usable life",
       "Bonded core means the sheath won't bunch up on a cut",
-      "Reliable construction from an established brand"
+      "Comes from a brand with proven quality control"
     ],
     "cons": [
       "Not widely available outside Europe"
@@ -2576,7 +2576,7 @@
     "description": "This high performance rope with its low impact force (7.4kN) and the record number of falls (11) it can withstand, already offered us excellent results and an optimal level of safety for peace of mind when climbing It is now reinforced by our UNICORE innovative technology which provides undeniable additional safety. Th",
     "pros": [
       "Handles a lot of whippers before retirement",
-      "Dry-treated sheath sheds moisture in wet conditions",
+      "Sheath repels water on wet rock and ice",
       "Unicore bonding prevents sheath slippage"
     ],
     "cons": [
@@ -2667,7 +2667,7 @@
     "pros": [
       "Built to take repeated falls without degrading quickly",
       "Soft catches that are easier on the climber and gear",
-      "Dry-treated sheath sheds moisture in wet conditions",
+      "Water rolls off the treated outer layer",
       "Bonded core means the sheath won't bunch up on a cut"
     ],
     "cons": [
@@ -2763,12 +2763,12 @@
       "42% sheath for maximum durability",
       "48-bobbin smooth construction",
       "Low impact force for softer catches",
-      "Treated to resist water and dirt penetration"
+      "Treatment blocks moisture and grit from getting into the core"
     ],
     "cons": [
       "Heavy at 63 g/m",
       "Too thick for advanced outdoor climbing",
-      "Standard construction without sheath bonding"
+      "If the sheath gets damaged, it can slide independently"
     ],
     "ai_review": null,
     "rope_color_1": "#16a34a",
@@ -2955,7 +2955,7 @@
       "Unicore core-sheath bonding",
       "Purpose-built for gym use",
       "Available in short lengths",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Moisture resistance means it stays manageable in the mountains"
     ],
     "cons": [
       "Very heavy at 71 g/m",
@@ -3050,11 +3050,11 @@
       "Light at 59 g/m",
       "Bluesign certified materials",
       "Excellent value",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Dry sheath keeps the rope performing in rain and snow"
     ],
     "cons": [
       "Higher elongation values",
-      "Limited color options"
+      "Color selection is limited"
     ],
     "ai_review": null,
     "rope_color_1": "#2563eb",
@@ -3429,7 +3429,7 @@
       "Good value",
       "Thick enough for comfortable belaying",
       "Confidence-inspiring diameter",
-      "Dry treatment resists water absorption"
+      "Sheath doesn't soak up moisture like untreated alternatives"
     ],
     "cons": [
       "Heavier than performance ropes",
@@ -3618,11 +3618,11 @@
     "pros": [
       "Dry Performance treatment",
       "Great durability",
-      "Pliable rope that ties and clips easily",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Soft enough to feed through devices without resistance",
+      "Lighter than an untreated rope would be after a wet pitch"
     ],
     "cons": [
-      "Standard construction without sheath bonding"
+      "If the sheath gets damaged, it can slide independently"
     ],
     "ai_review": null,
     "rope_color_1": "#0ea5e9",
@@ -3897,7 +3897,7 @@
       "Exceptional 15 UIAA falls",
       "Heavy duty construction",
       "Exceptionally high fall rating for long-term durability",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Sheath repels water on wet rock and ice"
     ],
     "cons": [
       "Very heavy at 76g/m",
@@ -3993,7 +3993,7 @@
       "40-carrier sheath for tight weave",
       "Good value for a skinny rope",
       "Tommy Caldwell's choice",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Water rolls off the treated outer layer"
     ],
     "cons": [
       "Can be stiff and prone to kinking",
@@ -4096,7 +4096,7 @@
     "cons": [
       "Slightly stiffer handling",
       "Limited availability in Europe",
-      "Standard construction without sheath bonding"
+      "No bonding technology between core and outer layer"
     ],
     "ai_review": null,
     "rope_color_1": "#1e40af",
@@ -4189,7 +4189,7 @@
     "cons": [
       "Moderate weight",
       "Neon colors may not appeal to all",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Heavier pull through alpine terrain with ledges and corners"
     ],
     "ai_review": null,
     "rope_color_1": "#ff6b35",
@@ -4276,12 +4276,12 @@
       "Thin diameter",
       "Dry treatment",
       "Pleasant to handle on long belay sessions",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Moisture resistance means it stays manageable in the mountains"
     ],
     "cons": [
       "Lower durability",
       "Advanced handling required",
-      "Limited color options"
+      "Fewer color choices than some competitors"
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
@@ -4561,12 +4561,12 @@
       "Unique colorway per rope",
       "Thinner 9.6mm for better handling",
       "Great value",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Sheath repels water on wet rock and ice"
     ],
     "cons": [
       "Higher dynamic elongation (38%)",
       "Each rope looks different  -  no color consistency",
-      "Limited color options"
+      "Less choice on appearance than other brands"
     ],
     "ai_review": null,
     "rope_color_1": "#4ade80",
@@ -5041,8 +5041,8 @@
       "100% recycled materials  -  core and sheath",
       "Lowest carbon footprint in class",
       "No compromise on performance",
-      "Pliable rope that ties and clips easily",
-      "Treated to resist water and dirt penetration"
+      "Ties knots without fighting you",
+      "Protected surface reduces internal contamination"
     ],
     "cons": [
       "New product  -  limited availability",
@@ -5319,10 +5319,10 @@
     "pros": [
       "Minimal elongation for efficient ascending",
       "Strong and stable for industrial and caving use",
-      "Reliable construction from an established brand"
+      "Trusted construction from a well-known manufacturer"
     ],
     "cons": [
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Keep it physically separated from lead ropes in storage"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -5403,10 +5403,10 @@
     "pros": [
       "Low stretch for precise rappel and rescue work",
       "Reliable for top-rope setups and fixed lines",
-      "Reliable construction from an established brand"
+      "Made by a company with decades of rope-making experience"
     ],
     "cons": [
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Label or color-code carefully to prevent dangerous mix-ups"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -5495,7 +5495,7 @@
       "PFC-free Eco Dry UIAA treatment",
       "Revolutionary yarn technology",
       "Feeds through devices smoothly",
-      "Treated to resist water and dirt penetration"
+      "Protected surface reduces internal contamination"
     ],
     "cons": [
       "Expert-only rope",
@@ -5764,10 +5764,10 @@
     "pros": [
       "Strong and stable for industrial and caving use",
       "Minimal bounce for comfortable jugging",
-      "Reliable construction from an established brand"
+      "Backed by a manufacturer with a strong track record"
     ],
     "cons": [
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Keep it physically separated from lead ropes in storage"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -5859,7 +5859,7 @@
       "Lightweight",
       "New 2025 model",
       "Soft and flexible in the hand",
-      "Dry coating keeps the rope light when conditions turn wet",
+      "Doesn't gain weight from moisture like untreated ropes",
       "One rope that covers single, half, and twin applications"
     ],
     "cons": [
@@ -5957,7 +5957,7 @@
       "World's first PFC-free UIAA dry rope",
       "Light at 52 g/m with 7 UIAA falls",
       "Noticeably lighter than standard-diameter ropes",
-      "Pliable rope that ties and clips easily"
+      "Soft enough to feed through devices without resistance"
     ],
     "cons": [
       "Lower sheath percentage (34%)",
@@ -6147,7 +6147,7 @@
       "Very high durability (40% sheath)",
       "Eco Dry PFC-free treatment",
       "Partially recycled materials",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Water rolls off the treated outer layer"
     ],
     "cons": [
       "Heavier at 61g/m",
@@ -6241,7 +6241,7 @@
       "Permanent color-change middle mark",
       "Smooth sheath feel",
       "PFC-free Eco Dry",
-      "Dry coating keeps the rope light when conditions turn wet",
+      "Doesn't gain weight from moisture like untreated ropes",
       "Environmentally responsible manufacturing"
     ],
     "cons": [
@@ -6430,7 +6430,7 @@
       "Good UIAA rating (8)",
       "Balanced all-rounder",
       "Reliable durability under normal lead climbing use",
-      "Treated to resist water and dirt penetration"
+      "Outer coating protects against dirt and dampness"
     ],
     "cons": [
       "Heavier at 64g/m",
@@ -6527,7 +6527,7 @@
     "cons": [
       "Twin-only rating",
       "Not beginner-friendly due to thin diameter",
-      "Standard construction without sheath bonding"
+      "If the sheath gets damaged, it can slide independently"
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
@@ -6618,7 +6618,7 @@
       "Works for all disciplines",
       "Fall rating holds up well for the thickness",
       "Balanced handling between supple and stiff",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Stays lighter in damp conditions than untreated ropes"
     ],
     "cons": [
       "Heavier at 66g/m",
@@ -6709,7 +6709,7 @@
       "SuperEverdry maximum protection",
       "Rated half+twin",
       "Low impact force makes falls less jarring",
-      "Pliable rope that ties and clips easily"
+      "Clips into quickdraws smoothly"
     ],
     "cons": [
       "Very low UIAA rating (3)",
@@ -6801,12 +6801,12 @@
       "Super soft catch feel",
       "ARC bi-pattern marking",
       "Low weight at 58g/m",
-      "Pliable rope that ties and clips easily",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Handles like a well-broken-in rope from day one",
+      "Lighter than an untreated rope would be after a wet pitch"
     ],
     "cons": [
       "Lower UIAA rating (7)",
-      "Limited color options"
+      "Color selection is limited"
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
@@ -7267,12 +7267,12 @@
     "pros": [
       "Beginner-friendly design",
       "Feeds through devices smoothly",
-      "Treated to resist water and dirt penetration"
+      "Outer coating protects against dirt and dampness"
     ],
     "cons": [
       "Lower UIAA rating",
       "Limited lengths",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Creates friction on routes with lots of direction changes"
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
@@ -7360,8 +7360,8 @@
     "pros": [
       "Lightweight at 58g/m",
       "80m length available",
-      "Pliable rope that ties and clips easily",
-      "Dry treatment resists water absorption"
+      "Soft enough to feed through devices without resistance",
+      "Holds its weight and handling feel in wet weather"
     ],
     "cons": [
       "Lower UIAA rating (7)",
@@ -7555,7 +7555,7 @@
     ],
     "cons": [
       "Low UIAA rating (5)",
-      "Standard construction without sheath bonding"
+      "If the sheath gets damaged, it can slide independently"
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
@@ -7737,8 +7737,8 @@
     "pros": [
       "Fusion sheath-lock system",
       "Reliable durability under normal lead climbing use",
-      "Pliable rope that ties and clips easily",
-      "Dry treatment resists water absorption"
+      "Ties knots without fighting you",
+      "Holds its weight and handling feel in wet weather"
     ],
     "cons": [
       "Mid-range weight",
@@ -8018,13 +8018,13 @@
       "Extremely durable",
       "Great for beginners and gyms",
       "Works with all device types",
-      "Dry-treated sheath sheds moisture in wet conditions",
+      "Stays lighter in damp conditions than untreated ropes",
       "Environmentally responsible manufacturing"
     ],
     "cons": [
       "Heavy at 70 g/m",
       "Bulky to carry on long routes",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Heavier pull through alpine terrain with ledges and corners"
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
@@ -8111,7 +8111,7 @@
       "UIAA Dry treatment",
       "Smooth premium sheath",
       "Noticeably lighter than standard-diameter ropes",
-      "Dry treatment resists water absorption"
+      "Sheath doesn't soak up moisture like untreated alternatives"
     ],
     "cons": [
       "Expert-only  -  very thin",
@@ -8297,7 +8297,7 @@
       "Lightweight",
       "Good for alpine",
       "Reliable performance",
-      "Treated to resist water and dirt penetration"
+      "Outer coating protects against dirt and dampness"
     ],
     "cons": [
       "Not for wet conditions",
@@ -8390,7 +8390,7 @@
       "Dry treatment",
       "Cut-resistant",
       "Low weight per meter reduces rope drag on wandering pitches",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Sheath repels water on wet rock and ice"
     ],
     "cons": [
       "Heavier at 46g/m",
@@ -8571,8 +8571,8 @@
     "description": "Mammut's 8.0 Alpine Eco Dry combines environmental responsibility with alpine performance. PFC-free and Bluesign certified for eco-conscious climbers.",
     "pros": [
       "Eco-friendly",
-      "Dry treatment resists water absorption",
-      "Reliable construction from an established brand"
+      "Water resistance extends the rope's usable life",
+      "Backed by a manufacturer with a strong track record"
     ],
     "cons": [
       "Lightweight at 45g/m",
@@ -8762,7 +8762,7 @@
       "Light at 58 g/m for a gym rope",
       "Low 7.7 kN impact force",
       "Relaxed feel that knots and uncoils without fuss",
-      "Dry treatment resists water absorption"
+      "Treated to stay dry when conditions get wet"
     ],
     "cons": [
       "Short lengths only",
@@ -8860,12 +8860,12 @@
       "Smooth handling",
       "Dry treatment included",
       "Fall rating holds up well for the thickness",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Lighter than an untreated rope would be after a wet pitch"
     ],
     "cons": [
       "Not the lightest 9.5mm option",
       "No Unicore bonding",
-      "Standard construction without sheath bonding"
+      "Core and sheath aren't bonded - sheath can slip if cut"
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
@@ -9055,12 +9055,12 @@
       "Works with all device types",
       "Good durability for the weight",
       "Solid fall rating for regular sport and trad use",
-      "Treated to resist water and dirt penetration"
+      "Treatment blocks moisture and grit from getting into the core"
     ],
     "cons": [
       "No Unicore bonding",
       "Pricier than untreated alternatives",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Drag builds up on meandering pitches"
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
@@ -9150,11 +9150,11 @@
       "Unique pattern design",
       "Same great performance",
       "Women-focused styling",
-      "Dry treatment resists water absorption"
+      "Sheath doesn't soak up moisture like untreated alternatives"
     ],
     "cons": [
       "Premium for variant",
-      "Standard construction without sheath bonding"
+      "If the sheath gets damaged, it can slide independently"
     ],
     "ai_review": null,
     "rope_color_1": "#ff69b4",
@@ -9244,13 +9244,13 @@
       "Thicker for durability",
       "Good fall rating",
       "Solid fall rating for regular sport and trad use",
-      "Pliable rope that ties and clips easily",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Clips into quickdraws smoothly",
+      "Dry sheath keeps the rope performing in rain and snow"
     ],
     "cons": [
       "Slightly heavier",
       "Pricier alternative",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Not the lightest option for complex multi-pitch routing"
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
@@ -9434,7 +9434,7 @@
       "Triple-rated  -  ultimate versatility",
       "48-bobbin abrasion-resistant sheath",
       "UIAA Dry certified",
-      "Pliable rope that ties and clips easily",
+      "Handles like a well-broken-in rope from day one",
       "Triple-rated for use as single, half, or twin"
     ],
     "cons": [
@@ -9530,7 +9530,7 @@
       "Best budget option from Mammut",
       "Sustainable We Care production",
       "Same great Mammut handling",
-      "Pliable rope that ties and clips easily",
+      "Soft enough to feed through devices without resistance",
       "Bluesign-certified production"
     ],
     "cons": [
@@ -9727,12 +9727,12 @@
       "9 UIAA falls  -  durable",
       "Available from 40m for indoor use",
       "Fall rating holds up well for the thickness",
-      "Dry treatment resists water absorption"
+      "Treated to stay dry when conditions get wet"
     ],
     "cons": [
       "Heavy at 67 g/m",
       "Too thick for demanding routes",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Drag builds up on meandering pitches"
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
@@ -9823,7 +9823,7 @@
       "42% sheath proportion",
       "Short lengths for gym use",
       "Good UIAA fall count for its weight class",
-      "Treated to resist water and dirt penetration"
+      "Stays cleaner and drier than ropes without treatment"
     ],
     "cons": [
       "Indoor use only",
@@ -9910,7 +9910,7 @@
     "pros": [
       "Minimal bounce for comfortable jugging",
       "Minimal elongation for efficient ascending",
-      "Dry treatment resists water absorption"
+      "Holds its weight and handling feel in wet weather"
     ],
     "cons": [
       "Never use for lead climbing - zero dynamic elongation"
@@ -9995,10 +9995,10 @@
     "pros": [
       "Minimal bounce for comfortable jugging",
       "Minimal elongation for efficient ascending",
-      "Reliable construction from an established brand"
+      "Trusted construction from a well-known manufacturer"
     ],
     "cons": [
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Keep it physically separated from lead ropes in storage"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -10274,13 +10274,13 @@
       "Excellent all-round diameter",
       "Good UIAA fall rating (8)",
       "Proven Endura Dry treatment",
-      "Treated to resist water and dirt penetration",
+      "Stays cleaner and drier than ropes without treatment",
       "Uses recycled nylon in construction"
     ],
     "cons": [
       "Mid-range weight",
       "No specialty niche",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Not the lightest option for complex multi-pitch routing"
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
@@ -10656,7 +10656,7 @@
       "Excellent value",
       "8 UIAA falls for durability",
       "Beginner-friendly handling",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Moisture resistance means it stays manageable in the mountains"
     ],
     "cons": [
       "Heavier at 63 g/m",
@@ -10751,12 +10751,12 @@
       "Thick and comfortable grip",
       "Perfect gym rope",
       "Fall rating well above average for the diameter",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Sheath repels water on wet rock and ice"
     ],
     "cons": [
       "Heavy at 66 g/m",
       "Too thick for alpine use",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Not the lightest option for complex multi-pitch routing"
     ],
     "ai_review": null,
     "rope_color_1": "#eab308",
@@ -10844,7 +10844,7 @@
       "Lightweight at 48g/m",
       "Light enough to notice the difference on alpine approaches",
       "Supple handling for easy clipping and belaying",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Doesn't gain weight from moisture like untreated ropes"
     ],
     "cons": [
       "Limited color palette",
@@ -11035,7 +11035,7 @@
       "PFC-free UIAA water repellent",
       "Core Thermal Treatment technology",
       "Great handling feel",
-      "Treated to resist water and dirt penetration"
+      "Protected surface reduces internal contamination"
     ],
     "cons": [
       "Less known brand",
@@ -11131,7 +11131,7 @@
       "Smooth consistent handling",
       "Good durability at 9.5mm",
       "Petzl quality control",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Sheath repels water on wet rock and ice"
     ],
     "cons": [
       "Not Bluesign certified",
@@ -11218,7 +11218,7 @@
     "pros": [
       "Reliable for top-rope setups and fixed lines",
       "High breaking strength for fixed-line and hauling",
-      "Dry treatment resists water absorption"
+      "Sheath doesn't soak up moisture like untreated alternatives"
     ],
     "cons": [
       "Static rope is dangerous for lead falls"
@@ -11587,7 +11587,7 @@
     "pros": [
       "Minimal bounce for comfortable jugging",
       "Minimal elongation for efficient ascending",
-      "Reliable construction from an established brand"
+      "Trusted construction from a well-known manufacturer"
     ],
     "cons": [
       "Never use for lead climbing - zero dynamic elongation"
@@ -11764,7 +11764,7 @@
     "pros": [
       "Minimal elongation for efficient ascending",
       "Strong and stable for industrial and caving use",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Stays lighter in damp conditions than untreated ropes"
     ],
     "cons": [
       "Static rope is dangerous for lead falls"
@@ -12143,7 +12143,7 @@
     "cons": [
       "Premium price point",
       "Requires experienced handling",
-      "Limited color options"
+      "Fewer color choices than some competitors"
     ],
     "ai_review": null,
     "rope_color_1": "#e86a3a",
@@ -12417,7 +12417,7 @@
     "pros": [
       "Route 44 abrasion resistance",
       "Good UIAA rating (8)",
-      "Dry treatment resists water absorption"
+      "Holds its weight and handling feel in wet weather"
     ],
     "cons": [
       "Heavier at 68g/m",
@@ -12508,12 +12508,12 @@
       "Ultra-lightweight at 40g/m",
       "Very supple feel",
       "Soft and flexible in the hand",
-      "Dry coating keeps the rope light when conditions turn wet"
+      "Lighter than an untreated rope would be after a wet pitch"
     ],
     "cons": [
       "Limited weight range",
       "Not beginner-friendly due to thin diameter",
-      "Standard construction without sheath bonding"
+      "Lacks the core-sheath connection of bonded ropes"
     ],
     "ai_review": null,
     "rope_color_1": "#f4d03f",
@@ -12606,7 +12606,7 @@
       "Ultrasonic cut ends",
       "Czech-made quality",
       "Solid fall rating for regular sport and trad use",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Water rolls off the treated outer layer"
     ],
     "cons": [
       "Less known brand",
@@ -12700,11 +12700,11 @@
       "Moderate weight",
       "Good UIAA fall count for its weight class",
       "Supple handling for easy clipping and belaying",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Sheath repels water on wet rock and ice"
     ],
     "cons": [
       "Lower UIAA rating (7)",
-      "Limited color options"
+      "Color selection is limited"
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
@@ -12792,7 +12792,7 @@
       "High safety factor",
       "Premium construction",
       "Feeds through devices smoothly",
-      "Dry-treated sheath sheds moisture in wet conditions"
+      "Stays lighter in damp conditions than untreated ropes"
     ],
     "cons": [
       "Advanced handling required",
@@ -13158,10 +13158,10 @@
     "pros": [
       "Strong and stable for industrial and caving use",
       "Minimal bounce for comfortable jugging",
-      "Reliable construction from an established brand"
+      "Comes from a brand with proven quality control"
     ],
     "cons": [
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Looks like a dynamic rope but must never be used as one"
     ],
     "ai_review": null,
     "rope_color_1": null,
@@ -13243,7 +13243,7 @@
     "pros": [
       "Strong and stable for industrial and caving use",
       "Minimal bounce for comfortable jugging",
-      "Dry treatment resists water absorption"
+      "Water resistance extends the rope's usable life"
     ],
     "cons": [
       "Static rope is dangerous for lead falls"
@@ -13336,7 +13336,7 @@
       "Good durability",
       "Fall rating well above average for the diameter",
       "Good middle ground on handling feel",
-      "Dry treatment resists water absorption"
+      "Treated to stay dry when conditions get wet"
     ],
     "cons": [
       "Heavier at 65g/m",
@@ -13429,7 +13429,7 @@
       "Light at 55 g/m",
       "Excellent for sport redpointing",
       "Feeds through devices smoothly",
-      "Dry coating keeps the rope light when conditions turn wet",
+      "Keeps its handling feel even in damp environments",
       "Recycled content reduces environmental footprint"
     ],
     "cons": [
@@ -13526,7 +13526,7 @@
     "cons": [
       "Expert use only",
       "Stiff feel",
-      "Must be clearly separated from dynamic ropes to avoid accidents"
+      "Serious risk if someone accidentally leads on it"
     ],
     "ai_review": null,
     "rope_color_1": "#ffffff",
@@ -13713,7 +13713,7 @@
       "Lightweight",
       "Fall rating holds up well for the thickness",
       "Pleasant to handle on long belay sessions",
-      "Treated to resist water and dirt penetration"
+      "Treatment blocks moisture and grit from getting into the core"
     ],
     "cons": [
       "Standard fall rating",
@@ -13798,7 +13798,7 @@
     "pros": [
       "Reliable for top-rope setups and fixed lines",
       "High breaking strength for fixed-line and hauling",
-      "Reliable construction from an established brand"
+      "Made by a company with decades of rope-making experience"
     ],
     "cons": [
       "Never use for lead climbing - zero dynamic elongation"
@@ -13891,8 +13891,8 @@
     "pros": [
       "BiColor pattern for instant middle ID",
       "Light at 57 g/m",
-      "Pliable rope that ties and clips easily",
-      "Treated to resist water and dirt penetration"
+      "Handles like a well-broken-in rope from day one",
+      "Outer coating protects against dirt and dampness"
     ],
     "cons": [
       "Bi-pattern limits color choice",
@@ -14080,7 +14080,7 @@
     "pros": [
       "8 UIAA falls  -  excellent durability",
       "Big wall-worthy toughness",
-      "Dry-treated sheath sheds moisture in wet conditions",
+      "Sheath repels water on wet rock and ice",
       "Made with recycled materials"
     ],
     "cons": [
@@ -14652,7 +14652,7 @@
       "TeFix Complete Shield dry treatment",
       "Made in Czech Republic",
       "Lightweight for less drag on long routes",
-      "Pliable rope that ties and clips easily"
+      "Handles like a well-broken-in rope from day one"
     ],
     "cons": [
       "Very thin for single use",
@@ -14845,11 +14845,11 @@
       "Complete Shield tech",
       "TeFix treatment",
       "Solid fall rating for regular sport and trad use",
-      "Treated to resist water and dirt penetration"
+      "Stays cleaner and drier than ropes without treatment"
     ],
     "cons": [
       "Slightly heavier",
-      "Limited color options"
+      "Color selection is limited"
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
@@ -15036,12 +15036,12 @@
       "Czech-made quality",
       "Good value for beginners",
       "Light for its class at 62 g/m",
-      "Dry treatment resists water absorption"
+      "Water resistance extends the rope's usable life"
     ],
     "cons": [
       "Higher static elongation",
       "Impact force on the high side for its class",
-      "Standard construction without sheath bonding"
+      "No bonding technology between core and outer layer"
     ],
     "ai_review": null,
     "rope_color_1": "#16a34a",
@@ -15122,7 +15122,7 @@
     "pros": [
       "Low stretch for precise rappel and rescue work",
       "Reliable for top-rope setups and fixed lines",
-      "Treated to resist water and dirt penetration"
+      "Outer coating protects against dirt and dampness"
     ],
     "cons": [
       "Never use for lead climbing - zero dynamic elongation"
@@ -15207,7 +15207,7 @@
     "pros": [
       "High breaking strength for fixed-line and hauling",
       "Low stretch for precise rappel and rescue work",
-      "Reliable construction from an established brand"
+      "Comes from a brand with proven quality control"
     ],
     "cons": [
       "Never use for lead climbing - zero dynamic elongation"
@@ -15299,12 +15299,12 @@
       "Very durable",
       "Excellent impact rating",
       "Survives more falls than most ropes in its class",
-      "Pliable rope that ties and clips easily"
+      "Clips into quickdraws smoothly"
     ],
     "cons": [
       "Heavy at 79g/m",
       "Not for outdoor",
-      "Noticeable rope drag on wandering multi-pitch routes"
+      "Heavier pull through alpine terrain with ledges and corners"
     ],
     "ai_review": null,
     "rope_color_1": "#cc0000",
@@ -15488,7 +15488,7 @@
       "Excellent value at ~190EUR/70m",
       "High 13 UIAA fall rating",
       "High UIAA fall count extends the rope's working life",
-      "Pliable rope that ties and clips easily"
+      "Soft enough to feed through devices without resistance"
     ],
     "cons": [
       "Mid-range weight",
