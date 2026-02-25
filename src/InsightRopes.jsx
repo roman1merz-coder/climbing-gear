@@ -156,7 +156,7 @@ export default function InsightRopes() {
 
       <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
         <StatCard label="Correlation" value={STATS.corr} sub="cost ↑ ≠ more falls (counterintuitive)" color={T.red} />
-        <StatCard label="Dry Premium" value={`+${STATS.dryPremium}%`} sub={`dry-treated ropes cost €${STATS.avgDryPrice} vs €${STATS.avgNoDryPrice}/m`} color={T.blue} />
+        <StatCard label="Dry Premium" value={`+${STATS.dryPremium}%`} sub={`dry-treated ropes cost €${STATS.avgDryPrice} vs €${STATS.avgNoDryPrice} per meter`} color={T.blue} />
         <StatCard label="Best Band" value="9.5–9.8" sub={`${ROPE_BANDS[3].n} models — fiercest competition`} color={T.accent} />
       </div>
 
