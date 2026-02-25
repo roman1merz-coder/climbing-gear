@@ -152,10 +152,6 @@ export default function NavBar({ priceData = {} }) {
           color: pathname.startsWith("/insights") ? T.primary : T.navMuted,
           textDecoration: "none", fontWeight: 600,
         }}>Insights</Link>
-        <Link to="/news" style={{
-          color: pathname === "/news" ? T.primary : T.navMuted,
-          textDecoration: "none", fontWeight: 600,
-        }}>News</Link>
         {!isMobile && (
           <>
             <Link to="/about" style={{
