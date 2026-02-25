@@ -844,6 +844,32 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
         </div>
       )}
 
+      {/* Related insight */}
+      <div style={{ padding: isMobile ? "16px 16px" : "20px 32px", background: T.bg }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <Link to="/insights/rope-cost-vs-safety" style={{
+            display: "flex", alignItems: "center", gap: "12px",
+            padding: isMobile ? "14px 16px" : "16px 24px",
+            background: "linear-gradient(135deg, rgba(34,197,94,.05), rgba(201,138,66,.05))",
+            border: `1px solid rgba(34,197,94,.12)`, borderRadius: "10px",
+            textDecoration: "none", transition: "transform .15s",
+          }}
+            onMouseOver={e => e.currentTarget.style.transform = "translateY(-1px)"}
+            onMouseOut={e => e.currentTarget.style.transform = "translateY(0)"}
+          >
+            <span style={{ fontSize: "18px", flexShrink: 0 }}>📊</span>
+            <div>
+              <div style={{ fontSize: "12px", fontWeight: 700, color: T.text, marginBottom: "2px" }}>
+                Does Spending More Buy a Safer Rope?
+              </div>
+              <div style={{ fontSize: "11px", color: T.muted }}>
+                We analysed cost vs UIAA falls, weight trade-offs, and dry-treatment premiums across all single ropes →
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* Legal disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>

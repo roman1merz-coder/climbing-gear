@@ -146,27 +146,29 @@ export default function NavBar({ priceData = {} }) {
       {/* Price alert bell */}
       <AlertBell priceData={priceData} isMobile={isMobile} onClick={() => navigate("/wishlist")} />
 
-      {/* Right links (desktop only) */}
-      {!isMobile && (
-        <div style={{ display: "flex", gap: "16px", fontSize: "12px", flexShrink: 0 }}>
-          <Link to="/insights" style={{
-            color: pathname === "/insights" ? T.primary : T.navMuted,
-            textDecoration: "none", fontWeight: 600,
-          }}>Insights</Link>
-          <Link to="/news" style={{
-            color: pathname === "/news" ? T.primary : T.navMuted,
-            textDecoration: "none", fontWeight: 600,
-          }}>News</Link>
-          <Link to="/about" style={{
-            color: pathname === "/about" ? T.navText : T.navMuted,
-            textDecoration: "none", fontWeight: 500,
-          }}>About</Link>
-          <Link to="/impressum" style={{
-            color: pathname === "/impressum" ? T.navText : T.navMuted,
-            textDecoration: "none", fontWeight: 500,
-          }}>Impressum</Link>
-        </div>
-      )}
+      {/* Right links */}
+      <div style={{ display: "flex", gap: isMobile ? "10px" : "16px", fontSize: isMobile ? "10px" : "12px", flexShrink: 0 }}>
+        <Link to="/insights" style={{
+          color: pathname.startsWith("/insights") ? T.primary : T.navMuted,
+          textDecoration: "none", fontWeight: 600,
+        }}>Insights</Link>
+        <Link to="/news" style={{
+          color: pathname === "/news" ? T.primary : T.navMuted,
+          textDecoration: "none", fontWeight: 600,
+        }}>News</Link>
+        {!isMobile && (
+          <>
+            <Link to="/about" style={{
+              color: pathname === "/about" ? T.navText : T.navMuted,
+              textDecoration: "none", fontWeight: 500,
+            }}>About</Link>
+            <Link to="/impressum" style={{
+              color: pathname === "/impressum" ? T.navText : T.navMuted,
+              textDecoration: "none", fontWeight: 500,
+            }}>Impressum</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }

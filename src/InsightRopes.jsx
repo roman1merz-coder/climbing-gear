@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import ROPE_SEED from "./rope_seed_data.json";
@@ -141,10 +142,31 @@ function RopeTeaserChart({ isMobile }) {
 }
 
 export default function InsightRopes() {
-  usePageMeta(
-    `Does Spending More Buy a Safer Climbing Rope? ${SINGLES.length} Ropes Analysed`,
-    `We compared cost-per-metre, UIAA fall ratings, and weight across ${SINGLES.length} single climbing ropes. The correlation between price and safety is surprisingly weak. Here's why — and what to buy instead.`
-  );
+  const title = `Does Spending More Buy a Safer Climbing Rope? ${SINGLES.length} Ropes Analysed`;
+  const desc = `We compared cost-per-metre, UIAA fall ratings, and weight across ${SINGLES.length} single climbing ropes. The correlation between price and safety is surprisingly weak. Here's why — and what to buy instead.`;
+  usePageMeta(title, desc);
+
+  /* JSON-LD Article schema for rich snippets */
+  useEffect(() => {
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description: desc,
+      url: "https://climbing-gear.com/insights/rope-cost-vs-safety",
+      datePublished: "2026-02-25",
+      dateModified: new Date().toISOString().slice(0, 10),
+      author: { "@type": "Organization", name: "climbing-gear.com", url: "https://climbing-gear.com" },
+      publisher: { "@type": "Organization", name: "climbing-gear.com", url: "https://climbing-gear.com" },
+      mainEntityOfPage: { "@type": "WebPage", "@id": "https://climbing-gear.com/insights/rope-cost-vs-safety" },
+    };
+    const el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.textContent = JSON.stringify(ld);
+    document.head.appendChild(el);
+    return () => el.remove();
+  }, [title, desc]);
+
   const isMobile = useIsMobile();
 
   return (

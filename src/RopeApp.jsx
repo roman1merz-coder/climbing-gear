@@ -1309,6 +1309,28 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
             </div>
           )}
 
+          {/* Insight article banner */}
+          <Link to="/insights/rope-cost-vs-safety" style={{
+            display: "flex", alignItems: "center", gap: "12px",
+            padding: isMobile ? "12px 14px" : "14px 20px", marginBottom: "16px",
+            background: "linear-gradient(135deg, rgba(34,197,94,.06), rgba(201,138,66,.06))",
+            border: "1px solid rgba(34,197,94,.15)", borderRadius: "10px",
+            textDecoration: "none", transition: "transform .15s, box-shadow .15s",
+          }}
+            onMouseOver={e => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,.06)"; }}
+            onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+          >
+            <span style={{ fontSize: "20px", flexShrink: 0 }}>📊</span>
+            <div>
+              <div style={{ fontSize: isMobile ? "12px" : "13px", fontWeight: 700, color: "#2c3227", marginBottom: "2px" }}>
+                Does Spending More Buy a Safer Rope?
+              </div>
+              <div style={{ fontSize: isMobile ? "10px" : "11px", color: "#7a7462" }}>
+                We analysed {displayResults.length > 0 ? "all" : ""} single ropes — cost vs UIAA falls, weight trade-offs, and the dry-treatment premium →
+              </div>
+            </div>
+          </Link>
+
           {view === "chart" ? (
             <>
               <ScoringDisclaimer category="ropes" />
