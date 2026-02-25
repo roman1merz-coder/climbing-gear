@@ -766,7 +766,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
             <div style={{
               display: isMobile ? "flex" : "grid",
               gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
-              gap: "16px",
+              gap: isMobile ? "10px" : "16px",
               overflowX: isMobile ? "auto" : undefined,
               paddingBottom: isMobile ? "8px" : undefined,
               WebkitOverflowScrolling: "touch",
@@ -775,7 +775,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
               {similar.map(({ item: p, score }) => {
                 const psc = SIZE_COLORS[p.pad_size_category] || SIZE_COLORS.medium;
                 return (
-                  <div key={p.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <div key={p.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
                     <Link to={`/crashpad/${p.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
                       <div style={{
                         background: T.card, borderRadius: "12px", overflow: "hidden",
@@ -785,7 +785,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                         onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
                       >
                         <div style={{
-                          height: "110px", position: "relative", overflow: "hidden",
+                          height: isMobile ? "80px" : "110px", position: "relative", overflow: "hidden",
                           display: "flex", alignItems: "center", justifyContent: "center",
                           background: p.image_url ? "#fff" : "transparent",
                         }}>

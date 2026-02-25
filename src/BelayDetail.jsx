@@ -614,14 +614,14 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
             <div style={{
               display: isMobile ? "flex" : "grid",
               gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
-              gap: "16px",
+              gap: isMobile ? "10px" : "16px",
               overflowX: isMobile ? "auto" : undefined,
               paddingBottom: isMobile ? "8px" : undefined,
               WebkitOverflowScrolling: "touch",
               scrollbarWidth: "none",
             }}>
               {similar.map(({ item: s, score }) => (
-                <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                <div key={s.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
                   <Link to={`/belay/${s.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
                     <div style={{
                       background: T.card, borderRadius: "12px", overflow: "hidden",
@@ -631,7 +631,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                       onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
                     >
                       <div style={{
-                        height: "100px", background: "#fff", position: "relative",
+                        height: isMobile ? "70px" : "100px", background: "#fff", position: "relative",
                         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                       }}>
                         <Img src={s.image_url} alt={`${s.brand} ${s.model}`}

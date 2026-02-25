@@ -574,7 +574,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
             <div style={{
               display: isMobile ? "flex" : "grid",
               gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
-              gap: "16px",
+              gap: isMobile ? "10px" : "16px",
               overflowX: isMobile ? "auto" : undefined,
               paddingBottom: isMobile ? "8px" : undefined,
               WebkitOverflowScrolling: "touch",
@@ -582,7 +582,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               msOverflowStyle: "none",
             }}>
               {similar.map(({ item: r, score }) => (
-                <div key={r.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                <div key={r.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
                   <Link to={`/rope/${r.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
                     <div style={{
                       background: T.card, borderRadius: "12px", overflow: "hidden",
@@ -593,7 +593,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                     >
                       {/* Image */}
                       <div style={{
-                        height: "90px", background: "#fff", position: "relative",
+                        height: isMobile ? "70px" : "90px", background: "#fff", position: "relative",
                         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                       }}>
                         <Img src={r.image_url} alt={`${r.brand} ${r.model}`}

@@ -1143,9 +1143,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit across brands" compact={isMobile} />
-          <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
+          <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: isMobile ? "10px" : "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
             {getSimilarShoes(shoe, shoes, 6).map(({ shoe: s, score }) => (
-              <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+              <div key={s.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
                 <SimilarCard shoe={s} similarity={score} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
               </div>
             ))}
