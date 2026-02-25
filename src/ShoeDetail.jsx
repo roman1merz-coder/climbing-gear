@@ -460,8 +460,8 @@ function ImageGallery({ shoe, compact }) {
   if (gallery.length === 0) {
     return (
       <div style={{
-        width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
-        border: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
+        width: "100%", aspectRatio: "4/3", borderRadius: "16px", overflow: "hidden",
+        border: `1px solid ${T.border}`, background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <div style={{ textAlign: "center" }}>
@@ -475,8 +475,8 @@ function ImageGallery({ shoe, compact }) {
   return (
     <div>
       <div style={{
-        width: "100%", aspectRatio: "4/3", borderRadius: "18px", overflow: "hidden",
-        position: "relative", border: `1px solid ${T.border}`, background: "#f5f5f5",
+        width: "100%", aspectRatio: "4/3", borderRadius: "16px", overflow: "hidden",
+        position: "relative", border: `1px solid ${T.border}`, background: "#fff",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
         <img
@@ -484,7 +484,7 @@ function ImageGallery({ shoe, compact }) {
           alt={`${shoe.brand} ${shoe.model} – ${currentImg.label || ""}`}
           style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
         />
-        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 40px 20px #f5f5f5", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 40px 20px #ffffff", pointerEvents: "none" }} />
         {multiImage && (
           <div style={{ position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px" }}>
             {gallery.map((_, i) => (
@@ -503,7 +503,7 @@ function ImageGallery({ shoe, compact }) {
             <button key={i} onClick={() => setActive(i)} style={{
               flex: 1, aspectRatio: "4/3", borderRadius: T.radiusSm,
               border: i === safeIdx ? `2px solid ${T.accent}` : `1px solid ${T.border}`,
-              background: "#f5f5f5",
+              background: "#fff",
               cursor: "pointer", opacity: i === safeIdx ? 1 : 0.6,
               transition: "all 0.2s ease", display: "flex", alignItems: "center", justifyContent: "center",
               overflow: "hidden",
