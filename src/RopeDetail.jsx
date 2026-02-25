@@ -149,12 +149,49 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
   const bestRopeOffer = ropePrices.find(p => p.inStock && p.price > 0) || ropePrices[0];
   const bestRopeUrl = bestRopeOffer?.url && bestRopeOffer.url !== "#" ? bestRopeOffer.url : null;
 
-  // SIMILAR PRODUCTS: up to 3 ropes matching BOTH same rope_type AND any overlapping best_use_cases
-  const similar = ropes.filter((r) =>
-    r.slug !== rope.slug &&
-    r.rope_type === rope.rope_type &&
-    ensureArray(r.best_use_cases).some((u) => ensureArray(rope.best_use_cases).includes(u))
-  ).slice(0, 3);
+  // SIMILAR PRODUCTS: 6 ropes scored by spec similarity, preferring different brands
+  const similar = useMemo(() => {
+    if (!rope) return [];
+    const tUse = ensureArray(rope.best_use_cases);
+    return ropes
+      .filter(r => r.slug !== rope.slug)
+      .map(r => {
+        let score = 0;
+        // Same rope type (25 pts)
+        if (r.rope_type === rope.rope_type) score += 25;
+        // Diameter proximity (20 pts)
+        if (r.diameter_mm && rope.diameter_mm) {
+          const diff = Math.abs(r.diameter_mm - rope.diameter_mm);
+          if (diff <= 0.2) score += 20;
+          else if (diff <= 0.5) score += 12;
+          else if (diff <= 1.0) score += 5;
+        }
+        // Weight proximity (15 pts)
+        if (r.weight_per_meter_g && rope.weight_per_meter_g) {
+          const diff = Math.abs(r.weight_per_meter_g - rope.weight_per_meter_g);
+          if (diff <= 3) score += 15;
+          else if (diff <= 6) score += 8;
+          else if (diff <= 10) score += 3;
+        }
+        // Use case overlap (15 pts)
+        const rUse = ensureArray(r.best_use_cases);
+        const useOverlap = rUse.filter(u => tUse.includes(u)).length;
+        if (useOverlap > 0) score += Math.min(15, useOverlap * 5);
+        // UIAA falls proximity (10 pts)
+        if (r.uiaa_falls && rope.uiaa_falls) {
+          const diff = Math.abs(r.uiaa_falls - rope.uiaa_falls);
+          if (diff <= 1) score += 10;
+          else if (diff <= 3) score += 5;
+        }
+        // Dry treatment match (5 pts)
+        if (r.dry_treatment && r.dry_treatment === rope.dry_treatment) score += 5;
+        // Different brand bonus (10 pts — prioritize cross-brand discovery)
+        if (r.brand !== rope.brand) score += 10;
+        return { item: r, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+  }, [rope, ropes]);
 
   return (
     <div style={{ background: T.bg, minHeight: "100vh", fontFamily: T.font, color: T.text }}>
@@ -393,37 +430,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
             )}
             */}
 
-            {/* Similar Ropes */}
-            {similar.length > 0 && (
-              <Section title="Similar Ropes">
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
-                  {similar.map((r) => (
-                    <Link key={r.slug} to={`/rope/${r.slug}`} style={{ textDecoration: "none" }}>
-                      <div style={{
-                        background: T.card, borderRadius: "12px", padding: "16px",
-                        border: `1px solid ${T.border}`, transition: "all .2s", cursor: "pointer",
-                      }}
-                        onMouseOver={(e) => { e.currentTarget.style.borderColor = T.accent; }}
-                        onMouseOut={(e) => { e.currentTarget.style.borderColor = T.border; }}
-                      >
-                        <div style={{ fontSize: "10px", color: T.dim, fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>
-                          {r.brand}
-                        </div>
-                        <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "8px" }}>{r.model}</div>
-                        <div style={{ display: "flex", gap: "8px", fontSize: "12px", color: T.muted, marginBottom: "8px" }}>
-                          <span>⌀ {r.diameter_mm}mm</span>
-                          <span>{r.weight_per_meter_g}g/m</span>
-                          <span>€{r.price_per_meter_eur_min?.toFixed(2)}/m</span>
-                        </div>
-                        <span style={{ fontSize: "16px", fontWeight: 700, color: T.accent, fontFamily: T.mono }}>
-                          €{r.price_per_meter_eur_min ? (r.price_per_meter_eur_min * 70).toFixed(0) : '—'} <span style={{ fontSize: "11px", color: T.muted, fontWeight: 400 }}>(70m)</span>
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </Section>
-            )}
+
           </div>
         )}
 
@@ -552,6 +559,88 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
           </div>
         )}
       </div>
+
+      {/* Similar Ropes — scored by spec similarity, cross-brand */}
+      {similar.length > 0 && (
+        <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <span style={{ fontSize: "17px" }}>🪢</span>
+              <div>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: T.text, fontFamily: T.font, margin: 0, letterSpacing: "-0.3px" }}>You May Also Like</h3>
+                <p style={{ fontSize: "11px", color: T.muted, margin: "2px 0 0", fontFamily: T.font }}>Similar specs across brands</p>
+              </div>
+            </div>
+            <div style={{
+              display: isMobile ? "flex" : "grid",
+              gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
+              gap: "16px",
+              overflowX: isMobile ? "auto" : undefined,
+              paddingBottom: isMobile ? "8px" : undefined,
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}>
+              {similar.map(({ item: r, score }) => (
+                <div key={r.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <Link to={`/rope/${r.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
+                    <div style={{
+                      background: T.card, borderRadius: "12px", overflow: "hidden",
+                      border: `1px solid ${T.border}`, transition: "all 0.2s ease", cursor: "pointer",
+                    }}
+                      onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                      onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
+                    >
+                      {/* Image */}
+                      <div style={{
+                        height: "90px", background: "#fff", position: "relative",
+                        display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+                      }}>
+                        <Img src={r.image_url} alt={`${r.brand} ${r.model}`}
+                          style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
+                          fallback={<RopeSVGDetail color1={r.rope_color_1 || "#888"} color2={r.rope_color_2 || "#666"} diameter={r.diameter_mm} ropeType={r.rope_type} />}
+                        />
+                        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
+                        {score > 0 && (
+                          <span style={{
+                            position: "absolute", top: "6px", right: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "6px",
+                            background: score >= 80 ? "rgba(34,197,94,.85)" : score >= 60 ? "rgba(201,138,66,.85)" : "rgba(107,114,128,.7)",
+                            color: "#fff", fontFamily: T.mono, fontSize: "10px", fontWeight: 700,
+                          }}>{score}%</span>
+                        )}
+                        {/* Type badge */}
+                        {(() => { const tc2 = TYPE_COLORS[r.rope_type] || TYPE_COLORS.single; return (
+                          <span style={{
+                            position: "absolute", top: "6px", left: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "6px",
+                            fontSize: "8px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
+                            fontFamily: T.mono, background: tc2.bg, color: tc2.color,
+                          }}>{r.rope_type}</span>
+                        ); })()}
+                      </div>
+                      {/* Content */}
+                      <div style={{ padding: "10px 12px" }}>
+                        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{r.brand}</div>
+                        <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.model}</div>
+                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                          <span>{r.diameter_mm}mm</span>
+                          <span style={{ color: T.border }}>·</span>
+                          <span>{r.weight_per_meter_g}g/m</span>
+                        </div>
+                        <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                          €{r.price_per_meter_eur_min ? (r.price_per_meter_eur_min * 70).toFixed(0) : "—"}
+                          <span style={{ fontSize: "9px", color: T.muted, fontWeight: 400 }}> (70m)</span>
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Legal disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>

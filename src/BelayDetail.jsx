@@ -190,12 +190,50 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 
-  // SIMILAR PRODUCTS: up to 3 belay devices with the same device_type (e.g. active_assisted)
+  // SIMILAR PRODUCTS: 6 belay devices scored by spec similarity, preferring different brands
   const similar = useMemo(() => {
     if (!d) return [];
+    const tUse = ensureArray(d.best_use_cases);
     return belays
-      .filter((b) => b.slug !== d.slug && b.device_type === d.device_type)
-      .slice(0, 3);
+      .filter(b => b.slug !== d.slug)
+      .map(b => {
+        let score = 0;
+        // Same device type (30 pts)
+        if (b.device_type === d.device_type) score += 30;
+        // Weight proximity (15 pts)
+        if (b.weight_g && d.weight_g) {
+          const diff = Math.abs(b.weight_g - d.weight_g);
+          if (diff <= 20) score += 15;
+          else if (diff <= 50) score += 8;
+          else if (diff <= 100) score += 3;
+        }
+        // Rope range overlap (15 pts)
+        if (b.rope_diameter_min_mm && b.rope_diameter_max_mm && d.rope_diameter_min_mm && d.rope_diameter_max_mm) {
+          const overlap = Math.min(b.rope_diameter_max_mm, d.rope_diameter_max_mm) - Math.max(b.rope_diameter_min_mm, d.rope_diameter_min_mm);
+          if (overlap > 0) score += Math.min(15, Math.round(overlap * 3));
+        }
+        // Use case overlap (10 pts)
+        const bUse = ensureArray(b.best_use_cases);
+        const useOverlap = bUse.filter(u => tUse.includes(u)).length;
+        if (useOverlap > 0) score += Math.min(10, useOverlap * 5);
+        // Guide mode match (5 pts)
+        if (b.guide_mode === d.guide_mode) score += 5;
+        // Anti-panic match (5 pts)
+        if (b.anti_panic === d.anti_panic) score += 5;
+        // Price proximity (10 pts)
+        const bp = b.price_eur_min || b.price_uvp_eur;
+        const dp = d.price_eur_min || d.price_uvp_eur;
+        if (bp && dp) {
+          const ratio = Math.min(bp, dp) / Math.max(bp, dp);
+          if (ratio >= 0.8) score += 10;
+          else if (ratio >= 0.6) score += 5;
+        }
+        // Different brand bonus (10 pts)
+        if (b.brand !== d.brand) score += 10;
+        return { item: b, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
   }, [d, belays]);
 
   if (!d) {
@@ -432,33 +470,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
             )}
             */}
 
-            {/* Similar Devices */}
-            {similar.length > 0 && (
-              <Section title="Similar Devices">
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "12px" }}>
-                  {similar.map((s) => (
-                    <Link
-                      key={s.slug}
-                      to={`/belay/${s.slug}`}
-                      style={{
-                        textDecoration: "none", color: "inherit",
-                        background: T.card, borderRadius: T.radius, padding: "16px",
-                        border: `1px solid ${T.border}`, transition: "all .2s",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = T.blue)}
-                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = T.border)}
-                    >
-                      <TypeBadge type={s.device_type} />
-                      <div style={{ color: T.muted, fontSize: "11px", marginTop: "8px", textTransform: "uppercase" }}>{s.brand}</div>
-                      <div style={{ color: T.text, fontSize: "14px", fontWeight: 600 }}>{s.model}</div>
-                      <div style={{ color: T.dim, fontSize: "11px", marginTop: "4px", fontFamily: T.mono }}>
-                        {s.weight_g}g · €{fmt(s.price_eur_min || s.price_uvp_eur)}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </Section>
-            )}
+
           </div>
         )}
 
@@ -587,6 +599,83 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
           </div>
         )}
       </div>
+
+      {/* Similar Devices — scored by spec similarity, cross-brand */}
+      {similar.length > 0 && (
+        <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <span style={{ fontSize: "17px" }}>🔒</span>
+              <div>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: T.text, fontFamily: T.font, margin: 0, letterSpacing: "-0.3px" }}>You May Also Like</h3>
+                <p style={{ fontSize: "11px", color: T.muted, margin: "2px 0 0", fontFamily: T.font }}>Similar specs across brands</p>
+              </div>
+            </div>
+            <div style={{
+              display: isMobile ? "flex" : "grid",
+              gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
+              gap: "16px",
+              overflowX: isMobile ? "auto" : undefined,
+              paddingBottom: isMobile ? "8px" : undefined,
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+            }}>
+              {similar.map(({ item: s, score }) => (
+                <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <Link to={`/belay/${s.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
+                    <div style={{
+                      background: T.card, borderRadius: "12px", overflow: "hidden",
+                      border: `1px solid ${T.border}`, transition: "all 0.2s ease", cursor: "pointer",
+                    }}
+                      onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                      onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
+                    >
+                      <div style={{
+                        height: "100px", background: "#fff", position: "relative",
+                        display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+                      }}>
+                        <Img src={s.image_url} alt={`${s.brand} ${s.model}`}
+                          style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
+                          fallback={<BelaySVGDetail device={s} compact />}
+                        />
+                        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
+                        {score > 0 && (
+                          <span style={{
+                            position: "absolute", top: "6px", right: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "6px",
+                            background: score >= 80 ? "rgba(34,197,94,.85)" : score >= 60 ? "rgba(201,138,66,.85)" : "rgba(107,114,128,.7)",
+                            color: "#fff", fontFamily: T.mono, fontSize: "10px", fontWeight: 700,
+                          }}>{score}%</span>
+                        )}
+                        {(() => { const tc = TYPE_COLORS[s.device_type] || TYPE_COLORS.tube; return (
+                          <span style={{
+                            position: "absolute", top: "6px", left: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "6px",
+                            fontSize: "8px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
+                            fontFamily: T.mono, background: tc.bg, color: tc.color,
+                          }}>{String(s.device_type).replace(/_/g, " ").replace("active ", "").replace("passive ", "")}</span>
+                        ); })()}
+                      </div>
+                      <div style={{ padding: "10px 12px" }}>
+                        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{s.brand}</div>
+                        <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.model}</div>
+                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                          <span>{s.weight_g}g</span>
+                          <span style={{ color: T.border }}>·</span>
+                          <span>{s.rope_diameter_min_mm}–{s.rope_diameter_max_mm}mm</span>
+                        </div>
+                        <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                          €{fmt(s.price_eur_min || s.price_uvp_eur)}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Legal disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>

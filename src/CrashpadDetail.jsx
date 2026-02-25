@@ -394,12 +394,56 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const bestPadOffer = padPrices.find(p => p.inStock && p.price > 0) || padPrices[0];
   const bestPadUrl = bestPadOffer?.url && bestPadOffer.url !== "#" ? bestPadOffer.url : null;
 
-  // SIMILAR PRODUCTS: up to 3 pads matching EITHER same size_category OR any overlapping best_use
-  const similar = crashpads.filter((p) =>
-    p.slug !== pad.slug &&
-    (p.pad_size_category === pad.pad_size_category ||
-     ensureArray(p.best_use).some((u) => ensureArray(pad.best_use).includes(u)))
-  ).slice(0, 3);
+  // SIMILAR PRODUCTS: 6 crashpads scored by spec similarity, preferring different brands
+  const similar = useMemo(() => {
+    if (!pad) return [];
+    const tUse = ensureArray(pad.best_use);
+    return crashpads
+      .filter(p => p.slug !== pad.slug)
+      .map(p => {
+        let score = 0;
+        // Same size category (20 pts)
+        if (p.pad_size_category === pad.pad_size_category) score += 20;
+        // Use case overlap (15 pts)
+        const pUse = ensureArray(p.best_use);
+        const useOverlap = pUse.filter(u => tUse.includes(u)).length;
+        if (useOverlap > 0) score += Math.min(15, useOverlap * 5);
+        // Area proximity (15 pts)
+        const pArea = (p.length_open_cm || 0) * (p.width_open_cm || 0);
+        const tArea = (pad.length_open_cm || 0) * (pad.width_open_cm || 0);
+        if (pArea > 0 && tArea > 0) {
+          const ratio = Math.min(pArea, tArea) / Math.max(pArea, tArea);
+          if (ratio >= 0.85) score += 15;
+          else if (ratio >= 0.7) score += 8;
+          else if (ratio >= 0.5) score += 3;
+        }
+        // Thickness proximity (10 pts)
+        if (p.thickness_cm && pad.thickness_cm) {
+          const diff = Math.abs(p.thickness_cm - pad.thickness_cm);
+          if (diff <= 1) score += 10;
+          else if (diff <= 3) score += 5;
+        }
+        // Weight proximity (10 pts)
+        if (p.weight_kg && pad.weight_kg) {
+          const diff = Math.abs(p.weight_kg - pad.weight_kg);
+          if (diff <= 0.5) score += 10;
+          else if (diff <= 1.5) score += 5;
+        }
+        // Fold style match (5 pts)
+        if (p.fold_style && p.fold_style === pad.fold_style) score += 5;
+        // Price proximity (15 pts)
+        if (p.current_price_eur && pad.current_price_eur) {
+          const ratio = Math.min(p.current_price_eur, pad.current_price_eur) / Math.max(p.current_price_eur, pad.current_price_eur);
+          if (ratio >= 0.8) score += 15;
+          else if (ratio >= 0.6) score += 8;
+        }
+        // Different brand bonus (10 pts)
+        if (p.brand !== pad.brand) score += 10;
+        return { item: p, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+  }, [pad, crashpads]);
 
   return (
     <div style={{ background: T.bg, minHeight: "100vh", fontFamily: T.font, color: T.text }}>
@@ -574,48 +618,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
             )}
             */}
 
-            {/* Similar Crashpads */}
-            {similar.length > 0 && (
-              <Section title="Similar Crashpads">
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "16px" }}>
-                  {similar.map((p) => {
-                    const psc = SIZE_COLORS[p.pad_size_category] || SIZE_COLORS.medium;
-                    return (
-                      <Link key={p.slug} to={`/crashpad/${p.slug}`} style={{ textDecoration: "none" }}>
-                        <div style={{
-                          background: T.card, borderRadius: T.radius, padding: "16px",
-                          border: `1px solid ${T.border}`, transition: "all .2s", cursor: "pointer",
-                        }}
-                          onMouseOver={(e) => { e.currentTarget.style.borderColor = T.accent; }}
-                          onMouseOut={(e) => { e.currentTarget.style.borderColor = T.border; }}
-                        >
-                          <div style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "8px" }}>
-                            <span style={{
-                              padding: "2px 6px", borderRadius: "4px",
-                              fontSize: "9px", fontWeight: 700, textTransform: "uppercase",
-                              fontFamily: T.mono, background: psc.bg, color: psc.color,
-                            }}>
-                              {fmt(p.pad_size_category)}
-                            </span>
-                          </div>
-                          <div style={{ fontSize: "10px", color: T.dim, fontWeight: 600, letterSpacing: "1px", textTransform: "uppercase", marginBottom: "4px" }}>
-                            {p.brand}
-                          </div>
-                          <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "8px" }}>{p.model}</div>
-                          <div style={{ display: "flex", gap: "8px", fontSize: "12px", color: T.muted, marginBottom: "8px" }}>
-                            <span>{p.length_open_cm}×{p.width_open_cm}cm</span>
-                            <span>{p.weight_kg}kg</span>
-                          </div>
-                          <span style={{ fontSize: "16px", fontWeight: 700, color: T.accent, fontFamily: T.mono }}>
-                            €{p.current_price_eur}
-                          </span>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </Section>
-            )}
+
           </div>
         )}
 
@@ -748,6 +751,93 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
         )}
 
       </div>
+
+      {/* Similar Crashpads — scored by spec similarity, cross-brand */}
+      {similar.length > 0 && (
+        <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <span style={{ fontSize: "17px" }}>🛏️</span>
+              <div>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: T.text, fontFamily: T.font, margin: 0, letterSpacing: "-0.3px" }}>You May Also Like</h3>
+                <p style={{ fontSize: "11px", color: T.muted, margin: "2px 0 0", fontFamily: T.font }}>Similar specs across brands</p>
+              </div>
+            </div>
+            <div style={{
+              display: isMobile ? "flex" : "grid",
+              gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
+              gap: "16px",
+              overflowX: isMobile ? "auto" : undefined,
+              paddingBottom: isMobile ? "8px" : undefined,
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+            }}>
+              {similar.map(({ item: p, score }) => {
+                const psc = SIZE_COLORS[p.pad_size_category] || SIZE_COLORS.medium;
+                return (
+                  <div key={p.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                    <Link to={`/crashpad/${p.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
+                      <div style={{
+                        background: T.card, borderRadius: "12px", overflow: "hidden",
+                        border: `1px solid ${T.border}`, transition: "all 0.2s ease", cursor: "pointer",
+                      }}
+                        onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                        onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
+                      >
+                        <div style={{
+                          height: "110px", position: "relative", overflow: "hidden",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          background: p.image_url ? "#fff" : "transparent",
+                        }}>
+                          {p.image_url ? (
+                            <img src={p.image_url} alt={`${p.brand} ${p.model}`} loading="lazy"
+                              style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }} />
+                          ) : (
+                            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+                              background: "linear-gradient(135deg, rgba(237,231,219,0.9), rgba(237,231,219,0.95))" }}>
+                              <CrashpadSVGDetail pad={p} />
+                            </div>
+                          )}
+                          <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
+                          {score > 0 && (
+                            <span style={{
+                              position: "absolute", top: "6px", right: "6px", zIndex: 3,
+                              padding: "2px 6px", borderRadius: "6px",
+                              background: score >= 80 ? "rgba(34,197,94,.85)" : score >= 60 ? "rgba(201,138,66,.85)" : "rgba(107,114,128,.7)",
+                              color: "#fff", fontFamily: T.mono, fontSize: "10px", fontWeight: 700,
+                            }}>{score}%</span>
+                          )}
+                          <span style={{
+                            position: "absolute", top: "6px", left: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "4px",
+                            fontSize: "8px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
+                            fontFamily: T.mono, background: psc.bg, color: psc.color,
+                            border: `1px solid ${psc.border || "transparent"}`,
+                          }}>{String(p.pad_size_category).replace(/_/g, " ")}</span>
+                        </div>
+                        <div style={{ padding: "10px 12px" }}>
+                          <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{p.brand}</div>
+                          <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.model}</div>
+                          <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                            <span>{((p.length_open_cm * p.width_open_cm) / 10000).toFixed(1)}m²</span>
+                            <span style={{ color: T.border }}>·</span>
+                            <span>{p.thickness_cm}cm</span>
+                            <span style={{ color: T.border }}>·</span>
+                            <span>{p.weight_kg}kg</span>
+                          </div>
+                          <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                            €{p.current_price_eur}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Legal disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>

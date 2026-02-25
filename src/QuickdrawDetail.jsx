@@ -166,12 +166,49 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 
-  // SIMILAR PRODUCTS: up to 3 quickdraws with the same quickdraw_type
+  // SIMILAR PRODUCTS: 6 quickdraws scored by spec similarity, preferring different brands
   const similar = useMemo(() => {
     if (!d) return [];
     return quickdraws
-      .filter((q) => q.slug !== d.slug && q.quickdraw_type === d.quickdraw_type)
-      .slice(0, 3);
+      .filter(q => q.slug !== d.slug)
+      .map(q => {
+        let score = 0;
+        // Same type (25 pts)
+        if (q.quickdraw_type === d.quickdraw_type) score += 25;
+        // Weight proximity (20 pts)
+        if (q.weight_g && d.weight_g) {
+          const diff = Math.abs(q.weight_g - d.weight_g);
+          if (diff <= 5) score += 20;
+          else if (diff <= 15) score += 12;
+          else if (diff <= 30) score += 5;
+        }
+        // Strength proximity (10 pts)
+        if (q.strength_major_kn && d.strength_major_kn) {
+          const diff = Math.abs(q.strength_major_kn - d.strength_major_kn);
+          if (diff <= 2) score += 10;
+          else if (diff <= 5) score += 5;
+        }
+        // Gate type match (10 pts)
+        if (q.upper_gate_type === d.upper_gate_type) score += 5;
+        if (q.lower_gate_type === d.lower_gate_type) score += 5;
+        // Length proximity (10 pts)
+        if (q.length_cm && d.length_cm) {
+          const diff = Math.abs(q.length_cm - d.length_cm);
+          if (diff <= 1) score += 10;
+          else if (diff <= 3) score += 5;
+        }
+        // Price proximity (15 pts)
+        if (q.price_uvp_eur && d.price_uvp_eur) {
+          const ratio = Math.min(q.price_uvp_eur, d.price_uvp_eur) / Math.max(q.price_uvp_eur, d.price_uvp_eur);
+          if (ratio >= 0.8) score += 15;
+          else if (ratio >= 0.6) score += 8;
+        }
+        // Different brand bonus (10 pts)
+        if (q.brand !== d.brand) score += 10;
+        return { item: q, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
   }, [d, quickdraws]);
 
   if (!d) {
@@ -395,33 +432,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* Similar Quickdraws */}
-            {similar.length > 0 && (
-              <Section title="Similar Quickdraws">
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(250px, 1fr))", gap: "12px" }}>
-                  {similar.map((s) => (
-                    <Link
-                      key={s.slug}
-                      to={`/quickdraw/${s.slug}`}
-                      style={{
-                        textDecoration: "none", color: "inherit",
-                        background: T.card, borderRadius: T.radius, padding: "16px",
-                        border: `1px solid ${T.border}`, transition: "all .2s",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = T.blue)}
-                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = T.border)}
-                    >
-                      <TypeBadge type={s.quickdraw_type} />
-                      <div style={{ color: T.muted, fontSize: "11px", marginTop: "8px", textTransform: "uppercase" }}>{s.brand}</div>
-                      <div style={{ color: T.text, fontSize: "14px", fontWeight: 600 }}>{s.model}</div>
-                      <div style={{ color: T.dim, fontSize: "11px", marginTop: "4px", fontFamily: T.mono }}>
-                        {s.weight_g}g · €{fmt(s.price_eur_min || s.price_uvp_eur)}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </Section>
-            )}
+
           </div>
         )}
 
@@ -542,6 +553,83 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
           </div>
         )}
       </div>
+
+      {/* Similar Quickdraws — scored by spec similarity, cross-brand */}
+      {similar.length > 0 && (
+        <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <span style={{ fontSize: "17px" }}>⛓️</span>
+              <div>
+                <h3 style={{ fontSize: "15px", fontWeight: 700, color: T.text, fontFamily: T.font, margin: 0, letterSpacing: "-0.3px" }}>You May Also Like</h3>
+                <p style={{ fontSize: "11px", color: T.muted, margin: "2px 0 0", fontFamily: T.font }}>Similar specs across brands</p>
+              </div>
+            </div>
+            <div style={{
+              display: isMobile ? "flex" : "grid",
+              gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
+              gap: "16px",
+              overflowX: isMobile ? "auto" : undefined,
+              paddingBottom: isMobile ? "8px" : undefined,
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+            }}>
+              {similar.map(({ item: s, score }) => (
+                <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <Link to={`/quickdraw/${s.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
+                    <div style={{
+                      background: T.card, borderRadius: "12px", overflow: "hidden",
+                      border: `1px solid ${T.border}`, transition: "all 0.2s ease", cursor: "pointer",
+                    }}
+                      onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                      onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
+                    >
+                      <div style={{
+                        height: "100px", background: "#fff", position: "relative",
+                        display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+                      }}>
+                        <Img src={s.image_url} alt={`${s.brand} ${s.model}`}
+                          style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }}
+                          fallback={<QuickdrawSVGDetail quickdraw={s} compact />}
+                        />
+                        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
+                        {score > 0 && (
+                          <span style={{
+                            position: "absolute", top: "6px", right: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "6px",
+                            background: score >= 80 ? "rgba(34,197,94,.85)" : score >= 60 ? "rgba(201,138,66,.85)" : "rgba(107,114,128,.7)",
+                            color: "#fff", fontFamily: T.mono, fontSize: "10px", fontWeight: 700,
+                          }}>{score}%</span>
+                        )}
+                        {(() => { const tc = TYPE_COLORS[s.quickdraw_type] || TYPE_COLORS.sport; return (
+                          <span style={{
+                            position: "absolute", top: "6px", left: "6px", zIndex: 3,
+                            padding: "2px 6px", borderRadius: "6px",
+                            fontSize: "8px", fontWeight: 700, letterSpacing: ".5px", textTransform: "uppercase",
+                            fontFamily: T.mono, background: tc.bg, color: tc.color,
+                          }}>{String(s.quickdraw_type).replace(/_/g, " ")}</span>
+                        ); })()}
+                      </div>
+                      <div style={{ padding: "10px 12px" }}>
+                        <div style={{ fontSize: "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{s.brand}</div>
+                        <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.model}</div>
+                        <div style={{ display: "flex", gap: "4px", alignItems: "center", fontSize: "10px", color: T.muted, fontFamily: T.mono, marginBottom: "6px" }}>
+                          <span>{s.weight_g}g</span>
+                          <span style={{ color: T.border }}>·</span>
+                          <span>{s.strength_major_kn}kN</span>
+                        </div>
+                        <span style={{ fontSize: "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
+                          €{fmt(s.price_uvp_eur)}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Legal disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
