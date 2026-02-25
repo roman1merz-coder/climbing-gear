@@ -55,7 +55,7 @@ export default function Footer() {
         fontSize: "12px", color: T.muted,
       }}>
         <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
-        <div style={{ display: "flex", gap: "20px" }}>
+        <div style={{ display: "flex", gap: isMobile ? "10px 14px" : "20px", flexWrap: "wrap", justifyContent: "center" }}>
           <Link to="/methodology" style={{ color: T.muted, textDecoration: "none" }}>Methodology</Link>
           <Link to="/about" style={{ color: T.muted, textDecoration: "none" }}>About</Link>
           <Link to="/terms" style={{ color: T.muted, textDecoration: "none" }}>Nutzungsbedingungen</Link>

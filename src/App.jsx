@@ -1593,7 +1593,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
         fontSize: "12px", color: "#7a7462", fontFamily: "'DM Sans',sans-serif",
       }}>
         <span>&copy; {new Date().getFullYear()} climbing-gear.com</span>
-        <div style={{ display: "flex", gap: "20px" }}>
+        <div style={{ display: "flex", gap: isMobile ? "12px" : "20px", flexWrap: "wrap", justifyContent: "center" }}>
           <Link to="/about" style={{ color: "#7a7462", textDecoration: "none" }}>About</Link>
           <Link to="/impressum" style={{ color: "#7a7462", textDecoration: "none" }}>Impressum</Link>
           <Link to="/privacy" style={{ color: "#7a7462", textDecoration: "none" }}>Datenschutz</Link>
