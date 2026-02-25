@@ -471,19 +471,19 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
 
       {/* Hero Section: 2-column (image left | identity+pricing right) */}
       <div style={{
-        padding: isMobile ? "24px 16px" : "40px 24px",
+        padding: isMobile ? "20px 16px" : "40px 32px",
         borderBottom: `1px solid ${T.border}`,
-        background: `linear-gradient(135deg, ${rope.rope_color_1 || '#555'}12, ${rope.rope_color_2 || '#333'}06)`,
+        background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "48px", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", alignItems: "start" }}>
 
             {/* Left: Image/SVG */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", borderRadius: "16px", padding: isMobile ? "20px" : "32px", minHeight: isMobile ? "180px" : "260px", border: `1px solid ${T.border}` }}>
               <Img
                 src={rope.image_url}
                 alt={`${rope.brand} ${rope.model}`}
-                style={{ display: "block", maxWidth: isMobile ? "280px" : "360px", maxHeight: isMobile ? "200px" : "260px", objectFit: "contain", borderRadius: "12px" }}
+                style={{ display: "block", maxWidth: isMobile ? "280px" : "360px", maxHeight: isMobile ? "200px" : "260px", objectFit: "contain" }}
                 fallback={<RopeSVGDetail color1={rope.rope_color_1 || "#888"} color2={rope.rope_color_2 || "#666"} diameter={rope.diameter_mm} ropeType={rope.rope_type} />}
               />
             </div>
@@ -791,7 +791,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                     >
                       {/* Image */}
                       <div style={{
-                        height: isMobile ? "70px" : "90px", background: "#fff", position: "relative",
+                        height: isMobile ? "80px" : "100px", background: "#fff", position: "relative",
                         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                       }}>
                         <Img src={r.image_url} alt={`${r.brand} ${r.model}`}

@@ -276,11 +276,11 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
       </header>
 
       {/* Hero Section */}
-      <div style={{ padding: isMobile ? "20px 16px" : "32px", borderBottom: `1px solid ${T.border}`, background: T.surface }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+      <div style={{ padding: isMobile ? "20px 16px" : "40px 32px", borderBottom: `1px solid ${T.border}`, background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)` }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", alignItems: "start" }}>
             {/* Left: Product Image */}
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: d.image_url ? "#fff" : T.card, borderRadius: "16px", padding: isMobile ? "20px" : "32px", minHeight: isMobile ? "180px" : "260px" }}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", background: "#fff", borderRadius: "16px", padding: isMobile ? "20px" : "32px", minHeight: isMobile ? "180px" : "260px", border: `1px solid ${T.border}` }}>
               <Img
                 src={d.image_url}
                 alt={`${d.brand} ${d.model}`}
@@ -632,7 +632,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                       onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
                     >
                       <div style={{
-                        height: isMobile ? "70px" : "100px", background: "#fff", position: "relative",
+                        height: isMobile ? "80px" : "100px", background: "#fff", position: "relative",
                         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
                       }}>
                         <Img src={s.image_url} alt={`${s.brand} ${s.model}`}

@@ -467,18 +467,18 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
 
       {/* Hero Section */}
       <div style={{
-        padding: isMobile ? "24px 16px" : "32px 24px",
-        background: `linear-gradient(135deg, ${sc.color}10, ${sc.color}04)`,
+        padding: isMobile ? "20px 16px" : "40px 32px",
+        background: `linear-gradient(135deg, ${T.surface} 0%, ${T.card} 100%)`,
         borderBottom: `1px solid ${T.border}`,
       }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "24px" : "40px", alignItems: "start" }}>
           {/* Left: Image or SVG */}
           <div>
             {pad.image_url ? (
               <div style={{
                 width: "100%", aspectRatio: "1",
-                borderRadius: T.radius, overflow: "hidden",
-                background: `linear-gradient(135deg, ${sc.color}08, ${sc.color}02)`,
+                borderRadius: "16px", overflow: "hidden",
+                background: "#fff",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 border: `1px solid ${T.border}`,
               }}>
@@ -488,8 +488,8 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
             ) : (
               <div style={{
                 width: "100%", aspectRatio: "1",
-                borderRadius: T.radius,
-                background: `linear-gradient(135deg, ${sc.color}08, ${sc.color}02)`,
+                borderRadius: "16px",
+                background: "#fff",
                 border: `1px solid ${T.border}`,
                 padding: "24px",
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -786,9 +786,9 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                         onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
                       >
                         <div style={{
-                          height: isMobile ? "80px" : "110px", position: "relative", overflow: "hidden",
+                          height: isMobile ? "80px" : "100px", position: "relative", overflow: "hidden",
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          background: p.image_url ? "#fff" : "transparent",
+                          background: p.image_url ? "#fff" : "#fff",
                         }}>
                           {p.image_url ? (
                             <img src={p.image_url} alt={`${p.brand} ${p.model}`} loading="lazy"
