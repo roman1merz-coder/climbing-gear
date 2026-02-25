@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
@@ -78,6 +78,262 @@ function Section({ title, children }) {
         {title}
       </h3>
       {children}
+    </div>
+  );
+}
+
+// ─── Rope Price Block (length pills + retailer table) ────────────
+function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMobile }) {
+  const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`climbing rope ${rope.brand} ${rope.model}`.trim())}&tag=climbinggear-21`;
+
+  // Split prices into those with length data and those without
+  const pricesWithLength = useMemo(
+    () => prices.filter((p) => p.length_m && p.price > 0 && p.inStock),
+    [prices]
+  );
+  const pricesWithoutLength = useMemo(
+    () => prices.filter((p) => !p.length_m && p.price > 0 && p.inStock),
+    [prices]
+  );
+
+  // Available lengths sorted
+  const lengths = useMemo(
+    () => [...new Set(pricesWithLength.map((p) => p.length_m))].sort((a, b) => a - b),
+    [pricesWithLength]
+  );
+
+  // Auto-select: prefer 60m, fall back to first available
+  useEffect(() => {
+    if (lengths.length === 0) { setSelectedLength(null); return; }
+    setSelectedLength((prev) => {
+      if (prev && lengths.includes(prev)) return prev;
+      return lengths.includes(60) ? 60 : lengths[0];
+    });
+  }, [lengths, setSelectedLength]);
+
+  // Cheapest price per length (for pill hints)
+  const cheapestByLength = useMemo(() => {
+    const map = {};
+    for (const len of lengths) {
+      const offers = pricesWithLength.filter((p) => p.length_m === len);
+      const best = Math.min(...offers.map((p) => p.price));
+      map[len] = best;
+    }
+    return map;
+  }, [lengths, pricesWithLength]);
+
+  // Offers for currently selected length, sorted by price
+  const selectedOffers = useMemo(
+    () =>
+      pricesWithLength
+        .filter((p) => p.length_m === selectedLength)
+        .sort((a, b) => a.price - b.price),
+    [pricesWithLength, selectedLength]
+  );
+
+  const bestPrice = selectedOffers.length > 0 ? selectedOffers[0].price : null;
+
+  const amazonLink = (
+    <a href={amazonUrl} target="_blank" rel="noopener noreferrer"
+      style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
+        background: "#232F3E", borderRadius: "8px", textDecoration: "none",
+        transition: "opacity .15s", marginTop: "8px" }}
+      onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+      onMouseLeave={e => e.currentTarget.style.opacity = "1"}>
+      <span style={{ fontSize: "13px", fontWeight: 700, color: "#FF9900" }}>amazon</span>
+      <span style={{ fontSize: "12px", color: "#fff", flex: 1 }}>Search on Amazon.de</span>
+      <span style={{ fontSize: "12px", color: "#FF9900" }}>→</span>
+    </a>
+  );
+
+  // No price data at all — just show Amazon link
+  if (!prices.length) return <div style={{ marginBottom: "24px" }}>{amazonLink}</div>;
+
+  // Has length data → show length pills + filtered retailer table
+  if (lengths.length > 0) {
+    return (
+      <div style={{ marginBottom: "24px" }}>
+        <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden" }}>
+          {/* Header */}
+          <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Where to Buy</div>
+            {bestPrice != null && (
+              <span style={{ fontSize: "10px", fontWeight: 700, color: "#3d7a52", background: "rgba(61,122,82,0.08)", padding: "3px 8px", borderRadius: "6px" }}>
+                Best: €{bestPrice.toFixed(2)}
+              </span>
+            )}
+          </div>
+
+          {/* Length pills */}
+          <div style={{ padding: "14px 16px", borderBottom: `1px solid ${T.border}` }}>
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              {lengths.map((len) => {
+                const isActive = len === selectedLength;
+                return (
+                  <button
+                    key={len}
+                    onClick={() => setSelectedLength(len)}
+                    style={{
+                      display: "flex", flexDirection: "column", alignItems: "center",
+                      padding: isMobile ? "8px 14px" : "10px 20px", borderRadius: "10px",
+                      border: isActive ? "2px solid #3d7a52" : `2px solid ${T.border}`,
+                      background: isActive ? "rgba(61,122,82,0.08)" : T.card,
+                      boxShadow: isActive ? "0 0 0 1px #3d7a52" : "none",
+                      cursor: "pointer", transition: "all 0.15s", minWidth: "72px",
+                      fontFamily: T.font,
+                    }}
+                  >
+                    <span style={{
+                      fontSize: isMobile ? "14px" : "16px", fontWeight: 800,
+                      fontFamily: T.mono, color: isActive ? "#3d7a52" : T.text,
+                    }}>
+                      {len}m
+                    </span>
+                    <span style={{
+                      fontSize: "10px", fontWeight: 600, marginTop: "2px",
+                      color: isActive ? "#3d7a52" : T.muted,
+                    }}>
+                      from €{Math.floor(cheapestByLength[len] || 0)}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Retailer rows for selected length */}
+          {selectedOffers.length > 0 ? (
+            selectedOffers.map((p, i) => {
+              const isBest = i === 0;
+              const hasSave = p.oldPrice && p.oldPrice > p.price;
+              const savePct = hasSave ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+              const initial = (p.shop || "?").charAt(0).toUpperCase();
+              return (
+                <a
+                  key={`${p.shop}-${p.url}-${i}`}
+                  href={p.url && p.url !== "#" ? p.url : undefined}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: isMobile ? "1fr auto auto" : "1fr auto auto auto",
+                    alignItems: "center", padding: isMobile ? "12px 14px" : "14px 20px", gap: isMobile ? "10px" : "16px",
+                    borderBottom: i < selectedOffers.length - 1 ? `1px solid ${T.border}` : "none",
+                    background: isBest ? "rgba(61,122,82,0.06)" : "transparent",
+                    textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+                    transition: "background .1s",
+                  }}
+                  onMouseEnter={e => { if (!isBest) e.currentTarget.style.background = "rgba(61,122,82,0.04)"; }}
+                  onMouseLeave={e => { if (!isBest) e.currentTarget.style.background = "transparent"; }}
+                >
+                  {/* Retailer name + badge */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
+                    <div style={{
+                      width: "24px", height: "24px", borderRadius: "6px", flexShrink: 0,
+                      background: T.surface || "#f5f0e8", border: `1px solid ${T.border}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "11px", fontWeight: 800, color: T.muted,
+                    }}>{initial}</div>
+                    <span style={{ fontSize: "13px", fontWeight: 600, color: T.text, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {p.shop}
+                    </span>
+                    {isBest && (
+                      <span style={{
+                        fontSize: "9px", fontWeight: 700, color: "#3d7a52",
+                        background: "rgba(61,122,82,0.08)", border: "1px solid rgba(61,122,82,0.2)",
+                        padding: "1px 6px", borderRadius: "4px", whiteSpace: "nowrap",
+                      }}>Best price</span>
+                    )}
+                  </div>
+
+                  {/* Price + discount */}
+                  <div style={{ textAlign: "right" }}>
+                    <span style={{
+                      fontSize: "16px", fontWeight: 800, fontFamily: T.mono,
+                      color: isBest ? "#3d7a52" : T.text,
+                    }}>
+                      €{p.price.toFixed(2)}
+                    </span>
+                    {hasSave && (
+                      <>
+                        <span style={{ fontSize: "11px", color: T.muted, textDecoration: "line-through", fontFamily: T.mono, marginLeft: "6px" }}>
+                          €{p.oldPrice.toFixed(2)}
+                        </span>
+                        <span style={{ fontSize: "10px", fontWeight: 700, color: "#3d7a52", marginLeft: "4px" }}>
+                          -{savePct}%
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Go to shop link (desktop only — on mobile the whole row is clickable) */}
+                  {!isMobile && p.url && p.url !== "#" && (
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", gap: "4px",
+                      padding: "7px 14px", borderRadius: "7px",
+                      fontSize: "11px", fontWeight: 700, fontFamily: T.font,
+                      whiteSpace: "nowrap",
+                      background: isBest ? "#3d7a52" : T.card,
+                      color: isBest ? "#fff" : T.text,
+                      border: isBest ? "none" : `1px solid ${T.border}`,
+                    }}>
+                      Go to shop <span style={{ fontSize: "13px" }}>→</span>
+                    </span>
+                  )}
+                  {isMobile && (
+                    <span style={{ fontSize: "13px", color: T.accent, fontWeight: 600 }}>→</span>
+                  )}
+                </a>
+              );
+            })
+          ) : (
+            <div style={{ padding: "24px", textAlign: "center", color: T.muted, fontSize: "13px" }}>
+              No offers for {selectedLength}m. Try another length.
+            </div>
+          )}
+        </div>
+        {amazonLink}
+      </div>
+    );
+  }
+
+  // No length data — fall back to flat price list (original behavior)
+  const bestFlat = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
+  return (
+    <div style={{ marginBottom: "24px" }}>
+      <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "8px" }}>
+        <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
+          {bestFlat < Infinity && (
+            <span style={{ fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 8px", borderRadius: "6px" }}>
+              Best: €{bestFlat.toFixed(2)}
+            </span>
+          )}
+        </div>
+        {prices.map((p, i) => (
+          <a key={`${p.shop}-${p.url}-${i}`} href={p.url && p.url !== "#" ? p.url : undefined} target="_blank" rel="noopener noreferrer" style={{
+            display: "grid", gridTemplateColumns: "1fr auto auto auto",
+            alignItems: "center", padding: "12px 16px", gap: "12px",
+            borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+            background: p.price === bestFlat && p.inStock ? T.accentSoft : "transparent",
+            textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
+            transition: "background .15s",
+          }}>
+            <div style={{ minWidth: 0 }}>
+              <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
+            </div>
+            <span style={{ fontSize: "11px", color: T.muted, whiteSpace: "nowrap" }}>
+              {p.inStock ? "In stock" : "Out of stock"}
+            </span>
+            <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === bestFlat ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
+              {p.price ? `€${p.price.toFixed(2)}` : "—"}
+            </span>
+            {p.url && p.url !== "#" && (
+              <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"}</span>
+            )}
+          </a>
+        ))}
+      </div>
+      {amazonLink}
     </div>
   );
 }
@@ -261,73 +517,14 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 {rope.description}
               </p>
 
-              {/* Price Comparison Inline Table */}
-              {(() => {
-                const prices = priceData[rope.slug] || [];
-                const hasRealRetailer = prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
-                const amazonUrl = `https://www.amazon.de/s?k=${encodeURIComponent(`climbing rope ${rope.brand} ${rope.model}`.trim())}&tag=climbinggear-21`;
-                // Helper to ensure Amazon URLs include product category search terms
-                const getRetailerUrl = (url) => {
-                  if (!url || url === "#") return undefined;
-                  if (url.toLowerCase().includes('amazon')) return amazonUrl;
-                  return url;
-                };
-                const amazonLink = (
-                  <a href={amazonUrl} target="_blank" rel="noopener noreferrer"
-                    style={{ display: "flex", alignItems: "center", gap: "8px", padding: "10px 16px",
-                      background: "#232F3E", borderRadius: "8px", textDecoration: "none",
-                      transition: "opacity .15s", marginBottom: "24px" }}
-                    onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
-                    onMouseLeave={e => e.currentTarget.style.opacity = "1"}>
-                    <span style={{ fontSize: "13px", fontWeight: 700, color: "#FF9900" }}>amazon</span>
-                    <span style={{ fontSize: "12px", color: "#fff", flex: 1 }}>Search on Amazon.de</span>
-                    <span style={{ fontSize: "12px", color: "#FF9900" }}>→</span>
-                  </a>
-                );
-                if (!prices.length) return amazonLink;
-                const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
-                return (
-                  <>
-                    <div style={{ background: T.card, borderRadius: "12px", border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "8px" }}>
-                      <div style={{ padding: "12px 16px", borderBottom: `1px solid ${T.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
-                        {best < Infinity && (
-                          <span style={{ fontSize: "10px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 8px", borderRadius: "6px" }}>
-                            Best: €{best.toFixed(2)}
-                          </span>
-                        )}
-                      </div>
-                      {prices.map((p, i) => (
-                        <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
-                          display: "grid", gridTemplateColumns: hasRealRetailer ? "1fr auto auto auto" : "1fr auto auto",
-                          alignItems: "center", padding: "12px 16px", gap: "12px",
-                          borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
-                          background: p.price === best && p.inStock ? T.accentSoft : "transparent",
-                          textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
-                          transition: "background .15s",
-                        }}>
-                          <div style={{ minWidth: 0 }}>
-                            <span style={{ fontSize: "12px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.shop}</span>
-                            {p.delivery && <span style={{ fontSize: "10px", color: T.muted, display: "block" }}>{p.delivery}</span>}
-                          </div>
-                          {hasRealRetailer && (
-                            <span style={{ fontSize: "11px", color: T.muted, whiteSpace: "nowrap" }}>
-                              {p.inStock ? "In stock" : "Out of stock"}
-                            </span>
-                          )}
-                          <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-                            {p.price ? `€${p.price.toFixed(2)}` : "—"}
-                          </span>
-                          {p.url && p.url !== "#" && (
-                            <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"}</span>
-                          )}
-                        </a>
-                      ))}
-                    </div>
-                    {amazonLink}
-                  </>
-                );
-              })()}
+              {/* Price Comparison — Length Selector + Retailer Table */}
+              <RopePriceBlock
+                prices={priceData[rope.slug] || []}
+                rope={rope}
+                selectedLength={selectedLength}
+                setSelectedLength={setSelectedLength}
+                isMobile={isMobile}
+              />
 
               {/* Price Alert */}
               <div style={{ marginBottom: "24px" }}>
@@ -339,7 +536,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 />
               </div>
 
-              {/* Length selector removed — coming back when price-per-length is implemented */}
+              {/* Length selection is now handled inside RopePriceBlock above */}
             </div>
           </div>
         </div>
