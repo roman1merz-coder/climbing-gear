@@ -611,6 +611,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                 <p style={{ fontSize: "11px", color: T.muted, margin: "2px 0 0", fontFamily: T.font }}>Similar specs across brands</p>
               </div>
             </div>
+            <div style={{ position: "relative" }}>
             <div style={{
               display: isMobile ? "flex" : "grid",
               gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
@@ -621,7 +622,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
               scrollbarWidth: "none",
             }}>
               {similar.map(({ item: s, score }) => (
-                <div key={s.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
                   <Link to={`/belay/${s.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
                     <div style={{
                       background: T.card, borderRadius: "12px", overflow: "hidden",
@@ -673,6 +674,10 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                 </div>
               ))}
             </div>
+            {isMobile && (
+              <div style={{ position: "absolute", top: 0, right: 0, bottom: "8px", width: "40px", background: `linear-gradient(to right, transparent, ${T.surface})`, pointerEvents: "none", borderRadius: "0 8px 8px 0" }} />
+            )}
+          </div>
           </div>
         </div>
       )}

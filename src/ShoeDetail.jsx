@@ -871,7 +871,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   if (!shoe) {
     return (
       <div style={{ minHeight: "100vh", background: T.bg, padding: "40px", fontFamily: T.font }}>
-        <Link to="/shoes" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>{"\u2190"} Back to search</Link>
+        <Link to="/shoes" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>{"\u2190"} Back to shoes</Link>
         <div style={{ textAlign: "center", marginTop: "60px", color: T.muted }}>
           <div style={{ fontSize: "48px", marginBottom: "16px" }}>{"\uD83E\uDDD7"}</div>
           <div style={{ fontSize: "16px" }}>Shoe not found</div>
@@ -899,10 +899,20 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       {/* Header */}
-      <header style={{ padding: isMobile ? "8px 16px" : "10px 32px", borderBottom: `1px solid ${T.border}`, background: T.bg }}>
-        <Link to="/shoes" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: T.text, textDecoration: "none", fontWeight: 600, fontSize: isMobile ? "13px" : "14px", padding: isMobile ? "4px 0" : "0", minHeight: isMobile ? "44px" : "auto" }}>
-          {"\u2190"} Search
+      <header style={{
+        display: "flex", alignItems: "center", gap: isMobile ? "10px" : "16px",
+        padding: isMobile ? "0 16px" : "0 24px", height: isMobile ? "44px" : "50px",
+        background: T.bg, borderBottom: `1px solid ${T.border}`,
+      }}>
+        <Link to="/shoes" style={{ color: T.muted, textDecoration: "none", fontSize: isMobile ? "13px" : "14px", display: "flex", alignItems: "center", gap: "6px", minHeight: "44px", fontWeight: 600 }}>
+          <span>{"\u2190"}</span> Back to shoes
         </Link>
+        {!isMobile && (
+          <div style={{ marginLeft: "auto", fontSize: "15px", fontWeight: 700, display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "20px" }}>{"\uD83E\uDDD7"}</span>
+            climbing-gear<span style={{ color: T.accent }}>.com</span>
+          </div>
+        )}
       </header>
 
       {/* ═══ HERO ═══ */}
@@ -957,7 +967,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       {/* ═══ TABS ═══ */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "20px 16px" : "40px 32px" }}>
         <div style={{ display: "flex", gap: isMobile ? "0" : "20px", marginBottom: isMobile ? "24px" : "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: isMobile ? "12px" : "20px" }}>
-          {[{ key: "overview", label: "Overview" }, { key: "prices", label: isMobile ? "Prices" : "Price & Availability" }, { key: "specs", label: "Specs" }].map(tab => (
+          {[{ key: "overview", label: "Overview" }, { key: "prices", label: "Prices" }, { key: "specs", label: "Specs" }].map(tab => (
             <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{
               padding: isMobile ? "8px 12px" : "8px 16px", border: "none", background: "transparent", color: activeTab === tab.key ? T.accent : T.muted,
               fontSize: isMobile ? "13px" : "14px", fontWeight: activeTab === tab.key ? 700 : 600, cursor: "pointer", borderBottom: activeTab === tab.key ? `2px solid ${T.accent}` : "none",
@@ -1169,12 +1179,17 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit across brands" compact={isMobile} />
-          <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: isMobile ? "10px" : "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
-            {getSimilarShoes(shoe, shoes, 6).map(({ shoe: s, score }) => (
-              <div key={s.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
-                <SimilarCard shoe={s} similarity={score} compact={isMobile} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
-              </div>
-            ))}
+          <div style={{ position: "relative" }}>
+            <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: isMobile ? "10px" : "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
+              {getSimilarShoes(shoe, shoes, 6).map(({ shoe: s, score }) => (
+                <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <SimilarCard shoe={s} similarity={score} compact={isMobile} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+                </div>
+              ))}
+            </div>
+            {isMobile && (
+              <div style={{ position: "absolute", top: 0, right: 0, bottom: "8px", width: "40px", background: `linear-gradient(to right, transparent, ${T.surface})`, pointerEvents: "none", borderRadius: "0 8px 8px 0" }} />
+            )}
           </div>
         </div>
       </div>

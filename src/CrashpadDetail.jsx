@@ -763,6 +763,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                 <p style={{ fontSize: "11px", color: T.muted, margin: "2px 0 0", fontFamily: T.font }}>Similar specs across brands</p>
               </div>
             </div>
+            <div style={{ position: "relative" }}>
             <div style={{
               display: isMobile ? "flex" : "grid",
               gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
@@ -775,7 +776,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
               {similar.map(({ item: p, score }) => {
                 const psc = SIZE_COLORS[p.pad_size_category] || SIZE_COLORS.medium;
                 return (
-                  <div key={p.slug} style={{ minWidth: isMobile ? "140px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                  <div key={p.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
                     <Link to={`/crashpad/${p.slug}`} onClick={() => window.scrollTo(0, 0)} style={{ textDecoration: "none", display: "block" }}>
                       <div style={{
                         background: T.card, borderRadius: "12px", overflow: "hidden",
@@ -835,6 +836,10 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                 );
               })}
             </div>
+            {isMobile && (
+              <div style={{ position: "absolute", top: 0, right: 0, bottom: "8px", width: "40px", background: `linear-gradient(to right, transparent, ${T.surface})`, pointerEvents: "none", borderRadius: "0 8px 8px 0" }} />
+            )}
+          </div>
           </div>
         </div>
       )}
