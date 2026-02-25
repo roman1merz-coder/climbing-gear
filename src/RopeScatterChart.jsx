@@ -8,11 +8,12 @@ import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip
 const TYPE_COLORS = { single: "#60a5fa", half: "#ed64a6", twin: "#34d399", static: "#ecc94b" };
 const DRY_COLORS = { none: "#94a3b8", sheath: "#60a5fa", sheath_only: "#60a5fa", core: "#a78bfa", core_and_sheath: "#34d399", full_impregnation: "#c98a42" };
 const DIA_GROUPS = [
-  { key: "≤8.9", label: "≤8.9mm", min: 0, max: 8.99, color: "#a78bfa" },
-  { key: "9.0–9.4", label: "9.0–9.4mm", min: 9.0, max: 9.49, color: "#60a5fa" },
-  { key: "9.5–9.8", label: "9.5–9.8mm", min: 9.5, max: 9.89, color: "#22c55e" },
-  { key: "9.9–10.5", label: "9.9–10.5mm", min: 9.9, max: 10.59, color: "#c98a42" },
-  { key: "≥10.6", label: "≥10.6mm", min: 10.6, max: 99, color: "#ef4444" },
+  { key: "≤8.7", label: "≤8.7mm", min: 0, max: 8.74, color: "#a78bfa" },
+  { key: "8.8–9.1", label: "8.8–9.1mm", min: 8.75, max: 9.14, color: "#60a5fa" },
+  { key: "9.1–9.4", label: "9.1–9.4mm", min: 9.15, max: 9.44, color: "#38bdf8" },
+  { key: "9.5–9.8", label: "9.5–9.8mm", min: 9.45, max: 9.84, color: "#22c55e" },
+  { key: "9.9–10.2", label: "9.9–10.2mm", min: 9.85, max: 10.24, color: "#c98a42" },
+  { key: "≥10.3", label: "≥10.3mm", min: 10.25, max: 99, color: "#ef4444" },
 ];
 const diaGroup = mm => DIA_GROUPS.find(g => mm >= g.min && mm <= g.max)?.key || "9.5–9.8";
 const DIA_COLORS = Object.fromEntries(DIA_GROUPS.map(g => [g.key, g.color]));

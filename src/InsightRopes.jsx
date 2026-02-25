@@ -91,7 +91,7 @@ function RopeTeaserChart({ isMobile }) {
           rx="6" fill={T.green} opacity="0.06"
         />
         <text
-          x={pad.left + (cw / ROPE_BANDS.length) * (sweet[0] + 1)}
+          x={pad.left + (cw / ROPE_BANDS.length) * (sweet[0] + (sweet[1] - sweet[0] + 1) / 2)}
           y={pad.top + 14}
           fill={T.green} fontSize="9" textAnchor="middle" fontWeight="600" opacity="0.7"
         >Sweet Spot</text>
@@ -185,7 +185,7 @@ export default function InsightRopes() {
       </Prose>
 
       <KeyInsight color={T.blue}>
-        <strong>What the data can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably more relevant for day-to-day longevity than the number on the fall test. Unfortunately, these properties can only be assessed through real-world use over time. Our database gives you every spec-based comparison you need to narrow the field — diameter, weight, fall rating, dry treatment, price — so you can shortlist confidently, then let hands-on feel make the final call.
+        <strong>What the data currently can't show you — and why it matters.</strong> UIAA falls measure one very specific thing: resistance to repeated, severe edge falls. What they don't capture is abrasion resistance — how your sheath holds up over months of threading through quickdraws, rubbing over rock, and eating grit at the gym. Sheath durability, handling characteristics, and knot-ability are arguably as relevant for day-to-day longevity as the number on the fall test - calling for standardised tests across manufacturers.
       </KeyInsight>
 
       <Prose>
@@ -193,7 +193,7 @@ export default function InsightRopes() {
       </Prose>
 
       <KeyInsight color={T.yellow}>
-        <strong>Our honest take:</strong> Pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability – thinner ropes will wear faster whilst treatments add unnecessary cost. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. Use our <Link to="/ropes?view=chart" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>rope comparison</Link> to filter by diameter, weight, and price — then let handling feel guide the final pick.
+        <strong>Our honest take:</strong> Pick your rope by how you climb: alpine multi-pitch? Go thin, dry, and accept the lower fall count. Single-pitch sport? A 9.5–9.8mm untreated rope gives you the best combination of price, weight, and durability – thinner ropes will wear faster whilst treatments add unnecessary cost. Gym only? Grab a thick 10mm+ workhorse — you'll get maximum falls-per-euro and you won't care about the extra weight. Use our <Link to="/ropes?view=chart" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>rope comparison</Link> to filter by diameter, weight, and price.
       </KeyInsight>
     </ArticleLayout>
   );
