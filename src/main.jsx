@@ -77,7 +77,7 @@ const PRICE_TABLES = [
 // Each table has different optional columns; only request columns that exist
 const PRICE_BASE = "product_slug,retailer,price_eur,original_price_eur,product_url,in_stock";
 const PRICE_SELECT = {
-  shoe_prices:      `${PRICE_BASE},eur_size`,
+  shoe_prices:      `${PRICE_BASE},eur_size,sizes_available`,
   rope_prices:      `${PRICE_BASE},length_m`,
   crashpad_prices:  PRICE_BASE,
   belay_prices:     PRICE_BASE,
@@ -121,7 +121,20 @@ async function fetchLivePrices() {
         const slug = r.product_slug;
         if (!slug) continue;
         if (!grouped[slug]) grouped[slug] = [];
-        grouped[slug].push({
+        // If eur_size is null but sizes_available has a JSON array, expand into per-size rows
+        let sizesToExpand = null;
+        if (!r.eur_size && r.sizes_available) {
+          try {
+            const parsed = typeof r.sizes_available === "string"
+              ? JSON.parse(r.sizes_available)
+              : r.sizes_available;
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              sizesToExpand = parsed;
+            }
+          } catch { /* ignore malformed JSON */ }
+        }
+
+        const baseRow = {
           shop: r.retailer,
           price: Number(r.price_eur),
           oldPrice: r.original_price_eur ? Number(r.original_price_eur) : null,
@@ -130,8 +143,15 @@ async function fetchLivePrices() {
           shipping: "",
           delivery: "",
           length_m: r.length_m ? Number(r.length_m) : null,
-          eur_size: r.eur_size ? Number(r.eur_size) : null,
-        });
+        };
+
+        if (sizesToExpand) {
+          for (const sz of sizesToExpand) {
+            grouped[slug].push({ ...baseRow, eur_size: Number(sz) });
+          }
+        } else {
+          grouped[slug].push({ ...baseRow, eur_size: r.eur_size ? Number(r.eur_size) : null });
+        }
       }
     }
 
