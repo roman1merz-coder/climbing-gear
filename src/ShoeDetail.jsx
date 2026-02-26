@@ -957,9 +957,22 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const [selectedSize, setSelectedSize] = useState(null);
   const allPrices = priceData[slug] || [];
   const prices = useMemo(() => {
-    if (!selectedSize) return allPrices;
+    // Deduplicate: when multiple per-size rows exist for a retailer,
+    // keep only the cheapest row per shop (or the size-matched row).
+    const dedup = (rows) => {
+      const best = {};
+      for (const p of rows) {
+        const key = p.shop;
+        if (!best[key] || p.price < best[key].price) best[key] = p;
+      }
+      return Object.values(best);
+    };
+    if (!selectedSize) return dedup(allPrices);
+    // When a size is selected: show size-matched rows + retailers without any size data
     const sized = allPrices.filter(p => p.eur_size === selectedSize);
-    return sized.length ? sized : allPrices;
+    const noSizeRetailers = allPrices.filter(p => !p.eur_size);
+    const combined = [...sized, ...dedup(noSizeRetailers)];
+    return combined.length ? combined : dedup(allPrices);
   }, [allPrices, selectedSize]);
   const history = priceHistory[slug] || [];
 
