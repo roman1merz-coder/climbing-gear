@@ -32,6 +32,7 @@ import Wishlist from "./Wishlist.jsx";
 import ShoeFinder from "./ShoeFinder.jsx";
 import { T, GLOBAL_CSS } from "./tokens.js";
 import CookieConsent from "./CookieConsent.jsx";
+import { wrapAffiliateUrl } from "./utils/affiliate.js";
 import { inject as injectAnalytics } from "@vercel/analytics";
 import { initSentry, SentryErrorBoundary } from "./sentry.js";
 
@@ -124,7 +125,7 @@ async function fetchLivePrices() {
           shop: r.retailer,
           price: Number(r.price_eur),
           oldPrice: r.original_price_eur ? Number(r.original_price_eur) : null,
-          url: r.product_url || "#",
+          url: wrapAffiliateUrl(r.product_url, r.retailer) || "#",
           inStock: r.in_stock !== false,
           shipping: "",
           delivery: "",
@@ -145,7 +146,7 @@ async function fetchLivePrices() {
           shop: r.retailer,
           price: Number(r.price_eur),
           oldPrice: r.old_price_eur ? Number(r.old_price_eur) : null,
-          url: r.product_url || "#",
+          url: wrapAffiliateUrl(r.product_url, r.retailer) || "#",
           inStock: r.in_stock !== false,
           shipping: "",
           delivery: r.delivery || "",
