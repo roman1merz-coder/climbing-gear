@@ -573,34 +573,57 @@ function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
   }, [sizes, pricesWithSize]);
 
   if (sizes.length <= 1) return null;
+
+  const pill = (sz) => {
+    const isActive = sz === selectedSize;
+    const hasStock = pricesWithSize.some(p => p.eur_size === sz && p.inStock);
+    return (
+      <button key={sz} onClick={() => setSelectedSize(sz)} style={{
+        display: "flex", flexDirection: "column", alignItems: "center",
+        padding: compact ? "6px 10px" : "8px 14px", borderRadius: "8px",
+        border: isActive ? "2px solid #3d7a52" : `1px solid ${T.border}`,
+        background: isActive ? "rgba(61,122,82,0.08)" : T.card,
+        cursor: "pointer", transition: "all 0.15s", minWidth: compact ? "52px" : "60px",
+        flexShrink: 0, fontFamily: T.font, opacity: hasStock ? 1 : 0.5,
+      }}>
+        <span style={{ fontSize: compact ? "12px" : "14px", fontWeight: 800, fontFamily: T.mono, color: isActive ? "#3d7a52" : T.text }}>
+          {sz % 1 === 0 ? sz : sz.toFixed(1)}
+        </span>
+        {cheapestBySize[sz] && (
+          <span style={{ fontSize: "9px", fontWeight: 600, marginTop: "1px", color: isActive ? "#3d7a52" : T.muted }}>
+            {"\u20AC"}{Math.floor(cheapestBySize[sz])}
+          </span>
+        )}
+      </button>
+    );
+  };
+
   return (
     <div style={{ marginBottom: "12px" }}>
       <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: "8px" }}>EU Size</div>
-      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-        {sizes.map(sz => {
-          const isActive = sz === selectedSize;
-          const hasStock = pricesWithSize.some(p => p.eur_size === sz && p.inStock);
-          return (
-            <button key={sz} onClick={() => setSelectedSize(sz)} style={{
-              display: "flex", flexDirection: "column", alignItems: "center",
-              padding: compact ? "6px 10px" : "8px 14px", borderRadius: "8px",
-              border: isActive ? "2px solid #3d7a52" : `1px solid ${T.border}`,
-              background: isActive ? "rgba(61,122,82,0.08)" : T.card,
-              cursor: "pointer", transition: "all 0.15s", minWidth: compact ? "52px" : "60px",
-              fontFamily: T.font, opacity: hasStock ? 1 : 0.5,
-            }}>
-              <span style={{ fontSize: compact ? "12px" : "14px", fontWeight: 800, fontFamily: T.mono, color: isActive ? "#3d7a52" : T.text }}>
-                {sz % 1 === 0 ? sz : sz.toFixed(1)}
-              </span>
-              {cheapestBySize[sz] && (
-                <span style={{ fontSize: "9px", fontWeight: 600, marginTop: "1px", color: isActive ? "#3d7a52" : T.muted }}>
-                  {"\u20AC"}{Math.floor(cheapestBySize[sz])}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
+      {compact ? (
+        /* Mobile: horizontal scroll strip with fade hint */
+        <div style={{ position: "relative" }}>
+          <style>{`.sz-scroll::-webkit-scrollbar{display:none}`}</style>
+          <div className="sz-scroll" style={{
+            display: "flex", gap: "6px", overflowX: "auto", paddingBottom: "6px",
+            WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
+          }}>
+            {sizes.map(pill)}
+          </div>
+          {/* Right fade hint */}
+          <div style={{
+            position: "absolute", right: 0, top: 0, bottom: "6px", width: "36px",
+            background: `linear-gradient(to right, transparent, ${T.bg})`,
+            pointerEvents: "none", borderRadius: "0 8px 8px 0",
+          }} />
+        </div>
+      ) : (
+        /* Desktop: wrapped grid (unchanged) */
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+          {sizes.map(pill)}
+        </div>
+      )}
     </div>
   );
 }
