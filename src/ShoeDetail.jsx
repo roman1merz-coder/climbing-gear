@@ -603,11 +603,12 @@ function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
       <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: "8px" }}>EU Size</div>
       {compact ? (
         /* Mobile: horizontal scroll strip with fade hint */
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", overflow: "hidden" }}>
           <style>{`.sz-scroll::-webkit-scrollbar{display:none}`}</style>
           <div className="sz-scroll" style={{
             display: "flex", gap: "6px", overflowX: "auto", paddingBottom: "6px",
             WebkitOverflowScrolling: "touch", scrollbarWidth: "none",
+            maxWidth: "100%",
           }}>
             {sizes.map(pill)}
           </div>
