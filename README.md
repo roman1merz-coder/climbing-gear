@@ -156,6 +156,24 @@ The card grid uses `slug` as the React key (not `id`) to ensure stable reconcili
 
 StrictMode was removed because React 18's concurrent rendering combined with data-loading state transitions caused orphaned DOM elements that weren't properly cleaned up.
 
+### Price Crawlers
+
+All price crawlers live in a **separate folder outside this repo**:
+
+```
+climbing-gear/crawlers/
+```
+
+(On the developer machine: `~/Library/Mobile Documents/com~apple~CloudDocs/climbing-gear/crawlers/`)
+
+Each crawler is a standalone Python script named `crawl_{retailer}.py` that scrapes a single retailer and upserts prices into the category-specific Supabase price tables (`shoe_prices`, `rope_prices`, etc.). See `crawlers/CRAWLER_CONFIG.md` for the full list, schedule, and usage instructions.
+
+**Rules:**
+1. **All crawlers must live in `climbing-gear/crawlers/`** — never in `app/scripts/` or elsewhere.
+2. **When adding a new crawler**, place it in this folder and update `CRAWLER_CONFIG.md`.
+3. **Usage:** `python3 crawl_{retailer}.py` (all categories) or `python3 crawl_{retailer}.py shoes ropes` (specific categories).
+4. **The legacy `api/fetch-prices.js`** (Vercel cron, SerpApi) writes to the old `prices` table and is being phased out in favor of the per-retailer crawlers.
+
 ### Supabase
 
 The app connects to Supabase using the anon key (public, read-only).
