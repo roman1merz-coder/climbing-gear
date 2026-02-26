@@ -30,6 +30,7 @@ import { WishlistProvider } from "./WishlistContext.jsx";
 import { PriceAlertProvider } from "./PriceAlertContext.jsx";
 import Wishlist from "./Wishlist.jsx";
 import ShoeFinder from "./ShoeFinder.jsx";
+import FootScanner from "./FootScanner.jsx";
 import { T, GLOBAL_CSS } from "./tokens.js";
 import CookieConsent from "./CookieConsent.jsx";
 import { wrapAffiliateUrl } from "./utils/affiliate.js";
@@ -480,6 +481,7 @@ function Root() {
               <Route path="/quickdraw/:slug" element={<QuickdrawDetail quickdraws={quickdraws} priceData={priceData} />} />
               <Route path="/compare-quickdraws" element={<CompareGeneric items={quickdraws} type="quickdraws" />} />
               <Route path="/find" element={<ShoeFinder shoes={shoes} />} />
+              <Route path="/scan" element={<FootScanner />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/insights" element={<Insights />} />
               <Route path="/insights/climbing-shoe-guide" element={<InsightShoes />} />
