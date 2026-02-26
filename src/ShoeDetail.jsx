@@ -1039,7 +1039,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             </div>
 
             {/* Right: Hero Info — flex column to push radar down */}
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
               {/* Brand + Gender + Use Case tags on ONE line */}
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
                 <span style={{ fontSize: "24px", color: BRAND_COLORS[shoe.brand] || T.accent }}>{"\u25CF"}</span>
