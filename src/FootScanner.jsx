@@ -359,7 +359,7 @@ export default function FootScanner() {
           </div>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "14px" }}>
-          {[37, 38, 39, 40, 41, 42, 43, 44, 45, 46].map(s => (
+          {[37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49].map(s => (
             <span key={s} onClick={() => setShoeSize(s)} style={{
               fontSize: "12px", padding: "5px 12px", borderRadius: "16px",
               border: `1.5px solid ${shoeSize === s ? T.accent : T.border}`,
