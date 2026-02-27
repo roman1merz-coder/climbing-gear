@@ -985,4 +985,12 @@ if __name__ == "__main__":
 
     print(f"\n{'='*60}")
     print(f"  All done! {grand_matched}/{grand_total} matched overall")
+
+    # Record price history snapshot
+    try:
+        from snapshot_prices import snapshot_all
+        snapshot_all()
+    except Exception as e:
+        print(f'  ⚠ Price snapshot failed: {e}')
+
     print(f"{'='*60}")
