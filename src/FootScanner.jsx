@@ -264,21 +264,19 @@ function FootVizPanel({ result, isMobile }) {
             <path d={FOOT_TOP_INNER} fill={innerFill} />
             {FOOT_TOP_TOES.map((d, i) => <path key={i} d={d} fill={detailFill} />)}
 
-            {/* Width line W — at ball of foot y≈483 */}
+            {/* Width line W — at ball of foot y≈483, with endpoint ticks */}
             <g opacity="0.7">
               <line x1="684" y1="483" x2="916" y2="483" stroke={T.accent} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+              <circle cx="684" cy="483" r="3" fill={T.accent} opacity="0.6" />
+              <circle cx="916" cy="483" r="3.5" fill="none" stroke={T.accent} strokeWidth="1.5" />
               <text x="648" y="487" fill={T.accent} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="end">W</text>
             </g>
 
-            {/* Instep line I — y≈365 */}
-            <g opacity="0.7">
-              <line x1="668" y1="365" x2="845" y2="365" stroke={T.green} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
-              <text x="648" y="369" fill={T.green} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="end">I</text>
-            </g>
-
-            {/* Heel line H — y≈735 */}
+            {/* Heel line H — y≈735, with endpoint ticks */}
             <g opacity="0.7">
               <line x1="715" y1="735" x2="855" y2="735" stroke={T.purple} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+              <circle cx="715" cy="735" r="3" fill={T.purple} opacity="0.6" />
+              <circle cx="855" cy="735" r="3.5" fill="none" stroke={T.purple} strokeWidth="1.5" />
               <text x="648" y="739" fill={T.purple} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="end">H</text>
             </g>
           </svg>
