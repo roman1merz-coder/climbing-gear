@@ -265,19 +265,19 @@ function FootVizPanel({ result, isMobile }) {
             {FOOT_TOP_TOES.map((d, i) => <path key={i} d={d} fill={detailFill} />)}
 
             {/* Width line W — at ball of foot y≈483, with endpoint ticks */}
-            <g opacity="0.7">
+            <g opacity="0.8">
               <line x1="684" y1="483" x2="916" y2="483" stroke={T.accent} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
               <circle cx="684" cy="483" r="3" fill={T.accent} opacity="0.6" />
               <circle cx="916" cy="483" r="3.5" fill="none" stroke={T.accent} strokeWidth="1.5" />
-              <text x="648" y="487" fill={T.accent} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="end">W</text>
+              <text x="645" y="490" fill={T.accent} fontSize="14" fontWeight="700" fontFamily={T.font} textAnchor="end">W</text>
             </g>
 
             {/* Heel line H — y≈735, with endpoint ticks */}
-            <g opacity="0.7">
+            <g opacity="0.8">
               <line x1="715" y1="735" x2="855" y2="735" stroke={T.purple} strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
               <circle cx="715" cy="735" r="3" fill={T.purple} opacity="0.6" />
               <circle cx="855" cy="735" r="3.5" fill="none" stroke={T.purple} strokeWidth="1.5" />
-              <text x="648" y="739" fill={T.purple} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="end">H</text>
+              <text x="645" y="742" fill={T.purple} fontSize="14" fontWeight="700" fontFamily={T.font} textAnchor="end">H</text>
             </g>
           </svg>
 
@@ -331,7 +331,7 @@ function FootVizPanel({ result, isMobile }) {
               <line x1="131" y1="742" x2="609" y2="742" stroke={T.muted} strokeWidth="1" strokeLinecap="round" />
               <line x1="131" y1="738" x2="131" y2="746" stroke={T.muted} strokeWidth="1" />
               <line x1="609" y1="738" x2="609" y2="746" stroke={T.muted} strokeWidth="1" />
-              <text x="370" y="753" fill={T.muted} fontSize="7" fontFamily={T.font} textAnchor="middle">total length</text>
+              <text x="370" y="755" fill={T.muted} fontSize="8" fontFamily={T.font} textAnchor="middle">total length</text>
             </g>
 
             {/* Arch length (A) — heel to ball of foot (HORIZONTAL) */}
@@ -341,8 +341,8 @@ function FootVizPanel({ result, isMobile }) {
               <circle cx="131" cy="730" r="3" fill={T.blue} opacity="0.6" />
               <circle cx={userBallX} cy="730" r="3.5" fill="none" stroke={T.blue} strokeWidth="1.5" />
               <line x1={userBallX} y1="730" x2={userBallX} y2="716" stroke={T.blue} strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
-              <text x={Math.round((131 + userBallX) / 2)} y="727" fill={T.blue} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="middle">A</text>
-              <text x={Math.round((131 + userBallX) / 2)} y="717" fill={T.blue} fontSize="6.5" fontFamily={T.font} textAnchor="middle" opacity="0.5">arch length</text>
+              <text x={Math.round((131 + userBallX) / 2)} y="725" fill={T.blue} fontSize="14" fontWeight="700" fontFamily={T.font} textAnchor="middle">A</text>
+              <text x={Math.round((131 + userBallX) / 2)} y="714" fill={T.blue} fontSize="9" fontFamily={T.font} textAnchor="middle" opacity="0.6">arch length</text>
             </g>
 
             {/* Instep (I) — vertical at navicular x≈330 */}
@@ -350,14 +350,14 @@ function FootVizPanel({ result, isMobile }) {
               <line x1="330" y1="504" x2="330" y2="700" stroke={T.green} strokeWidth="2" strokeLinecap="round" />
               <circle cx="330" cy="504" r="3.5" fill="none" stroke={T.green} strokeWidth="1.5" />
               <circle cx="330" cy="700" r="3.5" fill="none" stroke={T.green} strokeWidth="1.5" />
-              <text x="342" y="598" fill={T.green} fontSize="9" fontWeight="600" fontFamily={T.font} textAnchor="start">I</text>
-              <text x="342" y="609" fill={T.green} fontSize="6.5" fontFamily={T.font} textAnchor="start" opacity="0.5">instep</text>
+              <text x="344" y="596" fill={T.green} fontSize="14" fontWeight="700" fontFamily={T.font} textAnchor="start">I</text>
+              <text x="344" y="610" fill={T.green} fontSize="9" fontFamily={T.font} textAnchor="start" opacity="0.6">instep</text>
             </g>
 
             {/* Landmark labels */}
-            <text x="131" y="760" fill={T.muted} fontSize="6" fontFamily={T.font} textAnchor="middle">heel</text>
-            <text x={userBallX} y="760" fill={T.blue} fontSize="6" fontFamily={T.font} textAnchor="middle" opacity="0.6">ball</text>
-            <text x="609" y="760" fill={T.muted} fontSize="6" fontFamily={T.font} textAnchor="middle">toe</text>
+            <text x="131" y="762" fill={T.muted} fontSize="9" fontFamily={T.font} textAnchor="middle">heel</text>
+            <text x={userBallX} y="762" fill={T.blue} fontSize="9" fontFamily={T.font} textAnchor="middle" opacity="0.7">ball</text>
+            <text x="609" y="762" fill={T.muted} fontSize="9" fontFamily={T.font} textAnchor="middle">toe</text>
           </svg>
 
           {/* Arch ratio info card */}
