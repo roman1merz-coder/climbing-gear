@@ -471,9 +471,14 @@ export default function FootScanner() {
       }
       const data = await res.json();
       setResult(data);
-      setStep(4);
-      // Store result in Supabase (non-blocking)
-      storeScanResult(data, shoeSize);
+      // If no foot detected or low confidence → show retry screen (step 5)
+      if (!data.foot_detected || data.confidence === "low") {
+        setStep(5);
+      } else {
+        setStep(4);
+        // Only store valid scans in Supabase
+        storeScanResult(data, shoeSize);
+      }
     } catch (err) {
       setError(err.message || "Analysis failed. Please try again.");
       setStep(2);
@@ -1007,6 +1012,64 @@ export default function FootScanner() {
       </Wrap>
     );
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // STEP 5 — Foot not recognized / low confidence → retry
+  // ═══════════════════════════════════════════════════════════
+  if (step === 5) return (
+    <Wrap narrow>
+      <div style={{ textAlign: "center", paddingTop: isMobile ? "32px" : "60px" }}>
+        <div style={{
+          width: "72px", height: "72px", borderRadius: "50%",
+          background: `${T.red}12`, margin: "0 auto 20px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: "32px",
+        }}>{"\u{1F9B6}"}</div>
+
+        <h2 style={{
+          fontSize: isMobile ? "22px" : "26px", fontWeight: 700,
+          color: T.text, marginBottom: "10px", lineHeight: 1.3,
+        }}>We couldn't recognize your foot</h2>
+
+        <p style={{
+          fontSize: "14px", color: T.muted, lineHeight: 1.6,
+          maxWidth: "400px", margin: "0 auto 24px",
+        }}>
+          The photos didn't contain a clear enough view of a bare foot for us to analyze.
+          This can happen with poor lighting, unusual angles, or if the foot isn't fully visible.
+        </p>
+
+        <div style={{
+          background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius,
+          padding: isMobile ? "16px" : "20px 24px", textAlign: "left", marginBottom: "28px",
+          maxWidth: "400px", margin: "0 auto 28px",
+        }}>
+          <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "12px" }}>Tips for better results</div>
+          {[
+            "Stand barefoot on a plain, single-color floor",
+            "Make sure the entire foot is visible in each photo",
+            "Use good, even lighting — avoid harsh shadows",
+            "Follow the angle instructions for each shot carefully",
+          ].map((t, i) => (
+            <div key={i} style={{ display: "flex", gap: "10px", marginBottom: "7px", fontSize: "13px", color: T.muted }}>
+              <span style={{ color: T.accent, fontWeight: 700, flexShrink: 0 }}>{i + 1}</span>{t}
+            </div>
+          ))}
+        </div>
+
+        <Btn onClick={() => {
+          setStep(2); setPhotoStep(0);
+          setPhotos({ top: null, side: null, heel: null });
+          setPreviews({ top: null, side: null, heel: null });
+          setResult(null); setError(null);
+        }} full={isMobile}>Try again with new photos</Btn>
+
+        <div style={{ fontSize: "11px", color: T.muted, marginTop: "14px", lineHeight: 1.5 }}>
+          Photos are analyzed in real-time and never stored.
+        </div>
+      </div>
+    </Wrap>
+  );
 
   return null;
 }

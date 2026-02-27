@@ -67,8 +67,11 @@ Return a value between 0.64 and 0.82.
 - "medium": Acceptable but one or more photos slightly off-angle or partially obscured
 - "low": Poor quality, wrong angle, or foot hard to distinguish
 
+CRITICAL: If any of the images do NOT clearly show a human foot (e.g. random objects, non-foot body parts, blurry/unrecognizable images, scenery), you MUST set confidence to "low" and set "foot_detected" to false. Do NOT guess or hallucinate measurements — return placeholder values. Be strict: if you cannot clearly see a bare human foot in the expected angle, it is NOT a valid foot photo.
+
 Return ONLY valid JSON, no markdown fences, no explanation:
 {
+  "foot_detected": true,
   "toe_shape": "egyptian",
   "toe_confidence": 0.9,
   "width_ratio": 0.386,
@@ -160,6 +163,8 @@ export default async function handler(req, res) {
     const arch_ratio = clamp(parsed.arch_ratio ?? 0.73, 0.64, 0.82);
 
     const result = {
+      // Foot detection flag — false means AI couldn't identify a foot
+      foot_detected: parsed.foot_detected !== false,
       // Raw continuous values (for slider display)
       toe_shape: ["egyptian", "greek", "roman"].includes(parsed.toe_shape) ? parsed.toe_shape : "egyptian",
       toe_confidence: clamp(parsed.toe_confidence ?? 0.8, 0, 1),
