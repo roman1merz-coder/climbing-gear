@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase.js";
 import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
 
@@ -214,6 +215,37 @@ export default function FootScanner() {
 
   const allPhotosReady = photos.top && photos.side && photos.heel;
 
+  // ─── Store scan result in Supabase (fire-and-forget) ────────
+  const storeScanResult = useCallback(async (data, size) => {
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/foot_scans`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          shoe_size_eu: size,
+          toe_shape: data.toe_shape,
+          toe_confidence: data.toe_confidence,
+          width_ratio: data.width_ratio,
+          instep_ratio: data.instep_ratio,
+          heel_ratio: data.heel_ratio,
+          arch_ratio: data.arch_ratio,
+          volume: data.volume,
+          width: data.width,
+          heel_width: data.heel_width,
+          confidence: data.confidence,
+          notes: data.notes,
+        }),
+      });
+    } catch {
+      // Silent — storage failure should never block the user experience
+    }
+  }, []);
+
   // ─── API call ────────────────────────────────────────────────
   const analyzePhotos = useCallback(async () => {
     setStep(3);
@@ -235,13 +267,15 @@ export default function FootScanner() {
       const data = await res.json();
       setResult(data);
       setStep(4);
+      // Store result in Supabase (non-blocking)
+      storeScanResult(data, shoeSize);
     } catch (err) {
       setError(err.message || "Analysis failed. Please try again.");
       setStep(2);
     } finally {
       setAnalyzing(false);
     }
-  }, [photos, shoeSize]);
+  }, [photos, shoeSize, storeScanResult]);
 
   // ─── Navigate to ShoeFinder ──────────────────────────────────
   const goToFinder = useCallback(() => {

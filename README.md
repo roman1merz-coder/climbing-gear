@@ -174,8 +174,37 @@ Each crawler is a standalone Python script named `crawl_{retailer}.py` that scra
 3. **Usage:** `python3 crawl_{retailer}.py` (all categories) or `python3 crawl_{retailer}.py shoes ropes` (specific categories).
 4. **The legacy `api/fetch-prices.js`** (Vercel cron, SerpApi) writes to the old `prices` table and is being phased out in favor of the per-retailer crawlers.
 
+### Foot Scanner (`/scan`)
+
+AI-powered foot shape analysis for climbing shoe fitting. Users take 3 photos (top, side, heel) and input their EU street shoe size. Claude Vision API analyzes the photos and returns continuous ratios that map to ShoeFinder filter categories.
+
+**Measured values (stored in `foot_scans` table):**
+
+| Field | Type | Description | Range |
+|-------|------|-------------|-------|
+| `shoe_size_eu` | numeric | User's street shoe size (EU) | 34–50 |
+| `toe_shape` | text | Toe taper classification | egyptian, greek, roman |
+| `toe_confidence` | numeric | AI confidence in toe shape | 0–1 |
+| `width_ratio` | numeric | Forefoot width ÷ foot length | 0.30–0.48 |
+| `instep_ratio` | numeric | Arch height index (volume) | 0.24–0.44 |
+| `heel_ratio` | numeric | Heel width ÷ forefoot width | 0.45–0.85 |
+| `arch_ratio` | numeric | Ball-to-heel ÷ total length | 0.64–0.82 |
+| `volume` | text | Derived forefoot volume category | low, standard, high |
+| `width` | text | Derived width category | narrow, medium, wide |
+| `heel_width` | text | Derived heel width category | narrow, medium, wide |
+| `confidence` | text | Overall analysis confidence | high, medium, low |
+
+**Long-term objective:** Build the most comprehensive database on climbing gear, including foot shape population data. Every scan result (ratios + categories) is stored in Supabase. Photos are never stored — only the derived measurements. This data enables population-level insights (e.g., distribution of toe shapes, average width by shoe size) that feed back into smarter shoe recommendations.
+
+**Tech:**
+- `api/analyze-foot.js` — Vercel serverless function, calls Claude Vision API (Sonnet)
+- `src/FootScanner.jsx` — React wizard (welcome → size → photos → analysis → results)
+- Client-side image resize to 1024px max before upload (Canvas API)
+- Results stored in Supabase via anon key (RLS allows public inserts)
+- After results, user can auto-navigate to ShoeFinder with preset foot shape filters
+
 ### Supabase
 
-The app connects to Supabase using the anon key (public, read-only).
+The app connects to Supabase using the anon key (public, read-only for product data, write-enabled for foot_scans).
 Supabase is the single source of truth for all product data. Seed files are
 auto-generated fallback copies that should always match the database.
