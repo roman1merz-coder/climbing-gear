@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const BASE_URL = "https://climbing-gear.com";
+const BASE_URL = "https://www.climbing-gear.com";
 
 /**
  * Injects JSON-LD structured data into <head>.

@@ -153,12 +153,12 @@ export default function InsightRopes() {
       "@type": "Article",
       headline: title,
       description: desc,
-      url: "https://climbing-gear.com/insights/rope-cost-vs-safety",
+      url: "https://www.climbing-gear.com/insights/rope-cost-vs-safety",
       datePublished: "2026-02-25",
       dateModified: new Date().toISOString().slice(0, 10),
-      author: { "@type": "Organization", name: "climbing-gear.com", url: "https://climbing-gear.com" },
-      publisher: { "@type": "Organization", name: "climbing-gear.com", url: "https://climbing-gear.com" },
-      mainEntityOfPage: { "@type": "WebPage", "@id": "https://climbing-gear.com/insights/rope-cost-vs-safety" },
+      author: { "@type": "Organization", name: "climbing-gear.com", url: "https://www.climbing-gear.com" },
+      publisher: { "@type": "Organization", name: "climbing-gear.com", url: "https://www.climbing-gear.com" },
+      mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.climbing-gear.com/insights/rope-cost-vs-safety" },
     };
     const el = document.createElement("script");
     el.type = "application/ld+json";

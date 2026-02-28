@@ -18,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
 const SRC = path.join(ROOT, 'src');
-const BASE = 'https://climbing-gear.com';
+const BASE = 'https://www.climbing-gear.com';
 
 const TEMPLATE = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
 

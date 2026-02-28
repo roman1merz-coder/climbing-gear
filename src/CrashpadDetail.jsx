@@ -372,8 +372,8 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
     description: `${pad.brand} ${pad.model} crashpad — ${pad.weight_kg ? pad.weight_kg + "kg" : ""}, ${pad.open_length_cm && pad.open_width_cm ? pad.open_length_cm + "×" + pad.open_width_cm + "cm" : ""}. Compare specs and prices.`,
     brand: { "@type": "Brand", name: pad.brand },
     category: "Crashpads",
-    url: `https://climbing-gear.com/crashpad/${pad.slug}`,
-    image: pad.image_url ? `https://climbing-gear.com${pad.image_url}` : undefined,
+    url: `https://www.climbing-gear.com/crashpad/${pad.slug}`,
+    image: pad.image_url ? `https://www.climbing-gear.com${pad.image_url}` : undefined,
   } : null);
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");

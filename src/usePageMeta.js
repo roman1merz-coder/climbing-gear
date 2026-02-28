@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const SITE = "climbing-gear.com";
-const BASE_URL = "https://climbing-gear.com";
+const BASE_URL = "https://www.climbing-gear.com";
 const DEFAULT_TITLE = `${SITE} — Scroll less. Climb more.`;
 const DEFAULT_DESC =
   "Compare 750+ climbing products — shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.";
