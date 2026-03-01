@@ -1,3 +1,1 @@
-[
-  {"test": true}
-]
+@@read_workspace_file:/home/user/workspace/migration/crashpads_seed_data.json
