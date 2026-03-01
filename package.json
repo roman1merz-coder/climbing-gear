@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/generate_seed.mjs",
     "dev": "vite",
     "build": "vite build && node scripts/generate-sitemap.js && node scripts/prerender.mjs",
     "preview": "vite preview",
