@@ -21,3 +21,9 @@
 - Alto: has_load_flap→true, has_hinge_protection→false, bandolier_strap→true
 - Cirro: shell_denier 1000→1680, has_load_flap→true, has_hinge_protection→false
 - Nimbo: fold_style taco→none, shoulder_straps→false, waist_belt→false, closure→null, handles 2→1, hinge_protection→false
+
+## 2026-03-01: Edelrid (4 pads) — 22 fixes
+- Crux III: closure velcro→buckle, hinge_protection→false, chest_strap→false, bandolier→false, handles 4→2, couch_mode→false
+- Dead Point II: closure zipper→buckle, hinge_protection→false, shoe_wipe→true, couch_mode→false, reconfigurable→false, price_uvp 200→299
+- Mantle III: closure velcro→zipper, shoe_wipe→true, chest_strap→false, bandolier→false, handles 2→3, load_flap→false
+- Sit Start II: fold_style hinge→none, closure strap→none (enum added), shoe_wipe→true, reconfigurable→false
