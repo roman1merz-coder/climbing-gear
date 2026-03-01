@@ -444,9 +444,12 @@ function SmallTag({ children, variant = "default" }) {
 function CompactRopeCard({ result, onClick, priceData = {} }) {
   const d = result.rope_data;
   const s = result.match_score;
-  const hasDiscount = d.price_uvp_per_meter_eur && d.price_per_meter_eur_min && d.price_per_meter_eur_min < d.price_uvp_per_meter_eur;
-  const discountPct = hasDiscount ? Math.round(((d.price_uvp_per_meter_eur - d.price_per_meter_eur_min) / d.price_uvp_per_meter_eur) * 100) : 0;
   const rPrices = priceData[d.slug] || [];
+  const livePerMeter = rPrices.filter(p => p.inStock && p.price > 0 && p.length_m > 0).map(p => p.price / p.length_m);
+  const liveBestPerMeter = livePerMeter.length > 0 ? Math.min(...livePerMeter) : null;
+  const effectivePerMeter = liveBestPerMeter || d.price_per_meter_eur_min;
+  const hasDiscount = d.price_uvp_per_meter_eur && effectivePerMeter && effectivePerMeter < d.price_uvp_per_meter_eur;
+  const discountPct = hasDiscount ? Math.round(((d.price_uvp_per_meter_eur - effectivePerMeter) / d.price_uvp_per_meter_eur) * 100) : 0;
   const bestUrl = (rPrices.find(p => p.inStock && p.price > 0) || rPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
@@ -507,7 +510,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
             <span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
           </div>
           <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
-            €{(d.price_per_meter_eur_min * 70).toFixed(0)}<span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 400 }}> (70m)</span>
+            €{(effectivePerMeter * 70).toFixed(0)}<span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 400 }}> (70m)</span>
           </span>
         </div>
         {/* Row 2: model + RRP/discount */}
@@ -528,7 +531,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           <span style={{ color: "#d5cdbf" }}>·</span>
           <span>{d.weight_per_meter_g}g/m</span>
           <span style={{ color: "#d5cdbf" }}>·</span>
-          <span>€{d.price_per_meter_eur_min?.toFixed(2)}/m</span>
+          <span>€{effectivePerMeter?.toFixed(2)}/m</span>
         </div>
       </div>
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
@@ -578,6 +581,9 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
   const isDynamic = d.rope_type !== "static";
   const selLen = selectedLength;
   const rPrices = priceData[d.slug] || [];
+  const livePerMeter = rPrices.filter(p => p.inStock && p.price > 0 && p.length_m > 0).map(p => p.price / p.length_m);
+  const liveBestPerMeter = livePerMeter.length > 0 ? Math.min(...livePerMeter) : null;
+  const effectivePerMeter = liveBestPerMeter || d.price_per_meter_eur_min;
   const bestUrl = (rPrices.find(p => p.inStock && p.price > 0) || rPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
@@ -642,7 +648,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
             <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>{d.weight_per_meter_g}</span> g/m
           </span>
           <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>€{d.price_per_meter_eur_min?.toFixed(2)}</span>/m
+            <span style={{ fontFamily: "'DM Mono',monospace", fontWeight: 500, fontSize: "12px", color: "#2c3227" }}>€{effectivePerMeter?.toFixed(2)}</span>/m
           </span>
           {isDynamic && d.uiaa_falls && (
             <span style={{ fontSize: "11px", color: "#645b4f", display: "flex", alignItems: "center", gap: "4px" }}>
@@ -698,7 +704,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid #d5cdbf" }}>
           <div>
             <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#c98a42" }}>
-              €{(d.price_per_meter_eur_min * 70).toFixed(0)}
+              €{(effectivePerMeter * 70).toFixed(0)}
             </span>
             <span style={{ fontSize: "12px", color: "#7a7462", marginLeft: "4px" }}>(70m)</span>
             {buyUrl && (
@@ -709,13 +715,13 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
             )}
           </div>
           <div>
-            {d.price_uvp_per_meter_eur > d.price_per_meter_eur_min && (
+            {d.price_uvp_per_meter_eur > effectivePerMeter && (
               <>
                 <span style={{ fontSize: "12px", color: "#7a7462", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>
                   €{(d.price_uvp_per_meter_eur * 70).toFixed(0)}
                 </span>
                 <span style={{ fontSize: "11px", fontWeight: 600, color: "#22c55e", marginLeft: "6px" }}>
-                  -{Math.round(((d.price_uvp_per_meter_eur - d.price_per_meter_eur_min) / d.price_uvp_per_meter_eur) * 100)}%
+                  -{Math.round(((d.price_uvp_per_meter_eur - effectivePerMeter) / d.price_uvp_per_meter_eur) * 100)}%
                 </span>
               </>
             )}

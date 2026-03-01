@@ -417,10 +417,12 @@ function getTags(d) {
 function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
   const d = belay;
   const s = matchScore;
-  const price = d.price_eur_min || d.price_uvp_eur;
-  const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
-  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur) * 100) : 0;
   const bPrices = priceData[d.slug] || [];
+  const livePrices = bPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
+  const price = liveBestPrice || d.price_eur_min || d.price_uvp_eur;
+  const hasDiscount = price && d.price_uvp_eur && price < d.price_uvp_eur;
+  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - price) / d.price_uvp_eur) * 100) : 0;
   const bestUrl = (bPrices.find(p => p.inStock && p.price > 0) || bPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
@@ -547,9 +549,11 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
 function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
   const d = belay;
   const tags = getTags(d);
-  const price = d.price_eur_min || d.price_uvp_eur;
-  const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
   const bPrices = priceData[d.slug] || [];
+  const livePrices = bPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
+  const price = liveBestPrice || d.price_eur_min || d.price_uvp_eur;
+  const hasDiscount = price && d.price_uvp_eur && price < d.price_uvp_eur;
   const bestUrl = (bPrices.find(p => p.inStock && p.price > 0) || bPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
@@ -641,7 +645,7 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
                 €{fmt(d.price_uvp_eur)}
               </span>
               <span style={{ color: "#22c55e", fontSize: "11px", fontWeight: 600 }}>
-                -{Math.round(((d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur) * 100)}%
+                -{Math.round(((d.price_uvp_eur - price) / d.price_uvp_eur) * 100)}%
               </span>
             </>
           )}

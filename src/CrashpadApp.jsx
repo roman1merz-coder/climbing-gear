@@ -401,10 +401,13 @@ function SmallTag({ children, variant = "default" }) {
 function CompactCrashpadCard({ result, onClick, priceData = {} }) {
   const d = result.pad_data;
   const s = result.match_score;
-  const hasDiscount = d.price_uvp_eur && d.current_price_eur && d.current_price_eur < d.price_uvp_eur;
-  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - d.current_price_eur) / d.price_uvp_eur) * 100) : 0;
-  const sizeColor = SIZE_COLORS[d.pad_size_category]?.color || "#60a5fa";
   const cPrices = priceData[d.slug] || [];
+  const livePrices = cPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
+  const effectivePrice = liveBestPrice || d.current_price_eur;
+  const hasDiscount = d.price_uvp_eur && effectivePrice && effectivePrice < d.price_uvp_eur;
+  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - effectivePrice) / d.price_uvp_eur) * 100) : 0;
+  const sizeColor = SIZE_COLORS[d.pad_size_category]?.color || "#60a5fa";
   const bestUrl = (cPrices.find(p => p.inStock && p.price > 0) || cPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
@@ -469,7 +472,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
             <span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
           </div>
           <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
-            €{d.current_price_eur}
+            €{effectivePrice}
           </span>
         </div>
         {/* Row 2: model + RRP/discount */}
@@ -539,6 +542,9 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
   const s = result.match_score;
   const area = ((d.length_open_cm * d.width_open_cm) / 10000).toFixed(2);
   const cPrices = priceData[d.slug] || [];
+  const livePrices = cPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
+  const effectivePrice = liveBestPrice || d.current_price_eur;
   const bestUrl = (cPrices.find(p => p.inStock && p.price > 0) || cPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
 
@@ -659,7 +665,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid #d5cdbf" }}>
           <div>
             <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#c98a42" }}>
-              €{d.current_price_eur}
+              €{effectivePrice}
             </span>
             {buyUrl && (
               <span
@@ -669,13 +675,13 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
             )}
           </div>
           <div>
-            {d.price_uvp_eur > d.current_price_eur && (
+            {d.price_uvp_eur > effectivePrice && (
               <>
                 <span style={{ fontSize: "12px", color: "#7a7462", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>
                   €{d.price_uvp_eur}
                 </span>
                 <span style={{ fontSize: "11px", fontWeight: 600, color: "#22c55e", marginLeft: "6px" }}>
-                  -{Math.round(((d.price_uvp_eur - d.current_price_eur) / d.price_uvp_eur) * 100)}%
+                  -{Math.round(((d.price_uvp_eur - effectivePrice) / d.price_uvp_eur) * 100)}%
                 </span>
               </>
             )}
