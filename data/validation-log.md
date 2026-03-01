@@ -27,3 +27,20 @@
 - Dead Point II: closure zipper→buckle, hinge_protection→false, shoe_wipe→true, couch_mode→false, reconfigurable→false, price_uvp 200→299
 - Mantle III: closure velcro→zipper, shoe_wipe→true, chest_strap→false, bandolier→false, handles 2→3, load_flap→false
 - Sit Start II: fold_style hinge→none, closure strap→none (enum added), shoe_wipe→true, reconfigurable→false
+
+## 2026-03-01: Small Brands Batch (11 brands, 13 pads) — 61 fixes
+- Camp Domino: fold taco→hinge, foam_layers 4→5, closure velcro→buckle, bandolier→true, shoe_wipe true→false, couch_mode→true, premium_carry→true
+- Camp Minido: fold taco→hinge, closure velcro→buckle
+- E9 Blues: bottom none→rubber, chest_strap→true, waist_belt true→false, closure velcro→buckle
+- Escape Zone Plus: thickness 12.0→12.7, shoe_wipe→true, premium_carry→true
+- Grivel Trend: fold taco→hinge, closure buckle→zipper, waist_belt true→false, couch_mode→true, shoe_wipe→true
+- Ferrino Rockslave: fold taco→hinge, closure buckle→zipper, shoe_wipe→true, reconfigurable→true, load_flap→true, premium_carry→true
+- Kailas Inflatable: bottom none→rubber, closure strap→none, foam_layers 2→0
+- Kinetik Newton 4.0: fold tri_fold→hybrid, weight 5.9→6.2, thickness 10.0→10.2, load_flap→true, premium_carry→true
+- Mammut Crashiano Pad: shoe_wipe→true, gear_pocket→true, load_flap→true
+- Mammut Slam Pad: fold hinge→hybrid, shoe_wipe→true
+- Simond Bigblocker 2.0: fold taco→hinge, weight 7.1→6.5, shoe_wipe→true, gear_pocket→true
+- Simond Block V2: fold taco→hinge, foam_layers 2→3, shoulder_straps→true, bandolier→true
+- So iLL Main Pad: fold hinge→hybrid, thickness 10.0→10.8, shell_denier 900→1680, recycled none→partial
+
+Not validated this batch: LACD Spotmaster II, Escape XL Zone Plus (data collection failed)
