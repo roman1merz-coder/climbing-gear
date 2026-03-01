@@ -43,4 +43,23 @@
 - Simond Block V2: fold taco→hinge, foam_layers 2→3, shoulder_straps→true, bandolier→true
 - So iLL Main Pad: fold hinge→hybrid, thickness 10.0→10.8, shell_denier 900→1680, recycled none→partial
 
-Not validated this batch: LACD Spotmaster II, Escape XL Zone Plus (data collection failed)
+## 2026-03-01: Batch 2 — 7 brands, 19 pads — 77 fixes
+- LACD Spotmaster II: fold taco→hinge, closure velcro→buckle, waist_belt true→false, hinge_protection false→true, handles 2→1
+- DMM Bit Pad: fold taco→none, closure strap→none, thickness 5.0→4.5, weight 1.5→1.2, foam_layers 2→1
+- DMM Dyno: L/W swapped 130x100→100x130, foam_layers 2→3, hinge_protection true→false, handles 3→1
+- DMM Highball: thickness 10.0→10.5, shell_denier 900→1000, shoe_wipe false→true
+- Singing Rock Font: fold hinge→none, closure strap→none, shoe_wipe true→false, handles 1→0, bottom none→rubber
+- Singing Rock Hueco: waist_belt true→false, shoe_wipe true→false, couch_mode true→false
+- Singing Rock Magic: waist_belt true→false, hinge_protection true→false, bottom none→rubber
+- La Sportiva Allez: fold taco→hinge, closure velcro→buckle, waist_belt true→false, chest_strap false→true, shoe_wipe false→true, handles 2→3, recycled none→partial
+- La Sportiva Alpagota: fold taco→hinge, closure velcro→buckle, chest_strap false→true, shoe_wipe false→true, premium_carry false→true
+- La Sportiva Laspo: closure flap→buckle
+- Moon Pluto: bandolier false→true, load_flap true→false, hinge_protection true→false, bottom none→pu_coated
+- Moon Saturn: bandolier true→false, load_flap false→true, gear_pocket false→true, hinge_protection true→false, bottom none→pu_coated
+- Moon Warrior: bandolier true→false, load_flap false→true, hinge_protection true→false, handles 3→2
+- Moon Cirrus: fold four_fold→hinge, recycled partial→none
+- Evolv Cap Pad: MAJOR — dimensions 86x60→122x91, thickness 5.0→12.7, weight 1.2→5.4, closure strap→buckle, waist_belt false→true, handles 1→2, premium_carry false→true
+- Evolv Drop Pad: thickness 12.0→12.7, weight 5.0→6.4, gear_pocket false→true
+- Evolv Home Pad: closure velcro→buckle, weight 15.0→16.8
+- Evolv Launch Pad: dims 145x108→152x122, thickness 12.0→12.7, weight 7.7→9.1
+- Escape XL Zone Plus: closure flap→buckle, thickness 12.0→12.7, weight 8.2→9.1
