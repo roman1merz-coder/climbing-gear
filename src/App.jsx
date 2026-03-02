@@ -718,7 +718,7 @@ function Card({ shoe, onClick, priceData, compact }) {
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("shoe", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("shoe", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: compact ? "10px 6px" : "12px 8px",
@@ -735,7 +735,7 @@ function Card({ shoe, onClick, priceData, compact }) {
           {!compact && (saved ? "Saved" : "Save")}
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("shoes", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("shoes", d.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -1548,12 +1548,13 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                       position: "relative",
                     }}
                   >
+                    <Link to={`/shoe/${shoe.shoe_data.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                     <Card
                       shoe={shoe}
-                      onClick={() => { navigate(`/shoe/${shoe.shoe_data.slug}`); window.scrollTo(0, 0); }}
                       priceData={priceData}
                       compact={isMobile}
                     />
+                    </Link>
                   </div>
                 ))}
               </div>

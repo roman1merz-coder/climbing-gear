@@ -524,7 +524,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("rope", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("rope", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "10px 6px",
@@ -538,7 +538,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           <HeartSVG filled={saved} size={15} />
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("ropes", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("ropes", d.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -672,7 +672,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
           {ensureArray(d.available_lengths_m).map((l) => (
             <button
               key={l}
-              onClick={(e) => { e.stopPropagation(); onLengthSelect(d.id || d.slug, l); }}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); onLengthSelect(d.id || d.slug, l); }}
               style={{
                 padding: "3px 8px", borderRadius: "6px",
                 fontSize: "11px", fontFamily: "'DM Mono',monospace",
@@ -696,7 +696,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
             <span style={{ fontSize: "12px", color: "#7a7462", marginLeft: "4px" }}>(70m)</span>
             {buyUrl && (
               <span
-                onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+                onClick={e => { e.preventDefault(); e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
                 style={{ fontSize: "11px", color: "#c98a42", fontWeight: 600, cursor: "pointer", marginLeft: "6px", whiteSpace: "nowrap" }}
               >→ Buy</span>
             )}
@@ -718,7 +718,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("rope", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("rope", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "12px 8px",
@@ -735,7 +735,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
           {saved ? "Saved" : "Save"}
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("ropes", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("ropes", d.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -1340,21 +1340,21 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
                 {displayResults.map((r, i) => (
                   <div key={r.rope_data?.id || r.rope_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
+                    <Link to={`/rope/${r.rope_data.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                     {isMobile ? (
                       <CompactRopeCard
                         result={r}
-                        onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
                         priceData={priceData}
                       />
                     ) : (
                       <RopeCard
                         result={r}
-                        onClick={() => { navigate(`/rope/${r.rope_data.slug}`); window.scrollTo(0, 0); }}
                         selectedLength={selectedLengths[r.rope_data.id || r.rope_data.slug]}
                         onLengthSelect={handleLengthSelect}
                         priceData={priceData}
                       />
                     )}
+                    </Link>
                   </div>
                 ))}
               </div>

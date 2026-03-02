@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
@@ -419,7 +419,7 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "10px 6px",
@@ -433,7 +433,7 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
           <HeartSVG filled={saved} size={15} />
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("quickdraws", q.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("quickdraws", q.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -543,7 +543,7 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
           </span>
           {buyUrl && (
             <span
-              onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+              onClick={e => { e.preventDefault(); e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
               style={{ fontSize: "11px", color: "#c98a42", fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" }}
             >→ Buy</span>
           )}
@@ -552,7 +552,7 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "12px 8px",
@@ -569,7 +569,7 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
           {saved ? "Saved" : "Save"}
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("quickdraws", q.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("quickdraws", q.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -1056,21 +1056,21 @@ export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
           >
             {displayResults.map(({ quickdraw_data: q, match_score: ms }) => (
               <div key={q.slug} style={{ position: "relative" }}>
+                <Link to={`/quickdraw/${q.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                 {isMobile ? (
                   <CompactQuickdrawCard
                     quickdraw={q}
                     matchScore={ms}
-                    onClick={() => { nav(`/quickdraw/${q.slug}`); window.scrollTo(0, 0); }}
                     priceData={priceData}
                   />
                 ) : (
                   <QuickdrawCard
                     quickdraw={q}
                     matchScore={ms}
-                    onClick={() => { nav(`/quickdraw/${q.slug}`); window.scrollTo(0, 0); }}
                     priceData={priceData}
                   />
                 )}
+                </Link>
               </div>
             ))}
           </div>

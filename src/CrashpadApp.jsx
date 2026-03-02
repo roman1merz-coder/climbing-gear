@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { fmt, ensureArray } from "./utils/format.js";
 import useIsMobile from "./useIsMobile.js";
 import HeartButton from "./HeartButton.jsx";
@@ -499,7 +499,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("crashpad", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("crashpad", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "10px 6px",
@@ -513,7 +513,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
           <HeartSVG filled={saved} size={15} />
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("crashpads", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("crashpads", d.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -669,7 +669,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
             </span>
             {buyUrl && (
               <span
-                onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
+                onClick={e => { e.preventDefault(); e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
                 style={{ fontSize: "11px", color: "#c98a42", fontWeight: 600, cursor: "pointer", marginLeft: "6px", whiteSpace: "nowrap" }}
               >→ Buy</span>
             )}
@@ -691,7 +691,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
       {/* ═══ ACTION BAR — Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
-          onClick={(e) => { e.stopPropagation(); toggleWL("crashpad", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("crashpad", d.slug); }}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
             gap: "6px", padding: "12px 8px",
@@ -708,7 +708,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
           {saved ? "Saved" : "Save"}
         </button>
         <button
-          onClick={(e) => { e.stopPropagation(); if (!compareFull) toggleCompare("crashpads", d.slug); }}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); if (!compareFull) toggleCompare("crashpads", d.slug); }}
           title={compareFull ? "Max 10 in comparison" : compared ? "Remove from comparison" : "Add to comparison"}
           style={{
             flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -1315,19 +1315,19 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fill, minmax(160px, 1fr))" : "repeat(auto-fill, minmax(300px, 1fr))", gap: isMobile ? "10px" : "20px" }}>
                 {displayResults.map((r, i) => (
                   <div key={r.pad_data?.slug || i} style={{ animation: `fadeUp .4s ease ${i * 40}ms both`, position: "relative" }}>
+                    <Link to={`/crashpad/${r.pad_data.slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                     {isMobile ? (
                       <CompactCrashpadCard
                         result={r}
-                        onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
                         priceData={priceData}
                       />
                     ) : (
                       <CrashpadCard
                         result={r}
-                        onClick={() => { navigate(`/crashpad/${r.pad_data.slug}`); window.scrollTo(0, 0); }}
                         priceData={priceData}
                       />
                     )}
+                    </Link>
                   </div>
                 ))}
               </div>
