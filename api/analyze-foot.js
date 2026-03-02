@@ -15,12 +15,18 @@
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = "claude-sonnet-4-5-20250929";
 
-const ANALYSIS_PROMPT = `You are an expert foot shape analyst for climbing shoe fitting. You will receive 3 photos of a human foot taken from specific angles. Analyze them carefully.
+const ANALYSIS_PROMPT = `You are an expert foot shape analyst for climbing shoe fitting. You will receive 3 photos of a human foot taken from specific angles. Each photo shows the foot standing on a white A4 sheet of paper (210 × 297 mm) which serves as a calibration reference.
 
 PHOTOS PROVIDED:
-1. TOP VIEW — looking straight down at the foot from above
-2. SIDE VIEW — camera at ankle height, showing the full foot profile
-3. HEEL VIEW — camera at ankle height, from directly behind
+1. TOP VIEW — phone held horizontally above the foot, looking straight down
+2. SIDE VIEW — phone held horizontally on the floor beside the foot, shooting the profile
+3. HEEL VIEW — phone held horizontally on the floor behind the foot, shooting the heel
+
+CALIBRATION — A4 PAPER REFERENCE:
+All photos include a white A4 sheet (210 × 297 mm). Use its visible edges to:
+- Establish a real-world pixel-to-mm scale in each image.
+- Correct for perspective distortion: the side and heel shots are taken from ground level, so the A4 rectangle may appear as a trapezoid. Use the known 210×297mm dimensions to mathematically reverse the perspective warp before measuring.
+- If the A4 paper is not visible or only partially visible, note this in your confidence assessment but still attempt analysis.
 
 ANALYZE THE FOLLOWING:
 
@@ -31,7 +37,10 @@ Classify the toe taper pattern by examining relative toe lengths:
 - "roman": First 2–3 toes are approximately the same length, creating a squarer front. ~25% of population.
 
 ## 2. FOOT INDEX — width-to-length ratio (from top view)
-Estimate the ratio of forefoot width (at the widest point, across the ball of the foot) to total foot length (heel to longest toe).
+Using the A4 paper for scale, measure:
+- Forefoot width at the widest point (across the ball of the foot) in mm
+- Total foot length from heel to longest toe in mm
+Compute the ratio: forefoot_width / total_length.
 Population reference: mean = 0.386, SD = 0.022
 - Below 0.365 = narrow foot
 - 0.365–0.405 = average width
@@ -39,6 +48,7 @@ Population reference: mean = 0.386, SD = 0.022
 Return a value between 0.30 and 0.48.
 
 ## 3. INSTEP HEIGHT / VOLUME (from side view)
+Using the A4 paper for scale and correcting for the ground-level camera angle:
 Estimate the Arch Height Index: the height of the dorsum (top of foot) at the midpoint of foot length, divided by foot length.
 Population reference: standing mean = 0.340, SD = 0.031
 - Below 0.310 = low volume / flat instep
@@ -47,7 +57,8 @@ Population reference: standing mean = 0.340, SD = 0.031
 Return a value between 0.24 and 0.44.
 
 ## 4. HEEL WIDTH (from heel view)
-Estimate heel width at its widest point as a proportion of the forefoot width you observed in the top view.
+Using the A4 paper for scale and correcting for the ground-level camera angle:
+Estimate heel width at its widest point as a proportion of the forefoot width you measured in the top view.
 Population reference: heel is typically 60–70% of forefoot width.
 - Below 0.58 = narrow heel
 - 0.58–0.72 = medium heel
@@ -55,6 +66,7 @@ Population reference: heel is typically 60–70% of forefoot width.
 Return a value between 0.45 and 0.85.
 
 ## 5. ARCH-TO-LENGTH RATIO (from side view)
+Using the A4 paper for scale:
 Estimate the distance from the ball of the foot (metatarsophalangeal joint — visible as bump/widening on the bottom) to the heel, divided by total foot length.
 Population reference: average ~0.73 (Brannock standard)
 - Below 0.71 = relatively long toes
@@ -63,9 +75,9 @@ Population reference: average ~0.73 (Brannock standard)
 Return a value between 0.64 and 0.82.
 
 ## 6. CONFIDENCE
-- "high": All 3 photos are clear, well-lit, correct angles, foot outline fully visible
-- "medium": Acceptable but one or more photos slightly off-angle or partially obscured
-- "low": Poor quality, wrong angle, or foot hard to distinguish
+- "high": All 3 photos are clear, well-lit, correct angles, foot outline fully visible, A4 paper clearly visible for calibration
+- "medium": Acceptable but one or more photos slightly off-angle, partially obscured, or A4 paper only partially visible
+- "low": Poor quality, wrong angle, foot hard to distinguish, or no A4 paper visible
 
 CRITICAL: If any of the images do NOT clearly show a human foot (e.g. random objects, non-foot body parts, blurry/unrecognizable images, scenery), you MUST set confidence to "low" and set "foot_detected" to false. Do NOT guess or hallucinate measurements — return placeholder values. Be strict: if you cannot clearly see a bare human foot in the expected angle, it is NOT a valid foot photo.
 
@@ -122,11 +134,11 @@ export default async function handler(req, res) {
             content: [
               { type: "text", text: `${ANALYSIS_PROMPT}\n\nUser's EU street shoe size: ${shoe_size_eu}` },
               { type: "image", source: { type: "base64", media_type: "image/jpeg", data: images.top } },
-              { type: "text", text: "IMAGE 1 OF 3: TOP VIEW (looking straight down)" },
+              { type: "text", text: "IMAGE 1 OF 3: TOP VIEW (phone horizontal above foot, looking straight down. Foot on A4 paper.)" },
               { type: "image", source: { type: "base64", media_type: "image/jpeg", data: images.side } },
-              { type: "text", text: "IMAGE 2 OF 3: SIDE VIEW (camera at ankle height)" },
+              { type: "text", text: "IMAGE 2 OF 3: SIDE VIEW (phone horizontal on floor beside foot, ground-level profile. Foot on A4 paper.)" },
               { type: "image", source: { type: "base64", media_type: "image/jpeg", data: images.heel } },
-              { type: "text", text: "IMAGE 3 OF 3: HEEL VIEW (from behind, ankle height)" },
+              { type: "text", text: "IMAGE 3 OF 3: HEEL VIEW (phone horizontal on floor behind foot, ground-level rear view. Foot on A4 paper.)" },
             ],
           },
         ],
