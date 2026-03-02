@@ -25,42 +25,43 @@
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL = "claude-sonnet-4-5-20250929";
 
-const ANALYSIS_PROMPT = `You are a foot landmark detector for climbing shoe fitting. You will receive 3 photos of a bare human foot taken from specific angles. Your ONLY job is to identify anatomical landmarks and return their pixel coordinates.
+const ANALYSIS_PROMPT = `You are a foot landmark detector for climbing shoe fitting. You will receive 2 photos of a bare human foot. Your ONLY job is to identify anatomical landmarks and return their pixel coordinates.
 
 PHOTOS PROVIDED:
-1. TOP VIEW — phone held horizontally above the foot, looking straight down
-2. SIDE VIEW — phone held horizontally on the floor beside the foot, shooting the medial (inner) profile
-3. HEEL VIEW — phone held horizontally on the floor behind the foot, shooting the rear
+1. TOP VIEW — phone held above the foot, looking straight down. Foot is flat on the floor.
+2. SIDE VIEW — phone held horizontally on the floor beside the foot, shooting the medial (inner) profile.
 
 TASK: For each photo, identify the specified landmarks and return their [x, y] pixel coordinates. The origin [0, 0] is the top-left corner of each image.
 
-## TOP VIEW LANDMARKS (8 points)
+## TOP VIEW LANDMARKS (10 points)
 Identify these on IMAGE 1:
-- toe_1: Tip of the 1st (big) toe — the most anterior point of the big toe
-- toe_2: Tip of the 2nd toe
-- toe_3: Tip of the 3rd (middle) toe
-- toe_4: Tip of the 4th toe
-- toe_5: Tip of the 5th (little) toe — the most anterior point of the pinky toe
-- met_tibiale: Metatarsal tibiale — the most medial (inner) point at the ball of the foot, where the foot is widest
-- met_fibulare: Metatarsal fibulare — the most lateral (outer) point at the ball of the foot, where the foot is widest
-- pternion: Pternion — the most posterior (rearmost) point of the heel
+- toe_1: The most anterior (forward) pixel of the big toe
+- toe_2: The most anterior pixel of the 2nd toe
+- toe_3: The most anterior pixel of the 3rd (middle) toe
+- toe_4: The most anterior pixel of the 4th toe
+- toe_5: The most anterior pixel of the 5th (little) toe
+- met_tibiale: The widest point on the MEDIAL (inner/big-toe) side of the ball of the foot — where the foot outline bulges out the most between the toes and the arch
+- met_fibulare: The widest point on the LATERAL (outer/pinky-toe) side of the ball of the foot — directly opposite met_tibiale
+- pternion: The most posterior (rearmost) point of the heel
+- heel_medial: The widest point of the heel on the medial (inner) side — where the heel outline bulges widest, roughly at the rear third of the foot
+- heel_lateral: The widest point of the heel on the lateral (outer) side — directly opposite heel_medial
 
 ## SIDE VIEW LANDMARKS (5 points)
-Identify these on IMAGE 2 (medial/inner profile, toes pointing right):
-- heel_floor: Where the heel contacts the ground — bottom-rear of the heel
-- toe_floor: Where the front of the foot meets the ground — bottom of the toes at ground level
-- instep_apex: The highest point on the dorsum (top surface) of the foot, typically at or near the midfoot
-- mtp_joint: The 1st metatarsophalangeal joint — the bump/widening visible on the bottom profile at the ball of the foot
-- navicular: The navicular tuberosity — the bony bump on the inner arch, roughly between the heel and ball of foot
+Identify these on IMAGE 2 (medial/inner profile):
+- heel_posterior: The most REARWARD point of the heel — trace the back curve of the heel and find where it protrudes furthest backward. This is NOT the ground contact point; it is typically above the ground line.
+- toe_floor: Where the bottom of the toes meets the floor — the lowest, most forward ground contact point.
+- instep_apex: The highest point on the TOP SURFACE OF THE FOOT ONLY. CRITICAL: this must be on the foot itself, NOT on the ankle or leg. It is where a shoe tongue presses down — typically above the cuneiform/midfoot area, roughly 55-65% of the way from toes to heel along the top contour. If the foot curves up into an ankle/leg, STOP at the foot — do not follow the contour up the leg.
+- mtp_joint: The 1st metatarsophalangeal joint — the bump visible on the sole profile at the ball of the foot, where the foot bends when walking.
+- navicular: The navicular tuberosity — the bony bump on the inner arch, roughly between the heel and ball of foot.
 
-## HEEL VIEW LANDMARKS (3 points)
-Identify these on IMAGE 3 (posterior view):
-- heel_medial: The widest point of the heel on the medial (inner) side
-- heel_lateral: The widest point of the heel on the lateral (outer) side
-- achilles_mid: The midpoint of the Achilles tendon at the top-center of the heel contour
+GEOMETRIC SANITY CHECKS (verify before returning):
+- Side view: instep_apex must be ABOVE the mtp_joint and BELOW the top of the image. Its y-coordinate should be roughly 30-55% of the way from the ground line to the top of the image. If it's in the top 25% of the image, you've likely picked the ankle — move it down to the foot surface.
+- Side view: heel_posterior.y should be ABOVE toe_floor.y (higher up, meaning lower y-value), because the heel's rearmost point is above ground.
+- Top view: met_tibiale and met_fibulare should be at roughly the same y-coordinate (same horizontal level across the ball).
+- Top view: heel_medial and heel_lateral should be at roughly the same y-coordinate.
 
 ## CONFIDENCE
-- "high": All 3 photos clear, correct angles, foot outline fully visible, all landmarks identifiable
+- "high": Both photos clear, correct angles, foot outline fully visible, all landmarks identifiable
 - "medium": Acceptable but some landmarks uncertain due to angle, lighting, or partial occlusion
 - "low": Poor quality, wrong angle, or foot hard to distinguish
 
@@ -78,19 +79,16 @@ Return ONLY valid JSON, no markdown fences, no explanation:
     "toe_5": [x, y],
     "met_tibiale": [x, y],
     "met_fibulare": [x, y],
-    "pternion": [x, y]
+    "pternion": [x, y],
+    "heel_medial": [x, y],
+    "heel_lateral": [x, y]
   },
   "side": {
-    "heel_floor": [x, y],
+    "heel_posterior": [x, y],
     "toe_floor": [x, y],
     "instep_apex": [x, y],
     "mtp_joint": [x, y],
     "navicular": [x, y]
-  },
-  "heel": {
-    "heel_medial": [x, y],
-    "heel_lateral": [x, y],
-    "achilles_mid": [x, y]
   },
   "notes": "Brief observation about landmark visibility or any issues."
 }`;
@@ -111,8 +109,8 @@ export default async function handler(req, res) {
   try {
     const { images, shoe_size_eu } = req.body;
 
-    if (!images?.top || !images?.side || !images?.heel) {
-      return res.status(400).json({ error: "All 3 photos required (top, side, heel)" });
+    if (!images?.top || !images?.side) {
+      return res.status(400).json({ error: "Both photos required (top, side)" });
     }
     if (!shoe_size_eu) {
       return res.status(400).json({ error: "Shoe size required" });
@@ -135,11 +133,9 @@ export default async function handler(req, res) {
             content: [
               { type: "text", text: `${ANALYSIS_PROMPT}\n\nUser's EU street shoe size: ${shoe_size_eu}` },
               { type: "image", source: { type: "base64", media_type: "image/jpeg", data: images.top } },
-              { type: "text", text: "IMAGE 1 OF 3: TOP VIEW (phone horizontal above foot, looking straight down)" },
+              { type: "text", text: "IMAGE 1 OF 2: TOP VIEW (phone above foot, looking straight down)" },
               { type: "image", source: { type: "base64", media_type: "image/jpeg", data: images.side } },
-              { type: "text", text: "IMAGE 2 OF 3: SIDE VIEW (phone horizontal on floor beside foot, medial profile, toes pointing right)" },
-              { type: "image", source: { type: "base64", media_type: "image/jpeg", data: images.heel } },
-              { type: "text", text: "IMAGE 3 OF 3: HEEL VIEW (phone horizontal on floor behind foot, posterior view)" },
+              { type: "text", text: "IMAGE 2 OF 2: SIDE VIEW (phone horizontal on floor beside foot, medial profile)" },
             ],
           },
         ],
@@ -178,8 +174,20 @@ export default async function handler(req, res) {
       });
     }
 
+    // --- Validate landmarks ---
+    const { top, side } = parsed;
+    const validationErrors = validateLandmarks(top, side);
+    if (validationErrors.length > 0) {
+      return res.status(200).json({
+        foot_detected: true,
+        confidence: "low",
+        validation_errors: validationErrors,
+        notes: "Landmarks failed geometric sanity checks. Please retake photos.",
+        landmarks: { top, side },
+      });
+    }
+
     // --- Compute ratios from landmarks ---
-    const { top, side, heel } = parsed;
 
     // Helper: Euclidean distance between two [x,y] points
     const dist = (a, b) => Math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2);
@@ -193,11 +201,11 @@ export default async function handler(req, res) {
     // Project all toe tips onto the heel-to-longest-toe axis to get relative lengths
     const toe_shape = classifyToeShape(top);
 
-    // SIDE VIEW: instep height index (volume proxy)
+    // SIDE VIEW: instep height index
     // instep_apex height above ground line / total foot length along ground
-    const ground_length_side = Math.abs(side.toe_floor[0] - side.heel_floor[0]);
-    const ground_y = side.heel_floor[1]; // ground level = heel floor y
-    const instep_height = ground_y - side.instep_apex[1]; // y axis is inverted (top=0)
+    const ground_y_side = Math.max(side.toe_floor[1], side.mtp_joint[1]);
+    const ground_length_side = Math.abs(side.toe_floor[0] - side.heel_posterior[0]);
+    const instep_height = ground_y_side - side.instep_apex[1]; // y axis is inverted (top=0)
     const instep_ratio = clamp(
       ground_length_side > 0 ? instep_height / ground_length_side : 0.34,
       0.24, 0.44
@@ -205,27 +213,18 @@ export default async function handler(req, res) {
 
     // SIDE VIEW: arch-to-length ratio
     // Distance from MTP joint to heel along ground / total ground length
-    const mtp_to_heel = Math.abs(side.mtp_joint[0] - side.heel_floor[0]);
+    const mtp_to_heel = Math.abs(side.mtp_joint[0] - side.heel_posterior[0]);
     const arch_ratio = clamp(
       ground_length_side > 0 ? mtp_to_heel / ground_length_side : 0.73,
       0.64, 0.82
     );
 
-    // HEEL VIEW: heel width ratio (relative to forefoot width from top view)
-    // We can't directly compare pixel distances across different photos,
-    // so we compute heel_width / heel_height as a shape ratio, then map it
-    // to the forefoot-relative scale using the known population range.
-    // Alternative: use the heel view's own proportions.
-    const heel_pixel_width = dist(heel.heel_medial, heel.heel_lateral);
-    const heel_height = Math.abs(heel.achilles_mid[1] - ((heel.heel_medial[1] + heel.heel_lateral[1]) / 2));
-    // Heel aspect ratio: wider heel = higher ratio
-    // Map to forefoot-relative range using population reference (0.60-0.70 average)
-    const heel_aspect = heel_height > 0 ? heel_pixel_width / heel_height : 1.0;
-    // Empirical mapping: heel_aspect ~1.5–3.0 maps to heel_ratio ~0.45–0.85
-    const heel_ratio = clamp(mapRange(heel_aspect, 1.2, 3.5, 0.45, 0.85), 0.45, 0.85);
+    // HEEL VIEW: heel width ratio — now computed from top view landmarks
+    const heel_pixel_width = dist(top.heel_medial, top.heel_lateral);
+    const heel_ratio = clamp(heel_pixel_width / forefoot_width, 0.45, 0.85);
 
     // Compute navicular height for future use (arch type indicator)
-    const navicular_height = ground_y - side.navicular[1];
+    const navicular_height = ground_y_side - side.navicular[1];
     const navicular_ratio = ground_length_side > 0 ? navicular_height / ground_length_side : null;
 
     const confidence = ["high", "medium", "low"].includes(parsed.confidence) ? parsed.confidence : "medium";
@@ -252,7 +251,6 @@ export default async function handler(req, res) {
       landmarks: {
         top: top,
         side: side,
-        heel: heel,
       },
 
       // Additional computed metrics for database
@@ -352,13 +350,101 @@ function farthestToe(top) {
   return farthest;
 }
 
-// Linear interpolation: map value from [inMin, inMax] to [outMin, outMax]
-function mapRange(val, inMin, inMax, outMin, outMax) {
-  return outMin + ((val - inMin) / (inMax - inMin)) * (outMax - outMin);
-}
-
 function clamp(val, min, max) {
   const n = Number(val);
   if (isNaN(n)) return (min + max) / 2;
   return Math.min(max, Math.max(min, n));
+}
+
+// --- Server-side geometric validation ---
+// Catches the most common AI mistakes: ankle-vs-instep confusion,
+// ground-vs-heel confusion, landmarks outside the image, etc.
+function validateLandmarks(top, side) {
+  const errors = [];
+
+  // Helper: check that a landmark is a valid [x, y] array with positive numbers
+  const isValid = (pt, name) => {
+    if (!Array.isArray(pt) || pt.length !== 2 || typeof pt[0] !== 'number' || typeof pt[1] !== 'number') {
+      errors.push(`${name}: not a valid [x, y] coordinate`);
+      return false;
+    }
+    if (pt[0] < 0 || pt[1] < 0) {
+      errors.push(`${name}: negative coordinate`);
+      return false;
+    }
+    return true;
+  };
+
+  // Validate all top view landmarks exist
+  const topKeys = ['toe_1','toe_2','toe_3','toe_4','toe_5','met_tibiale','met_fibulare','pternion','heel_medial','heel_lateral'];
+  for (const k of topKeys) {
+    if (!top?.[k]) { errors.push(`top.${k}: missing`); }
+    else { isValid(top[k], `top.${k}`); }
+  }
+
+  // Validate all side view landmarks exist
+  const sideKeys = ['heel_posterior','toe_floor','instep_apex','mtp_joint','navicular'];
+  for (const k of sideKeys) {
+    if (!side?.[k]) { errors.push(`side.${k}: missing`); }
+    else { isValid(side[k], `side.${k}`); }
+  }
+
+  if (errors.length > 0) return errors; // bail early if basic structure is broken
+
+  // --- Side view geometric checks ---
+  const groundY = Math.max(side.toe_floor[1], side.mtp_joint[1]);
+  const groundLength = Math.abs(side.toe_floor[0] - side.heel_posterior[0]);
+
+  if (groundLength === 0) {
+    errors.push('side: toe_floor and heel_posterior have same x — foot length is zero');
+    return errors;
+  }
+
+  // Instep apex: must be above ground but not in the top 20% of foot height
+  // (top 20% would mean ankle/leg, not foot)
+  const instepHeight = groundY - side.instep_apex[1];
+  const instepHeightRatio = instepHeight / groundLength;
+
+  if (instepHeightRatio > 0.55) {
+    errors.push(`side.instep_apex: too high (ratio ${instepHeightRatio.toFixed(2)}). Likely on ankle/leg, not the foot surface. Expected 0.25-0.50.`);
+  }
+  if (instepHeightRatio < 0.15) {
+    errors.push(`side.instep_apex: too low (ratio ${instepHeightRatio.toFixed(2)}). Should be on top of foot, not near the sole.`);
+  }
+
+  // Instep must be above mtp_joint (lower y = higher in image)
+  if (side.instep_apex[1] >= side.mtp_joint[1]) {
+    errors.push('side.instep_apex: must be above mtp_joint (lower y-coordinate)');
+  }
+
+  // Heel posterior must be above ground (its y should be less than ground y)
+  if (side.heel_posterior[1] >= groundY) {
+    errors.push('side.heel_posterior: at or below ground level — should be the rearmost point of the heel curve, above ground contact');
+  }
+
+  // Heel posterior should be the rightmost (or leftmost) point in side view
+  // It should be further back than mtp_joint
+  if (Math.abs(side.heel_posterior[0] - side.mtp_joint[0]) < groundLength * 0.3) {
+    errors.push('side.heel_posterior: too close to mtp_joint — expected to be near the rear of the foot');
+  }
+
+  // --- Top view geometric checks ---
+  // met_tibiale and met_fibulare should be at roughly the same y (within 15% of foot length)
+  const topFootLength = Math.sqrt(
+    (top.pternion[0] - top.toe_1[0]) ** 2 + (top.pternion[1] - top.toe_1[1]) ** 2
+  );
+
+  if (topFootLength > 0) {
+    const metYDiff = Math.abs(top.met_tibiale[1] - top.met_fibulare[1]);
+    if (metYDiff / topFootLength > 0.15) {
+      errors.push(`top: met_tibiale and met_fibulare y-coordinates differ by ${(metYDiff/topFootLength*100).toFixed(0)}% of foot length — they should be at roughly the same level`);
+    }
+
+    const heelYDiff = Math.abs(top.heel_medial[1] - top.heel_lateral[1]);
+    if (heelYDiff / topFootLength > 0.15) {
+      errors.push(`top: heel_medial and heel_lateral y-coordinates differ by ${(heelYDiff/topFootLength*100).toFixed(0)}% of foot length — they should be at roughly the same level`);
+    }
+  }
+
+  return errors;
 }
