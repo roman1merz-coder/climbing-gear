@@ -55,7 +55,9 @@ function generateSitemap() {
 
   let productCount = 0;
   for (const { file, prefix } of datasets) {
-    const items = loadJSON(file);
+    let items = loadJSON(file);
+    // Exclude static ropes from sitemap (hidden from frontend for now)
+    if (prefix === '/rope') items = items.filter(r => r.rope_type !== 'static');
     for (const item of items) {
       urls.push({
         loc: `${BASE_URL}${prefix}/${item.slug}`,

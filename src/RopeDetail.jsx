@@ -384,6 +384,7 @@ function RopeSVGDetail({ color1, color2, diameter, ropeType }) {
 
 export default function RopeDetail({ ropes = [], priceData = {} }) {
   const { slug } = useParams();
+  // Static ropes are excluded from the frontend — ropes array already filtered in main.jsx
   const rope = ropes.find((r) => r.slug === slug);
   usePageMeta(
     rope ? `${rope.brand} ${rope.model} — Rope Specs & Prices` : null,

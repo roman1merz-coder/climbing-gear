@@ -368,7 +368,10 @@ function Root() {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Rope & Belay state
-  const [ropes, setRopes] = useState(assignLocalImages(ROPE_SEED, "ropes"));
+  // NOTE: Static ropes are excluded from the frontend for now (data stays in DB).
+  // Filter them out at the root so no component ever sees them.
+  const excludeStaticRopes = (arr) => arr.filter(r => r.rope_type !== "static");
+  const [ropes, setRopes] = useState(excludeStaticRopes(assignLocalImages(ROPE_SEED, "ropes")));
   const [ropeSrc, setRopeSrc] = useState("seed");
   const [belays, setBelays] = useState(assignLocalImages(BELAY_SEED, "belays"));
   const [belaySrc, setBelaySrc] = useState("seed");
@@ -395,7 +398,7 @@ function Root() {
     supabaseSelect("ropes")
       .then((data) => {
         if (data?.length) {
-          const merged = mergeDataset(data, ROPE_SEED, ROPE_SEED_MAP);
+          const merged = excludeStaticRopes(mergeDataset(data, ROPE_SEED, ROPE_SEED_MAP));
           setRopes(assignLocalImages(merged, "ropes"));
           setRopeSrc(`supabase+seed · ${merged.length}`);
         }

@@ -23,8 +23,8 @@ const BRAND_PAL = [
   "#81e6d9","#c4b5fd","#fca5a5","#bef264","#e879f9","#67e8f9",
 ];
 
-/* Pre-filter ropes */
-const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g)
+/* Pre-filter ropes — static ropes excluded from frontend for now */
+const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g && r.rope_type !== "static")
   .map(r => ({
     brand: r.brand, model: r.model, slug: r.slug,
     dia: r.diameter_mm, falls: r.uiaa_falls, gm: r.weight_per_meter_g,
@@ -86,19 +86,7 @@ const FPG_VS_CPM_TREND = (() => {
   return { slope, intercept, std };
 })();
 
-/* Linear regression for static ropes: diameter → break strength */
-const STATIC_BS_TREND = (() => {
-  const statics = ALL_ROPES.filter(r => r.type === "static" && r.breakStr);
-  if (statics.length < 3) return null;
-  const n = statics.length;
-  const md = statics.reduce((s, r) => s + r.dia, 0) / n;
-  const mb = statics.reduce((s, r) => s + r.breakStr, 0) / n;
-  let num = 0, den = 0;
-  statics.forEach(r => { num += (r.dia - md) * (r.breakStr - mb); den += (r.dia - md) ** 2; });
-  const slope = num / den, intercept = mb - slope * md;
-  const std = Math.sqrt(statics.reduce((s, r) => s + (r.breakStr - (slope * r.dia + intercept)) ** 2, 0) / (n - 2));
-  return { slope, intercept, std };
-})();
+/* Static rope trend removed — static ropes excluded from frontend */
 
 /* ─── Main Component ─── */
 export default function RopeScatterChart({ isMobile, initialMetric, initialColorBy }) {
@@ -114,8 +102,8 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
 
   /* Filter state */
   const [enabledTypes, setEnabledTypes] = useState(new Set(["single"]));
-  const onlyStatic = enabledTypes.size === 1 && enabledTypes.has("static");
-  const hasStatic = enabledTypes.has("static");
+  const onlyStatic = false; // static ropes excluded from frontend
+  const hasStatic = false;
 
   useEffect(() => {
     if (onlyStatic && (metric === "falls" || metric === "fallsVsGm" || metric === "fpgVsPrice" || metric === "fpgVsCpg")) setMetric("gm");
@@ -339,10 +327,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       ctx.fillText(lbl, lx, ly + 3);
     }
 
-    // Linear trend for static ropes: break strength
-    if (metric === "breakStr" && enabledTypes.has("static") && STATIC_BS_TREND) {
-      drawLinearTrend(ctx, sx, sy, STATIC_BS_TREND.slope, STATIC_BS_TREND.intercept, STATIC_BS_TREND.std, xMin, xMax, yMin, yMax, { color: "#ecc94b", label: "Trend (static ropes)" });
-    }
+    // Static rope trend removed — static ropes excluded from frontend
 
     // Linear trend for falls vs weight
     if (metric === "fallsVsGm" && enabledTypes.has("single") && FALLS_VS_GM_TREND) {
@@ -531,7 +516,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
 
       {/* Rope type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
-        {(hiddenBrands.size > 0 || hiddenDry.size > 0 || hiddenDia.size > 0 || !(enabledTypes.has("single") && !enabledTypes.has("half") && !enabledTypes.has("twin") && !enabledTypes.has("static"))) && (
+        {(hiddenBrands.size > 0 || hiddenDry.size > 0 || hiddenDia.size > 0 || !(enabledTypes.has("single") && !enabledTypes.has("half") && !enabledTypes.has("twin"))) && (
           <button onClick={() => { setEnabledTypes(new Set(["single"])); setHiddenBrands(new Set()); setHiddenDry(new Set()); setHiddenDia(new Set()); }}
             style={{ padding: "3px 10px", fontSize: "10px", fontWeight: 700, borderRadius: "5px", border: `1px solid ${T.accent}`, cursor: "pointer", background: "transparent", color: T.accent, letterSpacing: "0.5px" }}>
             ✕ Reset filters
@@ -539,7 +524,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
         )}
         <div style={{ display: "flex", gap: "2px", alignItems: "center" }}>
           <span style={{ fontSize: "10px", color: T.muted, marginRight: "2px" }}>Type:</span>
-          {[["single", "Single"], ["half", "Half"], ["twin", "Twin"], ["static", "Static"]].map(([k, l]) => (
+          {[["single", "Single"], ["half", "Half"], ["twin", "Twin"]].map(([k, l]) => (
             <button key={k} onClick={() => toggleType(k)} style={filterBtn(enabledTypes.has(k))}>{l}</button>
           ))}
         </div>
@@ -654,7 +639,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
           {enabledTypes.has("single") && cfg.xField === "dia" && cfg.curveY && " · Trend line = single ropes only"}
         </span>
         <span style={{ fontSize: "10px", color: "#4a5568", display: "flex", alignItems: "center", gap: "8px" }}>
-          {enabledTypes.has("half") && "◇ Half"}{enabledTypes.has("half") && enabledTypes.has("twin") && " · "}{enabledTypes.has("twin") && "△ Twin"}{(enabledTypes.has("half") || enabledTypes.has("twin")) && enabledTypes.has("static") && " · "}{enabledTypes.has("static") && "□ Static"}
+          {enabledTypes.has("half") && "◇ Half"}{enabledTypes.has("half") && enabledTypes.has("twin") && " · "}{enabledTypes.has("twin") && "△ Twin"}
           <a href="/methodology" style={{ fontSize: "10px", color: T.accent, textDecoration: "none", fontWeight: 600 }}>How we score →</a>
         </span>
       </div>

@@ -146,19 +146,11 @@ const USE_CASES_DYNAMIC = [
   "gym", "sport_single_pitch", "sport_multi_pitch", "trad",
   "alpine", "big_wall", "top_rope", "ice_mixed", "redpoint", "projecting",
 ];
-const USE_CASES_STATIC = [
-  "rappelling", "hauling", "fixed_line", "top_rope_static",
-  "canyoning", "rope_access",
-];
+// Static ropes are excluded from the frontend for now — USE_CASES_STATIC removed
 
 function getGroups(activeTypes) {
-  const staticOnly = activeTypes.length === 1 && activeTypes[0] === "static";
-  const dynamicOnly = activeTypes.length > 0 && !activeTypes.includes("static");
-  const mixed = activeTypes.length === 0 || (activeTypes.includes("static") && activeTypes.length > 1);
-
-  let useCases = [...USE_CASES_DYNAMIC, ...USE_CASES_STATIC];
-  if (staticOnly) useCases = USE_CASES_STATIC;
-  else if (dynamicOnly) useCases = USE_CASES_DYNAMIC;
+  // Static ropes excluded from frontend — all ropes are dynamic types
+  const useCases = USE_CASES_DYNAMIC;
 
   const groups = [
     {
@@ -173,13 +165,8 @@ function getGroups(activeTypes) {
       filters: [
         { key: "diameter_mm", label: "Diameter (mm)", type: "range", min: 7.0, max: 13.0, step: 0.1 },
         { key: "weight_per_meter_g", label: "Weight (g/m)", type: "range", min: 34, max: 100, step: 1 },
-        ...(!staticOnly ? [
-          { key: "uiaa_falls", label: "UIAA Falls", type: "range", min: 5, max: 20, step: 1 },
-          { key: "impact_force_kn", label: "Impact Force (kN)", type: "range", min: 5.0, max: 10.0, step: 0.1 },
-        ] : []),
-        ...(staticOnly || mixed ? [
-          { key: "breaking_strength_kn", label: "Break Strength (kN)", type: "range", min: 15, max: 40, step: 1 },
-        ] : []),
+        { key: "uiaa_falls", label: "UIAA Falls", type: "range", min: 5, max: 20, step: 1 },
+        { key: "impact_force_kn", label: "Impact Force (kN)", type: "range", min: 5.0, max: 10.0, step: 0.1 },
       ],
     },
     {
@@ -188,7 +175,7 @@ function getGroups(activeTypes) {
         { key: "dry_treatment", label: "Dry Treatment", type: "multi", options: ["none", "sheath_only", "core_and_sheath", "full_impregnation"] },
         { key: "uiaa_water_repellent", label: "UIAA Water Repellent", type: "bool" },
         { key: "aramid_protection", label: "Aramid Protection", type: "bool" },
-        ...(!staticOnly ? [{ key: "triple_rated", label: "Triple Rated", type: "bool" }] : []),
+        { key: "triple_rated", label: "Triple Rated", type: "bool" },
         { key: "middle_mark", label: "Middle Mark", type: "multi", options: ["none", "ink_mark", "bi_pattern"] },
       ],
     },
@@ -783,7 +770,7 @@ function loadRopeSession() {
 }
 
 export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
-  usePageMeta(`Climbing Ropes — Compare ${ropes.length}+ Models`, "Compare dynamic, static, half, and twin ropes. Filter by diameter, weight, falls rated, and dry treatment across all major brands.");
+  usePageMeta(`Climbing Ropes — Compare ${ropes.length}+ Models`, "Compare single, half, and twin climbing ropes. Filter by diameter, weight, falls rated, and dry treatment across all major brands.");
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
@@ -1061,7 +1048,6 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                   { type: "single", icon: "①", label: "Single" },
                   { type: "half", icon: "½", label: "Half" },
                   { type: "twin", icon: "∞", label: "Twin" },
-                  { type: "static", icon: "▬", label: "Static" },
                 ].map((t) => (
                   <TypePill key={t.type} icon={t.icon} label={t.label} active={activeTypes.includes(t.type)} onClick={() => toggleType(t.type)} />
                 ))}
@@ -1187,7 +1173,6 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                   { type: "single", icon: "①", label: "Single" },
                   { type: "half", icon: "½", label: "Half" },
                   { type: "twin", icon: "∞", label: "Twin" },
-                  { type: "static", icon: "▬", label: "Static" },
                 ].map((t) => (
                   <TypePill
                     key={t.type}

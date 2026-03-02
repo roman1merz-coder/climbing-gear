@@ -10,7 +10,9 @@ import BELAYS from "./belay_seed_data.json";
 import PADS from "./crashpad_seed_data.json";
 import DRAWS from "./quickdraw_seed_data.json";
 
-const TOTAL_PRODUCTS = SHOES.length + ROPES.length + BELAYS.length + PADS.length + DRAWS.length;
+// Exclude static ropes from product counts (static ropes hidden from frontend)
+const DYNAMIC_ROPES = ROPES.filter(r => r.rope_type !== "static");
+const TOTAL_PRODUCTS = SHOES.length + DYNAMIC_ROPES.length + BELAYS.length + PADS.length + DRAWS.length;
 
 // Responsive hook
 function useIsMobile() {
@@ -73,7 +75,7 @@ const STATS = [
 
 const SELECTORS = [
   { title: "Shoe Selector", count: `${SHOES.length}+`, to: "/shoes", description: `${SHOES.length}+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking.`, Icon: IconShoe, finderTo: "/find" },
-  { title: "Rope Selector", count: `${ROPES.length}+`, to: "/ropes", description: "Dynamic, static, half, and twin ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands.", Icon: IconRope },
+  { title: "Rope Selector", count: `${DYNAMIC_ROPES.length}+`, to: "/ropes", description: "Single, half, and twin climbing ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands.", Icon: IconRope },
   { title: "Belay Device Selector", count: `${BELAYS.length}+`, to: "/belays", description: "Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price.", Icon: IconShield },
   { title: "Crashpad Selector", count: `${PADS.length}+`, to: "/crashpads", description: "Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability.", Icon: IconLayers },
   { title: "Quickdraw Selector", count: `${DRAWS.length}+`, to: "/quickdraws", description: "Sport and trad quickdraws. Compare weight, gate type, sling length, and carabiner specs across all major brands.", Icon: IconLink },
@@ -82,7 +84,7 @@ const SELECTORS = [
 const INSIGHTS = [
   { title: `How We Score ${SHOES.length} Climbing Shoes \u2014 and How to Pick Yours`, description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
   { title: "Inflatable Crashpads: Game-Changer or Gimmick?", description: "They shatter the weight curve, fit inside your backpack, and inflate in minutes. But how safe are they really?", to: "/insights/inflatable-crashpads" },
-  { title: "Does Spending More Buy a Safer Rope?", description: `We crunched cost-per-gram, UIAA falls, and impact force across ${ROPES.length}+ ropes to find out.`, to: "/insights/rope-cost-vs-safety" },
+  { title: "Does Spending More Buy a Safer Rope?", description: `We crunched cost-per-gram, UIAA falls, and impact force across ${DYNAMIC_ROPES.length}+ ropes to find out.`, to: "/insights/rope-cost-vs-safety" },
 ];
 
 // ═══════════════════════════════════════════════════════════════
