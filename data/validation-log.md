@@ -89,3 +89,42 @@
 - Ocun Paddy Sundance: shoe_wipe true→false, has_load_flap true→false, has_hinge_protection true→false, reconfigurable false→true
 - Ocun Sitcase Pad: shoulder_straps false→true, bandolier_strap false→true, has_gear_pocket false→true, reconfigurable false→true
 - Organic BackFourty Big Pad: closure_system buckle→flap
+
+## 2026-03-02: Batch 3b — Asana, Beal, Flashed, Mad Rock, Ocun, Organic, Send, Snap, ZIGZAG — 47 fixes across 23 pads
+**Pads:** 41 checked | **Process:** MFR site verification (primary) → independent 2-source confirmation for unconfirmed items
+**Phase 1 (MFR-confirmed):** 40 fixes across 18 pads — all confirmed directly on manufacturer websites
+**Phase 2 (Research-backed):** 7 fixes across 5 pads — confirmed via 2+ independent sources (WMR, Wilderness Exchange, Climbing Anchors, etc.)
+**15 items kept as-is:** Either already correct (confirmed by research) or insufficient independent sources to change
+
+### MFR-confirmed changes (40):
+- Organic Big Pad: fold_style hinge→hybrid
+- Organic Full Pad: foam_layers 2→3
+- Organic Half Blubber Pad: weight_kg 2.0→3.6
+- ZIGZAG Single LINK: shoulder_straps true→false
+- Snap Air Shock 1: weight_kg 5.0→5.5, closure_system null→buckle
+- Snap BOUNCE: closure_system strap→buckle
+- Snap Grand Guts: thickness 16.0→14.0, weight 11.5→10.7, length 170→150, shell_denier 1000→600, foam_layers 3→2
+- Snap Grand Stamina: thickness 14.0→11.0, weight 9.5→6.8, length 160→150, width 110→100, shell_denier 900→600, foam_layers 3→2
+- Snap Grand Wham: weight 9.0→11.2, shell_denier 900→600, foam_layers 3→2
+- Snap Guts: closure_system velcro→buckle
+- Snap Hip: shell_denier 900→600, closure_system velcro→buckle
+- Snap HOP: closure_system velcro→buckle
+- Snap ONE: shell_denier 900→600, foam_layers 1→2, closure_system velcro→buckle
+- Snap Rebound: weight 6.2→5.5, shell_denier 900→600, closure_system velcro→buckle
+- Snap Stamina: thickness 12.0→11.0, weight 6.5→5.5, length 130→120, shell_denier 900→600, foam_layers 3→2
+- Flashed Shield Half Pad: fold_style hinge→none, thickness 10.0→10.8
+- Mad Rock Triplet: thickness 2.0→1.9
+- Send 3x4 Pro: reconfigurable false→true
+
+### Research-backed changes (7):
+- Organic Slider Pad: fold_style hybrid→none, closure_system strap→none (3 sources: Organic, WMR, Climbing Anchors)
+- Organic XL Slider Pad: fold_style hybrid→none, closure_system strap→none (3 sources: WMR, Trailside Supply, Climbing Anchors)
+- Organic Spot Pad: fold_style hinge→taco (2 sources: WMR, Organic Climbing)
+- Organic Blubber Pad: closure_system flap→buckle (2 sources: Wilderness Exchange, Climb On Equipment)
+- Organic Half Blubber Pad: closure_system flap→buckle (2 sources: Wilderness Exchange, Organic Climbing)
+
+### Confirmed correct (no change needed):
+Snap Grand Plaster fold=none, Snap Wrap Original fold=taco, Snap WHAM fold=taco/foam=2/denier=900, Snap BOUNCE denier=900, Send 4x4 Pro Highball fold=hinge, Flashed Shield reconfigurable=true, Ocun Top Mat weight=3.2kg
+
+### Kept as-is (insufficient sources):
+Send 3x4 Essential closure+weight (WMR-only), Send 4x4 Essential closure+weight (WMR-only), Snap WHAM closure (no sources), Ocun Top Mat carry/denier (no sources), Mad Rock Triplet denier+foam (no sources), Organic Spot Pad couch_mode+premium_carry (no sources)
