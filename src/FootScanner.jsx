@@ -690,13 +690,13 @@ export default function FootScanner() {
         <ResultSlider
           label="Forefoot Width"
           value={result.width_ratio}
-          min={0.30} max={0.48} avgValue={0.386} avgLabel="Average"
+          min={0.299} max={0.467} avgValue={0.383} avgLabel="Average"
           lowLabel="Narrow" highLabel="Wide"
-          lowThresh={0.365} highThresh={0.405}
+          lowThresh={0.362} highThresh={0.404}
           description={
-            result.width_ratio < 0.365
+            result.width_ratio < 0.362
               ? "Slimmer forefoot — European-lasted shoes tend to fit well. Look for models described as 'narrow.'"
-              : result.width_ratio > 0.405
+              : result.width_ratio > 0.404
               ? "Wider forefoot — prioritize shoes with generous toe boxes. Lace closures give extra adjustability."
               : "Average width — most shoes should fit well. You have the widest selection available."
           }
@@ -705,13 +705,13 @@ export default function FootScanner() {
         <ResultSlider
           label="Instep Ratio"
           value={result.instep_ratio}
-          min={0.24} max={0.44} avgValue={0.340} avgLabel="Standard"
+          min={0.163} max={0.307} avgValue={0.235} avgLabel="Standard"
           lowLabel="Low Volume" highLabel="High Volume"
-          lowThresh={0.310} highThresh={0.360}
+          lowThresh={0.217} highThresh={0.253}
           description={
-            result.instep_ratio < 0.310
+            result.instep_ratio < 0.217
               ? "Flat instep profile — look for women's or LV (low-volume) models for the best fit. Standard shoes may gap above the forefoot."
-              : result.instep_ratio > 0.360
+              : result.instep_ratio > 0.253
               ? "Pronounced instep — avoid snug LV models. Shoes with generous forefoot depth will be more comfortable."
               : "Standard volume — most unisex shoes will accommodate your instep well."
           }
@@ -720,29 +720,29 @@ export default function FootScanner() {
         <ResultSlider
           label="Heel Width"
           value={result.heel_ratio}
-          min={0.45} max={0.85} avgValue={0.65} avgLabel="Medium"
+          min={0.491} max={0.819} avgValue={0.655} avgLabel="Medium"
           lowLabel="Narrow" highLabel="Wide"
-          lowThresh={0.58} highThresh={0.72}
+          lowThresh={0.614} highThresh={0.696}
           description={
-            result.heel_ratio < 0.58
+            result.heel_ratio < 0.614
               ? "Narrow heel relative to forefoot — classic 'fin shape.' You may experience heel slip in standard shoes. Prioritize shoes with snug heel cups."
-              : result.heel_ratio > 0.72
+              : result.heel_ratio > 0.696
               ? "Broad heel — lace-up closures give the most adjustability. Avoid shoes with very narrow heel cups."
               : "Proportional heel — standard heel cups should work well across most models."
           }
         />
 
         <ResultSlider
-          label="Arch-to-Length Ratio"
+          label="Toe Length"
           value={result.arch_ratio}
-          min={0.64} max={0.82} avgValue={0.73} avgLabel="Average"
-          lowLabel="Long toes" highLabel="Short toes"
-          lowThresh={0.71} highThresh={0.75}
+          min={0.66} max={0.86} avgValue={0.760} avgLabel="Average"
+          lowLabel="Short toes" highLabel="Long toes"
+          lowThresh={0.735} highThresh={0.785}
           description={
-            result.arch_ratio < 0.71
-              ? "Your toes are longer than average. Look for shoes with a forward flex point — the shoe should bend where your foot naturally bends."
-              : result.arch_ratio > 0.75
+            result.arch_ratio < 0.735
               ? "Your toes are shorter than average. Shoes with a standard or rearward flex point will align better with your natural bend."
+              : result.arch_ratio > 0.785
+              ? "Your toes are longer than average. Look for shoes with a forward flex point — the shoe should bend where your foot naturally bends."
               : "Average proportion — most shoes will flex in the right spot for your foot."
           }
         />
