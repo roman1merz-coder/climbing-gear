@@ -59,10 +59,10 @@ const PHOTO_STEPS = [
     title: "Top View",
     headline: "Look straight down",
     instructions: [
-      "Stand barefoot on a white A4 sheet of paper on the floor",
+      "Stand barefoot on a flat, contrasting surface (e.g. dark floor)",
       "Hold your phone horizontally above your foot",
       "Camera should point straight down \u2014 no angle",
-      "Make sure the full foot AND the A4 paper edges are visible",
+      "Make sure the full foot is visible in the frame",
       "Keep toes relaxed and spread naturally",
     ],
     icon: "\u{1F441}\u{FE0F}\u200D\u{1F5E8}\u{FE0F}",
@@ -73,10 +73,10 @@ const PHOTO_STEPS = [
     title: "Side View",
     headline: "From the side, at ground level",
     instructions: [
-      "Keep your foot straight on the A4 paper",
+      "Keep your foot straight on the floor",
       "Hold your phone horizontally on the floor next to your foot",
       "Camera end points toward the foot \u2014 capture the full side profile",
-      "The arch, instep, and A4 paper edges should all be visible",
+      "The arch and instep should be clearly visible",
       "Keep your weight evenly distributed",
     ],
     icon: "\u{1F4F7}",
@@ -87,10 +87,10 @@ const PHOTO_STEPS = [
     title: "Heel View",
     headline: "From behind, at ground level",
     instructions: [
-      "Keep your foot straight on the A4 paper",
+      "Keep your foot straight on the floor",
       "Hold your phone horizontally on the floor behind your heel",
       "Camera end points toward the heel \u2014 capture the full back view",
-      "The heel, Achilles area, and A4 paper edges should all be visible",
+      "The heel and Achilles area should be clearly visible",
       "Both sides of the heel should be in frame",
     ],
     icon: "\u{1F9B6}",
@@ -354,7 +354,7 @@ export default function FootScanner() {
           <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "14px" }}>What you'll need</div>
           {[
             "Bare feet — no socks",
-            "A white A4 sheet of paper (for calibration)",
+            "A flat surface with good lighting",
             "Your street shoe size (EU)",
             "~60 seconds of your time",
           ].map((t, i) => (
@@ -840,7 +840,7 @@ export default function FootScanner() {
         }}>
           <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "12px" }}>Tips for better results</div>
           {[
-            "Stand barefoot on a white A4 sheet of paper on the floor",
+            "Stand barefoot on a flat, contrasting surface",
             "Make sure the entire foot is visible in each photo",
             "Use good, even lighting — avoid harsh shadows",
             "Follow the angle instructions for each shot carefully",
