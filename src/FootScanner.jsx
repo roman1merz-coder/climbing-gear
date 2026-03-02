@@ -58,11 +58,11 @@ const PHOTO_STEPS = [
     title: "Top View",
     headline: "Look straight down",
     instructions: [
-      "Stand barefoot on a plain, single-color floor",
-      "Hold your phone directly above your foot",
-      "Camera should point straight down — no angle",
+      "Stand barefoot on a white A4 sheet of paper on the floor",
+      "Hold your phone horizontally above your foot",
+      "Camera should point straight down \u2014 no angle",
+      "Make sure the full foot AND the A4 paper edges are visible",
       "Keep toes relaxed and spread naturally",
-      "Capture the entire foot from heel to toes",
     ],
     icon: "\u{1F441}\u{FE0F}\u200D\u{1F5E8}\u{FE0F}",
     cameraLabel: "top-down",
@@ -70,13 +70,13 @@ const PHOTO_STEPS = [
   {
     key: "side",
     title: "Side View",
-    headline: "Camera at ankle height",
+    headline: "From the side, at ground level",
     instructions: [
-      "Place phone on the floor or hold at ankle height",
-      "Position it to the side, perpendicular to your foot",
-      "Capture the full silhouette: heel, arch, and toes",
-      "Keep your foot flat and weight evenly distributed",
-      "The arch and instep should be clearly visible",
+      "Keep your foot straight on the A4 paper",
+      "Hold your phone horizontally on the floor next to your foot",
+      "Camera end points toward the foot \u2014 capture the full side profile",
+      "The arch, instep, and A4 paper edges should all be visible",
+      "Keep your weight evenly distributed",
     ],
     icon: "\u{1F4F7}",
     cameraLabel: "side profile",
@@ -84,13 +84,13 @@ const PHOTO_STEPS = [
   {
     key: "heel",
     title: "Heel View",
-    headline: "From directly behind",
+    headline: "From behind, at ground level",
     instructions: [
-      "Place phone on the floor behind you, or have someone help",
-      "Camera should be at ankle height, looking at the back of your foot",
-      "Center the heel in the frame",
-      "The heel width and achilles area should be clear",
-      "Both sides of the heel should be visible",
+      "Keep your foot straight on the A4 paper",
+      "Hold your phone horizontally on the floor behind your heel",
+      "Camera end points toward the heel \u2014 capture the full back view",
+      "The heel, Achilles area, and A4 paper edges should all be visible",
+      "Both sides of the heel should be in frame",
     ],
     icon: "\u{1F9B6}",
     cameraLabel: "rear heel",
@@ -557,7 +557,7 @@ export default function FootScanner() {
           <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "14px" }}>What you'll need</div>
           {[
             "Bare feet — no socks",
-            "Plain floor (one color, good lighting)",
+            "A white A4 sheet of paper (for calibration)",
             "Your street shoe size (EU)",
             "~60 seconds of your time",
           ].map((t, i) => (
@@ -652,17 +652,33 @@ export default function FootScanner() {
           }}>{error}</div>
         )}
 
-        {/* Current photo card */}
+        {/* Current photo card — instructions ABOVE upload area */}
         {currentPhoto && (
           <div style={{
             background: T.card, border: `1.5px solid ${hasCurrentPhoto ? T.green : T.border}`,
             borderRadius: T.radius, overflow: "hidden", marginBottom: "16px",
           }}>
-            {/* Photo area / preview */}
+            {/* Instructions (always visible, above the photo) */}
+            <div style={{ padding: "14px 16px", borderBottom: `1px solid ${T.border}` }}>
+              <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "10px" }}>
+                {currentPhoto.title} — {currentPhoto.headline}
+              </div>
+              {currentPhoto.instructions.map((inst, i) => (
+                <div key={i} style={{
+                  display: "flex", gap: "8px", marginBottom: "5px",
+                  fontSize: "12px", color: T.muted, lineHeight: 1.4,
+                }}>
+                  <span style={{ color: T.accent, fontWeight: 600, flexShrink: 0, fontFamily: T.mono, fontSize: "10px" }}>{i + 1}</span>
+                  {inst}
+                </div>
+              ))}
+            </div>
+
+            {/* Photo area / preview (below instructions) */}
             <div
               onClick={() => fileRef.current?.click()}
               style={{
-                height: isMobile ? "260px" : "300px",
+                height: isMobile ? "220px" : "260px",
                 background: hasCurrentPhoto ? "#000" : "rgba(44,50,39,0.03)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 cursor: "pointer", position: "relative",
@@ -690,10 +706,7 @@ export default function FootScanner() {
                 <div style={{ textAlign: "center", padding: "20px" }}>
                   <div style={{ fontSize: "40px", marginBottom: "12px" }}>{currentPhoto.icon}</div>
                   <div style={{
-                    fontSize: "16px", fontWeight: 700, color: T.text, marginBottom: "4px",
-                  }}>{currentPhoto.headline}</div>
-                  <div style={{
-                    fontSize: "13px", color: T.accent, fontWeight: 600, marginTop: "12px",
+                    fontSize: "13px", color: T.accent, fontWeight: 600, marginTop: "8px",
                     padding: "8px 24px", borderRadius: "20px",
                     border: `1.5px solid ${T.accent}`, display: "inline-block",
                   }}>
@@ -701,22 +714,6 @@ export default function FootScanner() {
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Instructions */}
-            <div style={{ padding: "14px 16px" }}>
-              <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "10px" }}>
-                {currentPhoto.title} — {currentPhoto.headline}
-              </div>
-              {currentPhoto.instructions.map((inst, i) => (
-                <div key={i} style={{
-                  display: "flex", gap: "8px", marginBottom: "5px",
-                  fontSize: "12px", color: T.muted, lineHeight: 1.4,
-                }}>
-                  <span style={{ color: T.accent, fontWeight: 600, flexShrink: 0, fontFamily: T.mono, fontSize: "10px" }}>{i + 1}</span>
-                  {inst}
-                </div>
-              ))}
             </div>
 
             <input ref={fileRef} type="file" accept="image/*" capture="environment"
@@ -1046,7 +1043,7 @@ export default function FootScanner() {
         }}>
           <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "12px" }}>Tips for better results</div>
           {[
-            "Stand barefoot on a plain, single-color floor",
+            "Stand barefoot on a white A4 sheet of paper on the floor",
             "Make sure the entire foot is visible in each photo",
             "Use good, even lighting — avoid harsh shadows",
             "Follow the angle instructions for each shot carefully",
