@@ -25,6 +25,11 @@ const ROPE_SECTIONS = [
       { label: "UIAA Falls", get: (r) => r.uiaa_falls || "—", winner: "max", num: (r) => r.uiaa_falls },
       { label: "Impact Force", get: (r) => r.impact_force_kn ? `${r.impact_force_kn} kN` : "—", winner: "min", num: (r) => r.impact_force_kn },
       { label: "Break Strength", get: (r) => r.breaking_strength_kn ? `${r.breaking_strength_kn} kN` : "—", winner: "max", num: (r) => r.breaking_strength_kn },
+      { label: "Static Elong.", get: (r) => r.static_elongation_pct ? `${r.static_elongation_pct}%` : "—", winner: "min", num: (r) => r.static_elongation_pct },
+      { label: "Dynamic Elong.", get: (r) => r.dynamic_elongation_pct ? `${r.dynamic_elongation_pct}%` : "—", winner: "min", num: (r) => r.dynamic_elongation_pct },
+      { label: "Sheath", get: (r) => r.sheath_percentage ? `${r.sheath_percentage}%` : "—" },
+      { label: "Sheath Slippage", get: (r) => r.sheath_slippage_mm != null ? `${r.sheath_slippage_mm} mm` : "—", winner: "min", num: (r) => r.sheath_slippage_mm },
+      { label: "Knotability", get: (r) => r.knotability_mm != null ? `${r.knotability_mm} mm` : "—", winner: "min", num: (r) => r.knotability_mm },
     ],
   },
   {

@@ -111,6 +111,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   const initAxes = METRIC_TO_AXES[initialMetric] || { x: "dynElong", y: "impact" };
   const [xAxis, setXAxis] = useState(initAxes.x);
   const [yAxis, setYAxis] = useState(initAxes.y);
+  const [sizeAxis, setSizeAxis] = useState("none"); // optional bubble size
   const [colorBy, setColorBy] = useState(initialColorBy || "type");
   const [mobileItem, setMobileItem] = useState(null);
 
@@ -137,6 +138,17 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   const DRY_LABELS = { none: "Untreated", sheath: "Sheath", sheath_only: "Sheath", core: "Core", core_and_sheath: "Core + Sheath", full_impregnation: "Full" };
   const DRY_LIST = useMemo(() => [...new Set(ALL_ROPES.map(r => r.dry))].sort(), []);
 
+  /* Bubble-size scaler: maps field value → radius in [minR, maxR] */
+  const sizeScale = useMemo(() => {
+    if (sizeAxis === "none") return null;
+    const vals = ALL_ROPES.filter(r => r[sizeAxis] != null).map(r => r[sizeAxis]);
+    if (!vals.length) return null;
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const range = hi - lo || 1;
+    const minR = isMobile ? 2 : 3, maxR = isMobile ? 12 : 16;
+    return (v) => v == null ? (minR + maxR) / 2 : minR + ((v - lo) / range) * (maxR - minR);
+  }, [sizeAxis, isMobile]);
+
   /* Apply filters — exclude ropes missing either axis value */
   const filtered = useMemo(() => ALL_ROPES.filter(r => {
     if (!enabledTypes.has(r.type)) return false;
@@ -155,9 +167,9 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     return {
       xField: xAxis, xLabel: xOpt.label, xMin: xb.min, xMax: xb.max, xStep: xb.step,
       yField: yAxis, yLabel: yOpt.label, yMin: yb.min, yMax: yb.max, yStep: yb.step,
-      sub: `${filtered.length} ropes · ${xOpt.label} vs ${yOpt.label}`,
+      sub: `${filtered.length} ropes · ${xOpt.label} vs ${yOpt.label}${sizeAxis !== "none" ? ` · size = ${AXIS_MAP[sizeAxis]?.label}` : ""}`,
     };
-  }, [filtered, xAxis, yAxis]);
+  }, [filtered, xAxis, yAxis, sizeAxis]);
 
   /* Linear trend for single ropes */
   const trend = useMemo(() => {
@@ -261,24 +273,27 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
     }
 
-    // Dots with glow + jitter
+    // Dots with glow + jitter — size driven by optional bubble axis
+    const baseSize = isMobile ? 3 : 4;
     const pixelPts = [];
     filtered.filter(r => r !== hovered).forEach((r, i) => {
       const j = jitter(i);
       const px = sx(r[xField]) + j.dx, py = sy(r[yField]) + j.dy;
       pixelPts.push({ px, py });
-      drawShape(ctx, r, px, py, isMobile ? 3 : 4, false);
+      const sz = sizeScale ? sizeScale(r[sizeAxis]) : baseSize;
+      drawShape(ctx, r, px, py, sz, false);
     });
 
-    // Cluster badges
-    drawClusterBadges(ctx, pixelPts);
+    // Cluster badges (only when bubbles are uniform)
+    if (!sizeScale) drawClusterBadges(ctx, pixelPts);
 
     // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
       const px = sx(hovered[xField]), py = sy(hovered[yField]);
-      drawShape(ctx, hovered, px, py, isMobile ? 3 : 4, true);
+      const sz = sizeScale ? sizeScale(hovered[sizeAxis]) : baseSize;
+      drawShape(ctx, hovered, px, py, sz, true);
     }
-  }, [xAxis, yAxis, isMobile, cfg, filtered, enabledTypes, trend, drawShape]);
+  }, [xAxis, yAxis, sizeAxis, sizeScale, isMobile, cfg, filtered, enabledTypes, trend, drawShape]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -308,12 +323,14 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     if (!tip) return;
     const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
     const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
     const stats = [
       { label: xOpt.label.split(" (")[0], value: xOpt.fmt(r[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "") },
       { label: yOpt.label.split(" (")[0], value: yOpt.fmt(r[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "") },
     ];
+    if (sOpt && r[sizeAxis] != null) stats.push({ label: sOpt.label.split(" (")[0], value: sOpt.fmt(r[sizeAxis]) + (sOpt.unit ? " " + sOpt.unit : "") });
     // Add core specs not already shown
-    const shown = new Set([xAxis, yAxis]);
+    const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
     if (!shown.has("dia")) stats.push({ label: "Diameter", value: r.dia + " mm" });
     if (!shown.has("gm")) stats.push({ label: "Weight", value: r.gm + " g/m" });
     if (!shown.has("falls") && r.falls) stats.push({ label: "Falls", value: String(r.falls) });
@@ -329,7 +346,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       pinned,
     });
     positionTip(tip, x, y, pinned);
-  }, [getColor, xAxis, yAxis]);
+  }, [getColor, xAxis, yAxis, sizeAxis]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
@@ -432,6 +449,13 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
         <button onClick={() => { const tmp = xAxis; setXAxis(yAxis); setYAxis(tmp); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
           style={{ padding: "4px 10px", fontSize: "11px", fontWeight: 700, borderRadius: "6px", border: `1px solid ${T.border}`, cursor: "pointer", background: "transparent", color: T.muted }}
           title="Swap axes">⇄</button>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
+          <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            <option value="none">— None —</option>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
       </div>
 
       {/* Rope type filter */}
@@ -481,13 +505,15 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
             const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
             const dry = (r.dry || "none").replace(/_/g, " ");
             const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
-            const shown = new Set([xAxis, yAxis]);
+            const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
+            const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
             const stats = [
               [xOpt.label.split(" (")[0], xOpt.fmt(r[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "")],
               [yOpt.label.split(" (")[0], yOpt.fmt(r[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "")],
+              ...(sOpt && r[sizeAxis] != null ? [[sOpt.label.split(" (")[0], sOpt.fmt(r[sizeAxis]) + (sOpt.unit ? " " + sOpt.unit : "")]] : []),
               ...(!shown.has("dia") ? [["Dia", `${r.dia} mm`]] : []),
               ...(!shown.has("gm") ? [["Weight", `${r.gm} g/m`]] : []),
-            ].slice(0, 4);
+            ].slice(0, 5);
             return (
               <>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
