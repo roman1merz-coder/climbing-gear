@@ -63,3 +63,29 @@
 - Evolv Home Pad: closure velcro→buckle, weight 15.0→16.8
 - Evolv Launch Pad: dims 145x108→152x122, thickness 12.0→12.7, weight 7.7→9.1
 - Escape XL Zone Plus: closure flap→buckle, thickness 12.0→12.7, weight 8.2→9.1
+
+## 2026-03-02: Batch 3a — Asana, Beal, Flashed, Mad Rock, Ocun, Organic (partial) — 57 fixes
+**Pads:** 20 | **Process:** WMR comparison → 2-source filter → MFR site verification for all items
+**5 reversals caught:** WMR was wrong on SuperHero handles, TripTick/VersaPad Pro/Drifter reconfigurable, Triple Air Light closure
+**30 items dropped:** MFR did not mention spec, insufficient independent sources
+
+- Asana Focus: fold_style taco→hinge, has_load_flap true→false, thickness 10.0→10.2
+- Asana G5 Big Pad: thickness 12.0→12.7, couch_mode true→false, has_hinge_protection true→false, reconfigurable true→false
+- Asana Rock Star Pad: thickness 2.0→2.5, fold_style hinge→none
+- Asana TripTick Trifold: thickness 7.0→7.6, has_load_flap true→false
+- Beal Addition Pad: fold_style taco→none
+- Beal Air Light: waist_belt true→false, couch_mode true→false
+- Flashed Big Squishy: thickness 13.0→13.3, bandolier_strap true→false, shoe_wipe true→false, couch_mode true→false, has_load_flap true→false, reconfigurable true→false, premium_carry_system false→true, carry_handles 4→3
+- Flashed Drifter: closure_system buckle→strap, thickness 10.0→10.7, has_load_flap true→false, premium_carry_system false→true
+- Flashed Hueco Pad: premium_carry_system false→true
+- Mad Rock Duo: thickness 13.0→12.7, weight 7.5→7.7, foam_layers 5→3, shoe_wipe false→true, couch_mode true→false, has_gear_pocket false→true
+- Mad Rock Mad Pad: thickness 12.0→12.7, weight 6.2→6.35, shoe_wipe false→true, reconfigurable false→true, recycled_materials full→none, chest_strap false→true, couch_mode false→true
+- Mad Rock R3: carry_handles 2→3
+- Mad Rock Triple Mad Pad: fold_style hinge→tri_fold, shell_denier 1680→600
+- Ocun Dominator FTS: closure_system velcro→buckle
+- Ocun Incubator FTS: reconfigurable true→false
+- Ocun Joker FTS: closure_system velcro→buckle, has_load_flap true→false
+- Ocun Moonwalk FTS: closure_system velcro→buckle
+- Ocun Paddy Sundance: shoe_wipe true→false, has_load_flap true→false, has_hinge_protection true→false, reconfigurable false→true
+- Ocun Sitcase Pad: shoulder_straps false→true, bandolier_strap false→true, has_gear_pocket false→true, reconfigurable false→true
+- Organic BackFourty Big Pad: closure_system buckle→flap
