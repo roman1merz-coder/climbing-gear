@@ -29,6 +29,8 @@ const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g &&
     brand: r.brand, model: r.model, slug: r.slug,
     dia: r.diameter_mm, falls: r.uiaa_falls, gm: r.weight_per_meter_g,
     impact: r.impact_force_kn, breakStr: r.breaking_strength_kn,
+    staticElong: r.static_elongation_pct || null,
+    dynElong: r.dynamic_elongation_pct || null,
     dry: r.dry_treatment || "none",
     triple: !!r.triple_rated, sheath: r.sheath_percentage,
     type: r.rope_type || "single",
@@ -37,56 +39,65 @@ const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g &&
     eurPerM: r.price_per_meter_eur_min || null,
   }));
 
-/* Polynomial curve data for single ropes (pre-computed) */
-const CX=[7.5,7.6,7.7,7.8,7.9,8.0,8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,9.0,9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,10.0,10.1,10.2,10.3,10.4,10.5,10.6,10.7,10.8,10.9,11.0,11.1,11.2,11.3,11.4];
-const CF=[2.585,2.949,3.288,3.601,3.892,4.163,4.415,4.651,4.872,5.082,5.281,5.472,5.657,5.838,6.018,6.197,6.379,6.565,6.757,6.958,7.169,7.393,7.631,7.886,8.16,8.454,8.771,9.114,9.483,9.881,10.311,10.773,11.271,11.806,12.38,12.996,13.655,14.36,15.113,15.915];
-const CG=[41.154,41.905,42.67,43.449,44.243,45.05,45.872,46.707,47.557,48.421,49.3,50.192,51.098,52.019,52.954,53.903,54.866,55.843,56.835,57.84,58.86,59.894,60.942,62.004,63.08,64.171,65.275,66.394,67.527,68.674,69.835,71.01,72.2,73.404,74.621,75.853,77.099,78.36,79.634,80.923];
-const SF=1.316, SG=1.660;
+/* ─── Axis options for free-choice dropdowns ─── */
+const AXIS_OPTIONS = [
+  { key: "dia",         label: "Diameter (mm)",            unit: "mm",  fmt: v => v.toFixed(1) },
+  { key: "gm",          label: "Weight (g/m)",             unit: "g/m", fmt: v => String(Math.round(v)) },
+  { key: "falls",       label: "UIAA Falls",               unit: "",    fmt: v => String(v) },
+  { key: "impact",      label: "Impact Force (kN)",         unit: "kN",  fmt: v => v.toFixed(1) },
+  { key: "staticElong", label: "Static Elongation (%)",     unit: "%",   fmt: v => v.toFixed(1) },
+  { key: "dynElong",    label: "Dynamic Elongation (%)",    unit: "%",   fmt: v => v.toFixed(1) },
+  { key: "sheath",      label: "Sheath (%)",                unit: "%",   fmt: v => String(Math.round(v)) },
+  { key: "eurPerM",     label: "Price (€/m)",               unit: "€/m", fmt: v => "€" + v.toFixed(2) },
+  { key: "fpg",         label: "Falls per g/m",             unit: "",    fmt: v => v.toFixed(3) },
+  { key: "breakStr",    label: "Break Strength (kN)",       unit: "kN",  fmt: v => v.toFixed(1) },
+];
+const AXIS_MAP = Object.fromEntries(AXIS_OPTIONS.map(a => [a.key, a]));
 
-/* Linear regression for single ropes: weight → UIAA falls */
-const FALLS_VS_GM_TREND = (() => {
-  const singles = ALL_ROPES.filter(r => r.type === "single" && r.falls && r.gm);
-  if (singles.length < 3) return null;
-  const n = singles.length;
-  const mx = singles.reduce((s, r) => s + r.gm, 0) / n;
-  const my = singles.reduce((s, r) => s + r.falls, 0) / n;
+/* Map old metric keys → x/y pairs for backward-compat initialMetric prop */
+const METRIC_TO_AXES = {
+  fpgVsPrice: { x: "eurPerM", y: "falls" },
+  fpgVsCpg:   { x: "eurPerM", y: "fpg" },
+  fallsVsGm:  { x: "gm",     y: "falls" },
+  falls:      { x: "dia",    y: "falls" },
+  gm:         { x: "dia",    y: "gm" },
+  breakStr:   { x: "dia",    y: "breakStr" },
+};
+
+/* ─── Compute linear trend on the fly for any x/y combo ─── */
+function computeTrend(data, xKey, yKey) {
+  const pts = data.filter(r => r[xKey] != null && r[yKey] != null);
+  if (pts.length < 4) return null;
+  const n = pts.length;
+  const mx = pts.reduce((s, r) => s + r[xKey], 0) / n;
+  const my = pts.reduce((s, r) => s + r[yKey], 0) / n;
   let num = 0, den = 0;
-  singles.forEach(r => { num += (r.gm - mx) * (r.falls - my); den += (r.gm - mx) ** 2; });
+  pts.forEach(r => { num += (r[xKey] - mx) * (r[yKey] - my); den += (r[xKey] - mx) ** 2; });
+  if (Math.abs(den) < 1e-10) return null;
   const slope = num / den, intercept = my - slope * mx;
-  const ss = singles.reduce((s, r) => s + (r.falls - (slope * r.gm + intercept)) ** 2, 0);
+  const ss = pts.reduce((s, r) => s + (r[yKey] - (slope * r[xKey] + intercept)) ** 2, 0);
   const std = Math.sqrt(ss / (n - 2));
-  return { slope, intercept, std };
-})();
+  // R² for label
+  const ssTot = pts.reduce((s, r) => s + (r[yKey] - my) ** 2, 0);
+  const r2 = ssTot > 0 ? 1 - ss / ssTot : 0;
+  return { slope, intercept, std, r2 };
+}
 
-/* Linear regression for single ropes: ¢/m → UIAA falls */
-const FALLS_VS_CPM_TREND = (() => {
-  const singles = ALL_ROPES.filter(r => r.type === "single" && r.falls && r.eurPerM);
-  if (singles.length < 3) return null;
-  const n = singles.length;
-  const mx = singles.reduce((s, r) => s + r.eurPerM, 0) / n;
-  const my = singles.reduce((s, r) => s + r.falls, 0) / n;
-  let num = 0, den = 0;
-  singles.forEach(r => { num += (r.eurPerM - mx) * (r.falls - my); den += (r.eurPerM - mx) ** 2; });
-  const slope = num / den, intercept = my - slope * mx;
-  const std = Math.sqrt(singles.reduce((s, r) => s + (r.falls - (slope * r.eurPerM + intercept)) ** 2, 0) / (n - 2));
-  return { slope, intercept, std };
-})();
-
-/* Linear regression for single ropes: ¢/m → falls/g */
-const FPG_VS_CPM_TREND = (() => {
-  const singles = ALL_ROPES.filter(r => r.type === "single" && r.fpg && r.eurPerM);
-  if (singles.length < 3) return null;
-  const n = singles.length;
-  const mx = singles.reduce((s, r) => s + r.eurPerM, 0) / n;
-  const my = singles.reduce((s, r) => s + r.fpg, 0) / n;
-  let num = 0, den = 0;
-  singles.forEach(r => { num += (r.eurPerM - mx) * (r.fpg - my); den += (r.eurPerM - mx) ** 2; });
-  const slope = num / den, intercept = my - slope * mx;
-  const std = Math.sqrt(singles.reduce((s, r) => s + (r.fpg - (slope * r.eurPerM + intercept)) ** 2, 0) / (n - 2));
-  return { slope, intercept, std };
-})();
-
-/* Static rope trend removed — static ropes excluded from frontend */
+/* ─── Dynamic axis bounds for a given field ─── */
+function fieldBounds(data, key) {
+  const vals = data.filter(r => r[key] != null).map(r => r[key]);
+  if (!vals.length) return { min: 0, max: 10, step: 1 };
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  const range = hi - lo || 1;
+  // Pick a nice step
+  const rawStep = range / 8;
+  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const niceSteps = [1, 2, 2.5, 5, 10];
+  const step = niceSteps.map(s => s * mag).find(s => s >= rawStep) || mag * 10;
+  const min = Math.floor(lo / step) * step - step;
+  const max = Math.ceil(hi / step) * step + step;
+  return { min, max, step };
+}
 
 /* ─── Main Component ─── */
 export default function RopeScatterChart({ isMobile, initialMetric, initialColorBy }) {
@@ -96,7 +107,10 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   const hovRef = useRef(null);
   const pinnedRef = useRef(null);
 
-  const [metric, setMetric] = useState(initialMetric || "fallsVsGm");
+  /* Convert legacy initialMetric to x/y axes */
+  const initAxes = METRIC_TO_AXES[initialMetric] || { x: "dynElong", y: "impact" };
+  const [xAxis, setXAxis] = useState(initAxes.x);
+  const [yAxis, setYAxis] = useState(initAxes.y);
   const [colorBy, setColorBy] = useState(initialColorBy || "type");
   const [mobileItem, setMobileItem] = useState(null);
 
@@ -104,10 +118,6 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   const [enabledTypes, setEnabledTypes] = useState(new Set(["single"]));
   const onlyStatic = false; // static ropes excluded from frontend
   const hasStatic = false;
-
-  useEffect(() => {
-    if (onlyStatic && (metric === "falls" || metric === "fallsVsGm" || metric === "fpgVsPrice" || metric === "fpgVsCpg")) setMetric("gm");
-  }, [onlyStatic, metric]);
 
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
   const [hiddenDry, setHiddenDry] = useState(new Set());
@@ -127,78 +137,33 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   const DRY_LABELS = { none: "Untreated", sheath: "Sheath", sheath_only: "Sheath", core: "Core", core_and_sheath: "Core + Sheath", full_impregnation: "Full" };
   const DRY_LIST = useMemo(() => [...new Set(ALL_ROPES.map(r => r.dry))].sort(), []);
 
-  /* Apply filters */
+  /* Apply filters — exclude ropes missing either axis value */
   const filtered = useMemo(() => ALL_ROPES.filter(r => {
     if (!enabledTypes.has(r.type)) return false;
     if (hiddenBrands.has(r.brand)) return false;
     if (hiddenDry.has(r.dry)) return false;
     if (hiddenDia.has(diaGroup(r.dia))) return false;
-    if (metric === "falls" && !r.falls) return false;
-    if (metric === "fallsVsGm" && !r.falls) return false;
-    if (metric === "fpgVsPrice" && (!r.falls || !r.eurPerM)) return false;
-    if (metric === "fpgVsCpg" && (!r.fpg || !r.eurPerM)) return false;
-    if (metric === "breakStr" && !r.breakStr) return false;
+    if (r[xAxis] == null || r[yAxis] == null) return false;
     return true;
-  }), [enabledTypes, hiddenBrands, hiddenDry, hiddenDia, metric]);
+  }), [enabledTypes, hiddenBrands, hiddenDry, hiddenDia, xAxis, yAxis]);
 
-  /* Dynamic axis bounds */
-  const axisBounds = useMemo(() => {
-    if (!filtered.length) return { diaMin: 7.3, diaMax: 11.3, fallsMax: 18, gmMin: 20, gmMax: 82, bsMin: 15, bsMax: 40, cpmMin: 1, cpmMax: 10, fpgMin: 0.06, fpgMax: 0.22 };
-    const dias = filtered.map(r => r.dia);
-    const diaMin = Math.floor(Math.min(...dias) * 2 - 1) / 2;
-    const diaMax = Math.ceil(Math.max(...dias) * 2 + 1) / 2;
-    const falls = filtered.filter(r => r.falls).map(r => r.falls);
-    const gms = filtered.map(r => r.gm);
-    const bss = filtered.filter(r => r.breakStr).map(r => r.breakStr);
-    const cpgs = filtered.filter(r => r.eurPerM).map(r => r.eurPerM);
-    const fpgs = filtered.filter(r => r.fpg).map(r => r.fpg);
+  /* Dynamic axis config from selections */
+  const cfg = useMemo(() => {
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const xb = fieldBounds(filtered, xAxis);
+    const yb = fieldBounds(filtered, yAxis);
     return {
-      diaMin: Math.max(5, diaMin), diaMax: Math.min(14, diaMax),
-      fallsMax: Math.ceil((Math.max(...falls, 4)) / 2) * 2 + 2,
-      gmMin: Math.floor(Math.min(...gms) / 5) * 5 - 5,
-      gmMax: Math.ceil(Math.max(...gms) / 5) * 5 + 5,
-      bsMin: bss.length ? Math.floor(Math.min(...bss) / 5) * 5 - 5 : 15,
-      bsMax: bss.length ? Math.ceil(Math.max(...bss) / 5) * 5 + 5 : 40,
-      cpmMin: cpgs.length ? Math.floor(Math.min(...cpgs)) - 1 : 1,
-      cpmMax: cpgs.length ? Math.ceil(Math.max(...cpgs)) + 1 : 10,
-      fpgMin: fpgs.length ? Math.floor(Math.min(...fpgs) * 50) / 50 - 0.02 : 0.06,
-      fpgMax: fpgs.length ? Math.ceil(Math.max(...fpgs) * 50) / 50 + 0.02 : 0.22,
+      xField: xAxis, xLabel: xOpt.label, xMin: xb.min, xMax: xb.max, xStep: xb.step,
+      yField: yAxis, yLabel: yOpt.label, yMin: yb.min, yMax: yb.max, yStep: yb.step,
+      sub: `${filtered.length} ropes · ${xOpt.label} vs ${yOpt.label}`,
     };
-  }, [filtered]);
+  }, [filtered, xAxis, yAxis]);
 
-  const cfgs = useMemo(() => ({
-    fpgVsPrice: {
-      xField: "eurPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
-      yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
-      curveY: null, std: 0, sub: `${filtered.length} ropes · UIAA falls vs cost per metre — how much durability does your money buy?`, color: "#22c55e",
-    },
-    fpgVsCpg: {
-      xField: "eurPerM", xLabel: "Cost (€/m)", xMin: axisBounds.cpmMin, xMax: axisBounds.cpmMax, xStep: 1,
-      yField: "fpg", yLabel: "Falls per g/m", yMin: axisBounds.fpgMin, yMax: axisBounds.fpgMax, yStep: 0.02,
-      curveY: null, std: 0, sub: `${filtered.length} ropes · Durability efficiency vs cost — top-right = best value`, color: "#a78bfa",
-    },
-    fallsVsGm: {
-      xField: "gm", xLabel: "Weight (g/m)", xMin: axisBounds.gmMin, xMax: axisBounds.gmMax, xStep: 5,
-      yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
-      curveY: null, std: 0, sub: `${filtered.length} ropes · UIAA falls vs weight`, color: T.accent,
-    },
-    falls: {
-      xField: "dia", xLabel: "Diameter (mm)", xMin: axisBounds.diaMin, xMax: axisBounds.diaMax, xStep: (axisBounds.diaMax - axisBounds.diaMin) > 4 ? 1 : 0.5,
-      yField: "falls", yLabel: "UIAA Falls", yMin: 0, yMax: axisBounds.fallsMax, yStep: 2,
-      curveY: CF, std: SF, sub: `${filtered.length} ropes · Cubic fit · R² = 0.575`, color: T.accent,
-    },
-    gm: {
-      xField: "dia", xLabel: "Diameter (mm)", xMin: axisBounds.diaMin, xMax: axisBounds.diaMax, xStep: (axisBounds.diaMax - axisBounds.diaMin) > 4 ? 1 : 0.5,
-      yField: "gm", yLabel: "Weight (g/m)", yMin: axisBounds.gmMin, yMax: axisBounds.gmMax, yStep: 5,
-      curveY: CG, std: SG, sub: `${filtered.length} ropes · Quadratic fit · R² = 0.919`, color: T.blue,
-    },
-    breakStr: {
-      xField: "dia", xLabel: "Diameter (mm)", xMin: axisBounds.diaMin, xMax: axisBounds.diaMax, xStep: (axisBounds.diaMax - axisBounds.diaMin) > 4 ? 1 : 0.5,
-      yField: "breakStr", yLabel: "Break Strength (kN)", yMin: axisBounds.bsMin, yMax: axisBounds.bsMax, yStep: 5,
-      curveY: null, std: 0, sub: `${filtered.length} ropes · Static rope break strength`, color: "#ecc94b",
-    },
-  }), [filtered.length, axisBounds]);
-  const cfg = cfgs[metric];
+  /* Linear trend for single ropes */
+  const trend = useMemo(() => {
+    const singles = filtered.filter(r => r.type === "single");
+    return computeTrend(singles, xAxis, yAxis);
+  }, [filtered, xAxis, yAxis]);
 
   /* Color function */
   const getColor = useCallback((r) => {
@@ -264,7 +229,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     ctx.setTransform(2, 0, 0, 2, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
-    const { xField, xLabel, xMin, xMax, xStep, yField, yMin, yMax, yStep, curveY, std } = cfg;
+    const { xField, xLabel, xMin, xMax, xStep, yField, yMin, yMax, yStep } = cfg;
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
@@ -275,73 +240,18 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
     // Ticks + axis labels
-    const xFmt = xField === "dia" ? (x => x.toFixed(1)) : xField === "eurPerM" ? (x => "€" + x.toFixed(2)) : (x => String(Math.round(x)));
-    const yFmt = yField === "fpg" ? (y => y.toFixed(2)) : (y => String(y));
+    const xFmt = AXIS_MAP[xField]?.fmt || (x => String(x));
+    const yFmt = AXIS_MAP[yField]?.fmt || (y => String(y));
     const firstX = Math.ceil(xMin / xStep) * xStep;
     drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
 
     // Data count badge
     drawCountBadge(ctx, PAD, W, filtered.length, "ropes");
 
-    // Trend line for single ropes (polished) — only for diameter-based charts
-    if (enabledTypes.has("single") && curveY && xField === "dia") {
-      // 2σ band with gradient
-      ctx.beginPath();
-      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + 2 * std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
-      for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - 2 * std));
-      ctx.closePath();
-      const g2 = ctx.createLinearGradient(0, sy(yMax), 0, sy(yMin));
-      g2.addColorStop(0, "rgba(99,179,237,.06)"); g2.addColorStop(0.5, "rgba(99,179,237,.04)"); g2.addColorStop(1, "rgba(99,179,237,.01)");
-      ctx.fillStyle = g2; ctx.fill();
-
-      // 1σ band
-      ctx.beginPath();
-      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
-      for (let i = CX.length - 1; i >= 0; i--) ctx.lineTo(sx(CX[i]), sy(curveY[i] - std));
-      ctx.closePath(); ctx.fillStyle = "rgba(99,179,237,.08)"; ctx.fill();
-
-      // 1σ edge lines
-      ctx.strokeStyle = "rgba(99,179,237,.2)"; ctx.lineWidth = 0.8; ctx.setLineDash([3, 4]);
-      ctx.beginPath();
-      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] + std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
-      ctx.stroke();
-      ctx.beginPath();
-      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i] - std); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
-      ctx.stroke(); ctx.setLineDash([]);
-
-      // Main trend line (thicker)
-      ctx.strokeStyle = "rgba(99,179,237,.6)"; ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      for (let i = 0; i < CX.length; i++) { const px = sx(CX[i]), py = sy(curveY[i]); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
-      ctx.stroke();
-
-      // Inline label
-      const li = Math.floor(CX.length * 0.65);
-      const lx = sx(CX[li]), ly = sy(curveY[li] + std + (yMax - yMin) * 0.04);
-      ctx.font = "600 10px 'Instrument Sans', system-ui";
-      const lbl = "Trend (single ropes)";
-      const lw = ctx.measureText(lbl).width + 10;
-      ctx.fillStyle = "rgba(15,17,25,.8)";
-      rrect(ctx, lx - lw / 2, ly - 8, lw, 16, 3); ctx.fill();
-      ctx.fillStyle = "rgba(99,179,237,.8)"; ctx.textAlign = "center";
-      ctx.fillText(lbl, lx, ly + 3);
-    }
-
-    // Static rope trend removed — static ropes excluded from frontend
-
-    // Linear trend for falls vs weight
-    if (metric === "fallsVsGm" && enabledTypes.has("single") && FALLS_VS_GM_TREND) {
-      drawLinearTrend(ctx, sx, sy, FALLS_VS_GM_TREND.slope, FALLS_VS_GM_TREND.intercept, FALLS_VS_GM_TREND.std, xMin, xMax, yMin, yMax, { color: T.accent, label: "Trend (single ropes)" });
-    }
-
-    // Linear trend for falls vs ¢/m
-    if (metric === "fpgVsPrice" && enabledTypes.has("single") && FALLS_VS_CPM_TREND) {
-      drawLinearTrend(ctx, sx, sy, FALLS_VS_CPM_TREND.slope, FALLS_VS_CPM_TREND.intercept, FALLS_VS_CPM_TREND.std, xMin, xMax, yMin, yMax, { color: "#22c55e", label: "Trend (single ropes)" });
-    }
-
-    // Linear trend for falls/weight vs ¢/m
-    if (metric === "fpgVsCpg" && enabledTypes.has("single") && FPG_VS_CPM_TREND) {
-      drawLinearTrend(ctx, sx, sy, FPG_VS_CPM_TREND.slope, FPG_VS_CPM_TREND.intercept, FPG_VS_CPM_TREND.std, xMin, xMax, yMin, yMax, { color: "#a78bfa", label: "Trend (single ropes)" });
+    // Linear trend for single ropes (computed dynamically for any axis combo)
+    if (enabledTypes.has("single") && trend) {
+      const r2Str = trend.r2 > 0.01 ? ` · R²=${trend.r2.toFixed(2)}` : "";
+      drawLinearTrend(ctx, sx, sy, trend.slope, trend.intercept, trend.std, xMin, xMax, yMin, yMax, { color: T.accent, label: `Trend (single)${r2Str}` });
     }
 
     // Crosshair for hovered dot
@@ -368,7 +278,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       const px = sx(hovered[xField]), py = sy(hovered[yField]);
       drawShape(ctx, hovered, px, py, isMobile ? 3 : 4, true);
     }
-  }, [metric, isMobile, cfg, filtered, enabledTypes, drawShape]);
+  }, [xAxis, yAxis, isMobile, cfg, filtered, enabledTypes, trend, drawShape]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -392,32 +302,34 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     return closest;
   }, [isMobile, cfg, filtered]);
 
-  /* Desktop tooltip */
+  /* Desktop tooltip — shows axis-selected fields prominently + core specs */
   const showTip = useCallback((r, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
     const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
     const stats = [
-      { label: "Diameter", value: r.dia + " mm" },
-      { label: "Weight", value: r.gm + " g/m" },
+      { label: xOpt.label.split(" (")[0], value: xOpt.fmt(r[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "") },
+      { label: yOpt.label.split(" (")[0], value: yOpt.fmt(r[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "") },
     ];
-    if (r.falls) stats.push({ label: "UIAA Falls", value: String(r.falls) });
-    if (r.price) stats.push({ label: "Price", value: "€" + r.price.toFixed(2) + "/m" });
-    if (r.eurPerM) stats.push({ label: "€/m", value: "€" + r.eurPerM.toFixed(2) });
-    if (r.impact) stats.push({ label: "Impact", value: r.impact + " kN" });
-    if (r.breakStr) stats.push({ label: "Break Str.", value: r.breakStr + " kN" });
+    // Add core specs not already shown
+    const shown = new Set([xAxis, yAxis]);
+    if (!shown.has("dia")) stats.push({ label: "Diameter", value: r.dia + " mm" });
+    if (!shown.has("gm")) stats.push({ label: "Weight", value: r.gm + " g/m" });
+    if (!shown.has("falls") && r.falls) stats.push({ label: "Falls", value: String(r.falls) });
+    if (!shown.has("eurPerM") && r.eurPerM) stats.push({ label: "€/m", value: "€" + r.eurPerM.toFixed(2) });
 
     const dry = (r.dry || "none").replace(/_/g, " ");
     tip.innerHTML = buildTipHTML({
       name: `${r.brand} ${r.model}`,
       color: getColor(r),
-      stats,
+      stats: stats.slice(0, 6),
       details: `${typeLabel} · Dry: ${dry}${r.triple ? " · Triple rated" : ""}`,
       link: `/rope/${r.slug}`,
       pinned,
     });
     positionTip(tip, x, y, pinned);
-  }, [getColor]);
+  }, [getColor, xAxis, yAxis]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
@@ -486,10 +398,14 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
   }, [navigate]);
 
   /* ─── Styles ─── */
-  const btnStyle = (active, color) => ({
-    padding: "5px 16px", fontSize: "12px", fontWeight: 600, borderRadius: "6px", border: "none", cursor: "pointer",
-    background: active ? color : T.surface, color: active ? "#fff" : T.muted,
-  });
+  const selectStyle = {
+    padding: "5px 10px", fontSize: "12px", fontWeight: 600, borderRadius: "6px",
+    border: `1px solid ${T.border}`, cursor: "pointer", background: T.surface, color: T.text,
+    outline: "none", appearance: "none", WebkitAppearance: "none",
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7462'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", backgroundSize: "10px 6px",
+    paddingRight: "24px", minWidth: isMobile ? "110px" : "140px",
+  };
   const filterBtn = (active) => ({
     padding: "3px 8px", fontSize: "10px", fontWeight: 600, borderRadius: "4px", border: "none", cursor: "pointer",
     background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
@@ -499,19 +415,23 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
 
   return (
     <ChartContainer title="Rope Spec Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
-      {/* Metric buttons */}
-      <div style={{ display: "flex", gap: "6px", marginBottom: "10px", flexWrap: "wrap" }}>
-        {Object.entries({
-          ...(!onlyStatic ? { fpgVsPrice: { label: "Falls vs €/m", color: "#22c55e" } } : {}),
-          ...(!onlyStatic ? { fpgVsCpg: { label: "Falls/Weight vs €/m", color: "#a78bfa" } } : {}),
-          ...(!onlyStatic ? { fallsVsGm: { label: "Falls vs Weight", color: T.accent } } : {}),
-          ...(!onlyStatic ? { falls: { label: "Falls vs Diameter", color: T.accent } } : {}),
-          gm: { label: "Weight vs Diameter", color: T.blue },
-          ...(hasStatic ? { breakStr: { label: "Break Strength", color: "#ecc94b" } } : {}),
-        }).map(([k, c]) => (
-          <button key={k} onClick={() => { setMetric(k); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }}
-            style={btnStyle(metric === k, c.color)}>{c.label}</button>
-        ))}
+      {/* Axis selectors */}
+      <div style={{ display: "flex", gap: isMobile ? "8px" : "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>X axis</span>
+          <select value={xAxis} onChange={e => { setXAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Y axis</span>
+          <select value={yAxis} onChange={e => { setYAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <button onClick={() => { const tmp = xAxis; setXAxis(yAxis); setYAxis(tmp); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
+          style={{ padding: "4px 10px", fontSize: "11px", fontWeight: 700, borderRadius: "6px", border: `1px solid ${T.border}`, cursor: "pointer", background: "transparent", color: T.muted }}
+          title="Swap axes">⇄</button>
       </div>
 
       {/* Rope type filter */}
@@ -560,13 +480,13 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
             const r = mobileItem;
             const typeLabel = r.type.charAt(0).toUpperCase() + r.type.slice(1);
             const dry = (r.dry || "none").replace(/_/g, " ");
+            const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+            const shown = new Set([xAxis, yAxis]);
             const stats = [
-              ["Dia", `${r.dia} mm`], ["Weight", `${r.gm} g/m`],
-              ...(r.falls ? [["Falls", `${r.falls}`]] : []),
-              ...(r.price ? [["€/m", `€${r.price.toFixed(2)}`]] : []),
-              ...(r.eurPerM ? [["€/m", `€${r.eurPerM.toFixed(2)}`]] : []),
-              ...(r.impact ? [["Impact", `${r.impact} kN`]] : []),
-              ...(r.breakStr ? [["Break", `${r.breakStr} kN`]] : []),
+              [xOpt.label.split(" (")[0], xOpt.fmt(r[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "")],
+              [yOpt.label.split(" (")[0], yOpt.fmt(r[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "")],
+              ...(!shown.has("dia") ? [["Dia", `${r.dia} mm`]] : []),
+              ...(!shown.has("gm") ? [["Weight", `${r.gm} g/m`]] : []),
             ].slice(0, 4);
             return (
               <>
@@ -636,7 +556,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "8px", flexWrap: "wrap", gap: "4px" }}>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
           {isMobile ? "Tap a dot for specs · Tap legend to filter" : "Click a dot for specs & link · Click legend to filter"}
-          {enabledTypes.has("single") && cfg.xField === "dia" && cfg.curveY && " · Trend line = single ropes only"}
+          {enabledTypes.has("single") && trend && " · Trend line = single ropes only"}
         </span>
         <span style={{ fontSize: "10px", color: "#4a5568", display: "flex", alignItems: "center", gap: "8px" }}>
           {enabledTypes.has("half") && "◇ Half"}{enabledTypes.has("half") && enabledTypes.has("twin") && " · "}{enabledTypes.has("twin") && "△ Twin"}
