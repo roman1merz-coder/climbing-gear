@@ -372,6 +372,49 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 
+  // SIMILAR PRODUCTS: must be before early return to keep hook count stable
+  const similar = useMemo(() => {
+    if (!pad) return [];
+    const tUse = ensureArray(pad.best_use);
+    return crashpads
+      .filter(p => p.slug !== pad.slug)
+      .map(p => {
+        let score = 0;
+        if (p.pad_size_category === pad.pad_size_category) score += 20;
+        const pUse = ensureArray(p.best_use);
+        const useOverlap = pUse.filter(u => tUse.includes(u)).length;
+        if (useOverlap > 0) score += Math.min(15, useOverlap * 5);
+        const pArea = (p.length_open_cm || 0) * (p.width_open_cm || 0);
+        const tArea = (pad.length_open_cm || 0) * (pad.width_open_cm || 0);
+        if (pArea > 0 && tArea > 0) {
+          const ratio = Math.min(pArea, tArea) / Math.max(pArea, tArea);
+          if (ratio >= 0.85) score += 15;
+          else if (ratio >= 0.7) score += 8;
+          else if (ratio >= 0.5) score += 3;
+        }
+        if (p.thickness_cm && pad.thickness_cm) {
+          const diff = Math.abs(p.thickness_cm - pad.thickness_cm);
+          if (diff <= 1) score += 10;
+          else if (diff <= 3) score += 5;
+        }
+        if (p.weight_kg && pad.weight_kg) {
+          const diff = Math.abs(p.weight_kg - pad.weight_kg);
+          if (diff <= 0.5) score += 10;
+          else if (diff <= 1.5) score += 5;
+        }
+        if (p.fold_style && p.fold_style === pad.fold_style) score += 5;
+        if (p.current_price_eur && pad.current_price_eur) {
+          const ratio = Math.min(p.current_price_eur, pad.current_price_eur) / Math.max(p.current_price_eur, pad.current_price_eur);
+          if (ratio >= 0.8) score += 15;
+          else if (ratio >= 0.6) score += 8;
+        }
+        if (p.brand !== pad.brand) score += 10;
+        return { item: p, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 6);
+  }, [pad, crashpads]);
+
   if (!pad) {
     return (
       <div style={{ background: T.bg, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "16px" }}>
@@ -389,57 +432,6 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const padPrices = priceData[pad.slug] || [];
   const bestPadOffer = padPrices.find(p => p.inStock && p.price > 0) || padPrices[0];
   const bestPadUrl = bestPadOffer?.url && bestPadOffer.url !== "#" ? bestPadOffer.url : null;
-
-  // SIMILAR PRODUCTS: 6 crashpads scored by spec similarity, preferring different brands
-  const similar = useMemo(() => {
-    if (!pad) return [];
-    const tUse = ensureArray(pad.best_use);
-    return crashpads
-      .filter(p => p.slug !== pad.slug)
-      .map(p => {
-        let score = 0;
-        // Same size category (20 pts)
-        if (p.pad_size_category === pad.pad_size_category) score += 20;
-        // Use case overlap (15 pts)
-        const pUse = ensureArray(p.best_use);
-        const useOverlap = pUse.filter(u => tUse.includes(u)).length;
-        if (useOverlap > 0) score += Math.min(15, useOverlap * 5);
-        // Area proximity (15 pts)
-        const pArea = (p.length_open_cm || 0) * (p.width_open_cm || 0);
-        const tArea = (pad.length_open_cm || 0) * (pad.width_open_cm || 0);
-        if (pArea > 0 && tArea > 0) {
-          const ratio = Math.min(pArea, tArea) / Math.max(pArea, tArea);
-          if (ratio >= 0.85) score += 15;
-          else if (ratio >= 0.7) score += 8;
-          else if (ratio >= 0.5) score += 3;
-        }
-        // Thickness proximity (10 pts)
-        if (p.thickness_cm && pad.thickness_cm) {
-          const diff = Math.abs(p.thickness_cm - pad.thickness_cm);
-          if (diff <= 1) score += 10;
-          else if (diff <= 3) score += 5;
-        }
-        // Weight proximity (10 pts)
-        if (p.weight_kg && pad.weight_kg) {
-          const diff = Math.abs(p.weight_kg - pad.weight_kg);
-          if (diff <= 0.5) score += 10;
-          else if (diff <= 1.5) score += 5;
-        }
-        // Fold style match (5 pts)
-        if (p.fold_style && p.fold_style === pad.fold_style) score += 5;
-        // Price proximity (15 pts)
-        if (p.current_price_eur && pad.current_price_eur) {
-          const ratio = Math.min(p.current_price_eur, pad.current_price_eur) / Math.max(p.current_price_eur, pad.current_price_eur);
-          if (ratio >= 0.8) score += 15;
-          else if (ratio >= 0.6) score += 8;
-        }
-        // Different brand bonus (10 pts)
-        if (p.brand !== pad.brand) score += 10;
-        return { item: p, score };
-      })
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 6);
-  }, [pad, crashpads]);
 
   return (
     <div style={{ background: T.bg, minHeight: "100vh", fontFamily: T.font, color: T.text }}>
