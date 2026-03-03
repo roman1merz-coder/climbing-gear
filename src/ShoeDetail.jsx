@@ -714,8 +714,8 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
 
 // ─── Similar Products Card (with hero image) ───
 function SimilarCard({ shoe, onClick, similarity, compact }) {
-  const discount = shoe.price_uvp_eur && shoe.current_price_eur
-    ? Math.round(((shoe.price_uvp_eur - shoe.current_price_eur) / shoe.price_uvp_eur) * 100) : 0;
+  // SimilarCard has no live prices — don't show discount from seed data
+  const discount = 0;
   const img = shoe.image_url || "/images/placeholder.svg";
   return (
     <button onClick={onClick} style={{
@@ -858,8 +858,9 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
 
   // Use live lowest price when available, otherwise fall back to seed price
   const effectivePrice = liveBestPrice || shoe.current_price_eur;
-  const discount = shoe.price_uvp_eur && effectivePrice
-    ? (shoe.price_uvp_eur - effectivePrice) / shoe.price_uvp_eur : 0;
+  // Only compute discount when we have a real crawled retailer price
+  const discount = liveBestPrice && shoe.price_uvp_eur && liveBestPrice < shoe.price_uvp_eur
+    ? (shoe.price_uvp_eur - liveBestPrice) / shoe.price_uvp_eur : 0;
 
   // Factor 1: Price vs MSRP (30%)
   let ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
@@ -1007,8 +1008,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const bestOffer = prices.find(p => p.inStock && p.price === liveBestPrice) || prices[0];
   const bestOfferUrl = bestOffer?.url && bestOffer.url !== "#" ? bestOffer.url : null;
   const intel = getPriceIntelligence(shoe, prices, history, liveBestPrice);
-  const discount = shoe.price_uvp_eur && effectivePrice && effectivePrice < shoe.price_uvp_eur
-    ? Math.round(((shoe.price_uvp_eur - effectivePrice) / shoe.price_uvp_eur) * 100) : 0;
+  // Only show discount when we have a real crawled retailer price below UVP
+  const discount = liveBestPrice && shoe.price_uvp_eur && liveBestPrice < shoe.price_uvp_eur
+    ? Math.round(((shoe.price_uvp_eur - liveBestPrice) / shoe.price_uvp_eur) * 100) : 0;
 
   return (
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>

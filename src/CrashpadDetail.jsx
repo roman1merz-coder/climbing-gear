@@ -428,8 +428,11 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const sc = SIZE_COLORS[pad.pad_size_category] || SIZE_COLORS.medium;
   const area = ((pad.length_open_cm * pad.width_open_cm) / 10000).toFixed(2);
   const volume = ((pad.length_open_cm * pad.width_open_cm * pad.thickness_cm) / 1000).toFixed(1);
-  const hasDiscount = pad.price_uvp_eur > pad.current_price_eur;
   const padPrices = priceData[pad.slug] || [];
+  const livePadPrices = padPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const livePadBest = livePadPrices.length > 0 ? Math.min(...livePadPrices) : null;
+  // Only show discount when we have a real crawled retailer price below UVP
+  const hasDiscount = livePadBest && pad.price_uvp_eur && livePadBest < pad.price_uvp_eur;
   const bestPadOffer = padPrices.find(p => p.inStock && p.price > 0) || padPrices[0];
   const bestPadUrl = bestPadOffer?.url && bestPadOffer.url !== "#" ? bestPadOffer.url : null;
 
@@ -625,7 +628,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
                     </div>
                   </div>
                   <div style={{ fontSize: "11px", color: T.muted, lineHeight: 1.5 }}>
-                    {hasDiscount ? `${Math.round(((pad.price_uvp_eur - pad.current_price_eur) / pad.price_uvp_eur) * 100)}% below UVP (€${pad.price_uvp_eur})` : "At or near full UVP"}
+                    {hasDiscount ? `${Math.round(((pad.price_uvp_eur - livePadBest) / pad.price_uvp_eur) * 100)}% below UVP (€${pad.price_uvp_eur})` : "At or near full UVP"}
                   </div>
                 </div>
 

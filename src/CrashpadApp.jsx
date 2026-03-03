@@ -405,8 +405,9 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
   const livePrices = cPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
   const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
   const effectivePrice = liveBestPrice || d.current_price_eur;
-  const hasDiscount = d.price_uvp_eur && effectivePrice && effectivePrice < d.price_uvp_eur;
-  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - effectivePrice) / d.price_uvp_eur) * 100) : 0;
+  // Only show discount when we have a real crawled retailer price below UVP
+  const hasDiscount = liveBestPrice && d.price_uvp_eur && liveBestPrice < d.price_uvp_eur;
+  const discountPct = hasDiscount ? Math.round(((d.price_uvp_eur - liveBestPrice) / d.price_uvp_eur) * 100) : 0;
   const sizeColor = SIZE_COLORS[d.pad_size_category]?.color || "#60a5fa";
   const bestUrl = (cPrices.find(p => p.inStock && p.price > 0) || cPrices[0])?.url;
   const buyUrl = bestUrl && bestUrl !== "#" ? bestUrl : null;
@@ -675,13 +676,13 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
             )}
           </div>
           <div>
-            {d.price_uvp_eur > effectivePrice && (
+            {liveBestPrice && d.price_uvp_eur && liveBestPrice < d.price_uvp_eur && (
               <>
                 <span style={{ fontSize: "12px", color: "#7a7462", textDecoration: "line-through", fontFamily: "'DM Mono',monospace" }}>
                   €{d.price_uvp_eur}
                 </span>
                 <span style={{ fontSize: "11px", fontWeight: 600, color: "#22c55e", marginLeft: "6px" }}>
-                  -{Math.round(((d.price_uvp_eur - effectivePrice) / d.price_uvp_eur) * 100)}%
+                  -{Math.round(((d.price_uvp_eur - liveBestPrice) / d.price_uvp_eur) * 100)}%
                 </span>
               </>
             )}

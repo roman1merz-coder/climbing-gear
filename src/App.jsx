@@ -507,9 +507,10 @@ function Card({ shoe, onClick, priceData, compact }) {
   const livePrices = (priceData?.[d.slug] || []).filter(p => p.inStock && p.price > 0).map(p => p.price);
   const liveBestPrice = livePrices.length > 0 ? Math.min(...livePrices) : null;
   const effectivePrice = liveBestPrice || d.current_price_eur;
+  // Only show discount when we have a real crawled retailer price below UVP
   const disc =
-    d.price_uvp_eur && effectivePrice
-      ? Math.round(((d.price_uvp_eur - effectivePrice) / d.price_uvp_eur) * 100)
+    liveBestPrice && d.price_uvp_eur && liveBestPrice < d.price_uvp_eur
+      ? Math.round(((d.price_uvp_eur - liveBestPrice) / d.price_uvp_eur) * 100)
       : 0;
   const img =
     d.image_url ||
@@ -656,7 +657,7 @@ function Card({ shoe, onClick, priceData, compact }) {
           >
             {d.model}
           </span>
-          {effectivePrice && effectivePrice < d.price_uvp_eur && (
+          {disc > 0 && (
             <div style={{ display: "flex", alignItems: "baseline", gap: "3px", flexShrink: 0 }}>
               <span
                 style={{

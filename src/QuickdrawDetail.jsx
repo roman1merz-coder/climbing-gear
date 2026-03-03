@@ -231,7 +231,11 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
   const certs = ensureArray(d.certification);
   const availableLengths = ensureArray(d.available_lengths_cm);
   const price = d.price_eur_min || d.price_uvp_eur;
-  const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
+  // Only show discount when we have real crawled prices in priceData
+  const qPrices = priceData[d.slug] || [];
+  const liveBestQPrice = qPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveLowest = liveBestQPrice.length > 0 ? Math.min(...liveBestQPrice) : null;
+  const hasDiscount = liveLowest && d.price_uvp_eur && liveLowest < d.price_uvp_eur;
   const quickdrawPrices = priceData[d.slug] || [];
   const bestQuickdrawOffer = quickdrawPrices.find(p => p.inStock && p.price > 0) || quickdrawPrices[0];
   const bestQuickdrawUrl = bestQuickdrawOffer?.url && bestQuickdrawOffer.url !== "#" ? bestQuickdrawOffer.url : null;
@@ -445,8 +449,9 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
             <Section title="Price Intelligence">
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
                 {(() => {
-                  const discount = d.price_uvp_eur && d.price_eur_min
-                    ? (d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur : 0;
+                  // Only use live crawled price for discount computation
+                  const discount = liveLowest && d.price_uvp_eur && liveLowest < d.price_uvp_eur
+                    ? (d.price_uvp_eur - liveLowest) / d.price_uvp_eur : 0;
                   const factors = [];
 
                   // Factor 1: Price vs UVP

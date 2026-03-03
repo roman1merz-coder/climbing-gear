@@ -255,9 +255,12 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
   const skills = ensureArray(d.skill_level);
   const ropeTypes = ensureArray(d.compatible_rope_types);
   const certs = ensureArray(d.certification);
-  const price = d.price_eur_min || d.price_uvp_eur;
-  const hasDiscount = d.price_eur_min && d.price_uvp_eur && d.price_eur_min < d.price_uvp_eur;
   const belayPrices = priceData[d.slug] || [];
+  const liveBelayPrices = belayPrices.filter(p => p.inStock && p.price > 0).map(p => p.price);
+  const liveBelayBest = liveBelayPrices.length > 0 ? Math.min(...liveBelayPrices) : null;
+  const price = liveBelayBest || d.price_eur_min || d.price_uvp_eur;
+  // Only show discount when we have a real crawled retailer price below UVP
+  const hasDiscount = liveBelayBest && d.price_uvp_eur && liveBelayBest < d.price_uvp_eur;
   const bestBelayOffer = belayPrices.find(p => p.inStock && p.price > 0) || belayPrices[0];
   const bestBelayUrl = bestBelayOffer?.url && bestBelayOffer.url !== "#" ? bestBelayOffer.url : null;
 
@@ -483,8 +486,9 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
             <Section title="Price Intelligence">
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
                 {(() => {
-                  const discount = d.price_uvp_eur && d.price_eur_min
-                    ? (d.price_uvp_eur - d.price_eur_min) / d.price_uvp_eur : 0;
+                  // Only use live crawled price for discount computation
+                  const discount = liveBelayBest && d.price_uvp_eur && liveBelayBest < d.price_uvp_eur
+                    ? (d.price_uvp_eur - liveBelayBest) / d.price_uvp_eur : 0;
                   const factors = [];
 
                   // Factor 1: Price vs UVP
