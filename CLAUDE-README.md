@@ -5,6 +5,37 @@ These rules are NON-NEGOTIABLE and must always be followed.
 
 ---
 
+## Analytics (PostHog)
+
+| Field | Value |
+|-------|-------|
+| Service | PostHog (US cloud) |
+| Dashboard | https://us.posthog.com/project/sTMFPsFhdP1Ssg |
+| API Key | `phc_OkrxqJzUXVGEdKKvbuAMZ5jdZ2R9Vp9GItLNYW9UIWe` |
+| Host | `https://us.i.posthog.com` |
+| Config file | `src/posthog.js` |
+
+**How it works:**
+- Base analytics (pageviews, autocapture, custom events) runs in **cookieless/memory mode** — no GDPR consent needed
+- Session replays are **opt-in** via the cookie consent banner (analytics category)
+- Disabled in dev mode (`import.meta.env.DEV`), respects Do Not Track
+- SPA pageviews tracked via `PostHogPageView` component in `main.jsx` (fires on every route change)
+- Affiliate link clicks auto-tracked via global click listener (AWIN URLs)
+
+**Custom events tracked:**
+- `$pageview` — on every route change (SPA-aware)
+- `affiliate_click` — when user clicks an AWIN affiliate link (properties: retailer, product_slug, destination_url, page_path)
+- `outbound_click` — when user clicks any external link (properties: url, page_path)
+- Autocapture covers all other clicks, form submits, etc.
+
+**Adding new custom events:**
+```js
+import { trackEvent } from "./posthog.js";
+trackEvent("event_name", { key: "value" });
+```
+
+---
+
 ## Rubber Thickness Rule (NON-NEGOTIABLE)
 
 `rubber_thickness_mm` = **sole/outsole/front rubber thickness ONLY**.
