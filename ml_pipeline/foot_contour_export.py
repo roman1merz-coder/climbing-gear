@@ -7,6 +7,23 @@ a list of [x, y] points normalized to [0, 1] relative to the foot's bounding box
 
 The frontend renders these as SVG polylines overlaid on the average foot template.
 
+═══ ORIENTATION CONTRACT ═══
+
+TOP VIEW:
+  ML mask: horizontal foot, toes LEFT (small x), heel RIGHT (large x),
+           big toe at BOTTOM (large y), lateral toes at TOP (small y).
+  Output:  x=0 LEFT (medial/big toe), x=1 RIGHT (lateral),
+           y=0 TOP (toes), y=1 BOTTOM (heel).
+  This is achieved by: new_x = 1 - norm_y, new_y = norm_x
+
+SIDE VIEW:
+  ML mask: toes LEFT (small x), heel RIGHT (large x),
+           top at TOP (small y), sole at BOTTOM (large y).
+  Output:  x=0 toes (LEFT), x=1 heel (RIGHT),
+           y=0 top, y=1 sole.
+  NO flip — mask orientation matches the standard model reference.
+  The SVG template is mirrored in the frontend with scale(-1,1).
+
 IMPORTANT: This runs on the Mac Mini only (needs ONNX + OpenCV). The sandbox
 cannot run the ML model due to resource constraints.
 """
@@ -39,85 +56,86 @@ def _simplify_contour(pts_norm, n_points):
     return result
 
 
-def extract_top_contour(foot_mask, n_points=120):
-    """Extract normalized contour from the top-view foot mask (already warped).
+def extract_top_contour(foot_mask, n_points=150):
+    """Extract normalized contour from the top-view foot mask.
+
+    The mask has: toes LEFT (small x), heel RIGHT (large x),
+    big toe at BOTTOM (large y), lateral at TOP (small y).
+
+    Output contour is rotated to match the SVG template:
+        x=0 LEFT (medial/big toe), x=1 RIGHT (lateral)
+        y=0 TOP (toes), y=1 BOTTOM (heel)
 
     Returns dict with:
-        contour: [[x, y], ...] — normalized [0,1] coords, outer boundary
-        landmarks: {ball_y, ball_left_x, ball_right_x, heel_y, heel_left_x, heel_right_x}
+        contour: [[x, y], ...] — normalized [0,1] coords
+        stats: {n_points, mask_w, mask_h}
     Or None if extraction fails.
     """
     h, w = foot_mask.shape[:2]
 
-    contours, _ = cv2.findContours(foot_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    if not contours:
+    # Binarize if not already
+    if foot_mask.max() > 1:
+        mask_bin = (foot_mask > 127).astype(np.uint8)
+    else:
+        mask_bin = foot_mask.astype(np.uint8)
+
+    rows = np.where(mask_bin.any(axis=1))[0]
+    cols = np.where(mask_bin.any(axis=0))[0]
+    if len(rows) < 10 or len(cols) < 10:
         return None
 
-    cnt = max(contours, key=cv2.contourArea)
-    pts = cnt.reshape(-1, 2).astype(float)
-
-    x_min, y_min = pts.min(axis=0)
-    x_max, y_max = pts.max(axis=0)
+    y_min, y_max = rows[0], rows[-1]
+    x_min, x_max = cols[0], cols[-1]
     bw = x_max - x_min
     bh = y_max - y_min
     if bw < 10 or bh < 10:
         return None
 
-    # Normalize to [0, 1]
-    norm = np.zeros_like(pts)
-    norm[:, 0] = (pts[:, 0] - x_min) / bw
-    norm[:, 1] = (pts[:, 1] - y_min) / bh
+    # Extract boundary by column scanning
+    upper = []  # small y = lateral side
+    lower = []  # large y = medial/big toe side
 
-    # Simplify
-    simple = _simplify_contour(norm, n_points)
+    for col in range(x_min, x_max + 1):
+        col_data = mask_bin[:, col]
+        whites = np.where(col_data > 0)[0]
+        if len(whites) > 0:
+            upper.append((col, whites[0]))
+            lower.append((col, whites[-1]))
 
-    # Find landmarks from mask directly
-    # Widest row = ball of foot
-    mask_filled = np.zeros((h, w), dtype=np.uint8)
-    cv2.drawContours(mask_filled, [cnt], -1, 255, -1)
+    # Build closed contour: upper (toe→heel) + lower reversed (heel→toe)
+    step = max(1, len(upper) // (n_points // 2))
+    upper_s = upper[::step]
+    lower_s = lower[::step]
+    if upper_s[-1] != upper[-1]:
+        upper_s.append(upper[-1])
+    if lower_s[-1] != lower[-1]:
+        lower_s.append(lower[-1])
 
-    max_width = 0
-    ball_y_px = int(y_min)
-    for row in range(int(y_min), int(y_max)):
-        nz = np.where(mask_filled[row, :] > 0)[0]
-        if len(nz) > 5:
-            row_w = nz[-1] - nz[0]
-            if row_w > max_width:
-                max_width = row_w
-                ball_y_px = row
+    full = upper_s + list(reversed(lower_s))
 
-    # Heel = bottommost row with significant width
-    heel_y_px = int(y_max)
-    for row in range(int(y_max) - 1, int(y_min), -1):
-        nz = np.where(mask_filled[row, :] > 0)[0]
-        if len(nz) > 10:
-            heel_y_px = row
-            break
+    # Normalize to bounding box [0,1]
+    norm = []
+    for (cx, cy) in full:
+        nx = (cx - x_min) / bw   # 0=toes(left), 1=heel(right)
+        ny = (cy - y_min) / bh   # 0=lateral(top), 1=medial(bottom)
+        norm.append((nx, ny))
 
-    # Width at ball
-    ball_nz = np.where(mask_filled[ball_y_px, :] > 0)[0]
-    ball_left = float(ball_nz[0]) if len(ball_nz) > 0 else x_min
-    ball_right = float(ball_nz[-1]) if len(ball_nz) > 0 else x_max
-
-    # Width at heel
-    heel_nz = np.where(mask_filled[heel_y_px, :] > 0)[0]
-    heel_left = float(heel_nz[0]) if len(heel_nz) > 5 else ball_left
-    heel_right = float(heel_nz[-1]) if len(heel_nz) > 5 else ball_right
+    # Rotate to match SVG template orientation:
+    # new_x = 1 - norm_y  → medial(large ny) becomes LEFT (small x)
+    # new_y = norm_x       → toes(small nx) becomes TOP (small y)
+    rotated = [[round(1 - ny, 4), round(nx, 4)] for (nx, ny) in norm]
 
     return {
-        "contour": simple.round(4).tolist(),
-        "landmarks": {
-            "ball_y": round((ball_y_px - y_min) / bh, 4),
-            "ball_left_x": round((ball_left - x_min) / bw, 4),
-            "ball_right_x": round((ball_right - x_min) / bw, 4),
-            "heel_y": round((heel_y_px - y_min) / bh, 4),
-            "heel_left_x": round((heel_left - x_min) / bw, 4),
-            "heel_right_x": round((heel_right - x_min) / bw, 4),
+        "contour": rotated,
+        "stats": {
+            "n_points": len(rotated),
+            "mask_w": int(w),
+            "mask_h": int(h),
         },
     }
 
 
-def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=150):
+def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=220):
     """Extract normalized side-view contour (profile outline from toe to heel).
 
     The mask includes foot + ankle + lower leg. We extract the foot outline
@@ -126,8 +144,11 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=150):
     ankle is trimmed — specifically, where the upper contour hits near the
     top of the visible mask (< 8% of clip height), we stop tracing upward.
 
-    The contour's x-axis is flipped so that x=0 = heel, x=1 = toes
-    (matching the SVG template orientation).
+    Output contour:
+        x=0 = toes (LEFT), x=1 = heel (RIGHT)
+        y=0 = top, y=1 = sole
+    This matches the standard model (toes LEFT, heel RIGHT).
+    The SVG template is mirrored in the frontend — do NOT flip here.
 
     Returns dict with:
         contour: [[x, y], ...] — normalized [0,1] coords
@@ -136,10 +157,16 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=150):
     """
     h, w = foot_mask.shape[:2]
 
+    # Binarize if not already
+    if foot_mask.max() > 1:
+        mask_bin = (foot_mask > 127).astype(np.uint8)
+    else:
+        mask_bin = foot_mask.astype(np.uint8)
+
     # Find foot horizontal extent in a band near the sole
     band_top = sole_y - int(50 * px_per_mm) if px_per_mm else sole_y - 200
     band_bot = sole_y + 10
-    band_mask = foot_mask[max(0, band_top):band_bot, :]
+    band_mask = mask_bin[max(0, band_top):band_bot, :]
     cols_in_band = np.where(band_mask.max(axis=0) > 0)[0]
     if len(cols_in_band) < 30:
         return None
@@ -154,16 +181,12 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=150):
     upper_y = np.full(w, sole_y, dtype=int)
     lower_y = np.full(w, 0, dtype=int)
     for col in range(toe_col, heel_col + 1):
-        nz = np.where(foot_mask[:, col] > 0)[0]
+        nz = np.where(mask_bin[:, col] > 0)[0]
         if len(nz) > 0:
             upper_y[col] = nz[0]
             lower_y[col] = nz[-1]
 
     # Trim the leg: find where the upper contour approaches the image top.
-    # Walking from toe to heel, the upper boundary eventually enters the
-    # leg (upper_y near 0). We stop at the ankle cutoff — where upper_y
-    # drops below 8% of the clip height from the top of the image.
-    clip_top_y = 0
     clip_height = sole_y
     ankle_y_threshold = clip_height * 0.08
 
@@ -176,16 +199,10 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=150):
     # Build the contour:
     # 1. Upper edge from toe_col to ankle_cutoff_col (foot surface)
     # 2. Lower edge (sole) from heel_col back to toe_col
-    # The polygon closes between the ankle cutoff and the heel via the sole.
-    raw_upper = []
-    for col in range(toe_col, ankle_cutoff_col + 1):
-        raw_upper.append((col, upper_y[col]))
+    raw_upper = [(c, upper_y[c]) for c in range(toe_col, ankle_cutoff_col + 1)]
+    raw_lower = [(c, lower_y[c]) for c in range(toe_col, heel_col + 1)]
 
-    raw_lower = []
-    for col in range(toe_col, heel_col + 1):
-        raw_lower.append((col, lower_y[col]))
-
-    # Subsample for efficiency
+    # Subsample
     step_u = max(1, len(raw_upper) // (n_points // 2))
     step_l = max(1, len(raw_lower) // (n_points // 2))
     upper_s = raw_upper[::step_u]
@@ -207,12 +224,14 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=150):
 
     aspect_ratio = y_range / foot_span_px
 
-    # Normalize to [0,1] and flip x (so x=0=heel, x=1=toes for SVG)
+    # Normalize to [0,1] — NO x-flip!
+    # x=0 = toes (left), x=1 = heel (right)
+    # y=0 = top, y=1 = sole
     result = []
     for cx, cy in full:
         nx = max(0.0, min(1.0, (cx - toe_col) / foot_span_px))
         ny = max(0.0, min(1.0, (cy - min_y) / y_range))
-        result.append([round(1 - nx, 4), round(ny, 4)])
+        result.append([round(nx, 4), round(ny, 4)])
 
     return {
         "contour": result,
