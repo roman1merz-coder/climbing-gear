@@ -10,16 +10,14 @@ body {
   font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
   background: #0e1015;
   color: #fff;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  touch-action: none;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ── Start screen ── */
 #start-screen {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  height: 100%; padding: 2rem; text-align: center;
+  min-height: 100vh; min-height: 100dvh; padding: 2rem; text-align: center;
 }
 #start-screen h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
 #start-screen .subtitle { color: #999; font-size: 0.95rem; margin-bottom: 2rem; max-width: 320px; line-height: 1.5; }
@@ -34,91 +32,35 @@ body {
 }
 #start-btn:active { background: #d4623b; }
 
-/* ── Scanner view ── */
-#scanner {
-  display: none; position: relative;
-  width: 100vw; height: 100vh; height: 100dvh;
-  background: #fff; /* WHITE BACKLIGHT — critical for silhouette */
+/* ── Processing screen ── */
+#processing-screen {
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; min-height: 100dvh; padding: 2rem; text-align: center;
 }
-#video {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  /* Front camera is mirrored by default — un-mirror for accurate measurements */
-  transform: scaleX(-1);
+.spinner {
+  width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.15);
+  border-top-color: #E8734A; border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin-bottom: 20px;
 }
-#canvas-process { display: none; }
-#debug-canvas {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  transform: scaleX(-1); /* match video mirror correction */
-}
-
-/* Guide overlay */
-#guide-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none; display: flex; align-items: center; justify-content: center;
-}
-.foot-outline {
-  width: 42%; height: 70%;
-  border: 3px dashed rgba(232,115,74,0.4);
-  border-radius: 35% 35% 25% 25% / 20% 20% 40% 40%;
-  position: relative;
-}
-.foot-outline::after {
-  content: 'sole'; position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  color: rgba(232,115,74,0.3); font-size: 1.2rem; font-weight: 600;
-}
-
-/* Status bar */
-#status-bar {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 20px; text-align: center;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
-  font-size: 0.95rem; color: #fff;
-  padding-top: 40px;
-}
-
-/* Stability ring */
-#stability-ring {
-  position: absolute; top: 16px; right: 16px;
-  width: 56px; height: 56px;
-}
-#stability-ring circle { fill: none; stroke-width: 4; }
-#stab-bg { stroke: rgba(255,255,255,0.15); }
-#stab-progress {
-  stroke: #4CAF50; stroke-linecap: round;
-  stroke-dasharray: 157; stroke-dashoffset: 157;
-  transition: stroke-dashoffset 0.15s linear;
-  transform: rotate(-90deg); transform-origin: center;
-}
-
-/* Detection indicators */
-#detect-info {
-  position: absolute; top: 16px; left: 16px;
-  font-size: 0.75rem; font-family: 'SF Mono', 'JetBrains Mono', monospace;
-  color: rgba(255,255,255,0.7); line-height: 1.6;
-  background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 8px;
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* ── Result screen ── */
 #result-screen {
-  display: none; position: relative;
-  width: 100vw; height: 100vh; height: 100dvh;
-  background: #0e1015;
+  display: none;
+  min-height: 100vh; min-height: 100dvh;
+  background: #0e1015; padding: 20px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 #captured-img {
-  position: absolute; top: 5%; left: 50%;
-  transform: translateX(-50%) scaleX(-1);
-  max-width: 90%; max-height: 50%;
+  display: block; margin: 0 auto 16px;
+  max-width: 90%; max-height: 45vh;
   border-radius: 12px; border: 2px solid #333;
 }
-#result-measurements {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 20px; padding-bottom: max(20px, env(safe-area-inset-bottom));
-  background: linear-gradient(transparent, #0e1015 30%);
+#debug-img {
+  display: block; margin: 0 auto 16px;
+  max-width: 90%; max-height: 30vh;
+  border-radius: 8px; border: 1px solid #444;
 }
 .meas-grid {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -144,8 +86,13 @@ body {
 #retake-btn { background: rgba(255,255,255,0.1); color: #fff; }
 #save-btn { background: #E8734A; color: #fff; }
 #save-btn:disabled { background: #666; }
-#save-status { text-align: center; font-size: 0.85rem; color: #81C784; margin-top: 8px; min-height: 1.2em; }
+#save-status { text-align: center; font-size: 0.85rem; color: #81C784; margin-top: 8px; min-height: 1.2em; max-width: 360px; margin-left: auto; margin-right: auto; }
 .note { text-align: center; font-size: 0.8rem; color: #666; margin-top: 12px; max-width: 360px; margin-left: auto; margin-right: auto; }
+#error-msg { color: #ff6b6b; text-align: center; margin: 16px auto; max-width: 360px; font-size: 0.9rem; }
+
+/* Hidden elements */
+#photo-input { display: none; }
+#canvas-process { display: none; }
 </style>
 </head>
 <body>
@@ -156,41 +103,35 @@ body {
   <p class="subtitle">Scan the sole of your foot to measure shape and proportions.</p>
   <ol class="step-list">
     <li><strong>Place your phone face-up on the floor</strong> (screen pointing at the ceiling)</li>
-    <li><strong>Hold your bare foot</strong> about a hand-width above the screen</li>
-    <li><strong>Hold still</strong> — the scanner auto-captures when your foot is in position</li>
+    <li><strong>Tap the button below</strong> — your front camera will open</li>
+    <li><strong>Hold your bare foot</strong> about a hand-width above the screen and take the photo</li>
   </ol>
-  <button id="start-btn">Start Scanner</button>
+  <button id="start-btn">Take Sole Photo</button>
+  <input type="file" id="photo-input" accept="image/*" capture="user" />
 </div>
 
-<!-- ══════════ Scanner View ══════════ -->
-<div id="scanner">
-  <video id="video" autoplay playsinline muted></video>
-  <canvas id="canvas-process"></canvas>
-  <canvas id="debug-canvas"></canvas>
-
-  <div id="guide-overlay"><div class="foot-outline"></div></div>
-
-  <svg id="stability-ring" viewBox="0 0 54 54">
-    <circle id="stab-bg" cx="27" cy="27" r="25"/>
-    <circle id="stab-progress" cx="27" cy="27" r="25"/>
-  </svg>
-
-  <div id="detect-info"></div>
-  <div id="status-bar">Waiting for foot...</div>
+<!-- ══════════ Processing Screen ══════════ -->
+<div id="processing-screen">
+  <div class="spinner"></div>
+  <p>Analyzing your foot...</p>
 </div>
+
+<!-- ══════════ Hidden canvas for processing ══════════ -->
+<canvas id="canvas-process"></canvas>
 
 <!-- ══════════ Result Screen ══════════ -->
 <div id="result-screen">
   <img id="captured-img" />
-  <div id="result-measurements">
-    <div class="meas-grid" id="meas-grid"></div>
-    <div class="btn-row">
-      <button id="retake-btn">Retake</button>
-      <button id="save-btn">Save Result</button>
-    </div>
-    <div id="save-status"></div>
-    <div class="note" id="result-note"></div>
+  <canvas id="debug-canvas" style="display:none"></canvas>
+  <img id="debug-img" />
+  <div id="error-msg"></div>
+  <div class="meas-grid" id="meas-grid"></div>
+  <div class="btn-row">
+    <button id="retake-btn">Retake</button>
+    <button id="save-btn">Save Result</button>
   </div>
+  <div id="save-status"></div>
+  <div class="note" id="result-note"></div>
 </div>
 
 <script>
@@ -198,91 +139,173 @@ body {
 // Configuration
 // ─────────────────────────────────────────────
 const CFG = {
-  DARK_THRESHOLD: 100,       // grayscale below this = "foot" (dark silhouette)
-  MIN_COVERAGE: 0.06,        // foot must cover >6% of frame
-  MAX_COVERAGE: 0.60,        // <60% (prevent "everything is dark")
-  MIN_ASPECT: 1.4,           // foot is elongated
+  DARK_THRESHOLD: 100,
+  MIN_COVERAGE: 0.04,
+  MAX_COVERAGE: 0.65,
+  MIN_ASPECT: 1.3,
   MAX_ASPECT: 4.5,
-  CENTROID_TOL: 12,          // px — max centroid jitter for "stable"
-  STABLE_FRAMES: 25,         // ~1.5s at ~18fps
-  PROCESS_INTERVAL: 55,      // ms between detection frames (~18fps)
-  // Morphological cleanup
   ERODE_RADIUS: 2,
 };
 
 // Population reference (Jurca et al. 2019)
 const POP = {
-  width_ratio:  { mean: 0.383, sd: 0.021, lo: 0.362, hi: 0.404 },
-  heel_ratio:   { mean: 0.655, sd: 0.041, lo: 0.614, hi: 0.696 },
+  width_ratio: { mean: 0.383, sd: 0.021, lo: 0.362, hi: 0.404 },
+  heel_ratio:  { mean: 0.655, sd: 0.041, lo: 0.614, hi: 0.696 },
 };
 
 // ─────────────────────────────────────────────
-// State
+// DOM refs
 // ─────────────────────────────────────────────
-let video, cProc, ctxP, cDbg, ctxD;
-let running = false;
-let stableCount = 0;
-let prevCentroid = null;
+const startScreen = document.getElementById('start-screen');
+const procScreen  = document.getElementById('processing-screen');
+const resultScreen = document.getElementById('result-screen');
+const photoInput  = document.getElementById('photo-input');
+const cProc       = document.getElementById('canvas-process');
+const ctxP        = cProc.getContext('2d', { willReadFrequently: true });
+const cDbg        = document.getElementById('debug-canvas');
+const ctxD        = cDbg.getContext('2d');
+
+let lastCaptureData = null;
 
 // ─────────────────────────────────────────────
-// Start
+// Start: trigger native camera via file input
 // ─────────────────────────────────────────────
-document.getElementById('start-btn').addEventListener('click', startScanner);
-document.getElementById('retake-btn').addEventListener('click', retake);
+document.getElementById('start-btn').addEventListener('click', () => {
+  photoInput.value = '';
+  photoInput.click();
+});
 
-function startScanner() {
-  document.getElementById('start-screen').style.display = 'none';
-  document.getElementById('scanner').style.display = 'block';
+photoInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  showScreen('processing');
+  loadAndProcess(file);
+});
 
-  video = document.getElementById('video');
-  cProc = document.getElementById('canvas-process');
-  ctxP  = cProc.getContext('2d', { willReadFrequently: true });
-  cDbg  = document.getElementById('debug-canvas');
-  ctxD  = cDbg.getContext('2d');
+document.getElementById('retake-btn').addEventListener('click', () => {
+  lastCaptureData = null;
+  document.getElementById('save-btn').disabled = false;
+  document.getElementById('save-btn').textContent = 'Save Result';
+  document.getElementById('save-status').textContent = '';
+  showScreen('start');
+});
 
-  navigator.mediaDevices.getUserMedia({
-    video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
-    audio: false,
-  })
-  .then(stream => {
-    video.srcObject = stream;
-    video.onloadedmetadata = () => {
-      const vw = video.videoWidth, vh = video.videoHeight;
-      cProc.width = vw; cProc.height = vh;
-      cDbg.width  = vw; cDbg.height  = vh;
-      running = true;
-      stableCount = 0;
-      prevCentroid = null;
-      loop();
-    };
-  })
-  .catch(e => {
-    console.error('Camera error:', e.name, e.message);
-    const bar = document.getElementById('status-bar');
-    if (e.name === 'NotAllowedError') {
-      bar.innerHTML = 'Camera blocked. Tap the <b>lock icon &#x1f512;</b> next to the URL → Permissions → Camera → Allow, then reload.';
-    } else if (e.name === 'NotFoundError') {
-      bar.textContent = 'No front camera found on this device.';
-    } else if (e.name === 'NotReadableError') {
-      bar.textContent = 'Camera is in use by another app. Close it and retry.';
-    } else {
-      bar.textContent = 'Camera error: ' + e.name + ' — ' + e.message;
-    }
-  });
+document.getElementById('save-btn').addEventListener('click', saveResult);
+
+function showScreen(name) {
+  startScreen.style.display  = name === 'start'  ? 'flex' : 'none';
+  procScreen.style.display   = name === 'processing' ? 'flex' : 'none';
+  resultScreen.style.display = name === 'result' ? 'block' : 'none';
 }
 
 // ─────────────────────────────────────────────
-// Detection loop
+// Load image and process
 // ─────────────────────────────────────────────
-function loop() {
-  if (!running) return;
-  ctxP.drawImage(video, 0, 0);
-  const img = ctxP.getImageData(0, 0, cProc.width, cProc.height);
-  const res = detect(img);
-  drawDebug(res);
-  updateStability(res);
-  if (stableCount >= CFG.STABLE_FRAMES) { capture(res); return; }
-  setTimeout(() => requestAnimationFrame(loop), CFG.PROCESS_INTERVAL);
+function loadAndProcess(file) {
+  const img = new Image();
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    img.onload = () => {
+      // Resize to manageable dimensions (max 1024px) for processing speed
+      const maxDim = 1024;
+      let w = img.width, h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) { h = Math.round((h / w) * maxDim); w = maxDim; }
+        else { w = Math.round((w / h) * maxDim); h = maxDim; }
+      }
+      cProc.width = w; cProc.height = h;
+      cDbg.width = w; cDbg.height = h;
+      ctxP.drawImage(img, 0, 0, w, h);
+
+      const imageData = ctxP.getImageData(0, 0, w, h);
+      const res = detect(imageData);
+
+      // Draw debug overlay
+      drawDebug(res, w, h);
+
+      // Build annotated image
+      const annotated = document.createElement('canvas');
+      annotated.width = w; annotated.height = h;
+      const aCtx = annotated.getContext('2d');
+      aCtx.drawImage(img, 0, 0, w, h);
+      aCtx.drawImage(cDbg, 0, 0);
+
+      const originalDataUrl = cProc.toDataURL('image/jpeg', 0.92);
+      const debugDataUrl = annotated.toDataURL('image/jpeg', 0.92);
+
+      document.getElementById('captured-img').src = originalDataUrl;
+      document.getElementById('debug-img').src = debugDataUrl;
+
+      if (res.ok) {
+        showResults(res.meas, originalDataUrl, debugDataUrl);
+      } else {
+        showError(res, originalDataUrl, debugDataUrl);
+      }
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ─────────────────────────────────────────────
+// Show results
+// ─────────────────────────────────────────────
+function showResults(m, origUrl, debugUrl) {
+  lastCaptureData = { imageDataUrl: debugUrl, originalUrl: origUrl, measurements: m };
+
+  const wClass = classify(m.widthRatio, POP.width_ratio);
+  const hClass = classify(m.heelRatio, POP.heel_ratio);
+
+  document.getElementById('error-msg').textContent = '';
+  document.getElementById('meas-grid').innerHTML = `
+    <div class="meas-card">
+      <div class="meas-label">Width / Length</div>
+      <div class="meas-value">${m.widthRatio}</div>
+      <div class="meas-class ${wClass.cls}">${wClass.label}</div>
+    </div>
+    <div class="meas-card">
+      <div class="meas-label">Heel / Ball</div>
+      <div class="meas-value">${m.heelRatio}</div>
+      <div class="meas-class ${hClass.cls}">${hClass.label}</div>
+    </div>
+    <div class="meas-card">
+      <div class="meas-label">Toe Shape</div>
+      <div class="meas-value" style="font-size:1.1rem">${m.toeShape}</div>
+      <div class="meas-class normal">&nbsp;</div>
+    </div>
+    <div class="meas-card">
+      <div class="meas-label">Toe Length %</div>
+      <div class="meas-value">${(m.toeProp * 100).toFixed(0)}%</div>
+      <div class="meas-class normal">of foot length</div>
+    </div>
+  `;
+  document.getElementById('result-note').textContent =
+    `${m.footLen}px length · ${m.ballW}px ball · ${m.heelW}px heel · ${m.orientation}`;
+
+  showScreen('result');
+}
+
+function showError(res, origUrl, debugUrl) {
+  lastCaptureData = { imageDataUrl: debugUrl, originalUrl: origUrl, measurements: null };
+
+  const reasons = {
+    no_foot: 'Could not detect a foot. Make sure the sole is visible as a dark shape against the bright screen.',
+    too_dark: 'Image is too dark overall. The phone screen should be the bright background behind the foot.',
+    no_component: 'No clear foot shape found. Try holding your foot closer and centered.',
+    shape: `Detected shape doesn't look like a foot (aspect ratio: ${res.aspect?.toFixed(1)}). Try again with just one foot.`,
+  };
+
+  document.getElementById('error-msg').textContent = reasons[res.why] || 'Detection failed — try again.';
+  document.getElementById('meas-grid').innerHTML = '';
+  document.getElementById('result-note').textContent = `coverage: ${(res.cov*100).toFixed(1)}%`;
+  showScreen('result');
+}
+
+function classify(val, pop) {
+  if (val < pop.lo) return { cls: 'narrow', label: 'Narrow' };
+  if (val > pop.hi) return { cls: 'wide', label: 'Wide' };
+  return { cls: 'normal', label: 'Normal' };
 }
 
 // ─────────────────────────────────────────────
@@ -292,7 +315,6 @@ function detect(imageData) {
   const { data, width: W, height: H } = imageData;
   const N = W * H;
 
-  // 1. Binary mask: dark pixels = foot
   const mask = new Uint8Array(N);
   let darkN = 0;
   for (let i = 0; i < N; i++) {
@@ -303,14 +325,10 @@ function detect(imageData) {
   if (cov < CFG.MIN_COVERAGE) return { ok: false, why: 'no_foot', cov };
   if (cov > CFG.MAX_COVERAGE) return { ok: false, why: 'too_dark', cov };
 
-  // 2. Simple morphological erosion to remove noise
   const cleaned = erode(mask, W, H, CFG.ERODE_RADIUS);
-
-  // 3. Flood-fill to find largest connected component
   const { labelMap, largest } = largestComponent(cleaned, W, H);
   if (!largest) return { ok: false, why: 'no_component', cov };
 
-  // 4. Build final mask of just the foot blob
   const footMask = new Uint8Array(N);
   let fMinX = W, fMaxX = 0, fMinY = H, fMaxY = 0;
   let sumX = 0, sumY = 0, cnt = 0;
@@ -336,14 +354,12 @@ function detect(imageData) {
     return { ok: false, why: 'shape', aspect, cov, centroid, bbox: [fMinX, fMinY, fMaxX, fMaxY] };
   }
 
-  // 5. Measure
   const meas = measure(footMask, W, H, fMinX, fMaxX, fMinY, fMaxY);
-
   return { ok: true, cov, centroid, aspect, bbox: [fMinX, fMinY, fMaxX, fMaxY], footMask, meas, pixelCount: cnt };
 }
 
 // ─────────────────────────────────────────────
-// Simple erosion (removes thin noise bridges)
+// Erosion
 // ─────────────────────────────────────────────
 function erode(mask, W, H, r) {
   const out = new Uint8Array(mask.length);
@@ -362,7 +378,7 @@ function erode(mask, W, H, r) {
 }
 
 // ─────────────────────────────────────────────
-// Flood-fill largest connected component
+// Largest connected component (BFS)
 // ─────────────────────────────────────────────
 function largestComponent(mask, W, H) {
   const labelMap = new Int32Array(mask.length);
@@ -375,7 +391,6 @@ function largestComponent(mask, W, H) {
       if (mask[idx] && !labelMap[idx]) {
         label++;
         let size = 0;
-        // BFS
         const q = [idx];
         labelMap[idx] = label;
         while (q.length) {
@@ -410,19 +425,14 @@ function largestComponent(mask, W, H) {
 // ─────────────────────────────────────────────
 function measure(mask, W, H, minX, maxX, minY, maxY) {
   const bw = maxX - minX, bh = maxY - minY;
-  const vertical = bh >= bw; // foot runs top-to-bottom in image
-
-  // Cross-sections perpendicular to long axis
+  const vertical = bh >= bw;
   const sections = [];
 
   if (vertical) {
     for (let y = minY; y <= maxY; y++) {
       let rMin = W, rMax = 0;
       for (let x = minX; x <= maxX; x++) {
-        if (mask[y * W + x]) {
-          if (x < rMin) rMin = x;
-          if (x > rMax) rMax = x;
-        }
+        if (mask[y * W + x]) { if (x < rMin) rMin = x; if (x > rMax) rMax = x; }
       }
       sections.push({ pos: y, w: rMax > rMin ? rMax - rMin : 0, lo: rMin, hi: rMax });
     }
@@ -430,295 +440,112 @@ function measure(mask, W, H, minX, maxX, minY, maxY) {
     for (let x = minX; x <= maxX; x++) {
       let rMin = H, rMax = 0;
       for (let y = minY; y <= maxY; y++) {
-        if (mask[y * W + x]) {
-          if (y < rMin) rMin = y;
-          if (y > rMax) rMax = y;
-        }
+        if (mask[y * W + x]) { if (y < rMin) rMin = y; if (y > rMax) rMax = y; }
       }
       sections.push({ pos: x, w: rMax > rMin ? rMax - rMin : 0, lo: rMin, hi: rMax });
     }
   }
 
-  // Foot length = extent along long axis
   const footLen = vertical ? bh : bw;
-
-  // Ball width = widest cross-section
   let ballW = 0, ballIdx = 0;
   for (let i = 0; i < sections.length; i++) {
     if (sections[i].w > ballW) { ballW = sections[i].w; ballIdx = i; }
   }
-  const ballFrac = ballIdx / (sections.length || 1); // position along foot (0=start, 1=end)
-
-  // Determine heel end: the ball is in the front ~25-40% of the foot.
-  // If ballFrac < 0.5 → toes are at start, heel at end.
-  // If ballFrac > 0.5 → toes are at end, heel at start.
-  const heelEnd = ballFrac < 0.5 ? 1.0 : 0.0;
-
-  // Heel width: average width in the 80-92% zone from toe end toward heel
+  const ballFrac = ballIdx / (sections.length || 1);
   const heelZoneStart = Math.floor(sections.length * (ballFrac < 0.5 ? 0.80 : 0.08));
   const heelZoneEnd   = Math.floor(sections.length * (ballFrac < 0.5 ? 0.92 : 0.20));
   let heelSum = 0, heelN = 0;
   for (let i = Math.min(heelZoneStart, heelZoneEnd); i <= Math.max(heelZoneStart, heelZoneEnd); i++) {
-    if (i >= 0 && i < sections.length && sections[i].w > 0) {
-      heelSum += sections[i].w;
-      heelN++;
-    }
+    if (i >= 0 && i < sections.length && sections[i].w > 0) { heelSum += sections[i].w; heelN++; }
   }
   const heelW = heelN > 0 ? heelSum / heelN : 0;
 
-  // Toe shape: analyze the first/last ~25% of sections (whichever is the toe end)
   const toeStart = ballFrac < 0.5 ? 0 : Math.floor(sections.length * 0.75);
   const toeEnd   = ballFrac < 0.5 ? Math.floor(sections.length * 0.25) : sections.length - 1;
-  const toeShape = classifyToeShape(sections, Math.min(toeStart, toeEnd), Math.max(toeStart, toeEnd), vertical, W, H, mask);
+  const toeShape = classifyToeShape(sections, Math.min(toeStart, toeEnd), Math.max(toeStart, toeEnd));
 
   const widthRatio = footLen > 0 ? ballW / footLen : 0;
   const heelRatio  = ballW > 0 ? heelW / ballW : 0;
-
-  // Toe proportion: distance from ball to toe tip / foot length
   const toeProp = ballFrac < 0.5 ? ballFrac : (1 - ballFrac);
 
   return {
     footLen, ballW, heelW,
-    widthRatio: r3(widthRatio),
-    heelRatio: r3(heelRatio),
-    toeProp: r3(toeProp),
-    ballFrac: r3(ballFrac),
-    toeShape,
+    widthRatio: r3(widthRatio), heelRatio: r3(heelRatio),
+    toeProp: r3(toeProp), ballFrac: r3(ballFrac), toeShape,
     orientation: vertical ? 'V' : 'H',
-    sections,
-    heelZone: [Math.min(heelZoneStart, heelZoneEnd), Math.max(heelZoneStart, heelZoneEnd)],
-    ballIdx,
+    sections, heelZone: [Math.min(heelZoneStart, heelZoneEnd), Math.max(heelZoneStart, heelZoneEnd)], ballIdx,
   };
 }
 
 function r3(v) { return Math.round(v * 1000) / 1000; }
 
-// ─────────────────────────────────────────────
-// Toe shape classification from contour
-// ─────────────────────────────────────────────
-function classifyToeShape(sections, fromIdx, toIdx, vertical, W, H, mask) {
-  // Find the "tip" cross-sections — they narrow toward the toe end
-  // Look at the edge profile: for each cross-section in the toe zone,
-  // record the center position. If the center shifts strongly to one side → asymmetric.
-  // If the tip is pointed (rapid narrowing) vs. blunt (gradual) → Egyptian vs Roman.
-
+function classifyToeShape(sections, fromIdx, toIdx) {
   const toeSlice = sections.slice(fromIdx, toIdx + 1);
   if (toeSlice.length < 5) return 'unknown';
-
-  // Find the narrowing pattern: how quickly does width drop from ball width?
   const maxW = Math.max(...toeSlice.map(s => s.w));
-  const tip = toeSlice[toeSlice.length - 1]; // last section = toe tip
+  const tip = toeSlice[toeSlice.length - 1];
   const tipRatio = maxW > 0 ? tip.w / maxW : 0;
-
-  // Check how many of the outermost sections are similarly wide (plateau = Roman)
   let plateauCount = 0;
   for (let i = 0; i < Math.min(5, toeSlice.length); i++) {
     if (toeSlice[i].w > maxW * 0.85) plateauCount++;
   }
-
-  // Simple heuristic classification
   if (plateauCount >= 3) return 'roman';
   if (tipRatio < 0.15) return 'egyptian';
   return 'greek';
 }
 
 // ─────────────────────────────────────────────
-// Debug overlay
+// Debug overlay on image
 // ─────────────────────────────────────────────
-function drawDebug(res) {
-  ctxD.clearRect(0, 0, cDbg.width, cDbg.height);
-  const info = document.getElementById('detect-info');
-
-  if (!res.ok) {
-    info.innerHTML = `cov: ${(res.cov*100).toFixed(1)}%<br>${res.why}`;
-    return;
-  }
+function drawDebug(res, W, H) {
+  ctxD.clearRect(0, 0, W, H);
+  if (!res.ok) return;
 
   const [x0,y0,x1,y1] = res.bbox;
-
-  // Bounding box
   ctxD.strokeStyle = 'rgba(76,175,80,0.7)';
   ctxD.lineWidth = 2;
   ctxD.strokeRect(x0, y0, x1-x0, y1-y0);
 
-  // Ball width line
   const m = res.meas;
   if (m.sections && m.sections[m.ballIdx]) {
     const bs = m.sections[m.ballIdx];
-    ctxD.strokeStyle = '#ff4444';
-    ctxD.lineWidth = 2;
+    ctxD.strokeStyle = '#ff4444'; ctxD.lineWidth = 3;
     ctxD.beginPath();
-    if (m.orientation === 'V') {
-      ctxD.moveTo(bs.lo, bs.pos); ctxD.lineTo(bs.hi, bs.pos);
-    } else {
-      ctxD.moveTo(bs.pos, bs.lo); ctxD.lineTo(bs.pos, bs.hi);
-    }
+    if (m.orientation === 'V') { ctxD.moveTo(bs.lo, bs.pos); ctxD.lineTo(bs.hi, bs.pos); }
+    else { ctxD.moveTo(bs.pos, bs.lo); ctxD.lineTo(bs.pos, bs.hi); }
     ctxD.stroke();
 
-    // Ball width label
-    ctxD.fillStyle = '#ff4444';
-    ctxD.font = '13px monospace';
-    if (m.orientation === 'V') {
-      ctxD.fillText('ball', bs.lo - 30, bs.pos - 4);
-    }
+    ctxD.fillStyle = '#ff4444'; ctxD.font = '14px monospace';
+    if (m.orientation === 'V') ctxD.fillText('ball', bs.hi + 6, bs.pos + 4);
   }
 
-  // Heel zone highlight
   if (m.heelZone) {
-    ctxD.fillStyle = 'rgba(100,181,246,0.15)';
+    ctxD.fillStyle = 'rgba(100,181,246,0.2)';
     const [hz0, hz1] = m.heelZone;
     for (let i = hz0; i <= hz1 && i < m.sections.length; i++) {
       const s = m.sections[i];
-      if (m.orientation === 'V') {
-        ctxD.fillRect(s.lo, s.pos, s.hi - s.lo, 1);
-      }
+      if (m.orientation === 'V') ctxD.fillRect(s.lo, s.pos, s.hi - s.lo, 1);
     }
+    ctxD.fillStyle = '#64B5F6'; ctxD.font = '12px monospace';
+    const hzMid = m.sections[Math.floor((hz0+hz1)/2)];
+    if (hzMid && m.orientation === 'V') ctxD.fillText('heel zone', hzMid.hi + 6, hzMid.pos);
   }
 
-  // Centroid
   ctxD.fillStyle = '#E8734A';
   ctxD.beginPath();
   ctxD.arc(res.centroid.x, res.centroid.y, 5, 0, Math.PI * 2);
   ctxD.fill();
 
-  // Info
-  info.innerHTML = [
-    `cov: ${(res.cov*100).toFixed(1)}%`,
-    `asp: ${res.aspect.toFixed(2)}`,
-    `W/L: <b>${m.widthRatio}</b>`,
-    `H/B: <b>${m.heelRatio}</b>`,
-    `toe: <b>${m.toeShape}</b>`,
-    `len: ${m.footLen}px`,
-    `ball: ${m.ballFrac < 0.5 ? 'start' : 'end'}`,
-  ].join('<br>');
+  // Labels
+  ctxD.fillStyle = '#fff'; ctxD.font = 'bold 13px monospace';
+  ctxD.fillText(`W/L: ${m.widthRatio}  H/B: ${m.heelRatio}  toe: ${m.toeShape}`, x0, y0 - 8);
 }
 
 // ─────────────────────────────────────────────
-// Stability tracking
-// ─────────────────────────────────────────────
-function updateStability(res) {
-  const bar = document.getElementById('status-bar');
-  const prog = document.getElementById('stab-progress');
-
-  if (!res.ok) {
-    stableCount = 0; prevCentroid = null;
-    prog.style.strokeDashoffset = 157;
-    bar.textContent = res.why === 'no_foot'
-      ? 'Hold your foot above the phone…'
-      : res.why === 'too_dark'
-      ? 'Too dark — need some bright background'
-      : 'Adjust position — keep foot in the guide';
-    return;
-  }
-
-  if (prevCentroid) {
-    const dx = res.centroid.x - prevCentroid.x;
-    const dy = res.centroid.y - prevCentroid.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-
-    if (dist < CFG.CENTROID_TOL) {
-      stableCount++;
-    } else {
-      stableCount = Math.max(0, stableCount - 3);
-    }
-  }
-  prevCentroid = res.centroid;
-
-  const pct = Math.min(stableCount / CFG.STABLE_FRAMES, 1);
-  prog.style.strokeDashoffset = 157 * (1 - pct);
-
-  if (pct < 1) {
-    bar.textContent = stableCount < 3
-      ? 'Foot detected — hold still…'
-      : `Scanning… ${Math.round(pct * 100)}%`;
-  }
-}
-
-// ─────────────────────────────────────────────
-// Capture + results
-// ─────────────────────────────────────────────
-function capture(res) {
-  running = false;
-
-  // Grab frame
-  const snap = document.createElement('canvas');
-  snap.width = cProc.width; snap.height = cProc.height;
-  const sCtx = snap.getContext('2d');
-  sCtx.drawImage(video, 0, 0);
-
-  // Draw measurement overlays on the snapshot
-  const m = res.meas;
-  sCtx.strokeStyle = '#ff4444'; sCtx.lineWidth = 3;
-  if (m.sections && m.sections[m.ballIdx]) {
-    const bs = m.sections[m.ballIdx];
-    sCtx.beginPath();
-    if (m.orientation === 'V') {
-      sCtx.moveTo(bs.lo, bs.pos); sCtx.lineTo(bs.hi, bs.pos);
-    } else {
-      sCtx.moveTo(bs.pos, bs.lo); sCtx.lineTo(bs.pos, bs.hi);
-    }
-    sCtx.stroke();
-  }
-
-  // Store for save button
-  const dataUrl = snap.toDataURL('image/jpeg', 0.92);
-  lastCaptureData = { imageDataUrl: dataUrl, measurements: m };
-
-  // Show result
-  document.getElementById('scanner').style.display = 'none';
-  document.getElementById('result-screen').style.display = 'block';
-  document.getElementById('captured-img').src = dataUrl;
-
-  // Classify
-  const wClass = classify(m.widthRatio, POP.width_ratio);
-  const hClass = classify(m.heelRatio, POP.heel_ratio);
-
-  const grid = document.getElementById('meas-grid');
-  grid.innerHTML = `
-    <div class="meas-card">
-      <div class="meas-label">Width / Length</div>
-      <div class="meas-value">${m.widthRatio}</div>
-      <div class="meas-class ${wClass.cls}">${wClass.label}</div>
-    </div>
-    <div class="meas-card">
-      <div class="meas-label">Heel / Ball</div>
-      <div class="meas-value">${m.heelRatio}</div>
-      <div class="meas-class ${hClass.cls}">${hClass.label}</div>
-    </div>
-    <div class="meas-card">
-      <div class="meas-label">Toe Shape</div>
-      <div class="meas-value" style="font-size:1.1rem">${m.toeShape}</div>
-      <div class="meas-class normal">&nbsp;</div>
-    </div>
-    <div class="meas-card">
-      <div class="meas-label">Toe Length %</div>
-      <div class="meas-value">${(m.toeProp * 100).toFixed(0)}%</div>
-      <div class="meas-class normal">of foot length</div>
-    </div>
-  `;
-
-  document.getElementById('result-note').textContent =
-    `Pixel measurements: ${m.footLen}px length · ${m.ballW}px ball · ${m.heelW}px heel · Orientation: ${m.orientation}`;
-
-  // Stop camera
-  video.srcObject?.getTracks().forEach(t => t.stop());
-}
-
-function classify(val, pop) {
-  if (val < pop.lo) return { cls: 'narrow', label: 'Narrow' };
-  if (val > pop.hi) return { cls: 'wide', label: 'Wide' };
-  return { cls: 'normal', label: 'Normal' };
-}
-
-// ─────────────────────────────────────────────
-// Save result to Supabase (image + measurements)
+// Save result to Supabase
 // ─────────────────────────────────────────────
 const SUPABASE_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
-
-let lastCaptureData = null; // { imageDataUrl, measurements }
-
-document.getElementById('save-btn').addEventListener('click', saveResult);
 
 async function saveResult() {
   if (!lastCaptureData) return;
@@ -732,45 +559,38 @@ async function saveResult() {
     const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
     const scanId = 'scan-' + ts;
 
-    // 1. Upload image to Supabase Storage
+    // Upload annotated image
     const blob = await (await fetch(lastCaptureData.imageDataUrl)).blob();
     const imgPath = `scans/${scanId}.jpg`;
-
     const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/foot-scans/${imgPath}`, {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'apikey': SUPABASE_KEY,
-        'Content-Type': 'image/jpeg',
-        'x-upsert': 'true',
-      },
+      headers: { 'Authorization': `Bearer ${SUPABASE_KEY}`, 'apikey': SUPABASE_KEY, 'Content-Type': 'image/jpeg', 'x-upsert': 'true' },
       body: blob,
     });
 
     let imageUrl = '';
-    if (uploadRes.ok) {
-      imageUrl = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/${imgPath}`;
-    }
+    if (uploadRes.ok) imageUrl = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/${imgPath}`;
 
-    // 2. Save measurements as JSON
-    const m = lastCaptureData.measurements;
+    // Upload original image
+    const origBlob = await (await fetch(lastCaptureData.originalUrl)).blob();
+    const origPath = `scans/${scanId}-original.jpg`;
+    await fetch(`${SUPABASE_URL}/storage/v1/object/foot-scans/${origPath}`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${SUPABASE_KEY}`, 'apikey': SUPABASE_KEY, 'Content-Type': 'image/jpeg', 'x-upsert': 'true' },
+      body: origBlob,
+    });
+
+    // Save measurements JSON
     const jsonPath = `scans/${scanId}.json`;
     const jsonBlob = new Blob([JSON.stringify({
-      scan_id: scanId,
-      timestamp: new Date().toISOString(),
-      image_url: imageUrl,
-      measurements: m,
+      scan_id: scanId, timestamp: new Date().toISOString(),
+      image_url: imageUrl, measurements: lastCaptureData.measurements,
       user_agent: navigator.userAgent,
     }, null, 2)], { type: 'application/json' });
 
     const jsonRes = await fetch(`${SUPABASE_URL}/storage/v1/object/foot-scans/${jsonPath}`, {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'apikey': SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        'x-upsert': 'true',
-      },
+      headers: { 'Authorization': `Bearer ${SUPABASE_KEY}`, 'apikey': SUPABASE_KEY, 'Content-Type': 'application/json', 'x-upsert': 'true' },
       body: jsonBlob,
     });
 
@@ -778,39 +598,25 @@ async function saveResult() {
       status.innerHTML = `Saved! <a href="${imageUrl}" target="_blank" style="color:#64B5F6">View image</a>`;
       btn.textContent = 'Saved ✓';
     } else {
-      // Fallback: if storage bucket doesn't exist, just download locally
       throw new Error(`Upload failed: img=${uploadRes.status} json=${jsonRes.status}`);
     }
   } catch (e) {
     console.error('Save error:', e);
-    // Fallback: trigger a local download
     status.textContent = 'Cloud save failed — downloading locally…';
     const a = document.createElement('a');
     a.href = lastCaptureData.imageDataUrl;
     a.download = 'foot-scan-result.jpg';
     a.click();
-
-    // Also download measurements JSON
-    const m = lastCaptureData.measurements;
-    const jsonBlob = new Blob([JSON.stringify(m, null, 2)], { type: 'application/json' });
-    const b = document.createElement('a');
-    b.href = URL.createObjectURL(jsonBlob);
-    b.download = 'foot-scan-measurements.json';
-    setTimeout(() => b.click(), 500);
-
+    if (lastCaptureData.measurements) {
+      const jb = new Blob([JSON.stringify(lastCaptureData.measurements, null, 2)], { type: 'application/json' });
+      const b = document.createElement('a');
+      b.href = URL.createObjectURL(jb);
+      b.download = 'foot-scan-measurements.json';
+      setTimeout(() => b.click(), 500);
+    }
     btn.textContent = 'Downloaded';
     status.textContent = 'Files saved to your device';
   }
-}
-
-function retake() {
-  document.getElementById('result-screen').style.display = 'none';
-  document.getElementById('save-status').textContent = '';
-  document.getElementById('save-btn').disabled = false;
-  document.getElementById('save-btn').textContent = 'Save Result';
-  lastCaptureData = null;
-  stableCount = 0; prevCentroid = null;
-  startScanner();
 }
 </script>
 </body>
