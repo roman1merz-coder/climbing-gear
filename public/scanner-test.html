@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Foot Scanner — Sole View Prototype</title>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/ort.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -26,6 +27,8 @@ body {
   padding: 16px 48px; border-radius: 12px;
   font-size: 1.1rem; font-weight: 600; cursor: pointer;
 }
+#start-btn:disabled { background: #666; }
+#model-status { color: #999; font-size: 0.85rem; margin-top: 12px; }
 #scanner {
   display: none; position: relative;
   width: 100vw; height: 100vh; height: 100dvh;
@@ -120,7 +123,8 @@ body {
     <li><strong>Hold your bare foot</strong> about a hand-width above the screen</li>
     <li><strong>Hold still</strong> — the scanner auto-captures when your foot is in position</li>
   </ol>
-  <button id="start-btn">Start Scanner</button>
+  <button id="start-btn" disabled>Loading ML model…</button>
+  <div id="model-status">Downloading U²Net-p (4.4 MB)…</div>
 </div>
 
 <div id="scanner">
@@ -148,17 +152,21 @@ body {
 </div>
 
 <script>
+// ── Configuration ──
 const CFG = {
-  DARK_THRESHOLD: 100,
-  MIN_COVERAGE: 0.06,
-  MAX_COVERAGE: 0.60,
-  MIN_ASPECT: 1.4,
-  MAX_ASPECT: 4.5,
+  MIN_COVERAGE: 0.04,
+  MAX_COVERAGE: 0.65,
+  MIN_ASPECT: 1.3,
+  MAX_ASPECT: 5.0,
   CENTROID_TOL: 12,
-  STABLE_FRAMES: 25,
-  PROCESS_INTERVAL: 55,
-  ERODE_RADIUS: 2,
+  STABLE_FRAMES: 20,
+  PROCESS_INTERVAL: 200, // ML inference is slower, run every 200ms
+  ML_THRESHOLD: 0.5,
+  MODEL_URL: 'https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/models/u2netp.onnx',
 };
+
+const IMAGENET_MEAN = [0.485, 0.456, 0.406];
+const IMAGENET_STD  = [0.229, 0.224, 0.225];
 
 const POP = {
   width_ratio: { mean: 0.383, sd: 0.021, lo: 0.362, hi: 0.404 },
@@ -168,11 +176,195 @@ const POP = {
 let video, cProc, ctxP, cDbg, ctxD;
 let running = false, stableCount = 0, prevCentroid = null;
 let lastCaptureData = null;
+let onnxSession = null;
+
+// Small canvas for ML preprocessing (320x320)
+const mlCanvas = document.createElement('canvas');
+mlCanvas.width = 320; mlCanvas.height = 320;
+const mlCtx = mlCanvas.getContext('2d', { willReadFrequently: true });
 
 document.getElementById('start-btn').addEventListener('click', startScanner);
 document.getElementById('retake-btn').addEventListener('click', retake);
 document.getElementById('save-btn').addEventListener('click', saveResult);
 
+// ── Load ONNX model on page load ──
+async function loadModel() {
+  const statusEl = document.getElementById('model-status');
+  const btn = document.getElementById('start-btn');
+  try {
+    // Use WASM backend (works on all devices including mobile)
+    ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/';
+    
+    statusEl.textContent = 'Downloading U²Net-p model (4.4 MB)…';
+    onnxSession = await ort.InferenceSession.create(CFG.MODEL_URL, {
+      executionProviders: ['wasm'],
+      graphOptimizationLevel: 'all',
+    });
+    statusEl.textContent = 'Model loaded ✓';
+    btn.disabled = false;
+    btn.textContent = 'Start Scanner';
+    console.log('U²Net-p model loaded. Input:', onnxSession.inputNames, 'Output:', onnxSession.outputNames);
+  } catch (e) {
+    console.error('Model load error:', e);
+    statusEl.textContent = 'Model load failed: ' + e.message;
+    btn.textContent = 'Model Error';
+  }
+}
+loadModel();
+
+// ── ML Segmentation: port of Python segment_foot() ──
+async function segmentFoot(imageData, origW, origH) {
+  // Draw to 320x320 canvas
+  const tmpCanvas = document.createElement('canvas');
+  tmpCanvas.width = origW; tmpCanvas.height = origH;
+  const tmpCtx = tmpCanvas.getContext('2d');
+  tmpCtx.putImageData(imageData, 0, 0);
+  
+  mlCtx.drawImage(tmpCanvas, 0, 0, 320, 320);
+  const mlData = mlCtx.getImageData(0, 0, 320, 320);
+  
+  // Preprocess: normalize with ImageNet mean/std, convert to NCHW float32
+  const pixels = mlData.data;
+  const inputSize = 320 * 320;
+  const float32Data = new Float32Array(3 * inputSize);
+  
+  for (let i = 0; i < inputSize; i++) {
+    const r = pixels[i * 4] / 255.0;
+    const g = pixels[i * 4 + 1] / 255.0;
+    const b = pixels[i * 4 + 2] / 255.0;
+    // NCHW: channel 0 (R), channel 1 (G), channel 2 (B)
+    float32Data[i] = (r - IMAGENET_MEAN[0]) / IMAGENET_STD[0];
+    float32Data[inputSize + i] = (g - IMAGENET_MEAN[1]) / IMAGENET_STD[1];
+    float32Data[2 * inputSize + i] = (b - IMAGENET_MEAN[2]) / IMAGENET_STD[2];
+  }
+  
+  // Create tensor [1, 3, 320, 320]
+  const inputTensor = new ort.Tensor('float32', float32Data, [1, 3, 320, 320]);
+  const inputName = onnxSession.inputNames[0];
+  
+  // Inference
+  const results = await onnxSession.run({ [inputName]: inputTensor });
+  // U²Net outputs multiple maps; first output is the finest
+  const outputName = onnxSession.outputNames[0];
+  const probData = results[outputName].data;
+  
+  // Normalize probability map to [0, 1]
+  let pMin = Infinity, pMax = -Infinity;
+  for (let i = 0; i < probData.length; i++) {
+    if (probData[i] < pMin) pMin = probData[i];
+    if (probData[i] > pMax) pMax = probData[i];
+  }
+  const pRange = pMax - pMin + 1e-8;
+  const probMap320 = new Float32Array(inputSize);
+  for (let i = 0; i < inputSize; i++) {
+    probMap320[i] = (probData[i] - pMin) / pRange;
+  }
+  
+  // Resize probability map from 320x320 to original size using bilinear interpolation
+  const probMapFull = resizeProbMap(probMap320, 320, 320, origW, origH);
+  
+  // Threshold to binary mask
+  const mask = new Uint8Array(origW * origH);
+  let maskCount = 0;
+  for (let i = 0; i < mask.length; i++) {
+    if (probMapFull[i] > CFG.ML_THRESHOLD) {
+      mask[i] = 1;
+      maskCount++;
+    }
+  }
+  
+  // Keep largest connected component (same as Python mask_from_prob)
+  const { labelMap, largest } = largestComponent(mask, origW, origH);
+  if (!largest) return null;
+  
+  const finalMask = new Uint8Array(origW * origH);
+  let fMinX = origW, fMaxX = 0, fMinY = origH, fMaxY = 0;
+  let sumX = 0, sumY = 0, cnt = 0;
+  for (let y = 0; y < origH; y++) {
+    for (let x = 0; x < origW; x++) {
+      const idx = y * origW + x;
+      if (labelMap[idx] === largest) {
+        finalMask[idx] = 1;
+        if (x < fMinX) fMinX = x; if (x > fMaxX) fMaxX = x;
+        if (y < fMinY) fMinY = y; if (y > fMaxY) fMaxY = y;
+        sumX += x; sumY += y; cnt++;
+      }
+    }
+  }
+  
+  if (cnt === 0) return null;
+  
+  return {
+    mask: finalMask,
+    bbox: [fMinX, fMinY, fMaxX, fMaxY],
+    centroid: { x: sumX / cnt, y: sumY / cnt },
+    pixelCount: cnt,
+    coverage: cnt / (origW * origH),
+  };
+}
+
+function resizeProbMap(src, srcW, srcH, dstW, dstH) {
+  const dst = new Float32Array(dstW * dstH);
+  const xRatio = srcW / dstW;
+  const yRatio = srcH / dstH;
+  
+  for (let dy = 0; dy < dstH; dy++) {
+    for (let dx = 0; dx < dstW; dx++) {
+      const sx = dx * xRatio;
+      const sy = dy * yRatio;
+      const x0 = Math.floor(sx), y0 = Math.floor(sy);
+      const x1 = Math.min(x0 + 1, srcW - 1), y1 = Math.min(y0 + 1, srcH - 1);
+      const xf = sx - x0, yf = sy - y0;
+      
+      const v00 = src[y0 * srcW + x0];
+      const v10 = src[y0 * srcW + x1];
+      const v01 = src[y1 * srcW + x0];
+      const v11 = src[y1 * srcW + x1];
+      
+      dst[dy * dstW + dx] = v00 * (1 - xf) * (1 - yf) + v10 * xf * (1 - yf)
+                           + v01 * (1 - xf) * yf + v11 * xf * yf;
+    }
+  }
+  return dst;
+}
+
+// ── Connected Component Analysis ──
+function largestComponent(mask, W, H) {
+  const labelMap = new Int32Array(mask.length);
+  let label = 0;
+  const sizes = {};
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const idx = y * W + x;
+      if (mask[idx] && !labelMap[idx]) {
+        label++;
+        let size = 0;
+        const q = [idx];
+        labelMap[idx] = label;
+        while (q.length) {
+          const ci = q.pop();
+          size++;
+          const cx = ci % W, cy = (ci - cx) / W;
+          for (const [dx2, dy2] of [[1,0],[-1,0],[0,1],[0,-1]]) {
+            const nx = cx + dx2, ny = cy + dy2;
+            if (nx >= 0 && nx < W && ny >= 0 && ny < H) {
+              const ni = ny * W + nx;
+              if (mask[ni] && !labelMap[ni]) { labelMap[ni] = label; q.push(ni); }
+            }
+          }
+        }
+        sizes[label] = size;
+      }
+    }
+  }
+  let largest = 0, largestSize = 0;
+  for (const [l, s] of Object.entries(sizes)) {
+    if (s > largestSize) { largestSize = s; largest = +l; }
+  }
+  return { labelMap, largest };
+}
+
+// ── Scanner ──
 function startScanner() {
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('scanner').style.display = 'block';
@@ -202,237 +394,252 @@ function startScanner() {
   });
 }
 
-function loop() {
+let inferring = false; // prevent overlapping inferences
+
+async function loop() {
   if (!running) return;
+  if (inferring) {
+    setTimeout(() => requestAnimationFrame(loop), 50);
+    return;
+  }
+  
+  inferring = true;
   ctxP.drawImage(video, 0, 0);
   const img = ctxP.getImageData(0, 0, cProc.width, cProc.height);
-  const res = detect(img);
-  drawDebug(res);
+  
+  const t0 = performance.now();
+  const res = await detect(img, cProc.width, cProc.height);
+  const dt = performance.now() - t0;
+  
+  drawDebug(res, dt);
   updateStability(res);
+  inferring = false;
+  
   if (stableCount >= CFG.STABLE_FRAMES) { capture(res); return; }
   setTimeout(() => requestAnimationFrame(loop), CFG.PROCESS_INTERVAL);
 }
 
-function detect(imageData) {
-  const { data, width: W, height: H } = imageData;
-  const N = W * H;
-  const mask = new Uint8Array(N);
-  let darkN = 0;
-  for (let i = 0; i < N; i++) {
-    const gray = (data[i*4] + data[i*4+1] + data[i*4+2]) / 3;
-    if (gray < CFG.DARK_THRESHOLD) { mask[i] = 1; darkN++; }
-  }
-  const cov = darkN / N;
-  if (cov < CFG.MIN_COVERAGE) return { ok: false, why: 'no_foot', cov };
-  if (cov > CFG.MAX_COVERAGE) return { ok: false, why: 'too_dark', cov };
-
-  const cleaned = erode(mask, W, H, CFG.ERODE_RADIUS);
-  const { labelMap, largest } = largestComponent(cleaned, W, H);
-  if (!largest) return { ok: false, why: 'no_component', cov };
-
-  const footMask = new Uint8Array(N);
-  let fMinX = W, fMaxX = 0, fMinY = H, fMaxY = 0;
-  let sumX = 0, sumY = 0, cnt = 0;
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const idx = y * W + x;
-      if (labelMap[idx] === largest) {
-        footMask[idx] = 1;
-        if (x < fMinX) fMinX = x; if (x > fMaxX) fMaxX = x;
-        if (y < fMinY) fMinY = y; if (y > fMaxY) fMaxY = y;
-        sumX += x; sumY += y; cnt++;
-      }
-    }
-  }
-  const centroid = { x: sumX / cnt, y: sumY / cnt };
+async function detect(imageData, W, H) {
+  // Run U²Net-p ML segmentation
+  const seg = await segmentFoot(imageData, W, H);
+  
+  if (!seg) return { ok: false, why: 'no_foot', cov: 0 };
+  
+  const { mask: footMask, bbox, centroid, pixelCount, coverage } = seg;
+  const [fMinX, fMinY, fMaxX, fMaxY] = bbox;
+  
+  if (coverage < CFG.MIN_COVERAGE) return { ok: false, why: 'no_foot', cov: coverage };
+  if (coverage > CFG.MAX_COVERAGE) return { ok: false, why: 'too_much', cov: coverage };
+  
   const bw = fMaxX - fMinX, bh = fMaxY - fMinY;
   const aspect = Math.max(bw, bh) / (Math.min(bw, bh) || 1);
   if (aspect < CFG.MIN_ASPECT || aspect > CFG.MAX_ASPECT)
-    return { ok: false, why: 'shape', aspect, cov, centroid, bbox: [fMinX, fMinY, fMaxX, fMaxY] };
-
+    return { ok: false, why: 'shape', aspect, cov: coverage, centroid, bbox };
+  
   const meas = measure(footMask, W, H, fMinX, fMaxX, fMinY, fMaxY);
-  return { ok: true, cov, centroid, aspect, bbox: [fMinX, fMinY, fMaxX, fMaxY], footMask, meas, pixelCount: cnt };
-}
-
-function erode(mask, W, H, r) {
-  const out = new Uint8Array(mask.length);
-  for (let y = r; y < H - r; y++)
-    for (let x = r; x < W - r; x++) {
-      let ok = true;
-      for (let dy = -r; dy <= r && ok; dy++)
-        for (let dx = -r; dx <= r && ok; dx++)
-          if (!mask[(y+dy)*W+(x+dx)]) ok = false;
-      if (ok) out[y*W+x] = 1;
-    }
-  return out;
-}
-
-function largestComponent(mask, W, H) {
-  const labelMap = new Int32Array(mask.length);
-  let label = 0; const sizes = {};
-  for (let y = 0; y < H; y++)
-    for (let x = 0; x < W; x++) {
-      const idx = y*W+x;
-      if (mask[idx] && !labelMap[idx]) {
-        label++; let size = 0;
-        const q = [idx]; labelMap[idx] = label;
-        while (q.length) {
-          const ci = q.pop(); size++;
-          const cx = ci%W, cy = (ci-cx)/W;
-          for (const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]) {
-            const nx=cx+dx, ny=cy+dy;
-            if (nx>=0 && nx<W && ny>=0 && ny<H) {
-              const ni = ny*W+nx;
-              if (mask[ni] && !labelMap[ni]) { labelMap[ni]=label; q.push(ni); }
-            }
-          }
-        }
-        sizes[label] = size;
-      }
-    }
-  let largest=0, largestSize=0;
-  for (const [l,s] of Object.entries(sizes)) if (s>largestSize) { largestSize=s; largest=+l; }
-  return { labelMap, largest };
+  return { ok: true, cov: coverage, centroid, aspect, bbox, footMask, meas, pixelCount };
 }
 
 function measure(mask, W, H, minX, maxX, minY, maxY) {
-  const bw = maxX-minX, bh = maxY-minY;
+  const bw = maxX - minX, bh = maxY - minY;
   const vertical = bh >= bw;
   const sections = [];
   if (vertical) {
-    for (let y=minY; y<=maxY; y++) {
-      let lo=W, hi=0;
-      for (let x=minX; x<=maxX; x++) if (mask[y*W+x]) { if(x<lo)lo=x; if(x>hi)hi=x; }
-      sections.push({pos:y, w:hi>lo?hi-lo:0, lo, hi});
+    for (let y = minY; y <= maxY; y++) {
+      let lo = W, hi = 0;
+      for (let x = minX; x <= maxX; x++) if (mask[y * W + x]) { if (x < lo) lo = x; if (x > hi) hi = x; }
+      sections.push({ pos: y, w: hi > lo ? hi - lo : 0, lo, hi });
     }
   } else {
-    for (let x=minX; x<=maxX; x++) {
-      let lo=H, hi=0;
-      for (let y=minY; y<=maxY; y++) if (mask[y*W+x]) { if(y<lo)lo=y; if(y>hi)hi=y; }
-      sections.push({pos:x, w:hi>lo?hi-lo:0, lo, hi});
+    for (let x = minX; x <= maxX; x++) {
+      let lo = H, hi = 0;
+      for (let y = minY; y <= maxY; y++) if (mask[y * W + x]) { if (y < lo) lo = y; if (y > hi) hi = y; }
+      sections.push({ pos: x, w: hi > lo ? hi - lo : 0, lo, hi });
     }
   }
   const footLen = vertical ? bh : bw;
-  let ballW=0, ballIdx=0;
-  for (let i=0; i<sections.length; i++) if (sections[i].w>ballW) { ballW=sections[i].w; ballIdx=i; }
-  const ballFrac = ballIdx/(sections.length||1);
-  const hzS = Math.floor(sections.length*(ballFrac<0.5?0.80:0.08));
-  const hzE = Math.floor(sections.length*(ballFrac<0.5?0.92:0.20));
-  let heelSum=0, heelN=0;
-  for (let i=Math.min(hzS,hzE); i<=Math.max(hzS,hzE); i++)
-    if (i>=0 && i<sections.length && sections[i].w>0) { heelSum+=sections[i].w; heelN++; }
-  const heelW = heelN>0 ? heelSum/heelN : 0;
-  const toeS = ballFrac<0.5 ? 0 : Math.floor(sections.length*0.75);
-  const toeE = ballFrac<0.5 ? Math.floor(sections.length*0.25) : sections.length-1;
-  const toeShape = classifyToe(sections, Math.min(toeS,toeE), Math.max(toeS,toeE));
-  const widthRatio = footLen>0 ? ballW/footLen : 0;
-  const heelRatio = ballW>0 ? heelW/ballW : 0;
-  const toeProp = ballFrac<0.5 ? ballFrac : (1-ballFrac);
-  return { footLen, ballW, heelW, widthRatio:r3(widthRatio), heelRatio:r3(heelRatio),
-    toeProp:r3(toeProp), ballFrac:r3(ballFrac), toeShape, orientation:vertical?'V':'H',
-    sections, heelZone:[Math.min(hzS,hzE),Math.max(hzS,hzE)], ballIdx };
+  let ballW = 0, ballIdx = 0;
+  for (let i = 0; i < sections.length; i++) if (sections[i].w > ballW) { ballW = sections[i].w; ballIdx = i; }
+  const ballFrac = ballIdx / (sections.length || 1);
+  
+  // Heel zone: opposite end from ball
+  const hzS = Math.floor(sections.length * (ballFrac < 0.5 ? 0.80 : 0.08));
+  const hzE = Math.floor(sections.length * (ballFrac < 0.5 ? 0.92 : 0.20));
+  let heelSum = 0, heelN = 0;
+  for (let i = Math.min(hzS, hzE); i <= Math.max(hzS, hzE); i++)
+    if (i >= 0 && i < sections.length && sections[i].w > 0) { heelSum += sections[i].w; heelN++; }
+  const heelW = heelN > 0 ? heelSum / heelN : 0;
+  
+  // Toe shape classification
+  const toeS = ballFrac < 0.5 ? 0 : Math.floor(sections.length * 0.75);
+  const toeE = ballFrac < 0.5 ? Math.floor(sections.length * 0.25) : sections.length - 1;
+  const toeShape = classifyToe(sections, Math.min(toeS, toeE), Math.max(toeS, toeE));
+  
+  const widthRatio = footLen > 0 ? ballW / footLen : 0;
+  const heelRatio = ballW > 0 ? heelW / ballW : 0;
+  const toeProp = ballFrac < 0.5 ? ballFrac : (1 - ballFrac);
+  
+  return {
+    footLen, ballW, heelW,
+    widthRatio: r3(widthRatio), heelRatio: r3(heelRatio),
+    toeProp: r3(toeProp), ballFrac: r3(ballFrac), toeShape,
+    orientation: vertical ? 'V' : 'H',
+    sections, heelZone: [Math.min(hzS, hzE), Math.max(hzS, hzE)], ballIdx,
+  };
 }
 
-function r3(v) { return Math.round(v*1000)/1000; }
+function r3(v) { return Math.round(v * 1000) / 1000; }
 
 function classifyToe(sections, from, to) {
-  const s = sections.slice(from, to+1);
-  if (s.length<5) return 'unknown';
-  const maxW = Math.max(...s.map(x=>x.w));
-  const tipR = maxW>0 ? s[s.length-1].w/maxW : 0;
-  let plat=0;
-  for (let i=0; i<Math.min(5,s.length); i++) if(s[i].w>maxW*0.85) plat++;
-  if (plat>=3) return 'roman';
-  if (tipR<0.15) return 'egyptian';
+  const s = sections.slice(from, to + 1);
+  if (s.length < 5) return 'unknown';
+  const maxW = Math.max(...s.map(x => x.w));
+  const tipR = maxW > 0 ? s[s.length - 1].w / maxW : 0;
+  let plat = 0;
+  for (let i = 0; i < Math.min(5, s.length); i++) if (s[i].w > maxW * 0.85) plat++;
+  if (plat >= 3) return 'roman';
+  if (tipR < 0.15) return 'egyptian';
   return 'greek';
 }
 
-function drawDebug(res) {
-  ctxD.clearRect(0,0,cDbg.width,cDbg.height);
+function drawDebug(res, inferenceMs) {
+  ctxD.clearRect(0, 0, cDbg.width, cDbg.height);
   const info = document.getElementById('detect-info');
-  if (!res.ok) { info.innerHTML=`cov:${(res.cov*100).toFixed(1)}%<br>${res.why}`; return; }
-  const [x0,y0,x1,y1] = res.bbox;
-  ctxD.strokeStyle='rgba(76,175,80,0.7)'; ctxD.lineWidth=2;
-  ctxD.strokeRect(x0,y0,x1-x0,y1-y0);
+  
+  if (!res.ok) {
+    info.innerHTML = `cov:${(res.cov * 100).toFixed(1)}%<br>${res.why}<br>${Math.round(inferenceMs)}ms`;
+    return;
+  }
+  
+  // Draw ML mask overlay (semi-transparent green)
+  if (res.footMask) {
+    const W = cDbg.width, H = cDbg.height;
+    const overlayData = ctxD.createImageData(W, H);
+    for (let i = 0; i < res.footMask.length; i++) {
+      if (res.footMask[i]) {
+        overlayData.data[i * 4] = 76;      // R
+        overlayData.data[i * 4 + 1] = 175; // G
+        overlayData.data[i * 4 + 2] = 80;  // B
+        overlayData.data[i * 4 + 3] = 60;  // A (semi-transparent)
+      }
+    }
+    ctxD.putImageData(overlayData, 0, 0);
+  }
+  
+  const [x0, y0, x1, y1] = res.bbox;
+  ctxD.strokeStyle = 'rgba(76,175,80,0.7)'; ctxD.lineWidth = 2;
+  ctxD.strokeRect(x0, y0, x1 - x0, y1 - y0);
+  
   const m = res.meas;
   if (m.sections && m.sections[m.ballIdx]) {
     const bs = m.sections[m.ballIdx];
-    ctxD.strokeStyle='#ff4444'; ctxD.lineWidth=2; ctxD.beginPath();
-    if (m.orientation==='V') { ctxD.moveTo(bs.lo,bs.pos); ctxD.lineTo(bs.hi,bs.pos); }
-    else { ctxD.moveTo(bs.pos,bs.lo); ctxD.lineTo(bs.pos,bs.hi); }
+    ctxD.strokeStyle = '#ff4444'; ctxD.lineWidth = 2; ctxD.beginPath();
+    if (m.orientation === 'V') { ctxD.moveTo(bs.lo, bs.pos); ctxD.lineTo(bs.hi, bs.pos); }
+    else { ctxD.moveTo(bs.pos, bs.lo); ctxD.lineTo(bs.pos, bs.hi); }
     ctxD.stroke();
   }
+  
   if (m.heelZone) {
-    ctxD.fillStyle='rgba(100,181,246,0.15)';
-    for (let i=m.heelZone[0]; i<=m.heelZone[1] && i<m.sections.length; i++) {
-      const s=m.sections[i];
-      if (m.orientation==='V') ctxD.fillRect(s.lo,s.pos,s.hi-s.lo,1);
+    ctxD.fillStyle = 'rgba(100,181,246,0.15)';
+    for (let i = m.heelZone[0]; i <= m.heelZone[1] && i < m.sections.length; i++) {
+      const s = m.sections[i];
+      if (m.orientation === 'V') ctxD.fillRect(s.lo, s.pos, s.hi - s.lo, 1);
     }
   }
-  ctxD.fillStyle='#E8734A'; ctxD.beginPath();
-  ctxD.arc(res.centroid.x,res.centroid.y,5,0,Math.PI*2); ctxD.fill();
-  info.innerHTML = [`cov:${(res.cov*100).toFixed(1)}%`,`asp:${res.aspect.toFixed(2)}`,
-    `W/L:<b>${m.widthRatio}</b>`,`H/B:<b>${m.heelRatio}</b>`,`toe:<b>${m.toeShape}</b>`,
-    `len:${m.footLen}px`].join('<br>');
+  
+  ctxD.fillStyle = '#E8734A'; ctxD.beginPath();
+  ctxD.arc(res.centroid.x, res.centroid.y, 5, 0, Math.PI * 2); ctxD.fill();
+  
+  info.innerHTML = [
+    `ML:${Math.round(inferenceMs)}ms`,
+    `cov:${(res.cov * 100).toFixed(1)}%`,
+    `asp:${res.aspect.toFixed(2)}`,
+    `W/L:<b>${m.widthRatio}</b>`,
+    `H/B:<b>${m.heelRatio}</b>`,
+    `toe:<b>${m.toeShape}</b>`,
+    `len:${m.footLen}px`,
+  ].join('<br>');
 }
 
 function updateStability(res) {
   const bar = document.getElementById('status-bar');
   const prog = document.getElementById('stab-progress');
   if (!res.ok) {
-    stableCount=0; prevCentroid=null; prog.style.strokeDashoffset=157;
-    bar.textContent = res.why==='no_foot' ? 'Hold your foot above the phone…'
-      : res.why==='too_dark' ? 'Too dark — need bright background'
+    stableCount = 0; prevCentroid = null; prog.style.strokeDashoffset = 157;
+    bar.textContent = res.why === 'no_foot' ? 'Hold your foot above the phone…'
+      : res.why === 'too_much' ? 'Too much detected — lift foot slightly'
       : 'Adjust position — keep foot in guide';
     return;
   }
   if (prevCentroid) {
-    const d = Math.sqrt((res.centroid.x-prevCentroid.x)**2+(res.centroid.y-prevCentroid.y)**2);
-    if (d<CFG.CENTROID_TOL) stableCount++; else stableCount=Math.max(0,stableCount-3);
+    const d = Math.sqrt((res.centroid.x - prevCentroid.x) ** 2 + (res.centroid.y - prevCentroid.y) ** 2);
+    if (d < CFG.CENTROID_TOL) stableCount++; else stableCount = Math.max(0, stableCount - 3);
   }
   prevCentroid = res.centroid;
-  const pct = Math.min(stableCount/CFG.STABLE_FRAMES,1);
-  prog.style.strokeDashoffset = 157*(1-pct);
-  if (pct<1) bar.textContent = stableCount<3 ? 'Foot detected — hold still…' : `Scanning… ${Math.round(pct*100)}%`;
+  const pct = Math.min(stableCount / CFG.STABLE_FRAMES, 1);
+  prog.style.strokeDashoffset = 157 * (1 - pct);
+  if (pct < 1) bar.textContent = stableCount < 3 ? 'Foot detected — hold still…' : `Scanning… ${Math.round(pct * 100)}%`;
 }
 
 function capture(res) {
   running = false;
   const snap = document.createElement('canvas');
-  snap.width=cProc.width; snap.height=cProc.height;
+  snap.width = cProc.width; snap.height = cProc.height;
   const sCtx = snap.getContext('2d');
-  sCtx.drawImage(video,0,0);
+  sCtx.drawImage(video, 0, 0);
+  
+  // Draw ML mask outline on capture
+  if (res.footMask) {
+    const W = snap.width, H = snap.height;
+    // Draw mask border by checking neighbors
+    sCtx.fillStyle = 'rgba(76, 175, 80, 0.3)';
+    for (let y = 1; y < H - 1; y++) {
+      for (let x = 1; x < W - 1; x++) {
+        const idx = y * W + x;
+        if (res.footMask[idx]) {
+          // Check if edge pixel
+          if (!res.footMask[(y-1)*W+x] || !res.footMask[(y+1)*W+x] ||
+              !res.footMask[y*W+x-1] || !res.footMask[y*W+x+1]) {
+            sCtx.fillRect(x, y, 2, 2);
+          }
+        }
+      }
+    }
+  }
+  
   const m = res.meas;
-  sCtx.strokeStyle='#ff4444'; sCtx.lineWidth=3;
+  // Draw ball width line
+  sCtx.strokeStyle = '#ff4444'; sCtx.lineWidth = 3;
   if (m.sections && m.sections[m.ballIdx]) {
-    const bs=m.sections[m.ballIdx]; sCtx.beginPath();
-    if (m.orientation==='V') { sCtx.moveTo(bs.lo,bs.pos); sCtx.lineTo(bs.hi,bs.pos); }
-    else { sCtx.moveTo(bs.pos,bs.lo); sCtx.lineTo(bs.pos,bs.hi); }
+    const bs = m.sections[m.ballIdx]; sCtx.beginPath();
+    if (m.orientation === 'V') { sCtx.moveTo(bs.lo, bs.pos); sCtx.lineTo(bs.hi, bs.pos); }
+    else { sCtx.moveTo(bs.pos, bs.lo); sCtx.lineTo(bs.pos, bs.hi); }
     sCtx.stroke();
   }
-  const dataUrl = snap.toDataURL('image/jpeg',0.92);
+  
+  const dataUrl = snap.toDataURL('image/jpeg', 0.92);
   lastCaptureData = { imageDataUrl: dataUrl, measurements: m };
 
   document.getElementById('scanner').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
   document.getElementById('captured-img').src = dataUrl;
 
-  const wC = classify(m.widthRatio,POP.width_ratio);
-  const hC = classify(m.heelRatio,POP.heel_ratio);
+  const wC = classify(m.widthRatio, POP.width_ratio);
+  const hC = classify(m.heelRatio, POP.heel_ratio);
   document.getElementById('meas-grid').innerHTML = `
     <div class="meas-card"><div class="meas-label">Width / Length</div><div class="meas-value">${m.widthRatio}</div><div class="meas-class ${wC.cls}">${wC.label}</div></div>
     <div class="meas-card"><div class="meas-label">Heel / Ball</div><div class="meas-value">${m.heelRatio}</div><div class="meas-class ${hC.cls}">${hC.label}</div></div>
     <div class="meas-card"><div class="meas-label">Toe Shape</div><div class="meas-value" style="font-size:1.1rem">${m.toeShape}</div><div class="meas-class normal">&nbsp;</div></div>
-    <div class="meas-card"><div class="meas-label">Toe Length %</div><div class="meas-value">${(m.toeProp*100).toFixed(0)}%</div><div class="meas-class normal">of foot length</div></div>`;
+    <div class="meas-card"><div class="meas-label">Toe Length %</div><div class="meas-value">${(m.toeProp * 100).toFixed(0)}%</div><div class="meas-class normal">of foot length</div></div>`;
   document.getElementById('result-note').textContent =
     `${m.footLen}px length · ${m.ballW}px ball · ${m.heelW}px heel · ${m.orientation}`;
-  video.srcObject?.getTracks().forEach(t=>t.stop());
+  video.srcObject?.getTracks().forEach(t => t.stop());
 }
 
 function classify(v, pop) {
-  if (v<pop.lo) return {cls:'narrow',label:'Narrow'};
-  if (v>pop.hi) return {cls:'wide',label:'Wide'};
-  return {cls:'normal',label:'Normal'};
+  if (v < pop.lo) return { cls: 'narrow', label: 'Narrow' };
+  if (v > pop.hi) return { cls: 'wide', label: 'Wide' };
+  return { cls: 'normal', label: 'Normal' };
 }
 
 // ── Save to Supabase ──
@@ -441,40 +648,40 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 
 async function saveResult() {
   if (!lastCaptureData) return;
-  const btn=document.getElementById('save-btn'), status=document.getElementById('save-status');
-  btn.disabled=true; btn.textContent='Saving…'; status.textContent='';
+  const btn = document.getElementById('save-btn'), status = document.getElementById('save-status');
+  btn.disabled = true; btn.textContent = 'Saving…'; status.textContent = '';
   try {
-    const ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
-    const id = 'scan-'+ts;
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const id = 'scan-' + ts;
     const blob = await (await fetch(lastCaptureData.imageDataUrl)).blob();
-    const up = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.jpg`,{
-      method:'POST', headers:{'Authorization':`Bearer ${SB_KEY}`,'apikey':SB_KEY,'Content-Type':'image/jpeg','x-upsert':'true'}, body:blob });
-    let imgUrl='';
-    if (up.ok) imgUrl=`${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}.jpg`;
-    const jb = new Blob([JSON.stringify({scan_id:id,timestamp:new Date().toISOString(),image_url:imgUrl,
-      measurements:lastCaptureData.measurements,user_agent:navigator.userAgent},null,2)],{type:'application/json'});
-    const jr = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.json`,{
-      method:'POST', headers:{'Authorization':`Bearer ${SB_KEY}`,'apikey':SB_KEY,'Content-Type':'application/json','x-upsert':'true'}, body:jb });
-    if (up.ok && jr.ok) { status.innerHTML=`Saved! <a href="${imgUrl}" target="_blank" style="color:#64B5F6">View image</a>`; btn.textContent='Saved ✓'; }
+    const up = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.jpg`, {
+      method: 'POST', headers: { 'Authorization': `Bearer ${SB_KEY}`, 'apikey': SB_KEY, 'Content-Type': 'image/jpeg', 'x-upsert': 'true' }, body: blob });
+    let imgUrl = '';
+    if (up.ok) imgUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}.jpg`;
+    const jb = new Blob([JSON.stringify({ scan_id: id, timestamp: new Date().toISOString(), image_url: imgUrl,
+      measurements: lastCaptureData.measurements, user_agent: navigator.userAgent }, null, 2)], { type: 'application/json' });
+    const jr = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.json`, {
+      method: 'POST', headers: { 'Authorization': `Bearer ${SB_KEY}`, 'apikey': SB_KEY, 'Content-Type': 'application/json', 'x-upsert': 'true' }, body: jb });
+    if (up.ok && jr.ok) { status.innerHTML = `Saved! <a href="${imgUrl}" target="_blank" style="color:#64B5F6">View image</a>`; btn.textContent = 'Saved ✓'; }
     else throw new Error('upload failed');
   } catch(e) {
     console.error(e);
-    status.textContent='Cloud save failed — downloading…';
-    const a=document.createElement('a'); a.href=lastCaptureData.imageDataUrl; a.download='foot-scan.jpg'; a.click();
+    status.textContent = 'Cloud save failed — downloading…';
+    const a = document.createElement('a'); a.href = lastCaptureData.imageDataUrl; a.download = 'foot-scan.jpg'; a.click();
     if (lastCaptureData.measurements) {
-      const b=document.createElement('a'); b.href=URL.createObjectURL(new Blob([JSON.stringify(lastCaptureData.measurements,null,2)],{type:'application/json'}));
-      b.download='foot-scan-data.json'; setTimeout(()=>b.click(),500);
+      const b = document.createElement('a'); b.href = URL.createObjectURL(new Blob([JSON.stringify(lastCaptureData.measurements, null, 2)], { type: 'application/json' }));
+      b.download = 'foot-scan-data.json'; setTimeout(() => b.click(), 500);
     }
-    btn.textContent='Downloaded'; status.textContent='Saved to device';
+    btn.textContent = 'Downloaded'; status.textContent = 'Saved to device';
   }
 }
 
 function retake() {
-  document.getElementById('result-screen').style.display='none';
-  document.getElementById('save-status').textContent='';
-  document.getElementById('save-btn').disabled=false;
-  document.getElementById('save-btn').textContent='Save Result';
-  lastCaptureData=null; stableCount=0; prevCentroid=null;
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('save-status').textContent = '';
+  document.getElementById('save-btn').disabled = false;
+  document.getElementById('save-btn').textContent = 'Save Result';
+  lastCaptureData = null; stableCount = 0; prevCentroid = null;
   startScanner();
 }
 </script>
