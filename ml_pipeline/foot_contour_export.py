@@ -5,7 +5,7 @@ for overlay visualization on the result page.
 Adds contour extraction to the ML pipeline. For each view (top, side), produces
 a list of [x, y] points normalized to [0, 1] relative to the foot's bounding box.
 
-The frontend renders these as SVG polylines overlaid on the average foot template.
+The frontend renders these as SVG paths overlaid on the average foot template.
 
 ═══ ORIENTATION CONTRACT ═══
 
@@ -21,8 +21,34 @@ SIDE VIEW:
            top at TOP (small y), sole at BOTTOM (large y).
   Output:  x=0 toes (LEFT), x=1 heel (RIGHT),
            y=0 top, y=1 sole.
-  NO flip — mask orientation matches the standard model reference.
-  The SVG template is mirrored in the frontend with scale(-1,1).
+  NO flip needed — mask orientation matches the standard model reference.
+  The frontend SVG template already has toes LEFT, heel RIGHT — no mirror.
+
+═══ FRONTEND DATA CONTRACT ═══
+
+The result dict passed to the React component should include:
+  contour_top: {
+    contour_smooth: [[x,y], ...],  # normalized [0,1], ~150-250 pts
+    stats: { n_points, mask_w, mask_h }
+  }
+  contour_side: {
+    contour_smooth: [[x,y], ...],  # normalized [0,1], ~220-250 pts, y>0.95 clamped to 1.0
+    stats: { aspect_ratio, foot_span_px, ... }
+  }
+  side_outline_path: <SVG d-string>  # from side_template_paths.json
+  width_ratio, arch_ratio, instep_ratio, heel_ratio, side_aspect
+
+═══ MEASUREMENT LOGIC (performed in the frontend) ═══
+
+Top view:
+  W line: y-position where the contour is widest in the forefoot region (y 15-50%)
+  H line: y-position where the contour is widest in the heel region (y 75-95%)
+  Width endpoints: scaled by wr / AVG_WR centered on template
+
+Side view:
+  A (arch): ball_x = HEEL_X - arch_ratio * TOTAL_LEN (from HEEL, not toe)
+  I (instep): x found by walking upper contour where y = instep_height
+              instep_top = GROUND_Y - instep_ratio * TOTAL_LEN
 
 IMPORTANT: This runs on the Mac Mini only (needs ONNX + OpenCV). The sandbox
 cannot run the ML model due to resource constraints.
@@ -67,7 +93,7 @@ def extract_top_contour(foot_mask, n_points=150):
         y=0 TOP (toes), y=1 BOTTOM (heel)
 
     Returns dict with:
-        contour: [[x, y], ...] — normalized [0,1] coords
+        contour_smooth: [[x, y], ...] — normalized [0,1] coords
         stats: {n_points, mask_w, mask_h}
     Or None if extraction fails.
     """
@@ -126,7 +152,7 @@ def extract_top_contour(foot_mask, n_points=150):
     rotated = [[round(1 - ny, 4), round(nx, 4)] for (nx, ny) in norm]
 
     return {
-        "contour": rotated,
+        "contour_smooth": rotated,
         "stats": {
             "n_points": len(rotated),
             "mask_w": int(w),
@@ -148,10 +174,11 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=220):
         x=0 = toes (LEFT), x=1 = heel (RIGHT)
         y=0 = top, y=1 = sole
     This matches the standard model (toes LEFT, heel RIGHT).
-    The SVG template is mirrored in the frontend — do NOT flip here.
+    The frontend template also has toes LEFT — no flip needed anywhere.
 
     Returns dict with:
-        contour: [[x, y], ...] — normalized [0,1] coords
+        contour_smooth: [[x, y], ...] — normalized [0,1] coords
+                        Sole y-values > 0.95 are clamped to 1.0 for flat rendering
         stats: {aspect_ratio, foot_span_px, clip_height_px, ...}
     Or None if extraction fails.
     """
@@ -231,10 +258,13 @@ def extract_side_contour(foot_mask, sole_y, px_per_mm, n_points=220):
     for cx, cy in full:
         nx = max(0.0, min(1.0, (cx - toe_col) / foot_span_px))
         ny = max(0.0, min(1.0, (cy - min_y) / y_range))
+        # Clamp sole to flat: y > 0.95 → 1.0
+        if ny > 0.95:
+            ny = 1.0
         result.append([round(nx, 4), round(ny, 4)])
 
     return {
-        "contour": result,
+        "contour_smooth": result,
         "stats": {
             "foot_span_px": int(foot_span_px),
             "clip_height_px": int(y_range),
