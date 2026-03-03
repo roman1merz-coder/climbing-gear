@@ -27,8 +27,9 @@ export function initPostHog() {
     autocapture: true,
     // Session replay OFF by default — enabled when user consents
     disable_session_recording: true,
-    // Respect Do Not Track browser setting
-    respect_dnt: true,
+    // DNT is deprecated and we already run cookieless — no need for respect_dnt
+    // (it silently kills PostHog if the browser has Do Not Track enabled)
+    respect_dnt: false,
     // Don't send data in dev
     loaded: (ph) => {
       if (import.meta.env.DEV) {
@@ -37,6 +38,7 @@ export function initPostHog() {
     },
   });
   initialized = true;
+  console.log("[PostHog] initialized — api_host:", POSTHOG_HOST);
 }
 
 /** Enable session replays (call after user consents to analytics) */
