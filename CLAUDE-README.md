@@ -9,10 +9,10 @@ These rules are NON-NEGOTIABLE and must always be followed.
 
 | Field | Value |
 |-------|-------|
-| Service | PostHog (US cloud) |
-| Dashboard | https://us.posthog.com/project/sTMFPsFhdP1Ssg |
+| Service | PostHog (EU cloud) |
+| Dashboard | https://eu.posthog.com/project/135032/ |
 | API Key | `phc_OkrxqJzUXVGEdKKvbuAMZ5jdZ2R9Vp9GItLNYW9UIWe` |
-| Host | `https://us.i.posthog.com` |
+| Host | `https://eu.i.posthog.com` |
 | Config file | `src/posthog.js` |
 
 **How it works:**
