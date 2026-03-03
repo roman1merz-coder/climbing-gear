@@ -257,7 +257,17 @@ function startScanner() {
     };
   })
   .catch(e => {
-    document.getElementById('status-bar').textContent = 'Camera error: ' + e.message;
+    console.error('Camera error:', e.name, e.message);
+    const bar = document.getElementById('status-bar');
+    if (e.name === 'NotAllowedError') {
+      bar.innerHTML = 'Camera blocked. Tap the <b>lock icon &#x1f512;</b> next to the URL → Permissions → Camera → Allow, then reload.';
+    } else if (e.name === 'NotFoundError') {
+      bar.textContent = 'No front camera found on this device.';
+    } else if (e.name === 'NotReadableError') {
+      bar.textContent = 'Camera is in use by another app. Close it and retry.';
+    } else {
+      bar.textContent = 'Camera error: ' + e.name + ' — ' + e.message;
+    }
   });
 }
 
