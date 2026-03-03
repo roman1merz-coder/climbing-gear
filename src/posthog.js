@@ -11,34 +11,40 @@
 import posthog from "posthog-js";
 
 const POSTHOG_KEY = "phc_OkrxqJzUXVGEdKKvbuAMZ5jdZ2R9Vp9GItLNYW9UIWe";
-const POSTHOG_HOST = "https://eu.i.posthog.com";
+// Proxy through our own domain to avoid ad-blocker interference.
+// Vercel rewrites /ingest/* → eu.i.posthog.com/* (see vercel.json).
+const POSTHOG_HOST = "/ingest";
+const POSTHOG_UI_HOST = "https://eu.posthog.com";
 
 let initialized = false;
 
 export function initPostHog() {
   if (initialized || typeof window === "undefined") return;
-  posthog.init(POSTHOG_KEY, {
-    api_host: POSTHOG_HOST,
-    // Cookieless mode — no localStorage/cookies, fully GDPR-compliant
-    persistence: "memory",
-    // SPA — we handle pageviews manually on route changes
-    capture_pageview: false,
-    // Autocapture clicks, form submits, etc.
-    autocapture: true,
-    // Session replay OFF by default — enabled when user consents
-    disable_session_recording: true,
-    // DNT is deprecated and we already run cookieless — no need for respect_dnt
-    // (it silently kills PostHog if the browser has Do Not Track enabled)
-    respect_dnt: false,
-    // Don't send data in dev
-    loaded: (ph) => {
-      if (import.meta.env.DEV) {
-        ph.opt_out_capturing();
-      }
-    },
-  });
-  initialized = true;
-  console.log("[PostHog] initialized — api_host:", POSTHOG_HOST);
+  try {
+    posthog.init(POSTHOG_KEY, {
+      api_host: POSTHOG_HOST,
+      ui_host: POSTHOG_UI_HOST,
+      // Cookieless mode — no localStorage/cookies, fully GDPR-compliant
+      persistence: "memory",
+      // SPA — we handle pageviews manually on route changes
+      capture_pageview: false,
+      // Autocapture clicks, form submits, etc.
+      autocapture: true,
+      // Session replay OFF by default — enabled when user consents
+      disable_session_recording: true,
+      respect_dnt: false,
+      // Don't send data in dev
+      loaded: (ph) => {
+        if (import.meta.env.DEV) {
+          ph.opt_out_capturing();
+        }
+      },
+    });
+    initialized = true;
+    console.log("[PostHog] initialized — routing through", POSTHOG_HOST);
+  } catch (err) {
+    console.error("[PostHog] init failed:", err);
+  }
 }
 
 /** Enable session replays (call after user consents to analytics) */
