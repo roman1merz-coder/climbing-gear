@@ -36,12 +36,20 @@ import CookieConsent from "./CookieConsent.jsx";
 import { wrapAffiliateUrl } from "./utils/affiliate.js";
 import { inject as injectAnalytics } from "@vercel/analytics";
 import { initSentry, SentryErrorBoundary } from "./sentry.js";
+import { initPostHog, trackPageView, trackEvent, enableSessionReplay, setupAffiliateLinkTracking } from "./posthog.js";
+import { hasConsentFor } from "./CookieConsent.jsx";
 
 // Vercel Analytics — cookie-free, privacy-friendly page view tracking
 injectAnalytics();
 
 // Sentry error monitoring — activated when VITE_SENTRY_DSN env var is set
 initSentry();
+
+// PostHog product analytics — cookieless mode, no consent needed for base tracking
+initPostHog();
+setupAffiliateLinkTracking();
+// Enable session replays if user previously consented to analytics
+if (hasConsentFor("analytics")) enableSessionReplay();
 
 // ─── Data Bridge ─────────────────────────────────────────────
 // Both App (list) and ShoeDetail (detail) need access to shoes.
@@ -359,6 +367,13 @@ function ScrollToTop() {
   return null;
 }
 
+/** Track SPA pageviews in PostHog on every route change */
+function PostHogPageView() {
+  const location = useLocation();
+  useEffect(() => { trackPageView(location.pathname); }, [location.pathname, location.search]);
+  return null;
+}
+
 function Root() {
   const [shoes, setShoes] = useState(assignLocalImages(SEED.map(normalizeShoeFields), "shoes"));
   const [src, setSrc] = useState("local");
@@ -452,6 +467,7 @@ function Root() {
         <CompareProvider>
           <BrowserRouter>
             <ScrollToTop />
+            <PostHogPageView />
             <NavBar priceData={priceData} />
             <Routes>
               <Route path="/" element={<Landing />} />

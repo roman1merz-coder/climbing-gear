@@ -73,7 +73,13 @@ function PrivacyPolicy() {
 
       <h2 style={S.h2}>3. Analytics</h2>
       <p style={S.p}>
-        We use Vercel Web Analytics, a privacy-friendly analytics tool that does not use cookies and does not collect personal data. It provides aggregated page view statistics only. No individual user tracking takes place.
+        We use Vercel Web Analytics for aggregated page view statistics (no cookies, no personal data).
+      </p>
+      <p style={S.p}>
+        We also use PostHog (PostHog Inc., San Francisco, USA) for product analytics to understand how visitors interact with the site — for example which gear categories are most popular, which filters are used, and whether features like the shoe finder work well. PostHog runs in <strong>cookieless mode</strong>: it does not set cookies, does not use localStorage, and does not store any persistent identifiers on your device. No personal data is collected. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in improving the website).
+      </p>
+      <p style={S.p}>
+        If you consent via the cookie banner ("Alle akzeptieren"), PostHog may additionally record anonymized session replays to help us identify usability issues. Session replays capture page interactions (clicks, scrolls) but do not record text input in form fields, passwords, or any personal data. You can withdraw consent at any time by clearing your browser's local storage. Legal basis: Art. 6(1)(a) GDPR (consent).
       </p>
 
       <h2 style={S.h2}>4. Database</h2>

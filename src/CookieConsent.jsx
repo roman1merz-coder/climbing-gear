@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { T } from "./tokens.js";
+import { enableSessionReplay, disableSessionReplay } from "./posthog.js";
 
 /**
  * Cookie Consent Banner
@@ -25,6 +26,7 @@ const STORAGE_KEY = "cg_cookie_consent";
 const CATEGORIES = {
   essential: true,   // always on (no actual cookies set yet)
   affiliate: false,  // Skimlinks / Amazon Associates tracking cookies
+  analytics: false,  // PostHog session replays (base analytics runs cookieless, no consent needed)
 };
 
 /** Check if user has consented to a specific category */
@@ -60,10 +62,14 @@ export default function CookieConsent() {
       categories: {
         essential: true,
         affiliate: acceptAll,
+        analytics: acceptAll,
       },
       timestamp: new Date().toISOString(),
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    // Enable/disable PostHog session replays based on consent
+    if (acceptAll) enableSessionReplay();
+    else disableSessionReplay();
     setVisible(false);
   };
 
@@ -81,7 +87,7 @@ export default function CookieConsent() {
       animation: "fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards",
     }}>
       <span style={{ maxWidth: "600px", lineHeight: 1.6 }}>
-        Diese Website kann Cookies von Affiliate-Partnern verwenden, um Eink&auml;ufe zuzuordnen.{" "}
+        Diese Website kann Cookies von Affiliate-Partnern und anonymisierte Session-Aufnahmen (PostHog) verwenden.{" "}
         <a href="/privacy" style={{ color: T.accent, textDecoration: "underline" }}>
           Datenschutz
         </a>
