@@ -318,6 +318,13 @@ function startScanner(step) {
 
   video = document.getElementById('video');
 
+  /* Stop any previous stream before requesting new one */
+  if (video.srcObject) {
+    video.srcObject.getTracks().forEach(t => t.stop());
+    video.srcObject = null;
+  }
+  if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+
   if (!analyzeCanvas) {
     analyzeCanvas = document.createElement('canvas');
     analyzeCanvas.width = 120; analyzeCanvas.height = 160;
@@ -331,6 +338,7 @@ function startScanner(step) {
   })
   .then(stream => {
     video.srcObject = stream;
+    video.play().catch(() => {});
     video.onloadedmetadata = () => {
       checkTimer = setInterval(analyzeFrame, CHECK_INTERVAL);
     };
