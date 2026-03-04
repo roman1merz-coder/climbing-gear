@@ -82,8 +82,7 @@ body {
 /* Un-mirror video for both steps so right foot looks like right foot */
 #video { transform: scaleX(-1); }
 #guide-overlay { transform: scaleX(-1); }
-/* Sole SVG: flip to match un-mirrored video */
-#foot-guide-svg { transform: scaleX(-1); }
+/* Sole SVG: inherits scaleX(-1) from #guide-overlay — no extra flip needed */
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 20px 40px; text-align: center;
