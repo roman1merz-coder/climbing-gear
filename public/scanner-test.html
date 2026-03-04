@@ -64,6 +64,17 @@ body {
 #foot-guide-svg.ready path {
   stroke: #3d7a52;
 }
+/* Side profile overlay */
+#side-guide-img {
+  width: 70%; max-height: 75%;
+  object-fit: contain;
+  transition: filter 0.3s, opacity 0.3s;
+  opacity: 0.45;
+}
+#side-guide-img.ready {
+  opacity: 0.75;
+  filter: drop-shadow(0 0 12px rgba(61,122,82,0.5)) hue-rotate(90deg);
+}
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 20px 40px; text-align: center;
@@ -71,13 +82,47 @@ body {
   font-size: 1rem; color: #fff; padding-top: 40px;
   font-weight: 500;
 }
-/* Checkmark flash when capture triggers */
-
+#step-indicator {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 40px 20px 16px; text-align: center;
+  background: linear-gradient(rgba(0,0,0,0.6), transparent);
+  font-size: 0.85rem; color: rgba(255,255,255,0.8);
+  font-weight: 600; letter-spacing: 0.5px;
+}
 #flash {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background: #fff; opacity: 0; pointer-events: none;
   transition: opacity 0.08s;
 }
+
+/* ── Transition Screen (between sole and side) ── */
+#transition-screen {
+  display: none; position: relative;
+  width: 100vw; min-height: 100vh; min-height: 100dvh;
+  background: #f5f0e8; overflow-y: auto;
+  padding: 20px; padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+#transition-screen h2 { text-align: center; font-size: 1.3rem; margin-bottom: 12px; }
+#sole-preview {
+  display: block; margin: 0 auto 16px;
+  max-width: 55%; max-height: 35vh;
+  border-radius: 12px; border: 1px solid #d5cdbf;
+  object-fit: contain; background: #fff;
+}
+.transition-info {
+  text-align: center; max-width: 340px; margin: 0 auto 20px;
+  font-size: 0.92rem; color: #7a7462; line-height: 1.5;
+}
+.transition-steps { text-align: left; max-width: 300px; margin: 0 auto 24px; }
+.transition-steps li { margin-bottom: 10px; font-size: 0.92rem; color: #7a7462; line-height: 1.4; }
+.transition-steps li strong { color: #2c3227; }
+.btn-row-transition { display: flex; gap: 10px; max-width: 360px; margin: 0 auto; }
+#retake-sole-btn, #continue-side-btn {
+  flex: 1; border: none; padding: 14px; border-radius: 10px;
+  font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+#retake-sole-btn { background: #fff; color: #2c3227; border: 1px solid #d5cdbf; }
+#continue-side-btn { background: #c98a42; color: #fff; }
 
 /* ── Result Screen ── */
 #result-screen {
@@ -86,12 +131,14 @@ body {
   background: #f5f0e8; overflow-y: auto;
   padding: 20px; padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
-#captured-img {
-  display: block; margin: 0 auto 20px;
-  max-width: 90%; max-height: 55vh;
-  border-radius: 16px; border: 1px solid #d5cdbf;
+.result-photos { display: flex; gap: 10px; max-width: 400px; margin: 0 auto 16px; }
+.result-photos img {
+  flex: 1; max-width: 48%; max-height: 40vh;
+  border-radius: 12px; border: 1px solid #d5cdbf;
   object-fit: contain; background: #fff;
 }
+.result-labels { display: flex; gap: 10px; max-width: 400px; margin: 0 auto 16px; text-align: center; }
+.result-labels span { flex: 1; font-size: 0.8rem; color: #7a7462; font-weight: 600; }
 .result-info {
   text-align: center; max-width: 360px; margin: 0 auto 20px;
   font-size: 0.9rem; color: #7a7462; line-height: 1.6;
@@ -111,12 +158,13 @@ body {
 
 <div id="start-screen">
   <h1>Foot Scanner</h1>
-  <p class="subtitle">Automatically captures a photo of the sole of your foot for shape analysis.</p>
+  <p class="subtitle">Captures two photos of your foot — sole and side — for shape analysis.</p>
   <ol class="step-list">
     <li><strong>Place your phone face-up on the floor</strong> (screen pointing at the ceiling)</li>
     <li><strong>Hold your bare foot</strong> about a hand-width above the screen</li>
     <li><strong>Align your foot</strong> inside the dashed guide</li>
     <li>Hold steady — the photo is <strong>taken automatically</strong></li>
+    <li>Then repeat for a <strong>side profile</strong> shot</li>
   </ol>
   <button id="start-btn">Open Camera</button>
 </div>
@@ -124,20 +172,46 @@ body {
 <div id="scanner">
   <video id="video" autoplay playsinline muted></video>
   <div id="guide-overlay">
-    <!-- Foot sole outline from foot bottom.svg -->
+    <!-- Sole outline (shown in step 1) -->
     <svg id="foot-guide-svg" viewBox="280 40 480 960" preserveAspectRatio="xMidYMid meet">
       <path d="M619.815 61.21C664.42 58.33 678.37 102.118 688.025 136.992C697.575 171.488 684.305 205.393 684.93 240.126C685.395 265.963 691.42 290.668 694.27 316.125C695.89 331.689 696.055 347.37 694.76 362.965C692.95 385.162 688.3 405.601 681.745 426.814C677.4 441.855 671.515 456.513 667.765 471.729C654.465 525.675 642.69 581.63 637.47 636.95C635.105 662.015 636.645 688.23 637.625 713.17C640.225 779.235 653.165 861.265 616.02 920.405C600.115 946.15 574.525 964.42 545.01 971.095C514.785 977.805 480.261 973.14 453.874 956.325C392.116 916.975 396.387 836.855 392.937 772.865C391.084 738.51 388.906 702.685 381.4 669.115C374.936 641.77 365.521 616.1 360.145 587.86C353.679 553.895 349.793 520.33 343.289 486.389C337.723 458.03 330.011 431.724 328.432 402.714C326.928 375.077 334.325 350.593 335.031 323.286C335.284 313.513 333.174 303.861 332.596 294.184C331.781 279.069 332.228 264.656 335.574 249.744C338.683 235.886 343.457 218.524 358.987 213.957C366.473 211.755 372.143 214.045 378.522 217.791C378.198 205.204 378.593 198.533 380.405 186.168C384.088 161.027 416.79 135.844 434.711 164.782C429.831 141.988 427.831 123.003 450.608 109.793C457.228 105.953 466.886 102.861 474.288 105.459C496.049 113.099 498.649 147.654 500.535 167.109C501.45 181.049 497.686 212.514 504.12 224.382L504.695 224.346C509.86 215.006 504.39 164.777 501.94 152.554C497.599 130.91 481.352 98.236 504.59 81.057C512.74 75.032 526.775 71.8065 536.655 73.7235C571.935 80.5705 563.405 126.586 564.65 152.589C565.45 170.012 567.485 186.199 567.88 203.731C568.54 210.243 567.525 226.156 572.02 231.385C582.67 243.774 587.515 233.217 587.575 222.622C587.725 195.042 571.405 173.845 569.415 146.845C568.5 134.381 568.895 123.317 571.36 111.111C576.06 81.0575 588.075 63.7515 619.815 61.21Z"/>
     </svg>
+    <!-- Side profile overlay (shown in step 2, hidden initially) -->
+    <img id="side-guide-img" style="display:none" src="data:image/png;base64,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Iu58bm+jFsubJuqbGZWBfGkILwuBr0KwuEgEwgiMSwhFwhC6hXCXYFxbb2SO6aO+uJ7OcKeL/23juF8IZwHognAkABSyorohXgPoDUNubrbD7j8e4/v+p3LA6idLREm0PM1ksrauUuPluo1WXBIljqd0Jm1mX0KYAjAZAPLGLcm6rnuAWH2+7dAIsEAqgzx9kgoAbYo6sdIxKZHp6x7riUA5fNJCUDeXefsZc5MGrHxovmvDUl6NBneFIU3gDyY0DSBkdXl2JygHQAyrJ43kcC0utEMQsqA3ChhQ7VwxrMHYSR2KCINBKNYDyKzmw8pEgmkOQCzAFIQGVTbLbM2Sk8F1IHVw7QgBiD0C9gA6l5F3TaYq9xz1Odu2fqs79xLmNnvWvASu9nsziFMT5mUhfQ1jDwWAUPUs6+Dqt/3OpK/RapfIakuwDdNPWHd7pai/pjP7QDykoLJc4/kt1zYNrUnHYwHMlOX1OXeSoSQkEqrS1DP//OZikwyQXpcg/2/xIyZwGZg5ozByOINAy947gNzowve2Xg7mLi7DWhd2Fb3EDNNk0N8I6iZCHgbqsker6sVdEwIZqur9SCoQYgSlAORo1Cp7rE883vFke9Ebf1GzxijURIyoLKsDukGCUZA9QADCAkYJpDWXsNdJHekUT8JSfxNf5J2vfKhaX2jX/I70/r30EBNQPWntOcD8gDaS3Hk77LHz4lhbpwoKxLclxv3oKuLyANjWSBN+XyCkQMftU1FZ0vZRPu+lLq6mH+e70rvJW1HlSOTDDCbwDEVaTghGwC+vTY7UHViwkZJM6sv+2e8X/Qc7x0BSABsqyWWQABrPWzuBNQrcFKI8ZfMJg8jjZy5dNWDz1VbD+v27nJwoYDQObLHU3vfvKDSM7M7J/I5HO5XU/gRtan8i5IHSqXqdHKXC+hAYfvW96Q20i4BWDe7pOcrZKpCPvebJ7bzaAA4aIq6+/pbEuK1iqGM8MKze0QqMs2FiPVNUxsfwBPbiYOm6BFsCs+3aa8CAkZSeUt7djZgDiBmNkaz+jW1tNq5XTM1lo2YVCiEkUO6m7tmKv/0DN/VFxxAzGyfmtkDGDnk96J/UG3/0rN7MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzsxft/wf6tv7Im9/UcAAAAABJRU5ErkJggg==" />
   </div>
 
+  <div id="step-indicator">STEP 1 of 2 — Sole</div>
   <div id="status-bar">Position your foot over the screen…</div>
   <div id="flash"></div>
 </div>
 
+<div id="transition-screen">
+  <h2>Sole captured ✓</h2>
+  <img id="sole-preview" />
+  <p class="transition-info">Now let's capture the side profile of your foot.</p>
+  <ol class="transition-steps">
+    <li><strong>Prop your phone upright</strong> (lean it against something)</li>
+    <li><strong>Position your foot sideways</strong> in front of the camera</li>
+    <li>Align with the <strong>side outline guide</strong></li>
+    <li>Hold steady — auto-captures when aligned</li>
+  </ol>
+  <div class="btn-row-transition">
+    <button id="retake-sole-btn">Retake Sole</button>
+    <button id="continue-side-btn">Continue to Side</button>
+  </div>
+</div>
+
 <div id="result-screen">
-  <img id="captured-img" />
+  <div class="result-photos">
+    <img id="result-sole-img" />
+    <img id="result-side-img" />
+  </div>
+  <div class="result-labels">
+    <span>Sole</span>
+    <span>Side Profile</span>
+  </div>
   <div class="result-info">
-    Photo captured automatically. Save to upload for analysis, or retake if the foot isn't fully visible.
+    Both photos captured. Save to upload for analysis, or retake to start over.
   </div>
   <div class="btn-row">
     <button id="retake-btn">Retake</button>
@@ -151,37 +225,98 @@ const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
 /* ── Auto-capture config ── */
-const CHECK_INTERVAL = 200;       // ms between frame checks
-const COVERAGE_MIN = 0.20;        // at least 20% of guide zone covered
-const COVERAGE_MAX = 0.75;        // no more than 75% (too close / all dark)
-const STILL_THRESHOLD = 0.03;     // max frame-to-frame change
-const STILL_FRAMES_NEEDED = 5;    // consecutive still frames needed (~1.0s at 200ms)
-const MIN_FOOT_FRAMES = 8;        // foot must be detected for at least ~1.6s before capture is even possible
+const CHECK_INTERVAL = 200;
+const STILL_THRESHOLD = 0.03;
+const STILL_FRAMES_NEEDED = 5;
+const MIN_FOOT_FRAMES = 8;
+
+/* Step-specific thresholds */
+const SOLE_CONFIG = {
+  COVERAGE_MIN: 0.20,
+  COVERAGE_MAX: 0.75,
+  ASPECT_MIN: 1.8,
+  ASPECT_MAX: 4.5,
+  BALANCE_MIN: 0.2
+};
+const SIDE_CONFIG = {
+  COVERAGE_MIN: 0.12,
+  COVERAGE_MAX: 0.70,
+  ASPECT_MIN: 0.6,
+  ASPECT_MAX: 2.8,
+  BALANCE_MIN: 0.15
+};
 
 let video, analyzeCanvas, analyzeCtx;
 let checkTimer = null;
 let captured = false;
-let lastCaptureDataUrl = null;
-let prevPixelData = null;         // previous frame pixel data for motion detection
-let stillCount = 0;               // consecutive frames with low motion
-let footFrames = 0;               // total consecutive frames with foot detected
+let soleDataUrl = null;
+let sideDataUrl = null;
+let prevPixelData = null;
+let stillCount = 0;
+let footFrames = 0;
+let currentStep = 'sole'; // 'sole' or 'side'
 
-document.getElementById('start-btn').addEventListener('click', startScanner);
-document.getElementById('retake-btn').addEventListener('click', retake);
+/* ── Screen management ── */
+function showScreen(id) {
+  ['start-screen','scanner','transition-screen','result-screen'].forEach(s => {
+    document.getElementById(s).style.display = 'none';
+  });
+  document.getElementById(id).style.display = id === 'scanner' ? 'block' : 'flex';
+  if (id !== 'scanner') {
+    document.getElementById(id).style.flexDirection = 'column';
+    document.getElementById(id).style.alignItems = 'center';
+    document.getElementById(id).style.justifyContent = id === 'start-screen' ? 'center' : 'flex-start';
+    document.getElementById(id).style.paddingTop = id === 'start-screen' ? '2rem' : '40px';
+  }
+}
+
+/* ── Event listeners ── */
+document.getElementById('start-btn').addEventListener('click', () => startScanner('sole'));
+document.getElementById('retake-sole-btn').addEventListener('click', () => {
+  soleDataUrl = null;
+  startScanner('sole');
+});
+document.getElementById('continue-side-btn').addEventListener('click', () => startScanner('side'));
+document.getElementById('retake-btn').addEventListener('click', retakeAll);
 document.getElementById('save-btn').addEventListener('click', saveResult);
 
-function startScanner() {
-  document.getElementById('start-screen').style.display = 'none';
-  document.getElementById('scanner').style.display = 'block';
+function startScanner(step) {
+  currentStep = step;
   captured = false;
-  holdStart = null;
+  stillCount = 0;
+  footFrames = 0;
+  prevPixelData = null;
+
+  showScreen('scanner');
+
+  /* Toggle guides */
+  const svgGuide = document.getElementById('foot-guide-svg');
+  const imgGuide = document.getElementById('side-guide-img');
+  const stepIndicator = document.getElementById('step-indicator');
+
+  if (step === 'sole') {
+    svgGuide.style.display = '';
+    imgGuide.style.display = 'none';
+    svgGuide.classList.remove('ready');
+    stepIndicator.textContent = 'STEP 1 of 2 — Sole';
+  } else {
+    svgGuide.style.display = 'none';
+    imgGuide.style.display = '';
+    imgGuide.classList.remove('ready');
+    stepIndicator.textContent = 'STEP 2 of 2 — Side Profile';
+  }
+
+  document.getElementById('status-bar').textContent = 'Position your foot…';
+
   video = document.getElementById('video');
 
-  // Small offscreen canvas for frame analysis
-  analyzeCanvas = document.createElement('canvas');
-  analyzeCanvas.width = 120; analyzeCanvas.height = 160;
-  analyzeCtx = analyzeCanvas.getContext('2d', { willReadFrequently: true });
+  if (!analyzeCanvas) {
+    analyzeCanvas = document.createElement('canvas');
+    analyzeCanvas.width = 120; analyzeCanvas.height = 160;
+    analyzeCtx = analyzeCanvas.getContext('2d', { willReadFrequently: true });
+  }
 
+  /* Always front camera */
   navigator.mediaDevices.getUserMedia({
     video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
     audio: false,
@@ -189,7 +324,6 @@ function startScanner() {
   .then(stream => {
     video.srcObject = stream;
     video.onloadedmetadata = () => {
-      // Start checking frames once video is playing
       checkTimer = setInterval(analyzeFrame, CHECK_INTERVAL);
     };
   })
@@ -201,13 +335,11 @@ function startScanner() {
 
 /**
  * Smart auto-capture: detects a foot shape + stillness.
+ * SAME brightness-based logic for both sole and side — only thresholds differ.
  *
- * 1) Check the guide zone for a foot-shaped dark mass (elongated, not round)
+ * 1) Check the guide zone for a dark mass with appropriate shape
  * 2) Compare current frame to previous frame — measure motion
- * 3) When foot shape is good AND frame is stable for N consecutive checks → snap
- *
- * No countdown, no timer visible. Just: guide turns green → captures instantly
- * when the foot is well-positioned and still.
+ * 3) When shape is good AND frame is stable for N consecutive checks → snap
  */
 function analyzeFrame() {
   if (captured || !video || video.readyState < 2) return;
@@ -256,37 +388,42 @@ function analyzeFrame() {
   const bottomHalf = stripDark.slice(4, 8).reduce((a, b) => a + b, 0);
   const balance = Math.min(topHalf, bottomHalf) / Math.max(topHalf, bottomHalf, 1);
 
+  /* Pick thresholds based on current step */
+  const cfg = currentStep === 'sole' ? SOLE_CONFIG : SIDE_CONFIG;
+
   const isFootShape =
-    coverage >= COVERAGE_MIN &&
-    coverage <= COVERAGE_MAX &&
-    aspectRatio >= 1.8 &&
-    aspectRatio <= 4.5 &&
-    balance >= 0.2;
+    coverage >= cfg.COVERAGE_MIN &&
+    coverage <= cfg.COVERAGE_MAX &&
+    aspectRatio >= cfg.ASPECT_MIN &&
+    aspectRatio <= cfg.ASPECT_MAX &&
+    balance >= cfg.BALANCE_MIN;
 
   // ── 2. Motion detection (frame-to-frame diff) ──
-  let motion = 1; // assume high motion if no previous frame
+  let motion = 1;
   if (prevPixelData && prevPixelData.length === curPixels.length) {
     let diffSum = 0;
-    const sampleStep = 32; // sample every 8th pixel (4 channels × 8)
+    const sampleStep = 32;
     let sampleCount = 0;
     for (let i = 0; i < curPixels.length; i += sampleStep) {
       diffSum += Math.abs(curPixels[i] - prevPixelData[i]);
       sampleCount++;
     }
-    motion = diffSum / (sampleCount * 255); // normalize 0–1
+    motion = diffSum / (sampleCount * 255);
   }
   prevPixelData = new Uint8Array(curPixels);
 
   const isStill = motion < STILL_THRESHOLD;
 
   // ── 3. Decision ──
-  const outline = document.getElementById('foot-guide-svg');
+  const guideEl = currentStep === 'sole'
+    ? document.getElementById('foot-guide-svg')
+    : document.getElementById('side-guide-img');
   const statusBar = document.getElementById('status-bar');
 
   if (isFootShape && isStill) {
     footFrames++;
     stillCount++;
-    outline.classList.add('ready');
+    guideEl.classList.add('ready');
 
     if (footFrames < MIN_FOOT_FRAMES) {
       statusBar.textContent = 'Foot detected — hold still…';
@@ -296,23 +433,23 @@ function analyzeFrame() {
       statusBar.textContent = 'Almost there — hold still…';
     }
   } else if (isFootShape) {
-    // Foot shape OK but still moving
     footFrames++;
     stillCount = 0;
-    outline.classList.add('ready');
+    guideEl.classList.add('ready');
     statusBar.textContent = 'Foot detected — hold still…';
   } else {
-    // No foot shape
     stillCount = 0;
     footFrames = 0;
-    outline.classList.remove('ready');
+    guideEl.classList.remove('ready');
 
     if (coverage < 0.08) {
-      statusBar.textContent = 'Position your foot over the screen…';
-    } else if (coverage > COVERAGE_MAX) {
-      statusBar.textContent = 'Move your foot a bit higher…';
-    } else if (aspectRatio < 1.8) {
-      statusBar.textContent = 'Align your foot lengthwise in the guide';
+      statusBar.textContent = 'Position your foot…';
+    } else if (coverage > cfg.COVERAGE_MAX) {
+      statusBar.textContent = 'Move your foot a bit further…';
+    } else if (aspectRatio < cfg.ASPECT_MIN) {
+      statusBar.textContent = currentStep === 'sole'
+        ? 'Align your foot lengthwise in the guide'
+        : 'Align your foot with the side outline';
     } else {
       statusBar.textContent = 'Center your foot inside the guide…';
     }
@@ -334,24 +471,30 @@ function capture() {
   snap.width = video.videoWidth; snap.height = video.videoHeight;
   const ctx = snap.getContext('2d');
   ctx.drawImage(video, 0, 0);
-  lastCaptureDataUrl = snap.toDataURL('image/jpeg', 0.95);
+  const dataUrl = snap.toDataURL('image/jpeg', 0.95);
 
-  // Show result after brief flash delay
+  // Stop camera
+  video.srcObject?.getTracks().forEach(t => t.stop());
+
   setTimeout(() => {
-    document.getElementById('scanner').style.display = 'none';
-    document.getElementById('result-screen').style.display = 'block';
-    document.getElementById('captured-img').src = lastCaptureDataUrl;
-    document.getElementById('save-status').textContent = '';
-    document.getElementById('save-btn').disabled = false;
-    document.getElementById('save-btn').textContent = 'Save & Upload';
-
-    // Stop camera
-    video.srcObject?.getTracks().forEach(t => t.stop());
+    if (currentStep === 'sole') {
+      soleDataUrl = dataUrl;
+      document.getElementById('sole-preview').src = soleDataUrl;
+      showScreen('transition-screen');
+    } else {
+      sideDataUrl = dataUrl;
+      document.getElementById('result-sole-img').src = soleDataUrl;
+      document.getElementById('result-side-img').src = sideDataUrl;
+      document.getElementById('save-status').textContent = '';
+      document.getElementById('save-btn').disabled = false;
+      document.getElementById('save-btn').textContent = 'Save & Upload';
+      showScreen('result-screen');
+    }
   }, 200);
 }
 
 async function saveResult() {
-  if (!lastCaptureDataUrl) return;
+  if (!soleDataUrl || !sideDataUrl) return;
   const btn = document.getElementById('save-btn');
   const status = document.getElementById('save-status');
   btn.disabled = true; btn.textContent = 'Uploading…'; status.textContent = '';
@@ -359,45 +502,54 @@ async function saveResult() {
   try {
     const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
     const id = 'scan-' + ts;
-    const blob = await (await fetch(lastCaptureDataUrl)).blob();
 
-    const up = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.jpg`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${SB_KEY}`,
-        'apikey': SB_KEY,
-        'Content-Type': 'image/jpeg',
-        'x-upsert': 'true',
-      },
-      body: blob,
-    });
+    const soleBlob = await (await fetch(soleDataUrl)).blob();
+    const sideBlob = await (await fetch(sideDataUrl)).blob();
 
-    if (up.ok) {
-      const imgUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}.jpg`;
-      status.innerHTML = `Uploaded ✓ <a href="${imgUrl}" target="_blank" style="color:#c98a42;font-weight:600">View image</a>`;
+    const headers = {
+      'Authorization': `Bearer ${SB_KEY}`,
+      'apikey': SB_KEY,
+      'Content-Type': 'image/jpeg',
+      'x-upsert': 'true',
+    };
+
+    const [upSole, upSide] = await Promise.all([
+      fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}-sole.jpg`, {
+        method: 'POST', headers, body: soleBlob,
+      }),
+      fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}-side.jpg`, {
+        method: 'POST', headers, body: sideBlob,
+      }),
+    ]);
+
+    if (upSole.ok && upSide.ok) {
+      const soleUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}-sole.jpg`;
+      const sideUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}-side.jpg`;
+      status.innerHTML = `Uploaded ✓ <a href="${soleUrl}" target="_blank" style="color:#c98a42;font-weight:600">Sole</a> · <a href="${sideUrl}" target="_blank" style="color:#c98a42;font-weight:600">Side</a>`;
       btn.textContent = 'Saved ✓';
     } else {
-      throw new Error('Upload failed: ' + up.status);
+      throw new Error('Upload failed');
     }
   } catch(e) {
     console.error(e);
     status.textContent = 'Cloud upload failed — downloading locally…';
-    const a = document.createElement('a');
-    a.href = lastCaptureDataUrl;
-    a.download = 'foot-scan.jpg';
-    a.click();
+    const a1 = document.createElement('a');
+    a1.href = soleDataUrl; a1.download = 'foot-scan-sole.jpg'; a1.click();
+    const a2 = document.createElement('a');
+    a2.href = sideDataUrl; a2.download = 'foot-scan-side.jpg';
+    setTimeout(() => a2.click(), 500);
     btn.textContent = 'Downloaded';
     status.textContent = 'Saved to device';
   }
 }
 
-function retake() {
-  document.getElementById('result-screen').style.display = 'none';
+function retakeAll() {
+  soleDataUrl = null;
+  sideDataUrl = null;
   document.getElementById('save-status').textContent = '';
   document.getElementById('save-btn').disabled = false;
   document.getElementById('save-btn').textContent = 'Save & Upload';
-  lastCaptureDataUrl = null;
-  startScanner();
+  startScanner('sole');
 }
 </script>
 </body>
