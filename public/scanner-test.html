@@ -154,8 +154,9 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 const CHECK_INTERVAL = 200;       // ms between frame checks
 const COVERAGE_MIN = 0.20;        // at least 20% of guide zone covered
 const COVERAGE_MAX = 0.75;        // no more than 75% (too close / all dark)
-const STILL_THRESHOLD = 0.045;    // max frame-to-frame change (generous — phone cameras are noisy)
-const STILL_FRAMES_NEEDED = 3;    // consecutive still frames needed (~0.6s at 200ms)
+const STILL_THRESHOLD = 0.03;     // max frame-to-frame change
+const STILL_FRAMES_NEEDED = 5;    // consecutive still frames needed (~1.0s at 200ms)
+const MIN_FOOT_FRAMES = 8;        // foot must be detected for at least ~1.6s before capture is even possible
 
 let video, analyzeCanvas, analyzeCtx;
 let checkTimer = null;
@@ -163,6 +164,7 @@ let captured = false;
 let lastCaptureDataUrl = null;
 let prevPixelData = null;         // previous frame pixel data for motion detection
 let stillCount = 0;               // consecutive frames with low motion
+let footFrames = 0;               // total consecutive frames with foot detected
 
 document.getElementById('start-btn').addEventListener('click', startScanner);
 document.getElementById('retake-btn').addEventListener('click', retake);
@@ -282,21 +284,27 @@ function analyzeFrame() {
   const statusBar = document.getElementById('status-bar');
 
   if (isFootShape && isStill) {
+    footFrames++;
     stillCount++;
     outline.classList.add('ready');
-    statusBar.textContent = 'Hold still…';
 
-    if (stillCount >= STILL_FRAMES_NEEDED) {
+    if (footFrames < MIN_FOOT_FRAMES) {
+      statusBar.textContent = 'Foot detected — hold still…';
+    } else if (stillCount >= STILL_FRAMES_NEEDED && footFrames >= MIN_FOOT_FRAMES) {
       capture();
+    } else {
+      statusBar.textContent = 'Almost there — hold still…';
     }
   } else if (isFootShape) {
     // Foot shape OK but still moving
+    footFrames++;
     stillCount = 0;
     outline.classList.add('ready');
     statusBar.textContent = 'Foot detected — hold still…';
   } else {
     // No foot shape
     stillCount = 0;
+    footFrames = 0;
     outline.classList.remove('ready');
 
     if (coverage < 0.08) {
