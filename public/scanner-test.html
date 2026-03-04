@@ -46,7 +46,7 @@ body {
   pointer-events: none; display: flex; align-items: center; justify-content: center;
 }
 #foot-guide-svg {
-  width: 42%; height: 65%;
+  width: 60%; height: 82%;
   transition: filter 0.3s, opacity 0.3s;
   opacity: 0.5;
 }
@@ -213,10 +213,10 @@ function analyzeFrame() {
   analyzeCtx.drawImage(video, 0, 0, analyzeCanvas.width, analyzeCanvas.height);
 
   const w = analyzeCanvas.width, h = analyzeCanvas.height;
-  const zoneX = Math.floor(w * 0.29);
-  const zoneY = Math.floor(h * 0.175);
-  const zoneW = Math.floor(w * 0.42);
-  const zoneH = Math.floor(h * 0.65);
+  const zoneX = Math.floor(w * 0.20);
+  const zoneY = Math.floor(h * 0.09);
+  const zoneW = Math.floor(w * 0.60);
+  const zoneH = Math.floor(h * 0.82);
 
   const imgData = analyzeCtx.getImageData(zoneX, zoneY, zoneW, zoneH);
   const curPixels = imgData.data;
