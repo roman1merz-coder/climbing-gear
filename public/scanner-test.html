@@ -3,719 +3,234 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Foot Scanner — Sole View Prototype</title>
-<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/ort.min.js"></script>
+<title>Foot Scanner — climbing-gear.com</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
-  background: #0e1015; color: #fff;
+  font-family: 'DM Sans', -apple-system, system-ui, sans-serif;
+  background: #f5f0e8; color: #2c3227;
   height: 100vh; height: 100dvh;
   overflow: hidden; touch-action: none;
 }
+
+/* ── Start Screen ── */
 #start-screen {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   height: 100%; padding: 2rem; text-align: center;
 }
-#start-screen h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
-#start-screen .subtitle { color: #999; font-size: 0.95rem; margin-bottom: 2rem; max-width: 320px; line-height: 1.5; }
+#start-screen h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+#start-screen .subtitle { color: #7a7462; font-size: 0.95rem; margin-bottom: 2rem; max-width: 320px; line-height: 1.5; }
 .step-list { text-align: left; max-width: 300px; margin-bottom: 2rem; }
-.step-list li { margin-bottom: 12px; font-size: 0.95rem; color: #ccc; line-height: 1.4; }
-.step-list li strong { color: #fff; }
+.step-list li { margin-bottom: 12px; font-size: 0.95rem; color: #7a7462; line-height: 1.4; }
+.step-list li strong { color: #2c3227; }
 #start-btn {
-  background: #E8734A; color: #fff; border: none;
+  background: #c98a42; color: #fff; border: none;
   padding: 16px 48px; border-radius: 12px;
-  font-size: 1.1rem; font-weight: 600; cursor: pointer;
+  font-size: 1.1rem; font-weight: 700; cursor: pointer;
+  font-family: inherit;
 }
-#start-btn:disabled { background: #666; }
-#model-status { color: #999; font-size: 0.85rem; margin-top: 12px; }
+
+/* ── Scanner ── */
 #scanner {
   display: none; position: relative;
   width: 100vw; height: 100vh; height: 100dvh;
-  background: #fff;
+  background: #000;
 }
 #video {
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
-  object-fit: cover; transform: scaleX(-1);
-}
-#canvas-process { display: none; }
-#debug-canvas {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none; transform: scaleX(-1);
+  object-fit: cover;
 }
 #guide-overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; display: flex; align-items: center; justify-content: center;
 }
 .foot-outline {
-  width: 42%; height: 70%;
-  border: 3px dashed rgba(232,115,74,0.4);
+  width: 42%; height: 65%;
+  border: 3px dashed rgba(201,138,66,0.5);
   border-radius: 35% 35% 25% 25% / 20% 20% 40% 40%;
 }
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 20px; text-align: center;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  padding: 16px 20px 24px; text-align: center;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
   font-size: 0.95rem; color: #fff; padding-top: 40px;
 }
-#stability-ring { position: absolute; top: 16px; right: 16px; width: 56px; height: 56px; }
-#stability-ring circle { fill: none; stroke-width: 4; }
-#stab-bg { stroke: rgba(255,255,255,0.15); }
-#stab-progress {
-  stroke: #4CAF50; stroke-linecap: round;
-  stroke-dasharray: 157; stroke-dashoffset: 157;
-  transition: stroke-dashoffset 0.15s linear;
-  transform: rotate(-90deg); transform-origin: center;
+#shutter-btn {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(255,255,255,0.95); border: 4px solid #c98a42;
+  cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.1s;
 }
-#detect-info {
-  position: absolute; top: 16px; left: 16px;
-  font-size: 0.75rem; font-family: 'SF Mono', monospace;
-  color: rgba(255,255,255,0.7); line-height: 1.6;
-  background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 8px;
+#shutter-btn:active { transform: translateX(-50%) scale(0.92); }
+#shutter-inner {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #c98a42;
 }
+#flash {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: #fff; opacity: 0; pointer-events: none;
+  transition: opacity 0.08s;
+}
+
+/* ── Result Screen ── */
 #result-screen {
   display: none; position: relative;
   width: 100vw; min-height: 100vh; min-height: 100dvh;
-  background: #0e1015; overflow-y: auto;
+  background: #f5f0e8; overflow-y: auto;
   padding: 20px; padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
 #captured-img {
-  display: block; margin: 0 auto 16px;
-  max-width: 90%; max-height: 50vh;
-  border-radius: 12px; border: 2px solid #333;
-  transform: scaleX(-1);
+  display: block; margin: 0 auto 20px;
+  max-width: 90%; max-height: 55vh;
+  border-radius: 16px; border: 1px solid #d5cdbf;
+  object-fit: contain; background: #fff;
 }
-.meas-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; max-width: 360px; margin: 0 auto 16px;
+.result-info {
+  text-align: center; max-width: 360px; margin: 0 auto 20px;
+  font-size: 0.9rem; color: #7a7462; line-height: 1.6;
 }
-.meas-card {
-  background: rgba(255,255,255,0.06); border-radius: 10px;
-  padding: 12px; text-align: center;
-}
-.meas-label { font-size: 0.75rem; color: #999; margin-bottom: 4px; }
-.meas-value { font-size: 1.3rem; font-weight: 700; }
-.meas-class { font-size: 0.8rem; margin-top: 2px; }
-.meas-class.narrow { color: #64B5F6; }
-.meas-class.normal { color: #81C784; }
-.meas-class.wide { color: #FFB74D; }
 .btn-row { display: flex; gap: 10px; max-width: 360px; margin: 0 auto; }
 #retake-btn, #save-btn {
   flex: 1; border: none; padding: 14px; border-radius: 10px;
-  font-size: 1rem; font-weight: 600; cursor: pointer;
+  font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit;
 }
-#retake-btn { background: rgba(255,255,255,0.1); color: #fff; }
-#save-btn { background: #E8734A; color: #fff; }
-#save-btn:disabled { background: #666; }
-#save-status { text-align: center; font-size: 0.85rem; color: #81C784; margin-top: 8px; min-height: 1.2em; }
-.note { text-align: center; font-size: 0.8rem; color: #666; margin-top: 12px; max-width: 360px; margin-left: auto; margin-right: auto; }
+#retake-btn { background: #fff; color: #2c3227; border: 1px solid #d5cdbf; }
+#save-btn { background: #c98a42; color: #fff; }
+#save-btn:disabled { background: #b8b0a0; }
+#save-status { text-align: center; font-size: 0.85rem; color: #3d7a52; margin-top: 8px; min-height: 1.2em; }
 </style>
 </head>
 <body>
 
 <div id="start-screen">
   <h1>Foot Scanner</h1>
-  <p class="subtitle">Scan the sole of your foot to measure shape and proportions.</p>
+  <p class="subtitle">Take a photo of the sole of your foot for shape analysis.</p>
   <ol class="step-list">
     <li><strong>Place your phone face-up on the floor</strong> (screen pointing at the ceiling)</li>
     <li><strong>Hold your bare foot</strong> about a hand-width above the screen</li>
-    <li><strong>Hold still</strong> — the scanner auto-captures when your foot is in position</li>
+    <li><strong>Align your foot</strong> inside the dashed guide</li>
+    <li>Tap the <strong>shutter button</strong> to capture</li>
   </ol>
-  <button id="start-btn" disabled>Loading ML model…</button>
-  <div id="model-status">Downloading U²Net-p (4.4 MB)…</div>
+  <button id="start-btn">Open Camera</button>
 </div>
 
 <div id="scanner">
   <video id="video" autoplay playsinline muted></video>
-  <canvas id="canvas-process"></canvas>
-  <canvas id="debug-canvas"></canvas>
   <div id="guide-overlay"><div class="foot-outline"></div></div>
-  <svg id="stability-ring" viewBox="0 0 54 54">
-    <circle id="stab-bg" cx="27" cy="27" r="25"/>
-    <circle id="stab-progress" cx="27" cy="27" r="25"/>
-  </svg>
-  <div id="detect-info"></div>
-  <div id="status-bar">Waiting for foot...</div>
+  <div id="status-bar">Align your foot inside the guide, then tap to capture</div>
+  <div id="shutter-btn"><div id="shutter-inner"></div></div>
+  <div id="flash"></div>
 </div>
 
 <div id="result-screen">
   <img id="captured-img" />
-  <div class="meas-grid" id="meas-grid"></div>
+  <div class="result-info">
+    Photo captured. Save to upload for analysis, or retake if the foot isn't fully visible.
+  </div>
   <div class="btn-row">
     <button id="retake-btn">Retake</button>
-    <button id="save-btn">Save Result</button>
+    <button id="save-btn">Save &amp; Upload</button>
   </div>
   <div id="save-status"></div>
-  <div class="note" id="result-note"></div>
 </div>
 
 <script>
-// ── Configuration ──
-const CFG = {
-  // Coverage: foot mask area / frame area — controls distance
-  MIN_COVERAGE: 0.08,   // too far away (was 0.04)
-  MAX_COVERAGE: 0.45,   // too close (was 0.65)
-  IDEAL_COV_LO: 0.12,   // sweet spot lower bound
-  IDEAL_COV_HI: 0.32,   // sweet spot upper bound
-  // Aspect ratio of bounding box (length/width)
-  MIN_ASPECT: 1.5,      // too round = not a foot (was 1.3)
-  MAX_ASPECT: 4.5,      // too elongated (was 5.0)
-  // Tilt / plane detection
-  MAX_SKEW: 0.18,       // max centroid offset from bbox center (as fraction of bbox dim)
-  MIN_FILL: 0.45,       // min mask pixels / bbox area — low fill = tilted/partial foot
-  // Stability
-  CENTROID_TOL: 12,
-  STABLE_FRAMES: 20,
-  PROCESS_INTERVAL: 200,
-  ML_THRESHOLD: 0.5,
-  MODEL_URL: 'https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/models/u2netp.onnx',
-};
+const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
-const IMAGENET_MEAN = [0.485, 0.456, 0.406];
-const IMAGENET_STD  = [0.229, 0.224, 0.225];
-
-const POP = {
-  width_ratio: { mean: 0.383, sd: 0.021, lo: 0.362, hi: 0.404 },
-  heel_ratio:  { mean: 0.655, sd: 0.041, lo: 0.614, hi: 0.696 },
-};
-
-let video, cProc, ctxP, cDbg, ctxD;
-let running = false, stableCount = 0, prevCentroid = null;
-let lastCaptureData = null;
-let onnxSession = null;
-
-// Small canvas for ML preprocessing (320x320)
-const mlCanvas = document.createElement('canvas');
-mlCanvas.width = 320; mlCanvas.height = 320;
-const mlCtx = mlCanvas.getContext('2d', { willReadFrequently: true });
+let video;
+let lastCaptureDataUrl = null;
 
 document.getElementById('start-btn').addEventListener('click', startScanner);
 document.getElementById('retake-btn').addEventListener('click', retake);
 document.getElementById('save-btn').addEventListener('click', saveResult);
+document.getElementById('shutter-btn').addEventListener('click', capture);
 
-// ── Load ONNX model on page load ──
-async function loadModel() {
-  const statusEl = document.getElementById('model-status');
-  const btn = document.getElementById('start-btn');
-  try {
-    // Use WASM backend (works on all devices including mobile)
-    ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/';
-    
-    statusEl.textContent = 'Downloading U²Net-p model (4.4 MB)…';
-    onnxSession = await ort.InferenceSession.create(CFG.MODEL_URL, {
-      executionProviders: ['wasm'],
-      graphOptimizationLevel: 'all',
-    });
-    statusEl.textContent = 'Model loaded ✓';
-    btn.disabled = false;
-    btn.textContent = 'Start Scanner';
-    console.log('U²Net-p model loaded. Input:', onnxSession.inputNames, 'Output:', onnxSession.outputNames);
-  } catch (e) {
-    console.error('Model load error:', e);
-    statusEl.textContent = 'Model load failed: ' + e.message;
-    btn.textContent = 'Model Error';
-  }
-}
-loadModel();
-
-// ── ML Segmentation: port of Python segment_foot() ──
-async function segmentFoot(imageData, origW, origH) {
-  // Draw to 320x320 canvas
-  const tmpCanvas = document.createElement('canvas');
-  tmpCanvas.width = origW; tmpCanvas.height = origH;
-  const tmpCtx = tmpCanvas.getContext('2d');
-  tmpCtx.putImageData(imageData, 0, 0);
-  
-  mlCtx.drawImage(tmpCanvas, 0, 0, 320, 320);
-  const mlData = mlCtx.getImageData(0, 0, 320, 320);
-  
-  // Preprocess: normalize with ImageNet mean/std, convert to NCHW float32
-  const pixels = mlData.data;
-  const inputSize = 320 * 320;
-  const float32Data = new Float32Array(3 * inputSize);
-  
-  for (let i = 0; i < inputSize; i++) {
-    const r = pixels[i * 4] / 255.0;
-    const g = pixels[i * 4 + 1] / 255.0;
-    const b = pixels[i * 4 + 2] / 255.0;
-    // NCHW: channel 0 (R), channel 1 (G), channel 2 (B)
-    float32Data[i] = (r - IMAGENET_MEAN[0]) / IMAGENET_STD[0];
-    float32Data[inputSize + i] = (g - IMAGENET_MEAN[1]) / IMAGENET_STD[1];
-    float32Data[2 * inputSize + i] = (b - IMAGENET_MEAN[2]) / IMAGENET_STD[2];
-  }
-  
-  // Create tensor [1, 3, 320, 320]
-  const inputTensor = new ort.Tensor('float32', float32Data, [1, 3, 320, 320]);
-  const inputName = onnxSession.inputNames[0];
-  
-  // Inference
-  const results = await onnxSession.run({ [inputName]: inputTensor });
-  // U²Net outputs multiple maps; first output is the finest
-  const outputName = onnxSession.outputNames[0];
-  const probData = results[outputName].data;
-  
-  // Normalize probability map to [0, 1]
-  let pMin = Infinity, pMax = -Infinity;
-  for (let i = 0; i < probData.length; i++) {
-    if (probData[i] < pMin) pMin = probData[i];
-    if (probData[i] > pMax) pMax = probData[i];
-  }
-  const pRange = pMax - pMin + 1e-8;
-  const probMap320 = new Float32Array(inputSize);
-  for (let i = 0; i < inputSize; i++) {
-    probMap320[i] = (probData[i] - pMin) / pRange;
-  }
-  
-  // Resize probability map from 320x320 to original size using bilinear interpolation
-  const probMapFull = resizeProbMap(probMap320, 320, 320, origW, origH);
-  
-  // Threshold to binary mask
-  const mask = new Uint8Array(origW * origH);
-  let maskCount = 0;
-  for (let i = 0; i < mask.length; i++) {
-    if (probMapFull[i] > CFG.ML_THRESHOLD) {
-      mask[i] = 1;
-      maskCount++;
-    }
-  }
-  
-  // Keep largest connected component (same as Python mask_from_prob)
-  const { labelMap, largest } = largestComponent(mask, origW, origH);
-  if (!largest) return null;
-  
-  const finalMask = new Uint8Array(origW * origH);
-  let fMinX = origW, fMaxX = 0, fMinY = origH, fMaxY = 0;
-  let sumX = 0, sumY = 0, cnt = 0;
-  for (let y = 0; y < origH; y++) {
-    for (let x = 0; x < origW; x++) {
-      const idx = y * origW + x;
-      if (labelMap[idx] === largest) {
-        finalMask[idx] = 1;
-        if (x < fMinX) fMinX = x; if (x > fMaxX) fMaxX = x;
-        if (y < fMinY) fMinY = y; if (y > fMaxY) fMaxY = y;
-        sumX += x; sumY += y; cnt++;
-      }
-    }
-  }
-  
-  if (cnt === 0) return null;
-  
-  return {
-    mask: finalMask,
-    bbox: [fMinX, fMinY, fMaxX, fMaxY],
-    centroid: { x: sumX / cnt, y: sumY / cnt },
-    pixelCount: cnt,
-    coverage: cnt / (origW * origH),
-  };
-}
-
-function resizeProbMap(src, srcW, srcH, dstW, dstH) {
-  const dst = new Float32Array(dstW * dstH);
-  const xRatio = srcW / dstW;
-  const yRatio = srcH / dstH;
-  
-  for (let dy = 0; dy < dstH; dy++) {
-    for (let dx = 0; dx < dstW; dx++) {
-      const sx = dx * xRatio;
-      const sy = dy * yRatio;
-      const x0 = Math.floor(sx), y0 = Math.floor(sy);
-      const x1 = Math.min(x0 + 1, srcW - 1), y1 = Math.min(y0 + 1, srcH - 1);
-      const xf = sx - x0, yf = sy - y0;
-      
-      const v00 = src[y0 * srcW + x0];
-      const v10 = src[y0 * srcW + x1];
-      const v01 = src[y1 * srcW + x0];
-      const v11 = src[y1 * srcW + x1];
-      
-      dst[dy * dstW + dx] = v00 * (1 - xf) * (1 - yf) + v10 * xf * (1 - yf)
-                           + v01 * (1 - xf) * yf + v11 * xf * yf;
-    }
-  }
-  return dst;
-}
-
-// ── Connected Component Analysis ──
-function largestComponent(mask, W, H) {
-  const labelMap = new Int32Array(mask.length);
-  let label = 0;
-  const sizes = {};
-  for (let y = 0; y < H; y++) {
-    for (let x = 0; x < W; x++) {
-      const idx = y * W + x;
-      if (mask[idx] && !labelMap[idx]) {
-        label++;
-        let size = 0;
-        const q = [idx];
-        labelMap[idx] = label;
-        while (q.length) {
-          const ci = q.pop();
-          size++;
-          const cx = ci % W, cy = (ci - cx) / W;
-          for (const [dx2, dy2] of [[1,0],[-1,0],[0,1],[0,-1]]) {
-            const nx = cx + dx2, ny = cy + dy2;
-            if (nx >= 0 && nx < W && ny >= 0 && ny < H) {
-              const ni = ny * W + nx;
-              if (mask[ni] && !labelMap[ni]) { labelMap[ni] = label; q.push(ni); }
-            }
-          }
-        }
-        sizes[label] = size;
-      }
-    }
-  }
-  let largest = 0, largestSize = 0;
-  for (const [l, s] of Object.entries(sizes)) {
-    if (s > largestSize) { largestSize = s; largest = +l; }
-  }
-  return { labelMap, largest };
-}
-
-// ── Scanner ──
 function startScanner() {
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('scanner').style.display = 'block';
   video = document.getElementById('video');
-  cProc = document.getElementById('canvas-process');
-  ctxP  = cProc.getContext('2d', { willReadFrequently: true });
-  cDbg  = document.getElementById('debug-canvas');
-  ctxD  = cDbg.getContext('2d');
 
   navigator.mediaDevices.getUserMedia({
     video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
     audio: false,
   })
-  .then(stream => {
-    video.srcObject = stream;
-    video.onloadedmetadata = () => {
-      cProc.width = video.videoWidth; cProc.height = video.videoHeight;
-      cDbg.width  = video.videoWidth; cDbg.height  = video.videoHeight;
-      running = true; stableCount = 0; prevCentroid = null;
-      loop();
-    };
-  })
+  .then(stream => { video.srcObject = stream; })
   .catch(e => {
-    const bar = document.getElementById('status-bar');
-    bar.innerHTML = 'Camera error: ' + e.name + ' — ' + e.message
-      + '<br><br>If blocked, check your browser site settings and allow camera access.';
+    document.getElementById('status-bar').innerHTML =
+      'Camera error: ' + e.name + '<br>Check browser settings and allow camera access.';
+    document.getElementById('shutter-btn').style.display = 'none';
   });
 }
 
-let inferring = false; // prevent overlapping inferences
+function capture() {
+  // Flash effect
+  const flash = document.getElementById('flash');
+  flash.style.opacity = '1';
+  setTimeout(() => { flash.style.opacity = '0'; }, 120);
 
-async function loop() {
-  if (!running) return;
-  if (inferring) {
-    setTimeout(() => requestAnimationFrame(loop), 50);
-    return;
-  }
-  
-  inferring = true;
-  ctxP.drawImage(video, 0, 0);
-  const img = ctxP.getImageData(0, 0, cProc.width, cProc.height);
-  
-  const t0 = performance.now();
-  const res = await detect(img, cProc.width, cProc.height);
-  const dt = performance.now() - t0;
-  
-  drawDebug(res, dt);
-  updateStability(res);
-  inferring = false;
-  
-  if (stableCount >= CFG.STABLE_FRAMES) { capture(res); return; }
-  setTimeout(() => requestAnimationFrame(loop), CFG.PROCESS_INTERVAL);
-}
-
-async function detect(imageData, W, H) {
-  // Run U²Net-p ML segmentation
-  const seg = await segmentFoot(imageData, W, H);
-  
-  if (!seg) return { ok: false, why: 'no_foot', cov: 0 };
-  
-  const { mask: footMask, bbox, centroid, pixelCount, coverage } = seg;
-  const [fMinX, fMinY, fMaxX, fMaxY] = bbox;
-  
-  // Distance check: foot must fill enough of the frame
-  if (coverage < CFG.MIN_COVERAGE) return { ok: false, why: 'too_far', cov: coverage };
-  if (coverage > CFG.MAX_COVERAGE) return { ok: false, why: 'too_close', cov: coverage };
-  
-  const bw = fMaxX - fMinX, bh = fMaxY - fMinY;
-  const aspect = Math.max(bw, bh) / (Math.min(bw, bh) || 1);
-  if (aspect < CFG.MIN_ASPECT || aspect > CFG.MAX_ASPECT)
-    return { ok: false, why: 'shape', aspect, cov: coverage, centroid, bbox };
-  
-  // Plane/tilt check 1: centroid should be near bbox center (skew = tilted foot)
-  const bboxCx = (fMinX + fMaxX) / 2, bboxCy = (fMinY + fMaxY) / 2;
-  const skewX = Math.abs(centroid.x - bboxCx) / (bw || 1);
-  const skewY = Math.abs(centroid.y - bboxCy) / (bh || 1);
-  if (skewX > CFG.MAX_SKEW || skewY > CFG.MAX_SKEW)
-    return { ok: false, why: 'tilted', cov: coverage, centroid, bbox, skewX, skewY };
-  
-  // Plane/tilt check 2: fill ratio — mask pixels vs bbox area
-  // A flat foot has high fill; a tilted/angled foot has lots of empty space in its bbox
-  const bboxArea = bw * bh;
-  const fillRatio = bboxArea > 0 ? pixelCount / bboxArea : 0;
-  if (fillRatio < CFG.MIN_FILL)
-    return { ok: false, why: 'tilted', cov: coverage, centroid, bbox, fillRatio };
-  
-  // Distance sweet-spot check: warn if outside ideal range but still allow stability tracking
-  const distanceOk = coverage >= CFG.IDEAL_COV_LO && coverage <= CFG.IDEAL_COV_HI;
-  
-  const meas = measure(footMask, W, H, fMinX, fMaxX, fMinY, fMaxY);
-  return { ok: true, distanceOk, cov: coverage, centroid, aspect, bbox, footMask, meas, pixelCount, fillRatio };
-}
-
-function measure(mask, W, H, minX, maxX, minY, maxY) {
-  const bw = maxX - minX, bh = maxY - minY;
-  const vertical = bh >= bw;
-  const sections = [];
-  if (vertical) {
-    for (let y = minY; y <= maxY; y++) {
-      let lo = W, hi = 0;
-      for (let x = minX; x <= maxX; x++) if (mask[y * W + x]) { if (x < lo) lo = x; if (x > hi) hi = x; }
-      sections.push({ pos: y, w: hi > lo ? hi - lo : 0, lo, hi });
-    }
-  } else {
-    for (let x = minX; x <= maxX; x++) {
-      let lo = H, hi = 0;
-      for (let y = minY; y <= maxY; y++) if (mask[y * W + x]) { if (y < lo) lo = y; if (y > hi) hi = y; }
-      sections.push({ pos: x, w: hi > lo ? hi - lo : 0, lo, hi });
-    }
-  }
-  const footLen = vertical ? bh : bw;
-  let ballW = 0, ballIdx = 0;
-  for (let i = 0; i < sections.length; i++) if (sections[i].w > ballW) { ballW = sections[i].w; ballIdx = i; }
-  const ballFrac = ballIdx / (sections.length || 1);
-  
-  // Heel zone: opposite end from ball
-  const hzS = Math.floor(sections.length * (ballFrac < 0.5 ? 0.80 : 0.08));
-  const hzE = Math.floor(sections.length * (ballFrac < 0.5 ? 0.92 : 0.20));
-  let heelSum = 0, heelN = 0;
-  for (let i = Math.min(hzS, hzE); i <= Math.max(hzS, hzE); i++)
-    if (i >= 0 && i < sections.length && sections[i].w > 0) { heelSum += sections[i].w; heelN++; }
-  const heelW = heelN > 0 ? heelSum / heelN : 0;
-  
-  // Toe shape classification
-  const toeS = ballFrac < 0.5 ? 0 : Math.floor(sections.length * 0.75);
-  const toeE = ballFrac < 0.5 ? Math.floor(sections.length * 0.25) : sections.length - 1;
-  const toeShape = classifyToe(sections, Math.min(toeS, toeE), Math.max(toeS, toeE));
-  
-  const widthRatio = footLen > 0 ? ballW / footLen : 0;
-  const heelRatio = ballW > 0 ? heelW / ballW : 0;
-  const toeProp = ballFrac < 0.5 ? ballFrac : (1 - ballFrac);
-  
-  return {
-    footLen, ballW, heelW,
-    widthRatio: r3(widthRatio), heelRatio: r3(heelRatio),
-    toeProp: r3(toeProp), ballFrac: r3(ballFrac), toeShape,
-    orientation: vertical ? 'V' : 'H',
-    sections, heelZone: [Math.min(hzS, hzE), Math.max(hzS, hzE)], ballIdx,
-  };
-}
-
-function r3(v) { return Math.round(v * 1000) / 1000; }
-
-function classifyToe(sections, from, to) {
-  const s = sections.slice(from, to + 1);
-  if (s.length < 5) return 'unknown';
-  const maxW = Math.max(...s.map(x => x.w));
-  const tipR = maxW > 0 ? s[s.length - 1].w / maxW : 0;
-  let plat = 0;
-  for (let i = 0; i < Math.min(5, s.length); i++) if (s[i].w > maxW * 0.85) plat++;
-  if (plat >= 3) return 'roman';
-  if (tipR < 0.15) return 'egyptian';
-  return 'greek';
-}
-
-function drawDebug(res, inferenceMs) {
-  ctxD.clearRect(0, 0, cDbg.width, cDbg.height);
-  const info = document.getElementById('detect-info');
-  
-  if (!res.ok) {
-    info.innerHTML = `cov:${(res.cov * 100).toFixed(1)}%<br>${res.why}<br>${Math.round(inferenceMs)}ms`;
-    return;
-  }
-  
-  // Draw ML mask overlay (semi-transparent green)
-  if (res.footMask) {
-    const W = cDbg.width, H = cDbg.height;
-    const overlayData = ctxD.createImageData(W, H);
-    for (let i = 0; i < res.footMask.length; i++) {
-      if (res.footMask[i]) {
-        overlayData.data[i * 4] = 76;      // R
-        overlayData.data[i * 4 + 1] = 175; // G
-        overlayData.data[i * 4 + 2] = 80;  // B
-        overlayData.data[i * 4 + 3] = 60;  // A (semi-transparent)
-      }
-    }
-    ctxD.putImageData(overlayData, 0, 0);
-  }
-  
-  const [x0, y0, x1, y1] = res.bbox;
-  ctxD.strokeStyle = 'rgba(76,175,80,0.7)'; ctxD.lineWidth = 2;
-  ctxD.strokeRect(x0, y0, x1 - x0, y1 - y0);
-  
-  const m = res.meas;
-  if (m.sections && m.sections[m.ballIdx]) {
-    const bs = m.sections[m.ballIdx];
-    ctxD.strokeStyle = '#ff4444'; ctxD.lineWidth = 2; ctxD.beginPath();
-    if (m.orientation === 'V') { ctxD.moveTo(bs.lo, bs.pos); ctxD.lineTo(bs.hi, bs.pos); }
-    else { ctxD.moveTo(bs.pos, bs.lo); ctxD.lineTo(bs.pos, bs.hi); }
-    ctxD.stroke();
-  }
-  
-  if (m.heelZone) {
-    ctxD.fillStyle = 'rgba(100,181,246,0.15)';
-    for (let i = m.heelZone[0]; i <= m.heelZone[1] && i < m.sections.length; i++) {
-      const s = m.sections[i];
-      if (m.orientation === 'V') ctxD.fillRect(s.lo, s.pos, s.hi - s.lo, 1);
-    }
-  }
-  
-  ctxD.fillStyle = '#E8734A'; ctxD.beginPath();
-  ctxD.arc(res.centroid.x, res.centroid.y, 5, 0, Math.PI * 2); ctxD.fill();
-  
-  const distIcon = res.distanceOk ? '✓' : (res.cov < CFG.IDEAL_COV_LO ? '↓far' : '↑near');
-  info.innerHTML = [
-    `ML:${Math.round(inferenceMs)}ms`,
-    `cov:${(res.cov * 100).toFixed(1)}% ${distIcon}`,
-    `fill:${res.fillRatio ? (res.fillRatio * 100).toFixed(0) : '?'}%`,
-    `asp:${res.aspect.toFixed(2)}`,
-    `W/L:<b>${m.widthRatio}</b>`,
-    `H/B:<b>${m.heelRatio}</b>`,
-    `toe:<b>${m.toeShape}</b>`,
-  ].join('<br>');
-}
-
-function updateStability(res) {
-  const bar = document.getElementById('status-bar');
-  const prog = document.getElementById('stab-progress');
-  if (!res.ok) {
-    stableCount = 0; prevCentroid = null; prog.style.strokeDashoffset = 157;
-    const msgs = {
-      'no_foot': 'Hold your bare foot above the phone…',
-      'too_far': 'Move your foot closer to the camera',
-      'too_close': 'Move your foot further from the camera',
-      'too_much': 'Too much detected — lift foot slightly',
-      'tilted': 'Hold your foot flat and parallel to the screen',
-      'shape': 'Adjust position — keep foot centered in the guide',
-    };
-    bar.textContent = msgs[res.why] || 'Adjust position…';
-    return;
-  }
-  // Foot detected but not at ideal distance — guide the user but don't count as stable
-  if (!res.distanceOk) {
-    stableCount = Math.max(0, stableCount - 2);
-    prevCentroid = res.centroid;
-    prog.style.strokeDashoffset = 157;
-    if (res.cov < CFG.IDEAL_COV_LO) bar.textContent = 'Foot detected — move a little closer';
-    else bar.textContent = 'Foot detected — move a little further away';
-    return;
-  }
-  // All checks passed — track stability
-  if (prevCentroid) {
-    const d = Math.sqrt((res.centroid.x - prevCentroid.x) ** 2 + (res.centroid.y - prevCentroid.y) ** 2);
-    if (d < CFG.CENTROID_TOL) stableCount++; else stableCount = Math.max(0, stableCount - 3);
-  }
-  prevCentroid = res.centroid;
-  const pct = Math.min(stableCount / CFG.STABLE_FRAMES, 1);
-  prog.style.strokeDashoffset = 157 * (1 - pct);
-  if (pct < 1) bar.textContent = stableCount < 3 ? 'Good position — hold still…' : `Scanning… ${Math.round(pct * 100)}%`;
-}
-
-function capture(res) {
-  running = false;
+  // Capture full-resolution frame
   const snap = document.createElement('canvas');
-  snap.width = cProc.width; snap.height = cProc.height;
-  const sCtx = snap.getContext('2d');
-  sCtx.drawImage(video, 0, 0);
-  
-  // Draw ML mask outline on capture
-  if (res.footMask) {
-    const W = snap.width, H = snap.height;
-    // Draw mask border by checking neighbors
-    sCtx.fillStyle = 'rgba(76, 175, 80, 0.3)';
-    for (let y = 1; y < H - 1; y++) {
-      for (let x = 1; x < W - 1; x++) {
-        const idx = y * W + x;
-        if (res.footMask[idx]) {
-          // Check if edge pixel
-          if (!res.footMask[(y-1)*W+x] || !res.footMask[(y+1)*W+x] ||
-              !res.footMask[y*W+x-1] || !res.footMask[y*W+x+1]) {
-            sCtx.fillRect(x, y, 2, 2);
-          }
-        }
-      }
-    }
-  }
-  
-  const m = res.meas;
-  // Draw ball width line
-  sCtx.strokeStyle = '#ff4444'; sCtx.lineWidth = 3;
-  if (m.sections && m.sections[m.ballIdx]) {
-    const bs = m.sections[m.ballIdx]; sCtx.beginPath();
-    if (m.orientation === 'V') { sCtx.moveTo(bs.lo, bs.pos); sCtx.lineTo(bs.hi, bs.pos); }
-    else { sCtx.moveTo(bs.pos, bs.lo); sCtx.lineTo(bs.pos, bs.hi); }
-    sCtx.stroke();
-  }
-  
-  const dataUrl = snap.toDataURL('image/jpeg', 0.92);
-  lastCaptureData = { imageDataUrl: dataUrl, measurements: m };
+  snap.width = video.videoWidth; snap.height = video.videoHeight;
+  const ctx = snap.getContext('2d');
+  ctx.drawImage(video, 0, 0);
 
+  lastCaptureDataUrl = snap.toDataURL('image/jpeg', 0.95);
+
+  // Show result
   document.getElementById('scanner').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
-  document.getElementById('captured-img').src = dataUrl;
+  document.getElementById('captured-img').src = lastCaptureDataUrl;
+  document.getElementById('save-status').textContent = '';
+  document.getElementById('save-btn').disabled = false;
+  document.getElementById('save-btn').textContent = 'Save & Upload';
 
-  const wC = classify(m.widthRatio, POP.width_ratio);
-  const hC = classify(m.heelRatio, POP.heel_ratio);
-  document.getElementById('meas-grid').innerHTML = `
-    <div class="meas-card"><div class="meas-label">Width / Length</div><div class="meas-value">${m.widthRatio}</div><div class="meas-class ${wC.cls}">${wC.label}</div></div>
-    <div class="meas-card"><div class="meas-label">Heel / Ball</div><div class="meas-value">${m.heelRatio}</div><div class="meas-class ${hC.cls}">${hC.label}</div></div>
-    <div class="meas-card"><div class="meas-label">Toe Shape</div><div class="meas-value" style="font-size:1.1rem">${m.toeShape}</div><div class="meas-class normal">&nbsp;</div></div>
-    <div class="meas-card"><div class="meas-label">Toe Length %</div><div class="meas-value">${(m.toeProp * 100).toFixed(0)}%</div><div class="meas-class normal">of foot length</div></div>`;
-  document.getElementById('result-note').textContent =
-    `${m.footLen}px length · ${m.ballW}px ball · ${m.heelW}px heel · ${m.orientation}`;
+  // Stop camera
   video.srcObject?.getTracks().forEach(t => t.stop());
 }
 
-function classify(v, pop) {
-  if (v < pop.lo) return { cls: 'narrow', label: 'Narrow' };
-  if (v > pop.hi) return { cls: 'wide', label: 'Wide' };
-  return { cls: 'normal', label: 'Normal' };
-}
-
-// ── Save to Supabase ──
-const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
-
 async function saveResult() {
-  if (!lastCaptureData) return;
-  const btn = document.getElementById('save-btn'), status = document.getElementById('save-status');
-  btn.disabled = true; btn.textContent = 'Saving…'; status.textContent = '';
+  if (!lastCaptureDataUrl) return;
+  const btn = document.getElementById('save-btn');
+  const status = document.getElementById('save-status');
+  btn.disabled = true; btn.textContent = 'Uploading…'; status.textContent = '';
+
   try {
     const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
     const id = 'scan-' + ts;
-    const blob = await (await fetch(lastCaptureData.imageDataUrl)).blob();
+    const blob = await (await fetch(lastCaptureDataUrl)).blob();
+
+    // Upload image to Supabase Storage
     const up = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.jpg`, {
-      method: 'POST', headers: { 'Authorization': `Bearer ${SB_KEY}`, 'apikey': SB_KEY, 'Content-Type': 'image/jpeg', 'x-upsert': 'true' }, body: blob });
-    let imgUrl = '';
-    if (up.ok) imgUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}.jpg`;
-    const jb = new Blob([JSON.stringify({ scan_id: id, timestamp: new Date().toISOString(), image_url: imgUrl,
-      measurements: lastCaptureData.measurements, user_agent: navigator.userAgent }, null, 2)], { type: 'application/json' });
-    const jr = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.json`, {
-      method: 'POST', headers: { 'Authorization': `Bearer ${SB_KEY}`, 'apikey': SB_KEY, 'Content-Type': 'application/json', 'x-upsert': 'true' }, body: jb });
-    if (up.ok && jr.ok) { status.innerHTML = `Saved! <a href="${imgUrl}" target="_blank" style="color:#64B5F6">View image</a>`; btn.textContent = 'Saved ✓'; }
-    else throw new Error('upload failed');
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SB_KEY}`,
+        'apikey': SB_KEY,
+        'Content-Type': 'image/jpeg',
+        'x-upsert': 'true',
+      },
+      body: blob,
+    });
+
+    if (up.ok) {
+      const imgUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}.jpg`;
+      status.innerHTML = `Uploaded ✓ <a href="${imgUrl}" target="_blank" style="color:#c98a42;font-weight:600">View image</a>`;
+      btn.textContent = 'Saved ✓';
+    } else {
+      throw new Error('Upload failed: ' + up.status);
+    }
   } catch(e) {
     console.error(e);
-    status.textContent = 'Cloud save failed — downloading…';
-    const a = document.createElement('a'); a.href = lastCaptureData.imageDataUrl; a.download = 'foot-scan.jpg'; a.click();
-    if (lastCaptureData.measurements) {
-      const b = document.createElement('a'); b.href = URL.createObjectURL(new Blob([JSON.stringify(lastCaptureData.measurements, null, 2)], { type: 'application/json' }));
-      b.download = 'foot-scan-data.json'; setTimeout(() => b.click(), 500);
-    }
-    btn.textContent = 'Downloaded'; status.textContent = 'Saved to device';
+    status.textContent = 'Cloud upload failed — downloading locally…';
+    const a = document.createElement('a');
+    a.href = lastCaptureDataUrl;
+    a.download = 'foot-scan.jpg';
+    a.click();
+    btn.textContent = 'Downloaded';
+    status.textContent = 'Saved to device';
   }
 }
 
@@ -723,8 +238,8 @@ function retake() {
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('save-status').textContent = '';
   document.getElementById('save-btn').disabled = false;
-  document.getElementById('save-btn').textContent = 'Save Result';
-  lastCaptureData = null; stableCount = 0; prevCentroid = null;
+  document.getElementById('save-btn').textContent = 'Save & Upload';
+  lastCaptureDataUrl = null;
   startScanner();
 }
 </script>
