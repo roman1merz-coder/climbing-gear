@@ -5,6 +5,16 @@ These rules are NON-NEGOTIABLE and must always be followed.
 
 ---
 
+## Graphics Rule (NON-NEGOTIABLE)
+
+**NEVER attempt to programmatically draw, trace, or generate images/overlays.**
+- Do NOT use edge detection, thresholding, or any image-processing trick to "trace" outlines from photos
+- Do NOT generate PNGs from pixel data or try to create silhouettes from reference images
+- If a graphic asset (SVG, PNG, overlay) already exists, use it as-is — transform it with CSS (rotate, scale, translate) instead of recreating it
+- If a new graphic is genuinely needed, ask Roman to provide it
+
+---
+
 ## Analytics (PostHog)
 
 | Field | Value |
