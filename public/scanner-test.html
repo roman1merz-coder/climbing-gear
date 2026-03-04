@@ -67,7 +67,7 @@ body {
 }
 /* Side profile overlay */
 #side-guide-img {
-  width: 55vh; height: 55vh;
+  width: 66vh; height: 66vh;
   max-width: none; max-height: none;
   object-fit: contain;
   transform: rotate(90deg) scaleX(-1);
@@ -366,11 +366,11 @@ const SOLE_CONFIG = {
   BALANCE_MIN: 0.2
 };
 const SIDE_CONFIG = {
-  COVERAGE_MIN: 0.15,
-  COVERAGE_MAX: 0.65,
-  ASPECT_MIN: 0.8,
-  ASPECT_MAX: 2.5,
-  BALANCE_MIN: 0.18
+  COVERAGE_MIN: 0.18,
+  COVERAGE_MAX: 0.60,
+  ASPECT_MIN: 0.9,
+  ASPECT_MAX: 2.3,
+  BALANCE_MIN: 0.22
 };
 
 let video, analyzeCanvas, analyzeCtx;
@@ -625,6 +625,9 @@ function capture() {
   const snap = document.createElement('canvas');
   snap.width = video.videoWidth; snap.height = video.videoHeight;
   const ctx = snap.getContext('2d');
+  /* Flip horizontally to match the un-mirrored CSS view */
+  ctx.translate(snap.width, 0);
+  ctx.scale(-1, 1);
   ctx.drawImage(video, 0, 0);
   const dataUrl = snap.toDataURL('image/jpeg', 0.95);
 
