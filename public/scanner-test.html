@@ -154,8 +154,8 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 const CHECK_INTERVAL = 200;       // ms between frame checks
 const COVERAGE_MIN = 0.20;        // at least 20% of guide zone covered
 const COVERAGE_MAX = 0.75;        // no more than 75% (too close / all dark)
-const STILL_THRESHOLD = 0.015;    // max frame-to-frame change (lower = more still)
-const STILL_FRAMES_NEEDED = 4;    // consecutive still frames needed (~0.8s at 200ms)
+const STILL_THRESHOLD = 0.045;    // max frame-to-frame change (generous — phone cameras are noisy)
+const STILL_FRAMES_NEEDED = 3;    // consecutive still frames needed (~0.6s at 200ms)
 
 let video, analyzeCanvas, analyzeCtx;
 let checkTimer = null;
