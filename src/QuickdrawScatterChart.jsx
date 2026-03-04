@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLoessTrend } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLinearTrend } from "./ChartShared.jsx";
 
 /* ─── Quickdraw type colors ─── */
 const TYPE_COLORS = {
@@ -26,36 +26,53 @@ const BRAND_PAL = [
   "#81e6d9","#c4b5fd","#fca5a5","#bef264","#e879f9","#67e8f9",
 ];
 
-/* ─── Data ─── */
-const ALL_QUICKDRAWS = (function() {
-  if (typeof QUICKDRAW_SEED === 'undefined') return [];
-  return QUICKDRAW_SEED.filter(d => d.weight_g && d.price_uvp_eur)
-    .map(d => {
-      const gateStyle = (d.upper_gate_type || "").includes("wire") && (d.lower_gate_type || "").includes("wire") ? "wire"
-                      : (d.upper_gate_type || "").includes("solid") && (d.lower_gate_type || "").includes("solid") ? "solid"
-                      : "mixed";
-      return {
-        brand: d.brand,
-        model: d.model,
-        slug: d.slug,
-        weight: d.weight_g,
-        price: d.price_uvp_eur,
-        type: d.quickdraw_type || "sport",
-        strengthOpen: d.strength_open_kn,
-        gateStyle,
-        slingType: d.sling_type,
-        hotForged: d.hot_forged,
-      };
-    });
-})();
-
 /* ─── Derive gate style helper ─── */
 function getGateStyle(upperGate, lowerGate) {
   const upperWire = (upperGate || "").includes("wire");
   const lowerWire = (lowerGate || "").includes("wire");
   return (upperWire && lowerWire) ? "wire" : (!upperWire && !lowerWire) ? "solid" : "mixed";
 }
+/* ─── Axis options for free-choice dropdowns ─── */
+const AXIS_OPTIONS = [
+  { key: "weight",       label: "Weight (g)",          unit: "g",    fmt: v => String(Math.round(v)) },
+  { key: "price",        label: "Price (€)",           unit: "€",    fmt: v => "€" + v.toFixed(0) },
+  { key: "strengthOpen", label: "Open Gate (kN)",      unit: "kN",   fmt: v => v.toFixed(1) },
+  { key: "valueRatio",   label: "Strength/Weight (kN/kg)", unit: "kN/kg", fmt: v => v.toFixed(0) },
+];
+const AXIS_MAP = Object.fromEntries(AXIS_OPTIONS.map(a => [a.key, a]));
 
+/* ─── Compute linear trend on the fly ─── */
+function computeTrend(data, xKey, yKey) {
+  const pts = data.filter(r => r[xKey] != null && r[yKey] != null);
+  if (pts.length < 4) return null;
+  const n = pts.length;
+  const mx = pts.reduce((s, r) => s + r[xKey], 0) / n;
+  const my = pts.reduce((s, r) => s + r[yKey], 0) / n;
+  let num = 0, den = 0;
+  pts.forEach(r => { num += (r[xKey] - mx) * (r[yKey] - my); den += (r[xKey] - mx) ** 2; });
+  if (Math.abs(den) < 1e-10) return null;
+  const slope = num / den, intercept = my - slope * mx;
+  const ss = pts.reduce((s, r) => s + (r[yKey] - (slope * r[xKey] + intercept)) ** 2, 0);
+  const std = Math.sqrt(ss / (n - 2));
+  const ssTot = pts.reduce((s, r) => s + (r[yKey] - my) ** 2, 0);
+  const r2 = ssTot > 0 ? 1 - ss / ssTot : 0;
+  return { slope, intercept, std, r2 };
+}
+
+/* ─── Dynamic axis bounds ─── */
+function fieldBounds(data, key) {
+  const vals = data.filter(r => r[key] != null).map(r => r[key]);
+  if (!vals.length) return { min: 0, max: 10, step: 1 };
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  const range = hi - lo || 1;
+  const rawStep = range / 8;
+  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const niceSteps = [1, 2, 2.5, 5, 10];
+  const step = niceSteps.map(s => s * mag).find(s => s >= rawStep) || mag * 10;
+  const min = Math.floor(lo / step) * step - step;
+  const max = Math.ceil(hi / step) * step + step;
+  return { min, max, step };
+}
 /* ─── Main Component ─── */
 export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
   const navigate = useNavigate();
@@ -65,7 +82,9 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
   const pinnedRef = useRef(null);
   const [mobileItem, setMobileItem] = useState(null);
 
-  const [metric, setMetric] = useState("weight_price");
+  const [xAxis, setXAxis] = useState("price");
+  const [yAxis, setYAxis] = useState("weight");
+  const [sizeAxis, setSizeAxis] = useState("none");
   const [colorBy, setColorBy] = useState("type");
 
   /* Filter state */
@@ -78,39 +97,49 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
     return next;
   });
 
-  /* Use passed quickdraws or fallback to seed */
+  /* Use passed quickdraws or fallback to empty */
   const DATA = useMemo(() => {
-    if (quickdraws && quickdraws.length > 0) {
-      return quickdraws.filter(d => d.weight_g && d.price_uvp_eur)
-        .map(d => {
-          const gateStyle = getGateStyle(d.upper_gate_type, d.lower_gate_type);
-          return {
-            brand: d.brand,
-            model: d.model,
-            slug: d.slug,
-            weight: d.weight_g,
-            price: d.price_uvp_eur,
-            type: d.quickdraw_type || "sport",
-            strengthOpen: d.strength_open_kn,
-            gateStyle,
-            slingType: d.sling_type,
-            hotForged: d.hot_forged,
-          };
-        });
-    }
-    return ALL_QUICKDRAWS;
+    const src = quickdraws && quickdraws.length > 0 ? quickdraws : [];
+    return src.filter(d => d.weight_g && d.price_uvp_eur)
+      .map(d => {
+        const gateStyle = getGateStyle(d.upper_gate_type, d.lower_gate_type);
+        return {
+          brand: d.brand,
+          model: d.model,
+          slug: d.slug,
+          weight: d.weight_g,
+          price: d.price_uvp_eur,
+          type: d.quickdraw_type || "sport",
+          strengthOpen: d.strength_open_kn,
+          gateStyle,
+          slingType: d.sling_type,
+          hotForged: d.hot_forged,
+          valueRatio: d.strength_open_kn && d.weight_g ? (d.strength_open_kn / d.weight_g) * 1000 : null,
+        };
+      });
   }, [quickdraws]);
-
   /* Brand list & colors */
   const BRAND_LIST = useMemo(() => [...new Set(DATA.map(d => d.brand))].sort(), [DATA]);
   const BRAND_COLORS = useMemo(() => Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]])), [BRAND_LIST]);
+
+  /* Bubble-size scaler */
+  const sizeScale = useMemo(() => {
+    if (sizeAxis === "none") return null;
+    const vals = DATA.filter(r => r[sizeAxis] != null).map(r => r[sizeAxis]);
+    if (!vals.length) return null;
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const range = hi - lo || 1;
+    const minR = isMobile ? 2 : 3, maxR = isMobile ? 12 : 16;
+    return (v) => v == null ? (minR + maxR) / 2 : minR + ((v - lo) / range) * (maxR - minR);
+  }, [sizeAxis, isMobile, DATA]);
 
   /* Apply filters */
   const filtered = useMemo(() => DATA.filter(d => {
     if (!enabledTypes.has(d.type)) return false;
     if (hiddenBrands.has(d.brand)) return false;
+    if (d[xAxis] == null || d[yAxis] == null) return false;
     return true;
-  }), [DATA, enabledTypes, hiddenBrands]);
+  }), [DATA, enabledTypes, hiddenBrands, xAxis, yAxis]);
 
   /* Color function */
   const getColor = useCallback((d) => {
@@ -120,47 +149,19 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
     return "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
-  /* Axis config per metric */
-  const axisBounds = useMemo(() => {
-    if (!filtered.length) {
-      if (metric === "weight_price") return { xMin: 10, xMax: 35, yMin: 40, yMax: 125 };
-      if (metric === "strength_weight") return { xMin: 40, xMax: 125, yMin: 6, yMax: 12 };
-      if (metric === "value_strength") return { xMin: 10, xMax: 35, yMin: 60, yMax: 240 };
-    }
-
-    if (metric === "weight_price") {
-      const prices = filtered.map(d => d.price);
-      const weights = filtered.map(d => d.weight);
-      return {
-        xMin: Math.floor(Math.min(...prices) / 5) * 5 - 5,
-        xMax: Math.ceil(Math.max(...prices) / 5) * 5 + 5,
-        yMin: Math.floor(Math.min(...weights) / 10) * 10 - 10,
-        yMax: Math.ceil(Math.max(...weights) / 10) * 10 + 10,
-      };
-    }
-
-    if (metric === "strength_weight") {
-      const weights = filtered.map(d => d.weight);
-      const strengths = filtered.map(d => d.strengthOpen);
-      return {
-        xMin: Math.floor(Math.min(...weights) / 10) * 10 - 10,
-        xMax: Math.ceil(Math.max(...weights) / 10) * 10 + 10,
-        yMin: Math.floor(Math.min(...strengths) / 1) * 1 - 1,
-        yMax: Math.ceil(Math.max(...strengths) / 1) * 1 + 1,
-      };
-    }
-
-    if (metric === "value_strength") {
-      const prices = filtered.map(d => d.price);
-      const ratios = filtered.map(d => (d.strengthOpen / d.weight) * 1000);
-      return {
-        xMin: Math.floor(Math.min(...prices) / 5) * 5 - 5,
-        xMax: Math.ceil(Math.max(...prices) / 5) * 5 + 5,
-        yMin: Math.floor(Math.min(...ratios) / 20) * 20 - 20,
-        yMax: Math.ceil(Math.max(...ratios) / 20) * 20 + 20,
-      };
-    }
-  }, [filtered, metric]);
+  /* Dynamic axis config */
+  const cfg = useMemo(() => {
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const xb = fieldBounds(filtered, xAxis);
+    const yb = fieldBounds(filtered, yAxis);
+    return {
+      xField: xAxis, xLabel: xOpt.label, xMin: xb.min, xMax: xb.max, xStep: xb.step,
+      yField: yAxis, yLabel: yOpt.label, yMin: yb.min, yMax: yb.max, yStep: yb.step,
+      sub: `${filtered.length} quickdraws · ${xOpt.label} vs ${yOpt.label}${sizeAxis !== "none" ? ` · size = ${AXIS_MAP[sizeAxis]?.label}` : ""}`,
+    };
+  }, [filtered, xAxis, yAxis, sizeAxis]);
+  /* Dynamic trend */
+  const trend = useMemo(() => computeTrend(filtered, xAxis, yAxis), [filtered, xAxis, yAxis]);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -174,128 +175,52 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
     ctx.setTransform(2, 0, 0, 2, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
-    const { xMin, xMax, yMin, yMax } = axisBounds;
+    const { xField, xLabel, xMin, xMax, xStep, yField, yLabel, yMin, yMax, yStep } = cfg;
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
-    // Chart area frame
     drawChartArea(ctx, PAD, W, H);
-
-    // Grid
-    const xStep = metric === "weight_price" || metric === "value_strength" ? 5 : 10;
-    const yStep = metric === "strength_weight" ? 1 : (metric === "value_strength" ? 20 : 10);
-    const firstX = Math.ceil(xMin / xStep) * xStep;
-    const firstY = Math.ceil(yMin / yStep) * yStep;
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
-    // Ticks + axis labels
-    let xFmt, yFmt, xLabel, yLabel;
-    if (metric === "weight_price") {
-      xFmt = x => "€" + x;
-      yFmt = y => y + "g";
-      xLabel = "Price (€)";
-      yLabel = "Weight (g)";
-    } else if (metric === "strength_weight") {
-      xFmt = x => x + "g";
-      yFmt = y => y + "kN";
-      xLabel = "Weight (g)";
-      yLabel = "Open Gate (kN)";
-    } else if (metric === "value_strength") {
-      xFmt = x => "€" + x;
-      yFmt = y => y + "kN/kg";
-      xLabel = "Price (€)";
-      yLabel = "Strength / Weight (kN/kg)";
-    }
+    const xFmt = AXIS_MAP[xField]?.fmt || (x => String(x));
+    const yFmt = AXIS_MAP[yField]?.fmt || (y => String(y));
+    const firstX = Math.ceil(xMin / xStep) * xStep;
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel, sxFn: sx, syFn: sy });
 
-    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin: firstY, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel, sxFn: sx, syFn: sy });
-
-    // Data count badge
     drawCountBadge(ctx, PAD, W, filtered.length, "quickdraws");
 
-    // LOESS trend curve
-    let xField, yField;
-    if (metric === "weight_price") {
-      xField = "price";
-      yField = "weight";
-    } else if (metric === "strength_weight") {
-      xField = "weight";
-      yField = "strengthOpen";
-    } else if (metric === "value_strength") {
-      xField = "price";
-      yField = d => (d.strengthOpen / d.weight) * 1000;
+    /* Trend line */
+    if (trend) {
+      const r2Str = trend.r2 > 0.01 ? ` · R²=${trend.r2.toFixed(2)}` : "";
+      drawLinearTrend(ctx, sx, sy, trend.slope, trend.intercept, trend.std, xMin, xMax, yMin, yMax, { color: "#c8cdd8", label: `Trend${r2Str}` });
     }
-
-    if (metric === "value_strength") {
-      const enriched = DATA.map(d => ({ ...d, valueRatio: (d.strengthOpen / d.weight) * 1000 }));
-      drawLoessTrend(ctx, sx, sy, enriched, "price", "valueRatio", xMin, xMax, yMin, yMax, { color: "#c8cdd8", label: "Trend", bandwidth: 0.4 });
-    } else {
-      drawLoessTrend(ctx, sx, sy, DATA, xField, yField, xMin, xMax, yMin, yMax, { color: "#c8cdd8", label: "Trend", bandwidth: 0.4 });
-    }
-
-    // Crosshair for hovered dot
+    /* Crosshair */
     const hovered = hovRef.current;
     if (hovered && filtered.includes(hovered)) {
-      let xVal, yVal, xStr, yStr;
-      if (metric === "weight_price") {
-        xVal = hovered.price;
-        yVal = hovered.weight;
-        xStr = "€" + hovered.price.toFixed(0);
-        yStr = hovered.weight + "g";
-      } else if (metric === "strength_weight") {
-        xVal = hovered.weight;
-        yVal = hovered.strengthOpen;
-        xStr = hovered.weight + "g";
-        yStr = hovered.strengthOpen + "kN";
-      } else if (metric === "value_strength") {
-        xVal = hovered.price;
-        yVal = (hovered.strengthOpen / hovered.weight) * 1000;
-        xStr = "€" + hovered.price.toFixed(0);
-        yStr = yVal.toFixed(0) + "kN/kg";
-      }
-      const hpx = sx(xVal), hpy = sy(yVal);
-      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xStr, yStr);
+      const hpx = sx(hovered[xField]), hpy = sy(hovered[yField]);
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
     }
 
-    // Dots with glow + jitter
-    const dotR = isMobile ? 3.5 : 5;
+    /* Dots */
+    const baseR = isMobile ? 3.5 : 5;
     const pixelPts = [];
     filtered.forEach((d, i) => {
       if (d === hovered) return;
       const j = jitter(i);
-      let px, py;
-      if (metric === "weight_price") {
-        px = sx(d.price) + j.dx;
-        py = sy(d.weight) + j.dy;
-      } else if (metric === "strength_weight") {
-        px = sx(d.weight) + j.dx;
-        py = sy(d.strengthOpen) + j.dy;
-      } else if (metric === "value_strength") {
-        px = sx(d.price) + j.dx;
-        py = sy((d.strengthOpen / d.weight) * 1000) + j.dy;
-      }
+      const px = sx(d[xField]) + j.dx, py = sy(d[yField]) + j.dy;
       pixelPts.push({ px, py });
-      drawDot(ctx, px, py, dotR, getColor(d), false);
+      const sz = sizeScale ? sizeScale(d[sizeAxis]) : baseR;
+      drawDot(ctx, px, py, sz, getColor(d), false);
     });
 
-    // Cluster badges
-    drawClusterBadges(ctx, pixelPts);
+    if (!sizeScale) drawClusterBadges(ctx, pixelPts);
 
-    // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
-      let px, py;
-      if (metric === "weight_price") {
-        px = sx(hovered.price);
-        py = sy(hovered.weight);
-      } else if (metric === "strength_weight") {
-        px = sx(hovered.weight);
-        py = sy(hovered.strengthOpen);
-      } else if (metric === "value_strength") {
-        px = sx(hovered.price);
-        py = sy((hovered.strengthOpen / hovered.weight) * 1000);
-      }
-      drawDot(ctx, px, py, dotR, getColor(hovered), true);
+      const px = sx(hovered[xField]), py = sy(hovered[yField]);
+      const sz = sizeScale ? sizeScale(hovered[sizeAxis]) : baseR;
+      drawDot(ctx, px, py, sz, getColor(hovered), true);
     }
-  }, [isMobile, filtered, axisBounds, getColor, metric, DATA]);
+  }, [isMobile, filtered, cfg, getColor, trend, sizeAxis, sizeScale]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -308,61 +233,51 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
     const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = chartH(isMobile);
     const P = chartPad(isMobile);
-    const { xMin, xMax, yMin, yMax } = axisBounds;
+    const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
     const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
     const sy = y => H - P.b - (y - yMin) / (yMax - yMin) * (H - P.t - P.b);
-
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 20;
-
     filtered.forEach(d => {
-      let dx, dy;
-      if (metric === "weight_price") {
-        dx = sx(d.price) - mx;
-        dy = sy(d.weight) - my;
-      } else if (metric === "strength_weight") {
-        dx = sx(d.weight) - mx;
-        dy = sy(d.strengthOpen) - my;
-      } else if (metric === "value_strength") {
-        dx = sx(d.price) - mx;
-        dy = sy((d.strengthOpen / d.weight) * 1000) - my;
-      }
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      const dx = sx(d[xField]) - mx, dy = sy(d[yField]) - my, dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < threshold && dist < best) { closest = d; best = dist; }
     });
     return closest;
-  }, [isMobile, filtered, axisBounds, metric]);
-
+  }, [isMobile, filtered, cfg]);
   /* Desktop tooltip */
   const showTip = useCallback((d, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
     const typeLabel = TYPE_LABELS[d.type] || d.type;
     const gateLabel = GATE_LABELS[d.gateStyle] || d.gateStyle;
-    const details = `${typeLabel} · ${gateLabel}${d.slingType ? " · " + d.slingType : ""}${d.hotForged ? " · Hot forged" : ""}`;
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
     const stats = [
-      { label: "Weight", value: d.weight + " g" },
-      { label: "Price", value: "€" + d.price.toFixed(2) },
-      { label: "Open Gate", value: d.strengthOpen + " kN" },
+      { label: xOpt.label.split(" (")[0], value: xOpt.fmt(d[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "") },
+      { label: yOpt.label.split(" (")[0], value: yOpt.fmt(d[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "") },
     ];
+    if (sOpt && d[sizeAxis] != null) stats.push({ label: sOpt.label.split(" (")[0], value: sOpt.fmt(d[sizeAxis]) + (sOpt.unit ? " " + sOpt.unit : "") });
+    const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
+    if (!shown.has("weight")) stats.push({ label: "Weight", value: d.weight + " g" });
+    if (!shown.has("price")) stats.push({ label: "Price", value: "€" + d.price.toFixed(2) });
+    if (!shown.has("strengthOpen") && d.strengthOpen) stats.push({ label: "Open Gate", value: d.strengthOpen + " kN" });
+    const details = `${typeLabel} · ${gateLabel}${d.slingType ? " · " + d.slingType : ""}${d.hotForged ? " · Hot forged" : ""}`;
 
     tip.innerHTML = buildTipHTML({
       name: `${d.brand} ${d.model}`,
       color: getColor(d),
-      stats,
+      stats: stats.slice(0, 6),
       details,
       link: `/quickdraw/${d.slug}`,
       pinned,
     });
     positionTip(tip, x, y, pinned);
-  }, [getColor]);
+  }, [getColor, xAxis, yAxis, sizeAxis]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
     if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
   }, []);
-
-  /* Mouse handlers (desktop) */
   const handleMove = useCallback((e) => {
     if (isMobile || pinnedRef.current) return;
     const d = findClosest(e);
@@ -388,7 +303,6 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
     }
   }, [isMobile, findClosest, draw, showTip, hideTip]);
 
-  /* Touch handlers (mobile) */
   const handleTouch = useCallback((e) => {
     if (!isMobile) return;
     e.preventDefault();
@@ -400,7 +314,6 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
   const closeMobileSheet = useCallback(() => {
     setMobileItem(null); hovRef.current = null; draw();
   }, [draw]);
-
   useEffect(() => {
     const onDocClick = (e) => {
       if (!pinnedRef.current) return;
@@ -424,31 +337,48 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
   }, [navigate]);
 
   /* ─── Styles ─── */
+  const selectStyle = {
+    padding: "5px 10px", fontSize: "12px", fontWeight: 600, borderRadius: "6px",
+    border: `1px solid ${T.border}`, cursor: "pointer", background: T.surface, color: T.text,
+    outline: "none", appearance: "none", WebkitAppearance: "none",
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7462'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", backgroundSize: "10px 6px",
+    paddingRight: "24px", minWidth: isMobile ? "110px" : "140px",
+  };
   const filterBtn = (active) => ({
     padding: "3px 8px", fontSize: "10px", fontWeight: 600, borderRadius: "4px", border: "none", cursor: "pointer",
     background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
   });
-
-  const metricBtn = (active) => ({
-    padding: "4px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "5px", border: "none", cursor: "pointer",
-    background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
-  });
-
   const TYPE_LIST = ["sport", "alpine", "trad"];
   const GATE_LIST = ["wire", "solid", "mixed"];
 
   return (
-    <ChartContainer title="Quickdraw Comparison" subtitle={`${filtered.length} quickdraws`} isMobile={isMobile}>
-      {/* Metric selector */}
-      <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
-        <span style={{ fontSize: "11px", color: T.muted }}>Metric:</span>
-        {[["weight_price", "Weight vs Price"], ["strength_weight", "Strength vs Weight"], ["value_strength", "Value vs Strength"]].map(([k, l]) => (
-          <button key={k} onClick={() => setMetric(k)} style={metricBtn(metric === k)}>
-            {l}
-          </button>
-        ))}
+    <ChartContainer title="Quickdraw Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
+      {/* Axis selectors */}
+      <div style={{ display: "flex", gap: isMobile ? "8px" : "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>X axis</span>
+          <select value={xAxis} onChange={e => { setXAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Y axis</span>
+          <select value={yAxis} onChange={e => { setYAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <button onClick={() => { const tmp = xAxis; setXAxis(yAxis); setYAxis(tmp); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
+          style={{ padding: "4px 10px", fontSize: "11px", fontWeight: 700, borderRadius: "6px", border: `1px solid ${T.border}`, cursor: "pointer", background: "transparent", color: T.muted }}
+          title="Swap axes">⇄</button>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
+          <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            <option value="none">— None —</option>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
       </div>
-
       {/* Type filter + reset */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
         {(hiddenBrands.size > 0 || enabledTypes.size !== 3) && (
@@ -478,7 +408,6 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
         ))}
         <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filtered.length} shown</span>
       </div>
-
       {/* Canvas */}
       <div style={{ width: "100%", overflow: "hidden" }}>
         <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%", touchAction: "none" }}
@@ -497,6 +426,15 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
             const d = mobileItem;
             const typeLabel = TYPE_LABELS[d.type] || d.type;
             const gateLabel = GATE_LABELS[d.gateStyle] || d.gateStyle;
+            const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+            const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
+            const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
+            const stats = [
+              [xOpt.label.split(" (")[0], xOpt.fmt(d[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "")],
+              [yOpt.label.split(" (")[0], yOpt.fmt(d[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "")],
+              ...(sOpt && d[sizeAxis] != null ? [[sOpt.label.split(" (")[0], sOpt.fmt(d[sizeAxis]) + (sOpt.unit ? " " + sOpt.unit : "")]] : []),
+              ...(!shown.has("strengthOpen") && d.strengthOpen ? [["Open Gate", `${d.strengthOpen} kN`]] : []),
+            ].slice(0, 5);
             return (
               <>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
@@ -506,17 +444,19 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
                     {typeLabel} · {gateLabel}
                   </span>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "2px 8px" }}>
-                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Weight</div><div style={{ fontSize: "13px", fontWeight: 600 }}>{d.weight} g</div></div>
-                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Price</div><div style={{ fontSize: "13px", fontWeight: 600 }}>€{d.price.toFixed(2)}</div></div>
-                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Open Gate</div><div style={{ fontSize: "13px", fontWeight: 600 }}>{d.strengthOpen} kN</div></div>
+                <div style={{ display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: "2px 8px" }}>
+                  {stats.map(([lbl, val]) => (
+                    <div key={lbl} style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
+                      <div style={{ fontSize: "13px", fontWeight: 600 }}>{val}</div>
+                    </div>
+                  ))}
                 </div>
               </>
             );
           })()}
         </BottomSheet>
       )}
-
       {/* Legends */}
       {colorBy === "type" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
@@ -546,6 +486,7 @@ export default function QuickdrawScatterChart({ isMobile, quickdraws = [] }) {
       <div style={{ marginTop: "6px", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
           {isMobile ? "Tap a dot for specs · Tap legend to filter" : "Click a dot for specs & detail link · Click legend to filter"}
+          {trend && ` · Trend R²=${trend.r2.toFixed(2)}`}
         </span>
         <a href="/methodology" style={{ fontSize: "10px", color: T.accent, textDecoration: "none", fontWeight: 600 }}>How we score →</a>
       </div>

@@ -1292,7 +1292,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
           {view === "chart" ? (
             <>
               <ScoringDisclaimer category="crashpads" />
-              <CrashpadScatterChart isMobile={isMobile} />
+              <CrashpadScatterChart isMobile={isMobile} data={crashpads} />
             </>
           ) : (
             <>

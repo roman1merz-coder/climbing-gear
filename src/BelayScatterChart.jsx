@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { T } from "./tokens.js";
 import BELAY_SEED from "./belay_seed_data.json";
-import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLoessTrend } from "./ChartShared.jsx";
+import { ChartContainer, Pill, LegendRow, BottomSheet, buildTipHTML, positionTip, TIP_STYLE, getEventCoords, toggleHidden, chartPad, chartH, drawChartArea, drawGrid, drawTicks, drawCountBadge, drawDot, jitter, drawClusterBadges, drawCrosshair, hex2rgb, drawLinearTrend } from "./ChartShared.jsx";
 
 /* ─── Device type styling ─── */
 const TYPE_COLORS = {
@@ -42,7 +42,45 @@ const ALL_BELAYS = BELAY_SEED.filter(d => d.price_uvp_eur && d.weight_g)
     ropeSlots: d.rope_slots, material: d.material,
   }));
 
-/* ─── (trend is now computed via LOESS at draw time) ─── */
+/* ─── Axis options for free-choice dropdowns ─── */
+const AXIS_OPTIONS = [
+  { key: "weight",    label: "Weight (g)",     unit: "g",  fmt: v => String(Math.round(v)) },
+  { key: "price",     label: "Price (€)",      unit: "€",  fmt: v => "€" + v.toFixed(0) },
+  { key: "ropeSlots", label: "Rope Slots",     unit: "",   fmt: v => String(v) },
+];
+const AXIS_MAP = Object.fromEntries(AXIS_OPTIONS.map(a => [a.key, a]));
+
+/* ─── Compute linear trend on the fly ─── */
+function computeTrend(data, xKey, yKey) {
+  const pts = data.filter(r => r[xKey] != null && r[yKey] != null);
+  if (pts.length < 4) return null;
+  const n = pts.length;
+  const mx = pts.reduce((s, r) => s + r[xKey], 0) / n;
+  const my = pts.reduce((s, r) => s + r[yKey], 0) / n;
+  let num = 0, den = 0;
+  pts.forEach(r => { num += (r[xKey] - mx) * (r[yKey] - my); den += (r[xKey] - mx) ** 2; });
+  if (Math.abs(den) < 1e-10) return null;
+  const slope = num / den, intercept = my - slope * mx;
+  const ss = pts.reduce((s, r) => s + (r[yKey] - (slope * r[xKey] + intercept)) ** 2, 0);
+  const std = Math.sqrt(ss / (n - 2));
+  const ssTot = pts.reduce((s, r) => s + (r[yKey] - my) ** 2, 0);
+  const r2 = ssTot > 0 ? 1 - ss / ssTot : 0;
+  return { slope, intercept, std, r2 };
+}
+/* ─── Dynamic axis bounds ─── */
+function fieldBounds(data, key) {
+  const vals = data.filter(r => r[key] != null).map(r => r[key]);
+  if (!vals.length) return { min: 0, max: 10, step: 1 };
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  const range = hi - lo || 1;
+  const rawStep = range / 8;
+  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const niceSteps = [1, 2, 2.5, 5, 10];
+  const step = niceSteps.map(s => s * mag).find(s => s >= rawStep) || mag * 10;
+  const min = Math.floor(lo / step) * step - step;
+  const max = Math.ceil(hi / step) * step + step;
+  return { min, max, step };
+}
 
 /* ─── Main Component ─── */
 export default function BelayScatterChart({ isMobile }) {
@@ -53,8 +91,10 @@ export default function BelayScatterChart({ isMobile }) {
   const pinnedRef = useRef(null);
   const [mobileItem, setMobileItem] = useState(null);
 
+  const [xAxis, setXAxis] = useState("weight");
+  const [yAxis, setYAxis] = useState("price");
+  const [sizeAxis, setSizeAxis] = useState("none");
   const [colorBy, setColorBy] = useState("type");
-
   /* Filter state */
   const [enabledTypes, setEnabledTypes] = useState(new Set(["active_assisted", "passive_assisted", "tube_guide", "tube", "figure_eight"]));
   const [hiddenBrands, setHiddenBrands] = useState(new Set());
@@ -76,12 +116,23 @@ export default function BelayScatterChart({ isMobile }) {
     return [...s].sort();
   }, []);
 
+  /* Bubble-size scaler */
+  const sizeScale = useMemo(() => {
+    if (sizeAxis === "none") return null;
+    const vals = ALL_BELAYS.filter(r => r[sizeAxis] != null).map(r => r[sizeAxis]);
+    if (!vals.length) return null;
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const range = hi - lo || 1;
+    const minR = isMobile ? 2 : 3, maxR = isMobile ? 12 : 16;
+    return (v) => v == null ? (minR + maxR) / 2 : minR + ((v - lo) / range) * (maxR - minR);
+  }, [sizeAxis, isMobile]);
   /* Apply filters */
   const filtered = useMemo(() => ALL_BELAYS.filter(d => {
     if (!enabledTypes.has(d.type)) return false;
     if (hiddenBrands.has(d.brand)) return false;
+    if (d[xAxis] == null || d[yAxis] == null) return false;
     return true;
-  }), [enabledTypes, hiddenBrands]);
+  }), [enabledTypes, hiddenBrands, xAxis, yAxis]);
 
   /* Color function */
   const getColor = useCallback((d) => {
@@ -91,19 +142,20 @@ export default function BelayScatterChart({ isMobile }) {
     return DISC_COLORS[uc] || "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
-  /* Axis config */
-  const axisBounds = useMemo(() => {
-    if (!filtered.length) return { wMin: 50, wMax: 500, pMin: 10, pMax: 200 };
-    const ws = filtered.map(d => d.weight);
-    const ps = filtered.map(d => d.price);
+  /* Dynamic axis config */
+  const cfg = useMemo(() => {
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const xb = fieldBounds(filtered, xAxis);
+    const yb = fieldBounds(filtered, yAxis);
     return {
-      wMin: Math.floor(Math.min(...ws) / 25) * 25 - 25,
-      wMax: Math.ceil(Math.max(...ws) / 25) * 25 + 25,
-      pMin: Math.floor(Math.min(...ps) / 10) * 10 - 10,
-      pMax: Math.ceil(Math.max(...ps) / 10) * 10 + 10,
+      xField: xAxis, xLabel: xOpt.label, xMin: xb.min, xMax: xb.max, xStep: xb.step,
+      yField: yAxis, yLabel: yOpt.label, yMin: yb.min, yMax: yb.max, yStep: yb.step,
+      sub: `${filtered.length} belay devices · ${xOpt.label} vs ${yOpt.label}${sizeAxis !== "none" ? ` · size = ${AXIS_MAP[sizeAxis]?.label}` : ""}`,
     };
-  }, [filtered]);
+  }, [filtered, xAxis, yAxis, sizeAxis]);
 
+  /* Dynamic trend */
+  const trend = useMemo(() => computeTrend(filtered, xAxis, yAxis), [filtered, xAxis, yAxis]);
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -116,62 +168,55 @@ export default function BelayScatterChart({ isMobile }) {
     ctx.setTransform(2, 0, 0, 2, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
-    const { wMin, wMax, pMin, pMax } = axisBounds;
-    const sx = x => PAD.l + (x - wMin) / (wMax - wMin) * (W - PAD.l - PAD.r);
-    const sy = y => H - PAD.b - (y - pMin) / (pMax - pMin) * (H - PAD.t - PAD.b);
+    const { xField, xLabel, xMin, xMax, xStep, yField, yLabel, yMin, yMax, yStep } = cfg;
+    const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
+    const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
-    // Chart area frame
     drawChartArea(ctx, PAD, W, H);
+    drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
-    // Grid
-    const wStep = (wMax - wMin) > 300 ? 50 : 25;
-    const pStep = (pMax - pMin) > 150 ? 20 : 10;
-    const firstW = Math.ceil(wMin / wStep) * wStep;
-    const firstP = Math.ceil(pMin / pStep) * pStep;
-    drawGrid(ctx, PAD, W, H, wMin, wMax, pMin, wStep, pStep, { yMax: pMax, fn: sy });
+    const xFmt = AXIS_MAP[xField]?.fmt || (x => String(x));
+    const yFmt = AXIS_MAP[yField]?.fmt || (y => String(y));
+    const firstX = Math.ceil(xMin / xStep) * xStep;
+    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstX, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel, yLabel, sxFn: sx, syFn: sy });
 
-    // Ticks + axis labels
-    const xFmt = x => x + "g";
-    const yFmt = y => "€" + y;
-    drawTicks(ctx, PAD, W, H, isMobile, { xMin: firstW, xMax: wMax, yMin: firstP, yMax: pMax, xStep: wStep, yStep: pStep, xFmt, yFmt, xLabel: "Weight (g)", yLabel: "Price (€)", sxFn: sx, syFn: sy });
-
-    // Data count badge
     drawCountBadge(ctx, PAD, W, filtered.length, "devices");
 
-    // LOESS trend curve
-    drawLoessTrend(ctx, sx, sy, ALL_BELAYS, "weight", "price", wMin, wMax, pMin, pMax, { color: "#c8cdd8", label: "Trend (all devices)", bandwidth: 0.4 });
-
-    // Crosshair for hovered dot
+    /* Trend line */
+    if (trend) {
+      const r2Str = trend.r2 > 0.01 ? ` · R²=${trend.r2.toFixed(2)}` : "";
+      drawLinearTrend(ctx, sx, sy, trend.slope, trend.intercept, trend.std, xMin, xMax, yMin, yMax, { color: "#c8cdd8", label: `Trend (all devices)${r2Str}` });
+    }
+    /* Crosshair */
     const hovered = hovRef.current;
     if (hovered && filtered.includes(hovered)) {
-      const hpx = sx(hovered.weight), hpy = sy(hovered.price);
-      drawCrosshair(ctx, hpx, hpy, PAD, W, H, hovered.weight + "g", "€" + hovered.price.toFixed(0));
+      const hpx = sx(hovered[xField]), hpy = sy(hovered[yField]);
+      drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
     }
 
-    // Dots with glow + jitter
-    const dotR = isMobile ? 3.5 : 5;
+    /* Dots */
+    const baseR = isMobile ? 3.5 : 5;
     const pixelPts = [];
     filtered.forEach((d, i) => {
       if (d === hovered) return;
       const j = jitter(i);
-      const px = sx(d.weight) + j.dx, py = sy(d.price) + j.dy;
+      const px = sx(d[xField]) + j.dx, py = sy(d[yField]) + j.dy;
       pixelPts.push({ px, py });
-      drawDot(ctx, px, py, dotR, getColor(d), false);
+      const sz = sizeScale ? sizeScale(d[sizeAxis]) : baseR;
+      drawDot(ctx, px, py, sz, getColor(d), false);
     });
 
-    // Cluster badges
-    drawClusterBadges(ctx, pixelPts);
+    if (!sizeScale) drawClusterBadges(ctx, pixelPts);
 
-    // Hovered dot on top
     if (hovered && filtered.includes(hovered)) {
-      const px = sx(hovered.weight), py = sy(hovered.price);
-      drawDot(ctx, px, py, dotR, getColor(hovered), true);
+      const px = sx(hovered[xField]), py = sy(hovered[yField]);
+      const sz = sizeScale ? sizeScale(hovered[sizeAxis]) : baseR;
+      drawDot(ctx, px, py, sz, getColor(hovered), true);
     }
-  }, [isMobile, filtered, axisBounds, getColor]);
+  }, [isMobile, filtered, cfg, getColor, trend, sizeAxis, sizeScale]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
-
   const findClosest = useCallback((e) => {
     const canvas = canvasRef.current;
     if (!canvas) return null;
@@ -180,17 +225,17 @@ export default function BelayScatterChart({ isMobile }) {
     const mx = clientX - rect.left, my = clientY - rect.top;
     const W = rect.width, H = chartH(isMobile);
     const P = chartPad(isMobile);
-    const { wMin, wMax, pMin, pMax } = axisBounds;
-    const sx = x => P.l + (x - wMin) / (wMax - wMin) * (W - P.l - P.r);
-    const sy = y => H - P.b - (y - pMin) / (pMax - pMin) * (H - P.t - P.b);
+    const { xField, yField, xMin, xMax, yMin, yMax } = cfg;
+    const sx = x => P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r);
+    const sy = y => H - P.b - (y - yMin) / (yMax - yMin) * (H - P.t - P.b);
     let closest = null, best = Infinity;
     const threshold = isMobile ? 30 : 20;
     filtered.forEach(d => {
-      const dx = sx(d.weight) - mx, dy = sy(d.price) - my, dist = Math.sqrt(dx * dx + dy * dy);
+      const dx = sx(d[xField]) - mx, dy = sy(d[yField]) - my, dist = Math.sqrt(dx * dx + dy * dy);
       if (dist < threshold && dist < best) { closest = d; best = dist; }
     });
     return closest;
-  }, [isMobile, filtered, axisBounds]);
+  }, [isMobile, filtered, cfg]);
 
   /* Desktop tooltip */
   const showTip = useCallback((d, x, y, pinned) => {
@@ -198,30 +243,34 @@ export default function BelayScatterChart({ isMobile }) {
     if (!tip) return;
     const typeLabel = TYPE_LABELS[d.type] || d.type;
     const features = [d.antiPanic && "Anti-panic", d.guideMode && "Guide mode"].filter(Boolean).join(", ");
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
     const stats = [
-      { label: "Weight", value: d.weight + " g" },
-      { label: "Price", value: "€" + d.price.toFixed(2) },
+      { label: xOpt.label.split(" (")[0], value: xOpt.fmt(d[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "") },
+      { label: yOpt.label.split(" (")[0], value: yOpt.fmt(d[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "") },
     ];
-    if (d.ropeSlots) stats.push({ label: "Rope slots", value: String(d.ropeSlots) });
+    if (sOpt && d[sizeAxis] != null) stats.push({ label: sOpt.label.split(" (")[0], value: sOpt.fmt(d[sizeAxis]) + (sOpt.unit ? " " + sOpt.unit : "") });    const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
+    if (!shown.has("weight")) stats.push({ label: "Weight", value: d.weight + " g" });
+    if (!shown.has("price")) stats.push({ label: "Price", value: "€" + d.price.toFixed(2) });
+    if (d.ropeSlots && !shown.has("ropeSlots")) stats.push({ label: "Rope slots", value: String(d.ropeSlots) });
     if (d.material) stats.push({ label: "Material", value: d.material });
 
     tip.innerHTML = buildTipHTML({
       name: `${d.brand} ${d.model}`,
       color: getColor(d),
-      stats,
+      stats: stats.slice(0, 6),
       details: `${typeLabel}${features ? " · " + features : ""}`,
       link: `/belay/${d.slug}`,
       pinned,
     });
     positionTip(tip, x, y, pinned);
-  }, [getColor]);
+  }, [getColor, xAxis, yAxis, sizeAxis]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
     if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
   }, []);
 
-  /* Mouse handlers (desktop) */
   const handleMove = useCallback((e) => {
     if (isMobile || pinnedRef.current) return;
     const d = findClosest(e);
@@ -233,7 +282,6 @@ export default function BelayScatterChart({ isMobile }) {
     if (isMobile || pinnedRef.current) return;
     hovRef.current = null; draw(); hideTip();
   }, [isMobile, draw, hideTip]);
-
   const handleClick = useCallback((e) => {
     if (isMobile) return;
     const d = findClosest(e);
@@ -247,7 +295,6 @@ export default function BelayScatterChart({ isMobile }) {
     }
   }, [isMobile, findClosest, draw, showTip, hideTip]);
 
-  /* Touch handlers (mobile) */
   const handleTouch = useCallback((e) => {
     if (!isMobile) return;
     e.preventDefault();
@@ -270,7 +317,6 @@ export default function BelayScatterChart({ isMobile }) {
     document.addEventListener("click", onDocClick);
     return () => document.removeEventListener("click", onDocClick);
   }, [draw, hideTip]);
-
   useEffect(() => {
     const tip = tipRef.current;
     if (!tip) return;
@@ -283,15 +329,47 @@ export default function BelayScatterChart({ isMobile }) {
   }, [navigate]);
 
   /* ─── Styles ─── */
+  const selectStyle = {
+    padding: "5px 10px", fontSize: "12px", fontWeight: 600, borderRadius: "6px",
+    border: `1px solid ${T.border}`, cursor: "pointer", background: T.surface, color: T.text,
+    outline: "none", appearance: "none", WebkitAppearance: "none",
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7462'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", backgroundSize: "10px 6px",
+    paddingRight: "24px", minWidth: isMobile ? "110px" : "140px",
+  };
   const filterBtn = (active) => ({
     padding: "3px 8px", fontSize: "10px", fontWeight: 600, borderRadius: "4px", border: "none", cursor: "pointer",
     background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
   });
 
   const TYPE_LIST = ["active_assisted", "passive_assisted", "tube_guide", "tube", "figure_eight"];
-
   return (
-    <ChartContainer title="Price vs Weight" subtitle={`${filtered.length} belay devices`} isMobile={isMobile}>
+    <ChartContainer title="Belay Device Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
+      {/* Axis selectors */}
+      <div style={{ display: "flex", gap: isMobile ? "8px" : "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>X axis</span>
+          <select value={xAxis} onChange={e => { setXAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Y axis</span>
+          <select value={yAxis} onChange={e => { setYAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <button onClick={() => { const tmp = xAxis; setXAxis(yAxis); setYAxis(tmp); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
+          style={{ padding: "4px 10px", fontSize: "11px", fontWeight: 700, borderRadius: "6px", border: `1px solid ${T.border}`, cursor: "pointer", background: "transparent", color: T.muted }}
+          title="Swap axes">⇄</button>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
+          <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            <option value="none">— None —</option>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+      </div>
       {/* Device type filter */}
       <div style={{ display: "flex", gap: "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
         {(hiddenBrands.size > 0 || enabledTypes.size !== 5) && (
@@ -321,7 +399,6 @@ export default function BelayScatterChart({ isMobile }) {
         ))}
         <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto" }}>{filtered.length} shown</span>
       </div>
-
       {/* Canvas */}
       <div style={{ width: "100%", overflow: "hidden" }}>
         <canvas ref={canvasRef} style={{ display: "block", cursor: "crosshair", width: "100%", touchAction: "none" }}
@@ -340,7 +417,16 @@ export default function BelayScatterChart({ isMobile }) {
             const d = mobileItem;
             const typeLabel = TYPE_LABELS[d.type] || d.type;
             const features = [d.antiPanic && "Anti-panic", d.guideMode && "Guide mode"].filter(Boolean).join(" · ");
-            return (
+            const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+            const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
+            const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
+            const stats = [
+              [xOpt.label.split(" (")[0], xOpt.fmt(d[xAxis]) + (xOpt.unit ? " " + xOpt.unit : "")],
+              [yOpt.label.split(" (")[0], yOpt.fmt(d[yAxis]) + (yOpt.unit ? " " + yOpt.unit : "")],
+              ...(sOpt && d[sizeAxis] != null ? [[sOpt.label.split(" (")[0], sOpt.fmt(d[sizeAxis]) + (sOpt.unit ? " " + sOpt.unit : "")]] : []),
+              ...(!shown.has("weight") ? [["Weight", `${d.weight} g`]] : []),
+              ...(!shown.has("price") ? [["Price", `€${d.price.toFixed(2)}`]] : []),
+            ].slice(0, 5);            return (
               <>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
                   <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(d), flexShrink: 0 }} />
@@ -349,10 +435,13 @@ export default function BelayScatterChart({ isMobile }) {
                     {typeLabel}{features ? ` · ${features}` : ""}
                   </span>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "2px 8px" }}>
-                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Weight</div><div style={{ fontSize: "13px", fontWeight: 600 }}>{d.weight} g</div></div>
-                  <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Price</div><div style={{ fontSize: "13px", fontWeight: 600 }}>€{d.price.toFixed(2)}</div></div>
-                  {d.material && <div style={{ textAlign: "center" }}><div style={{ fontSize: "9px", color: T.muted }}>Material</div><div style={{ fontSize: "13px", fontWeight: 600 }}>{d.material}</div></div>}
+                <div style={{ display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: "2px 8px" }}>
+                  {stats.map(([lbl, val]) => (
+                    <div key={lbl} style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
+                      <div style={{ fontSize: "13px", fontWeight: 600 }}>{val}</div>
+                    </div>
+                  ))}
                 </div>
               </>
             );
@@ -368,8 +457,7 @@ export default function BelayScatterChart({ isMobile }) {
               hidden={false} onClick={() => toggleType(k)} />
           ))}
         </div>
-      )}
-      {colorBy === "discipline" && (
+      )}      {colorBy === "discipline" && (
         DISC_LIST.length > 5 ? (
           <LegendRow
             items={DISC_LIST.map(k => ({ key: k, color: DISC_COLORS[k] || "#94a3b8", label: k.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase()) }))}
@@ -398,6 +486,7 @@ export default function BelayScatterChart({ isMobile }) {
       <div style={{ marginTop: "6px", textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <span style={{ fontSize: "10px", color: "#4a5568" }}>
           {isMobile ? "Tap a dot for specs · Tap legend to filter" : "Click a dot for specs & detail link · Click legend to filter"}
+          {trend && ` · Trend R²=${trend.r2.toFixed(2)}`}
         </span>
         <a href="/methodology" style={{ fontSize: "10px", color: T.accent, textDecoration: "none", fontWeight: 600 }}>How we score →</a>
       </div>

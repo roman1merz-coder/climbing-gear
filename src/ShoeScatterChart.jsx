@@ -20,14 +20,6 @@ function skillGroup(shoe) {
 }
 
 /* ─── Zone definitions for Edging × Sensitivity chart (6 irregular polygons) ─── */
-// Zones follow the natural data distribution — the diagonal boundary between
-// beginner (left) and advanced (right) trends consistently from right at the
-// bottom (high edging separation at low sensitivity) to left at the top (soft
-// aggressive shoes cluster at low edging + high sensitivity).
-// Coordinates are [edging, sensitivity] in 0→1 percentile space.
-//
-// Key boundary vertices (bottom→top along the diagonal):
-//   V1(0.55, 0) → V2(0.52, 0.32) → V3(0.42, 0.65) → V4(0.30, 1.0)
 const ZONE_POLYS = [
   { id: "1-sup",  label: "Multi-Pitch Comfort", emoji: "🏔",  side: "beg",
     poly: [[0,0], [0.55,0], [0.52,0.32], [0,0.32]] },
@@ -54,12 +46,49 @@ function topLevel(shoe) {
   const lvls = shoe.skill_level || [];
   for (let i = LEVEL_ORDER.length - 1; i >= 0; i--) if (lvls.includes(LEVEL_ORDER[i])) return LEVEL_ORDER[i];
   return "intermediate";
-}
-const BRAND_PAL = [
+}const BRAND_PAL = [
   "#63b3ed","#ed64a6","#48bb78","#ecc94b","#ed8936","#9f7aea","#38b2ac","#fc8181",
   "#f6ad55","#68d391","#d53f8c","#4fd1c5","#b794f4","#90cdf4","#feb2b2","#fbd38d",
   "#81e6d9","#c4b5fd","#fca5a5","#bef264","#e879f9","#67e8f9",
 ];
+
+/* ─── Axis options for free-choice dropdowns ─── */
+const AXIS_OPTIONS = [
+  { key: "_edging",      label: "Edging",             unit: "%",  fmt: v => Math.round(v * 100) + "%", pct: true },
+  { key: "_sensitivity", label: "Sensitivity",        unit: "%",  fmt: v => Math.round(v * 100) + "%", pct: true },
+  { key: "_crack",       label: "Crack",              unit: "%",  fmt: v => Math.round(v * 100) + "%", pct: true },
+  { key: "_comfort",     label: "Comfort",            unit: "%",  fmt: v => Math.round(v * 100) + "%", pct: true },
+  { key: "_price",       label: "Price (€)",          unit: "€",  fmt: v => "€" + Math.round(v), pct: false },
+];
+const AXIS_MAP = Object.fromEntries(AXIS_OPTIONS.map(a => [a.key, a]));
+
+/* Map old metric keys → x/y pairs for backward-compat */
+const METRIC_TO_AXES = {
+  edging_sensitivity: { x: "_edging", y: "_sensitivity" },
+  edging_comfort:     { x: "_edging", y: "_comfort" },
+  edging_crack:       { x: "_edging", y: "_crack" },
+  crack_comfort:      { x: "_crack",  y: "_comfort" },
+  edging_price:       { x: "_edging", y: "_price" },
+  crack_price:        { x: "_crack",  y: "_price" },
+};
+
+/* ─── Dynamic axis bounds ─── */
+function fieldBounds(data, key) {
+  const opt = AXIS_MAP[key];
+  /* Percentile axes always use 0→1 */
+  if (opt && opt.pct) return { min: 0, max: 1, step: 0.2 };
+  const vals = data.filter(r => r[key] != null).map(r => r[key]);
+  if (!vals.length) return { min: 0, max: 10, step: 1 };
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  const range = hi - lo || 1;
+  const rawStep = range / 8;
+  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const niceSteps = [1, 2, 2.5, 5, 10];
+  const step = niceSteps.map(s => s * mag).find(s => s >= rawStep) || mag * 10;
+  const min = Math.floor(lo / step) * step - step;
+  const max = Math.ceil(hi / step) * step + step;
+  return { min, max, step };
+}
 
 /* ─── Main Component ─── */
 export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = false }) {
@@ -70,12 +99,12 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   const pinnedRef = useRef(null);
   const sheetRef = useRef(null);
 
-  const [metric, setMetric] = useState("edging_comfort");
+  const [xAxis, setXAxis] = useState("_edging");
+  const [yAxis, setYAxis] = useState("_comfort");
+  const [sizeAxis, setSizeAxis] = useState("none");
   const [colorBy, setColorBy] = useState(insightsMode ? "skill" : "level");
   const [showZones, setShowZones] = useState(insightsMode);
-  const [mobileItem, setMobileItem] = useState(null);
-
-  /* Filter state */
+  const [mobileItem, setMobileItem] = useState(null);  /* Filter state */
   const [hideKids, setHideKids] = useState(true);
   const [genderFilter, setGenderFilter] = useState("all");
   const [footShape, setFootShape] = useState("all");
@@ -104,6 +133,17 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   const BRAND_LIST = useMemo(() => [...new Set(scored.map(d => d.brand))].sort(), [scored]);
   const BRAND_COLORS = useMemo(() => Object.fromEntries(BRAND_LIST.map((b, i) => [b, BRAND_PAL[i % BRAND_PAL.length]])), [BRAND_LIST]);
 
+  /* Bubble-size scaler */
+  const sizeScale = useMemo(() => {
+    if (sizeAxis === "none") return null;
+    const vals = scored.filter(r => r[sizeAxis] != null).map(r => r[sizeAxis]);
+    if (!vals.length) return null;
+    const lo = Math.min(...vals), hi = Math.max(...vals);
+    const range = hi - lo || 1;
+    const minR = isMobile ? 2 : 3, maxR = isMobile ? 12 : 16;
+    return (v) => v == null ? (minR + maxR) / 2 : minR + ((v - lo) / range) * (maxR - minR);
+  }, [sizeAxis, isMobile, scored]);
+
   /* Apply filters */
   const filtered = useMemo(() => scored.filter(d => {
     if (hideKids && d.kids_friendly) return false;
@@ -112,63 +152,25 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
     if (hiddenClosure.has(d.closure)) return false;
     if (hiddenBrands.has(d.brand)) return false;
     if (hiddenLevels.has(d._level)) return false;
+    if (d[xAxis] == null || d[yAxis] == null) return false;
     return true;
-  }), [scored, hideKids, genderFilter, footShape, hiddenClosure, hiddenBrands, hiddenLevels]);
+  }), [scored, hideKids, genderFilter, footShape, hiddenClosure, hiddenBrands, hiddenLevels, xAxis, yAxis]);
 
-  /* ─── Axis configurations ─── */
-  const cfgs = useMemo(() => ({
-    edging_sensitivity: {
-      xField: "_edging", yField: "_sensitivity",
-      xLabel: "Edging", yLabel: "Sensitivity",
-      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
-      pctAxis: true,
-      label: "Edging vs Sensitivity",
-      sub: `${filtered.length} shoes — stiff precision vs soft feedback`,
-    },
-    edging_comfort: {
-      xField: "_edging", yField: "_comfort",
-      xLabel: "Edging", yLabel: "Comfort",
-      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
-      pctAxis: true,
-      label: "Edging vs Comfort",
-      sub: `${filtered.length} shoes — the classic trade-off`,
-    },
-    edging_crack: {
-      xField: "_edging", yField: "_crack",
-      xLabel: "Edging", yLabel: "Crack",
-      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
-      pctAxis: true,
-      label: "Edging vs Crack",
-      sub: `${filtered.length} shoes — sport precision vs trad protection`,
-    },
-    crack_comfort: {
-      xField: "_crack", yField: "_comfort",
-      xLabel: "Crack", yLabel: "Comfort",
-      xMin: 0, xMax: 1, yMin: 0, yMax: 1, xStep: 0.2, yStep: 0.2,
-      pctAxis: true,
-      label: "Crack vs Comfort",
-      sub: `${filtered.length} shoes — trad all-day performance`,
-    },
-    edging_price: {
-      xField: "_edging", yField: "_price",
-      xLabel: "Edging", yLabel: "Price (€)",
-      xMin: 0, xMax: 1, yMin: 20, yMax: 210, xStep: 0.2, yStep: 30,
-      pctAxis: false, xPct: true,
-      label: "Edging vs Price",
-      sub: `${filtered.length} shoes — does expensive mean better edging?`,
-    },
-    crack_price: {
-      xField: "_crack", yField: "_price",
-      xLabel: "Crack", yLabel: "Price (€)",
-      xMin: 0, xMax: 1, yMin: 20, yMax: 210, xStep: 0.2, yStep: 30,
-      pctAxis: false, xPct: true,
-      label: "Crack vs Price",
-      sub: `${filtered.length} shoes — trad performance at every price`,
-    },
-  }), [filtered.length]);
-  const cfg = cfgs[metric];
+  /* Dynamic axis config */
+  const cfg = useMemo(() => {
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const xb = fieldBounds(filtered, xAxis);
+    const yb = fieldBounds(filtered, yAxis);
+    return {
+      xField: xAxis, xLabel: xOpt.label, xMin: xb.min, xMax: xb.max, xStep: xb.step,
+      yField: yAxis, yLabel: yOpt.label, yMin: yb.min, yMax: yb.max, yStep: yb.step,
+      pctAxis: xOpt.pct && yOpt.pct, xPct: xOpt.pct, yPct: yOpt.pct,
+      sub: `${filtered.length} shoes · ${xOpt.label} vs ${yOpt.label}${sizeAxis !== "none" ? ` · size = ${AXIS_MAP[sizeAxis]?.label}` : ""}`,
+    };
+  }, [filtered, xAxis, yAxis, sizeAxis]);
 
-  /* Color function */
+  /* Check if we're on the edging/sensitivity combo for zone overlay */
+  const isEdgingSensitivity = xAxis === "_edging" && yAxis === "_sensitivity";  /* Color function */
   const getColor = useCallback((d) => {
     if (colorBy === "skill") return SKILL_GROUP_COLORS[skillGroup(d)] || "#94a3b8";
     if (colorBy === "closure") return CLOSURE_COLORS[d.closure] || "#94a3b8";
@@ -189,94 +191,78 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
     ctx.setTransform(2, 0, 0, 2, 0, 0);
     ctx.clearRect(0, 0, W, H);
 
-    const { xField, yField, xMin, xMax, yMin, yMax, xStep, yStep, pctAxis, xPct } = cfg;
+    const { xField, yField, xMin, xMax, yMin, yMax, xStep, yStep, xPct, yPct, pctAxis } = cfg;
     const sx = x => PAD.l + (x - xMin) / (xMax - xMin) * (W - PAD.l - PAD.r);
     const sy = y => H - PAD.b - (y - yMin) / (yMax - yMin) * (H - PAD.t - PAD.b);
 
-    // Chart area frame
     drawChartArea(ctx, PAD, W, H);
 
     // ── 6-zone overlay (edging_sensitivity + insightsMode + showZones) ──
-    // Style: watermark labels behind data + colored polygon outlines on top
-    if (metric === "edging_sensitivity" && insightsMode && showZones) {
+    if (isEdgingSensitivity && insightsMode && showZones) {
       const polyToPx = poly => poly.map(([ex, se]) => [sx(ex), sy(se)]);
       const centroid = pxPoly => [
         pxPoly.reduce((s, p) => s + p[0], 0) / pxPoly.length,
         pxPoly.reduce((s, p) => s + p[1], 0) / pxPoly.length,
       ];
-      const tracePoly = pxPoly => {
-        ctx.beginPath();
-        pxPoly.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
-        ctx.closePath();
-      };
 
-      // Layer 1: Large faded watermark labels (drawn BEFORE dots)
       ctx.save();
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ZONE_POLYS.forEach(z => {
         const pxPoly = polyToPx(z.poly);
         const [cx, cy] = centroid(pxPoly);
-        // Big faded emoji
         ctx.font = `${isMobile ? 22 : 32}px sans-serif`;
         ctx.globalAlpha = 0.06;
         ctx.fillStyle = "#fff";
         ctx.fillText(z.emoji, cx, cy - (isMobile ? 4 : 6));
-        // Large uppercase label
         ctx.font = `800 ${isMobile ? 8 : 11}px ${T.font}`;
         ctx.fillStyle = z.side === "beg" ? "#34d399" : "#c98a42";
         ctx.globalAlpha = 0.13;
         ctx.fillText(z.label.toUpperCase(), cx, cy + (isMobile ? 12 : 18));
       });
       ctx.restore();
-
     }
 
-    // Grid (dashed, 8%, baseline emphasis)
     drawGrid(ctx, PAD, W, H, xMin, xMax, yMin, xStep, yStep, { yMax, fn: sy });
 
-    // Tick labels + axis labels
-    const xFmt = x => (pctAxis || xPct) ? Math.round(x * 100) + "%" : x.toFixed(1);
-    const yFmt = y => pctAxis ? Math.round(y * 100) + "%" : cfg.yLabel.includes("€") ? "€" + Math.round(y) : Math.round(y);
+    const xFmt = AXIS_MAP[xField]?.fmt || (x => String(x));
+    const yFmt = AXIS_MAP[yField]?.fmt || (y => String(y));
     drawTicks(ctx, PAD, W, H, isMobile, { xMin, xMax, yMin, yMax, xStep, yStep, xFmt, yFmt, xLabel: cfg.xLabel, yLabel: cfg.yLabel, sxFn: sx, syFn: sy });
 
-    // Data count badge
     drawCountBadge(ctx, PAD, W, filtered.length, "shoes");
 
-    // Crosshair for hovered dot
+    /* Crosshair */
     const hovered = hovRef.current;
     if (hovered && hovered[xField] != null && hovered[yField] != null) {
       const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
       drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
-    }
-
-    // Dots with glow + jitter
-    const r = isMobile ? 3 : 4;
+    }    /* Dots */
+    const baseR = isMobile ? 3 : 4;
     const pixelPts = [];
     filtered.forEach((d, i) => {
       const xv = d[xField], yv = d[yField];
       if (xv == null || yv == null) return;
-      if (d === hovered) return; // draw last
+      if (d === hovered) return;
       const j = jitter(i);
       const px = sx(Math.max(xMin, Math.min(xMax, xv))) + j.dx;
       const py = sy(Math.max(yMin, Math.min(yMax, yv))) + j.dy;
       pixelPts.push({ px, py });
-      drawDot(ctx, px, py, r, getColor(d), false);
+      const sz = sizeScale ? sizeScale(d[sizeAxis]) : baseR;
+      drawDot(ctx, px, py, sz, getColor(d), false);
     });
 
-    // Cluster badges
-    drawClusterBadges(ctx, pixelPts);
+    if (!sizeScale) drawClusterBadges(ctx, pixelPts);
 
-    // Hovered dot on top
     if (hovered && hovered[xField] != null && hovered[yField] != null) {
       const hpx = sx(Math.max(xMin, Math.min(xMax, hovered[xField])));
       const hpy = sy(Math.max(yMin, Math.min(yMax, hovered[yField])));
-      drawDot(ctx, hpx, hpy, r, getColor(hovered), true);
+      const sz = sizeScale ? sizeScale(hovered[sizeAxis]) : baseR;
+      drawDot(ctx, hpx, hpy, sz, getColor(hovered), true);
     }
 
-    // Layer 3: Zone outlines ON TOP of dots (colored polygon borders)
-    if (metric === "edging_sensitivity" && insightsMode && showZones) {
+    // Zone outlines ON TOP of dots
+    if (isEdgingSensitivity && insightsMode && showZones) {
       const polyToPx = poly => poly.map(([ex, se]) => [sx(ex), sy(se)]);
       ctx.save();
       ZONE_POLYS.forEach(z => {
@@ -291,7 +277,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       });
       ctx.restore();
     }
-  }, [metric, cfg, isMobile, getColor, filtered, showZones, insightsMode]);
+  }, [cfg, isMobile, getColor, filtered, showZones, insightsMode, isEdgingSensitivity, sizeAxis, sizeScale]);
 
   useEffect(() => { draw(); }, [draw]);
   useEffect(() => { const h = () => draw(); window.addEventListener("resize", h); return () => window.removeEventListener("resize", h); }, [draw]);
@@ -317,36 +303,40 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       if (dist < threshold && dist < best) { closest = d; best = dist; }
     });
     return closest;
-  }, [isMobile, cfg, filtered]);
-
-  const pct = v => v != null ? Math.round(v * 100) + "%" : "–";
+  }, [isMobile, cfg, filtered]);  const pct = v => v != null ? Math.round(v * 100) + "%" : "–";
 
   /* Desktop tooltip */
   const showTip = useCallback((d, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
+    const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+    const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
+    const stats = [
+      { label: xOpt.label, value: xOpt.fmt(d[xAxis]) },
+      { label: yOpt.label, value: yOpt.fmt(d[yAxis]) },
+    ];
+    if (sOpt && d[sizeAxis] != null) stats.push({ label: sOpt.label, value: sOpt.fmt(d[sizeAxis]) });
+    const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
+    if (!shown.has("_edging")) stats.push({ label: "Edging", value: pct(d._edging) });
+    if (!shown.has("_sensitivity")) stats.push({ label: "Sensitivity", value: pct(d._sensitivity) });
+    if (!shown.has("_comfort")) stats.push({ label: "Comfort", value: pct(d._comfort) });
+
     tip.innerHTML = buildTipHTML({
       name: `${d.brand} ${d.model}`,
       color: getColor(d),
-      stats: [
-        { label: "Edging", value: pct(d._edging) },
-        { label: "Sensitivity", value: pct(d._sensitivity) },
-        { label: "Comfort", value: pct(d._comfort) },
-        { label: "Support", value: pct(d._support) },
-      ],
+      stats: stats.slice(0, 6),
       details: `${d.closure} · ${d.downturn}${d.price_uvp_eur ? " · €" + d.price_uvp_eur : ""}${d.vegan ? " · 🌱" : ""}`,
       link: `/shoe/${d.slug}`,
       pinned,
     });
     positionTip(tip, x, y, pinned);
-  }, [getColor]);
+  }, [getColor, xAxis, yAxis, sizeAxis]);
 
   const hideTip = useCallback(() => {
     const tip = tipRef.current;
     if (tip) { tip.style.opacity = "0"; tip.style.pointerEvents = "none"; }
   }, []);
 
-  /* Mouse handlers (desktop) */
   const handleMove = useCallback((e) => {
     if (isMobile || pinnedRef.current) return;
     const d = findClosest(e);
@@ -360,7 +350,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   }, [isMobile, draw, hideTip]);
 
   const handleClick = useCallback((e) => {
-    if (isMobile) return; // touch handled separately
+    if (isMobile) return;
     const d = findClosest(e);
     if (pinnedRef.current === d) {
       pinnedRef.current = null; hovRef.current = null; draw(); hideTip();
@@ -372,27 +362,16 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
     }
   }, [isMobile, findClosest, draw, showTip, hideTip]);
 
-  /* Touch handlers (mobile) */
   const handleTouch = useCallback((e) => {
     if (!isMobile) return;
     e.preventDefault();
     const d = findClosest(e);
-    if (d) {
-      hovRef.current = d; draw();
-      setMobileItem(d);
-    } else {
-      hovRef.current = null; draw();
-      setMobileItem(null);
-    }
-  }, [isMobile, findClosest, draw]);
-
-  const closeMobileSheet = useCallback(() => {
-    setMobileItem(null);
-    hovRef.current = null;
-    draw();
+    if (d) { hovRef.current = d; draw(); setMobileItem(d); }
+    else { hovRef.current = null; draw(); setMobileItem(null); }
+  }, [isMobile, findClosest, draw]);  const closeMobileSheet = useCallback(() => {
+    setMobileItem(null); hovRef.current = null; draw();
   }, [draw]);
 
-  /* Close desktop tooltip on outside click */
   useEffect(() => {
     const onDocClick = (e) => {
       if (!pinnedRef.current) return;
@@ -404,20 +383,18 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
     return () => document.removeEventListener("click", onDocClick);
   }, [draw, hideTip]);
 
-  /* Close mobile sheet on outside tap (not on canvas or sheet) */
   useEffect(() => {
     if (!isMobile) return;
     const onTouch = (e) => {
       if (!mobileItem) return;
-      if (canvasRef.current?.contains(e.target)) return; // canvas handles its own
-      if (sheetRef.current?.contains(e.target)) return;  // tapping sheet itself
+      if (canvasRef.current?.contains(e.target)) return;
+      if (sheetRef.current?.contains(e.target)) return;
       closeMobileSheet();
     };
     document.addEventListener("touchstart", onTouch, { passive: true });
     return () => document.removeEventListener("touchstart", onTouch);
   }, [isMobile, mobileItem, closeMobileSheet]);
 
-  /* Navigate from tooltip link */
   useEffect(() => {
     const tip = tipRef.current;
     if (!tip) return;
@@ -432,36 +409,45 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
   /* ─── Legend data ─── */
   const closureKeys = ["lace", "velcro", "slipper"];
 
-  const metricButtons = [
-    { key: "edging_comfort", label: "Edging vs Comfort", short: "Edg/Comf", color: T.accent },
-    { key: "edging_sensitivity", label: "Edging vs Sensitivity", short: "Edg/Sens", color: T.blue },
-    { key: "edging_crack", label: "Edging vs Crack", short: "Edg/Crack", color: T.green },
-    { key: "crack_comfort", label: "Crack vs Comfort", short: "Crack/Comf", color: "#38b2ac" },
-    { key: "edging_price", label: "Edging vs Price", short: "Edg/€", color: "#ecc94b" },
-    { key: "crack_price", label: "Crack vs Price", short: "Crack/€", color: "#a78bfa" },
-  ];
-
-  const btnStyle = (active, color) => ({
-    padding: "4px 10px", fontSize: "11px", fontWeight: 600, borderRadius: "6px", border: "none", cursor: "pointer",
-    background: active ? color : T.surface, color: active ? "#fff" : T.muted,
-    whiteSpace: "nowrap",
-  });
+  /* ─── Styles ─── */
+  const selectStyle = {
+    padding: "5px 10px", fontSize: "12px", fontWeight: 600, borderRadius: "6px",
+    border: `1px solid ${T.border}`, cursor: "pointer", background: T.surface, color: T.text,
+    outline: "none", appearance: "none", WebkitAppearance: "none",
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7462'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", backgroundSize: "10px 6px",
+    paddingRight: "24px", minWidth: isMobile ? "110px" : "140px",
+  };
 
   const filterBtn = (active) => ({
     padding: "3px 8px", fontSize: "10px", fontWeight: 600, borderRadius: "4px", border: "none", cursor: "pointer",
     background: active ? "rgba(44,50,39,.08)" : "transparent", color: active ? T.text : T.muted,
-  });
-
-  return (
-    <ChartContainer title={cfg.label} subtitle={cfg.sub} isMobile={isMobile}>
-      {/* Metric buttons */}
-      <div style={{ display: "flex", gap: "4px", marginBottom: "10px", flexWrap: "wrap" }}>
-        {metricButtons.map(m => (
-          <button key={m.key} onClick={() => { setMetric(m.key); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }}
-            style={btnStyle(metric === m.key, m.color)}>
-            {isMobile ? m.short : m.label}
-          </button>
-        ))}
+  });  return (
+    <ChartContainer title="Shoe Spec Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
+      {/* Axis selectors */}
+      <div style={{ display: "flex", gap: isMobile ? "8px" : "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>X axis</span>
+          <select value={xAxis} onChange={e => { setXAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Y axis</span>
+          <select value={yAxis} onChange={e => { setYAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
+        <button onClick={() => { const tmp = xAxis; setXAxis(yAxis); setYAxis(tmp); pinnedRef.current = null; hovRef.current = null; hideTip(); }}
+          style={{ padding: "4px 10px", fontSize: "11px", fontWeight: 700, borderRadius: "6px", border: `1px solid ${T.border}`, cursor: "pointer", background: "transparent", color: T.muted }}
+          title="Swap axes">⇄</button>
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
+          <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
+            <option value="none">— None —</option>
+            {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
+          </select>
+        </div>
       </div>
 
       {/* Filters row */}
@@ -489,9 +475,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
             <button key={k} onClick={() => setFootShape(k)} style={filterBtn(footShape === k)}>{l}</button>
           ))}
         </div>
-      </div>
-
-      {/* Color-by toggle + count */}
+      </div>      {/* Color-by toggle + count */}
       <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
         <span style={{ fontSize: "11px", color: T.muted }}>Color by:</span>
         {[["skill", "Skill Group"], ["level", "Level"], ["closure", "Closure"], ["brand", "Brand"]].map(([k, l]) => (
@@ -500,7 +484,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
             background: colorBy === k ? "rgba(44,50,39,.08)" : "transparent", color: colorBy === k ? T.text : T.muted,
           }}>{l}</button>
         ))}
-        {insightsMode && metric === "edging_sensitivity" && (
+        {insightsMode && isEdgingSensitivity && (
           <label style={{ fontSize: "11px", color: T.muted, cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", marginLeft: "6px" }}>
             <input type="checkbox" checked={showZones} onChange={e => setShowZones(e.target.checked)}
               style={{ accentColor: T.accent, width: "13px", height: "13px" }} />
@@ -524,29 +508,40 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       {isMobile && (
         <BottomSheet item={mobileItem} onClose={closeMobileSheet} sheetRef={sheetRef}
           onNavigate={mobileItem ? () => navigate(`/shoe/${mobileItem.slug}`) : null}>
-          {mobileItem && (
-            <>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
-                <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(mobileItem), flexShrink: 0 }} />
-                <b style={{ color: T.text, fontSize: "13px" }}>{mobileItem.brand} {mobileItem.model}</b>
-                <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
-                  {mobileItem.closure} · {mobileItem.downturn}{mobileItem.price_uvp_eur ? ` · €${mobileItem.price_uvp_eur}` : ""}
-                </span>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "2px 8px" }}>
-                {[["Edging", mobileItem._edging], ["Sensitivity", mobileItem._sensitivity], ["Comfort", mobileItem._comfort], ["Support", mobileItem._support]].map(([lbl, val]) => (
-                  <div key={lbl} style={{ textAlign: "center" }}>
-                    <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
-                    <div style={{ fontSize: "13px", fontWeight: 600 }}>{pct(val)}</div>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+          {mobileItem && (() => {
+            const d = mobileItem;
+            const xOpt = AXIS_MAP[xAxis], yOpt = AXIS_MAP[yAxis];
+            const sOpt = sizeAxis !== "none" ? AXIS_MAP[sizeAxis] : null;
+            const shown = new Set([xAxis, yAxis, ...(sizeAxis !== "none" ? [sizeAxis] : [])]);
+            const stats = [
+              [xOpt.label, xOpt.fmt(d[xAxis])],
+              [yOpt.label, yOpt.fmt(d[yAxis])],
+              ...(sOpt && d[sizeAxis] != null ? [[sOpt.label, sOpt.fmt(d[sizeAxis])]] : []),
+              ...(!shown.has("_edging") ? [["Edging", pct(d._edging)]] : []),
+              ...(!shown.has("_sensitivity") ? [["Sensitivity", pct(d._sensitivity)]] : []),
+            ].slice(0, 5);
+            return (
+              <>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "6px" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: getColor(d), flexShrink: 0 }} />
+                  <b style={{ color: T.text, fontSize: "13px" }}>{d.brand} {d.model}</b>
+                  <span style={{ fontSize: "10px", color: T.muted, marginLeft: "auto", flexShrink: 0 }}>
+                    {d.closure} · {d.downturn}{d.price_uvp_eur ? ` · €${d.price_uvp_eur}` : ""}
+                  </span>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: "2px 8px" }}>
+                  {stats.map(([lbl, val]) => (
+                    <div key={lbl} style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: "9px", color: T.muted }}>{lbl}</div>
+                      <div style={{ fontSize: "13px", fontWeight: 600 }}>{val}</div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
         </BottomSheet>
-      )}
-
-      {/* Legends */}
+      )}      {/* Legends */}
       {colorBy === "skill" && (
         <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px", justifyContent: "center" }}>
           {Object.entries(SKILL_GROUP_COLORS).map(([k, c]) => (
@@ -580,7 +575,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
       )}
 
       {/* Zone guide (only in insights mode when edging_sensitivity + zones visible) */}
-      {insightsMode && metric === "edging_sensitivity" && showZones && (
+      {insightsMode && isEdgingSensitivity && showZones && (
         <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "8px" }}>
           {ZONE_POLYS.map(z => {
             const isAdv = z.side === "adv";
