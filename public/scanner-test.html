@@ -3,719 +3,401 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Foot Scanner — Sole + Side Prototype</title>
-<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/ort.min.js"></script>
+<title>Foot Scanner — climbing-gear.com</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
-  background: #0e1015; color: #fff;
+  font-family: 'DM Sans', -apple-system, system-ui, sans-serif;
+  background: #f5f0e8; color: #2c3227;
   height: 100vh; height: 100dvh;
   overflow: hidden; touch-action: none;
 }
+
+/* ── Start Screen ── */
 #start-screen {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   height: 100%; padding: 2rem; text-align: center;
 }
-#start-screen h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
-#start-screen .subtitle { color: #999; font-size: 0.95rem; margin-bottom: 2rem; max-width: 320px; line-height: 1.5; }
+#start-screen h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+#start-screen .subtitle { color: #7a7462; font-size: 0.95rem; margin-bottom: 2rem; max-width: 320px; line-height: 1.5; }
 .step-list { text-align: left; max-width: 300px; margin-bottom: 2rem; }
-.step-list li { margin-bottom: 12px; font-size: 0.95rem; color: #ccc; line-height: 1.4; }
-.step-list li strong { color: #fff; }
+.step-list li { margin-bottom: 12px; font-size: 0.95rem; color: #7a7462; line-height: 1.4; }
+.step-list li strong { color: #2c3227; }
 #start-btn {
-  background: #E8734A; color: #fff; border: none;
+  background: #c98a42; color: #fff; border: none;
   padding: 16px 48px; border-radius: 12px;
-  font-size: 1.1rem; font-weight: 600; cursor: pointer;
+  font-size: 1.1rem; font-weight: 700; cursor: pointer;
+  font-family: inherit;
 }
-#start-btn:disabled { background: #666; }
-#model-status { color: #999; font-size: 0.85rem; margin-top: 12px; }
+
+/* ── Scanner ── */
 #scanner {
   display: none; position: relative;
   width: 100vw; height: 100vh; height: 100dvh;
-  background: #fff;
+  background: #000;
 }
 #video {
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   object-fit: cover;
 }
-#video.mirrored { transform: scaleX(-1); }
-#canvas-process { display: none; }
-#debug-canvas {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
-#debug-canvas.mirrored { transform: scaleX(-1); }
 #guide-overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; display: flex; align-items: center; justify-content: center;
 }
-.foot-outline {
-  width: 42%; height: 70%;
-  border: 3px dashed rgba(232,115,74,0.4);
-  border-radius: 35% 35% 25% 25% / 20% 20% 40% 40%;
+#foot-guide-svg {
+  width: 60%; height: 82%;
+  transition: filter 0.3s, opacity 0.3s;
+  opacity: 0.5;
 }
-.side-outline {
-  width: 80%; height: 60%;
-  display: flex; align-items: center; justify-content: center;
+#foot-guide-svg.ready {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 12px rgba(61,122,82,0.5));
 }
-.side-outline img {
-  max-width: 100%; max-height: 100%;
-  opacity: 0.45;
+#foot-guide-svg path {
+  fill: none;
+  stroke: rgba(201,138,66,0.6);
+  stroke-width: 3;
+  stroke-dasharray: 10 6;
+  transition: stroke 0.3s;
 }
-#step-badge {
-  position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
-  background: rgba(232,115,74,0.9); color: #fff;
-  padding: 6px 16px; border-radius: 20px;
-  font-size: 0.85rem; font-weight: 600; z-index: 10;
+#foot-guide-svg.ready path {
+  stroke: #3d7a52;
 }
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 20px; text-align: center;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
-  font-size: 0.95rem; color: #fff; padding-top: 40px;
+  padding: 20px 20px 40px; text-align: center;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  font-size: 1rem; color: #fff; padding-top: 40px;
+  font-weight: 500;
 }
-#stability-ring { position: absolute; top: 16px; right: 16px; width: 56px; height: 56px; }
-#stability-ring circle { fill: none; stroke-width: 4; }
-#stab-bg { stroke: rgba(255,255,255,0.15); }
-#stab-progress {
-  stroke: #4CAF50; stroke-linecap: round;
-  stroke-dasharray: 157; stroke-dashoffset: 157;
-  transition: stroke-dashoffset 0.15s linear;
-  transform: rotate(-90deg); transform-origin: center;
+/* Checkmark flash when capture triggers */
+
+#flash {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: #fff; opacity: 0; pointer-events: none;
+  transition: opacity 0.08s;
 }
-#detect-info {
-  position: absolute; top: 16px; left: 16px;
-  font-size: 0.75rem; font-family: 'SF Mono', monospace;
-  color: rgba(255,255,255,0.7); line-height: 1.6;
-  background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 8px;
-}
+
+/* ── Result Screen ── */
 #result-screen {
   display: none; position: relative;
   width: 100vw; min-height: 100vh; min-height: 100dvh;
-  background: #0e1015; overflow-y: auto;
+  background: #f5f0e8; overflow-y: auto;
   padding: 20px; padding-bottom: max(20px, env(safe-area-inset-bottom));
 }
-#result-title {
-  text-align: center; font-size: 1.2rem; font-weight: 600;
-  margin-bottom: 12px; color: #E8734A;
-}
 #captured-img {
-  display: block; margin: 0 auto 16px;
-  max-width: 90%; max-height: 50vh;
-  border-radius: 12px; border: 2px solid #333;
+  display: block; margin: 0 auto 20px;
+  max-width: 90%; max-height: 55vh;
+  border-radius: 16px; border: 1px solid #d5cdbf;
+  object-fit: contain; background: #fff;
 }
-#captured-img.mirrored { transform: scaleX(-1); }
-.meas-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; max-width: 360px; margin: 0 auto 16px;
+.result-info {
+  text-align: center; max-width: 360px; margin: 0 auto 20px;
+  font-size: 0.9rem; color: #7a7462; line-height: 1.6;
 }
-.meas-card {
-  background: rgba(255,255,255,0.06); border-radius: 10px;
-  padding: 12px; text-align: center;
-}
-.meas-label { font-size: 0.75rem; color: #999; margin-bottom: 4px; }
-.meas-value { font-size: 1.3rem; font-weight: 700; }
-.meas-class { font-size: 0.8rem; margin-top: 2px; }
-.meas-class.narrow { color: #64B5F6; }
-.meas-class.normal { color: #81C784; }
-.meas-class.wide { color: #FFB74D; }
 .btn-row { display: flex; gap: 10px; max-width: 360px; margin: 0 auto; }
-.action-btn {
+#retake-btn, #save-btn {
   flex: 1; border: none; padding: 14px; border-radius: 10px;
-  font-size: 1rem; font-weight: 600; cursor: pointer;
+  font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit;
 }
-.btn-secondary { background: rgba(255,255,255,0.1); color: #fff; }
-.btn-primary { background: #E8734A; color: #fff; }
-.btn-primary:disabled { background: #666; }
-#save-status { text-align: center; font-size: 0.85rem; color: #81C784; margin-top: 8px; min-height: 1.2em; }
-.note { text-align: center; font-size: 0.8rem; color: #666; margin-top: 12px; max-width: 360px; margin-left: auto; margin-right: auto; }
-
-/* Side transition screen */
-#side-intro {
-  display: none; position: relative;
-  width: 100vw; height: 100vh; height: 100dvh;
-  background: #0e1015;
-  flex-direction: column; align-items: center; justify-content: center;
-  padding: 2rem; text-align: center;
-}
-#side-intro h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-#side-intro .subtitle { color: #999; font-size: 0.95rem; margin-bottom: 2rem; max-width: 320px; line-height: 1.5; }
-#side-intro .step-list { margin-bottom: 2rem; }
+#retake-btn { background: #fff; color: #2c3227; border: 1px solid #d5cdbf; }
+#save-btn { background: #c98a42; color: #fff; }
+#save-btn:disabled { background: #b8b0a0; }
+#save-status { text-align: center; font-size: 0.85rem; color: #3d7a52; margin-top: 8px; min-height: 1.2em; }
 </style>
 </head>
 <body>
 
 <div id="start-screen">
   <h1>Foot Scanner</h1>
-  <p class="subtitle">Scan the sole and side profile of your foot to measure shape and proportions.</p>
+  <p class="subtitle">Automatically captures a photo of the sole of your foot for shape analysis.</p>
   <ol class="step-list">
-    <li><strong>Step 1 — Sole:</strong> Place phone face-up on the floor, hold bare foot above</li>
-    <li><strong>Step 2 — Side:</strong> Place phone on its side on the floor, show foot profile</li>
-    <li><strong>Hold still</strong> — each step auto-captures when your foot is in position</li>
+    <li><strong>Place your phone face-up on the floor</strong> (screen pointing at the ceiling)</li>
+    <li><strong>Hold your bare foot</strong> about a hand-width above the screen</li>
+    <li><strong>Align your foot</strong> inside the dashed guide</li>
+    <li>Hold steady — the photo is <strong>taken automatically</strong></li>
   </ol>
-  <button id="start-btn" disabled>Loading ML model…</button>
-  <div id="model-status">Downloading U²Net-p (4.4 MB)…</div>
+  <button id="start-btn">Open Camera</button>
 </div>
 
 <div id="scanner">
   <video id="video" autoplay playsinline muted></video>
-  <canvas id="canvas-process"></canvas>
-  <canvas id="debug-canvas"></canvas>
-  <div id="guide-overlay"></div>
-  <div id="step-badge">Step 1: Sole</div>
-  <svg id="stability-ring" viewBox="0 0 54 54">
-    <circle id="stab-bg" cx="27" cy="27" r="25"/>
-    <circle id="stab-progress" cx="27" cy="27" r="25"/>
-  </svg>
-  <div id="detect-info"></div>
-  <div id="status-bar">Waiting for foot...</div>
-</div>
+  <div id="guide-overlay">
+    <!-- Foot sole outline from foot bottom.svg -->
+    <svg id="foot-guide-svg" viewBox="280 40 480 960" preserveAspectRatio="xMidYMid meet">
+      <path d="M619.815 61.21C664.42 58.33 678.37 102.118 688.025 136.992C697.575 171.488 684.305 205.393 684.93 240.126C685.395 265.963 691.42 290.668 694.27 316.125C695.89 331.689 696.055 347.37 694.76 362.965C692.95 385.162 688.3 405.601 681.745 426.814C677.4 441.855 671.515 456.513 667.765 471.729C654.465 525.675 642.69 581.63 637.47 636.95C635.105 662.015 636.645 688.23 637.625 713.17C640.225 779.235 653.165 861.265 616.02 920.405C600.115 946.15 574.525 964.42 545.01 971.095C514.785 977.805 480.261 973.14 453.874 956.325C392.116 916.975 396.387 836.855 392.937 772.865C391.084 738.51 388.906 702.685 381.4 669.115C374.936 641.77 365.521 616.1 360.145 587.86C353.679 553.895 349.793 520.33 343.289 486.389C337.723 458.03 330.011 431.724 328.432 402.714C326.928 375.077 334.325 350.593 335.031 323.286C335.284 313.513 333.174 303.861 332.596 294.184C331.781 279.069 332.228 264.656 335.574 249.744C338.683 235.886 343.457 218.524 358.987 213.957C366.473 211.755 372.143 214.045 378.522 217.791C378.198 205.204 378.593 198.533 380.405 186.168C384.088 161.027 416.79 135.844 434.711 164.782C429.831 141.988 427.831 123.003 450.608 109.793C457.228 105.953 466.886 102.861 474.288 105.459C496.049 113.099 498.649 147.654 500.535 167.109C501.45 181.049 497.686 212.514 504.12 224.382L504.695 224.346C509.86 215.006 504.39 164.777 501.94 152.554C497.599 130.91 481.352 98.236 504.59 81.057C512.74 75.032 526.775 71.8065 536.655 73.7235C571.935 80.5705 563.405 126.586 564.65 152.589C565.45 170.012 567.485 186.199 567.88 203.731C568.54 210.243 567.525 226.156 572.02 231.385C582.67 243.774 587.515 233.217 587.575 222.622C587.725 195.042 571.405 173.845 569.415 146.845C568.5 134.381 568.895 123.317 571.36 111.111C576.06 81.0575 588.075 63.7515 619.815 61.21Z"/>
+    </svg>
+  </div>
 
-<div id="side-intro">
-  <h2>Step 2: Side Profile</h2>
-  <p class="subtitle">Now let's capture your foot from the side.</p>
-  <ol class="step-list">
-    <li><strong>Place your phone on its side</strong> on the floor (rear camera facing your foot)</li>
-    <li><strong>Stand with your foot</strong> about 30 cm from the phone</li>
-    <li><strong>Align your foot</strong> with the orange outline guide</li>
-  </ol>
-  <button class="action-btn btn-primary" id="start-side-btn">Start Side Scan</button>
+  <div id="status-bar">Position your foot over the screen…</div>
+  <div id="flash"></div>
 </div>
 
 <div id="result-screen">
-  <div id="result-title">Sole Capture</div>
   <img id="captured-img" />
-  <div class="meas-grid" id="meas-grid"></div>
+  <div class="result-info">
+    Photo captured automatically. Save to upload for analysis, or retake if the foot isn't fully visible.
+  </div>
   <div class="btn-row">
-    <button class="action-btn btn-secondary" id="retake-btn">Retake</button>
-    <button class="action-btn btn-primary" id="next-btn">Next: Side View</button>
+    <button id="retake-btn">Retake</button>
+    <button id="save-btn">Save &amp; Upload</button>
   </div>
   <div id="save-status"></div>
-  <div class="note" id="result-note"></div>
-</div>
-
-<div id="final-screen" style="display:none; position:relative; width:100vw; min-height:100vh; min-height:100dvh; background:#0e1015; overflow-y:auto; padding:20px; padding-bottom:max(20px,env(safe-area-inset-bottom));">
-  <div style="text-align:center; font-size:1.2rem; font-weight:600; margin-bottom:12px; color:#E8734A;">Scan Complete</div>
-  <div style="display:flex; gap:12px; max-width:360px; margin:0 auto 16px; justify-content:center;">
-    <div style="flex:1; text-align:center;">
-      <div style="font-size:0.8rem; color:#999; margin-bottom:6px;">Sole</div>
-      <img id="final-sole-img" style="width:100%; border-radius:10px; border:2px solid #333;" />
-    </div>
-    <div style="flex:1; text-align:center;">
-      <div style="font-size:0.8rem; color:#999; margin-bottom:6px;">Side</div>
-      <img id="final-side-img" style="width:100%; border-radius:10px; border:2px solid #333;" />
-    </div>
-  </div>
-  <div class="meas-grid" id="final-meas-grid"></div>
-  <div class="btn-row">
-    <button class="action-btn btn-secondary" id="restart-btn">Start Over</button>
-    <button class="action-btn btn-primary" id="save-btn">Save Results</button>
-  </div>
-  <div id="final-save-status" style="text-align:center; font-size:0.85rem; color:#81C784; margin-top:8px; min-height:1.2em;"></div>
-  <div class="note" id="final-note"></div>
 </div>
 
 <script>
-// ── Configuration ──
-const CFG = {
-  MIN_COVERAGE: 0.08, MAX_COVERAGE: 0.45,
-  IDEAL_COV_LO: 0.12, IDEAL_COV_HI: 0.32,
-  MIN_ASPECT: 1.5, MAX_ASPECT: 4.5,
-  MAX_SKEW: 0.18, MIN_FILL: 0.45,
-  CENTROID_TOL: 12, STABLE_FRAMES: 20,
-  PROCESS_INTERVAL: 200, ML_THRESHOLD: 0.5,
-  MODEL_URL: 'https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/models/u2netp.onnx',
-};
-// Side view relaxed thresholds (foot appears differently from side)
-const SIDE_CFG = {
-  MIN_COVERAGE: 0.05, MAX_COVERAGE: 0.50,
-  IDEAL_COV_LO: 0.08, IDEAL_COV_HI: 0.38,
-  MIN_ASPECT: 1.2, MAX_ASPECT: 5.5,
-  MAX_SKEW: 0.25, MIN_FILL: 0.35,
-};
+const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
-const IMAGENET_MEAN = [0.485, 0.456, 0.406];
-const IMAGENET_STD  = [0.229, 0.224, 0.225];
+/* ── Auto-capture config ── */
+const CHECK_INTERVAL = 200;       // ms between frame checks
+const COVERAGE_MIN = 0.20;        // at least 20% of guide zone covered
+const COVERAGE_MAX = 0.75;        // no more than 75% (too close / all dark)
+const STILL_THRESHOLD = 0.03;     // max frame-to-frame change
+const STILL_FRAMES_NEEDED = 5;    // consecutive still frames needed (~1.0s at 200ms)
+const MIN_FOOT_FRAMES = 8;        // foot must be detected for at least ~1.6s before capture is even possible
 
-const POP = {
-  width_ratio: { mean: 0.383, sd: 0.021, lo: 0.362, hi: 0.404 },
-  heel_ratio:  { mean: 0.655, sd: 0.041, lo: 0.614, hi: 0.696 },
-};
+let video, analyzeCanvas, analyzeCtx;
+let checkTimer = null;
+let captured = false;
+let lastCaptureDataUrl = null;
+let prevPixelData = null;         // previous frame pixel data for motion detection
+let stillCount = 0;               // consecutive frames with low motion
+let footFrames = 0;               // total consecutive frames with foot detected
 
-// Side outline overlay as base64 PNG
-const SIDE_OVERLAY_B64 = 'data:image/png;base64,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';
-
-let video, cProc, ctxP, cDbg, ctxD;
-let running = false, stableCount = 0, prevCentroid = null;
-let soleCaptureData = null, sideCaptureData = null;
-let onnxSession = null;
-let currentStep = 'sole'; // 'sole' or 'side'
-
-const mlCanvas = document.createElement('canvas');
-mlCanvas.width = 320; mlCanvas.height = 320;
-const mlCtx = mlCanvas.getContext('2d', { willReadFrequently: true });
-
-document.getElementById('start-btn').addEventListener('click', () => startScanner('sole'));
-document.getElementById('retake-btn').addEventListener('click', retakeSole);
-document.getElementById('next-btn').addEventListener('click', showSideIntro);
-document.getElementById('start-side-btn').addEventListener('click', () => startScanner('side'));
-document.getElementById('restart-btn').addEventListener('click', restart);
+document.getElementById('start-btn').addEventListener('click', startScanner);
+document.getElementById('retake-btn').addEventListener('click', retake);
 document.getElementById('save-btn').addEventListener('click', saveResult);
 
-// ── Load ONNX model on page load ──
-async function loadModel() {
-  const statusEl = document.getElementById('model-status');
-  const btn = document.getElementById('start-btn');
-  try {
-    ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/';
-    statusEl.textContent = 'Downloading U²Net-p model (4.4 MB)…';
-    onnxSession = await ort.InferenceSession.create(CFG.MODEL_URL, {
-      executionProviders: ['wasm'], graphOptimizationLevel: 'all',
-    });
-    statusEl.textContent = 'Model loaded ✓';
-    btn.disabled = false;
-    btn.textContent = 'Start Scanner';
-    console.log('U²Net-p model loaded.', onnxSession.inputNames, onnxSession.outputNames);
-  } catch (e) {
-    console.error('Model load error:', e);
-    statusEl.textContent = 'Model load failed: ' + e.message;
-    btn.textContent = 'Model Error';
-  }
-}
-loadModel();
-
-// ── ML Segmentation ──
-async function segmentFoot(imageData, origW, origH) {
-  const tmpCanvas = document.createElement('canvas');
-  tmpCanvas.width = origW; tmpCanvas.height = origH;
-  tmpCanvas.getContext('2d').putImageData(imageData, 0, 0);
-  mlCtx.drawImage(tmpCanvas, 0, 0, 320, 320);
-  const mlData = mlCtx.getImageData(0, 0, 320, 320);
-  const pixels = mlData.data;
-  const inputSize = 320 * 320;
-  const float32Data = new Float32Array(3 * inputSize);
-  for (let i = 0; i < inputSize; i++) {
-    const r = pixels[i*4]/255, g = pixels[i*4+1]/255, b = pixels[i*4+2]/255;
-    float32Data[i] = (r - IMAGENET_MEAN[0]) / IMAGENET_STD[0];
-    float32Data[inputSize+i] = (g - IMAGENET_MEAN[1]) / IMAGENET_STD[1];
-    float32Data[2*inputSize+i] = (b - IMAGENET_MEAN[2]) / IMAGENET_STD[2];
-  }
-  const inputTensor = new ort.Tensor('float32', float32Data, [1, 3, 320, 320]);
-  const results = await onnxSession.run({ [onnxSession.inputNames[0]]: inputTensor });
-  const probData = results[onnxSession.outputNames[0]].data;
-  let pMin = Infinity, pMax = -Infinity;
-  for (let i = 0; i < probData.length; i++) { if (probData[i]<pMin) pMin=probData[i]; if (probData[i]>pMax) pMax=probData[i]; }
-  const pRange = pMax - pMin + 1e-8;
-  const probMap320 = new Float32Array(inputSize);
-  for (let i = 0; i < inputSize; i++) probMap320[i] = (probData[i]-pMin)/pRange;
-  const probMapFull = resizeProbMap(probMap320, 320, 320, origW, origH);
-  const mask = new Uint8Array(origW * origH);
-  for (let i = 0; i < mask.length; i++) if (probMapFull[i] > CFG.ML_THRESHOLD) mask[i] = 1;
-  const { labelMap, largest } = largestComponent(mask, origW, origH);
-  if (!largest) return null;
-  const finalMask = new Uint8Array(origW * origH);
-  let fMinX=origW, fMaxX=0, fMinY=origH, fMaxY=0, sumX=0, sumY=0, cnt=0;
-  for (let y = 0; y < origH; y++) for (let x = 0; x < origW; x++) {
-    const idx = y*origW+x;
-    if (labelMap[idx]===largest) {
-      finalMask[idx]=1;
-      if(x<fMinX)fMinX=x; if(x>fMaxX)fMaxX=x; if(y<fMinY)fMinY=y; if(y>fMaxY)fMaxY=y;
-      sumX+=x; sumY+=y; cnt++;
-    }
-  }
-  if (cnt===0) return null;
-  return { mask:finalMask, bbox:[fMinX,fMinY,fMaxX,fMaxY], centroid:{x:sumX/cnt,y:sumY/cnt}, pixelCount:cnt, coverage:cnt/(origW*origH) };
-}
-
-function resizeProbMap(src, srcW, srcH, dstW, dstH) {
-  const dst = new Float32Array(dstW*dstH), xR=srcW/dstW, yR=srcH/dstH;
-  for (let dy=0;dy<dstH;dy++) for (let dx=0;dx<dstW;dx++) {
-    const sx=dx*xR, sy=dy*yR, x0=Math.floor(sx), y0=Math.floor(sy);
-    const x1=Math.min(x0+1,srcW-1), y1=Math.min(y0+1,srcH-1), xf=sx-x0, yf=sy-y0;
-    dst[dy*dstW+dx] = src[y0*srcW+x0]*(1-xf)*(1-yf) + src[y0*srcW+x1]*xf*(1-yf)
-                     + src[y1*srcW+x0]*(1-xf)*yf + src[y1*srcW+x1]*xf*yf;
-  }
-  return dst;
-}
-
-function largestComponent(mask, W, H) {
-  const labelMap = new Int32Array(mask.length); let label=0; const sizes={};
-  for (let y=0;y<H;y++) for (let x=0;x<W;x++) {
-    const idx=y*W+x;
-    if (mask[idx] && !labelMap[idx]) {
-      label++; let size=0; const q=[idx]; labelMap[idx]=label;
-      while (q.length) {
-        const ci=q.pop(); size++; const cx=ci%W, cy=(ci-cx)/W;
-        for (const [dx2,dy2] of [[1,0],[-1,0],[0,1],[0,-1]]) {
-          const nx=cx+dx2, ny=cy+dy2;
-          if (nx>=0&&nx<W&&ny>=0&&ny<H) { const ni=ny*W+nx; if (mask[ni]&&!labelMap[ni]) { labelMap[ni]=label; q.push(ni); } }
-        }
-      }
-      sizes[label]=size;
-    }
-  }
-  let largest=0, largestSize=0;
-  for (const [l,s] of Object.entries(sizes)) if (s>largestSize) { largestSize=s; largest=+l; }
-  return { labelMap, largest };
-}
-
-// ── Scanner ──
-function startScanner(step) {
-  currentStep = step;
-  // Hide all screens
-  ['start-screen','scanner','result-screen','side-intro','final-screen'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
+function startScanner() {
+  document.getElementById('start-screen').style.display = 'none';
   document.getElementById('scanner').style.display = 'block';
-
-  // Update guide overlay and badge
-  const guideEl = document.getElementById('guide-overlay');
-  const badge = document.getElementById('step-badge');
-  if (step === 'sole') {
-    guideEl.innerHTML = '<div class="foot-outline"></div>';
-    badge.textContent = 'Step 1: Sole';
-  } else {
-    guideEl.innerHTML = '<div class="side-outline"><img src="' + SIDE_OVERLAY_B64 + '" alt="foot side guide" /></div>';
-    badge.textContent = 'Step 2: Side';
-  }
-
+  captured = false;
+  holdStart = null;
   video = document.getElementById('video');
-  cProc = document.getElementById('canvas-process');
-  ctxP  = cProc.getContext('2d', { willReadFrequently: true });
-  cDbg  = document.getElementById('debug-canvas');
-  ctxD  = cDbg.getContext('2d');
 
-  // Sole = selfie camera (mirrored), Side = rear camera (not mirrored)
-  const isSole = step === 'sole';
-  video.classList.toggle('mirrored', isSole);
-  cDbg.classList.toggle('mirrored', isSole);
+  // Small offscreen canvas for frame analysis
+  analyzeCanvas = document.createElement('canvas');
+  analyzeCanvas.width = 120; analyzeCanvas.height = 160;
+  analyzeCtx = analyzeCanvas.getContext('2d', { willReadFrequently: true });
 
-  const facingMode = isSole ? 'user' : 'environment';
   navigator.mediaDevices.getUserMedia({
-    video: { facingMode, width: { ideal: 1280 }, height: { ideal: 960 } },
+    video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
     audio: false,
   })
   .then(stream => {
     video.srcObject = stream;
     video.onloadedmetadata = () => {
-      cProc.width = video.videoWidth; cProc.height = video.videoHeight;
-      cDbg.width  = video.videoWidth; cDbg.height  = video.videoHeight;
-      running = true; stableCount = 0; prevCentroid = null;
-      loop();
+      // Start checking frames once video is playing
+      checkTimer = setInterval(analyzeFrame, CHECK_INTERVAL);
     };
   })
   .catch(e => {
-    document.getElementById('status-bar').innerHTML = 'Camera error: ' + e.name + ' — ' + e.message
-      + '<br><br>Check browser site settings and allow camera access.';
+    document.getElementById('status-bar').innerHTML =
+      'Camera error: ' + e.name + '<br>Check browser settings and allow camera access.';
   });
 }
 
-let inferring = false;
-async function loop() {
-  if (!running) return;
-  if (inferring) { setTimeout(() => requestAnimationFrame(loop), 50); return; }
-  inferring = true;
-  ctxP.drawImage(video, 0, 0);
-  const img = ctxP.getImageData(0, 0, cProc.width, cProc.height);
-  const t0 = performance.now();
-  const res = await detect(img, cProc.width, cProc.height);
-  const dt = performance.now() - t0;
-  drawDebug(res, dt);
-  updateStability(res);
-  inferring = false;
-  if (stableCount >= CFG.STABLE_FRAMES) { capture(res); return; }
-  setTimeout(() => requestAnimationFrame(loop), CFG.PROCESS_INTERVAL);
-}
+/**
+ * Smart auto-capture: detects a foot shape + stillness.
+ *
+ * 1) Check the guide zone for a foot-shaped dark mass (elongated, not round)
+ * 2) Compare current frame to previous frame — measure motion
+ * 3) When foot shape is good AND frame is stable for N consecutive checks → snap
+ *
+ * No countdown, no timer visible. Just: guide turns green → captures instantly
+ * when the foot is well-positioned and still.
+ */
+function analyzeFrame() {
+  if (captured || !video || video.readyState < 2) return;
 
-// Get active config based on current step
-function getActiveCfg() {
-  if (currentStep === 'side') {
-    return { ...CFG, ...SIDE_CFG };
+  analyzeCtx.drawImage(video, 0, 0, analyzeCanvas.width, analyzeCanvas.height);
+
+  const w = analyzeCanvas.width, h = analyzeCanvas.height;
+  const zoneX = Math.floor(w * 0.20);
+  const zoneY = Math.floor(h * 0.09);
+  const zoneW = Math.floor(w * 0.60);
+  const zoneH = Math.floor(h * 0.82);
+
+  const imgData = analyzeCtx.getImageData(zoneX, zoneY, zoneW, zoneH);
+  const curPixels = imgData.data;
+  const totalPixels = zoneW * zoneH;
+
+  // ── 1. Foot shape detection ──
+  let darkCount = 0;
+  let minX = zoneW, maxX = 0, minY = zoneH, maxY = 0;
+  const STRIPS = 8;
+  const stripH = Math.floor(zoneH / STRIPS);
+  const stripDark = new Array(STRIPS).fill(0);
+
+  for (let y = 0; y < zoneH; y++) {
+    for (let x = 0; x < zoneW; x += 2) {
+      const idx = (y * zoneW + x) * 4;
+      const brightness = (curPixels[idx] + curPixels[idx+1] + curPixels[idx+2]) / 3;
+      if (brightness < 120) {
+        darkCount++;
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+        const strip = Math.min(Math.floor(y / stripH), STRIPS - 1);
+        stripDark[strip]++;
+      }
+    }
   }
-  return CFG;
-}
 
-async function detect(imageData, W, H) {
-  const cfg = getActiveCfg();
-  const seg = await segmentFoot(imageData, W, H);
-  if (!seg) return { ok: false, why: 'no_foot', cov: 0 };
-  const { mask: footMask, bbox, centroid, pixelCount, coverage } = seg;
-  const [fMinX, fMinY, fMaxX, fMaxY] = bbox;
-  if (coverage < cfg.MIN_COVERAGE) return { ok:false, why:'too_far', cov:coverage };
-  if (coverage > cfg.MAX_COVERAGE) return { ok:false, why:'too_close', cov:coverage };
-  const bw = fMaxX-fMinX, bh = fMaxY-fMinY;
-  const aspect = Math.max(bw,bh)/(Math.min(bw,bh)||1);
-  if (aspect < cfg.MIN_ASPECT || aspect > cfg.MAX_ASPECT)
-    return { ok:false, why:'shape', aspect, cov:coverage, centroid, bbox };
-  const bboxCx=(fMinX+fMaxX)/2, bboxCy=(fMinY+fMaxY)/2;
-  const skewX=Math.abs(centroid.x-bboxCx)/(bw||1), skewY=Math.abs(centroid.y-bboxCy)/(bh||1);
-  if (skewX > cfg.MAX_SKEW || skewY > cfg.MAX_SKEW)
-    return { ok:false, why:'tilted', cov:coverage, centroid, bbox, skewX, skewY };
-  const bboxArea = bw*bh;
-  const fillRatio = bboxArea>0 ? pixelCount/bboxArea : 0;
-  if (fillRatio < cfg.MIN_FILL)
-    return { ok:false, why:'tilted', cov:coverage, centroid, bbox, fillRatio };
-  const distanceOk = coverage >= cfg.IDEAL_COV_LO && coverage <= cfg.IDEAL_COV_HI;
-  const meas = measure(footMask, W, H, fMinX, fMaxX, fMinY, fMaxY);
-  return { ok:true, distanceOk, cov:coverage, centroid, aspect, bbox, footMask, meas, pixelCount, fillRatio };
-}
+  darkCount *= 2;
+  const coverage = darkCount / totalPixels;
+  const bbW = maxX - minX + 1;
+  const bbH = maxY - minY + 1;
+  const aspectRatio = bbH / Math.max(bbW, 1);
+  const topHalf = stripDark.slice(0, 4).reduce((a, b) => a + b, 0);
+  const bottomHalf = stripDark.slice(4, 8).reduce((a, b) => a + b, 0);
+  const balance = Math.min(topHalf, bottomHalf) / Math.max(topHalf, bottomHalf, 1);
 
-function measure(mask, W, H, minX, maxX, minY, maxY) {
-  const bw=maxX-minX, bh=maxY-minY, vertical=bh>=bw;
-  const sections = [];
-  if (vertical) {
-    for (let y=minY;y<=maxY;y++) { let lo=W,hi=0; for (let x=minX;x<=maxX;x++) if (mask[y*W+x]) { if(x<lo)lo=x; if(x>hi)hi=x; } sections.push({pos:y,w:hi>lo?hi-lo:0,lo,hi}); }
+  const isFootShape =
+    coverage >= COVERAGE_MIN &&
+    coverage <= COVERAGE_MAX &&
+    aspectRatio >= 1.8 &&
+    aspectRatio <= 4.5 &&
+    balance >= 0.2;
+
+  // ── 2. Motion detection (frame-to-frame diff) ──
+  let motion = 1; // assume high motion if no previous frame
+  if (prevPixelData && prevPixelData.length === curPixels.length) {
+    let diffSum = 0;
+    const sampleStep = 32; // sample every 8th pixel (4 channels × 8)
+    let sampleCount = 0;
+    for (let i = 0; i < curPixels.length; i += sampleStep) {
+      diffSum += Math.abs(curPixels[i] - prevPixelData[i]);
+      sampleCount++;
+    }
+    motion = diffSum / (sampleCount * 255); // normalize 0–1
+  }
+  prevPixelData = new Uint8Array(curPixels);
+
+  const isStill = motion < STILL_THRESHOLD;
+
+  // ── 3. Decision ──
+  const outline = document.getElementById('foot-guide-svg');
+  const statusBar = document.getElementById('status-bar');
+
+  if (isFootShape && isStill) {
+    footFrames++;
+    stillCount++;
+    outline.classList.add('ready');
+
+    if (footFrames < MIN_FOOT_FRAMES) {
+      statusBar.textContent = 'Foot detected — hold still…';
+    } else if (stillCount >= STILL_FRAMES_NEEDED && footFrames >= MIN_FOOT_FRAMES) {
+      capture();
+    } else {
+      statusBar.textContent = 'Almost there — hold still…';
+    }
+  } else if (isFootShape) {
+    // Foot shape OK but still moving
+    footFrames++;
+    stillCount = 0;
+    outline.classList.add('ready');
+    statusBar.textContent = 'Foot detected — hold still…';
   } else {
-    for (let x=minX;x<=maxX;x++) { let lo=H,hi=0; for (let y=minY;y<=maxY;y++) if (mask[y*W+x]) { if(y<lo)lo=y; if(y>hi)hi=y; } sections.push({pos:x,w:hi>lo?hi-lo:0,lo,hi}); }
-  }
-  const footLen = vertical ? bh : bw;
-  let ballW=0, ballIdx=0;
-  for (let i=0;i<sections.length;i++) if (sections[i].w>ballW) { ballW=sections[i].w; ballIdx=i; }
-  const ballFrac = ballIdx/(sections.length||1);
-  const hzS = Math.floor(sections.length*(ballFrac<0.5?0.80:0.08));
-  const hzE = Math.floor(sections.length*(ballFrac<0.5?0.92:0.20));
-  let heelSum=0, heelN=0;
-  for (let i=Math.min(hzS,hzE);i<=Math.max(hzS,hzE);i++)
-    if (i>=0&&i<sections.length&&sections[i].w>0) { heelSum+=sections[i].w; heelN++; }
-  const heelW = heelN>0 ? heelSum/heelN : 0;
-  const toeS = ballFrac<0.5?0:Math.floor(sections.length*0.75);
-  const toeE = ballFrac<0.5?Math.floor(sections.length*0.25):sections.length-1;
-  const toeShape = classifyToe(sections, Math.min(toeS,toeE), Math.max(toeS,toeE));
-  const widthRatio = footLen>0 ? ballW/footLen : 0;
-  const heelRatio = ballW>0 ? heelW/ballW : 0;
-  const toeProp = ballFrac<0.5 ? ballFrac : (1-ballFrac);
-  return { footLen, ballW, heelW, widthRatio:r3(widthRatio), heelRatio:r3(heelRatio),
-    toeProp:r3(toeProp), ballFrac:r3(ballFrac), toeShape, orientation:vertical?'V':'H',
-    sections, heelZone:[Math.min(hzS,hzE),Math.max(hzS,hzE)], ballIdx };
-}
-function r3(v) { return Math.round(v*1000)/1000; }
-function classifyToe(sections, from, to) {
-  const s = sections.slice(from, to+1);
-  if (s.length<5) return 'unknown';
-  const maxW = Math.max(...s.map(x=>x.w));
-  const tipR = maxW>0 ? s[s.length-1].w/maxW : 0;
-  let plat=0; for (let i=0;i<Math.min(5,s.length);i++) if (s[i].w>maxW*0.85) plat++;
-  if (plat>=3) return 'roman';
-  if (tipR<0.15) return 'egyptian';
-  return 'greek';
-}
+    // No foot shape
+    stillCount = 0;
+    footFrames = 0;
+    outline.classList.remove('ready');
 
-function drawDebug(res, inferenceMs) {
-  ctxD.clearRect(0, 0, cDbg.width, cDbg.height);
-  const info = document.getElementById('detect-info');
-  if (!res.ok) { info.innerHTML = `cov:${(res.cov*100).toFixed(1)}%<br>${res.why}<br>${Math.round(inferenceMs)}ms`; return; }
-  if (res.footMask) {
-    const W=cDbg.width, H=cDbg.height;
-    const overlayData = ctxD.createImageData(W, H);
-    for (let i=0;i<res.footMask.length;i++) if (res.footMask[i]) {
-      overlayData.data[i*4]=76; overlayData.data[i*4+1]=175; overlayData.data[i*4+2]=80; overlayData.data[i*4+3]=60;
-    }
-    ctxD.putImageData(overlayData, 0, 0);
-  }
-  const [x0,y0,x1,y1] = res.bbox;
-  ctxD.strokeStyle='rgba(76,175,80,0.7)'; ctxD.lineWidth=2; ctxD.strokeRect(x0,y0,x1-x0,y1-y0);
-  const m = res.meas;
-  if (m.sections && m.sections[m.ballIdx]) {
-    const bs=m.sections[m.ballIdx]; ctxD.strokeStyle='#ff4444'; ctxD.lineWidth=2; ctxD.beginPath();
-    if (m.orientation==='V') { ctxD.moveTo(bs.lo,bs.pos); ctxD.lineTo(bs.hi,bs.pos); }
-    else { ctxD.moveTo(bs.pos,bs.lo); ctxD.lineTo(bs.pos,bs.hi); }
-    ctxD.stroke();
-  }
-  if (m.heelZone) {
-    ctxD.fillStyle='rgba(100,181,246,0.15)';
-    for (let i=m.heelZone[0];i<=m.heelZone[1]&&i<m.sections.length;i++) {
-      const s=m.sections[i]; if (m.orientation==='V') ctxD.fillRect(s.lo,s.pos,s.hi-s.lo,1);
+    if (coverage < 0.08) {
+      statusBar.textContent = 'Position your foot over the screen…';
+    } else if (coverage > COVERAGE_MAX) {
+      statusBar.textContent = 'Move your foot a bit higher…';
+    } else if (aspectRatio < 1.8) {
+      statusBar.textContent = 'Align your foot lengthwise in the guide';
+    } else {
+      statusBar.textContent = 'Center your foot inside the guide…';
     }
   }
-  ctxD.fillStyle='#E8734A'; ctxD.beginPath(); ctxD.arc(res.centroid.x,res.centroid.y,5,0,Math.PI*2); ctxD.fill();
-  const distIcon = res.distanceOk ? '✓' : (res.cov<getActiveCfg().IDEAL_COV_LO ? '↓far' : '↑near');
-  info.innerHTML = [`ML:${Math.round(inferenceMs)}ms`,`cov:${(res.cov*100).toFixed(1)}% ${distIcon}`,
-    `fill:${res.fillRatio?(res.fillRatio*100).toFixed(0):'?'}%`,`asp:${res.aspect.toFixed(2)}`,
-    `W/L:<b>${m.widthRatio}</b>`,`H/B:<b>${m.heelRatio}</b>`,`toe:<b>${m.toeShape}</b>`].join('<br>');
 }
 
-function updateStability(res) {
-  const bar = document.getElementById('status-bar');
-  const prog = document.getElementById('stab-progress');
-  const cfg = getActiveCfg();
-  if (!res.ok) {
-    stableCount=0; prevCentroid=null; prog.style.strokeDashoffset=157;
-    const msgs = { 'no_foot':'Hold your bare foot in view…', 'too_far':'Move your foot closer',
-      'too_close':'Move your foot further away', 'tilted':'Hold your foot flat and steady',
-      'shape':'Adjust position — keep foot centered' };
-    bar.textContent = msgs[res.why] || 'Adjust position…';
-    return;
-  }
-  if (!res.distanceOk) {
-    stableCount = Math.max(0, stableCount-2); prevCentroid = res.centroid;
-    prog.style.strokeDashoffset = 157;
-    bar.textContent = res.cov<cfg.IDEAL_COV_LO ? 'Foot detected — move a little closer' : 'Foot detected — move a little further away';
-    return;
-  }
-  if (prevCentroid) {
-    const d = Math.sqrt((res.centroid.x-prevCentroid.x)**2 + (res.centroid.y-prevCentroid.y)**2);
-    if (d < CFG.CENTROID_TOL) stableCount++; else stableCount = Math.max(0, stableCount-3);
-  }
-  prevCentroid = res.centroid;
-  const pct = Math.min(stableCount/CFG.STABLE_FRAMES, 1);
-  prog.style.strokeDashoffset = 157*(1-pct);
-  if (pct<1) bar.textContent = stableCount<3 ? 'Good position — hold still…' : `Scanning… ${Math.round(pct*100)}%`;
-}
+function capture() {
+  if (captured) return;
+  captured = true;
+  if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
 
-function capture(res) {
-  running = false;
+  // Flash effect
+  const flash = document.getElementById('flash');
+  flash.style.opacity = '1';
+  setTimeout(() => { flash.style.opacity = '0'; }, 120);
+
+  // Capture full-resolution frame
   const snap = document.createElement('canvas');
-  snap.width = cProc.width; snap.height = cProc.height;
-  const sCtx = snap.getContext('2d');
-  sCtx.drawImage(video, 0, 0);
-  // Draw mask border
-  if (res.footMask) {
-    const W=snap.width, H=snap.height;
-    sCtx.fillStyle = 'rgba(76, 175, 80, 0.3)';
-    for (let y=1;y<H-1;y++) for (let x=1;x<W-1;x++) {
-      const idx=y*W+x;
-      if (res.footMask[idx] && (!res.footMask[(y-1)*W+x]||!res.footMask[(y+1)*W+x]||!res.footMask[y*W+x-1]||!res.footMask[y*W+x+1]))
-        sCtx.fillRect(x,y,2,2);
-    }
-  }
-  const m = res.meas;
-  sCtx.strokeStyle='#ff4444'; sCtx.lineWidth=3;
-  if (m.sections && m.sections[m.ballIdx]) {
-    const bs=m.sections[m.ballIdx]; sCtx.beginPath();
-    if (m.orientation==='V') { sCtx.moveTo(bs.lo,bs.pos); sCtx.lineTo(bs.hi,bs.pos); }
-    else { sCtx.moveTo(bs.pos,bs.lo); sCtx.lineTo(bs.pos,bs.hi); }
-    sCtx.stroke();
-  }
-  const dataUrl = snap.toDataURL('image/jpeg', 0.92);
-  video.srcObject?.getTracks().forEach(t => t.stop());
+  snap.width = video.videoWidth; snap.height = video.videoHeight;
+  const ctx = snap.getContext('2d');
+  ctx.drawImage(video, 0, 0);
+  lastCaptureDataUrl = snap.toDataURL('image/jpeg', 0.95);
 
-  if (currentStep === 'sole') {
-    soleCaptureData = { imageDataUrl: dataUrl, measurements: m };
+  // Show result after brief flash delay
+  setTimeout(() => {
     document.getElementById('scanner').style.display = 'none';
     document.getElementById('result-screen').style.display = 'block';
-    document.getElementById('result-title').textContent = 'Step 1: Sole Capture';
-    const img = document.getElementById('captured-img');
-    img.src = dataUrl;
-    img.classList.add('mirrored'); // selfie camera was mirrored
-    const wC = classify(m.widthRatio, POP.width_ratio);
-    const hC = classify(m.heelRatio, POP.heel_ratio);
-    document.getElementById('meas-grid').innerHTML = `
-      <div class="meas-card"><div class="meas-label">Width / Length</div><div class="meas-value">${m.widthRatio}</div><div class="meas-class ${wC.cls}">${wC.label}</div></div>
-      <div class="meas-card"><div class="meas-label">Heel / Ball</div><div class="meas-value">${m.heelRatio}</div><div class="meas-class ${hC.cls}">${hC.label}</div></div>
-      <div class="meas-card"><div class="meas-label">Toe Shape</div><div class="meas-value" style="font-size:1.1rem">${m.toeShape}</div><div class="meas-class normal">&nbsp;</div></div>
-      <div class="meas-card"><div class="meas-label">Toe Length %</div><div class="meas-value">${(m.toeProp*100).toFixed(0)}%</div><div class="meas-class normal">of foot length</div></div>`;
-    document.getElementById('result-note').textContent = `${m.footLen}px length · ${m.ballW}px ball · ${m.heelW}px heel · ${m.orientation}`;
-  } else {
-    // Side capture
-    sideCaptureData = { imageDataUrl: dataUrl, measurements: m };
-    showFinalScreen();
-  }
-}
+    document.getElementById('captured-img').src = lastCaptureDataUrl;
+    document.getElementById('save-status').textContent = '';
+    document.getElementById('save-btn').disabled = false;
+    document.getElementById('save-btn').textContent = 'Save & Upload';
 
-function classify(v, pop) {
-  if (v<pop.lo) return { cls:'narrow', label:'Narrow' };
-  if (v>pop.hi) return { cls:'wide', label:'Wide' };
-  return { cls:'normal', label:'Normal' };
+    // Stop camera
+    video.srcObject?.getTracks().forEach(t => t.stop());
+  }, 200);
 }
-
-function retakeSole() {
-  document.getElementById('result-screen').style.display = 'none';
-  soleCaptureData = null; stableCount=0; prevCentroid=null;
-  startScanner('sole');
-}
-
-function showSideIntro() {
-  document.getElementById('result-screen').style.display = 'none';
-  const intro = document.getElementById('side-intro');
-  intro.style.display = 'flex';
-}
-
-function showFinalScreen() {
-  ['scanner','result-screen','side-intro'].forEach(id => document.getElementById(id).style.display='none');
-  document.getElementById('final-screen').style.display = 'block';
-  document.getElementById('final-sole-img').src = soleCaptureData.imageDataUrl;
-  document.getElementById('final-sole-img').style.transform = 'scaleX(-1)';
-  document.getElementById('final-side-img').src = sideCaptureData.imageDataUrl;
-  // Show sole measurements in final screen
-  const m = soleCaptureData.measurements;
-  const wC = classify(m.widthRatio, POP.width_ratio);
-  const hC = classify(m.heelRatio, POP.heel_ratio);
-  document.getElementById('final-meas-grid').innerHTML = `
-    <div class="meas-card"><div class="meas-label">Width / Length</div><div class="meas-value">${m.widthRatio}</div><div class="meas-class ${wC.cls}">${wC.label}</div></div>
-    <div class="meas-card"><div class="meas-label">Heel / Ball</div><div class="meas-value">${m.heelRatio}</div><div class="meas-class ${hC.cls}">${hC.label}</div></div>
-    <div class="meas-card"><div class="meas-label">Toe Shape</div><div class="meas-value" style="font-size:1.1rem">${m.toeShape}</div><div class="meas-class normal">&nbsp;</div></div>
-    <div class="meas-card"><div class="meas-label">Toe Length %</div><div class="meas-value">${(m.toeProp*100).toFixed(0)}%</div><div class="meas-class normal">of foot length</div></div>`;
-  document.getElementById('final-note').textContent = 'Both views captured. Save to store results.';
-}
-
-function restart() {
-  ['final-screen','result-screen','side-intro','scanner'].forEach(id => document.getElementById(id).style.display='none');
-  document.getElementById('start-screen').style.display = 'flex';
-  soleCaptureData = null; sideCaptureData = null;
-  stableCount=0; prevCentroid=null;
-  document.getElementById('final-save-status').textContent = '';
-  document.getElementById('save-btn').disabled = false;
-  document.getElementById('save-btn').textContent = 'Save Results';
-}
-
-// ── Save to Supabase ──
-const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
 async function saveResult() {
-  if (!soleCaptureData) return;
+  if (!lastCaptureDataUrl) return;
   const btn = document.getElementById('save-btn');
-  const status = document.getElementById('final-save-status');
-  btn.disabled = true; btn.textContent = 'Saving…'; status.textContent = '';
-  try {
-    const ts = new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);
-    const id = 'scan-' + ts;
-    // Upload sole image
-    const soleBlob = await (await fetch(soleCaptureData.imageDataUrl)).blob();
-    const soleUp = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}-sole.jpg`, {
-      method:'POST', headers:{'Authorization':`Bearer ${SB_KEY}`,'apikey':SB_KEY,'Content-Type':'image/jpeg','x-upsert':'true'}, body:soleBlob });
-    let soleUrl = '';
-    if (soleUp.ok) soleUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}-sole.jpg`;
-    // Upload side image if available
-    let sideUrl = '';
-    if (sideCaptureData) {
-      const sideBlob = await (await fetch(sideCaptureData.imageDataUrl)).blob();
-      const sideUp = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}-side.jpg`, {
-        method:'POST', headers:{'Authorization':`Bearer ${SB_KEY}`,'apikey':SB_KEY,'Content-Type':'image/jpeg','x-upsert':'true'}, body:sideBlob });
-      if (sideUp.ok) sideUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}-side.jpg`;
-    }
+  const status = document.getElementById('save-status');
+  btn.disabled = true; btn.textContent = 'Uploading…'; status.textContent = '';
 
-    // Upload JSON with both measurements
-    const scanData = {
-      scan_id: id, timestamp: new Date().toISOString(),
-      sole_image_url: soleUrl, side_image_url: sideUrl,
-      sole_measurements: soleCaptureData.measurements,
-      side_measurements: sideCaptureData ? sideCaptureData.measurements : null,
-      user_agent: navigator.userAgent
-    };
-    const jb = new Blob([JSON.stringify(scanData, null, 2)], { type:'application/json' });
-    const jr = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.json`, {
-      method:'POST', headers:{'Authorization':`Bearer ${SB_KEY}`,'apikey':SB_KEY,'Content-Type':'application/json','x-upsert':'true'}, body:jb });
-    if (soleUp.ok && jr.ok) {
-      status.innerHTML = `Saved! <a href="${soleUrl}" target="_blank" style="color:#64B5F6">View sole</a>` +
-        (sideUrl ? ` · <a href="${sideUrl}" target="_blank" style="color:#64B5F6">View side</a>` : '');
+  try {
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const id = 'scan-' + ts;
+    const blob = await (await fetch(lastCaptureDataUrl)).blob();
+
+    const up = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.jpg`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SB_KEY}`,
+        'apikey': SB_KEY,
+        'Content-Type': 'image/jpeg',
+        'x-upsert': 'true',
+      },
+      body: blob,
+    });
+
+    if (up.ok) {
+      const imgUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${id}.jpg`;
+      status.innerHTML = `Uploaded ✓ <a href="${imgUrl}" target="_blank" style="color:#c98a42;font-weight:600">View image</a>`;
       btn.textContent = 'Saved ✓';
-    } else throw new Error('upload failed');
+    } else {
+      throw new Error('Upload failed: ' + up.status);
+    }
   } catch(e) {
     console.error(e);
-    status.textContent = 'Cloud save failed — downloading…';
-    const a = document.createElement('a'); a.href = soleCaptureData.imageDataUrl; a.download = 'foot-scan-sole.jpg'; a.click();
-    if (sideCaptureData) {
-      const b = document.createElement('a'); b.href = sideCaptureData.imageDataUrl; b.download = 'foot-scan-side.jpg';
-      setTimeout(() => b.click(), 300);
-    }
-    const c = document.createElement('a');
-    c.href = URL.createObjectURL(new Blob([JSON.stringify({ sole: soleCaptureData.measurements, side: sideCaptureData?.measurements }, null, 2)], { type:'application/json' }));
-    c.download = 'foot-scan-data.json'; setTimeout(() => c.click(), 600);
-    btn.textContent = 'Downloaded'; status.textContent = 'Saved to device';
+    status.textContent = 'Cloud upload failed — downloading locally…';
+    const a = document.createElement('a');
+    a.href = lastCaptureDataUrl;
+    a.download = 'foot-scan.jpg';
+    a.click();
+    btn.textContent = 'Downloaded';
+    status.textContent = 'Saved to device';
   }
+}
+
+function retake() {
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('save-status').textContent = '';
+  document.getElementById('save-btn').disabled = false;
+  document.getElementById('save-btn').textContent = 'Save & Upload';
+  lastCaptureDataUrl = null;
+  startScanner();
 }
 </script>
 </body>
