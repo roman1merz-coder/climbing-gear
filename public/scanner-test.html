@@ -219,6 +219,125 @@ body {
   padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600;
   cursor: pointer; font-family: inherit;
 }
+
+/* ── Shoe Fit Screen ── */
+#shoe-fit-screen {
+  display: none; width: 100vw; min-height: 100vh; min-height: 100dvh;
+  background: #f5f0e8; overflow-y: auto;
+  padding: 1.5rem; padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  text-align: center;
+}
+#shoe-fit-screen h2 {
+  font-size: 1.25rem; font-weight: 800; margin-bottom: 0.3rem;
+}
+.shoe-fit-subtitle {
+  font-size: 0.88rem; color: #7a7462; margin-bottom: 1.2rem; line-height: 1.5;
+  max-width: 340px; margin-left: auto; margin-right: auto;
+}
+.shoe-entries { max-width: 400px; margin: 0 auto 1rem; }
+.shoe-card {
+  background: #fff; border-radius: 14px; padding: 14px;
+  margin-bottom: 10px; border: 1px solid #d5cdbf;
+  text-align: left; position: relative;
+}
+.shoe-card-header {
+  display: flex; gap: 8px; margin-bottom: 10px; align-items: center;
+}
+.shoe-number {
+  background: #c98a42; color: #fff; width: 24px; height: 24px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+}
+.shoe-selects { display: flex; gap: 8px; flex: 1; }
+.shoe-selects select, .shoe-selects input {
+  flex: 1; padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+  appearance: auto; min-width: 0;
+}
+.remove-shoe {
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: none; color: #b8b0a0; font-size: 1.2rem;
+  cursor: pointer; padding: 2px 6px; line-height: 1;
+}
+.remove-shoe:hover { color: #c98a42; }
+.fit-ratings { display: flex; flex-direction: column; gap: 8px; }
+.fit-group { display: flex; align-items: center; gap: 10px; }
+.fit-label {
+  font-size: 0.78rem; color: #7a7462; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.3px;
+  width: 70px; flex-shrink: 0; text-align: right;
+}
+.fit-options {
+  display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden;
+  flex: 1;
+}
+.fit-option {
+  width: 33.33%; flex: none; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 4px; text-align: center;
+  font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  background: #faf8f4; color: #7a7462; border: none;
+  border-right: 1px solid #d5cdbf; transition: all 0.15s;
+  font-family: inherit; line-height: 1.2;
+}
+.fit-option:last-child { border-right: none; }
+.fit-option.active { background: #c98a42; color: #fff; }
+.fit-option:hover:not(.active) { background: #f0ebe1; }
+.add-shoe-btn {
+  background: none; border: 2px dashed #d5cdbf; border-radius: 12px;
+  padding: 12px; width: 100%; max-width: 400px;
+  font-size: 0.9rem; color: #7a7462; cursor: pointer;
+  font-family: inherit; font-weight: 600; margin-bottom: 1.2rem;
+  transition: border-color 0.2s;
+}
+.add-shoe-btn:hover { border-color: #c98a42; color: #c98a42; }
+.add-shoe-btn:disabled { opacity: 0.4; cursor: default; }
+.shoe-fit-buttons { max-width: 400px; margin: 0 auto; display: flex; gap: 10px; }
+.btn-skip {
+  flex: 1; background: #fff; color: #7a7462; border: 1px solid #d5cdbf;
+  padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.btn-next {
+  flex: 1; background: #c98a42; color: #fff; border: none;
+  padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+
+/* ── Thank You Screen ── */
+#thankyou-screen {
+  display: none; width: 100vw; min-height: 100vh; min-height: 100dvh;
+  background: #f5f0e8; overflow-y: auto;
+  padding: 2rem 1.5rem; padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  text-align: center;
+}
+.thankyou-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+#thankyou-screen h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.8rem; }
+.thankyou-text {
+  max-width: 340px; font-size: 0.92rem; color: #7a7462; line-height: 1.6;
+  margin-bottom: 1.5rem; margin-left: auto; margin-right: auto;
+}
+.thankyou-text strong { color: #2c3227; }
+.email-section { max-width: 340px; width: 100%; margin: 0 auto 1.5rem; }
+.email-label { font-size: 0.85rem; color: #2c3227; font-weight: 600; margin-bottom: 6px; text-align: left; }
+.email-sublabel { font-size: 0.78rem; color: #7a7462; margin-bottom: 8px; text-align: left; }
+.email-input {
+  width: 100%; padding: 12px 14px; border: 1px solid #d5cdbf; border-radius: 10px;
+  font-size: 0.95rem; font-family: inherit; background: #fff; color: #2c3227;
+}
+.email-input::placeholder { color: #b8b0a0; }
+.privacy-note {
+  max-width: 340px; font-size: 0.78rem; color: #b8b0a0;
+  line-height: 1.5; margin: 0 auto 1.5rem; font-style: italic;
+}
+.btn-done {
+  background: #c98a42; color: #fff; border: none;
+  padding: 16px 48px; border-radius: 12px;
+  font-size: 1.1rem; font-weight: 700; cursor: pointer;
+  font-family: inherit; max-width: 340px; width: 100%;
+}
+.btn-done:disabled { background: #b8b0a0; }
+.done-status { font-size: 0.85rem; color: #3d7a52; margin-top: 8px; min-height: 1.2em; }
 </style>
 </head>
 <body>
@@ -342,6 +461,80 @@ body {
   <div id="save-status-side" style="text-align:center;font-size:0.85rem;color:#3d7a52;margin-top:8px;min-height:1.2em"></div>
 </div>
 
+
+<!-- ── Shoe Fit Screen ── -->
+<div id="shoe-fit-screen">
+  <h2>Which shoes fit you well?</h2>
+  <p class="shoe-fit-subtitle">
+    Tell us about shoes you currently climb in. This helps us improve our size recommendations.
+  </p>
+  <div class="shoe-entries" id="shoe-entries">
+    <div class="shoe-card" data-index="0">
+      <button class="remove-shoe" title="Remove">&times;</button>
+      <div class="shoe-card-header">
+        <span class="shoe-number">1</span>
+        <div class="shoe-selects">
+          <select class="brand-select"><option value="">Brand...</option></select>
+          <select class="model-select" disabled><option value="">Model...</option></select>
+        </div>
+      </div>
+      <div class="fit-ratings">
+        <div class="fit-group">
+          <div class="fit-label">Toes</div>
+          <div class="fit-options" data-area="toes">
+            <button class="fit-option" data-val="squeezed">Squeezed</button>
+            <button class="fit-option" data-val="perfect">Perfect</button>
+            <button class="fit-option" data-val="roomy">Too roomy</button>
+          </div>
+        </div>
+        <div class="fit-group">
+          <div class="fit-label">Forefoot</div>
+          <div class="fit-options" data-area="forefoot">
+            <button class="fit-option" data-val="tight">Tight</button>
+            <button class="fit-option" data-val="perfect">Perfect</button>
+            <button class="fit-option" data-val="loose">Loose</button>
+          </div>
+        </div>
+        <div class="fit-group">
+          <div class="fit-label">Heel</div>
+          <div class="fit-options" data-area="heel">
+            <button class="fit-option" data-val="tight">Tight</button>
+            <button class="fit-option" data-val="perfect">Perfect</button>
+            <button class="fit-option" data-val="empty">Empty space</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="add-shoe-btn" id="add-shoe-btn">+ Add another shoe</button>
+  <div class="shoe-fit-buttons">
+    <button class="btn-skip" id="skip-fit-btn">Skip</button>
+    <button class="btn-next" id="next-fit-btn">Continue</button>
+  </div>
+</div>
+
+<!-- ── Thank You Screen ── -->
+<div id="thankyou-screen">
+  <div class="thankyou-icon">&#127881;</div>
+  <h2>Thank You!</h2>
+  <p class="thankyou-text">
+    We currently <strong>process scans manually</strong> and can send you personalised shoe recommendations by email.
+  </p>
+  <div class="email-section">
+    <div class="email-label">Your email (optional)</div>
+    <div class="email-sublabel">We'll send your results - nothing else.</div>
+    <input type="email" class="email-input" id="email-input" placeholder="name@example.com" />
+  </div>
+  <p class="privacy-note">
+    We promise not to send any advertising or share your email. Results only.
+  </p>
+  <p class="thankyou-text" style="margin-bottom:1rem">
+    Alternatively, <strong>revisit the scanner in a couple of weeks</strong> - we're working on giving you instant results right here.
+  </p>
+  <button class="btn-done" id="done-btn">Done</button>
+  <div class="done-status" id="done-status"></div>
+</div>
+
 <script>
 const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
@@ -380,7 +573,7 @@ let currentStep = 'sole'; // 'sole' or 'side'
 
 /* ── Screen management ── */
 function showScreen(id) {
-  ['start-screen','scanner','transition-screen','result-screen','sole-instruction','sole-review','side-instruction','side-review'].forEach(s => {
+  ['start-screen','scanner','transition-screen','result-screen','sole-instruction','sole-review','side-instruction','side-review','shoe-fit-screen','thankyou-screen'].forEach(s => {
     document.getElementById(s).style.display = 'none';
   });
   document.getElementById(id).style.display = id === 'scanner' ? 'block' : 'flex';
@@ -418,7 +611,7 @@ document.getElementById('retake-sole-review').addEventListener('click', () => sh
 document.getElementById('approve-sole').addEventListener('click', () => showScreen('side-instruction'));
 document.getElementById('start-side-scan').addEventListener('click', () => startScanner('side'));
 document.getElementById('retake-side-review').addEventListener('click', () => showScreen('side-instruction'));
-document.getElementById('approve-side').addEventListener('click', saveFromReview);
+document.getElementById('approve-side').addEventListener('click', uploadThenShoeFit);
 
 function startScanner(step) {
   currentStep = step;
@@ -742,6 +935,241 @@ async function saveFromReview() {
     status.textContent = 'Saved to device';
   }
 }
+
+
+/* ── Scan ID (shared between upload and shoe fit save) ── */
+let scanId = null;
+
+/* Upload photos then proceed to shoe fit screen */
+async function uploadThenShoeFit() {
+  if (!soleDataUrl || !sideDataUrl) return;
+  const btn = document.getElementById('approve-side');
+  const status = document.getElementById('save-status-side');
+  btn.disabled = true; btn.textContent = 'Uploading...'; status.textContent = '';
+
+  try {
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    scanId = 'scan-' + ts;
+
+    const soleBlob = await (await fetch(soleDataUrl)).blob();
+    const sideBlob = await (await fetch(sideDataUrl)).blob();
+
+    const headers = {
+      'Authorization': `Bearer ${SB_KEY}`,
+      'apikey': SB_KEY,
+      'Content-Type': 'image/jpeg',
+      'x-upsert': 'true',
+    };
+
+    const [upSole, upSide] = await Promise.all([
+      fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${scanId}-sole.jpg`, {
+        method: 'POST', headers, body: soleBlob,
+      }),
+      fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${scanId}-side.jpg`, {
+        method: 'POST', headers, body: sideBlob,
+      }),
+    ]);
+
+    if (upSole.ok && upSide.ok) {
+      status.textContent = 'Uploaded!';
+      btn.textContent = 'Saved';
+      setTimeout(() => {
+        populateBrands(document.querySelector('.brand-select'));
+        showScreen('shoe-fit-screen');
+      }, 400);
+    } else {
+      throw new Error('Upload failed');
+    }
+  } catch(e) {
+    console.error(e);
+    status.textContent = 'Upload issue - continuing anyway...';
+    scanId = scanId || 'scan-local-' + Date.now();
+    setTimeout(() => {
+      populateBrands(document.querySelector('.brand-select'));
+      showScreen('shoe-fit-screen');
+    }, 800);
+  }
+}
+
+/* ── Shoe DB ── */
+const SHOE_DB = {"Andrea Boldrini":["Apache 5","Apache 5 Plus","Apache Light","Apache Light Plus","Apache Talisman FCS","Lynx","Pantera AB","Puma","Puma Lace","Scorpio","Spider","T-Rex","Tiger","Tiger Evo"],"Black Diamond":["Aspect","Focus","Method","Method S","Momentum","Momentum Lace","Shadow","Shadow LV","Zone","Zone LV"],"Boreal":["Ace","Alpha","Ballet Gold","Beta","Dharma","Joker Lace","Joker Plus","Luna","Mutant","Ninja","Ninja Junior","Silex","Zephyr"],"Butora":["Acro Comp","Brava","Endeavor","Gomi","Komet","Sensa"],"Climb X":["Apex","Crush Lace","Crush Lace NLV","Kinder","Rave NLV","Rave Strap","Rave X Strap","Red Point","Red Point NLV","Rock-It NLV"],"EB":["Balboa","Black Opium 3.0","Django 3.0","Electron 3.0","Guardian 3.0","Jarvis Lace","Jarvis Velcro","Mojo 3.0","Nebula 3.0","Red","Strange"],"Evolv":["Ashima","Defy","Elektra","Elektra VTR","Kira","Kronos","Nighthawk","Oracle","Phantom","Phantom Pro","Phantom Pro LV","Rave","Royale","Shaman","Shaman 2S","Shaman LV","Shaman Pro","Shaman Pro LV","Titan","V6","V6 LV","Venga","Zenist","Zenist Pro","Zenist Pro LV"],"Five Ten":["Aleon","Anasazi Lace","Anasazi Pro","Anasazi VCS","Asym","Crawe","Grandstone","Hiangle","Hiangle Pro","Kirigami","Kirigami Kids","NIAD Lace","NIAD Moccasym","NIAD VCS","Wallmaster"],"La Sportiva":["Aragon","Aragon Woman","Cobra","Cobra 4:99","Cobra Eco","Finale","Finale Women's","Futura","GeckoGym","Genius","Gripit","Katana","Katana Lace","Katana Lace Women's","Katana Women's","Kubo","Kubo Woman","Mandala","Mantra","Mistral","Mistral Women's","Miura","Miura VS","Miura VS Women's","Miura Women's","Mythos","Mythos Eco","Mythos Eco Women's","Mythos Women's","Ondra Comp","Otaki","Otaki Women's","Python","Skwama","Skwama Lite","Skwama Vegan","Skwama Vegan Woman","Skwama Women's","Solution","Solution Comp","Solution Comp Woman","Solution Women's","Stickit","TC Extreme","TC Pro","Tarantula","Tarantula Boulder","Tarantula Boulder Women's","Tarantula Women's","Tarantulace","Tarantulace Women's","Theory","Theory Women's"],"Lowa":["Falco Lace","Falco VCR","Parrot VCR","Pirol","Red Eagle Lace","Rocket","Rocket Lace","Sparrow VCR","X Boulder"],"Mad Rock":["D2.ONE HV","D2.ONE LV","Drone 2 HV","Drone 2 LV","Drone CS HV","Drone CS LV","Mad Monkey 3","Phoenix","RedLine Strap","Remora HV","Remora LV","Remora Pro HV","Remora Pro LV","Rover","Shark 3 HV","Shark 3 LV","Talaria HV","Talaria LV","Villain"],"Millet":["Easy Up","Siurana","Siurana Evo","Siurana Evo W"],"Ocun":["Advancer LU","Advancer QC","Bullit","Diamond S","Fury","Havoc","Iris","Jett Crack","Jett LU","Jett QC","Jett S","Oxi QC","Ozone","Ozone HV","Pearl","Pearl LU","Rental","Ribbit","Sigma","Striker LU","Striker QC"],"Red Chili":["Charger","Circuit","Circuit Junior","Circuit LV","Clue","Fusion","Fusion LV","Magnet","Magnet Lace","Mystix","Pulpo","Puzzle","Sausalito","Sensor","Session 4","Session 4 Kids","Session Air","Spirit","Spirit LV","Ventic Air","Ventic Air Lace","Voltage 3","Voltage LV","Voltage Lace","Voltage X"],"Saltic":["Avax","Bongo","Eliot","Enigma Black EVO","Enigma Green EVO","Enigma White EVO","Fenix","Garnet","Givet","Guru EVO","Speed","Tajfun","Tanaka","Toxic"],"Scarpa":["Arpia V","Arpia V LV","Booster","Boostic","Boostic R","Chimera","Drago","Drago Kid","Drago LV","Drago XT","Force","Force V Kids","Force Women's","Furia Air","Furia S","Generator","Generator Mid","Generator V","Generator Women's","Instinct","Instinct S","Instinct SR","Instinct VS","Instinct VS Women's","Instinct VSR","Instinct VSR LV","Instinct Women's","Maestro","Maestro Alpine","Maestro Mid Eco","Maestro Women's","Mago","Origin","Origin VS","Origin VS Women's","Origin Women's","Quantix SF","Reflex VS","Reflex VS Women's","Vapor","Vapor LV","Vapor S","Vapor S Women's","Vapor V","Vapor V Women's","Vapor Women's","Veloce","Veloce L","Veloce L Women's","Veloce Women's","Velocity","Velocity Women's"],"Simond":["Edge Soft","Rock","Rock+","Vertika"],"So iLL":["Athletic Bouldering 1","Catch","Free Range Pro","Roam Rigid","Roam Soft","Start","Stay","Stay LV","Step","Street","Street LV","Torque","Torque LV"],"Tenaya":["Ara\u00ed","Iati","Indalo","Inti","Masai","Mastia","Mundaka","Oasi","Oasi LV","Ra","Ra Woman","Tanta","Tanta Laces","Tarifa","Tatanka"],"Tulson Tolf":["California","Grade Laces","Grade Velcro","IN","OUT","Qubit","Qubit Invernal","Step 1","Step 2","Trad Invernal","Trad Laces","Trad Velcro","Trad Xhard","Utah"],"Unparallel":["Engage Lace","Engage VCS","Engage VCS LV","Flagship","Flagship LV","Flagship Pro","Flagship Pro LV","Hold Up VCS","Leopard II","NewTro VCS","Newtro Lace","Orbit","Qubit","Qubit LV","Regulus","Regulus LV","Sirius","Sirius LV","Souped Up","TN Finity","TN Pro","TN Pro LV","UP Duel","UP LIFT","UP PIVOT","UP Virtu","UP Virtu LV","Up Beat","Up Float","Up Grade Engage","Up Lace","Up Lace LV","Up Mocc","Up Rise VCS","Up Rise VCS LV","Up-Rise Pro","Vega","Vim"],"Wild Climb":["Artemis","Bat","Dagara","Mangusta","Pantera (2023)","Pantera 2.0 (2023)","Pantera Laser","Pantera V","Pegaso"]};
+const MAX_SHOES = 5;
+let shoeCount = 1;
+
+function populateBrands(select) {
+  select.innerHTML = '<option value="">Brand...</option>';
+  Object.keys(SHOE_DB).sort().forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b; opt.textContent = b;
+    select.appendChild(opt);
+  });
+}
+
+/* Brand change -> populate models */
+document.addEventListener('change', e => {
+  if (!e.target.classList.contains('brand-select')) return;
+  const card = e.target.closest('.shoe-card');
+  const modelSel = card.querySelector('.model-select');
+  const brand = e.target.value;
+  modelSel.innerHTML = '<option value="">Model...</option>';
+  if (brand && SHOE_DB[brand]) {
+    modelSel.disabled = false;
+    SHOE_DB[brand].forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m; opt.textContent = m;
+      modelSel.appendChild(opt);
+    });
+  } else {
+    modelSel.disabled = true;
+  }
+});
+
+/* Fit rating toggle */
+document.addEventListener('click', e => {
+  if (!e.target.classList.contains('fit-option')) return;
+  const group = e.target.closest('.fit-options');
+  group.querySelectorAll('.fit-option').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+});
+
+/* Remove shoe */
+document.addEventListener('click', e => {
+  if (!e.target.classList.contains('remove-shoe')) return;
+  const card = e.target.closest('.shoe-card');
+  if (document.querySelectorAll('.shoe-card').length > 1) {
+    card.remove();
+    shoeCount--;
+    renumberShoes();
+    updateAddBtn();
+  }
+});
+
+function renumberShoes() {
+  document.querySelectorAll('.shoe-card').forEach((card, i) => {
+    card.querySelector('.shoe-number').textContent = i + 1;
+    card.dataset.index = i;
+  });
+}
+
+function updateAddBtn() {
+  const btn = document.getElementById('add-shoe-btn');
+  btn.disabled = shoeCount >= MAX_SHOES;
+  btn.textContent = shoeCount >= MAX_SHOES ? 'Maximum 5 shoes' : '+ Add another shoe';
+}
+
+/* Add shoe */
+document.getElementById('add-shoe-btn').addEventListener('click', () => {
+  if (shoeCount >= MAX_SHOES) return;
+  shoeCount++;
+  const entries = document.getElementById('shoe-entries');
+  const card = document.createElement('div');
+  card.className = 'shoe-card';
+  card.dataset.index = shoeCount - 1;
+  card.innerHTML = `
+    <button class="remove-shoe" title="Remove">&times;</button>
+    <div class="shoe-card-header">
+      <span class="shoe-number">${shoeCount}</span>
+      <div class="shoe-selects">
+        <select class="brand-select"><option value="">Brand...</option></select>
+        <select class="model-select" disabled><option value="">Model...</option></select>
+      </div>
+    </div>
+    <div class="fit-ratings">
+      <div class="fit-group">
+        <div class="fit-label">Toes</div>
+        <div class="fit-options" data-area="toes">
+          <button class="fit-option" data-val="squeezed">Squeezed</button>
+          <button class="fit-option" data-val="perfect">Perfect</button>
+          <button class="fit-option" data-val="roomy">Too roomy</button>
+        </div>
+      </div>
+      <div class="fit-group">
+        <div class="fit-label">Forefoot</div>
+        <div class="fit-options" data-area="forefoot">
+          <button class="fit-option" data-val="tight">Tight</button>
+          <button class="fit-option" data-val="perfect">Perfect</button>
+          <button class="fit-option" data-val="loose">Loose</button>
+        </div>
+      </div>
+      <div class="fit-group">
+        <div class="fit-label">Heel</div>
+        <div class="fit-options" data-area="heel">
+          <button class="fit-option" data-val="tight">Tight</button>
+          <button class="fit-option" data-val="perfect">Perfect</button>
+          <button class="fit-option" data-val="empty">Empty space</button>
+        </div>
+      </div>
+    </div>
+  `;
+  entries.appendChild(card);
+  populateBrands(card.querySelector('.brand-select'));
+  updateAddBtn();
+});
+
+/* Collect shoe fit data */
+function collectShoeFitData() {
+  const shoes = [];
+  document.querySelectorAll('.shoe-card').forEach(card => {
+    const brand = card.querySelector('.brand-select')?.value;
+    const model = card.querySelector('.model-select')?.value;
+    if (!brand || !model) return;
+    const fit = {};
+    card.querySelectorAll('.fit-options').forEach(group => {
+      const area = group.dataset.area;
+      const active = group.querySelector('.fit-option.active');
+      if (active) fit[area] = active.dataset.val;
+    });
+    shoes.push({ brand, model, fit });
+  });
+  return shoes;
+}
+
+/* Save shoe fit data to Supabase */
+async function saveShoeFitData(email) {
+  const shoes = collectShoeFitData();
+  if (shoes.length === 0 && !email) return;
+
+  const payload = {
+    scan_id: scanId,
+    shoes: shoes,
+    email: email || null,
+    created_at: new Date().toISOString()
+  };
+
+  try {
+    await fetch(`${SB_URL}/rest/v1/foot_scan_fits`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SB_KEY}`,
+        'apikey': SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {
+    console.error('Failed to save shoe fit data:', e);
+  }
+}
+
+/* Skip -> thank you */
+document.getElementById('skip-fit-btn').addEventListener('click', () => showScreen('thankyou-screen'));
+
+/* Continue -> thank you */
+document.getElementById('next-fit-btn').addEventListener('click', () => showScreen('thankyou-screen'));
+
+/* Done */
+document.getElementById('done-btn').addEventListener('click', async () => {
+  const email = document.getElementById('email-input').value.trim();
+  const btn = document.getElementById('done-btn');
+  const status = document.getElementById('done-status');
+  btn.disabled = true; btn.textContent = 'Saving...';
+
+  await saveShoeFitData(email);
+
+  status.textContent = 'All done - you can close this page.';
+  btn.textContent = 'Done';
+});
 
 function retakeAll() {
   soleDataUrl = null;
