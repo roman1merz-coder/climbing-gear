@@ -1,10 +1,10 @@
 /**
- * Sentry error monitoring — opt-in via environment variable.
+ * Sentry error monitoring - opt-in via environment variable.
  *
  * To activate:
  * 1. Create a free Sentry project at https://sentry.io
  * 2. Add VITE_SENTRY_DSN to your Vercel env vars
- * 3. Redeploy — errors will start flowing automatically
+ * 3. Redeploy - errors will start flowing automatically
  *
  * When no DSN is set, this module is a no-op (zero runtime cost).
  */

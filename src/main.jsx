@@ -39,13 +39,13 @@ import { initSentry, SentryErrorBoundary } from "./sentry.js";
 import { initPostHog, trackPageView, trackEvent, enableSessionReplay, setupAffiliateLinkTracking } from "./posthog.js";
 import { hasConsentFor } from "./CookieConsent.jsx";
 
-// Vercel Analytics — cookie-free, privacy-friendly page view tracking
+// Vercel Analytics - cookie-free, privacy-friendly page view tracking
 injectAnalytics();
 
-// Sentry error monitoring — activated when VITE_SENTRY_DSN env var is set
+// Sentry error monitoring - activated when VITE_SENTRY_DSN env var is set
 initSentry();
 
-// PostHog product analytics — cookieless mode, no consent needed for base tracking
+// PostHog product analytics - cookieless mode, no consent needed for base tracking
 initPostHog();
 setupAffiliateLinkTracking();
 // Enable session replays if user previously consented to analytics
@@ -71,7 +71,7 @@ async function supabaseSelect(table) {
     }));
 }
 
-// Seed data — Vite imports JSON natively.
+// Seed data - Vite imports JSON natively.
 import SEED from "./seed_data.json";
 import ROPE_SEED from "./rope_seed_data.json";
 import BELAY_SEED from "./belay_seed_data.json";
@@ -409,7 +409,7 @@ function Root() {
       })
       .catch(() => {});
 
-    // Fetch ropes from Supabase — merge with seed so seed-only ropes are kept
+    // Fetch ropes from Supabase - merge with seed so seed-only ropes are kept
     supabaseSelect("ropes")
       .then((data) => {
         if (data?.length) {
@@ -420,7 +420,7 @@ function Root() {
       })
       .catch(() => {});
 
-    // Fetch belay devices — merge with seed
+    // Fetch belay devices - merge with seed
     supabaseSelect("belay_devices")
       .then((data) => {
         if (data?.length) {
@@ -431,7 +431,7 @@ function Root() {
       })
       .catch(() => {});
 
-    // Fetch crashpads — merge with seed
+    // Fetch crashpads - merge with seed
     supabaseSelect("crashpads")
       .then((data) => {
         if (data?.length) {
@@ -442,7 +442,7 @@ function Root() {
       })
       .catch(() => {});
 
-    // Fetch quickdraws — merge with seed
+    // Fetch quickdraws - merge with seed
     supabaseSelect("quickdraws")
       .then((data) => {
         if (data?.length) {
@@ -495,7 +495,7 @@ function Root() {
               {/* Crashpad routes */}
               <Route path="/crashpads" element={<CrashpadApp crashpads={crashpads} src={crashpadSrc} />} />
               <Route path="/crashpad/:slug" element={<CrashpadDetail crashpads={crashpads} priceData={priceData} />} />
-              {/* Quickdraw routes — hidden from nav/landing until Roman reviews */}
+              {/* Quickdraw routes - hidden from nav/landing until Roman reviews */}
               <Route path="/quickdraws" element={<QuickdrawApp quickdraws={quickdraws} src={quickdrawSrc} />} />
               <Route path="/quickdraw/:slug" element={<QuickdrawDetail quickdraws={quickdraws} priceData={priceData} />} />
               <Route path="/compare-quickdraws" element={<CompareGeneric items={quickdraws} type="quickdraws" />} />

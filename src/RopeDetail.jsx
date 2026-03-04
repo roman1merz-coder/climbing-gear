@@ -147,7 +147,7 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
     </a>
   );
 
-  // No price data at all — just show Amazon link
+  // No price data at all - just show Amazon link
   if (!prices.length) return <div style={{ marginBottom: "24px" }}>{amazonLink}</div>;
 
   // Has length data → show length pills + filtered retailer table
@@ -269,7 +269,7 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
                     )}
                   </div>
 
-                  {/* Go to shop link (desktop only — on mobile the whole row is clickable) */}
+                  {/* Go to shop link (desktop only - on mobile the whole row is clickable) */}
                   {!isMobile && p.url && p.url !== "#" && (
                     <span style={{
                       display: "inline-flex", alignItems: "center", gap: "4px",
@@ -300,7 +300,7 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
     );
   }
 
-  // No length data — fall back to flat price list (original behavior)
+  // No length data - fall back to flat price list (original behavior)
   const bestFlat = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
   return (
     <div style={{ marginBottom: "24px" }}>
@@ -330,7 +330,7 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
               {p.inStock ? "In stock" : "Out of stock"}
             </span>
             <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === bestFlat ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-              {p.price ? `€${p.price.toFixed(2)}` : "—"}
+              {p.price ? `€${p.price.toFixed(2)}` : "-"}
             </span>
             {p.url && p.url !== "#" && (
               <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600 }}>{"\u2192"}</span>
@@ -343,7 +343,7 @@ function RopePriceBlock({ prices, rope, selectedLength, setSelectedLength, isMob
   );
 }
 
-// ─── Rope SVG (Detail — wider) ───────────────────────────────────
+// ─── Rope SVG (Detail - wider) ───────────────────────────────────
 function RopeSVGDetail({ color1, color2, diameter, ropeType }) {
   const w = 500, h = 80;
   const thickness = Math.max(4, diameter * 0.7);
@@ -384,10 +384,10 @@ function RopeSVGDetail({ color1, color2, diameter, ropeType }) {
 
 export default function RopeDetail({ ropes = [], priceData = {} }) {
   const { slug } = useParams();
-  // Static ropes are excluded from the frontend — ropes array already filtered in main.jsx
+  // Static ropes are excluded from the frontend - ropes array already filtered in main.jsx
   const rope = ropes.find((r) => r.slug === slug);
   usePageMeta(
-    rope ? `${rope.brand} ${rope.model} — Rope Specs & Prices` : null,
+    rope ? `${rope.brand} ${rope.model} - Rope Specs & Prices` : null,
     rope ? `${rope.brand} ${rope.model}: diameter, weight, falls rated, elongation, and retailer price comparison.` : null
   );
   useStructuredData(buildRopeSchema(rope, priceData));
@@ -447,7 +447,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
         }
         // Dry treatment match (5 pts)
         if (r.dry_treatment && r.dry_treatment === rope.dry_treatment) score += 5;
-        // Different brand bonus (10 pts — prioritize cross-brand discovery)
+        // Different brand bonus (10 pts - prioritize cross-brand discovery)
         if (r.brand !== rope.brand) score += 10;
         return { item: r, score };
       })
@@ -523,7 +523,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 {rope.description}
               </p>
 
-              {/* Price Comparison — Length Selector + Retailer Table */}
+              {/* Price Comparison - Length Selector + Retailer Table */}
               <RopePriceBlock
                 prices={priceData[rope.slug] || []}
                 rope={rope}
@@ -616,7 +616,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* What Climbers Say — hidden until content is improved
+            {/* What Climbers Say - hidden until content is improved
             {rope.customer_voices?.length > 0 && (
               <Section title="💬 What Climbers Say">
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
@@ -667,7 +667,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                 factors.push({
                   icon: "⏳",
                   name: "Price vs UVP",
-                  detail: "Coming soon — price data collection in progress"
+                  detail: "Coming soon - price data collection in progress"
                 });
               }
 
@@ -687,14 +687,14 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
               factors.push({
                 icon: "⏳",
                 name: "Expected Price Development",
-                detail: "Coming soon — data collection in progress"
+                detail: "Coming soon - data collection in progress"
               });
 
               // Factor 4: Price History
               factors.push({
                 icon: "📈",
                 name: "Price History",
-                detail: "Coming soon — historical data collection in progress"
+                detail: "Coming soon - historical data collection in progress"
               });
 
               return (
@@ -763,7 +763,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
         )}
       </div>
 
-      {/* Similar Ropes — scored by spec similarity, cross-brand */}
+      {/* Similar Ropes - scored by spec similarity, cross-brand */}
       {similar.length > 0 && (
         <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -833,7 +833,7 @@ export default function RopeDetail({ ropes = [], priceData = {} }) {
                           <span>{r.weight_per_meter_g}g/m</span>
                         </div>
                         <span style={{ fontSize: isMobile ? "12px" : "14px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>
-                          €{r.price_per_meter_eur_min ? (r.price_per_meter_eur_min * 70).toFixed(0) : "—"}
+                          €{r.price_per_meter_eur_min ? (r.price_per_meter_eur_min * 70).toFixed(0) : "-"}
                           <span style={{ fontSize: "9px", color: T.muted, fontWeight: 400 }}> (70m)</span>
                         </span>
                       </div>

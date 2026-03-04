@@ -714,7 +714,7 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
 
 // ─── Similar Products Card (with hero image) ───
 function SimilarCard({ shoe, onClick, similarity, compact }) {
-  // SimilarCard has no live prices — don't show discount from seed data
+  // SimilarCard has no live prices - don't show discount from seed data
   const discount = 0;
   const img = shoe.image_url || "/images/placeholder.svg";
   return (
@@ -762,7 +762,7 @@ function SimilarCard({ shoe, onClick, similarity, compact }) {
 }
 
 // ─── Similarity scoring: find shoes with closest specs across all brands ───
-// Stiffness is king — a soft shoe should never recommend a hard shoe.
+// Stiffness is king - a soft shoe should never recommend a hard shoe.
 // Shape (downturn+asymmetry) defines the character. Use cases & skill level refine further.
 function getSimilarShoes(targetShoe, allShoes, count = 6) {
   const STIFFNESS = ["none", "soft", "medium_soft", "medium", "medium_hard", "hard"];
@@ -781,7 +781,7 @@ function getSimilarShoes(targetShoe, allShoes, count = 6) {
       let score = 0;
       const maxScore = 100; // normalize to percentage
 
-      // ── Midsole stiffness (20 pts) — most critical: soft shoe ≠ stiff shoe ──
+      // ── Midsole stiffness (20 pts) - most critical: soft shoe ≠ stiff shoe ──
       if (s.midsole_stiffness && targetShoe.midsole_stiffness) {
         const sIdx = STIFFNESS.indexOf(s.midsole_stiffness);
         if (tIdx >= 0 && sIdx >= 0) {
@@ -789,11 +789,11 @@ function getSimilarShoes(targetShoe, allShoes, count = 6) {
           if (diff === 0) score += 20;
           else if (diff === 1) score += 12;
           else if (diff === 2) score += 4;
-          // diff >= 3: 0 pts — totally different feel
+          // diff >= 3: 0 pts - totally different feel
         }
       }
 
-      // ── Downturn match (20 pts) — defines shoe character ──
+      // ── Downturn match (20 pts) - defines shoe character ──
       if (s.downturn && targetShoe.downturn) {
         const diff = Math.abs(DOWNTURN.indexOf(s.downturn) - tDIdx);
         if (diff === 0) score += 20;
@@ -808,7 +808,7 @@ function getSimilarShoes(targetShoe, allShoes, count = 6) {
         else if (diff === 1) score += 7;
       }
 
-      // ── Use case overlap (15 pts) — sport/trad/boulder/gym etc. ──
+      // ── Use case overlap (15 pts) - sport/trad/boulder/gym etc. ──
       const sUse = ensureArray(s.use_cases);
       const useOverlap = sUse.filter(u => tUse.includes(u)).length;
       const useTotal = Math.max(tUse.length, 1);
@@ -837,7 +837,7 @@ function getSimilarShoes(targetShoe, allShoes, count = 6) {
         else if (diff <= 0.7) score += 2;
       }
 
-      // ── Different brand bonus (5 pts) — cross-brand discovery ──
+      // ── Different brand bonus (5 pts) - cross-brand discovery ──
       if (s.brand !== targetShoe.brand) score += 5;
 
       return { shoe: s, score: Math.round((score / maxScore) * 100) };
@@ -865,7 +865,7 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
   // Factor 1: Price vs MSRP (30%)
   let ps = discount >= 0.30 ? 1.0 : discount >= 0.20 ? 0.7 : discount >= 0.10 ? 0.3 : discount >= 0.05 ? 0.0 : -0.5;
   factors.push({ name: "Price vs MSRP", score: ps, weight: 0.30,
-    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (\u20AC${shoe.price_uvp_eur}) — best price \u20AC${effectivePrice}` : `At or near full MSRP (\u20AC${shoe.price_uvp_eur})`,
+    detail: discount > 0.01 ? `${Math.round(discount * 100)}% below MSRP (\u20AC${shoe.price_uvp_eur}) - best price \u20AC${effectivePrice}` : `At or near full MSRP (\u20AC${shoe.price_uvp_eur})`,
     icon: ps >= 0.5 ? "\uD83D\uDFE2" : ps >= 0 ? "\uD83D\uDFE1" : "\uD83D\uDD34",
   });
   totalScore += ps * 0.30; totalWeight += 0.30;
@@ -893,8 +893,8 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
     detail: "Coming soon \u2014 data collection in progress",
     icon: "\u23F3",
   });
-  // Don't add to totalScore/totalWeight — this factor is placeholder
-    const seasonScore = 0; // placeholder — prevents ReferenceError in forecast text
+  // Don't add to totalScore/totalWeight - this factor is placeholder
+    const seasonScore = 0; // placeholder - prevents ReferenceError in forecast text
 
   // Factor 4: Model lifecycle (15%)
   const modelAge = shoe.year_released ? currentYear - shoe.year_released : null;
@@ -910,12 +910,12 @@ export function getPriceIntelligence(shoe, prices, history, liveBestPrice) {
     totalScore += as * 0.15; totalWeight += 0.15;
   }
 
-  // Factor 5: Price Trend (20% — coming soon, history data not yet reliable)
+  // Factor 5: Price Trend (20% - coming soon, history data not yet reliable)
   factors.push({ name: "Price Trend", score: 0, weight: 0.20,
     detail: "Coming soon \u2014 historical data collection in progress",
     icon: "\uD83D\uDCCA",
   });
-  // Don't add to totalScore/totalWeight — this factor is placeholder
+  // Don't add to totalScore/totalWeight - this factor is placeholder
 
   const ns = totalWeight > 0 ? totalScore / totalWeight : 0;
   let signal, label, color, bgColor, icon;
@@ -960,7 +960,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
   const { slug } = useParams();
   const shoe = shoes.find(s => s.slug === slug);
   usePageMeta(
-    shoe ? `${shoe.brand} ${shoe.model} — Specs, Scores & Prices` : null,
+    shoe ? `${shoe.brand} ${shoe.model} - Specs, Scores & Prices` : null,
     shoe ? `${shoe.brand} ${shoe.model} climbing shoe: detailed specs, 10-axis performance profile, and price comparison.` : null
   );
   useStructuredData(buildShoeSchema(shoe, priceData));
@@ -1040,7 +1040,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               <ImageGallery shoe={shoe} compact={isMobile} />
             </div>
 
-            {/* Right: Hero Info — flex column to push radar down */}
+            {/* Right: Hero Info - flex column to push radar down */}
             <div style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
               {/* Brand + Gender + Use Case tags on ONE line */}
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
@@ -1073,7 +1073,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
               {/* Flex spacer pushes radar to bottom, aligned with image thumbnails */}
               {!isMobile && <div style={{ flex: 1 }} />}
 
-              {/* Single 6-axis Performance Radar — hidden on mobile (shown in overview tab) */}
+              {/* Single 6-axis Performance Radar - hidden on mobile (shown in overview tab) */}
               {!isMobile && <PerformanceRadar shoe={shoe} allShoes={shoes} />}
             </div>
           </div>
@@ -1131,7 +1131,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {isMobile && <PerformanceRadar shoe={shoe} allShoes={shoes} />}
             <PerformanceDNA shoe={shoe} compact={isMobile} />
 
-            {/* Full-width: Customer Voices — hidden until content is improved
+            {/* Full-width: Customer Voices - hidden until content is improved
             <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" compact={isMobile} />
             <CustomerVoices shoe={shoe} stacked={isMobile} />
             */}
@@ -1291,7 +1291,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         )}
       </div>
 
-      {/* Similar shoes — scored by spec similarity, cross-brand */}
+      {/* Similar shoes - scored by spec similarity, cross-brand */}
       <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit across brands" compact={isMobile} />

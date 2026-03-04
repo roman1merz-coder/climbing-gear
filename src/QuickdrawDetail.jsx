@@ -59,7 +59,7 @@ function TypeBadge({ type, size = "sm" }) {
   );
 }
 
-// ═══ QUICKDRAW SVG (Detail — larger) ═══
+// ═══ QUICKDRAW SVG (Detail - larger) ═══
 
 function QuickdrawSVGDetail({ quickdraw, compact }) {
   const c1 = quickdraw.color_1 || "#4a4a4a";
@@ -161,7 +161,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
   const { slug } = useParams();
   const d = quickdraws.find((q) => q.slug === slug);
   usePageMeta(
-    d ? `${d.brand} ${d.model} — Quickdraw Specs` : null,
+    d ? `${d.brand} ${d.model} - Quickdraw Specs` : null,
     d ? `${d.brand} ${d.model}: weight, lengths, carabiner specs, and price comparison.` : null
   );
   const isMobile = useIsMobile();
@@ -346,7 +346,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
                             {p.delivery && <span style={{ fontSize: "9px", color: T.muted, display: "block" }}>{p.delivery}</span>}
                           </div>
                           <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-                            {p.price ? `€${p.price.toFixed(2)}` : "—"}
+                            {p.price ? `€${p.price.toFixed(2)}` : "-"}
                           </span>
                           {p.url && p.url !== "#" && (
                             <span style={{ fontSize: "10px", color: T.accent, fontWeight: 600 }}>→ Shop</span>
@@ -561,7 +561,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
         )}
       </div>
 
-      {/* Similar Quickdraws — scored by spec similarity, cross-brand */}
+      {/* Similar Quickdraws - scored by spec similarity, cross-brand */}
       {similar.length > 0 && (
         <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>

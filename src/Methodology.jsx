@@ -18,26 +18,26 @@ const S = {
 const CATEGORY_TEXT = {
   shoes: {
     title: "How we score shoes",
-    body: "Our performance scores are calculated from shoe specifications — downturn, rubber type & thickness, midsole, closure, and more — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
-    caveat: "Every foot is different, every rock is different, and every climber has preferences that no formula can capture. Treat these as directional — a way to narrow down your options before you try them on.",
+    body: "Our performance scores are calculated from shoe specifications - downturn, rubber type & thickness, midsole, closure, and more - using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Every foot is different, every rock is different, and every climber has preferences that no formula can capture. Treat these as directional - a way to narrow down your options before you try them on.",
     neutral: "We have no brand affiliations or sponsorships. Every shoe is scored by the same formulas using the same data.",
   },
   crashpads: {
     title: "How we score crashpads",
-    body: "Our performance scores are calculated from pad specifications — area, thickness, foam layers, weight, and carry system — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
-    caveat: "Landing zones, terrain, and personal preference all play a role that no formula can capture. Treat these scores as directional — a way to narrow down your options before you try them in the field.",
+    body: "Our performance scores are calculated from pad specifications - area, thickness, foam layers, weight, and carry system - using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Landing zones, terrain, and personal preference all play a role that no formula can capture. Treat these scores as directional - a way to narrow down your options before you try them in the field.",
     neutral: "We have no brand affiliations or sponsorships. Every pad is scored by the same formulas using the same data.",
   },
   belay: {
     title: "How we score belay devices",
-    body: "Our performance scores are calculated from device specifications — weight, braking mechanism, rope compatibility, and more — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
-    caveat: "Personal belay style, rope preferences, and intended use all matter in ways no formula can capture. Treat these scores as directional — a way to narrow down your options.",
+    body: "Our performance scores are calculated from device specifications - weight, braking mechanism, rope compatibility, and more - using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Personal belay style, rope preferences, and intended use all matter in ways no formula can capture. Treat these scores as directional - a way to narrow down your options.",
     neutral: "We have no brand affiliations or sponsorships. Every device is scored by the same formulas using the same data.",
   },
   ropes: {
     title: "How we score ropes",
-    body: "Our performance scores are calculated from rope specifications — diameter, weight, UIAA falls, sheath percentage, elongation, and more — using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
-    caveat: "Handling feel, durability, and personal preference all play a role that no formula can fully capture. Treat these scores as directional — a way to narrow down your options.",
+    body: "Our performance scores are calculated from rope specifications - diameter, weight, UIAA falls, sheath percentage, elongation, and more - using algorithms we've developed and refined with input from experienced climbers. They're designed to give you a useful starting point, not the final word.",
+    caveat: "Handling feel, durability, and personal preference all play a role that no formula can fully capture. Treat these scores as directional - a way to narrow down your options.",
     neutral: "We have no brand affiliations or sponsorships. Every rope is scored by the same formulas using the same data.",
   },
 };
@@ -125,13 +125,13 @@ export default function Methodology() {
             How we score shoes
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.8, color: T.muted, maxWidth: "640px" }}>
-            Our performance scores are calculated from shoe specifications — downturn, rubber type &amp; thickness,
-            midsole, closure, and more — using algorithms we've developed and refined with input from experienced
+            Our performance scores are calculated from shoe specifications - downturn, rubber type &amp; thickness,
+            midsole, closure, and more - using algorithms we've developed and refined with input from experienced
             climbers. They're designed to give you a useful starting point, not the final word.
           </p>
           <p style={{ fontSize: "15px", lineHeight: 1.8, color: T.muted, maxWidth: "640px", marginTop: "12px" }}>
             Every foot is different, every rock is different, and every climber has preferences that no formula
-            can capture. Treat these as directional — a way to narrow down your options before you try them on.
+            can capture. Treat these as directional - a way to narrow down your options before you try them on.
           </p>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "8px", marginTop: "20px",
@@ -141,7 +141,7 @@ export default function Methodology() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            Brand-neutral — no affiliations, no sponsorships. Same formulas, same data.
+            Brand-neutral - no affiliations, no sponsorships. Same formulas, same data.
           </div>
         </div>
 
@@ -153,7 +153,7 @@ export default function Methodology() {
         <AttrCard name="Edging" icon="🗡️">
           How well a shoe stands on small footholds. Driven by shape (downturn + asymmetry) combined
           with construction stiffness and hard rubber. A flat shoe won't score high here no matter how
-          stiff it is — shape acts as a gatekeeper.
+          stiff it is - shape acts as a gatekeeper.
         </AttrCard>
 
         <AttrCard name="Smearing" icon="🧈">
@@ -192,7 +192,7 @@ export default function Methodology() {
         </h2>
 
         <AttrCard name="Downturn / Asymmetry / Weight" icon="📐">
-          These are closer to raw specs, with small secondary factors blended in for nuance — for example,
+          These are closer to raw specs, with small secondary factors blended in for nuance - for example,
           a stiffer shoe with the same stated downturn will feel slightly more aggressive in practice.
         </AttrCard>
 
@@ -202,7 +202,7 @@ export default function Methodology() {
           background: T.surface, border: `1px solid ${T.border}`, textAlign: "center",
         }}>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.7, marginBottom: "16px" }}>
-            Think a score looks off? We'd love to hear your take — especially from climbers who've
+            Think a score looks off? We'd love to hear your take - especially from climbers who've
             actually worn the shoes.
           </p>
           <Link to="/" onClick={(e) => {

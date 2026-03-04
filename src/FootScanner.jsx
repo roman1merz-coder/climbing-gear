@@ -7,7 +7,7 @@ import usePageMeta from "./usePageMeta.js";
 import FootVizPanel from "./FootVizPanel.jsx";
 
 // ═══════════════════════════════════════════════════════════════
-// FOOT SCANNER — AI foot shape analysis for climbing shoe fitting
+// FOOT SCANNER - AI foot shape analysis for climbing shoe fitting
 //
 // Flow:
 //   Step 0: Welcome
@@ -99,7 +99,7 @@ const PHOTO_STEPS = [
 ];
 
 // ═══════════════════════════════════════════════════════════════
-// RESULT SLIDER — continuous spectrum with marker
+// RESULT SLIDER - continuous spectrum with marker
 // ═══════════════════════════════════════════════════════════════
 function ResultSlider({ label, value, min, max, avgValue, avgLabel, lowLabel, highLabel, lowThresh, highThresh, description, color }) {
   const pct = ((value - min) / (max - min)) * 100;
@@ -185,7 +185,7 @@ function ResultSlider({ label, value, min, max, avgValue, avgLabel, lowLabel, hi
 // ═══════════════════════════════════════════════════════════════
 export default function FootScanner() {
   usePageMeta({
-    title: "Foot Scanner — AI Foot Shape Analysis | climbing-gear.com",
+    title: "Foot Scanner - AI Foot Shape Analysis | climbing-gear.com",
     description: "Scan your foot with 3 photos and discover your exact foot shape for the perfect climbing shoe fit.",
   });
 
@@ -244,7 +244,7 @@ export default function FootScanner() {
         }),
       });
     } catch {
-      // Silent — storage failure should never block the user experience
+      // Silent - storage failure should never block the user experience
     }
   }, []);
 
@@ -329,7 +329,7 @@ export default function FootScanner() {
   );
 
   // ═══════════════════════════════════════════════════════════
-  // STEP 0 — Welcome
+  // STEP 0 - Welcome
   // ═══════════════════════════════════════════════════════════
   if (step === 0) return (
     <Wrap narrow>
@@ -344,7 +344,7 @@ export default function FootScanner() {
           maxWidth: "420px", margin: "0 auto 28px",
         }}>
           Take 3 quick photos and we'll map your toe shape, volume, width, heel, and arch
-          proportions — then match you to climbing shoes that fit.
+          proportions - then match you to climbing shoes that fit.
         </p>
 
         <div style={{
@@ -353,7 +353,7 @@ export default function FootScanner() {
         }}>
           <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "14px" }}>What you'll need</div>
           {[
-            "Bare feet — no socks",
+            "Bare feet - no socks",
             "A flat surface with good lighting",
             "Your street shoe size (EU)",
             "~60 seconds of your time",
@@ -374,7 +374,7 @@ export default function FootScanner() {
   );
 
   // ═══════════════════════════════════════════════════════════
-  // STEP 1 — Shoe Size
+  // STEP 1 - Shoe Size
   // ═══════════════════════════════════════════════════════════
   if (step === 1) return (
     <Wrap narrow>
@@ -420,7 +420,7 @@ export default function FootScanner() {
   );
 
   // ═══════════════════════════════════════════════════════════
-  // STEP 2 — Photo Capture (one at a time, fullscreen instruction)
+  // STEP 2 - Photo Capture (one at a time, fullscreen instruction)
   // ═══════════════════════════════════════════════════════════
   if (step === 2) {
     const currentPhoto = PHOTO_STEPS[photoStep];
@@ -429,7 +429,7 @@ export default function FootScanner() {
 
     return (
       <Wrap>
-        <Badge text="Step 2 of 3 — Photos" />
+        <Badge text="Step 2 of 3 - Photos" />
 
         {/* Progress dots */}
         <div style={{ display: "flex", gap: "8px", marginBottom: "20px" }}>
@@ -449,7 +449,7 @@ export default function FootScanner() {
           }}>{error}</div>
         )}
 
-        {/* Current photo card — instructions ABOVE upload area */}
+        {/* Current photo card - instructions ABOVE upload area */}
         {currentPhoto && (
           <div style={{
             background: T.card, border: `1.5px solid ${hasCurrentPhoto ? T.green : T.border}`,
@@ -458,7 +458,7 @@ export default function FootScanner() {
             {/* Instructions (always visible, above the photo) */}
             <div style={{ padding: "14px 16px", borderBottom: `1px solid ${T.border}` }}>
               <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "10px" }}>
-                {currentPhoto.title} — {currentPhoto.headline}
+                {currentPhoto.title} - {currentPhoto.headline}
               </div>
               {currentPhoto.instructions.map((inst, i) => (
                 <div key={i} style={{
@@ -581,7 +581,7 @@ export default function FootScanner() {
   }
 
   // ═══════════════════════════════════════════════════════════
-  // STEP 3 — Analyzing
+  // STEP 3 - Analyzing
   // ═══════════════════════════════════════════════════════════
   if (step === 3) return (
     <Wrap narrow>
@@ -632,12 +632,12 @@ export default function FootScanner() {
   );
 
   // ═══════════════════════════════════════════════════════════
-  // STEP 4 — Results with sliders
+  // STEP 4 - Results with sliders
   // ═══════════════════════════════════════════════════════════
   if (step === 4 && result) {
     const toeInfo = {
       egyptian: { label: "Egyptian", desc: "Big toe longest, smooth taper. Fits most asymmetric climbing shoes well." },
-      greek: { label: "Greek (Morton's)", desc: "Second toe longer. Needs extra toe box room — avoid heavily downturned shoes that crush the 2nd toe." },
+      greek: { label: "Greek (Morton's)", desc: "Second toe longer. Needs extra toe box room - avoid heavily downturned shoes that crush the 2nd toe." },
       roman: { label: "Roman (Square)", desc: "First 2–3 toes roughly equal. Benefits from wider, more symmetric toe boxes." },
     };
     const toe = toeInfo[result.toe_shape] || toeInfo.egyptian;
@@ -653,10 +653,10 @@ export default function FootScanner() {
           <p style={{ fontSize: "14px", color: T.muted }}>Based on your photos and EU {shoeSize}</p>
         </div>
 
-        {/* Foot visualization — SVG diagrams with measurement overlays */}
+        {/* Foot visualization - SVG diagrams with measurement overlays */}
         <FootVizPanel result={result} isMobile={isMobile} />
 
-        {/* Toe shape — special card (categorical, not slider) */}
+        {/* Toe shape - special card (categorical, not slider) */}
         <div style={{
           background: T.card, border: `1.5px solid ${T.border}`, borderRadius: T.radius,
           padding: "16px 18px", marginBottom: "12px",
@@ -681,7 +681,7 @@ export default function FootScanner() {
           <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.4 }}>{toe.desc}</div>
           {result.toe_confidence < 0.7 && (
             <div style={{ fontSize: "11px", color: T.yellow, marginTop: "4px" }}>
-              Confidence is moderate — a clearer top-down photo would improve accuracy.
+              Confidence is moderate - a clearer top-down photo would improve accuracy.
             </div>
           )}
         </div>
@@ -695,10 +695,10 @@ export default function FootScanner() {
           lowThresh={0.362} highThresh={0.404}
           description={
             result.width_ratio < 0.362
-              ? "Slimmer forefoot — European-lasted shoes tend to fit well. Look for models described as 'narrow.'"
+              ? "Slimmer forefoot - European-lasted shoes tend to fit well. Look for models described as 'narrow.'"
               : result.width_ratio > 0.404
-              ? "Wider forefoot — prioritize shoes with generous toe boxes. Lace closures give extra adjustability."
-              : "Average width — most shoes should fit well. You have the widest selection available."
+              ? "Wider forefoot - prioritize shoes with generous toe boxes. Lace closures give extra adjustability."
+              : "Average width - most shoes should fit well. You have the widest selection available."
           }
         />
 
@@ -710,10 +710,10 @@ export default function FootScanner() {
           lowThresh={0.217} highThresh={0.253}
           description={
             result.instep_ratio < 0.217
-              ? "Flat instep profile — look for women's or LV (low-volume) models for the best fit. Standard shoes may gap above the forefoot."
+              ? "Flat instep profile - look for women's or LV (low-volume) models for the best fit. Standard shoes may gap above the forefoot."
               : result.instep_ratio > 0.253
-              ? "Pronounced instep — avoid snug LV models. Shoes with generous forefoot depth will be more comfortable."
-              : "Standard volume — most unisex shoes will accommodate your instep well."
+              ? "Pronounced instep - avoid snug LV models. Shoes with generous forefoot depth will be more comfortable."
+              : "Standard volume - most unisex shoes will accommodate your instep well."
           }
         />
 
@@ -725,10 +725,10 @@ export default function FootScanner() {
           lowThresh={0.614} highThresh={0.696}
           description={
             result.heel_ratio < 0.614
-              ? "Narrow heel relative to forefoot — classic 'fin shape.' You may experience heel slip in standard shoes. Prioritize shoes with snug heel cups."
+              ? "Narrow heel relative to forefoot - classic 'fin shape.' You may experience heel slip in standard shoes. Prioritize shoes with snug heel cups."
               : result.heel_ratio > 0.696
-              ? "Broad heel — lace-up closures give the most adjustability. Avoid shoes with very narrow heel cups."
-              : "Proportional heel — standard heel cups should work well across most models."
+              ? "Broad heel - lace-up closures give the most adjustability. Avoid shoes with very narrow heel cups."
+              : "Proportional heel - standard heel cups should work well across most models."
           }
         />
 
@@ -742,8 +742,8 @@ export default function FootScanner() {
             result.arch_ratio < 0.735
               ? "Your toes are shorter than average. Shoes with a standard or rearward flex point will align better with your natural bend."
               : result.arch_ratio > 0.785
-              ? "Your toes are longer than average. Look for shoes with a forward flex point — the shoe should bend where your foot naturally bends."
-              : "Average proportion — most shoes will flex in the right spot for your foot."
+              ? "Your toes are longer than average. Look for shoes with a forward flex point - the shoe should bend where your foot naturally bends."
+              : "Average proportion - most shoes will flex in the right spot for your foot."
           }
         />
 
@@ -771,7 +771,7 @@ export default function FootScanner() {
             background: result.confidence === "high" ? T.green : result.confidence === "medium" ? T.yellow : T.red,
           }} />
           Analysis confidence: {result.confidence}
-          {result.confidence !== "high" && " — better lighting or angle may improve accuracy"}
+          {result.confidence !== "high" && " - better lighting or angle may improve accuracy"}
         </div>
 
         {/* CTAs */}
@@ -801,14 +801,14 @@ export default function FootScanner() {
           borderTop: `1px solid ${T.border}`, paddingTop: "14px",
         }}>
           AI-powered estimate based on photos. For the most accurate fit, try shoes on in person.
-          Foot shape is one factor — climbing style and preference matter too.
+          Foot shape is one factor - climbing style and preference matter too.
         </div>
       </Wrap>
     );
   }
 
   // ═══════════════════════════════════════════════════════════
-  // STEP 5 — Foot not recognized / low confidence → retry
+  // STEP 5 - Foot not recognized / low confidence → retry
   // ═══════════════════════════════════════════════════════════
   if (step === 5) return (
     <Wrap narrow>
@@ -842,7 +842,7 @@ export default function FootScanner() {
           {[
             "Stand barefoot on a flat, contrasting surface",
             "Make sure the entire foot is visible in each photo",
-            "Use good, even lighting — avoid harsh shadows",
+            "Use good, even lighting - avoid harsh shadows",
             "Follow the angle instructions for each shot carefully",
           ].map((t, i) => (
             <div key={i} style={{ display: "flex", gap: "10px", marginBottom: "7px", fontSize: "13px", color: T.muted }}>

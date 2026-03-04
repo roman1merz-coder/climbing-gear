@@ -7,7 +7,7 @@ import ROPES from "./rope_seed_data.json";
 import PADS from "./crashpad_seed_data.json";
 
 /* ═══════════════════════════════════════════════════════════════
-   INSIGHTS HUB — index page linking to individual articles.
+   INSIGHTS HUB - index page linking to individual articles.
    Each article lives at its own SEO-optimized URL.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -15,7 +15,7 @@ const ARTICLES = [
   {
     to: "/insights/climbing-shoe-guide",
     tag: "Shoes", tagColor: T.accent,
-    title: `How We Score ${SHOES.length} Climbing Shoes — and How to Pick Yours`,
+    title: `How We Score ${SHOES.length} Climbing Shoes - and How to Pick Yours`,
     desc: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance and what foot shape means for fit.",
     stats: [`${SHOES.length} shoes`, "7 performance axes", "6 shoe zones"],
   },
@@ -38,7 +38,7 @@ const ARTICLES = [
 export default function Insights() {
   usePageMeta(
     "Gear Insights",
-    `Data-driven insights from comparing ${SHOES.length}+ climbing shoes, ${PADS.length}+ crashpads, and ${ROPES.length}+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions.`
+    `Data-driven insights from comparing ${SHOES.length}+ climbing shoes, ${PADS.length}+ crashpads, and ${ROPES.length}+ ropes. No affiliate bias, no sponsored takes - just numbers and honest conclusions.`
   );
   const isMobile = useIsMobile();
 
@@ -53,7 +53,7 @@ export default function Insights() {
             What the Data Actually Says<br />About Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "520px", margin: "0 auto" }}>
-            We crunched specs across {SHOES.length} shoes, {PADS.length}+ crashpads and {ROPES.length}+ ropes. No affiliate bias, no sponsored takes — just numbers and honest conclusions.
+            We crunched specs across {SHOES.length} shoes, {PADS.length}+ crashpads and {ROPES.length}+ ropes. No affiliate bias, no sponsored takes - just numbers and honest conclusions.
           </p>
           <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap", marginTop: "16px" }}>
             <span style={{ fontSize: "11px", color: T.accent, background: T.accentSoft, padding: "4px 12px", borderRadius: "6px", fontWeight: 600 }}>{SHOES.length} Shoes</span>

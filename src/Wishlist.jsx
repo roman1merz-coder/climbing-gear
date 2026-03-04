@@ -59,7 +59,7 @@ export default function Wishlist() {
           <div>
             <h1 style={S.h1}>{"\u2764\uFE0F"} Wishlist</h1>
             <p style={S.subtitle}>
-              {items.length} saved item{items.length !== 1 ? "s" : ""} — stored in your browser
+              {items.length} saved item{items.length !== 1 ? "s" : ""} - stored in your browser
             </p>
           </div>
           {items.length > 0 && (

@@ -464,7 +464,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
           }}>{s}%</span>
         )}
       </div>
-      {/* Content — v3c layout */}
+      {/* Content - v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>
         {/* Row 1: brand + price */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
@@ -497,7 +497,7 @@ function CompactCrashpadCard({ result, onClick, priceData = {} }) {
           <span>{d.weight_kg}kg</span>
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("crashpad", d.slug); }}
@@ -619,7 +619,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
           </span>
         </div>
 
-        {/* Feature tags — max 4 visible, prioritized */}
+        {/* Feature tags - max 4 visible, prioritized */}
         {(() => {
           const allTags = [
             { label: fmt(d.fold_style), variant: "default" },
@@ -689,7 +689,7 @@ function CrashpadCard({ result, onClick, priceData = {} }) {
           </div>
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("crashpad", d.slug); }}
@@ -778,7 +778,7 @@ function loadSession() {
 }
 
 export default function CrashpadApp({ crashpads = [], src = "local", priceData = {} }) {
-  usePageMeta(`Crashpads — Compare ${crashpads.length}+ Models`, "Compare bouldering crashpads. Filter by size, weight, foam system, and price across all major brands.");
+  usePageMeta(`Crashpads - Compare ${crashpads.length}+ Models`, "Compare bouldering crashpads. Filter by size, weight, foam system, and price across all major brands.");
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
@@ -1143,7 +1143,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar — desktop only, hidden in chart view */}
+        {/* Sidebar - desktop only, hidden in chart view */}
         {!isMobile && view !== "chart" && (
           <aside style={{
             width: "320px", minWidth: "320px",
@@ -1227,7 +1227,7 @@ export default function CrashpadApp({ crashpads = [], src = "local", priceData =
               ].map((x) => (
                 <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
                   <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: x.c }} />
-                  <span style={{ fontSize: "11px", color: "#645b4f" }}>{x.l} — {x.d}</span>
+                  <span style={{ fontSize: "11px", color: "#645b4f" }}>{x.l} - {x.d}</span>
                 </div>
               ))}
             </div>

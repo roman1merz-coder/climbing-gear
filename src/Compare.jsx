@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════════════════
-// COMPARE PAGE — Side-by-side shoe comparison table
+// COMPARE PAGE - Side-by-side shoe comparison table
 // ══════════════════════════════════════════════════════════
 //
 // Route: /compare?shoes=scarpa-drago,la-sportiva-solution

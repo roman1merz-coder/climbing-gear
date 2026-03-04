@@ -13,7 +13,7 @@ function save(list) {
 }
 
 /**
- * Wishlist hook — stores [{type, slug}] in localStorage.
+ * Wishlist hook - stores [{type, slug}] in localStorage.
  * type: "shoe" | "rope" | "belay"
  */
 export default function useWishlist() {

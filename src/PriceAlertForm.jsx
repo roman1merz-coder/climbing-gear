@@ -11,7 +11,7 @@ import { T } from "./tokens.js";
  * Props:
  *   gearType: "shoe" | "rope" | "belay" | "crashpad"
  *   slug: string
- *   currentPrice: number | null — current best price for this item
+ *   currentPrice: number | null - current best price for this item
  *   isMobile: boolean
  */
 export default function PriceAlertForm({ gearType, slug, currentPrice, isMobile }) {
@@ -54,7 +54,7 @@ export default function PriceAlertForm({ gearType, slug, currentPrice, isMobile 
             Price alert triggered!
           </div>
           <div style={{ fontSize: "11px", color: T.muted }}>
-            Now {"\u20AC"}{currentPrice} — your target was {"\u20AC"}{existing.targetPrice}
+            Now {"\u20AC"}{currentPrice} - your target was {"\u20AC"}{existing.targetPrice}
           </div>
         </div>
         <button
@@ -93,7 +93,7 @@ export default function PriceAlertForm({ gearType, slug, currentPrice, isMobile 
           </div>
           <div style={{ fontSize: "10px", color: T.muted }}>
             {currentPrice
-              ? `Currently \u20AC${currentPrice} — \u20AC${(currentPrice - existing.targetPrice).toFixed(0)} above target`
+              ? `Currently \u20AC${currentPrice} - \u20AC${(currentPrice - existing.targetPrice).toFixed(0)} above target`
               : "We\u2019ll check on your next visit"
             }
           </div>

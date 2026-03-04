@@ -370,7 +370,7 @@ export default function Landing() {
 
       {/* About section */}
       <section id="about" style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "48px 16px" : "80px 40px" }}>
-        {/* (Stats strip removed — consolidated into hero stats bar) */}
+        {/* (Stats strip removed - consolidated into hero stats bar) */}
 
         {/* Who + mission */}
         <div style={{ maxWidth: "820px", margin: "0 auto 32px", background: T.card, border: `1px solid ${T.border}`, borderRadius: "14px", padding: isMobile ? "24px 20px" : "28px 32px", textAlign: "center" }}>

@@ -1,4 +1,4 @@
-// ═══ Design Tokens — Earth palette (light mode) ═══
+// ═══ Design Tokens - Earth palette (light mode) ═══
 // Derived from nature-s-landing :root theme: warm parchment, sand, forest green accents
 export const T = {
   bg: "#f5f0e8", surface: "#ffffff", card: "#ffffff", border: "#d5cdbf",
@@ -10,7 +10,7 @@ export const T = {
   yellow: "#b8860b", yellowSoft: "rgba(184,134,11,0.08)",
   blue: "#4a7fb5", blueSoft: "rgba(74,127,181,0.08)",
   purple: "#7c5cbf", purpleSoft: "rgba(124,92,191,0.08)",
-  // Nav — light cream, blends with page
+  // Nav - light cream, blends with page
   navBg: "rgba(245,240,232,0.92)", navText: "#2c3227", navMuted: "#7a7462",
   font: "'DM Sans', 'Instrument Sans', system-ui, sans-serif",
   display: "'Playfair Display', Georgia, serif",

@@ -6,7 +6,7 @@
 const MID_MAP = { full: 0.9, three_quarter: 0.75, half: 0.55, forefoot: 0.40, toe: 0.20, none: 0.1, partial: 0.45 };
 
 // ═══ STRUCTURAL STIFFNESS ═══
-// Derived entirely from physical construction — no subjective `feel` input.
+// Derived entirely from physical construction - no subjective `feel` input.
 // Midsole 40% + Rand 25% + Rubber thickness 15% + Closure 10% + Upper 10%
 const RAND_MAP = { aggressive: 0.95, tensioned: 0.85, standard: 0.55, split: 0.35, relaxed: 0.15 };
 const STIFF_CLOSURE_MAP = { lace: 0.80, velcro: 0.50, slipper: 0.25 };
@@ -71,7 +71,7 @@ const EDGING_OVERRIDES = {
   "la-sportiva-ondra-comp": 0.15,  // edges surprisingly well despite soft feel
 };
 
-/** Edging: geometric mean of SHAPE × RIGIDITY — need both for top scores.
+/** Edging: geometric mean of SHAPE × RIGIDITY - need both for top scores.
  *  Rigidity is structural stiffness (midsole/rand/rubber/closure/upper).
  *  Hard rubber improves edge precision. Lace closure locks the foot in place. */
 export function computeEdging(shoe) {
@@ -83,16 +83,16 @@ export function computeEdging(shoe) {
   const edgeDown = ({ flat: 0.15, slight: 0.42, moderate: 0.70, aggressive: 0.85 })[shoe.downturn] || 0.5;
   const asymE = ({ none: 0.15, slight: 0.45, moderate: 0.65, strong: 0.90 })[shoe.asymmetry] || 0.5;
   const edgeShape = edgeDown * 0.90 + asymE * 0.10;
-  // Geometric mean: shape (45%) × rigidity (55%) — balanced so soft aggressive
+  // Geometric mean: shape (45%) × rigidity (55%) - balanced so soft aggressive
   // shoes (Theory, Futura, etc.) aren't over-penalised for low stiffness.
-  // Closure removed as standalone — already embedded in rigidity via computeStiffness.
+  // Closure removed as standalone - already embedded in rigidity via computeStiffness.
   const edgeCore = Math.pow(edgeShape, 0.45) * Math.pow(rigidity, 0.55);
   const override = EDGING_OVERRIDES[shoe.slug] || 0;
   return Math.min(1, edgeCore * 0.88 + hardR * 0.12 + override);
 }
 
 /** Pocket ability: aggressive downturn + asymmetry + toe patch + closure + stiffness.
- *  Hard rubber removed — pockets don't require hard rubber (soft rubber grips
+ *  Hard rubber removed - pockets don't require hard rubber (soft rubber grips
  *  inside pockets just as well). Stiffness reduced to differentiate from edging. */
 export function computePockets(shoe) {
   const stiff = computeStiffness(shoe);
@@ -105,7 +105,7 @@ export function computePockets(shoe) {
 }
 
 /** Hooking ability: heel rubber + toe rubber + flexibility + closure
- *  Downturn removed: helps heel hooks but hurts toe hooks — net effect is neutral. */
+ *  Downturn removed: helps heel hooks but hurts toe hooks - net effect is neutral. */
 export function computeHooks(shoe) {
   const flex = 1 - computeStiffness(shoe);
   const tp = ({ none: 0.1, medium: 0.5, full: 0.9 })[shoe.toe_patch] || 0.5;
@@ -117,7 +117,7 @@ export function computeHooks(shoe) {
 
 /** Sensitivity: how much rock feedback reaches your foot.
  *  Thin rubber matters more when rubber is soft (transmits texture).
- *  Structural stiffness DAMPENS sensitivity — a stiff platform isolates
+ *  Structural stiffness DAMPENS sensitivity - a stiff platform isolates
  *  the foot from the rock even if rubber is thin and soft. */
 export function computeSensitivity(shoe) {
   const softR = _hardnessVal(shoe);
@@ -148,7 +148,7 @@ export function computeCrack(shoe) {
   return Math.min(1, stiff * 0.25 + flatDown * 0.25 + tp * 0.15 + ankle * 0.10 + heelR * 0.10 + laceCrack * 0.10 + thickR * 0.05);
 }
 
-/** Support: structural rigidity — stiffness + hard rubber + thick rubber + full midsole + lace */
+/** Support: structural rigidity - stiffness + hard rubber + thick rubber + full midsole + lace */
 export function computeSupport(shoe) {
   const softR = _hardnessVal(shoe);
   const hardR = 1 - softR;
@@ -161,9 +161,9 @@ export function computeSupport(shoe) {
 }
 
 /** Overall comfort score 0–1.
- *  Moderate downturn (0.55) — gentle curve is still wearable.
- *  Velcro raised (0.70) — convenience matters for comfort.
- *  Weight and upper material intentionally excluded — they don't meaningfully
+ *  Moderate downturn (0.55) - gentle curve is still wearable.
+ *  Velcro raised (0.70) - convenience matters for comfort.
+ *  Weight and upper material intentionally excluded - they don't meaningfully
  *  predict comfort in climbing shoes (modern synthetics can be very comfortable,
  *  and shoe weight has near-zero impact on on-foot comfort). */
 export function getComfortScore(shoe) {
@@ -206,7 +206,7 @@ let _cachedShoes = null;
 let _cachedMap = null;
 
 /** Build a slug→percentiles lookup from the full shoe array.
- *  Results are cached — only recomputes when the shoe array reference changes. */
+ *  Results are cached - only recomputes when the shoe array reference changes. */
 export function buildPercentileMap(shoes) {
   if (shoes === _cachedShoes && _cachedMap) return _cachedMap;
   _cachedShoes = shoes;

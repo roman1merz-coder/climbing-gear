@@ -80,7 +80,7 @@ function Section({ title, children }) {
   );
 }
 
-// ─── Crashpad SVG (Detail — wider) ───────────────────────────────
+// ─── Crashpad SVG (Detail - wider) ───────────────────────────────
 function CrashpadSVGDetail({ pad }) {
   const w = 500, h = 200;
   const lenRatio = Math.min(pad.length_open_cm || 110, 180) / 180;
@@ -183,7 +183,7 @@ function EfficiencyRadar({ pad, allPads }) {
       kgPerLiter: pad.weight_kg / (vol || 1),
     };
 
-    // Normalize (inverted — lower is better for all 4)
+    // Normalize (inverted - lower is better for all 4)
     const norm = (val, min, max) => {
       if (max === min) return 50;
       return 100 - ((val - min) / (max - min)) * 100;
@@ -356,14 +356,14 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
   const { slug } = useParams();
   const pad = crashpads.find((p) => p.slug === slug);
   usePageMeta(
-    pad ? `${pad.brand} ${pad.model} — Crashpad Specs` : null,
+    pad ? `${pad.brand} ${pad.model} - Crashpad Specs` : null,
     pad ? `${pad.brand} ${pad.model}: dimensions, weight, foam type, and price comparison.` : null
   );
   useStructuredData(pad ? {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${pad.brand} ${pad.model}`,
-    description: `${pad.brand} ${pad.model} crashpad — ${pad.weight_kg ? pad.weight_kg + "kg" : ""}, ${pad.open_length_cm && pad.open_width_cm ? pad.open_length_cm + "×" + pad.open_width_cm + "cm" : ""}. Compare specs and prices.`,
+    description: `${pad.brand} ${pad.model} crashpad - ${pad.weight_kg ? pad.weight_kg + "kg" : ""}, ${pad.open_length_cm && pad.open_width_cm ? pad.open_length_cm + "×" + pad.open_width_cm + "cm" : ""}. Compare specs and prices.`,
     brand: { "@type": "Brand", name: pad.brand },
     category: "Crashpads",
     url: `https://www.climbing-gear.com/crashpad/${pad.slug}`,
@@ -592,7 +592,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* What Climbers Say — hidden until content is improved
+            {/* What Climbers Say - hidden until content is improved
             {pad.customer_voices?.length > 0 && (
               <Section title="What Climbers Say">
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
@@ -743,7 +743,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
 
       </div>
 
-      {/* Similar Crashpads — scored by spec similarity, cross-brand */}
+      {/* Similar Crashpads - scored by spec similarity, cross-brand */}
       {similar.length > 0 && (
         <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>

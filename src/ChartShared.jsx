@@ -157,12 +157,12 @@ export const toggleHidden = (setter, key) => setter(prev => {
 });
 
 /* ═══════════════════════════════════════════════════════
-   Canvas drawing helpers — shared across all 4 charts
+   Canvas drawing helpers - shared across all 4 charts
    ═══════════════════════════════════════════════════════ */
 
 const FONT = "'Instrument Sans', system-ui";
 
-/* ─── roundRect path (no beginPath — caller decides fill/stroke) ─── */
+/* ─── roundRect path (no beginPath - caller decides fill/stroke) ─── */
 export function rrect(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
@@ -209,7 +209,7 @@ export function drawGrid(ctx, P, W, H, xMin, xMax, yMin, xStep, yStep, ySy) {
     ctx.lineTo(P.l + (x - xMin) / (xMax - xMin) * (W - P.l - P.r), H - P.b); ctx.stroke();
   }
   ctx.setLineDash([]);
-  // Horizontal grid — emphasise baseline (yMin)
+  // Horizontal grid - emphasise baseline (yMin)
   const yLines = [];
   for (let y = yMin; y <= ySy.yMax + 0.001; y += yStep) yLines.push(y);
   yLines.forEach(y => {

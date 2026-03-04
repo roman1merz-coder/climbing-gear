@@ -2,11 +2,11 @@ import { usePA } from "./PriceAlertContext.jsx";
 import { T } from "./tokens.js";
 
 /**
- * NavBar bell indicator — shows count of triggered price alerts.
+ * NavBar bell indicator - shows count of triggered price alerts.
  * Only visible when at least one alert has been triggered (price <= target).
  *
  * Props:
- *   priceData: { [slug]: [{price, shop, ...}] } — live price data from Supabase
+ *   priceData: { [slug]: [{price, shop, ...}] } - live price data from Supabase
  *   isMobile: boolean
  *   onClick: () => void
  */

@@ -13,7 +13,7 @@ function save(list) {
 }
 
 /**
- * Price alert hook — stores alerts in localStorage.
+ * Price alert hook - stores alerts in localStorage.
  * Each alert: { gearType, slug, targetPrice, createdAt }
  * gearType: "shoe" | "rope" | "belay"
  */

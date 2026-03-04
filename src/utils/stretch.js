@@ -1,7 +1,7 @@
 import { computeStiffness } from "./comfort.js";
 
 /**
- * Stretch expectation algorithm — derives expected stretch from shoe properties.
+ * Stretch expectation algorithm - derives expected stretch from shoe properties.
  *
  * Factors (in order of influence):
  *   1. Upper material (dominant): leather stretches a lot, synthetic almost none

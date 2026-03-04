@@ -1,5 +1,5 @@
 /**
- * PostHog Analytics — climbing-gear.com
+ * PostHog Analytics - climbing-gear.com
  *
  * Runs in cookieless mode by default (no GDPR consent needed for basic analytics).
  * Session replays are opt-in via the cookie consent banner.
@@ -24,13 +24,13 @@ export function initPostHog() {
     posthog.init(POSTHOG_KEY, {
       api_host: POSTHOG_HOST,
       ui_host: POSTHOG_UI_HOST,
-      // Cookieless mode — no localStorage/cookies, fully GDPR-compliant
+      // Cookieless mode - no localStorage/cookies, fully GDPR-compliant
       persistence: "memory",
-      // SPA — we handle pageviews manually on route changes
+      // SPA - we handle pageviews manually on route changes
       capture_pageview: false,
       // Autocapture clicks, form submits, etc.
       autocapture: true,
-      // Session replay OFF by default — enabled when user consents
+      // Session replay OFF by default - enabled when user consents
       disable_session_recording: true,
       respect_dnt: false,
       // Don't send data in dev
@@ -41,7 +41,7 @@ export function initPostHog() {
       },
     });
     initialized = true;
-    console.log("[PostHog] initialized — routing through", POSTHOG_HOST);
+    console.log("[PostHog] initialized - routing through", POSTHOG_HOST);
   } catch (err) {
     console.error("[PostHog] init failed:", err);
   }

@@ -5,16 +5,16 @@ import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
 
 // ═══════════════════════════════════════════════════════════════
-// GUIDED SHOE FINDER — 7-step wizard with trait-based scoring
+// GUIDED SHOE FINDER - 7-step wizard with trait-based scoring
 // Step 1: Gender/audience (adult/men/women/kid)
-// Step 2: Discipline (boulder/sport/trad) — multi-select
+// Step 2: Discipline (boulder/sport/trad) - multi-select
 // Step 3: Environment (outdoor/indoor/both) + rock type if outdoor
 // Step 4: Experience level
 // Step 5: Preference (comfort/balanced/performance)
 // Step 6: Foot shape (toe form, volume, width, heel)
 // Step 7: Weight (stiffness bias)
 //
-// SCORING V2 — Each input defines target traits, then shoes are
+// SCORING V2 - Each input defines target traits, then shoes are
 // scored against those targets. Total: 100 pts.
 //   Discipline use-case match:  20 pts (hard filter)
 //   Closure fit:                10 pts (discipline → closure)
@@ -34,16 +34,16 @@ const DISCIPLINES = [
 ];
 
 const ENVIRONMENTS = [
-  { id: "outdoor", icon: "🏔️", title: "Mostly Outdoors",  desc: "Real rock — we'll ask what type to dial in rubber." },
+  { id: "outdoor", icon: "🏔️", title: "Mostly Outdoors",  desc: "Real rock - we'll ask what type to dial in rubber." },
   { id: "indoor",  icon: "🏢", title: "Mostly Indoors",   desc: "Gym walls, plastic holds. Favors soft rubber, easy on/off." },
   { id: "both",    icon: "🔄", title: "Both Equally",     desc: "Split between gym & crag. We'll pick versatile all-rounders." },
 ];
 
 const ROCK_TYPES = [
   { id: "",          icon: "🤷", title: "Not sure / mixed",   desc: "We'll target medium-hardness rubber that works on most rock." },
-  { id: "granite",   icon: "🪨", title: "Granite",            desc: "Coarse, abrasive — needs hard, durable rubber." },
-  { id: "limestone", icon: "🏔️", title: "Limestone",          desc: "Sharp pockets & tufas — medium rubber for precision." },
-  { id: "sandstone", icon: "🏜️", title: "Sandstone",          desc: "Soft, friction-dependent — soft sticky rubber is key." },
+  { id: "granite",   icon: "🪨", title: "Granite",            desc: "Coarse, abrasive - needs hard, durable rubber." },
+  { id: "limestone", icon: "🏔️", title: "Limestone",          desc: "Sharp pockets & tufas - medium rubber for precision." },
+  { id: "sandstone", icon: "🏜️", title: "Sandstone",          desc: "Soft, friction-dependent - soft sticky rubber is key." },
 ];
 
 const LEVELS = [
@@ -67,7 +67,7 @@ const TOE_FORMS = [
 
 const VOLUMES = [
   { id: "",         title: "Not sure / Skip", desc: "We'll show all forefoot volumes." },
-  { id: "standard", title: "Standard",         desc: "Average forefoot depth — widest selection." },
+  { id: "standard", title: "Standard",         desc: "Average forefoot depth - widest selection." },
   { id: "low",      title: "Low",              desc: "Flat forefoot, low instep. Women's & LV models." },
   { id: "high",     title: "High",             desc: "Deep forefoot, high arch." },
 ];
@@ -87,10 +87,10 @@ const HEEL_VOLUMES = [
 ];
 
 const GENDERS = [
-  { id: "adult",  icon: "👟", title: "Adult (any)",  desc: "Show all adult climbing shoes — men's, women's, and unisex models." },
+  { id: "adult",  icon: "👟", title: "Adult (any)",  desc: "Show all adult climbing shoes - men's, women's, and unisex models." },
   { id: "men",    icon: "🧔", title: "Men's",        desc: "Men's and unisex models. Typically higher volume, wider forefoot." },
   { id: "women",  icon: "👩", title: "Women's",      desc: "Women's and unisex models. Typically lower volume, narrower fit." },
-  { id: "kid",    icon: "🧒", title: "Kids",         desc: "Shoes designed for children — smaller sizes, softer construction." },
+  { id: "kid",    icon: "🧒", title: "Kids",         desc: "Shoes designed for children - smaller sizes, softer construction." },
 ];
 
 // ─── Target Trait Computation ──────────────────────────────────
@@ -122,7 +122,7 @@ const ASYM_ORDER = ["none", "slight", "moderate", "strong"];         // DB value
 // sum 0 → zero, 1 → low, 2 → mid, 3 → high, 4 → ultra
 const TIER_NAMES = ["zero", "low", "mid", "high", "ultra"];
 
-// Fractional index into DB scale (0-3) — used for scoring distance
+// Fractional index into DB scale (0-3) - used for scoring distance
 const TIER_DOWNTURN_IDX  = [0, 0.75, 1.5, 2.25, 3]; // zero→flat(0), low→0.75, mid→slight-moderate, high→2.25, ultra→aggressive(3)
 const TIER_ASYMMETRY_IDX = [0, 0.75, 1.5, 2.25, 3]; // zero→none(0), low→0.75, mid→slight-moderate, high→2.25, ultra→strong(3)
 
@@ -155,7 +155,7 @@ function computeTargetAsymmetry(level, preference) {
   return combinedTier(level, preference);
 }
 
-// Fractional index for scoring — maps tier to 0-2 scale
+// Fractional index for scoring - maps tier to 0-2 scale
 function downturnTargetIdx(level, preference) {
   const sum = (LEVEL_NUM[level] ?? 1) + (PREF_NUM[preference] ?? 1);
   return TIER_DOWNTURN_IDX[Math.min(sum, 4)];
@@ -209,7 +209,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   downturnTierOvr, asymmetryTierOvr, closureOvr, midsoleOvr, rubberOvr, envOvr }) {
   let score = 0;
 
-  // ── 1. Discipline use-case match (20 pts) — HARD FILTER ──
+  // ── 1. Discipline use-case match (20 pts) - HARD FILTER ──
   const useCases = parseArray(shoe.use_cases);
   const disciplineAliases = {
     boulder: ["boulder", "bouldering"],
@@ -228,7 +228,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
     score += 10;
   }
 
-  // ── 2. Closure fit (10 pts) — discipline → preferred closure ──
+  // ── 2. Closure fit (10 pts) - discipline → preferred closure ──
   const targetClosures = closureOvr || computeTargetClosures(disciplines);
   const shoeClosure = (shoe.closure || "").toLowerCase();
   if (targetClosures.includes(shoeClosure)) {
@@ -249,7 +249,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
     else if (!bestRock.length) score += 5;
     else score += 3;
   } else if (effEnv === "outdoor") {
-    // Outdoor: remove indoor-specific shoes (soft filter — lower score, not hard exclude)
+    // Outdoor: remove indoor-specific shoes (soft filter - lower score, not hard exclude)
     const isIndoorOnly = bestRock.length > 0 && bestRock.every(r => r.includes("indoor"));
     if (isIndoorOnly) {
       score += 1; // heavily penalised but not excluded
@@ -268,7 +268,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
       else score += 4;
     }
   } else {
-    // "both" — versatile shoes (avoid extremes)
+    // "both" - versatile shoes (avoid extremes)
     const hasIndoor = bestRock.some(r => r.includes("indoor"));
     const hasOutdoor = bestRock.some(r => !r.includes("indoor"));
     if (hasIndoor && hasOutdoor) score += 10;
@@ -277,7 +277,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
     else score += 5;
   }
 
-  // ── 4. Downturn fit (15 pts) — fractional 5-tier system ──
+  // ── 4. Downturn fit (15 pts) - fractional 5-tier system ──
   const dtTarget = downturnTierOvr != null
     ? TIER_DOWNTURN_IDX[TIER_NAMES.indexOf(downturnTierOvr)] ?? downturnTargetIdx(level, preference)
     : downturnTargetIdx(level, preference);
@@ -293,7 +293,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
     score += 6;
   }
 
-  // ── 5. Asymmetry fit (10 pts) — fractional 5-tier system ──
+  // ── 5. Asymmetry fit (10 pts) - fractional 5-tier system ──
   const aTarget = asymmetryTierOvr != null
     ? TIER_ASYMMETRY_IDX[TIER_NAMES.indexOf(asymmetryTierOvr)] ?? asymmetryTargetIdx(level, preference)
     : asymmetryTargetIdx(level, preference);
@@ -309,7 +309,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
     score += 4;
   }
 
-  // ── 6. Midsole / stiffness fit (15 pts) — discipline + weight ──
+  // ── 6. Midsole / stiffness fit (15 pts) - discipline + weight ──
   const targetMidsole = midsoleOvr != null ? midsoleOvr : computeTargetMidsole(disciplines, weightKg);
   const shoeMidsole = MIDSOLE_NAMES[shoe.midsole?.toLowerCase()] ?? 1;
   const midsoleDist = Math.abs(targetMidsole - shoeMidsole);
@@ -317,7 +317,7 @@ function scoreShoe(shoe, { disciplines, environment, rockType, level, preference
   else if (midsoleDist <= 1) score += 7;
   else score += 2;
 
-  // ── 7. Rubber thickness fit (10 pts) — weight + discipline ──
+  // ── 7. Rubber thickness fit (10 pts) - weight + discipline ──
   const targetRubber = rubberOvr != null ? rubberOvr : computeTargetRubberThickness(disciplines, weightKg);
   const shoeRubber = shoe.rubber_thickness_mm;
   if (shoeRubber) {
@@ -464,7 +464,7 @@ export default function ShoeFinder({ shoes = [] }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   usePageMeta(
-    "Climbing Shoe Finder — Find Your Perfect Shoe",
+    "Climbing Shoe Finder - Find Your Perfect Shoe",
     "Answer 7 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data."
   );
 
@@ -583,7 +583,7 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // Compact pill selector — used for width, heel, volume
+  // Compact pill selector - used for width, heel, volume
   const PillSelect = ({ label, options, value, onChange, explain }) => (
     <div style={{ marginBottom: "20px" }}>
       <div style={{ fontSize: "13px", fontWeight: 600, color: T.text, marginBottom: "8px" }}>{label}</div>
@@ -682,7 +682,7 @@ export default function ShoeFinder({ shoes = [] }) {
   // STEP RENDERERS
   // ═══════════════════════════════════════════════════════════
 
-  // STEP 0 — Gender / Who is this for?
+  // STEP 0 - Gender / Who is this for?
   const renderGenderStep = () => (
     <div>
       <StepNumber n={1} />
@@ -708,7 +708,7 @@ export default function ShoeFinder({ shoes = [] }) {
       }}>
         <span style={{ fontSize: "14px", flexShrink: 0, marginTop: "1px" }}>💡</span>
         <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.5 }}>
-          We believe climbing shoes should fit your <strong style={{ color: T.text, fontWeight: 600 }}>foot shape and weight</strong>, not your sex — there
+          We believe climbing shoes should fit your <strong style={{ color: T.text, fontWeight: 600 }}>foot shape and weight</strong>, not your sex - there
           are men with narrow, low-volume feet and women with wide, high-volume feet.
           If you don't mind the colorway, choose <strong style={{ color: T.text, fontWeight: 600 }}>Adult (any)</strong> for the widest selection.
         </div>
@@ -717,7 +717,7 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 1 — Discipline (multi-select)
+  // STEP 1 - Discipline (multi-select)
   const renderStep0 = () => (
     <div>
       <StepNumber n={2} />
@@ -725,7 +725,7 @@ export default function ShoeFinder({ shoes = [] }) {
         What do you climb?
       </h2>
       <p style={{ fontSize: "13px", color: T.muted, marginBottom: "12px", lineHeight: 1.5 }}>
-        Select all that apply — we'll find shoes that cover your mix.
+        Select all that apply - we'll find shoes that cover your mix.
       </p>
       <span style={{
         display: "inline-block", fontSize: "11px", color: T.blue,
@@ -753,7 +753,7 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 2 — Environment + Rock Type sub-question
+  // STEP 2 - Environment + Rock Type sub-question
   const renderStep1 = () => (
     <div>
       <StepNumber n={3} />
@@ -774,7 +774,7 @@ export default function ShoeFinder({ shoes = [] }) {
         ))}
       </div>
 
-      {/* Rock type sub-question — only shown when outdoor */}
+      {/* Rock type sub-question - only shown when outdoor */}
       {environment === "outdoor" && (
         <div style={{ marginTop: "24px" }}>
           <div style={{ fontSize: "14px", fontWeight: 700, color: T.text, marginBottom: "6px" }}>
@@ -796,13 +796,13 @@ export default function ShoeFinder({ shoes = [] }) {
         <strong style={{ color: T.text, fontWeight: 600 }}>Outdoors</strong> removes indoor-specific shoes
         {!disciplines.includes("boulder") && " and favors harder rubber for sport/trad"}.{" "}
         <strong style={{ color: T.text, fontWeight: 600 }}>Indoors</strong> favors soft rubber and easy on/off.{" "}
-        <strong style={{ color: T.text, fontWeight: 600 }}>Both</strong> avoids extremes — allrounder territory.
+        <strong style={{ color: T.text, fontWeight: 600 }}>Both</strong> avoids extremes - allrounder territory.
       </Tip>
       <NavButtons />
     </div>
   );
 
-  // STEP 3 — Experience Level
+  // STEP 3 - Experience Level
   const renderStep2 = () => (
     <div>
       <StepNumber n={4} />
@@ -819,7 +819,7 @@ export default function ShoeFinder({ shoes = [] }) {
         ))}
       </div>
 
-      {/* Combined downturn preview — 5 tiers */}
+      {/* Combined downturn preview - 5 tiers */}
       {(() => {
         const tier = computeTargetDownturn(level, preference);
         const tierIdx = TIER_NAMES.indexOf(tier);
@@ -872,7 +872,7 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 4 — Preference (3 cards)
+  // STEP 4 - Preference (3 cards)
   const renderStep3 = () => {
     const dt = computeTargetDownturn(level, preference);
     const asym = computeTargetAsymmetry(level, preference);
@@ -934,17 +934,17 @@ export default function ShoeFinder({ shoes = [] }) {
           <strong style={{ color: T.text, fontWeight: 600 }}>{level.charAt(0).toUpperCase() + level.slice(1)} + {preference}</strong> →{" "}
           {TIER_DOWNTURN_LABEL[dt]} downturn, {TIER_ASYMMETRY_LABEL[asym]} asymmetry.
           {dt === "zero" && " Flat, symmetric shoes maximize comfort for long sessions."}
-          {dt === "slight" && " Minimal curve — comfort-first with a hint of precision."}
+          {dt === "slight" && " Minimal curve - comfort-first with a hint of precision."}
           {dt === "moderate" && " Enough curve for precision without the pain of an aggressive shoe."}
           {dt === "high" && " Significant curve and toe power for hard climbing."}
-          {dt === "ultra" && " Maximum downturn and asymmetry — pure performance on steep terrain."}
+          {dt === "ultra" && " Maximum downturn and asymmetry - pure performance on steep terrain."}
         </Tip>
         <NavButtons />
       </div>
     );
   };
 
-  // STEP 5 — Foot Shape (toe form, volume, width, heel)
+  // STEP 5 - Foot Shape (toe form, volume, width, heel)
   const renderStep4 = () => (
     <div>
       <StepNumber n={6} />
@@ -952,10 +952,10 @@ export default function ShoeFinder({ shoes = [] }) {
         Tell us about your feet
       </h2>
       <p style={{ fontSize: "13px", color: T.muted, marginBottom: "24px", lineHeight: 1.5 }}>
-        Skip any you're unsure about — we'll just cast a wider net.
+        Skip any you're unsure about - we'll just cast a wider net.
       </p>
 
-      {/* Toe shape — cards with images */}
+      {/* Toe shape - cards with images */}
       <div style={{ marginBottom: "24px" }}>
         <div style={{ fontSize: "13px", fontWeight: 600, color: T.text, marginBottom: "8px" }}>Toe shape</div>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap: "10px" }}>
@@ -966,15 +966,15 @@ export default function ShoeFinder({ shoes = [] }) {
         </div>
       </div>
 
-      {/* Forefoot Volume — pills */}
+      {/* Forefoot Volume - pills */}
       <PillSelect label="Forefoot volume" options={VOLUMES} value={forefootVolume} onChange={setForefootVolume}
         explain={<>How deep is the space above your forefoot? <strong style={{ color: T.text }}>Low</strong> = flat instep (women's/LV models). <strong style={{ color: T.text }}>High</strong> = deep arch.</>} />
 
-      {/* Forefoot Width — pills */}
+      {/* Forefoot Width - pills */}
       <PillSelect label="Forefoot width" options={WIDTHS} value={width} onChange={setWidth}
         explain={<>Toes get squeezed? Try <strong style={{ color: T.text }}>Wide</strong>. Sloppy side-to-side? Try <strong style={{ color: T.text }}>Narrow</strong>.</>} />
 
-      {/* Heel Volume — pills */}
+      {/* Heel Volume - pills */}
       <PillSelect label="Heel volume" options={HEEL_VOLUMES} value={heelVolume} onChange={setHeelVolume}
         explain={<>Heel slips out? Try <strong style={{ color: T.text }}>Narrow</strong>. Feels pinched? Try <strong style={{ color: T.text }}>Wide</strong>.</>} />
 
@@ -986,7 +986,7 @@ export default function ShoeFinder({ shoes = [] }) {
     </div>
   );
 
-  // STEP 6 — Weight
+  // STEP 6 - Weight
   const renderStep5 = () => {
     const zone = weightKg < 60 ? "light" : weightKg > 85 ? "heavy" : "medium";
 
@@ -1050,7 +1050,7 @@ export default function ShoeFinder({ shoes = [] }) {
         </div>
 
         <Tip>
-          <strong style={{ color: T.text, fontWeight: 600 }}>Weight shifts the stiffness dial</strong> — it doesn't override your
+          <strong style={{ color: T.text, fontWeight: 600 }}>Weight shifts the stiffness dial</strong> - it doesn't override your
           other preferences. A 90 kg trad climber needs a very stiff shoe; a 55 kg boulderer can go super soft.
         </Tip>
         <NavButtons nextLabel="Show results →" />
@@ -1108,7 +1108,7 @@ export default function ShoeFinder({ shoes = [] }) {
         id: "shape",
         value: dtAsymLabel,
         reason: `${level} level + ${preference} preference`,
-        hint: "More downturn and asymmetry means better precision on small holds and steep terrain — but less comfort for longer sessions.",
+        hint: "More downturn and asymmetry means better precision on small holds and steep terrain - but less comfort for longer sessions.",
         editor: () => (
           <div>
             <div style={{ fontSize: "11px", color: T.muted, marginBottom: "2px" }}>Downturn</div>
@@ -1158,7 +1158,7 @@ export default function ShoeFinder({ shoes = [] }) {
         id: "env",
         value: effectiveEnv === "outdoor" && rockType
           ? `Outdoor · ${cap(rockType)} → ${rockType === "granite" ? "hard" : rockType === "sandstone" ? "soft" : "medium"} rubber`
-          : effectiveEnv === "indoor" ? "Indoor — soft rubber"
+          : effectiveEnv === "indoor" ? "Indoor - soft rubber"
           : effectiveEnv === "outdoor" ? "Outdoor"
           : "Indoor & outdoor",
         reason: effectiveEnv === "outdoor" && rockType
@@ -1205,7 +1205,7 @@ export default function ShoeFinder({ shoes = [] }) {
             </div>
           </div>
 
-          {/* Trait rows — two-line format with inline edit */}
+          {/* Trait rows - two-line format with inline edit */}
           <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
             {traitRows.map(t => {
               const isEditing = editingTrait === t.id;
@@ -1252,7 +1252,7 @@ export default function ShoeFinder({ shoes = [] }) {
           <span style={{ fontSize: "13px", color: T.muted, fontFamily: T.mono }}>{allResults.length} results</span>
         </div>
 
-        {/* Brand filter chips — multi-select */}
+        {/* Brand filter chips - multi-select */}
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "10px" }}>
           <FilterChip label="All brands" active={brandFilter.length === 0} onClick={() => setBrandFilter([])} />
           {topBrands.map(([brand, count]) => (
@@ -1267,7 +1267,7 @@ export default function ShoeFinder({ shoes = [] }) {
           )}
         </div>
 
-        {/* Closure filter removed — users can adjust closure via inline edit above */}
+        {/* Closure filter removed - users can adjust closure via inline edit above */}
 
         {/* Result cards */}
         <div style={{ display: "grid", gap: "10px" }}>
@@ -1402,7 +1402,7 @@ export default function ShoeFinder({ shoes = [] }) {
           letterSpacing: "-0.5px", marginBottom: "8px",
         }}>Find Your Climbing Shoe</h1>
         <p style={{ color: T.muted, fontSize: "15px", maxWidth: "520px", margin: "0 auto" }}>
-          7 questions, {shoes.length} shoes, 0 opinions. Tell us how you climb — we'll match you with data.
+          7 questions, {shoes.length} shoes, 0 opinions. Tell us how you climb - we'll match you with data.
         </p>
       </div>
 

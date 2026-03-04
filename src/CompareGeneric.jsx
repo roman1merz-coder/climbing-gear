@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════════════════
-// GENERIC COMPARE PAGE — Side-by-side comparison for any gear type
+// GENERIC COMPARE PAGE - Side-by-side comparison for any gear type
 // ══════════════════════════════════════════════════════════
 
 import React from "react";
@@ -7,9 +7,9 @@ import { Link, useSearchParams } from "react-router-dom";
 import { T } from "./tokens.js";
 import { fmt } from "./utils/format.js";
 
-const fmtPrice = (v) => v ? `€${Number(v) % 1 === 0 ? Number(v) : Number(v).toFixed(2)}` : "—";
+const fmtPrice = (v) => v ? `€${Number(v) % 1 === 0 ? Number(v) : Number(v).toFixed(2)}` : "-";
 const fmtPct = (price, uvp) => {
-  if (!uvp || !price || price >= uvp) return "—";
+  if (!uvp || !price || price >= uvp) return "-";
   return `-${Math.round(((uvp - price) / uvp) * 100)}%`;
 };
 
@@ -20,16 +20,16 @@ const ROPE_SECTIONS = [
     title: "SPECS",
     rows: [
       { label: "Type", get: (r) => fmt(r.rope_type) },
-      { label: "Diameter", get: (r) => r.diameter_mm ? `${r.diameter_mm}mm` : "—", winner: "min", num: (r) => r.diameter_mm },
-      { label: "Weight", get: (r) => r.weight_per_meter_g ? `${r.weight_per_meter_g} g/m` : "—", winner: "min", num: (r) => r.weight_per_meter_g },
-      { label: "UIAA Falls", get: (r) => r.uiaa_falls || "—", winner: "max", num: (r) => r.uiaa_falls },
-      { label: "Impact Force", get: (r) => r.impact_force_kn ? `${r.impact_force_kn} kN` : "—", winner: "min", num: (r) => r.impact_force_kn },
-      { label: "Break Strength", get: (r) => r.breaking_strength_kn ? `${r.breaking_strength_kn} kN` : "—", winner: "max", num: (r) => r.breaking_strength_kn },
-      { label: "Static Elong.", get: (r) => r.static_elongation_pct ? `${r.static_elongation_pct}%` : "—", winner: "min", num: (r) => r.static_elongation_pct },
-      { label: "Dynamic Elong.", get: (r) => r.dynamic_elongation_pct ? `${r.dynamic_elongation_pct}%` : "—", winner: "min", num: (r) => r.dynamic_elongation_pct },
-      { label: "Sheath", get: (r) => r.sheath_percentage ? `${r.sheath_percentage}%` : "—" },
-      { label: "Sheath Slippage", get: (r) => r.sheath_slippage_mm != null ? `${r.sheath_slippage_mm} mm` : "—", winner: "min", num: (r) => r.sheath_slippage_mm },
-      { label: "Knotability", get: (r) => r.knotability_mm != null ? `${r.knotability_mm} mm` : "—", winner: "min", num: (r) => r.knotability_mm },
+      { label: "Diameter", get: (r) => r.diameter_mm ? `${r.diameter_mm}mm` : "-", winner: "min", num: (r) => r.diameter_mm },
+      { label: "Weight", get: (r) => r.weight_per_meter_g ? `${r.weight_per_meter_g} g/m` : "-", winner: "min", num: (r) => r.weight_per_meter_g },
+      { label: "UIAA Falls", get: (r) => r.uiaa_falls || "-", winner: "max", num: (r) => r.uiaa_falls },
+      { label: "Impact Force", get: (r) => r.impact_force_kn ? `${r.impact_force_kn} kN` : "-", winner: "min", num: (r) => r.impact_force_kn },
+      { label: "Break Strength", get: (r) => r.breaking_strength_kn ? `${r.breaking_strength_kn} kN` : "-", winner: "max", num: (r) => r.breaking_strength_kn },
+      { label: "Static Elong.", get: (r) => r.static_elongation_pct ? `${r.static_elongation_pct}%` : "-", winner: "min", num: (r) => r.static_elongation_pct },
+      { label: "Dynamic Elong.", get: (r) => r.dynamic_elongation_pct ? `${r.dynamic_elongation_pct}%` : "-", winner: "min", num: (r) => r.dynamic_elongation_pct },
+      { label: "Sheath", get: (r) => r.sheath_percentage ? `${r.sheath_percentage}%` : "-" },
+      { label: "Sheath Slippage", get: (r) => r.sheath_slippage_mm != null ? `${r.sheath_slippage_mm} mm` : "-", winner: "min", num: (r) => r.sheath_slippage_mm },
+      { label: "Knotability", get: (r) => r.knotability_mm != null ? `${r.knotability_mm} mm` : "-", winner: "min", num: (r) => r.knotability_mm },
     ],
   },
   {
@@ -47,8 +47,8 @@ const ROPE_SECTIONS = [
     rows: [
       { label: "Bluesign", get: (r) => r.bluesign ? "Yes" : "No" },
       { label: "Recycled", get: (r) => fmt(r.recycled_materials) },
-      { label: "Price/m", get: (r) => r.price_per_meter_eur_min ? `€${r.price_per_meter_eur_min.toFixed(2)}` : "—", winner: "min", num: (r) => r.price_per_meter_eur_min },
-      { label: "MSRP/m", get: (r) => r.price_uvp_per_meter_eur ? `€${r.price_uvp_per_meter_eur.toFixed(2)}` : "—" },
+      { label: "Price/m", get: (r) => r.price_per_meter_eur_min ? `€${r.price_per_meter_eur_min.toFixed(2)}` : "-", winner: "min", num: (r) => r.price_per_meter_eur_min },
+      { label: "MSRP/m", get: (r) => r.price_uvp_per_meter_eur ? `€${r.price_uvp_per_meter_eur.toFixed(2)}` : "-" },
       { label: "Discount", get: (r) => fmtPct(r.price_per_meter_eur_min, r.price_uvp_per_meter_eur) },
     ],
   },
@@ -59,10 +59,10 @@ const BELAY_SECTIONS = [
     title: "SPECS",
     rows: [
       { label: "Type", get: (b) => fmt(b.device_type) },
-      { label: "Weight", get: (b) => b.weight_g ? `${b.weight_g}g` : "—", winner: "min", num: (b) => b.weight_g },
+      { label: "Weight", get: (b) => b.weight_g ? `${b.weight_g}g` : "-", winner: "min", num: (b) => b.weight_g },
       { label: "Rope Range", get: (b) => `${b.rope_diameter_min_mm}–${b.rope_diameter_max_mm}mm` },
-      { label: "Rope Slots", get: (b) => b.rope_slots || "—" },
-      { label: "Rope Types", get: (b) => Array.isArray(b.compatible_rope_types) ? b.compatible_rope_types.map(fmt).join(", ") : "—" },
+      { label: "Rope Slots", get: (b) => b.rope_slots || "-" },
+      { label: "Rope Types", get: (b) => Array.isArray(b.compatible_rope_types) ? b.compatible_rope_types.map(fmt).join(", ") : "-" },
     ],
   },
   {
@@ -92,8 +92,8 @@ const CRASHPAD_SECTIONS = [
     rows: [
       { label: "Size", get: (p) => fmt(p.pad_size_category) },
       { label: "Dimensions", get: (p) => `${p.length_open_cm}×${p.width_open_cm} cm` },
-      { label: "Thickness", get: (p) => p.thickness_cm ? `${p.thickness_cm} cm` : "—", winner: "max", num: (p) => p.thickness_cm },
-      { label: "Weight", get: (p) => p.weight_kg ? `${p.weight_kg} kg` : "—", winner: "min", num: (p) => p.weight_kg },
+      { label: "Thickness", get: (p) => p.thickness_cm ? `${p.thickness_cm} cm` : "-", winner: "max", num: (p) => p.thickness_cm },
+      { label: "Weight", get: (p) => p.weight_kg ? `${p.weight_kg} kg` : "-", winner: "min", num: (p) => p.weight_kg },
       { label: "Fold Style", get: (p) => fmt(p.fold_style) },
       { label: "Area", get: (p) => `${((p.length_open_cm * p.width_open_cm) / 10000).toFixed(2)} m²`, winner: "max", num: (p) => (p.length_open_cm * p.width_open_cm) / 10000 },
     ],
@@ -103,7 +103,7 @@ const CRASHPAD_SECTIONS = [
     rows: [
       { label: "Impact", get: (p) => fmt(p.impact_protection) },
       { label: "Foam Firmness", get: (p) => fmt(p.foam_firmness) },
-      { label: "Foam Layers", get: (p) => p.foam_layers || "—" },
+      { label: "Foam Layers", get: (p) => p.foam_layers || "-" },
       { label: "Hinge Prot.", get: (p) => p.has_hinge_protection ? "Yes" : "No" },
       { label: "HIC Certified", get: (p) => p.hic_certified ? "Yes" : "No" },
     ],

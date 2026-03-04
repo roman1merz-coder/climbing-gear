@@ -256,7 +256,7 @@ function QuickdrawSVG({ quickdraw, width = 120, height = 100 }) {
       {/* Upper nose */}
       <circle cx="35" cy="25" r="3" fill={c2} opacity="0.8" />
 
-      {/* Sling — curved connection */}
+      {/* Sling - curved connection */}
       <path d="M32 45 Q30 60 35 75 Q40 85 42 92" stroke={c2} strokeWidth="3.5" fill="none" opacity="0.75" strokeLinecap="round" />
       <path d="M38 45 Q40 60 35 75 Q30 85 28 92" stroke={c1} strokeWidth="2.5" fill="none" opacity="0.6" strokeLinecap="round" />
 
@@ -391,7 +391,7 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
         />
         <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
       </div>
-      {/* Content — v3c layout */}
+      {/* Content - v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>
         {/* Row 1: brand + price */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
@@ -416,7 +416,7 @@ function CompactQuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }
           <span>{q.strength_major_kn}kN</span>
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
@@ -549,7 +549,7 @@ function QuickdrawCard({ quickdraw, matchScore, onClick, priceData = {} }) {
           )}
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("quickdraw", q.slug); }}
@@ -730,7 +730,7 @@ function loadQuickdrawSession() {
 // ═══ MAIN APP ═══
 
 export default function QuickdrawApp({ quickdraws = [], src, priceData = {} }) {
-  usePageMeta(`Quickdraws — Compare ${quickdraws.length}+ Models`, "Compare quickdraws: sport, alpine, trad, hybrid, competition. Filter by weight, strength, gate type, sling material, and features.");
+  usePageMeta(`Quickdraws - Compare ${quickdraws.length}+ Models`, "Compare quickdraws: sport, alpine, trad, hybrid, competition. Filter by weight, strength, gate type, sling material, and features.");
   const nav = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();

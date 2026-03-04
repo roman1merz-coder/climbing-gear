@@ -365,7 +365,7 @@ export default function BelayScatterChart({ isMobile }) {
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
           <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
-            <option value="none">— None —</option>
+            <option value="none">- None -</option>
             {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
           </select>
         </div>

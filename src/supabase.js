@@ -1,7 +1,7 @@
 /**
  * Centralized Supabase configuration.
  *
- * The anon key is a PUBLIC, read-only key — safe to ship in client-side code.
+ * The anon key is a PUBLIC, read-only key - safe to ship in client-side code.
  * Supabase uses Row Level Security (RLS) to control access; the anon key
  * simply authenticates requests as "anonymous public reader".
  *
@@ -16,7 +16,7 @@ export const SUPABASE_ANON_KEY =
 
 /**
  * Helper: fetch JSON from Supabase REST API (read-only, anon key).
- * @param {string} path — e.g. "/rest/v1/shoes?select=*"
+ * @param {string} path - e.g. "/rest/v1/shoes?select=*"
  * @returns {Promise<any>}
  */
 export async function supabaseFetch(path) {

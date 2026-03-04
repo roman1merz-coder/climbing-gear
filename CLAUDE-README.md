@@ -1,7 +1,16 @@
-# CLAUDE-README — Project-Specific Rules for AI Agents
+# CLAUDE-README - Project-Specific Rules for AI Agents
 
 This file contains rules discovered and validated during data work sessions.
 These rules are NON-NEGOTIABLE and must always be followed.
+
+---
+
+## No Em Dashes (NON-NEGOTIABLE)
+
+**Never use em dashes (—) anywhere in this project** - not in code, comments, copy, JSON, HTML, or any file.
+- Always use a regular hyphen/dash (-) instead
+- Users perceive em dashes as a telltale sign of AI-generated text
+- This applies to all user-facing text, code comments, commit messages, and data
 
 ---
 
@@ -10,7 +19,7 @@ These rules are NON-NEGOTIABLE and must always be followed.
 **NEVER attempt to programmatically draw, trace, or generate images/overlays.**
 - Do NOT use edge detection, thresholding, or any image-processing trick to "trace" outlines from photos
 - Do NOT generate PNGs from pixel data or try to create silhouettes from reference images
-- If a graphic asset (SVG, PNG, overlay) already exists, use it as-is — transform it with CSS (rotate, scale, translate) instead of recreating it
+- If a graphic asset (SVG, PNG, overlay) already exists, use it as-is - transform it with CSS (rotate, scale, translate) instead of recreating it
 - If a new graphic is genuinely needed, ask Roman to provide it
 
 ---
@@ -26,16 +35,16 @@ These rules are NON-NEGOTIABLE and must always be followed.
 | Config file | `src/posthog.js` |
 
 **How it works:**
-- Base analytics (pageviews, autocapture, custom events) runs in **cookieless/memory mode** — no GDPR consent needed
+- Base analytics (pageviews, autocapture, custom events) runs in **cookieless/memory mode** - no GDPR consent needed
 - Session replays are **opt-in** via the cookie consent banner (analytics category)
 - Disabled in dev mode (`import.meta.env.DEV`), respects Do Not Track
 - SPA pageviews tracked via `PostHogPageView` component in `main.jsx` (fires on every route change)
 - Affiliate link clicks auto-tracked via global click listener (AWIN URLs)
 
 **Custom events tracked:**
-- `$pageview` — on every route change (SPA-aware)
-- `affiliate_click` — when user clicks an AWIN affiliate link (properties: retailer, product_slug, destination_url, page_path)
-- `outbound_click` — when user clicks any external link (properties: url, page_path)
+- `$pageview` - on every route change (SPA-aware)
+- `affiliate_click` - when user clicks an AWIN affiliate link (properties: retailer, product_slug, destination_url, page_path)
+- `outbound_click` - when user clicks any external link (properties: url, page_path)
 - Autocapture covers all other clicks, form submits, etc.
 
 **Adding new custom events:**
@@ -67,7 +76,7 @@ trackEvent("event_name", { key: "value" });
 | Compound | DB value | Shore | Notes |
 |----------|----------|-------|-------|
 | Vibram XS Grip | `soft` | ~45° | Stickiest, performance, high-end models |
-| RX-1 ALLROUND | `soft` | 50° | Balanced friction/edge/durability — soft in industry context |
+| RX-1 ALLROUND | `soft` | 50° | Balanced friction/edge/durability - soft in industry context |
 | RX-2 TECHGRIP | `medium` | ~55° | Edge stability, more rigid |
 | RX-3 ENDURANCE | `hard` | ~60°+ | Max durability, rental/gym shoes |
 
@@ -87,10 +96,10 @@ Examples:
 
 ## Downturn & Asymmetry Enums (4 levels each)
 
-**`downturn`** — 4-value enum (low → high):
+**`downturn`** - 4-value enum (low → high):
 `flat` → `slight` → `moderate` → `aggressive`
 
-**`asymmetry`** — 4-value enum (low → high):
+**`asymmetry`** - 4-value enum (low → high):
 `none` → `slight` → `moderate` → `strong`
 
 ## Vegan Determination (NON-NEGOTIABLE)
@@ -106,7 +115,7 @@ Examples:
 ## Shoe Weight Rule (NON-NEGOTIABLE)
 
 `weight_g` in the `shoes` table is **ALWAYS pair weight** (both shoes combined).
-- The site displays pair weight everywhere — never single shoe weight
-- Manufacturers often list single-shoe weight in specs — ALWAYS multiply by 2 before storing
+- The site displays pair weight everywhere - never single shoe weight
+- Manufacturers often list single-shoe weight in specs - ALWAYS multiply by 2 before storing
 - Any adult (non-kids) shoe under ~300g pair weight is suspicious and must be verified
 - When sourcing weight from retailer pages, check whether they state "per shoe" or "per pair"

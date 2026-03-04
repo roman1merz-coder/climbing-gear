@@ -21,7 +21,7 @@ export default function Footer() {
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px" }}>
         <p style={{ maxWidth: "800px", margin: "0 auto", fontSize: "11px", color: T.muted, lineHeight: 1.7 }}>
           <strong style={{ fontWeight: 600 }}>Scores</strong> are algorithmic estimates based on published
-          specs and climber experience. They are brand-neutral and meant as a guide — not a substitute for
+          specs and climber experience. They are brand-neutral and meant as a guide - not a substitute for
           trying shoes on. Found something off?{" "}
           <a href="/" onClick={goToFeedback} style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>
             Let us know →

@@ -19,7 +19,7 @@ const ORD = {
   forefoot_volume: ["low", "standard", "high"],
   width: ["narrow", "medium", "wide"],
   heel_volume: ["narrow", "medium", "wide"],
-  // feel removed — derived from structural stiffness (midsole/rand/rubber/closure/upper)
+  // feel removed - derived from structural stiffness (midsole/rand/rubber/closure/upper)
   asymmetry: ["none", "slight", "moderate", "strong"],
   downturn: ["flat", "slight", "moderate", "aggressive"],
 };
@@ -684,7 +684,7 @@ function Card({ shoe, onClick, priceData, compact }) {
             </div>
           )}
         </div>
-        {/* Desktop-only: tags + skill levels — max 4 visible */}
+        {/* Desktop-only: tags + skill levels - max 4 visible */}
         {!compact && (() => {
           const specTags = [d.closure, d.downturn].filter(Boolean);
           const skillTags = (d.skill_level || []);
@@ -716,7 +716,7 @@ function Card({ shoe, onClick, priceData, compact }) {
           );
         })()}
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("shoe", d.slug); }}
@@ -763,11 +763,11 @@ function Card({ shoe, onClick, priceData, compact }) {
 
 // ═══ MAIN APP ═══
 
-// Stable session ID — created once per page load, not per render
+// Stable session ID - created once per page load, not per render
 const SESSION_ID = String(Date.now());
 
 export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {}, filters: extFilters, setFilters: extSetFilters, query: extQuery, setQuery: extSetQuery }) {
-  usePageMeta(`Climbing Shoes — Compare ${shoes.length}+ Models`, `Find the perfect climbing shoe. Compare specs, prices, and performance scores across ${shoes.length}+ models from La Sportiva, Scarpa, Evolv, and more.`);
+  usePageMeta(`Climbing Shoes - Compare ${shoes.length}+ Models`, `Find the perfect climbing shoe. Compare specs, prices, and performance scores across ${shoes.length}+ models from La Sportiva, Scarpa, Evolv, and more.`);
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -896,7 +896,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
     }
 
     if (sortKey === "best_match" && !hasActiveFilters && !hasSearch) {
-      // No filters, no search — use sort-based "Best Match" + fair shuffle for ties
+      // No filters, no search - use sort-based "Best Match" + fair shuffle for ties
       const shoeData = results.map(r => r.shoe_data);
       const sorted = sortShoes(shoeData, "best_match", priceData);
       const shuffled = fairShuffle(sorted, filters, query, SESSION_ID);
@@ -1034,7 +1034,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               </div>
               <button
                 onClick={() => navigate("/find")}
-                title="Guided search — answer 6 questions, get matched"
+                title="Guided search - answer 6 questions, get matched"
                 style={{
                   height: "28px", padding: "0 8px", borderRadius: "6px", border: "1px solid #c98a42",
                   background: "rgba(201,138,66,0.10)", color: "#c98a42", cursor: "pointer",
@@ -1089,7 +1089,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
             <button
               onClick={() => navigate("/find")}
-              title="Guided search — answer 6 questions, get matched"
+              title="Guided search - answer 6 questions, get matched"
               style={{
                 height: "32px", padding: "0 12px", borderRadius: "8px", border: "1px solid #c98a42",
                 background: "rgba(201,138,66,0.10)", color: "#c98a42", cursor: "pointer",
@@ -1223,7 +1223,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar — desktop only, hidden in chart view */}
+        {/* Sidebar - desktop only, hidden in chart view */}
         {!isMobile && view !== "chart" && <aside
           style={{
             width: "320px",
@@ -1517,7 +1517,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
             </div>
           )}
 
-          {/* Sort controls — desktop only (mobile sort is in header) */}
+          {/* Sort controls - desktop only (mobile sort is in header) */}
           {view === "cards" && !isMobile && (
           <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "16px" }}>
             <SortDropdown value={sortKey} onChange={setSortKey} />

@@ -63,7 +63,7 @@ function PrivacyPolicy() {
       <h2 style={S.h2}>1. Data Controller</h2>
       <p style={S.p}>
         The person responsible for data processing on this website is:<br />
-        Roman Merz — roman@climbing-gear.com
+        Roman Merz - roman@climbing-gear.com
       </p>
 
       <h2 style={S.h2}>2. Hosting</h2>
@@ -76,7 +76,7 @@ function PrivacyPolicy() {
         We use Vercel Web Analytics for aggregated page view statistics (no cookies, no personal data).
       </p>
       <p style={S.p}>
-        We also use PostHog (PostHog Inc., San Francisco, USA) for product analytics to understand how visitors interact with the site — for example which gear categories are most popular, which filters are used, and whether features like the shoe finder work well. PostHog runs in <strong>cookieless mode</strong>: it does not set cookies, does not use localStorage, and does not store any persistent identifiers on your device. No personal data is collected. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in improving the website).
+        We also use PostHog (PostHog Inc., San Francisco, USA) for product analytics to understand how visitors interact with the site - for example which gear categories are most popular, which filters are used, and whether features like the shoe finder work well. PostHog runs in <strong>cookieless mode</strong>: it does not set cookies, does not use localStorage, and does not store any persistent identifiers on your device. No personal data is collected. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in improving the website).
       </p>
       <p style={S.p}>
         If you consent via the cookie banner ("Alle akzeptieren"), PostHog may additionally record anonymized session replays to help us identify usability issues. Session replays capture page interactions (clicks, scrolls) but do not record text input in form fields, passwords, or any personal data. You can withdraw consent at any time by clearing your browser's local storage. Legal basis: Art. 6(1)(a) GDPR (consent).
@@ -128,7 +128,7 @@ function TermsOfService() {
 
       <h2 style={S.h2}>2. Informational Purpose</h2>
       <p style={S.p}>
-        All data provided on this website — including product specifications, ratings, scores, size charts, and prices — is for informational and comparison purposes only. It does not constitute a purchase recommendation, safety advice, or professional consultation.
+        All data provided on this website - including product specifications, ratings, scores, size charts, and prices - is for informational and comparison purposes only. It does not constitute a purchase recommendation, safety advice, or professional consultation.
       </p>
 
       <h2 style={S.h2}>3. Not a Substitute for Professional Advice</h2>
@@ -138,7 +138,7 @@ function TermsOfService() {
 
       <h2 style={S.h2}>4. Limitation of Liability</h2>
       <p style={S.p}>
-        Use of this website and all information provided is at your own risk. The operator assumes no liability for damages arising from the use of or reliance on the information provided — including but not limited to incorrect purchases, injuries, or consequential damages. Prices and availability shown may differ from the actual retailer listings.
+        Use of this website and all information provided is at your own risk. The operator assumes no liability for damages arising from the use of or reliance on the information provided - including but not limited to incorrect purchases, injuries, or consequential damages. Prices and availability shown may differ from the actual retailer listings.
       </p>
 
       <h2 style={S.h2}>5. Ratings and Scores</h2>

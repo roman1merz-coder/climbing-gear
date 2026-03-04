@@ -1,5 +1,5 @@
 // ─── Retailer Shipping & Return Policies ─────────────────────
-// Static lookup — updated ~1x/year. All prices in EUR.
+// Static lookup - updated ~1x/year. All prices in EUR.
 // shipping: { cost (EUR or null if unknown), freeThreshold (EUR or 0 if always free) }
 // returns:  { days, free (boolean for DE), cost (string note if not free) }
 

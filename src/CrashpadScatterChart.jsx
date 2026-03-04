@@ -286,7 +286,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
     return closest;
   }, [isMobile, cfg, filteredPads]);
 
-  /* Desktop tooltip — shows selected axis fields + core specs */
+  /* Desktop tooltip - shows selected axis fields + core specs */
   const showTip = useCallback((d, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
@@ -393,7 +393,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
 
   return (
     <ChartContainer title="Crashpad Spec Deep Dive" subtitle={cfg.sub} isMobile={isMobile}>
-      {/* Axis selectors — hidden in compact/highlight mode */}
+      {/* Axis selectors - hidden in compact/highlight mode */}
       {!compact && (
         <div style={{ display: "flex", gap: isMobile ? "8px" : "12px", marginBottom: "10px", flexWrap: "wrap", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -414,14 +414,14 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
             <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
-              <option value="none">— None —</option>
+              <option value="none">- None -</option>
               {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
             </select>
           </div>
         </div>
       )}
 
-      {/* Color-by toggle + count — hidden in compact/highlight mode */}
+      {/* Color-by toggle + count - hidden in compact/highlight mode */}
       {!compact && <div style={{ display: "flex", gap: "6px", marginBottom: "12px", alignItems: "center", flexWrap: "wrap" }}>
         {(hiddenLayers.size > 0 || hiddenFolds.size > 0 || hiddenBrands.size > 0 || hiddenThickness.size > 0) && (
           <button onClick={() => { setHiddenLayers(new Set()); setHiddenFolds(new Set()); setHiddenBrands(new Set()); setHiddenThickness(new Set()); }}
@@ -498,7 +498,7 @@ export default function CrashpadScatterChart({ isMobile, highlightSlugs, initial
         </BottomSheet>
       )}
 
-      {/* Legends — hidden in compact mode */}
+      {/* Legends - hidden in compact mode */}
       {!compact && colorBy === "layers" && (
         layerKeys.length > 5 ? (
           <LegendRow

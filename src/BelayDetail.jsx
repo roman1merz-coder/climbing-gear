@@ -59,7 +59,7 @@ function TypeBadge({ type, size = "sm" }) {
   );
 }
 
-// ═══ BELAY DEVICE SVG (Detail — larger) ═══
+// ═══ BELAY DEVICE SVG (Detail - larger) ═══
 
 function BelaySVGDetail({ device, compact }) {
   const c1 = device.device_color_1 || "#4a4a4a";
@@ -184,7 +184,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
   const { slug } = useParams();
   const d = belays.find((b) => b.slug === slug);
   usePageMeta(
-    d ? `${d.brand} ${d.model} — Belay Device Specs` : null,
+    d ? `${d.brand} ${d.model} - Belay Device Specs` : null,
     d ? `${d.brand} ${d.model}: weight, rope compatibility, safety features, and price comparison.` : null
   );
   useStructuredData(buildBelaySchema(d, priceData));
@@ -368,7 +368,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
                             {p.delivery && <span style={{ fontSize: "9px", color: T.muted, display: "block" }}>{p.delivery}</span>}
                           </div>
                           <span style={{ fontSize: "14px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
-                            {p.price ? `€${p.price.toFixed(2)}` : "—"}
+                            {p.price ? `€${p.price.toFixed(2)}` : "-"}
                           </span>
                           {p.url && p.url !== "#" && (
                             <span style={{ fontSize: "10px", color: T.accent, fontWeight: 600 }}>→ Shop</span>
@@ -458,7 +458,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* What Climbers Say — hidden until content is improved
+            {/* What Climbers Say - hidden until content is improved
             {d.customer_voices?.length > 0 && (
               <Section title="What Climbers Say">
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
@@ -582,11 +582,11 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
             <div>
               <Section title="Safety Features">
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
-                  <StatRow label="Anti-Panic" value={d.anti_panic ? "✅ Yes" : "—"} />
-                  <StatRow label="Lead/TR Switch" value={d.lead_top_switch ? "✅ Yes" : "—"} />
-                  <StatRow label="Guide Mode" value={d.guide_mode ? "✅ Yes" : "—"} />
-                  <StatRow label="Single Strand Rappel" value={d.rappel_single_strand ? "✅ Yes" : "—"} />
-                  <StatRow label="Double Strand Rappel" value={d.rappel_double_strand ? "✅ Yes" : "—"} />
+                  <StatRow label="Anti-Panic" value={d.anti_panic ? "✅ Yes" : "-"} />
+                  <StatRow label="Lead/TR Switch" value={d.lead_top_switch ? "✅ Yes" : "-"} />
+                  <StatRow label="Guide Mode" value={d.guide_mode ? "✅ Yes" : "-"} />
+                  <StatRow label="Single Strand Rappel" value={d.rappel_single_strand ? "✅ Yes" : "-"} />
+                  <StatRow label="Double Strand Rappel" value={d.rappel_double_strand ? "✅ Yes" : "-"} />
                 </div>
               </Section>
 
@@ -606,7 +606,7 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
         )}
       </div>
 
-      {/* Similar Devices — scored by spec similarity, cross-brand */}
+      {/* Similar Devices - scored by spec similarity, cross-brand */}
       {similar.length > 0 && (
         <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>

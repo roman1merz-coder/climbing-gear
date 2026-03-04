@@ -60,7 +60,7 @@ function SpecRow({ label, value, highlight }) {
 /* ═══════════════════════════════════════════════════════════════
    ARTICLE 1: World's Lightest Single Rope
    ═══════════════════════════════════════════════════════════════ */
-/* Single-certified ropes only — lightest 10 in our DB + the Siskin (article subject).
+/* Single-certified ropes only - lightest 10 in our DB + the Siskin (article subject).
    Half & twin ropes excluded: their UIAA falls use a lighter test mass (55kg vs 80kg). */
 const ROPE_COMPARISON = [
   { name: "Mammut Alpine Sender Dry 8.7", gm: 48, dia: 8.7, falls: 5, triple: true, eco: false, inDB: true },
@@ -221,14 +221,14 @@ function PadComparisonChart({ isMobile }) {
           <rect x={pad.left} y={pad.top} width={midX - pad.left} height={midY - pad.top} rx="4" fill={T.green} opacity="0.04" />
           <text x={pad.left + 8} y={pad.top + 14} fill={T.green} fontSize="9" fontWeight="700" opacity="0.6">{"\u2B06"} THICKEST + LIGHTEST</text>
 
-          {/* Grid lines — thickness */}
+          {/* Grid lines - thickness */}
           {[6, 8, 10, 12, 14].map(v => v >= yMin && v <= yMax && (
             <g key={`y${v}`}>
               <line x1={pad.left} y1={y(v)} x2={W - pad.right} y2={y(v)} stroke={T.border} strokeDasharray="3,3" />
               <text x={pad.left - 8} y={y(v) + 4} fill={T.muted} fontSize="10" textAnchor="end">{v}cm</text>
             </g>
           ))}
-          {/* Grid lines — weight */}
+          {/* Grid lines - weight */}
           {[4, 6, 8, 10].map(v => (
             <g key={`x${v}`}>
               <line x1={x(v)} y1={pad.top} x2={x(v)} y2={H - pad.bottom} stroke={T.border} strokeDasharray="3,3" />
@@ -324,7 +324,7 @@ function InflatableVsFoam({ isMobile }) {
   const barH = 28, gap = 8;
 
   return (
-    <ChartBox title="Weight Showdown: Inflatable vs Foam" subtitle="Comparing similar-area pads by weight — lighter is better">
+    <ChartBox title="Weight Showdown: Inflatable vs Foam" subtitle="Comparing similar-area pads by weight - lighter is better">
       <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
         {FOAM_EQUIVALENT.map((d, i) => {
           const yPos = padT + i * (barH + gap);
@@ -352,7 +352,7 @@ function InflatableVsFoam({ isMobile }) {
 
 function InflatableSpecTable({ isMobile }) {
   return (
-    <ChartBox title="Inflatable Pad Specs Compared" subtitle="The three inflatable pads on the market — head to head">
+    <ChartBox title="Inflatable Pad Specs Compared" subtitle="The three inflatable pads on the market - head to head">
       <div style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
           <thead>
@@ -410,11 +410,11 @@ export default function GearNews() {
             What's New in Climbing Gear
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.6, maxWidth: "540px", margin: "0 auto" }}>
-            Record-breaking announcements, upcoming releases, and emerging technologies — cross-referenced with our database of {TOTAL_PRODUCTS}+ products.
+            Record-breaking announcements, upcoming releases, and emerging technologies - cross-referenced with our database of {TOTAL_PRODUCTS}+ products.
           </p>
         </div>
 
-        {/* ═══ ARTICLE 1: Siskin — World's Lightest Single Rope ═══ */}
+        {/* ═══ ARTICLE 1: Siskin - World's Lightest Single Rope ═══ */}
         <section style={section}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
             <span style={{ fontSize: "28px" }}>{"\uD83E\uDDF5"}</span>
@@ -425,7 +425,7 @@ export default function GearNews() {
             The World's Lightest Single Rope: 48g/m
           </h2>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.6, margin: "0 0 20px" }}>
-            The Edelrid Siskin Eco Dry 8.6mm hits the same weight class as half ropes — but carries a single-rope certification.
+            The Edelrid Siskin Eco Dry 8.6mm hits the same weight class as half ropes - but carries a single-rope certification.
           </p>
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
@@ -438,15 +438,15 @@ export default function GearNews() {
           <RopeWeightChart isMobile={isMobile} />
 
           <Prose>
-            At 48g/m, the Siskin ties with the Beal Opera 8.5 and Mammut Alpine Sender Dry 8.7 as the lightest single-certified ropes in existence. The next lightest single rope — the Petzl Volta 9.2 — jumps to 52g/m, a full 8% heavier. All three share <strong>triple certification</strong> (single + half + twin), but the Siskin is the only one with PFC-free dry treatment and eco credentials.
+            At 48g/m, the Siskin ties with the Beal Opera 8.5 and Mammut Alpine Sender Dry 8.7 as the lightest single-certified ropes in existence. The next lightest single rope - the Petzl Volta 9.2 - jumps to 52g/m, a full 8% heavier. All three share <strong>triple certification</strong> (single + half + twin), but the Siskin is the only one with PFC-free dry treatment and eco credentials.
           </Prose>
 
           <KeyInsight color={T.green}>
-            <strong>The weight savings are real:</strong> On a 70m rope, the Siskin weighs 3.36kg — a full kilogram lighter than a typical 9.8mm (4.34kg). That's the weight of a water bottle you're not carrying on every pitch. For multi-pitch alpinists, this adds up across a 20-pitch day.
+            <strong>The weight savings are real:</strong> On a 70m rope, the Siskin weighs 3.36kg - a full kilogram lighter than a typical 9.8mm (4.34kg). That's the weight of a water bottle you're not carrying on every pitch. For multi-pitch alpinists, this adds up across a 20-pitch day.
           </KeyInsight>
 
           <Prose>
-            The trade-off? At 5 UIAA falls (single cert), durability is modest — the same as its 48g/m peers. You won't get the 7–9 falls of thicker 9.4–9.5mm singles, which is the price of ultralight construction. And at roughly {"\u20AC"}275–360 depending on length, the Siskin commands a premium. But with PFC-free Eco Dry treatment and less than 2% water absorption, Edelrid's sustainability credentials are unmatched in this weight class.
+            The trade-off? At 5 UIAA falls (single cert), durability is modest - the same as its 48g/m peers. You won't get the 7–9 falls of thicker 9.4–9.5mm singles, which is the price of ultralight construction. And at roughly {"\u20AC"}275–360 depending on length, the Siskin commands a premium. But with PFC-free Eco Dry treatment and less than 2% water absorption, Edelrid's sustainability credentials are unmatched in this weight class.
           </Prose>
 
           <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "16px", marginTop: "16px" }}>
@@ -486,21 +486,21 @@ export default function GearNews() {
           <IndoorLineTable isMobile={isMobile} />
 
           <Prose>
-            La Sportiva has long dominated outdoor climbing shoe performance with icons like the Solution, Skwama, and Theory. But the indoor climbing market — now the primary entry point for new climbers — was served by just a handful of models like the Tarantula ($85) and Oxygym ($99), neither designed from scratch for the gym.
+            La Sportiva has long dominated outdoor climbing shoe performance with icons like the Solution, Skwama, and Theory. But the indoor climbing market - now the primary entry point for new climbers - was served by just a handful of models like the Tarantula ($85) and Oxygym ($99), neither designed from scratch for the gym.
           </Prose>
 
           <Prose>
-            The <strong>HyperEZ</strong> changes that. At $119, it sits above the Tarantula but below aggressive performance shoes. The headline feature is <strong>SenseGrip</strong> — La Sportiva's patented midsole technology originally developed for Adam Ondra's competition shoe, now trickling down to beginners. A high-volume last with dual-crossed straps (inspired by the Katana) and an EVA heel wedge prioritize comfort for climbers still building foot strength.
+            The <strong>HyperEZ</strong> changes that. At $119, it sits above the Tarantula but below aggressive performance shoes. The headline feature is <strong>SenseGrip</strong> - La Sportiva's patented midsole technology originally developed for Adam Ondra's competition shoe, now trickling down to beginners. A high-volume last with dual-crossed straps (inspired by the Katana) and an EVA heel wedge prioritize comfort for climbers still building foot strength.
           </Prose>
 
           <BeginnerPriceChart isMobile={isMobile} />
 
           <KeyInsight color={T.yellow}>
-            <strong>The Gap La Sportiva is Filling:</strong> Between the $85 Tarantula and $159+ performance shoes, there was nothing from La Sportiva purpose-built for indoor progression. The HyperEZ at $119 targets exactly this gap — gym climbers moving beyond rentals but not yet ready for aggressive lasts.
+            <strong>The Gap La Sportiva is Filling:</strong> Between the $85 Tarantula and $159+ performance shoes, there was nothing from La Sportiva purpose-built for indoor progression. The HyperEZ at $119 targets exactly this gap - gym climbers moving beyond rentals but not yet ready for aggressive lasts.
           </KeyInsight>
 
           <Prose>
-            The <strong>TX Setter</strong> ($169) is perhaps the more groundbreaking product. Route setters — the people who design the climbs you send — have historically cobbled together approach shoes and worn-out climbing shoes for their grueling 8-hour gym shifts. La Sportiva collaborated with professional setters to create the first shoe designed specifically for them: resoleable construction, approach-shoe cushioning, climbing-shoe sensitivity. It's a tiny market by volume, but it signals La Sportiva's commitment to the gym ecosystem.
+            The <strong>TX Setter</strong> ($169) is perhaps the more groundbreaking product. Route setters - the people who design the climbs you send - have historically cobbled together approach shoes and worn-out climbing shoes for their grueling 8-hour gym shifts. La Sportiva collaborated with professional setters to create the first shoe designed specifically for them: resoleable construction, approach-shoe cushioning, climbing-shoe sensitivity. It's a tiny market by volume, but it signals La Sportiva's commitment to the gym ecosystem.
           </Prose>
 
           <KeyInsight color={T.blue}>
@@ -518,7 +518,7 @@ export default function GearNews() {
             The Thickest, Toughest Pad You've Never Heard Of
           </h2>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.6, margin: "0 0 20px" }}>
-            13cm of foam, 1680D ballistic nylon, and just 6.8kg. The Asana G5 BIG delivers the best protection-to-weight ratio of any premium crashpad — made in Boulder, Colorado with a cult following.
+            13cm of foam, 1680D ballistic nylon, and just 6.8kg. The Asana G5 BIG delivers the best protection-to-weight ratio of any premium crashpad - made in Boulder, Colorado with a cult following.
           </p>
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "24px" }}>
@@ -531,15 +531,15 @@ export default function GearNews() {
           <PadComparisonChart isMobile={isMobile} />
 
           <Prose>
-            The chart above tells the story: the G5 BIG sits alone in the top-left quadrant — the thickest foam (13cm) at the lightest weight (6.8kg) among premium pads. That 1.91 cm/kg protection ratio is unmatched. The Asana SuperHero matches its thickness at 13cm but weighs 10kg. The BD Mondo and Petzl Cirro offer only 10cm of foam at 9+ kg. Asana, a Boulder, Colorado company, builds pads the way bouldering lifers want them.
+            The chart above tells the story: the G5 BIG sits alone in the top-left quadrant - the thickest foam (13cm) at the lightest weight (6.8kg) among premium pads. That 1.91 cm/kg protection ratio is unmatched. The Asana SuperHero matches its thickness at 13cm but weighs 10kg. The BD Mondo and Petzl Cirro offer only 10cm of foam at 9+ kg. Asana, a Boulder, Colorado company, builds pads the way bouldering lifers want them.
           </Prose>
 
           <KeyInsight color={T.purple}>
-            <strong>The Denier Advantage:</strong> Shell durability matters more than most climbers realize. Rough granite approaches, desert sandstone, and sharp forest debris chew through 600D fabric in a season. At 1680D ballistic nylon — the toughest in our 103-pad database — the G5 is built for multi-year abuse. Only Mad Rock's Triple matches it. BD Mondo and Petzl Cirro use 900D.
+            <strong>The Denier Advantage:</strong> Shell durability matters more than most climbers realize. Rough granite approaches, desert sandstone, and sharp forest debris chew through 600D fabric in a season. At 1680D ballistic nylon - the toughest in our 103-pad database - the G5 is built for multi-year abuse. Only Mad Rock's Triple matches it. BD Mondo and Petzl Cirro use 900D.
           </KeyInsight>
 
           <Prose>
-            The trade-off is landing area: at 1.48m{"\u00B2"}, the G5 BIG is smaller than competitors like the Organic Big Tri (2.62m{"\u00B2"}) or Evolv Home Pad (2.23m{"\u00B2"}). But Asana's philosophy is deliberate — prioritize depth and durability over sprawl. At $425 ({"\u20AC"}~395), you're paying for 5 inches (13cm) of dual-density foam under an indestructible shell. The carry system includes contoured padded shoulder straps, a sternum strap, cushioned hipbelt, and load lifters. Four high-visibility yellow handles make repositioning easy.
+            The trade-off is landing area: at 1.48m{"\u00B2"}, the G5 BIG is smaller than competitors like the Organic Big Tri (2.62m{"\u00B2"}) or Evolv Home Pad (2.23m{"\u00B2"}). But Asana's philosophy is deliberate - prioritize depth and durability over sprawl. At $425 ({"\u20AC"}~395), you're paying for 5 inches (13cm) of dual-density foam under an indestructible shell. The carry system includes contoured padded shoulder straps, a sternum strap, cushioned hipbelt, and load lifters. Four high-visibility yellow handles make repositioning easy.
           </Prose>
 
           <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radiusSm, padding: "16px", marginTop: "16px" }}>
@@ -551,7 +551,7 @@ export default function GearNews() {
           </div>
 
           <KeyInsight>
-            <strong>Bottom Line:</strong> The G5 BIG wins on protection density — the most foam per kilogram, wrapped in the toughest shell available. If maximum coverage is your priority, look at the Organic Big Tri (2.62m{"\u00B2"}) or pair the G5 with a secondary pad. But for highball bouldering where you need every centimeter of cushion under your feet, the G5's 13cm foam stack is what you want between you and the ground.
+            <strong>Bottom Line:</strong> The G5 BIG wins on protection density - the most foam per kilogram, wrapped in the toughest shell available. If maximum coverage is your priority, look at the Organic Big Tri (2.62m{"\u00B2"}) or pair the G5 with a secondary pad. But for highball bouldering where you need every centimeter of cushion under your feet, the G5's 13cm foam stack is what you want between you and the ground.
           </KeyInsight>
         </section>
         {/* ═══ ARTICLE 4: Inflatable Pads ═══ */}
@@ -583,11 +583,11 @@ export default function GearNews() {
           <InflatableVsFoam isMobile={isMobile} />
 
           <KeyInsight color={T.green}>
-            <strong>The Sick Sequence advantage:</strong> At 2.4kg, it's the lightest "real" crashpad in existence — lighter than sit-start pads like the Edelrid Sit Start II (1.1kg but only 0.44m{"\u00B2"}) when you compare weight-per-landing-area. At 2.14 kg/m{"\u00B2"}, the Sick Sequence delivers the best weight-to-coverage ratio of any pad in or outside our database.
+            <strong>The Sick Sequence advantage:</strong> At 2.4kg, it's the lightest "real" crashpad in existence - lighter than sit-start pads like the Edelrid Sit Start II (1.1kg but only 0.44m{"\u00B2"}) when you compare weight-per-landing-area. At 2.14 kg/m{"\u00B2"}, the Sick Sequence delivers the best weight-to-coverage ratio of any pad in or outside our database.
           </KeyInsight>
 
           <Prose>
-            But the physics are different. Foam absorbs energy by compressing — it's a one-way transaction. Air redistributes pressure across the entire chamber. In practice, this means inflatable pads can feel "bouncier" on heel strikes compared to the dead-stop absorption of dense foam. Most reviewers recommend them as a complement to foam pads rather than a full replacement.
+            But the physics are different. Foam absorbs energy by compressing - it's a one-way transaction. Air redistributes pressure across the entire chamber. In practice, this means inflatable pads can feel "bouncier" on heel strikes compared to the dead-stop absorption of dense foam. Most reviewers recommend them as a complement to foam pads rather than a full replacement.
           </Prose>
 
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "16px", margin: "20px 0" }}>
@@ -600,13 +600,13 @@ export default function GearNews() {
             <div style={{ background: T.card, border: `1px solid ${T.red}30`, borderRadius: T.radiusSm, padding: "16px" }}>
               <div style={{ fontSize: "13px", fontWeight: 700, color: T.red, marginBottom: "8px" }}>{"\u26A0\uFE0F"} Where Foam Still Wins</div>
               <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.7 }}>
-                Highball bouldering with serious fall consequences. Sharp terrain with puncture risk. Cold weather (air pressure drops). Quick repositioning during sessions. No inflation time needed — just unfold and climb.
+                Highball bouldering with serious fall consequences. Sharp terrain with puncture risk. Cold weather (air pressure drops). Quick repositioning during sessions. No inflation time needed - just unfold and climb.
               </div>
             </div>
           </div>
 
           <KeyInsight color={T.accent}>
-            <strong>Our Take:</strong> Inflatable pads aren't a gimmick — they're a legitimate new category solving real access problems. But they're not ready to replace your daily driver foam pad for crag sessions. The sweet spot is owning one of each: a foam pad for your home crag and an inflatable for everything else. At {"\u20AC"}240–320, that's a meaningful investment, but for serious boulderers who travel, the math works.
+            <strong>Our Take:</strong> Inflatable pads aren't a gimmick - they're a legitimate new category solving real access problems. But they're not ready to replace your daily driver foam pad for crag sessions. The sweet spot is owning one of each: a foam pad for your home crag and an inflatable for everything else. At {"\u20AC"}240–320, that's a meaningful investment, but for serious boulderers who travel, the math works.
           </KeyInsight>
         </section>
         {/* ═══ FOOTER CTA ═══ */}

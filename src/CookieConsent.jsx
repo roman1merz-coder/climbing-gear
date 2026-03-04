@@ -12,7 +12,7 @@ import { enableSessionReplay, disableSessionReplay } from "./posthog.js";
  * How it works:
  * - On first visit: shows a small bottom banner
  * - User can Accept (all) or Reject (essential only)
- * - Choice is stored in localStorage (not a cookie — no consent needed for that)
+ * - Choice is stored in localStorage (not a cookie - no consent needed for that)
  * - The banner never shows again once a choice is made
  *
  * To activate affiliate scripts conditionally:
@@ -22,7 +22,7 @@ import { enableSessionReplay, disableSessionReplay } from "./posthog.js";
 
 const STORAGE_KEY = "cg_cookie_consent";
 
-// Consent categories — extend as needed
+// Consent categories - extend as needed
 const CATEGORIES = {
   essential: true,   // always on (no actual cookies set yet)
   affiliate: false,  // Skimlinks / Amazon Associates tracking cookies

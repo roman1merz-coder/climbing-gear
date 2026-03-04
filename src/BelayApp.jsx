@@ -277,7 +277,7 @@ function BelaySVG({ device, width = 120, height = 100 }) {
   const isPassive = device.device_type === "passive_assisted";
 
   if (isActive) {
-    // Cam device shape — rounded rectangle with lever
+    // Cam device shape - rounded rectangle with lever
     return (
       <svg viewBox="0 0 120 100" width={width} height={height}>
         <defs>
@@ -312,7 +312,7 @@ function BelaySVG({ device, width = 120, height = 100 }) {
             <stop offset="100%" stopColor={c2} />
           </linearGradient>
         </defs>
-        {/* Body — thinner than active */}
+        {/* Body - thinner than active */}
         <rect x="30" y="18" width="45" height="55" rx="8" fill={`url(#bg-${device.slug})`} opacity="0.9" />
         {/* Rope slots */}
         <ellipse cx="45" cy="35" rx="6" ry="9" fill="#f5f0e8" opacity="0.6" />
@@ -336,7 +336,7 @@ function BelaySVG({ device, width = 120, height = 100 }) {
           <stop offset="100%" stopColor={c2} />
         </linearGradient>
       </defs>
-      {/* Body — slim plate shape */}
+      {/* Body - slim plate shape */}
       <rect x="28" y="20" width="50" height="50" rx="10" fill={`url(#bg-${device.slug})`} opacity="0.9" />
       {/* Rope slots */}
       <ellipse cx="43" cy="38" rx="6" ry="10" fill="#f5f0e8" opacity="0.6" />
@@ -474,7 +474,7 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
         />
         <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
       </div>
-      {/* Content — v3c layout */}
+      {/* Content - v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>
         {/* Row 1: brand + price */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
@@ -505,7 +505,7 @@ function CompactBelayCard({ belay, matchScore, onClick, priceData = {} }) {
           <span>{d.rope_diameter_min_mm}–{d.rope_diameter_max_mm}mm</span>
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("belay", d.slug); }}
@@ -651,7 +651,7 @@ function BelayCard({ belay, matchScore, onClick, priceData = {} }) {
           )}
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("belay", d.slug); }}
@@ -834,7 +834,7 @@ function loadBelaySession() {
 }
 
 export default function BelayApp({ belays = [], src, priceData = {} }) {
-  usePageMeta(`Belay Devices — Compare ${belays.length}+ Models`, "Compare belay devices: cam, passive-assist, tube, and guide. Filter by weight, rope range, safety features, and price.");
+  usePageMeta(`Belay Devices - Compare ${belays.length}+ Models`, "Compare belay devices: cam, passive-assist, tube, and guide. Filter by weight, rope range, safety features, and price.");
   const nav = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -1128,7 +1128,7 @@ export default function BelayApp({ belays = [], src, priceData = {} }) {
 
       {/* Body */}
       <div style={{ display: "flex", gap: "24px", padding: isMobile ? "16px 12px" : "24px 32px", alignItems: "flex-start" }}>
-        {/* Desktop sidebar — hidden in chart view */}
+        {/* Desktop sidebar - hidden in chart view */}
         {!isMobile && view !== "chart" && (
           <div style={{ width: "280px", flexShrink: 0 }}>
             <FilterSidebarContent

@@ -23,7 +23,7 @@ const BRAND_PAL = [
   "#81e6d9","#c4b5fd","#fca5a5","#bef264","#e879f9","#67e8f9",
 ];
 
-/* Pre-filter ropes — static ropes excluded from frontend for now */
+/* Pre-filter ropes - static ropes excluded from frontend for now */
 const ALL_ROPES = ROPE_SEED.filter(r => r.diameter_mm && r.weight_per_meter_g && r.rope_type !== "static")
   .map(r => ({
     brand: r.brand, model: r.model, slug: r.slug,
@@ -149,7 +149,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     return (v) => v == null ? (minR + maxR) / 2 : minR + ((v - lo) / range) * (maxR - minR);
   }, [sizeAxis, isMobile]);
 
-  /* Apply filters — exclude ropes missing either axis value */
+  /* Apply filters - exclude ropes missing either axis value */
   const filtered = useMemo(() => ALL_ROPES.filter(r => {
     if (!enabledTypes.has(r.type)) return false;
     if (hiddenBrands.has(r.brand)) return false;
@@ -185,7 +185,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     return BRAND_COLORS[r.brand] || "#94a3b8";
   }, [colorBy, BRAND_COLORS]);
 
-  /* Shape: circle=single, diamond=half, triangle=twin, square=static — with glow */
+  /* Shape: circle=single, diamond=half, triangle=twin, square=static - with glow */
   const drawShape = useCallback((ctx, r, px, py, size, isHovered) => {
     const hex = getColor(r);
     const [cr, cg, cb] = hex2rgb(hex);
@@ -273,7 +273,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
       drawCrosshair(ctx, hpx, hpy, PAD, W, H, xFmt(hovered[xField]), yFmt(hovered[yField]));
     }
 
-    // Dots with glow + jitter — size driven by optional bubble axis
+    // Dots with glow + jitter - size driven by optional bubble axis
     const baseSize = isMobile ? 3 : 4;
     const pixelPts = [];
     filtered.filter(r => r !== hovered).forEach((r, i) => {
@@ -317,7 +317,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
     return closest;
   }, [isMobile, cfg, filtered]);
 
-  /* Desktop tooltip — shows axis-selected fields prominently + core specs */
+  /* Desktop tooltip - shows axis-selected fields prominently + core specs */
   const showTip = useCallback((r, x, y, pinned) => {
     const tip = tipRef.current;
     if (!tip) return;
@@ -452,7 +452,7 @@ export default function RopeScatterChart({ isMobile, initialMetric, initialColor
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
           <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
-            <option value="none">— None —</option>
+            <option value="none">- None -</option>
             {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
           </select>
         </div>

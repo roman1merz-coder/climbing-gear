@@ -1,5 +1,5 @@
 // ═══ Fair Randomizer ═══
-// Seeded Fisher-Yates shuffle — same filters + session = same order
+// Seeded Fisher-Yates shuffle - same filters + session = same order
 
 function mulberry32(seed) {
   return function () {

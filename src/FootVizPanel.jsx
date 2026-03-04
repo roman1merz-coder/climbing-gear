@@ -19,7 +19,7 @@ const FOOT_TOP_TOES = [
 // ═══════════════════════════════════════════════════════════════
 // Side template: User's standard model SVG
 // Coordinates: toe_x=90, heel_x=645, ground_y=730, top_y≈428
-// Toes LEFT (x=90), heel RIGHT (x=645) — NO mirror needed
+// Toes LEFT (x=90), heel RIGHT (x=645) - NO mirror needed
 // This path is loaded from side_template_paths.json at build time
 // and injected as SIDE_OUTLINE_PATH prop or imported.
 // ═══════════════════════════════════════════════════════════════
@@ -154,7 +154,7 @@ function findInstepX(upperNorm, instepRatio, sideAspect) {
 // ═══════════════════════════════════════════════════════════════
 
 /**
- * FootVizPanel — overlays user's measured contour on average template.
+ * FootVizPanel - overlays user's measured contour on average template.
  *
  * Props:
  *   result: {
@@ -218,7 +218,7 @@ export default function FootVizPanel({ result, isMobile }) {
   const sideBallX = Math.round(SIDE_HEEL_X - ar * SIDE_LEN);
   const sideAvgBallX = Math.round(SIDE_HEEL_X - AVG_AR * SIDE_LEN);
 
-  // ── SIDE: Instep — find x where upper contour reaches instep height ──
+  // ── SIDE: Instep - find x where upper contour reaches instep height ──
   let instepXPx, avgInstepXPx, instepTopPx, avgInstepTopPx;
 
   if (hasContour) {
@@ -286,7 +286,7 @@ export default function FootVizPanel({ result, isMobile }) {
             fontSize: "9px", fontWeight: 600, textTransform: "uppercase",
             letterSpacing: "0.8px", color: T.muted, fontFamily: T.font,
             alignSelf: "flex-start", marginBottom: "10px",
-          }}>Top View — Width &amp; Heel</div>
+          }}>Top View - Width &amp; Heel</div>
 
           <svg viewBox="645 155 285 640" style={{ width: "100%", maxWidth: "200px", height: "auto" }}>
             <defs>
@@ -405,7 +405,7 @@ export default function FootVizPanel({ result, isMobile }) {
             fontSize: "9px", fontWeight: 600, textTransform: "uppercase",
             letterSpacing: "0.8px", color: T.muted, fontFamily: T.font,
             alignSelf: "flex-start", marginBottom: "10px",
-          }}>Side Profile — Arch &amp; Instep</div>
+          }}>Side Profile - Arch &amp; Instep</div>
 
           <svg viewBox="50 380 640 420" style={{ width: "100%", maxWidth: "340px", height: "auto" }}>
             <defs>
@@ -419,7 +419,7 @@ export default function FootVizPanel({ result, isMobile }) {
               </linearGradient>
             </defs>
 
-            {/* Grey dashed average template — user's standard model SVG
+            {/* Grey dashed average template - user's standard model SVG
                 NO mirror transform. Path already has toes LEFT, heel RIGHT. */}
             {sideOutlinePath && (
               <path d={sideOutlinePath} fill="url(#fvSideGrad)"
@@ -452,7 +452,7 @@ export default function FootVizPanel({ result, isMobile }) {
               >total length</text>
             </g>
 
-            {/* A: Arch length — from HEEL to BALL along ground */}
+            {/* A: Arch length - from HEEL to BALL along ground */}
             <line
               x1={sideAvgBallX} y1={SIDE_GROUND_Y + 5}
               x2={SIDE_HEEL_X} y2={SIDE_GROUND_Y + 5}
@@ -484,7 +484,7 @@ export default function FootVizPanel({ result, isMobile }) {
               >arch length</text>
             </g>
 
-            {/* I: Instep height — vertical from ground to upper contour */}
+            {/* I: Instep height - vertical from ground to upper contour */}
             <line
               x1={avgInstepXPx + 6} y1={avgInstepTopPx}
               x2={avgInstepXPx + 6} y2={SIDE_GROUND_Y}

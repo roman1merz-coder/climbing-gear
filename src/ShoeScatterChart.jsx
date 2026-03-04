@@ -35,12 +35,12 @@ const ZONE_POLYS = [
     poly: [[0.42,0.65], [1,0.68], [1,1], [0.30,1]] },
 ];
 const ZONE_DESCRIPTIONS = {
-  "1-sens": "Modern bouldering gym shoe for beginners. Minimal downturn and asymmetry, but thin, soft sole for maximum rock feel. Less supportive — your feet may tire faster at first — but builds toe strength and footwork skills faster than a stiff shoe.",
+  "1-sens": "Modern bouldering gym shoe for beginners. Minimal downturn and asymmetry, but thin, soft sole for maximum rock feel. Less supportive - your feet may tire faster at first - but builds toe strength and footwork skills faster than a stiff shoe.",
   "1-bal": "The beginner allrounder that does it all. Enough support for long sessions, enough sensitivity and grip for indoor bouldering. The safest first-shoe pick for climbers who want one pair that works everywhere.",
-  "1-sup": "Very comfortable for all-day use, but limited feedback from the rock surface. Better suited for easy sport climbing, multi-pitch, and trad than for indoor bouldering — a common mismatch we see with new climbers buying \"comfortable\" shoes for the gym.",
-  "2-sens": "Aggressive shape meets soft construction — surprisingly comfortable for its profile. Excels on steep, overhanging terrain and modern-style bouldering where toe hooks and precision on small holds matter more than standing on edges.",
+  "1-sup": "Very comfortable for all-day use, but limited feedback from the rock surface. Better suited for easy sport climbing, multi-pitch, and trad than for indoor bouldering - a common mismatch we see with new climbers buying \"comfortable\" shoes for the gym.",
+  "2-sens": "Aggressive shape meets soft construction - surprisingly comfortable for its profile. Excels on steep, overhanging terrain and modern-style bouldering where toe hooks and precision on small holds matter more than standing on edges.",
   "2-bal": "The advanced allrounder. Enough downturn and asymmetry for demanding sport routes, enough sensitivity for technical slab, enough support for longer pitches. The shoe that can do everything well when you know how to use it.",
-  "2-sup": "The edging machine. Stiff platform channels maximum force through a small contact point. Excels on micro-edges, thin cracks, and small pockets — vertical-to-slightly-overhung terrain where precision beats flexibility. More at home on sport crags than in the bouldering gym.",
+  "2-sup": "The edging machine. Stiff platform channels maximum force through a small contact point. Excels on micro-edges, thin cracks, and small pockets - vertical-to-slightly-overhung terrain where precision beats flexibility. More at home on sport crags than in the bouldering gym.",
 };
 function topLevel(shoe) {
   const lvls = shoe.skill_level || [];
@@ -444,7 +444,7 @@ export default function ShoeScatterChart({ shoes = [], isMobile, insightsMode = 
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <span style={{ fontSize: "11px", fontWeight: 600, color: T.muted }}>Size</span>
           <select value={sizeAxis} onChange={e => { setSizeAxis(e.target.value); pinnedRef.current = null; hovRef.current = null; hideTip(); setMobileItem(null); }} style={selectStyle}>
-            <option value="none">— None —</option>
+            <option value="none">- None -</option>
             {AXIS_OPTIONS.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
           </select>
         </div>

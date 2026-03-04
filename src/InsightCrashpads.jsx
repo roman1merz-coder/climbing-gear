@@ -25,8 +25,8 @@ const INFLATABLE_PADS = CRASHPAD_SEED
 
 export default function InsightCrashpads() {
   usePageMeta(
-    "Inflatable Crashpads: Game-Changer or Gimmick? — Data Analysis",
-    "We compared inflatable vs foam crashpads across 101 models. Inflatables weigh 46% less at competitive prices — but have real trade-offs on rough terrain. Full data breakdown inside."
+    "Inflatable Crashpads: Game-Changer or Gimmick? - Data Analysis",
+    "We compared inflatable vs foam crashpads across 101 models. Inflatables weigh 46% less at competitive prices - but have real trade-offs on rough terrain. Full data breakdown inside."
   );
   const isMobile = useIsMobile();
 
@@ -48,11 +48,11 @@ export default function InsightCrashpads() {
       <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_weight" compact thicknessRange={[10, 16]} />
 
       <Prose>
-        The chart above tells the story better than words can. Among the {INFLATABLE_PADS.length} pads in our database with 10–16cm thickness, the inflatables sit dramatically below the weight trendline. At 3.5–5.0 kg for 1.8–2.0 m² of landing area, they weigh roughly half of what foam pads deliver for the same coverage. That's not a marginal improvement — it's a category break. Click on any dot to see the full specs of that pad.
+        The chart above tells the story better than words can. Among the {INFLATABLE_PADS.length} pads in our database with 10–16cm thickness, the inflatables sit dramatically below the weight trendline. At 3.5–5.0 kg for 1.8–2.0 m² of landing area, they weigh roughly half of what foam pads deliver for the same coverage. That's not a marginal improvement - it's a category break. Click on any dot to see the full specs of that pad.
       </Prose>
 
       <KeyInsight color={T.yellow}>
-        <strong>The weight advantage is real.</strong> A Snap Air Shock 1 delivers 1.8m² of 15cm-thick landing zone at just 5kg. A comparable foam pad (e.g. Snap Wrap Original: 1.5m², 15cm, 10kg) weighs twice as much for less area. That deflated Air Shock rolls up to roughly sleeping-bag size — meaning you can carry two full-size pads to the crag for barely more than the weight of one traditional pad.
+        <strong>The weight advantage is real.</strong> A Snap Air Shock 1 delivers 1.8m² of 15cm-thick landing zone at just 5kg. A comparable foam pad (e.g. Snap Wrap Original: 1.5m², 15cm, 10kg) weighs twice as much for less area. That deflated Air Shock rolls up to roughly sleeping-bag size - meaning you can carry two full-size pads to the crag for barely more than the weight of one traditional pad.
       </KeyInsight>
 
       <SectionHeading>Cost per Area: Surprisingly Competitive</SectionHeading>
@@ -60,11 +60,11 @@ export default function InsightCrashpads() {
       <CrashpadScatterChart isMobile={isMobile} highlightSlugs={INFLATABLE_SLUGS} initialMetric="area_price" compact thicknessRange={[10, 16]} />
 
       <Prose>
-        You might expect air-chamber technology to come at a steep premium — but the data tells a different story. When you plot area vs price for the same 10–16cm thickness range, the inflatables are competitive with foam pads of comparable landing area. You're not paying a premium for lighter weight.
+        You might expect air-chamber technology to come at a steep premium - but the data tells a different story. When you plot area vs price for the same 10–16cm thickness range, the inflatables are competitive with foam pads of comparable landing area. You're not paying a premium for lighter weight.
       </Prose>
 
       <KeyInsight color={T.green}>
-        <strong>Better value by every metric.</strong> Inflatables deliver roughly half the weight at a below-average €/m². In other words, the air-chamber technology doesn't just save weight — it saves money per square meter of landing zone too. That's genuinely rare in climbing gear.
+        <strong>Better value by every metric.</strong> Inflatables deliver roughly half the weight at a below-average €/m². In other words, the air-chamber technology doesn't just save weight - it saves money per square meter of landing zone too. That's genuinely rare in climbing gear.
       </KeyInsight>
 
       <SectionHeading>Packed Size: Where It Gets Ridiculous</SectionHeading>
@@ -76,7 +76,7 @@ export default function InsightCrashpads() {
       />
 
       <Prose>
-        When deflated, an inflatable crashpad rolls down to roughly the size of a sleeping bag — about 5 liters of volume. Compare that to a foam pad of similar landing area, which stays the same massive rectangle whether you're climbing on it or carrying it to the crag.
+        When deflated, an inflatable crashpad rolls down to roughly the size of a sleeping bag - about 5 liters of volume. Compare that to a foam pad of similar landing area, which stays the same massive rectangle whether you're climbing on it or carrying it to the crag.
       </Prose>
 
       <Prose>
@@ -84,19 +84,19 @@ export default function InsightCrashpads() {
       </Prose>
 
       <KeyInsight color={T.blue}>
-        <strong>Stacking made easy:</strong> Carry two full-size pads for the weight and bulk of roughly 1.5 traditional pads. Or three full-size pads at the weight of two — you can easily fit 2 inflatable pads into one conventional taco pad.
+        <strong>Stacking made easy:</strong> Carry two full-size pads for the weight and bulk of roughly 1.5 traditional pads. Or three full-size pads at the weight of two - you can easily fit 2 inflatable pads into one conventional taco pad.
       </KeyInsight>
 
       <SectionHeading>Inflation: Easier Than You'd Think</SectionHeading>
 
       <ArticleImage
         src="/images/insights/inflatable-blower.jpg"
-        alt="Inflating a crashpad with a battery-powered blower — takes about 60 seconds"
+        alt="Inflating a crashpad with a battery-powered blower - takes about 60 seconds"
         caption="A battery-powered blower inflates an entire crashpad in about 60 seconds."
       />
 
       <Prose>
-        Initially our biggest concern: "I don't want to sit there pumping up a pad for 10 minutes." Fair — but some boulderers already carry a battery-powered blower to clean holds. That same blower inflates an entire crashpad in about 60 seconds.
+        Initially our biggest concern: "I don't want to sit there pumping up a pad for 10 minutes." Fair - but some boulderers already carry a battery-powered blower to clean holds. That same blower inflates an entire crashpad in about 60 seconds.
       </Prose>
 
       <Prose>
@@ -107,16 +107,16 @@ export default function InsightCrashpads() {
 
       <ArticleImage
         src="/images/insights/inflatable-bouldering.jpg"
-        alt="Bouldering on flat, even terrain — the ideal use case for inflatable crashpads"
-        caption="Flat, even landings — this is where inflatables truly excel."
+        alt="Bouldering on flat, even terrain - the ideal use case for inflatable crashpads"
+        caption="Flat, even landings - this is where inflatables truly excel."
       />
 
       <Prose>
-        Inflatables are at their best on flat, even terrain with relatively low problems. Think sandy bouldering areas, forest clearings with soft ground, or gym-style outdoor walls. They're also unbeatable for van-life and traveling boulderers — a deflated pad takes up barely any space in your vehicle compared to a foam pad that dominates the entire cargo area.
+        Inflatables are at their best on flat, even terrain with relatively low problems. Think sandy bouldering areas, forest clearings with soft ground, or gym-style outdoor walls. They're also unbeatable for van-life and traveling boulderers - a deflated pad takes up barely any space in your vehicle compared to a foam pad that dominates the entire cargo area.
       </Prose>
 
       <Prose>
-        The comfort factor shouldn't be underestimated either. Inflatables make surprisingly decent sleeping mats — they're thick and adjustable.
+        The comfort factor shouldn't be underestimated either. Inflatables make surprisingly decent sleeping mats - they're thick and adjustable.
       </Prose>
 
       <SectionHeading>The Honest Downsides</SectionHeading>
@@ -130,7 +130,7 @@ export default function InsightCrashpads() {
       </KeyInsight>
 
       <Prose>
-        The surface can feel slippery compared to textured foam pads, especially when wet or dusty. On uneven terrain — slopes, roots, small rocks — the pad tends to shift and wobble. Air also behaves differently from foam during impact: foam absorbs energy progressively, giving you gradual deceleration, while air compresses all at once, creating a bouncier, less predictable landing.
+        The surface can feel slippery compared to textured foam pads, especially when wet or dusty. On uneven terrain - slopes, roots, small rocks - the pad tends to shift and wobble. Air also behaves differently from foam during impact: foam absorbs energy progressively, giving you gradual deceleration, while air compresses all at once, creating a bouncier, less predictable landing.
       </Prose>
 
       <KeyInsight color={T.red}>
@@ -140,11 +140,11 @@ export default function InsightCrashpads() {
       <SectionHeading>The Verdict</SectionHeading>
 
       <Prose>
-        Game-changer or gimmick? Neither — and both. Inflatable crashpads aren't here to replace your foam pad. They're here to complement it. The ideal setup for many boulderers is a traditional foam pad as the primary landing zone, with an inflatable tucked inside for extra coverage.
+        Game-changer or gimmick? Neither - and both. Inflatable crashpads aren't here to replace your foam pad. They're here to complement it. The ideal setup for many boulderers is a traditional foam pad as the primary landing zone, with an inflatable tucked inside for extra coverage.
       </Prose>
 
       <KeyInsight color={T.green}>
-        <strong>Our recommendation:</strong> If you boulder on flat terrain, travel often, or do long approaches — an inflatable pad is genuinely transformative. As a second pad, it's arguably the best value-for-weight investment in bouldering gear. But if you only own one pad and climb on rough, rocky terrain, stick with proven multi-layer foam. The peace of mind is worth the extra kilos.
+        <strong>Our recommendation:</strong> If you boulder on flat terrain, travel often, or do long approaches - an inflatable pad is genuinely transformative. As a second pad, it's arguably the best value-for-weight investment in bouldering gear. But if you only own one pad and climb on rough, rocky terrain, stick with proven multi-layer foam. The peace of mind is worth the extra kilos.
       </KeyInsight>
 
       <SectionHeading>Bonus: The Best Pool Float Money Can Buy</SectionHeading>
@@ -156,7 +156,7 @@ export default function InsightCrashpads() {
       />
 
       <Prose>
-        An inflatable crashpad is, fundamentally, a quite large, very durable air mattress. Take it to the lake, the river, or the pool after a session and you've got the most luxurious float at the beach. It's 1.5–1.8m² of lounging surface — big and stable enough to actually lie on comfortably. Is this a legitimate purchase justification? Probably not. Does it bring joy? Absolutely.
+        An inflatable crashpad is, fundamentally, a quite large, very durable air mattress. Take it to the lake, the river, or the pool after a session and you've got the most luxurious float at the beach. It's 1.5–1.8m² of lounging surface - big and stable enough to actually lie on comfortably. Is this a legitimate purchase justification? Probably not. Does it bring joy? Absolutely.
       </Prose>
     </ArticleLayout>
   );

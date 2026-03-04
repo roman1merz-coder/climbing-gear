@@ -146,10 +146,10 @@ const USE_CASES_DYNAMIC = [
   "gym", "sport_single_pitch", "sport_multi_pitch", "trad",
   "alpine", "big_wall", "top_rope", "ice_mixed", "redpoint", "projecting",
 ];
-// Static ropes are excluded from the frontend for now — USE_CASES_STATIC removed
+// Static ropes are excluded from the frontend for now - USE_CASES_STATIC removed
 
 function getGroups(activeTypes) {
-  // Static ropes excluded from frontend — all ropes are dynamic types
+  // Static ropes excluded from frontend - all ropes are dynamic types
   const useCases = USE_CASES_DYNAMIC;
 
   const groups = [
@@ -488,7 +488,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
         />
         <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
       </div>
-      {/* Content — v3c layout */}
+      {/* Content - v3c layout */}
       <div onClick={onClick} style={{ padding: "10px" }}>
         {/* Row 1: brand + 70m price */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
@@ -521,7 +521,7 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
           <span>€{effectivePerMeter?.toFixed(2)}/m</span>
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("rope", d.slug); }}
@@ -715,7 +715,7 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
           </div>
         </div>
       </div>
-      {/* ═══ ACTION BAR — Save & Compare ═══ */}
+      {/* ═══ ACTION BAR - Save & Compare ═══ */}
       <div style={{ display: "flex", borderTop: "1px solid #d5cdbf" }}>
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWL("rope", d.slug); }}
@@ -770,7 +770,7 @@ function loadRopeSession() {
 }
 
 export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
-  usePageMeta(`Climbing Ropes — Compare ${ropes.length}+ Models`, "Compare single, half, and twin climbing ropes. Filter by diameter, weight, falls rated, and dry treatment across all major brands.");
+  usePageMeta(`Climbing Ropes - Compare ${ropes.length}+ Models`, "Compare single, half, and twin climbing ropes. Filter by diameter, weight, falls rated, and dry treatment across all major brands.");
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
@@ -1144,7 +1144,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
       )}
 
       <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
-        {/* Sidebar — desktop only, hidden in chart view */}
+        {/* Sidebar - desktop only, hidden in chart view */}
         {!isMobile && view !== "chart" && (
           <aside style={{
             width: "320px", minWidth: "320px",
@@ -1239,7 +1239,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
               ].map((x) => (
                 <div key={x.l} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
                   <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: x.c }} />
-                  <span style={{ fontSize: "11px", color: "#645b4f" }}>{x.l} — {x.d}</span>
+                  <span style={{ fontSize: "11px", color: "#645b4f" }}>{x.l} - {x.d}</span>
                 </div>
               ))}
             </div>
@@ -1317,7 +1317,7 @@ export default function RopeApp({ ropes = [], src = "local", priceData = {} }) {
                 Does Spending More Buy a Safer Rope?
               </div>
               <div style={{ fontSize: isMobile ? "10px" : "11px", color: "#7a7462" }}>
-                We analysed {displayResults.length > 0 ? "all" : ""} single ropes — cost vs UIAA falls, weight trade-offs, and the dry-treatment premium →
+                We analysed {displayResults.length > 0 ? "all" : ""} single ropes - cost vs UIAA falls, weight trade-offs, and the dry-treatment premium →
               </div>
             </div>
           </Link>
