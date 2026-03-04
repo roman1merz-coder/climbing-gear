@@ -154,13 +154,21 @@ body {
 <script>
 // ── Configuration ──
 const CFG = {
-  MIN_COVERAGE: 0.04,
-  MAX_COVERAGE: 0.65,
-  MIN_ASPECT: 1.3,
-  MAX_ASPECT: 5.0,
+  // Coverage: foot mask area / frame area — controls distance
+  MIN_COVERAGE: 0.08,   // too far away (was 0.04)
+  MAX_COVERAGE: 0.45,   // too close (was 0.65)
+  IDEAL_COV_LO: 0.12,   // sweet spot lower bound
+  IDEAL_COV_HI: 0.32,   // sweet spot upper bound
+  // Aspect ratio of bounding box (length/width)
+  MIN_ASPECT: 1.5,      // too round = not a foot (was 1.3)
+  MAX_ASPECT: 4.5,      // too elongated (was 5.0)
+  // Tilt / plane detection
+  MAX_SKEW: 0.18,       // max centroid offset from bbox center (as fraction of bbox dim)
+  MIN_FILL: 0.45,       // min mask pixels / bbox area — low fill = tilted/partial foot
+  // Stability
   CENTROID_TOL: 12,
   STABLE_FRAMES: 20,
-  PROCESS_INTERVAL: 200, // ML inference is slower, run every 200ms
+  PROCESS_INTERVAL: 200,
   ML_THRESHOLD: 0.5,
   MODEL_URL: 'https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/models/u2netp.onnx',
 };
@@ -428,16 +436,34 @@ async function detect(imageData, W, H) {
   const { mask: footMask, bbox, centroid, pixelCount, coverage } = seg;
   const [fMinX, fMinY, fMaxX, fMaxY] = bbox;
   
-  if (coverage < CFG.MIN_COVERAGE) return { ok: false, why: 'no_foot', cov: coverage };
-  if (coverage > CFG.MAX_COVERAGE) return { ok: false, why: 'too_much', cov: coverage };
+  // Distance check: foot must fill enough of the frame
+  if (coverage < CFG.MIN_COVERAGE) return { ok: false, why: 'too_far', cov: coverage };
+  if (coverage > CFG.MAX_COVERAGE) return { ok: false, why: 'too_close', cov: coverage };
   
   const bw = fMaxX - fMinX, bh = fMaxY - fMinY;
   const aspect = Math.max(bw, bh) / (Math.min(bw, bh) || 1);
   if (aspect < CFG.MIN_ASPECT || aspect > CFG.MAX_ASPECT)
     return { ok: false, why: 'shape', aspect, cov: coverage, centroid, bbox };
   
+  // Plane/tilt check 1: centroid should be near bbox center (skew = tilted foot)
+  const bboxCx = (fMinX + fMaxX) / 2, bboxCy = (fMinY + fMaxY) / 2;
+  const skewX = Math.abs(centroid.x - bboxCx) / (bw || 1);
+  const skewY = Math.abs(centroid.y - bboxCy) / (bh || 1);
+  if (skewX > CFG.MAX_SKEW || skewY > CFG.MAX_SKEW)
+    return { ok: false, why: 'tilted', cov: coverage, centroid, bbox, skewX, skewY };
+  
+  // Plane/tilt check 2: fill ratio — mask pixels vs bbox area
+  // A flat foot has high fill; a tilted/angled foot has lots of empty space in its bbox
+  const bboxArea = bw * bh;
+  const fillRatio = bboxArea > 0 ? pixelCount / bboxArea : 0;
+  if (fillRatio < CFG.MIN_FILL)
+    return { ok: false, why: 'tilted', cov: coverage, centroid, bbox, fillRatio };
+  
+  // Distance sweet-spot check: warn if outside ideal range but still allow stability tracking
+  const distanceOk = coverage >= CFG.IDEAL_COV_LO && coverage <= CFG.IDEAL_COV_HI;
+  
   const meas = measure(footMask, W, H, fMinX, fMaxX, fMinY, fMaxY);
-  return { ok: true, cov: coverage, centroid, aspect, bbox, footMask, meas, pixelCount };
+  return { ok: true, distanceOk, cov: coverage, centroid, aspect, bbox, footMask, meas, pixelCount, fillRatio };
 }
 
 function measure(mask, W, H, minX, maxX, minY, maxY) {
@@ -550,14 +576,15 @@ function drawDebug(res, inferenceMs) {
   ctxD.fillStyle = '#E8734A'; ctxD.beginPath();
   ctxD.arc(res.centroid.x, res.centroid.y, 5, 0, Math.PI * 2); ctxD.fill();
   
+  const distIcon = res.distanceOk ? '✓' : (res.cov < CFG.IDEAL_COV_LO ? '↓far' : '↑near');
   info.innerHTML = [
     `ML:${Math.round(inferenceMs)}ms`,
-    `cov:${(res.cov * 100).toFixed(1)}%`,
+    `cov:${(res.cov * 100).toFixed(1)}% ${distIcon}`,
+    `fill:${res.fillRatio ? (res.fillRatio * 100).toFixed(0) : '?'}%`,
     `asp:${res.aspect.toFixed(2)}`,
     `W/L:<b>${m.widthRatio}</b>`,
     `H/B:<b>${m.heelRatio}</b>`,
     `toe:<b>${m.toeShape}</b>`,
-    `len:${m.footLen}px`,
   ].join('<br>');
 }
 
@@ -566,11 +593,27 @@ function updateStability(res) {
   const prog = document.getElementById('stab-progress');
   if (!res.ok) {
     stableCount = 0; prevCentroid = null; prog.style.strokeDashoffset = 157;
-    bar.textContent = res.why === 'no_foot' ? 'Hold your foot above the phone…'
-      : res.why === 'too_much' ? 'Too much detected — lift foot slightly'
-      : 'Adjust position — keep foot in guide';
+    const msgs = {
+      'no_foot': 'Hold your bare foot above the phone…',
+      'too_far': 'Move your foot closer to the camera',
+      'too_close': 'Move your foot further from the camera',
+      'too_much': 'Too much detected — lift foot slightly',
+      'tilted': 'Hold your foot flat and parallel to the screen',
+      'shape': 'Adjust position — keep foot centered in the guide',
+    };
+    bar.textContent = msgs[res.why] || 'Adjust position…';
     return;
   }
+  // Foot detected but not at ideal distance — guide the user but don't count as stable
+  if (!res.distanceOk) {
+    stableCount = Math.max(0, stableCount - 2);
+    prevCentroid = res.centroid;
+    prog.style.strokeDashoffset = 157;
+    if (res.cov < CFG.IDEAL_COV_LO) bar.textContent = 'Foot detected — move a little closer';
+    else bar.textContent = 'Foot detected — move a little further away';
+    return;
+  }
+  // All checks passed — track stability
   if (prevCentroid) {
     const d = Math.sqrt((res.centroid.x - prevCentroid.x) ** 2 + (res.centroid.y - prevCentroid.y) ** 2);
     if (d < CFG.CENTROID_TOL) stableCount++; else stableCount = Math.max(0, stableCount - 3);
@@ -578,7 +621,7 @@ function updateStability(res) {
   prevCentroid = res.centroid;
   const pct = Math.min(stableCount / CFG.STABLE_FRAMES, 1);
   prog.style.strokeDashoffset = 157 * (1 - pct);
-  if (pct < 1) bar.textContent = stableCount < 3 ? 'Foot detected — hold still…' : `Scanning… ${Math.round(pct * 100)}%`;
+  if (pct < 1) bar.textContent = stableCount < 3 ? 'Good position — hold still…' : `Scanning… ${Math.round(pct * 100)}%`;
 }
 
 function capture(res) {
