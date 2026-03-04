@@ -71,23 +71,7 @@ body {
   font-size: 1rem; color: #fff; padding-top: 40px;
   font-weight: 500;
 }
-/* Countdown ring */
-#countdown-ring {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  pointer-events: none; opacity: 0; transition: opacity 0.3s;
-}
-#countdown-ring.visible { opacity: 1; }
-#countdown-ring svg { width: 120px; height: 120px; }
-#countdown-ring circle {
-  fill: none; stroke-width: 6; transform: rotate(-90deg); transform-origin: center;
-}
-#countdown-ring .bg { stroke: rgba(255,255,255,0.2); }
-#countdown-ring .fg { stroke: #3d7a52; stroke-linecap: round; transition: stroke-dashoffset 0.3s linear; }
-#countdown-text {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  font-size: 2rem; font-weight: 800; color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
+/* Checkmark flash when capture triggers */
 
 #flash {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -145,14 +129,7 @@ body {
       <path d="M619.815 61.21C664.42 58.33 678.37 102.118 688.025 136.992C697.575 171.488 684.305 205.393 684.93 240.126C685.395 265.963 691.42 290.668 694.27 316.125C695.89 331.689 696.055 347.37 694.76 362.965C692.95 385.162 688.3 405.601 681.745 426.814C677.4 441.855 671.515 456.513 667.765 471.729C654.465 525.675 642.69 581.63 637.47 636.95C635.105 662.015 636.645 688.23 637.625 713.17C640.225 779.235 653.165 861.265 616.02 920.405C600.115 946.15 574.525 964.42 545.01 971.095C514.785 977.805 480.261 973.14 453.874 956.325C392.116 916.975 396.387 836.855 392.937 772.865C391.084 738.51 388.906 702.685 381.4 669.115C374.936 641.77 365.521 616.1 360.145 587.86C353.679 553.895 349.793 520.33 343.289 486.389C337.723 458.03 330.011 431.724 328.432 402.714C326.928 375.077 334.325 350.593 335.031 323.286C335.284 313.513 333.174 303.861 332.596 294.184C331.781 279.069 332.228 264.656 335.574 249.744C338.683 235.886 343.457 218.524 358.987 213.957C366.473 211.755 372.143 214.045 378.522 217.791C378.198 205.204 378.593 198.533 380.405 186.168C384.088 161.027 416.79 135.844 434.711 164.782C429.831 141.988 427.831 123.003 450.608 109.793C457.228 105.953 466.886 102.861 474.288 105.459C496.049 113.099 498.649 147.654 500.535 167.109C501.45 181.049 497.686 212.514 504.12 224.382L504.695 224.346C509.86 215.006 504.39 164.777 501.94 152.554C497.599 130.91 481.352 98.236 504.59 81.057C512.74 75.032 526.775 71.8065 536.655 73.7235C571.935 80.5705 563.405 126.586 564.65 152.589C565.45 170.012 567.485 186.199 567.88 203.731C568.54 210.243 567.525 226.156 572.02 231.385C582.67 243.774 587.515 233.217 587.575 222.622C587.725 195.042 571.405 173.845 569.415 146.845C568.5 134.381 568.895 123.317 571.36 111.111C576.06 81.0575 588.075 63.7515 619.815 61.21Z"/>
     </svg>
   </div>
-  <div id="countdown-ring">
-    <svg viewBox="0 0 120 120">
-      <circle class="bg" cx="60" cy="60" r="52"/>
-      <circle class="fg" id="ring-fg" cx="60" cy="60" r="52"
-        stroke-dasharray="327" stroke-dashoffset="327"/>
-    </svg>
-    <div id="countdown-text"></div>
-  </div>
+
   <div id="status-bar">Position your foot over the screen…</div>
   <div id="flash"></div>
 </div>
@@ -174,16 +151,18 @@ const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
 /* ── Auto-capture config ── */
-const CHECK_INTERVAL = 300;      // ms between frame checks
-const COVERAGE_THRESHOLD = 0.25; // 25% of guide area must be covered by foot
-const HOLD_TIME = 3000;          // hold steady for 3s to trigger capture
-const CIRCUMFERENCE = 2 * Math.PI * 52; // SVG ring circumference
+const CHECK_INTERVAL = 200;       // ms between frame checks
+const COVERAGE_MIN = 0.20;        // at least 20% of guide zone covered
+const COVERAGE_MAX = 0.75;        // no more than 75% (too close / all dark)
+const STILL_THRESHOLD = 0.015;    // max frame-to-frame change (lower = more still)
+const STILL_FRAMES_NEEDED = 4;    // consecutive still frames needed (~0.8s at 200ms)
 
 let video, analyzeCanvas, analyzeCtx;
 let checkTimer = null;
-let holdStart = null;       // timestamp when foot first detected
 let captured = false;
 let lastCaptureDataUrl = null;
+let prevPixelData = null;         // previous frame pixel data for motion detection
+let stillCount = 0;               // consecutive frames with low motion
 
 document.getElementById('start-btn').addEventListener('click', startScanner);
 document.getElementById('retake-btn').addEventListener('click', retake);
@@ -219,23 +198,20 @@ function startScanner() {
 }
 
 /**
- * Foot shape detection — NOT just "is something dark there".
+ * Smart auto-capture: detects a foot shape + stillness.
  *
- * A foot sole seen from below is:
- *   - Elongated vertically (aspect ratio height/width ≈ 2.2–3.5)
- *   - Narrower at the heel (bottom rows) than at the ball (top rows)
- *   - NOT round like a face (face aspect ratio ≈ 1.0–1.5)
+ * 1) Check the guide zone for a foot-shaped dark mass (elongated, not round)
+ * 2) Compare current frame to previous frame — measure motion
+ * 3) When foot shape is good AND frame is stable for N consecutive checks → snap
  *
- * We find the bounding box of all dark pixels, check aspect ratio,
- * and verify the shape tapers (wider top, narrower bottom = foot).
+ * No countdown, no timer visible. Just: guide turns green → captures instantly
+ * when the foot is well-positioned and still.
  */
 function analyzeFrame() {
   if (captured || !video || video.readyState < 2) return;
 
-  // Draw downscaled frame
   analyzeCtx.drawImage(video, 0, 0, analyzeCanvas.width, analyzeCanvas.height);
 
-  // Sample the center zone (matching the 42% x 65% guide)
   const w = analyzeCanvas.width, h = analyzeCanvas.height;
   const zoneX = Math.floor(w * 0.29);
   const zoneY = Math.floor(h * 0.175);
@@ -243,22 +219,20 @@ function analyzeFrame() {
   const zoneH = Math.floor(h * 0.65);
 
   const imgData = analyzeCtx.getImageData(zoneX, zoneY, zoneW, zoneH);
-  const pixels = imgData.data;
+  const curPixels = imgData.data;
   const totalPixels = zoneW * zoneH;
 
-  // Build a binary mask of dark pixels + track bounding box
+  // ── 1. Foot shape detection ──
   let darkCount = 0;
   let minX = zoneW, maxX = 0, minY = zoneH, maxY = 0;
-
-  // Per-row dark pixel counts for shape analysis (divide into 8 horizontal strips)
   const STRIPS = 8;
   const stripH = Math.floor(zoneH / STRIPS);
   const stripDark = new Array(STRIPS).fill(0);
 
   for (let y = 0; y < zoneH; y++) {
-    for (let x = 0; x < zoneW; x += 2) { // sample every 2nd pixel for speed
+    for (let x = 0; x < zoneW; x += 2) {
       const idx = (y * zoneW + x) * 4;
-      const brightness = (pixels[idx] + pixels[idx+1] + pixels[idx+2]) / 3;
+      const brightness = (curPixels[idx] + curPixels[idx+1] + curPixels[idx+2]) / 3;
       if (brightness < 120) {
         darkCount++;
         if (x < minX) minX = x;
@@ -271,75 +245,68 @@ function analyzeFrame() {
     }
   }
 
-  // Adjust for sampling every 2nd pixel
   darkCount *= 2;
   const coverage = darkCount / totalPixels;
-
-  // Bounding box dimensions of the dark region
   const bbW = maxX - minX + 1;
   const bbH = maxY - minY + 1;
   const aspectRatio = bbH / Math.max(bbW, 1);
-
-  // Shape taper check: compare top half width vs bottom half width
-  // Foot sole (viewed from below, heel closest to bottom of phone):
-  //   top strips = toes/ball area (wider)
-  //   bottom strips = heel area (narrower)
   const topHalf = stripDark.slice(0, 4).reduce((a, b) => a + b, 0);
   const bottomHalf = stripDark.slice(4, 8).reduce((a, b) => a + b, 0);
-  // Foot should have reasonable mass in both halves (not just a blob in one spot)
-  const topBottomBalance = Math.min(topHalf, bottomHalf) / Math.max(topHalf, bottomHalf, 1);
+  const balance = Math.min(topHalf, bottomHalf) / Math.max(topHalf, bottomHalf, 1);
 
-  // ── Decision logic ──
   const isFootShape =
-    coverage >= COVERAGE_THRESHOLD &&   // enough dark pixels overall
-    aspectRatio >= 1.8 &&               // elongated (face is ~1.0-1.5, foot is ~2.2-3.5)
-    aspectRatio <= 4.5 &&               // not absurdly thin (arm, finger)
-    topBottomBalance >= 0.2;            // mass in both halves (not just a hand/finger)
+    coverage >= COVERAGE_MIN &&
+    coverage <= COVERAGE_MAX &&
+    aspectRatio >= 1.8 &&
+    aspectRatio <= 4.5 &&
+    balance >= 0.2;
 
+  // ── 2. Motion detection (frame-to-frame diff) ──
+  let motion = 1; // assume high motion if no previous frame
+  if (prevPixelData && prevPixelData.length === curPixels.length) {
+    let diffSum = 0;
+    const sampleStep = 32; // sample every 8th pixel (4 channels × 8)
+    let sampleCount = 0;
+    for (let i = 0; i < curPixels.length; i += sampleStep) {
+      diffSum += Math.abs(curPixels[i] - prevPixelData[i]);
+      sampleCount++;
+    }
+    motion = diffSum / (sampleCount * 255); // normalize 0–1
+  }
+  prevPixelData = new Uint8Array(curPixels);
+
+  const isStill = motion < STILL_THRESHOLD;
+
+  // ── 3. Decision ──
   const outline = document.getElementById('foot-guide-svg');
   const statusBar = document.getElementById('status-bar');
-  const ring = document.getElementById('countdown-ring');
-  const ringFg = document.getElementById('ring-fg');
-  const countdownText = document.getElementById('countdown-text');
 
-  if (isFootShape) {
+  if (isFootShape && isStill) {
+    stillCount++;
     outline.classList.add('ready');
+    statusBar.textContent = 'Hold still…';
 
-    if (!holdStart) {
-      holdStart = Date.now();
-      statusBar.textContent = 'Foot detected — hold steady…';
-    }
-
-    const elapsed = Date.now() - holdStart;
-    const progress = Math.min(elapsed / HOLD_TIME, 1);
-
-    ring.classList.add('visible');
-    const offset = CIRCUMFERENCE * (1 - progress);
-    ringFg.style.strokeDashoffset = offset;
-
-    const remaining = Math.ceil((HOLD_TIME - elapsed) / 1000);
-    countdownText.textContent = remaining > 0 ? remaining : '';
-
-    if (progress >= 1) {
+    if (stillCount >= STILL_FRAMES_NEEDED) {
       capture();
     }
+  } else if (isFootShape) {
+    // Foot shape OK but still moving
+    stillCount = 0;
+    outline.classList.add('ready');
+    statusBar.textContent = 'Foot detected — hold still…';
   } else {
+    // No foot shape
+    stillCount = 0;
     outline.classList.remove('ready');
-    ring.classList.remove('visible');
-    ringFg.style.strokeDashoffset = CIRCUMFERENCE;
-    countdownText.textContent = '';
 
-    if (holdStart) {
-      holdStart = null;
-    }
-
-    // Helpful guidance messages
     if (coverage < 0.08) {
       statusBar.textContent = 'Position your foot over the screen…';
+    } else if (coverage > COVERAGE_MAX) {
+      statusBar.textContent = 'Move your foot a bit higher…';
     } else if (aspectRatio < 1.8) {
-      statusBar.textContent = 'Align your foot lengthwise inside the guide';
+      statusBar.textContent = 'Align your foot lengthwise in the guide';
     } else {
-      statusBar.textContent = 'Move your foot closer to the center…';
+      statusBar.textContent = 'Center your foot inside the guide…';
     }
   }
 }
