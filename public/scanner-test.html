@@ -162,7 +162,7 @@ const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 /* ── Auto-capture config ── */
 const CHECK_INTERVAL = 300;      // ms between frame checks
 const COVERAGE_THRESHOLD = 0.25; // 25% of guide area must be covered by foot
-const HOLD_TIME = 1500;          // hold steady for 1.5s to trigger capture
+const HOLD_TIME = 3000;          // hold steady for 3s to trigger capture
 const CIRCUMFERENCE = 2 * Math.PI * 52; // SVG ring circumference
 
 let video, analyzeCanvas, analyzeCtx;
