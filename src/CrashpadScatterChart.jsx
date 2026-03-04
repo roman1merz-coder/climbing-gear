@@ -28,6 +28,7 @@ function buildPads(raw) {
         thickness: p.thickness_cm || 10, tGroup: thickGroup(p.thickness_cm || 10),
         length: p.length_open_cm, width: p.width_open_cm,
         portability: p.portability_score || null,
+        areaPerWeight: +(area / p.weight_kg).toFixed(3),
       };
     });
 }
@@ -60,6 +61,7 @@ const AXIS_OPTIONS = [
   { key: "width",      label: "Width (cm)",            unit: "cm",  fmt: v => String(Math.round(v)) },
   { key: "layers",     label: "Foam Layers",           unit: "",    fmt: v => String(v) },
   { key: "portability",label: "Portability Score",     unit: "",    fmt: v => v.toFixed(1) },
+  { key: "areaPerWeight", label: "Area / Weight (m²/kg)", unit: "m²/kg", fmt: v => v.toFixed(2) },
 ];
 const AXIS_MAP = Object.fromEntries(AXIS_OPTIONS.map(a => [a.key, a]));
 
