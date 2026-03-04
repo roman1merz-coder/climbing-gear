@@ -164,14 +164,13 @@ body {
   display: none; position: relative;
   width: 100vw; min-height: 100vh; min-height: 100dvh;
   background: #f5f0e8; overflow-y: auto;
-  padding: 2rem 1.5rem; padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  padding: 1rem 1.5rem; padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   text-align: center;
 }
-.instruction-screen h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
 .step-badge {
   display: inline-block; background: #c98a42; color: #fff;
-  font-size: 0.75rem; font-weight: 700; padding: 4px 14px;
-  border-radius: 20px; margin-bottom: 1rem; letter-spacing: 0.5px;
+  font-size: 1.1rem; font-weight: 700; padding: 10px 24px;
+  border-radius: 12px; margin-bottom: 0.8rem; letter-spacing: 0.3px;
 }
 .instruction-img {
   width: 85%; max-width: 340px; border-radius: 16px;
@@ -289,8 +288,7 @@ body {
 
 <!-- ── Sole Instruction Screen ── -->
 <div id="sole-instruction" class="instruction-screen">
-  <span class="step-badge">STEP 1 OF 2</span>
-  <h2>Sole Photo</h2>
+  <span class="step-badge">Step 1/2: Sole Scan</span>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-sole.jpg" alt="How to take sole photo" />
   <p class="instruction-text">
     <strong>Lay your phone flat on the ground</strong>, screen up, and lift your foot above the camera.
@@ -320,8 +318,7 @@ body {
 
 <!-- ── Side Instruction Screen ── -->
 <div id="side-instruction" class="instruction-screen">
-  <span class="step-badge">STEP 2 OF 2</span>
-  <h2>Side Profile Photo</h2>
+  <span class="step-badge">Step 2/2: Side Scan</span>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-side.jpg" alt="How to take side photo" />
   <p class="instruction-text">
     <strong>Hold your phone horizontally on the ground</strong>, screen facing the inside of your right foot
