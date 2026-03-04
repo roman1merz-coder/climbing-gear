@@ -70,12 +70,15 @@ body {
   width: 70%; max-height: 75%;
   object-fit: contain;
   transition: filter 0.3s, opacity 0.3s;
-  opacity: 0.45;
+  opacity: 0.8;
 }
 #side-guide-img.ready {
-  opacity: 0.75;
-  filter: drop-shadow(0 0 12px rgba(61,122,82,0.5)) hue-rotate(90deg);
+  opacity: 0.95;
+  filter: drop-shadow(0 0 16px rgba(61,122,82,0.7));
 }
+/* Un-mirror video + overlay during side step so outline matches real orientation */
+#video.side-step { transform: scaleX(-1); }
+#guide-overlay.side-step { transform: scaleX(-1); }
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 20px 40px; text-align: center;
@@ -300,11 +303,15 @@ function startScanner(step) {
     imgGuide.style.display = 'none';
     svgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 1 of 2 — Sole';
+    document.getElementById('video').classList.remove('side-step');
+    document.getElementById('guide-overlay').classList.remove('side-step');
   } else {
     svgGuide.style.display = 'none';
     imgGuide.style.display = '';
     imgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 2 of 2 — Side Profile';
+    document.getElementById('video').classList.add('side-step');
+    document.getElementById('guide-overlay').classList.add('side-step');
   }
 
   document.getElementById('status-bar').textContent = 'Position your foot…';
