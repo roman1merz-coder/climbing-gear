@@ -49,26 +49,37 @@ body {
   width: 42%; height: 65%;
   border: 3px dashed rgba(201,138,66,0.5);
   border-radius: 35% 35% 25% 25% / 20% 20% 40% 40%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.foot-outline.ready {
+  border-color: #3d7a52;
+  box-shadow: 0 0 30px rgba(61,122,82,0.3);
 }
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 20px 24px; text-align: center;
+  padding: 20px 20px 40px; text-align: center;
   background: linear-gradient(transparent, rgba(0,0,0,0.7));
-  font-size: 0.95rem; color: #fff; padding-top: 40px;
+  font-size: 1rem; color: #fff; padding-top: 40px;
+  font-weight: 500;
 }
-#shutter-btn {
-  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-  width: 72px; height: 72px; border-radius: 50%;
-  background: rgba(255,255,255,0.95); border: 4px solid #c98a42;
-  cursor: pointer; z-index: 10;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.1s;
+/* Countdown ring */
+#countdown-ring {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none; opacity: 0; transition: opacity 0.3s;
 }
-#shutter-btn:active { transform: translateX(-50%) scale(0.92); }
-#shutter-inner {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: #c98a42;
+#countdown-ring.visible { opacity: 1; }
+#countdown-ring svg { width: 120px; height: 120px; }
+#countdown-ring circle {
+  fill: none; stroke-width: 6; transform: rotate(-90deg); transform-origin: center;
 }
+#countdown-ring .bg { stroke: rgba(255,255,255,0.2); }
+#countdown-ring .fg { stroke: #3d7a52; stroke-linecap: round; transition: stroke-dashoffset 0.3s linear; }
+#countdown-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 2rem; font-weight: 800; color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
 #flash {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background: #fff; opacity: 0; pointer-events: none;
@@ -107,28 +118,35 @@ body {
 
 <div id="start-screen">
   <h1>Foot Scanner</h1>
-  <p class="subtitle">Take a photo of the sole of your foot for shape analysis.</p>
+  <p class="subtitle">Automatically captures a photo of the sole of your foot for shape analysis.</p>
   <ol class="step-list">
     <li><strong>Place your phone face-up on the floor</strong> (screen pointing at the ceiling)</li>
     <li><strong>Hold your bare foot</strong> about a hand-width above the screen</li>
     <li><strong>Align your foot</strong> inside the dashed guide</li>
-    <li>Tap the <strong>shutter button</strong> to capture</li>
+    <li>Hold steady — the photo is <strong>taken automatically</strong></li>
   </ol>
   <button id="start-btn">Open Camera</button>
 </div>
 
 <div id="scanner">
   <video id="video" autoplay playsinline muted></video>
-  <div id="guide-overlay"><div class="foot-outline"></div></div>
-  <div id="status-bar">Align your foot inside the guide, then tap to capture</div>
-  <div id="shutter-btn"><div id="shutter-inner"></div></div>
+  <div id="guide-overlay"><div class="foot-outline" id="foot-outline"></div></div>
+  <div id="countdown-ring">
+    <svg viewBox="0 0 120 120">
+      <circle class="bg" cx="60" cy="60" r="52"/>
+      <circle class="fg" id="ring-fg" cx="60" cy="60" r="52"
+        stroke-dasharray="327" stroke-dashoffset="327"/>
+    </svg>
+    <div id="countdown-text"></div>
+  </div>
+  <div id="status-bar">Position your foot over the screen…</div>
   <div id="flash"></div>
 </div>
 
 <div id="result-screen">
   <img id="captured-img" />
   <div class="result-info">
-    Photo captured. Save to upload for analysis, or retake if the foot isn't fully visible.
+    Photo captured automatically. Save to upload for analysis, or retake if the foot isn't fully visible.
   </div>
   <div class="btn-row">
     <button id="retake-btn">Retake</button>
@@ -141,32 +159,137 @@ body {
 const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
-let video;
+/* ── Auto-capture config ── */
+const CHECK_INTERVAL = 300;      // ms between frame checks
+const COVERAGE_THRESHOLD = 0.25; // 25% of guide area must be covered by foot
+const HOLD_TIME = 1500;          // hold steady for 1.5s to trigger capture
+const CIRCUMFERENCE = 2 * Math.PI * 52; // SVG ring circumference
+
+let video, analyzeCanvas, analyzeCtx;
+let checkTimer = null;
+let holdStart = null;       // timestamp when foot first detected
+let captured = false;
 let lastCaptureDataUrl = null;
 
 document.getElementById('start-btn').addEventListener('click', startScanner);
 document.getElementById('retake-btn').addEventListener('click', retake);
 document.getElementById('save-btn').addEventListener('click', saveResult);
-document.getElementById('shutter-btn').addEventListener('click', capture);
 
 function startScanner() {
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('scanner').style.display = 'block';
+  captured = false;
+  holdStart = null;
   video = document.getElementById('video');
+
+  // Small offscreen canvas for frame analysis
+  analyzeCanvas = document.createElement('canvas');
+  analyzeCanvas.width = 120; analyzeCanvas.height = 160;
+  analyzeCtx = analyzeCanvas.getContext('2d', { willReadFrequently: true });
 
   navigator.mediaDevices.getUserMedia({
     video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
     audio: false,
   })
-  .then(stream => { video.srcObject = stream; })
+  .then(stream => {
+    video.srcObject = stream;
+    video.onloadedmetadata = () => {
+      // Start checking frames once video is playing
+      checkTimer = setInterval(analyzeFrame, CHECK_INTERVAL);
+    };
+  })
   .catch(e => {
     document.getElementById('status-bar').innerHTML =
       'Camera error: ' + e.name + '<br>Check browser settings and allow camera access.';
-    document.getElementById('shutter-btn').style.display = 'none';
   });
 }
 
+/**
+ * Simple foot detection: sample the central region of the frame
+ * (matching the guide outline area). A foot above the phone will
+ * appear as a large dark mass against the bright ceiling/background.
+ * We count how many pixels in the center zone are "dark enough" to
+ * be a foot (brightness < threshold).
+ */
+function analyzeFrame() {
+  if (captured || !video || video.readyState < 2) return;
+
+  // Draw downscaled frame
+  analyzeCtx.drawImage(video, 0, 0, analyzeCanvas.width, analyzeCanvas.height);
+
+  // Sample the center zone (matching the 42% x 65% guide)
+  const w = analyzeCanvas.width, h = analyzeCanvas.height;
+  const zoneX = Math.floor(w * 0.29);   // center the 42% zone
+  const zoneY = Math.floor(h * 0.175);  // center the 65% zone
+  const zoneW = Math.floor(w * 0.42);
+  const zoneH = Math.floor(h * 0.65);
+
+  const imgData = analyzeCtx.getImageData(zoneX, zoneY, zoneW, zoneH);
+  const pixels = imgData.data;
+  const totalPixels = zoneW * zoneH;
+  let darkCount = 0;
+
+  // Count dark pixels (foot against bright background)
+  // A foot sole will be much darker than the ceiling light behind it
+  for (let i = 0; i < pixels.length; i += 16) { // sample every 4th pixel for speed
+    const r = pixels[i], g = pixels[i+1], b = pixels[i+2];
+    const brightness = (r + g + b) / 3;
+    if (brightness < 120) darkCount++;
+  }
+
+  // Adjust for sampling (every 4th pixel)
+  const coverage = (darkCount * 4) / totalPixels;
+
+  const outline = document.getElementById('foot-outline');
+  const statusBar = document.getElementById('status-bar');
+  const ring = document.getElementById('countdown-ring');
+  const ringFg = document.getElementById('ring-fg');
+  const countdownText = document.getElementById('countdown-text');
+
+  if (coverage >= COVERAGE_THRESHOLD) {
+    // Foot detected in position
+    outline.classList.add('ready');
+
+    if (!holdStart) {
+      holdStart = Date.now();
+      statusBar.textContent = 'Foot detected — hold steady…';
+    }
+
+    const elapsed = Date.now() - holdStart;
+    const progress = Math.min(elapsed / HOLD_TIME, 1);
+
+    // Show countdown ring
+    ring.classList.add('visible');
+    const offset = CIRCUMFERENCE * (1 - progress);
+    ringFg.style.strokeDashoffset = offset;
+
+    // Countdown number (3, 2, 1)
+    const remaining = Math.ceil((HOLD_TIME - elapsed) / 1000);
+    countdownText.textContent = remaining > 0 ? remaining : '';
+
+    if (progress >= 1) {
+      // Auto-capture!
+      capture();
+    }
+  } else {
+    // No foot / moved away — reset
+    outline.classList.remove('ready');
+    ring.classList.remove('visible');
+    ringFg.style.strokeDashoffset = CIRCUMFERENCE;
+    countdownText.textContent = '';
+
+    if (holdStart) {
+      holdStart = null;
+      statusBar.textContent = 'Position your foot over the screen…';
+    }
+  }
+}
+
 function capture() {
+  if (captured) return;
+  captured = true;
+  if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+
   // Flash effect
   const flash = document.getElementById('flash');
   flash.style.opacity = '1';
@@ -177,19 +300,20 @@ function capture() {
   snap.width = video.videoWidth; snap.height = video.videoHeight;
   const ctx = snap.getContext('2d');
   ctx.drawImage(video, 0, 0);
-
   lastCaptureDataUrl = snap.toDataURL('image/jpeg', 0.95);
 
-  // Show result
-  document.getElementById('scanner').style.display = 'none';
-  document.getElementById('result-screen').style.display = 'block';
-  document.getElementById('captured-img').src = lastCaptureDataUrl;
-  document.getElementById('save-status').textContent = '';
-  document.getElementById('save-btn').disabled = false;
-  document.getElementById('save-btn').textContent = 'Save & Upload';
+  // Show result after brief flash delay
+  setTimeout(() => {
+    document.getElementById('scanner').style.display = 'none';
+    document.getElementById('result-screen').style.display = 'block';
+    document.getElementById('captured-img').src = lastCaptureDataUrl;
+    document.getElementById('save-status').textContent = '';
+    document.getElementById('save-btn').disabled = false;
+    document.getElementById('save-btn').textContent = 'Save & Upload';
 
-  // Stop camera
-  video.srcObject?.getTracks().forEach(t => t.stop());
+    // Stop camera
+    video.srcObject?.getTracks().forEach(t => t.stop());
+  }, 200);
 }
 
 async function saveResult() {
@@ -203,7 +327,6 @@ async function saveResult() {
     const id = 'scan-' + ts;
     const blob = await (await fetch(lastCaptureDataUrl)).blob();
 
-    // Upload image to Supabase Storage
     const up = await fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${id}.jpg`, {
       method: 'POST',
       headers: {
