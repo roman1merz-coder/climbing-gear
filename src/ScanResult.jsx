@@ -161,7 +161,7 @@ export default function ScanResult({ shoes }) {
   // Overlay image URLs - predictable paths in Supabase Storage
   const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/scans`;
   const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png` : null;
-  const sideOverlay = s.instep_ratio ? `${storageBase}/${scanId}-side_overlay.png` : null;
+  const sideOverlay = (s.instep_ratio != null || s.navicular_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png` : null;
 
   // Fit data from same row
   const fitShoes = s.shoes || [];
