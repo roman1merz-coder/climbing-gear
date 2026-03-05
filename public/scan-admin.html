@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foot Scan Admin</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f3ef; color: #2d2a26; padding: 20px; }
+h1 { font-size: 1.4rem; margin-bottom: 16px; }
+.stats { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.stat-card { background: #fff; border-radius: 10px; padding: 14px 18px; border: 1px solid #d5cdbf; min-width: 120px; }
+.stat-card .num { font-size: 1.6rem; font-weight: 700; color: #3d7a52; }
+.stat-card .label { font-size: 0.75rem; color: #888; margin-top: 2px; }
+.scan-card { background: #fff; border-radius: 12px; border: 1px solid #d5cdbf; margin-bottom: 16px; overflow: hidden; }
+.scan-header { padding: 14px 16px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.scan-header .scan-id { font-weight: 600; font-size: 0.85rem; }
+.scan-header .scan-date { font-size: 0.8rem; color: #888; }
+.scan-header .scan-email { font-size: 0.85rem; color: #3d7a52; font-weight: 500; }
+.scan-body { padding: 14px 16px; display: flex; gap: 16px; flex-wrap: wrap; }
+.scan-photos { display: flex; gap: 8px; flex-shrink: 0; }
+.scan-photos img { width: 120px; height: 160px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; }
+.scan-photos img:hover { opacity: 0.85; }
+.scan-info { flex: 1; min-width: 200px; }
+.info-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.85rem; }
+.info-label { color: #888; min-width: 90px; }
+.info-val { font-weight: 500; }
+.shoe-list { margin-top: 10px; }
+.shoe-item { background: #f9f7f4; border-radius: 8px; padding: 10px 12px; margin-bottom: 6px; font-size: 0.82rem; }
+.shoe-item .shoe-name { font-weight: 600; margin-bottom: 4px; }
+.shoe-item .shoe-fit { color: #666; }
+.fit-tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 0.75rem; margin-right: 4px; }
+.fit-tight { background: #fde8e8; color: #c0392b; }
+.fit-perfect { background: #e8f5e9; color: #27ae60; }
+.fit-loose, .fit-empty { background: #e8eaf6; color: #5c6bc0; }
+.no-data { text-align: center; padding: 40px; color: #999; }
+.loading { text-align: center; padding: 40px; color: #888; }
+.photos-only { background: #fff8e1; }
+@media (max-width: 600px) {
+  .scan-photos img { width: 80px; height: 110px; }
+  .scan-body { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<h1>Foot Scan Admin</h1>
+<div class="stats" id="stats"></div>
+<div id="scans-container"><div class="loading">Loading scans...</div></div>
+
+<script>
+const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
+</script>
+</body>
+</html>
+<script>
+const headers = { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` };
+
+async function loadData() {
+  const [fitsRes, photosRes] = await Promise.all([
+    fetch(`${SB_URL}/rest/v1/foot_scan_fits?select=*&order=created_at.desc`, { headers }),
+    fetch(`${SB_URL}/storage/v1/object/list/foot-scans`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefix: 'scans/', limit: 500, offset: 0, sortBy: { column: 'created_at', order: 'desc' } })
+    })
+  ]);
+
+  const fits = await fitsRes.json();
+  const photoFiles = await photosRes.json();
+
+  // Group photos by scan ID
+  const photoMap = {};
+  for (const f of photoFiles) {
+    if (!f.name || !f.name.startsWith('scan-')) continue;
+    // scan-2026-03-05T13-35-21-sole.jpg -> scan-2026-03-05T13-35-21
+    const parts = f.name.replace(/\.(jpg|jpeg|png)$/i, '').split('-');
+    const type = parts.pop(); // sole or side
+    const scanId = parts.join('-');
+    if (!photoMap[scanId]) photoMap[scanId] = { sole: null, side: null, created: f.created_at };
+    photoMap[scanId][type] = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${f.name}`;
+  }
+
+  // Group fits by scan_id
+  const fitMap = {};
+  for (const f of fits) {
+    fitMap[f.scan_id] = f;
+  }
+
+  // Merge: all scan IDs from both sources
+  const allIds = new Set([...Object.keys(photoMap), ...Object.keys(fitMap)]);
+  const merged = [];
+  for (const id of allIds) {
+    merged.push({
+      scanId: id,
+      photos: photoMap[id] || null,
+      fit: fitMap[id] || null,
+      date: fitMap[id]?.created_at || photoMap[id]?.created || null
+    });
+  }
+  merged.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  // Stats
+  const totalScans = merged.length;
+  const withEmail = merged.filter(m => m.fit?.email).length;
+  const withShoes = merged.filter(m => m.fit?.shoes?.length > 0).length;
+  const photosOnly = merged.filter(m => m.photos && !m.fit).length;
+
+  document.getElementById('stats').innerHTML = `
+    <div class="stat-card"><div class="num">${totalScans}</div><div class="label">Total Scans</div></div>
+    <div class="stat-card"><div class="num">${withEmail}</div><div class="label">With Email</div></div>
+    <div class="stat-card"><div class="num">${withShoes}</div><div class="label">With Shoe Data</div></div>
+    <div class="stat-card"><div class="num">${photosOnly}</div><div class="label">Photos Only</div></div>
+  `;
+
+  if (merged.length === 0) {
+    document.getElementById('scans-container').innerHTML = '<div class="no-data">No scans yet</div>';
+    return;
+  }
+
+  document.getElementById('scans-container').innerHTML = merged.map(m => renderScan(m)).join('');
+}
+
+function fmtDate(iso) {
+  if (!iso) return '--';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+    + ' ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+
+function fitTag(val) {
+  if (!val || val === 'empty') return '<span class="fit-tag fit-empty">empty</span>';
+  const cls = val === 'perfect' ? 'fit-perfect' : val === 'tight' ? 'fit-tight' : 'fit-loose';
+  return `<span class="fit-tag ${cls}">${val}</span>`;
+}
+
+function renderScan(m) {
+  const hasPhotos = m.photos;
+  const hasFit = m.fit;
+  const isPhotosOnly = hasPhotos && !hasFit;
+
+  let photosHtml = '';
+  if (hasPhotos) {
+    photosHtml = '<div class="scan-photos">';
+    if (m.photos.sole) photosHtml += `<img src="${m.photos.sole}" alt="Sole" onclick="window.open(this.src)" title="Sole">`;
+    if (m.photos.side) photosHtml += `<img src="${m.photos.side}" alt="Side" onclick="window.open(this.src)" title="Side">`;
+    photosHtml += '</div>';
+  }
+
+  let infoHtml = '';
+  if (hasFit) {
+    infoHtml += `<div class="info-row"><span class="info-label">Sex:</span><span class="info-val">${m.fit.sex || '--'}</span></div>`;
+    infoHtml += `<div class="info-row"><span class="info-label">Street size:</span><span class="info-val">${m.fit.street_size_eu || '--'} EU</span></div>`;
+
+    if (m.fit.shoes && m.fit.shoes.length > 0) {
+      infoHtml += '<div class="shoe-list">';
+      for (const s of m.fit.shoes) {
+        infoHtml += `<div class="shoe-item">
+          <div class="shoe-name">${s.brand || '?'} ${s.model || '?'} ${s.size_eu ? '(EU ' + s.size_eu + ')' : ''}</div>
+          <div class="shoe-fit">Toes: ${fitTag(s.fit?.toes)} Forefoot: ${fitTag(s.fit?.forefoot)} Heel: ${fitTag(s.fit?.heel)}</div>
+        </div>`;
+      }
+      infoHtml += '</div>';
+    }
+  } else {
+    infoHtml = '<div style="color:#999;font-size:0.85rem">Photos uploaded, no shoe fit data submitted</div>';
+  }
+
+  return `<div class="scan-card ${isPhotosOnly ? 'photos-only' : ''}">
+    <div class="scan-header">
+      <span class="scan-id">${m.scanId || 'unknown'}</span>
+      <span class="scan-date">${fmtDate(m.date)}</span>
+      ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}</span>` : ''}
+    </div>
+    <div class="scan-body">${photosHtml}<div class="scan-info">${infoHtml}</div></div>
+  </div>`;
+}
+
+loadData().catch(e => {
+  console.error(e);
+  document.getElementById('scans-container').innerHTML = '<div class="no-data">Error loading data</div>';
+});
+</script>

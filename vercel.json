@@ -2,7 +2,7 @@
   "rewrites": [
     { "source": "/ingest/static/(.*)", "destination": "https://eu-assets.i.posthog.com/static/$1" },
     { "source": "/ingest/(.*)", "destination": "https://eu.i.posthog.com/$1" },
-    { "source": "/((?!api/|ingest/).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|ingest/|scanner-test\\.html|scan-admin\\.html|shoe-fit-v2\\.html).*)", "destination": "/index.html" }
   ],
   "functions": {
     "api/fetch-prices.js": {
