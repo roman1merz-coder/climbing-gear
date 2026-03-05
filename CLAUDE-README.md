@@ -119,3 +119,36 @@ Examples:
 - Manufacturers often list single-shoe weight in specs - ALWAYS multiply by 2 before storing
 - Any adult (non-kids) shoe under ~300g pair weight is suspicious and must be verified
 - When sourcing weight from retailer pages, check whether they state "per shoe" or "per pair"
+
+
+## Foot Scanner
+
+The foot scanner lives at `climbing-gear.com/scanner-test.html` (static HTML, not part of the React SPA).
+
+### Flow
+1. User takes 2 photos: **sole** and **side** (no other views)
+2. Photos upload to Supabase Storage bucket `foot-scans` under `scans/{scanId}-sole.jpg` and `scans/{scanId}-side.jpg`
+3. User fills in shoe fit questionnaire: sex, street shoe size (EU), climbing shoes (brand, model, EU size, fit ratings for toes/forefoot/heel)
+4. User optionally enters email, then hits Done
+5. Shoe fit data saves to `foot_scan_fits` table
+
+### Supabase Tables
+- **`foot_scan_fits`** -- one row per completed scan session
+  - `scan_id` (text) -- matches the photo filenames, e.g. `scan-2026-03-05T13-35-21`
+  - `sex` (text) -- male/female
+  - `street_size_eu` (numeric) -- EU street shoe size
+  - `shoes` (jsonb) -- array of `{ brand, model, size_eu, fit: { toes, forefoot, heel } }`
+  - `email` (text) -- optional user email
+  - `created_at` (timestamptz)
+- **`foot_scans`** -- legacy table from old 3-photo analyze-foot API (no longer populated, kept for reference)
+
+### Storage
+- Bucket: `foot-scans` (public)
+- Path: `scans/{scanId}-sole.jpg`, `scans/{scanId}-side.jpg`
+- Instruction images also in `scans/instruction-sole.jpg`, `scans/instruction-side.jpg`
+
+### Admin
+- `climbing-gear.com/scan-admin.html` -- dashboard showing all scans with photos, shoe data, and emails. Auto-refreshes every 30s.
+
+### Static HTML Pages
+These pages are excluded from the Vercel SPA rewrite in `vercel.json`: `scanner-test.html`, `scan-admin.html`, `shoe-fit-v2.html`. The scanner uses the **service-role key** (embedded in the HTML) for both storage uploads and table inserts.
