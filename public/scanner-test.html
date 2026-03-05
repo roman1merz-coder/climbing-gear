@@ -244,6 +244,42 @@ body {
   font-size: 0.88rem; color: #7a7462; margin-bottom: 1.2rem; line-height: 1.5;
   max-width: 340px; margin-left: auto; margin-right: auto;
 }
+.personal-info {
+  max-width: 400px; margin: 0 auto 1.2rem;
+  background: #fff; border-radius: 14px; padding: 14px;
+  border: 1px solid #d5cdbf; text-align: left;
+}
+.personal-info-row {
+  display: flex; gap: 10px; align-items: center;
+}
+.personal-info-row label {
+  font-size: 0.78rem; color: #7a7462; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.3px;
+  width: 70px; flex-shrink: 0; text-align: right;
+}
+.sex-options {
+  display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden; flex: 1;
+}
+.sex-option {
+  flex: 1; min-height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 4px; text-align: center;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  background: #faf8f4; color: #7a7462; border: none;
+  border-right: 1px solid #d5cdbf; transition: all 0.15s;
+  font-family: inherit; line-height: 1.2;
+}
+.sex-option:last-child { border-right: none; }
+.sex-option.active { background: #c98a42; color: #fff; }
+.sex-option:hover:not(.active) { background: #f0ebe1; }
+.size-select {
+  padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+  appearance: auto; min-width: 80px;
+}
+.shoe-size-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
 .shoe-entries { max-width: 400px; margin: 0 auto 1rem; }
 .shoe-card {
   background: #fff; border-radius: 14px; padding: 14px;
@@ -478,6 +514,20 @@ body {
   <p class="shoe-fit-subtitle">
     Tell us about shoes you currently climb in. This helps us improve our size recommendations.
   </p>
+  <div class="personal-info">
+    <div class="personal-info-row" style="margin-bottom: 10px;">
+      <label>Sex</label>
+      <div class="sex-options" id="sex-options">
+        <button class="sex-option" data-val="male">Male</button>
+        <button class="sex-option" data-val="female">Female</button>
+      </div>
+    </div>
+    <div class="personal-info-row">
+      <label>Street size</label>
+      <select class="size-select" id="street-size"><option value="">EU...</option></select>
+    </div>
+  </div>
+
   <div class="shoe-entries" id="shoe-entries">
     <div class="shoe-card" data-index="0">
       <button class="remove-shoe" title="Remove">&times;</button>
@@ -487,6 +537,10 @@ body {
           <select class="brand-select"><option value="">Brand...</option></select>
           <select class="model-select" disabled><option value="">Model...</option></select>
         </div>
+      </div>
+      <div class="shoe-size-row">
+        <label class="fit-label">Size</label>
+        <select class="size-select shoe-size-select"><option value="">EU...</option></select>
       </div>
       <div class="fit-ratings">
         <div class="fit-group">
@@ -1034,6 +1088,25 @@ document.addEventListener('change', e => {
   }
 });
 
+/* Populate size dropdowns */
+function populateSizeSelect(sel, min, max) {
+  for (let s = min; s <= max; s += 0.5) {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s % 1 === 0 ? s.toFixed(0) : s.toFixed(1);
+    sel.appendChild(opt);
+  }
+}
+populateSizeSelect(document.getElementById('street-size'), 33, 50);
+document.querySelectorAll('.shoe-size-select').forEach(sel => populateSizeSelect(sel, 30, 48));
+
+/* Sex toggle */
+document.getElementById('sex-options').addEventListener('click', e => {
+  if (!e.target.classList.contains('sex-option')) return;
+  document.querySelectorAll('.sex-option').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+});
+
 /* Fit rating toggle */
 document.addEventListener('click', e => {
   if (!e.target.classList.contains('fit-option')) return;
@@ -1084,6 +1157,10 @@ document.getElementById('add-shoe-btn').addEventListener('click', () => {
         <select class="model-select" disabled><option value="">Model...</option></select>
       </div>
     </div>
+    <div class="shoe-size-row">
+      <label class="fit-label">Size</label>
+      <select class="size-select shoe-size-select"><option value="">EU...</option></select>
+    </div>
     <div class="fit-ratings">
       <div class="fit-group">
         <div class="fit-label">Toes</div>
@@ -1113,6 +1190,7 @@ document.getElementById('add-shoe-btn').addEventListener('click', () => {
   `;
   entries.appendChild(card);
   populateBrands(card.querySelector('.brand-select'));
+  populateSizeSelect(card.querySelector('.shoe-size-select'), 30, 48);
   updateAddBtn();
 });
 
@@ -1123,13 +1201,14 @@ function collectShoeFitData() {
     const brand = card.querySelector('.brand-select')?.value;
     const model = card.querySelector('.model-select')?.value;
     if (!brand || !model) return;
+    const size_eu = parseFloat(card.querySelector('.shoe-size-select')?.value) || null;
     const fit = {};
     card.querySelectorAll('.fit-options').forEach(group => {
       const area = group.dataset.area;
       const active = group.querySelector('.fit-option.active');
       if (active) fit[area] = active.dataset.val;
     });
-    shoes.push({ brand, model, fit });
+    shoes.push({ brand, model, size_eu, fit });
   });
   return shoes;
 }
@@ -1139,8 +1218,14 @@ async function saveShoeFitData(email) {
   const shoes = collectShoeFitData();
   if (shoes.length === 0 && !email) return;
 
+  const sexBtn = document.querySelector('.sex-option.active');
+  const sex = sexBtn ? sexBtn.dataset.val : null;
+  const street_size_eu = parseFloat(document.getElementById('street-size')?.value) || null;
+
   const payload = {
     scan_id: scanId,
+    sex: sex,
+    street_size_eu: street_size_eu,
     shoes: shoes,
     email: email || null,
     created_at: new Date().toISOString()
