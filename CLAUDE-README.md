@@ -132,14 +132,37 @@ The foot scanner lives at `climbing-gear.com/scanner-test.html` (static HTML, no
 4. User optionally enters email, then hits Done
 5. Shoe fit data saves to `foot_scan_fits` table
 
-### Supabase Tables
-- **`foot_scan_fits`** -- one row per completed scan session
-  - `scan_id` (text) -- matches the photo filenames, e.g. `scan-2026-03-05T13-35-21`
-  - `sex` (text) -- male/female
-  - `street_size_eu` (numeric) -- EU street shoe size
-  - `shoes` (jsonb) -- array of `{ brand, model, size_eu, fit: { toes, forefoot, heel } }`
-  - `email` (text) -- optional user email
-  - `created_at` (timestamptz)
+### Single Source of Truth: `foot_scan_fits` table (NON-NEGOTIABLE)
+Everything for one scan lives in **one row** in `foot_scan_fits`, matched by `scan_id`. Photos, shoe fit data, and analysis results all share the same `scan_id` (e.g. `scan-2026-03-05T13-35-21`). Never create separate tables for scan results -- always write to `foot_scan_fits`.
+
+**Columns -- user-submitted data:**
+- `scan_id` (text) -- matches photo filenames, e.g. `scan-2026-03-05T13-35-21`
+- `sex` (text) -- male/female
+- `street_size_eu` (numeric) -- EU street shoe size
+- `shoes` (jsonb) -- array of `{ brand, model, size_eu, fit: { toes, forefoot, heel } }`
+- `email` (text) -- optional user email
+- `created_at` (timestamptz)
+
+**Columns -- analysis results (written after AI processes photos):**
+- `toe_shape` (text) -- egyptian/greek/roman/celtic/germanic
+- `toe_confidence` (numeric) -- 0-1
+- `width_ratio` (numeric) -- forefoot_width / foot_length
+- `heel_ratio` (numeric) -- heel_width / foot_length
+- `arch_ratio` (numeric) -- ball position as fraction of foot length from heel
+- `instep_ratio` (numeric) -- instep height / foot length
+- `navicular_ratio` (numeric) -- navicular height ratio
+- `volume` (text) -- low/medium/high
+- `width` (text) -- narrow/medium/wide
+- `heel_width` (text) -- narrow/medium/wide
+- `confidence` (text) -- low/medium/high
+- `notes` (text) -- analysis notes
+- `landmarks` (jsonb) -- raw landmark coordinates
+
+**Workflow for analysis results:**
+1. Row already exists (created when user submits shoe fit data)
+2. UPDATE the existing row by matching `scan_id`: `PATCH /rest/v1/foot_scan_fits?scan_id=eq.{scanId}` with analysis fields
+3. If no row exists yet (user only uploaded photos, skipped shoe fit), INSERT a new row with just `scan_id` + analysis fields
+
 - **`foot_scans`** -- legacy table from old 3-photo analyze-foot API (no longer populated, kept for reference)
 
 ### Storage

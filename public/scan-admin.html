@@ -36,6 +36,12 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 .no-data { text-align: center; padding: 40px; color: #999; }
 .loading { text-align: center; padding: 40px; color: #888; }
 .photos-only { background: #fff8e1; }
+.analysis { margin-top: 10px; padding: 10px 12px; background: #f0f7f2; border-radius: 8px; font-size: 0.82rem; }
+.analysis .a-title { font-weight: 600; margin-bottom: 4px; color: #3d7a52; }
+.analysis .a-row { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.analysis .a-item { white-space: nowrap; }
+.analysis .a-label { color: #888; }
+.no-analysis { color: #bbb; font-size: 0.8rem; font-style: italic; margin-top: 8px; }
 @media (max-width: 600px) {
   .scan-photos img { width: 80px; height: 110px; }
   .scan-body { flex-direction: column; }
@@ -160,6 +166,24 @@ function renderScan(m) {
         </div>`;
       }
       infoHtml += '</div>';
+    }
+    // Analysis results
+    if (m.fit.toe_shape || m.fit.width_ratio || m.fit.arch_ratio) {
+      infoHtml += `<div class="analysis">
+        <div class="a-title">Analysis Results</div>
+        <div class="a-row">
+          ${m.fit.toe_shape ? `<span class="a-item"><span class="a-label">Toe:</span> ${m.fit.toe_shape}${m.fit.toe_confidence ? ' (' + (m.fit.toe_confidence * 100).toFixed(0) + '%)' : ''}</span>` : ''}
+          ${m.fit.width_ratio ? `<span class="a-item"><span class="a-label">Width:</span> ${m.fit.width_ratio}${m.fit.width ? ' (' + m.fit.width + ')' : ''}</span>` : ''}
+          ${m.fit.heel_ratio ? `<span class="a-item"><span class="a-label">Heel:</span> ${m.fit.heel_ratio}${m.fit.heel_width ? ' (' + m.fit.heel_width + ')' : ''}</span>` : ''}
+          ${m.fit.arch_ratio ? `<span class="a-item"><span class="a-label">Arch:</span> ${m.fit.arch_ratio}</span>` : ''}
+          ${m.fit.instep_ratio ? `<span class="a-item"><span class="a-label">Instep:</span> ${m.fit.instep_ratio}</span>` : ''}
+          ${m.fit.volume ? `<span class="a-item"><span class="a-label">Volume:</span> ${m.fit.volume}</span>` : ''}
+          ${m.fit.confidence ? `<span class="a-item"><span class="a-label">Conf:</span> ${m.fit.confidence}</span>` : ''}
+        </div>
+        ${m.fit.notes ? `<div style="margin-top:4px;color:#666">${m.fit.notes}</div>` : ''}
+      </div>`;
+    } else {
+      infoHtml += '<div class="no-analysis">Not yet analyzed</div>';
     }
   } else {
     infoHtml = '<div style="color:#999;font-size:0.85rem">Photos uploaded, no shoe fit data submitted</div>';
