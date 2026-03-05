@@ -244,11 +244,14 @@ body {
   font-size: 0.88rem; color: #7a7462; margin-bottom: 1.2rem; line-height: 1.5;
   max-width: 340px; margin-left: auto; margin-right: auto;
 }
+.shoe-fit-container {
+  max-width: 400px; margin: 0 auto;
+}
 .personal-info {
-  max-width: 400px; margin: 0 auto 1rem;
   background: #fff; border-radius: 14px; padding: 14px;
   border: 1px solid #d5cdbf; text-align: left;
   display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 10px;
 }
 .personal-info-row {
   display: flex; gap: 10px; align-items: center;
@@ -276,7 +279,7 @@ body {
 .shoe-size-row {
   display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
 }
-.shoe-entries { max-width: 400px; margin: 0 auto 1rem; }
+.shoe-entries { margin-bottom: 1rem; }
 .shoe-card {
   background: #fff; border-radius: 14px; padding: 14px;
   margin-bottom: 10px; border: 1px solid #d5cdbf;
@@ -327,14 +330,14 @@ body {
 .fit-option:hover:not(.active) { background: #f0ebe1; }
 .add-shoe-btn {
   background: none; border: 2px dashed #d5cdbf; border-radius: 12px;
-  padding: 12px; width: 100%; max-width: 400px;
+  padding: 12px; width: 100%;
   font-size: 0.9rem; color: #7a7462; cursor: pointer;
   font-family: inherit; font-weight: 600; margin-bottom: 1.2rem;
   transition: border-color 0.2s;
 }
 .add-shoe-btn:hover { border-color: #c98a42; color: #c98a42; }
 .add-shoe-btn:disabled { opacity: 0.4; cursor: default; }
-.shoe-fit-buttons { max-width: 400px; margin: 0 auto; display: flex; gap: 10px; }
+.shoe-fit-buttons { display: flex; gap: 10px; }
 .btn-skip {
   flex: 1; background: #fff; color: #7a7462; border: 1px solid #d5cdbf;
   padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600;
@@ -510,6 +513,7 @@ body {
   <p class="shoe-fit-subtitle">
     Tell us about shoes you currently climb in. This helps us improve our size recommendations.
   </p>
+  <div class="shoe-fit-container">
   <div class="personal-info">
     <div class="personal-info-row">
       <div class="fit-label">Sex</div>
@@ -570,6 +574,7 @@ body {
   <div class="shoe-fit-buttons">
     <button class="btn-skip" id="skip-fit-btn">Skip</button>
     <button class="btn-next" id="next-fit-btn">Continue</button>
+  </div>
   </div>
 </div>
 
