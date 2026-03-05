@@ -7,10 +7,6 @@
   "functions": {
     "api/fetch-prices.js": {
       "maxDuration": 60
-    },
-    "api/analyze-foot.js": {
-      "maxDuration": 30,
-      "memory": 1024
     }
   },
   "crons": [
