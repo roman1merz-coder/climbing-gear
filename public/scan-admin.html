@@ -191,9 +191,11 @@ function renderScan(m) {
 
   return `<div class="scan-card ${isPhotosOnly ? 'photos-only' : ''}">
     <div class="scan-header">
-      <span class="scan-id">${m.scanId || 'unknown'}</span>
+      <a class="scan-id" href="/scan/${m.scanId}" target="_blank" style="color:#3d7a52;text-decoration:none" title="Open scan results page">${m.scanId || 'unknown'}</a>
       <span class="scan-date">${fmtDate(m.date)}</span>
       ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}</span>` : ''}
+      ${hasFit && m.fit.recommendations ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">✓ Recs</span>' : ''}
+      ${hasFit && m.fit.interpretation ? '<span style="background:#e8eaf6;color:#5c6bc0;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">✓ Report</span>' : ''}
     </div>
     <div class="scan-body">${photosHtml}<div class="scan-info">${infoHtml}</div></div>
   </div>`;
