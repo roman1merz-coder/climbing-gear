@@ -150,5 +150,13 @@ The foot scanner lives at `climbing-gear.com/scanner-test.html` (static HTML, no
 ### Admin
 - `climbing-gear.com/scan-admin.html` -- dashboard showing all scans with photos, shoe data, and emails. Auto-refreshes every 30s.
 
+### Supabase Access (Scanner)
+- **Project URL:** `https://wsjsuhvpgupalwgcjatp.supabase.co`
+- **Service-role key (read+write):** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4`
+- **Anon key (read-only):** `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI`
+- The scanner HTML embeds the service-role key for storage uploads and table inserts
+- To pull data: `GET /rest/v1/foot_scan_fits?select=*` with service-role key in `apikey` + `Authorization: Bearer` headers
+- To list photos: `POST /storage/v1/object/list/foot-scans` with body `{"prefix":"scans/","limit":500,"offset":0,"sortBy":{"column":"created_at","order":"desc"}}`
+
 ### Static HTML Pages
-These pages are excluded from the Vercel SPA rewrite in `vercel.json`: `scanner-test.html`, `scan-admin.html`, `shoe-fit-v2.html`. The scanner uses the **service-role key** (embedded in the HTML) for both storage uploads and table inserts.
+These pages are excluded from the Vercel SPA rewrite in `vercel.json`: `scanner-test.html`, `scan-admin.html`, `shoe-fit-v2.html`.
