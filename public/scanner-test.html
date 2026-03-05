@@ -248,14 +248,10 @@ body {
   max-width: 400px; margin: 0 auto 1rem;
   background: #fff; border-radius: 14px; padding: 14px;
   border: 1px solid #d5cdbf; text-align: left;
+  display: flex; flex-direction: column; gap: 8px;
 }
 .personal-info-row {
   display: flex; gap: 10px; align-items: center;
-}
-.personal-info-row label {
-  font-size: 0.78rem; color: #7a7462; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.3px;
-  width: 70px; flex-shrink: 0; text-align: right;
 }
 .sex-options {
   display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden; flex: 1;
@@ -275,7 +271,7 @@ body {
 .size-select {
   padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
   font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
-  appearance: auto; min-width: 80px;
+  appearance: auto; flex: 1;
 }
 .shoe-size-row {
   display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
@@ -515,15 +511,15 @@ body {
     Tell us about shoes you currently climb in. This helps us improve our size recommendations.
   </p>
   <div class="personal-info">
-    <div class="personal-info-row" style="margin-bottom: 10px;">
-      <label>Sex</label>
+    <div class="personal-info-row">
+      <div class="fit-label">Sex</div>
       <div class="sex-options" id="sex-options">
         <button class="sex-option" data-val="male">Male</button>
         <button class="sex-option" data-val="female">Female</button>
       </div>
     </div>
     <div class="personal-info-row">
-      <label>Street size</label>
+      <div class="fit-label">Street size</div>
       <select class="size-select" id="street-size"><option value="">EU...</option></select>
     </div>
   </div>
