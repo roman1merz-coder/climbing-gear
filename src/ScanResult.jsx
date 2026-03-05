@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { T } from "./tokens.js";
-import { supabaseFetch } from "./supabase.js";
+import { supabaseFetch, SUPABASE_URL } from "./supabase.js";
 import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
 
@@ -14,7 +14,7 @@ const POP = {
   arch_ratio:       { mean: 0.690, std: 0.025 },
   heel_ratio:       { mean: 0.251, std: 0.018 },
   instep_ratio:     { mean: 0.232, std: 0.024 },
-  heel_depth_ratio: { mean: 0.045, std: 0.012 },
+  navicular_ratio:  { mean: 0.045, std: 0.012 },
 };
 
 const META = {
@@ -22,7 +22,7 @@ const META = {
   arch_ratio:       { min: 0.61, max: 0.77, label: "Arch Length",     color: T.accent },
   heel_ratio:       { min: 0.20, max: 0.31, label: "Heel Width",      color: T.accent },
   instep_ratio:     { min: 0.16, max: 0.30, label: "Instep Height",   color: "#34d399" },
-  heel_depth_ratio: { min: 0.01, max: 0.08, label: "Heel Depth",      color: "#f472b6" },
+  navicular_ratio:  { min: 0.01, max: 0.08, label: "Heel Depth",      color: "#f472b6" },
 };
 
 const TOE_DESCRIPTIONS = {
@@ -105,7 +105,6 @@ export default function ScanResult({ shoes }) {
   const { scanId } = useParams();
   const mobile = useIsMobile();
   const [scan, setScan] = useState(null);
-  const [fits, setFits] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -114,19 +113,15 @@ export default function ScanResult({ shoes }) {
     "AI-powered foot scan analysis for climbing shoe fitting"
   );
 
-  // Fetch scan results + fit data from Supabase
+  // Single source of truth: foot_scan_fits table
   useEffect(() => {
     if (!scanId) return;
     setLoading(true);
     setError(null);
-    Promise.all([
-      supabaseFetch(`/rest/v1/foot_scan_results?scan_id=eq.${scanId}&select=*`),
-      supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`),
-    ])
-      .then(([scanRows, fitRows]) => {
-        if (!scanRows.length) { setError("Scan not found"); setLoading(false); return; }
-        setScan(scanRows[0]);
-        setFits(fitRows[0] || null);
+    supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`)
+      .then((rows) => {
+        if (!rows.length) { setError("Scan not found"); setLoading(false); return; }
+        setScan(rows[0]);
         setLoading(false);
       })
       .catch((e) => { setError(e.message); setLoading(false); });
@@ -163,12 +158,13 @@ export default function ScanResult({ shoes }) {
   const toeShape = s.toe_shape || "egyptian";
   const toeDesc = TOE_DESCRIPTIONS[toeShape] || TOE_DESCRIPTIONS.egyptian;
 
-  // Overlay image URLs (from Supabase Storage)
-  const soleOverlay = s.sole_overlay_path || null;
-  const sideOverlay = s.side_overlay_path || null;
+  // Overlay image URLs - predictable paths in Supabase Storage
+  const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/scans`;
+  const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png` : null;
+  const sideOverlay = s.instep_ratio ? `${storageBase}/${scanId}-side_overlay.png` : null;
 
-  // Fit data summary
-  const fitShoes = fits?.shoes || [];
+  // Fit data from same row
+  const fitShoes = s.shoes || [];
   const fitSummary = fitShoes.length > 0 ? fitShoes[0] : null;
 
   return (
@@ -236,7 +232,7 @@ export default function ScanResult({ shoes }) {
                 <MetricBar ratioKey="instep_ratio" value={s.instep_ratio} />
               </div>
               <div style={{ flex: 1, minWidth: 180 }}>
-                <MetricBar ratioKey="heel_depth_ratio" value={s.heel_depth_ratio} />
+                <MetricBar ratioKey="navicular_ratio" value={s.navicular_ratio} />
               </div>
             </div>
           </div>
@@ -337,9 +333,9 @@ function buildRecommendations(scan, shoes) {
   }
 
   // Otherwise, score shoes dynamically based on scan profile
-  const widthClass = scan.width_class || "normal";
-  const heelClass = scan.heel_class || "normal";
-  const instepClass = scan.instep_class || "normal";
+  const widthClass = scan.width || "medium";
+  const heelClass = scan.heel_width || "medium";
+  const instepClass = scan.volume || "medium";
   const toeShape = scan.toe_shape || "egyptian";
 
   const scored = shoes
@@ -352,15 +348,15 @@ function buildRecommendations(scan, shoes) {
       else if (widthClass === "narrow" && shoe.width === "medium") score += 1;
       else if (widthClass === shoe.width) score += 3;
 
-      // Forefoot volume - high instep needs standard+ volume
-      if (instepClass === "high instep") {
+      // Volume match
+      if (instepClass === "high") {
         if (shoe.forefoot_volume === "standard" || shoe.forefoot_volume === "medium") score += 2;
         if (shoe.forefoot_volume === "high") score += 1;
         if (shoe.forefoot_volume === "low") score -= 2;
       }
 
       // Heel match
-      if (heelClass === "wide heel") {
+      if (heelClass === "wide") {
         if (shoe.heel_volume === "medium") score += 2;
         if (shoe.heel_volume === "wide" || shoe.heel_volume === "high") score += 1;
         if (shoe.heel_volume === "narrow" || shoe.heel_volume === "low") score += 0;
@@ -374,8 +370,8 @@ function buildRecommendations(scan, shoes) {
         if (shoe.toe_form === "greek") score += 2;
       }
 
-      // Prefer adjustable closures for high instep
-      if (instepClass === "high instep") {
+      // Prefer adjustable closures for high volume
+      if (instepClass === "high") {
         if (shoe.closure === "lace") score += 1;
         if (shoe.closure === "velcro") score += 1;
       }
