@@ -231,7 +231,7 @@ export default function About() {
         </div>
 
         {/* Suggestion Hub */}
-        <div style={{ marginBottom: "48px" }}>
+        <div id="suggestion-hub" style={{ marginBottom: "48px" }}>
           <h2 style={{ fontSize: "18px", fontWeight: 700, marginBottom: "16px" }}>Help make it better</h2>
           <p style={{ fontSize: "14px", color: T.muted, lineHeight: 1.8, marginBottom: "20px" }}>
             This is an open project. If you notice incorrect data, have an idea for a feature, or just
