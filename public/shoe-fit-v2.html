@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Shoe Fit v2</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f0e8; color: #2c3227;
+}
+#shoe-fit-screen {
+  width: 100vw; min-height: 100vh;
+  background: #f5f0e8; overflow-y: auto;
+  padding: 1.5rem; padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  text-align: center;
+}
+#shoe-fit-screen h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.3rem; }
+.shoe-fit-subtitle {
+  font-size: 0.88rem; color: #7a7462; margin-bottom: 1.2rem; line-height: 1.5;
+  max-width: 400px; margin-left: auto; margin-right: auto;
+}
+
+/* Single container controls ALL widths */
+.shoe-fit-container { max-width: 400px; margin: 0 auto; }
+
+/* Personal info card */
+.personal-info {
+  background: #fff; border-radius: 14px; padding: 14px;
+  border: 1px solid #d5cdbf; text-align: left;
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 10px;
+}
+.personal-info-row { display: flex; gap: 10px; align-items: center; }
+
+/* Sex toggle */
+.sex-options {
+  display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden; flex: 1;
+}
+.sex-option {
+  width: 50%; flex: none; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 4px; text-align: center;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  background: #faf8f4; color: #7a7462; border: none;
+  border-right: 1px solid #d5cdbf; transition: all 0.15s;
+  font-family: inherit; line-height: 1.2;
+}
+.sex-option:last-child { border-right: none; }
+.sex-option.active { background: #c98a42; color: #fff; }
+.sex-option:hover:not(.active) { background: #f0ebe1; }
+
+/* Size dropdown */
+.size-select {
+  padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+  appearance: auto; flex: 1;
+}
+
+/* Shoe entries */
+.shoe-entries { margin-bottom: 10px; }
+.shoe-card {
+  background: #fff; border-radius: 14px; padding: 14px;
+  margin-bottom: 10px; border: 1px solid #d5cdbf;
+  text-align: left; position: relative;
+}
+.shoe-card-header { display: flex; gap: 8px; margin-bottom: 10px; align-items: center; }
+.shoe-number {
+  background: #c98a42; color: #fff; width: 24px; height: 24px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+}
+.shoe-selects { display: flex; gap: 8px; flex: 1; }
+.shoe-selects select {
+  flex: 1; padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+  appearance: auto; min-width: 0;
+}
+.remove-shoe {
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: none; color: #b8b0a0; font-size: 1.2rem;
+  cursor: pointer; padding: 2px 6px; line-height: 1;
+}
+.remove-shoe:hover { color: #c98a42; }
+
+/* Shoe size row */
+.shoe-size-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
+/* Shared label for all rows */
+.fit-label {
+  font-size: 0.78rem; color: #7a7462; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.3px;
+  width: 70px; flex-shrink: 0; text-align: right;
+}
+
+/* Fit ratings */
+.fit-ratings { display: flex; flex-direction: column; gap: 8px; }
+.fit-group { display: flex; align-items: center; gap: 10px; }
+.fit-options {
+  display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden; flex: 1;
+}
+.fit-option {
+  width: 33.33%; flex: none; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 4px; text-align: center;
+  font-size: 0.75rem; font-weight: 600; cursor: pointer;
+  background: #faf8f4; color: #7a7462; border: none;
+  border-right: 1px solid #d5cdbf; transition: all 0.15s;
+  font-family: inherit; line-height: 1.2;
+}
+.fit-option:last-child { border-right: none; }
+.fit-option.active { background: #c98a42; color: #fff; }
+.fit-option:hover:not(.active) { background: #f0ebe1; }
+
+/* Add shoe button */
+.add-shoe-btn {
+  background: none; border: 2px dashed #d5cdbf; border-radius: 12px;
+  padding: 12px; width: 100%;
+  font-size: 0.9rem; color: #7a7462; cursor: pointer;
+  font-family: inherit; font-weight: 600; margin-bottom: 1.2rem;
+  transition: border-color 0.2s;
+}
+.add-shoe-btn:hover { border-color: #c98a42; color: #c98a42; }
+
+/* Action buttons */
+.shoe-fit-buttons { display: flex; gap: 10px; }
+.btn-skip {
+  flex: 1; background: #fff; color: #7a7462; border: 1px solid #d5cdbf;
+  padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.btn-next {
+  flex: 2; background: #c98a42; color: #fff; border: none;
+  padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+</style>
+</head>
+<body>
+
+<div id="shoe-fit-screen">
+  <h2>Which shoes fit you well?</h2>
+  <p class="shoe-fit-subtitle">
+    Tell us about shoes you currently climb in. This helps us improve our size recommendations.
+  </p>
+
+  <div class="shoe-fit-container">
+
+    <div class="personal-info">
+      <div class="personal-info-row">
+        <div class="fit-label">Sex</div>
+        <div class="sex-options" id="sex-options">
+          <button class="sex-option" data-val="male">Male</button>
+          <button class="sex-option" data-val="female">Female</button>
+        </div>
+      </div>
+      <div class="personal-info-row">
+        <div class="fit-label">Street size</div>
+        <select class="size-select" id="street-size"><option value="">EU...</option></select>
+      </div>
+    </div>
+
+    <div class="shoe-entries" id="shoe-entries">
+      <div class="shoe-card" data-index="0">
+        <button class="remove-shoe" title="Remove">&times;</button>
+        <div class="shoe-card-header">
+          <span class="shoe-number">1</span>
+          <div class="shoe-selects">
+            <select class="brand-select"><option value="">Brand...</option></select>
+            <select class="model-select" disabled><option value="">Model...</option></select>
+          </div>
+        </div>
+        <div class="shoe-size-row">
+          <div class="fit-label">Size</div>
+          <select class="size-select shoe-size-select"><option value="">EU...</option></select>
+        </div>
+        <div class="fit-ratings">
+          <div class="fit-group">
+            <div class="fit-label">Toes</div>
+            <div class="fit-options" data-area="toes">
+              <button class="fit-option" data-val="squeezed">Squeezed</button>
+              <button class="fit-option" data-val="perfect">Perfect</button>
+              <button class="fit-option" data-val="roomy">Too roomy</button>
+            </div>
+          </div>
+          <div class="fit-group">
+            <div class="fit-label">Forefoot</div>
+            <div class="fit-options" data-area="forefoot">
+              <button class="fit-option" data-val="tight">Tight</button>
+              <button class="fit-option" data-val="perfect">Perfect</button>
+              <button class="fit-option" data-val="loose">Loose</button>
+            </div>
+          </div>
+          <div class="fit-group">
+            <div class="fit-label">Heel</div>
+            <div class="fit-options" data-area="heel">
+              <button class="fit-option" data-val="tight">Tight</button>
+              <button class="fit-option" data-val="perfect">Perfect</button>
+              <button class="fit-option" data-val="empty">Empty space</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="add-shoe-btn" id="add-shoe-btn">+ Add another shoe</button>
+
+    <div class="shoe-fit-buttons">
+      <button class="btn-skip">Skip</button>
+      <button class="btn-next">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function populateSizeSelect(sel, min, max) {
+  for (let s = min; s <= max; s += 0.5) {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s % 1 === 0 ? s.toFixed(0) : s.toFixed(1);
+    sel.appendChild(opt);
+  }
+}
+populateSizeSelect(document.getElementById('street-size'), 33, 50);
+document.querySelectorAll('.shoe-size-select').forEach(sel => populateSizeSelect(sel, 30, 48));
+
+document.getElementById('sex-options').addEventListener('click', e => {
+  if (!e.target.classList.contains('sex-option')) return;
+  document.querySelectorAll('.sex-option').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.classList.contains('fit-option')) return;
+  const group = e.target.closest('.fit-options');
+  group.querySelectorAll('.fit-option').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+});
+</script>
+</body>
+</html>
