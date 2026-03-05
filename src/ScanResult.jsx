@@ -243,16 +243,28 @@ export default function ScanResult({ shoes }) {
       {s.interpretation && (
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontFamily: T.display, fontSize: "1.3rem", color: T.text, margin: "0 0 1rem" }}>What This Means</h2>
-          {s.interpretation.map((block, i) => (
-            <div key={i} style={{ marginBottom: "1.2rem" }}>
-              <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: "0 0 0.3rem", textTransform: "uppercase", letterSpacing: "0.03em" }}>
-                {block.title}
-              </h3>
-              {block.paragraphs.map((p, j) => (
-                <p key={j} style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: j > 0 ? "0.4rem 0 0" : 0 }}>{p}</p>
-              ))}
-            </div>
-          ))}
+          {Array.isArray(s.interpretation)
+            ? s.interpretation.map((block, i) => (
+                <div key={i} style={{ marginBottom: "1.2rem" }}>
+                  <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: "0 0 0.3rem", textTransform: "uppercase", letterSpacing: "0.03em" }}>
+                    {block.title}
+                  </h3>
+                  {block.paragraphs.map((p, j) => (
+                    <p key={j} style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: j > 0 ? "0.4rem 0 0" : 0 }}>{p}</p>
+                  ))}
+                </div>
+              ))
+            : (
+                <div>
+                  {s.interpretation.summary && (
+                    <p style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: "0 0 1rem" }}>{s.interpretation.summary}</p>
+                  )}
+                  {s.interpretation.fit_diagnosis && (
+                    <p style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: 0 }}>{s.interpretation.fit_diagnosis}</p>
+                  )}
+                </div>
+              )
+          }
         </div>
       )}
 
@@ -265,9 +277,13 @@ export default function ScanResult({ shoes }) {
             gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fill, minmax(260px, 1fr))",
             gap: "1rem",
           }}>
-            {recommendations.map((r) => (
-              <ShoeCard key={r.slug} {...r} />
-            ))}
+            {recommendations.map((r) => {
+              // Curated recs have brand/model/why directly; dynamic ones have them from shoe DB
+              const brand = r.brand || slugToBrand(r.slug);
+              const model = r.model || slugToModel(r.slug);
+              const why = r.why || r.reason || "";
+              return <ShoeCard key={r.slug} slug={r.slug} brand={brand} model={model} why={why} />;
+            })}
           </div>
         </div>
       )}
@@ -292,6 +308,25 @@ export default function ScanResult({ shoes }) {
 
     </div>
   );
+}
+
+// ── Slug helpers (fallback for recs without brand/model) ─────
+function slugToBrand(slug) {
+  if (!slug) return "";
+  const parts = slug.split("-");
+  // Common two-word brands
+  const twoPart = ["la-sportiva", "five-ten", "mad-rock", "black-diamond", "red-chili", "climb-x", "wild-climb", "so-ill"];
+  const prefix2 = parts.slice(0, 2).join("-");
+  if (twoPart.includes(prefix2)) return parts.slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+}
+function slugToModel(slug) {
+  if (!slug) return "";
+  const parts = slug.split("-");
+  const twoPart = ["la-sportiva", "five-ten", "mad-rock", "black-diamond", "red-chili", "climb-x", "wild-climb", "so-ill"];
+  const prefix2 = parts.slice(0, 2).join("-");
+  const modelParts = twoPart.includes(prefix2) ? parts.slice(2) : parts.slice(1);
+  return modelParts.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
 // ── Style constants ──────────────────────────────────────────
