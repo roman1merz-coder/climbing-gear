@@ -53,12 +53,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 .sex-option.active { background: #c98a42; color: #fff; }
 .sex-option:hover:not(.active) { background: #f0ebe1; }
 
-.street-size-input {
-  flex: 1; padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
+.size-select {
+  padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
   font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
-  text-align: center; max-width: 100px;
+  appearance: auto; min-width: 80px;
 }
-.street-size-input::placeholder { color: #b8b0a0; }
 .size-unit { font-size: 0.78rem; color: #7a7462; font-weight: 500; margin-left: 2px; }
 
 /* ── Shoe entries ── */
@@ -93,17 +92,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 .shoe-size-row {
   display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
 }
-.shoe-size-row label {
-  font-size: 0.78rem; color: #7a7462; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.3px;
-  width: 70px; flex-shrink: 0; text-align: right;
-}
-.shoe-size-input {
-  padding: 8px 10px; border: 1px solid #d5cdbf; border-radius: 8px;
-  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
-  width: 80px; text-align: center;
-}
-.shoe-size-input::placeholder { color: #b8b0a0; }
 
 /* ── Fit ratings ── */
 .fit-ratings { display: flex; flex-direction: column; gap: 8px; }
@@ -170,8 +158,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
     </div>
     <div class="personal-info-row">
       <label>Street size</label>
-      <input type="number" class="street-size-input" id="street-size" placeholder="42" step="0.5" min="30" max="55">
-      <span class="size-unit">EU</span>
+      <select class="size-select" id="street-size"><option value="">EU...</option></select>
     </div>
   </div>
 
@@ -185,11 +172,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
           <select class="model-select" disabled><option value="">Model...</option></select>
         </div>
       </div>
-      <!-- Climbing shoe size -->
       <div class="shoe-size-row">
         <label>Size</label>
-        <input type="number" class="shoe-size-input" placeholder="39" step="0.5" min="25" max="55">
-        <span class="size-unit">EU</span>
+        <select class="size-select shoe-size-select"><option value="">EU...</option></select>
       </div>
       <div class="fit-ratings">
         <div class="fit-group">
@@ -229,6 +214,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 </div>
 
 <script>
+/* Populate size dropdowns */
+function populateSizeSelect(sel, min, max) {
+  for (let s = min; s <= max; s += 0.5) {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s % 1 === 0 ? s.toFixed(0) : s.toFixed(1);
+    sel.appendChild(opt);
+  }
+}
+// Street sizes: EU 33-50
+populateSizeSelect(document.getElementById('street-size'), 33, 50);
+// Climbing shoe sizes: EU 30-48
+document.querySelectorAll('.shoe-size-select').forEach(sel => populateSizeSelect(sel, 30, 48));
+
 /* Sex toggle */
 document.getElementById('sex-options').addEventListener('click', e => {
   if (!e.target.classList.contains('sex-option')) return;
@@ -279,8 +278,7 @@ document.getElementById('add-shoe-btn').addEventListener('click', () => {
     </div>
     <div class="shoe-size-row">
       <label>Size</label>
-      <input type="number" class="shoe-size-input" placeholder="39" step="0.5" min="25" max="55">
-      <span class="size-unit">EU</span>
+      <select class="size-select shoe-size-select"><option value="">EU...</option></select>
     </div>
     <div class="fit-ratings">
       <div class="fit-group">
@@ -310,6 +308,7 @@ document.getElementById('add-shoe-btn').addEventListener('click', () => {
     </div>
   `;
   entries.appendChild(card);
+  populateSizeSelect(card.querySelector('.shoe-size-select'), 30, 48);
 });
 </script>
 </body>
