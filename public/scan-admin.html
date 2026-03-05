@@ -179,4 +179,7 @@ loadData().catch(e => {
   console.error(e);
   document.getElementById('scans-container').innerHTML = '<div class="no-data">Error loading data</div>';
 });
+
+// Auto-refresh every 30 seconds
+setInterval(() => loadData().catch(console.error), 30000);
 </script>
