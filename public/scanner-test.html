@@ -382,6 +382,14 @@ body {
   font-family: inherit; max-width: 340px; width: 100%;
 }
 .btn-done:disabled { background: #b8b0a0; }
+.btn-browse {
+  background: #3d7a52; color: #fff; border: none;
+  padding: 16px 48px; border-radius: 12px;
+  font-size: 1.1rem; font-weight: 700; cursor: pointer;
+  font-family: inherit; max-width: 340px; width: 100%;
+  text-decoration: none; display: inline-block; text-align: center;
+  margin-top: 10px;
+}
 .done-status { font-size: 0.85rem; color: #3d7a52; margin-top: 8px; min-height: 1.2em; }
 </style>
 </head>
@@ -598,8 +606,9 @@ body {
   </p>
   <button class="btn-done" id="done-btn">Done</button>
   <div class="done-status" id="done-status"></div>
-  <p class="thankyou-text" style="margin-top:1.5rem">
-    Meanwhile, feel free to <a href="https://climbing-gear.com/shoes" style="color:#c98a42; font-weight:600; text-decoration:underline;">browse climbing shoes from our database</a> - happy climbing!
+  <a class="btn-browse" href="https://climbing-gear.com/shoes">Browse Shoes</a>
+  <p class="thankyou-text" style="margin-top:0.5rem">
+    Meanwhile, feel free to browse climbing shoes from our database - happy climbing!
   </p>
 </div>
 
