@@ -13,16 +13,16 @@ const POP = {
   width_ratio:      { mean: 0.381, std: 0.022 },
   arch_ratio:       { mean: 0.690, std: 0.025 },
   heel_ratio:       { mean: 0.251, std: 0.018 },
-  instep_ratio:     { mean: 0.232, std: 0.024 },
-  navicular_ratio:  { mean: 0.045, std: 0.012 },
+  instep_ratio:     { mean: 0.290, std: 0.030 },
+  navicular_ratio:  { mean: 0.070, std: 0.025 },
 };
 
 const META = {
   width_ratio:      { min: 0.31, max: 0.45, label: "Forefoot Width",  color: T.accent },
   arch_ratio:       { min: 0.61, max: 0.77, label: "Arch Length",     color: T.accent },
   heel_ratio:       { min: 0.20, max: 0.31, label: "Heel Width",      color: T.accent },
-  instep_ratio:     { min: 0.16, max: 0.30, label: "Instep Height",   color: "#34d399" },
-  navicular_ratio:  { min: 0.01, max: 0.08, label: "Heel Depth",      color: "#f472b6" },
+  instep_ratio:     { min: 0.20, max: 0.38, label: "Instep Height",   color: "#34d399" },
+  navicular_ratio:  { min: 0.00, max: 0.15, label: "Heel Depth",      color: "#f472b6" },
 };
 
 const TOE_DESCRIPTIONS = {
