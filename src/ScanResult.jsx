@@ -10,19 +10,19 @@ import usePageMeta from "./usePageMeta.js";
 // Mean +/- SD from Jurca et al. 2019, Karger 2024, Goonetilleke
 // ══════════════════════════════════════════════════════════════
 const POP = {
-  width_ratio:      { mean: 0.381, std: 0.022 },
-  arch_ratio:       { mean: 0.690, std: 0.025 },
-  heel_ratio:       { mean: 0.251, std: 0.018 },
-  instep_ratio:     { mean: 0.232, std: 0.024 },
-  navicular_ratio:  { mean: 0.045, std: 0.012 },
+  width_ratio:      { mean: 0.383, std: 0.021 },  // ball_width / foot_length
+  arch_ratio:       { mean: 0.700, std: 0.025 },  // arch_length / foot_length
+  heel_ratio:       { mean: 0.655, std: 0.041 },  // heel_width / ball_width
+  instep_ratio:     { mean: 0.355, std: 0.025 },  // instep_height / foot_length
+  navicular_ratio:  { mean: 0.180, std: 0.030 },  // heel_protrusion / foot_length
 };
 
 const META = {
-  width_ratio:      { min: 0.31, max: 0.45, label: "Forefoot Width",  color: T.accent },
-  arch_ratio:       { min: 0.61, max: 0.77, label: "Arch Length",     color: T.accent },
-  heel_ratio:       { min: 0.20, max: 0.31, label: "Heel Width",      color: T.accent },
-  instep_ratio:     { min: 0.16, max: 0.30, label: "Instep Height",   color: "#34d399" },
-  navicular_ratio:  { min: 0.01, max: 0.08, label: "Heel Depth",      color: "#f472b6" },
+  width_ratio:      { min: 0.32, max: 0.46, label: "Forefoot Width",  color: T.accent },
+  arch_ratio:       { min: 0.60, max: 0.86, label: "Arch Length",     color: T.accent },
+  heel_ratio:       { min: 0.56, max: 0.74, label: "Heel Width",      color: T.accent },
+  instep_ratio:     { min: 0.28, max: 0.43, label: "Instep Height",   color: "#34d399" },
+  navicular_ratio:  { min: 0.10, max: 0.26, label: "Heel Depth",      color: "#f472b6" },
 };
 
 const TOE_DESCRIPTIONS = {
@@ -159,9 +159,9 @@ export default function ScanResult({ shoes }) {
   const toeDesc = TOE_DESCRIPTIONS[toeShape] || TOE_DESCRIPTIONS.egyptian;
 
   // Overlay image URLs - predictable paths in Supabase Storage
-  const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/scans`;
-  const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png` : null;
-  const sideOverlay = (s.instep_ratio != null || s.navicular_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png` : null;
+  const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans`;
+  const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}/sole_overlay.png` : null;
+  const sideOverlay = (s.instep_ratio != null || s.navicular_ratio != null) ? `${storageBase}/${scanId}/side_overlay.png` : null;
 
   // Fit data from same row
   const fitShoes = s.shoes || [];
