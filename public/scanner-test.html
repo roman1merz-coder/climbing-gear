@@ -117,6 +117,35 @@ body {
   transition: opacity 0.08s;
 }
 
+/* ── Gyroscope Level Indicator ── */
+#gyro-level {
+  position: absolute; top: 80px; right: 16px; z-index: 10;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(0,0,0,0.35);
+  display: none; /* shown when gyro active */
+}
+#gyro-dot {
+  position: absolute; width: 12px; height: 12px; border-radius: 50%;
+  background: #ff4444; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0.1s, left 0.1s, background 0.2s;
+}
+#gyro-level .gyro-ring {
+  position: absolute; top: 50%; left: 50%;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px dashed rgba(255,255,255,0.4);
+  transform: translate(-50%, -50%);
+}
+#gyro-level.level-ok { border-color: #3d7a52; }
+#gyro-level.level-ok #gyro-dot { background: #3dff52; }
+#gyro-warning {
+  position: absolute; top: 80px; left: 16px; right: 80px; z-index: 10;
+  background: rgba(0,0,0,0.6); color: #ffcc44; padding: 8px 12px;
+  border-radius: 10px; font-size: 0.78rem; font-weight: 600;
+  text-align: center; display: none;
+}
+
 /* ── Transition Screen (between sole and side) ── */
 #transition-screen {
   display: none; position: relative;
@@ -434,6 +463,12 @@ body {
   <div id="step-indicator">STEP 1 of 2 - Sole</div>
   <div id="status-bar">Position your foot over the screen…</div>
   <div id="flash"></div>
+  <!-- Gyroscope level indicator -->
+  <div id="gyro-level">
+    <div class="gyro-ring"></div>
+    <div id="gyro-dot"></div>
+  </div>
+  <div id="gyro-warning"></div>
 </div>
 
 <div id="transition-screen">
@@ -602,6 +637,22 @@ body {
     </div>
   </div>
   <button class="add-shoe-btn" id="add-shoe-btn">+ Add another shoe</button>
+
+  <!-- Next shoe preference -->
+  <div class="shoe-card" style="margin-top:6px">
+    <div style="font-size:0.88rem;font-weight:700;color:#2c3227;margin-bottom:10px">
+      What should your next shoe prioritise?
+    </div>
+    <div class="fit-options" id="next-shoe-pref" style="margin-bottom:10px">
+      <button class="fit-option" data-val="comfort" style="width:33.33%">More comfort</button>
+      <button class="fit-option" data-val="same" style="width:33.33%">Same balance</button>
+      <button class="fit-option" data-val="performance" style="width:33.33%">More performance</button>
+    </div>
+    <textarea id="next-shoe-notes" placeholder="Any other preferences? (optional)"
+      style="width:100%;min-height:60px;padding:10px;border:1px solid #d5cdbf;border-radius:8px;
+      font-size:0.85rem;font-family:inherit;background:#faf8f4;color:#2c3227;resize:vertical"></textarea>
+  </div>
+
   <div class="shoe-fit-buttons">
     <button class="btn-skip" id="skip-fit-btn">Skip</button>
     <button class="btn-next" id="next-fit-btn">Continue</button>
@@ -670,6 +721,101 @@ let prevPixelData = null;
 let stillCount = 0;
 let footFrames = 0;
 let currentStep = 'sole'; // 'sole' or 'side'
+
+/* ── Gyroscope state ── */
+let gyroAvailable = false;
+let gyroBeta = null;  // front-back tilt (-180 to 180)
+let gyroGamma = null; // left-right tilt (-90 to 90)
+const GYRO_TOLERANCE = 15; // degrees from flat that's acceptable
+let gyroPermissionGranted = false;
+
+function initGyroscope() {
+  /* iOS 13+ requires permission */
+  if (typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission()
+      .then(state => {
+        if (state === 'granted') {
+          gyroPermissionGranted = true;
+          window.addEventListener('deviceorientation', handleGyro);
+        }
+      })
+      .catch(e => console.log('Gyro permission denied:', e));
+  } else if ('DeviceOrientationEvent' in window) {
+    /* Android / desktop - just listen */
+    gyroPermissionGranted = true;
+    window.addEventListener('deviceorientation', handleGyro);
+  }
+}
+
+function handleGyro(e) {
+  if (e.beta === null && e.gamma === null) return;
+  gyroAvailable = true;
+  gyroBeta = e.beta;   // front-back: 0 = flat face-up
+  gyroGamma = e.gamma;  // left-right: 0 = no tilt
+
+  updateGyroIndicator();
+}
+
+function updateGyroIndicator() {
+  const levelEl = document.getElementById('gyro-level');
+  const dotEl = document.getElementById('gyro-dot');
+  const warnEl = document.getElementById('gyro-warning');
+  if (!levelEl || currentScreen !== 'scanner') return;
+
+  levelEl.style.display = 'block';
+
+  /* Map tilt to dot position within the circle (radius ~20px) */
+  const maxOff = 18; // max pixel offset from center
+  let betaOff, gammaOff;
+
+  if (currentStep === 'sole') {
+    /* Sole: phone flat face-up → beta≈0, gamma≈0 */
+    betaOff = Math.max(-maxOff, Math.min(maxOff, (gyroBeta / 45) * maxOff));
+    gammaOff = Math.max(-maxOff, Math.min(maxOff, (gyroGamma / 45) * maxOff));
+  } else {
+    /* Side: phone upright on its side → beta≈90, gamma≈0 */
+    const betaDev = gyroBeta - 90;
+    betaOff = Math.max(-maxOff, Math.min(maxOff, (betaDev / 45) * maxOff));
+    gammaOff = Math.max(-maxOff, Math.min(maxOff, (gyroGamma / 45) * maxOff));
+  }
+
+  dotEl.style.top = `calc(50% + ${betaOff}px)`;
+  dotEl.style.left = `calc(50% + ${gammaOff}px)`;
+
+  const isLevel = isPhoneLevel();
+  levelEl.classList.toggle('level-ok', isLevel);
+
+  /* Warning message */
+  if (!isLevel && gyroAvailable) {
+    let msg = '';
+    if (currentStep === 'sole') {
+      if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Tilt phone flatter';
+      else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Level phone sideways';
+    } else {
+      const betaDev = Math.abs(gyroBeta - 90);
+      if (betaDev > GYRO_TOLERANCE) msg = 'Stand phone more upright';
+      else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Level phone sideways';
+    }
+    if (msg) {
+      warnEl.textContent = msg;
+      warnEl.style.display = 'block';
+    }
+  } else {
+    warnEl.style.display = 'none';
+  }
+}
+
+function isPhoneLevel() {
+  if (!gyroAvailable || gyroBeta === null) return true; /* if no gyro, don't block */
+  if (currentStep === 'sole') {
+    /* Phone flat face-up: beta≈0, gamma≈0 */
+    return Math.abs(gyroBeta) <= GYRO_TOLERANCE && Math.abs(gyroGamma) <= GYRO_TOLERANCE;
+  } else {
+    /* Phone upright on side: beta≈90, gamma≈0 */
+    return Math.abs(gyroBeta - 90) <= GYRO_TOLERANCE && Math.abs(gyroGamma) <= GYRO_TOLERANCE;
+  }
+}
 
 /* ── Screen management with browser back button support ── */
 const SCREEN_ORDER = ['start-screen','sole-instruction','scanner','sole-review','side-instruction','side-review','shoe-fit-screen','thankyou-screen'];
@@ -783,6 +929,15 @@ function startScanner(step) {
     analyzeCtx = analyzeCanvas.getContext('2d', { willReadFrequently: true });
   }
 
+  /* Initialize gyroscope if not already done */
+  if (!gyroPermissionGranted) initGyroscope();
+
+  /* Reset gyro indicator */
+  const gyroLevel = document.getElementById('gyro-level');
+  const gyroWarn = document.getElementById('gyro-warning');
+  if (gyroLevel) { gyroLevel.style.display = 'none'; gyroLevel.classList.remove('level-ok'); }
+  if (gyroWarn) gyroWarn.style.display = 'none';
+
   /* Always front camera */
   navigator.mediaDevices.getUserMedia({
     video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
@@ -888,7 +1043,9 @@ function analyzeFrame() {
     : document.getElementById('side-guide-img');
   const statusBar = document.getElementById('status-bar');
 
-  if (isFootShape && isStill) {
+  const phoneLevel = isPhoneLevel();
+
+  if (isFootShape && isStill && phoneLevel) {
     footFrames++;
     stillCount++;
     guideEl.classList.add('ready');
@@ -900,6 +1057,12 @@ function analyzeFrame() {
     } else {
       statusBar.textContent = 'Almost there - hold still…';
     }
+  } else if (isFootShape && isStill && !phoneLevel) {
+    /* Foot OK + still, but phone tilted - keep foot frames but reset still count */
+    footFrames++;
+    stillCount = 0;
+    guideEl.classList.add('ready');
+    statusBar.textContent = 'Level your phone…';
   } else if (isFootShape) {
     footFrames++;
     stillCount = 0;
@@ -1285,7 +1448,10 @@ function collectShoeFitData() {
 /* Save shoe fit data to Supabase */
 async function saveShoeFitData(email) {
   const shoes = collectShoeFitData();
-  if (shoes.length === 0 && !email) return;
+  const nextPrefBtn = document.querySelector('#next-shoe-pref .fit-option.active');
+  const nextPref = nextPrefBtn ? nextPrefBtn.dataset.val : null;
+  const nextNotes = (document.getElementById('next-shoe-notes')?.value || '').trim() || null;
+  if (shoes.length === 0 && !email && !nextPref && !nextNotes) return;
 
   const sexBtn = document.querySelector('.sex-option.active');
   const sex = sexBtn ? sexBtn.dataset.val : null;
@@ -1296,6 +1462,8 @@ async function saveShoeFitData(email) {
     sex: sex,
     street_size_eu: street_size_eu,
     shoes: shoes,
+    next_shoe_preference: nextPref,
+    next_shoe_notes: nextNotes,
     email: email || null,
     created_at: new Date().toISOString()
   };

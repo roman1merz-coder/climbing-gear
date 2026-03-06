@@ -165,6 +165,15 @@ function renderScan(m) {
       }
       infoHtml += '</div>';
     }
+    // Next shoe preference
+    if (m.fit.next_shoe_preference || m.fit.next_shoe_notes) {
+      infoHtml += `<div style="margin:6px 0;padding:6px 10px;background:#fdf8f0;border-radius:8px;border:1px solid #e8dcc8;font-size:0.82rem">
+        <span style="font-weight:600;color:#2c3227">Next shoe:</span>
+        ${m.fit.next_shoe_preference ? `<span style="color:#c98a42;font-weight:600">${m.fit.next_shoe_preference}</span>` : ''}
+        ${m.fit.next_shoe_notes ? `<span style="color:#666;margin-left:4px">${m.fit.next_shoe_notes}</span>` : ''}
+      </div>`;
+    }
+
     // Analysis results
     if (m.fit.toe_shape || m.fit.width_ratio || m.fit.arch_ratio) {
       infoHtml += `<div class="analysis">
