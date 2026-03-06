@@ -42,6 +42,13 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 .analysis .a-item { white-space: nowrap; }
 .analysis .a-label { color: #888; }
 .no-analysis { color: #bbb; font-size: 0.8rem; font-style: italic; margin-top: 8px; }
+.delete-btn {
+  background: none; border: 1px solid #e0d5c5; color: #c0392b; padding: 3px 10px;
+  border-radius: 6px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.15s;
+}
+.delete-btn:hover { background: #fde8e8; border-color: #c0392b; }
+.delete-btn:disabled { opacity: 0.5; cursor: default; }
 @media (max-width: 600px) {
   .scan-photos img { width: 80px; height: 110px; }
   .scan-body { flex-direction: column; }
@@ -203,9 +210,44 @@ function renderScan(m) {
       ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}</span>` : ''}
       ${hasFit && m.fit.recommendations ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">✓ Recs</span>' : ''}
       ${hasFit && m.fit.interpretation ? '<span style="background:#e8eaf6;color:#5c6bc0;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">✓ Report</span>' : ''}
+      <button class="delete-btn" onclick="deleteScan('${m.scanId}', ${hasFit ? 'true' : 'false'}, ${m.photos ? 'true' : 'false'}, this)">Delete</button>
     </div>
     <div class="scan-body">${photosHtml}<div class="scan-info">${infoHtml}</div></div>
   </div>`;
+}
+
+async function deleteScan(scanId, hasFit, hasPhotos, btn) {
+  if (!confirm(`Delete scan "${scanId}"?\n\nThis will remove photos and all associated data permanently.`)) return;
+  btn.disabled = true; btn.textContent = 'Deleting…';
+  try {
+    const promises = [];
+    /* Delete photos from storage */
+    if (hasPhotos) {
+      promises.push(
+        fetch(`${SB_URL}/storage/v1/object/foot-scans`, {
+          method: 'DELETE',
+          headers: { ...headers, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prefixes: [`scans/${scanId}-sole.jpg`, `scans/${scanId}-side.jpg`] })
+        })
+      );
+    }
+    /* Delete fit row from database */
+    if (hasFit) {
+      promises.push(
+        fetch(`${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${encodeURIComponent(scanId)}`, {
+          method: 'DELETE', headers
+        })
+      );
+    }
+    await Promise.all(promises);
+    /* Remove the card from DOM */
+    const card = btn.closest('.scan-card');
+    if (card) card.remove();
+  } catch (e) {
+    console.error('Delete failed:', e);
+    btn.textContent = 'Error';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Delete'; }, 2000);
+  }
 }
 
 loadData().catch(e => {
