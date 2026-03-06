@@ -75,14 +75,23 @@ body {
   stroke: #3d7a52;
   stroke-width: 9;
 }
-/* Side profile overlay */
+/* Side profile overlay
+   The source image is a tall foot outline. rotate(90deg) turns it horizontal.
+   After rotation, visual width = CSS height, visual height = CSS width.
+   Use vw for sizing so it always fits the viewport width after rotation. */
 #side-guide-img {
-  width: 66vh; height: 66vh;
+  width: 55vw; height: 80vw;
   max-width: none; max-height: none;
   object-fit: contain;
   transform: rotate(90deg) scaleX(-1);
   transition: filter 0.3s, opacity 0.3s;
   opacity: 0.8;
+}
+/* Landscape: viewport is wide, so scale down to fit height */
+@media (orientation: landscape) {
+  #side-guide-img {
+    width: 50vh; height: 75vh;
+  }
 }
 #side-guide-img.ready {
   opacity: 0.95;
@@ -648,8 +657,15 @@ let stillCount = 0;
 let footFrames = 0;
 let currentStep = 'sole'; // 'sole' or 'side'
 
-/* ── Screen management ── */
-function showScreen(id) {
+/* ── Screen management with browser back button support ── */
+const SCREEN_ORDER = ['start-screen','sole-instruction','scanner','sole-review','side-instruction','side-review','shoe-fit-screen','thankyou-screen'];
+let currentScreen = 'start-screen';
+
+function showScreen(id, pushState) {
+  if (pushState !== false) {
+    history.pushState({ screen: id }, '', '');
+  }
+  currentScreen = id;
   ['start-screen','scanner','transition-screen','result-screen','sole-instruction','sole-review','side-instruction','side-review','shoe-fit-screen','thankyou-screen'].forEach(s => {
     document.getElementById(s).style.display = 'none';
   });
@@ -671,6 +687,24 @@ function showScreen(id) {
     document.getElementById(id).style.paddingTop = id === 'start-screen' ? '2rem' : '40px';
   }
 }
+
+/* Back button: go to previous screen instead of leaving the page */
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.screen) {
+    showScreen(e.state.screen, false);
+    /* Stop camera if leaving scanner */
+    if (e.state.screen !== 'scanner' && video && video.srcObject) {
+      video.srcObject.getTracks().forEach(t => t.stop());
+      if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+    }
+  } else {
+    /* No state = user went all the way back to start, show start screen */
+    showScreen('start-screen', false);
+  }
+});
+
+/* Push initial state so first back press doesn't leave the page */
+history.replaceState({ screen: 'start-screen' }, '', '');
 
 /* ── Event listeners ── */
 document.getElementById('start-btn').addEventListener('click', () => showScreen('sole-instruction'));
