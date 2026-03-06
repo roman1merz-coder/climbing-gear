@@ -311,6 +311,7 @@ NOTE: Website uses "navicular_ratio" as the field name for heel depth (legacy na
 - **Long arch → short toes → compact toe box.** High arch_ratio means ball-to-heel is long, leaving a short toe zone. Recommend shoes with compact toe boxes so toes don't swim in dead space. Does NOT mean "longer toe box".
 - **Never invent shoes.** Only recommend shoes that exist in `src/seed_data.json`. If a model isn't in the database, don't recommend it. If only LV/HV variants exist but the standard version is needed, flag it — don't silently substitute.
 - **No duplicate brand+model variants.** Don't recommend both "Cobra" and "Cobra Eco" or similar near-identical variants in the same list.
+- **Interpretation format is `{title, paragraphs: [...]}`**, NOT `{title, body: "..."}`. ScanResult.jsx calls `block.paragraphs.map()` — a `body` string will crash the page with "Cannot read properties of undefined (reading 'map')".
 - **Verify kids shoes.** Some shoes (e.g. Lowa Pirol) are kids/youth shoes even if `kids_friendly` is false in seed_data. Sanity-check before recommending.
 - **Skill level matters.** A beginner should get soft/moderate-soft feel, flat/slight downturn. Don't recommend aggressive/stiff shoes regardless of foot geometry.
 - **High instep → adjustable closure.** Lace closure is best for high instep (fine-tune tension). Velcro is acceptable. Slippers are least adjustable.
