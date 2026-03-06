@@ -774,10 +774,11 @@ function updateGyroIndicator() {
     betaOff = Math.max(-maxOff, Math.min(maxOff, (gyroBeta / 45) * maxOff));
     gammaOff = Math.max(-maxOff, Math.min(maxOff, (gyroGamma / 45) * maxOff));
   } else {
-    /* Side: phone upright on its side → beta≈90, gamma≈0 */
-    const betaDev = gyroBeta - 90;
-    betaOff = Math.max(-maxOff, Math.min(maxOff, (betaDev / 45) * maxOff));
-    gammaOff = Math.max(-maxOff, Math.min(maxOff, (gyroGamma / 45) * maxOff));
+    /* Side: phone in landscape on the ground, screen facing foot
+       → beta≈0, gamma≈±90 (left or right landscape) */
+    betaOff = Math.max(-maxOff, Math.min(maxOff, (gyroBeta / 45) * maxOff));
+    const gammaDev = Math.abs(gyroGamma) - 90; /* deviation from ±90° */
+    gammaOff = Math.max(-maxOff, Math.min(maxOff, (gammaDev / 45) * maxOff));
   }
 
   dotEl.style.top = `calc(50% + ${betaOff}px)`;
@@ -793,9 +794,9 @@ function updateGyroIndicator() {
       if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Tilt phone flatter';
       else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Level phone sideways';
     } else {
-      const betaDev = Math.abs(gyroBeta - 90);
-      if (betaDev > GYRO_TOLERANCE) msg = 'Stand phone more upright';
-      else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Level phone sideways';
+      /* Side: phone landscape, left side up → beta≈0, gamma≈-90 */
+      if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Keep phone flat on the ground';
+      else if (Math.abs(Math.abs(gyroGamma) - 90) > GYRO_TOLERANCE) msg = 'Rotate phone to landscape';
     }
     if (msg) {
       warnEl.textContent = msg;
@@ -812,8 +813,8 @@ function isPhoneLevel() {
     /* Phone flat face-up: beta≈0, gamma≈0 */
     return Math.abs(gyroBeta) <= GYRO_TOLERANCE && Math.abs(gyroGamma) <= GYRO_TOLERANCE;
   } else {
-    /* Phone upright on side: beta≈90, gamma≈0 */
-    return Math.abs(gyroBeta - 90) <= GYRO_TOLERANCE && Math.abs(gyroGamma) <= GYRO_TOLERANCE;
+    /* Phone landscape on ground, left side up: beta≈0, gamma≈-90 */
+    return Math.abs(gyroBeta) <= GYRO_TOLERANCE && Math.abs(Math.abs(gyroGamma) - 90) <= GYRO_TOLERANCE;
   }
 }
 
