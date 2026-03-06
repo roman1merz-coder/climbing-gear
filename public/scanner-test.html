@@ -208,11 +208,24 @@ body {
 }
 .review-screen h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
 .review-img-wrap {
+  position: relative;
   width: 70%; max-width: 300px; margin: 0 auto 1.2rem;
   border-radius: 14px; overflow: hidden; border: 1px solid #d5cdbf;
   background: #fff;
 }
 .review-img { width: 100%; display: block; }
+.review-overlay {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; opacity: 0.55;
+}
+.review-overlay-sole {
+  width: 60%; height: auto;
+}
+.review-overlay-side {
+  width: auto; height: 80%;
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
+}
 .checklist {
   max-width: 340px; margin: 0 auto 1.5rem;
   text-align: left; list-style: none; padding: 0;
@@ -475,8 +488,12 @@ body {
   <h2>Check Your Sole Photo</h2>
   <div class="review-img-wrap">
     <img class="review-img" id="review-sole-img" />
+    <svg class="review-overlay review-overlay-sole" viewBox="280 40 480 960" preserveAspectRatio="xMidYMid meet">
+      <path id="review-sole-path" fill="none" stroke="#ff6600" stroke-width="9" />
+    </svg>
   </div>
   <ul class="checklist">
+    <li class="check-item"><span class="check-icon">&#10003;</span> Scan matches the outline</li>
     <li class="check-item"><span class="check-icon">&#10003;</span> Entire sole is visible, no toes cut off</li>
     <li class="check-item"><span class="check-icon">&#10003;</span> Foot is roughly centered and fills the frame</li>
     <li class="check-item"><span class="check-icon">&#10003;</span> Foot is flat and not twisted or angled</li>
@@ -504,8 +521,10 @@ body {
   <h2>Check Your Side Photo</h2>
   <div class="review-img-wrap">
     <img class="review-img" id="review-side-img" />
+    <img class="review-overlay review-overlay-side" id="review-side-overlay" />
   </div>
   <ul class="checklist">
+    <li class="check-item"><span class="check-icon">&#10003;</span> Scan matches the outline</li>
     <li class="check-item"><span class="check-icon">&#10003;</span> Full side profile visible from heel to toes</li>
     <li class="check-item"><span class="check-icon">&#10003;</span> Arch shape is clearly defined</li>
     <li class="check-item"><span class="check-icon">&#10003;</span> Foot is flat and not twisted or angled</li>
@@ -932,10 +951,18 @@ function capture() {
     if (currentStep === 'sole') {
       soleDataUrl = dataUrl;
       document.getElementById('review-sole-img').src = soleDataUrl;
+      /* Copy sole outline to review overlay */
+      const srcPath = document.querySelector('#foot-guide-svg path');
+      const revPath = document.getElementById('review-sole-path');
+      if (srcPath && revPath) revPath.setAttribute('d', srcPath.getAttribute('d'));
       showScreen('sole-review');
     } else {
       sideDataUrl = dataUrl;
       document.getElementById('review-side-img').src = sideDataUrl;
+      /* Copy side outline to review overlay */
+      const sideGuide = document.getElementById('side-guide-img');
+      const revSide = document.getElementById('review-side-overlay');
+      if (sideGuide && revSide) revSide.src = sideGuide.src;
       showScreen('side-review');
     }
   }, 200);
