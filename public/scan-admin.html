@@ -57,8 +57,6 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 </script>
-</body>
-</html>
 <script>
 const headers = { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` };
 
@@ -209,3 +207,5 @@ loadData().catch(e => {
 // Auto-refresh every 30 seconds
 setInterval(() => loadData().catch(console.error), 30000);
 </script>
+</body>
+</html>
