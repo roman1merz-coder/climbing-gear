@@ -229,7 +229,13 @@ export default function ScanResult({ shoes }) {
             </div>
             <div style={{ padding: "0.75rem 1.25rem", display: "flex", flexWrap: "wrap", gap: "0.65rem 2rem", alignItems: "flex-start" }}>
               <div style={{ flex: 1, minWidth: 180 }}>
-                <MetricBar ratioKey="instep_ratio" value={s.instep_ratio} />
+                {s.instep_ratio != null
+                  ? <MetricBar ratioKey="instep_ratio" value={s.instep_ratio} />
+                  : <div style={{ fontSize: "0.78rem", color: T.muted, padding: "0.25rem 0" }}>
+                      <span style={{ fontWeight: 600, color: T.text }}>Instep Height</span>
+                      <span style={{ marginLeft: 8, fontStyle: "italic" }}>excluded — side photo quality too low</span>
+                    </div>
+                }
               </div>
               <div style={{ flex: 1, minWidth: 180 }}>
                 <MetricBar ratioKey="navicular_ratio" value={s.navicular_ratio} />
