@@ -78,19 +78,19 @@ body {
 /* Side profile overlay
    The source image is a tall foot outline. rotate(90deg) turns it horizontal.
    After rotation, visual width = CSS height, visual height = CSS width.
-   Use vw for sizing so it always fits the viewport width after rotation. */
+   Size with vh so the outline fills most of the camera view vertically. */
 #side-guide-img {
-  width: 55vw; height: 80vw;
+  width: 70vh; height: 70vh;
   max-width: none; max-height: none;
   object-fit: contain;
   transform: rotate(90deg) scaleX(-1);
   transition: filter 0.3s, opacity 0.3s;
   opacity: 0.8;
 }
-/* Landscape: viewport is wide, so scale down to fit height */
-@media (orientation: landscape) {
+/* Portrait phones: use vmin so the overlay stays proportional */
+@media (orientation: portrait) {
   #side-guide-img {
-    width: 50vh; height: 75vh;
+    width: 85vw; height: 85vw;
   }
 }
 #side-guide-img.ready {
