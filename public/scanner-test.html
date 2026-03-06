@@ -216,15 +216,15 @@ body {
 .review-img { width: 100%; display: block; }
 .review-overlay {
   position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
   pointer-events: none; opacity: 0.55;
 }
 .review-overlay-sole {
   width: 60%; height: auto;
+  transform: translate(-50%, -50%) scaleX(-1);
 }
 .review-overlay-side {
   width: auto; height: 80%;
-  transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 .checklist {
   max-width: 340px; margin: 0 auto 1.5rem;
