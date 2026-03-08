@@ -845,7 +845,7 @@ def draw_sole_overlay(img, mask, m, out_path):
     scan_w = scan_right - scan_left
 
     TGT = 700
-    RIGHT_MARGIN = 30
+    RIGHT_MARGIN = 20
     scan_scale = TGT / scan_h
     scan_nw = int(scan_w * scan_scale)
 
@@ -863,6 +863,7 @@ def draw_sole_overlay(img, mask, m, out_path):
         sil_crop = sil[sil_top:sil_bot+1, sil_left_s:sil_right_s+1]
         sil_r = cv2.resize(sil_crop, (sil_nw, TGT), interpolation=cv2.INTER_AREA)
         _, sil_r = cv2.threshold(sil_r, 128, 255, cv2.THRESH_BINARY)
+        sil_r = cv2.flip(sil_r, 1)  # mirror to match scan orientation
 
     scan_crop = mask[scan_top:scan_bot+1, scan_left:scan_right+1] * 255
     scan_r = cv2.resize(scan_crop, (scan_nw, TGT), interpolation=cv2.INTER_AREA)
