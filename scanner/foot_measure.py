@@ -427,6 +427,9 @@ def normalize_sole_orientation(mask, img=None):
             tx2 = min(new_w, txs.max() + pad)
             final_img = final_img[ty1:ty2, tx1:tx2]
 
+    # Ensure mask is 0/1 (draw_sole_overlay expects this for * 255)
+    final_mask = (final_mask > 0).astype(np.uint8)
+
     return final_mask, final_img, info
 
 
