@@ -10,19 +10,19 @@ import usePageMeta from "./usePageMeta.js";
 // Mean +/- SD from Jurca et al. 2019, Karger 2024, Goonetilleke
 // ══════════════════════════════════════════════════════════════
 const POP = {
-  width_ratio:      { mean: 0.381, std: 0.022 },
-  arch_ratio:       { mean: 0.690, std: 0.025 },
-  heel_ratio:       { mean: 0.251, std: 0.018 },
-  instep_ratio:     { mean: 0.290, std: 0.030 },
-  navicular_ratio:  { mean: 0.070, std: 0.025 },
+  forefoot_width_ratio:  { mean: 0.383, std: 0.021 },
+  arch_length_ratio:     { mean: 0.700, std: 0.025 },
+  heel_width_ratio:      { mean: 0.251, std: 0.018 },
+  instep_height_ratio:   { mean: 0.290, std: 0.030 },
+  heel_depth_ratio:      { mean: 0.070, std: 0.025 },
 };
 
 const META = {
-  width_ratio:      { min: 0.31, max: 0.45, label: "Forefoot Width",  color: T.accent },
-  arch_ratio:       { min: 0.61, max: 0.77, label: "Arch Length",     color: T.accent },
-  heel_ratio:       { min: 0.20, max: 0.31, label: "Heel Width",      color: T.accent },
-  instep_ratio:     { min: 0.20, max: 0.38, label: "Instep Height",   color: "#34d399" },
-  navicular_ratio:  { min: 0.00, max: 0.15, label: "Heel Depth",      color: "#f472b6" },
+  forefoot_width_ratio:  { min: 0.31, max: 0.45, label: "Forefoot Width",  color: T.accent },
+  arch_length_ratio:     { min: 0.61, max: 0.77, label: "Arch Length",     color: T.accent },
+  heel_width_ratio:      { min: 0.20, max: 0.31, label: "Heel Width",      color: T.accent },
+  instep_height_ratio:   { min: 0.20, max: 0.38, label: "Instep Height",   color: "#34d399" },
+  heel_depth_ratio:      { min: 0.00, max: 0.15, label: "Heel Depth",      color: "#f472b6" },
 };
 
 const TOE_DESCRIPTIONS = {
@@ -161,7 +161,7 @@ export default function ScanResult({ shoes }) {
   // Overlay image URLs - predictable paths in Supabase Storage
   const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/scans`;
   const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png` : null;
-  const sideOverlay = (s.instep_ratio != null || s.navicular_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png` : null;
+  const sideOverlay = (s.instep_height_ratio != null || s.heel_depth_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png` : null;
 
   // Fit data from same row
   const fitShoes = s.shoes || [];
@@ -209,9 +209,9 @@ export default function ScanResult({ shoes }) {
                   <div style={{ fontSize: 11, color: T.muted, lineHeight: 1.4 }}>{toeDesc}</div>
                 </div>
               </div>
-              <MetricBar ratioKey="width_ratio" value={s.width_ratio} />
-              <MetricBar ratioKey="arch_ratio" value={s.arch_ratio} />
-              <MetricBar ratioKey="heel_ratio" value={s.heel_ratio} />
+              <MetricBar ratioKey="forefoot_width_ratio" value={s.forefoot_width_ratio} />
+              <MetricBar ratioKey="arch_length_ratio" value={s.arch_length_ratio} />
+              <MetricBar ratioKey="heel_width_ratio" value={s.heel_width_ratio} />
             </div>
           </div>
         </div>
@@ -229,8 +229,8 @@ export default function ScanResult({ shoes }) {
             </div>
             <div style={{ padding: "0.75rem 1.25rem", display: "flex", flexWrap: "wrap", gap: "0.65rem 2rem", alignItems: "flex-start" }}>
               <div style={{ flex: 1, minWidth: 180 }}>
-                {s.instep_ratio != null
-                  ? <MetricBar ratioKey="instep_ratio" value={s.instep_ratio} />
+                {s.instep_height_ratio != null
+                  ? <MetricBar ratioKey="instep_height_ratio" value={s.instep_height_ratio} />
                   : <div style={{ fontSize: "0.78rem", color: T.muted, padding: "0.25rem 0" }}>
                       <span style={{ fontWeight: 600, color: T.text }}>Instep Height</span>
                       <span style={{ marginLeft: 8, fontStyle: "italic" }}>excluded — side photo quality too low</span>
@@ -238,7 +238,7 @@ export default function ScanResult({ shoes }) {
                 }
               </div>
               <div style={{ flex: 1, minWidth: 180 }}>
-                <MetricBar ratioKey="navicular_ratio" value={s.navicular_ratio} />
+                <MetricBar ratioKey="heel_depth_ratio" value={s.heel_depth_ratio} />
               </div>
             </div>
           </div>
@@ -368,9 +368,26 @@ const ctaBtnStyle = {
 function buildRecommendations(scan, shoes) {
   if (!scan || !shoes || !shoes.length) return [];
 
-  // If scan has pre-computed recommendations stored in DB, use those
+  // If scan has pre-computed recommendations stored in DB, use those.
+  // Ensure every rec has a slug — look it up from the shoe DB first,
+  // fall back to generating one from brand+model.
   if (scan.recommendations && Array.isArray(scan.recommendations)) {
-    return scan.recommendations;
+    return scan.recommendations.map((r) => {
+      if (r.slug) return r;
+      // Try to find the shoe in the DB by brand+model match
+      const match = shoes.find(
+        (s) =>
+          s.brand?.toLowerCase() === r.brand?.toLowerCase() &&
+          s.model?.toLowerCase() === r.model?.toLowerCase()
+      );
+      const slug = match
+        ? match.slug
+        : `${r.brand || ""} ${r.model || ""}`
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+      return { ...r, slug };
+    });
   }
 
   // Otherwise, score shoes dynamically based on scan profile
