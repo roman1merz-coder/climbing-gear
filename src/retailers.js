@@ -99,6 +99,11 @@ export const RETAILERS = {
     shipping: { cost: 4.95, freeThreshold: 100 },
     returns: { days: 30, free: true, cost: null },
   },
+  "gigasport.at": {
+    country: "AT",
+    shipping: { cost: 0, freeThreshold: 0 },
+    returns: { days: 14, free: false, cost: "customer pays" },
+  },
   "epictv.com": {
     country: "IT",
     shipping: { cost: null, freeThreshold: 150 },
