@@ -14,7 +14,7 @@ const POP = {
   arch_length_ratio:     { mean: 0.700, std: 0.025 },
   heel_width_ratio:      { mean: 0.251, std: 0.018 },
   instep_height_ratio:   { mean: 0.290, std: 0.030 },
-  heel_depth_ratio:      { mean: 0.070, std: 0.025 },
+  heel_depth_ratio:      { mean: 0.035, std: 0.020 },
 };
 
 const META = {
@@ -75,7 +75,7 @@ function MetricBar({ ratioKey, value }) {
 }
 
 // ── Shoe recommendation card ─────────────────────────────────
-function ShoeCard({ slug, brand, model, why }) {
+function ShoeCard({ slug, brand, model, why, imageUrl }) {
   return (
     <div style={{
       background: T.card, border: `1px solid #eee8dc`, borderRadius: 12,
@@ -83,7 +83,7 @@ function ShoeCard({ slug, brand, model, why }) {
     }}>
       <Link to={`/shoe/${slug}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
         <img
-          src={`/images/shoes/${slug}.jpg`}
+          src={imageUrl || `/images/shoes/${slug}.jpg`}
           alt={`${brand} ${model}`}
           loading="lazy"
           style={{ width: "100%", aspectRatio: "1", objectFit: "contain", background: "#faf8f4", padding: 12 }}
@@ -160,8 +160,9 @@ export default function ScanResult({ shoes }) {
 
   // Overlay image URLs - predictable paths in Supabase Storage
   const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/scans`;
-  const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png` : null;
-  const sideOverlay = (s.instep_height_ratio != null || s.heel_depth_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png` : null;
+  const cacheBust = s.updated_at ? `?t=${new Date(s.updated_at).getTime()}` : "";
+  const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png${cacheBust}` : null;
+  const sideOverlay = (s.instep_height_ratio != null || s.heel_depth_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png${cacheBust}` : null;
 
   // Fit data from same row
   const fitShoes = s.shoes || [];
@@ -288,7 +289,7 @@ export default function ScanResult({ shoes }) {
               const brand = r.brand || slugToBrand(r.slug);
               const model = r.model || slugToModel(r.slug);
               const why = r.why || r.reason || "";
-              return <ShoeCard key={r.slug} slug={r.slug} brand={brand} model={model} why={why} />;
+              return <ShoeCard key={r.slug} slug={r.slug} brand={brand} model={model} why={why} imageUrl={r.image_url} />;
             })}
           </div>
         </div>
@@ -373,7 +374,10 @@ function buildRecommendations(scan, shoes) {
   // fall back to generating one from brand+model.
   if (scan.recommendations && Array.isArray(scan.recommendations)) {
     return scan.recommendations.map((r) => {
-      if (r.slug) return r;
+      if (r.slug) {
+        const shoe = shoes.find((s) => s.slug === r.slug);
+        return shoe ? { ...r, brand: shoe.brand, model: shoe.model, image_url: shoe.image_url } : r;
+      }
       // Try to find the shoe in the DB by brand+model match
       const match = shoes.find(
         (s) =>
@@ -391,9 +395,9 @@ function buildRecommendations(scan, shoes) {
   }
 
   // Otherwise, score shoes dynamically based on scan profile
-  const widthClass = scan.width || "medium";
-  const heelClass = scan.heel_width || "medium";
-  const instepClass = scan.volume || "medium";
+  const widthClass = scan.forefoot_width_class || "medium";
+  const heelClass = scan.heel_width_class || "medium";
+  const instepClass = scan.volume_class || "medium";
   const toeShape = scan.toe_shape || "egyptian";
 
   const scored = shoes
