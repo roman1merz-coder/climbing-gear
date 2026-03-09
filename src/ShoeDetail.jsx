@@ -1294,17 +1294,17 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         {activeTab === "reviews" && (() => {
           const reviews = reviewData[slug] || [];
           const SOURCE_TYPE_CONFIG = {
-            expert: { label: "Expert Review", variant: "blue", icon: "\uD83D\uDCDD" },
-            youtube: { label: "YouTube", variant: "red", icon: "\u25B6\uFE0F" },
-            reddit: { label: "Reddit", variant: "purple", icon: "\uD83D\uDCAC" },
-            forum: { label: "Forum", variant: "default", icon: "\uD83D\uDDE3\uFE0F" },
-            blog: { label: "Blog", variant: "green", icon: "\uD83D\uDCF0" },
+            expert: { label: "Expert Review", variant: "blue", icon: "📝" },
+            youtube: { label: "YouTube", variant: "red", icon: "▶️" },
+            reddit: { label: "Reddit", variant: "purple", icon: "💬" },
+            forum: { label: "Forum", variant: "default", icon: "🗣️" },
+            blog: { label: "Blog", variant: "green", icon: "📰" },
           };
           const PILL_STYLES = {
-            pro: { bg: `${T.greenSoft}`, border: `1px solid rgba(61,122,82,0.12)`, labelColor: T.green, icon: "\u2713" },
-            con: { bg: `${T.redSoft}`, border: `1px solid rgba(192,57,43,0.10)`, labelColor: T.red, icon: "\u2717" },
-            fit: { bg: `${T.blueSoft}`, border: `1px solid rgba(74,127,181,0.10)`, labelColor: T.blue, icon: "\uD83D\uDC5F" },
-            best: { bg: `${T.accentSoft}`, border: `1px solid rgba(201,138,66,0.12)`, labelColor: T.accent, icon: "\u2605" },
+            pro: { bg: `${T.greenSoft}`, border: `1px solid rgba(61,122,82,0.12)`, labelColor: T.green, icon: "✓" },
+            con: { bg: `${T.redSoft}`, border: `1px solid rgba(192,57,43,0.10)`, labelColor: T.red, icon: "✗" },
+            fit: { bg: `${T.blueSoft}`, border: `1px solid rgba(74,127,181,0.10)`, labelColor: T.blue, icon: "👟" },
+            best: { bg: `${T.accentSoft}`, border: `1px solid rgba(201,138,66,0.12)`, labelColor: T.accent, icon: "★" },
           };
           const ReviewPill = ({ type, label, text }) => {
             const s = PILL_STYLES[type];
@@ -1321,10 +1321,10 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           };
           return (
             <div>
-              <SectionHeader icon="\uD83D\uDCF0" title="Expert Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
+              <SectionHeader icon="📰" title="Expert Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
               {reviews.length === 0 ? (
                 <div style={{ background: T.card, borderRadius: T.radius, padding: isMobile ? "32px 20px" : "48px 32px", border: `1px solid ${T.border}`, textAlign: "center" }}>
-                  <div style={{ fontSize: "36px", marginBottom: "12px", opacity: 0.4 }}>{"\uD83D\uDD0D"}</div>
+                  <div style={{ fontSize: "36px", marginBottom: "12px", opacity: 0.4 }}>{"🔍"}</div>
                   <div style={{ fontSize: "14px", color: T.muted, fontWeight: 600, marginBottom: "6px" }}>No reviews yet</div>
                   <div style={{ fontSize: "12px", color: T.muted, opacity: 0.7 }}>We're collecting expert reviews for the {shoe.brand} {shoe.model}. Check back soon!</div>
                 </div>
