@@ -21313,16 +21313,16 @@
   {
     "brand": "Scarpa",
     "model": "Instinct VSR LV",
-    "slug": "scarpa-instinct-vsr-womens",
-    "image_url": "/images/shoes/scarpa-instinct-vsr-womens.jpg",
+    "slug": "scarpa-instinct-vsr-lv",
+    "image_url": "/images/shoes/scarpa-instinct-vsr-lv.jpg",
     "images": [
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens.jpg\",\"label\":\"Side view\"}",
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens-A.jpg\",\"label\":\"Front\"}",
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens-B.jpg\",\"label\":\"Back\"}",
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens-C.jpg\",\"label\":\"Top\"}",
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens-D.jpg\",\"label\":\"Sole\"}",
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens-E.jpg\",\"label\":\"Heel\"}",
-      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-womens-F.jpg\",\"label\":\"Detail\"}"
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv.jpg\",\"label\":\"Side view\"}",
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv-A.jpg\",\"label\":\"Front\"}",
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv-B.jpg\",\"label\":\"Back\"}",
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv-C.jpg\",\"label\":\"Top\"}",
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv-D.jpg\",\"label\":\"Sole\"}",
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv-E.jpg\",\"label\":\"Heel\"}",
+      "{\"url\":\"/images/shoes/scarpa-instinct-vsr-lv-F.jpg\",\"label\":\"Detail\"}"
     ],
     "forefoot_volume": "low",
     "width": "narrow",
