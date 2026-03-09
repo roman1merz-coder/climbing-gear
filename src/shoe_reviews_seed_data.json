@@ -13,18 +13,6 @@
   },
   {
     "shoe_slug": "la-sportiva-katana-lace-mens",
-    "source_name": "99Boulders",
-    "source_type": "expert",
-    "source_url": "https://www.99boulders.com/la-sportiva-katana-lace-review",
-    "summary": null,
-    "author": null,
-    "pros": "The best edging shoe the reviewer has ever worn. Excels at almost all types of climbing. Great at smearing with rubber that holds up well. Feels like an extension of the foot. Can easily be the only pair you use",
-    "cons": "Not as downturned as specialized bouldering shoes -- mediocre pocket performance. Toe hooking abilities are mediocre. Shoe width is snug, problematic for wide feet",
-    "fit_notes": "Size 0.5-1 sizes below street shoe (US). Designed for low-volume heels -- high-volume heels may slip. Tight fit, unsuitable for wide feet. Stretches over first few weeks",
-    "best_for": "Face climbing, edging-intensive routes, crack climbing, smearing. Not ideal for heavily overhanging boulder problems"
-  },
-  {
-    "shoe_slug": "la-sportiva-katana-lace-mens",
     "source_name": "Gripped Magazine",
     "source_type": "expert",
     "source_url": "https://gripped.com/indoor-climbing/big-wall-to-board-climbing-la-sportivas-new-katana-lace-review/",
@@ -36,16 +24,16 @@
     "best_for": "Low-angle slab, big wall, sport climbing on small edges, trad, crack, board/gym climbing"
   },
   {
-    "shoe_slug": "la-sportiva-mantra",
-    "source_name": "GearJunkie",
+    "shoe_slug": "la-sportiva-katana-lace-mens",
+    "source_name": "99Boulders",
     "source_type": "expert",
-    "source_url": "https://gearjunkie.com/climbing/rock/la-sportiva-mantra-review-2024",
-    "summary": "GearJunkie found the Mantra to be super sensitive and pliable, with a comfortable high-performance fit and excellent toe hooking capability. They noted the heel can be too voluminous for narrower feet and the minimal construction could mean lower durability.",
+    "source_url": "https://www.99boulders.com/la-sportiva-katana-lace-review",
+    "summary": null,
     "author": null,
-    "pros": "Super sensitive and pliable; Comfortable for a high-performance fit; Excellent toe hooking",
-    "cons": "Heel can be too voluminous for narrow feet; Minimal construction may mean lower durability",
-    "fit_notes": null,
-    "best_for": "Indoor climbing and modern competition"
+    "pros": "The best edging shoe the reviewer has ever worn. Excels at almost all types of climbing. Great at smearing with rubber that holds up well. Feels like an extension of the foot. Can easily be the only pair you use",
+    "cons": "Not as downturned as specialized bouldering shoes -- mediocre pocket performance. Toe hooking abilities are mediocre. Shoe width is snug, problematic for wide feet",
+    "fit_notes": "Size 0.5-1 sizes below street shoe (US). Designed for low-volume heels -- high-volume heels may slip. Tight fit, unsuitable for wide feet. Stretches over first few weeks",
+    "best_for": "Face climbing, edging-intensive routes, crack climbing, smearing. Not ideal for heavily overhanging boulder problems"
   },
   {
     "shoe_slug": "la-sportiva-mantra",
@@ -60,16 +48,16 @@
     "best_for": "Modern competition climbing, bouldering, indoor gym"
   },
   {
-    "shoe_slug": "la-sportiva-miura-vs-mens",
-    "source_name": "99Boulders",
+    "shoe_slug": "la-sportiva-mantra",
+    "source_name": "GearJunkie",
     "source_type": "expert",
-    "source_url": "https://www.99boulders.com/la-sportiva-miura-vs-review",
-    "summary": null,
+    "source_url": "https://gearjunkie.com/climbing/rock/la-sportiva-mantra-review-2024",
+    "summary": "GearJunkie found the Mantra to be super sensitive and pliable, with a comfortable high-performance fit and excellent toe hooking capability. They noted the heel can be too voluminous for narrower feet and the minimal construction could mean lower durability.",
     "author": null,
-    "pros": "Stiff and downturned making it awesome at edging. Very comfortable given its aggressive build. First pair lasted two years with one resole. Great for pockets due to pointed toe box. Surprisingly good at smearing for an aggressive shoe",
-    "cons": "Not very good at toe hooking -- small rubber patch and straps risk undoing. Stiffness compromises crack performance. Will never be as sensitive as some shoes. Strap stickiness degrades after two years",
-    "fit_notes": "Size 1-1.5 sizes smaller than street shoe. Expect quite a bit of stretch -- difficult initially but easier after breaking in. Fits like a glove with skin-tight fit throughout shoe life",
-    "best_for": "Bouldering, sport climbing, slab climbing. Not for crack climbing or very overhung problems"
+    "pros": "Super sensitive and pliable; Comfortable for a high-performance fit; Excellent toe hooking",
+    "cons": "Heel can be too voluminous for narrow feet; Minimal construction may mean lower durability",
+    "fit_notes": null,
+    "best_for": "Indoor climbing and modern competition"
   },
   {
     "shoe_slug": "la-sportiva-miura-vs-mens",
@@ -82,6 +70,18 @@
     "cons": "Not a great shoe for toe hooking -- lacks thick rubber on toe box. Will not be comfortable for crack climbing, low-angle smearing, or all-day routes. Many people develop a bump on their big toe (Miura bump)",
     "fit_notes": "On the narrow side, will not work for wide feet. Painful break-in period. Sized half size down from trad shoes. Designed to be sized tightly for optimal performance. Quite painful on hot days with foot swelling",
     "best_for": "Steep boulders, technical sport climbs, vertical granite trad routes"
+  },
+  {
+    "shoe_slug": "la-sportiva-miura-vs-mens",
+    "source_name": "99Boulders",
+    "source_type": "expert",
+    "source_url": "https://www.99boulders.com/la-sportiva-miura-vs-review",
+    "summary": null,
+    "author": null,
+    "pros": "Stiff and downturned making it awesome at edging. Very comfortable given its aggressive build. First pair lasted two years with one resole. Great for pockets due to pointed toe box. Surprisingly good at smearing for an aggressive shoe",
+    "cons": "Not very good at toe hooking -- small rubber patch and straps risk undoing. Stiffness compromises crack performance. Will never be as sensitive as some shoes. Strap stickiness degrades after two years",
+    "fit_notes": "Size 1-1.5 sizes smaller than street shoe. Expect quite a bit of stretch -- difficult initially but easier after breaking in. Fits like a glove with skin-tight fit throughout shoe life",
+    "best_for": "Bouldering, sport climbing, slab climbing. Not for crack climbing or very overhung problems"
   },
   {
     "shoe_slug": "la-sportiva-otaki-mens",
@@ -121,18 +121,6 @@
   },
   {
     "shoe_slug": "la-sportiva-skwama",
-    "source_name": "Gripped Magazine",
-    "source_type": "expert",
-    "source_url": "https://gripped.com/gear/review-la-sportiva-skwama/",
-    "summary": null,
-    "author": null,
-    "pros": "One of the best shoes for all-round climbing. Great at edging on granite crystals. Narrow toe is amazing for thin cracks. Velcro strap positioned high gives lots of jamming space",
-    "cons": "Not as good at standing on tiny edges as the La Sportiva Genius. Toeing into tiny pockets is tiring for the foot",
-    "fit_notes": "Very tight when first strapped on, loosens up after a few sessions. Can then be worn for extended periods of time",
-    "best_for": "Granite climbing, thin cracks, indoor training, short powerful limestone routes"
-  },
-  {
-    "shoe_slug": "la-sportiva-skwama",
     "source_name": "Splitter Choss",
     "source_type": "expert",
     "source_url": "https://www.splitterchoss.com/2018/03/16/la-sportiva-skwama-review/",
@@ -156,6 +144,18 @@
     "best_for": "Steep bouldering, smearing, heel/toe hooking on overhanging rock"
   },
   {
+    "shoe_slug": "la-sportiva-skwama",
+    "source_name": "Gripped Magazine",
+    "source_type": "expert",
+    "source_url": "https://gripped.com/gear/review-la-sportiva-skwama/",
+    "summary": null,
+    "author": null,
+    "pros": "One of the best shoes for all-round climbing. Great at edging on granite crystals. Narrow toe is amazing for thin cracks. Velcro strap positioned high gives lots of jamming space",
+    "cons": "Not as good at standing on tiny edges as the La Sportiva Genius. Toeing into tiny pockets is tiring for the foot",
+    "fit_notes": "Very tight when first strapped on, loosens up after a few sessions. Can then be worn for extended periods of time",
+    "best_for": "Granite climbing, thin cracks, indoor training, short powerful limestone routes"
+  },
+  {
     "shoe_slug": "la-sportiva-solution-comp",
     "source_name": "Advnture",
     "source_type": "expert",
@@ -166,18 +166,6 @@
     "cons": "Not super-versatile for outdoors. Uncomfortable for long routes. Tight fit becomes problematic in hot weather when feet swell",
     "fit_notes": "Extremely snug fitting that works well indoors but creates discomfort during extended outdoor use in warm conditions",
     "best_for": "Super-aggressive steep climbing and bouldering, competition climbing"
-  },
-  {
-    "shoe_slug": "la-sportiva-solution-mens",
-    "source_name": "Gripped Magazine",
-    "source_type": "expert",
-    "source_url": "https://gripped.com/gear/the-la-sportiva-solution-a-review/",
-    "summary": null,
-    "author": null,
-    "pros": "Stand on dime edges with ease. Perhaps no better shoe for climbing pockets. Ultra-sticky Vibram XS Grip rubber on steep terrain. No significant rubber delamination after heavy use",
-    "cons": "Nylon strap degrades rather quickly from abrasion. Pointy toe box less than ideal for sustained friction slabs. More fatiguing on long edgy pitches than a classic edging shoe. Heel cup is bulbous and insensitive",
-    "fit_notes": "Reviewer sized quite small. Could have been better on slabs with half a size up. Tight fit is expected",
-    "best_for": "Steep overhanging terrain, pockets, bouldering and route climbing"
   },
   {
     "shoe_slug": "la-sportiva-solution-mens",
@@ -192,16 +180,16 @@
     "best_for": "Steeper-than-vertical climbing, 45-degree overhanging walls, toe and heel hooking"
   },
   {
-    "shoe_slug": "la-sportiva-tc-pro",
-    "source_name": "Crux Range",
+    "shoe_slug": "la-sportiva-solution-mens",
+    "source_name": "Gripped Magazine",
     "source_type": "expert",
-    "source_url": "https://cruxrange.com/blog/la-sportiva-tc-pro/",
+    "source_url": "https://gripped.com/gear/the-la-sportiva-solution-a-review/",
     "summary": null,
     "author": null,
-    "pros": "Precise edging with decreased foot fatigue. Transitions easily from face to crack to offwidth. Ankle protection. Built to last with full-length LaspFlex rand and stiff midsole",
-    "cons": "Expensive. New models require longer break-in time. Eco leather feels rigid and holds foot odor more. Rand can still roll off after frequent crack climbing. Less toe sensitivity than sport/gym shoes",
-    "fit_notes": "Best suited to medium-to-wide width foot. Stretch a decent amount with minimal wear. New model fits a bit larger than older model, slightly more narrow in the toe box. Break-in time longer than old model",
-    "best_for": "Trad climbing, big wall, multi-pitch, crack climbing, technical face climbing"
+    "pros": "Stand on dime edges with ease. Perhaps no better shoe for climbing pockets. Ultra-sticky Vibram XS Grip rubber on steep terrain. No significant rubber delamination after heavy use",
+    "cons": "Nylon strap degrades rather quickly from abrasion. Pointy toe box less than ideal for sustained friction slabs. More fatiguing on long edgy pitches than a classic edging shoe. Heel cup is bulbous and insensitive",
+    "fit_notes": "Reviewer sized quite small. Could have been better on slabs with half a size up. Tight fit is expected",
+    "best_for": "Steep overhanging terrain, pockets, bouldering and route climbing"
   },
   {
     "shoe_slug": "la-sportiva-tc-pro",
@@ -214,6 +202,18 @@
     "cons": "New ECO leather might hold stink more. New TC Pro reportedly stretches more than old one. Not ideal for 45-degree walls and bouldering caves. At ~8.7oz, not a lightweight shoe",
     "fit_notes": "Tight at first as leather stretches and molds to foot. Important to size appropriately. Comfortable sizing is possible for all-day use",
     "best_for": "Vertical and slabby terrain, all-day multi-pitch, trad climbing"
+  },
+  {
+    "shoe_slug": "la-sportiva-tc-pro",
+    "source_name": "Crux Range",
+    "source_type": "expert",
+    "source_url": "https://cruxrange.com/blog/la-sportiva-tc-pro/",
+    "summary": null,
+    "author": null,
+    "pros": "Precise edging with decreased foot fatigue. Transitions easily from face to crack to offwidth. Ankle protection. Built to last with full-length LaspFlex rand and stiff midsole",
+    "cons": "Expensive. New models require longer break-in time. Eco leather feels rigid and holds foot odor more. Rand can still roll off after frequent crack climbing. Less toe sensitivity than sport/gym shoes",
+    "fit_notes": "Best suited to medium-to-wide width foot. Stretch a decent amount with minimal wear. New model fits a bit larger than older model, slightly more narrow in the toe box. Break-in time longer than old model",
+    "best_for": "Trad climbing, big wall, multi-pitch, crack climbing, technical face climbing"
   },
   {
     "shoe_slug": "la-sportiva-theory",
