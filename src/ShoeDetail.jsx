@@ -956,7 +956,7 @@ const USE_CASE_TAG_VARIANT = {
 };
 
 // ═══ SHOE DETAIL PAGE (3-Tab Layout) ═══
-export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [] }) {
+export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [], reviewData = {} }) {
   const { slug } = useParams();
   const shoe = shoes.find(s => s.slug === slug);
   usePageMeta(
@@ -1083,7 +1083,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       {/* ═══ TABS ═══ */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "20px 16px" : "40px 32px" }}>
         <div style={{ display: "flex", gap: isMobile ? "0" : "20px", marginBottom: isMobile ? "24px" : "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: isMobile ? "12px" : "20px" }}>
-          {[{ key: "overview", label: "Overview" }, { key: "prices", label: "Prices" }, { key: "specs", label: "Specs" }].map(tab => (
+          {[{ key: "overview", label: "Overview" }, { key: "prices", label: "Prices" }, { key: "specs", label: "Specs" }, { key: "reviews", label: "Reviews" }].map(tab => (
             <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{
               padding: isMobile ? "8px 12px" : "8px 16px", border: "none", background: "transparent", color: activeTab === tab.key ? T.accent : T.muted,
               fontSize: isMobile ? "13px" : "14px", fontWeight: activeTab === tab.key ? 700 : 600, cursor: "pointer", borderBottom: activeTab === tab.key ? `2px solid ${T.accent}` : "none",
@@ -1289,6 +1289,64 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             </div>
           </div>
         )}
+
+        {/* ═══ REVIEWS TAB ═══ */}
+        {activeTab === "reviews" && (() => {
+          const reviews = reviewData[slug] || [];
+          const SOURCE_TYPE_CONFIG = {
+            expert: { label: "Expert Review", variant: "blue", icon: "📝" },
+            youtube: { label: "YouTube", variant: "red", icon: "▶️" },
+            reddit: { label: "Reddit", variant: "purple", icon: "💬" },
+            forum: { label: "Forum", variant: "default", icon: "🗣️" },
+            blog: { label: "Blog", variant: "green", icon: "📰" },
+          };
+          return (
+            <div>
+              <SectionHeader icon="📰" title="Expert Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
+              {reviews.length === 0 ? (
+                <div style={{ background: T.card, borderRadius: T.radius, padding: isMobile ? "32px 20px" : "48px 32px", border: `1px solid ${T.border}`, textAlign: "center" }}>
+                  <div style={{ fontSize: "36px", marginBottom: "12px", opacity: 0.4 }}>🔍</div>
+                  <div style={{ fontSize: "14px", color: T.muted, fontWeight: 600, marginBottom: "6px" }}>No reviews yet</div>
+                  <div style={{ fontSize: "12px", color: T.muted, opacity: 0.7 }}>We're collecting expert reviews for the {shoe.brand} {shoe.model}. Check back soon!</div>
+                </div>
+              ) : (
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  {reviews.map((review, i) => {
+                    const cfg = SOURCE_TYPE_CONFIG[review.source_type] || SOURCE_TYPE_CONFIG.blog;
+                    return (
+                      <div key={i} style={{
+                        background: T.card, borderRadius: T.radius, padding: isMobile ? "16px" : "20px 24px",
+                        border: `1px solid ${T.border}`, transition: "border-color 0.2s",
+                      }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", flexWrap: "wrap" }}>
+                          <Tag small variant={cfg.variant} icon={cfg.icon}>{cfg.label}</Tag>
+                          <span style={{ fontSize: "13px", fontWeight: 700, color: T.text }}>{review.source_name}</span>
+                          {review.author && (
+                            <span style={{ fontSize: "12px", color: T.muted }}>by {review.author}</span>
+                          )}
+                        </div>
+                        <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, margin: "0 0 12px" }}>{review.summary}</p>
+                        <a
+                          href={review.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow"
+                          style={{ fontSize: "12px", color: T.accent, fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "4px" }}
+                          onMouseOver={e => e.currentTarget.style.textDecoration = "underline"}
+                          onMouseOut={e => e.currentTarget.style.textDecoration = "none"}
+                        >
+                          Read full review →
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              <p style={{ fontSize: "11px", color: T.muted, marginTop: "20px", lineHeight: 1.6, opacity: 0.7 }}>
+                Summaries are written by climbing-gear.com editors. All credit belongs to the original authors and publications.
+              </p>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Similar shoes - scored by spec similarity, cross-brand */}

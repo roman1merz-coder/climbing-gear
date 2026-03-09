@@ -379,6 +379,7 @@ function Root() {
   const [src, setSrc] = useState("local");
   const [priceData, setPriceData] = useState({});
   const [priceHistory, setPriceHistory] = useState({});
+  const [reviewData, setReviewData] = useState({});
   const [searchFilters, setSearchFilters] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -456,6 +457,18 @@ function Root() {
     // Fetch live prices
     fetchLivePrices().then(setPriceData);
     fetchPriceHistory().then(setPriceHistory);
+
+    // Fetch shoe reviews (grouped by slug)
+    supabaseFetch("/rest/v1/shoe_reviews?select=shoe_slug,source_name,source_type,source_url,summary,author&order=created_at")
+      .then(rows => {
+        const grouped = {};
+        for (const r of rows) {
+          if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
+          grouped[r.shoe_slug].push(r);
+        }
+        setReviewData(grouped);
+      })
+      .catch(() => {});
   }, []);
 
   return (
@@ -479,6 +492,7 @@ function Root() {
                     shoes={shoes}
                     priceData={priceData}
                     priceHistory={priceHistory}
+                    reviewData={reviewData}
                   />
                 }
               />
