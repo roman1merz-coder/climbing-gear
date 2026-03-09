@@ -77,6 +77,7 @@ import ROPE_SEED from "./rope_seed_data.json";
 import BELAY_SEED from "./belay_seed_data.json";
 import CRASHPAD_SEED from "./crashpad_seed_data.json";
 import QUICKDRAW_SEED from "./quickdraw_seed_data.json";
+import REVIEW_SEED from "./shoe_reviews_seed_data.json";
 
 // ─── Price Data (fetched live from Supabase) ─────────────────
 // Category-specific price tables populated by crawlers
@@ -458,17 +459,18 @@ function Root() {
     fetchLivePrices().then(setPriceData);
     fetchPriceHistory().then(setPriceHistory);
 
-    // Fetch shoe reviews (grouped by slug)
-    supabaseFetch("/rest/v1/shoe_reviews?select=shoe_slug,source_name,source_type,source_url,summary,author&order=created_at")
-      .then(rows => {
-        const grouped = {};
-        for (const r of rows) {
-          if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
-          grouped[r.shoe_slug].push(r);
-        }
-        setReviewData(grouped);
-      })
-      .catch(() => {});
+    // Fetch shoe reviews (grouped by slug), with seed fallback
+    const groupReviews = (rows) => {
+      const grouped = {};
+      for (const r of rows) {
+        if (!grouped[r.shoe_slug]) grouped[r.shoe_slug] = [];
+        grouped[r.shoe_slug].push(r);
+      }
+      return grouped;
+    };
+    supabaseFetch("/rest/v1/shoe_reviews?select=shoe_slug,source_name,source_type,source_url,summary,author,pros,cons,fit_notes,best_for&order=created_at")
+      .then(rows => setReviewData(groupReviews(rows.length ? rows : REVIEW_SEED)))
+      .catch(() => setReviewData(groupReviews(REVIEW_SEED)));
   }, []);
 
   return (

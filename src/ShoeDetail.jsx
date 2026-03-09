@@ -1294,18 +1294,37 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
         {activeTab === "reviews" && (() => {
           const reviews = reviewData[slug] || [];
           const SOURCE_TYPE_CONFIG = {
-            expert: { label: "Expert Review", variant: "blue", icon: "📝" },
-            youtube: { label: "YouTube", variant: "red", icon: "▶️" },
-            reddit: { label: "Reddit", variant: "purple", icon: "💬" },
-            forum: { label: "Forum", variant: "default", icon: "🗣️" },
-            blog: { label: "Blog", variant: "green", icon: "📰" },
+            expert: { label: "Expert Review", variant: "blue", icon: "\uD83D\uDCDD" },
+            youtube: { label: "YouTube", variant: "red", icon: "\u25B6\uFE0F" },
+            reddit: { label: "Reddit", variant: "purple", icon: "\uD83D\uDCAC" },
+            forum: { label: "Forum", variant: "default", icon: "\uD83D\uDDE3\uFE0F" },
+            blog: { label: "Blog", variant: "green", icon: "\uD83D\uDCF0" },
+          };
+          const PILL_STYLES = {
+            pro: { bg: `${T.greenSoft}`, border: `1px solid rgba(61,122,82,0.12)`, labelColor: T.green, icon: "\u2713" },
+            con: { bg: `${T.redSoft}`, border: `1px solid rgba(192,57,43,0.10)`, labelColor: T.red, icon: "\u2717" },
+            fit: { bg: `${T.blueSoft}`, border: `1px solid rgba(74,127,181,0.10)`, labelColor: T.blue, icon: "\uD83D\uDC5F" },
+            best: { bg: `${T.accentSoft}`, border: `1px solid rgba(201,138,66,0.12)`, labelColor: T.accent, icon: "\u2605" },
+          };
+          const ReviewPill = ({ type, label, text }) => {
+            const s = PILL_STYLES[type];
+            if (!text) return null;
+            return (
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", padding: isMobile ? "10px" : "10px 12px", borderRadius: T.radiusSm, background: s.bg, border: s.border }}>
+                <span style={{ fontSize: "14px", flexShrink: 0 }}>{s.icon}</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.6px", color: s.labelColor, marginBottom: "2px" }}>{label}</div>
+                  <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.5 }}>{text}</div>
+                </div>
+              </div>
+            );
           };
           return (
             <div>
-              <SectionHeader icon="📰" title="Expert Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
+              <SectionHeader icon="\uD83D\uDCF0" title="Expert Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
               {reviews.length === 0 ? (
                 <div style={{ background: T.card, borderRadius: T.radius, padding: isMobile ? "32px 20px" : "48px 32px", border: `1px solid ${T.border}`, textAlign: "center" }}>
-                  <div style={{ fontSize: "36px", marginBottom: "12px", opacity: 0.4 }}>🔍</div>
+                  <div style={{ fontSize: "36px", marginBottom: "12px", opacity: 0.4 }}>{"\uD83D\uDD0D"}</div>
                   <div style={{ fontSize: "14px", color: T.muted, fontWeight: 600, marginBottom: "6px" }}>No reviews yet</div>
                   <div style={{ fontSize: "12px", color: T.muted, opacity: 0.7 }}>We're collecting expert reviews for the {shoe.brand} {shoe.model}. Check back soon!</div>
                 </div>
@@ -1316,16 +1335,21 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                     return (
                       <div key={i} style={{
                         background: T.card, borderRadius: T.radius, padding: isMobile ? "16px" : "20px 24px",
-                        border: `1px solid ${T.border}`, transition: "border-color 0.2s",
+                        border: `1px solid ${T.border}`,
                       }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", flexWrap: "wrap" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px", flexWrap: "wrap" }}>
                           <Tag small variant={cfg.variant} icon={cfg.icon}>{cfg.label}</Tag>
                           <span style={{ fontSize: "13px", fontWeight: 700, color: T.text }}>{review.source_name}</span>
                           {review.author && (
                             <span style={{ fontSize: "12px", color: T.muted }}>by {review.author}</span>
                           )}
                         </div>
-                        <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.7, margin: "0 0 12px" }}>{review.summary}</p>
+                        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "8px", marginBottom: "14px" }}>
+                          <ReviewPill type="pro" label="Pros" text={review.pros} />
+                          <ReviewPill type="con" label="Cons" text={review.cons} />
+                          <ReviewPill type="fit" label="Fit" text={review.fit_notes} />
+                          <ReviewPill type="best" label="Best For" text={review.best_for} />
+                        </div>
                         <a
                           href={review.source_url}
                           target="_blank"
@@ -1334,7 +1358,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                           onMouseOver={e => e.currentTarget.style.textDecoration = "underline"}
                           onMouseOut={e => e.currentTarget.style.textDecoration = "none"}
                         >
-                          Read full review →
+                          Read full review {"\u2192"}
                         </a>
                       </div>
                     );
