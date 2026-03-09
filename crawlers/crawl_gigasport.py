@@ -434,7 +434,15 @@ def match_slug(brand, model, ref_lookup):
     if (b, m) in ref_lookup:
         return ref_lookup[(b, m)], 1.0
 
-    # 2. Gender-aware: strip gender suffix/prefix and try with mens/womens
+    # 2. Gender-aware matching
+    # Detect if the feed product is women's
+    is_womens = bool(re.search(
+        r"\b(women'?s?|w'?s|damen|lady|wmn|wmns|wms|woman)\b", m, re.I
+    ))
+    is_mens = bool(re.search(
+        r"\b(men'?s?|herren|man)\b", m, re.I
+    )) and not is_womens
+
     m_clean = re.sub(
         r"\s*(women'?s?|w'?s|damen|herren|men'?s?|lady|wmn|wmns|wms|woman|man)\s*$",
         "", m
@@ -446,6 +454,19 @@ def match_slug(brand, model, ref_lookup):
         " ", m_clean
     ).strip()
 
+    # Try gendered version FIRST (e.g. "veloce women's" before "veloce")
+    if is_womens:
+        for suffix in ["women's", "womens"]:
+            for try_base in [m_clean, m_clean_mid]:
+                gendered = f"{try_base} {suffix}"
+                if (b, gendered) in ref_lookup:
+                    return ref_lookup[(b, gendered)], 0.98
+    elif is_mens:
+        for try_base in [m_clean, m_clean_mid]:
+            if (b, try_base) in ref_lookup:
+                return ref_lookup[(b, try_base)], 0.95
+
+    # Then try stripped (gender-neutral) version
     for try_m in [m_clean, m_clean_mid]:
         if try_m != m and (b, try_m) in ref_lookup:
             return ref_lookup[(b, try_m)], 0.95
@@ -470,6 +491,8 @@ def match_slug(brand, model, ref_lookup):
             return ref_slug, 0.8
 
     # 5. Fuzzy word overlap
+    # Require high overlap (>= 0.8) to avoid false positives like
+    # "Boa 9.8" matching "Boa Eco 9.8" or "Alpine Core Protect Dry" matching "Alpine Core Protect"
     words = set(b.split() + m_clean.split())
     words.discard("the")
     best_match, best_score = None, 0
@@ -480,7 +503,7 @@ def match_slug(brand, model, ref_lookup):
         overlap = len(words & ref_words)
         total = max(len(words), len(ref_words))
         score = overlap / total if total > 0 else 0
-        if score > best_score and score >= 0.6:
+        if score > best_score and score >= 0.8:
             best_score = score
             best_match = rslug
     if best_match:
