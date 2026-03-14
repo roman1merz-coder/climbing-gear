@@ -21,7 +21,7 @@ if (!fs.existsSync(src)) {
 }
 
 const before = fs.statSync(src).size;
-await sharp(src).webp({ quality: 82 }).toFile(dest);
+await sharp(src).webp({ quality: 75, effort: 6 }).toFile(dest);
 const after = fs.statSync(dest).size;
 
 console.log(`Hero image converted: JPG ${(before / 1024).toFixed(0)} KiB → WebP ${(after / 1024).toFixed(0)} KiB (saved ${((1 - after / before) * 100).toFixed(0)}%)`);
