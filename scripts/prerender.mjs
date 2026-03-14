@@ -585,7 +585,7 @@ function main() {
   // Preload the hero image so browser discovers it before JS loads (LCP optimization)
   homepageHtml = homepageHtml.replace(
     '</head>',
-    `<link rel="preload" as="image" href="/images/hero-mountain.jpg" fetchpriority="high">\n</head>`
+    `<link rel="preload" as="image" href="/images/hero-mountain.webp" type="image/webp" fetchpriority="high">\n<link rel="preload" as="image" href="/images/hero-mountain.jpg" fetchpriority="high">\n</head>`
   );
   // Write homepage to dist/index.html (overwrite the Vite-generated one)
   fs.writeFileSync(path.join(DIST, 'index.html'), homepageHtml, 'utf8');

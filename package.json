@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "node scripts/generate_seed.mjs",
     "dev": "vite",
-    "build": "vite build && node scripts/generate-sitemap.js && node scripts/prerender.mjs",
+    "build": "vite build && node scripts/optimize-hero.mjs && node scripts/generate-sitemap.js && node scripts/prerender.mjs",
     "preview": "vite preview",
     "sitemap": "node scripts/generate-sitemap.js"
   },
