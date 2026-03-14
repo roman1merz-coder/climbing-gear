@@ -95,7 +95,7 @@ function HeroSection({ isMobile }) {
     <section style={{ position: "relative", minHeight: isMobile ? "100svh" : "90vh", display: "flex", alignItems: "center", overflow: "hidden", paddingBottom: isMobile ? "112px" : "96px" }}>
       {/* Background image */}
       <div style={{ position: "absolute", inset: 0 }}>
-        <img src="/images/hero-mountain.jpg" alt="Climber on mountain rock face at golden hour" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" />
+        <img src="/images/hero-mountain.jpg" alt="Climber on mountain rock face at golden hour" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="eager" fetchPriority="high" />
         <div style={{ position: "absolute", inset: 0, background: isMobile
           ? "linear-gradient(to bottom, rgba(18,16,14,0.92) 0%, rgba(18,16,14,0.72) 50%, rgba(18,16,14,0.25) 100%)"
           : "linear-gradient(to right, rgba(18,16,14,0.92) 0%, rgba(18,16,14,0.72) 40%, rgba(18,16,14,0.25) 70%, transparent 100%)" }} />

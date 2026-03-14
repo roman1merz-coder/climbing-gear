@@ -86,11 +86,11 @@ function renderPage(routePath, title, description, ssrContent, jsonLd) {
     );
   }
 
-  // Inject JSON-LD before </head>
+  // Inject JSON-LD before </head> - use same id as useStructuredData.js so React can replace it
   if (jsonLd) {
     html = html.replace(
       '</head>',
-      `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>\n</head>`
+      `<script type="application/ld+json" id="structured-data-jsonld">${JSON.stringify(jsonLd)}</script>\n</head>`
     );
   }
 
@@ -115,6 +115,152 @@ function specTable(rows) {
   return `<table>${filtered.join('')}</table>`;
 }
 
+// --- Related products helper (cross-linking for SEO) -------------------
+function ensureArray(v) {
+  if (!v) return [];
+  if (Array.isArray(v)) return v;
+  if (typeof v === 'string') {
+    try { const p = JSON.parse(v); if (Array.isArray(p)) return p; } catch {}
+    return v.split(',').map(s => s.trim()).filter(Boolean);
+  }
+  return [];
+}
+
+function relatedLinksHtml(related, pathPrefix, sectionTitle) {
+  if (!related.length) return '';
+  let h = `<h2>${escHtml(sectionTitle)}</h2><ul>`;
+  for (const r of related) {
+    h += `<li><a href="${BASE}/${pathPrefix}/${r.slug}">${escHtml(r.brand)} ${escHtml(r.model || r.slug)}</a></li>`;
+  }
+  h += `</ul>`;
+  return h;
+}
+
+// Shoe similarity: closure, feel, downturn, rubber type, different-brand bonus
+function findRelatedShoes(target, all) {
+  return all
+    .filter(s => s.slug !== target.slug)
+    .map(s => {
+      let score = 0;
+      if (s.closure && s.closure === target.closure) score += 15;
+      if (s.feel && s.feel === target.feel) score += 20;
+      if (s.downturn && s.downturn === target.downturn) score += 15;
+      if (s.rubber_type && s.rubber_type === target.rubber_type) score += 10;
+      if (s.asymmetry && s.asymmetry === target.asymmetry) score += 10;
+      if (s.gender && s.gender === target.gender) score += 5;
+      if (s.brand !== target.brand) score += 10;
+      return { item: s, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(r => r.item);
+}
+
+// Rope similarity: type, diameter, weight, different-brand bonus
+function findRelatedRopes(target, all) {
+  return all
+    .filter(r => r.slug !== target.slug)
+    .map(r => {
+      let score = 0;
+      if (r.rope_type === target.rope_type) score += 25;
+      if (r.diameter_mm && target.diameter_mm) {
+        const diff = Math.abs(r.diameter_mm - target.diameter_mm);
+        if (diff <= 0.2) score += 20;
+        else if (diff <= 0.5) score += 12;
+        else if (diff <= 1.0) score += 5;
+      }
+      if (r.weight_per_meter_g && target.weight_per_meter_g) {
+        const diff = Math.abs(r.weight_per_meter_g - target.weight_per_meter_g);
+        if (diff <= 3) score += 15;
+        else if (diff <= 6) score += 8;
+      }
+      if (r.brand !== target.brand) score += 10;
+      return { item: r, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(r => r.item);
+}
+
+// Crashpad similarity: size, thickness, weight, different-brand bonus
+function findRelatedPads(target, all) {
+  return all
+    .filter(p => p.slug !== target.slug)
+    .map(p => {
+      let score = 0;
+      if (p.pad_size_category && p.pad_size_category === target.pad_size_category) score += 20;
+      if (p.thickness_cm && target.thickness_cm) {
+        const diff = Math.abs(p.thickness_cm - target.thickness_cm);
+        if (diff <= 1) score += 15;
+        else if (diff <= 3) score += 8;
+      }
+      if (p.weight_kg && target.weight_kg) {
+        const diff = Math.abs(p.weight_kg - target.weight_kg);
+        if (diff <= 0.5) score += 15;
+        else if (diff <= 1.5) score += 8;
+      }
+      if (p.fold_style && p.fold_style === target.fold_style) score += 5;
+      if (p.brand !== target.brand) score += 10;
+      return { item: p, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(r => r.item);
+}
+
+// Belay similarity: type, weight, different-brand bonus
+function findRelatedBelays(target, all) {
+  return all
+    .filter(b => b.slug !== target.slug)
+    .map(b => {
+      let score = 0;
+      if (b.type && b.type === target.type) score += 25;
+      if (b.weight_g && target.weight_g) {
+        const diff = Math.abs(b.weight_g - target.weight_g);
+        if (diff <= 20) score += 15;
+        else if (diff <= 50) score += 8;
+      }
+      if (b.rope_diameter_max_mm && target.rope_diameter_max_mm) {
+        const diff = Math.abs(b.rope_diameter_max_mm - target.rope_diameter_max_mm);
+        if (diff <= 0.5) score += 10;
+      }
+      if (b.brand !== target.brand) score += 10;
+      return { item: b, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(r => r.item);
+}
+
+// Quickdraw similarity: weight, type, different-brand bonus
+function findRelatedQds(target, all) {
+  return all
+    .filter(q => q.slug !== target.slug)
+    .map(q => {
+      let score = 0;
+      if (q.weight_g && target.weight_g) {
+        const diff = Math.abs(q.weight_g - target.weight_g);
+        if (diff <= 5) score += 20;
+        else if (diff <= 15) score += 12;
+        else if (diff <= 30) score += 5;
+      }
+      if (q.length_cm && target.length_cm) {
+        const diff = Math.abs(q.length_cm - target.length_cm);
+        if (diff <= 2) score += 15;
+        else if (diff <= 5) score += 8;
+      }
+      const qUse = ensureArray(q.best_use_cases);
+      const tUse = ensureArray(target.best_use_cases);
+      const overlap = qUse.filter(u => tUse.includes(u)).length;
+      if (overlap > 0) score += Math.min(15, overlap * 5);
+      if (q.brand !== target.brand) score += 10;
+      return { item: q, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(r => r.item);
+}
+
 // --- Shoe pages -------------------------------------------------------
 function shoeTitle(s) { return `${s.brand} ${s.model || s.slug} - Specs, Scores & Prices`; }
 function shoeDesc(s) {
@@ -126,7 +272,7 @@ function shoeDesc(s) {
   parts.push('Compare specs, performance scores, and prices across retailers.');
   return parts.join('. ');
 }
-function shoeSsr(s) {
+function shoeSsr(s, allShoes) {
   let h = `<article itemscope itemtype="https://schema.org/Product">`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/shoes">Climbing Shoes</a> / ${escHtml(s.brand)} ${escHtml(s.model || s.slug)}</nav>`;
   h += `<h1 itemprop="name">${escHtml(s.brand)} ${escHtml(s.model || s.slug)}</h1>`;
@@ -146,6 +292,7 @@ function shoeSsr(s) {
     specRow('Vegan', s.vegan ? 'Yes' : 'No'),
     specRow('Kids', s.kids_friendly ? 'Yes' : 'No'),
   ]);
+  if (allShoes) h += relatedLinksHtml(findRelatedShoes(s, allShoes), 'shoe', 'Similar Climbing Shoes');
   h += `<p><a href="${BASE}/shoes">Browse all climbing shoes</a></p>`;
   h += `</article>`;
   return h;
@@ -183,7 +330,7 @@ function ropeDesc(r) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function ropeSsr(r) {
+function ropeSsr(r, allRopes) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/ropes">Climbing Ropes</a> / ${escHtml(r.brand)} ${escHtml(r.model || r.slug)}</nav>`;
   h += `<h1>${escHtml(r.brand)} ${escHtml(r.model || r.slug)}</h1>`;
@@ -202,6 +349,7 @@ function ropeSsr(r) {
     r.impact_force_kn ? specRow('Impact Force', `${r.impact_force_kn}kN`) : '',
     specRow('Dry Treatment', r.dry_treatment ? 'Yes' : 'No'),
   ]);
+  if (allRopes) h += relatedLinksHtml(findRelatedRopes(r, allRopes), 'rope', 'Similar Climbing Ropes');
   h += `<p><a href="${BASE}/ropes">Browse all climbing ropes</a></p>`;
   h += `</article>`;
   return h;
@@ -228,7 +376,7 @@ function padDesc(p) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function padSsr(p) {
+function padSsr(p, allPads) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/crashpads">Crashpads</a> / ${escHtml(p.brand)} ${escHtml(p.model || p.slug)}</nav>`;
   h += `<h1>${escHtml(p.brand)} ${escHtml(p.model || p.slug)}</h1>`;
@@ -243,6 +391,7 @@ function padSsr(p) {
     specRow('Fold Type', cap(p.fold_type)),
     specRow('Foam Type', cap(p.foam_type)),
   ]);
+  if (allPads) h += relatedLinksHtml(findRelatedPads(p, allPads), 'crashpad', 'Similar Crashpads');
   h += `<p><a href="${BASE}/crashpads">Browse all crashpads</a></p>`;
   h += `</article>`;
   return h;
@@ -268,7 +417,7 @@ function belayDesc(b) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function belaySsr(b) {
+function belaySsr(b, allBelays) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/belays">Belay Devices</a> / ${escHtml(b.brand)} ${escHtml(b.model || b.slug)}</nav>`;
   h += `<h1>${escHtml(b.brand)} ${escHtml(b.model || b.slug)}</h1>`;
@@ -282,6 +431,7 @@ function belaySsr(b) {
     b.rope_diameter_min_mm ? specRow('Min Rope Diameter', `${b.rope_diameter_min_mm}mm`) : '',
     b.rope_diameter_max_mm ? specRow('Max Rope Diameter', `${b.rope_diameter_max_mm}mm`) : '',
   ]);
+  if (allBelays) h += relatedLinksHtml(findRelatedBelays(b, allBelays), 'belay', 'Similar Belay Devices');
   h += `<p><a href="${BASE}/belays">Browse all belay devices</a></p>`;
   h += `</article>`;
   return h;
@@ -307,7 +457,7 @@ function qdDesc(q) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function qdSsr(q) {
+function qdSsr(q, allQds) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/quickdraws">Quickdraws</a> / ${escHtml(q.brand)} ${escHtml(q.model || q.slug)}</nav>`;
   h += `<h1>${escHtml(q.brand)} ${escHtml(q.model || q.slug)}</h1>`;
@@ -319,6 +469,7 @@ function qdSsr(q) {
     q.length_cm ? specRow('Length', `${q.length_cm}cm`) : '',
     q.weight_g ? specRow('Weight', `${q.weight_g}g`) : '',
   ]);
+  if (allQds) h += relatedLinksHtml(findRelatedQds(q, allQds), 'quickdraw', 'Similar Quickdraws');
   h += `<p><a href="${BASE}/quickdraws">Browse all quickdraws</a></p>`;
   h += `</article>`;
   return h;
@@ -419,7 +570,7 @@ function main() {
   let count = 0;
 
   // Homepage
-  const homepageHtml = renderPage('/', 'climbing-gear.com - Scroll less. Climb more.', 'Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.', homepageSsr(), {
+  let homepageHtml = renderPage('/', 'climbing-gear.com - Scroll less. Climb more.', 'Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.', homepageSsr(), {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'climbing-gear.com',
@@ -431,11 +582,16 @@ function main() {
       'query-input': 'required name=search_term_string',
     },
   });
+  // Preload the hero image so browser discovers it before JS loads (LCP optimization)
+  homepageHtml = homepageHtml.replace(
+    '</head>',
+    `<link rel="preload" as="image" href="/images/hero-mountain.jpg" fetchpriority="high">\n</head>`
+  );
   // Write homepage to dist/index.html (overwrite the Vite-generated one)
   fs.writeFileSync(path.join(DIST, 'index.html'), homepageHtml, 'utf8');
   count++;
 
-  // Product detail pages
+  // Product detail pages - pass full items array to SSR for cross-linking
   const datasets = [
     { file: 'seed_data.json', prefix: '/shoe', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: shoeJsonLd },
     { file: 'rope_seed_data.json', prefix: '/rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: ropeJsonLd },
@@ -448,7 +604,7 @@ function main() {
     const items = loadJSON(file);
     for (const item of items) {
       const route = `${prefix}/${item.slug}`;
-      const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item), jsonLdFn(item));
+      const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item, items), jsonLdFn(item));
       writePage(route, html);
       count++;
     }
