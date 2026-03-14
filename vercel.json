@@ -2,7 +2,13 @@
   "rewrites": [
     { "source": "/ingest/static/(.*)", "destination": "https://eu-assets.i.posthog.com/static/$1" },
     { "source": "/ingest/(.*)", "destination": "https://eu.i.posthog.com/$1" },
-    { "source": "/((?!api/|ingest/|scanner-test\\.html|scan-admin\\.html|shoe-fit-v2\\.html).*)", "destination": "/index.html" }
+    { "source": "/compare", "destination": "/index.html" },
+    { "source": "/compare-ropes", "destination": "/index.html" },
+    { "source": "/compare-belays", "destination": "/index.html" },
+    { "source": "/compare-pads", "destination": "/index.html" },
+    { "source": "/compare-quickdraws", "destination": "/index.html" },
+    { "source": "/wishlist", "destination": "/index.html" },
+    { "source": "/scan/:scanId", "destination": "/index.html" }
   ],
   "functions": {
     "api/fetch-prices.js": {

@@ -286,6 +286,27 @@ function assignLocalImages(items, category) {
   }));
 }
 
+/* ─── 404 Not Found page (catch-all route) ─── */
+function NotFoundPage() {
+  usePageMeta("Page Not Found", "The page you're looking for doesn't exist on climbing-gear.com.");
+  return (
+    <div style={{ minHeight: "80vh", background: T.bg, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "20px", fontFamily: T.font, padding: "40px" }}>
+      <div style={{ fontSize: "64px" }}>404</div>
+      <h1 style={{ fontSize: "24px", color: T.text, margin: 0 }}>Page not found</h1>
+      <p style={{ color: T.muted, fontSize: "15px", textAlign: "center", maxWidth: "400px", margin: 0 }}>
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
+        <Link to="/" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>Home</Link>
+        <Link to="/shoes" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>Shoes</Link>
+        <Link to="/ropes" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>Ropes</Link>
+        <Link to="/crashpads" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>Crashpads</Link>
+        <Link to="/belays" style={{ color: T.accent, textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>Belays</Link>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Floating Action Button: links to Suggestion Hub ─── */
 function FeedbackFAB() {
   const { pathname } = useLocation();
@@ -528,6 +549,7 @@ function Root() {
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
               <Route path="/terms" element={<Legal />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <CompareBar shoes={shoes} ropes={ropes} belays={belays} crashpads={crashpads} quickdraws={quickdraws} />
             <Footer />
