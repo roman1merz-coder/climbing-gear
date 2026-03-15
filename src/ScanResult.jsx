@@ -75,7 +75,7 @@ function MetricBar({ ratioKey, value }) {
 }
 
 // ── Shoe recommendation card ─────────────────────────────────
-function ShoeCard({ slug, brand, model, why, imageUrl }) {
+function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote, bestOffer }) {
   return (
     <div style={{
       background: T.card, border: `1px solid #eee8dc`, borderRadius: 12,
@@ -91,9 +91,60 @@ function ShoeCard({ slug, brand, model, why, imageUrl }) {
         <div style={{ padding: "0.8rem 1rem" }}>
           <div style={{ fontSize: "0.7rem", color: T.muted, textTransform: "uppercase", letterSpacing: "0.04em" }}>{brand}</div>
           <div style={{ fontSize: "0.95rem", fontWeight: 700, color: T.text, margin: "0.15rem 0 0.4rem" }}>{model}</div>
+          {/* Size + Price row */}
+          {(recommendedSize || bestOffer) && (
+            <div style={{
+              display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap",
+              margin: "0 0 0.4rem", padding: "0.35rem 0.5rem",
+              background: T.accentSoft || "#f5f0e8", borderRadius: 6,
+            }}>
+              {recommendedSize && (
+                <span style={{ fontSize: "0.72rem", fontWeight: 700, color: T.accent, whiteSpace: "nowrap" }}>
+                  EU {recommendedSize}
+                </span>
+              )}
+              {recommendedSize && bestOffer && (
+                <span style={{ fontSize: "0.65rem", color: "#c5bfb3" }}>|</span>
+              )}
+              {bestOffer && (
+                <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#2d7a3a", whiteSpace: "nowrap" }}>
+                  {bestOffer.price_eur.toFixed(0)} EUR
+                </span>
+              )}
+              {bestOffer && bestOffer.retailer && (
+                <span style={{ fontSize: "0.65rem", color: T.muted, whiteSpace: "nowrap" }}>
+                  @ {bestOffer.retailer}
+                </span>
+              )}
+            </div>
+          )}
+          {sizeNote && (
+            <div style={{ fontSize: "0.68rem", color: "#8a8272", lineHeight: 1.4, marginBottom: "0.35rem", fontStyle: "italic" }}>
+              {sizeNote}
+            </div>
+          )}
           <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
         </div>
       </Link>
+      {/* Buy link - separate from the product page link */}
+      {bestOffer && bestOffer.url && (
+        <a
+          href={bestOffer.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            display: "block", textAlign: "center", padding: "0.55rem 1rem",
+            background: T.accent, color: "#fff", fontSize: "0.75rem", fontWeight: 700,
+            textDecoration: "none", borderTop: "1px solid #eee8dc",
+            transition: "opacity 0.15s",
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = "0.85"}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
+        >
+          Buy for {bestOffer.price_eur.toFixed(0)} EUR at {bestOffer.retailer}
+        </a>
+      )}
     </div>
   );
 }
@@ -289,7 +340,19 @@ export default function ScanResult({ shoes }) {
               const brand = r.brand || slugToBrand(r.slug);
               const model = r.model || slugToModel(r.slug);
               const why = r.why || r.reason || "";
-              return <ShoeCard key={r.slug} slug={r.slug} brand={brand} model={model} why={why} imageUrl={r.image_url} />;
+              return (
+                <ShoeCard
+                  key={r.slug}
+                  slug={r.slug}
+                  brand={brand}
+                  model={model}
+                  why={why}
+                  imageUrl={r.image_url}
+                  recommendedSize={r.recommended_size_eu}
+                  sizeNote={r.size_note}
+                  bestOffer={r.best_offer}
+                />
+              );
             })}
           </div>
         </div>
