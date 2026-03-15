@@ -106,9 +106,9 @@ function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote
               {recommendedSize && bestOffer && (
                 <span style={{ fontSize: "0.65rem", color: "#c5bfb3" }}>|</span>
               )}
-              {bestOffer && (
+              {bestOffer && bestOffer.price_eur && (
                 <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#2d7a3a", whiteSpace: "nowrap" }}>
-                  {bestOffer.price_eur.toFixed(0)} EUR
+                  {Number(bestOffer.price_eur).toFixed(0)} EUR
                 </span>
               )}
               {bestOffer && bestOffer.retailer && (
