@@ -126,25 +126,6 @@ function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote
           <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
         </div>
       </Link>
-      {/* Buy link - separate from the product page link */}
-      {bestOffer && bestOffer.url && (
-        <a
-          href={bestOffer.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            display: "block", textAlign: "center", padding: "0.55rem 1rem",
-            background: T.accent, color: "#fff", fontSize: "0.75rem", fontWeight: 700,
-            textDecoration: "none", borderTop: "1px solid #eee8dc",
-            transition: "opacity 0.15s",
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.opacity = "0.85"}
-          onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-        >
-          Buy for {Number(bestOffer.price_eur).toFixed(0)} EUR at {bestOffer.retailer}
-        </a>
-      )}
     </div>
   );
 }
