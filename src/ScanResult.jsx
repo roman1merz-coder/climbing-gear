@@ -142,7 +142,7 @@ function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote
           onMouseEnter={(e) => e.currentTarget.style.opacity = "0.85"}
           onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
         >
-          Buy for {bestOffer.price_eur.toFixed(0)} EUR at {bestOffer.retailer}
+          Buy for {Number(bestOffer.price_eur).toFixed(0)} EUR at {bestOffer.retailer}
         </a>
       )}
     </div>
