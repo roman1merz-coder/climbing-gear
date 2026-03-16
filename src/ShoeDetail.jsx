@@ -220,25 +220,28 @@ function FootShapeDiagram({ toe_form, forefoot_volume, width: w, heel_volume }) 
 }
 
 // ─── Brand-specific sizing offsets (EU) ───
+// Research sources: scarpa.com, lasportivausa.com, mountainproject.com forums,
+// evolvsports.com, unparallelsports.com, ocun.com, bergfreunde.de size charts,
+// ukclimbing.com reviews, climbingshoereview.com. Updated 2026-03-16.
 const BRAND_SIZING = {
-  "La Sportiva":  { min: -2.5, max: -1.5, note: "La Sportiva runs small \u2014 aggressive downsizing typical" },
-  "Scarpa":       { min: -1.0, max: -0.5, note: "Scarpa runs slightly small \u2014 moderate downsize" },
-  "Five Ten":     { min:  0.0, max:  0.5, note: "Five Ten runs true to size \u2014 street size works" },
-  "Adidas Five Ten": { min: 0.0, max: 0.5, note: "Five Ten runs true to size \u2014 street size works" },
-  "Evolv":        { min:  0.0, max:  0.5, note: "Evolv runs true to size \u2014 no downsize needed" },
-  "Butora":       { min: -1.0, max: -0.5, note: "Butora runs close to true \u2014 modest downsize" },
-  "Mad Rock":     { min: -0.5, max:  0.0, note: "Mad Rock runs true to size \u2014 optional light downsize" },
-  "Ocun":         { min: -0.5, max:  0.0, note: "Oc\u00fan runs true to size \u2014 no downsize needed" },
-  "Tenaya":       { min: -1.0, max: -0.5, note: "Tenaya runs snug \u2014 standard downsize" },
-  "Boreal":       { min: -0.5, max:  0.0, note: "Boreal runs true to size" },
+  "La Sportiva":  { min: -2.5, max: -1.5, note: "La Sportiva runs small - aggressive downsizing typical" },
+  "Scarpa":       { min: -1.5, max: -0.5, note: "Scarpa runs small - downsize 0.5-1.5 EU from street" },
+  "Five Ten":     { min: -1.0, max: -0.5, note: "Five Ten runs slightly small - half to one size down" },
+  "Adidas Five Ten": { min: -1.0, max: -0.5, note: "Five Ten runs slightly small - half to one size down" },
+  "Evolv":        { min: -0.5, max:  0.0, note: "Evolv runs close to street size - minimal downsize for performance" },
+  "Butora":       { min: -1.0, max: -0.5, note: "Butora runs close to true - modest downsize" },
+  "Mad Rock":     { min: -0.5, max:  0.0, note: "Mad Rock runs true to size - optional light downsize" },
+  "Ocun":         { min: -0.5, max:  0.0, note: "Ocun runs true to size - minimal downsize needed" },
+  "Tenaya":       { min: -2.0, max: -1.0, note: "Tenaya runs small (similar to La Sportiva) - downsize 1-2 EU" },
+  "Boreal":       { min: -1.0, max: -0.5, note: "Boreal runs slightly small - half to one size down" },
   "Red Chili":    { min: -0.5, max:  0.0, note: "Red Chili is designed true to size" },
-  "Unparallel":   { min: -1.0, max: -0.5, note: "Unparallel runs small \u2014 moderate downsize" },
-  "So iLL":       { min: -1.5, max:  0.0, note: "So iLL varies \u2014 check gender-specific sizing" },
+  "Unparallel":   { min: -0.5, max:  0.0, note: "Unparallel runs close to street size - minimal downsize" },
+  "So iLL":       { min: -1.5, max:  0.0, note: "So iLL varies - check gender-specific sizing" },
   "Black Diamond":{ min: -0.5, max:  0.0, note: "Black Diamond runs close to true size" },
-  "EB":           { min: -0.5, max:  0.0, note: "EB runs true to size \u2014 minimal downsize" },
+  "EB":           { min: -0.5, max:  0.0, note: "EB runs true to size - minimal downsize" },
   "Andrea Boldrini": { min: -0.5, max: 0.0, note: "Boldrini runs true to size" },
 };
-const DEFAULT_SIZING = { min: -1.5, max: -0.5, note: "Size down 0.5\u20131.5 EU from street shoe for performance fit." };
+const DEFAULT_SIZING = { min: -1.5, max: -0.5, note: "Size down 0.5-1.5 EU from street shoe for performance fit." };
 
 function getBrandSizing(brand) {
   if (!brand) return DEFAULT_SIZING;
