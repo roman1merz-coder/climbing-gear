@@ -748,28 +748,39 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
   );
 }
 
-// ─── Similar Products Card (with hero image) ───
-function SimilarCard({ shoe, onClick, similarity, compact }) {
-  // SimilarCard has no live prices - don't show discount from seed data
-  const discount = 0;
+// ─── Similar Products Card - matches App.jsx Card layout exactly ───
+function SimilarCard({ shoe, onClick, similarity }) {
   const img = shoe.image_url || "/images/placeholder.svg";
+  const brandColor = BRAND_COLORS[shoe.brand] || "#7a7462";
+  const specTags = [shoe.closure, shoe.downturn].filter(Boolean);
+  const skillTags = ensureArray(shoe.skill_level);
+  const allTags = [
+    ...specTags.map(t => ({ key: t, label: String(t).replace(/-/g, " "), type: "spec" })),
+    ...skillTags.map(l => ({ key: l, label: l, type: "skill" })),
+  ];
   return (
-    <button onClick={onClick} style={{
-      background: T.card, borderRadius: "12px", overflow: "hidden",
-      border: `1px solid ${T.border}`, cursor: "pointer", textAlign: "left",
-      transition: "all 0.2s ease", width: "100%", padding: 0,
-    }}
-      onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.transform = "translateY(-2px)"; }}
-      onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.transform = "translateY(0)"; }}
+    <div
+      onClick={onClick}
+      style={{
+        background: "#ffffff", borderRadius: "16px", overflow: "hidden",
+        border: "1px solid #d5cdbf", transition: "all .3s",
+        position: "relative", cursor: "pointer",
+      }}
+      onMouseOver={e => { e.currentTarget.style.border = "1px solid #c98a42"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+      onMouseOut={e => { e.currentTarget.style.border = "1px solid #d5cdbf"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
       {/* Image */}
       <div style={{
-        ...(compact ? { height: "80px" } : { aspectRatio: "4/3" }), background: "#fff", position: "relative",
+        aspectRatio: "4/3", background: "#fff", position: "relative",
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
       }}>
         <img src={img} alt={`${shoe.brand} ${shoe.model}`} loading="lazy"
-          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "10px" }} />
-        <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none" }} />
+          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to bottom, transparent 60%, #ffffff)",
+          boxShadow: "inset 0 0 30px 15px #ffffff", pointerEvents: "none",
+        }} />
         {similarity > 0 && (
           <span style={{
             position: "absolute", top: "8px", right: "8px", zIndex: 3,
@@ -780,20 +791,47 @@ function SimilarCard({ shoe, onClick, similarity, compact }) {
         )}
       </div>
       {/* Content */}
-      <div style={{ padding: compact ? "8px 10px" : "12px 14px" }}>
-        <div style={{ fontSize: compact ? "8px" : "9px", color: T.muted, fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "2px" }}>{shoe.brand}</div>
-        <div style={{ fontSize: compact ? "12px" : "14px", fontWeight: 700, color: T.text, marginBottom: compact ? "4px" : "6px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{shoe.model}</div>
-        {!compact && (
-          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginBottom: "8px" }}>
-            {[shoe.closure, shoe.downturn].filter(Boolean).map(t => <Tag key={t} small>{t}</Tag>)}
+      <div style={{ padding: "16px" }}>
+        {/* Row 1: brand left, price right */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <div style={{ width: "4px", height: "12px", borderRadius: "2px", background: brandColor }} />
+            <span style={{ fontSize: "10px", color: "#7a7462", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif" }}>
+              {shoe.brand}
+            </span>
+          </div>
+          {shoe.current_price_eur ? (
+            <span style={{ fontSize: "16px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
+              {"\u20AC"}{Number(shoe.current_price_eur) % 1 === 0 ? Number(shoe.current_price_eur) : Number(shoe.current_price_eur).toFixed(2)}
+            </span>
+          ) : (
+            <span style={{ fontSize: "11px", fontWeight: 600, color: "#7a7462", fontStyle: "italic" }}>Check retailers</span>
+          )}
+        </div>
+        {/* Row 2: model name */}
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "8px" }}>
+          <span style={{
+            fontSize: "17px", fontWeight: 700, color: "#2c3227",
+            fontFamily: "'DM Sans',sans-serif", lineHeight: 1.2,
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0,
+          }}>
+            {shoe.model}
+          </span>
+        </div>
+        {/* Row 3: tags */}
+        {allTags.length > 0 && (
+          <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", marginTop: "8px" }}>
+            {allTags.slice(0, 4).map(t =>
+              t.type === "spec" ? (
+                <span key={t.key} style={{ padding: "3px 10px", borderRadius: "12px", background: "#ede7db", color: "#645b4f", fontSize: "10px", fontFamily: "'DM Sans',sans-serif", textTransform: "capitalize" }}>{t.label}</span>
+              ) : (
+                <span key={t.key} style={{ padding: "2px 8px", borderRadius: "8px", fontSize: "9px", fontWeight: 600, background: "rgba(201,138,66,.1)", color: "#c98a42", textTransform: "capitalize", fontFamily: "'DM Sans',sans-serif" }}>{t.label}</span>
+              )
+            )}
           </div>
         )}
-        <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-          {shoe.current_price_eur && <span style={{ fontSize: compact ? "13px" : "16px", fontWeight: 800, color: T.accent, fontFamily: T.mono }}>{"\u20AC"}{shoe.current_price_eur}</span>}
-          {discount > 0 && <span style={{ fontSize: compact ? "10px" : "11px", color: T.green, fontWeight: 700, fontFamily: T.mono }}>{"\u2212"}{discount}%</span>}
-        </div>
       </div>
-    </button>
+    </div>
   );
 }
 
@@ -1027,8 +1065,8 @@ function SimilarCarousel({ shoe, shoes, isMobile, navigate }) {
             msOverflowStyle: "none",
           }}>
             {similarShoes.map(({ shoe: s, score }) => (
-              <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
-                <SimilarCard shoe={s} similarity={score} compact={false} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+              <div key={s.slug} style={{ flex: isMobile ? "0 0 180px" : undefined, minWidth: 0 }}>
+                <SimilarCard shoe={s} similarity={score} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
               </div>
             ))}
           </div>
