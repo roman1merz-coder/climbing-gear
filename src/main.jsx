@@ -312,7 +312,6 @@ function FeedbackFAB() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
-  const isMobile = window.innerWidth < 768;
   const isLanding = pathname === "/" || pathname === "";
 
   const handleClick = () => {
@@ -327,12 +326,6 @@ function FeedbackFAB() {
     }, 300);
   };
 
-  // On mobile: smaller (44px), higher up so it clears scroll button + safe area
-  const bottom = isMobile ? "20px" : "24px";
-  const right = isMobile ? "16px" : "24px";
-  const size = isMobile ? "44px" : (hover ? "auto" : "52px");
-  const height = isMobile ? "44px" : "52px";
-
   return (
     <button
       onClick={handleClick}
@@ -340,14 +333,14 @@ function FeedbackFAB() {
       onMouseLeave={() => setHover(false)}
       aria-label="Questions & Feedback"
       style={{
-        position: "fixed", bottom, right, zIndex: 900,
-        width: size, height,
-        borderRadius: isMobile ? "22px" : (hover ? "26px" : "50%"),
+        position: "fixed", bottom: "24px", right: "24px", zIndex: 900,
+        width: hover ? "auto" : "52px", height: "52px",
+        borderRadius: hover ? "26px" : "50%",
         background: `linear-gradient(135deg, ${T.accent}, #d4613a)`,
         color: "#fff", border: "none", cursor: "pointer",
         boxShadow: hover ? `0 8px 32px ${T.accent}50` : `0 4px 16px rgba(0,0,0,0.4)`,
         display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
-        padding: isMobile ? "0 14px" : (hover ? "0 20px" : "0"),
+        padding: hover ? "0 20px" : "0",
         transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)",
         transform: hover ? "scale(1.05)" : "scale(1)",
         fontFamily: T.font, fontSize: "13px", fontWeight: 700,
@@ -357,7 +350,7 @@ function FeedbackFAB() {
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
       </svg>
-      {(hover || isMobile) && <span style={{ fontSize: isMobile ? "12px" : "13px" }}>{isMobile ? "Feedback" : "Questions & Feedback"}</span>}
+      {hover && <span>Questions & Feedback</span>}
     </button>
   );
 }
@@ -365,16 +358,14 @@ function FeedbackFAB() {
 /* ─── Scroll-to-top button (global, appears on any long page) ─── */
 function ScrollUpButton() {
   const [show, setShow] = useState(false);
-  const isMobile = window.innerWidth < 768;
   useEffect(() => {
     const h = () => setShow(window.scrollY > 600);
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
   }, []);
   if (!show) return null;
-  // On mobile: position above the feedback FAB (44px + 12px gap + 20px bottom = 76px)
-  const bottom = isMobile ? "76px" : "80px";
-  const right = isMobile ? "16px" : "24px";
+  const bottom = "80px";
+  const right = "24px";
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

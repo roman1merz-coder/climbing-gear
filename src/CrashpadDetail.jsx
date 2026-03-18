@@ -290,8 +290,11 @@ function EfficiencyRadar({ pad, allPads }) {
   );
 }
 
+const PAD_PRICE_LIMIT = 5;
+
 // ─── Price Comparison (inline card) ───────────────────────────────
 function PriceComparison({ prices, compact, pad }) {
+  const [showAll, setShowAll] = useState(false);
   const amazonUrl = pad ? `https://www.amazon.de/s?k=${encodeURIComponent(`crash pad ${pad.brand} ${pad.model}`.trim())}&tag=climbinggear-21` : null;
   // Helper to ensure Amazon URLs include product category search terms
   const getRetailerUrl = (url) => {
@@ -313,6 +316,8 @@ function PriceComparison({ prices, compact, pad }) {
   );
   if (!prices || !prices.length) return amazonLink || null;
   const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
+  const visiblePrices = showAll ? prices : prices.slice(0, PAD_PRICE_LIMIT);
+  const hiddenCount = prices.length - PAD_PRICE_LIMIT;
   return (
     <>
       <div style={{ background: T.card, borderRadius: T.radiusSm, border: `1px solid ${T.border}`, overflow: "hidden", marginBottom: "8px" }}>
@@ -320,11 +325,11 @@ function PriceComparison({ prices, compact, pad }) {
           <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
           <Tag variant="green">Best: €{best}</Tag>
         </div>
-        {prices.map((p, i) => (
+        {visiblePrices.map((p, i) => (
           <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
-            display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1fr auto auto",
-            alignItems: "center", padding: compact ? "10px 16px" : "10px 16px", gap: "8px",
-            borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+            display: "grid", gridTemplateColumns: "1fr auto auto",
+            alignItems: "center", padding: "10px 16px", gap: "8px",
+            borderBottom: i < visiblePrices.length - 1 || (hiddenCount > 0 && !showAll) ? `1px solid ${T.border}` : "none",
             background: p.price === best && p.inStock ? T.accentSoft : "transparent",
             textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
             transition: "background .15s",
@@ -342,6 +347,28 @@ function PriceComparison({ prices, compact, pad }) {
             )}
           </a>
         ))}
+        {hiddenCount > 0 && !showAll && (
+          <button onClick={() => setShowAll(true)} style={{
+            width: "100%", padding: "12px 16px", border: "none",
+            background: "transparent", cursor: "pointer",
+            fontSize: "12px", fontWeight: 700, color: T.accent,
+            fontFamily: T.font, display: "flex", alignItems: "center",
+            justifyContent: "center", gap: "6px",
+          }}>
+            Show {hiddenCount} more shop{hiddenCount > 1 ? "s" : ""} {"\u2193"}
+          </button>
+        )}
+        {showAll && prices.length > PAD_PRICE_LIMIT && (
+          <button onClick={() => setShowAll(false)} style={{
+            width: "100%", padding: "12px 16px", border: "none",
+            background: "transparent", cursor: "pointer",
+            fontSize: "12px", fontWeight: 700, color: T.muted,
+            fontFamily: T.font, display: "flex", alignItems: "center",
+            justifyContent: "center", gap: "6px",
+          }}>
+            Show fewer {"\u2191"}
+          </button>
+        )}
       </div>
       {amazonLink}
     </>

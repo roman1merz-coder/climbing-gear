@@ -673,7 +673,7 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
         {visiblePrices.map((p, i) => (
           <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
             display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
-            alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
+            alignItems: "center", padding: compact ? "10px 76px 10px 14px" : "12px 20px",
             gap: compact ? "8px" : "0",
             borderBottom: i < visiblePrices.length - 1 || (hiddenCount > 0 && !showAll) ? `1px solid ${T.border}` : "none",
             background: p.price === best && p.inStock ? T.accentSoft : "transparent",
@@ -1027,8 +1027,8 @@ function SimilarCarousel({ shoe, shoes, isMobile, navigate }) {
             msOverflowStyle: "none",
           }}>
             {similarShoes.map(({ shoe: s, score }) => (
-              <div key={s.slug} style={{ minWidth: isMobile ? "160px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
-                <SimilarCard shoe={s} similarity={score} compact={isMobile} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+              <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                <SimilarCard shoe={s} similarity={score} compact={false} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
               </div>
             ))}
           </div>
@@ -1175,7 +1175,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
 
       {/* ═══ TABS ═══ */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "20px 16px" : "40px 32px" }}>
-        <div style={{ display: "flex", gap: isMobile ? "0" : "20px", marginBottom: isMobile ? "24px" : "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: isMobile ? "12px" : "20px" }}>
+        <div style={{ display: "flex", gap: isMobile ? "0" : "20px", marginBottom: isMobile ? "24px" : "40px", borderBottom: `1px solid ${T.border}`, paddingBottom: isMobile ? "12px" : "20px", paddingRight: isMobile ? "76px" : undefined }}>
           {[{ key: "overview", label: "Overview" }, { key: "prices", label: "Prices" }, { key: "specs", label: "Specs" }, { key: "reviews", label: "Reviews" }].map(tab => (
             <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{
               padding: isMobile ? "8px 12px" : "8px 16px", border: "none", background: "transparent", color: activeTab === tab.key ? T.accent : T.muted,
@@ -1332,7 +1332,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {/* Left: Build Details (includes Weight + Break-in) */}
             <div>
               <SectionHeader icon={"\uD83D\uDD27"} title="Build Details" compact={isMobile} />
-              <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
+              <div style={{ background: T.card, borderRadius: T.radius, padding: isMobile ? "20px 76px 20px 20px" : "20px", border: `1px solid ${T.border}` }}>
                 <SpecRow label="Closure" value={cap(shoe.closure)} />
                 <SpecRow label="Downturn" value={cap(shoe.downturn)} />
                 <SpecRow label="Asymmetry" value={cap(shoe.asymmetry)} />
@@ -1350,7 +1350,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {/* Right: Rubber System + Sustainability */}
             <div>
               <SectionHeader icon={"\uD83D\uDEDE"} title="Rubber System" compact={isMobile} />
-              <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
+              <div style={{ background: T.card, borderRadius: T.radius, padding: isMobile ? "20px 76px 20px 20px" : "20px", border: `1px solid ${T.border}`, marginBottom: "36px" }}>
                 <SpecRow label="Manufacturer" value={cap(shoe.rubber_manufacturer)} />
                 <SpecRow label="Compound" value={shoe.rubber_compound || shoe.rubber_type} />
                 <SpecRow label="Thickness" value={shoe.rubber_thickness_mm ? `${shoe.rubber_thickness_mm}mm` : null} />
