@@ -125,14 +125,14 @@ function HeroSection({ isMobile }) {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "10px" : "12px" }}>
-            <Link to="/shoes" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", fontFamily: T.font, transition: "opacity 0.2s" }}>
+            style={{ display: "flex", flexWrap: "wrap", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "10px" : "12px" }}>
+            <Link to="/shoes" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", fontFamily: T.font, transition: "opacity 0.2s", whiteSpace: "nowrap" }}>
               Explore Gear Selectors <IconArrow size={16} />
             </Link>
-            <Link to="/find" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s" }}>
+            <Link to="/find" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s", whiteSpace: "nowrap" }}>
               <IconTarget size={16} /> Guided Shoe Finder
             </Link>
-            <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", fontFamily: T.font, transition: "color 0.2s" }}>
+            <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", fontFamily: T.font, transition: "color 0.2s", whiteSpace: "nowrap" }}>
               <IconBook size={16} /> Explore Insights
             </a>
           </motion.div>

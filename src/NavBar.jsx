@@ -29,6 +29,8 @@ export default function NavBar({ priceData = {} }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  // Compact mode: tablet widths (768-1024px) where full nav overflows
+  const isCompact = useIsMobile(1024) && !isMobile;
   const { count } = useWL();
 
   const current = TABS.find(t => t.match.some(m => pathname.startsWith(m)))?.key || null;
@@ -37,8 +39,8 @@ export default function NavBar({ priceData = {} }) {
     <nav style={{
       position: "sticky", top: 0, zIndex: 200,
       display: "flex", alignItems: "center",
-      gap: isMobile ? "8px" : "16px",
-      padding: isMobile ? "8px 12px" : "0 24px",
+      gap: isMobile ? "8px" : "12px",
+      padding: isMobile ? "8px 12px" : "0 16px",
       minHeight: isMobile ? "44px" : "50px",
       background: T.navBg,
       backdropFilter: "blur(14px)",
@@ -54,7 +56,7 @@ export default function NavBar({ priceData = {} }) {
         }}
       >
         <LogoIcon size={isMobile ? 28 : 34} />
-        {!isMobile && (
+        {!isMobile && !isCompact && (
           <span style={{
             fontSize: "15px", fontWeight: 800,
             letterSpacing: "-0.3px", color: T.navText,
@@ -68,8 +70,8 @@ export default function NavBar({ priceData = {} }) {
       <div style={{
         display: "flex", gap: "2px",
         background: "rgba(44,50,39,0.06)", borderRadius: "8px", padding: "3px",
-        marginLeft: isMobile ? "0" : "12px",
-        overflow: "auto", flexShrink: isMobile ? 1 : 0,
+        marginLeft: isMobile ? "0" : "8px",
+        overflow: "auto", flexShrink: 1,
         WebkitOverflowScrolling: "touch",
         msOverflowStyle: "none",
         scrollbarWidth: "none",
@@ -81,7 +83,7 @@ export default function NavBar({ priceData = {} }) {
             if (isMobile) return null;
             return (
               <span key={tab.key} style={{
-                padding: "5px 14px",
+                padding: "5px 10px",
                 borderRadius: "6px", fontSize: "11px",
                 fontWeight: 500, color: T.navMuted, opacity: 0.45,
                 fontFamily: T.font, whiteSpace: "nowrap",
@@ -96,13 +98,16 @@ export default function NavBar({ priceData = {} }) {
               </span>
             );
           }
-          const mobileLabel = isMobile && tab.key === "pads" ? "Pads" : isMobile && tab.key === "draws" ? "Draws" : tab.label;
+          // Use short labels on mobile and tablet
+          const useShortLabel = isMobile || isCompact;
+          const shortLabel = tab.key === "pads" ? "Pads" : tab.key === "draws" ? "Draws" : tab.key === "belays" ? "Belays" : tab.label;
+          const displayLabel = useShortLabel ? shortLabel : tab.label;
           return (
             <button
               key={tab.key}
               onClick={() => navigate(tab.path)}
               style={{
-                padding: isMobile ? "4px 10px" : "5px 16px",
+                padding: isMobile ? "10px 10px" : isCompact ? "10px 10px" : "10px 14px",
                 borderRadius: "6px",
                 fontSize: isMobile ? "11px" : "12px",
                 fontWeight: isCurrent ? 700 : 500,
@@ -112,8 +117,10 @@ export default function NavBar({ priceData = {} }) {
                 boxShadow: isCurrent ? "0 1px 4px rgba(0,0,0,.08)" : "none",
                 fontFamily: T.font, transition: "all .2s",
                 whiteSpace: "nowrap",
+                // 44px min touch target height
+                minHeight: "44px", display: "flex", alignItems: "center",
               }}
-            >{mobileLabel}</button>
+            >{displayLabel}</button>
           );
         })}
       </div>
@@ -127,10 +134,10 @@ export default function NavBar({ priceData = {} }) {
           onClick={() => navigate("/wishlist")}
           style={{
             display: "flex", alignItems: "center", gap: "4px",
-            cursor: "pointer", padding: isMobile ? "4px 8px" : "5px 12px",
+            cursor: "pointer", padding: isMobile ? "10px 8px" : "10px 12px",
             borderRadius: "16px", background: "rgba(201,138,66,0.1)",
             border: "1px solid rgba(201,138,66,0.2)", flexShrink: 0,
-            transition: "all .2s",
+            transition: "all .2s", minHeight: "44px",
           }}
         >
           <span style={{ fontSize: isMobile ? "12px" : "13px" }}>{"\u2764\uFE0F"}</span>
@@ -147,20 +154,23 @@ export default function NavBar({ priceData = {} }) {
       <AlertBell priceData={priceData} isMobile={isMobile} onClick={() => navigate("/wishlist")} />
 
       {/* Right links */}
-      <div style={{ display: "flex", gap: isMobile ? "10px" : "16px", fontSize: isMobile ? "10px" : "12px", flexShrink: 0 }}>
+      <div style={{ display: "flex", gap: isMobile ? "8px" : "12px", fontSize: isMobile ? "10px" : "12px", flexShrink: 0, alignItems: "center" }}>
         <Link to="/insights" style={{
           color: pathname.startsWith("/insights") ? T.primary : T.navMuted,
           textDecoration: "none", fontWeight: 600,
+          padding: "10px 4px", minHeight: "44px", display: "flex", alignItems: "center",
         }}>Insights</Link>
-        {!isMobile && (
+        {!isMobile && !isCompact && (
           <>
             <Link to="/about" style={{
               color: pathname === "/about" ? T.navText : T.navMuted,
               textDecoration: "none", fontWeight: 500,
+              padding: "10px 4px", minHeight: "44px", display: "flex", alignItems: "center",
             }}>About</Link>
             <Link to="/impressum" style={{
               color: pathname === "/impressum" ? T.navText : T.navMuted,
               textDecoration: "none", fontWeight: 500,
+              padding: "10px 4px", minHeight: "44px", display: "flex", alignItems: "center",
             }}>Impressum</Link>
           </>
         )}

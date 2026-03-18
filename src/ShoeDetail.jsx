@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { T, BRAND_COLORS } from "./tokens.js";
 import { fmt, cap, ensureArray } from "./utils/format.js";
@@ -311,7 +311,7 @@ function StretchExpectation({ shoe }) {
         <div style={{ height: "100%", borderRadius: "3px", position: "absolute", top: 0, left: 0, width: `${val * 100}%`, background: `linear-gradient(90deg, ${T.green}, ${T.yellow}, ${T.accent})` }} />
         <div style={{ width: "14px", height: "14px", borderRadius: "50%", background: T.accent, border: `2px solid ${T.bg}`, position: "absolute", top: "-4px", left: `calc(${val * 100}% - 7px)`, boxShadow: "0 0 8px rgba(201,138,66,0.4)" }} />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "9px", color: T.muted, fontFamily: T.mono }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", color: T.muted, fontFamily: T.mono }}>
         <span>None</span><span>Minimal</span><span>{"\u00BC"} size</span><span>{"\u00BD"} size</span><span>Full size</span>
       </div>
     </div>
@@ -633,7 +633,10 @@ function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
 }
 
 // ─── Price Comparison Table ───
+const PRICE_COLLAPSE_LIMIT = 5;
+
 function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize, allPrices }) {
+  const [showAll, setShowAll] = useState(false);
   const hasRealRetailer = prices && prices.some(p => !p.shop?.toLowerCase().includes("amazon"));
   const hasSizeData = allPrices && allPrices.some(p => p.eur_size);
   // Helper to ensure Amazon URLs include product category search terms
@@ -655,6 +658,8 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
     );
   }
   const best = Math.min(...prices.filter(p => p.inStock && p.price).map(p => p.price));
+  const visiblePrices = showAll ? prices : prices.slice(0, PRICE_COLLAPSE_LIMIT);
+  const hiddenCount = prices.length - PRICE_COLLAPSE_LIMIT;
   return (
     <div>
       {hasSizeData && (
@@ -665,12 +670,12 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
           <div style={{ fontSize: "12px", fontWeight: 700, color: T.muted, letterSpacing: "1px", textTransform: "uppercase" }}>Price Comparison</div>
           <Tag variant="green" small icon={"\u2713"}>Best: {"\u20AC"}{best}</Tag>
         </div>
-        {prices.map((p, i) => (
+        {visiblePrices.map((p, i) => (
           <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
             display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
             alignItems: "center", padding: compact ? "10px 14px" : "12px 20px",
             gap: compact ? "8px" : "0",
-            borderBottom: i < prices.length - 1 ? `1px solid ${T.border}` : "none",
+            borderBottom: i < visiblePrices.length - 1 || (hiddenCount > 0 && !showAll) ? `1px solid ${T.border}` : "none",
             background: p.price === best && p.inStock ? T.accentSoft : "transparent",
             textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
             transition: "background .15s",
@@ -709,6 +714,34 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
             )}
           </a>
         ))}
+        {hiddenCount > 0 && !showAll && (
+          <button
+            onClick={() => setShowAll(true)}
+            style={{
+              width: "100%", padding: "12px 20px", border: "none",
+              background: "transparent", cursor: "pointer",
+              fontSize: "12px", fontWeight: 700, color: T.accent,
+              fontFamily: T.font, display: "flex", alignItems: "center",
+              justifyContent: "center", gap: "6px",
+            }}
+          >
+            Show {hiddenCount} more shop{hiddenCount > 1 ? "s" : ""} {"\u2193"}
+          </button>
+        )}
+        {showAll && prices.length > PRICE_COLLAPSE_LIMIT && (
+          <button
+            onClick={() => setShowAll(false)}
+            style={{
+              width: "100%", padding: "12px 20px", border: "none",
+              background: "transparent", cursor: "pointer",
+              fontSize: "12px", fontWeight: 700, color: T.muted,
+              fontFamily: T.font, display: "flex", alignItems: "center",
+              justifyContent: "center", gap: "6px",
+            }}
+          >
+            Show fewer {"\u2191"}
+          </button>
+        )}
       </div>
       <AmazonSearchLink productType="climbing shoe" brand={shoe.brand} model={shoe.model} />
     </div>
@@ -957,6 +990,63 @@ const USE_CASE_TAG_VARIANT = {
   boulder: "accent", sport: "blue", trad_multipitch: "green",
   gym: "default", indoor: "default", crack: "yellow", alpine: "green",
 };
+
+// ─── Similar Shoes Carousel (with scroll-position dots on mobile) ───
+function SimilarCarousel({ shoe, shoes, isMobile, navigate }) {
+  const similarShoes = useMemo(() => getSimilarShoes(shoe, shoes, 6), [shoe, shoes]);
+  const carouselRef = useRef(null);
+  const [carouselPage, setCarouselPage] = useState(0);
+  const pageCount = Math.ceil(similarShoes.length / 2);
+
+  useEffect(() => {
+    if (!isMobile) return;
+    const el = carouselRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      if (max <= 0) return;
+      setCarouselPage(Math.round((el.scrollLeft / max) * (pageCount - 1)));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [isMobile, pageCount]);
+
+  return (
+    <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit across brands" compact={isMobile} />
+        <div style={{ position: "relative" }}>
+          <div ref={carouselRef} style={{
+            display: isMobile ? "flex" : "grid",
+            gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))",
+            gap: isMobile ? "10px" : "16px",
+            overflowX: isMobile ? "auto" : undefined,
+            paddingBottom: isMobile ? "8px" : undefined,
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}>
+            {similarShoes.map(({ shoe: s, score }) => (
+              <div key={s.slug} style={{ minWidth: isMobile ? "160px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
+                <SimilarCard shoe={s} similarity={score} compact={isMobile} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
+              </div>
+            ))}
+          </div>
+          {isMobile && (
+            <div style={{ position: "absolute", top: 0, right: 0, bottom: "8px", width: "40px", background: `linear-gradient(to right, transparent, ${T.surface})`, pointerEvents: "none", borderRadius: "0 8px 8px 0" }} />
+          )}
+        </div>
+        {isMobile && pageCount > 1 && (
+          <div style={{ display: "flex", justifyContent: "center", gap: "6px", marginTop: "12px" }}>
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <div key={i} style={{ width: i === carouselPage ? "18px" : "6px", height: "6px", borderRadius: "3px", background: i === carouselPage ? T.accent : T.border, transition: "all 0.3s ease" }} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 // ═══ SHOE DETAIL PAGE (3-Tab Layout) ═══
 export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [], reviewData = {} }) {
@@ -1377,23 +1467,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       </div>
 
       {/* Similar shoes - scored by spec similarity, cross-brand */}
-      <div style={{ padding: isMobile ? "24px 16px" : "40px 32px", borderTop: `1px solid ${T.border}`, background: T.surface }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <SectionHeader icon={"\uD83D\uDC5F"} title="You May Also Like" subtitle="Similar performance and fit across brands" compact={isMobile} />
-          <div style={{ position: "relative" }}>
-            <div style={{ display: isMobile ? "flex" : "grid", gridTemplateColumns: isMobile ? undefined : "repeat(auto-fill, minmax(180px, 1fr))", gap: isMobile ? "10px" : "16px", overflowX: isMobile ? "auto" : undefined, paddingBottom: isMobile ? "8px" : undefined, WebkitOverflowScrolling: "touch" }}>
-              {getSimilarShoes(shoe, shoes, 6).map(({ shoe: s, score }) => (
-                <div key={s.slug} style={{ minWidth: isMobile ? "180px" : undefined, flex: isMobile ? "0 0 auto" : undefined }}>
-                  <SimilarCard shoe={s} similarity={score} compact={isMobile} onClick={() => { navigate(`/shoe/${s.slug}`); window.scrollTo(0, 0); }} />
-                </div>
-              ))}
-            </div>
-            {isMobile && (
-              <div style={{ position: "absolute", top: 0, right: 0, bottom: "8px", width: "40px", background: `linear-gradient(to right, transparent, ${T.surface})`, pointerEvents: "none", borderRadius: "0 8px 8px 0" }} />
-            )}
-          </div>
-        </div>
-      </div>
+      <SimilarCarousel shoe={shoe} shoes={shoes} isMobile={isMobile} navigate={navigate} />
 
       {/* Legal disclaimer */}
       <div style={{ padding: isMobile ? "20px 16px" : "24px 32px", borderTop: `1px solid ${T.border}`, background: T.bg }}>
