@@ -526,7 +526,7 @@ function Root() {
               <Route path="/compare-belays" element={<CompareGeneric items={belays} type="belays" />} />
               <Route path="/compare-pads" element={<CompareGeneric items={crashpads} type="crashpads" />} />
               {/* Rope routes */}
-              <Route path="/ropes" element={<RopeApp ropes={ropes} src={ropeSrc} />} />
+              <Route path="/ropes" element={<RopeApp ropes={ropes} src={ropeSrc} priceData={priceData} />} />
               <Route path="/rope/:slug" element={<RopeDetail ropes={ropes} priceData={priceData} />} />
               {/* Belay device routes */}
               <Route path="/belays" element={<BelayApp belays={belays} src={belaySrc} />} />
