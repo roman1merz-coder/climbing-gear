@@ -99,13 +99,7 @@ body {
 #guide-overlay { transform: scaleX(-1); }
 /* Sole SVG: inherits scaleX(-1) from #guide-overlay - no extra flip needed */
 #status-bar {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 20px 20px 40px; text-align: center;
-  background: linear-gradient(transparent, rgba(0,0,0,0.75));
-  font-size: 1.35rem; color: #fff; padding-top: 40px;
-  font-weight: 600;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
-  letter-spacing: 0.2px;
+  display: none; /* guidance moved to #gyro-warning box */
 }
 #step-indicator {
   position: absolute; top: 0; left: 0; right: 0;
@@ -145,11 +139,12 @@ body {
 #gyro-level.level-ok #gyro-dot { background: #3dff52; }
 #gyro-warning {
   position: absolute; top: 80px; left: 16px; right: 80px; z-index: 10;
-  background: rgba(0,0,0,0.7); color: #ffcc44; padding: 10px 14px;
-  border-radius: 10px; font-size: 1rem; font-weight: 700;
+  background: rgba(0,0,0,0.7); color: #fff; padding: 10px 14px;
+  border-radius: 10px; font-size: 1.1rem; font-weight: 600;
   text-align: center; display: none;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
+#gyro-warning.warn { color: #ffcc44; font-weight: 700; }
 
 /* ── Transition Screen (between sole and side) ── */
 #transition-screen {
@@ -748,8 +743,8 @@ let gyroPermissionGranted = false;
 let speechReady = false;
 let lastSpokenText = '';
 let lastSpeakTime = 0;
-const SPEAK_COOLDOWN = 2500;
-const SPEAK_MIN_GAP = 1200;
+const SPEAK_COOLDOWN = 6000; // don't repeat same message for 6s
+const SPEAK_MIN_GAP = 4000;  // at least 4s between any two utterances
 
 /* Called once from a click handler to unlock the audio context */
 function initSpeech() {
@@ -782,39 +777,8 @@ function speak(text) {
   lastSpeakTime = now;
 }
 
-/* ── Orientation lock for side capture ──
- * screen.orientation.lock() requires fullscreen on both Android Chrome and
- * desktop browsers. On iOS Safari it's not supported at all.
- * Strategy: request fullscreen, then lock. If either fails, fall back
- * gracefully (the instruction text tells users to lock rotation manually). */
-async function lockLandscape() {
-  try {
-    /* Step 1: enter fullscreen (required for orientation lock) */
-    const el = document.documentElement;
-    const goFS = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
-    if (goFS) await goFS.call(el);
-
-    /* Step 2: lock to landscape */
-    if (screen.orientation && screen.orientation.lock) {
-      await screen.orientation.lock('landscape');
-    }
-  } catch (e) {
-    console.log('Orientation lock not available:', e.message);
-  }
-}
-
-function unlockOrientation() {
-  try {
-    if (screen.orientation && screen.orientation.unlock) {
-      screen.orientation.unlock();
-    }
-    /* Exit fullscreen if we entered it for the lock */
-    if (document.fullscreenElement || document.webkitFullscreenElement) {
-      const exitFS = document.exitFullscreen || document.webkitExitFullscreen;
-      if (exitFS) exitFS.call(document);
-    }
-  } catch (e) { /* ignore */ }
-}
+/* Orientation lock removed - unreliable across mobile browsers.
+   Users are instructed to lock rotation manually before side scan. */
 
 function initGyroscope() {
   /* iOS 13+ requires permission */
@@ -874,24 +838,29 @@ function updateGyroIndicator() {
   const isLevel = isPhoneLevel();
   levelEl.classList.toggle('level-ok', isLevel);
 
-  /* Warning message */
+  /* Gyro tilt warnings - written to the same #gyro-warning box as all guidance.
+     analyzeFrame() also writes to this box, so we only override here when
+     the phone is actually tilted. When level, we leave the box alone
+     (analyzeFrame handles it). */
   if (!isLevel && gyroAvailable) {
     let msg = '';
     if (currentStep === 'sole') {
       if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Tilt phone flatter';
       else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Level phone sideways';
     } else {
-      /* Side: phone landscape, left side up → beta≈0, gamma≈-90 */
       if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Keep phone flat on the ground';
       else if (Math.abs(Math.abs(gyroGamma) - 90) > GYRO_TOLERANCE) msg = 'Rotate phone to landscape';
     }
     if (msg) {
       warnEl.textContent = msg;
+      warnEl.classList.add('warn');
       warnEl.style.display = 'block';
       speak(msg);
     }
   } else {
-    warnEl.style.display = 'none';
+    /* Phone is level - remove warning styling, but don't hide the box
+       (analyzeFrame controls the guidance text) */
+    warnEl.classList.remove('warn');
   }
 }
 
@@ -928,7 +897,7 @@ function showScreen(id, pushState) {
     document.body.style.overflow = 'auto';
     document.body.style.touchAction = 'auto';
     document.body.style.height = 'auto';
-    unlockOrientation();
+
   }
   if (id !== 'scanner') {
     document.getElementById(id).style.flexDirection = 'column';
@@ -996,18 +965,22 @@ function startScanner(step) {
     imgGuide.style.display = 'none';
     svgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 1 of 2 - Sole';
-    unlockOrientation();
+
     speak('Step 1. Position your foot sole above the camera.');
   } else {
     svgGuide.style.display = 'none';
     imgGuide.style.display = '';
     imgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 2 of 2 - Side Profile';
-    lockLandscape();
+
     speak('Step 2. Hold your phone sideways on the ground for the side profile.');
   }
 
-  document.getElementById('status-bar').textContent = 'Position your foot…';
+  /* Show guidance in the gyro-warning box (the only on-screen text) */
+  const warnInit = document.getElementById('gyro-warning');
+  warnInit.textContent = 'Position your foot…';
+  warnInit.classList.remove('warn');
+  warnInit.style.display = 'block';
 
   video = document.getElementById('video');
 
@@ -1046,8 +1019,10 @@ function startScanner(step) {
     };
   })
   .catch(e => {
-    document.getElementById('status-bar').innerHTML =
-      'Camera error: ' + e.name + '<br>Check browser settings and allow camera access.';
+    const warnErr = document.getElementById('gyro-warning');
+      warnErr.innerHTML = 'Camera error: ' + e.name + '<br>Check browser settings and allow camera access.';
+      warnErr.classList.add('warn');
+      warnErr.style.display = 'block';
   });
 }
 
@@ -1136,9 +1111,16 @@ function analyzeFrame() {
   const guideEl = currentStep === 'sole'
     ? document.getElementById('foot-guide-svg')
     : document.getElementById('side-guide-img');
-  const statusBar = document.getElementById('status-bar');
+  const msgBox = document.getElementById('gyro-warning');
 
   const phoneLevel = isPhoneLevel();
+
+  /* Helper: update the single guidance box */
+  function setGuide(text, isWarning) {
+    msgBox.textContent = text;
+    msgBox.classList.toggle('warn', !!isWarning);
+    msgBox.style.display = 'block';
+  }
 
   if (isFootShape && isStill && phoneLevel) {
     footFrames++;
@@ -1146,48 +1128,45 @@ function analyzeFrame() {
     guideEl.classList.add('ready');
 
     if (footFrames < MIN_FOOT_FRAMES) {
-      statusBar.textContent = 'Foot detected - hold still…';
-      speak('Foot detected. Hold still.');
+      setGuide('Foot detected - hold still…');
+      speak('Hold still.');
     } else if (stillCount >= STILL_FRAMES_NEEDED && footFrames >= MIN_FOOT_FRAMES) {
       capture();
     } else {
-      statusBar.textContent = 'Almost there - hold still…';
-      speak('Almost there. Hold still.');
+      setGuide('Almost there - hold still…');
+      speak('Almost there.');
     }
   } else if (isFootShape && isStill && !phoneLevel) {
-    /* Foot OK + still, but phone tilted - keep foot frames but reset still count */
     footFrames++;
     stillCount = 0;
     guideEl.classList.add('ready');
-    statusBar.textContent = 'Level your phone…';
+    setGuide('Level your phone…', true);
     speak('Level your phone.');
   } else if (isFootShape) {
     footFrames++;
     stillCount = 0;
     guideEl.classList.add('ready');
-    statusBar.textContent = 'Foot detected - hold still…';
-    speak('Foot detected. Hold still.');
+    setGuide('Foot detected - hold still…');
+    speak('Hold still.');
   } else {
     stillCount = 0;
     footFrames = 0;
     guideEl.classList.remove('ready');
 
     if (coverage < 0.08) {
-      statusBar.textContent = 'Position your foot…';
-      speak('Position your foot above the camera.');
+      setGuide('Position your foot…');
+      speak('Position your foot.');
     } else if (coverage > cfg.COVERAGE_MAX) {
-      statusBar.textContent = 'Move your foot a bit further…';
-      speak('Move your foot a bit further away.');
+      setGuide('Move your foot further away…');
+      speak('Move further away.');
     } else if (aspectRatio < cfg.ASPECT_MIN) {
-      statusBar.textContent = currentStep === 'sole'
-        ? 'Align your foot lengthwise in the guide'
-        : 'Align your foot with the side outline';
-      speak(currentStep === 'sole'
-        ? 'Align your foot lengthwise.'
-        : 'Align your foot with the outline.');
+      setGuide(currentStep === 'sole'
+        ? 'Align your foot lengthwise'
+        : 'Align your foot with the outline');
+      speak('Align your foot.');
     } else {
-      statusBar.textContent = 'Center your foot inside the guide…';
-      speak('Center your foot inside the guide.');
+      setGuide('Center your foot in the guide…');
+      speak('Center your foot.');
     }
   }
 }
@@ -1198,7 +1177,6 @@ function capture() {
   if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
 
   speak('Photo captured.');
-  unlockOrientation();
 
   // Flash effect
   const flash = document.getElementById('flash');
