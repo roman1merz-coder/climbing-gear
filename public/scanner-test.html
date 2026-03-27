@@ -1128,6 +1128,17 @@ function analyzeFrame() {
     msgBox.style.display = 'block';
   }
 
+  /* ── Priority 1: Phone level comes first ──
+     If phone isn't level, gyro handler owns the message box.
+     Don't show any foot placement messages yet. */
+  if (!phoneLevel && gyroAvailable) {
+    stillCount = 0;
+    guideEl.classList.remove('ready');
+    /* Don't write anything here - updateGyroIndicator() handles gyro messages */
+    return;
+  }
+
+  /* ── Priority 2: Foot placement (only once phone is level) ── */
   if (isFootShape && isStill && phoneLevel) {
     footFrames++;
     stillCount++;
@@ -1142,12 +1153,6 @@ function analyzeFrame() {
       setGuide('Almost there - hold still…');
       speak('Almost there.');
     }
-  } else if (isFootShape && isStill && !phoneLevel) {
-    footFrames++;
-    stillCount = 0;
-    guideEl.classList.add('ready');
-    setGuide('Level your phone…', true);
-    speak('Level your phone.');
   } else if (isFootShape) {
     footFrames++;
     stillCount = 0;
