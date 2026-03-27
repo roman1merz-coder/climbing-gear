@@ -101,16 +101,19 @@ body {
 #status-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 20px 40px; text-align: center;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
-  font-size: 1rem; color: #fff; padding-top: 40px;
-  font-weight: 500;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  font-size: 1.35rem; color: #fff; padding-top: 40px;
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  letter-spacing: 0.2px;
 }
 #step-indicator {
   position: absolute; top: 0; left: 0; right: 0;
   padding: 40px 20px 16px; text-align: center;
   background: linear-gradient(rgba(0,0,0,0.6), transparent);
-  font-size: 0.85rem; color: rgba(255,255,255,0.8);
-  font-weight: 600; letter-spacing: 0.5px;
+  font-size: 1rem; color: rgba(255,255,255,0.9);
+  font-weight: 700; letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 #flash {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -142,9 +145,10 @@ body {
 #gyro-level.level-ok #gyro-dot { background: #3dff52; }
 #gyro-warning {
   position: absolute; top: 80px; left: 16px; right: 80px; z-index: 10;
-  background: rgba(0,0,0,0.6); color: #ffcc44; padding: 8px 12px;
-  border-radius: 10px; font-size: 0.78rem; font-weight: 600;
+  background: rgba(0,0,0,0.7); color: #ffcc44; padding: 10px 14px;
+  border-radius: 10px; font-size: 1rem; font-weight: 700;
   text-align: center; display: none;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 /* ── Transition Screen (between sole and side) ── */
@@ -547,7 +551,9 @@ body {
   <p class="instruction-text">
     <strong>Hold your phone horizontally on the ground</strong>, screen facing the inside of your right foot
     so the camera captures your side profile. Keep your foot flat on the ground and stay still,
-    it will snap automatically. Try to align your foot with the outline on the screen.
+    it will snap automatically. Try to align your foot with the outline on the screen.<br><br>
+    <strong>Before you start:</strong> Lock your screen rotation so the display doesn't flip when you turn the phone sideways.
+    Voice guidance will talk you through the scan.
   </p>
   <button class="btn-primary" id="start-side-scan" style="max-width:360px;width:100%">Start Side Scan</button>
 </div>
@@ -730,6 +736,86 @@ let gyroGamma = null; // left-right tilt (-90 to 90)
 const GYRO_TOLERANCE = 22; // degrees from flat that's acceptable (generous to avoid frustration)
 let gyroPermissionGranted = false;
 
+/* ── Voice guidance (Web Speech API) ──
+ * Works on Android Chrome, iOS Safari 7+, Samsung Internet, Firefox Mobile.
+ * Key constraint: the very first speechSynthesis.speak() MUST happen inside
+ * a direct user-gesture (click/tap) handler, otherwise the browser silently
+ * blocks all future speech. We solve this by calling speak() with real text
+ * from inside the "Start Sole Scan" / "Start Side Scan" button handlers,
+ * which are direct click events. Subsequent calls from setInterval callbacks
+ * (analyzeFrame) then work because the audio context was already unlocked.
+ */
+let speechReady = false;
+let lastSpokenText = '';
+let lastSpeakTime = 0;
+const SPEAK_COOLDOWN = 2500;
+const SPEAK_MIN_GAP = 1200;
+
+/* Called once from a click handler to unlock the audio context */
+function initSpeech() {
+  if (speechReady || !('speechSynthesis' in window)) return;
+  /* Some browsers (Chrome) lazy-load voices. Trigger the load. */
+  window.speechSynthesis.getVoices();
+  speechReady = true;
+}
+
+function speak(text) {
+  if (!speechReady) return;
+  const now = Date.now();
+  if (text === lastSpokenText && now - lastSpeakTime < SPEAK_COOLDOWN) return;
+  if (now - lastSpeakTime < SPEAK_MIN_GAP) return;
+
+  /* Cancel stale queued speech so guidance stays current */
+  window.speechSynthesis.cancel();
+
+  /* Chrome bug: speak() right after cancel() can be silently dropped.
+     A minimal setTimeout(,50) fixes it reliably. */
+  setTimeout(() => {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.rate = 1.0;
+    utter.volume = 1.0;
+    window.speechSynthesis.speak(utter);
+  }, 50);
+
+  lastSpokenText = text;
+  lastSpeakTime = now;
+}
+
+/* ── Orientation lock for side capture ──
+ * screen.orientation.lock() requires fullscreen on both Android Chrome and
+ * desktop browsers. On iOS Safari it's not supported at all.
+ * Strategy: request fullscreen, then lock. If either fails, fall back
+ * gracefully (the instruction text tells users to lock rotation manually). */
+async function lockLandscape() {
+  try {
+    /* Step 1: enter fullscreen (required for orientation lock) */
+    const el = document.documentElement;
+    const goFS = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+    if (goFS) await goFS.call(el);
+
+    /* Step 2: lock to landscape */
+    if (screen.orientation && screen.orientation.lock) {
+      await screen.orientation.lock('landscape');
+    }
+  } catch (e) {
+    console.log('Orientation lock not available:', e.message);
+  }
+}
+
+function unlockOrientation() {
+  try {
+    if (screen.orientation && screen.orientation.unlock) {
+      screen.orientation.unlock();
+    }
+    /* Exit fullscreen if we entered it for the lock */
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      const exitFS = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exitFS) exitFS.call(document);
+    }
+  } catch (e) { /* ignore */ }
+}
+
 function initGyroscope() {
   /* iOS 13+ requires permission */
   if (typeof DeviceOrientationEvent !== 'undefined' &&
@@ -802,6 +888,7 @@ function updateGyroIndicator() {
     if (msg) {
       warnEl.textContent = msg;
       warnEl.style.display = 'block';
+      speak(msg);
     }
   } else {
     warnEl.style.display = 'none';
@@ -841,6 +928,7 @@ function showScreen(id, pushState) {
     document.body.style.overflow = 'auto';
     document.body.style.touchAction = 'auto';
     document.body.style.height = 'auto';
+    unlockOrientation();
   }
   if (id !== 'scanner') {
     document.getElementById(id).style.flexDirection = 'column';
@@ -869,7 +957,10 @@ window.addEventListener('popstate', (e) => {
 history.replaceState({ screen: 'start-screen' }, '', '');
 
 /* ── Event listeners ── */
-document.getElementById('start-btn').addEventListener('click', () => showScreen('sole-instruction'));
+document.getElementById('start-btn').addEventListener('click', () => {
+  initSpeech();
+  showScreen('sole-instruction');
+});
 document.getElementById('retake-sole-btn').addEventListener('click', () => {
   soleDataUrl = null;
   startScanner('sole');
@@ -879,10 +970,10 @@ document.getElementById('retake-btn').addEventListener('click', retakeAll);
 document.getElementById('save-btn').addEventListener('click', saveResult);
 
 /* New instruction + review screen listeners */
-document.getElementById('start-sole-scan').addEventListener('click', () => startScanner('sole'));
+document.getElementById('start-sole-scan').addEventListener('click', () => { initSpeech(); startScanner('sole'); });
 document.getElementById('retake-sole-review').addEventListener('click', () => showScreen('sole-instruction'));
 document.getElementById('approve-sole').addEventListener('click', () => showScreen('side-instruction'));
-document.getElementById('start-side-scan').addEventListener('click', () => startScanner('side'));
+document.getElementById('start-side-scan').addEventListener('click', () => { initSpeech(); startScanner('side'); });
 document.getElementById('retake-side-review').addEventListener('click', () => showScreen('side-instruction'));
 document.getElementById('approve-side').addEventListener('click', uploadThenShoeFit);
 
@@ -905,13 +996,15 @@ function startScanner(step) {
     imgGuide.style.display = 'none';
     svgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 1 of 2 - Sole';
-    /* Video always un-mirrored via CSS */
+    unlockOrientation();
+    speak('Step 1. Position your foot sole above the camera.');
   } else {
     svgGuide.style.display = 'none';
     imgGuide.style.display = '';
     imgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 2 of 2 - Side Profile';
-    /* Video always un-mirrored via CSS */
+    lockLandscape();
+    speak('Step 2. Hold your phone sideways on the ground for the side profile.');
   }
 
   document.getElementById('status-bar').textContent = 'Position your foot…';
@@ -1054,10 +1147,12 @@ function analyzeFrame() {
 
     if (footFrames < MIN_FOOT_FRAMES) {
       statusBar.textContent = 'Foot detected - hold still…';
+      speak('Foot detected. Hold still.');
     } else if (stillCount >= STILL_FRAMES_NEEDED && footFrames >= MIN_FOOT_FRAMES) {
       capture();
     } else {
       statusBar.textContent = 'Almost there - hold still…';
+      speak('Almost there. Hold still.');
     }
   } else if (isFootShape && isStill && !phoneLevel) {
     /* Foot OK + still, but phone tilted - keep foot frames but reset still count */
@@ -1065,11 +1160,13 @@ function analyzeFrame() {
     stillCount = 0;
     guideEl.classList.add('ready');
     statusBar.textContent = 'Level your phone…';
+    speak('Level your phone.');
   } else if (isFootShape) {
     footFrames++;
     stillCount = 0;
     guideEl.classList.add('ready');
     statusBar.textContent = 'Foot detected - hold still…';
+    speak('Foot detected. Hold still.');
   } else {
     stillCount = 0;
     footFrames = 0;
@@ -1077,14 +1174,20 @@ function analyzeFrame() {
 
     if (coverage < 0.08) {
       statusBar.textContent = 'Position your foot…';
+      speak('Position your foot above the camera.');
     } else if (coverage > cfg.COVERAGE_MAX) {
       statusBar.textContent = 'Move your foot a bit further…';
+      speak('Move your foot a bit further away.');
     } else if (aspectRatio < cfg.ASPECT_MIN) {
       statusBar.textContent = currentStep === 'sole'
         ? 'Align your foot lengthwise in the guide'
         : 'Align your foot with the side outline';
+      speak(currentStep === 'sole'
+        ? 'Align your foot lengthwise.'
+        : 'Align your foot with the outline.');
     } else {
       statusBar.textContent = 'Center your foot inside the guide…';
+      speak('Center your foot inside the guide.');
     }
   }
 }
@@ -1093,6 +1196,9 @@ function capture() {
   if (captured) return;
   captured = true;
   if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+
+  speak('Photo captured.');
+  unlockOrientation();
 
   // Flash effect
   const flash = document.getElementById('flash');
@@ -1471,26 +1577,43 @@ async function saveShoeFitData(email) {
   };
 
   try {
-    await fetch(`${SB_URL}/rest/v1/foot_scan_fits`, {
+    const resp = await fetch(`${SB_URL}/rest/v1/foot_scan_fits`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${SB_KEY}`,
         'apikey': SB_KEY,
         'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
+        'Prefer': 'return=minimal,resolution=merge-duplicates'
       },
       body: JSON.stringify(payload)
     });
+    if (!resp.ok) {
+      const errText = await resp.text().catch(() => resp.statusText);
+      console.error('Shoe fit save failed:', resp.status, errText);
+      const status = document.getElementById('done-status');
+      if (status) status.textContent = 'Save failed - please try again.';
+      return;
+    }
   } catch(e) {
     console.error('Failed to save shoe fit data:', e);
+    const status = document.getElementById('done-status');
+    if (status) status.textContent = 'Network error - please try again.';
+    return;
   }
 }
 
 /* Skip -> thank you */
 document.getElementById('skip-fit-btn').addEventListener('click', () => showScreen('thankyou-screen'));
 
-/* Continue -> thank you */
-document.getElementById('next-fit-btn').addEventListener('click', () => showScreen('thankyou-screen'));
+/* Continue -> save shoe data, then thank you */
+document.getElementById('next-fit-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('next-fit-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  await saveShoeFitData(null);
+  btn.textContent = 'Continue';
+  btn.disabled = false;
+  showScreen('thankyou-screen');
+});
 
 /* Done */
 document.getElementById('done-btn').addEventListener('click', async () => {
