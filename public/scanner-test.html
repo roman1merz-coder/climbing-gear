@@ -851,8 +851,8 @@ function updateGyroIndicator() {
   if (!isLevel && gyroAvailable) {
     let msg = '';
     if (currentStep === 'sole') {
-      if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Tilt phone flatter';
-      else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Level phone sideways';
+      if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Lay phone flat on the ground';
+      else if (Math.abs(gyroGamma) > GYRO_TOLERANCE) msg = 'Lay phone flat on the ground';
     } else {
       if (Math.abs(gyroBeta) > GYRO_TOLERANCE) msg = 'Keep phone flat on the ground';
       else if (Math.abs(Math.abs(gyroGamma) - 90) > GYRO_TOLERANCE) msg = 'Rotate phone to landscape';
@@ -972,7 +972,7 @@ function startScanner(step) {
     svgGuide.classList.remove('ready');
     stepIndicator.textContent = 'STEP 1 of 2 - Sole';
 
-    speak('Step 1. Position your foot sole above the camera.');
+    speak('Step 1. Lay your phone flat on the ground, then hold your foot above the camera.');
   } else {
     svgGuide.style.display = 'none';
     imgGuide.style.display = '';
@@ -984,7 +984,7 @@ function startScanner(step) {
 
   /* Show guidance in the gyro-warning box (the only on-screen text) */
   const warnInit = document.getElementById('gyro-warning');
-  warnInit.textContent = 'Position your foot…';
+  warnInit.textContent = currentStep === 'sole' ? 'Lay phone flat on the ground…' : 'Position your foot…';
   warnInit.classList.remove('warn');
   warnInit.style.display = 'block';
 
@@ -1165,8 +1165,9 @@ function analyzeFrame() {
     guideEl.classList.remove('ready');
 
     if (coverage < 0.08) {
-      setGuide('Position your foot…');
-      speak('Position your foot.');
+      const msg = currentStep === 'sole' ? 'Hold your foot above the camera…' : 'Position your foot…';
+      setGuide(msg);
+      speak(currentStep === 'sole' ? 'Hold your foot above the camera.' : 'Position your foot.');
     } else if (coverage > cfg.COVERAGE_MAX) {
       setGuide('Move your foot further away…');
       speak('Move further away.');
