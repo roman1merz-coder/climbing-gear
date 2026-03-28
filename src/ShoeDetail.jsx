@@ -775,7 +775,7 @@ function SimilarCard({ shoe, onClick, similarity }) {
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
       }}>
         <img src={img} alt={`${shoe.brand} ${shoe.model}`} loading="lazy"
-          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }} />
+          style={{ width: "100%", height: "160px", objectFit: "cover", padding: "12px" }} />
         <div style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(to bottom, transparent 60%, #ffffff)",
