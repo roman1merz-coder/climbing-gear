@@ -1258,7 +1258,7 @@
     "description": "Stiff, slightly downturned sport shoe with dual-velcro closure. Thick 4.3mm injection-molded NeoFriction Force rubber and a full midsole create a rigid edging platform. Leather upper with knit tongue for breathability. Stabilizer rands on both sides improve precision. Best on vertical-to-slightly-overhanging terrain where stiff support matters more than sensitivity.",
     "pros": "[\"Stiff platform for sustained vertical edging\", \"Durable 4.3mm injection-molded rubber\", \"Printed toe rubber for hooks without bulk\", \"Stabilizer rands improve lateral precision\", \"Works whether you're pulling on plastic or stone\"]",
     "cons": "[\"Low sensitivity  -  thick rubber dampens feedback\", \"Painful break-in period\", \"Heel fit can feel sloppy\"]",
-    "sizing": "True to size with minimal stretching expected.",
+    "sizing": "Half size down from street shoe. Leather upper stretches about half a size with use.",
     "customer_voices": null,
     "vegan": false,
     "resoleable": true,
@@ -1292,7 +1292,8 @@
     ],
     "use_cases": [
       "sport",
-      "boulder"
+      "boulder",
+      "trad_multipitch"
     ],
     "best_rock_types": [
       "indoor",
@@ -1383,9 +1384,9 @@
       "granite"
     ],
     "best_wall_angles": [
+      "slab",
       "vertical",
-      "overhang",
-      "roof"
+      "overhang"
     ],
     "best_foothold_types": [
       "smear",
@@ -1505,7 +1506,7 @@
     "description": "Balanced profile suits climbers who prioritize comfort without sacrificing performance. NeoFriction Fuse rubber with velcro closure and moderate feel creates reliable grip and responsive feedback. Versatile fit works across different climbing styles and foot shapes.",
     "pros": "[\"Low-angle sole does its best work on slabs and cracks\", \"Nothing complicated about the closure\", \"Medium-hardness rubber balances grip and durability\", \"Solid underfoot for standing on small footholds\", \"Resoling makes sense given the quality of the last\"]",
     "cons": "[\"Takes longer to feel comfortable compared to leather shoes\", \"On the heavier side at 557g per pair\", \"Partial heel rubber limits heel-hooking confidence\"]",
-    "sizing": "True to size with minimal stretching expected.",
+    "sizing": "Size up half to one full size from street shoe. Runs small. Minimal stretch.",
     "customer_voices": null,
     "vegan": true,
     "resoleable": true,
@@ -1629,8 +1630,7 @@
     ],
     "best_foothold_types": [
       "edge",
-      "pocket",
-      "smear"
+      "pocket"
     ],
     "feel": "moderate",
     "price_uvp_eur": 150.0,
@@ -1641,7 +1641,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
-    "downturn": "aggressive",
+    "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -1659,7 +1659,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 520,
+    "weight_g": 440,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Pronounced aggressive downturn excels on steep sport and bouldering terrain where smearing and toe-hooking matter most. BlackLabel Fuse rubber with velcro closure and moderate feel creates reliable grip and responsive feedback. Versatile fit works across different climbing styles and foot shapes.",
@@ -1822,7 +1822,7 @@
     "description": "Moderate downturn provides versatility across varied terrain and multiple climbing disciplines. Fuse rubber with velcro closure and stiff-moderate feel creates reliable grip and responsive feedback. Versatile fit works across different climbing styles and foot shapes.",
     "pros": "[\"Enough curve for sport climbing without torturing your toes\", \"Quick-release closure for gym convenience\", \"Versatile compound handles both gym and crag\", \"Stiff platform supports on tiny edges\"]",
     "cons": "[\"Can get sweaty in longer sessions\"]",
-    "sizing": "True to size with minimal stretching expected.",
+    "sizing": "Runs small - size up half to one full size from street shoe. Stiff construction does not break in or conform.",
     "customer_voices": null,
     "vegan": false,
     "resoleable": true,
@@ -2027,8 +2027,8 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "overhang",
-      "roof"
+      "slab",
+      "vertical"
     ],
     "best_foothold_types": [
       "smear",
