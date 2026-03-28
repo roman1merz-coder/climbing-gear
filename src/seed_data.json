@@ -20835,7 +20835,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium_soft",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],

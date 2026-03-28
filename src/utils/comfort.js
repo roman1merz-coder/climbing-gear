@@ -6,33 +6,23 @@
 const MID_MAP = { full: 0.9, three_quarter: 0.75, half: 0.55, forefoot: 0.40, toe: 0.20, none: 0.1, partial: 0.45 };
 
 // ═══ STRUCTURAL STIFFNESS ═══
-// Derived entirely from physical construction - no subjective `feel` input.
-// Midsole 40% + Rand 25% + Rubber thickness 15% + Closure 10% + Upper 10%
+// Midsole (coverage x stiffness) 65% + Rubber thickness 25% + Rand 10%
 const RAND_MAP = { aggressive: 0.95, tensioned: 0.85, standard: 0.55, split: 0.35, relaxed: 0.15 };
-const STIFF_CLOSURE_MAP = { lace: 0.80, velcro: 0.50, slipper: 0.25 };
-const UPPER_MAP = { synthetic: 0.70, microfiber: 0.60, microsuede: 0.45, leather: 0.30 };
-
-/** Parse detailed upper_material description to base category for scoring */
-function upperCategory(mat) {
-  if (!mat) return null;
-  const m = mat.toLowerCase();
-  // Check simple exact matches first
-  if (UPPER_MAP[m] !== undefined) return m;
-  // Detailed descriptions: primary material determines stiffness
-  if (m.includes("leather")) return "leather";
-  if (m.includes("microsuede")) return "microsuede";
-  if (m.includes("microfiber") || m.includes("lorica") || m.includes("washtex")) return "microfiber";
-  if (m.includes("synthetic")) return "synthetic";
-  return null;
-}
+const MIDSOLE_STIFFNESS_VAL = { none: 0.05, soft: 0.20, medium_soft: 0.40, medium: 0.55, medium_hard: 0.75, hard: 0.95 };
 
 export function computeStiffness(shoe) {
-  const mid = MID_MAP[shoe.midsole] || 0.5;
+  const midsole = MID_MAP[shoe.midsole] || 0.5;
+  const midsoleStiffness = MIDSOLE_STIFFNESS_VAL[shoe.midsole_stiffness];
   const rand = RAND_MAP[shoe.rand] || 0.5;
   const thick = rubberThick(shoe);
-  const cl = STIFF_CLOSURE_MAP[shoe.closure] || 0.5;
-  const upper = UPPER_MAP[upperCategory(shoe.upper_material)] || 0.5;
-  return mid * 0.40 + rand * 0.25 + thick * 0.15 + cl * 0.10 + upper * 0.10;
+
+  if (midsoleStiffness !== undefined) {
+    // Midsole Stiffness scaled by Midsole coverage
+    const midsoleContrib = midsoleStiffness * (0.35 + 0.65 * midsole);
+    return midsoleContrib * 0.65 + thick * 0.25 + rand * 0.10;
+  }
+  // Fallback when Midsole Stiffness is missing
+  return midsole * 0.50 + thick * 0.30 + rand * 0.20;
 }
 
 /** Rubber hardness → softness (0-1). Soft = high (0.70), hard = low (0.30).
