@@ -2115,7 +2115,6 @@
     ],
     "best_foothold_types": [
       "edge",
-      "smear",
       "crack"
     ],
     "feel": "stiff-moderate",
@@ -2313,7 +2312,7 @@
     "kids_friendly": false,
     "upper_material": "leather",
     "weight_g": 540,
-    "stretch_expectation": "none",
+    "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "An aggressive-downturned velcro shoe built for boulder and sport, combining strong asymmetry with moderate-soft responsiveness. At 540g per pair with Zenith Pro rubber, it balances power and precision.",
     "pros": "[\"Sharply downturned for hooking and steep terrain\", \"Sticky compound gets purchase on polished granite\", \"Thin-feeling platform for maximum ground contact\", \"Resoleable construction for long-term value\"]",
@@ -2590,7 +2589,7 @@
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -2614,7 +2613,7 @@
       "smear",
       "crack"
     ],
-    "feel": "moderate",
+    "feel": "moderate-soft",
     "price_uvp_eur": 145.0,
     "current_price_eur": 125.0,
     "discount_pct": 13.8,
@@ -2642,7 +2641,7 @@
     "kids_friendly": false,
     "upper_material": "leather",
     "weight_g": 575,
-    "stretch_expectation": "minimal",
+    "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "High-performance bouldering and sport shoe with moderate downturn and elastic strap closure. Split leather upper with Zenith Ultra 2.0 rubber (4-4.5mm) for maximum grip. Lateral Torsion System secures the heel. Moderate asymmetry with anti-deformation midsole. Best on steep rock, bouldering and sport climbing.",
     "pros": "[\"Excellent toe and heel hooking\", \"Sensitive forefoot for precise placement\", \"Split leather upper for comfortable fit\", \"Zenith Ultra rubber is extremely sticky\", \"Full rubber toe patch for hooks and jams\"]",
@@ -2671,7 +2670,7 @@
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -3013,7 +3012,7 @@
       "pocket",
       "smear"
     ],
-    "feel": "stiff-moderate",
+    "feel": "moderate-soft",
     "price_uvp_eur": 175.0,
     "current_price_eur": 165.0,
     "discount_pct": 5.7,
@@ -3089,7 +3088,7 @@
       "smear",
       "edge"
     ],
-    "feel": "stiff",
+    "feel": "soft",
     "price_uvp_eur": 55.0,
     "current_price_eur": 49.0,
     "discount_pct": 10.9,
@@ -3113,7 +3112,7 @@
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
-    "kids_friendly": false,
+    "kids_friendly": true,
     "upper_material": "synthetic",
     "weight_g": 500,
     "stretch_expectation": "minimal",
@@ -3207,7 +3206,7 @@
     "description": "Built on Butora's signature performance platform, this Endeavor combines moderate downturned profile, velcro closure for maximum power transfer. Its moderate feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for sport and boulder climbing, this shoe excels on technical terrain.",
     "pros": "[\"Innovative Korean design\", \"Moderate curve that won't wreck your feet by pitch 5\", \"Strap tension adapts quickly to swelling feet\", \"Medium-hardness rubber balances grip and durability\", \"New rubber gives this shoe a second life\"]",
     "cons": "[\"Less adaptive than a leather upper over time\"]",
-    "sizing": "Expect minimal stretch. Size true-to-fit for an immediate, secure feel. Synthetic uppers limit stretch but provide durability.",
+    "sizing": "Half to full size up from street shoe for comfort. Minimal stretch from synthetic upper.",
     "customer_voices": "[\"Great all-around shoe for sport and boulder. Responsive enough for technical moves, comfortable for longer sessions.\", \"They fit snug right out of the box with almost no break-in. Perfect if you hate waiting to use new shoes.\", \"Butora really nailed it with this design. Innovative features at a reasonable price point.\"]",
     "vegan": true,
     "resoleable": true,
@@ -3255,8 +3254,7 @@
     ],
     "best_foothold_types": [
       "smear",
-      "volume",
-      "edge"
+      "volume"
     ],
     "feel": "moderate-soft",
     "price_uvp_eur": 150.0,
