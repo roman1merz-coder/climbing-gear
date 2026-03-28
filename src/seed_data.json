@@ -7394,8 +7394,8 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "hobby",
+      "intermediate"
     ],
     "use_cases": [
       "sport",
@@ -7408,8 +7408,8 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "vertical",
-      "overhang"
+      "slab",
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",
@@ -7425,7 +7425,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "flat",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -7504,7 +7504,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -7520,16 +7520,16 @@
     "midsole": "full",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather/synthetic",
     "weight_g": 500,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive Stealth Onyxx rubber, this shoe handles all foothold types.",
     "pros": "[\"Straight last for natural foot position on easier ground\", \"Adjustments take a second, not a minute\", \"Quick velcro adjustment between attempts\"]",
     "cons": "[\"Less adaptive than a leather upper over time\"]",
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
+    "sizing": "Runs small. Size up half size from street shoe. Leather upper stretches with time. Low-volume shoe with very low-cut heel.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Five Ten.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Five Ten really nailed this design.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -7556,8 +7556,8 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "hobby",
-      "intermediate"
+      "intermediate",
+      "advanced"
     ],
     "use_cases": [
       "sport",
@@ -7739,7 +7739,6 @@
     ],
     "best_foothold_types": [
       "edge",
-      "smear",
       "pocket",
       "volume"
     ],
@@ -7902,14 +7901,14 @@
       "edge",
       "smear"
     ],
-    "feel": "stiff-moderate",
+    "feel": "soft",
     "price_uvp_eur": 90.0,
     "current_price_eur": 79.0,
     "discount_pct": 12.2,
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "none",
     "downturn": "flat",
     "toe_patch": "none",
@@ -8061,7 +8060,7 @@
       "smear",
       "crack"
     ],
-    "feel": "moderate",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 150.0,
     "current_price_eur": 135.0,
     "discount_pct": 10.0,
@@ -8127,7 +8126,8 @@
     ],
     "use_cases": [
       "boulder",
-      "sport"
+      "sport",
+      "trad_multipitch"
     ],
     "best_rock_types": [
       "indoor",
@@ -8203,8 +8203,8 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "hobby",
+      "intermediate"
     ],
     "use_cases": [
       "sport",
@@ -8217,9 +8217,8 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "vertical",
-      "overhang",
-      "roof"
+      "slab",
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",

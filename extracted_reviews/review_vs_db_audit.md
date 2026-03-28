@@ -74,3 +74,15 @@
 - Aleon: asymmetry slight->strong, removed slab from wall_angles
 - Anasazi Lace: skill_level intermediate/advanced->hobby/intermediate
 - Anasazi Pro: feel moderate->stiff, sizing text updated (runs small)
+
+## Batch 7 (completed): Five Ten (10 shoes)
+- Anasazi VCS: downturn moderate->flat, skill_level intermediate/advanced->hobby/intermediate, wall_angles removed overhang added slab
+- Asym: upper_material synthetic->leather/synthetic, vegan true->false, asymmetry none->slight, sizing text updated
+- Crawe: skill_level hobby/intermediate->intermediate/advanced
+- Grandstone: no changes needed
+- Hiangle: removed smear from best_foothold_types
+- Hiangle Pro: no changes needed
+- Kirigami: closure slipper->velcro, feel stiff-moderate->soft
+- NIAD Lace: feel moderate->stiff-moderate
+- NIAD Moccasym: added trad_multipitch to use_cases
+- NIAD VCS: wall_angles removed overhang/roof added slab, skill_level intermediate/advanced->hobby/intermediate
