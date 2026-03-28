@@ -1,0 +1,26 @@
+{
+  "extracted": [
+    "la-sportiva-aragon",
+    "la-sportiva-cobra",
+    "la-sportiva-cobra-eco",
+    "la-sportiva-finale-mens",
+    "la-sportiva-futura",
+    "la-sportiva-genius",
+    "la-sportiva-gripit",
+    "la-sportiva-katana-lace-mens",
+    "la-sportiva-katana-womens",
+    "la-sportiva-kubo"
+  ],
+  "skipped": [
+    "la-sportiva-aragon-woman",
+    "la-sportiva-cobra-499",
+    "la-sportiva-finale-womens",
+    "la-sportiva-geckogym",
+    "la-sportiva-katana-lace-womens",
+    "la-sportiva-katana-mens",
+    "la-sportiva-kubo-woman"
+  ],
+  "failed": [],
+  "queue_order": "la-sportiva first (alphabetical within brand), then scarpa, five-ten, evolv, rest alphabetical",
+  "last_updated": "2026-03-28"
+}
