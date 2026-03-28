@@ -312,6 +312,30 @@
     "best_for": "Indoor climbing, gym bouldering, intermediate sport climbing"
   },
   {
+    "shoe_slug": "la-sportiva-mandala",
+    "source_name": "MountainReview",
+    "source_type": "expert",
+    "source_url": "https://mountainreview.com/en/review/shoes-la-sportiva-mandala/",
+    "summary": "The Mandala is the most versatile of La Sportiva's no-edge shoes, offering more structure and support than the Futura while maintaining excellent sensitivity. Tested over two months indoors and on rock, it performs well across climbing styles. The heel is exceptional - among the best in La Sportiva's range. The No-Edge tip excels on volumes, slopers, and regular indoor holds. On rock, the 1.1mm midsole reduces foot fatigue and the solid construction handles rough treatment. Particularly strong for on-sight climbing, where its forgiving nature compensates for imprecise foot placements.",
+    "author": "Umberto",
+    "pros": "Versatile for both indoor and outdoor climbing. Exceptional heel precision and sensitivity. Intuitive and forgiving - great for on-sight climbing. More supportive and structured than the Futura. Solid construction that handles rough outdoor use well.",
+    "cons": "Not vegan (uses traditional leather). Size selection is somewhat complicated due to leather stretch. Small holes and drops are the toughest hold types for the no-edge tip.",
+    "fit_notes": "Leather upper requires short break-in period. Size about 2 sizes down from street shoes for experienced climbers. Central velcro strap provides comfortable and effective closure.",
+    "best_for": "On-sight climbing, indoor training, versatile indoor/outdoor use"
+  },
+  {
+    "shoe_slug": "la-sportiva-mantra",
+    "source_name": "Climbing House",
+    "source_type": "expert",
+    "source_url": "https://climbinghouse.com/la-sportiva-mantra-review-shoes/",
+    "summary": "The Mantra is an ultralight, uber-soft gym slipper that combines extreme sensitivity with impressive smearing and hooking performance. With no midsole and No-Edge technology, it conforms to footholds like a second skin. It scores a perfect 10/10 for smearing and 9/10 for hooking, but only 3/10 for edging. At $169 it is pricier than average, but the combination of light weight, comfort, grip, and forefoot control makes it among the best gym climbing shoes available.",
+    "author": "Owen Clarke",
+    "pros": "Perfect smearing performance - the shoe completely flattens for maximum grip. Extremely lightweight and sensitive. Excellent heel hooking with tight, suction-cup-like heel. Very comfortable despite aggressive downturn. Strong toe hooking and scumming capability.",
+    "cons": "Virtually no edging capability due to soft construction and lack of midsole. Thin 1mm rubber raises durability concerns, especially on rock. Not suitable for crack climbing. Pricier than average at $169.",
+    "fit_notes": "Fits almost true to size. Unisex model that leans slightly toward long, narrow foot shapes. Very tight, narrow heel cup. Stretchy and comfortable slipper design.",
+    "best_for": "Indoor gym climbing, steep bouldering, competition training"
+  },
+  {
     "shoe_slug": "la-sportiva-mantra",
     "source_name": "GearJunkie",
     "source_type": "expert",
@@ -334,6 +358,42 @@
     "cons": "Not ideal for small edges on slab; Not a mountain trad shoe",
     "fit_notes": null,
     "best_for": "Modern competition climbing, bouldering, indoor gym"
+  },
+  {
+    "shoe_slug": "la-sportiva-miura-mens",
+    "source_name": "Climbing House",
+    "source_type": "expert",
+    "source_url": "https://climbinghouse.com/la-sportiva-miura-review/",
+    "summary": "The Miura is an intermediate-level all-rounder that has earned its place in La Sportiva's lineup for 25 years. Precision edging is the core design concept, combining an asymmetric shape with Vibram XS Edge rubber for excellent grip on tiny footholds. It performs capably across bouldering, trad, sport, and crack climbing. Specialized shoes outperform it in any individual discipline, but its durability and versatility make it good value. Alex Honnold used it to free-solo Half Dome in 2012.",
+    "author": "Gabriel Grams",
+    "pros": "One of the best edging shoes available - gains purchase on even the tiniest footholds. Excellent durability with Vibram rubber and leather construction. Versatile across multiple climbing disciplines. Good heel hooking with thick rubber patch. Laces allow fine-tuned, customizable fit.",
+    "cons": "Difficult to wear for a full day due to aggressive downturn. Toe hooking is limited by dead space in the roomy toe box. Laces wear down quickly, especially in cracks. Relatively narrow fit may not suit wide feet.",
+    "fit_notes": "Narrow fitting in the La Sportiva style. Downsize 1.5-2 sizes for sport/bouldering, 0.5-1 size for long routes. Roomy toe box allows toes to curl and generate pressure. Leather upper requires break-in time but molds to foot shape.",
+    "best_for": "All-round climbing with emphasis on technical face climbing and edging"
+  },
+  {
+    "shoe_slug": "la-sportiva-miura-mens",
+    "source_name": "Climbing Shoe Review",
+    "source_type": "expert",
+    "source_url": "https://www.climbingshoereview.com/la-sportiva-miura-womens-review/",
+    "summary": "The Miura remains one of the best all-around climbing shoes ever made, with edging ability and control on vertical terrain continuing to stand up against modern competition. The men's model uses 4mm Vibram XS Edge rubber for a stiff yet sticky platform. The roomy toe box allows toes to crunch up for maximum pressure on small edges. The Slingshot rand and Powerhinge focus power to the front edge of the foot. The shoe flattens out over time, reducing effectiveness on steep overhangs.",
+    "author": "Sam",
+    "pros": "Top-tier edging and pocket performance. Versatile sizing allows use from sport projecting to all-day multi-pitching. Quick lacing system for easy on/off. Leather construction molds to foot over time.",
+    "cons": "Toe rubber patch is limited - not ideal for frequent indoor toe hooking. Shoes flatten out over time, reducing effectiveness on steep terrain. La Sportiva sizing runs narrow. Some users report heel cup cutting into Achilles.",
+    "fit_notes": "Size 1.5 sizes down for projecting, 0.5-1 size down for all-day comfort. Leather stretches about half a size. Quick lacing system provides easy adjustment. Try both men's and women's versions regardless of gender for best fit.",
+    "best_for": "Outdoor face climbing, technical bouldering, multi-pitch routes"
+  },
+  {
+    "shoe_slug": "la-sportiva-miura-mens",
+    "source_name": "Outdoor Gear Lab",
+    "source_type": "expert",
+    "source_url": "https://www.outdoorgearlab.com/reviews/climbing/climbing-shoes/la-sportiva-miura",
+    "summary": "The Miura is a longstanding benchmark shoe on the market for over two decades, still holding its own against newer designs. It excels at edging thanks to hard Vibram XS Edge rubber that holds pockets and small edges effectively. Highly versatile across sport routes, bouldering, gym climbing, and technical face climbing. Also a capable crack climbing shoe with a tough, protective upper. The lacing system is easy to use, though the laces themselves are fragile. Expect a longer than normal break-in period.",
+    "author": "Thomas Greene",
+    "pros": "Excellent edging performance with razor-like precision. Highly versatile across multiple climbing disciplines. Very durable with tough upper and long-lasting sole. Effective for crack climbing with good foot protection.",
+    "cons": "Not the best at any single discipline. Laces wear out quickly and need replacing. Hard rubber reduces sensitivity, especially when new. Not ideal for very steep terrain compared to more aggressive designs.",
+    "fit_notes": "Size ultra-tight (2+ sizes down) for sport/bouldering projects, or half to full size down for all-day routes. Longer than normal break-in period. Stiff and imprecise at first but improves significantly with wear.",
+    "best_for": "Sport climbing, technical face climbing, all-day trad routes"
   },
   {
     "shoe_slug": "la-sportiva-miura-vs-mens",
