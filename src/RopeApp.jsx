@@ -496,15 +496,9 @@ function CompactRopeCard({ result, onClick, priceData = {} }) {
             <div style={{ width: "3px", height: "10px", borderRadius: "2px", background: TYPE_STYLES[d.rope_type]?.color || "#60a5fa" }} />
             <span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 600, letterSpacing: "1.5px", textTransform: "uppercase" }}>{d.brand}</span>
           </div>
-          {effectivePerMeter > 0 ? (
-            <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#c98a42", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
               &euro;{(effectivePerMeter * 70).toFixed(0)}<span style={{ fontSize: "9px", color: "#7a7462", fontWeight: 400 }}> (70m)</span>
             </span>
-          ) : (
-            <span style={{ fontSize: "11px", color: "#7a7462", fontFamily: "'DM Mono',monospace", flexShrink: 0 }}>
-              Price unavailable
-            </span>
-          )}
         </div>
         {/* Row 2: model + RRP/discount */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "6px" }}>
@@ -698,16 +692,10 @@ function RopeCard({ result, onClick, selectedLength, onLengthSelect, priceData =
         {/* Price row */}
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid #d5cdbf" }}>
           <div>
-            {effectivePerMeter > 0 ? (
-              <>
-                <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#c98a42" }}>
+            <span style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'DM Mono',monospace", color: "#c98a42" }}>
                   &euro;{(effectivePerMeter * 70).toFixed(0)}
                 </span>
                 <span style={{ fontSize: "12px", color: "#7a7462", marginLeft: "4px" }}>(70m)</span>
-              </>
-            ) : (
-              <span style={{ fontSize: "13px", color: "#7a7462", fontFamily: "'DM Mono',monospace" }}>Price unavailable</span>
-            )}
             {buyUrl && (
               <span
                 onClick={e => { e.preventDefault(); e.preventDefault(); e.stopPropagation(); window.open(buyUrl, "_blank"); }}
