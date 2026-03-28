@@ -5172,8 +5172,8 @@
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "gender": "unisex",
-    "kids_friendly": false,
-    "upper_material": "synthetic",
+    "kids_friendly": true,
+    "upper_material": "leather",
     "weight_g": 464,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -5182,7 +5182,7 @@
     "cons": "[\"Curled toe position gets painful over time\", \"Feet run warmer than in leather-upper shoes\", \"Partial heel rubber limits heel-hooking confidence\"]",
     "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Evolv.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Evolv really nailed this design.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -5228,7 +5228,7 @@
       "edge",
       "smear"
     ],
-    "feel": "stiff-moderate",
+    "feel": "moderate-soft",
     "price_uvp_eur": 89.0,
     "current_price_eur": 79.0,
     "discount_pct": 11.2,
@@ -5259,7 +5259,7 @@
     "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive TRAX XE rubber, this shoe handles all foothold types.",
     "pros": "[\"No downturn means you can wear them longer without pain\", \"Firm rubber edges cleanly on small holds\", \"Quick velcro adjustment between attempts\"]",
     "cons": "[\"No downturn means less precision on pockets\"]",
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
+    "sizing": "Runs large. Size down 1-2 sizes from street shoe. Synthetic upper with minimal stretch.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Evolv.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Evolv really nailed this design.\"]",
     "vegan": true,
     "resoleable": false,
@@ -5286,10 +5286,10 @@
     "images": null,
     "forefoot_volume": "low",
     "width": "narrow",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
-      "hobby",
-      "intermediate"
+      "beginner",
+      "hobby"
     ],
     "use_cases": [
       "sport",
@@ -5501,7 +5501,7 @@
     "description": "A balanced performer with moderate downturn, the Kira delivers precision and comfort across varied wall angles. Velcro closure enables fast adjustments during intense climbing sessions. Engineered for narrow feet with low volume, TRAX HF rubber grips everything from smearing to pockets.",
     "pros": "[\"Curved enough to pull hard but not so much that you suffer\", \"Two-strap closure cinches down evenly\", \"No animal-derived materials\"]",
     "cons": "[\"No stretch means no forgiveness on sizing errors\", \"Not built for wide feet\"]",
-    "sizing": "Best for narrow feet and lower insteps. Size for a snug but comfortable fit.",
+    "sizing": "Runs very small. Most climbers size 2+ sizes up from street shoe. Well-padded tongue provides comfort. Low heel lip may cause slipping sensation.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Evolv.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Evolv really nailed this design.\"]",
     "vegan": true,
     "resoleable": true,
@@ -5544,8 +5544,7 @@
     ],
     "best_wall_angles": [
       "slab",
-      "vertical",
-      "overhang"
+      "vertical"
     ],
     "best_foothold_types": [
       "edge",
@@ -5659,7 +5658,7 @@
     "midsole": "partial",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather/synthetic",
     "weight_g": 530,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -5668,7 +5667,7 @@
     "cons": "[\"No gradual break-in to look forward to\", \"Wide last may feel baggy on slimmer feet\", \"On the heavier side at 530g per pair\"]",
     "sizing": "Roomy fit suits wider feet and higher volumes. Size for a snug but comfortable fit.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Evolv.\", \"Perfect for long sport pitches. Comfort matters, and these deliver.\", \"Worth the investment. Evolv really nailed this design.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -5695,8 +5694,8 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "advanced",
+      "elite"
     ],
     "use_cases": [
       "sport",
@@ -5709,9 +5708,9 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "slab",
       "vertical",
-      "overhang"
+      "overhang",
+      "roof"
     ],
     "best_foothold_types": [
       "edge",
@@ -5727,7 +5726,7 @@
     "current_price_url": null,
     "closure": "lace",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -5796,7 +5795,6 @@
     ],
     "best_foothold_types": [
       "edge",
-      "smear",
       "pocket",
       "volume"
     ],
@@ -6044,7 +6042,7 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "velcro",
+    "closure": "slipper",
     "asymmetry": "slight",
     "downturn": "moderate",
     "toe_patch": "medium",
@@ -6064,14 +6062,14 @@
     "kids_friendly": false,
     "upper_material": "leather",
     "weight_g": 494,
-    "stretch_expectation": "none",
+    "stretch_expectation": "full_size",
     "break_in_period": "minimal",
     "description": "A balanced performer with moderate downturn, the Rave delivers precision and comfort across varied wall angles. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive TRAX HF rubber, this shoe handles all foothold types.",
     "pros": "[\"Middle-of-the-road profile for a wide range of grades\", \"Slip in, strap up, start climbing\", \"Rubber works on granite, limestone, and plastic equally\", \"Moderate flex covers both technical and friction climbing\", \"Trax rubber balances grip and longevity\"]",
     "cons": "[\"Expect about half a size of stretch over time\"]",
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
+    "sizing": "Unlined leather stretches significantly. Size down 1-1.5 sizes from street shoe. Leather molds to foot over time.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Evolv.\", \"My go-to bouldering shoe. The sensitivity and downturn make short problems a joy.\", \"Worth the investment. Evolv really nailed this design.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -6140,7 +6138,7 @@
     "kids_friendly": false,
     "upper_material": "leather",
     "weight_g": 573,
-    "stretch_expectation": "none",
+    "stretch_expectation": "half_size",
     "break_in_period": "minimal",
     "description": "A flat-downturned velcro shoe built for sport, combining none asymmetry with stiff responsiveness. At 500g per pair with TRAX XE rubber, it balances power and precision.",
     "pros": "[\"Comfortable shape for high-volume gym climbing\", \"Lace-up closure dials in a precise fit\", \"TRAX XE 5mm rubber compound\"]",

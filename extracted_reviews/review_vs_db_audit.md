@@ -50,3 +50,15 @@
 - EB Guardian 3.0: weight_g 860->430 (was incorrectly doubled)
 - EB Red: no changes needed
 - EB Strange: no changes needed
+
+## Batch 5 (completed): Evolv (10 shoes)
+- Ashima: upper_material synthetic->leather, vegan true->false, kids_friendly false->true
+- Defy: feel stiff-moderate->moderate-soft, sizing text updated (runs large)
+- Elektra: skill_level hobby/intermediate->beginner/hobby, heel_volume narrow->medium (reviews say baggy heel)
+- Kira: sizing text updated (runs very small, size 2+ up)
+- Kronos: removed overhang from best_wall_angles
+- Nighthawk: vegan true->false, upper_material synthetic->leather/synthetic
+- Oracle: downturn moderate->aggressive, wall_angles removed slab added roof, skill_level intermediate/advanced->advanced/elite
+- Phantom: removed smear from best_foothold_types
+- Rave: closure velcro->slipper, vegan true->false, stretch none->full_size, sizing text updated
+- Royale: stretch_expectation none->half_size
