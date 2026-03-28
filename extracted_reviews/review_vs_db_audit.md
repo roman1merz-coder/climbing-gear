@@ -62,3 +62,15 @@
 - Phantom: removed smear from best_foothold_types
 - Rave: closure velcro->slipper, vegan true->false, stretch none->full_size, sizing text updated
 - Royale: stretch_expectation none->half_size
+
+## Batch 6 (completed): Evolv + Five Ten (10 shoes)
+- Shaman: removed smear from best_foothold_types (love bump reduces smearing)
+- Shaman LV: removed smear from best_foothold_types (same design)
+- Shaman Pro: closure slipper->velcro, added boulder to use_cases
+- V6: closure slipper->velcro, added overhang to wall_angles, added boulder to use_cases
+- Venga: feel stiff-moderate->moderate-soft (soft kids shoe)
+- Zenist: feel moderate-soft->soft (Evolv's softest design)
+- Zenist Pro: added edge to best_foothold_types
+- Aleon: asymmetry slight->strong, removed slab from wall_angles
+- Anasazi Lace: skill_level intermediate/advanced->hobby/intermediate
+- Anasazi Pro: feel moderate->stiff, sizing text updated (runs small)

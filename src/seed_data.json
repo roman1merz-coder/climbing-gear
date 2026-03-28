@@ -6191,7 +6191,6 @@
       "roof"
     ],
     "best_foothold_types": [
-      "smear",
       "edge",
       "pocket",
       "volume"
@@ -6355,7 +6354,6 @@
       "roof"
     ],
     "best_foothold_types": [
-      "smear",
       "edge",
       "pocket",
       "volume"
@@ -6424,7 +6422,8 @@
       "elite"
     ],
     "use_cases": [
-      "sport"
+      "sport",
+      "boulder"
     ],
     "best_rock_types": [
       "indoor",
@@ -6447,7 +6446,7 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "slight",
     "downturn": "aggressive",
     "toe_patch": "full",
@@ -6663,7 +6662,8 @@
       "intermediate"
     ],
     "use_cases": [
-      "sport"
+      "sport",
+      "boulder"
     ],
     "best_rock_types": [
       "indoor",
@@ -6671,7 +6671,8 @@
     ],
     "best_wall_angles": [
       "slab",
-      "vertical"
+      "vertical",
+      "overhang"
     ],
     "best_foothold_types": [
       "edge",
@@ -6684,7 +6685,7 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "slight",
     "downturn": "moderate",
     "toe_patch": "medium",
@@ -6838,7 +6839,7 @@
       "edge",
       "smear"
     ],
-    "feel": "stiff-moderate",
+    "feel": "moderate-soft",
     "price_uvp_eur": 59.0,
     "current_price_eur": 52.0,
     "discount_pct": 11.9,
@@ -6922,7 +6923,7 @@
       "volume",
       "edge"
     ],
-    "feel": "moderate-soft",
+    "feel": "soft",
     "price_uvp_eur": 165.0,
     "current_price_eur": 149.0,
     "discount_pct": 9.7,
@@ -7001,6 +7002,7 @@
       "roof"
     ],
     "best_foothold_types": [
+      "edge",
       "smear",
       "pocket",
       "volume"
@@ -7159,7 +7161,6 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "slab",
       "vertical",
       "overhang"
     ],
@@ -7176,7 +7177,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -7229,8 +7230,8 @@
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
-      "intermediate",
-      "advanced"
+      "hobby",
+      "intermediate"
     ],
     "use_cases": [
       "trad_multipitch",
@@ -7333,7 +7334,7 @@
       "crack",
       "pocket"
     ],
-    "feel": "moderate",
+    "feel": "stiff",
     "price_uvp_eur": 165.0,
     "current_price_eur": 149.0,
     "discount_pct": 9.7,
@@ -7364,7 +7365,7 @@
     "description": "A balanced performer with moderate downturn, the Anasazi Pro delivers precision and comfort across varied wall angles. Lace closure offers precise foot locking, ideal for technical sport, trad_multipitch. With standard volume and responsive Stealth Mi6 rubber, this shoe handles all foothold types.",
     "pros": "[\"Downturn is sport-route friendly without being extreme\", \"Laces let you fine-tune tension across the foot\", \"Middle ground on stiffness for varied footwork\", \"Shoe construction justifies the cost of a resole\"]",
     "cons": "[\"Expect about half a size of stretch over time\", \"Aggressive fit is punishing for newer climbers\"]",
-    "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
+    "sizing": "Runs small. Size down from street shoe. Unlined upper with minimal stretch. Narrower low-volume heel with wide forefoot.",
     "customer_voices": "[\"These feel natural on everything I climb. Solid all-around shoe from Five Ten.\", \"Perfect for long sport pitches. Comfort matters, and these deliver.\", \"Worth the investment. Five Ten really nailed this design.\"]",
     "vegan": false,
     "resoleable": true,
