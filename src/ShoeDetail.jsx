@@ -558,7 +558,7 @@ function RetailerPolicyInfo({ shop, price }) {
 // ─── Size Selector Pills (shoe sizes, mirrors rope length pills) ───
 function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
   const pricesWithSize = useMemo(
-    () => prices.filter(p => p.eur_size && p.price > 0),
+    () => prices.filter(p => p.eur_size && p.price > 0 && p.inStock),
     [prices]
   );
   const sizes = useMemo(
@@ -568,8 +568,7 @@ function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
   const cheapestBySize = useMemo(() => {
     const m = {};
     for (const sz of sizes) {
-      const inStock = pricesWithSize.filter(p => p.eur_size === sz && p.inStock);
-      const pool = inStock.length ? inStock : pricesWithSize.filter(p => p.eur_size === sz);
+      const pool = pricesWithSize.filter(p => p.eur_size === sz);
       if (pool.length) m[sz] = Math.min(...pool.map(p => p.price));
     }
     return m;
@@ -579,7 +578,6 @@ function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
 
   const pill = (sz) => {
     const isActive = sz === selectedSize;
-    const hasStock = pricesWithSize.some(p => p.eur_size === sz && p.inStock);
     return (
       <button key={sz} onClick={() => setSelectedSize(sz)} style={{
         display: "flex", flexDirection: "column", alignItems: "center",
@@ -587,7 +585,7 @@ function SizeSelector({ prices, selectedSize, setSelectedSize, compact }) {
         border: isActive ? "2px solid #3d7a52" : `1px solid ${T.border}`,
         background: isActive ? "rgba(61,122,82,0.08)" : T.card,
         cursor: "pointer", transition: "all 0.15s", minWidth: compact ? "52px" : "60px",
-        flexShrink: 0, fontFamily: T.font, opacity: hasStock ? 1 : 0.5,
+        flexShrink: 0, fontFamily: T.font,
       }}>
         <span style={{ fontSize: compact ? "12px" : "14px", fontWeight: 800, fontFamily: T.mono, color: isActive ? "#3d7a52" : T.text }}>
           {sz % 1 === 0 ? sz : sz.toFixed(1)}
@@ -672,16 +670,16 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
         </div>
         {visiblePrices.map((p, i) => (
           <a key={i} href={getRetailerUrl(p.url)} target="_blank" rel="noopener noreferrer" style={{
-            display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr 0.5fr auto",
+            display: "grid", gridTemplateColumns: compact ? "1fr auto auto" : "1.5fr 0.8fr auto",
             alignItems: "center", padding: compact ? "10px 76px 10px 14px" : "12px 20px",
             gap: compact ? "8px" : "0",
             borderBottom: i < visiblePrices.length - 1 || (hiddenCount > 0 && !showAll) ? `1px solid ${T.border}` : "none",
-            background: p.price === best && p.inStock ? T.accentSoft : "transparent",
+            background: p.price === best ? T.accentSoft : "transparent",
             textDecoration: "none", cursor: p.url && p.url !== "#" ? "pointer" : "default",
             transition: "background .15s",
           }}
           onMouseEnter={e => { if (p.url && p.url !== "#") e.currentTarget.style.background = T.accentSoft; }}
-          onMouseLeave={e => { e.currentTarget.style.background = p.price === best && p.inStock ? T.accentSoft : "transparent"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = p.price === best ? T.accentSoft : "transparent"; }}
           >
             <div style={{ minWidth: 0 }}>
               <span style={{ fontSize: compact ? "12px" : "13px", fontWeight: 600, color: T.text, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
@@ -693,20 +691,10 @@ function PriceComparison({ prices, shoe, compact, selectedSize, setSelectedSize,
                   {p.delivery}
                 </span>
               )}
-              {compact && !p.delivery && hasRealRetailer && (
-                <span style={{ fontSize: "10px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-                  {p.inStock ? "In stock" : "Out of stock"}
-                </span>
-              )}
             </div>
             <span style={{ fontSize: compact ? "14px" : "15px", fontWeight: 800, color: p.price === best ? T.accent : T.text, fontFamily: T.mono, whiteSpace: "nowrap" }}>
               {p.price ? `\u20AC${p.price.toFixed(2)}` : "\u2014"}
             </span>
-            {!compact && hasRealRetailer && (
-              <span style={{ fontSize: "11px", fontWeight: 600, color: p.inStock ? T.green : T.red }}>
-                {p.inStock ? "In stock" : "Out"}
-              </span>
-            )}
             {p.url && p.url !== "#" && (
               <span style={{ fontSize: "11px", color: T.accent, fontWeight: 600, whiteSpace: "nowrap" }}>
                 {"\u2192"} Shop
@@ -775,7 +763,7 @@ function SimilarCard({ shoe, onClick, similarity }) {
         display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
       }}>
         <img src={img} alt={`${shoe.brand} ${shoe.model}`} loading="lazy"
-          style={{ width: "100%", height: "160px", objectFit: "cover", padding: "12px" }} />
+          style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }} />
         <div style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(to bottom, transparent 60%, #ffffff)",
@@ -1123,12 +1111,19 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
       }
       return Object.values(best);
     };
-    if (!selectedSize) return dedup(allPrices);
-    // When a size is selected: show size-matched rows + retailers without any size data
-    const sized = allPrices.filter(p => p.eur_size === selectedSize);
-    const noSizeRetailers = allPrices.filter(p => !p.eur_size);
-    const combined = [...sized, ...dedup(noSizeRetailers)];
-    return combined.length ? combined : dedup(allPrices);
+    // Only show in-stock retailers
+    const stockFilter = (rows) => rows.filter(p => p.inStock);
+    let result;
+    if (!selectedSize) {
+      result = dedup(stockFilter(allPrices));
+    } else {
+      // When a size is selected: show size-matched rows + retailers without any size data
+      const sized = allPrices.filter(p => p.eur_size === selectedSize);
+      const noSizeRetailers = allPrices.filter(p => !p.eur_size);
+      const combined = [...sized, ...dedup(noSizeRetailers)];
+      result = stockFilter(combined.length ? combined : dedup(allPrices));
+    }
+    return result;
   }, [allPrices, selectedSize]);
   const history = priceHistory[slug] || [];
 
@@ -1426,10 +1421,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           const reviews = reviewData[slug] || [];
           const SOURCE_TYPE_CONFIG = {
             expert: { label: "Expert Review", variant: "blue", icon: "📝" },
-            youtube: { label: "YouTube", variant: "red", icon: "▶️" },
-            reddit: { label: "Reddit", variant: "purple", icon: "💬" },
-            forum: { label: "Forum", variant: "default", icon: "🗣️" },
             blog: { label: "Blog", variant: "green", icon: "📰" },
+            youtube: { label: "YouTube", variant: "red", icon: "▶️" },
+            community: { label: "Community", variant: "purple", icon: "💬" },
           };
           const PILL_STYLES = {
             pro: { bg: `${T.greenSoft}`, border: `1px solid rgba(61,122,82,0.12)`, labelColor: T.green, icon: "✓" },
@@ -1452,7 +1446,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           };
           return (
             <div>
-              <SectionHeader icon="📰" title="Expert Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
+              <SectionHeader icon="📰" title="Reviews" subtitle={reviews.length ? `${reviews.length} review${reviews.length === 1 ? "" : "s"} from around the web` : "Reviews from expert sites, YouTube, Reddit & more"} compact={isMobile} />
               {reviews.length === 0 ? (
                 <div style={{ background: T.card, borderRadius: T.radius, padding: isMobile ? "32px 20px" : "48px 32px", border: `1px solid ${T.border}`, textAlign: "center" }}>
                   <div style={{ fontSize: "36px", marginBottom: "12px", opacity: 0.4 }}>{"🔍"}</div>

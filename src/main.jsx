@@ -109,6 +109,15 @@ async function fetchAllRows(path) {
   return rows;
 }
 
+// UK to EU shoe size conversion lookup (standard climbing shoe chart)
+const UK_TO_EU = {
+  1: 33, 1.5: 33.5, 2: 34, 2.5: 35, 3: 35.5, 3.5: 36, 4: 37, 4.5: 37.5,
+  5: 38, 5.5: 38.5, 6: 39, 6.5: 40, 7: 40.5, 7.5: 41, 8: 42, 8.5: 42.5,
+  9: 43, 9.5: 44, 10: 44.5, 10.5: 45, 11: 46, 11.5: 46.5, 12: 47,
+  12.5: 48, 13: 48.5, 13.5: 49, 14: 49.5, 14.5: 50,
+};
+function ukToEu(uk) { return UK_TO_EU[uk] ?? Math.round((uk + 33.5) * 2) / 2; }
+
 async function fetchLivePrices() {
   try {
     // Fetch all category price tables in parallel (with pagination)
@@ -156,8 +165,14 @@ async function fetchLivePrices() {
         };
 
         if (sizesToExpand) {
+          // Detect non-EU sizes: if all values are below 25 they're likely UK
+          const nums = sizesToExpand.map(Number).filter(n => !isNaN(n));
+          const isUK = nums.length > 0 && nums.every(n => n < 25);
           for (const sz of sizesToExpand) {
-            grouped[slug].push({ ...baseRow, eur_size: Number(sz) });
+            const n = Number(sz);
+            if (isNaN(n)) continue;
+            const eu = isUK ? ukToEu(n) : n;
+            grouped[slug].push({ ...baseRow, eur_size: eu });
           }
         } else {
           grouped[slug].push({ ...baseRow, eur_size: r.eur_size ? Number(r.eur_size) : null });
