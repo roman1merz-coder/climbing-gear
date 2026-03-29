@@ -74,7 +74,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -153,7 +154,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -231,7 +233,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -312,7 +315,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -394,7 +398,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "Andrea Boldrini",
@@ -474,7 +479,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -553,7 +559,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -632,7 +639,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -714,7 +722,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -792,7 +801,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -874,7 +884,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -953,7 +964,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Andrea Boldrini",
@@ -1032,7 +1044,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "Andrea Boldrini",
@@ -1114,7 +1127,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1195,7 +1209,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1275,7 +1290,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1359,7 +1375,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1442,7 +1459,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1520,7 +1538,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1601,7 +1620,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1679,7 +1699,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1758,7 +1779,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1839,7 +1861,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Black Diamond",
@@ -1919,7 +1942,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2001,7 +2025,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2084,7 +2109,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2166,7 +2192,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2249,7 +2276,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2334,7 +2362,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2418,7 +2447,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2502,7 +2532,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2579,7 +2610,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2660,7 +2692,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2742,7 +2775,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2823,7 +2857,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2902,7 +2937,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Boreal",
@@ -2979,7 +3015,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Butora",
@@ -3059,7 +3096,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Butora",
@@ -3137,7 +3175,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Butora",
@@ -3223,7 +3262,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Butora",
@@ -3305,7 +3345,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Butora",
@@ -3386,7 +3427,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Butora",
@@ -3463,7 +3505,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -3546,7 +3589,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -3630,7 +3674,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -3714,7 +3759,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -3791,7 +3837,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -3870,7 +3917,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -3948,7 +3996,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -4027,7 +4076,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -4108,7 +4158,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -4189,7 +4240,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Climb X",
@@ -4269,7 +4321,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4353,7 +4406,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4438,7 +4492,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4523,7 +4578,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4603,7 +4659,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4691,7 +4748,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4775,7 +4833,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4859,7 +4918,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -4934,7 +4994,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -5014,7 +5075,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -5097,7 +5159,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "EB",
@@ -5181,7 +5244,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5262,7 +5326,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5342,7 +5407,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5425,7 +5491,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5502,7 +5569,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5587,7 +5655,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5669,7 +5738,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5753,7 +5823,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5835,7 +5906,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5919,7 +5991,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -5998,7 +6071,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6077,7 +6151,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6160,7 +6235,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6237,7 +6313,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6321,7 +6398,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6402,7 +6480,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6486,7 +6565,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6568,7 +6648,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6645,7 +6726,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6729,7 +6811,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6812,7 +6895,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6893,7 +6977,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -6974,7 +7059,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -7059,7 +7145,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -7143,7 +7230,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Evolv",
@@ -7224,7 +7312,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7308,7 +7397,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7390,7 +7480,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7474,7 +7565,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7558,7 +7650,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7638,7 +7731,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7721,7 +7815,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7802,7 +7897,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7887,7 +7983,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -7969,7 +8066,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -8045,7 +8143,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -8126,7 +8225,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -8210,7 +8310,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -8293,7 +8394,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -8377,7 +8479,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Five Ten",
@@ -8454,7 +8557,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -8541,7 +8645,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -8611,7 +8716,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -8699,7 +8805,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -8788,7 +8895,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -8876,7 +8984,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -8963,7 +9072,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9053,7 +9163,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9143,7 +9254,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "La Sportiva",
@@ -9230,7 +9342,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9318,7 +9431,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "La Sportiva",
@@ -9405,7 +9519,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9493,7 +9608,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9584,7 +9700,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9675,7 +9792,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9766,7 +9884,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9853,7 +9972,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -9940,7 +10060,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10029,7 +10150,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "La Sportiva",
@@ -10120,7 +10242,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10190,7 +10313,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10260,7 +10384,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10351,7 +10476,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10441,7 +10567,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10531,7 +10658,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10619,7 +10747,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10707,7 +10836,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10781,7 +10911,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10870,7 +11001,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -10958,7 +11090,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11046,7 +11179,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11138,7 +11272,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11229,7 +11364,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11318,7 +11454,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11405,7 +11542,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11489,7 +11627,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11576,7 +11715,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11663,7 +11803,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11754,7 +11895,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11844,7 +11986,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -11934,7 +12077,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12023,7 +12167,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12115,7 +12260,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12200,7 +12346,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12286,7 +12433,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12357,7 +12505,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12445,7 +12594,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12533,7 +12683,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12620,7 +12771,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12707,7 +12859,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12779,7 +12932,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12866,7 +13020,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -12951,7 +13106,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "La Sportiva",
@@ -13039,7 +13195,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": true
   },
   {
     "brand": "Lowa",
@@ -13121,7 +13278,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13205,7 +13363,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13284,7 +13443,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13361,7 +13521,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13443,7 +13604,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13524,7 +13686,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13605,7 +13768,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13689,7 +13853,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Lowa",
@@ -13767,7 +13932,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -13859,7 +14025,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -13951,7 +14118,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14040,7 +14208,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14129,7 +14298,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14210,7 +14380,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "roman"
     ],
@@ -14218,7 +14388,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14297,7 +14468,7 @@
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian",
       "greek"
@@ -14306,7 +14477,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14389,7 +14561,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14477,7 +14650,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14564,7 +14738,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14651,7 +14826,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14738,7 +14914,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14827,7 +15004,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -14919,7 +15097,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -15007,7 +15186,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -15097,7 +15277,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -15186,7 +15367,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -15271,7 +15453,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -15356,7 +15539,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Mad Rock",
@@ -15447,7 +15631,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Millet",
@@ -15525,7 +15710,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Millet",
@@ -15605,7 +15791,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Millet",
@@ -15688,7 +15875,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Millet",
@@ -15771,7 +15959,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -15854,7 +16043,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -15943,7 +16133,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16033,7 +16224,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16121,7 +16313,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16208,7 +16401,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16295,7 +16489,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16381,7 +16576,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16466,7 +16662,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16555,7 +16752,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16642,7 +16840,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16724,7 +16923,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16808,7 +17008,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16898,7 +17099,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -16988,7 +17190,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17067,7 +17270,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17151,7 +17355,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17228,7 +17433,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17308,7 +17514,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17392,7 +17599,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17473,7 +17681,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Ocun",
@@ -17554,7 +17763,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -17619,7 +17829,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -17705,7 +17916,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -17770,7 +17982,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -17835,7 +18048,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -17923,7 +18137,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -17985,7 +18200,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18071,7 +18287,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18134,7 +18351,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18199,7 +18417,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18285,7 +18504,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18347,7 +18567,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18408,7 +18629,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18470,7 +18692,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18535,7 +18758,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18597,7 +18821,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18657,7 +18882,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18720,7 +18946,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18782,7 +19009,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18865,7 +19093,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -18930,7 +19159,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -19016,7 +19246,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -19105,7 +19336,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -19194,7 +19426,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -19259,7 +19492,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Red Chili",
@@ -19345,7 +19579,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19428,7 +19663,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19511,7 +19747,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19588,7 +19825,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19673,7 +19911,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19760,7 +19999,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19844,7 +20084,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -19926,7 +20167,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20006,7 +20248,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20083,7 +20326,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20168,7 +20412,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20245,7 +20490,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20330,7 +20576,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20412,7 +20659,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Saltic",
@@ -20494,7 +20742,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -20584,7 +20833,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -20674,7 +20924,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -20764,7 +21015,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -20855,7 +21107,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -20943,7 +21196,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21034,7 +21288,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21125,7 +21380,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21205,7 +21461,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21293,7 +21550,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21381,7 +21639,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21469,7 +21728,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21550,7 +21810,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21637,7 +21898,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21655,7 +21917,7 @@
     ],
     "forefoot_volume": "low",
     "width": "narrow",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced",
       "elite"
@@ -21728,7 +21990,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21811,7 +22074,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21896,7 +22160,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -21983,7 +22248,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22068,7 +22334,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22153,7 +22420,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22245,7 +22513,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22335,7 +22604,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22419,7 +22689,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22508,7 +22779,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22600,7 +22872,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22692,7 +22965,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22782,7 +23056,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22871,7 +23146,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -22950,7 +23226,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23031,7 +23308,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23110,7 +23388,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23191,7 +23470,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23283,7 +23563,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23372,7 +23653,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23458,7 +23740,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23544,7 +23827,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23633,7 +23917,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23714,7 +23999,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23803,7 +24089,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23890,7 +24177,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -23979,7 +24267,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24069,7 +24358,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24158,7 +24448,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24247,7 +24538,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24339,7 +24631,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24423,7 +24716,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24512,7 +24806,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24600,7 +24895,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24688,7 +24984,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24776,7 +25073,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24864,7 +25162,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -24945,7 +25244,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Scarpa",
@@ -25026,7 +25326,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Simond",
@@ -25105,7 +25406,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Simond",
@@ -25183,7 +25485,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Simond",
@@ -25258,7 +25561,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Simond",
@@ -25340,7 +25644,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25427,7 +25732,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25515,7 +25821,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25598,7 +25905,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25685,7 +25993,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25773,7 +26082,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25861,7 +26171,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -25948,7 +26259,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -26035,7 +26347,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -26123,7 +26436,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -26207,7 +26521,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -26294,7 +26609,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -26381,7 +26697,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "So iLL",
@@ -26468,7 +26785,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -26554,7 +26872,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -26643,7 +26962,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -26731,7 +27051,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -26814,7 +27135,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -26905,7 +27227,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -26992,7 +27315,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27080,7 +27404,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27171,7 +27496,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27262,7 +27588,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27351,7 +27678,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27440,7 +27768,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27526,7 +27855,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27611,7 +27941,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27701,7 +28032,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tenaya",
@@ -27790,7 +28122,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -27872,7 +28205,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -27955,7 +28289,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28033,7 +28368,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28112,7 +28448,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28194,7 +28531,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28273,7 +28611,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28355,7 +28694,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28433,7 +28773,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28514,7 +28855,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28595,7 +28937,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28674,7 +29017,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28756,7 +29100,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28834,7 +29179,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Tulson Tolf",
@@ -28910,7 +29256,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -28970,7 +29317,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.5,
+    "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -28999,7 +29346,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29059,7 +29407,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.5,
+    "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -29088,7 +29436,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29148,7 +29497,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.5,
+    "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -29177,7 +29526,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29267,7 +29617,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29357,7 +29708,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29442,7 +29794,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29507,7 +29860,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29596,7 +29950,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29682,7 +30037,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29753,7 +30109,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29826,7 +30183,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29898,7 +30256,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -29970,7 +30329,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30060,7 +30420,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30150,7 +30511,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30208,11 +30570,11 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "RS rubber 4mm (forefoot) / RH rubber (heel)",
+    "rubber_type": "UP RS 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -30241,7 +30603,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30299,11 +30662,11 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "RS rubber 4mm (forefoot) / RH rubber (heel)",
+    "rubber_type": "UP RS 3.5mm",
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
@@ -30332,7 +30695,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30419,7 +30783,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30493,7 +30858,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30579,7 +30945,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30665,7 +31032,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30715,7 +31083,7 @@
     "current_price_url": null,
     "closure": "lace",
     "asymmetry": "moderate",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -30755,7 +31123,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30826,7 +31195,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30915,7 +31285,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -30979,7 +31350,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31066,7 +31438,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31153,7 +31526,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31223,7 +31597,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31308,7 +31683,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31378,7 +31754,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31470,7 +31847,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31533,7 +31911,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.2,
-    "midsole": "half",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -31553,7 +31931,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian"
     ],
@@ -31561,7 +31939,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31619,12 +31998,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "RS rubber 4mm (forefoot) / RH rubber (heel+rand)",
+    "rubber_type": "UP RH 3.5mm + VD toe",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "half",
+    "rubber_thickness_mm": 3.5,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -31644,7 +32023,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian"
     ],
@@ -31652,7 +32031,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31723,7 +32103,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31794,7 +32175,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31848,11 +32230,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "RH rubber 5mm",
+    "rubber_type": "UP RS 3.5mm",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
-    "rubber_thickness_mm": 5.0,
+    "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -31873,7 +32255,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian"
     ],
@@ -31881,7 +32263,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Unparallel",
@@ -31959,7 +32342,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": "{\"weight_source\": \"unparallelsports.com official\", \"weight_verified\": true}",
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium_soft",
     "toe_form": [
       "egyptian"
     ],
@@ -31967,7 +32350,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32048,7 +32432,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32130,7 +32515,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32209,7 +32595,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32285,7 +32672,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32361,7 +32749,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32442,7 +32831,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32523,7 +32913,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32603,7 +32994,8 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   },
   {
     "brand": "Wild Climb",
@@ -32681,6 +33073,7 @@
     "mfr_downsize_max_eu": null,
     "mfr_toe_box": null,
     "mfr_heel": null,
-    "mfr_volume": null
+    "mfr_volume": null,
+    "no_edge": false
   }
 ]
