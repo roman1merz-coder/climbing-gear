@@ -507,6 +507,15 @@ def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
         and "perfect" in current_widths.get("forefoot_fits", set())
     )
 
+    # Check if user has an explicit heel fit problem (empty or squeezed)
+    # from their current shoe data. If so, heel match is critical.
+    heel_problem = False
+    for us in profile.get("shoes", []):
+        heel_fit = (us.get("fit") or {}).get("heel", "")
+        if heel_fit in ("empty", "squeezed", "tight"):
+            heel_problem = True
+            break
+
     # ── Priority 1: Fit geometry (up to +10) ──────────────────────────
 
     # Heel match (most important for narrow-heel users)
@@ -514,7 +523,9 @@ def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
         if hv in ("low", "narrow"):
             score += 4  # strong match
         elif hv in ("standard", "medium"):
-            score += 0  # neutral - may or may not work
+            # If user has an explicit heel problem (empty/squeezed),
+            # medium heel is NOT neutral - it won't fix the issue.
+            score += -3 if heel_problem else 0
         elif hv in ("high", "wide"):
             score -= 3  # actively bad
     elif "wide" in user_heel:
@@ -875,17 +886,41 @@ def get_categorized_candidates(profile: dict) -> dict:
 
     # Budget: fit candidates sorted by price, with guardrails:
     # 1. Stiffness: max 0.25 distance from user average
-    # 2. Minimum score: budget picks must actually address fit issues,
-    #    not just be cheap. Use median score of baseline picks as reference -
-    #    budget shoes should score at least half as well as a baseline pick.
+    # 2. Minimum score threshold (75% of weakest baseline pick)
+    # 3. Hard heel constraint: if user has empty/squeezed heel, budget
+    #    shoes MUST have matching heel volume - cheap shoes that don't
+    #    fix the primary issue are useless recommendations.
     BUDGET_STIFF_MAX_DIST = 0.25
     baseline_scores = [c["_score"] for c in baseline] if baseline else [0]
-    budget_min_score = max(3, min(baseline_scores) // 2)
+    budget_min_score = max(5, min(baseline_scores) * 3 // 4)
+
+    # Determine hard heel constraint from user's shoe fit data
+    user_heel_problem = None  # None = no constraint
+    for us in profile.get("shoes", []):
+        heel_fit = (us.get("fit") or {}).get("heel", "")
+        if heel_fit in ("empty", "squeezed", "tight"):
+            user_heel_problem = heel_fit
+            break
+
+    def _budget_heel_ok(candidate: dict) -> bool:
+        """Check if a budget candidate's heel volume addresses the user's heel problem."""
+        if user_heel_problem is None:
+            return True  # no heel problem = no constraint
+        hv = str(candidate.get("heel_volume") or "")
+        user_heel = profile.get("heel_width_class", "")
+        if "narrow" in user_heel and user_heel_problem == "empty":
+            # User needs narrow heel - medium/wide won't fix it
+            return hv in ("low", "narrow")
+        if "wide" in user_heel and user_heel_problem in ("squeezed", "tight"):
+            return hv in ("high", "wide")
+        return True
+
     priced = [
         c for c in fit_candidates
         if c.get("_best_price_eur") is not None
         and abs(c["_computed_stiffness"] - avg_stiffness) <= BUDGET_STIFF_MAX_DIST
         and c["_score"] >= budget_min_score
+        and _budget_heel_ok(c)
     ]
     priced.sort(key=lambda x: x["_best_price_eur"])
 
