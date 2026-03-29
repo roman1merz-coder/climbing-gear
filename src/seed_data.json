@@ -5414,7 +5414,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 386g pair \u2192 193g single",
+      "weight_source": "weighmyrack: 386g pair → 193g single",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -6721,7 +6721,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "hard",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],
@@ -7115,7 +7115,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "toe",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -7135,7 +7135,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "none",
+    "midsole_stiffness": "soft",
     "toe_form": [
       "egyptian"
     ],
@@ -8584,10 +8584,12 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "La Sportiva FriXion Black",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
@@ -8775,7 +8777,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 320g pair \u2192 160g single",
+      "weight_source": "weighmyrack: 320g pair → 160g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -9133,7 +9135,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium_soft",
     "toe_form": [
       "egyptian"
     ],
@@ -9220,7 +9222,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "hard",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "roman"
     ],
@@ -10107,7 +10109,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
+      "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -10161,10 +10163,12 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "La Sportiva FriXion Eco",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "synthetic",
@@ -10229,10 +10233,12 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "La Sportiva FriXion Eco",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "synthetic",
@@ -10745,10 +10751,12 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "La Sportiva Eco-Rubber",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
@@ -12320,10 +12328,12 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "La Sportiva FriXion Black",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "medium"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
@@ -12425,7 +12435,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "hard",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian",
       "greek",
@@ -12513,7 +12523,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "hard",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian",
       "greek",
@@ -12602,7 +12612,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "hard",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],
@@ -12689,7 +12699,7 @@
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "hard",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],
@@ -12740,10 +12750,12 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "Vibram XS Grip2",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "soft"
+    ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
@@ -13504,7 +13516,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": "none",
+    "midsole_stiffness": "soft",
     "toe_form": [
       "egyptian"
     ],
@@ -14348,7 +14360,7 @@
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": null,
+    "rubber_thickness_mm": 3.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -14357,7 +14369,7 @@
     "weight_g": null,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Purpose-built kids\u2019 climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
+    "description": "Purpose-built kids’ climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
     "pros": "[\"Adjustable heel strap grows with the child\", \"3D molded toe cap for comfort and protection\", \"Lightweight and easy to put on\", \"Affordable entry point for young climbers\", \"Sticky Science Friction rubber for confidence on holds\"]",
     "cons": "[\"Limited to easy terrain and indoor walls\", \"No advanced features for progressing technique\", \"Minimal angle views available\"]",
     "sizing": "Available in US Toddler 12 through US Kids 5. Hook-and-loop closure makes fitting easy for small hands.",
@@ -17047,7 +17059,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": "soft",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "greek"
     ],
@@ -17583,7 +17595,7 @@
     ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather/synthetic",
@@ -17734,7 +17746,7 @@
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "leather",
@@ -17799,7 +17811,7 @@
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather",
@@ -17949,7 +17961,7 @@
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "leather/synthetic",
@@ -18098,7 +18110,7 @@
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -18163,7 +18175,7 @@
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -18313,7 +18325,7 @@
     ],
     "rubber_thickness_mm": 3.0,
     "midsole": "none",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "microfiber",
@@ -18374,7 +18386,7 @@
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "partial",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "microfiber",
@@ -18434,7 +18446,7 @@
     ],
     "rubber_thickness_mm": 5.0,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather/synthetic",
@@ -18499,7 +18511,7 @@
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
-    "rand": null,
+    "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -18561,7 +18573,7 @@
     ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
@@ -18623,7 +18635,7 @@
     ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
     "upper_material": "leather",
@@ -18684,7 +18696,7 @@
     ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
@@ -18700,7 +18712,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "midsole_stiffness": "medium_hard",
+    "midsole_stiffness": "medium",
     "toe_form": [
       "roman"
     ],
@@ -18746,7 +18758,7 @@
     ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -18894,7 +18906,7 @@
     ],
     "rubber_thickness_mm": 4.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
@@ -19223,7 +19235,7 @@
     ],
     "rubber_thickness_mm": 4.0,
     "midsole": "partial",
-    "rand": null,
+    "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -19650,7 +19662,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -19737,7 +19749,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -19821,7 +19833,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -19983,7 +19995,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
+      "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -20389,7 +20401,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "Estimated from brand pattern: 350g pair \u2192 175g",
+      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -21788,7 +21800,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 440g pair \u2192 220g single",
+      "weight_source": "weighmyrack: 440g pair → 220g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -26460,7 +26472,7 @@
   },
   {
     "brand": "Tenaya",
-    "model": "Ara\u00ed",
+    "model": "Araí",
     "slug": "tenaya-arai",
     "image_url": "/images/shoes/tenaya-arai.jpg",
     "images": [
@@ -27319,7 +27331,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "The shoe that put Tenaya on the map  -  a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ram\u00f3n Juli\u00e1n's shoe of choice.",
+    "description": "The shoe that put Tenaya on the map  -  a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ramón Julián's shoe of choice.",
     "pros": "[\"Versatile enough for slab, vertical, and moderate overhang\", \"Integrated tongue for a clean, comfortable fit\", \"Rubber toe reinforcement improves toe-hooking durability\", \"Full midsole provides dependable support\", \"Proven on the hardest routes across five continents\"]",
     "cons": "[\"Slight downturn lacks power on steep roof climbing\", \"Not as sensitive as split-sole designs\", \"Extra volume reduces precision on small holds\"]",
     "sizing": "True to size with minimal stretching expected. Best for wide feet and those seeking roomy, all-day comfort.",
@@ -27758,7 +27770,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Lace-up version of the Inti, developed as Ram\u00f3n Juli\u00e1n's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
+    "description": "Lace-up version of the Inti, developed as Ramón Julián's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
     "pros": "[\"Softer than the Masai  -  better sensitivity on smears and volumes\", \"Lace closure for precise, secure fit\", \"Asymmetric toe provides good power transfer\", \"Comfortable enough for long routes and multi-pitch\", \"4mm Vibram XS Grip lasts well on rough rock\"]",
     "cons": "[\"Softer sole means less support on micro-edges than the Masai\", \"Laces slower to adjust mid-session\", \"What you buy is what you get - no stretch to count on\"]",
     "sizing": "True to size. Lace closure provides adjustable fit across foot shapes.",
@@ -28332,7 +28344,7 @@
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 330g pair \u2192 165g single",
+      "weight_source": "weighmyrack: 330g pair → 165g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -29714,7 +29726,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "UP RA 3.5mm",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "tensioned",
@@ -29787,7 +29801,7 @@
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -29859,7 +29873,7 @@
     ],
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
-    "rand": null,
+    "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -29931,7 +29945,7 @@
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
-    "rand": null,
+    "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -30454,7 +30468,7 @@
     ],
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
-    "rand": null,
+    "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "microfiber",
@@ -30785,7 +30799,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "UP RH 4.2mm",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "relaxed",
@@ -31180,7 +31196,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "UP RA 4.2mm",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "relaxed",
@@ -31333,7 +31351,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "UP RA 3.5mm",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "tensioned",
@@ -31676,7 +31696,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "UP RH 3.5mm",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "relaxed",
@@ -31745,7 +31767,9 @@
     "ankle_protection": null,
     "durability": null,
     "rubber_type": "UP RH 3.5mm",
-    "rubber_hardness": null,
+    "rubber_hardness": [
+      "hard"
+    ],
     "rubber_thickness_mm": 3.5,
     "midsole": "full",
     "rand": "relaxed",
