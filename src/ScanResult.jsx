@@ -283,16 +283,34 @@ export default function ScanResult({ shoes }) {
         <div style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontFamily: T.display, fontSize: "1.3rem", color: T.text, margin: "0 0 1rem" }}>What This Means</h2>
           {Array.isArray(s.interpretation)
-            ? s.interpretation.map((block, i) => (
-                <div key={i} style={{ marginBottom: "1.2rem" }}>
-                  <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: "0 0 0.3rem", textTransform: "uppercase", letterSpacing: "0.03em" }}>
-                    {block.title}
-                  </h3>
-                  {block.paragraphs.map((p, j) => (
-                    <p key={j} style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: j > 0 ? "0.4rem 0 0" : 0 }}>{p}</p>
-                  ))}
-                </div>
-              ))
+            ? s.interpretation.map((block, i) => {
+                const isFootShape = block.title && block.title.toLowerCase().includes("foot shape");
+                const hasHallux = isFootShape && block.paragraphs.some(p => p.toLowerCase().includes("hallux"));
+                let halluxImageInserted = false;
+                return (
+                  <div key={i} style={{ marginBottom: "1.2rem" }}>
+                    <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: "0 0 0.3rem", textTransform: "uppercase", letterSpacing: "0.03em" }}>
+                      {block.title}
+                    </h3>
+                    {block.paragraphs.map((p, j) => {
+                      const showImage = hasHallux && !halluxImageInserted && p.toLowerCase().includes("hallux");
+                      if (showImage) halluxImageInserted = true;
+                      return (
+                        <div key={j}>
+                          <p style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: j > 0 ? "0.4rem 0 0" : 0 }}>{p}</p>
+                          {showImage && (
+                            <img
+                              src={`${SUPABASE_URL}/storage/v1/object/public/foot-scans/assets/hallux-valgus-toebox.jpg`}
+                              alt="Toe box fit with hallux valgus: too pointed, perfect, and too centered"
+                              style={{ width: "100%", maxWidth: 600, borderRadius: 10, margin: "0.8rem 0" }}
+                            />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })
             : (
                 <div>
                   {s.interpretation.summary && (
