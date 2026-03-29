@@ -3020,6 +3020,87 @@
   },
   {
     "brand": "Butora",
+    "model": "Acro",
+    "slug": "butora-acro",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "smear"
+    ],
+    "feel": "moderate-soft",
+    "price_uvp_eur": 175.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "NEO Fuse 4mm",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 600,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Butora Acro is an aggressive, downturned performance shoe with a single velcro strap and triple fork webbing system, featuring Neo Fuse sticky rubber and a synthetic microfiber upper. The tensioned heel rand delivers precision on steep sport routes and bouldering problems. Available in wide and narrow fits.",
+    "pros": "[\"Aggressive downturn excels on steep terrain\", \"Triple fork strap gives custom slipper-like fit\", \"Neo Fuse rubber rivals top competitors in friction\", \"Available in wide and narrow fits\"]",
+    "cons": "[\"Steep heel lean can cause Achilles discomfort for some\", \"Not ideal for long multi-pitch days\"]",
+    "sizing": "These shoes run small. Street shoe size gives a snug, performance fit right out of the box. Available in wide (orange) and narrow/tight (blue) fits.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
     "model": "Acro Comp",
     "slug": "butora-acro-comp",
     "image_url": "/images/shoes/butora-acro-comp.jpg",
@@ -3089,6 +3170,85 @@
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "soft",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
+    "model": "Altura",
+    "slug": "butora-altura",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "high",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "trad_multipitch"
+    ],
+    "best_rock_types": [
+      "granite",
+      "sandstone",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "crack",
+      "smear"
+    ],
+    "feel": "stiff",
+    "price_uvp_eur": 180.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "moderate",
+    "downturn": "flat",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "NEO Fuse 4mm",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "description": "The Butora Altura is a mid-top trad climbing shoe built for long days of multi-pitch crack climbing and big walls. Features high-quality German leather upper with 100% organic hemp lining, full-length ABS injection-molded midsole, and 4mm NEO Fuse rubber. The stiff construction excels at edging on micro edges while the mid-top design provides ankle protection in cracks. Available in wide and narrow fits.",
+    "pros": "[\"Exceptional edging stability from stiff platform\", \"Mid-top design protects ankles in cracks\", \"Organic hemp lining for comfort on long routes\", \"Outstanding durability with thick rubber\"]",
+    "cons": "[\"Very stiff with low sensitivity\", \"Longer break-in period required\", \"Not suitable for overhanging terrain\"]",
+    "sizing": "German leather with hemp lining stretches very little - size you buy is the size you end up with. Requires longer break-in period than typical climbing shoes. Available in wide and narrow fits.",
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "hard",
     "toe_form": [
       "egyptian"
     ],
@@ -3432,6 +3592,323 @@
   },
   {
     "brand": "Butora",
+    "model": "Komet Lace",
+    "slug": "butora-komet-lace",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "hobby",
+      "intermediate"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone"
+    ],
+    "best_wall_angles": [
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "moderate",
+    "price_uvp_eur": 120.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "NEO Fuse 4mm",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "partial",
+    "rand": "relaxed",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "microfiber",
+    "weight_g": null,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Butora Komet Lace is the lace-up variant of the popular Komet, offering enhanced edge control through its TPU-supported lacing system. Italian microfiber upper with knit tongue provides comfort and odor control. The moderately neutral shape and soft NEO rubber make it a versatile all-rounder for both indoor and outdoor climbing.",
+    "pros": "[\"TPU lacing system for precise custom fit\", \"Better edge control than velcro Komet\", \"Knit tongue improves comfort and breathability\", \"Soft rubber excels on indoor holds\"]",
+    "cons": "[\"Lacing takes longer than velcro between climbs\", \"Not aggressive enough for steep overhangs\"]",
+    "sizing": "Unisex sizing. TPU lacing system allows precise adjustment. Italian microfiber upper has minimal stretch. Regular volume fit adapts to various foot shapes.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
+    "model": "Narsha",
+    "slug": "butora-narsha",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "feel": "stiff",
+    "price_uvp_eur": 190.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": "none",
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "NEO Friction 4mm",
+    "rubber_hardness": [
+      "hard"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "leather",
+    "weight_g": null,
+    "stretch_expectation": "half_size",
+    "break_in_period": "moderate",
+    "description": "The Narsha is Butoras flagship performance shoe featuring high-quality German leather upper, NEO Friction rubber, and a unique four-way stretching heel and rand system with 3D molded heel cup. The internal NFS strap allows customization between all-day comfort and extreme precision. Available in wide and narrow fits.",
+    "pros": "[\"Four-way stretching heel system prevents slippage\", \"German leather upper molds to foot over time\", \"NFS strap allows micro-adjustments for precision\", \"Excellent edging on steep sport routes\"]",
+    "cons": "[\"Premium price point\", \"Becoming harder to find as model ages\", \"Stiff rubber requires break-in period\"]",
+    "sizing": "German leather upper stretches moderately. Size snug for performance. Available in wide and tight/narrow fits. Injection-molded sole with formed arch support.",
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "hard",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
+    "model": "Nix",
+    "slug": "butora-nix",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "high",
+    "width": "wide",
+    "heel_volume": "medium",
+    "skill_level": [
+      "hobby",
+      "intermediate"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear",
+      "crack"
+    ],
+    "feel": "moderate-soft",
+    "price_uvp_eur": 140.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "slipper",
+    "asymmetry": "moderate",
+    "downturn": "slight",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "NEO Fuse 4mm",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "partial",
+    "rand": "relaxed",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "microfiber",
+    "weight_g": 590,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Butora Nix is a comfortable, slightly downturned slipper with a single strap for easy adjustments. Built on an all-new last with microsuede upper and Neo Fuse rubber, it offers a gentle introduction to more aggressive shoes while maintaining all-day comfort. The wide, high-volume fit accommodates various foot shapes.",
+    "pros": "[\"Comfortable enough for all-day sessions\", \"Slight downturn adds performance without pain\", \"Wide fit accommodates many foot shapes\", \"Versatile for gym, sport, and even cracks\"]",
+    "cons": "[\"Not aggressive enough for roof climbing\", \"Slipper entry can be tight for high-volume feet\"]",
+    "sizing": "Unisex sizing, runs true to size. Microsuede upper resists stretching. High volume fit is forgiving for wider feet. Single strap allows minor adjustments.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "soft",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
+    "model": "Rubicon",
+    "slug": "butora-rubicon",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "hobby",
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "boulder",
+      "sport"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 150.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "rubber_type": "NEO Fuse 4mm",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "half",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "microfiber",
+    "weight_g": null,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Butora Rubicon is a versatile intermediate climbing shoe with dual velcro straps, a convex molded ABS midsole under the toe box for precision on steep terrain, and heel-to-forefoot tensioning. The split-sole construction balances comfort and performance. Microsuede upper with soft sock-style entry provides comfort out of the box.",
+    "pros": "[\"Comfortable immediately out of the box\", \"Dual straps allow precise fit adjustment\", \"Good bridge between beginner and aggressive shoes\", \"Heel-to-forefoot tensioning adds precision\"]",
+    "cons": "[\"Heel cup not ideal for advanced heel-hooking\", \"Not aggressive enough for roof problems\"]",
+    "sizing": "Unisex sizing. Unlined microsuede upper has minimal stretch. Comfortable out of the box with little break-in needed. Available in wide fit variant.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
     "model": "Sensa",
     "slug": "butora-sensa",
     "image_url": "/images/shoes/butora-sensa.jpg",
@@ -3498,6 +3975,86 @@
     "admin_flags": null,
     "data_confidence": {},
     "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false
+  },
+  {
+    "brand": "Butora",
+    "model": "Sierra",
+    "slug": "butora-sierra",
+    "image_url": null,
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "indoor",
+      "limestone",
+      "granite"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "smear"
+    ],
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 150.0,
+    "current_price_eur": null,
+    "discount_pct": 0.0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "moderate",
+    "downturn": "moderate",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": "none",
+    "durability": [
+      "moderate",
+      "high"
+    ],
+    "rubber_type": "NEO Fuse 4mm",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.0,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "microfiber",
+    "weight_g": null,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "The Butora Sierra is an intermediate lace-up climbing shoe with precise edging capability and a medium-stiff feel. The full-sole ABS injection-molded midsole provides enhanced stability on small holds, while heel-to-forefoot tensioning delivers power and precision. Microsuede upper resists stretching for consistent fit over time.",
+    "pros": "[\"Lace-to-toe closure allows precise fit dialing\", \"Excellent edging stability from stiff midsole\", \"Heel-to-forefoot tensioning adds precision\", \"Durable construction for regular use\"]",
+    "cons": "[\"Less sensitivity than softer shoes\", \"Not ideal for crack climbing\"]",
+    "sizing": "Unisex sizing. Lace-to-toe design allows precise fit adjustment. Microsuede upper has minimal stretch. Medium-high volume fit suits most foot shapes.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],
