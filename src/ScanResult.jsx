@@ -124,6 +124,13 @@ function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote
             </div>
           )}
           <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
+          <div style={{
+            marginTop: "0.6rem", padding: "0.45rem 0", textAlign: "center",
+            fontSize: "0.75rem", fontWeight: 600, color: T.accent,
+            border: `1px solid ${T.accent}`, borderRadius: 6,
+          }}>
+            Check details and availability
+          </div>
         </div>
       </Link>
     </div>
