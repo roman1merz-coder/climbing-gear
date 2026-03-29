@@ -6,23 +6,31 @@
 const MID_MAP = { full: 0.9, three_quarter: 0.75, half: 0.55, forefoot: 0.40, toe: 0.20, none: 0.1, partial: 0.45 };
 
 // ═══ STRUCTURAL STIFFNESS ═══
-// Midsole (coverage x stiffness) 65% + Rubber thickness 25% + Rand 10%
+// Midsole (coverage x stiffness) 55% + Rubber hardness 20% + Rubber thickness 15% + Rand 10%
 const RAND_MAP = { aggressive: 0.95, tensioned: 0.85, standard: 0.55, split: 0.35, relaxed: 0.15 };
 const MIDSOLE_STIFFNESS_VAL = { none: 0.05, soft: 0.20, medium_soft: 0.40, medium: 0.55, medium_hard: 0.75, hard: 0.95 };
+const HARDNESS_STIFFNESS = { soft: 0.20, medium: 0.50, hard: 0.85 };
 
 export function computeStiffness(shoe) {
   const midsole = MID_MAP[shoe.midsole] || 0.5;
   const midsoleStiffness = MIDSOLE_STIFFNESS_VAL[shoe.midsole_stiffness];
   const rand = RAND_MAP[shoe.rand] || 0.5;
   const thick = rubberThick(shoe);
+  const hardness = _rubberHardnessStiffness(shoe);
 
   if (midsoleStiffness !== undefined) {
     // Midsole Stiffness scaled by Midsole coverage
     const midsoleContrib = midsoleStiffness * (0.35 + 0.65 * midsole);
-    return midsoleContrib * 0.65 + thick * 0.25 + rand * 0.10;
+    return midsoleContrib * 0.55 + hardness * 0.20 + thick * 0.15 + rand * 0.10;
   }
   // Fallback when Midsole Stiffness is missing
-  return midsole * 0.50 + thick * 0.30 + rand * 0.20;
+  return midsole * 0.40 + hardness * 0.20 + thick * 0.20 + rand * 0.20;
+}
+
+/** Rubber hardness → stiffness contribution (0-1). Hard = high. */
+function _rubberHardnessStiffness(shoe) {
+  const h = Array.isArray(shoe.rubber_hardness) ? shoe.rubber_hardness[0] : shoe.rubber_hardness;
+  return HARDNESS_STIFFNESS[h] || 0.5;
 }
 
 /** Rubber hardness → softness (0-1). Soft = high (0.70), hard = low (0.30).
