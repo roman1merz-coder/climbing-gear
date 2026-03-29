@@ -3040,12 +3040,12 @@
     "break_in_period": "minimal",
     "closure": "velcro",
     "cons": "[\"Steep heel lean can cause Achilles discomfort for some\", \"Not ideal for long multi-pitch days\"]",
-    "current_price_eur": null,
+    "current_price_eur": 155.0,
     "current_price_url": null,
     "customer_voices": null,
     "data_confidence": {},
     "description": "The Butora Acro is an aggressive, downturned performance shoe with a single velcro strap and triple fork webbing system, featuring Neo Fuse sticky rubber and a synthetic microfiber upper. The tensioned heel rand delivers precision on steep sport routes and bouldering problems. Available in wide and narrow fits.",
-    "discount_pct": 0.0,
+    "discount_pct": 11.4,
     "downturn": "aggressive",
     "durability": [
       "moderate"
@@ -3143,7 +3143,12 @@
     "heel_rubber_coverage": "full",
     "heel_volume": "narrow",
     "image_url": "/images/shoes/butora-acro-comp.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-acro-comp-A.jpg\", \"label\": \"Lateral\"}",
+      "{\"url\": \"/images/shoes/butora-acro-comp-B.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-acro-comp-C.jpg\", \"label\": \"Medial\"}",
+      "{\"url\": \"/images/shoes/butora-acro-comp-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "kids_friendly": false,
     "mfr_downsize_max_eu": null,
     "mfr_downsize_min_eu": null,
@@ -3307,7 +3312,12 @@
     "heel_rubber_coverage": "partial",
     "heel_volume": "medium",
     "image_url": "/images/shoes/butora-brava.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-brava-A.jpg\", \"label\": \"Lateral\"}",
+      "{\"url\": \"/images/shoes/butora-brava-B.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-brava-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-brava-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "kids_friendly": true,
     "mfr_downsize_max_eu": null,
     "mfr_downsize_min_eu": null,
@@ -3393,7 +3403,12 @@
     "heel_rubber_coverage": "partial",
     "heel_volume": "medium",
     "image_url": "/images/shoes/butora-endeavor.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-endeavor-A.jpg\", \"label\": \"Three-quarter\"}",
+      "{\"url\": \"/images/shoes/butora-endeavor-B.jpg\", \"label\": \"Instep\"}",
+      "{\"url\": \"/images/shoes/butora-endeavor-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-endeavor-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "kids_friendly": false,
     "mfr_downsize_max_eu": null,
     "mfr_downsize_min_eu": null,
@@ -3477,7 +3492,12 @@
     "heel_rubber_coverage": "full",
     "heel_volume": "narrow",
     "image_url": "/images/shoes/butora-gomi.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-gomi-A.jpg\", \"label\": \"Lateral\"}",
+      "{\"url\": \"/images/shoes/butora-gomi-B.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-gomi-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-gomi-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "kids_friendly": false,
     "mfr_downsize_max_eu": null,
     "mfr_downsize_min_eu": null,
@@ -3559,7 +3579,12 @@
     "heel_rubber_coverage": "partial",
     "heel_volume": "medium",
     "image_url": "/images/shoes/butora-komet.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-komet-A.jpg\", \"label\": \"Lateral\"}",
+      "{\"url\": \"/images/shoes/butora-komet-B.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-komet-C.jpg\", \"label\": \"Sole\"}",
+      "{\"url\": \"/images/shoes/butora-komet-D.jpg\", \"label\": \"Medial\"}"
+    ],
     "kids_friendly": false,
     "mfr_downsize_max_eu": null,
     "mfr_downsize_min_eu": null,
@@ -3620,12 +3645,12 @@
     "break_in_period": "minimal",
     "closure": "lace",
     "cons": "[\"Lacing takes longer than velcro between climbs\", \"Not aggressive enough for steep overhangs\"]",
-    "current_price_eur": null,
+    "current_price_eur": 95.0,
     "current_price_url": null,
     "customer_voices": null,
     "data_confidence": {},
     "description": "The Butora Komet Lace is the lace-up variant of the popular Komet, offering enhanced edge control through its TPU-supported lacing system. Italian microfiber upper with knit tongue provides comfort and odor control. The moderately neutral shape and soft NEO rubber make it a versatile all-rounder for both indoor and outdoor climbing.",
-    "discount_pct": 0.0,
+    "discount_pct": 20.8,
     "downturn": "flat",
     "durability": [
       "moderate"
@@ -3787,12 +3812,12 @@
     "break_in_period": "minimal",
     "closure": "slipper",
     "cons": "[\"Not aggressive enough for roof climbing\", \"Slipper entry can be tight for high-volume feet\"]",
-    "current_price_eur": null,
+    "current_price_eur": 99.0,
     "current_price_url": null,
     "customer_voices": null,
     "data_confidence": {},
     "description": "The Butora Nix is a comfortable, slightly downturned slipper with a single strap for easy adjustments. Built on an all-new last with microsuede upper and Neo Fuse rubber, it offers a gentle introduction to more aggressive shoes while maintaining all-day comfort. The wide, high-volume fit accommodates various foot shapes.",
-    "discount_pct": 0.0,
+    "discount_pct": 29.3,
     "downturn": "slight",
     "durability": [
       "moderate"
@@ -3871,12 +3896,12 @@
     "break_in_period": "minimal",
     "closure": "velcro",
     "cons": "[\"Heel cup not ideal for advanced heel-hooking\", \"Not aggressive enough for roof problems\"]",
-    "current_price_eur": null,
+    "current_price_eur": 135.0,
     "current_price_url": null,
     "customer_voices": null,
     "data_confidence": {},
     "description": "The Butora Rubicon is a versatile intermediate climbing shoe with dual velcro straps, a convex molded ABS midsole under the toe box for precision on steep terrain, and heel-to-forefoot tensioning. The split-sole construction balances comfort and performance. Microsuede upper with soft sock-style entry provides comfort out of the box.",
-    "discount_pct": 0.0,
+    "discount_pct": 10.0,
     "downturn": "moderate",
     "durability": [
       "moderate",
@@ -3970,7 +3995,10 @@
     "heel_rubber_coverage": "partial",
     "heel_volume": "medium",
     "image_url": "/images/shoes/butora-sensa.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-sensa-A.jpg\", \"label\": \"Lateral\"}",
+      "{\"url\": \"/images/shoes/butora-sensa-B.jpg\", \"label\": \"Front\"}"
+    ],
     "kids_friendly": false,
     "mfr_downsize_max_eu": null,
     "mfr_downsize_min_eu": null,
@@ -4033,12 +4061,12 @@
     "break_in_period": "minimal",
     "closure": "lace",
     "cons": "[\"Less sensitivity than softer shoes\", \"Not ideal for crack climbing\"]",
-    "current_price_eur": null,
+    "current_price_eur": 145.0,
     "current_price_url": null,
     "customer_voices": null,
     "data_confidence": {},
     "description": "The Butora Sierra is an intermediate lace-up climbing shoe with precise edging capability and a medium-stiff feel. The full-sole ABS injection-molded midsole provides enhanced stability on small holds, while heel-to-forefoot tensioning delivers power and precision. Microsuede upper resists stretching for consistent fit over time.",
-    "discount_pct": 0.0,
+    "discount_pct": 3.3,
     "downturn": "moderate",
     "durability": [
       "moderate",
