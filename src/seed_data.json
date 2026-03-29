@@ -3024,8 +3024,8 @@
     "slug": "butora-acro-comp",
     "image_url": "/images/shoes/butora-acro-comp.jpg",
     "images": null,
-    "forefoot_volume": "standard",
-    "width": "medium",
+    "forefoot_volume": "high",
+    "width": "wide",
     "heel_volume": "narrow",
     "skill_level": [
       "advanced",
@@ -3049,7 +3049,7 @@
       "pocket",
       "smear"
     ],
-    "feel": "moderate-soft",
+    "feel": "soft",
     "price_uvp_eur": 175.0,
     "current_price_eur": 165.0,
     "discount_pct": 5.7,
@@ -3075,8 +3075,8 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 550,
+    "upper_material": "leather/synthetic",
+    "weight_g": 498,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Engineered for boulder and sport, the Acro Comp combines aggressive downturned profile, velcro closure for maximum power transfer. Its stiff-moderate feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for boulder and sport climbing, this shoe excels on technical terrain.",
@@ -3084,7 +3084,7 @@
     "cons": "[\"Not a shoe you want to hike to the crag in\"]",
     "sizing": "Expect minimal stretch. Size true-to-fit for an immediate, secure feel. Synthetic uppers limit stretch but provide durability.",
     "customer_voices": "[\"These are game-changers for overhanging terrain. The aggressive downturn keeps me locked into steep walls.\", \"They fit snug right out of the box with almost no break-in. Perfect if you hate waiting to use new shoes.\", \"Butora really nailed it with this design. Innovative features at a reasonable price point.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
@@ -3105,8 +3105,8 @@
     "slug": "butora-brava",
     "image_url": "/images/shoes/butora-brava.jpg",
     "images": null,
-    "forefoot_volume": "standard",
-    "width": "medium",
+    "forefoot_volume": "low",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "beginner"
@@ -3142,7 +3142,7 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "NEO Fuse 4mm",
+    "rubber_type": "Butyl Butora F5 4mm",
     "rubber_hardness": [
       "medium"
     ],
@@ -3151,7 +3151,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": true,
-    "upper_material": "synthetic",
+    "upper_material": "microfiber",
     "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -3212,7 +3212,7 @@
       "smear",
       "volume"
     ],
-    "feel": "moderate",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 105.0,
     "current_price_eur": 99.0,
     "discount_pct": 5.7,
@@ -3221,7 +3221,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -3234,12 +3234,12 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 545,
+    "upper_material": "leather/synthetic",
+    "weight_g": 500,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Built on Butora's signature performance platform, this Endeavor combines moderate downturned profile, velcro closure for maximum power transfer. Its moderate feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for sport and boulder climbing, this shoe excels on technical terrain.",
@@ -3247,14 +3247,14 @@
     "cons": "[\"Less adaptive than a leather upper over time\"]",
     "sizing": "Half to full size up from street shoe for comfort. Minimal stretch from synthetic upper.",
     "customer_voices": "[\"Great all-around shoe for sport and boulder. Responsive enough for technical moves, comfortable for longer sessions.\", \"They fit snug right out of the box with almost no break-in. Perfect if you hate waiting to use new shoes.\", \"Butora really nailed it with this design. Innovative features at a reasonable price point.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
       "note": "Not verified against weighmyrack.com - fix when error spotted",
       "weight_verified": false
     },
-    "midsole_stiffness": "medium",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "roman"
     ],
@@ -3296,7 +3296,7 @@
       "smear",
       "volume"
     ],
-    "feel": "moderate-soft",
+    "feel": "soft",
     "price_uvp_eur": 150.0,
     "current_price_eur": 145.0,
     "discount_pct": 3.3,
@@ -3321,8 +3321,8 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
-    "weight_g": 520,
+    "upper_material": "leather/synthetic",
+    "weight_g": 454,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Engineered for boulder and sport, the Gomi combines aggressive downturned profile, velcro closure for maximum power transfer. Its moderate-soft feel and standard volume accommodate a range of foot shapes while maintaining support. Ideal for boulder and sport climbing, this shoe excels on technical terrain.",
@@ -3330,7 +3330,7 @@
     "cons": "[\"Aggressive shape is uncomfortable for long wear\"]",
     "sizing": "Expect minimal stretch. Size true-to-fit for an immediate, secure feel. Synthetic uppers limit stretch but provide durability.",
     "customer_voices": "[\"These are game-changers for overhanging terrain. The aggressive downturn keeps me locked into steep walls.\", \"They fit snug right out of the box with almost no break-in. Perfect if you hate waiting to use new shoes.\", \"Butora really nailed it with this design. Innovative features at a reasonable price point.\"]",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -3386,7 +3386,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -3403,7 +3403,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "microfiber",
+    "upper_material": "leather",
     "weight_g": 680,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
@@ -10243,7 +10243,7 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": true
   },
   {
     "brand": "La Sportiva",
@@ -13107,7 +13107,7 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": false
   },
   {
     "brand": "La Sportiva",
@@ -13196,7 +13196,7 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": false
   },
   {
     "brand": "Lowa",
