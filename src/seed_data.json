@@ -20987,7 +20987,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "forefoot",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -21433,7 +21433,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "none",
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": true,
@@ -21453,7 +21453,7 @@
       "weight_source": "weighmyrack.com or official specs",
       "weight_verified": true
     },
-    "midsole_stiffness": "none",
+    "midsole_stiffness": "soft",
     "toe_form": [
       "egyptian"
     ],
@@ -22841,7 +22841,7 @@
     ],
     "rubber_type": "Vibram XS Grip2",
     "rubber_hardness": [
-      "hard"
+      "soft"
     ],
     "rubber_thickness_mm": 3.5,
     "midsole": "half",
@@ -23116,7 +23116,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Vibram XS Grip2",
+    "rubber_type": "Vibram XS Edge / XS Grip2 (heel)",
     "rubber_hardness": [
       "hard"
     ],
@@ -23884,7 +23884,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Vibram XS Edge",
+    "rubber_type": "Vision",
     "rubber_hardness": [
       "medium"
     ],
@@ -24959,7 +24959,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "three_quarter",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -25048,7 +25048,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "three_quarter",
+    "midsole": "half",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -25293,7 +25293,7 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "S72 Rubber 4mm",
+    "rubber_type": "Vision",
     "rubber_hardness": [
       "medium"
     ],
