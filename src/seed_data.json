@@ -75,7 +75,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3879
   },
   {
     "brand": "Andrea Boldrini",
@@ -155,7 +156,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Andrea Boldrini",
@@ -234,7 +236,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4129
   },
   {
     "brand": "Andrea Boldrini",
@@ -316,7 +319,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3207
   },
   {
     "brand": "Andrea Boldrini",
@@ -399,7 +403,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "computed_stiffness": 0.5678
   },
   {
     "brand": "Andrea Boldrini",
@@ -480,7 +485,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5228
   },
   {
     "brand": "Andrea Boldrini",
@@ -560,7 +566,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3214
   },
   {
     "brand": "Andrea Boldrini",
@@ -640,7 +647,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5228
   },
   {
     "brand": "Andrea Boldrini",
@@ -723,7 +731,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5228
   },
   {
     "brand": "Andrea Boldrini",
@@ -802,7 +811,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3214
   },
   {
     "brand": "Andrea Boldrini",
@@ -885,7 +895,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3564
   },
   {
     "brand": "Andrea Boldrini",
@@ -965,7 +976,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3564
   },
   {
     "brand": "Andrea Boldrini",
@@ -1045,7 +1057,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "computed_stiffness": 0.5928
   },
   {
     "brand": "Andrea Boldrini",
@@ -1128,7 +1141,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6957
   },
   {
     "brand": "Black Diamond",
@@ -1210,7 +1224,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7885
   },
   {
     "brand": "Black Diamond",
@@ -1291,7 +1306,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7885
   },
   {
     "brand": "Black Diamond",
@@ -1376,7 +1392,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4414
   },
   {
     "brand": "Black Diamond",
@@ -1460,7 +1477,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2857
   },
   {
     "brand": "Black Diamond",
@@ -1539,7 +1557,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4357
   },
   {
     "brand": "Black Diamond",
@@ -1621,7 +1640,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4357
   },
   {
     "brand": "Black Diamond",
@@ -1700,7 +1720,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3107
   },
   {
     "brand": "Black Diamond",
@@ -1780,7 +1801,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3107
   },
   {
     "brand": "Black Diamond",
@@ -1862,7 +1884,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5228
   },
   {
     "brand": "Black Diamond",
@@ -1943,7 +1966,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4344
   },
   {
     "brand": "Boreal",
@@ -2026,7 +2050,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7285
   },
   {
     "brand": "Boreal",
@@ -2110,7 +2135,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.49
   },
   {
     "brand": "Boreal",
@@ -2193,7 +2219,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7285
   },
   {
     "brand": "Boreal",
@@ -2277,7 +2304,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5078
   },
   {
     "brand": "Boreal",
@@ -2363,7 +2391,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3664
   },
   {
     "brand": "Boreal",
@@ -2448,7 +2477,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Boreal",
@@ -2533,7 +2563,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Boreal",
@@ -2611,7 +2642,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6178
   },
   {
     "brand": "Boreal",
@@ -2693,7 +2725,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Boreal",
@@ -2776,7 +2809,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Boreal",
@@ -2858,7 +2892,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Boreal",
@@ -2938,7 +2973,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7207
   },
   {
     "brand": "Boreal",
@@ -3016,13 +3052,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7285
   },
   {
     "brand": "Butora",
     "model": "Acro",
     "slug": "butora-acro",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-acro.jpg",
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
@@ -3097,7 +3134,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5678
   },
   {
     "brand": "Butora",
@@ -3178,13 +3216,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Butora",
     "model": "Altura",
     "slug": "butora-altura",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-altura.jpg",
     "images": null,
     "forefoot_volume": "high",
     "width": "medium",
@@ -3257,7 +3296,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Butora",
@@ -3336,7 +3376,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3179
   },
   {
     "brand": "Butora",
@@ -3423,7 +3464,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Butora",
@@ -3506,7 +3548,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "Butora",
@@ -3588,13 +3631,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Butora",
     "model": "Komet Lace",
     "slug": "butora-komet-lace",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-komet-lace.jpg",
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
@@ -3665,13 +3709,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3494
   },
   {
     "brand": "Butora",
     "model": "Narsha",
     "slug": "butora-narsha",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-narsha.jpg",
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
@@ -3744,13 +3789,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8435
   },
   {
     "brand": "Butora",
     "model": "Nix",
     "slug": "butora-nix",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-nix.jpg",
     "images": null,
     "forefoot_volume": "high",
     "width": "wide",
@@ -3824,13 +3870,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2857
   },
   {
     "brand": "Butora",
     "model": "Rubicon",
     "slug": "butora-rubicon",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-rubicon.jpg",
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
@@ -3905,7 +3952,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.499
   },
   {
     "brand": "Butora",
@@ -3983,13 +4031,14 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3494
   },
   {
     "brand": "Butora",
     "model": "Sierra",
     "slug": "butora-sierra",
-    "image_url": null,
+    "image_url": "/images/shoes/butora-sierra.jpg",
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
@@ -4063,7 +4112,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Climb X",
@@ -4147,7 +4197,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Climb X",
@@ -4232,7 +4283,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Climb X",
@@ -4317,7 +4369,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Climb X",
@@ -4395,7 +4448,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4129
   },
   {
     "brand": "Climb X",
@@ -4475,7 +4529,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3564
   },
   {
     "brand": "Climb X",
@@ -4554,7 +4609,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5157
   },
   {
     "brand": "Climb X",
@@ -4634,7 +4690,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4094
   },
   {
     "brand": "Climb X",
@@ -4716,7 +4773,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Climb X",
@@ -4798,7 +4856,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Climb X",
@@ -4879,7 +4938,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5157
   },
   {
     "brand": "EB",
@@ -4964,7 +5024,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "EB",
@@ -5050,7 +5111,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5407
   },
   {
     "brand": "EB",
@@ -5136,7 +5198,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8235
   },
   {
     "brand": "EB",
@@ -5217,7 +5280,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5294
   },
   {
     "brand": "EB",
@@ -5306,7 +5370,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5407
   },
   {
     "brand": "EB",
@@ -5391,7 +5456,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5078
   },
   {
     "brand": "EB",
@@ -5476,7 +5542,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5078
   },
   {
     "brand": "EB",
@@ -5552,7 +5619,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4764
   },
   {
     "brand": "EB",
@@ -5633,7 +5701,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2364
   },
   {
     "brand": "EB",
@@ -5717,7 +5786,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6178
   },
   {
     "brand": "EB",
@@ -5802,7 +5872,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8235
   },
   {
     "brand": "Evolv",
@@ -5884,7 +5955,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Evolv",
@@ -5965,7 +6037,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4129
   },
   {
     "brand": "Evolv",
@@ -6049,7 +6122,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Evolv",
@@ -6127,7 +6201,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5157
   },
   {
     "brand": "Evolv",
@@ -6213,7 +6288,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Evolv",
@@ -6296,7 +6372,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Evolv",
@@ -6381,7 +6458,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Evolv",
@@ -6464,7 +6542,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Evolv",
@@ -6549,7 +6628,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.49
   },
   {
     "brand": "Evolv",
@@ -6629,7 +6709,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5707
   },
   {
     "brand": "Evolv",
@@ -6709,7 +6790,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5707
   },
   {
     "brand": "Evolv",
@@ -6793,7 +6875,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Evolv",
@@ -6871,7 +6954,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8235
   },
   {
     "brand": "Evolv",
@@ -6956,7 +7040,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4194
   },
   {
     "brand": "Evolv",
@@ -7038,7 +7123,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4294
   },
   {
     "brand": "Evolv",
@@ -7123,7 +7209,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4194
   },
   {
     "brand": "Evolv",
@@ -7206,7 +7293,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3057
   },
   {
     "brand": "Evolv",
@@ -7284,7 +7372,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3057
   },
   {
     "brand": "Evolv",
@@ -7369,7 +7458,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Evolv",
@@ -7453,7 +7543,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4294
   },
   {
     "brand": "Evolv",
@@ -7535,7 +7626,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4294
   },
   {
     "brand": "Evolv",
@@ -7617,7 +7709,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3179
   },
   {
     "brand": "Evolv",
@@ -7703,7 +7796,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2364
   },
   {
     "brand": "Evolv",
@@ -7788,7 +7882,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2528
   },
   {
     "brand": "Evolv",
@@ -7870,7 +7965,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3057
   },
   {
     "brand": "Five Ten",
@@ -7955,7 +8051,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Five Ten",
@@ -8038,7 +8135,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6257
   },
   {
     "brand": "Five Ten",
@@ -8123,7 +8221,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Five Ten",
@@ -8208,7 +8307,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6207
   },
   {
     "brand": "Five Ten",
@@ -8289,7 +8389,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6957
   },
   {
     "brand": "Five Ten",
@@ -8373,7 +8474,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Five Ten",
@@ -8455,7 +8557,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6207
   },
   {
     "brand": "Five Ten",
@@ -8541,7 +8644,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Five Ten",
@@ -8624,7 +8728,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4014
   },
   {
     "brand": "Five Ten",
@@ -8701,7 +8806,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5157
   },
   {
     "brand": "Five Ten",
@@ -8783,7 +8889,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4907
   },
   {
     "brand": "Five Ten",
@@ -8868,7 +8975,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Five Ten",
@@ -8952,7 +9060,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2964
   },
   {
     "brand": "Five Ten",
@@ -9037,7 +9146,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Five Ten",
@@ -9115,7 +9225,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8235
   },
   {
     "brand": "La Sportiva",
@@ -9203,7 +9314,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -9274,7 +9386,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -9363,7 +9476,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2671
   },
   {
     "brand": "La Sportiva",
@@ -9453,7 +9567,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2671
   },
   {
     "brand": "La Sportiva",
@@ -9542,7 +9657,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3021
   },
   {
     "brand": "La Sportiva",
@@ -9630,7 +9746,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -9721,7 +9838,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -9812,7 +9930,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "computed_stiffness": 0.2806
   },
   {
     "brand": "La Sportiva",
@@ -9900,7 +10019,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -9989,7 +10109,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "computed_stiffness": 0.5607
   },
   {
     "brand": "La Sportiva",
@@ -10077,7 +10198,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1764
   },
   {
     "brand": "La Sportiva",
@@ -10166,7 +10288,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7407
   },
   {
     "brand": "La Sportiva",
@@ -10258,7 +10381,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7157
   },
   {
     "brand": "La Sportiva",
@@ -10350,7 +10474,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7407
   },
   {
     "brand": "La Sportiva",
@@ -10442,7 +10567,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7407
   },
   {
     "brand": "La Sportiva",
@@ -10530,7 +10656,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "La Sportiva",
@@ -10618,7 +10745,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "La Sportiva",
@@ -10708,7 +10836,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "computed_stiffness": 0.4668
   },
   {
     "brand": "La Sportiva",
@@ -10800,7 +10929,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "computed_stiffness": 0.1364
   },
   {
     "brand": "La Sportiva",
@@ -10871,7 +11001,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -10942,7 +11073,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -11034,7 +11166,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6066
   },
   {
     "brand": "La Sportiva",
@@ -11125,7 +11258,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6066
   },
   {
     "brand": "La Sportiva",
@@ -11216,7 +11350,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6066
   },
   {
     "brand": "La Sportiva",
@@ -11305,7 +11440,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6066
   },
   {
     "brand": "La Sportiva",
@@ -11394,7 +11530,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -11469,7 +11606,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -11559,7 +11697,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -11648,7 +11787,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -11737,7 +11877,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.398
   },
   {
     "brand": "La Sportiva",
@@ -11830,7 +11971,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7407
   },
   {
     "brand": "La Sportiva",
@@ -11922,7 +12064,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6107
   },
   {
     "brand": "La Sportiva",
@@ -12012,7 +12155,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2671
   },
   {
     "brand": "La Sportiva",
@@ -12100,7 +12244,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3879
   },
   {
     "brand": "La Sportiva",
@@ -12185,7 +12330,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "La Sportiva",
@@ -12273,7 +12419,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2329
   },
   {
     "brand": "La Sportiva",
@@ -12361,7 +12508,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2329
   },
   {
     "brand": "La Sportiva",
@@ -12453,7 +12601,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3629
   },
   {
     "brand": "La Sportiva",
@@ -12544,7 +12693,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3056
   },
   {
     "brand": "La Sportiva",
@@ -12635,7 +12785,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3056
   },
   {
     "brand": "La Sportiva",
@@ -12725,7 +12876,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.398
   },
   {
     "brand": "La Sportiva",
@@ -12818,7 +12970,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3056
   },
   {
     "brand": "La Sportiva",
@@ -12904,7 +13057,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2264
   },
   {
     "brand": "La Sportiva",
@@ -12991,7 +13145,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -13063,7 +13218,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -13152,7 +13308,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -13241,7 +13398,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -13329,7 +13487,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6507
   },
   {
     "brand": "La Sportiva",
@@ -13417,7 +13576,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "La Sportiva",
@@ -13490,7 +13650,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5407
   },
   {
     "brand": "La Sportiva",
@@ -13578,7 +13739,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "La Sportiva",
@@ -13664,7 +13826,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1864
   },
   {
     "brand": "La Sportiva",
@@ -13753,7 +13916,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1864
   },
   {
     "brand": "Lowa",
@@ -13836,7 +14000,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Lowa",
@@ -13921,7 +14086,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Lowa",
@@ -14001,7 +14167,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2857
   },
   {
     "brand": "Lowa",
@@ -14079,7 +14246,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2607
   },
   {
     "brand": "Lowa",
@@ -14162,7 +14330,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6207
   },
   {
     "brand": "Lowa",
@@ -14244,7 +14413,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3057
   },
   {
     "brand": "Lowa",
@@ -14326,7 +14496,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2714
   },
   {
     "brand": "Lowa",
@@ -14411,7 +14582,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Lowa",
@@ -14490,7 +14662,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Mad Rock",
@@ -14583,7 +14756,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5428
   },
   {
     "brand": "Mad Rock",
@@ -14676,7 +14850,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5428
   },
   {
     "brand": "Mad Rock",
@@ -14766,7 +14941,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7835
   },
   {
     "brand": "Mad Rock",
@@ -14856,7 +15032,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7835
   },
   {
     "brand": "Mad Rock",
@@ -14946,7 +15123,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5428
   },
   {
     "brand": "Mad Rock",
@@ -15035,7 +15213,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5428
   },
   {
     "brand": "Mad Rock",
@@ -15119,7 +15298,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4478
   },
   {
     "brand": "Mad Rock",
@@ -15208,7 +15388,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Mad Rock",
@@ -15296,7 +15477,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2714
   },
   {
     "brand": "Mad Rock",
@@ -15384,7 +15566,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2014
   },
   {
     "brand": "Mad Rock",
@@ -15472,7 +15655,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2014
   },
   {
     "brand": "Mad Rock",
@@ -15562,7 +15746,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3378
   },
   {
     "brand": "Mad Rock",
@@ -15655,7 +15840,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3378
   },
   {
     "brand": "Mad Rock",
@@ -15744,7 +15930,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Mad Rock",
@@ -15835,7 +16022,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.424
   },
   {
     "brand": "Mad Rock",
@@ -15925,7 +16113,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.424
   },
   {
     "brand": "Mad Rock",
@@ -16011,7 +16200,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5757
   },
   {
     "brand": "Mad Rock",
@@ -16097,7 +16287,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5757
   },
   {
     "brand": "Mad Rock",
@@ -16189,7 +16380,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7485
   },
   {
     "brand": "Millet",
@@ -16268,7 +16460,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4129
   },
   {
     "brand": "Millet",
@@ -16349,7 +16542,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "Millet",
@@ -16433,7 +16627,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "Millet",
@@ -16517,7 +16712,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "Ocun",
@@ -16601,7 +16797,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Ocun",
@@ -16691,7 +16888,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Ocun",
@@ -16782,7 +16980,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2778
   },
   {
     "brand": "Ocun",
@@ -16871,7 +17070,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.439
   },
   {
     "brand": "Ocun",
@@ -16959,7 +17159,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2778
   },
   {
     "brand": "Ocun",
@@ -17047,7 +17248,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2078
   },
   {
     "brand": "Ocun",
@@ -17134,7 +17336,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2778
   },
   {
     "brand": "Ocun",
@@ -17220,7 +17423,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6257
   },
   {
     "brand": "Ocun",
@@ -17310,7 +17514,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Ocun",
@@ -17398,7 +17603,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Ocun",
@@ -17481,7 +17687,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Ocun",
@@ -17566,7 +17773,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.499
   },
   {
     "brand": "Ocun",
@@ -17657,7 +17865,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.499
   },
   {
     "brand": "Ocun",
@@ -17748,7 +17957,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.499
   },
   {
     "brand": "Ocun",
@@ -17828,7 +18038,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4378
   },
   {
     "brand": "Ocun",
@@ -17913,7 +18124,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "Ocun",
@@ -17991,7 +18203,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Ocun",
@@ -18072,7 +18285,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1907
   },
   {
     "brand": "Ocun",
@@ -18157,7 +18371,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5768
   },
   {
     "brand": "Ocun",
@@ -18239,7 +18454,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4378
   },
   {
     "brand": "Ocun",
@@ -18321,7 +18537,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4978
   },
   {
     "brand": "Red Chili",
@@ -18387,7 +18604,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5657
   },
   {
     "brand": "Red Chili",
@@ -18474,7 +18692,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5407
   },
   {
     "brand": "Red Chili",
@@ -18540,7 +18759,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2607
   },
   {
     "brand": "Red Chili",
@@ -18606,7 +18826,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5407
   },
   {
     "brand": "Red Chili",
@@ -18695,7 +18916,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4194
   },
   {
     "brand": "Red Chili",
@@ -18758,7 +18980,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3494
   },
   {
     "brand": "Red Chili",
@@ -18845,7 +19068,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3494
   },
   {
     "brand": "Red Chili",
@@ -18909,7 +19133,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3494
   },
   {
     "brand": "Red Chili",
@@ -18975,7 +19200,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3494
   },
   {
     "brand": "Red Chili",
@@ -19062,7 +19288,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3944
   },
   {
     "brand": "Red Chili",
@@ -19125,7 +19352,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2464
   },
   {
     "brand": "Red Chili",
@@ -19187,7 +19415,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2714
   },
   {
     "brand": "Red Chili",
@@ -19250,7 +19479,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5907
   },
   {
     "brand": "Red Chili",
@@ -19316,7 +19546,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2957
   },
   {
     "brand": "Red Chili",
@@ -19379,7 +19610,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5657
   },
   {
     "brand": "Red Chili",
@@ -19440,7 +19672,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5657
   },
   {
     "brand": "Red Chili",
@@ -19504,7 +19737,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5928
   },
   {
     "brand": "Red Chili",
@@ -19567,7 +19801,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6257
   },
   {
     "brand": "Red Chili",
@@ -19651,7 +19886,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6257
   },
   {
     "brand": "Red Chili",
@@ -19717,7 +19953,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6257
   },
   {
     "brand": "Red Chili",
@@ -19804,7 +20041,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6257
   },
   {
     "brand": "Red Chili",
@@ -19894,7 +20132,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4194
   },
   {
     "brand": "Red Chili",
@@ -19984,7 +20223,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4194
   },
   {
     "brand": "Red Chili",
@@ -20050,7 +20290,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4194
   },
   {
     "brand": "Red Chili",
@@ -20137,7 +20378,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2913
   },
   {
     "brand": "Saltic",
@@ -20221,7 +20463,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Saltic",
@@ -20305,7 +20548,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Saltic",
@@ -20383,7 +20627,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1164
   },
   {
     "brand": "Saltic",
@@ -20469,7 +20714,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Saltic",
@@ -20557,7 +20803,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Saltic",
@@ -20642,7 +20889,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2114
   },
   {
     "brand": "Saltic",
@@ -20725,7 +20973,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.48
   },
   {
     "brand": "Saltic",
@@ -20806,7 +21055,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4907
   },
   {
     "brand": "Saltic",
@@ -20884,7 +21134,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1664
   },
   {
     "brand": "Saltic",
@@ -20970,7 +21221,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Saltic",
@@ -21048,7 +21300,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3307
   },
   {
     "brand": "Saltic",
@@ -21134,7 +21387,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5678
   },
   {
     "brand": "Saltic",
@@ -21217,7 +21471,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3564
   },
   {
     "brand": "Saltic",
@@ -21300,7 +21555,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5678
   },
   {
     "brand": "Scarpa",
@@ -21391,7 +21647,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4057
   },
   {
     "brand": "Scarpa",
@@ -21482,7 +21739,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4057
   },
   {
     "brand": "Scarpa",
@@ -21573,7 +21831,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3342
   },
   {
     "brand": "Scarpa",
@@ -21665,7 +21924,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6066
   },
   {
     "brand": "Scarpa",
@@ -21754,7 +22014,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6378
   },
   {
     "brand": "Scarpa",
@@ -21846,7 +22107,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3342
   },
   {
     "brand": "Scarpa",
@@ -21938,7 +22200,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2528
   },
   {
     "brand": "Scarpa",
@@ -22019,7 +22282,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3029
   },
   {
     "brand": "Scarpa",
@@ -22108,7 +22372,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2528
   },
   {
     "brand": "Scarpa",
@@ -22197,7 +22462,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2528
   },
   {
     "brand": "Scarpa",
@@ -22286,7 +22552,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3942
   },
   {
     "brand": "Scarpa",
@@ -22368,7 +22635,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3492
   },
   {
     "brand": "Scarpa",
@@ -22456,7 +22724,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3942
   },
   {
     "brand": "Scarpa",
@@ -22548,7 +22817,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2278
   },
   {
     "brand": "Scarpa",
@@ -22632,7 +22902,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2114
   },
   {
     "brand": "Scarpa",
@@ -22718,7 +22989,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Scarpa",
@@ -22806,7 +23078,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Scarpa",
@@ -22892,7 +23165,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Scarpa",
@@ -22978,7 +23252,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Scarpa",
@@ -23071,7 +23346,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5143
   },
   {
     "brand": "Scarpa",
@@ -23162,7 +23438,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Scarpa",
@@ -23247,7 +23524,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Scarpa",
@@ -23337,7 +23615,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4857
   },
   {
     "brand": "Scarpa",
@@ -23430,7 +23709,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Scarpa",
@@ -23523,7 +23803,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Scarpa",
@@ -23614,7 +23895,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Scarpa",
@@ -23704,7 +23986,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5143
   },
   {
     "brand": "Scarpa",
@@ -23784,7 +24067,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Scarpa",
@@ -23866,7 +24150,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Scarpa",
@@ -23946,7 +24231,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Scarpa",
@@ -24028,7 +24314,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Scarpa",
@@ -24121,7 +24408,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3342
   },
   {
     "brand": "Scarpa",
@@ -24211,7 +24499,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4683
   },
   {
     "brand": "Scarpa",
@@ -24298,7 +24587,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4755
   },
   {
     "brand": "Scarpa",
@@ -24385,7 +24675,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5005
   },
   {
     "brand": "Scarpa",
@@ -24475,7 +24766,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4683
   },
   {
     "brand": "Scarpa",
@@ -24557,7 +24849,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3807
   },
   {
     "brand": "Scarpa",
@@ -24647,7 +24940,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Scarpa",
@@ -24735,7 +25029,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Scarpa",
@@ -24825,7 +25120,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7157
   },
   {
     "brand": "Scarpa",
@@ -24916,7 +25212,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4828
   },
   {
     "brand": "Scarpa",
@@ -25006,7 +25303,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4057
   },
   {
     "brand": "Scarpa",
@@ -25096,7 +25394,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4057
   },
   {
     "brand": "Scarpa",
@@ -25189,7 +25488,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6128
   },
   {
     "brand": "Scarpa",
@@ -25274,7 +25574,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6128
   },
   {
     "brand": "Scarpa",
@@ -25364,7 +25665,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7157
   },
   {
     "brand": "Scarpa",
@@ -25453,7 +25755,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3592
   },
   {
     "brand": "Scarpa",
@@ -25542,7 +25845,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.439
   },
   {
     "brand": "Scarpa",
@@ -25631,7 +25935,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.439
   },
   {
     "brand": "Scarpa",
@@ -25720,7 +26025,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3592
   },
   {
     "brand": "Scarpa",
@@ -25802,7 +26108,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7035
   },
   {
     "brand": "Scarpa",
@@ -25884,7 +26191,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7035
   },
   {
     "brand": "Simond",
@@ -25964,7 +26272,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Simond",
@@ -26043,7 +26352,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7035
   },
   {
     "brand": "Simond",
@@ -26119,7 +26429,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6007
   },
   {
     "brand": "Simond",
@@ -26202,7 +26513,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "So iLL",
@@ -26290,7 +26602,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4157
   },
   {
     "brand": "So iLL",
@@ -26379,7 +26692,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4828
   },
   {
     "brand": "So iLL",
@@ -26463,7 +26777,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3264
   },
   {
     "brand": "So iLL",
@@ -26551,7 +26866,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.344
   },
   {
     "brand": "So iLL",
@@ -26640,7 +26956,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1414
   },
   {
     "brand": "So iLL",
@@ -26729,7 +27046,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5507
   },
   {
     "brand": "So iLL",
@@ -26817,7 +27135,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.319
   },
   {
     "brand": "So iLL",
@@ -26905,7 +27224,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.319
   },
   {
     "brand": "So iLL",
@@ -26994,7 +27314,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5507
   },
   {
     "brand": "So iLL",
@@ -27079,7 +27400,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2392
   },
   {
     "brand": "So iLL",
@@ -27167,7 +27489,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2392
   },
   {
     "brand": "So iLL",
@@ -27255,7 +27578,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4218
   },
   {
     "brand": "So iLL",
@@ -27343,7 +27667,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3833
   },
   {
     "brand": "Tenaya",
@@ -27430,7 +27755,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4207
   },
   {
     "brand": "Tenaya",
@@ -27520,7 +27846,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4828
   },
   {
     "brand": "Tenaya",
@@ -27609,7 +27936,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.414
   },
   {
     "brand": "Tenaya",
@@ -27693,7 +28021,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3607
   },
   {
     "brand": "Tenaya",
@@ -27785,7 +28114,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6107
   },
   {
     "brand": "Tenaya",
@@ -27873,7 +28203,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.414
   },
   {
     "brand": "Tenaya",
@@ -27962,7 +28293,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Tenaya",
@@ -28054,7 +28386,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Tenaya",
@@ -28146,7 +28479,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3557
   },
   {
     "brand": "Tenaya",
@@ -28236,7 +28570,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5078
   },
   {
     "brand": "Tenaya",
@@ -28326,7 +28661,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5078
   },
   {
     "brand": "Tenaya",
@@ -28413,7 +28749,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4207
   },
   {
     "brand": "Tenaya",
@@ -28499,7 +28836,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4207
   },
   {
     "brand": "Tenaya",
@@ -28590,7 +28928,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.414
   },
   {
     "brand": "Tenaya",
@@ -28680,7 +29019,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4307
   },
   {
     "brand": "Tulson Tolf",
@@ -28763,7 +29103,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4978
   },
   {
     "brand": "Tulson Tolf",
@@ -28847,7 +29188,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Tulson Tolf",
@@ -28926,7 +29268,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Tulson Tolf",
@@ -29006,7 +29349,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3564
   },
   {
     "brand": "Tulson Tolf",
@@ -29089,7 +29433,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3564
   },
   {
     "brand": "Tulson Tolf",
@@ -29169,7 +29514,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1264
   },
   {
     "brand": "Tulson Tolf",
@@ -29252,7 +29598,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.1264
   },
   {
     "brand": "Tulson Tolf",
@@ -29331,7 +29678,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2264
   },
   {
     "brand": "Tulson Tolf",
@@ -29413,7 +29761,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2857
   },
   {
     "brand": "Tulson Tolf",
@@ -29495,7 +29844,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Tulson Tolf",
@@ -29575,7 +29925,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Tulson Tolf",
@@ -29658,7 +30009,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Tulson Tolf",
@@ -29737,7 +30089,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Tulson Tolf",
@@ -29814,7 +30167,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4978
   },
   {
     "brand": "Unparallel",
@@ -29904,7 +30258,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5078
   },
   {
     "brand": "Unparallel",
@@ -29994,7 +30349,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4728
   },
   {
     "brand": "Unparallel",
@@ -30084,7 +30440,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4728
   },
   {
     "brand": "Unparallel",
@@ -30175,7 +30532,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4766
   },
   {
     "brand": "Unparallel",
@@ -30266,7 +30624,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4766
   },
   {
     "brand": "Unparallel",
@@ -30352,7 +30711,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5857
   },
   {
     "brand": "Unparallel",
@@ -30418,7 +30778,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2014
   },
   {
     "brand": "Unparallel",
@@ -30508,7 +30869,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2778
   },
   {
     "brand": "Unparallel",
@@ -30595,7 +30957,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8185
   },
   {
     "brand": "Unparallel",
@@ -30667,7 +31030,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7157
   },
   {
     "brand": "Unparallel",
@@ -30741,7 +31105,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6457
   },
   {
     "brand": "Unparallel",
@@ -30814,7 +31179,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7507
   },
   {
     "brand": "Unparallel",
@@ -30887,7 +31253,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7157
   },
   {
     "brand": "Unparallel",
@@ -30978,7 +31345,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.8535
   },
   {
     "brand": "Unparallel",
@@ -31069,7 +31437,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7507
   },
   {
     "brand": "Unparallel",
@@ -31161,7 +31530,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4828
   },
   {
     "brand": "Unparallel",
@@ -31253,7 +31623,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4828
   },
   {
     "brand": "Unparallel",
@@ -31341,7 +31712,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3057
   },
   {
     "brand": "Unparallel",
@@ -31416,7 +31788,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5778
   },
   {
     "brand": "Unparallel",
@@ -31503,7 +31876,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7507
   },
   {
     "brand": "Unparallel",
@@ -31590,7 +31964,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7507
   },
   {
     "brand": "Unparallel",
@@ -31681,7 +32056,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6807
   },
   {
     "brand": "Unparallel",
@@ -31753,7 +32129,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5778
   },
   {
     "brand": "Unparallel",
@@ -31843,7 +32220,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5857
   },
   {
     "brand": "Unparallel",
@@ -31908,7 +32286,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4728
   },
   {
     "brand": "Unparallel",
@@ -31996,7 +32375,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6807
   },
   {
     "brand": "Unparallel",
@@ -32084,7 +32464,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6457
   },
   {
     "brand": "Unparallel",
@@ -32155,7 +32536,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6807
   },
   {
     "brand": "Unparallel",
@@ -32241,7 +32623,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.3279
   },
   {
     "brand": "Unparallel",
@@ -32312,7 +32695,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7157
   },
   {
     "brand": "Unparallel",
@@ -32405,7 +32789,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.7735
   },
   {
     "brand": "Unparallel",
@@ -32497,7 +32882,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5778
   },
   {
     "brand": "Unparallel",
@@ -32589,7 +32975,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.5428
   },
   {
     "brand": "Unparallel",
@@ -32661,7 +33048,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6457
   },
   {
     "brand": "Unparallel",
@@ -32733,7 +33121,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6457
   },
   {
     "brand": "Unparallel",
@@ -32821,7 +33210,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4128
   },
   {
     "brand": "Unparallel",
@@ -32908,7 +33298,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4057
   },
   {
     "brand": "Wild Climb",
@@ -32990,7 +33381,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   },
   {
     "brand": "Wild Climb",
@@ -33073,7 +33465,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4207
   },
   {
     "brand": "Wild Climb",
@@ -33153,7 +33546,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2964
   },
   {
     "brand": "Wild Climb",
@@ -33230,7 +33624,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.2964
   },
   {
     "brand": "Wild Climb",
@@ -33307,7 +33702,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.6707
   },
   {
     "brand": "Wild Climb",
@@ -33389,7 +33785,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Wild Climb",
@@ -33471,7 +33868,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4794
   },
   {
     "brand": "Wild Climb",
@@ -33552,7 +33950,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.55
   },
   {
     "brand": "Wild Climb",
@@ -33631,6 +34030,7 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "computed_stiffness": 0.4264
   }
 ]
