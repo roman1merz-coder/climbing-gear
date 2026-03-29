@@ -873,15 +873,19 @@ def get_categorized_candidates(profile: dict) -> dict:
         elif diff > STIFF_FAR:
             stiffer.append(c)
 
-    # Budget: fit candidates sorted by price, but with a stiffness guardrail.
-    # Exclude shoes whose stiffness is more than 0.25 away from the user's
-    # average - a shoe at double the stiffness is not a useful budget pick
-    # even if it's cheap.
+    # Budget: fit candidates sorted by price, with guardrails:
+    # 1. Stiffness: max 0.25 distance from user average
+    # 2. Minimum score: budget picks must actually address fit issues,
+    #    not just be cheap. Use median score of baseline picks as reference -
+    #    budget shoes should score at least half as well as a baseline pick.
     BUDGET_STIFF_MAX_DIST = 0.25
+    baseline_scores = [c["_score"] for c in baseline] if baseline else [0]
+    budget_min_score = max(3, min(baseline_scores) // 2)
     priced = [
         c for c in fit_candidates
         if c.get("_best_price_eur") is not None
         and abs(c["_computed_stiffness"] - avg_stiffness) <= BUDGET_STIFF_MAX_DIST
+        and c["_score"] >= budget_min_score
     ]
     priced.sort(key=lambda x: x["_best_price_eur"])
 
