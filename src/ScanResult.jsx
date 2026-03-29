@@ -75,7 +75,7 @@ function MetricBar({ ratioKey, value }) {
 }
 
 // ── Shoe recommendation card ─────────────────────────────────
-function ShoeCard({ slug, brand, model, why, whyFit, whyStiffness, imageUrl, recommendedSize, sizeNote, bestOffer }) {
+function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote, bestOffer }) {
   return (
     <div style={{
       background: T.card, border: `1px solid #eee8dc`, borderRadius: 12,
@@ -123,17 +123,7 @@ function ShoeCard({ slug, brand, model, why, whyFit, whyStiffness, imageUrl, rec
               {sizeNote}
             </div>
           )}
-          {/* Split why text: fit first, then stiffness/price comparison */}
-          {whyFit ? (
-            <>
-              <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{whyFit}</div>
-              {whyStiffness && (
-                <div style={{ fontSize: "0.7rem", color: "#8a8272", lineHeight: 1.5, marginTop: "0.25rem", fontStyle: "italic" }}>{whyStiffness}</div>
-              )}
-            </>
-          ) : (
-            <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
-          )}
+          <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
           <div style={{
             marginTop: "0.6rem", padding: "0.45rem 0", textAlign: "center",
             fontSize: "0.75rem", fontWeight: 600, color: T.accent,
@@ -302,7 +292,8 @@ export default function ScanResult({ shoes }) {
           {Array.isArray(s.interpretation)
             ? s.interpretation.map((block, i) => {
                 const isFootShape = block.title && block.title.toLowerCase().includes("foot shape");
-                const hasHallux = isFootShape && block.paragraphs.some(p => p.toLowerCase().includes("hallux"));
+                const showHalluxGraphic = isFootShape
+                  && s.hallux_valgus_class && s.hallux_valgus_class !== "normal";
                 return (
                   <div key={i} style={{ marginBottom: "1.2rem" }}>
                     <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: "0 0 0.3rem", textTransform: "uppercase", letterSpacing: "0.03em" }}>
@@ -311,7 +302,7 @@ export default function ScanResult({ shoes }) {
                     {block.paragraphs.map((p, j) => (
                       <p key={j} style={{ fontSize: "0.82rem", color: "#4a4538", lineHeight: 1.55, margin: j > 0 ? "0.4rem 0 0" : 0 }}>{p}</p>
                     ))}
-                    {hasHallux && (
+                    {showHalluxGraphic && (
                       <img
                         src={`${SUPABASE_URL}/storage/v1/object/public/foot-scans/assets/hallux-valgus-toebox.jpg`}
                         alt="Toe box fit with hallux valgus: too pointed, perfect, and too centered"
@@ -372,7 +363,7 @@ export default function ScanResult({ shoes }) {
                   {g.shoes.map((r) => {
                     const brand = r.brand || slugToBrand(r.slug);
                     const model = r.model || slugToModel(r.slug);
-                    const why = r.why || r.reason || "";
+                    const why = r.why || r.why_fit || r.reason || "";
                     return (
                       <ShoeCard
                         key={r.slug}
@@ -380,8 +371,6 @@ export default function ScanResult({ shoes }) {
                         brand={brand}
                         model={model}
                         why={why}
-                        whyFit={r.why_fit}
-                        whyStiffness={r.why_stiffness}
                         imageUrl={r.image_url}
                         recommendedSize={r.recommended_size_eu}
                         sizeNote={r.size_note}
