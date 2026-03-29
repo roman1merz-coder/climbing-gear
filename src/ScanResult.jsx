@@ -75,7 +75,7 @@ function MetricBar({ ratioKey, value }) {
 }
 
 // ── Shoe recommendation card ─────────────────────────────────
-function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote, bestOffer }) {
+function ShoeCard({ slug, brand, model, why, whyFit, whyStiffness, imageUrl, recommendedSize, sizeNote, bestOffer }) {
   return (
     <div style={{
       background: T.card, border: `1px solid #eee8dc`, borderRadius: 12,
@@ -123,7 +123,17 @@ function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote
               {sizeNote}
             </div>
           )}
-          <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
+          {/* Split why text: fit first, then stiffness/price comparison */}
+          {whyFit ? (
+            <>
+              <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{whyFit}</div>
+              {whyStiffness && (
+                <div style={{ fontSize: "0.7rem", color: "#8a8272", lineHeight: 1.5, marginTop: "0.25rem", fontStyle: "italic" }}>{whyStiffness}</div>
+              )}
+            </>
+          ) : (
+            <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
+          )}
           <div style={{
             marginTop: "0.6rem", padding: "0.45rem 0", textAlign: "center",
             fontSize: "0.75rem", fontWeight: 600, color: T.accent,
@@ -326,36 +336,65 @@ export default function ScanResult({ shoes }) {
       )}
 
       {/* ── Shoe Recommendations ── */}
-      {recommendations.length > 0 && (
-        <div style={{ marginTop: "1.5rem" }}>
-          <h2 style={{ fontFamily: T.display, fontSize: "1.3rem", color: T.text, margin: "0 0 1rem" }}>Recommended Shoes</h2>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: "1rem",
-          }}>
-            {recommendations.map((r) => {
-              // Curated recs have brand/model/why directly; dynamic ones have them from shoe DB
-              const brand = r.brand || slugToBrand(r.slug);
-              const model = r.model || slugToModel(r.slug);
-              const why = r.why || r.reason || "";
-              return (
-                <ShoeCard
-                  key={r.slug}
-                  slug={r.slug}
-                  brand={brand}
-                  model={model}
-                  why={why}
-                  imageUrl={r.image_url}
-                  recommendedSize={r.recommended_size_eu}
-                  sizeNote={r.size_note}
-                  bestOffer={r.best_offer}
-                />
-              );
-            })}
+      {recommendations.length > 0 && (() => {
+        // Group recommendations by category (new format) or show flat list (legacy)
+        const CATEGORY_META = {
+          baseline: { label: "Your Best Match", desc: "Similar feel to your current shoes" },
+          softer: { label: "Softer Feel", desc: "More sensitivity and smearing" },
+          stiffer: { label: "Stiffer Feel", desc: "More support and edging power" },
+          budget: { label: "Best Value", desc: "Affordable picks that address your fit" },
+        };
+        const hasCats = recommendations.some((r) => r.category);
+        const groups = hasCats
+          ? ["baseline", "softer", "stiffer", "budget"].map((cat) => ({
+              cat,
+              ...CATEGORY_META[cat],
+              shoes: recommendations.filter((r) => r.category === cat),
+            })).filter((g) => g.shoes.length > 0)
+          : [{ cat: "all", label: "Recommended Shoes", desc: "", shoes: recommendations }];
+
+        return (
+          <div style={{ marginTop: "1.5rem" }}>
+            <h2 style={{ fontFamily: T.display, fontSize: "1.3rem", color: T.text, margin: "0 0 1rem" }}>Recommended Shoes</h2>
+            {groups.map((g) => (
+              <div key={g.cat} style={{ marginBottom: "1.5rem" }}>
+                {hasCats && (
+                  <div style={{ margin: "0 0 0.6rem" }}>
+                    <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: 0, textTransform: "uppercase", letterSpacing: "0.03em" }}>{g.label}</h3>
+                    {g.desc && <p style={{ fontSize: "0.72rem", color: T.muted, margin: "0.15rem 0 0" }}>{g.desc}</p>}
+                  </div>
+                )}
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fill, minmax(260px, 1fr))",
+                  gap: "1rem",
+                }}>
+                  {g.shoes.map((r) => {
+                    const brand = r.brand || slugToBrand(r.slug);
+                    const model = r.model || slugToModel(r.slug);
+                    const why = r.why || r.reason || "";
+                    return (
+                      <ShoeCard
+                        key={r.slug}
+                        slug={r.slug}
+                        brand={brand}
+                        model={model}
+                        why={why}
+                        whyFit={r.why_fit}
+                        whyStiffness={r.why_stiffness}
+                        imageUrl={r.image_url}
+                        recommendedSize={r.recommended_size_eu}
+                        sizeNote={r.size_note}
+                        bestOffer={r.best_offer}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* ── CTAs ── */}
       <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: "1.25rem", marginTop: "1.5rem" }}>
