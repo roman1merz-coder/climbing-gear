@@ -418,26 +418,6 @@ function PerformanceDNA({ shoe, compact }) {
   );
 }
 
-// ─── Customer Voices ───
-function CustomerVoices({ shoe, stacked }) {
-  const voices = ensureArray(shoe.customer_voices).slice(0, 4);
-  if (!voices.length) return null;
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: stacked ? "1fr" : "1fr 1fr", gap: "14px" }}>
-      {voices.map((v, i) => {
-        const text = typeof v === "object" && v !== null ? v.text : v;
-        return (
-          <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
-            onMouseOver={e => e.currentTarget.style.borderColor = "rgba(201,138,66,0.25)"}
-            onMouseOut={e => e.currentTarget.style.borderColor = T.border}>
-            <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>{"\u201C"}</div>
-            <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{text}</div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
 // ─── Image Gallery ───
 function ImageGallery({ shoe, compact }) {
@@ -1257,10 +1237,6 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
             {isMobile && <PerformanceRadar shoe={shoe} allShoes={shoes} />}
             <PerformanceDNA shoe={shoe} compact={isMobile} />
 
-            {/* Full-width: Customer Voices - hidden until content is improved
-            <SectionHeader icon={"\uD83D\uDCAC"} title="What Climbers Say" subtitle="Real feedback from verified climbers" compact={isMobile} />
-            <CustomerVoices shoe={shoe} stacked={isMobile} />
-            */}
           </div>
         )}
 

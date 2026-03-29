@@ -458,22 +458,6 @@ export default function BelayDetail({ belays = [], priceData = {} }) {
               </Section>
             )}
 
-            {/* What Climbers Say - hidden until content is improved
-            {d.customer_voices?.length > 0 && (
-              <Section title="What Climbers Say">
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "14px" }}>
-                  {d.customer_voices.slice(0, 4).map((v, i) => (
-                    <div key={i} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: "22px", transition: "border-color 0.2s" }}
-                      onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(201,138,66,0.25)"}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = T.border}>
-                      <div style={{ fontSize: "28px", color: T.accent, opacity: 0.3, fontFamily: "Georgia, serif", lineHeight: 1, marginBottom: "6px" }}>"</div>
-                      <div style={{ fontSize: "13px", color: T.text, lineHeight: 1.7, fontStyle: "italic", opacity: 0.9 }}>{typeof v === "object" ? v.text : v}</div>
-                    </div>
-                  ))}
-                </div>
-              </Section>
-            )}
-            */}
 
 
           </div>

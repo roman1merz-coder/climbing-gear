@@ -22,7 +22,7 @@ function bestMatchScore(shoe) {
     score += Math.min(20, Math.max(0, discountPct * 60));
   }
   const hasImage = shoe.image_url && shoe.image_url.startsWith("/images/");
-  const hasReviews = Array.isArray(shoe.customer_voices) && shoe.customer_voices.length > 0;
+  const hasReviews = false; // customer_voices removed; review data lives in shoe_reviews table
   const hasDescription = shoe.description && shoe.description.length > 50;
   const hasSpecs = shoe.rubber_compound || shoe.rubber_manufacturer;
   score += (hasImage ? 5 : 0) + (hasReviews ? 5 : 0) + (hasDescription ? 5 : 0) + (hasSpecs ? 5 : 0);
