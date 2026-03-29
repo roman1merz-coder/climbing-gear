@@ -12160,7 +12160,7 @@
     "no_edge": false,
     "price_uvp_eur": 180.0,
     "pros": "[\"Vegan with no performance compromise\", \"Sticky XS Grip2 rubber\", \"P3 System holds shape\", \"Aggressive for steep climbing\", \"Downturned shape generates torque on small footholds\"]",
-    "rand": "relaxed",
+    "rand": "tensioned",
     "resoleable": true,
     "rubber_hardness": [
       "soft"
@@ -12247,7 +12247,7 @@
     "no_edge": false,
     "price_uvp_eur": 180.0,
     "pros": "[\"Aggressive performance without any animal products\", \"Women's-specific last with narrower heel and forefoot\", \"S-Heel system provides excellent heel hooking power and sensitivity\", \"Steep profile excels on overhanging routes\", \"Built to accept new rubber when the time comes\"]",
-    "rand": "relaxed",
+    "rand": "tensioned",
     "resoleable": true,
     "rubber_hardness": [
       "soft"
@@ -15413,9 +15413,9 @@
     "rand": "tensioned",
     "resoleable": false,
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 3.0,
     "rubber_type": "Science Friction 3.0 (sole) / Xtreme Friction (toe patch) / Science Friction R2 (heel rand)",
     "size_range": null,
     "sizing": "Size up half a size as synthetic uppers will stretch with climbing. Best for wide feet and those seeking roomy, all-day comfort.",
@@ -15505,9 +15505,9 @@
     "rand": "tensioned",
     "resoleable": false,
     "rubber_hardness": [
-      "medium"
+      "soft"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 3.0,
     "rubber_type": "Science Friction 3.0 (sole) / Xtreme Friction (toe patch) / Science Friction R2 (heel rand)",
     "size_range": null,
     "sizing": "Size up half a size as synthetic uppers will stretch with climbing. Ideal for narrow feet and climbers preferring snug fits.",
@@ -24292,7 +24292,7 @@
     "mfr_toe_box": null,
     "mfr_volume": null,
     "midsole": "half",
-    "midsole_stiffness": "medium_soft",
+    "midsole_stiffness": "medium_hard",
     "model": "Quantix SF",
     "no_edge": false,
     "price_uvp_eur": 159.0,
