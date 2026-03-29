@@ -3060,7 +3060,12 @@
     "model": "Acro",
     "slug": "butora-acro",
     "image_url": "/images/shoes/butora-acro.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-acro-A.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-acro-B.jpg\", \"label\": \"Inside\"}",
+      "{\"url\": \"/images/shoes/butora-acro-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-acro-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "narrow",
@@ -3224,7 +3229,12 @@
     "model": "Altura",
     "slug": "butora-altura",
     "image_url": "/images/shoes/butora-altura.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-altura-A.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-altura-B.jpg\", \"label\": \"Inside\"}",
+      "{\"url\": \"/images/shoes/butora-altura-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-altura-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "forefoot_volume": "high",
     "width": "medium",
     "heel_volume": "medium",
@@ -3639,7 +3649,12 @@
     "model": "Komet Lace",
     "slug": "butora-komet-lace",
     "image_url": "/images/shoes/butora-komet-lace.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-komet-lace-A.jpg\", \"label\": \"Inside\"}",
+      "{\"url\": \"/images/shoes/butora-komet-lace-B.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-komet-lace-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-komet-lace-D.jpg\", \"label\": \"Sole\"}"
+    ],
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "medium",
@@ -3717,7 +3732,10 @@
     "model": "Narsha",
     "slug": "butora-narsha",
     "image_url": "/images/shoes/butora-narsha.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-narsha-A.jpg\", \"label\": \"Lateral\"}",
+      "{\"url\": \"/images/shoes/butora-narsha-B.jpg\", \"label\": \"Front\"}"
+    ],
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "narrow",
@@ -3797,7 +3815,12 @@
     "model": "Nix",
     "slug": "butora-nix",
     "image_url": "/images/shoes/butora-nix.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-nix-A.jpg\", \"label\": \"Front\"}",
+      "{\"url\": \"/images/shoes/butora-nix-B.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-nix-C.jpg\", \"label\": \"Sole\"}",
+      "{\"url\": \"/images/shoes/butora-nix-D.jpg\", \"label\": \"Top\"}"
+    ],
     "forefoot_volume": "high",
     "width": "wide",
     "heel_volume": "medium",
@@ -3878,7 +3901,10 @@
     "model": "Rubicon",
     "slug": "butora-rubicon",
     "image_url": "/images/shoes/butora-rubicon.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-rubicon-A.jpg\", \"label\": \"Inside\"}",
+      "{\"url\": \"/images/shoes/butora-rubicon-B.jpg\", \"label\": \"Back\"}"
+    ],
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "medium",
@@ -4039,7 +4065,12 @@
     "model": "Sierra",
     "slug": "butora-sierra",
     "image_url": "/images/shoes/butora-sierra.jpg",
-    "images": null,
+    "images": [
+      "{\"url\": \"/images/shoes/butora-sierra-A.jpg\", \"label\": \"Three-quarter\"}",
+      "{\"url\": \"/images/shoes/butora-sierra-B.jpg\", \"label\": \"Instep\"}",
+      "{\"url\": \"/images/shoes/butora-sierra-C.jpg\", \"label\": \"Back\"}",
+      "{\"url\": \"/images/shoes/butora-sierra-D.jpg\", \"label\": \"Front\"}"
+    ],
     "forefoot_volume": "standard",
     "width": "medium",
     "heel_volume": "medium",
