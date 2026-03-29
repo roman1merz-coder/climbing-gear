@@ -3952,11 +3952,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "NEO Fuse (toe cap + heel) / softer rubber (midfoot)",
+    "rubber_type": "NEO Fuse (toe + heel) / softer NEO Fuse (midfoot)",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.5,
+    "rubber_thickness_mm": 4.0,
     "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",

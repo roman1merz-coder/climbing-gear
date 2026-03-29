@@ -432,6 +432,30 @@
     "best_for": "Budding junior climbers. Accommodates growth well."
   },
   {
+    "shoe_slug": "butora-acro",
+    "source_name": "GearJunkie",
+    "source_type": "expert",
+    "source_url": "https://gearjunkie.com/climbing/bouldering/butora-acro-climbing-shoe-review",
+    "summary": "After five months of testing, the Butora Acro proved to be an exceptional send shoe for hard boulder problems and steep sport routes. The combination of aggressive geometry, durable construction, and Neo Fuse rubber that rivals top competitors makes it a top pick for performance climbing, though less versatile for general use.",
+    "author": "Jake Ferguson",
+    "pros": "Aggressive downturn excels on tiny edges. Abundant rubber on toe and heel for solid hooks. Split-grain leather is soft with minimal stretch. Minimal smell even after months. Strong durability with less visible glue than competitors. Competitive price point.",
+    "cons": "Smearing performance limited compared to less downturned shoes. Initially painful break-in period of several weeks.",
+    "fit_notes": "Narrow (blue) and wide (orange) fits available. Reviewer went half size down from street size in narrow version. Initially snug and uncomfortable but stretched adequately after weeks of climbing. Wearable ~30 minutes per session.",
+    "best_for": "Hard boulder problems and short steep sport routes. Climbers who prioritize aggressive positioning and footwork precision on overhanging terrain."
+  },
+  {
+    "shoe_slug": "butora-acro",
+    "source_name": "TrainingBeta",
+    "source_type": "blog",
+    "source_url": "https://www.trainingbeta.com/butora-acro-climbing-shoe-review/",
+    "summary": "The Butora Acro balances comfort with precision performance thanks to its wider-than-typical toe box. The wider fit makes it appealing to climbers seeking a roomier option without sacrificing technical capability, making it one of the reviewers go-to shoes.",
+    "author": "Dave Sheldon",
+    "pros": "Wider toe box provides comfort for extended sessions. Maintains precision and sensitivity for technical climbing. Hybrid design balances accessibility with performance. Great for climbers transitioning to wider shoe geometries.",
+    "cons": "Not explicitly detailed in the review.",
+    "fit_notes": "Wider than typical climbing shoes, accommodating climbers who prefer roomier fits. Designed for secure heel placement. Practical width option without excessive bulk.",
+    "best_for": "Climbers with wider feet who want a blend of comfort and precision. Those seeking a versatile go-to shoe for regular climbing sessions."
+  },
+  {
     "shoe_slug": "butora-acro-comp",
     "source_name": "climbinghouse.com",
     "source_type": "expert",
@@ -442,6 +466,30 @@
     "cons": "Durability is not elite. Soft rubber means jamming degrades the outer fairly quickly. Not recommended for crack climbing due to aggressive profile. Less versatile than all-around shoes.",
     "fit_notes": "Available in both standard and narrow versions for different foot shapes. Recommended to go down half a street shoe size for snug fit. The standard version feels 3D molded to the feet at forefoot and toe box. Some climbers with especially narrow feet found the heel cup too roomy even in narrow version.",
     "best_for": "Indoor bouldering and sport climbing. High-volume plastic and sloper problems. Steep terrain and overhanging routes. Intermediate to advanced climbers doing technical, shorter routes."
+  },
+  {
+    "shoe_slug": "butora-altura",
+    "source_name": "Black Sheep Adventure Sports",
+    "source_type": "blog",
+    "source_url": "https://blacksheepadventuresports.com/2017/05/26/review-butora-altura-rock-shoe/",
+    "summary": "The Altura delivers a stiff, comfortable platform ideal for longer multi-pitch routes involving edging and crack work. Its standout feature is regular and wide fit options, addressing a common pain point for climbers. Heat-welded construction provides exceptional durability with no rubber delamination even after heavy crack abuse.",
+    "author": "Monte Johnston",
+    "pros": "Options for wide range of foot shapes with regular and wide fits. Exceptional craftsmanship with heat-welded construction. Durable sole resists rubber delamination during crack abuse. Relatively affordable for a high-end trad shoe. Secure heel without achilles pressure.",
+    "cons": "Rubber requires a break-in period before optimal performance. Hemp lining and stiffness make initial sizing tricky.",
+    "fit_notes": "Available in regular and wide options. Blunt toe box accommodates relatively even toe lengths. Size half size larger than comparable shoes like TC Pro (43 vs 42.5). Hemp lining means minimal stretch - size you buy is size you get.",
+    "best_for": "All-day multi-pitch climbs, offwidth routes, and climbers with hard-to-fit feet seeking wider shoe options. Trad climbers who prioritize edging stability and durability."
+  },
+  {
+    "shoe_slug": "butora-altura",
+    "source_name": "Mr Climb",
+    "source_type": "blog",
+    "source_url": "https://mrclimb.com/butora-altura-climbing-shoe-review/",
+    "summary": "The Butora Altura offers reliable ankle support and durability for trad and multi-pitch climbers seeking an alternative to the La Sportiva TC Pro. While initial comfort may disappoint due to aggressive break-in, the shoe rewards patience with solid crack-climbing performance and excellent long-route comfort.",
+    "author": null,
+    "pros": "Excellent ankle padding with hemp liner for protection. Strong performance on cracks and smearing. Comfortable for extended multi-pitch climbs. Highly durable construction.",
+    "cons": "Extended break-in period needed. Limited sensitivity for thin cracks. Not ideal for bouldering. Takes considerable time to feel precise.",
+    "fit_notes": "Altura Green Wide for wider feet, Altura Tiger Lily Regular for narrow. Runs snug compared to TC Pro. Size down half a size from street shoes. Only stretches about a quarter size with use.",
+    "best_for": "Trad climbers, multi-pitch routes, crack climbing, and those with ankle concerns or wider feet."
   },
   {
     "shoe_slug": "butora-brava",
@@ -538,6 +586,42 @@
     "cons": "May require a break-in period for optimal comfort. Limited aggressive performance compared to advanced models. Not suitable for climbers seeking extreme downturned or aggressive shoes.",
     "fit_notes": "Neutral last shape accommodates various foot types well. Users report it fits as expected without major fit surprises. Some users appreciated the width but wished for tighter adjustment options around the foot.",
     "best_for": "Beginner to intermediate climbers. Climbers with wider feet. All-around versatile climbing on varied terrain. Both sport and bouldering at moderate grades."
+  },
+  {
+    "shoe_slug": "butora-narsha",
+    "source_name": "Mr Climb",
+    "source_type": "blog",
+    "source_url": "https://mrclimb.com/butora-narsha-review/",
+    "summary": "The Butora Narsha is an aggressive climbing shoe that excels on overhanging routes and small edges. Built with durable German leather, NEO Friction rubber, and nylon stitching, it delivers strong edging and heel hook performance. Available in blue (narrow) and orange (wide) fits for better fit customization.",
+    "author": null,
+    "pros": "Great for overhanging routes and edges. Effective for crack climbing and heel hooks. Durable materials with German leather and nylon stitching. Narrow and wide fit options available.",
+    "cons": "Poor breathability in sun exposure. Limited sensitivity for detailed footwork. Weak performance on smearing movements. Extended break-in period required.",
+    "fit_notes": "Blue version for narrow feet, orange for wide. Size half a size down from street shoe. Expect only quarter-size stretch after use. 3.8/5 stars on Amazon across 32 reviews.",
+    "best_for": "Sport climbers and boulderers who prioritize edging ability and heel hook performance on overhanging, technical terrain with small holds."
+  },
+  {
+    "shoe_slug": "butora-nix",
+    "source_name": "Climbing Shoes Fit",
+    "source_type": "blog",
+    "source_url": "https://www.climbingshoesfit.com/review/butora-nix-climbing-shoes/",
+    "summary": "The Butora Nix is a comfortable, downturned climbing shoe with a wide fit, making it a solid pick for newer climbers who want a bit of performance without the usual pain. It edges better than any shoe in its price range, smears well, and does not destroy your feet after one pitch.",
+    "author": null,
+    "pros": "Comfortable enough for all-day sessions. Wide toe box suits many foot shapes. Soft-but-not-too-soft sole balances comfort and performance. Enough downturn to feel powerful without being abusive. Super comfortable out of the box for wide feet.",
+    "cons": "Not aggressive enough for advanced roof climbing. Better suited for beginners than advanced climbers seeking maximum performance.",
+    "fit_notes": "Wide fit with generous toe box. Go street size for comfort on all-day sessions. Size half down for max performance. Microsuede upper resists stretching better than leather.",
+    "best_for": "Newer climbers who want a gentle introduction to aggressive shoes. Wide-footed climbers seeking versatile performance for gym, sport, and crack climbing."
+  },
+  {
+    "shoe_slug": "butora-rubicon",
+    "source_name": "Ridge & River",
+    "source_type": "blog",
+    "source_url": "https://ridgeandriver.com/products/butora-rubicon-performance-climbing-shoe",
+    "summary": "The Rubicon is a slipper-style intermediate shoe with dual velcro straps that bridges the gap between beginner and aggressive models. Awarded Best Climbing Shoe for Beginners 2025 by Climbing Magazine, it features a convex molded midsole for precision on steep terrain and heel-to-forefoot tensioning for power transfer.",
+    "author": null,
+    "pros": "Comfortable immediately out of the box. Sticky rubber in toe box performs well on technical climbs. Sensitive enough to feel the wall for precise toe placement. Moderate downturn balances power and comfort. Good value for the performance level.",
+    "cons": "Not ideal for advanced heel-hooking techniques. Less aggressive than dedicated bouldering shoes.",
+    "fit_notes": "Slipper-style entry with sock-like fit. Unlined synthetic suede conforms to foot with minimal stretch. Snug fit provides excellent breathability. Available in wide fit variant.",
+    "best_for": "Beginner to intermediate climbers ready to move beyond entry-level shoes. Those seeking a balance of comfort and performance for bouldering and sport climbing."
   },
   {
     "shoe_slug": "butora-sensa",
