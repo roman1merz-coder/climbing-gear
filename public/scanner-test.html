@@ -2156,11 +2156,7 @@ function showProcessingError(message) {
   const restartBtn = document.createElement('button');
   restartBtn.textContent = 'Retake photos';
   restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
-  restartBtn.onclick = () => {
-    /* Clear scan ID so new photos create a fresh scan. Form preferences on shoe-fit-screen stay in DOM untouched. */
-    scanId = null;
-    showScreen('sole-instruction');
-  };
+  restartBtn.onclick = resetForRetake;
   errEl.appendChild(restartBtn);
 
   document.getElementById('processing-title').textContent = 'Something went wrong';
@@ -2184,12 +2180,25 @@ function showValidationError(message) {
   const restartBtn = document.createElement('button');
   restartBtn.textContent = 'Retake photos';
   restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
-  restartBtn.onclick = () => {
-    /* Clear scan ID so new photos create a fresh scan. Form preferences on shoe-fit-screen stay in DOM untouched. */
-    scanId = null;
-    showScreen('sole-instruction');
-  };
+  restartBtn.onclick = resetForRetake;
   errEl.appendChild(restartBtn);
+}
+
+function resetForRetake() {
+  /* Clear scan ID so new photos create a fresh scan */
+  scanId = null;
+  /* Reset all buttons that get disabled during upload so they work on retry */
+  const sideBtn = document.getElementById('approve-side');
+  sideBtn.disabled = false;
+  sideBtn.textContent = 'Save & Upload';
+  document.getElementById('save-status-side').textContent = '';
+  /* Reset processing UI */
+  document.getElementById('processing-error').style.display = 'none';
+  document.getElementById('processing-title').textContent = 'Analysing your foot...';
+  document.getElementById('progress-bar').style.width = '0%';
+  document.getElementById('progress-percent').textContent = '0%';
+  /* Go to photo capture -- form preferences on shoe-fit-screen stay in DOM */
+  showScreen('sole-instruction');
 }
 
 /* Step 4: Show results */
