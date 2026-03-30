@@ -521,6 +521,52 @@ def detect_toe_shape(mask, upper_row, ball_row):
     return shape, toe_tips
 
 
+# ── Hallux valgus (HVA) measurement ─────────────────────────────────────
+# Hallux valgus = inward drift of the big toe (bunion tendency).
+# Measurement: ratio of big toe tip's lateral offset from medial edge to forefoot width.
+# HVA offset ratio: (big_toe_tip_x - medial_edge_x) / forefoot_width
+# Classification: normal (<0.15), mild (0.15-0.25), pronounced (>0.25)
+
+def measure_hallux_valgus(toe_tips, ball_left, ball_width):
+    """Measure hallux valgus from big toe tip position.
+
+    Args:
+        toe_tips: list of (x, y) tuples, first item is big toe
+        ball_left: x-coordinate of medial forefoot edge
+        ball_width: width of forefoot
+
+    Returns:
+        (hva_offset_ratio, hallux_valgus_class)
+        - hva_offset_ratio: float (0-1), how far big toe drifts inward
+        - hallux_valgus_class: "normal", "mild", or "pronounced"
+    """
+    if not toe_tips or len(toe_tips) < 1 or ball_width <= 0:
+        return None, "normal"
+
+    big_toe_x = toe_tips[0][0]
+
+    # HVA offset = how far the big toe tip is from the medial edge
+    # Normalized by forefoot width
+    hva_offset = big_toe_x - ball_left
+    hva_offset_ratio = round(hva_offset / ball_width, 3)
+
+    # Clamp to [0, 1] range for safety
+    hva_offset_ratio = max(0.0, min(1.0, hva_offset_ratio))
+
+    # Classification based on population reference
+    # Normal: <0.15 (big toe tip is near the medial edge)
+    # Mild: 0.15-0.25 (noticeable inward drift)
+    # Pronounced: >0.25 (significant inward drift)
+    if hva_offset_ratio < 0.15:
+        classification = "normal"
+    elif hva_offset_ratio < 0.25:
+        classification = "mild"
+    else:
+        classification = "pronounced"
+
+    return hva_offset_ratio, classification
+
+
 # ── Sole-view measurements ───────────────────────────────────────────────
 
 def measure_sole(mask):
@@ -579,6 +625,11 @@ def measure_sole(mask):
     # Toe shape detection
     toe_shape, toe_tips = detect_toe_shape(mask, upper_row, ball_row)
 
+    # Hallux valgus measurement
+    hva_offset_ratio, hallux_valgus_class = measure_hallux_valgus(
+        toe_tips, ball_left, ball_width
+    )
+
     return {
         "view": "sole",
         "upper_row": upper_row,
@@ -601,6 +652,8 @@ def measure_sole(mask):
         "heel_width_class": classify_ratio("heel_width_ratio", heel_width_ratio),
         "toe_shape": toe_shape,
         "toe_tips": toe_tips,
+        "hva_offset_ratio": hva_offset_ratio,
+        "hallux_valgus_class": hallux_valgus_class,
     }
 
 
