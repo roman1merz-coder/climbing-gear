@@ -1441,21 +1441,18 @@ function capture() {
         const gw = sideGuide.naturalWidth || sideGuide.width;
         const gh = sideGuide.naturalHeight || sideGuide.height;
         if (isLandscape) {
-          /* Landscape: guide just needs horizontal flip (no rotation) */
+          /* Landscape: photo is already correct orientation, guide just drawn as-is */
           guideCanvas.width = gw;
           guideCanvas.height = gh;
           const gCtx = guideCanvas.getContext('2d');
-          gCtx.translate(gw, 0);
-          gCtx.scale(-1, 1);
           gCtx.drawImage(sideGuide, 0, 0);
         } else {
-          /* Portrait: guide needs 90deg rotation + horizontal flip */
+          /* Portrait: guide needs 90deg rotation only (no flip -- photo is already un-mirrored) */
           guideCanvas.width = gh;
           guideCanvas.height = gw;
           const gCtx = guideCanvas.getContext('2d');
           gCtx.translate(gh / 2, gw / 2);
           gCtx.rotate(Math.PI / 2);
-          gCtx.scale(-1, 1);
           gCtx.drawImage(sideGuide, -gw / 2, -gh / 2);
         }
         revSide.src = guideCanvas.toDataURL('image/png');
