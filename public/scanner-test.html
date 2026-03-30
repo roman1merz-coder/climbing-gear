@@ -2105,9 +2105,28 @@ function showResults(data) {
       h3.textContent = section.title;
       interpEl.appendChild(h3);
       (section.paragraphs || []).forEach(p => {
+        // Check for hallux visual marker: [Hallux Valgus Visual: /path/to/image]
+        const halluxMatch = p.match(/\n\n\[Hallux Valgus Visual: (.+?)\]$/);
+        let textContent = p;
+        let imagePath = null;
+
+        if (halluxMatch) {
+          textContent = p.replace(/\n\n\[Hallux Valgus Visual: .+?\]$/, '');
+          imagePath = halluxMatch[1];
+        }
+
         const pEl = document.createElement('p');
-        pEl.textContent = p;
+        pEl.textContent = textContent;
         interpEl.appendChild(pEl);
+
+        // Render hallux visual image if present
+        if (imagePath) {
+          const imgEl = document.createElement('img');
+          imgEl.src = imagePath;
+          imgEl.alt = 'Hallux Valgus visualization';
+          imgEl.style.cssText = 'max-width:100%;height:auto;margin:1rem 0;border-radius:4px;border:1px solid #ddd';
+          interpEl.appendChild(imgEl);
+        }
       });
     });
   }

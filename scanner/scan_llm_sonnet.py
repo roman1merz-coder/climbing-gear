@@ -200,6 +200,33 @@ def _validate_shoe_fit_claims(result: dict, scan_data: dict) -> None:
     print(f"[scan_llm_sonnet] Appended fit correction: {correction_text[:100]}...")
 
 
+def _inject_hallux_image(result: dict, scan_data: dict) -> None:
+    """Inject hallux valgus visual at end of first interpretation paragraph if detected.
+
+    Modifies result in-place by appending image reference to first paragraph.
+    """
+    hallux_class = scan_data.get("hallux_valgus_class", "normal")
+    if hallux_class not in ("mild", "pronounced"):
+        return
+
+    # Image path for hallux visualization
+    hallux_image = "/images/hallux-visual.png"
+
+    interpretation = result.get("interpretation", [])
+    if not interpretation or not isinstance(interpretation[0], dict):
+        return
+
+    first_section = interpretation[0]
+    paragraphs = first_section.get("paragraphs", [])
+    if not paragraphs:
+        return
+
+    # Append image reference to first paragraph (simple markdown-style notation)
+    # Frontend will render this as <img> with the path
+    last_para = paragraphs[-1]
+    paragraphs[-1] = f"{last_para}\n\n[Hallux Valgus Visual: {hallux_image}]"
+
+
 def generate_interpretation_sonnet(
     scan_data: dict,
     shoe_candidates: list,
@@ -257,6 +284,9 @@ def generate_interpretation_sonnet(
 
     # Run fit claim validation (same safety net as local LLM)
     _validate_shoe_fit_claims(result, scan_data)
+
+    # Inject hallux valgus visual if detected
+    _inject_hallux_image(result, scan_data)
 
     recs = result.get("recommendations", [])
     print(f"[scan_llm_sonnet] Got {len(recs)} recommendations")
