@@ -1584,7 +1584,9 @@ async function uploadThenShoeFit() {
       triggerScanStart(scanId);
 
       setTimeout(() => {
-        populateBrands(document.querySelector('.brand-select'));
+        /* Only populate brands if not already populated (preserves selections on retake) */
+        const bs = document.querySelector('.brand-select');
+        if (bs && bs.options.length <= 1) populateBrands(bs);
         showScreen('shoe-fit-screen');
       }, 400);
     } else {
@@ -1595,7 +1597,8 @@ async function uploadThenShoeFit() {
     status.textContent = 'Upload issue - continuing anyway...';
     scanId = scanId || 'scan-local-' + Date.now();
     setTimeout(() => {
-      populateBrands(document.querySelector('.brand-select'));
+      const bs = document.querySelector('.brand-select');
+      if (bs && bs.options.length <= 1) populateBrands(bs);
       showScreen('shoe-fit-screen');
     }, 800);
   }
