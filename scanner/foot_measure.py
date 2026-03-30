@@ -1015,6 +1015,32 @@ def draw_sole_overlay(img, mask, m, out_path):
         cv2.circle(canvas, (tcx, tcy), 5, TIP_GREEN, -1, cv2.LINE_AA)
         cv2.circle(canvas, (tcx, tcy), 5, (255, 255, 255), 1, cv2.LINE_AA)
 
+    # Hallux valgus visualization (if available)
+    if m.get("toe_tips") and m.get("ball_left") is not None and m.get("hallux_valgus_class"):
+        big_toe_x, big_toe_y = m["toe_tips"][0]
+        ball_left = m["ball_left"]
+
+        # Draw medial edge reference line (at ball row)
+        med_edge_cx = scan_x0 + int((ball_left - scan_left) * scan_scale)
+        cv2.line(canvas, (med_edge_cx, ball_cy - 30), (med_edge_cx, ball_cy + 30), (200, 100, 100), 1, cv2.LINE_AA)
+
+        # Draw HVA offset line from medial edge to big toe tip
+        big_toe_cx = scan_x0 + int((big_toe_x - scan_left) * scan_scale)
+        big_toe_cy = PAD + int((big_toe_y - scan_top) * scan_scale)
+        hva_color = (60, 140, 200)  # Orange-ish for HVA
+        cv2.line(canvas, (med_edge_cx, big_toe_cy), (big_toe_cx, big_toe_cy), hva_color, 2, cv2.LINE_AA)
+        cv2.circle(canvas, (big_toe_cx, big_toe_cy), 6, hva_color, -1, cv2.LINE_AA)
+        cv2.circle(canvas, (big_toe_cx, big_toe_cy), 6, (255, 255, 255), 1, cv2.LINE_AA)
+
+        # Add HVA class label
+        hva_class = m.get("hallux_valgus_class", "normal")
+        hva_ratio = m.get("hva_offset_ratio", 0)
+        hva_text = f"HVA: {hva_class} ({hva_ratio:.3f})"
+        cv2.putText(
+            canvas, hva_text, (line_left, upper_cy - 15),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.4, hva_color, 1, cv2.LINE_AA
+        )
+
     # Legend
     ly = ch - 30
     lx = dx + 15
