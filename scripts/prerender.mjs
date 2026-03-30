@@ -521,7 +521,7 @@ function categorySsr(title, desc, items, pathPrefix, categoryPath) {
 
 // --- Category definitions ---------------------------------------------
 const CATEGORIES = [
-  { route: '/shoes', title: 'Climbing Shoes - Compare 750+ Models', desc: 'Find the perfect climbing shoe. Compare specs, performance scores, and prices across 750+ models from La Sportiva, Scarpa, Evolv, and more.', file: 'seed_data.json', prefix: 'shoe' },
+  { route: '/shoes', title: 'Climbing Shoes - Compare 750+ Models', desc: 'Find the perfect climbing shoe. Compare specs, performance scores, and prices across 750+ models from La Sportiva, Scarpa, Evolv, and more.', file: 'seed_data.json', prefix: 'shoe', key: 'shoes' },
   { route: '/ropes', title: 'Climbing Ropes - Compare 190+ Models', desc: 'Compare dynamic, static, half, and twin ropes. Filter by diameter, weight, falls rated, and dry treatment.', file: 'rope_seed_data.json', prefix: 'rope', filterFn: items => items.filter(r => r.rope_type !== 'static') },
   { route: '/crashpads', title: 'Crashpads - Compare 110+ Models', desc: 'Compare bouldering crashpads by size, thickness, weight, foam type, and price.', file: 'crashpad_seed_data.json', prefix: 'crashpad' },
   { route: '/belays', title: 'Belay Devices - Compare 50+ Models', desc: 'Compare belay devices: assisted-braking, tube, and guide. Filter by weight, rope range, and safety features.', file: 'belay_seed_data.json', prefix: 'belay' },
@@ -593,15 +593,16 @@ function main() {
 
   // Product detail pages - pass full items array to SSR for cross-linking
   const datasets = [
-    { file: 'seed_data.json', prefix: '/shoe', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: shoeJsonLd },
+    { file: 'seed_data.json', prefix: '/shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: shoeJsonLd },
     { file: 'rope_seed_data.json', prefix: '/rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: ropeJsonLd },
     { file: 'crashpad_seed_data.json', prefix: '/crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: padJsonLd },
     { file: 'belay_seed_data.json', prefix: '/belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: belayJsonLd },
     { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: qdJsonLd },
   ];
 
-  for (const { file, prefix, ssrFn, titleFn, descFn, jsonLdFn } of datasets) {
-    const items = loadJSON(file);
+  for (const { file, prefix, key, ssrFn, titleFn, descFn, jsonLdFn } of datasets) {
+    let items = loadJSON(file);
+    if (key && items[key]) items = items[key];
     for (const item of items) {
       const route = `${prefix}/${item.slug}`;
       const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item, items), jsonLdFn(item));
@@ -613,6 +614,7 @@ function main() {
   // Category pages with full product link lists
   for (const cat of CATEGORIES) {
     let items = loadJSON(cat.file);
+    if (cat.key && items[cat.key]) items = items[cat.key];
     if (cat.filterFn) items = cat.filterFn(items);
     const catName = cat.route.replace('/', '');
     const ssr = categorySsr(cat.title, cat.desc, items, cat.prefix, cat.route);
