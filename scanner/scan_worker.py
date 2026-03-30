@@ -46,6 +46,53 @@ def log(msg):
     print(f"[{ts}] {msg}", flush=True)
 
 
+def validate_scan_quality(sole_m, side_m):
+    """Validate that scan measurements look like a real foot, not a hand or noise.
+
+    Returns:
+        (is_valid, error_message)
+        - is_valid: True if measurements pass quality checks
+        - error_message: string describing the issue if invalid, None if valid
+    """
+    if not sole_m or not side_m:
+        return False, "Missing sole or side measurements"
+
+    # Check if we detected a big toe (first element of toe_tips)
+    toe_tips = sole_m.get("toe_tips", [])
+    if not toe_tips or len(toe_tips) < 1:
+        return False, "Could not detect big toe. Please ensure the sole view shows your complete foot with all toes visible."
+
+    # Check if we have at least 3 toe tips detected (hand would be 5 fingers but different geometry)
+    if len(toe_tips) < 2:
+        return False, "Only detected one toe. Please ensure your foot shows all toes clearly."
+
+    # Foot length sanity check
+    foot_length = sole_m.get("foot_length_px", 0)
+    if foot_length < 100:
+        return False, "Detected foot is too small. Please position your foot closer to the camera."
+
+    # Forefoot width sanity check (should be roughly 35-45% of foot length)
+    forefoot_ratio = sole_m.get("forefoot_width_ratio", 0)
+    if forefoot_ratio < 0.20 or forefoot_ratio > 0.55:
+        return False, f"Forefoot width measurement looks unusual ({forefoot_ratio:.2f}). This might not be a foot. Try again."
+
+    # Heel width sanity check (should be roughly 20-30% of foot length)
+    heel_ratio = sole_m.get("heel_width_ratio", 0)
+    if heel_ratio < 0.15 or heel_ratio > 0.40:
+        return False, f"Heel width measurement looks unusual ({heel_ratio:.2f}). This might not be a foot. Try again."
+
+    # Arch length sanity check (should be roughly 60-80% of foot length)
+    arch_ratio = sole_m.get("arch_length_ratio", 0)
+    if arch_ratio < 0.50 or arch_ratio > 0.85:
+        return False, f"Arch length measurement looks unusual ({arch_ratio:.2f}). Try again with a clearer sole view."
+
+    # Check side view measurements exist
+    if not side_m.get("instep_height_ratio"):
+        return False, "Could not measure instep height from side view. Please ensure the side view clearly shows your foot profile."
+
+    return True, None
+
+
 # ── Supabase helpers ────────────────────────────────────────────────────
 
 def fetch_pending_scans():
@@ -313,6 +360,13 @@ def process_pending_scan(scan):
         profile, sole_m, side_m, sole_overlay_path, side_overlay_path = process_photos(scan_id)
         seg_time = time.time() - t0
         log(f"  Segmentation done in {seg_time:.1f}s")
+
+        # Step 1.5: Validate scan quality
+        is_valid, error_msg = validate_scan_quality(sole_m, side_m)
+        if not is_valid:
+            log(f"  VALIDATION FAILED: {error_msg}")
+            update_stage(scan_id, "validation_failed", error_msg)
+            return
 
         # Step 2: Upload overlays
         try:

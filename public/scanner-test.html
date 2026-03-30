@@ -1814,7 +1814,56 @@ document.getElementById('skip-fit-btn').addEventListener('click', async () => {
 });
 
 /* Continue -> save shoe data, submit preferences, go to processing screen */
+function validatePreferencesForm() {
+  /* Check that all required fields are filled */
+  const errors = [];
+
+  // Check sex selection
+  const sexSelected = document.querySelector('#sex-options .sex-option.active');
+  if (!sexSelected) {
+    errors.push('Please select your sex');
+  }
+
+  // Check street shoe size
+  const streetSizeVal = document.getElementById('street-size')?.value || '';
+  if (!streetSizeVal) {
+    errors.push('Please enter your street shoe size');
+  }
+
+  // Check that at least one shoe is added
+  const shoeCards = document.querySelectorAll('.shoe-card');
+  if (shoeCards.length === 0) {
+    errors.push('Please add at least one climbing shoe you currently wear');
+  }
+
+  // Check that all added shoes have required fields filled
+  shoeCards.forEach((card, idx) => {
+    const modelSel = card.querySelector('.shoe-model-select')?.value || '';
+    const sizeSel = card.querySelector('.shoe-size-select')?.value || '';
+    const fitRating = card.querySelector('.fit-rating.active');
+
+    if (!modelSel) errors.push(`Shoe ${idx + 1}: Please select a model`);
+    if (!sizeSel) errors.push(`Shoe ${idx + 1}: Please select a size`);
+    if (!fitRating) errors.push(`Shoe ${idx + 1}: Please rate the fit`);
+  });
+
+  return errors;
+}
+
+function showValidationErrors(errors) {
+  let msg = 'Please complete the form:\n';
+  errors.forEach(e => msg += '\n• ' + e);
+  alert(msg);
+}
+
 document.getElementById('next-fit-btn').addEventListener('click', async () => {
+  // Validate form before submitting
+  const errors = validatePreferencesForm();
+  if (errors.length > 0) {
+    showValidationErrors(errors);
+    return;
+  }
+
   const btn = document.getElementById('next-fit-btn');
   btn.disabled = true; btn.textContent = 'Saving...';
   const email = null; /* email collected on results screen now */
@@ -2001,6 +2050,10 @@ function startProgressPolling() {
           interpretation: row.interpretation,
           recommendations: row.recommendations,
         });
+      } else if (row.pipeline_stage === 'validation_failed') {
+        clearInterval(pollTimer);
+        pollTimer = null;
+        showValidationError(row.pipeline_error || 'Scan validation failed. Please try again.');
       } else if (row.pipeline_stage === 'error') {
         clearInterval(pollTimer);
         pollTimer = null;
@@ -2079,6 +2132,33 @@ function showProcessingError(message) {
   errEl.textContent = message;
   errEl.style.display = 'block';
   document.getElementById('processing-title').textContent = 'Something went wrong';
+}
+
+function showValidationError(message) {
+  const errEl = document.getElementById('processing-error');
+  errEl.innerHTML = '';
+  errEl.style.display = 'block';
+
+  const titleEl = document.createElement('div');
+  titleEl.style.cssText = 'font-weight:600;margin-bottom:0.5rem;color:#c84f2c';
+  titleEl.textContent = 'Scan validation failed';
+  errEl.appendChild(titleEl);
+
+  const msgEl = document.createElement('p');
+  msgEl.style.cssText = 'margin:0 0 1.5rem 0;line-height:1.5';
+  msgEl.textContent = message;
+  errEl.appendChild(msgEl);
+
+  const restartBtn = document.createElement('button');
+  restartBtn.textContent = 'Restart scan';
+  restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
+  restartBtn.onclick = () => {
+    // Clear scan data but preserve user preferences/models
+    scanId = null;
+    document.getElementById('processing-error').style.display = 'none';
+    showScreen('input-screen');
+  };
+  errEl.appendChild(restartBtn);
 }
 
 /* Step 4: Show results */
