@@ -1876,9 +1876,8 @@ function retakeAll() {
    Automated Pipeline - scan-start, preferences, polling, results
    ══════════════════════════════════════════════════════════════════ */
 
-/* Scanner API base URL. Uses scan.climbing-gear.com in production (Cloudflare Tunnel).
-   Override via ?api=http://localhost:8787 for local testing. */
-const SCANNER_API = new URLSearchParams(window.location.search).get('api') || 'https://scan.climbing-gear.com';
+/* Scanner API base URL. Override via ?api=http://localhost:8787 for local testing. */
+const SCANNER_API = new URLSearchParams(window.location.search).get('api') || 'https://phentermine-year-provision-jay.trycloudflare.com';
 let pollTimer = null;
 let pollFailures = 0;
 const MAX_POLL_FAILURES = 30; /* stop after 30 consecutive failures (60s) */
