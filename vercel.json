@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/scanner-test.html", "destination": "/scan", "permanent": true },
+    { "source": "/scanner-test", "destination": "/scan", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/ingest/static/(.*)", "destination": "https://eu-assets.i.posthog.com/static/$1" },
     { "source": "/ingest/(.*)", "destination": "https://eu.i.posthog.com/$1" },
@@ -8,6 +12,7 @@
     { "source": "/compare-pads", "destination": "/index.html" },
     { "source": "/compare-quickdraws", "destination": "/index.html" },
     { "source": "/wishlist", "destination": "/index.html" },
+    { "source": "/scan", "destination": "/scan.html" },
     { "source": "/scan/:scanId", "destination": "/index.html" }
   ],
   "functions": {
@@ -23,7 +28,7 @@
   ],
   "headers": [
     {
-      "source": "/((?!scanner).*)",
+      "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
@@ -33,12 +38,14 @@
       ]
     },
     {
-      "source": "/scanner-test.html",
+      "source": "/scan",
       "headers": [
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+      ]
+    },
+    {
+      "source": "/scan.html",
+      "headers": [
         { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
       ]
     }
