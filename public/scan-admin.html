@@ -131,9 +131,11 @@ async function loadData() {
   const photoMap = {};
   for (const f of photoFiles) {
     if (!f.name || !f.name.startsWith('scan-')) continue;
-    const parts = f.name.replace(/\.(jpg|jpeg|png)$/i, '').split('-');
-    const type = parts.pop();
-    const scanId = parts.join('-');
+    /* Only process files ending in -sole.jpg or -side.jpg (skip overlays, orphans, etc.) */
+    const m = f.name.match(/^(.+)-(sole|side)\.(jpg|jpeg|png)$/i);
+    if (!m) continue;
+    const scanId = m[1];
+    const type = m[2]; /* sole or side */
     if (!photoMap[scanId]) photoMap[scanId] = { sole: null, side: null, created: f.created_at };
     photoMap[scanId][type] = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${f.name}`;
   }
@@ -283,20 +285,29 @@ async function deleteScan(scanId, btn) {
     }
 
     btn.textContent = 'Deleting...';
-    /* Step 3: Delete storage files + DB row */
-    await Promise.all([
-      fetch(`${SB_URL}/storage/v1/object/foot-scans`, {
-        method: 'DELETE',
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prefixes: [
-          `scans/${scanId}-sole.jpg`, `scans/${scanId}-side.jpg`,
-          `scans/${scanId}-sole_overlay.png`, `scans/${scanId}-side_overlay.png`
-        ] })
-      }),
+    /* Step 3: List ALL storage files matching this scan ID, then delete them + DB row */
+    const listRes = await fetch(`${SB_URL}/storage/v1/object/list/foot-scans`, {
+      method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefix: 'scans/', limit: 500, offset: 0 })
+    });
+    const allFiles = await listRes.json();
+    const toDelete = allFiles
+      .filter(f => f.name && f.name.startsWith(scanId))
+      .map(f => `scans/${f.name}`);
+
+    const deletes = [
       fetch(`${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${encodeURIComponent(scanId)}`, {
         method: 'DELETE', headers
       })
-    ]);
+    ];
+    if (toDelete.length > 0) {
+      deletes.push(fetch(`${SB_URL}/storage/v1/object/foot-scans`, {
+        method: 'DELETE',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prefixes: toDelete })
+      }));
+    }
+    await Promise.all(deletes);
     /* Remove the card from DOM */
     const card = btn.closest('.scan-card');
     if (card) card.remove();
