@@ -2154,13 +2154,12 @@ function showProcessingError(message) {
   errEl.appendChild(msgEl);
 
   const restartBtn = document.createElement('button');
-  restartBtn.textContent = 'Restart scan';
+  restartBtn.textContent = 'Retake photos';
   restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
   restartBtn.onclick = () => {
-    // Clear scan data but preserve user preferences/models
+    /* Clear scan ID so new photos create a fresh scan. Form preferences on shoe-fit-screen stay in DOM untouched. */
     scanId = null;
-    document.getElementById('processing-error').style.display = 'none';
-    showScreen('shoe-fit-screen');
+    showScreen('sole-instruction');
   };
   errEl.appendChild(restartBtn);
 
@@ -2183,13 +2182,12 @@ function showValidationError(message) {
   errEl.appendChild(msgEl);
 
   const restartBtn = document.createElement('button');
-  restartBtn.textContent = 'Restart scan';
+  restartBtn.textContent = 'Retake photos';
   restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
   restartBtn.onclick = () => {
-    // Clear scan data but preserve user preferences/models
+    /* Clear scan ID so new photos create a fresh scan. Form preferences on shoe-fit-screen stay in DOM untouched. */
     scanId = null;
-    document.getElementById('processing-error').style.display = 'none';
-    showScreen('shoe-fit-screen');
+    showScreen('sole-instruction');
   };
   errEl.appendChild(restartBtn);
 }
