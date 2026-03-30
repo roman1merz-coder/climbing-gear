@@ -1,0 +1,565 @@
+[
+  {
+    "scan_id": "scan-2026-03-10T04-35-34",
+    "timing": {
+      "elapsed_seconds": 178.4,
+      "tokens_generated": 1515,
+      "tokens_prompt": 4972,
+      "tokens_per_second": 8.5
+    },
+    "error": null,
+    "raw_response": "```json\n{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Your foot shape is characterized by a narrow forefoot with a forefoot width ratio of 0.342, classifying it as 'narrow'. This suggests you'll likely prefer shoes with a snug fit in the toe box.\",\n        \"The heel width ratio of 0.225 indicates a 'narrow heel', meaning you may experience lift in shoes that aren't specifically tailored to a narrower heel volume. A secure heel fit will be crucial for performance.\",\n        \"With an arch length ratio of 0.662, your arch length is classified as 'short arch'. This means you may benefit from shoes with moderate arch support or a flatter profile.\",\n        \"Your instep height ratio of 0.314 falls into the 'normal' category, suggesting you don't have particularly high or low volume in the instep area. A standard instep volume should work well for most shoes.\",\n        \"Finally, your heel depth ratio of 0.054 is classified as 'normal'. Your toe shape is egyptian, meaning you have a big toe that is longer than the second toe.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear a street size EU 44. Your La Sportiva Katana Lace Women's EU 41 indicates a significant downsize of approximately 3 EU sizes from your street shoe. This suggests you prefer a very snug, performance-oriented fit.\",\n        \"The fit data reveals that the Katana Lace Women's fits your heel and toes perfectly, and your forefoot perfectly. This confirms your preference for a precise, anatomical fit.\",\n        \"The La Sportiva Solution Comp Woman EU 41.5, which is a half size up from the Katana, was reported as having an empty heel and squeezed toes. This indicates that even a small increase in size creates undesirable volume in the heel and compression in the toes, reinforcing your preference for a snug fit.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Based on your foot shape and fit preferences, you should prioritize climbing shoes with a narrow last, particularly in the forefoot and heel. Egyptian toe boxes will likely suit your foot shape best.\",\n        \"Given your preference for performance and a snug fit, look for shoes with moderate to aggressive downturn and a relatively stiff sole. A secure heel fit is paramount, so consider shoes with features designed to lock the heel in place.\",\n        \"Since you prefer a snug fit, you may be able to tolerate a slightly smaller volume shoe. However, avoid shoes that are excessively low volume, as this could lead to discomfort. Focus on shoes that provide a precise, anatomical fit without compromising comfort.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-5\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache 5\",\n      \"why\": \"The Apache 5 features a narrow last and aggressive downturn, ideal for your narrow feet and preference for performance. Its medium volume should accommodate your normal instep, while the velcro closure allows for quick adjustments. The shoe's stiff-moderate feel will provide precision on small holds.\",\n      \"recommended_size_eu\": 41.5,\n      \"size_note\": \"Based on your La Sportiva 41, and the brand sizing patterns, we recommend a 41.5 in the Apache 5.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Black Diamond Shadow is a high-performance shoe with an aggressive downturn and narrow fit, aligning with your preference for precision and snugness. Its moderate feel will provide a balance of sensitivity and support, and the velcro closure offers convenience.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Considering your La Sportiva 41, and Black Diamond's sizing, a 42 should provide a similar snug fit.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Butora Acro Comp is designed for advanced climbers seeking a precise, high-performance fit. Its narrow last and aggressive downturn will complement your foot shape and preference for snugness. The shoe's stiff-moderate feel will provide excellent edging power.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on your La Sportiva 41, and Butora's sizing, a 42 should provide a similar snug fit.\"\n    },\n    {\n      \"slug\": \"climb-x-apex\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Apex\",\n      \"why\": \"The Climb X Apex is a highly downturned and aggressive shoe, perfect for your preference for performance. Its narrow last will accommodate your narrow forefoot, and the moderate feel will provide a good balance of sensitivity and support.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Considering your La Sportiva 41, and Climb X's sizing, a 42 should provide a similar snug fit.\"\n    },\n    {\n      \"slug\": \"andrea-boldrini-pantera-ab\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Pantera AB\",\n      \"why\": \"The Pantera AB is a high-performance shoe with a narrow last and aggressive downturn, designed for steep terrain. Its soft feel will provide excellent sensitivity, and the velcro closure offers convenience. The shoe's low volume will suit your foot shape.\",\n      \"recommended_size_eu\": 41.5,\n      \"size_note\": \"Based on your La Sportiva 41, and the brand sizing patterns, we recommend a 41.5 in the Pantera AB.\"\n    },\n    {\n      \"slug\": \"black-diamond-zone\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Zone\",\n      \"why\": \"The Black Diamond Zone is a versatile shoe with a moderate downturn and a comfortable fit. Its medium width should accommodate your narrow forefoot, and the stiff-moderate feel will provide good edging power. This shoe is a good all-around option for various climbing styles.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Considering your La Sportiva 41, and Black Diamond's sizing, a 42 should provide a similar snug fit.\"\n    }\n  ]\n}\n```",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your foot shape is characterized by a narrow forefoot with a forefoot width ratio of 0.342, classifying it as 'narrow'. This suggests you'll likely prefer shoes with a snug fit in the toe box.",
+            "The heel width ratio of 0.225 indicates a 'narrow heel', meaning you may experience lift in shoes that aren't specifically tailored to a narrower heel volume. A secure heel fit will be crucial for performance.",
+            "With an arch length ratio of 0.662, your arch length is classified as 'short arch'. This means you may benefit from shoes with moderate arch support or a flatter profile.",
+            "Your instep height ratio of 0.314 falls into the 'normal' category, suggesting you don't have particularly high or low volume in the instep area. A standard instep volume should work well for most shoes.",
+            "Finally, your heel depth ratio of 0.054 is classified as 'normal'. Your toe shape is egyptian, meaning you have a big toe that is longer than the second toe."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear a street size EU 44. Your La Sportiva Katana Lace Women's EU 41 indicates a significant downsize of approximately 3 EU sizes from your street shoe. This suggests you prefer a very snug, performance-oriented fit.",
+            "The fit data reveals that the Katana Lace Women's fits your heel and toes perfectly, and your forefoot perfectly. This confirms your preference for a precise, anatomical fit.",
+            "The La Sportiva Solution Comp Woman EU 41.5, which is a half size up from the Katana, was reported as having an empty heel and squeezed toes. This indicates that even a small increase in size creates undesirable volume in the heel and compression in the toes, reinforcing your preference for a snug fit."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Based on your foot shape and fit preferences, you should prioritize climbing shoes with a narrow last, particularly in the forefoot and heel. Egyptian toe boxes will likely suit your foot shape best.",
+            "Given your preference for performance and a snug fit, look for shoes with moderate to aggressive downturn and a relatively stiff sole. A secure heel fit is paramount, so consider shoes with features designed to lock the heel in place.",
+            "Since you prefer a snug fit, you may be able to tolerate a slightly smaller volume shoe. However, avoid shoes that are excessively low volume, as this could lead to discomfort. Focus on shoes that provide a precise, anatomical fit without compromising comfort."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-5",
+          "brand": "Andrea Boldrini",
+          "model": "Apache 5",
+          "why": "The Apache 5 features a narrow last and aggressive downturn, ideal for your narrow feet and preference for performance. Its medium volume should accommodate your normal instep, while the velcro closure allows for quick adjustments. The shoe's stiff-moderate feel will provide precision on small holds.",
+          "recommended_size_eu": 41.5,
+          "size_note": "Based on your La Sportiva 41, and the brand sizing patterns, we recommend a 41.5 in the Apache 5."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Black Diamond Shadow is a high-performance shoe with an aggressive downturn and narrow fit, aligning with your preference for precision and snugness. Its moderate feel will provide a balance of sensitivity and support, and the velcro closure offers convenience.",
+          "recommended_size_eu": 42,
+          "size_note": "Considering your La Sportiva 41, and Black Diamond's sizing, a 42 should provide a similar snug fit."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Butora Acro Comp is designed for advanced climbers seeking a precise, high-performance fit. Its narrow last and aggressive downturn will complement your foot shape and preference for snugness. The shoe's stiff-moderate feel will provide excellent edging power.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on your La Sportiva 41, and Butora's sizing, a 42 should provide a similar snug fit."
+        },
+        {
+          "slug": "climb-x-apex",
+          "brand": "Climb X",
+          "model": "Apex",
+          "why": "The Climb X Apex is a highly downturned and aggressive shoe, perfect for your preference for performance. Its narrow last will accommodate your narrow forefoot, and the moderate feel will provide a good balance of sensitivity and support.",
+          "recommended_size_eu": 42,
+          "size_note": "Considering your La Sportiva 41, and Climb X's sizing, a 42 should provide a similar snug fit."
+        },
+        {
+          "slug": "andrea-boldrini-pantera-ab",
+          "brand": "Andrea Boldrini",
+          "model": "Pantera AB",
+          "why": "The Pantera AB is a high-performance shoe with a narrow last and aggressive downturn, designed for steep terrain. Its soft feel will provide excellent sensitivity, and the velcro closure offers convenience. The shoe's low volume will suit your foot shape.",
+          "recommended_size_eu": 41.5,
+          "size_note": "Based on your La Sportiva 41, and the brand sizing patterns, we recommend a 41.5 in the Pantera AB."
+        },
+        {
+          "slug": "black-diamond-zone",
+          "brand": "Black Diamond",
+          "model": "Zone",
+          "why": "The Black Diamond Zone is a versatile shoe with a moderate downturn and a comfortable fit. Its medium width should accommodate your narrow forefoot, and the stiff-moderate feel will provide good edging power. This shoe is a good all-around option for various climbing styles.",
+          "recommended_size_eu": 42,
+          "size_note": "Considering your La Sportiva 41, and Black Diamond's sizing, a 42 should provide a similar snug fit."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 4,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-05T13-52-58",
+    "timing": {
+      "elapsed_seconds": 188.2,
+      "tokens_generated": 1687,
+      "tokens_prompt": 4881,
+      "tokens_per_second": 9.0
+    },
+    "error": null,
+    "raw_response": "```json\n{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Your foot shape is characterized by a normal forefoot width with a ratio of 0.393 and a normal heel width with a ratio of 0.268. This indicates a balanced foot structure from side to side.\",\n        \"The arch length ratio of 0.711 falls within the normal range, suggesting a well-defined but not excessively high arch. Your instep height ratio is 0.329, classifying you as having a high instep, meaning the top of your foot is relatively prominent.\",\n        \"A heel depth ratio of 0.006 indicates a shallow heel pocket. You have a medium volume foot overall, suggesting a balanced amount of space needed within the shoe. Your toe shape is Egyptian, meaning your toes are relatively straight and parallel.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear a Scarpa Origin in EU size 41.5, which fits well in the forefoot and toes, but has empty space in the heel. Given your street size of 42.5, this suggests a downsize of approximately 1.25 EU sizes from your street size with Scarpa.\",\n        \"The empty heel indicates you likely prefer a snug heel fit, or that you have a relatively shallow heel volume. The perfect fit in the forefoot and toes suggests you don't require a particularly wide or narrow toe box.\",\n        \"Considering your preference for a snug fit, you likely appreciate precision in your climbing shoes and may benefit from shoes with a more aggressive heel cup or adjustable closure systems.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Based on your foot scan, we recommend shoes with a moderate to narrow fit, accommodating your normal forefoot and heel widths. A shoe with a moderate downturn and medium volume would likely suit your foot shape and preference for precision.\",\n        \"Given your high instep, look for shoes with a higher volume instep or adjustable lacing systems to avoid pressure points. The shallow heel pocket suggests a shoe with a well-defined heel cup to prevent slippage.\",\n        \"Since you have no stated preference for comfort versus performance, we will prioritize performance-oriented shoes that offer precision and sensitivity while still providing adequate comfort for all-day climbing.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-5\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache 5\",\n      \"why\": \"The Apache 5 features a strong asymmetry and aggressive downturn, ideal for advanced climbers. Its medium width and standard forefoot volume should accommodate your foot shape well, while the velcro closure allows for a precise fit. We recommend EU size 40.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, La Sportiva ~2.25 downsize: 41.5 + (1.25 - 2.25) = 40.25).\",\n      \"recommended_size_eu\": 40.25,\n      \"size_note\": \"Downsizing from your Scarpa Origin 41.5 based on brand sizing differences.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Black Diamond Shadow is a high-performance shoe with an aggressive downturn and moderate heel cup. Its medium width and standard volume should work well with your foot shape. We recommend EU size 41.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Black Diamond ~0.25 downsize: 41.5 + (1.25 - 0.25) = 41.25).\",\n      \"recommended_size_eu\": 41.25,\n      \"size_note\": \"Downsizing from your Scarpa Origin 41.5 based on brand sizing differences.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Butora Acro Comp is designed for aggressive climbing with a strong asymmetry and downturn. Its medium width and standard volume should suit your foot shape. We recommend EU size 41, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Butora ~0.25 downsize: 41.5 + (1.25 - 0.25) = 41).\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Downsizing from your Scarpa Origin 41.5 based on brand sizing differences.\"\n    },\n    {\n      \"slug\": \"andrea-boldrini-pantera-ab\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Pantera AB\",\n      \"why\": \"The Pantera AB is a soft, high-performance shoe with a narrow width and aggressive downturn. This will suit your Egyptian toe shape and preference for precision. We recommend EU size 40.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Andrea Boldrini ~1.5 downsize: 41.5 + (1.25 - 1.5) = 40.25).\",\n      \"recommended_size_eu\": 40.25,\n      \"size_note\": \"Downsizing from your Scarpa Origin 41.5 based on brand sizing differences.\"\n    },\n    {\n      \"slug\": \"black-diamond-zone\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Zone\",\n      \"why\": \"The Black Diamond Zone offers a balance of performance and comfort with a moderate downturn and medium width. Its unisex design and standard volume should accommodate your foot shape. We recommend EU size 41.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Black Diamond ~0.25 downsize: 41.5 + (1.25 - 0.25) = 41.25).\",\n      \"recommended_size_eu\": 41.25,\n      \"size_note\": \"Downsizing from your Scarpa Origin 41.5 based on brand sizing differences.\"\n    },\n    {\n      \"slug\": \"boreal-mutant\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Mutant\",\n      \"why\": \"The Boreal Mutant is a versatile shoe with a moderate downturn and medium width, suitable for various climbing styles. Its lace-up closure allows for a precise and adjustable fit. We recommend EU size 41.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Boreal ~0.75 downsize: 41.5 + (1.25 - 0.75) = 41.25).\",\n      \"recommended_size_eu\": 41.25,\n      \"size_note\": \"Downsizing from your Scarpa Origin 41.5 based on brand sizing differences.\"\n    }\n  ]\n}\n```",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your foot shape is characterized by a normal forefoot width with a ratio of 0.393 and a normal heel width with a ratio of 0.268. This indicates a balanced foot structure from side to side.",
+            "The arch length ratio of 0.711 falls within the normal range, suggesting a well-defined but not excessively high arch. Your instep height ratio is 0.329, classifying you as having a high instep, meaning the top of your foot is relatively prominent.",
+            "A heel depth ratio of 0.006 indicates a shallow heel pocket. You have a medium volume foot overall, suggesting a balanced amount of space needed within the shoe. Your toe shape is Egyptian, meaning your toes are relatively straight and parallel."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear a Scarpa Origin in EU size 41.5, which fits well in the forefoot and toes, but has empty space in the heel. Given your street size of 42.5, this suggests a downsize of approximately 1.25 EU sizes from your street size with Scarpa.",
+            "The empty heel indicates you likely prefer a snug heel fit, or that you have a relatively shallow heel volume. The perfect fit in the forefoot and toes suggests you don't require a particularly wide or narrow toe box.",
+            "Considering your preference for a snug fit, you likely appreciate precision in your climbing shoes and may benefit from shoes with a more aggressive heel cup or adjustable closure systems."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Based on your foot scan, we recommend shoes with a moderate to narrow fit, accommodating your normal forefoot and heel widths. A shoe with a moderate downturn and medium volume would likely suit your foot shape and preference for precision.",
+            "Given your high instep, look for shoes with a higher volume instep or adjustable lacing systems to avoid pressure points. The shallow heel pocket suggests a shoe with a well-defined heel cup to prevent slippage.",
+            "Since you have no stated preference for comfort versus performance, we will prioritize performance-oriented shoes that offer precision and sensitivity while still providing adequate comfort for all-day climbing."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-5",
+          "brand": "Andrea Boldrini",
+          "model": "Apache 5",
+          "why": "The Apache 5 features a strong asymmetry and aggressive downturn, ideal for advanced climbers. Its medium width and standard forefoot volume should accommodate your foot shape well, while the velcro closure allows for a precise fit. We recommend EU size 40.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, La Sportiva ~2.25 downsize: 41.5 + (1.25 - 2.25) = 40.25).",
+          "recommended_size_eu": 40.25,
+          "size_note": "Downsizing from your Scarpa Origin 41.5 based on brand sizing differences."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Black Diamond Shadow is a high-performance shoe with an aggressive downturn and moderate heel cup. Its medium width and standard volume should work well with your foot shape. We recommend EU size 41.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Black Diamond ~0.25 downsize: 41.5 + (1.25 - 0.25) = 41.25).",
+          "recommended_size_eu": 41.25,
+          "size_note": "Downsizing from your Scarpa Origin 41.5 based on brand sizing differences."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Butora Acro Comp is designed for aggressive climbing with a strong asymmetry and downturn. Its medium width and standard volume should suit your foot shape. We recommend EU size 41, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Butora ~0.25 downsize: 41.5 + (1.25 - 0.25) = 41).",
+          "recommended_size_eu": 41,
+          "size_note": "Downsizing from your Scarpa Origin 41.5 based on brand sizing differences."
+        },
+        {
+          "slug": "andrea-boldrini-pantera-ab",
+          "brand": "Andrea Boldrini",
+          "model": "Pantera AB",
+          "why": "The Pantera AB is a soft, high-performance shoe with a narrow width and aggressive downturn. This will suit your Egyptian toe shape and preference for precision. We recommend EU size 40.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Andrea Boldrini ~1.5 downsize: 41.5 + (1.25 - 1.5) = 40.25).",
+          "recommended_size_eu": 40.25,
+          "size_note": "Downsizing from your Scarpa Origin 41.5 based on brand sizing differences."
+        },
+        {
+          "slug": "black-diamond-zone",
+          "brand": "Black Diamond",
+          "model": "Zone",
+          "why": "The Black Diamond Zone offers a balance of performance and comfort with a moderate downturn and medium width. Its unisex design and standard volume should accommodate your foot shape. We recommend EU size 41.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Black Diamond ~0.25 downsize: 41.5 + (1.25 - 0.25) = 41.25).",
+          "recommended_size_eu": 41.25,
+          "size_note": "Downsizing from your Scarpa Origin 41.5 based on brand sizing differences."
+        },
+        {
+          "slug": "boreal-mutant",
+          "brand": "Boreal",
+          "model": "Mutant",
+          "why": "The Boreal Mutant is a versatile shoe with a moderate downturn and medium width, suitable for various climbing styles. Its lace-up closure allows for a precise and adjustable fit. We recommend EU size 41.25, calculated from your Scarpa 41.5 (Scarpa ~1.25 downsize, Boreal ~0.75 downsize: 41.5 + (1.25 - 0.75) = 41.25).",
+          "recommended_size_eu": 41.25,
+          "size_note": "Downsizing from your Scarpa Origin 41.5 based on brand sizing differences."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 6,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 1,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 4,
+      "em_dash_violations": 0,
+      "total_score": 87.5,
+      "max_score": 100
+    },
+    "sizing_accuracy": [
+      {
+        "slug": "boreal-mutant",
+        "model_size": 41.25,
+        "expected_size": 42.5,
+        "difference": 1.25,
+        "within_half_size": false,
+        "exact_match": false
+      }
+    ]
+  },
+  {
+    "scan_id": "scan-2026-03-14T18-58-04",
+    "timing": {
+      "elapsed_seconds": 176.4,
+      "tokens_generated": 1539,
+      "tokens_prompt": 4971,
+      "tokens_per_second": 8.7
+    },
+    "error": null,
+    "raw_response": "```json\n{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Your foot shape is characterized by a narrow forefoot with a forefoot width ratio of 0.344, classifying it as 'narrow'. This suggests you'll likely prefer shoes with a snug or tapered fit in the toe box.\",\n        \"The heel width ratio of 0.219 indicates a 'narrow heel', meaning you may experience slipping if the heel cup isn't well-fitted. Look for shoes with a secure heel construction.\",\n        \"Your arch length ratio is 0.703, placing you in the 'normal' arch length category. This means most shoes should provide adequate support without being overly aggressive.\",\n        \"An instep height ratio of 0.247 classifies you as having a 'low instep'. Shoes with a lower volume upper will likely fit best, avoiding excessive pressure on the top of your foot.\",\n        \"Finally, your heel depth ratio of 0.033 is considered 'normal'. This suggests a standard heel cup depth will provide a comfortable and secure fit. Your overall volume class is currently unclassified, but the data points towards a lower volume foot.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear a Scarpa Drago in EU size 42.5 and a Scarpa Instinct VSR in EU size 43. Given your street size of EU 45, this indicates a significant downsize of approximately 2.5 EU sizes for Scarpa shoes, aligning with their typical 1.25 EU downsize recommendation.\",\n        \"The fit feedback shows a consistent looseness in the heel across both pairs, despite the downsize. This suggests you may need shoes with a more precise heel fit or consider using heel socks.\",\n        \"Both shoes fit perfectly in the toes and forefoot, indicating you prefer a snug but not overly aggressive fit in these areas. This preference, combined with your narrow forefoot, suggests you'll benefit from shoes with a precise and anatomical last.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Based on your foot shape and fit preferences, you should prioritize climbing shoes with a narrow last, a snug forefoot fit, and a secure heel cup. Given your low instep, shoes with a lower volume upper will likely be more comfortable.\",\n        \"Considering your preference for performance and ultra-high performance shoes, we recommend focusing on downturned and aggressive models that excel in steep terrain. However, given the heel looseness in your current shoes, prioritize models with a precise heel fit.\",\n        \"Look for shoes with a moderate to stiff sole to provide support and edging power, while maintaining sensitivity for smearing. Egyptian toe shapes will likely suit your foot shape best, providing a precise and comfortable fit.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-5\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache 5\",\n      \"why\": \"The Apache 5 features a narrow last and aggressive downturn, ideal for performance climbing. Its medium volume should accommodate your low instep, and the velcro closure allows for precise adjustments. Given your Scarpa 42.5, a 41.5 EU size is recommended.\",\n      \"recommended_size_eu\": 41.5,\n      \"size_note\": \"Downsizing from your Scarpa 42.5, accounting for La Sportiva's 2.25 EU downsize and the Apache 5's similar sizing.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Shadow is a high-performance shoe with a narrow last and aggressive downturn, perfect for steep climbing. Its moderate feel will provide sensitivity while maintaining support. Based on your Scarpa 42.5, we recommend a 42 EU size.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Downsizing from your Scarpa 42.5, accounting for Black Diamond's 0.25 EU downsize.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Acro Comp is designed for aggressive climbing with a narrow fit and downturned profile. It features a secure heel cup to address your heel looseness concerns. We recommend a 42 EU size based on your Scarpa 42.5.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Downsizing from your Scarpa 42.5, accounting for Butora's typical sizing.\"\n    },\n    {\n      \"slug\": \"climb-x-apex\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Apex\",\n      \"why\": \"The Apex is a high-performance shoe with a narrow last and aggressive downturn, designed for steep terrain. Its moderate feel and secure heel cup will provide both sensitivity and support. A 42 EU size is recommended, based on your Scarpa 42.5.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Downsizing from your Scarpa 42.5, accounting for Climb X's typical sizing.\"\n    },\n    {\n      \"slug\": \"andrea-boldrini-pantera-ab\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Pantera AB\",\n      \"why\": \"The Pantera AB is a soft, aggressive shoe with a narrow last and downturned profile, ideal for overhanging routes. Its low volume upper will suit your low instep. We recommend a 41.5 EU size, based on your Scarpa 42.5.\",\n      \"recommended_size_eu\": 41.5,\n      \"size_note\": \"Downsizing from your Scarpa 42.5, accounting for Andrea Boldrini's sizing.\"\n    },\n    {\n      \"slug\": \"black-diamond-zone\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Zone\",\n      \"why\": \"The Black Diamond Zone offers a balance of performance and comfort with a moderate downturn and a snug fit. It's designed for all-day climbing and features a secure heel cup. We recommend a 42 EU size, based on your Scarpa 42.5.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Downsizing from your Scarpa 42.5, accounting for Black Diamond's 0.25 EU downsize.\"\n    }\n  ]\n}\n```",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your foot shape is characterized by a narrow forefoot with a forefoot width ratio of 0.344, classifying it as 'narrow'. This suggests you'll likely prefer shoes with a snug or tapered fit in the toe box.",
+            "The heel width ratio of 0.219 indicates a 'narrow heel', meaning you may experience slipping if the heel cup isn't well-fitted. Look for shoes with a secure heel construction.",
+            "Your arch length ratio is 0.703, placing you in the 'normal' arch length category. This means most shoes should provide adequate support without being overly aggressive.",
+            "An instep height ratio of 0.247 classifies you as having a 'low instep'. Shoes with a lower volume upper will likely fit best, avoiding excessive pressure on the top of your foot.",
+            "Finally, your heel depth ratio of 0.033 is considered 'normal'. This suggests a standard heel cup depth will provide a comfortable and secure fit. Your overall volume class is currently unclassified, but the data points towards a lower volume foot."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear a Scarpa Drago in EU size 42.5 and a Scarpa Instinct VSR in EU size 43. Given your street size of EU 45, this indicates a significant downsize of approximately 2.5 EU sizes for Scarpa shoes, aligning with their typical 1.25 EU downsize recommendation.",
+            "The fit feedback shows a consistent looseness in the heel across both pairs, despite the downsize. This suggests you may need shoes with a more precise heel fit or consider using heel socks.",
+            "Both shoes fit perfectly in the toes and forefoot, indicating you prefer a snug but not overly aggressive fit in these areas. This preference, combined with your narrow forefoot, suggests you'll benefit from shoes with a precise and anatomical last."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Based on your foot shape and fit preferences, you should prioritize climbing shoes with a narrow last, a snug forefoot fit, and a secure heel cup. Given your low instep, shoes with a lower volume upper will likely be more comfortable.",
+            "Considering your preference for performance and ultra-high performance shoes, we recommend focusing on downturned and aggressive models that excel in steep terrain. However, given the heel looseness in your current shoes, prioritize models with a precise heel fit.",
+            "Look for shoes with a moderate to stiff sole to provide support and edging power, while maintaining sensitivity for smearing. Egyptian toe shapes will likely suit your foot shape best, providing a precise and comfortable fit."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-5",
+          "brand": "Andrea Boldrini",
+          "model": "Apache 5",
+          "why": "The Apache 5 features a narrow last and aggressive downturn, ideal for performance climbing. Its medium volume should accommodate your low instep, and the velcro closure allows for precise adjustments. Given your Scarpa 42.5, a 41.5 EU size is recommended.",
+          "recommended_size_eu": 41.5,
+          "size_note": "Downsizing from your Scarpa 42.5, accounting for La Sportiva's 2.25 EU downsize and the Apache 5's similar sizing."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Shadow is a high-performance shoe with a narrow last and aggressive downturn, perfect for steep climbing. Its moderate feel will provide sensitivity while maintaining support. Based on your Scarpa 42.5, we recommend a 42 EU size.",
+          "recommended_size_eu": 42,
+          "size_note": "Downsizing from your Scarpa 42.5, accounting for Black Diamond's 0.25 EU downsize."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Acro Comp is designed for aggressive climbing with a narrow fit and downturned profile. It features a secure heel cup to address your heel looseness concerns. We recommend a 42 EU size based on your Scarpa 42.5.",
+          "recommended_size_eu": 42,
+          "size_note": "Downsizing from your Scarpa 42.5, accounting for Butora's typical sizing."
+        },
+        {
+          "slug": "climb-x-apex",
+          "brand": "Climb X",
+          "model": "Apex",
+          "why": "The Apex is a high-performance shoe with a narrow last and aggressive downturn, designed for steep terrain. Its moderate feel and secure heel cup will provide both sensitivity and support. A 42 EU size is recommended, based on your Scarpa 42.5.",
+          "recommended_size_eu": 42,
+          "size_note": "Downsizing from your Scarpa 42.5, accounting for Climb X's typical sizing."
+        },
+        {
+          "slug": "andrea-boldrini-pantera-ab",
+          "brand": "Andrea Boldrini",
+          "model": "Pantera AB",
+          "why": "The Pantera AB is a soft, aggressive shoe with a narrow last and downturned profile, ideal for overhanging routes. Its low volume upper will suit your low instep. We recommend a 41.5 EU size, based on your Scarpa 42.5.",
+          "recommended_size_eu": 41.5,
+          "size_note": "Downsizing from your Scarpa 42.5, accounting for Andrea Boldrini's sizing."
+        },
+        {
+          "slug": "black-diamond-zone",
+          "brand": "Black Diamond",
+          "model": "Zone",
+          "why": "The Black Diamond Zone offers a balance of performance and comfort with a moderate downturn and a snug fit. It's designed for all-day climbing and features a secure heel cup. We recommend a 42 EU size, based on your Scarpa 42.5.",
+          "recommended_size_eu": 42,
+          "size_note": "Downsizing from your Scarpa 42.5, accounting for Black Diamond's 0.25 EU downsize."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 6,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 4,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-07T17-57-47",
+    "timing": {
+      "elapsed_seconds": 165.9,
+      "tokens_generated": 1428,
+      "tokens_prompt": 4876,
+      "tokens_per_second": 8.6
+    },
+    "error": null,
+    "raw_response": "```json\n{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Your foot scan reveals a predominantly standard volume foot. The forefoot width ratio of 0.367 falls within the normal range, indicating neither particularly wide nor narrow feet. Similarly, your heel width ratio of 0.242 is also classified as normal.\",\n        \"The arch length ratio of 0.714 and instep height ratio of 0.269 both fall into the normal category, suggesting a balanced foot structure. Your heel depth ratio is quite low at 0.043, indicating a shallow heel pocket.\",\n        \"Overall, your foot shape is characterized by standard dimensions across all measured areas, with a toe shape classified as Egyptian. This suggests a preference for shoes that accommodate a more tapered toe box.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear a La Sportiva Theory in size EU 41, with a perfect fit reported across the heel, toes, and forefoot. Given your street size of EU 44, this indicates a significant downsize of approximately 2.5 EU sizes from your street shoe size.\",\n        \"Considering La Sportiva typically requires a 2.25 EU downsize, your preference for a snug, performance-oriented fit is evident. The perfect fit suggests you appreciate a precise and secure feel in your climbing shoes.\",\n        \"This data confirms you prefer a relatively aggressive fit, prioritizing precision and sensitivity over comfort. It also suggests you have a good understanding of how climbing shoes should fit to maximize performance.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Based on your foot shape and fit preferences, you’ll benefit from shoes with a standard volume, a moderate to aggressive downturn, and an Egyptian toe box to accommodate your tapered toes. Given your shallow heel, shoes with a well-defined heel cup are crucial.\",\n        \"Since you prefer a snug, performance-oriented fit, we'll focus on shoes that offer precision and sensitivity. Maintaining a similar level of aggression as your current La Sportiva Theory is key, while considering options that cater to your standard volume foot.\",\n        \"As you indicated a preference for the 'same' style, we will prioritize shoes that offer a similar overall feel and performance characteristics to your current setup, focusing on all-around climbing capabilities.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-5\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache 5\",\n      \"why\": \"The Apache 5 features a strong asymmetry and aggressive downturn, aligning with your preference for performance-oriented shoes. Its standard forefoot volume and medium heel volume will suit your foot shape well, and the Egyptian toe box will accommodate your toe shape. \",\n      \"recommended_size_eu\": 41.5,\n      \"size_note\": \"Downsizing from your La Sportiva Theory EU 41, considering Andrea Boldrini typically requires a 1.5 EU downsize from street size.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Black Diamond Shadow offers an aggressive downturn and moderate feel, providing a similar performance profile to your current La Sportiva Theory. Its standard forefoot volume and medium heel volume will comfortably accommodate your foot shape, and the Egyptian toe box will suit your toe shape.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Black Diamond typically requires a 0.25 EU downsize. We are adding this to your anchor size of 41 for a similar fit.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Butora Acro Comp is a high-performance shoe with a strong asymmetry and aggressive downturn, ideal for advanced climbers. Its standard forefoot volume and narrow heel volume will provide a precise fit, and the Egyptian toe box will match your foot shape.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Butora typically runs true to size, so we're using your La Sportiva Theory size as a reference point.\"\n    },\n    {\n      \"slug\": \"boreal-dharma\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Dharma\",\n      \"why\": \"The Boreal Dharma offers an aggressive downturn and moderate-soft feel, providing a balance of performance and comfort. Its standard forefoot volume and medium heel volume will accommodate your foot shape, and the Egyptian toe box will suit your toes.\",\n      \"recommended_size_eu\": 42.5,\n      \"size_note\": \"Boreal typically requires a 0.75 EU downsize. We are adding this to your anchor size of 41 for a similar fit.\"\n    },\n    {\n      \"slug\": \"climb-x-apex\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Apex\",\n      \"why\": \"The Climb X Apex is a highly aggressive shoe designed for steep climbing. Its standard forefoot volume and narrow heel volume will provide a secure fit, and the Egyptian toe box will accommodate your foot shape. \",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Climb X typically runs true to size, so we're using your La Sportiva Theory size as a reference point.\"\n    },\n    {\n      \"slug\": \"andrea-boldrini-pantera-ab\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Pantera AB\",\n      \"why\": \"The Andrea Boldrini Pantera AB is a soft, aggressive shoe designed for bouldering and sport climbing. Its low forefoot volume and narrow heel volume will provide a precise fit, and the Egyptian toe box will accommodate your foot shape. \",\n      \"recommended_size_eu\": 41.5,\n      \"size_note\": \"Downsizing from your La Sportiva Theory EU 41, considering Andrea Boldrini typically requires a 1.5 EU downsize from street size.\"\n    }\n  ]\n}\n```",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your foot scan reveals a predominantly standard volume foot. The forefoot width ratio of 0.367 falls within the normal range, indicating neither particularly wide nor narrow feet. Similarly, your heel width ratio of 0.242 is also classified as normal.",
+            "The arch length ratio of 0.714 and instep height ratio of 0.269 both fall into the normal category, suggesting a balanced foot structure. Your heel depth ratio is quite low at 0.043, indicating a shallow heel pocket.",
+            "Overall, your foot shape is characterized by standard dimensions across all measured areas, with a toe shape classified as Egyptian. This suggests a preference for shoes that accommodate a more tapered toe box."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear a La Sportiva Theory in size EU 41, with a perfect fit reported across the heel, toes, and forefoot. Given your street size of EU 44, this indicates a significant downsize of approximately 2.5 EU sizes from your street shoe size.",
+            "Considering La Sportiva typically requires a 2.25 EU downsize, your preference for a snug, performance-oriented fit is evident. The perfect fit suggests you appreciate a precise and secure feel in your climbing shoes.",
+            "This data confirms you prefer a relatively aggressive fit, prioritizing precision and sensitivity over comfort. It also suggests you have a good understanding of how climbing shoes should fit to maximize performance."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Based on your foot shape and fit preferences, you’ll benefit from shoes with a standard volume, a moderate to aggressive downturn, and an Egyptian toe box to accommodate your tapered toes. Given your shallow heel, shoes with a well-defined heel cup are crucial.",
+            "Since you prefer a snug, performance-oriented fit, we'll focus on shoes that offer precision and sensitivity. Maintaining a similar level of aggression as your current La Sportiva Theory is key, while considering options that cater to your standard volume foot.",
+            "As you indicated a preference for the 'same' style, we will prioritize shoes that offer a similar overall feel and performance characteristics to your current setup, focusing on all-around climbing capabilities."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-5",
+          "brand": "Andrea Boldrini",
+          "model": "Apache 5",
+          "why": "The Apache 5 features a strong asymmetry and aggressive downturn, aligning with your preference for performance-oriented shoes. Its standard forefoot volume and medium heel volume will suit your foot shape well, and the Egyptian toe box will accommodate your toe shape. ",
+          "recommended_size_eu": 41.5,
+          "size_note": "Downsizing from your La Sportiva Theory EU 41, considering Andrea Boldrini typically requires a 1.5 EU downsize from street size."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Black Diamond Shadow offers an aggressive downturn and moderate feel, providing a similar performance profile to your current La Sportiva Theory. Its standard forefoot volume and medium heel volume will comfortably accommodate your foot shape, and the Egyptian toe box will suit your toe shape.",
+          "recommended_size_eu": 42,
+          "size_note": "Black Diamond typically requires a 0.25 EU downsize. We are adding this to your anchor size of 41 for a similar fit."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Butora Acro Comp is a high-performance shoe with a strong asymmetry and aggressive downturn, ideal for advanced climbers. Its standard forefoot volume and narrow heel volume will provide a precise fit, and the Egyptian toe box will match your foot shape.",
+          "recommended_size_eu": 42,
+          "size_note": "Butora typically runs true to size, so we're using your La Sportiva Theory size as a reference point."
+        },
+        {
+          "slug": "boreal-dharma",
+          "brand": "Boreal",
+          "model": "Dharma",
+          "why": "The Boreal Dharma offers an aggressive downturn and moderate-soft feel, providing a balance of performance and comfort. Its standard forefoot volume and medium heel volume will accommodate your foot shape, and the Egyptian toe box will suit your toes.",
+          "recommended_size_eu": 42.5,
+          "size_note": "Boreal typically requires a 0.75 EU downsize. We are adding this to your anchor size of 41 for a similar fit."
+        },
+        {
+          "slug": "climb-x-apex",
+          "brand": "Climb X",
+          "model": "Apex",
+          "why": "The Climb X Apex is a highly aggressive shoe designed for steep climbing. Its standard forefoot volume and narrow heel volume will provide a secure fit, and the Egyptian toe box will accommodate your foot shape. ",
+          "recommended_size_eu": 42,
+          "size_note": "Climb X typically runs true to size, so we're using your La Sportiva Theory size as a reference point."
+        },
+        {
+          "slug": "andrea-boldrini-pantera-ab",
+          "brand": "Andrea Boldrini",
+          "model": "Pantera AB",
+          "why": "The Andrea Boldrini Pantera AB is a soft, aggressive shoe designed for bouldering and sport climbing. Its low forefoot volume and narrow heel volume will provide a precise fit, and the Egyptian toe box will accommodate your foot shape. ",
+          "recommended_size_eu": 41.5,
+          "size_note": "Downsizing from your La Sportiva Theory EU 41, considering Andrea Boldrini typically requires a 1.5 EU downsize from street size."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 5,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-09T16-47-33",
+    "timing": {
+      "elapsed_seconds": 130.9,
+      "tokens_generated": 1339,
+      "tokens_prompt": 1986,
+      "tokens_per_second": 10.2
+    },
+    "error": null,
+    "raw_response": "```json\n{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Your foot shape is characterized by a narrow forefoot and heel, indicated by forefoot width ratio of 0.342 and heel width ratio of 0.22. This suggests a foot that generally fits well in shoes with a more precise fit.\",\n        \"You have a long arch (arch length ratio of 0.731) and a low instep (instep height ratio of 0.243). This combination often benefits from shoes with moderate arch support and a snug midfoot.\",\n        \"Your heel depth is normal (heel depth ratio of 0.026) and your overall foot volume is low. This means you likely prefer shoes that don't have excessive space and provide a secure heel hold.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear a La Sportiva Mythos in EU size 39. Given your street size of EU 41, this indicates a significant downsize of approximately 2 EU sizes, aligning with La Sportiva's typical sizing pattern of around 2.25 EU down.\",\n        \"The fit data shows a perfect forefoot and heel fit, but squeezed toes. This suggests you prioritize a snug, performance-oriented fit, but may be nearing the limit of comfort in the toe box.\",\n        \"Your preference for comfort in your next shoe, combined with the current fit, indicates a desire for a shoe that maintains a precise fit without excessive toe pressure.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Based on your foot shape and fit preferences, you should look for shoes with a narrow last, moderate arch support, and a low-volume design. An Egyptian toe box shape will likely suit your toe shape well.\",\n        \"Given your preference for comfort, prioritize shoes with a slightly more relaxed fit in the toe box compared to your current shoes, while still maintaining a secure heel and snug midfoot.\",\n        \"We will focus on shoes that cater to a narrow foot and low volume, offering a balance between performance and all-day comfort for a variety of climbing styles.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"red-chili-charger\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Charger\",\n      \"why\": \"The Red Chili Charger features a medium width and Egyptian toe box, aligning well with your narrow forefoot and toe shape. Its moderate downturn and slight asymmetry provide a good balance between performance and comfort, suitable for all-day climbing.\",\n      \"recommended_size_eu\": 39.5,\n      \"size_note\": \"Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize.\"\n    },\n    {\n      \"slug\": \"red-chili-magnet\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Magnet\",\n      \"why\": \"The Red Chili Magnet offers a medium width and Egyptian toe box, accommodating your narrow forefoot and toe shape. Its moderate downturn and velcro closure provide a secure fit and ease of use, ideal for comfort-focused climbing.\",\n      \"recommended_size_eu\": 39.5,\n      \"size_note\": \"Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize.\"\n    },\n    {\n      \"slug\": \"red-chili-magnet-lace\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Magnet Lace\",\n      \"why\": \"The Magnet Lace offers a similar fit to the Magnet, but with the added precision of a lace-up closure. This allows for a more customized fit, which can be beneficial for a narrow foot and low-volume design.\",\n      \"recommended_size_eu\": 39.5,\n      \"size_note\": \"Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize.\"\n    },\n    {\n      \"slug\": \"red-chili-sensor\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Sensor\",\n      \"why\": \"The Red Chili Sensor is designed for performance with a narrow last and aggressive downturn. While more aggressive, its high forefoot volume can accommodate your long arch, and the narrow heel cup will suit your heel width.\",\n      \"recommended_size_eu\": 39.5,\n      \"size_note\": \"Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize.\"\n    },\n    {\n      \"slug\": \"red-chili-voltage-lv\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Voltage LV\",\n      \"why\": \"The Voltage LV (Low Volume) is specifically designed for narrow feet and low-volume designs. Its aggressive downturn and narrow last will provide a precise fit and excellent performance, while the LV fit addresses your low volume.\",\n      \"recommended_size_eu\": 38.5,\n      \"size_note\": \"Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize and the LV version runs even smaller.\"\n    },\n    {\n      \"slug\": \"red-chili-puzzle\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Puzzle\",\n      \"why\": \"The Red Chili Puzzle offers a moderate asymmetry and downturn, providing a balance between comfort and performance. Its medium width and versatile design make it suitable for various climbing styles, aligning with your preference for comfort.\",\n      \"recommended_size_eu\": 39.5,\n      \"size_note\": \"Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize.\"\n    }\n  ]\n}\n```",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your foot shape is characterized by a narrow forefoot and heel, indicated by forefoot width ratio of 0.342 and heel width ratio of 0.22. This suggests a foot that generally fits well in shoes with a more precise fit.",
+            "You have a long arch (arch length ratio of 0.731) and a low instep (instep height ratio of 0.243). This combination often benefits from shoes with moderate arch support and a snug midfoot.",
+            "Your heel depth is normal (heel depth ratio of 0.026) and your overall foot volume is low. This means you likely prefer shoes that don't have excessive space and provide a secure heel hold."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear a La Sportiva Mythos in EU size 39. Given your street size of EU 41, this indicates a significant downsize of approximately 2 EU sizes, aligning with La Sportiva's typical sizing pattern of around 2.25 EU down.",
+            "The fit data shows a perfect forefoot and heel fit, but squeezed toes. This suggests you prioritize a snug, performance-oriented fit, but may be nearing the limit of comfort in the toe box.",
+            "Your preference for comfort in your next shoe, combined with the current fit, indicates a desire for a shoe that maintains a precise fit without excessive toe pressure."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Based on your foot shape and fit preferences, you should look for shoes with a narrow last, moderate arch support, and a low-volume design. An Egyptian toe box shape will likely suit your toe shape well.",
+            "Given your preference for comfort, prioritize shoes with a slightly more relaxed fit in the toe box compared to your current shoes, while still maintaining a secure heel and snug midfoot.",
+            "We will focus on shoes that cater to a narrow foot and low volume, offering a balance between performance and all-day comfort for a variety of climbing styles."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "red-chili-charger",
+          "brand": "Red Chili",
+          "model": "Charger",
+          "why": "The Red Chili Charger features a medium width and Egyptian toe box, aligning well with your narrow forefoot and toe shape. Its moderate downturn and slight asymmetry provide a good balance between performance and comfort, suitable for all-day climbing.",
+          "recommended_size_eu": 39.5,
+          "size_note": "Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize."
+        },
+        {
+          "slug": "red-chili-magnet",
+          "brand": "Red Chili",
+          "model": "Magnet",
+          "why": "The Red Chili Magnet offers a medium width and Egyptian toe box, accommodating your narrow forefoot and toe shape. Its moderate downturn and velcro closure provide a secure fit and ease of use, ideal for comfort-focused climbing.",
+          "recommended_size_eu": 39.5,
+          "size_note": "Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize."
+        },
+        {
+          "slug": "red-chili-magnet-lace",
+          "brand": "Red Chili",
+          "model": "Magnet Lace",
+          "why": "The Magnet Lace offers a similar fit to the Magnet, but with the added precision of a lace-up closure. This allows for a more customized fit, which can be beneficial for a narrow foot and low-volume design.",
+          "recommended_size_eu": 39.5,
+          "size_note": "Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize."
+        },
+        {
+          "slug": "red-chili-sensor",
+          "brand": "Red Chili",
+          "model": "Sensor",
+          "why": "The Red Chili Sensor is designed for performance with a narrow last and aggressive downturn. While more aggressive, its high forefoot volume can accommodate your long arch, and the narrow heel cup will suit your heel width.",
+          "recommended_size_eu": 39.5,
+          "size_note": "Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize."
+        },
+        {
+          "slug": "red-chili-voltage-lv",
+          "brand": "Red Chili",
+          "model": "Voltage LV",
+          "why": "The Voltage LV (Low Volume) is specifically designed for narrow feet and low-volume designs. Its aggressive downturn and narrow last will provide a precise fit and excellent performance, while the LV fit addresses your low volume.",
+          "recommended_size_eu": 38.5,
+          "size_note": "Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize and the LV version runs even smaller."
+        },
+        {
+          "slug": "red-chili-puzzle",
+          "brand": "Red Chili",
+          "model": "Puzzle",
+          "why": "The Red Chili Puzzle offers a moderate asymmetry and downturn, providing a balance between comfort and performance. Its medium width and versatile design make it suitable for various climbing styles, aligning with your preference for comfort.",
+          "recommended_size_eu": 39.5,
+          "size_note": "Downsizing from your EU 41 street size, considering Red Chili typically requires around 0.5 EU downsize."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 1,
+      "em_dash_violations": 0,
+      "total_score": 81.2,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  }
+]

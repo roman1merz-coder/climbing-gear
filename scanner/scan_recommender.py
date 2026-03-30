@@ -300,7 +300,11 @@ def _calc_recommended_size(user_anchor_size: float, anchor_brand: str,
 
 def _check_size_available(slug: str, recommended_size: float,
                           size_avail: dict) -> bool:
-    """Check if a shoe is available in the recommended size (or half size above/below).
+    """Check if a shoe is available within half a size of the recommended size.
+
+    Uses a range check instead of exact matches so brands with non-standard
+    size increments (e.g. Five Ten uses 1/3 EU steps like 42.67, 43.33)
+    are not incorrectly penalized.
 
     Returns True if available, or if we have no size data for this shoe.
     """
@@ -308,9 +312,9 @@ def _check_size_available(slug: str, recommended_size: float,
     if not available:
         return True  # no data = assume available (no penalty)
 
-    # Check exact size and +/- 0.5 (user might adjust half a size)
-    for offset in (0, 0.5, -0.5):
-        if round(recommended_size + offset, 1) in available:
+    # Check if any available size is within +/- 0.5 of the recommended size
+    for size in available:
+        if abs(size - recommended_size) <= 0.5:
             return True
     return False
 
@@ -363,7 +367,7 @@ def _extract_user_shoe_profile(profile: dict) -> dict:
         key = f"{s['brand']} {s['model']}".lower()
         shoe_by_brand_model[key] = s
 
-    user_shoes = profile.get("shoes", [])
+    user_shoes = profile.get("shoes") or []
     stiffnesses = []
     skill_levels = set()
     owned_models = set()
@@ -446,7 +450,7 @@ def _user_current_shoe_widths(profile: dict, shoes_db: list) -> dict:
     heel_volumes = set()
     forefoot_fits = set()
 
-    for us in profile.get("shoes", []):
+    for us in profile.get("shoes") or []:
         brand = us.get("brand", "")
         model = us.get("model", "")
         key = f"{brand} {model}".lower()
@@ -510,7 +514,7 @@ def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
     # Check if user has an explicit heel fit problem (empty or squeezed)
     # from their current shoe data. If so, heel match is critical.
     heel_problem = False
-    for us in profile.get("shoes", []):
+    for us in profile.get("shoes") or []:
         heel_fit = (us.get("fit") or {}).get("heel", "")
         if heel_fit in ("empty", "squeezed", "tight"):
             heel_problem = True
@@ -716,7 +720,7 @@ def get_shoe_candidates(profile: dict, top_n: int = 30) -> list:
     size_avail = _load_size_availability()
 
     # Determine user's anchor size and brand for sizing formula
-    user_shoes = profile.get("shoes", [])
+    user_shoes = profile.get("shoes") or []
     anchor_size = None
     anchor_brand = None
     if user_shoes:
@@ -790,11 +794,11 @@ def performance_label(downturn: str) -> str:
 def get_categorized_candidates(profile: dict) -> dict:
     """Return shoe candidates organized into 4 categories for the LLM.
 
-    Categories:
-    - baseline (3 shoes): similar stiffness to user's current shoe average
-    - softer (2 shoes): noticeably softer than current average
-    - stiffer (2 shoes): noticeably stiffer than current average
-    - budget (2 shoes): cheapest available options that still address fit issues
+    Categories (3 shoes each, 12 total):
+    - baseline: similar stiffness to user's current shoe average
+    - softer: noticeably softer than current average
+    - stiffer: noticeably stiffer than current average
+    - budget: cheapest available options that still address fit issues
 
     All candidates must address the user's fit issues (priority 1).
     Within each category, shoes are sorted by overall score.
@@ -823,7 +827,7 @@ def get_categorized_candidates(profile: dict) -> dict:
         shoe_by_key[key] = s
 
     user_downturns = []
-    for us in profile.get("shoes", []):
+    for us in profile.get("shoes") or []:
         key = f"{us.get('brand', '')} {us.get('model', '')}".lower()
         db_shoe = shoe_by_key.get(key)
         if not db_shoe:
@@ -896,7 +900,7 @@ def get_categorized_candidates(profile: dict) -> dict:
 
     # Determine hard heel constraint from user's shoe fit data
     user_heel_problem = None  # None = no constraint
-    for us in profile.get("shoes", []):
+    for us in profile.get("shoes") or []:
         heel_fit = (us.get("fit") or {}).get("heel", "")
         if heel_fit in ("empty", "squeezed", "tight"):
             user_heel_problem = heel_fit
@@ -937,11 +941,11 @@ def get_categorized_candidates(profile: dict) -> dict:
                     break
         return picked
 
-    # Pick baseline first (priority), then softer/stiffer, then budget from remainder
+    # Pick 3 per category (12 total). Baseline first, then softer/stiffer, then budget.
     baseline_picks = pick(baseline, 3)
-    softer_picks = pick(softer, 2)
-    stiffer_picks = pick(stiffer, 2)
-    budget_picks = pick(priced, 2)
+    softer_picks = pick(softer, 3)
+    stiffer_picks = pick(stiffer, 3)
+    budget_picks = pick(priced, 3)
 
     # If any category is underfilled, don't force it - return what we have
     total = len(baseline_picks) + len(softer_picks) + len(stiffer_picks) + len(budget_picks)

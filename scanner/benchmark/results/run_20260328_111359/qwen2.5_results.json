@@ -1,0 +1,537 @@
+[
+  {
+    "scan_id": "scan-2026-03-10T04-35-34",
+    "timing": {
+      "elapsed_seconds": 185.0,
+      "tokens_generated": 1150,
+      "tokens_prompt": 4966,
+      "tokens_per_second": 6.2
+    },
+    "error": null,
+    "raw_response": "{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Based on your foot scan data, you have a narrow forefoot with a width ratio of 0.342 and a narrow heel with a width ratio of 0.225. Your instep height is normal at a ratio of 0.314, while the arch length is short at a ratio of 0.662. The depth of your heels is also within the normal range at 0.054.\",\n        \"Your toe shape is classified as Egyptian with a narrow forefoot width class and a heel width class that matches this profile. This suggests you have a foot that requires shoes with snug but not overly tight fitting in both the forefoot and heel areas.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear La Sportiva Katana Lace Women's EU 41, where you experience a perfect fit across the heel, toes, and forefoot. However, in the Solution Comp Woman EU 41.5, your heels are empty while your toes feel squeezed despite a good forefoot fit.\",\n        \"Considering that both shoes are from La Sportiva, which typically runs large (downsize of ~2.25 EU), this suggests you may be more comfortable with slightly tighter fitting shoes to ensure better performance and support.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Given your foot shape and current shoe fit preferences, it is recommended that you look for climbing shoes that offer a snug but not overly tight fit in both the forefoot and heel areas. You should prioritize performance over comfort given your stated preference.\",\n        \"Shoes with moderate to aggressive downturn and medium width are ideal for your Egyptian toe shape and narrow forefoot. Additionally, models with lace closure or velcro straps can provide better adjustability.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-5\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache 5\",\n      \"why\": \"The Apache 5 offers a medium width and aggressive downturn, suitable for your narrow forefoot and Egyptian toe shape. The velcro closure allows for precise fit adjustment.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Andrea Boldrini is EU 42.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Shadow provides a medium width and aggressive downturn, ideal for your foot shape. The velcro closure ensures a snug fit.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Black Diamond is EU 43.\"\n    },\n    {\n      \"slug\": \"boreal-dharma\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Dharma\",\n      \"why\": \"The Dharma offers a medium width and moderate downturn, suitable for your narrow forefoot. The velcro closure allows for precise fit adjustment.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Boreal is EU 43.\"\n    },\n    {\n      \"slug\": \"climb-x-crush-lace\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Crush Lace\",\n      \"why\": \"The Crush Lace offers a medium width and moderate downturn, suitable for your foot shape. The lace closure allows for precise fit adjustment.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Climb X is EU 43.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Acro Comp offers a medium width and aggressive downturn, suitable for your narrow forefoot and Egyptian toe shape. The velcro closure ensures a snug fit.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Butora is EU 42.\"\n    },\n    {\n      \"slug\": \"andrea-boldrini-apache-light\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache Light\",\n      \"why\": \"The Apache Light offers a medium width and moderate downturn, suitable for your narrow forefoot. The velcro closure allows for precise fit adjustment.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Andrea Boldrini is EU 42.\"\n    }\n  ]\n}",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Based on your foot scan data, you have a narrow forefoot with a width ratio of 0.342 and a narrow heel with a width ratio of 0.225. Your instep height is normal at a ratio of 0.314, while the arch length is short at a ratio of 0.662. The depth of your heels is also within the normal range at 0.054.",
+            "Your toe shape is classified as Egyptian with a narrow forefoot width class and a heel width class that matches this profile. This suggests you have a foot that requires shoes with snug but not overly tight fitting in both the forefoot and heel areas."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear La Sportiva Katana Lace Women's EU 41, where you experience a perfect fit across the heel, toes, and forefoot. However, in the Solution Comp Woman EU 41.5, your heels are empty while your toes feel squeezed despite a good forefoot fit.",
+            "Considering that both shoes are from La Sportiva, which typically runs large (downsize of ~2.25 EU), this suggests you may be more comfortable with slightly tighter fitting shoes to ensure better performance and support."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Given your foot shape and current shoe fit preferences, it is recommended that you look for climbing shoes that offer a snug but not overly tight fit in both the forefoot and heel areas. You should prioritize performance over comfort given your stated preference.",
+            "Shoes with moderate to aggressive downturn and medium width are ideal for your Egyptian toe shape and narrow forefoot. Additionally, models with lace closure or velcro straps can provide better adjustability."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-5",
+          "brand": "Andrea Boldrini",
+          "model": "Apache 5",
+          "why": "The Apache 5 offers a medium width and aggressive downturn, suitable for your narrow forefoot and Egyptian toe shape. The velcro closure allows for precise fit adjustment.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Andrea Boldrini is EU 42."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Shadow provides a medium width and aggressive downturn, ideal for your foot shape. The velcro closure ensures a snug fit.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Black Diamond is EU 43."
+        },
+        {
+          "slug": "boreal-dharma",
+          "brand": "Boreal",
+          "model": "Dharma",
+          "why": "The Dharma offers a medium width and moderate downturn, suitable for your narrow forefoot. The velcro closure allows for precise fit adjustment.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Boreal is EU 43."
+        },
+        {
+          "slug": "climb-x-crush-lace",
+          "brand": "Climb X",
+          "model": "Crush Lace",
+          "why": "The Crush Lace offers a medium width and moderate downturn, suitable for your foot shape. The lace closure allows for precise fit adjustment.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Climb X is EU 43."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Acro Comp offers a medium width and aggressive downturn, suitable for your narrow forefoot and Egyptian toe shape. The velcro closure ensures a snug fit.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Butora is EU 42."
+        },
+        {
+          "slug": "andrea-boldrini-apache-light",
+          "brand": "Andrea Boldrini",
+          "model": "Apache Light",
+          "why": "The Apache Light offers a medium width and moderate downturn, suitable for your narrow forefoot. The velcro closure allows for precise fit adjustment.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on La Sportiva Katana Lace EU 41 (downsize of ~2.25), the recommended size in Andrea Boldrini is EU 42."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 5,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-05T13-52-58",
+    "timing": {
+      "elapsed_seconds": 152.1,
+      "tokens_generated": 1125,
+      "tokens_prompt": 4884,
+      "tokens_per_second": 7.4
+    },
+    "error": null,
+    "raw_response": "{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Based on your foot scan data, you have a normal forefoot width with a ratio of 0.393 and a normal heel width with a ratio of 0.268. Your arch length is classified as normal at a ratio of 0.711. You also have a high instep (ratio: 0.329) and a shallow heel depth (ratio: 0.006). The overall volume class for your foot is medium, which indicates that you need shoes with adequate space to accommodate these dimensions.\",\n        \"Your toe shape is classified as Egyptian, meaning the toes are relatively wide at the base and taper towards the tips. This toe shape typically requires a shoe with sufficient width in the forefoot area.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear Scarpa Origin in EU size 41.5, which is approximately 1 EU down from your street size of 42.5. This suggests that you prefer a snug fit with no heel slippage and good toe contact without feeling cramped.\",\n        \"The fit data indicates that the shoe fits perfectly at the forefoot and toes but has an empty space in the heel area, which is common for high instep feet like yours.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Given your foot shape and current fit preferences, you should look for climbing shoes that offer a snug fit with enough room for your Egyptian toe shape. A shoe with moderate asymmetry can help accommodate the high instep while providing good support.\",\n        \"You may prefer shoes with a medium volume to ensure comfort without sacrificing performance. Additionally, consider models with lace or velcro closures for better adjustability.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-light\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache Light\",\n      \"why\": \"The Apache Light offers a medium width and moderate downturn, suitable for your Egyptian toe shape and high instep. It provides good support with its stiff-moderate feel.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on your Scarpa Origin fit (EU 41.5), we recommend the Apache Light in EU 42 to account for Andrea Boldrini's sizing.\"\n    },\n    {\n      \"slug\": \"black-diamond-method\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Method\",\n      \"why\": \"The Method has a medium width and moderate downturn, which matches your foot shape well. It offers good support with its moderate feel.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Given your Scarpa Origin fit (EU 41.5), we recommend the Black Diamond Method in EU 42 to match your preferred snugness.\"\n    },\n    {\n      \"slug\": \"boreal-beta\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Beta\",\n      \"why\": \"The Beta has a medium width and flat downturn, providing comfort for your high instep. It offers moderate support with its velcro closure.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on your Scarpa Origin fit (EU 41.5), we recommend the Boreal Beta in EU 42 to ensure a snug but comfortable fit.\"\n    },\n    {\n      \"slug\": \"butora-sensa\",\n      \"brand\": \"Butora\",\n      \"model\": \"Sensa\",\n      \"why\": \"The Sensa has a wide width and moderate downturn, accommodating your Egyptian toe shape well. It offers moderate-soft feel with its slipper closure for easy adjustability.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Given your Scarpa Origin fit (EU 41.5), we recommend the Butora Sensa in EU 42 to provide a comfortable and snug fit.\"\n    },\n    {\n      \"slug\": \"climb-x-crush-lace\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Crush Lace\",\n      \"why\": \"The Crush Lace has a medium width and moderate downturn, suitable for your foot shape. It offers good support with its lace closure.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Based on your Scarpa Origin fit (EU 41.5), we recommend the Climb X Crush Lace in EU 42 to ensure a snug and supportive fit.\"\n    },\n    {\n      \"slug\": \"boreal-mutant\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Mutant\",\n      \"why\": \"The Mutant has a medium width and moderate downturn, which fits well with your foot shape. It offers moderate support with its lace closure.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Given your Scarpa Origin fit (EU 41.5), we recommend the Boreal Mutant in EU 42 to provide a snug and comfortable fit.\"\n    }\n  ]\n}",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Based on your foot scan data, you have a normal forefoot width with a ratio of 0.393 and a normal heel width with a ratio of 0.268. Your arch length is classified as normal at a ratio of 0.711. You also have a high instep (ratio: 0.329) and a shallow heel depth (ratio: 0.006). The overall volume class for your foot is medium, which indicates that you need shoes with adequate space to accommodate these dimensions.",
+            "Your toe shape is classified as Egyptian, meaning the toes are relatively wide at the base and taper towards the tips. This toe shape typically requires a shoe with sufficient width in the forefoot area."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear Scarpa Origin in EU size 41.5, which is approximately 1 EU down from your street size of 42.5. This suggests that you prefer a snug fit with no heel slippage and good toe contact without feeling cramped.",
+            "The fit data indicates that the shoe fits perfectly at the forefoot and toes but has an empty space in the heel area, which is common for high instep feet like yours."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Given your foot shape and current fit preferences, you should look for climbing shoes that offer a snug fit with enough room for your Egyptian toe shape. A shoe with moderate asymmetry can help accommodate the high instep while providing good support.",
+            "You may prefer shoes with a medium volume to ensure comfort without sacrificing performance. Additionally, consider models with lace or velcro closures for better adjustability."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-light",
+          "brand": "Andrea Boldrini",
+          "model": "Apache Light",
+          "why": "The Apache Light offers a medium width and moderate downturn, suitable for your Egyptian toe shape and high instep. It provides good support with its stiff-moderate feel.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on your Scarpa Origin fit (EU 41.5), we recommend the Apache Light in EU 42 to account for Andrea Boldrini's sizing."
+        },
+        {
+          "slug": "black-diamond-method",
+          "brand": "Black Diamond",
+          "model": "Method",
+          "why": "The Method has a medium width and moderate downturn, which matches your foot shape well. It offers good support with its moderate feel.",
+          "recommended_size_eu": 42,
+          "size_note": "Given your Scarpa Origin fit (EU 41.5), we recommend the Black Diamond Method in EU 42 to match your preferred snugness."
+        },
+        {
+          "slug": "boreal-beta",
+          "brand": "Boreal",
+          "model": "Beta",
+          "why": "The Beta has a medium width and flat downturn, providing comfort for your high instep. It offers moderate support with its velcro closure.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on your Scarpa Origin fit (EU 41.5), we recommend the Boreal Beta in EU 42 to ensure a snug but comfortable fit."
+        },
+        {
+          "slug": "butora-sensa",
+          "brand": "Butora",
+          "model": "Sensa",
+          "why": "The Sensa has a wide width and moderate downturn, accommodating your Egyptian toe shape well. It offers moderate-soft feel with its slipper closure for easy adjustability.",
+          "recommended_size_eu": 42,
+          "size_note": "Given your Scarpa Origin fit (EU 41.5), we recommend the Butora Sensa in EU 42 to provide a comfortable and snug fit."
+        },
+        {
+          "slug": "climb-x-crush-lace",
+          "brand": "Climb X",
+          "model": "Crush Lace",
+          "why": "The Crush Lace has a medium width and moderate downturn, suitable for your foot shape. It offers good support with its lace closure.",
+          "recommended_size_eu": 42,
+          "size_note": "Based on your Scarpa Origin fit (EU 41.5), we recommend the Climb X Crush Lace in EU 42 to ensure a snug and supportive fit."
+        },
+        {
+          "slug": "boreal-mutant",
+          "brand": "Boreal",
+          "model": "Mutant",
+          "why": "The Mutant has a medium width and moderate downturn, which fits well with your foot shape. It offers moderate support with its lace closure.",
+          "recommended_size_eu": 42,
+          "size_note": "Given your Scarpa Origin fit (EU 41.5), we recommend the Boreal Mutant in EU 42 to provide a snug and comfortable fit."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 6,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 1,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 5,
+      "em_dash_violations": 0,
+      "total_score": 87.5,
+      "max_score": 100
+    },
+    "sizing_accuracy": [
+      {
+        "slug": "boreal-mutant",
+        "model_size": 42,
+        "expected_size": 42.5,
+        "difference": 0.5,
+        "within_half_size": true,
+        "exact_match": false
+      }
+    ]
+  },
+  {
+    "scan_id": "scan-2026-03-14T18-58-04",
+    "timing": {
+      "elapsed_seconds": 154.0,
+      "tokens_generated": 1062,
+      "tokens_prompt": 4968,
+      "tokens_per_second": 6.9
+    },
+    "error": null,
+    "raw_response": "{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Based on your scan data, you have a narrow forefoot width with a ratio of 0.344 and a narrow heel width with a ratio of 0.219. Your instep height is low at 0.247, which suggests that the shoes should provide adequate support in this area to prevent slippage. The arch length is normal (0.703), indicating that you need moderate downturn for optimal performance without compromising comfort. Lastly, your heel depth ratio of 0.033 falls into the 'normal' category.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear Scarpa Drago EU 42.5 and Instinct VSR EU 43, both of which are sized down significantly from your street size (EU 45). The fit data reveals that you prefer a snug toe fit with some room in the forefoot but find the heel area to be loose. This suggests that you may benefit from shoes with a more precise heel lock and possibly a slightly wider forefoot for better comfort.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Given your foot shape and current fit preferences, you should look for climbing shoes that offer a snug toe box but have enough room in the forefoot to prevent compression. A low instep requires support to avoid slippage, so look for models with good heel locks or wraps. Since you prefer performance-oriented shoes, consider options with moderate to aggressive downturns and softer feels for better sensitivity on the rock.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-pantera-ab\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Pantera AB\",\n      \"why\": \"The Pantera AB offers a narrow width and low forefoot volume, which matches your narrow foot shape. The aggressive downturn and soft feel will provide the performance you're looking for.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on Scarpa sizing (1.25 EU down), we recommend Andrea Boldrini Pantera AB in EU 43.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Shadow has a medium width and standard forefoot volume, which should provide adequate room for your narrow foot. The aggressive downturn is suitable for high-performance climbing.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on Scarpa sizing (1.25 EU down), we recommend Black Diamond Shadow in EU 43.\"\n    },\n    {\n      \"slug\": \"boreal-dharma\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Dharma\",\n      \"why\": \"The Dharma has a standard forefoot volume and medium width, which should accommodate your narrow foot shape well. The moderate downturn and soft feel will provide the performance you need.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on Scarpa sizing (1.25 EU down), we recommend Boreal Dharma in EU 43.\"\n    },\n    {\n      \"slug\": \"climb-x-apex\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Apex\",\n      \"why\": \"The Apex offers a medium width and standard forefoot volume, which should fit your narrow foot well. The aggressive downturn is ideal for high-performance climbing.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on Scarpa sizing (1.25 EU down), we recommend Climb X Apex in EU 43.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Acro Comp has a medium width and standard forefoot volume, which should fit your narrow foot well. The aggressive downturn is suitable for high-performance climbing.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on Scarpa sizing (1.25 EU down), we recommend Butora Acro Comp in EU 43.\"\n    },\n    {\n      \"slug\": \"climb-x-red-point\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Red Point\",\n      \"why\": \"The Red Point offers a medium width and standard forefoot volume, which should fit your narrow foot well. The moderate downturn is suitable for high-performance climbing.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Based on Scarpa sizing (1.25 EU down), we recommend Climb X Red Point in EU 43.\"\n    }\n  ]\n}",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Based on your scan data, you have a narrow forefoot width with a ratio of 0.344 and a narrow heel width with a ratio of 0.219. Your instep height is low at 0.247, which suggests that the shoes should provide adequate support in this area to prevent slippage. The arch length is normal (0.703), indicating that you need moderate downturn for optimal performance without compromising comfort. Lastly, your heel depth ratio of 0.033 falls into the 'normal' category."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear Scarpa Drago EU 42.5 and Instinct VSR EU 43, both of which are sized down significantly from your street size (EU 45). The fit data reveals that you prefer a snug toe fit with some room in the forefoot but find the heel area to be loose. This suggests that you may benefit from shoes with a more precise heel lock and possibly a slightly wider forefoot for better comfort."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Given your foot shape and current fit preferences, you should look for climbing shoes that offer a snug toe box but have enough room in the forefoot to prevent compression. A low instep requires support to avoid slippage, so look for models with good heel locks or wraps. Since you prefer performance-oriented shoes, consider options with moderate to aggressive downturns and softer feels for better sensitivity on the rock."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-pantera-ab",
+          "brand": "Andrea Boldrini",
+          "model": "Pantera AB",
+          "why": "The Pantera AB offers a narrow width and low forefoot volume, which matches your narrow foot shape. The aggressive downturn and soft feel will provide the performance you're looking for.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on Scarpa sizing (1.25 EU down), we recommend Andrea Boldrini Pantera AB in EU 43."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Shadow has a medium width and standard forefoot volume, which should provide adequate room for your narrow foot. The aggressive downturn is suitable for high-performance climbing.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on Scarpa sizing (1.25 EU down), we recommend Black Diamond Shadow in EU 43."
+        },
+        {
+          "slug": "boreal-dharma",
+          "brand": "Boreal",
+          "model": "Dharma",
+          "why": "The Dharma has a standard forefoot volume and medium width, which should accommodate your narrow foot shape well. The moderate downturn and soft feel will provide the performance you need.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on Scarpa sizing (1.25 EU down), we recommend Boreal Dharma in EU 43."
+        },
+        {
+          "slug": "climb-x-apex",
+          "brand": "Climb X",
+          "model": "Apex",
+          "why": "The Apex offers a medium width and standard forefoot volume, which should fit your narrow foot well. The aggressive downturn is ideal for high-performance climbing.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on Scarpa sizing (1.25 EU down), we recommend Climb X Apex in EU 43."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Acro Comp has a medium width and standard forefoot volume, which should fit your narrow foot well. The aggressive downturn is suitable for high-performance climbing.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on Scarpa sizing (1.25 EU down), we recommend Butora Acro Comp in EU 43."
+        },
+        {
+          "slug": "climb-x-red-point",
+          "brand": "Climb X",
+          "model": "Red Point",
+          "why": "The Red Point offers a medium width and standard forefoot volume, which should fit your narrow foot well. The moderate downturn is suitable for high-performance climbing.",
+          "recommended_size_eu": 43,
+          "size_note": "Based on Scarpa sizing (1.25 EU down), we recommend Climb X Red Point in EU 43."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 6,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 5,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-07T17-57-47",
+    "timing": {
+      "elapsed_seconds": 139.1,
+      "tokens_generated": 930,
+      "tokens_prompt": 4878,
+      "tokens_per_second": 6.7
+    },
+    "error": null,
+    "raw_response": "{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Based on your foot scan data, you have an Egyptian toe shape with a standard volume class. Your forefoot width ratio is 0.367 and heel width ratio is 0.242, both falling into the normal category. The arch length ratio of 0.714 and instep height ratio of 0.269 are also classified as normal. Additionally, your heel depth ratio of 0.043 places you in the normal class for this dimension.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear La Sportiva Theory EU 41 and find it to have a perfect fit across all areas - heel, toes, and forefoot. This indicates that you prefer shoes with precise sizing and good support for your foot shape.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Given your preference for the La Sportiva Theory, you should look for climbing shoes with a similar fit profile - Egyptian toe shape, standard volume class, and normal width ratios. The ideal shoe will offer precise sizing and good support across all foot areas.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-apache-5\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Apache 5\",\n      \"why\": \"The Apache 5 offers a medium width and Egyptian toe shape, aligning well with your foot scan data. It provides the precise fit you prefer.\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Based on La Sportiva sizing (EU 41), Andrea Boldrini shoes are recommended in EU 41.\"\n    },\n    {\n      \"slug\": \"black-diamond-method\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Method\",\n      \"why\": \"The Method has a medium width and Egyptian toe shape, fitting your foot scan data. It offers moderate feel and precise sizing.\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Based on La Sportiva sizing (EU 41), Black Diamond shoes are recommended in EU 41.\"\n    },\n    {\n      \"slug\": \"boreal-dharma\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Dharma\",\n      \"why\": \"The Dharma features a wide width and Egyptian toe shape, suitable for your foot scan data. It provides moderate-soft feel with precise sizing.\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Based on La Sportiva sizing (EU 41), Boreal shoes are recommended in EU 41.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Acro Comp has a medium width and Egyptian toe shape, matching your foot scan data. It offers aggressive downturn with precise sizing.\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Based on La Sportiva sizing (EU 41), Butora shoes are recommended in EU 41.\"\n    },\n    {\n      \"slug\": \"climb-x-crush-lace\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Crush Lace\",\n      \"why\": \"The Crush Lace has a medium width and Egyptian toe shape, fitting your foot scan data. It provides moderate feel with precise sizing.\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Based on La Sportiva sizing (EU 41), Climb X shoes are recommended in EU 41.\"\n    },\n    {\n      \"slug\": \"boreal-mutant\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Mutant\",\n      \"why\": \"The Mutant has a medium width and Egyptian toe shape, aligning well with your foot scan data. It offers moderate feel and precise sizing.\",\n      \"recommended_size_eu\": 41,\n      \"size_note\": \"Based on La Sportiva sizing (EU 41), Boreal shoes are recommended in EU 41.\"\n    }\n  ]\n}",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Based on your foot scan data, you have an Egyptian toe shape with a standard volume class. Your forefoot width ratio is 0.367 and heel width ratio is 0.242, both falling into the normal category. The arch length ratio of 0.714 and instep height ratio of 0.269 are also classified as normal. Additionally, your heel depth ratio of 0.043 places you in the normal class for this dimension."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear La Sportiva Theory EU 41 and find it to have a perfect fit across all areas - heel, toes, and forefoot. This indicates that you prefer shoes with precise sizing and good support for your foot shape."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Given your preference for the La Sportiva Theory, you should look for climbing shoes with a similar fit profile - Egyptian toe shape, standard volume class, and normal width ratios. The ideal shoe will offer precise sizing and good support across all foot areas."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-apache-5",
+          "brand": "Andrea Boldrini",
+          "model": "Apache 5",
+          "why": "The Apache 5 offers a medium width and Egyptian toe shape, aligning well with your foot scan data. It provides the precise fit you prefer.",
+          "recommended_size_eu": 41,
+          "size_note": "Based on La Sportiva sizing (EU 41), Andrea Boldrini shoes are recommended in EU 41."
+        },
+        {
+          "slug": "black-diamond-method",
+          "brand": "Black Diamond",
+          "model": "Method",
+          "why": "The Method has a medium width and Egyptian toe shape, fitting your foot scan data. It offers moderate feel and precise sizing.",
+          "recommended_size_eu": 41,
+          "size_note": "Based on La Sportiva sizing (EU 41), Black Diamond shoes are recommended in EU 41."
+        },
+        {
+          "slug": "boreal-dharma",
+          "brand": "Boreal",
+          "model": "Dharma",
+          "why": "The Dharma features a wide width and Egyptian toe shape, suitable for your foot scan data. It provides moderate-soft feel with precise sizing.",
+          "recommended_size_eu": 41,
+          "size_note": "Based on La Sportiva sizing (EU 41), Boreal shoes are recommended in EU 41."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Acro Comp has a medium width and Egyptian toe shape, matching your foot scan data. It offers aggressive downturn with precise sizing.",
+          "recommended_size_eu": 41,
+          "size_note": "Based on La Sportiva sizing (EU 41), Butora shoes are recommended in EU 41."
+        },
+        {
+          "slug": "climb-x-crush-lace",
+          "brand": "Climb X",
+          "model": "Crush Lace",
+          "why": "The Crush Lace has a medium width and Egyptian toe shape, fitting your foot scan data. It provides moderate feel with precise sizing.",
+          "recommended_size_eu": 41,
+          "size_note": "Based on La Sportiva sizing (EU 41), Climb X shoes are recommended in EU 41."
+        },
+        {
+          "slug": "boreal-mutant",
+          "brand": "Boreal",
+          "model": "Mutant",
+          "why": "The Mutant has a medium width and Egyptian toe shape, aligning well with your foot scan data. It offers moderate feel and precise sizing.",
+          "recommended_size_eu": 41,
+          "size_note": "Based on La Sportiva sizing (EU 41), Boreal shoes are recommended in EU 41."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 5,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-09T16-47-33",
+    "timing": {
+      "elapsed_seconds": 116.6,
+      "tokens_generated": 1068,
+      "tokens_prompt": 1902,
+      "tokens_per_second": 9.2
+    },
+    "error": null,
+    "raw_response": "{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Based on your foot scan data, you have a narrow forefoot with a width ratio of 0.342 and a narrow heel with a width ratio of 0.22. Your instep height is low at 0.243, which means the arch of your foot does not rise very high above the ground. You also have a long arch as indicated by an arch length ratio of 0.731 and a normal heel depth with a ratio of 0.026. Your toe shape is classified as Egyptian, and you fall into the low volume class for your forefoot.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"Your current La Sportiva Mythos shoe size EU 39 fits perfectly in the heel and forefoot but squeezes your toes. This suggests that you prefer a snug fit around the heel and forefoot, but need more space for your Egyptian toe shape to avoid discomfort during climbs.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Given your foot shape and preference for comfort, you should look for climbing shoes that offer a narrow fit in the heel and forefoot with enough room for your toes. A low-volume shoe will accommodate your Egyptian toe shape while providing the snug fit you prefer around the rest of your foot.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"red-chili-sensor\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Sensor\",\n      \"why\": \"The Sensor is a narrow shoe with high forefoot volume, which will provide the necessary space for your Egyptian toe shape while maintaining a snug fit around the heel and instep.\",\n      \"recommended_size_eu\": 39.5,\n      \"size_note\": \"Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 0.75 EU to account for Red Chili's typical sizing.\"\n    },\n    {\n      \"slug\": \"red-chili-voltage-lv\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Voltage LV\",\n      \"why\": \"The Voltage LV offers a narrow fit and high forefoot volume, making it suitable for your Egyptian toe shape. The aggressive downturn is balanced by the need for comfort in your next shoe.\",\n      \"recommended_size_eu\": 39,\n      \"size_note\": \"Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing.\"\n    },\n    {\n      \"slug\": \"red-chili-magnet-lace\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Magnet Lace\",\n      \"why\": \"The Magnet Lace provides a medium width with high forefoot volume, which should accommodate your Egyptian toe shape comfortably. The lace closure allows for an adjustable fit around the instep.\",\n      \"recommended_size_eu\": 39,\n      \"size_note\": \"Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing.\"\n    },\n    {\n      \"slug\": \"red-chili-magnet\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Magnet\",\n      \"why\": \"The Magnet offers a medium width and high forefoot volume, providing ample space for your Egyptian toe shape while maintaining the snug fit you prefer around the heel.\",\n      \"recommended_size_eu\": 39,\n      \"size_note\": \"Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing.\"\n    },\n    {\n      \"slug\": \"red-chili-puzzle\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Puzzle\",\n      \"why\": \"The Puzzle has a moderate asymmetry and high forefoot volume, which will accommodate your Egyptian toe shape comfortably. The velcro closure allows for easy adjustments to fit your low instep.\",\n      \"recommended_size_eu\": 39,\n      \"size_note\": \"Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing.\"\n    },\n    {\n      \"slug\": \"red-chili-pulpo\",\n      \"brand\": \"Red Chili\",\n      \"model\": \"Pulpo\",\n      \"why\": \"The Pulpo is a flat shoe with moderate forefoot volume, which will provide enough space for your Egyptian toe shape while offering the comfort you seek. The velcro closure ensures a snug fit around the heel and instep.\",\n      \"recommended_size_eu\": 39,\n      \"size_note\": \"Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing.\"\n    }\n  ]\n}",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Based on your foot scan data, you have a narrow forefoot with a width ratio of 0.342 and a narrow heel with a width ratio of 0.22. Your instep height is low at 0.243, which means the arch of your foot does not rise very high above the ground. You also have a long arch as indicated by an arch length ratio of 0.731 and a normal heel depth with a ratio of 0.026. Your toe shape is classified as Egyptian, and you fall into the low volume class for your forefoot."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "Your current La Sportiva Mythos shoe size EU 39 fits perfectly in the heel and forefoot but squeezes your toes. This suggests that you prefer a snug fit around the heel and forefoot, but need more space for your Egyptian toe shape to avoid discomfort during climbs."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Given your foot shape and preference for comfort, you should look for climbing shoes that offer a narrow fit in the heel and forefoot with enough room for your toes. A low-volume shoe will accommodate your Egyptian toe shape while providing the snug fit you prefer around the rest of your foot."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "red-chili-sensor",
+          "brand": "Red Chili",
+          "model": "Sensor",
+          "why": "The Sensor is a narrow shoe with high forefoot volume, which will provide the necessary space for your Egyptian toe shape while maintaining a snug fit around the heel and instep.",
+          "recommended_size_eu": 39.5,
+          "size_note": "Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 0.75 EU to account for Red Chili's typical sizing."
+        },
+        {
+          "slug": "red-chili-voltage-lv",
+          "brand": "Red Chili",
+          "model": "Voltage LV",
+          "why": "The Voltage LV offers a narrow fit and high forefoot volume, making it suitable for your Egyptian toe shape. The aggressive downturn is balanced by the need for comfort in your next shoe.",
+          "recommended_size_eu": 39,
+          "size_note": "Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing."
+        },
+        {
+          "slug": "red-chili-magnet-lace",
+          "brand": "Red Chili",
+          "model": "Magnet Lace",
+          "why": "The Magnet Lace provides a medium width with high forefoot volume, which should accommodate your Egyptian toe shape comfortably. The lace closure allows for an adjustable fit around the instep.",
+          "recommended_size_eu": 39,
+          "size_note": "Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing."
+        },
+        {
+          "slug": "red-chili-magnet",
+          "brand": "Red Chili",
+          "model": "Magnet",
+          "why": "The Magnet offers a medium width and high forefoot volume, providing ample space for your Egyptian toe shape while maintaining the snug fit you prefer around the heel.",
+          "recommended_size_eu": 39,
+          "size_note": "Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing."
+        },
+        {
+          "slug": "red-chili-puzzle",
+          "brand": "Red Chili",
+          "model": "Puzzle",
+          "why": "The Puzzle has a moderate asymmetry and high forefoot volume, which will accommodate your Egyptian toe shape comfortably. The velcro closure allows for easy adjustments to fit your low instep.",
+          "recommended_size_eu": 39,
+          "size_note": "Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing."
+        },
+        {
+          "slug": "red-chili-pulpo",
+          "brand": "Red Chili",
+          "model": "Pulpo",
+          "why": "The Pulpo is a flat shoe with moderate forefoot volume, which will provide enough space for your Egyptian toe shape while offering the comfort you seek. The velcro closure ensures a snug fit around the heel and instep.",
+          "recommended_size_eu": 39,
+          "size_note": "Based on your La Sportiva Mythos EU 39 fit, we recommend sizing down by 1 EU to account for Red Chili's typical sizing."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 1,
+      "em_dash_violations": 0,
+      "total_score": 81.2,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  }
+]

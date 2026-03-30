@@ -1,0 +1,109 @@
+[
+  {
+    "scan_id": "scan-2026-03-10T04-35-34",
+    "timing": {
+      "elapsed_seconds": 238.3,
+      "tokens_generated": 1109,
+      "tokens_prompt": 4966,
+      "tokens_per_second": 4.7
+    },
+    "error": null,
+    "raw_response": "{\n  \"interpretation\": [\n    {\n      \"title\": \"Your Foot Shape\",\n      \"paragraphs\": [\n        \"Based on your foot scan data, you have a narrow forefoot width with a ratio of 0.342 and a narrow heel width with a ratio of 0.225. Your instep height is normal at a ratio of 0.314, and the arch length is short at a ratio of 0.662. The heel depth is also classified as normal with a ratio of 0.054. Additionally, you have an Egyptian toe shape.\",\n        \"Your foot volume class was not provided in the scan data, but your narrow forefoot and heel width suggest that you might prefer shoes with narrower widths to ensure a snug fit.\"\n      ]\n    },\n    {\n      \"title\": \"What Your Current Shoe Fit Tells Us\",\n      \"paragraphs\": [\n        \"You currently wear La Sportiva Katana Lace Women's EU 41, which provides a perfect fit for your heel, toes, and forefoot. This suggests that you prefer shoes with a snug but not overly tight fit across all areas of the foot.\",\n        \"In contrast, the La Sportiva Solution Comp Woman in size EU 41.5 does not fit well as it squeezes your toes and leaves an empty space at the heel while fitting perfectly at the forefoot. This indicates that you may need a shoe with a more precise fit to avoid discomfort.\"\n      ]\n    },\n    {\n      \"title\": \"What to Look For\",\n      \"paragraphs\": [\n        \"Given your preference for performance, you should look for shoes that offer a snug but comfortable fit across all areas of the foot. The narrow forefoot and heel width suggest that you might prefer narrower shoes or those with adjustable closures to ensure a precise fit.\",\n        \"Your short arch length and normal instep height indicate that a shoe with moderate downturn and asymmetry would be suitable for your climbing style. Additionally, since you have an Egyptian toe shape, a shoe with a medium width should accommodate your foot well.\"\n      ]\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"slug\": \"andrea-boldrini-pantera-ab\",\n      \"brand\": \"Andrea Boldrini\",\n      \"model\": \"Pantera AB\",\n      \"why\": \"This shoe offers a narrow width and Egyptian toe shape, which matches your foot scan data. The aggressive downturn and strong asymmetry will provide the performance you seek.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Downsized from La Sportiva Katana Lace Women's EU 41 to Andrea Boldrini Pantera AB EU 42.\"\n    },\n    {\n      \"slug\": \"black-diamond-shadow\",\n      \"brand\": \"Black Diamond\",\n      \"model\": \"Shadow\",\n      \"why\": \"The Shadow has a medium width and Egyptian toe shape, providing the snug fit you prefer. The aggressive downturn suits your performance needs.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Downsized from La Sportiva Katana Lace Women's EU 41 to Black Diamond Shadow EU 43.\"\n    },\n    {\n      \"slug\": \"boreal-ace\",\n      \"brand\": \"Boreal\",\n      \"model\": \"Ace\",\n      \"why\": \"The Boreal Ace has a medium width and flat downturn, which will provide comfort while still offering performance. The lace closure allows for precise adjustment.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Downsized from La Sportiva Katana Lace Women's EU 41 to Boreal Ace EU 43.\"\n    },\n    {\n      \"slug\": \"climb-x-crush-lace\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Crush Lace\",\n      \"why\": \"The Crush Lace has a medium width and moderate downturn, which suits your foot shape well. The lace closure ensures a snug fit.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Downsized from La Sportiva Katana Lace Women's EU 41 to Climb X Crush Lace EU 43.\"\n    },\n    {\n      \"slug\": \"butora-acro-comp\",\n      \"brand\": \"Butora\",\n      \"model\": \"Acro Comp\",\n      \"why\": \"The Acro Comp has a medium width and aggressive downturn, which will provide the performance you seek. The strong asymmetry suits your foot shape.\",\n      \"recommended_size_eu\": 42,\n      \"size_note\": \"Downsized from La Sportiva Katana Lace Women's EU 41 to Butora Acro Comp EU 42.\"\n    },\n    {\n      \"slug\": \"climb-x-red-point\",\n      \"brand\": \"Climb X\",\n      \"model\": \"Red Point\",\n      \"why\": \"The Red Point has a medium width and moderate downturn, providing a balance of performance and comfort. The velcro closure ensures an easy adjustment.\",\n      \"recommended_size_eu\": 43,\n      \"size_note\": \"Downsized from La Sportiva Katana Lace Women's EU 41 to Climb X Red Point EU 43.\"\n    }\n  ]\n}",
+    "parsed_response": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Based on your foot scan data, you have a narrow forefoot width with a ratio of 0.342 and a narrow heel width with a ratio of 0.225. Your instep height is normal at a ratio of 0.314, and the arch length is short at a ratio of 0.662. The heel depth is also classified as normal with a ratio of 0.054. Additionally, you have an Egyptian toe shape.",
+            "Your foot volume class was not provided in the scan data, but your narrow forefoot and heel width suggest that you might prefer shoes with narrower widths to ensure a snug fit."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You currently wear La Sportiva Katana Lace Women's EU 41, which provides a perfect fit for your heel, toes, and forefoot. This suggests that you prefer shoes with a snug but not overly tight fit across all areas of the foot.",
+            "In contrast, the La Sportiva Solution Comp Woman in size EU 41.5 does not fit well as it squeezes your toes and leaves an empty space at the heel while fitting perfectly at the forefoot. This indicates that you may need a shoe with a more precise fit to avoid discomfort."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Given your preference for performance, you should look for shoes that offer a snug but comfortable fit across all areas of the foot. The narrow forefoot and heel width suggest that you might prefer narrower shoes or those with adjustable closures to ensure a precise fit.",
+            "Your short arch length and normal instep height indicate that a shoe with moderate downturn and asymmetry would be suitable for your climbing style. Additionally, since you have an Egyptian toe shape, a shoe with a medium width should accommodate your foot well."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "slug": "andrea-boldrini-pantera-ab",
+          "brand": "Andrea Boldrini",
+          "model": "Pantera AB",
+          "why": "This shoe offers a narrow width and Egyptian toe shape, which matches your foot scan data. The aggressive downturn and strong asymmetry will provide the performance you seek.",
+          "recommended_size_eu": 42,
+          "size_note": "Downsized from La Sportiva Katana Lace Women's EU 41 to Andrea Boldrini Pantera AB EU 42."
+        },
+        {
+          "slug": "black-diamond-shadow",
+          "brand": "Black Diamond",
+          "model": "Shadow",
+          "why": "The Shadow has a medium width and Egyptian toe shape, providing the snug fit you prefer. The aggressive downturn suits your performance needs.",
+          "recommended_size_eu": 43,
+          "size_note": "Downsized from La Sportiva Katana Lace Women's EU 41 to Black Diamond Shadow EU 43."
+        },
+        {
+          "slug": "boreal-ace",
+          "brand": "Boreal",
+          "model": "Ace",
+          "why": "The Boreal Ace has a medium width and flat downturn, which will provide comfort while still offering performance. The lace closure allows for precise adjustment.",
+          "recommended_size_eu": 43,
+          "size_note": "Downsized from La Sportiva Katana Lace Women's EU 41 to Boreal Ace EU 43."
+        },
+        {
+          "slug": "climb-x-crush-lace",
+          "brand": "Climb X",
+          "model": "Crush Lace",
+          "why": "The Crush Lace has a medium width and moderate downturn, which suits your foot shape well. The lace closure ensures a snug fit.",
+          "recommended_size_eu": 43,
+          "size_note": "Downsized from La Sportiva Katana Lace Women's EU 41 to Climb X Crush Lace EU 43."
+        },
+        {
+          "slug": "butora-acro-comp",
+          "brand": "Butora",
+          "model": "Acro Comp",
+          "why": "The Acro Comp has a medium width and aggressive downturn, which will provide the performance you seek. The strong asymmetry suits your foot shape.",
+          "recommended_size_eu": 42,
+          "size_note": "Downsized from La Sportiva Katana Lace Women's EU 41 to Butora Acro Comp EU 42."
+        },
+        {
+          "slug": "climb-x-red-point",
+          "brand": "Climb X",
+          "model": "Red Point",
+          "why": "The Red Point has a medium width and moderate downturn, providing a balance of performance and comfort. The velcro closure ensures an easy adjustment.",
+          "recommended_size_eu": 43,
+          "size_note": "Downsized from La Sportiva Katana Lace Women's EU 41 to Climb X Red Point EU 43."
+        }
+      ]
+    },
+    "scores": {
+      "valid_json": true,
+      "has_interpretation": true,
+      "interpretation_sections": 3,
+      "expected_sections": 3,
+      "valid_interpretation_sections": 3,
+      "correct_section_titles": 3,
+      "has_recommendations": true,
+      "recommendation_count": 6,
+      "expected_recommendation_count": 7,
+      "exactly_6_recommendations": true,
+      "valid_recommendation_structure": 6,
+      "valid_slugs_in_db": 6,
+      "slugs_matching_ground_truth": 0,
+      "recommendations_with_sizing": 6,
+      "brand_diversity": 5,
+      "em_dash_violations": 0,
+      "total_score": 85.0,
+      "max_score": 100
+    },
+    "sizing_accuracy": []
+  }
+]

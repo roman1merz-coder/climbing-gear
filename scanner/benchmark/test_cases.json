@@ -1,0 +1,765 @@
+[
+  {
+    "input": {
+      "scan_id": "scan-2026-03-10T04-35-34",
+      "sex": "male",
+      "street_size_eu": 44,
+      "shoes": [
+        {
+          "fit": {
+            "heel": "perfect",
+            "toes": "perfect",
+            "forefoot": "perfect"
+          },
+          "brand": "La Sportiva",
+          "model": "Katana Lace Women's",
+          "size_eu": 41
+        },
+        {
+          "fit": {
+            "heel": "empty",
+            "toes": "squeezed",
+            "forefoot": "perfect"
+          },
+          "brand": "La Sportiva",
+          "model": "Solution Comp Woman",
+          "size_eu": 41.5
+        }
+      ],
+      "toe_shape": "egyptian",
+      "forefoot_width_ratio": 0.342,
+      "heel_width_ratio": 0.225,
+      "arch_length_ratio": 0.662,
+      "instep_height_ratio": 0.314,
+      "heel_depth_ratio": 0.054,
+      "forefoot_width_class": "narrow",
+      "heel_width_class": "narrow heel",
+      "arch_length_class": "short arch",
+      "instep_height_class": "normal",
+      "heel_depth_class": "normal",
+      "volume_class": null,
+      "confidence": "medium",
+      "next_shoe_preference": "performance",
+      "next_shoe_notes": null
+    },
+    "expected_output": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your forefoot is narrow (0.342 ratio, well below the 0.383 average) and your heel is narrow too (0.225 ratio vs 0.251 average). This means most standard-width climbing shoes will have dead space along the sides, reducing precision and causing your foot to shift inside the shoe.",
+            "Your arch is short (0.662 ratio vs 0.700 average), which means the ball of your foot sits further forward. This leaves a longer toe zone relative to overall foot length. Your toe shape is Egyptian but borderline - your second toe is almost the same length as your big toe. This means shoes designed for Egyptian, Greek, or even Roman toe profiles can all work well. You don't need an aggressively pointed toe box, and moderate asymmetry is actually ideal since both your big and second toe need room.",
+            "Your instep is normal-to-high (0.314 ratio), which is an important detail. A high instep means the top of your midfoot is tall. This is actually good news for downturned shoes - your foot's natural arch already curves to match the downturn. But it means low-volume (LV) shoes can compress your midfoot painfully, especially with non-adjustable closures."
+          ]
+        },
+        {
+          "title": "What Your Shoe Fits Tell Us",
+          "paragraphs": [
+            "Your La Sportiva Katana Lace Women's at EU 41 fits perfectly everywhere - toes, forefoot, heel. This is a strong anchor. It tells us that narrow-width shoes with narrow heels and Egyptian toe boxes work for you, and that lace closure handles your higher instep beautifully (you can loosen the laces over the midfoot).",
+            "The Solution Comp Woman at EU 41.5 squeezed your toes despite being half a size larger than the Katana. The Solution Comp has strong asymmetry that concentrates all pressure onto the big toe - with your borderline toe shape where the second toe is almost as long, that second toe gets crushed against the asymmetric toe box. The empty heel tells us the Solution Comp's heel cup geometry doesn't match your heel shape.",
+            "Key takeaway: moderate asymmetry with lace or velcro closure works best. Strong asymmetry is risky because your near-equal second toe needs room too. Lace closure is ideal for your higher instep."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Standard forefoot volume is preferred - it gives your instep room without compressing the midfoot. Lace closure is the best option for fine-tuning over your instep, but velcro is acceptable. The combination of narrow width, narrow heel, and adjustable closure is what made the Katana Lace perfect.",
+            "Your borderline Egyptian toe shape opens up options from multiple brands and toe box designs. Shoes labeled for Egyptian, Greek, or Roman toes can all work, as long as the asymmetry is slight to moderate. Women's shoes are fine if they come in your size - the narrower last actually matches your foot. Moderate downturn suits your instep geometry."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "why": "Same brand as your perfect-fitting Katana Lace. Narrow width and narrow heel match your profile. Standard forefoot volume won't compress your high instep even with velcro closure. Soft feel with aggressive downturn - your instep naturally matches the curve. The moderate asymmetry accommodates your borderline toe shape, giving both your big and second toe room.",
+          "slug": "la-sportiva-theory",
+          "brand": "La Sportiva",
+          "model": "Theory",
+          "size_note": "Same brand as your Katana Lace Women's (EU 41 = perfect). Theory is men's with standard volume (slightly more room than your women's Katana). Start at EU 41. No stretch expected.",
+          "best_offer": {
+            "url": "https://www.hardloop.de/artikel/75325-la-sportiva-theory-kletterschuhe-herren",
+            "retailer": "hardloop.de",
+            "price_eur": 129.9
+          },
+          "recommended_size_eu": 41
+        },
+        {
+          "why": "Lace closure is ideal for your higher instep - you can fine-tune tension over the midfoot just like your Katana Lace. Medium width with standard volume and narrow heel. Aggressive downturn suits your instep geometry. Different brand from your La Sportiva anchor, so this is a chance to explore Scarpa's feel and rubber. Egyptian toe form with moderate asymmetry - safe for your borderline toe shape.",
+          "slug": "scarpa-chimera",
+          "brand": "Scarpa",
+          "model": "Chimera",
+          "size_note": "Scarpa runs smaller than La Sportiva at the same EU number. Scarpa official: 0.5-2 down from street. La Sportiva: 'at least 2' down. Your LS Katana is EU 41. Scarpa needs about 1 EU larger for equivalent tightness: EU 42.",
+          "best_offer": {
+            "url": "https://8a.de/kletterschuhe-scarpa-chimera-black-white-azure",
+            "retailer": "8a.de",
+            "price_eur": 148.99
+          },
+          "recommended_size_eu": 42
+        },
+        {
+          "why": "Alex Megos' signature shoe. Medium width gives your narrow foot room without being sloppy, while the narrow heel locks in. Standard forefoot volume - safe for your instep with velcro closure. Soft feel with aggressive downturn. Egyptian toe box with moderate asymmetry - good fit for your borderline toe shape. A different brand from your La Sportiva and Scarpa options.",
+          "slug": "tenaya-iati",
+          "brand": "Tenaya",
+          "model": "Iati",
+          "size_note": "Tenaya employee confirms: Iati sizes the same as La Sportiva performance shoes. Your LS Katana is EU 41 = perfect. Start at EU 41 in Tenaya. Tenaya uses 1/3 EU increments - closest size is 41.3. No stretch.",
+          "best_offer": {
+            "url": "https://www.oliunid.de/tenaya-iati-kletterschuhe",
+            "retailer": "oliunid.de",
+            "price_eur": 135.9
+          },
+          "recommended_size_eu": 41
+        },
+        {
+          "why": "Aggressive bouldering shoe with narrow width and narrow heel - matches your foot dimensions well. Moderate-soft feel with aggressive downturn gives great sensitivity on steep problems. Egyptian toe form. The LV (low volume) construction is the one concern with your higher instep - the velcro closure lets you loosen the strap, but the fit over the midfoot will be snug. Worth trying because the overall shape matches your narrow foot and heel so well.",
+          "slug": "mad-rock-drone-cs-lv",
+          "brand": "Mad Rock",
+          "model": "Drone CS LV",
+          "size_note": "Mad Rock official: 'street for performance, half down for pro fit.' Your street is EU 44. Cross-brand formula from your LS Katana anchor (EU 41): EU 43. Synthetic upper - minimal stretch expected.",
+          "best_offer": {
+            "url": "https://chalkr.de/mad-rock-drone-cs-lv-kletterschuh.html",
+            "retailer": "chalkr.de",
+            "price_eur": 129.9
+          },
+          "recommended_size_eu": 43
+        },
+        {
+          "why": "Classic performance shoe with lace closure - proven to work for your instep (same principle as your Katana Lace). Narrow width, narrow heel, Egyptian toe. Moderate downturn makes it versatile for both sport and boulder. Women's last matches your narrow foot shape. Stronger asymmetry than the Katana - size up half to give your near-equal second toe room.",
+          "slug": "la-sportiva-miura-womens",
+          "brand": "La Sportiva",
+          "model": "Miura Women's",
+          "size_note": "Same brand and women's last as your Katana Lace (EU 41 = perfect). The Miura has stronger asymmetry than the Katana, which concentrates more pressure on the big toe. Size up to EU 41.5 to give the toe box breathing room for your borderline toe shape (your Solution Comp at 41.5 squeezed toes, but Solution Comp's asymmetry is even more aggressive, and the Miura's lace closure lets you fine-tune).",
+          "best_offer": {
+            "url": "https://www.sportokay.com/de_de/la-sportiva-miura-damen-kletterschuhe-498633.html",
+            "retailer": "sportokay.com",
+            "price_eur": 149.99
+          },
+          "recommended_size_eu": 41.5
+        },
+        {
+          "why": "This shoe is designed for Egyptian, Greek, AND Roman toe shapes - a rare feature that's perfect for your borderline Egyptian foot where the second toe is almost as long as the first. Narrow heel volume locks your heel in. Moderate downturn with a moderate feel. Czech brand Ocun is a value pick with strong rubber. The multi-toe-form design means less pressure concentration on any single toe.",
+          "slug": "ocun-ozone",
+          "brand": "Ocun",
+          "model": "Ozone",
+          "size_note": "Ocun runs close to street size - official recommendation is 0-0.5 EU down. Your street is EU 44. Cross-brand formula from your LS Katana anchor (EU 41): EU 43. Ocun doesn't make half sizes between 43 and 44, so EU 43 is the right pick. Synthetic upper - minimal stretch.",
+          "best_offer": {
+            "url": "https://chalkr.de/ocun-ozone-kletterschuh.html",
+            "retailer": "chalkr.de",
+            "price_eur": 122.9
+          },
+          "recommended_size_eu": 43
+        },
+        {
+          "why": "Ultra-soft bouldering shoe with aggressive downturn - your instep shape naturally fills the downturned last. Narrow width and standard forefoot volume match your profile. Egyptian toe form with moderate asymmetry. The one caveat: medium heel volume rather than narrow. Your narrow heel (0.225) may not lock in as tightly as in narrow-heel shoes. Worth trying for the exceptional sensitivity on bouldering problems.",
+          "slug": "scarpa-drago",
+          "brand": "Scarpa",
+          "model": "Drago",
+          "size_note": "Scarpa runs smaller than La Sportiva. Your LS Katana is EU 41. Scarpa needs about 1 EU larger: EU 42. Minimal stretch from microfiber upper.",
+          "best_offer": {
+            "url": "https://www.hardloop.de/artikel/5270-scarpa-drago-kletterschuhe-herren",
+            "retailer": "hardloop.de",
+            "price_eur": 126.9
+          },
+          "recommended_size_eu": 42
+        }
+      ]
+    }
+  },
+  {
+    "input": {
+      "scan_id": "scan-2026-03-05T13-52-58",
+      "sex": "male",
+      "street_size_eu": 42.5,
+      "shoes": [
+        {
+          "fit": {
+            "heel": "empty",
+            "toes": "perfect",
+            "forefoot": "perfect"
+          },
+          "brand": "Scarpa",
+          "model": "Origin",
+          "size_eu": 41.5
+        }
+      ],
+      "toe_shape": "egyptian",
+      "forefoot_width_ratio": 0.393,
+      "heel_width_ratio": 0.268,
+      "arch_length_ratio": 0.711,
+      "instep_height_ratio": 0.329,
+      "heel_depth_ratio": 0.006,
+      "forefoot_width_class": "normal",
+      "heel_width_class": "normal",
+      "arch_length_class": "normal",
+      "instep_height_class": "high instep",
+      "heel_depth_class": "shallow heel",
+      "volume_class": "medium",
+      "confidence": "high",
+      "next_shoe_preference": null,
+      "next_shoe_notes": null
+    },
+    "expected_output": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your scan shows an Egyptian toe shape with high confidence - your big toe is clearly the longest, which is the most common shape and works well with most climbing shoe toe boxes.",
+            "Looking at your proportions: your forefoot width ratio is 0.393, just above the population mean of 0.383, classifying as normal width. Your heel width ratio of 0.268 is also normal (mean: 0.251). Arch length ratio is 0.711, squarely normal (mean: 0.700). These three dimensions tell us you have a well-proportioned foot that fits standard-width climbing shoes without issues.",
+            "The two standout features are your instep and heel depth. Your instep height ratio of 0.329 is well above the population mean of 0.290, putting you in the high instep category. This means the top of your foot sits taller than average through the midfoot. Low-volume (LV) shoes will compress your instep painfully - stick with standard volume and prioritize lace closure, which lets you loosen tension over the instep.",
+            "Your heel depth ratio of 0.006 is far below the population mean of 0.070, classifying as a shallow heel. Your heel barely projects backward, which means standard heel cups that rely on that projection to grip will feel loose or empty. This is the single biggest factor in your shoe selection. Overall volume classification: medium."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You wear the Scarpa Origin in EU 41.5 with a street size of EU 42.5 - a downsize of 1.0 EU. The Origin is a flat, beginner-friendly shoe with a standard heel cup and medium width.",
+            "Your fit ratings confirm the scan data precisely: toes perfect and forefoot perfect mean medium-width shoes fit your forefoot well. No need to go narrow or wide. The critical data point is your heel rating: empty. This directly validates the extremely low heel depth ratio (0.006) from your scan. The Origin's standard heel cup simply cannot grip a heel with so little backward projection.",
+            "Your 1.0 EU downsize from street in Scarpa is moderate. Scarpa's official guidance suggests 0.5-2 EU down, with a midpoint around 1.25. Your 1.0 is slightly less than average, consistent with the comfort-oriented Origin."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Your next shoes should prioritize three things. First, better heel retention - shoes with narrower, more sculpted heel pockets will grip your shallow heel far better than the Origin's standard cup. The La Sportiva Miura and Ocun Ozone both have narrow heel volumes designed for this. Second, adjustable closure for your high instep - lace closure is ideal because you can fine-tune tension at the midfoot while keeping the forefoot snug. Velcro is also acceptable. Avoid slippers, which offer no adjustment. Third, avoid low-volume (LV) variants - your high instep will not fit comfortably in compressed-volume designs.",
+            "Since you are moving up from a beginner shoe, we have selected moderate-downturn shoes with moderate or softer feel. These give you noticeably better performance and precision than the flat Origin while keeping the learning curve manageable. As you build technique and foot strength, you can progress to more specialized shoes later.",
+            "Sizing varies by brand. Your Scarpa Origin EU 41.5 serves as the anchor. For La Sportiva, which runs about 1 EU size larger at the same number, the formula gives EU 40.5. For Scarpa, your anchor is direct at EU 41.5. For Tenaya (1/3 EU increments), EU 42.0 is the nearest available size. For Ocun and Boreal, which run closer to street size, EU 42.5. All recommended sizes are verified against current retailer stock."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "why": "A versatile lace-up sport shoe with moderate downturn and medium width that matches your normal forefoot. Lace closure is ideal for your high instep - you can fine-tune tension exactly where you need it. Egyptian toe form fits your toe shape. Leather upper will stretch about 0.5 EU for a custom fit over time.",
+          "slug": "la-sportiva-katana-lace-mens",
+          "brand": "La Sportiva",
+          "model": "Katana Lace",
+          "size_note": "La Sportiva runs about 1 EU larger than Scarpa at the same number. Formula from your Scarpa Origin 41.5: 41.5 + (1.25 - 2.25) = 40.5. Leather upper stretches roughly 0.5 EU, so 40.5 will break in well. EU 40.5 confirmed at sport-conrad.com and 8a.de.",
+          "best_offer": {
+            "url": "https://www.sport-conrad.com/en/products/la-sportiva/katana-laces-sc.html",
+            "retailer": "sport-conrad.com",
+            "price_eur": 139.95
+          },
+          "recommended_size_eu": 40.5
+        },
+        {
+          "why": "The Miura's narrow heel volume and Slingshot rand system tension the heel cup inward when weighted - exactly what your shallow heel needs. Lace closure lets you adjust over your high instep. Moderate downturn with strong asymmetry gives precise edging performance. Medium forefoot width matches your scan. The most targeted solution for your empty-heel problem.",
+          "slug": "la-sportiva-miura-mens",
+          "brand": "La Sportiva",
+          "model": "Miura",
+          "size_note": "Same La Sportiva sizing as Katana Lace: EU 40.5. Leather upper stretches roughly 0.5 EU, so 40.5 will break in to a precise fit. EU 40.5 confirmed at oliunid.de and epictv.com.",
+          "best_offer": {
+            "url": "https://www.oliunid.de/la-sportiva-miura-kletterschuhe",
+            "retailer": "oliunid.de",
+            "price_eur": 127.9
+          },
+          "recommended_size_eu": 40.5
+        },
+        {
+          "why": "The Ozone's narrow heel volume directly addresses your shallow heel. Its multi-toe-form design (Egyptian, Greek, Roman) works well with your Egyptian shape. Velcro closure with moderate downturn and strong asymmetry for precise edging. Medium forefoot width matches your scan. A different brand perspective on the narrow-heel problem.",
+          "slug": "ocun-ozone",
+          "brand": "Ocun",
+          "model": "Ozone",
+          "size_note": "Ocun runs close to street size (official: 0-0.5 EU down). Formula: 41.5 + (1.25 - 0.25) = 42.5. Microfiber upper with minimal stretch. EU 42.5 confirmed at chalkr.de and bergfreunde.de.",
+          "best_offer": {
+            "url": "https://chalkr.de/ocun-ozone-kletterschuh.html",
+            "retailer": "chalkr.de",
+            "price_eur": 122.9
+          },
+          "recommended_size_eu": 42.5
+        },
+        {
+          "why": "Same brand as your Origin, so you already know your Scarpa sizing. The Quantix SF has a moderate-soft feel that is approachable coming from a beginner shoe, with moderate downturn for improved performance. Velcro closure offers reasonable instep adjustability. Medium heel and forefoot width match your proportions. A natural step up within the brand you trust.",
+          "slug": "scarpa-quantix-sf",
+          "brand": "Scarpa",
+          "model": "Quantix SF",
+          "size_note": "Same brand as your anchor (Scarpa Origin 41.5). The Quantix SF has zero stretch (synthetic upper), so what you try is what you get. Same size as your Origin. EU 41.5 confirmed at 8a.de and epictv.com.",
+          "best_offer": {
+            "url": "https://8a.de/kletterschuhe-scarpa-quantix-sf-bright-orange",
+            "retailer": "8a.de",
+            "price_eur": 105.99
+          },
+          "recommended_size_eu": 41.5
+        },
+        {
+          "why": "A lace-up all-rounder with moderate downturn and slight asymmetry. Lace closure is the best option for your high instep - fine-tune the tension exactly where needed. Medium width matches your forefoot, and Egyptian toe form fits your toe shape. Moderate feel gives a good balance of sensitivity and support as you progress.",
+          "slug": "tenaya-masai",
+          "brand": "Tenaya",
+          "model": "Masai",
+          "size_note": "Tenaya uses 1/3 EU increments. Formula gives 41.25 (nearest Tenaya size: 41.3), but EU 41.3 is out of stock everywhere. EU 42.0 is the next available size. Zero stretch, so the slightly roomier fit should still work well. Verified at epictv.com.",
+          "best_offer": {
+            "url": "https://epictv.com/tenaya-masai",
+            "retailer": "epictv.com",
+            "price_eur": 101.44
+          },
+          "recommended_size_eu": 42.0
+        },
+        {
+          "why": "A lace-up sport and trad shoe with moderate downturn and slight asymmetry. Lace closure lets you adjust tension over your high instep. Medium width and Egyptian toe form match your scan. At the lowest price point of all six recommendations, it offers excellent value as a step-up shoe from the Origin.",
+          "slug": "boreal-mutant",
+          "brand": "Boreal",
+          "model": "Mutant",
+          "size_note": "Boreal typically sizes 0.5-1 EU down from street. Formula: 41.5 + (1.25 - 0.75) = 42.0. But Boreal skips EU 42.0 in their size range (jumps from 40.75 to 42.5). EU 42.5 is the nearest available size. Zero stretch. Verified at epictv.com (3 in stock).",
+          "best_offer": {
+            "url": "https://epictv.com/boreal-mutant",
+            "retailer": "epictv.com",
+            "price_eur": 101.35
+          },
+          "recommended_size_eu": 42.5
+        }
+      ]
+    }
+  },
+  {
+    "input": {
+      "scan_id": "scan-2026-03-14T18-58-04",
+      "sex": "male",
+      "street_size_eu": 45,
+      "shoes": [
+        {
+          "fit": {
+            "heel": "loose",
+            "toes": "perfect",
+            "forefoot": "empty"
+          },
+          "brand": "Scarpa",
+          "model": "Drago",
+          "size_eu": 42.5
+        },
+        {
+          "fit": {
+            "heel": "loose",
+            "toes": "perfect",
+            "forefoot": "perfect"
+          },
+          "brand": "Scarpa",
+          "model": "Instinct VSR",
+          "size_eu": 43
+        }
+      ],
+      "toe_shape": "egyptian",
+      "forefoot_width_ratio": 0.344,
+      "heel_width_ratio": 0.219,
+      "arch_length_ratio": 0.703,
+      "instep_height_ratio": 0.247,
+      "heel_depth_ratio": 0.033,
+      "forefoot_width_class": "narrow",
+      "heel_width_class": "narrow heel",
+      "arch_length_class": "normal",
+      "instep_height_class": "low instep",
+      "heel_depth_class": "normal",
+      "volume_class": null,
+      "confidence": "medium",
+      "next_shoe_preference": "performance",
+      "next_shoe_notes": "ultra high performance, soft"
+    },
+    "expected_output": {
+      "interpretation": [
+        {
+          "title": "What Your Shoe Fits Reveal",
+          "paragraphs": [
+            "Your two Scarpa shoes tell a nuanced story that goes beyond simple width classification. The Drago in EU 42.5 is a narrow shoe with standard forefoot volume - your toes fit perfectly but the forefoot feels empty. The Instinct VSR in EU 43 is a medium-width shoe with standard forefoot volume - and there, both toes and forefoot fit perfectly. The constant across both: loose heels.",
+            "This pattern reveals something important. The Drago is already narrow, yet your forefoot swims in it. The issue is not lateral width - it is vertical volume. Your instep ratio of 0.247 sits well below the population mean of 0.290, meaning the space above your foot in any standard-volume shoe goes unfilled. The VSR works in the forefoot because its Greek toe box distributes space differently at a half size larger, but the vertical dead space is less noticeable in a medium-width shoe that contacts the sides of your foot more evenly."
+          ]
+        },
+        {
+          "title": "The Heel Problem",
+          "paragraphs": [
+            "Both shoes have loose heels - including the Instinct VSR which already has a narrow heel volume classification. Your heel width ratio of 0.219 is significantly below the mean of 0.251, but the bigger factor is your heel depth ratio of 0.033. This measures how far your heel bone projects backward. At the low end of the spectrum, your heel simply does not protrude enough to engage standard heel cups. Even a narrow cup designed for slim heels assumes a certain amount of backward projection to grip against - and your heel does not provide that.",
+            "This is consistent across our scan database: users with shallow heel profiles (below 0.035) report heel slippage even in shoes marketed as narrow-heeled. The solution is shoes with sculpted, three-dimensional heel pockets that wrap from multiple angles rather than relying purely on a deep cup."
+          ]
+        },
+        {
+          "title": "Finding the Right Fit",
+          "paragraphs": [
+            "Your foot needs low vertical volume and a narrow, sculpted heel - but not necessarily the most extreme narrow toe boxes. We have data from another scan where the Drago LV caused toe squeeze on a foot that is actually wider than yours (0.37 width ratio). The LV toe box is tight enough that even a narrow foot can feel pinched. Your Drago experience confirms this: the standard forefoot volume feels empty not because it is too wide, but because it is too tall. Pure LV models that shrink the toe box in all dimensions may overcorrect.",
+            "Your best options are shoes with reduced overall volume (especially vertical) and narrow heels, but with enough toe box room to avoid squeeze. Shoes with moldable leather or microfiber uppers are especially good since they conform to your specific foot shape over time. Lace or velcro closure helps fine-tune around the low instep. At EU 45 street size, women's models will not come in your size, so focus on unisex and men's options.",
+            "For your preference of ultra-high performance and soft feel, this means aggressive downturn, sensitive rubber, and Egyptian-compatible toe boxes in narrow-heeled constructions."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "why": "The most sensitive shoe on this list - zero midsole, 3.5mm Vibram XS Grip 2 rubber, 300g total. Narrow width with narrow heel and low forefoot volume, but the Furia Air's toe box is slightly more generous than the Drago LV. Egyptian toe form matches your foot shape. This is the shoe for when you want to feel every crystal on the wall.",
+          "slug": "scarpa-furia-air",
+          "brand": "Scarpa",
+          "model": "Furia Air",
+          "size_note": "Same brand as your Drago. No stretch (Drago has minimal stretch), but same Scarpa last. Your Drago is 42.5 with perfect toes - start at 42.5 here too.",
+          "best_offer": {
+            "url": "https://8a.de/kletterschuhe-scarpa-furia-air-baltic-blue-yellow",
+            "retailer": "8a.de",
+            "price_eur": 127.99
+          },
+          "recommended_size_eu": 42.5
+        },
+        {
+          "why": "La Sportiva's newest no-edge bouldering shoe, co-developed with their competition team. Medium forefoot width with a narrow heel - the same combination that gave you a perfect forefoot fit in the Instinct VSR, but now paired with aggressive downturn and ultra-soft 3mm Vibram XS Grip 2 rubber. Egyptian toe box, velcro closure, P3 system. The medium forefoot means your toes get room to work without dead space, while the narrow heel locks in.",
+          "slug": "la-sportiva-mandala",
+          "brand": "La Sportiva",
+          "model": "Mandala",
+          "size_note": "La Sportiva runs larger than Scarpa at the same EU number. Scarpa official: downsize 0.5-2. La Sportiva: 'at least 2 down.' Reviewer example: street 42.5 wore Mandala EU 40 (2.5 down). Your Scarpa Drago is 42.5 - Mandala needs ~1 EU smaller to match that tightness: EU 41.5. Leather upper stretches during break-in, so snug initial fit is expected.",
+          "best_offer": {
+            "url": "https://www.hardloop.de/artikel/59747-la-sportiva-mandala-kletterschuhe",
+            "retailer": "hardloop.de",
+            "price_eur": 139.9
+          },
+          "recommended_size_eu": 41.5
+        },
+        {
+          "why": "Unparallel's top-tier aggressive performance shoe with strong asymmetry, Egyptian toe form, and their split RS/RH rubber compound. Medium width and standard volume give your forefoot the room it needs (similar to your VSR experience), while the aggressive downturn delivers power on overhangs. The heel volume is medium rather than narrow, so the heel fit may not be as snug as the narrower options on this list - but the aggressive geometry and strong asymmetry pull the foot forward into the toe box, which can reduce heel slippage in practice.",
+          "slug": "unparallel-flagship-pro",
+          "brand": "Unparallel",
+          "model": "Flagship Pro",
+          "size_note": "Unparallel sizes close to street (official: street or half down for performance). Typical downsize ~0-0.5 vs Drago's ~2-2.5. Your Drago 42.5 + ~2 size difference = EU 44.5. No stretch.",
+          "best_offer": {
+            "url": "https://www.oliunid.de/unparallel-flagship-pro-kletterschuhe",
+            "retailer": "oliunid.de",
+            "price_eur": 139.9
+          },
+          "recommended_size_eu": 44.5
+        },
+        {
+          "why": "Alex Megos' signature shoe - aggressive, soft, and designed for cutting-edge sport climbing. Medium width gives your forefoot room to breathe (like the VSR fit you liked), while the narrow heel volume helps address your heel slippage. Egyptian toe box, leather-and-microfiber upper that molds over sessions. The patented Draxtor velcro system provides precise closure. Rather than pure LV, it pairs a performance forefoot with a heel built for narrow feet.",
+          "slug": "tenaya-iati",
+          "brand": "Tenaya",
+          "model": "Iati",
+          "size_note": "Tenaya employee confirms Iati sizes the same as La Sportiva performance shoes. La Sportiva runs larger than Scarpa (official: 'at least 2 down' vs Scarpa's 0.5-2). Your Scarpa Drago is 42.5 - Iati needs ~1 EU smaller to match: EU 41.5. Tenaya uses 1/3 increments - closest size is 41.3. Leather upper stretches slightly.",
+          "best_offer": {
+            "url": "https://www.oliunid.de/tenaya-iati-kletterschuhe",
+            "retailer": "oliunid.de",
+            "price_eur": 135.9
+          },
+          "recommended_size_eu": 41.5
+        },
+        {
+          "why": "The LV version of your Drago - narrow heel and low forefoot volume address the empty forefoot and loose heel you experience in the standard Drago. Try it carefully though: one user with wider feet than yours got toe squeeze in the Drago LV. Your narrower feet should fare better, but consider trying EU 43 instead of 42.5 to give the toe box breathing room. Same soft Vibram XS Grip 2 you already know.",
+          "slug": "scarpa-drago-lv",
+          "brand": "Scarpa",
+          "model": "Drago LV",
+          "size_note": "Same Drago last but LV (tighter volume). Your standard Drago at 42.5 has perfect toes but empty forefoot - the LV fills that dead space, so size up half to EU 43 to keep toes comfortable. Minimal stretch.",
+          "best_offer": {
+            "url": "https://www.funktionelles.de/Schuhe/Scarpa-Drago-LV-White.htm?a=article&ProdNr=2315255&p=66594",
+            "retailer": "funktionelles.de",
+            "price_eur": 128.24
+          },
+          "recommended_size_eu": 43
+        },
+        {
+          "why": "Aggressive downturn with moderate-soft feel and Mad Rock's Xtreme Friction rubber. We have fit data from another scan where a user with a wider forefoot (0.37 ratio vs your 0.344) tried the Drone CS LV and got tight forefoot, perfect toes, perfect heel. The HV version gives more forefoot room while still running medium in forefoot volume and narrow in the heel in practice - a better match for your profile than the LV, which would likely run too tight up front.",
+          "slug": "mad-rock-drone-cs-hv",
+          "brand": "Mad Rock",
+          "model": "Drone CS HV",
+          "size_note": "Mad Rock Drone CS runs close to street size (official: street for performance, half down for pro fit). Typical downsize ~0-0.5 vs Drago's ~2-2.5. Your Drago 42.5 + ~2 = EU 44.5. Minimal stretch.",
+          "best_offer": {
+            "url": "https://chalkr.de/mad-rock-drone-hv-cs-kletterschuh.html",
+            "retailer": "chalkr.de",
+            "price_eur": 83.6
+          },
+          "recommended_size_eu": 44.5
+        }
+      ]
+    }
+  },
+  {
+    "input": {
+      "scan_id": "scan-2026-03-07T17-57-47",
+      "sex": "male",
+      "street_size_eu": 44,
+      "shoes": [
+        {
+          "fit": {
+            "heel": "perfect",
+            "toes": "perfect",
+            "forefoot": "perfect"
+          },
+          "brand": "La Sportiva",
+          "model": "Theory",
+          "size_eu": 41
+        }
+      ],
+      "toe_shape": "egyptian",
+      "forefoot_width_ratio": 0.367,
+      "heel_width_ratio": 0.242,
+      "arch_length_ratio": 0.714,
+      "instep_height_ratio": 0.269,
+      "heel_depth_ratio": 0.043,
+      "forefoot_width_class": "normal",
+      "heel_width_class": "normal",
+      "arch_length_class": "normal",
+      "instep_height_class": "normal",
+      "heel_depth_class": "normal",
+      "volume_class": "standard",
+      "confidence": "medium",
+      "next_shoe_preference": "same",
+      "next_shoe_notes": null
+    },
+    "expected_output": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your foot sits in the normal range across all dimensions: forefoot width (0.367, slightly below average of 0.383), heel width (0.242), instep height (0.269), arch length (0.714), and heel depth (0.043). Volume class is standard. There are no extreme proportions to work around.",
+            "Your forefoot width is on the lower end of normal, which means both narrow and medium-width shoes can work depending on how aggressively you downsize. Your Egyptian toe shape (big toe longest, descending staircase) pairs best with asymmetric toe boxes that give the big toe room without wasting space around the shorter toes."
+          ]
+        },
+        {
+          "title": "What Your Current Shoe Fit Tells Us",
+          "paragraphs": [
+            "You wear a La Sportiva Theory in EU 41 with a perfect fit across toes, forefoot, and heel. That is 3 EU sizes down from your street size of 44 \u2014 well beyond the typical ~2.25 EU downsize for La Sportiva. This tells us you prefer a tight, performance-oriented fit with zero dead space.",
+            "The Theory has a narrow width, narrow heel volume, and standard forefoot volume. The fact that all three fit areas score perfect means your foot \u2014 despite measuring in the normal range \u2014 sits comfortably in a narrow last when downsized aggressively. This is your reference point: aggressive downturn, soft feel, narrow-to-medium width, and a snug heel."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "Since you want the same style, all recommendations target aggressive downturn with soft to moderate-soft feel. Shoes with narrow heel volume are prioritized to match the locked heel you have in the Theory. Egyptian-compatible toe boxes across the board.",
+            "Sizing is calibrated to your aggressive downsizing preference, adjusted for each brand's sizing system and verified against actual retailer stock. Soft uppers will stretch slightly after break-in, so the initial snug fit will settle into the performance fit you are used to."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "why": "One of the most popular aggressive soft shoes on the market. Narrow width matches your lower-end-of-normal forefoot, and the soft Microsuede upper provides the same level of sensitivity as your Theory. Medium heel volume gives a touch more room than the Theory's narrow heel \u2014 good for longer sessions without sacrificing precision. Egyptian toe form.",
+          "slug": "scarpa-drago",
+          "brand": "Scarpa",
+          "model": "Drago",
+          "size_note": "Scarpa typically runs about 1.25 EU down from street. EU 42 verified in stock at hardloop.de (1 unit).",
+          "best_offer": {
+            "url": "https://www.hardloop.de/artikel/5270-scarpa-drago-kletterschuhe-herren",
+            "retailer": "hardloop.de",
+            "price_eur": 126.9
+          },
+          "recommended_size_eu": 42
+        },
+        {
+          "why": "Aggressive downturn with a soft unlined upper that conforms quickly to your foot shape. Medium forefoot width with a narrow heel cup keeps the heel locked while giving your toes a touch more room than the Theory. Egyptian toe box and velcro closure \u2014 very similar philosophy to your Theory but from a different last.",
+          "slug": "tenaya-iati",
+          "brand": "Tenaya",
+          "model": "Iati",
+          "size_note": "Tenaya sizes roughly 1\u20132 EU down from street. EU 42 verified in stock at epictv.com.",
+          "best_offer": {
+            "url": "https://epictv.com/tenaya-iati",
+            "retailer": "epictv.com",
+            "price_eur": 132.56
+          },
+          "recommended_size_eu": 42
+        },
+        {
+          "why": "Ocun's top-tier bouldering shoe with aggressive downturn and a soft upper. Medium width forefoot with narrow heel volume mirrors what works for you: tight heel lock, comfortable toe splay. Egyptian toe form and velcro closure make this a direct alternative to the Theory from a European brand known for precise lasts.",
+          "slug": "ocun-fury",
+          "brand": "Ocun",
+          "model": "Fury",
+          "size_note": "Ocun sizes close to street. EU 43 verified in stock at chalkr.de (2 units).",
+          "best_offer": {
+            "url": "https://chalkr.de/ocun-fury-kletterschuh.html",
+            "retailer": "chalkr.de",
+            "price_eur": 126.9
+          },
+          "recommended_size_eu": 43
+        },
+        {
+          "why": "Aggressive downturn with a soft knit upper that wraps like a sock. Medium width and narrow heel volume match your profile. The Trax XT rubber provides excellent friction. Egyptian toe box, velcro closure.",
+          "slug": "evolv-zenist-pro",
+          "brand": "Evolv",
+          "model": "Zenist Pro",
+          "size_note": "Evolv runs small. EU 43 verified in stock at epictv.com (UK 9).",
+          "best_offer": {
+            "url": "https://epictv.com/evolv-zenist-pro",
+            "retailer": "epictv.com",
+            "price_eur": 143.9
+          },
+          "recommended_size_eu": 43
+        },
+        {
+          "why": "Five Ten's flagship aggressive shoe with Stealth C4 rubber \u2014 some of the stickiest rubber available. Medium width with narrow heel volume keeps the fit tight where you need it. Moderate-soft feel gives slightly more support than the Theory while keeping sensitivity high. Egyptian toe, velcro.",
+          "slug": "five-ten-hiangle-pro",
+          "brand": "Five Ten",
+          "model": "Hiangle Pro",
+          "size_note": "Five Ten uses 1/3-EU increments. EU 42.5 (UK 8.5) verified in stock at epictv.com.",
+          "best_offer": {
+            "url": "https://epictv.com/five-ten-hiangle-pro",
+            "retailer": "epictv.com",
+            "price_eur": 159.9
+          },
+          "recommended_size_eu": 42.5
+        },
+        {
+          "why": "Same brand as your Theory so sizing is familiar. Medium width gives your toes slightly more room than the Theory's narrow last while the narrow heel volume keeps the heel locked. Aggressive downturn, soft feel, velcro \u2014 same formula you know works. Egyptian toe box. A great option when you want the Theory's fit philosophy with a touch more forefoot comfort.",
+          "slug": "la-sportiva-mandala",
+          "brand": "La Sportiva",
+          "model": "Mandala",
+          "size_note": "Same brand as your Theory. EU 41 matches your current La Sportiva size exactly. Verified in stock at epictv.com.",
+          "best_offer": {
+            "url": "https://epictv.com/la-sportiva-mandala",
+            "retailer": "epictv.com",
+            "price_eur": 141.34
+          },
+          "recommended_size_eu": 41
+        },
+        {
+          "why": "The tightest construction on this list \u2014 narrow width, narrow heel, low forefoot volume with soft feel and aggressive downturn. Egyptian toe box, velcro closure. The LV build means every part of this shoe is designed to eliminate dead space. If you want maximum ground feel and zero slack, this is the one.",
+          "slug": "mad-rock-remora-pro-lv",
+          "brand": "Mad Rock",
+          "model": "Remora Pro LV",
+          "size_note": "Mad Rock sizes close to street. EU 44 is your street size but the narrow LV construction runs tight \u2014 expect a snug fit despite the number. Verified available at bergfreunde.de.",
+          "best_offer": {
+            "url": "https://www.awin1.com/cread.php?awinmid=14102&awinaffid=2786122&ued=https%3A%2F%2Fwww.bergfreunde.de%2Fmad-rock-remora-pro-lv-kletterschuhe%2F",
+            "retailer": "bergfreunde.de",
+            "price_eur": 129.95
+          },
+          "recommended_size_eu": 44
+        }
+      ]
+    }
+  },
+  {
+    "input": {
+      "scan_id": "scan-2026-03-09T16-47-33",
+      "sex": "female",
+      "street_size_eu": 41,
+      "shoes": [
+        {
+          "fit": {
+            "heel": "perfect",
+            "toes": "squeezed",
+            "forefoot": "perfect"
+          },
+          "brand": "La Sportiva",
+          "model": "Mythos",
+          "size_eu": 39
+        }
+      ],
+      "toe_shape": "egyptian",
+      "forefoot_width_ratio": 0.342,
+      "heel_width_ratio": 0.22,
+      "arch_length_ratio": 0.731,
+      "instep_height_ratio": 0.243,
+      "heel_depth_ratio": 0.026,
+      "forefoot_width_class": "narrow",
+      "heel_width_class": "narrow",
+      "arch_length_class": "long arch",
+      "instep_height_class": "low instep",
+      "heel_depth_class": "normal",
+      "volume_class": "low",
+      "confidence": "high",
+      "next_shoe_preference": "comfort",
+      "next_shoe_notes": null
+    },
+    "expected_output": {
+      "interpretation": [
+        {
+          "title": "Your Foot Shape",
+          "paragraphs": [
+            "Your forefoot is narrow (0.342 ratio, well below the 0.383 average) and your heel is narrow too (0.220 ratio vs 0.251 average). This is confirmed by your Mythos Women's fit - the narrow women's last fits your forefoot and heel perfectly. Most standard-width shoes will have dead space at the sides, so women's and narrow (LV) lasts are the right direction for you.",
+            "Your arch is long (0.731 ratio vs 0.700 average), meaning the ball of your foot sits further back than typical. This leaves a relatively short toe zone. Combined with your Egyptian toe shape (one dominant big toe), you want shoes with compact, asymmetric toe boxes that don't leave dead space in front of your toes.",
+            "Your instep is low (0.243 ratio, well below the 0.290 average). Combined with your narrow forefoot and narrow heel, your overall foot volume is low. This is exactly what LV (low-volume) shoes are designed for - they wrap your foot closely without needing aggressive downsizing to eliminate dead space. In standard-volume shoes, the excess room above and around your foot forces you to size down more to get a secure hold, which crushes your toes (exactly what happened with your Mythos at EU 39)."
+          ]
+        },
+        {
+          "title": "What Your Shoe Fit Tells Us",
+          "paragraphs": [
+            "Your La Sportiva Mythos Women's at EU 39 fits your forefoot and heel perfectly, but squeezes your toes. The Mythos has narrow width and narrow heel (matching your shape), but standard forefoot volume. With your low instep and low overall volume, the standard-volume Mythos has too much space above your foot, forcing you to downsize 2 EU from street to get a secure hold - and that crushes the toe box.",
+            "In an LV shoe, the reduced volume already wraps your foot snugly at the correct length. You wouldn't need to downsize as aggressively, which saves your toes. A comfortable La Sportiva size for you is around EU 40 (1 EU down from street), and in LV shoes from other brands you may even fit near street size."
+          ]
+        },
+        {
+          "title": "What to Look For",
+          "paragraphs": [
+            "LV (low-volume) and women's narrow lasts are your ideal match - they address your narrow forefoot, narrow heel, and low instep all at once. Lace closure gives you the most control for fine-tuning the fit, especially useful for dialing in the midfoot tension on your low instep.",
+            "Since you prefer comfort, look for flat to moderate downturn and soft to moderate feel. Your long arch means the shoe's flex point should sit further back than average - compact toe boxes with short toe zones are ideal. Avoid aggressive downturn and stiff construction unless you're ready to trade comfort for precision.",
+            "Your heel is narrow with normal depth, so narrow heel cups will lock in well. In shoes with medium heel volume, you may feel some looseness."
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "why": "The natural step up from your Mythos. Same brand, same narrow women's last that fits your forefoot and heel perfectly. Lace closure is key for your low instep - you can cinch the midfoot tight without relying on volume for hold. LV forefoot matches your low foot volume. Moderate downturn and moderate feel give more precision than the flat Mythos while staying comfortable. Egyptian toe form.",
+          "slug": "la-sportiva-katana-lace-womens",
+          "brand": "La Sportiva",
+          "model": "Katana Lace Women's",
+          "size_note": "Same brand as your Mythos Women's. Your EU 39 squeezed toes, so EU 40 gives the extra room for comfort. The Katana has moderate downturn (pushes your foot slightly forward), but the lace closure compensates - you can loosen the forefoot laces. Leather upper stretches slightly with use.",
+          "best_offer": {
+            "url": "https://www.awin1.com/cread.php?awinmid=14102&awinaffid=2786122&ued=https%3A%2F%2Fwww.bergfreunde.de%2Fla-sportiva-womens-katana-laces-kletterschuhe%2F",
+            "retailer": "bergfreunde.de",
+            "price_eur": 147.86
+          },
+          "recommended_size_eu": 40
+        },
+        {
+          "why": "A comfort-focused women's shoe with slight downturn - the least aggressive option here after the Boreal Alpha. Medium width with narrow heel volume locks your heel in. Standard forefoot volume is slightly roomier than your ideal LV, but the velcro closure adjusts the fit over your low instep. Egyptian toe form with slight asymmetry.",
+          "slug": "tenaya-ra-woman",
+          "brand": "Tenaya",
+          "model": "Ra Woman",
+          "size_note": "Tenaya sizes similarly to La Sportiva for performance shoes. Your comfortable LS size is EU 40, so start there. Tenaya uses 1/3 EU increments - EU 40 exists in their range. Synthetic upper with minimal stretch.",
+          "best_offer": {
+            "url": "https://www.oliunid.de/tenaya-ra-woman-frauen-kletterschuhe",
+            "retailer": "oliunid.de",
+            "price_eur": 113.9
+          },
+          "recommended_size_eu": 40
+        },
+        {
+          "why": "Purpose-built LV shoe for narrow, low-volume feet - one of the best matches on this list for your foot shape. Narrow width and narrow heel volume are a direct fit. The low forefoot volume hugs your low instep without excess space, so you don't need to downsize aggressively. Egyptian toe form with slight asymmetry. Moderate downturn and moderate feel balance precision with comfort.",
+          "slug": "evolv-kira",
+          "brand": "Evolv",
+          "model": "Kira",
+          "size_note": "Evolv recommends street size for an advanced fit, and the Kira runs about half a size small. Your street is EU 41, so EU 41 should feel like a snug 40.5 - right in your comfort zone. The LV construction already hugs your foot. Synthetic upper - no stretch.",
+          "best_offer": {
+            "url": "https://www.naturzeit.com/evolv-kira-35-blau-teal/2021720-blau-35",
+            "retailer": "naturzeit.com",
+            "price_eur": 99.56
+          },
+          "recommended_size_eu": 41
+        },
+        {
+          "why": "Narrow LV shoe with soft feel - the most comfortable LV option on this list. Narrow width and narrow heel volume match your shape perfectly. The low forefoot volume wraps your low instep closely. The toe box accommodates both Egyptian and Greek toe shapes. Moderate downturn with moderate asymmetry. Great value from Czech brand Ocun.",
+          "slug": "ocun-iris",
+          "brand": "Ocun",
+          "model": "Iris",
+          "size_note": "Ocun runs close to street size (official: 0-0.5 EU down for performance). For comfort, use street size EU 41. The LV construction already provides a snug wrap. Synthetic upper with minimal stretch.",
+          "best_offer": {
+            "url": "https://www.hardloop.de/artikel/70439-ocun-iris-kletterschuhe",
+            "retailer": "hardloop.de",
+            "price_eur": 97.9
+          },
+          "recommended_size_eu": 41
+        },
+        {
+          "why": "The ultimate comfort pick. Flat downturn and soft feel make this the closest thing to your Mythos in all-day wearability. Medium width with narrow heel volume - your heel locks in while the forefoot has slightly more room than LV shoes. Slipper closure is fast on/off but less adjustable for your low instep. Egyptian toe form with slight asymmetry. If you love the Mythos feel but want a narrower heel, this is it.",
+          "slug": "boreal-alpha",
+          "brand": "Boreal",
+          "model": "Alpha",
+          "size_note": "Boreal typically runs 0.5-1 EU down from street. Your street is EU 41. For comfort in a flat shoe like this, EU 40.5 (half down) keeps it snug without squeezing like your Mythos at 39 did. Synthetic upper - no stretch.",
+          "best_offer": {
+            "url": "https://chalkr.de/boreal-alpha-kletterschuh.html",
+            "retailer": "chalkr.de",
+            "price_eur": 79.9
+          },
+          "recommended_size_eu": 40.5
+        },
+        {
+          "why": "A women's LV shoe built specifically for narrow, low-volume feet like yours. Narrow width, narrow heel, low forefoot volume - all three dimensions match your measurements. The LV construction hugs your low instep closely so you don't need to oversize-down. Egyptian toe form with slight asymmetry. Moderate downturn and moderate feel balance comfort with precision. Excellent value at the current sale price.",
+          "slug": "black-diamond-zone-lv",
+          "brand": "Black Diamond",
+          "model": "Zone LV",
+          "size_note": "Black Diamond typically runs close to street size (0-0.5 EU down). For a comfort fit in an LV shoe, use street size EU 41. The LV construction already provides a snug wrap without needing to downsize. Synthetic upper - no stretch.",
+          "best_offer": {
+            "url": "https://alpinstore.com/black-diamond-zone-lv-climbing-shoes-women.html",
+            "retailer": "alpinstore.com",
+            "price_eur": 64.99
+          },
+          "recommended_size_eu": 41
+        },
+        {
+          "why": "A versatile sport shoe from Scarpa with slight downturn - one of the most popular women's climbing shoes for a reason. Egyptian toe form with moderate feel. Two caveats: the standard forefoot volume is roomier than your ideal LV, and the medium heel volume may not lock your narrow heel tightly. The velcro closure helps adjust over your low instep. Worth trying because the overall shape and slight downturn work well for comfort climbing, and the suede upper breaks in to your foot shape.",
+          "slug": "scarpa-vapor-s-womens",
+          "brand": "Scarpa",
+          "model": "Vapor S Women's",
+          "size_note": "Scarpa runs smaller than La Sportiva at the same EU number. Your comfortable LS size is EU 40. In Scarpa, you need about 1 EU larger: EU 41 (your street size). Suede upper stretches slightly with use - the initial snugness will ease.",
+          "best_offer": {
+            "url": "https://www.barrabes.com/pies-gato-scarpa-vapor-s-w/product-199276",
+            "retailer": "barrabes.com",
+            "price_eur": 124.04
+          },
+          "recommended_size_eu": 41
+        }
+      ]
+    }
+  }
+]

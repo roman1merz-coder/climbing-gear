@@ -1,0 +1,92 @@
+[
+  {
+    "scan_id": "scan-2026-03-10T04-35-34",
+    "timing": {
+      "elapsed_seconds": 111.9,
+      "tokens_generated": 4096,
+      "tokens_prompt": 4950,
+      "tokens_per_second": 36.6
+    },
+    "error": null,
+    "raw_response": "",
+    "parsed_response": null,
+    "scores": {
+      "valid_json": false,
+      "total_score": 0,
+      "details": "Failed to parse JSON from response"
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-05T13-52-58",
+    "timing": {
+      "elapsed_seconds": 103.8,
+      "tokens_generated": 4096,
+      "tokens_prompt": 4868,
+      "tokens_per_second": 39.5
+    },
+    "error": null,
+    "raw_response": "",
+    "parsed_response": null,
+    "scores": {
+      "valid_json": false,
+      "total_score": 0,
+      "details": "Failed to parse JSON from response"
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-14T18-58-04",
+    "timing": {
+      "elapsed_seconds": 106.0,
+      "tokens_generated": 4096,
+      "tokens_prompt": 4952,
+      "tokens_per_second": 38.6
+    },
+    "error": null,
+    "raw_response": "",
+    "parsed_response": null,
+    "scores": {
+      "valid_json": false,
+      "total_score": 0,
+      "details": "Failed to parse JSON from response"
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-07T17-57-47",
+    "timing": {
+      "elapsed_seconds": 106.7,
+      "tokens_generated": 4096,
+      "tokens_prompt": 4862,
+      "tokens_per_second": 38.4
+    },
+    "error": null,
+    "raw_response": "",
+    "parsed_response": null,
+    "scores": {
+      "valid_json": false,
+      "total_score": 0,
+      "details": "Failed to parse JSON from response"
+    },
+    "sizing_accuracy": []
+  },
+  {
+    "scan_id": "scan-2026-03-09T16-47-33",
+    "timing": {
+      "elapsed_seconds": 87.6,
+      "tokens_generated": 4096,
+      "tokens_prompt": 1886,
+      "tokens_per_second": 46.7
+    },
+    "error": null,
+    "raw_response": "",
+    "parsed_response": null,
+    "scores": {
+      "valid_json": false,
+      "total_score": 0,
+      "details": "Failed to parse JSON from response"
+    },
+    "sizing_accuracy": []
+  }
+]

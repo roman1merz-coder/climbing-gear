@@ -443,6 +443,163 @@ body {
   margin-top: 10px;
 }
 .done-status { font-size: 0.85rem; color: #3d7a52; margin-top: 8px; min-height: 1.2em; }
+
+/* ── Processing Screen ── */
+#processing-screen {
+  display: none; width: 100vw; min-height: 100vh; min-height: 100dvh;
+  background: #f5f0e8; overflow-y: auto;
+  padding: 0; text-align: center;
+}
+.mountain-scene {
+  width: 100%; height: 220px; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #c4dae6 0%, #e0edf3 50%, #f5f0e8 100%);
+}
+.mountain-back {
+  position: absolute; bottom: 0; width: 100%; height: 160px;
+  background: #a8c4d4;
+  clip-path: polygon(0 100%, 0 70%, 8% 55%, 18% 35%, 28% 50%, 38% 25%, 48% 45%, 55% 15%, 65% 40%, 75% 30%, 85% 50%, 92% 35%, 100% 55%, 100% 100%);
+}
+.mountain-front {
+  position: absolute; bottom: 0; width: 100%; height: 130px;
+  background: #8aacbf;
+  clip-path: polygon(0 100%, 0 80%, 10% 55%, 22% 40%, 32% 60%, 42% 30%, 52% 50%, 60% 25%, 70% 45%, 78% 35%, 88% 55%, 95% 40%, 100% 65%, 100% 100%);
+}
+.mountain-ground {
+  position: absolute; bottom: 0; width: 100%; height: 50px;
+  background: #7a9aab;
+  clip-path: polygon(0 100%, 0 50%, 15% 35%, 30% 45%, 50% 30%, 70% 40%, 85% 30%, 100% 45%, 100% 100%);
+}
+.mountain-snow {
+  position: absolute; bottom: 95px; left: 0; width: 100%; height: 60px;
+  background: rgba(255,255,255,0.4);
+  clip-path: polygon(38% 60%, 42% 30%, 48% 45%, 52% 20%, 55% 15%, 58% 20%, 60% 25%, 62% 30%, 55% 50%);
+}
+.cloud {
+  position: absolute; background: rgba(255,255,255,0.6); border-radius: 50%;
+}
+.cloud-1 { width: 80px; height: 30px; top: 25px; left: 10%; animation: cloud-drift 25s linear infinite; }
+.cloud-2 { width: 60px; height: 22px; top: 45px; left: 55%; animation: cloud-drift 35s linear infinite reverse; }
+.cloud-3 { width: 50px; height: 18px; top: 15px; left: 75%; animation: cloud-drift 30s linear infinite; }
+@keyframes cloud-drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+  100% { transform: translateX(0); }
+}
+
+.processing-content {
+  padding: 1.5rem 1.5rem 2rem;
+}
+.processing-content h2 {
+  font-size: 1.3rem; font-weight: 800; margin-bottom: 1.2rem; color: #2c3227;
+}
+.progress-bar-wrap {
+  max-width: 340px; margin: 0 auto 1.5rem; background: #e0dbd0;
+  border-radius: 20px; height: 14px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; background: linear-gradient(90deg, #c98a42, #3d7a52);
+  border-radius: 20px; width: 0%; transition: width 0.8s ease;
+}
+.progress-percent {
+  font-size: 0.85rem; color: #7a7462; font-weight: 600; margin-bottom: 1.5rem;
+}
+.stage-list {
+  max-width: 300px; margin: 0 auto; text-align: left; list-style: none; padding: 0;
+}
+.stage-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; font-size: 0.92rem; color: #b8b0a0;
+  transition: color 0.3s;
+}
+.stage-item.active { color: #2c3227; font-weight: 600; }
+.stage-item.completed { color: #3d7a52; }
+.stage-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700;
+  background: #e0dbd0; color: #7a7462;
+  transition: background 0.3s, color 0.3s;
+  flex-shrink: 0;
+}
+.stage-item.active .stage-dot { background: #c98a42; color: #fff; }
+.stage-item.completed .stage-dot { background: #3d7a52; color: #fff; }
+.processing-error {
+  max-width: 340px; margin: 1rem auto; padding: 12px 16px;
+  background: #fff0f0; border: 1px solid #ffcccc; border-radius: 10px;
+  color: #cc3333; font-size: 0.9rem; display: none;
+}
+
+/* ── Results Screen ── */
+#results-screen {
+  display: none; width: 100vw; min-height: 100vh; min-height: 100dvh;
+  background: #f5f0e8; overflow-y: auto;
+  padding: 1.5rem; padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  text-align: center;
+}
+#results-screen h2 {
+  font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem;
+}
+.results-subtitle {
+  font-size: 0.88rem; color: #7a7462; margin-bottom: 1.2rem;
+}
+.interpretation-block {
+  max-width: 500px; margin: 0 auto 1.5rem; text-align: left;
+}
+.interpretation-block h3 {
+  font-size: 1.05rem; font-weight: 700; color: #2c3227;
+  margin-bottom: 0.5rem; margin-top: 1.2rem;
+}
+.interpretation-block h3:first-child { margin-top: 0; }
+.interpretation-block p {
+  font-size: 0.9rem; color: #5a5347; line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+.category-tabs {
+  display: flex; gap: 0; max-width: 500px; margin: 0 auto 1rem;
+  border: 1px solid #d5cdbf; border-radius: 10px; overflow: hidden;
+}
+.cat-tab {
+  flex: 1; padding: 10px 4px; border: none; background: #faf8f4;
+  font-size: 0.78rem; font-weight: 600; color: #7a7462;
+  cursor: pointer; font-family: inherit; transition: all 0.15s;
+  border-right: 1px solid #d5cdbf;
+}
+.cat-tab:last-child { border-right: none; }
+.cat-tab.active { background: #c98a42; color: #fff; }
+.shoe-recs-container {
+  max-width: 500px; margin: 0 auto 1.5rem;
+}
+.shoe-rec-card {
+  background: #fff; border: 1px solid #d5cdbf; border-radius: 14px;
+  padding: 14px 16px; margin-bottom: 10px; text-align: left;
+}
+.shoe-rec-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 6px;
+}
+.shoe-rec-name {
+  font-size: 1rem; font-weight: 700; color: #2c3227;
+}
+.shoe-rec-size {
+  font-size: 0.82rem; color: #c98a42; font-weight: 600;
+}
+.shoe-rec-why {
+  font-size: 0.88rem; color: #5a5347; line-height: 1.5;
+}
+.results-email-section {
+  max-width: 340px; margin: 1.5rem auto; text-align: left;
+}
+.results-email-section .email-label { font-size: 0.85rem; color: #2c3227; font-weight: 600; margin-bottom: 6px; }
+.results-email-section input {
+  width: 100%; padding: 12px 14px; border: 1px solid #d5cdbf; border-radius: 10px;
+  font-size: 0.95rem; font-family: inherit; background: #fff; color: #2c3227;
+  margin-bottom: 8px;
+}
+.results-actions {
+  max-width: 340px; margin: 0 auto;
+}
+.results-actions .btn-done { width: 100%; margin-bottom: 10px; }
+.results-actions .btn-browse { width: 100%; }
 </style>
 </head>
 <body>
@@ -694,6 +851,61 @@ body {
   </p>
 </div>
 
+<div id="processing-screen">
+  <div class="mountain-scene">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="mountain-snow"></div>
+    <div class="mountain-back"></div>
+    <div class="mountain-front"></div>
+    <div class="mountain-ground"></div>
+  </div>
+  <div class="processing-content">
+    <h2 id="processing-title">Analysing your foot...</h2>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div class="progress-percent" id="progress-percent">0%</div>
+    <ul class="stage-list">
+      <li class="stage-item active" id="stage-segment">
+        <span class="stage-dot">1</span>
+        <span>Segmenting your foot</span>
+      </li>
+      <li class="stage-item" id="stage-measure">
+        <span class="stage-dot">2</span>
+        <span>Analysing measurements</span>
+      </li>
+      <li class="stage-item" id="stage-shoes">
+        <span class="stage-dot">3</span>
+        <span>Finding your perfect shoes</span>
+      </li>
+    </ul>
+    <div class="processing-error" id="processing-error"></div>
+  </div>
+</div>
+
+<div id="results-screen">
+  <h2>Your Shoe Recommendations</h2>
+  <p class="results-subtitle">Based on your foot shape and preferences</p>
+  <div class="interpretation-block" id="interpretation-content"></div>
+  <div class="category-tabs" id="category-tabs">
+    <button class="cat-tab active" data-cat="baseline">Baseline</button>
+    <button class="cat-tab" data-cat="softer">Softer</button>
+    <button class="cat-tab" data-cat="stiffer">Stiffer</button>
+    <button class="cat-tab" data-cat="budget">Budget</button>
+  </div>
+  <div class="shoe-recs-container" id="shoe-recs-container"></div>
+  <div class="results-email-section">
+    <div class="email-label">Save results to email (optional)</div>
+    <input type="email" id="results-email" placeholder="name@example.com" />
+  </div>
+  <div class="results-actions">
+    <button class="btn-done" id="results-done-btn">Done</button>
+    <a class="btn-browse" href="https://climbing-gear.com/shoes">Browse All Shoes</a>
+  </div>
+</div>
+
 <script>
 const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
@@ -882,7 +1094,7 @@ function isPhoneLevel() {
 }
 
 /* ── Screen management with browser back button support ── */
-const SCREEN_ORDER = ['start-screen','sole-instruction','scanner','sole-review','side-instruction','side-review','shoe-fit-screen','thankyou-screen'];
+const SCREEN_ORDER = ['start-screen','sole-instruction','scanner','sole-review','side-instruction','side-review','shoe-fit-screen','processing-screen','results-screen','thankyou-screen'];
 let currentScreen = 'start-screen';
 
 function showScreen(id, pushState) {
@@ -890,7 +1102,7 @@ function showScreen(id, pushState) {
     history.pushState({ screen: id }, '', '');
   }
   currentScreen = id;
-  ['start-screen','scanner','transition-screen','result-screen','sole-instruction','sole-review','side-instruction','side-review','shoe-fit-screen','thankyou-screen'].forEach(s => {
+  ['start-screen','scanner','transition-screen','result-screen','sole-instruction','sole-review','side-instruction','side-review','shoe-fit-screen','processing-screen','results-screen','thankyou-screen'].forEach(s => {
     document.getElementById(s).style.display = 'none';
   });
   document.getElementById(id).style.display = id === 'scanner' ? 'block' : 'flex';
@@ -1367,6 +1579,10 @@ async function uploadThenShoeFit() {
     if (upSole.ok && upSide.ok) {
       status.textContent = 'Uploaded!';
       btn.textContent = 'Saved';
+
+      /* Trigger SAM3 pipeline immediately in the background */
+      triggerScanStart(scanId);
+
       setTimeout(() => {
         populateBrands(document.querySelector('.brand-select'));
         showScreen('shoe-fit-screen');
@@ -1592,20 +1808,22 @@ async function saveShoeFitData(email) {
   }
 }
 
-/* Skip -> thank you */
-document.getElementById('skip-fit-btn').addEventListener('click', () => showScreen('thankyou-screen'));
+/* Skip -> submit empty preferences, go to processing screen */
+document.getElementById('skip-fit-btn').addEventListener('click', async () => {
+  await submitPreferencesAndProcess(null);
+});
 
-/* Continue -> save shoe data, then thank you */
+/* Continue -> save shoe data, submit preferences, go to processing screen */
 document.getElementById('next-fit-btn').addEventListener('click', async () => {
   const btn = document.getElementById('next-fit-btn');
   btn.disabled = true; btn.textContent = 'Saving...';
-  await saveShoeFitData(null);
+  const email = null; /* email collected on results screen now */
+  await submitPreferencesAndProcess(email);
   btn.textContent = 'Continue';
   btn.disabled = false;
-  showScreen('thankyou-screen');
 });
 
-/* Done */
+/* Done (on old thank-you screen, kept for backward compat) */
 document.getElementById('done-btn').addEventListener('click', async () => {
   const email = document.getElementById('email-input').value.trim();
   const btn = document.getElementById('done-btn');
@@ -1618,6 +1836,33 @@ document.getElementById('done-btn').addEventListener('click', async () => {
   btn.textContent = 'Done';
 });
 
+/* Done on results screen */
+document.getElementById('results-done-btn').addEventListener('click', async () => {
+  const email = document.getElementById('results-email').value.trim();
+  if (email && scanId) {
+    try {
+      await fetch(`${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': 'Bearer ' + SB_KEY, 'apikey': SB_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+    } catch(e) { console.error('Email save failed:', e); }
+  }
+  document.getElementById('results-done-btn').textContent = 'Done - you can close this page.';
+  document.getElementById('results-done-btn').disabled = true;
+});
+
+/* Category tabs on results screen */
+document.getElementById('category-tabs').addEventListener('click', (e) => {
+  if (!e.target.classList.contains('cat-tab')) return;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  renderRecommendations(e.target.dataset.cat);
+});
+
 function retakeAll() {
   soleDataUrl = null;
   sideDataUrl = null;
@@ -1625,6 +1870,234 @@ function retakeAll() {
   document.getElementById('save-btn').disabled = false;
   document.getElementById('save-btn').textContent = 'Save & Upload';
   startScanner('sole');
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Automated Pipeline - scan-start, preferences, polling, results
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Scanner API base URL. Uses scan.climbing-gear.com in production (Cloudflare Tunnel).
+   Override via ?api=http://localhost:8787 for local testing. */
+const SCANNER_API = new URLSearchParams(window.location.search).get('api') || 'https://scan.climbing-gear.com';
+let pollTimer = null;
+let pollFailures = 0;
+const MAX_POLL_FAILURES = 30; /* stop after 30 consecutive failures (60s) */
+let allRecommendations = []; /* stored globally for tab switching */
+
+/* Step 1: Trigger SAM3 segmentation as soon as photos are uploaded */
+async function triggerScanStart(sid) {
+  try {
+    const fd = new FormData();
+    fd.append('scan_id', sid);
+    const resp = await fetch(SCANNER_API + '/scan-start', {
+      method: 'POST', body: fd,
+    });
+    const data = await resp.json();
+    console.log('[pipeline] scan-start:', data);
+  } catch(e) {
+    console.error('[pipeline] scan-start failed:', e);
+    /* Non-fatal: pipeline can still run if triggered by preferences */
+  }
+}
+
+/* Step 2: Submit preferences and switch to processing screen */
+async function submitPreferencesAndProcess(email) {
+  if (!scanId) {
+    console.error('[pipeline] No scan ID - photos not uploaded yet');
+    showScreen('thankyou-screen'); /* fallback to old flow */
+    return;
+  }
+  const shoes = collectShoeFitData();
+  const nextPrefBtn = document.querySelector('#next-shoe-pref .fit-option.active');
+  const nextPref = nextPrefBtn ? nextPrefBtn.dataset.val : null;
+  const nextNotes = (document.getElementById('next-shoe-notes')?.value || '').trim() || null;
+  const sexBtn = document.querySelector('.sex-option.active');
+  const sex = sexBtn ? sexBtn.dataset.val : null;
+  const streetSize = parseFloat(document.getElementById('street-size')?.value) || null;
+
+  /* Save to Supabase via scan-preferences endpoint */
+  try {
+    const resp = await fetch(SCANNER_API + '/scan-preferences', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        scan_id: scanId,
+        sex: sex,
+        street_size_eu: streetSize,
+        next_shoe_preference: nextPref,
+        next_shoe_notes: nextNotes,
+        shoes: shoes,
+        email: email,
+      }),
+    });
+    const data = await resp.json();
+    console.log('[pipeline] scan-preferences:', data);
+  } catch(e) {
+    console.error('[pipeline] scan-preferences failed:', e);
+    /* Also save directly to Supabase as fallback */
+    await saveShoeFitData(email);
+  }
+
+  /* Show processing screen and start polling */
+  showScreen('processing-screen');
+  startProgressPolling();
+}
+
+/* Step 3: Poll /scan-status every 2 seconds */
+function startProgressPolling() {
+  if (pollTimer) clearInterval(pollTimer);
+
+  /* Reset UI */
+  document.getElementById('progress-bar').style.width = '0%';
+  document.getElementById('progress-percent').textContent = '0%';
+  document.getElementById('processing-error').style.display = 'none';
+  ['stage-segment','stage-measure','stage-shoes'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('active','completed');
+  });
+  document.getElementById('stage-segment').classList.add('active');
+
+  pollFailures = 0;
+  pollTimer = setInterval(async () => {
+    try {
+      const resp = await fetch(SCANNER_API + '/scan-status/' + scanId);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      pollFailures = 0; /* reset on success */
+      updateProgressUI(data);
+
+      if (data.stage === 'complete') {
+        clearInterval(pollTimer);
+        pollTimer = null;
+        showResults(data);
+      } else if (data.stage === 'error') {
+        clearInterval(pollTimer);
+        pollTimer = null;
+        showProcessingError(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch(e) {
+      console.error('[pipeline] poll error:', e);
+      pollFailures++;
+      if (pollFailures >= MAX_POLL_FAILURES) {
+        clearInterval(pollTimer);
+        pollTimer = null;
+        showProcessingError('Lost connection to the scanner. Please refresh and try again.');
+      }
+    }
+  }, 2000);
+}
+
+function updateProgressUI(data) {
+  const bar = document.getElementById('progress-bar');
+  const pct = document.getElementById('progress-percent');
+  const title = document.getElementById('processing-title');
+
+  bar.style.width = data.progress + '%';
+  pct.textContent = data.progress + '%';
+
+  const stageSegment = document.getElementById('stage-segment');
+  const stageMeasure = document.getElementById('stage-measure');
+  const stageShoes = document.getElementById('stage-shoes');
+
+  if (data.stage === 'segmenting') {
+    title.textContent = 'Segmenting your foot...';
+    stageSegment.classList.add('active');
+    stageSegment.classList.remove('completed');
+  } else if (data.stage === 'waiting_preferences') {
+    title.textContent = 'Analysing measurements...';
+    stageSegment.classList.remove('active');
+    stageSegment.classList.add('completed');
+    stageMeasure.classList.add('active');
+  } else if (data.stage === 'finding_shoes') {
+    title.textContent = 'Finding your perfect shoes...';
+    stageSegment.classList.remove('active');
+    stageSegment.classList.add('completed');
+    stageMeasure.classList.remove('active');
+    stageMeasure.classList.add('completed');
+    stageShoes.classList.add('active');
+  } else if (data.stage === 'complete') {
+    title.textContent = 'Done!';
+    stageSegment.classList.add('completed');
+    stageMeasure.classList.add('completed');
+    stageShoes.classList.remove('active');
+    stageShoes.classList.add('completed');
+    bar.style.width = '100%';
+    pct.textContent = '100%';
+  }
+}
+
+function showProcessingError(message) {
+  const errEl = document.getElementById('processing-error');
+  errEl.textContent = message;
+  errEl.style.display = 'block';
+  document.getElementById('processing-title').textContent = 'Something went wrong';
+}
+
+/* Step 4: Show results */
+function showResults(data) {
+  /* Render interpretation sections */
+  const interpEl = document.getElementById('interpretation-content');
+  interpEl.innerHTML = '';
+  if (data.interpretation && Array.isArray(data.interpretation)) {
+    data.interpretation.forEach(section => {
+      const h3 = document.createElement('h3');
+      h3.textContent = section.title;
+      interpEl.appendChild(h3);
+      (section.paragraphs || []).forEach(p => {
+        const pEl = document.createElement('p');
+        pEl.textContent = p;
+        interpEl.appendChild(pEl);
+      });
+    });
+  }
+
+  /* Store recommendations globally for tab switching */
+  allRecommendations = data.recommendations || [];
+
+  /* Render default category (baseline) */
+  renderRecommendations('baseline');
+
+  /* Update tab counts */
+  const cats = { baseline: 0, softer: 0, stiffer: 0, budget: 0 };
+  allRecommendations.forEach(r => {
+    if (cats[r.category] !== undefined) cats[r.category]++;
+  });
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    const cat = tab.dataset.cat;
+    const count = cats[cat] || 0;
+    const labels = { baseline: 'Baseline', softer: 'Softer', stiffer: 'Stiffer', budget: 'Budget' };
+    tab.textContent = labels[cat] + ' (' + count + ')';
+  });
+
+  /* Switch to results screen */
+  showScreen('results-screen');
+}
+
+function renderRecommendations(category) {
+  const container = document.getElementById('shoe-recs-container');
+  container.innerHTML = '';
+  const filtered = allRecommendations.filter(r => r.category === category);
+  if (filtered.length === 0) {
+    container.innerHTML = '<p style="color:#7a7462;font-size:0.9rem;padding:1rem">No recommendations in this category.</p>';
+    return;
+  }
+  filtered.forEach(rec => {
+    const card = document.createElement('div');
+    card.className = 'shoe-rec-card';
+    card.innerHTML =
+      '<div class="shoe-rec-header">' +
+        '<span class="shoe-rec-name">' + escHtml(rec.brand + ' ' + rec.model) + '</span>' +
+        '<span class="shoe-rec-size">EU ' + (rec.recommended_size_eu || '?') + '</span>' +
+      '</div>' +
+      '<div class="shoe-rec-why">' + escHtml(rec.why || '') + '</div>';
+    container.appendChild(card);
+  });
+}
+
+function escHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
 }
 </script>
 </body>

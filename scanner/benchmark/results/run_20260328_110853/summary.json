@@ -1,0 +1,15 @@
+{
+  "qwen2.5": {
+    "avg_score": 85.0,
+    "avg_time_seconds": 238.3,
+    "avg_tokens_per_second": 4.7,
+    "valid_json_rate": 100.0,
+    "avg_valid_slug_rate": 100.0,
+    "sizing_exact": 0,
+    "sizing_within_half": 0,
+    "sizing_total_comparable": 0,
+    "individual_scores": [
+      85.0
+    ]
+  }
+}
