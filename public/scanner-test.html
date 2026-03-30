@@ -2140,8 +2140,30 @@ function updateProgressUI(data) {
 
 function showProcessingError(message) {
   const errEl = document.getElementById('processing-error');
-  errEl.textContent = message;
+  errEl.innerHTML = '';
   errEl.style.display = 'block';
+
+  const titleEl = document.createElement('div');
+  titleEl.style.cssText = 'font-weight:600;margin-bottom:0.5rem;color:#c84f2c';
+  titleEl.textContent = 'Something went wrong';
+  errEl.appendChild(titleEl);
+
+  const msgEl = document.createElement('p');
+  msgEl.style.cssText = 'margin:0 0 1.5rem 0;line-height:1.5';
+  msgEl.textContent = message;
+  errEl.appendChild(msgEl);
+
+  const restartBtn = document.createElement('button');
+  restartBtn.textContent = 'Restart scan';
+  restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
+  restartBtn.onclick = () => {
+    // Clear scan data but preserve user preferences/models
+    scanId = null;
+    document.getElementById('processing-error').style.display = 'none';
+    showScreen('input-screen');
+  };
+  errEl.appendChild(restartBtn);
+
   document.getElementById('processing-title').textContent = 'Something went wrong';
 }
 
