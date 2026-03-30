@@ -1436,28 +1436,11 @@ function capture() {
       const sideGuide = document.getElementById('side-guide-img');
       const revSide = document.getElementById('review-side-overlay');
       if (sideGuide && revSide) {
+        revSide.src = sideGuide.src;
         const isLandscape = window.matchMedia('(orientation: landscape)').matches;
-        const guideCanvas = document.createElement('canvas');
-        const gw = sideGuide.naturalWidth || sideGuide.width;
-        const gh = sideGuide.naturalHeight || sideGuide.height;
-        if (isLandscape) {
-          /* Landscape: photo is already correct orientation, guide just drawn as-is */
-          guideCanvas.width = gw;
-          guideCanvas.height = gh;
-          const gCtx = guideCanvas.getContext('2d');
-          gCtx.drawImage(sideGuide, 0, 0);
-        } else {
-          /* Portrait: guide needs 90deg rotation only (no flip -- photo is already un-mirrored) */
-          guideCanvas.width = gh;
-          guideCanvas.height = gw;
-          const gCtx = guideCanvas.getContext('2d');
-          gCtx.translate(gh / 2, gw / 2);
-          gCtx.rotate(Math.PI / 2);
-          gCtx.drawImage(sideGuide, -gw / 2, -gh / 2);
-        }
-        revSide.src = guideCanvas.toDataURL('image/png');
-        /* Override CSS rotation since the canvas already has correct orientation */
-        revSide.style.transform = 'translate(-50%, -50%)';
+        revSide.style.transform = isLandscape
+          ? 'translate(-50%, -50%)'
+          : 'translate(-50%, -50%) rotate(-90deg)';
       }
       showScreen('side-review');
     }
