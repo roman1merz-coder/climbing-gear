@@ -316,11 +316,16 @@ def process_pending_scan(scan):
 
         # Step 2: Upload overlays
         try:
+            log(f"  Uploading sole overlay: {sole_overlay_path}")
             scan_recommender.upload_overlay(scan_id, "sole_overlay.png", sole_overlay_path)
+            log(f"  Sole overlay uploaded")
             if side_overlay_path:
+                log(f"  Uploading side overlay: {side_overlay_path}")
                 scan_recommender.upload_overlay(scan_id, "side_overlay.png", side_overlay_path)
+                log(f"  Side overlay uploaded")
         except Exception as e:
-            log(f"  Warning: overlay upload failed: {e}")
+            log(f"  ERROR uploading overlays: {e}")
+            traceback.print_exc()
 
         # Step 3: Write measurements to DB
         write_measurements_to_db(scan_id, profile, sole_m, side_m)

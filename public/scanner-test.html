@@ -2022,13 +2022,13 @@ function startProgressPolling() {
 function buildProgressData(stage, elapsed, row) {
   let progress = 0;
   if (stage === 'pending') {
-    progress = Math.min(10, Math.round(elapsed / 10 * 10));
+    progress = Math.min(8, Math.round(elapsed / 5 * 8));
   } else if (stage === 'segmenting') {
-    progress = Math.min(35, 10 + Math.round(elapsed / 25 * 25));
+    progress = Math.min(30, 8 + Math.round(elapsed / 10 * 22));
   } else if (stage === 'waiting_preferences') {
-    progress = 40;
+    progress = 35;
   } else if (stage === 'finding_shoes') {
-    progress = Math.min(95, 45 + Math.round(Math.max(0, elapsed - 15) / 55 * 50));
+    progress = Math.min(99, 35 + Math.round(elapsed / 80 * 64));
   } else if (stage === 'complete') {
     progress = 100;
   }
@@ -2083,9 +2083,30 @@ function showProcessingError(message) {
 
 /* Step 4: Show results */
 function showResults(data) {
+  /* Store results in localStorage so they persist on page refresh */
+  try {
+    localStorage.setItem('currentScanResults', JSON.stringify({
+      scanId: scanId,
+      interpretation: data.interpretation,
+      recommendations: data.recommendations,
+      timestamp: Date.now(),
+    }));
+  } catch (e) {
+    console.warn('Could not save results to localStorage:', e);
+  }
+
   /* Render interpretation sections */
   const interpEl = document.getElementById('interpretation-content');
   interpEl.innerHTML = '';
+
+  /* Add link to view full results in admin interface */
+  if (scanId) {
+    const linkEl = document.createElement('p');
+    linkEl.style.cssText = 'margin-bottom:1.5rem;padding:0.8rem;background:#f5f5f0;border-radius:4px;border-left:3px solid #3d7a52;font-size:0.85rem';
+    linkEl.innerHTML = 'View your complete scan results with photos and shoe images: <a href="/scan-admin.html?scan=' + encodeURIComponent(scanId) + '" target="_blank" style="color:#3d7a52;font-weight:600;text-decoration:none">Open in Admin View</a>';
+    interpEl.appendChild(linkEl);
+  }
+
   if (data.interpretation && Array.isArray(data.interpretation)) {
     data.interpretation.forEach(section => {
       const h3 = document.createElement('h3');
