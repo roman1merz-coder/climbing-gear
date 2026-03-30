@@ -18,6 +18,8 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 .scan-header .scan-id { font-weight: 600; font-size: 0.85rem; }
 .scan-header .scan-date { font-size: 0.8rem; color: #888; }
 .scan-header .scan-email { font-size: 0.85rem; color: #3d7a52; font-weight: 500; }
+</style>
+<style>
 .scan-body { padding: 14px 16px; display: flex; gap: 16px; flex-wrap: wrap; }
 .scan-photos { display: flex; gap: 8px; flex-shrink: 0; }
 .scan-photos img { width: 120px; height: 160px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; }
@@ -43,6 +45,8 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 .analysis .a-item { white-space: nowrap; }
 .analysis .a-label { color: #888; }
 .no-analysis { color: #bbb; font-size: 0.8rem; font-style: italic; margin-top: 8px; }
+</style>
+<style>
 .delete-btn {
   background: none; border: 1px solid #e0d5c5; color: #c0392b; padding: 3px 10px;
   border-radius: 6px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
@@ -50,6 +54,35 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 }
 .delete-btn:hover { background: #fde8e8; border-color: #c0392b; }
 .delete-btn:disabled { opacity: 0.5; cursor: default; }
+.restore-btn {
+  background: none; border: 1px solid #d5e0d5; color: #3d7a52; padding: 3px 10px;
+  border-radius: 6px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.15s;
+}
+.restore-btn:hover { background: #e8f5e9; border-color: #3d7a52; }
+.restore-btn:disabled { opacity: 0.5; cursor: default; }
+.purge-btn {
+  background: none; border: 1px solid #e0d5c5; color: #888; padding: 3px 10px;
+  border-radius: 6px; font-size: 0.72rem; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.15s;
+}
+.purge-btn:hover { background: #fde8e8; border-color: #c0392b; color: #c0392b; }
+.purge-btn:disabled { opacity: 0.5; cursor: default; }
+.tab-bar { display: flex; gap: 0; margin-bottom: 20px; }
+.tab-btn {
+  padding: 10px 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  border: 1px solid #d5cdbf; background: #fff; color: #888; font-family: inherit;
+  transition: all 0.15s;
+}
+.tab-btn:first-child { border-radius: 8px 0 0 8px; }
+.tab-btn:last-child { border-radius: 0 8px 8px 0; }
+.tab-btn.active { background: #3d7a52; color: #fff; border-color: #3d7a52; }
+.archived-card { border-color: #e0d5c5; opacity: 0.85; }
+.archived-card .scan-header { background: #fdf8f0; }
+.archive-badge {
+  background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.72rem; font-weight: 600;
+}
 @media (max-width: 600px) {
   .scan-photos img { width: 80px; height: 110px; }
   .scan-body { flex-direction: column; }
@@ -59,15 +92,30 @@ h1 { font-size: 1.4rem; margin-bottom: 16px; }
 <body>
 <h1>Foot Scan Admin</h1>
 <div class="stats" id="stats"></div>
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('active')">Active Scans</button>
+  <button class="tab-btn" onclick="switchTab('archived')">Archived</button>
+</div>
 <div id="scans-container"><div class="loading">Loading scans...</div></div>
+<div id="archive-container" style="display:none"></div>
 
 <script>
 const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
-</script>
-<script>
 const headers = { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` };
 
+let currentTab = 'active';
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById('scans-container').style.display = tab === 'active' ? '' : 'none';
+  document.getElementById('archive-container').style.display = tab === 'archived' ? '' : 'none';
+  if (tab === 'archived') loadArchived();
+}
+</script>
+<script>
 async function loadData() {
   const [fitsRes, photosRes] = await Promise.all([
     fetch(`${SB_URL}/rest/v1/foot_scan_fits?select=*&order=created_at.desc`, { headers }),
@@ -80,25 +128,19 @@ async function loadData() {
   const fits = await fitsRes.json();
   const photoFiles = await photosRes.json();
 
-  // Group photos by scan ID
   const photoMap = {};
   for (const f of photoFiles) {
     if (!f.name || !f.name.startsWith('scan-')) continue;
-    // scan-2026-03-05T13-35-21-sole.jpg -> scan-2026-03-05T13-35-21
     const parts = f.name.replace(/\.(jpg|jpeg|png)$/i, '').split('-');
-    const type = parts.pop(); // sole or side
+    const type = parts.pop();
     const scanId = parts.join('-');
     if (!photoMap[scanId]) photoMap[scanId] = { sole: null, side: null, created: f.created_at };
     photoMap[scanId][type] = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${f.name}`;
   }
 
-  // Group fits by scan_id
   const fitMap = {};
-  for (const f of fits) {
-    fitMap[f.scan_id] = f;
-  }
+  for (const f of fits) { fitMap[f.scan_id] = f; }
 
-  // Merge: all scan IDs from both sources
   const allIds = new Set([...Object.keys(photoMap), ...Object.keys(fitMap)]);
   const merged = [];
   for (const id of allIds) {
@@ -111,7 +153,6 @@ async function loadData() {
   }
   merged.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
-  // Stats
   const totalScans = merged.length;
   const withEmail = merged.filter(m => m.fit?.email).length;
   const withShoes = merged.filter(m => m.fit?.shoes?.length > 0).length;
@@ -128,7 +169,6 @@ async function loadData() {
     document.getElementById('scans-container').innerHTML = '<div class="no-data">No scans yet</div>';
     return;
   }
-
   document.getElementById('scans-container').innerHTML = merged.map(m => renderScan(m)).join('');
 }
 
@@ -173,7 +213,6 @@ function renderScan(m) {
       }
       infoHtml += '</div>';
     }
-    // Next shoe preference
     if (m.fit.next_shoe_preference || m.fit.next_shoe_notes) {
       infoHtml += `<div style="margin:6px 0;padding:6px 10px;background:#fdf8f0;border-radius:8px;border:1px solid #e8dcc8;font-size:0.82rem">
         <span style="font-weight:600;color:#2c3227">Next shoe:</span>
@@ -182,7 +221,6 @@ function renderScan(m) {
       </div>`;
     }
 
-    // Analysis results
     if (m.fit.toe_shape || m.fit.width_ratio || m.fit.arch_ratio) {
       infoHtml += `<div class="analysis">
         <div class="a-title">Analysis Results</div>
@@ -209,19 +247,43 @@ function renderScan(m) {
       <a class="scan-id" href="/scan/${m.scanId}" target="_blank" style="color:#3d7a52;text-decoration:none" title="Open scan results page">${m.scanId || 'unknown'}</a>
       <span class="scan-date">${fmtDate(m.date)}</span>
       ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}</span>` : ''}
-      ${hasFit && m.fit.recommendations ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">✓ Recs</span>' : ''}
-      ${hasFit && m.fit.interpretation ? '<span style="background:#e8eaf6;color:#5c6bc0;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">✓ Report</span>' : ''}
-      <button class="delete-btn" onclick="deleteScan('${m.scanId}', ${hasFit ? 'true' : 'false'}, ${m.photos ? 'true' : 'false'}, this)">Delete</button>
+      ${hasFit && m.fit.recommendations ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Recs</span>' : ''}
+      ${hasFit && m.fit.interpretation ? '<span style="background:#e8eaf6;color:#5c6bc0;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Report</span>' : ''}
+      <button class="delete-btn" onclick="deleteScan('${m.scanId}', this)">Delete</button>
     </div>
     <div class="scan-body">${photosHtml}<div class="scan-info">${infoHtml}</div></div>
   </div>`;
 }
 
-async function deleteScan(scanId, hasFit, hasPhotos, btn) {
-  if (!confirm(`Delete scan "${scanId}"?\n\nThis will remove photos, overlays, and all associated data permanently.`)) return;
-  btn.disabled = true; btn.textContent = 'Deleting…';
+async function deleteScan(scanId, btn) {
+  if (!confirm(`Archive and delete scan "${scanId}"?\n\nThe scan data will be archived and can be restored later.\nPhotos and overlays will be permanently removed.`)) return;
+  btn.disabled = true; btn.textContent = 'Archiving...';
   try {
-    /* Always try to delete all storage files and DB row (idempotent operations) */
+    /* Step 1: Fetch the full row from foot_scan_fits */
+    const getRes = await fetch(
+      `${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${encodeURIComponent(scanId)}&select=*`,
+      { headers }
+    );
+    const rows = await getRes.json();
+
+    /* Step 2: If row exists, copy to archive table */
+    if (rows && rows.length > 0) {
+      const row = rows[0];
+      /* Remove the id so archive table generates its own, keep original created_at */
+      delete row.id;
+      const archiveRes = await fetch(`${SB_URL}/rest/v1/foot_scan_fits_archive`, {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify(row)
+      });
+      if (!archiveRes.ok) {
+        const err = await archiveRes.text();
+        throw new Error('Archive insert failed: ' + err);
+      }
+    }
+
+    btn.textContent = 'Deleting...';
+    /* Step 3: Delete storage files + DB row */
     await Promise.all([
       fetch(`${SB_URL}/storage/v1/object/foot-scans`, {
         method: 'DELETE',
@@ -245,13 +307,129 @@ async function deleteScan(scanId, hasFit, hasPhotos, btn) {
   }
 }
 
+async function loadArchived() {
+  const container = document.getElementById('archive-container');
+  container.innerHTML = '<div class="loading">Loading archived scans...</div>';
+  try {
+    const res = await fetch(
+      `${SB_URL}/rest/v1/foot_scan_fits_archive?select=*&order=archived_at.desc`,
+      { headers }
+    );
+    const archived = await res.json();
+    if (!archived || archived.length === 0) {
+      container.innerHTML = '<div class="no-data">No archived scans</div>';
+      return;
+    }
+    container.innerHTML = archived.map(a => renderArchived(a)).join('');
+  } catch (e) {
+    console.error('Load archived failed:', e);
+    container.innerHTML = '<div class="no-data">Error loading archived scans</div>';
+  }
+}
+
+function renderArchived(a) {
+  const scanId = a.scan_id || 'unknown';
+  const hasShoes = a.shoes && a.shoes.length > 0;
+  const hasRecs = !!a.recommendations;
+
+  let infoHtml = '';
+  if (a.sex || a.street_size_eu) {
+    infoHtml += `<div class="info-row"><span class="info-label">Sex:</span><span class="info-val">${a.sex || '--'}</span></div>`;
+    infoHtml += `<div class="info-row"><span class="info-label">Street size:</span><span class="info-val">${a.street_size_eu || '--'} EU</span></div>`;
+  }
+  if (hasShoes) {
+    infoHtml += '<div class="shoe-list">';
+    for (const s of a.shoes) {
+      infoHtml += `<div class="shoe-item">
+        <div class="shoe-name">${s.brand || '?'} ${s.model || '?'} ${s.size_eu ? '(EU ' + s.size_eu + ')' : ''}</div>
+      </div>`;
+    }
+    infoHtml += '</div>';
+  }
+  if (a.pipeline_stage) {
+    infoHtml += `<div style="margin-top:6px;font-size:0.8rem;color:#888">Pipeline: ${a.pipeline_stage}${a.pipeline_error ? ' - ' + a.pipeline_error : ''}</div>`;
+  }
+  if (!infoHtml) infoHtml = '<div style="color:#999;font-size:0.85rem">No data</div>';
+
+  return `<div class="scan-card archived-card">
+    <div class="scan-header">
+      <span class="scan-id">${scanId}</span>
+      <span class="scan-date">Archived ${fmtDate(a.archived_at)}</span>
+      ${a.email ? `<span class="scan-email">${a.email}</span>` : ''}
+      <span class="archive-badge">Archived</span>
+      ${hasRecs ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Recs</span>' : ''}
+      <button class="restore-btn" onclick="restoreScan('${a.id}', '${scanId}', this)">Restore</button>
+      <button class="purge-btn" onclick="purgeScan('${a.id}', '${scanId}', this)">Purge</button>
+    </div>
+    <div class="scan-body"><div class="scan-info">${infoHtml}</div></div>
+  </div>`;
+}
+
+async function restoreScan(archiveId, scanId, btn) {
+  if (!confirm(`Restore scan "${scanId}" back to active scans?\n\nNote: Photos will NOT be restored (they were deleted). Only the scan data and recommendations will be restored.`)) return;
+  btn.disabled = true; btn.textContent = 'Restoring...';
+  try {
+    /* Fetch the archived row */
+    const getRes = await fetch(
+      `${SB_URL}/rest/v1/foot_scan_fits_archive?id=eq.${archiveId}&select=*`,
+      { headers }
+    );
+    const rows = await getRes.json();
+    if (!rows || rows.length === 0) throw new Error('Archived row not found');
+
+    const row = rows[0];
+    /* Remove archive-specific fields and id */
+    delete row.id;
+    delete row.archived_at;
+    delete row.archived_by;
+
+    /* Insert back into foot_scan_fits */
+    const insertRes = await fetch(`${SB_URL}/rest/v1/foot_scan_fits`, {
+      method: 'POST',
+      headers: { ...headers, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify(row)
+    });
+    if (!insertRes.ok) throw new Error('Restore insert failed: ' + await insertRes.text());
+
+    /* Delete from archive */
+    await fetch(`${SB_URL}/rest/v1/foot_scan_fits_archive?id=eq.${archiveId}`, {
+      method: 'DELETE', headers
+    });
+    const card = btn.closest('.scan-card');
+    if (card) card.remove();
+    /* Refresh active scans in background */
+    loadData().catch(console.error);
+  } catch (e) {
+    console.error('Restore failed:', e);
+    btn.textContent = 'Error';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Restore'; }, 2000);
+  }
+}
+
+async function purgeScan(archiveId, scanId, btn) {
+  if (!confirm(`PERMANENTLY delete archived scan "${scanId}"?\n\nThis cannot be undone.`)) return;
+  btn.disabled = true; btn.textContent = 'Purging...';
+  try {
+    await fetch(`${SB_URL}/rest/v1/foot_scan_fits_archive?id=eq.${archiveId}`, {
+      method: 'DELETE', headers
+    });
+    const card = btn.closest('.scan-card');
+    if (card) card.remove();
+  } catch (e) {
+    console.error('Purge failed:', e);
+    btn.textContent = 'Error';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Purge'; }, 2000);
+  }
+}
+
 loadData().catch(e => {
   console.error(e);
   document.getElementById('scans-container').innerHTML = '<div class="no-data">Error loading data</div>';
 });
 
-// Auto-refresh every 30 seconds
-setInterval(() => loadData().catch(console.error), 30000);
+setInterval(() => {
+  if (currentTab === 'active') loadData().catch(console.error);
+}, 30000);
 </script>
 </body>
 </html>
