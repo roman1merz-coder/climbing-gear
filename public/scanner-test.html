@@ -2099,14 +2099,6 @@ function showResults(data) {
   const interpEl = document.getElementById('interpretation-content');
   interpEl.innerHTML = '';
 
-  /* Add link to view full results in admin interface */
-  if (scanId) {
-    const linkEl = document.createElement('p');
-    linkEl.style.cssText = 'margin-bottom:1.5rem;padding:0.8rem;background:#f5f5f0;border-radius:4px;border-left:3px solid #3d7a52;font-size:0.85rem';
-    linkEl.innerHTML = 'View your complete scan results with photos and shoe images: <a href="/scan-admin.html?scan=' + encodeURIComponent(scanId) + '" target="_blank" style="color:#3d7a52;font-weight:600;text-decoration:none">Open in Admin View</a>';
-    interpEl.appendChild(linkEl);
-  }
-
   if (data.interpretation && Array.isArray(data.interpretation)) {
     data.interpretation.forEach(section => {
       const h3 = document.createElement('h3');
@@ -2138,8 +2130,14 @@ function showResults(data) {
     tab.textContent = labels[cat] + ' (' + count + ')';
   });
 
-  /* Switch to results screen */
-  showScreen('results-screen');
+  /* Redirect to the actual scan results page */
+  if (scanId) {
+    setTimeout(() => {
+      window.location.href = '/scan/' + encodeURIComponent(scanId);
+    }, 500);
+  } else {
+    showScreen('results-screen');
+  }
 }
 
 function renderRecommendations(category) {
