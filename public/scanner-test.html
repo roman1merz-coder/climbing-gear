@@ -1873,37 +1873,45 @@ function retakeAll() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   Automated Pipeline - scan-start, preferences, polling, results
+   Automated Pipeline - Supabase-only (no tunnel/API needed)
+   The Mac Mini worker polls Supabase for pending scans.
    ══════════════════════════════════════════════════════════════════ */
 
-/* Scanner API base URL. Override via ?api=http://localhost:8787 for local testing. */
-const SCANNER_API = new URLSearchParams(window.location.search).get('api') || 'https://phentermine-year-provision-jay.trycloudflare.com';
 let pollTimer = null;
 let pollFailures = 0;
-const MAX_POLL_FAILURES = 30; /* stop after 30 consecutive failures (60s) */
+const MAX_POLL_FAILURES = 90; /* stop after 90 failures (3 min at 2s interval) */
 let allRecommendations = []; /* stored globally for tab switching */
+let pipelineStartedAt = null; /* for progress estimation */
 
-/* Step 1: Trigger SAM3 segmentation as soon as photos are uploaded */
+/* Step 1: Mark scan as pending so the worker picks it up */
 async function triggerScanStart(sid) {
   try {
-    const fd = new FormData();
-    fd.append('scan_id', sid);
-    const resp = await fetch(SCANNER_API + '/scan-start', {
-      method: 'POST', body: fd,
+    const resp = await fetch(`${SB_URL}/rest/v1/foot_scan_fits`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SB_KEY}`,
+        'apikey': SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal,resolution=merge-duplicates',
+      },
+      body: JSON.stringify({
+        scan_id: sid,
+        pipeline_stage: 'pending',
+        pipeline_started_at: new Date().toISOString(),
+      }),
     });
-    const data = await resp.json();
-    console.log('[pipeline] scan-start:', data);
+    console.log('[pipeline] scan marked as pending:', resp.status);
+    pipelineStartedAt = Date.now();
   } catch(e) {
-    console.error('[pipeline] scan-start failed:', e);
-    /* Non-fatal: pipeline can still run if triggered by preferences */
+    console.error('[pipeline] failed to mark scan as pending:', e);
   }
 }
 
-/* Step 2: Submit preferences and switch to processing screen */
+/* Step 2: Submit preferences directly to Supabase and show processing screen */
 async function submitPreferencesAndProcess(email) {
   if (!scanId) {
     console.error('[pipeline] No scan ID - photos not uploaded yet');
-    showScreen('thankyou-screen'); /* fallback to old flow */
+    showScreen('thankyou-screen');
     return;
   }
   const shoes = collectShoeFitData();
@@ -1914,35 +1922,41 @@ async function submitPreferencesAndProcess(email) {
   const sex = sexBtn ? sexBtn.dataset.val : null;
   const streetSize = parseFloat(document.getElementById('street-size')?.value) || null;
 
-  /* Save to Supabase via scan-preferences endpoint */
+  /* Save preferences directly to Supabase */
   try {
-    const resp = await fetch(SCANNER_API + '/scan-preferences', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        scan_id: scanId,
-        sex: sex,
-        street_size_eu: streetSize,
-        next_shoe_preference: nextPref,
-        next_shoe_notes: nextNotes,
-        shoes: shoes,
-        email: email,
-      }),
+    const payload = {
+      scan_id: scanId,
+      sex: sex,
+      street_size_eu: streetSize,
+      next_shoe_preference: nextPref,
+      next_shoe_notes: nextNotes,
+      shoes: shoes,
+    };
+    if (email) payload.email = email;
+
+    const resp = await fetch(`${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${encodeURIComponent(scanId)}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${SB_KEY}`,
+        'apikey': SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(payload),
     });
-    const data = await resp.json();
-    console.log('[pipeline] scan-preferences:', data);
+    console.log('[pipeline] preferences saved to Supabase:', resp.status);
   } catch(e) {
-    console.error('[pipeline] scan-preferences failed:', e);
-    /* Also save directly to Supabase as fallback */
+    console.error('[pipeline] preferences save failed:', e);
+    /* Fallback: use the old saveShoeFitData */
     await saveShoeFitData(email);
   }
 
-  /* Show processing screen and start polling */
+  /* Show processing screen and start polling Supabase */
   showScreen('processing-screen');
   startProgressPolling();
 }
 
-/* Step 3: Poll /scan-status every 2 seconds */
+/* Step 3: Poll Supabase directly for pipeline_stage every 2 seconds */
 function startProgressPolling() {
   if (pollTimer) clearInterval(pollTimer);
 
@@ -1959,20 +1973,38 @@ function startProgressPolling() {
   pollFailures = 0;
   pollTimer = setInterval(async () => {
     try {
-      const resp = await fetch(SCANNER_API + '/scan-status/' + scanId);
+      const resp = await fetch(
+        `${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${encodeURIComponent(scanId)}&select=pipeline_stage,pipeline_error,interpretation,recommendations`,
+        {
+          headers: {
+            'Authorization': `Bearer ${SB_KEY}`,
+            'apikey': SB_KEY,
+          },
+        }
+      );
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const data = await resp.json();
-      pollFailures = 0; /* reset on success */
+      const rows = await resp.json();
+      if (!rows || rows.length === 0) throw new Error('Scan not found');
+
+      const row = rows[0];
+      pollFailures = 0;
+
+      /* Estimate progress from stage + elapsed time */
+      const elapsed = pipelineStartedAt ? (Date.now() - pipelineStartedAt) / 1000 : 0;
+      const data = buildProgressData(row.pipeline_stage, elapsed, row);
       updateProgressUI(data);
 
-      if (data.stage === 'complete') {
+      if (row.pipeline_stage === 'complete') {
         clearInterval(pollTimer);
         pollTimer = null;
-        showResults(data);
-      } else if (data.stage === 'error') {
+        showResults({
+          interpretation: row.interpretation,
+          recommendations: row.recommendations,
+        });
+      } else if (row.pipeline_stage === 'error') {
         clearInterval(pollTimer);
         pollTimer = null;
-        showProcessingError(data.error || 'Something went wrong. Please try again.');
+        showProcessingError(row.pipeline_error || 'Something went wrong. Please try again.');
       }
     } catch(e) {
       console.error('[pipeline] poll error:', e);
@@ -1980,10 +2012,27 @@ function startProgressPolling() {
       if (pollFailures >= MAX_POLL_FAILURES) {
         clearInterval(pollTimer);
         pollTimer = null;
-        showProcessingError('Lost connection to the scanner. Please refresh and try again.');
+        showProcessingError('Lost connection. Please refresh and try again.');
       }
     }
   }, 2000);
+}
+
+/* Convert pipeline_stage + elapsed time into progress data for the UI */
+function buildProgressData(stage, elapsed, row) {
+  let progress = 0;
+  if (stage === 'pending') {
+    progress = Math.min(10, Math.round(elapsed / 10 * 10));
+  } else if (stage === 'segmenting') {
+    progress = Math.min(35, 10 + Math.round(elapsed / 25 * 25));
+  } else if (stage === 'waiting_preferences') {
+    progress = 40;
+  } else if (stage === 'finding_shoes') {
+    progress = Math.min(95, 45 + Math.round(Math.max(0, elapsed - 15) / 55 * 50));
+  } else if (stage === 'complete') {
+    progress = 100;
+  }
+  return { stage, progress };
 }
 
 function updateProgressUI(data) {
