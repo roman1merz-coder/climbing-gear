@@ -1830,22 +1830,33 @@ function validatePreferencesForm() {
     errors.push('Please enter your street shoe size');
   }
 
-  // Check that at least one shoe is added
-  const shoeCards = document.querySelectorAll('.shoe-card');
+  // Get actual shoe cards (not the "next shoe preference" card at the end)
+  const shoeEntries = document.getElementById('shoe-entries');
+  const shoeCards = shoeEntries ? shoeEntries.querySelectorAll('.shoe-card') : [];
+
   if (shoeCards.length === 0) {
     errors.push('Please add at least one climbing shoe you currently wear');
+  } else {
+    // Only the FIRST shoe is mandatory
+    const firstCard = shoeCards[0];
+    const brandSel = firstCard.querySelector('.brand-select')?.value || '';
+    const modelSel = firstCard.querySelector('.model-select')?.value || '';
+    const sizeSel = firstCard.querySelector('.shoe-size-select')?.value || '';
+
+    if (!brandSel) errors.push('Shoe 1: Please select a brand');
+    if (!modelSel) errors.push('Shoe 1: Please select a model');
+    if (!sizeSel) errors.push('Shoe 1: Please select a size');
+
+    // Check that first shoe has all three fit ratings
+    const fitGroups = firstCard.querySelectorAll('.fit-group');
+    fitGroups.forEach((group) => {
+      const area = group.querySelector('.fit-options')?.dataset.area || 'unknown';
+      const selectedRating = group.querySelector('.fit-option.active');
+      if (!selectedRating) {
+        errors.push(`Shoe 1: Please rate the ${area}`);
+      }
+    });
   }
-
-  // Check that all added shoes have required fields filled
-  shoeCards.forEach((card, idx) => {
-    const modelSel = card.querySelector('.shoe-model-select')?.value || '';
-    const sizeSel = card.querySelector('.shoe-size-select')?.value || '';
-    const fitRating = card.querySelector('.fit-rating.active');
-
-    if (!modelSel) errors.push(`Shoe ${idx + 1}: Please select a model`);
-    if (!sizeSel) errors.push(`Shoe ${idx + 1}: Please select a size`);
-    if (!fitRating) errors.push(`Shoe ${idx + 1}: Please rate the fit`);
-  });
 
   return errors;
 }
