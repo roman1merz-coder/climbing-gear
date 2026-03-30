@@ -56,15 +56,18 @@ function generateSitemaps() {
 
   // 2. Per-category product sitemaps
   const datasets = [
-    { file: 'seed_data.json', prefix: '/shoe', name: 'shoes' },
+    { file: 'seed_data.json', prefix: '/shoe', name: 'shoes', key: 'shoes' },
     { file: 'rope_seed_data.json', prefix: '/rope', name: 'ropes' },
     { file: 'crashpad_seed_data.json', prefix: '/crashpad', name: 'crashpads' },
     { file: 'belay_seed_data.json', prefix: '/belay', name: 'belays' },
     { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', name: 'quickdraws' },
   ];
 
-  for (const { file, prefix, name } of datasets) {
+  for (const { file, prefix, name, key } of datasets) {
     let items = loadJSON(file);
+    // Some seed files wrap data in an object (e.g. { shoes: [...] })
+    if (key && items[key]) items = items[key];
+    if (!Array.isArray(items)) { console.warn(`Skipping ${file}: not an array`); continue; }
     // Exclude static ropes from sitemap (hidden from frontend)
     if (prefix === '/rope') items = items.filter(r => r.rope_type !== 'static');
 
