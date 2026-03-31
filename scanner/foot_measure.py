@@ -100,130 +100,10 @@ def classify_ratio(name, value):
 
 # ── Segmentation (SAM 3 text-prompted) ───────────────────────────────────
 
-def _run_sam3(img_bgr, prompt, use_clahe=False):
-    """Run SAM3 inference on an image. Returns (binary_mask, score, dt).
-
-    If use_clahe=True, applies CLAHE to the L channel before inference
-    to help SAM3 segment under uneven lighting.
-    """
-    import torch
-    from PIL import Image
-
-    model, processor, device = _load_sam3()
-    h, w = img_bgr.shape[:2]
-
-    if use_clahe:
-        lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB)
-        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-        lab[:, :, 0] = clahe.apply(lab[:, :, 0])
-        src = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
-    else:
-        src = img_bgr
-
-    rgb = cv2.cvtColor(src, cv2.COLOR_BGR2RGB)
-    pil_image = Image.fromarray(rgb)
-
-    t0 = time.time()
-    inputs = processor(images=pil_image, text=prompt, return_tensors="pt")
-    inputs = {k: v.to(device) if isinstance(v, torch.Tensor) else v
-              for k, v in inputs.items()}
-    with torch.no_grad():
-        outputs = model(**inputs)
-    results = processor.post_process_instance_segmentation(
-        outputs, target_sizes=[(h, w)]
-    )
-    dt = time.time() - t0
-
-    result = results[0]
-    masks = result["masks"]
-    scores = result["scores"]
-    if masks.shape[0] == 0:
-        return np.zeros((h, w), dtype=np.uint8), 0.0, dt
-
-    best_idx = scores.argmax().item()
-    best_score = scores[best_idx].item()
-    binary = (masks[best_idx].cpu().numpy() > 0).astype(np.uint8) * 255
-    return binary, best_score, dt
-
-
-def _mask_looks_wrong(binary):
-    """Check if the segmentation mask looks like a proper foot sole.
-
-    A correct foot sole mask has predictable proportions:
-      - Aspect ratio (height/width) roughly 2.0-3.5
-      - Convexity (mask area / convex hull area) roughly 0.75-0.95
-      - Heel width roughly 45-85% of forefoot width
-
-    If any check fails, it likely means SAM3 grabbed non-foot areas
-    (ankle, leg) or missed part of the foot. Returns True if the mask
-    looks wrong and should trigger a CLAHE retry.
-    """
-    ys_nz = np.where(np.any(binary > 0, axis=1))[0]
-    if len(ys_nz) < 50:
-        return False
-    mask_top, mask_bot = ys_nz[0], ys_nz[-1]
-    mask_h = mask_bot - mask_top
-    if mask_h < 100:
-        return False
-
-    xs_nz = np.where(np.any(binary > 0, axis=0))[0]
-    mask_w = xs_nz[-1] - xs_nz[0]
-    if mask_w < 30:
-        return False
-
-    problems = []
-
-    # Check 1: aspect ratio (height / max width)
-    # A normal foot sole is roughly 2.0-3.5x taller than wide.
-    # Too wide = grabbed ankle/leg. Too narrow = sliver artifact.
-    aspect = mask_h / mask_w
-    if aspect < 1.8:
-        problems.append(f"aspect={aspect:.2f} (too wide, expected >1.8)")
-
-    # Check 2: convexity (mask area vs convex hull)
-    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL,
-                                    cv2.CHAIN_APPROX_SIMPLE)
-    if contours:
-        cnt = max(contours, key=cv2.contourArea)
-        mask_area = cv2.contourArea(cnt)
-        hull = cv2.convexHull(cnt)
-        hull_area = cv2.contourArea(hull)
-        if hull_area > 0:
-            convexity = mask_area / hull_area
-            if convexity < 0.70:
-                problems.append(f"convexity={convexity:.2f} (expected >0.70)")
-
-    # Check 3: heel width vs forefoot width
-    max_forefoot_w = 0
-    for row in range(mask_top + int(mask_h * 0.25), mask_top + int(mask_h * 0.45)):
-        px = np.where(binary[row, :] > 0)[0]
-        if len(px) > 0:
-            max_forefoot_w = max(max_forefoot_w, px[-1] - px[0])
-
-    max_heel_w = 0
-    for row in range(mask_bot - int(mask_h * 0.15), mask_bot + 1):
-        if 0 <= row < binary.shape[0]:
-            px = np.where(binary[row, :] > 0)[0]
-            if len(px) > 0:
-                max_heel_w = max(max_heel_w, px[-1] - px[0])
-
-    if max_forefoot_w > 0:
-        heel_ratio = max_heel_w / max_forefoot_w
-        if heel_ratio < 0.40:
-            problems.append(f"heel/forefoot={heel_ratio:.2f} (expected >0.40)")
-
-    if problems:
-        print(f"  Mask quality: POOR ({', '.join(problems)})")
-        return True
-    return False
-
-
 def segment(img_bgr, prompt="foot"):
     """Segment foot from a BGR image using SAM 3 with text prompt.
 
-    Runs SAM3 without preprocessing first. If the mask looks wrong
-    (bad aspect ratio, low convexity, or truncated heel -- common with
-    uneven lighting), retries with CLAHE to boost contrast.
+    Always applies CLAHE to normalize lighting before SAM3 inference.
 
     Args:
         img_bgr: OpenCV BGR image (numpy array)
@@ -232,69 +112,54 @@ def segment(img_bgr, prompt="foot"):
     Returns:
         mask: binary uint8 mask (H, W), 0 or 255
     """
+    import torch
+    from PIL import Image
+
+    model, processor, device = _load_sam3()
     h, w = img_bgr.shape[:2]
 
-    # First pass: no preprocessing (best for most scans)
-    binary, best_score, dt = _run_sam3(img_bgr, prompt, use_clahe=False)
+    # CLAHE on L channel to normalize uneven lighting
+    lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+    img_eq = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
 
-    if np.count_nonzero(binary) == 0:
+    # Convert BGR -> RGB PIL
+    rgb = cv2.cvtColor(img_eq, cv2.COLOR_BGR2RGB)
+    pil_image = Image.fromarray(rgb)
+
+    t0 = time.time()
+    inputs = processor(images=pil_image, text=prompt, return_tensors="pt")
+    inputs = {k: v.to(device) if isinstance(v, torch.Tensor) else v
+              for k, v in inputs.items()}
+
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    results = processor.post_process_instance_segmentation(
+        outputs, target_sizes=[(h, w)]
+    )
+    dt = time.time() - t0
+
+    result = results[0]
+    masks = result["masks"]
+    scores = result["scores"]
+
+    if masks.shape[0] == 0:
         print(f"  SAM 3: no instances detected ({dt:.2f}s)")
-        return binary
+        return np.zeros((h, w), dtype=np.uint8)
+
+    best_idx = scores.argmax().item()
+    best_score = scores[best_idx].item()
+    mask_tensor = masks[best_idx]
+
+    binary = (mask_tensor.cpu().numpy() > 0).astype(np.uint8) * 255
 
     # Keep only largest connected component
     n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, 8)
     if n_labels > 1:
         largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
         binary = ((labels == largest) * 255).astype(np.uint8)
-
-    # Check mask quality -- if shape looks wrong, retry with CLAHE
-    if _mask_looks_wrong(binary):
-        print(f"  SAM 3: mask looks wrong, retrying with CLAHE...")
-        binary2, score2, dt2 = _run_sam3(img_bgr, prompt, use_clahe=True)
-        if np.count_nonzero(binary2) > 0:
-            n2, lab2, st2, _ = cv2.connectedComponentsWithStats(binary2, 8)
-            if n2 > 1:
-                largest2 = 1 + np.argmax(st2[1:, cv2.CC_STAT_AREA])
-                binary2 = ((lab2 == largest2) * 255).astype(np.uint8)
-            if not _mask_looks_wrong(binary2):
-                print(f"  SAM 3: CLAHE retry fixed mask (score={score2:.3f}, +{dt2:.2f}s)")
-                binary = binary2
-                best_score = score2
-                dt += dt2
-            else:
-                print(f"  SAM 3: CLAHE retry did not fix mask, keeping original")
-                dt += dt2
-
-    # Post-process: close gaps in the heel/toe regions only.
-    # SAM3 often fragments the heel boundary where it meets the ankle.
-    # We apply morphological close to just the end regions of the foot
-    # (top/bottom 25%) to bridge heel gaps without expanding the sides.
-    ys_nz = np.where(np.any(binary > 0, axis=1))[0]
-    if len(ys_nz) > 0:
-        mask_top, mask_bot = ys_nz[0], ys_nz[-1]
-        mask_h = mask_bot - mask_top
-        kernel_size = max(15, int(min(h, w) * 0.03))
-        if kernel_size % 2 == 0:
-            kernel_size += 1
-        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,
-                                            (kernel_size, kernel_size))
-
-        # Close top 25% and bottom 25% of the foot bounding box
-        for region_start, region_end in [
-            (mask_top, mask_top + int(mask_h * 0.25)),
-            (mask_bot - int(mask_h * 0.25), mask_bot),
-        ]:
-            rs = max(0, region_start - kernel_size)
-            re = min(h, region_end + kernel_size)
-            strip = binary[rs:re, :].copy()
-            strip = cv2.morphologyEx(strip, cv2.MORPH_CLOSE, kernel)
-            binary[rs:re, :] = strip
-
-        # Re-extract largest component after closing (heel fragments may join)
-        n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, 8)
-        if n_labels > 1:
-            largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
-            binary = ((labels == largest) * 255).astype(np.uint8)
 
     # Fill internal holes (contours with a parent = holes inside the mask)
     hole_contours, hierarchy = cv2.findContours(
