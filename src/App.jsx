@@ -1053,7 +1053,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 Guided
               </button>
               <button
-                onClick={() => navigate("/scan")}
+                onClick={() => window.location.href = "/scan"}
                 title="Scan your foot to find shoes that fit"
                 style={{
                   height: "28px", padding: "0 8px", borderRadius: "6px", border: "1px solid #c98a42",
@@ -1126,7 +1126,7 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
               Guided search
             </button>
             <button
-              onClick={() => navigate("/scan")}
+              onClick={() => window.location.href = "/scan"}
               title="Scan your foot to find shoes that fit"
               style={{
                 height: "32px", padding: "0 12px", borderRadius: "8px", border: "1px solid #c98a42",

@@ -217,7 +217,7 @@ export default function ScanResult({ shoes }) {
         <div style={{ fontSize: 14, color: T.muted, marginBottom: 20 }}>
           We couldn't find scan results for "{scanId}". The link may be expired or incorrect.
         </div>
-        <Link to="/scan" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>Try a new scan</Link>
+        <a href="/scan" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>Try a new scan</a>
       </div>
     </div>
   );

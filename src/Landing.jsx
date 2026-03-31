@@ -135,9 +135,9 @@ function HeroSection({ isMobile }) {
             <Link to="/find" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s", whiteSpace: "nowrap" }}>
               <IconTarget size={16} /> Guided Shoe Finder
             </Link>
-            <Link to="/scan" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s", whiteSpace: "nowrap" }}>
+            <a href="/scan" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(201,138,66,0.25)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(201,138,66,0.45)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s", whiteSpace: "nowrap" }}>
               <IconScan size={16} /> Foot Scanner
-            </Link>
+            </a>
             <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", fontFamily: T.font, transition: "color 0.2s", whiteSpace: "nowrap" }}>
               <IconBook size={16} /> Explore Insights
             </a>
@@ -202,13 +202,13 @@ function GearSelectorsSection({ isMobile }) {
                 </Link>
               )}
               {sel.scannerTo && (
-                <Link to={sel.scannerTo} onClick={e => e.stopPropagation()} style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px", padding: "10px 12px", borderRadius: "10px", background: `${T.accent}12`, textDecoration: "none", transition: "background 0.2s" }}
+                <a href={sel.scannerTo} onClick={e => e.stopPropagation()} style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px", padding: "10px 12px", borderRadius: "10px", background: `${T.accent}12`, textDecoration: "none", transition: "background 0.2s" }}
                   onMouseOver={e => e.currentTarget.style.background = `${T.accent}22`}
                   onMouseOut={e => e.currentTarget.style.background = `${T.accent}12`}>
                   <IconScan size={14} color={T.accent} />
                   <span style={{ fontSize: "12px", fontWeight: 700, color: T.accent }}>Foot Scanner</span>
                   <span style={{ marginLeft: "auto" }}><IconArrow size={12} color={T.accent} /></span>
-                </Link>
+                </a>
               )}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "18px", paddingTop: "14px", borderTop: `1px solid ${T.border}` }}>
                 <span style={{ fontSize: "13px", fontWeight: 700, color: T.accent }}>{sel.count} models</span>
@@ -285,17 +285,17 @@ function FootScannerSection({ isMobile }) {
             </div>
             <h2 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, color: T.text, lineHeight: 1.15, marginBottom: "12px", fontFamily: T.font }}>Foot Scanner</h2>
             <p style={{ color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "480px" }}>
-              Scan your foot with your phone camera to measure length and width {"\u2014"} then get matched to shoes that actually fit your feet.
+              Scan your foot with your phone camera and get matched to shoes that actually fit your feet.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "14px", fontSize: "12px", color: T.muted }}>
               {"\uD83D\uDCF1"} Works on any smartphone
             </div>
           </div>
-          <Link to="/scan" style={{ display: "inline-flex", alignItems: "center", gap: "12px", padding: isMobile ? "14px 28px" : "16px 32px", borderRadius: "14px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: isMobile ? "14px" : "15px", textDecoration: "none", fontFamily: T.font, whiteSpace: "nowrap", flexShrink: 0, transition: "transform 0.2s" }}
+          <a href="/scan" style={{ display: "inline-flex", alignItems: "center", gap: "12px", padding: isMobile ? "14px 28px" : "16px 32px", borderRadius: "14px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: isMobile ? "14px" : "15px", textDecoration: "none", fontFamily: T.font, whiteSpace: "nowrap", flexShrink: 0, transition: "transform 0.2s" }}
             onMouseOver={e => e.currentTarget.style.transform = "scale(1.02)"}
             onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
             Scan your foot <IconArrow size={18} />
-          </Link>
+          </a>
         </div>
       </motion.div>
     </section>
