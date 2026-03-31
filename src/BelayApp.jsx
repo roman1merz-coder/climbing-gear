@@ -8,6 +8,7 @@ import CompareCheckbox from "./CompareCheckbox.jsx";
 import { useWL } from "./WishlistContext.jsx";
 import { useCompare } from "./CompareContext.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildItemListSchema } from "./useStructuredData.js";
 
 // ─── SVG icons for action bar ───
 const HeartSVG = ({ filled, size = 16 }) => (
@@ -835,6 +836,7 @@ function loadBelaySession() {
 
 export default function BelayApp({ belays = [], src, priceData = {} }) {
   usePageMeta(`Belay Devices - Compare ${belays.length}+ Models`, "Compare belay devices: cam, passive-assist, tube, and guide. Filter by weight, rope range, safety features, and price.");
+  useStructuredData(buildItemListSchema(belays, "Belay Devices", "belay"));
   const nav = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();

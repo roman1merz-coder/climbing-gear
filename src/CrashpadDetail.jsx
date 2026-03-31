@@ -4,7 +4,7 @@ import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 import usePageMeta from "./usePageMeta.js";
-import useStructuredData from "./useStructuredData.js";
+import useStructuredData, { buildCrashpadSchema } from "./useStructuredData.js";
 import useIsMobile from "./useIsMobile.js";
 import { getShippingLabel, getReturnLabel } from "./retailers.js";
 
@@ -386,16 +386,7 @@ export default function CrashpadDetail({ crashpads = [], priceData = {} }) {
     pad ? `${pad.brand} ${pad.model} - Crashpad Specs` : null,
     pad ? `${pad.brand} ${pad.model}: dimensions, weight, foam type, and price comparison.` : null
   );
-  useStructuredData(pad ? {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `${pad.brand} ${pad.model}`,
-    description: `${pad.brand} ${pad.model} crashpad - ${pad.weight_kg ? pad.weight_kg + "kg" : ""}, ${pad.open_length_cm && pad.open_width_cm ? pad.open_length_cm + "×" + pad.open_width_cm + "cm" : ""}. Compare specs and prices.`,
-    brand: { "@type": "Brand", name: pad.brand },
-    category: "Crashpads",
-    url: `https://www.climbing-gear.com/crashpad/${pad.slug}`,
-    image: pad.image_url ? `https://www.climbing-gear.com${pad.image_url}` : undefined,
-  } : null);
+  useStructuredData(buildCrashpadSchema(pad, priceData));
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 

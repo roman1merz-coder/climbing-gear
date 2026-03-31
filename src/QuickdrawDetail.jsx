@@ -4,6 +4,7 @@ import { fmt, ensureArray } from "./utils/format.js";
 import HeartButton from "./HeartButton.jsx";
 import PriceAlertForm from "./PriceAlertForm.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildQuickdrawSchema } from "./useStructuredData.js";
 import useIsMobile from "./useIsMobile.js";
 import { getShippingLabel, getReturnLabel } from "./retailers.js";
 
@@ -164,6 +165,7 @@ export default function QuickdrawDetail({ quickdraws = [], priceData = {} }) {
     d ? `${d.brand} ${d.model} - Quickdraw Specs` : null,
     d ? `${d.brand} ${d.model}: weight, lengths, carabiner specs, and price comparison.` : null
   );
+  useStructuredData(buildQuickdrawSchema(d, priceData));
   const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("overview");
 

@@ -11,6 +11,7 @@ import { useCompare } from "./CompareContext.jsx";
 import { ScoringDisclaimer } from "./Methodology.jsx";
 import ShoeScatterChart from "./ShoeScatterChart.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildItemListSchema } from "./useStructuredData.js";
 
 // ═══ SCORING FUNCTIONS ═══
 
@@ -768,6 +769,7 @@ const SESSION_ID = String(Date.now());
 
 export default function ClimbingGearApp({ shoes = [], src = "local", priceData = {}, filters: extFilters, setFilters: extSetFilters, query: extQuery, setQuery: extSetQuery }) {
   usePageMeta(`Climbing Shoes - Compare ${shoes.length}+ Models`, `Find the perfect climbing shoe. Compare specs, prices, and performance scores across ${shoes.length}+ models from La Sportiva, Scarpa, Evolv, and more.`);
+  useStructuredData(buildItemListSchema(shoes, "Shoes", "shoe"));
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [searchParams, setSearchParams] = useSearchParams();

@@ -184,6 +184,109 @@ export function buildBelaySchema(belay, priceData) {
 }
 
 /**
+ * Build Product structured data for a quickdraw.
+ */
+export function buildQuickdrawSchema(qd, priceData) {
+  if (!qd) return null;
+  const prices = priceData?.[qd.slug];
+  const offers = [];
+
+  if (prices?.retailers) {
+    for (const r of prices.retailers) {
+      if (r.price && r.url) {
+        offers.push({
+          "@type": "Offer",
+          url: r.url,
+          priceCurrency: r.currency || "EUR",
+          price: r.price,
+          availability: "https://schema.org/InStock",
+          seller: { "@type": "Organization", name: r.name },
+        });
+      }
+    }
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${qd.brand} ${qd.model}`,
+    description: `${qd.brand} ${qd.model} quickdraw - ${qd.quickdraw_type || "sport"}, ${qd.weight_g ? qd.weight_g + "g" : ""}, ${qd.strength_major_kn ? qd.strength_major_kn + "kN" : ""}. Compare specs and prices.`,
+    brand: { "@type": "Brand", name: qd.brand },
+    category: "Quickdraws",
+    url: `${BASE_URL}/quickdraw/${qd.slug}`,
+    image: qd.image_url ? `${BASE_URL}${qd.image_url}` : undefined,
+    ...(offers.length > 0 && {
+      offers: offers.length === 1 ? offers[0] : {
+        "@type": "AggregateOffer",
+        lowPrice: Math.min(...offers.map(o => o.price)),
+        highPrice: Math.max(...offers.map(o => o.price)),
+        priceCurrency: offers[0].priceCurrency,
+        offerCount: offers.length,
+        offers,
+      },
+    }),
+    additionalProperty: [
+      qd.weight_g && { "@type": "PropertyValue", name: "Weight", value: `${qd.weight_g}g` },
+      qd.quickdraw_type && { "@type": "PropertyValue", name: "Type", value: qd.quickdraw_type },
+      qd.strength_major_kn && { "@type": "PropertyValue", name: "Major Axis Strength", value: `${qd.strength_major_kn}kN` },
+      qd.sling_material && { "@type": "PropertyValue", name: "Sling Material", value: qd.sling_material },
+    ].filter(Boolean),
+  };
+}
+
+/**
+ * Build Product structured data for a crashpad.
+ */
+export function buildCrashpadSchema(pad, priceData) {
+  if (!pad) return null;
+  const prices = priceData?.[pad.slug];
+  const offers = [];
+
+  if (prices?.retailers) {
+    for (const r of prices.retailers) {
+      if (r.price && r.url) {
+        offers.push({
+          "@type": "Offer",
+          url: r.url,
+          priceCurrency: r.currency || "EUR",
+          price: r.price,
+          availability: "https://schema.org/InStock",
+          seller: { "@type": "Organization", name: r.name },
+        });
+      }
+    }
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${pad.brand} ${pad.model}`,
+    description: `${pad.brand} ${pad.model} crashpad - ${pad.weight_kg ? pad.weight_kg + "kg" : ""}, ${pad.open_length_cm && pad.open_width_cm ? pad.open_length_cm + "×" + pad.open_width_cm + "cm" : ""}. Compare specs and prices.`,
+    brand: { "@type": "Brand", name: pad.brand },
+    category: "Crashpads",
+    url: `${BASE_URL}/crashpad/${pad.slug}`,
+    image: pad.image_url ? `${BASE_URL}${pad.image_url}` : undefined,
+    ...(offers.length > 0 && {
+      offers: offers.length === 1 ? offers[0] : {
+        "@type": "AggregateOffer",
+        lowPrice: Math.min(...offers.map(o => o.price)),
+        highPrice: Math.max(...offers.map(o => o.price)),
+        priceCurrency: offers[0].priceCurrency,
+        offerCount: offers.length,
+        offers,
+      },
+    }),
+    additionalProperty: [
+      pad.weight_kg && { "@type": "PropertyValue", name: "Weight", value: `${pad.weight_kg}kg` },
+      pad.open_length_cm && { "@type": "PropertyValue", name: "Length", value: `${pad.open_length_cm}cm` },
+      pad.open_width_cm && { "@type": "PropertyValue", name: "Width", value: `${pad.open_width_cm}cm` },
+      pad.thickness_cm && { "@type": "PropertyValue", name: "Thickness", value: `${pad.thickness_cm}cm` },
+      pad.foam_type && { "@type": "PropertyValue", name: "Foam", value: pad.foam_type },
+    ].filter(Boolean),
+  };
+}
+
+/**
  * Build WebSite structured data for the homepage.
  */
 export function buildWebsiteSchema() {

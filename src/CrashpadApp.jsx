@@ -8,6 +8,7 @@ import CompareCheckbox from "./CompareCheckbox.jsx";
 import { useWL } from "./WishlistContext.jsx";
 import { useCompare } from "./CompareContext.jsx";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData, { buildItemListSchema } from "./useStructuredData.js";
 
 const CRASHPAD_SORT_OPTIONS = [
   { key: "best_match", label: "Best Match" },
@@ -791,6 +792,7 @@ function loadSession() {
 
 export default function CrashpadApp({ crashpads = [], src = "local", priceData = {} }) {
   usePageMeta(`Crashpads - Compare ${crashpads.length}+ Models`, "Compare bouldering crashpads. Filter by size, weight, foam system, and price across all major brands.");
+  useStructuredData(buildItemListSchema(crashpads, "Crashpads", "crashpad"));
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const isMobile = useIsMobile();
