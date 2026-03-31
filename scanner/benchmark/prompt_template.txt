@@ -38,8 +38,8 @@ Each shoe candidate includes:
 - "recommended_size_eu": pre-computed EU size based on the user's anchor shoe and brand sizing. USE THIS VALUE DIRECTLY. Do not recalculate it.
 - "computed_stiffness": a numeric stiffness score (0-1) based on the shoe's structural properties (midsole, rand, rubber thickness, closure, upper material). Compare directly to the user's stiffness profile to match feel/stiffness.
 - "no_edge": boolean. If true, this shoe uses no-edge/rounded-edge construction. Great for smearing, less precise for micro-edges. Max 1 across all 12 recommendations.
-- "_category": one of "baseline", "softer", "stiffer", "budget" - use the shoe in this category.
-- "_best_price_eur": lowest available price in the recommended size (only for budget candidates). Mention in "why" text.
+- "_categories": list of categories this shoe qualifies for, e.g. ["baseline", "budget"]. A shoe can appear in multiple categories. Pick it in whichever category you use it for.
+- "_best_price_eur": lowest available price in the recommended size. Present for all candidates that have pricing data. For budget picks, always choose the cheapest options and mention the price in "why" text.
 
 ## FOOT SCAN DATA FIELDS
 The scan data may include:

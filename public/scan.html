@@ -2299,10 +2299,12 @@ function renderRecommendations(category) {
   filtered.forEach(rec => {
     const card = document.createElement('div');
     card.className = 'shoe-rec-card';
+    const priceHtml = rec.price_eur ? '<span class="shoe-rec-price">' + rec.price_eur.toFixed(2) + ' EUR</span>' : '';
     card.innerHTML =
       '<div class="shoe-rec-header">' +
         '<span class="shoe-rec-name">' + escHtml(rec.brand + ' ' + rec.model) + '</span>' +
         '<span class="shoe-rec-size">EU ' + (rec.recommended_size_eu || '?') + '</span>' +
+        priceHtml +
       '</div>' +
       '<div class="shoe-rec-why">' + escHtml(rec.why || '') + '</div>';
     container.appendChild(card);

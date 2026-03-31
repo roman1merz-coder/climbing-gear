@@ -587,10 +587,19 @@ def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
             score += 1
 
     # Toe form match
-    if user_toe and tf == user_toe:
-        score += 2
+    # Greek and Egyptian are fundamentally different shapes - mismatching
+    # means the longest toe hits the wrong part of the toe box.
+    if user_toe and tf:
+        if tf == user_toe:
+            score += 3  # exact match
+        elif user_toe == "greek" and tf == "egyptian":
+            score -= 3  # pointy Egyptian box compresses Greek 2nd toe
+        elif user_toe == "egyptian" and tf == "greek":
+            score -= 2  # Greek box wastes space at big toe tip
+        elif tf == "roman":
+            score += 0  # Roman is broadly compatible
     elif tf == "roman":
-        score -= 1
+        score -= 1  # slight penalty when no user toe data
 
     # ── Priority 2: User preference (up to +3) ───────────────────────
 
@@ -928,37 +937,38 @@ def get_categorized_candidates(profile: dict) -> dict:
     ]
     priced.sort(key=lambda x: x["_best_price_eur"])
 
-    # Pick top N from each category, ensuring no slug overlap
-    used_slugs = set()
-
-    def pick(pool, n):
-        picked = []
+    # Tag each candidate with its eligible categories (a shoe can appear
+    # in multiple categories, e.g. baseline + budget).  Send all to the
+    # LLM which picks 3 per category (12 total) from the full pool.
+    seen = {}  # slug -> candidate dict
+    for pool, cat_name in [
+        (baseline, "baseline"),
+        (softer, "softer"),
+        (stiffer, "stiffer"),
+        (priced, "budget"),
+    ]:
         for c in pool:
-            if c["slug"] not in used_slugs:
-                picked.append(c)
-                used_slugs.add(c["slug"])
-                if len(picked) >= n:
-                    break
-        return picked
+            slug = c["slug"]
+            if slug not in seen:
+                c["_categories"] = [cat_name]
+                seen[slug] = c
+            else:
+                if cat_name not in seen[slug].get("_categories", []):
+                    seen[slug]["_categories"].append(cat_name)
 
-    # Pick 3 per category (12 total). Baseline first, then softer/stiffer, then budget.
-    baseline_picks = pick(baseline, 3)
-    softer_picks = pick(softer, 3)
-    stiffer_picks = pick(stiffer, 3)
-    budget_picks = pick(priced, 3)
+    all_candidates = list(seen.values())
+    cat_counts = {}
+    for c in all_candidates:
+        for cat in c["_categories"]:
+            cat_counts[cat] = cat_counts.get(cat, 0) + 1
 
-    # If any category is underfilled, don't force it - return what we have
-    total = len(baseline_picks) + len(softer_picks) + len(stiffer_picks) + len(budget_picks)
-    print(f"[scan_recommender] Categorized: {len(baseline_picks)} baseline, "
-          f"{len(softer_picks)} softer, {len(stiffer_picks)} stiffer, "
-          f"{len(budget_picks)} budget = {total} total")
+    print(f"[scan_recommender] Categorized: {cat_counts.get('baseline', 0)} baseline, "
+          f"{cat_counts.get('softer', 0)} softer, {cat_counts.get('stiffer', 0)} stiffer, "
+          f"{cat_counts.get('budget', 0)} budget = {len(all_candidates)} unique shoes")
 
     return {
         "categories": {
-            "baseline": baseline_picks,
-            "softer": softer_picks,
-            "stiffer": stiffer_picks,
-            "budget": budget_picks,
+            "all": all_candidates,
         },
         "user_avg_stiffness": round(avg_stiffness, 3),
         "user_stiffness_label": stiffness_label(avg_stiffness),

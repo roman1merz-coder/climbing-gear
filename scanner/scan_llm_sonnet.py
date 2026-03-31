@@ -74,8 +74,10 @@ def _build_prompt(scan_data: dict, shoe_candidates: list) -> str:
             "recommended_size_eu": c.get("_recommended_size_eu"),
             "computed_stiffness": c.get("_computed_stiffness"),
         }
-        if c.get("_category"):
-            entry["_category"] = c["_category"]
+        if c.get("_categories"):
+            entry["_categories"] = c["_categories"]
+        elif c.get("_category"):
+            entry["_categories"] = [c["_category"]]
         if c.get("_best_price_eur") is not None:
             entry["_best_price_eur"] = c["_best_price_eur"]
         compact_candidates.append(entry)

@@ -26,8 +26,8 @@ import numpy as np
 from scipy.ndimage import uniform_filter1d
 from scipy.signal import find_peaks
 
-SCRIPT_DIR = Path(__file__).parent
-SILHOUETTE_SVG = SCRIPT_DIR.parent / "graphics" / "foot bottom.svg"
+SCRIPT_DIR = Path(__file__).resolve().parent
+SILHOUETTE_SVG = SCRIPT_DIR / "foot_bottom_silhouette.svg"
 
 # ── SAM 3 model singleton ────────────────────────────────────────────────
 # Loaded once on first call, reused across requests (for FastAPI).
@@ -569,15 +569,16 @@ def detect_toe_shape(mask, upper_row, ball_row):
 # Hallux valgus = inward drift of the big toe (bunion tendency).
 # Measurement: ratio of big toe tip's lateral offset from medial edge to forefoot width.
 # HVA offset ratio: (big_toe_tip_x - medial_edge_x) / forefoot_width
-# Classification: normal (<0.15), mild (0.15-0.25), pronounced (>0.25)
+# Classification: normal (<0.25), mild (0.25-0.35), pronounced (>0.35)
 
-def measure_hallux_valgus(toe_tips, ball_left, ball_width):
+def measure_hallux_valgus(toe_tips, ball_left, ball_width, toe_shape="egyptian"):
     """Measure hallux valgus from big toe tip position.
 
     Args:
         toe_tips: list of (x, y) tuples, first item is big toe
         ball_left: x-coordinate of medial forefoot edge
         ball_width: width of forefoot
+        toe_shape: detected toe shape (greek/egyptian/roman)
 
     Returns:
         (hva_offset_ratio, hallux_valgus_class)
@@ -597,13 +598,12 @@ def measure_hallux_valgus(toe_tips, ball_left, ball_width):
     # Clamp to [0, 1] range for safety
     hva_offset_ratio = max(0.0, min(1.0, hva_offset_ratio))
 
-    # Classification based on population reference
-    # Normal: <0.15 (big toe tip is near the medial edge)
-    # Mild: 0.15-0.25 (noticeable inward drift)
-    # Pronounced: >0.25 (significant inward drift)
-    if hva_offset_ratio < 0.15:
+    mild_threshold = 0.25
+    pronounced_threshold = 0.35
+
+    if hva_offset_ratio < mild_threshold:
         classification = "normal"
-    elif hva_offset_ratio < 0.25:
+    elif hva_offset_ratio < pronounced_threshold:
         classification = "mild"
     else:
         classification = "pronounced"
@@ -671,7 +671,7 @@ def measure_sole(mask):
 
     # Hallux valgus measurement
     hva_offset_ratio, hallux_valgus_class = measure_hallux_valgus(
-        toe_tips, ball_left, ball_width
+        toe_tips, ball_left, ball_width, toe_shape=toe_shape
     )
 
     return {

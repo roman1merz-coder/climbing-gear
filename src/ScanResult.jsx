@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { T } from "./tokens.js";
-import { supabaseFetch, SUPABASE_URL } from "./supabase.js";
+import { supabaseFetch, supabaseRpc, SUPABASE_URL } from "./supabase.js";
 import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
 
@@ -168,7 +168,36 @@ export default function ScanResult({ shoes }) {
 
   // ── Build recommendations from shoe database ──────────────
   // Match shoes based on scan profile
-  const recommendations = buildRecommendations(scan, shoes);
+  const rawRecommendations = buildRecommendations(scan, shoes);
+
+  // ── Fetch live prices for recommended shoes ──────────────
+  const [livePrices, setLivePrices] = useState({});
+  useEffect(() => {
+    if (!rawRecommendations.length) return;
+    const requests = rawRecommendations
+      .filter((r) => r.slug && r.recommended_size_eu)
+      .map((r) => ({ slug: r.slug, size: Number(r.recommended_size_eu) }));
+    if (!requests.length) return;
+    supabaseRpc("get_best_prices", { shoe_requests: requests })
+      .then((rows) => {
+        const map = {};
+        for (const row of rows) {
+          map[row.product_slug] = {
+            price_eur: row.price_eur,
+            retailer: row.retailer,
+            product_url: row.product_url,
+          };
+        }
+        setLivePrices(map);
+      })
+      .catch((e) => console.warn("Price fetch failed:", e));
+  }, [scan]); // re-fetch when scan data changes
+
+  // Merge live prices into recommendations
+  const recommendations = rawRecommendations.map((r) => {
+    const offer = livePrices[r.slug];
+    return offer ? { ...r, best_offer: offer } : r;
+  });
 
   // ── Loading / Error states ────────────────────────────────
   if (loading) return (

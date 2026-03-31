@@ -29,3 +29,23 @@ export async function supabaseFetch(path) {
   if (!res.ok) throw new Error(`Supabase ${path}: ${res.status}`);
   return res.json();
 }
+
+/**
+ * Call a Supabase RPC (stored function) via POST.
+ * @param {string} fnName - function name, e.g. "get_best_prices"
+ * @param {object} params - JSON body passed to the function
+ * @returns {Promise<any>}
+ */
+export async function supabaseRpc(fnName, params) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fnName}`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  });
+  if (!res.ok) throw new Error(`Supabase RPC ${fnName}: ${res.status}`);
+  return res.json();
+}

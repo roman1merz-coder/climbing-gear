@@ -135,6 +135,56 @@ def fetch_waiting_scans():
     return resp.json()
 
 
+def fetch_stuck_scans():
+    """Find scans stuck in 'finding_shoes' or 'segmenting' for over 2 minutes.
+
+    Normal pipeline takes ~60-75s. If a scan has been in a transient state
+    for over 2 minutes, the worker likely crashed mid-processing.
+    Also catches scans with null pipeline_started_at (crashed before timestamp was set).
+    """
+    from datetime import datetime, timezone, timedelta
+    cutoff = (datetime.now(timezone.utc) - timedelta(minutes=2)).isoformat()
+
+    results = []
+    # Scans stuck with a stale timestamp
+    resp = requests.get(
+        f"{SB_URL}/rest/v1/foot_scan_fits",
+        headers={
+            "apikey": SB_KEY,
+            "Authorization": f"Bearer {SB_KEY}",
+        },
+        params={
+            "pipeline_stage": "in.(finding_shoes,segmenting)",
+            "pipeline_started_at": f"lt.{cutoff}",
+            "select": "scan_id,pipeline_stage,pipeline_started_at,sex",
+            "order": "created_at.asc",
+            "limit": "5",
+        },
+    )
+    if resp.status_code == 200:
+        results.extend(resp.json())
+
+    # Scans stuck with null timestamp (crashed before it was set)
+    resp2 = requests.get(
+        f"{SB_URL}/rest/v1/foot_scan_fits",
+        headers={
+            "apikey": SB_KEY,
+            "Authorization": f"Bearer {SB_KEY}",
+        },
+        params={
+            "pipeline_stage": "in.(finding_shoes,segmenting)",
+            "pipeline_started_at": "is.null",
+            "select": "scan_id,pipeline_stage,pipeline_started_at,sex",
+            "order": "created_at.asc",
+            "limit": "5",
+        },
+    )
+    if resp2.status_code == 200:
+        results.extend(resp2.json())
+
+    return results
+
+
 def update_stage(scan_id, stage, error=None):
     """Update pipeline_stage (and optionally pipeline_error) in Supabase."""
     data = {"pipeline_stage": stage}
@@ -290,12 +340,8 @@ def generate_recommendations(scan_id, profile):
     cat_result = scan_recommender.get_categorized_candidates(merged)
     insights = scan_recommender.get_applicable_insights(merged)
 
-    # Flatten with category tags
-    candidates = []
-    for cat_name, cat_shoes in cat_result["categories"].items():
-        for shoe in cat_shoes:
-            shoe["_category"] = cat_name
-            candidates.append(shoe)
+    # All candidates already tagged with _categories by the recommender
+    candidates = cat_result["categories"].get("all", [])
 
     # Build LLM input (exclude output/internal fields)
     _llm_exclude_keys = {
@@ -333,6 +379,12 @@ def generate_recommendations(scan_id, profile):
         else:
             log(f"  Dropping unverified slug: {rec.get('slug')}")
     recommendations = validated_recs
+
+    # Strip any LLM-provided price_eur from recommendations.
+    # Prices are fetched live by the frontend via get_best_prices() RPC
+    # so we don't store stale prices in the DB.
+    for rec in recommendations:
+        rec.pop("price_eur", None)
 
     # Write results to DB
     result_data = {"pipeline_stage": "complete"}
@@ -450,6 +502,32 @@ def check_waiting_scans():
                     pass
 
 
+def recover_stuck_scans():
+    """Reset scans stuck in transient stages back to a retryable state.
+
+    If the worker crashes mid-processing, scans can get stuck in
+    'finding_shoes' or 'segmenting' indefinitely. This finds any such
+    scans older than 5 minutes and resets them so they get retried.
+    """
+    stuck = fetch_stuck_scans()
+    for scan in stuck:
+        scan_id = scan["scan_id"]
+        old_stage = scan["pipeline_stage"]
+        has_prefs = scan.get("sex") is not None
+
+        if old_stage == "finding_shoes":
+            # Measurements exist, just need to redo recommendations.
+            # Reset to waiting_preferences (check_waiting_scans will pick it up
+            # on the next poll if preferences are present).
+            new_stage = "waiting_preferences"
+        else:
+            # segmenting - need full reprocessing
+            new_stage = "pending"
+
+        log(f"Recovering stuck scan {scan_id}: {old_stage} -> {new_stage}")
+        update_stage(scan_id, new_stage)
+
+
 def main():
     """Main polling loop."""
     log("Scan worker starting...")
@@ -473,6 +551,9 @@ def main():
 
             # Check scans waiting for preferences
             check_waiting_scans()
+
+            # Recover scans stuck in transient stages (crash recovery)
+            recover_stuck_scans()
 
         except KeyboardInterrupt:
             log("Shutting down...")
