@@ -57,14 +57,13 @@ def validate_scan_quality(sole_m, side_m):
     if not sole_m or not side_m:
         return False, "Missing sole or side measurements"
 
-    # Check if we detected a big toe (first element of toe_tips)
+    # Check toe detection - warn but don't block (merged toes are still usable)
     toe_tips = sole_m.get("toe_tips", [])
-    if not toe_tips or len(toe_tips) < 1:
-        return False, "Could not detect big toe. Please ensure the sole view shows your complete foot with all toes visible."
-
-    # Check if we have at least 3 toe tips detected (hand would be 5 fingers but different geometry)
-    if len(toe_tips) < 2:
-        return False, "Only detected one toe. Please ensure your foot shows all toes clearly."
+    if not toe_tips or len(toe_tips) < 2:
+        # Set toe_shape to unknown but continue - this is not a fatal error
+        sole_m["toe_shape"] = "unknown"
+        sole_m["toe_tips"] = []
+        print(f"  WARNING: Could not detect individual toes (found {len(toe_tips)}). Setting toe_shape=unknown.")
 
     # Foot length sanity check
     foot_length = sole_m.get("foot_length_px", 0)

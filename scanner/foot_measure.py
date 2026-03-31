@@ -682,12 +682,53 @@ def normalize_side_orientation(mask, img=None):
 
     h, w = mask.shape[:2]
 
-    # ── Step 1: Ensure horizontal ──
-    if h > w:
-        mask = cv2.rotate(mask, cv2.ROTATE_90_CLOCKWISE)
-        if img is not None:
-            img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-        h, w = mask.shape[:2]
+    # ── Step 1: Rotate foot to horizontal using minAreaRect ──
+    # The naive check (h > w on image dims) fails when the foot is at a steep
+    # angle in a square or landscape photo. Use minAreaRect on the actual mask
+    # contour to find the true orientation and rotate the long axis horizontal.
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL,
+                                    cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        cnt = max(contours, key=cv2.contourArea)
+        rect = cv2.minAreaRect(cnt)
+        center, (rw, rh), angle = rect
+
+        # Determine angle to make the LONG axis horizontal.
+        # minAreaRect: angle is in [-90, 0). rw is the first side.
+        if rw < rh:
+            # Long axis is rh (perpendicular to angle direction)
+            rot_angle = angle + 90
+        else:
+            # Long axis is rw (along angle direction)
+            rot_angle = angle
+
+        # Only rotate if significantly off-horizontal (> 5 degrees)
+        if abs(rot_angle) > 5:
+            cos_a = abs(np.cos(np.radians(rot_angle)))
+            sin_a = abs(np.sin(np.radians(rot_angle)))
+            new_w = int(w * cos_a + h * sin_a) + 20
+            new_h = int(h * cos_a + w * sin_a) + 20
+
+            M = cv2.getRotationMatrix2D(center, rot_angle, 1.0)
+            M[0, 2] += (new_w - w) / 2
+            M[1, 2] += (new_h - h) / 2
+
+            mask = cv2.warpAffine(mask, M, (new_w, new_h),
+                                   flags=cv2.INTER_NEAREST, borderValue=0)
+            if img is not None:
+                img = cv2.warpAffine(img, M, (new_w, new_h),
+                                      borderValue=(255, 255, 255))
+            h, w = mask.shape[:2]
+            print(f"  Side step1: rotated {rot_angle:+.1f}° to horizontal")
+        else:
+            print(f"  Side step1: already horizontal ({rot_angle:+.1f}°)")
+    else:
+        # Fallback: simple dimension check
+        if h > w:
+            mask = cv2.rotate(mask, cv2.ROTATE_90_CLOCKWISE)
+            if img is not None:
+                img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+            h, w = mask.shape[:2]
 
     ys, xs = np.where(mask > 0)
     x_min, x_max = int(xs.min()), int(xs.max())
