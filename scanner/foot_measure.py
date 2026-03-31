@@ -100,8 +100,99 @@ def classify_ratio(name, value):
 
 # ── Segmentation (SAM 3 text-prompted) ───────────────────────────────────
 
+def _run_sam3(img_bgr, prompt, use_clahe=False):
+    """Run SAM3 inference on an image. Returns (binary_mask, score, dt).
+
+    If use_clahe=True, applies CLAHE to the L channel before inference
+    to help SAM3 segment under uneven lighting.
+    """
+    import torch
+    from PIL import Image
+
+    model, processor, device = _load_sam3()
+    h, w = img_bgr.shape[:2]
+
+    if use_clahe:
+        lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB)
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+        lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+        src = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+    else:
+        src = img_bgr
+
+    rgb = cv2.cvtColor(src, cv2.COLOR_BGR2RGB)
+    pil_image = Image.fromarray(rgb)
+
+    t0 = time.time()
+    inputs = processor(images=pil_image, text=prompt, return_tensors="pt")
+    inputs = {k: v.to(device) if isinstance(v, torch.Tensor) else v
+              for k, v in inputs.items()}
+    with torch.no_grad():
+        outputs = model(**inputs)
+    results = processor.post_process_instance_segmentation(
+        outputs, target_sizes=[(h, w)]
+    )
+    dt = time.time() - t0
+
+    result = results[0]
+    masks = result["masks"]
+    scores = result["scores"]
+    if masks.shape[0] == 0:
+        return np.zeros((h, w), dtype=np.uint8), 0.0, dt
+
+    best_idx = scores.argmax().item()
+    best_score = scores[best_idx].item()
+    binary = (masks[best_idx].cpu().numpy() > 0).astype(np.uint8) * 255
+    return binary, best_score, dt
+
+
+def _heel_looks_truncated(binary):
+    """Check if the heel region looks suspiciously narrow/truncated.
+
+    A normal foot's heel is roughly 55-75% as wide as the forefoot.
+    If the bottom 15% is much narrower than the widest part, the
+    heel was likely cut off during segmentation.
+    """
+    ys_nz = np.where(np.any(binary > 0, axis=1))[0]
+    if len(ys_nz) < 50:
+        return False
+    mask_top, mask_bot = ys_nz[0], ys_nz[-1]
+    mask_h = mask_bot - mask_top
+    if mask_h < 100:
+        return False
+
+    # Find max width in the middle (forefoot area, 25-45%)
+    max_forefoot_w = 0
+    for row in range(mask_top + int(mask_h * 0.25), mask_top + int(mask_h * 0.45)):
+        px = np.where(binary[row, :] > 0)[0]
+        if len(px) > 0:
+            max_forefoot_w = max(max_forefoot_w, px[-1] - px[0])
+
+    # Find max width in the heel (bottom 15%)
+    max_heel_w = 0
+    for row in range(mask_bot - int(mask_h * 0.15), mask_bot + 1):
+        if 0 <= row < binary.shape[0]:
+            px = np.where(binary[row, :] > 0)[0]
+            if len(px) > 0:
+                max_heel_w = max(max_heel_w, px[-1] - px[0])
+
+    if max_forefoot_w == 0:
+        return False
+
+    heel_ratio = max_heel_w / max_forefoot_w
+    # A normal heel is at least 45% of forefoot width.
+    # If it's much less, the heel is probably truncated.
+    truncated = heel_ratio < 0.40
+    if truncated:
+        print(f"  Heel check: truncated (heel/forefoot ratio={heel_ratio:.2f})")
+    return truncated
+
+
 def segment(img_bgr, prompt="foot"):
     """Segment foot from a BGR image using SAM 3 with text prompt.
+
+    Runs SAM3 without preprocessing first. If the heel looks truncated
+    (common with uneven lighting), retries with CLAHE to boost contrast.
 
     Args:
         img_bgr: OpenCV BGR image (numpy array)
@@ -110,56 +201,40 @@ def segment(img_bgr, prompt="foot"):
     Returns:
         mask: binary uint8 mask (H, W), 0 or 255
     """
-    import torch
-    from PIL import Image
-
-    model, processor, device = _load_sam3()
-
-    # Normalize lighting with CLAHE to help SAM3 find edges in uneven light
-    lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB)
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
-    lab[:, :, 0] = clahe.apply(lab[:, :, 0])
-    img_eq = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
-
-    # Convert BGR → RGB PIL
-    rgb = cv2.cvtColor(img_eq, cv2.COLOR_BGR2RGB)
-    pil_image = Image.fromarray(rgb)
     h, w = img_bgr.shape[:2]
 
-    t0 = time.time()
-    inputs = processor(images=pil_image, text=prompt, return_tensors="pt")
-    inputs = {k: v.to(device) if isinstance(v, torch.Tensor) else v
-              for k, v in inputs.items()}
+    # First pass: no preprocessing (best for most scans)
+    binary, best_score, dt = _run_sam3(img_bgr, prompt, use_clahe=False)
 
-    with torch.no_grad():
-        outputs = model(**inputs)
-
-    results = processor.post_process_instance_segmentation(
-        outputs, target_sizes=[(h, w)]
-    )
-    dt = time.time() - t0
-
-    result = results[0]
-    masks = result["masks"]    # [N, H, W]
-    scores = result["scores"]  # [N]
-
-    if masks.shape[0] == 0:
+    if np.count_nonzero(binary) == 0:
         print(f"  SAM 3: no instances detected ({dt:.2f}s)")
-        return np.zeros((h, w), dtype=np.uint8)
+        return binary
 
-    best_idx = scores.argmax().item()
-    best_score = scores[best_idx].item()
-    mask_tensor = masks[best_idx]
-
-    binary = (mask_tensor.cpu().numpy() > 0).astype(np.uint8) * 255
-
-    # Keep only largest connected component first
+    # Keep only largest connected component
     n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, 8)
     if n_labels > 1:
         largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
         binary = ((labels == largest) * 255).astype(np.uint8)
 
-    # Post-process: close gaps in the heel region only.
+    # Check if heel looks truncated -- if so, retry with CLAHE
+    if _heel_looks_truncated(binary):
+        print(f"  SAM 3: heel truncated, retrying with CLAHE...")
+        binary2, score2, dt2 = _run_sam3(img_bgr, prompt, use_clahe=True)
+        if np.count_nonzero(binary2) > 0:
+            n2, lab2, st2, _ = cv2.connectedComponentsWithStats(binary2, 8)
+            if n2 > 1:
+                largest2 = 1 + np.argmax(st2[1:, cv2.CC_STAT_AREA])
+                binary2 = ((lab2 == largest2) * 255).astype(np.uint8)
+            if not _heel_looks_truncated(binary2):
+                print(f"  SAM 3: CLAHE retry fixed heel (score={score2:.3f}, +{dt2:.2f}s)")
+                binary = binary2
+                best_score = score2
+                dt += dt2
+            else:
+                print(f"  SAM 3: CLAHE retry did not fix heel, keeping original")
+                dt += dt2
+
+    # Post-process: close gaps in the heel/toe regions only.
     # SAM3 often fragments the heel boundary where it meets the ankle.
     # We apply morphological close to just the end regions of the foot
     # (top/bottom 25%) to bridge heel gaps without expanding the sides.
@@ -341,6 +416,13 @@ def _find_second_toe_tip(mask):
     inverted = -skyline_smooth
     peaks, _ = find_peaks(inverted, distance=n_cols // 8, prominence=3)
 
+    # If too few peaks found, retry with relaxed parameters
+    if len(peaks) < 2:
+        peaks2, _ = find_peaks(inverted, distance=n_cols // 10, prominence=2)
+        if len(peaks2) > len(peaks):
+            peaks = peaks2
+            print(f"  Toe tips: relaxed detection found {len(peaks)} peaks (vs fewer at strict)")
+
     if len(peaks) == 0:
         return None, []
 
@@ -421,11 +503,25 @@ def normalize_sole_orientation(mask, img=None):
         "flipped": flipped,
     }
 
-    if second_toe is None:
-        print("  Rotation: could not find 2nd toe — rough alignment only")
-        return rough_mask, rough_img, info
-
-    toe_x, toe_y = second_toe
+    # Determine the toe-side alignment point.
+    # Best case: use 2nd toe tip.  Fallback: use centroid of top 10% of mask.
+    if second_toe is not None and len(all_tips) >= 2:
+        toe_x, toe_y = second_toe
+        print(f"  Rotation: using 2nd toe tip ({toe_x},{toe_y})")
+    else:
+        # Fallback: centroid of top 10% of the foot mask
+        rys, rxs = np.where(rough_mask > 0)
+        if len(rys) == 0:
+            print("  Rotation: empty mask -- rough alignment only")
+            return rough_mask, rough_img, info
+        top_cutoff = int(rys.min() + (rys.max() - rys.min()) * 0.10)
+        top_region = (rys <= top_cutoff)
+        toe_x = int(np.mean(rxs[top_region]))
+        toe_y = int(np.mean(rys[top_region]))
+        if len(all_tips) == 1:
+            print(f"  Rotation: only 1 tip found, using top-10% centroid ({toe_x},{toe_y})")
+        else:
+            print(f"  Rotation: no tips found, using top-10% centroid ({toe_x},{toe_y})")
     dx = toe_x - heel_x
     dy = heel_y - toe_y  # positive = toe above heel
 
@@ -518,6 +614,12 @@ def detect_toe_shape(mask, upper_row, ball_row):
     from scipy.signal import find_peaks
     inverted = -skyline_smooth
     peaks, properties = find_peaks(inverted, distance=len(skyline) // 8, prominence=3)
+
+    # If too few peaks, retry with relaxed parameters
+    if len(peaks) < 2:
+        peaks2, _ = find_peaks(inverted, distance=len(skyline) // 10, prominence=2)
+        if len(peaks2) >= 2:
+            peaks = peaks2
 
     if len(peaks) < 2:
         return "unknown", []
