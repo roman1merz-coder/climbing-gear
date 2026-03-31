@@ -77,7 +77,7 @@ def validate_scan_quality(sole_m, side_m):
 
     # Heel width sanity check (should be roughly 20-30% of foot length)
     heel_ratio = sole_m.get("heel_width_ratio", 0)
-    if heel_ratio < 0.15 or heel_ratio > 0.40:
+    if heel_ratio < 0.15 or heel_ratio > 0.45:
         return False, f"Heel width measurement looks unusual ({heel_ratio:.2f}). This might not be a foot. Try again."
 
     # Arch length sanity check (should be roughly 60-80% of foot length)
