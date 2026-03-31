@@ -147,11 +147,31 @@ def segment(img_bgr, prompt="foot"):
 
     binary = (mask_tensor.cpu().numpy() > 0).astype(np.uint8) * 255
 
-    # Keep only largest connected component
+    # Post-process: close gaps BEFORE extracting largest component.
+    # SAM3 often fragments the heel boundary, leaving gaps between the main
+    # foot body and heel pieces. Morphological close bridges these gaps so
+    # the subsequent largest-component extraction keeps the full foot.
+    kernel_size = max(15, int(min(h, w) * 0.03))
+    if kernel_size % 2 == 0:
+        kernel_size += 1
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,
+                                        (kernel_size, kernel_size))
+    binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+
+    # Keep only largest connected component (after closing)
     n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, 8)
     if n_labels > 1:
         largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
         binary = ((labels == largest) * 255).astype(np.uint8)
+
+    # Fill internal holes (contours with a parent = holes inside the mask)
+    hole_contours, hierarchy = cv2.findContours(
+        binary, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE
+    )
+    if hierarchy is not None:
+        for i in range(len(hole_contours)):
+            if hierarchy[0][i][3] >= 0:  # has parent = it's a hole
+                cv2.drawContours(binary, hole_contours, i, 255, -1)
 
     coverage = np.count_nonzero(binary) / (h * w) * 100
     print(f"  SAM 3: score={best_score:.3f}, coverage={coverage:.1f}%, {dt:.2f}s")
