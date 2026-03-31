@@ -43,8 +43,11 @@ function generateSitemaps() {
   for (const cat of ['/shoes', '/ropes', '/crashpads', '/belays', '/quickdraws']) {
     coreEntries.push(urlEntry(`${BASE_URL}${cat}`, TODAY, 'daily', '0.9'));
   }
+  for (const page of ['/find', '/scan']) {
+    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.8'));
+  }
   for (const page of [
-    '/find', '/insights', '/insights/climbing-shoe-guide',
+    '/insights', '/insights/climbing-shoe-guide',
     '/insights/inflatable-crashpads', '/insights/rope-cost-vs-safety',
     '/news', '/methodology', '/about', '/impressum', '/privacy', '/terms',
   ]) {

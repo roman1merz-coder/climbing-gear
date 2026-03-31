@@ -1052,6 +1052,24 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 </svg>
                 Guided
               </button>
+              <button
+                onClick={() => navigate("/scan")}
+                title="Scan your foot to find shoes that fit"
+                style={{
+                  height: "28px", padding: "0 8px", borderRadius: "6px", border: "1px solid #c98a42",
+                  background: "rgba(201,138,66,0.06)", color: "#c98a42", cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: "4px",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: "11px", fontWeight: 600,
+                  whiteSpace: "nowrap", flexShrink: 0,
+                }}
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                  <path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+                  <path d="M8 11V8a4 4 0 0 1 8 0v3"/><rect x="7" y="11" width="10" height="8" rx="1"/>
+                </svg>
+                Scanner
+              </button>
             </div>
           </>
         ) : (
@@ -1106,6 +1124,24 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
                 <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
               </svg>
               Guided search
+            </button>
+            <button
+              onClick={() => navigate("/scan")}
+              title="Scan your foot to find shoes that fit"
+              style={{
+                height: "32px", padding: "0 12px", borderRadius: "8px", border: "1px solid #c98a42",
+                background: "rgba(201,138,66,0.06)", color: "#c98a42", cursor: "pointer",
+                display: "flex", alignItems: "center", gap: "5px",
+                fontFamily: "'DM Sans',sans-serif", fontSize: "12px", fontWeight: 600,
+                whiteSpace: "nowrap", flexShrink: 0,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                <path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+                <path d="M8 11V8a4 4 0 0 1 8 0v3"/><rect x="7" y="11" width="10" height="8" rx="1"/>
+              </svg>
+              Foot scanner
             </button>
 
             <span style={{ fontSize: "13px", color: "#7a7462", whiteSpace: "nowrap" }}>

@@ -64,6 +64,9 @@ function IconLayers({ size = 16, color = "currentColor" }) {
 function IconLink({ size = 16, color = "currentColor" }) {
   return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>);
 }
+function IconScan({ size = 16, color = "currentColor" }) {
+  return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /><rect x="7" y="11" width="10" height="8" rx="1" /></svg>);
+}
 
 // ─── Data arrays ───
 const STATS = [
@@ -74,7 +77,7 @@ const STATS = [
 ];
 
 const SELECTORS = [
-  { title: "Shoe Selector", count: `${SHOES.length}+`, to: "/shoes", description: `${SHOES.length}+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking.`, Icon: IconShoe, finderTo: "/find" },
+  { title: "Shoe Selector", count: `${SHOES.length}+`, to: "/shoes", description: `${SHOES.length}+ climbing shoes compared across 20+ retailers. Find your perfect fit with smart filters and daily price tracking.`, Icon: IconShoe, finderTo: "/find", scannerTo: "/scan" },
   { title: "Rope Selector", count: `${DYNAMIC_ROPES.length}+`, to: "/ropes", description: "Single, half, and twin climbing ropes. Compare diameter, weight, falls rated, and dry treatment across all major brands.", Icon: IconRope },
   { title: "Belay Device Selector", count: `${BELAYS.length}+`, to: "/belays", description: "Cam, passive-assist, tube, and guide devices. Compare weight, rope range, safety features, and price.", Icon: IconShield },
   { title: "Crashpad Selector", count: `${PADS.length}+`, to: "/crashpads", description: "Bouldering pads from sit-start to oversized. Compare dimensions, foam systems, weight, and portability.", Icon: IconLayers },
@@ -131,6 +134,9 @@ function HeroSection({ isMobile }) {
             </Link>
             <Link to="/find" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.1)", color: "#fff", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s", whiteSpace: "nowrap" }}>
               <IconTarget size={16} /> Guided Shoe Finder
+            </Link>
+            <Link to="/scan" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", fontFamily: T.font, transition: "background 0.2s", whiteSpace: "nowrap" }}>
+              <IconScan size={16} /> Foot Scanner
             </Link>
             <a href="#insights" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: isMobile ? "12px 20px" : "14px 24px", borderRadius: "10px", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.75)", fontWeight: 700, fontSize: "14px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", fontFamily: T.font, transition: "color 0.2s", whiteSpace: "nowrap" }}>
               <IconBook size={16} /> Explore Insights
@@ -195,6 +201,15 @@ function GearSelectorsSection({ isMobile }) {
                   <span style={{ marginLeft: "auto" }}><IconArrow size={12} color={T.accent} /></span>
                 </Link>
               )}
+              {sel.scannerTo && (
+                <Link to={sel.scannerTo} onClick={e => e.stopPropagation()} style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px", padding: "10px 12px", borderRadius: "10px", background: `${T.accent}12`, textDecoration: "none", transition: "background 0.2s" }}
+                  onMouseOver={e => e.currentTarget.style.background = `${T.accent}22`}
+                  onMouseOut={e => e.currentTarget.style.background = `${T.accent}12`}>
+                  <IconScan size={14} color={T.accent} />
+                  <span style={{ fontSize: "12px", fontWeight: 700, color: T.accent }}>Foot Scanner</span>
+                  <span style={{ marginLeft: "auto" }}><IconArrow size={12} color={T.accent} /></span>
+                </Link>
+              )}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "18px", paddingTop: "14px", borderTop: `1px solid ${T.border}` }}>
                 <span style={{ fontSize: "13px", fontWeight: 700, color: T.accent }}>{sel.count} models</span>
                 <IconArrow size={14} color={T.muted} />
@@ -242,6 +257,44 @@ function GuidedFinderSection({ isMobile }) {
             onMouseOver={e => e.currentTarget.style.transform = "scale(1.02)"}
             onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
             Find your shoe <IconArrow size={18} />
+          </Link>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FOOT SCANNER CTA
+// ═══════════════════════════════════════════════════════════════
+function FootScannerSection({ isMobile }) {
+  return (
+    <section style={{ padding: isMobile ? "0 16px 48px" : "0 40px 80px", maxWidth: "1200px", margin: "0 auto" }}>
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+        style={{ position: "relative", overflow: "hidden", borderRadius: "20px", background: `linear-gradient(135deg, ${T.accent}10, ${T.accent}05)`, border: `1px solid ${T.accent}20`, padding: isMobile ? "28px 20px" : "48px 56px" }}>
+        {/* Decorative blur */}
+        <div style={{ position: "absolute", bottom: "-64px", left: "-64px", width: "200px", height: "200px", borderRadius: "50%", background: `${T.accent}08`, filter: "blur(60px)" }} />
+
+        <div style={{ position: "relative", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "20px" : "48px" }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+              <div style={{ width: "44px", height: "44px", borderRadius: "14px", background: `${T.accent}15`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <IconScan size={22} color={T.accent} />
+              </div>
+              <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: T.muted }}>Camera-Based</span>
+            </div>
+            <h2 style={{ fontSize: isMobile ? "24px" : "32px", fontWeight: 800, color: T.text, lineHeight: 1.15, marginBottom: "12px", fontFamily: T.font }}>Foot Scanner</h2>
+            <p style={{ color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "480px" }}>
+              Scan your foot with your phone camera to measure length and width {"\u2014"} then get matched to shoes that actually fit your feet.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "14px", fontSize: "12px", color: T.muted }}>
+              {"\uD83D\uDCF1"} Works on any smartphone
+            </div>
+          </div>
+          <Link to="/scan" style={{ display: "inline-flex", alignItems: "center", gap: "12px", padding: isMobile ? "14px 28px" : "16px 32px", borderRadius: "14px", background: T.accent, color: "#fff", fontWeight: 700, fontSize: isMobile ? "14px" : "15px", textDecoration: "none", fontFamily: T.font, whiteSpace: "nowrap", flexShrink: 0, transition: "transform 0.2s" }}
+            onMouseOver={e => e.currentTarget.style.transform = "scale(1.02)"}
+            onMouseOut={e => e.currentTarget.style.transform = "scale(1)"}>
+            Scan your foot <IconArrow size={18} />
           </Link>
         </div>
       </motion.div>
@@ -369,6 +422,8 @@ export default function Landing() {
     <div style={{ minHeight: "100vh", background: T.bg, fontFamily: T.font, color: T.text }}>
       <HeroSection isMobile={isMobile} />
       <GearSelectorsSection isMobile={isMobile} />
+      <GuidedFinderSection isMobile={isMobile} />
+      <FootScannerSection isMobile={isMobile} />
       <InsightsSection isMobile={isMobile} />
 
       {/* About section */}

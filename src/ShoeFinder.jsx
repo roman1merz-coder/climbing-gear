@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { T } from "./tokens.js";
 import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
+import useStructuredData from "./useStructuredData.js";
 
 // ═══════════════════════════════════════════════════════════════
 // GUIDED SHOE FINDER - 7-step wizard with trait-based scoring
@@ -467,6 +468,16 @@ export default function ShoeFinder({ shoes = [] }) {
     "Climbing Shoe Finder - Find Your Perfect Shoe",
     "Answer 7 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data."
   );
+  useStructuredData({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Climbing Shoe Finder",
+    url: "https://www.climbing-gear.com/find",
+    description: "Answer 7 questions and our algorithm matches you with the best climbing shoes from 339+ models. No opinions, just data.",
+    applicationCategory: "SportsApplication",
+    operatingSystem: "Any",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  });
 
   // ─── Computed ───────────────────────────────────────────────
   const params = useMemo(() => ({
