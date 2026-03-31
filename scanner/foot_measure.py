@@ -146,12 +146,17 @@ def _run_sam3(img_bgr, prompt, use_clahe=False):
     return binary, best_score, dt
 
 
-def _heel_looks_truncated(binary):
-    """Check if the heel region looks suspiciously narrow/truncated.
+def _mask_looks_wrong(binary):
+    """Check if the segmentation mask looks like a proper foot sole.
 
-    A normal foot's heel is roughly 55-75% as wide as the forefoot.
-    If the bottom 15% is much narrower than the widest part, the
-    heel was likely cut off during segmentation.
+    A correct foot sole mask has predictable proportions:
+      - Aspect ratio (height/width) roughly 2.0-3.5
+      - Convexity (mask area / convex hull area) roughly 0.75-0.95
+      - Heel width roughly 45-85% of forefoot width
+
+    If any check fails, it likely means SAM3 grabbed non-foot areas
+    (ankle, leg) or missed part of the foot. Returns True if the mask
+    looks wrong and should trigger a CLAHE retry.
     """
     ys_nz = np.where(np.any(binary > 0, axis=1))[0]
     if len(ys_nz) < 50:
@@ -161,14 +166,40 @@ def _heel_looks_truncated(binary):
     if mask_h < 100:
         return False
 
-    # Find max width in the middle (forefoot area, 25-45%)
+    xs_nz = np.where(np.any(binary > 0, axis=0))[0]
+    mask_w = xs_nz[-1] - xs_nz[0]
+    if mask_w < 30:
+        return False
+
+    problems = []
+
+    # Check 1: aspect ratio (height / max width)
+    # A normal foot sole is roughly 2.0-3.5x taller than wide.
+    # Too wide = grabbed ankle/leg. Too narrow = sliver artifact.
+    aspect = mask_h / mask_w
+    if aspect < 1.8:
+        problems.append(f"aspect={aspect:.2f} (too wide, expected >1.8)")
+
+    # Check 2: convexity (mask area vs convex hull)
+    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL,
+                                    cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        cnt = max(contours, key=cv2.contourArea)
+        mask_area = cv2.contourArea(cnt)
+        hull = cv2.convexHull(cnt)
+        hull_area = cv2.contourArea(hull)
+        if hull_area > 0:
+            convexity = mask_area / hull_area
+            if convexity < 0.70:
+                problems.append(f"convexity={convexity:.2f} (expected >0.70)")
+
+    # Check 3: heel width vs forefoot width
     max_forefoot_w = 0
     for row in range(mask_top + int(mask_h * 0.25), mask_top + int(mask_h * 0.45)):
         px = np.where(binary[row, :] > 0)[0]
         if len(px) > 0:
             max_forefoot_w = max(max_forefoot_w, px[-1] - px[0])
 
-    # Find max width in the heel (bottom 15%)
     max_heel_w = 0
     for row in range(mask_bot - int(mask_h * 0.15), mask_bot + 1):
         if 0 <= row < binary.shape[0]:
@@ -176,23 +207,23 @@ def _heel_looks_truncated(binary):
             if len(px) > 0:
                 max_heel_w = max(max_heel_w, px[-1] - px[0])
 
-    if max_forefoot_w == 0:
-        return False
+    if max_forefoot_w > 0:
+        heel_ratio = max_heel_w / max_forefoot_w
+        if heel_ratio < 0.40:
+            problems.append(f"heel/forefoot={heel_ratio:.2f} (expected >0.40)")
 
-    heel_ratio = max_heel_w / max_forefoot_w
-    # A normal heel is at least 45% of forefoot width.
-    # If it's much less, the heel is probably truncated.
-    truncated = heel_ratio < 0.40
-    if truncated:
-        print(f"  Heel check: truncated (heel/forefoot ratio={heel_ratio:.2f})")
-    return truncated
+    if problems:
+        print(f"  Mask quality: POOR ({', '.join(problems)})")
+        return True
+    return False
 
 
 def segment(img_bgr, prompt="foot"):
     """Segment foot from a BGR image using SAM 3 with text prompt.
 
-    Runs SAM3 without preprocessing first. If the heel looks truncated
-    (common with uneven lighting), retries with CLAHE to boost contrast.
+    Runs SAM3 without preprocessing first. If the mask looks wrong
+    (bad aspect ratio, low convexity, or truncated heel -- common with
+    uneven lighting), retries with CLAHE to boost contrast.
 
     Args:
         img_bgr: OpenCV BGR image (numpy array)
@@ -216,22 +247,22 @@ def segment(img_bgr, prompt="foot"):
         largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
         binary = ((labels == largest) * 255).astype(np.uint8)
 
-    # Check if heel looks truncated -- if so, retry with CLAHE
-    if _heel_looks_truncated(binary):
-        print(f"  SAM 3: heel truncated, retrying with CLAHE...")
+    # Check mask quality -- if shape looks wrong, retry with CLAHE
+    if _mask_looks_wrong(binary):
+        print(f"  SAM 3: mask looks wrong, retrying with CLAHE...")
         binary2, score2, dt2 = _run_sam3(img_bgr, prompt, use_clahe=True)
         if np.count_nonzero(binary2) > 0:
             n2, lab2, st2, _ = cv2.connectedComponentsWithStats(binary2, 8)
             if n2 > 1:
                 largest2 = 1 + np.argmax(st2[1:, cv2.CC_STAT_AREA])
                 binary2 = ((lab2 == largest2) * 255).astype(np.uint8)
-            if not _heel_looks_truncated(binary2):
-                print(f"  SAM 3: CLAHE retry fixed heel (score={score2:.3f}, +{dt2:.2f}s)")
+            if not _mask_looks_wrong(binary2):
+                print(f"  SAM 3: CLAHE retry fixed mask (score={score2:.3f}, +{dt2:.2f}s)")
                 binary = binary2
                 best_score = score2
                 dt += dt2
             else:
-                print(f"  SAM 3: CLAHE retry did not fix heel, keeping original")
+                print(f"  SAM 3: CLAHE retry did not fix mask, keeping original")
                 dt += dt2
 
     # Post-process: close gaps in the heel/toe regions only.
