@@ -115,8 +115,14 @@ def segment(img_bgr, prompt="foot"):
 
     model, processor, device = _load_sam3()
 
+    # Normalize lighting with CLAHE to help SAM3 find edges in uneven light
+    lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+    img_eq = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+
     # Convert BGR → RGB PIL
-    rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+    rgb = cv2.cvtColor(img_eq, cv2.COLOR_BGR2RGB)
     pil_image = Image.fromarray(rgb)
     h, w = img_bgr.shape[:2]
 
@@ -147,22 +153,42 @@ def segment(img_bgr, prompt="foot"):
 
     binary = (mask_tensor.cpu().numpy() > 0).astype(np.uint8) * 255
 
-    # Post-process: close gaps BEFORE extracting largest component.
-    # SAM3 often fragments the heel boundary, leaving gaps between the main
-    # foot body and heel pieces. Morphological close bridges these gaps so
-    # the subsequent largest-component extraction keeps the full foot.
-    kernel_size = max(15, int(min(h, w) * 0.03))
-    if kernel_size % 2 == 0:
-        kernel_size += 1
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,
-                                        (kernel_size, kernel_size))
-    binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
-
-    # Keep only largest connected component (after closing)
+    # Keep only largest connected component first
     n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, 8)
     if n_labels > 1:
         largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
         binary = ((labels == largest) * 255).astype(np.uint8)
+
+    # Post-process: close gaps in the heel region only.
+    # SAM3 often fragments the heel boundary where it meets the ankle.
+    # We apply morphological close to just the end regions of the foot
+    # (top/bottom 25%) to bridge heel gaps without expanding the sides.
+    ys_nz = np.where(np.any(binary > 0, axis=1))[0]
+    if len(ys_nz) > 0:
+        mask_top, mask_bot = ys_nz[0], ys_nz[-1]
+        mask_h = mask_bot - mask_top
+        kernel_size = max(15, int(min(h, w) * 0.03))
+        if kernel_size % 2 == 0:
+            kernel_size += 1
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,
+                                            (kernel_size, kernel_size))
+
+        # Close top 25% and bottom 25% of the foot bounding box
+        for region_start, region_end in [
+            (mask_top, mask_top + int(mask_h * 0.25)),
+            (mask_bot - int(mask_h * 0.25), mask_bot),
+        ]:
+            rs = max(0, region_start - kernel_size)
+            re = min(h, region_end + kernel_size)
+            strip = binary[rs:re, :].copy()
+            strip = cv2.morphologyEx(strip, cv2.MORPH_CLOSE, kernel)
+            binary[rs:re, :] = strip
+
+        # Re-extract largest component after closing (heel fragments may join)
+        n_labels, labels, stats, _ = cv2.connectedComponentsWithStats(binary, 8)
+        if n_labels > 1:
+            largest = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
+            binary = ((labels == largest) * 255).astype(np.uint8)
 
     # Fill internal holes (contours with a parent = holes inside the mask)
     hole_contours, hierarchy = cv2.findContours(
