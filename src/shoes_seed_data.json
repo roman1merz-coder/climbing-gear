@@ -2394,7 +2394,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather/synthetic",
     "weight_g": 578,
     "stretch_expectation": "none",
     "break_in_period": "moderate",
@@ -2478,7 +2478,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather/synthetic",
     "weight_g": 510,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -2537,8 +2537,8 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "none",
+    "closure": "lace",
+    "asymmetry": "moderate",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -2548,14 +2548,14 @@
     ],
     "rubber_type": "FS-Quattro",
     "rubber_hardness": [
-      "hard"
+      "medium"
     ],
-    "rubber_thickness_mm": 5.0,
-    "midsole": "full",
+    "rubber_thickness_mm": 4.6,
+    "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 470,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -2563,7 +2563,7 @@
     "pros": "[\"Hard rubber resists wear on rough rock\", \"Low-angle design for vertical terrain and slabs\", \"Easy on, easy off between problems\"]",
     "cons": "[\"Lacks curve for overhanging moves\", \"Don't expect the shoe to loosen up much\", \"Wider profile can feel sloppy on thin edges\"]",
     "sizing": "True to size with minimal stretching expected. Best for wide feet and those seeking roomy, all-day comfort.",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -2621,8 +2621,8 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "moderate",
-    "downturn": "moderate",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -2630,17 +2630,17 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Boreal Zenith Ultra 2.0",
+    "rubber_type": "Zenith Pro",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.5,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "leather",
-    "weight_g": 575,
+    "weight_g": 460,
     "stretch_expectation": "half_size",
     "break_in_period": "moderate",
     "description": "High-performance bouldering and sport shoe with moderate downturn and elastic strap closure. Split leather upper with Zenith Ultra 2.0 rubber (4-4.5mm) for maximum grip. Lateral Torsion System secures the heel. Moderate asymmetry with anti-deformation midsole. Best on steep rock, bouldering and sport climbing.",
@@ -2702,9 +2702,9 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "velcro",
-    "asymmetry": "slight",
-    "downturn": "moderate",
+    "closure": "slipper",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -2712,7 +2712,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "Zenith S 4mm (forefoot) / Zenith H (heel)",
+    "rubber_type": "Zenith Ultra",
     "rubber_hardness": [
       "medium"
     ],
@@ -2721,7 +2721,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 481,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -2729,7 +2729,7 @@
     "pros": "[\"Hits the sweet spot between performance and wearability\", \"Rubber splits the difference between sticky and durable\", \"Resoleable construction for long-term value\"]",
     "cons": "[\"Aggressive fit is punishing for newer climbers\"]",
     "sizing": "True to size with minimal stretching expected.",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
@@ -2799,7 +2799,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": true,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 350,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -2807,7 +2807,7 @@
     "pros": "[\"Curved sole performs on sport without the pain\", \"Velcro tabs are easy to grab with chalky hands\", \"All-purpose rubber compound without extremes\", \"Stiffness sits in the middle, handling edges and smears\"]",
     "cons": "[\"Synthetic won't stretch to accommodate sizing mistakes\"]",
     "sizing": "True to size with minimal stretching expected.",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -2869,16 +2869,16 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "Zenith H 5mm",
+    "rubber_type": "FS-Quattro",
     "rubber_hardness": [
-      "hard"
+      "medium"
     ],
     "rubber_thickness_mm": 5.0,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 590,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -2886,7 +2886,7 @@
     "pros": "[\"Hard rubber resists wear on rough rock\", \"No downturn means you can wear them longer without pain\", \"Straps make getting shoes on and off painless\", \"Stiff platform supports on tiny edges\"]",
     "cons": "[\"Loose feel for narrow-footed climbers\", \"Stiff platform sacrifices sensitivity for support\", \"On the heavier side at 590g per pair\"]",
     "sizing": "True to size with minimal stretching expected. Best for wide feet and those seeking roomy, all-day comfort.",
-    "vegan": true,
+    "vegan": false,
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
@@ -2940,7 +2940,7 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "velcro",
+    "closure": "lace",
     "asymmetry": "none",
     "downturn": "flat",
     "toe_patch": "none",
@@ -2958,7 +2958,7 @@
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 542,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
@@ -2966,7 +2966,7 @@
     "pros": "[\"Straight last for natural foot position on easier ground\", \"Straps make getting shoes on and off painless\", \"Board-y feel lets you stand on nothing for ages\", \"Thick 4.5mm rubber adds outdoor durability\"]",
     "cons": "[\"No downturn means less precision on pockets\", \"Takes longer to feel comfortable compared to leather shoes\", \"Rigid midsole dulls feedback from the rock\"]",
     "sizing": "True to size with minimal stretching expected.",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
@@ -4889,7 +4889,7 @@
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced",
       "elite"
@@ -5844,7 +5844,7 @@
       "medium"
     ],
     "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": true,
@@ -5911,7 +5911,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "moderate",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -5919,14 +5919,14 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "TRAX SAS 3.5mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.5,
+    "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "relaxed",
-    "gender": "mens",
+    "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 481,
@@ -6002,12 +6002,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "TRAX HF 4mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -6023,7 +6023,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 386g pair \u2192 193g single",
+      "weight_source": "weighmyrack: 386g pair → 193g single",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -6082,11 +6082,11 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "TRAX XE 4.5mm",
+    "rubber_type": "TRAX HF 4.2mm",
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 4.5,
+    "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "womens",
@@ -6156,7 +6156,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "moderate",
+    "downturn": "slight",
     "toe_patch": "full",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -6164,12 +6164,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "TRAX HF 4mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "womens",
     "kids_friendly": false,
@@ -6246,12 +6246,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "TRAX HF 4mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
@@ -6406,7 +6406,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -6415,7 +6415,7 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "TRAX HF 4mm (forefoot) / TRAX HF (heel)",
+    "rubber_type": "TRAX SAS",
     "rubber_hardness": [
       "medium"
     ],
@@ -6496,11 +6496,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "TRAX SAS 4mm (forefoot) / TRAX HF (heel)",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.2,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
@@ -6575,12 +6575,12 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "TRAX SAS",
+    "rubber_type": "Evo-74 3.5mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.2,
-    "midsole": "partial",
+    "rubber_thickness_mm": 3.5,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -6654,12 +6654,12 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "TRAX SAS",
+    "rubber_type": "Evo-74 3.5mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.2,
-    "midsole": "partial",
+    "rubber_thickness_mm": 3.5,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -6737,12 +6737,12 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "TRAX HF 4mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
-    "midsole": "partial",
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -6814,12 +6814,12 @@
     "durability": [
       "high"
     ],
-    "rubber_type": "TRAX XE 5mm",
+    "rubber_type": "TRAX HF 4.2mm",
     "rubber_hardness": [
       "hard"
     ],
-    "rubber_thickness_mm": 5.0,
-    "midsole": "full",
+    "rubber_thickness_mm": 4.2,
+    "midsole": "partial",
     "rand": "relaxed",
     "gender": "unisex",
     "kids_friendly": false,
@@ -6890,7 +6890,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -6898,17 +6898,17 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "TRAX SAS 4mm (forefoot) / TRAX HF (heel)",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.2,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "mens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 538,
+    "weight_g": 493,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "Built with aggressive downturn and slight asymmetry, this shoe excels on overhanging terrain and roof climbing. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive TRAX SAS rubber, this shoe handles all foothold types.",
@@ -6979,17 +6979,17 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "TRAX SAS",
+    "rubber_type": "EVO 74 3.5mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.2,
+    "rubber_thickness_mm": 3.5,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 530,
+    "weight_g": 568,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "A balanced performer with moderate downturn, the Shaman 2S delivers precision and comfort across varied wall angles. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive TRAX SAS rubber, this shoe handles all foothold types.",
@@ -7055,7 +7055,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -7063,11 +7063,11 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "TRAX SAS 4mm (forefoot) / TRAX HF (heel)",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.2,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "womens",
@@ -7137,7 +7137,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -7217,7 +7217,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -7315,7 +7315,7 @@
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "synthetic",
+    "upper_material": "leather",
     "weight_g": 482,
     "stretch_expectation": "none",
     "break_in_period": "moderate",
@@ -7323,7 +7323,7 @@
     "pros": "[\"Comfort-first shape that works for hours on end\", \"Perfect pace for high-volume gym sessions\", \"Stiffness sits in the middle, handling edges and smears\"]",
     "cons": "[\"What you buy is what you get - no stretch to count on\"]",
     "sizing": "True to size for standard feet. Size for a snug but comfortable fit.",
-    "vegan": true,
+    "vegan": false,
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
@@ -7379,7 +7379,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "moderate",
     "downturn": "moderate",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
@@ -7459,9 +7459,9 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "slight",
-    "downturn": "flat",
+    "downturn": "moderate",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -7542,7 +7542,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "none",
+    "asymmetry": "slight",
     "downturn": "flat",
     "toe_patch": "none",
     "heel_rubber_coverage": "partial",
@@ -7551,11 +7551,11 @@
       "moderate",
       "high"
     ],
-    "rubber_type": "TRAX HF 4mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "relaxed",
     "gender": "unisex",
@@ -7626,7 +7626,7 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
+    "closure": "velcro",
     "asymmetry": "strong",
     "downturn": "aggressive",
     "toe_patch": "full",
@@ -7636,11 +7636,11 @@
       "low",
       "moderate"
     ],
-    "rubber_type": "TRAX SAS 4mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.2,
     "midsole": "none",
     "rand": "tensioned",
     "gender": "unisex",
@@ -7720,12 +7720,12 @@
     "durability": [
       "low"
     ],
-    "rubber_type": "TRAX SAS 3.5mm",
+    "rubber_type": "TRAX SAS 4.2mm",
     "rubber_hardness": [
       "soft"
     ],
-    "rubber_thickness_mm": 3.5,
-    "midsole": "toe",
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -7792,9 +7792,9 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "slipper",
-    "asymmetry": "slight",
-    "downturn": "moderate",
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": "none",
@@ -7811,7 +7811,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 530,
+    "weight_g": 580,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "A balanced performer with moderate downturn, the Zenist Pro LV delivers precision and comfort across varied wall angles. The slipper closure provides quick on-and-off convenience, perfect for sport, boulder. Engineered for narrow feet with low volume, TRAX SAS rubber grips everything from smearing to pockets. Low-volume construction suits climbers with narrower feet and lower insteps.",
@@ -7895,7 +7895,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 510,
+    "weight_g": 420,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "A balanced performer with moderate downturn, the Aleon delivers precision and comfort across varied wall angles. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive Stealth C4 rubber, this shoe handles all foothold types.",
@@ -7959,8 +7959,8 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "lace",
-    "asymmetry": "slight",
-    "downturn": "moderate",
+    "asymmetry": "moderate",
+    "downturn": "slight",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
     "ankle_protection": "none",
@@ -7977,7 +7977,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 480,
+    "weight_g": 448,
     "stretch_expectation": "none",
     "break_in_period": "moderate",
     "description": "Designed for versatility, this shoe features minimal downturn and is equally at home on slabs and overhangs. Lace closure offers precise foot locking, ideal for technical trad_multipitch, sport. With standard volume and responsive Stealth C4 rubber, this shoe handles all foothold types.",
@@ -8042,7 +8042,7 @@
     "size_range": null,
     "year_released": null,
     "current_price_url": null,
-    "closure": "lace",
+    "closure": "velcro",
     "asymmetry": "slight",
     "downturn": "moderate",
     "toe_patch": "full",
@@ -8051,18 +8051,18 @@
     "durability": [
       "moderate"
     ],
-    "rubber_type": "Stealth Mi6 4mm",
+    "rubber_type": "Stealth C4 4.2mm",
     "rubber_hardness": [
       "medium"
     ],
-    "rubber_thickness_mm": 4.0,
+    "rubber_thickness_mm": 4.2,
     "midsole": "partial",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
-    "upper_material": "leather",
+    "upper_material": "synthetic",
     "weight_g": 480,
-    "stretch_expectation": "half_size",
+    "stretch_expectation": "none",
     "break_in_period": "moderate",
     "description": "A balanced performer with moderate downturn, the Anasazi Pro delivers precision and comfort across varied wall angles. Lace closure offers precise foot locking, ideal for technical sport, trad_multipitch. With standard volume and responsive Stealth Mi6 rubber, this shoe handles all foothold types.",
     "pros": "[\"Downturn is sport-route friendly without being extreme\", \"Laces let you fine-tune tension across the foot\", \"Middle ground on stiffness for varied footwork\", \"Shoe construction justifies the cost of a resole\"]",
@@ -8126,7 +8126,7 @@
     "year_released": null,
     "current_price_url": null,
     "closure": "velcro",
-    "asymmetry": "slight",
+    "asymmetry": "moderate",
     "downturn": "flat",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
@@ -8145,7 +8145,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 520,
+    "weight_g": 494,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
     "description": "A balanced performer with moderate downturn, the Anasazi VCS delivers precision and comfort across varied wall angles. Velcro closure enables fast adjustments during intense climbing sessions. With standard volume and responsive Stealth C4 rubber, this shoe handles all foothold types.",
@@ -9386,7 +9386,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 320g pair \u2192 160g single",
+      "weight_source": "weighmyrack: 320g pair → 160g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -10718,7 +10718,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
+      "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -14309,7 +14309,7 @@
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -14979,7 +14979,7 @@
     "weight_g": null,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Purpose-built kids\u2019 climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
+    "description": "Purpose-built kids’ climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
     "pros": "[\"Adjustable heel strap grows with the child\", \"3D molded toe cap for comfort and protection\", \"Lightweight and easy to put on\", \"Affordable entry point for young climbers\", \"Sticky Science Friction rubber for confidence on holds\"]",
     "cons": "[\"Limited to easy terrain and indoor walls\", \"No advanced features for progressing technique\", \"Minimal angle views available\"]",
     "sizing": "Available in US Toddler 12 through US Kids 5. Hook-and-loop closure makes fitting easy for small hands.",
@@ -15103,7 +15103,7 @@
     ],
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "advanced",
       "elite"
@@ -16145,7 +16145,7 @@
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "wide",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -16746,7 +16746,7 @@
     ],
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced"
     ],
@@ -16918,7 +16918,7 @@
     ],
     "forefoot_volume": "low",
     "width": "narrow",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -17092,7 +17092,7 @@
     ],
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "wide",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -18460,7 +18460,7 @@
     ],
     "forefoot_volume": "high",
     "width": "narrow",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -18909,7 +18909,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "medium",
     "skill_level": null,
     "use_cases": null,
     "best_rock_types": null,
@@ -18970,7 +18970,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "narrow",
     "skill_level": null,
     "use_cases": null,
     "best_rock_types": null,
@@ -19095,7 +19095,7 @@
     ],
     "forefoot_volume": "high",
     "width": "narrow",
-    "heel_volume": "narrow",
+    "heel_volume": "medium",
     "skill_level": null,
     "use_cases": null,
     "best_rock_types": null,
@@ -19219,7 +19219,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "wide",
     "skill_level": null,
     "use_cases": null,
     "best_rock_types": null,
@@ -19555,7 +19555,7 @@
     ],
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "wide",
     "skill_level": [
       "hobby",
       "intermediate"
@@ -20271,7 +20271,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -20358,7 +20358,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -20442,7 +20442,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair \u2192 150g single",
+      "correction_note": "300g pair → 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -20604,7 +20604,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
+      "weight_source": "weighmyrack: 340g pair → 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -21010,7 +21010,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "Estimated from brand pattern: 350g pair \u2192 175g",
+      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -22409,7 +22409,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 440g pair \u2192 220g single",
+      "weight_source": "weighmyrack: 440g pair → 220g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -25878,7 +25878,7 @@
     "images": null,
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "wide",
     "skill_level": [
       "beginner",
       "hobby",
@@ -26135,7 +26135,7 @@
     "images": null,
     "forefoot_volume": "high",
     "width": "wide",
-    "heel_volume": "medium",
+    "heel_volume": "wide",
     "skill_level": [
       "advanced",
       "elite"
@@ -26486,7 +26486,7 @@
     ],
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -27082,7 +27082,7 @@
   },
   {
     "brand": "Tenaya",
-    "model": "Ara\u00ed",
+    "model": "Araí",
     "slug": "tenaya-arai",
     "image_url": "/images/shoes/tenaya-arai.jpg",
     "images": [
@@ -27941,7 +27941,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "The shoe that put Tenaya on the map  -  a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ram\u00f3n Juli\u00e1n's shoe of choice.",
+    "description": "The shoe that put Tenaya on the map  -  a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ramón Julián's shoe of choice.",
     "pros": "[\"Versatile enough for slab, vertical, and moderate overhang\", \"Integrated tongue for a clean, comfortable fit\", \"Rubber toe reinforcement improves toe-hooking durability\", \"Full midsole provides dependable support\", \"Proven on the hardest routes across five continents\"]",
     "cons": "[\"Slight downturn lacks power on steep roof climbing\", \"Not as sensitive as split-sole designs\", \"Extra volume reduces precision on small holds\"]",
     "sizing": "True to size with minimal stretching expected. Best for wide feet and those seeking roomy, all-day comfort.",
@@ -28380,7 +28380,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Lace-up version of the Inti, developed as Ram\u00f3n Juli\u00e1n's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
+    "description": "Lace-up version of the Inti, developed as Ramón Julián's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
     "pros": "[\"Softer than the Masai  -  better sensitivity on smears and volumes\", \"Lace closure for precise, secure fit\", \"Asymmetric toe provides good power transfer\", \"Comfortable enough for long routes and multi-pitch\", \"4mm Vibram XS Grip lasts well on rough rock\"]",
     "cons": "[\"Softer sole means less support on micro-edges than the Masai\", \"Laces slower to adjust mid-session\", \"What you buy is what you get - no stretch to count on\"]",
     "sizing": "True to size. Lace closure provides adjustable fit across foot shapes.",
@@ -28953,7 +28953,7 @@
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 330g pair \u2192 165g single",
+      "weight_source": "weighmyrack: 330g pair → 165g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
