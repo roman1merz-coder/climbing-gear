@@ -751,6 +751,34 @@ def normalize_side_orientation(mask, img=None):
     y_min, y_max = int(ys.min()), int(ys.max())
     foot_width = x_max - x_min
 
+    # ── Step 2b: Ensure sole is at bottom (not upside down) ──
+    # The sole edge is flatter than the instep edge. Compare the std dev
+    # of the top boundary (topmost pixel per column) vs bottom boundary
+    # (bottommost pixel per column). If top is flatter, the foot is upside down.
+    sample_start = x_min + int(foot_width * 0.15)
+    sample_end = x_max - int(foot_width * 0.15)
+    top_boundary = []
+    bot_boundary = []
+    for col in range(sample_start, sample_end):
+        col_pixels = np.where(mask[:, col] > 0)[0]
+        if len(col_pixels) > 0:
+            top_boundary.append(col_pixels[0])
+            bot_boundary.append(col_pixels[-1])
+    if len(top_boundary) > 10:
+        top_std = np.std(top_boundary)
+        bot_std = np.std(bot_boundary)
+        if top_std < bot_std * 0.7:
+            # Top boundary is significantly flatter - foot is upside down
+            mask = cv2.flip(mask, 0)  # vertical flip
+            if img is not None:
+                img = cv2.flip(img, 0)
+            print(f"  Side step2b: flipped vertically (top_std={top_std:.1f} < bot_std={bot_std:.1f})")
+            ys, xs = np.where(mask > 0)
+            x_min, x_max = int(xs.min()), int(xs.max())
+            y_min, y_max = int(ys.min()), int(ys.max())
+        else:
+            print(f"  Side step2b: sole at bottom OK (top_std={top_std:.1f}, bot_std={bot_std:.1f})")
+
     # ── Step 3: Level the sole ──
     # Find lowest (highest y) mask pixel in heel zone (left 30%)
     heel_zone_end = x_min + int(foot_width * 0.30)
