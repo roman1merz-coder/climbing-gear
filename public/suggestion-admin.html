@@ -115,9 +115,26 @@
             .sg-actions { flex-direction: column; }
             .sg-actions input[type="text"] { min-width: unset; width: 100%; }
         }
+        #auth-gate { display: flex; align-items: center; justify-content: center; min-height: 80vh; }
+        #auth-gate form { background: #fff; border: 1px solid #d5cdbf; border-radius: 12px; padding: 32px; max-width: 340px; width: 100%; text-align: center; }
+        #auth-gate h2 { font-size: 1.1rem; margin-bottom: 16px; color: #2d2a26; }
+        #auth-gate input { width: 100%; padding: 10px 14px; border: 1px solid #d5cdbf; border-radius: 8px; font-size: 14px; margin-bottom: 12px; outline: none; font-family: inherit; }
+        #auth-gate input:focus { border-color: #3d7a52; }
+        #auth-gate button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #3d7a52; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; font-family: inherit; }
+        #auth-gate .error { color: #c0392b; font-size: 12px; margin-top: 8px; display: none; }
+        #admin-content { display: none; }
     </style>
 </head>
 <body>
+<div id="auth-gate">
+  <form onsubmit="return checkAuth(event)">
+    <h2>Suggestion Admin Login</h2>
+    <input type="password" id="auth-pw" placeholder="Password" autocomplete="current-password" autofocus>
+    <button type="submit">Log in</button>
+    <div class="error" id="auth-error">Wrong password</div>
+  </form>
+</div>
+<div id="admin-content">
     <h1>Suggestion Hub Admin</h1>
     <div id="stats" class="stats"></div>
     <div id="suggestions-container" class="loading">Loading suggestions…</div>
@@ -294,5 +311,33 @@
         // Auto-refresh every 60s
         setInterval(() => loadData().catch(console.error), 60000);
     </script>
+</div><!-- /admin-content -->
+<script>
+const AUTH_HASH = '154933ca12ca62b629509c6353363d26e45fac527531ea259083db1aa8f73796';
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+async function checkAuth(e) {
+  e.preventDefault();
+  const pw = document.getElementById('auth-pw').value;
+  const hash = await sha256(pw);
+  if (hash === AUTH_HASH) {
+    sessionStorage.setItem('cg-admin-auth', hash);
+    document.getElementById('auth-gate').style.display = 'none';
+    document.getElementById('admin-content').style.display = '';
+  } else {
+    document.getElementById('auth-error').style.display = 'block';
+    document.getElementById('auth-pw').value = '';
+  }
+  return false;
+}
+(async () => {
+  if (sessionStorage.getItem('cg-admin-auth') === AUTH_HASH) {
+    document.getElementById('auth-gate').style.display = 'none';
+    document.getElementById('admin-content').style.display = '';
+  }
+})();
+</script>
 </body>
 </html>
