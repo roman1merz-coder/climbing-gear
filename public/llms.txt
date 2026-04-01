@@ -32,7 +32,6 @@ An algorithm-driven questionnaire that scores all 400+ climbing shoes across 7 p
 - [How We Score Climbing Shoes](https://www.climbing-gear.com/insights/climbing-shoe-guide): Explains the 7-axis scoring methodology
 - [Inflatable Crashpads: Game-Changer or Gimmick?](https://www.climbing-gear.com/insights/inflatable-crashpads): Safety and performance analysis
 - [Does Spending More Buy a Safer Rope?](https://www.climbing-gear.com/insights/rope-cost-vs-safety): Cost vs. safety data analysis
-- [How to Measure Your Foot for Climbing Shoes](https://www.climbing-gear.com/insights/foot-measurement-guide): Complete guide to getting the right climbing shoe size
 
 ## What Makes This Site Different
 
