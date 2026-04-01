@@ -461,7 +461,7 @@ setInterval(() => {
 </script>
 </div><!-- /admin-content -->
 <script>
-const AUTH_HASH = '154933ca12ca62b629509c6353363d26e45fac527531ea259083db1aa8f73796';
+const AUTH_HASH = '15312cdc628474104415591d7786c6d37abedb48bddac3a8d0196b6b2e964b4d';
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
