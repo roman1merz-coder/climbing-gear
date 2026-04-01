@@ -325,7 +325,7 @@ async function checkAuth(e) {
   if (hash === AUTH_HASH) {
     sessionStorage.setItem('cg-admin-auth', hash);
     document.getElementById('auth-gate').style.display = 'none';
-    document.getElementById('admin-content').style.display = '';
+    document.getElementById('admin-content').style.display = 'block';
   } else {
     document.getElementById('auth-error').style.display = 'block';
     document.getElementById('auth-pw').value = '';
@@ -335,7 +335,7 @@ async function checkAuth(e) {
 (async () => {
   if (sessionStorage.getItem('cg-admin-auth') === AUTH_HASH) {
     document.getElementById('auth-gate').style.display = 'none';
-    document.getElementById('admin-content').style.display = '';
+    document.getElementById('admin-content').style.display = 'block';
   }
 })();
 </script>
