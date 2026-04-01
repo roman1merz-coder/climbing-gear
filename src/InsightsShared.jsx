@@ -125,6 +125,7 @@ export function MoreArticles() {
     { to: "/insights/inflatable-crashpads", label: "Inflatable Crashpads: Game-Changer or Gimmick?", tag: "Crashpads", color: T.yellow },
     { to: "/insights/rope-cost-vs-safety", label: "Does Spending More Buy a Safer Rope?", tag: "Ropes", color: T.green },
     { to: "/insights/climbing-shoe-guide", label: "How to Pick Your Climbing Shoe", tag: "Shoes", color: T.accent },
+    { to: "/insights/foot-measurement-guide", label: "How to Measure Your Foot for Climbing Shoes", tag: "Fit", color: T.blue },
   ];
   return (
     <div style={{ marginTop: "12px" }}>

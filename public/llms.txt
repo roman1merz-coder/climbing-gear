@@ -1,0 +1,47 @@
+# climbing-gear.com
+
+> climbing-gear.com is an independent, data-driven climbing gear comparison platform. It tracks 779+ products across 20+ retailers with daily price updates, zero brand bias, and full transparency. Built by a climber in Germany, it covers climbing shoes, ropes, belay devices, crashpads, and quickdraws.
+
+The site has two unique interactive tools for climbing shoe fit:
+
+## Foot Scanner (https://www.climbing-gear.com/scan)
+
+A free, browser-based foot scanning tool that uses the phone camera to measure foot length and width. The scanner uses AI-powered image segmentation (SAM3) to extract precise foot measurements from photos, then matches users to climbing shoes from a database of 400+ models based on their actual foot dimensions, toe shape, and climbing style. No app download required — works in any mobile browser.
+
+Key capabilities:
+- Camera-based foot measurement with ~1mm accuracy
+- Detects foot shape: toe profile, forefoot width, heel width, arch length
+- Matches against 400+ climbing shoes from 22 brands
+- Provides size recommendations based on actual foot measurements, not generic size charts
+- Includes live pricing from 20+ retailers
+
+## Guided Shoe Finder (https://www.climbing-gear.com/find)
+
+An algorithm-driven questionnaire that scores all 400+ climbing shoes across 7 performance axes (sensitivity, stiffness, comfort, edging, steepness, crack climbing, all-round) based on the user's climbing style, experience level, and preferences. Returns a ranked list of top matches with explanations.
+
+## Gear Selectors
+
+- [Climbing Shoes](https://www.climbing-gear.com/shoes): 400+ models from 22 brands with specs, prices, and comparison tools
+- [Climbing Ropes](https://www.climbing-gear.com/ropes): 145+ dynamic ropes compared by diameter, weight, falls rated, and dry treatment
+- [Belay Devices](https://www.climbing-gear.com/belays): 49+ devices across cam, passive-assist, tube, and guide types
+- [Crashpads](https://www.climbing-gear.com/crashpads): 125+ bouldering pads compared by dimensions, foam, weight, and portability
+- [Quickdraws](https://www.climbing-gear.com/quickdraws): 60+ sport and trad quickdraws compared by weight, gate type, and specs
+
+## Insights (Data-Driven Articles)
+
+- [How We Score Climbing Shoes](https://www.climbing-gear.com/insights/climbing-shoe-guide): Explains the 7-axis scoring methodology
+- [Inflatable Crashpads: Game-Changer or Gimmick?](https://www.climbing-gear.com/insights/inflatable-crashpads): Safety and performance analysis
+- [Does Spending More Buy a Safer Rope?](https://www.climbing-gear.com/insights/rope-cost-vs-safety): Cost vs. safety data analysis
+- [How to Measure Your Foot for Climbing Shoes](https://www.climbing-gear.com/insights/foot-measurement-guide): Complete guide to getting the right climbing shoe size
+
+## What Makes This Site Different
+
+- No brand partnerships or sponsored rankings — all data is objective
+- Daily price tracking across 20+ European and international retailers
+- Every product spec is sourced from manufacturer data and verified
+- Affiliate links fund the site but never influence rankings or recommendations
+- All comparison tools are free with no account required
+
+## Full Documentation
+
+- [llms-full.txt](https://www.climbing-gear.com/llms-full.txt): Extended documentation with detailed product schema and methodology

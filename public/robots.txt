@@ -11,5 +11,30 @@ Disallow: /test/
 Disallow: /scan-admin.html
 Disallow: /suggestion-admin.html
 Disallow: /shoe-fit-v2.html
-Disallow: /scan.html
 Disallow: /scanner-test.html
+
+# ── AI Crawlers ──
+# Explicitly allow AI search crawlers to index content
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /

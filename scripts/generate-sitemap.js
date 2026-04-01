@@ -49,6 +49,7 @@ function generateSitemaps() {
   for (const page of [
     '/insights', '/insights/climbing-shoe-guide',
     '/insights/inflatable-crashpads', '/insights/rope-cost-vs-safety',
+    '/insights/foot-measurement-guide',
     '/news', '/methodology', '/about', '/impressum', '/privacy', '/terms',
   ]) {
     coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'monthly', '0.7'));

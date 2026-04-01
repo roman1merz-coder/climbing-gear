@@ -33,6 +33,13 @@ const ARTICLES = [
     desc: `We crunched cost-per-metre, UIAA falls, and weight across ${ROPES.filter(r => r.rope_type === "single").length} single ropes. The data challenges some common assumptions.`,
     stats: [`${ROPES.length} ropes`, "r = –0.19 correlation", "9.5–9.8mm sweet spot"],
   },
+  {
+    to: "/insights/foot-measurement-guide",
+    tag: "Fit", tagColor: T.blue,
+    title: "How to Measure Your Foot for Climbing Shoes",
+    desc: `Climbing shoe sizes vary wildly between brands. Learn how to measure your foot with a phone camera or manually, and find shoes that actually fit.`,
+    stats: [`${SHOES.length}+ shoes`, "~1mm accuracy", "Free scanner"],
+  },
 ];
 
 export default function Insights() {

@@ -22,6 +22,7 @@ import Insights from "./Insights.jsx";
 import InsightShoes from "./InsightShoes.jsx";
 import InsightCrashpads from "./InsightCrashpads.jsx";
 import InsightRopes from "./InsightRopes.jsx";
+import InsightFootMeasurement from "./InsightFootMeasurement.jsx";
 import GearNews from "./GearNews.jsx";
 import NavBar from "./NavBar.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
@@ -560,6 +561,7 @@ function Root() {
               <Route path="/insights/climbing-shoe-guide" element={<InsightShoes />} />
               <Route path="/insights/inflatable-crashpads" element={<InsightCrashpads />} />
               <Route path="/insights/rope-cost-vs-safety" element={<InsightRopes />} />
+              <Route path="/insights/foot-measurement-guide" element={<InsightFootMeasurement />} />
               <Route path="/news" element={<GearNews />} />
               <Route path="/methodology" element={<Methodology />} />
               <Route path="/about" element={<About />} />
