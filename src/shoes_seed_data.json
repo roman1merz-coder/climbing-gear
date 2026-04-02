@@ -9277,8 +9277,8 @@
       "{\"url\": \"/images/shoes/la-sportiva-aragon-woman-5.jpg\", \"label\": \"View 5\"}",
       "{\"url\": \"/images/shoes/la-sportiva-aragon-woman-6.jpg\", \"label\": \"View 6\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
     "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
@@ -10874,8 +10874,8 @@
       "{\"url\": \"/images/shoes/la-sportiva-mistral-5.jpg\", \"label\": \"View 5\"}",
       "{\"url\": \"/images/shoes/la-sportiva-mistral-6.jpg\", \"label\": \"View 6\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
@@ -10945,8 +10945,8 @@
       "{\"url\": \"/images/shoes/la-sportiva-mistral-womens-5.jpg\", \"label\": \"View 5\"}",
       "{\"url\": \"/images/shoes/la-sportiva-mistral-womens-6.jpg\", \"label\": \"View 6\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
@@ -11468,8 +11468,8 @@
       "{\"url\": \"/images/shoes/la-sportiva-mythos-eco-womens-5.jpg\", \"label\": \"View 5\"}",
       "{\"url\": \"/images/shoes/la-sportiva-mythos-eco-womens-6.jpg\", \"label\": \"View 6\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": [
       "beginner",
@@ -13065,8 +13065,8 @@
       "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-womens-5.jpg\", \"label\": \"View 5\"}",
       "{\"url\": \"/images/shoes/la-sportiva-tarantula-boulder-womens-6.jpg\", \"label\": \"View 6\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": [
       "beginner",
@@ -13492,8 +13492,8 @@
       "{\"url\": \"/images/shoes/la-sportiva-tc-extreme-6.jpg\", \"label\": \"View 6\"}",
       "{\"url\": \"/images/shoes/la-sportiva-tc-extreme-7.jpg\", \"label\": \"View 7\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
