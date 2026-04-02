@@ -74,7 +74,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -153,7 +154,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -231,7 +233,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -312,7 +315,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -394,7 +398,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -474,7 +479,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -553,7 +559,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -632,7 +639,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -714,7 +722,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -792,7 +801,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -874,7 +884,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -953,7 +964,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -1032,7 +1044,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "special_fit_notes": null
   },
   {
     "brand": "Andrea Boldrini",
@@ -1114,7 +1127,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1195,7 +1209,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1275,7 +1290,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1359,7 +1375,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1442,7 +1459,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1451,7 +1469,7 @@
     "image_url": "/images/shoes/black-diamond-momentum.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "beginner",
@@ -1520,7 +1538,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1529,7 +1548,7 @@
     "image_url": "/images/shoes/black-diamond-momentum-lace.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "beginner",
@@ -1601,7 +1620,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1679,7 +1699,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1758,7 +1779,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1839,7 +1861,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Black Diamond",
@@ -1919,7 +1942,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2001,7 +2025,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2084,7 +2109,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2166,7 +2192,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2249,7 +2276,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2257,7 +2285,7 @@
     "slug": "boreal-dharma",
     "image_url": "/images/shoes/boreal-dharma.jpg",
     "images": null,
-    "forefoot_volume": "standard",
+    "forefoot_volume": "low",
     "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
@@ -2334,7 +2362,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Great for duck feet (narrow heel, wide but flat forefoot). Reviewer: 'one of the most well-fitting shoes for my classic duck foot'."
   },
   {
     "brand": "Boreal",
@@ -2418,7 +2447,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2502,7 +2532,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2579,7 +2610,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2660,7 +2692,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2742,7 +2775,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2823,7 +2857,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2902,7 +2937,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Boreal",
@@ -2979,7 +3015,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3064,7 +3101,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3149,7 +3187,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3232,7 +3271,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3316,7 +3356,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3407,7 +3448,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3494,7 +3536,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Good for duck feet. 'For a classic duck foot (narrow heel, wide but thin forefoot), the pink narrow version fit incredibly well.'"
   },
   {
     "brand": "Butora",
@@ -3580,7 +3623,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3661,7 +3705,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3742,7 +3787,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3826,7 +3872,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3909,7 +3956,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -3989,7 +4037,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Butora",
@@ -4073,7 +4122,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4156,7 +4206,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4240,7 +4291,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4324,7 +4376,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4401,7 +4454,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4480,7 +4534,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4558,7 +4613,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4637,7 +4693,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4718,7 +4775,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4799,7 +4857,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Climb X",
@@ -4879,7 +4938,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -4963,7 +5023,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5048,7 +5109,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5133,7 +5195,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5213,7 +5276,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5301,7 +5365,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5385,7 +5450,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5469,7 +5535,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5544,7 +5611,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5624,7 +5692,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5707,7 +5776,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "EB",
@@ -5791,7 +5861,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -5872,7 +5943,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -5881,7 +5953,7 @@
     "image_url": "/images/shoes/evolv-defy.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "beginner",
@@ -5952,7 +6024,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Wide toe box suits wide forefeet. Good beginner option for wider-footed climbers."
   },
   {
     "brand": "Evolv",
@@ -6023,7 +6096,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 386g pair → 193g single",
+      "weight_source": "weighmyrack: 386g pair \u2192 193g single",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -6035,7 +6108,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6112,7 +6186,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6197,7 +6272,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6279,7 +6355,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Accommodates duck feet. Reviewer with narrow heel/wide forefoot found heel fit well, slight forefoot overhang at little toe."
   },
   {
     "brand": "Evolv",
@@ -6288,7 +6365,7 @@
     "image_url": "/images/shoes/evolv-nighthawk.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "wide",
+    "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
       "hobby",
@@ -6363,7 +6440,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6372,7 +6450,7 @@
     "image_url": "/images/shoes/evolv-oracle.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "advanced",
@@ -6445,7 +6523,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6453,7 +6532,7 @@
     "slug": "evolv-phantom",
     "image_url": "/images/shoes/evolv-phantom.jpg",
     "images": null,
-    "forefoot_volume": "standard",
+    "forefoot_volume": "high",
     "width": "medium",
     "heel_volume": "narrow",
     "skill_level": [
@@ -6529,7 +6608,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6608,7 +6688,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6687,7 +6768,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6696,7 +6778,7 @@
     "image_url": "/images/shoes/evolv-rave.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "hobby",
@@ -6770,7 +6852,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6847,7 +6930,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -6855,7 +6939,7 @@
     "slug": "evolv-shaman",
     "image_url": "/images/shoes/evolv-shaman.jpg",
     "images": null,
-    "forefoot_volume": "standard",
+    "forefoot_volume": "high",
     "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
@@ -6931,7 +7015,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7012,7 +7097,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7096,7 +7182,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7178,7 +7265,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7255,7 +7343,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7339,7 +7428,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7348,7 +7438,7 @@
     "image_url": "/images/shoes/evolv-v6.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "beginner",
@@ -7422,7 +7512,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Good for duck feet. 'Perfect if you have a narrow heel and wide forefoot.' Wide toe box, slimmer heel."
   },
   {
     "brand": "Evolv",
@@ -7503,7 +7594,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7584,7 +7676,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7669,7 +7762,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Good for duck feet (narrow heel, wide forefoot). Reviewer: 'fits well for climbers with a duck foot'. Wider at front, narrow at heel."
   },
   {
     "brand": "Evolv",
@@ -7753,7 +7847,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Evolv",
@@ -7834,7 +7929,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -7843,7 +7939,7 @@
     "image_url": "/images/shoes/five-ten-aleon.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
@@ -7918,7 +8014,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8000,7 +8097,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8084,7 +8182,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8168,7 +8267,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8248,7 +8348,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8256,9 +8357,9 @@
     "slug": "five-ten-crawe",
     "image_url": "/images/shoes/five-ten-crawe.jpg",
     "images": null,
-    "forefoot_volume": "standard",
-    "width": "medium",
-    "heel_volume": "medium",
+    "forefoot_volume": "low",
+    "width": "wide",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -8331,7 +8432,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Good for duck feet (wide forefoot, narrow heel). Reviewer: 'best-fitting rock shoe' for this foot shape. Low volume overall."
   },
   {
     "brand": "Five Ten",
@@ -8412,7 +8514,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8421,7 +8524,7 @@
     "image_url": "/images/shoes/five-ten-hiangle.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
@@ -8497,7 +8600,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8506,7 +8610,7 @@
     "image_url": "/images/shoes/five-ten-hiangle-pro.jpg",
     "images": null,
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "advanced",
@@ -8579,7 +8683,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8655,7 +8760,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8736,7 +8842,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8820,7 +8927,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8903,7 +9011,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -8987,7 +9096,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Five Ten",
@@ -9064,7 +9174,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9151,7 +9262,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9167,7 +9279,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -9221,7 +9333,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9309,7 +9422,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9386,7 +9500,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 320g pair → 160g single",
+      "weight_source": "weighmyrack: 320g pair \u2192 160g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -9398,7 +9512,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9486,7 +9601,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9573,7 +9689,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9663,7 +9780,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9753,7 +9871,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9840,7 +9959,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -9928,7 +10048,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10015,7 +10136,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10103,7 +10225,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10194,7 +10317,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10285,7 +10409,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10376,7 +10501,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10463,7 +10589,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10550,7 +10677,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10639,7 +10767,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10718,7 +10847,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair → 170g single",
+      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -10730,7 +10859,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": true
+    "no_edge": true,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10746,7 +10876,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -10800,7 +10930,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10816,7 +10947,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -10870,7 +11001,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -10961,7 +11093,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11051,7 +11184,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11141,7 +11275,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11229,7 +11364,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11317,7 +11453,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11333,7 +11470,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "narrow",
     "skill_level": [
       "beginner",
       "hobby",
@@ -11391,7 +11528,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11480,7 +11618,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11568,7 +11707,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11656,7 +11796,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11748,7 +11889,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11839,7 +11981,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -11928,7 +12071,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12015,7 +12159,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12099,7 +12244,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12186,7 +12332,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12273,7 +12420,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12364,7 +12512,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12454,7 +12603,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12544,7 +12694,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12633,7 +12784,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12725,7 +12877,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12810,7 +12963,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12896,7 +13050,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -12912,7 +13067,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "narrow",
     "skill_level": [
       "beginner",
       "hobby"
@@ -12967,7 +13122,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13055,7 +13211,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13143,7 +13300,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13230,7 +13388,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13317,7 +13476,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13334,7 +13494,7 @@
     ],
     "forefoot_volume": null,
     "width": null,
-    "heel_volume": null,
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -13389,7 +13549,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13476,7 +13637,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13561,7 +13723,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "La Sportiva",
@@ -13649,7 +13812,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -13731,7 +13895,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -13815,7 +13980,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -13894,7 +14060,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -13971,7 +14138,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -14053,7 +14221,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -14134,7 +14303,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -14215,7 +14385,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -14299,7 +14470,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Lowa",
@@ -14377,7 +14549,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14469,7 +14642,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14561,7 +14735,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14650,7 +14825,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14739,7 +14915,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14828,7 +15005,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14916,7 +15094,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -14979,7 +15158,7 @@
     "weight_g": null,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Purpose-built kids’ climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
+    "description": "Purpose-built kids\u2019 climbing shoe with a 3D molded toe cap shaped for growing feet. The adjustable heel strap lets the shoe grow alongside your little climber while maintaining a secure fit. Flat profile and moderate feel keep young climbers comfortable on indoor walls and easy outdoor routes.",
     "pros": "[\"Adjustable heel strap grows with the child\", \"3D molded toe cap for comfort and protection\", \"Lightweight and easy to put on\", \"Affordable entry point for young climbers\", \"Sticky Science Friction rubber for confidence on holds\"]",
     "cons": "[\"Limited to easy terrain and indoor walls\", \"No advanced features for progressing technique\", \"Minimal angle views available\"]",
     "sizing": "Available in US Toddler 12 through US Kids 5. Hook-and-loop closure makes fitting easy for small hands.",
@@ -14999,7 +15178,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15087,7 +15267,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15174,7 +15355,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15261,7 +15443,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15348,7 +15531,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15437,7 +15621,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15529,7 +15714,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15617,7 +15803,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15707,7 +15894,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15796,7 +15984,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15881,7 +16070,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -15966,7 +16156,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Mad Rock",
@@ -16057,7 +16248,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Millet",
@@ -16135,7 +16327,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Millet",
@@ -16215,7 +16408,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Millet",
@@ -16298,7 +16492,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Millet",
@@ -16381,7 +16576,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16464,7 +16660,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16553,7 +16750,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16643,7 +16841,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16731,7 +16930,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16818,7 +17018,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16905,7 +17106,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -16991,7 +17193,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17076,7 +17279,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17091,7 +17295,7 @@
       "{\"url\": \"/images/shoes/ocun-jett-lu-6.jpg\", \"label\": \"Action\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "wide",
     "skill_level": [
       "intermediate",
@@ -17165,7 +17369,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17252,7 +17457,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17334,7 +17540,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17418,7 +17625,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17508,7 +17716,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17598,7 +17807,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17677,7 +17887,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17761,7 +17972,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17838,7 +18050,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -17918,7 +18131,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -18002,7 +18216,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -18083,7 +18298,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Ocun",
@@ -18164,7 +18380,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18229,7 +18446,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18315,7 +18533,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18380,7 +18599,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18445,7 +18665,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18533,7 +18754,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18595,7 +18817,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18681,7 +18904,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18744,7 +18968,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18809,7 +19034,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18895,7 +19121,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18907,8 +19134,8 @@
       "{\"url\": \"/images/shoes/red-chili-pulpo-B.jpg\", \"label\": \"View 3\"}",
       "{\"url\": \"/images/shoes/red-chili-pulpo-C.jpg\", \"label\": \"View 4\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
     "heel_volume": "medium",
     "skill_level": null,
     "use_cases": null,
@@ -18957,7 +19184,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -18968,8 +19196,8 @@
       "{\"url\": \"/images/shoes/red-chili-puzzle-A.jpg\", \"label\": \"View 2\"}",
       "{\"url\": \"/images/shoes/red-chili-puzzle-B.jpg\", \"label\": \"View 3\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "standard",
+    "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": null,
     "use_cases": null,
@@ -19018,7 +19246,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19080,7 +19309,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19145,7 +19375,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19207,7 +19438,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19217,8 +19449,8 @@
     "images": [
       "{\"url\": \"/images/shoes/red-chili-session-4-kids-A.jpg\", \"label\": \"View 2\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
     "heel_volume": "wide",
     "skill_level": null,
     "use_cases": null,
@@ -19267,7 +19499,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19330,7 +19563,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19392,7 +19626,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19475,7 +19710,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19540,7 +19776,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19626,7 +19863,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19715,7 +19953,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19804,7 +20043,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19869,7 +20109,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Red Chili",
@@ -19955,7 +20196,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20038,7 +20280,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20121,7 +20364,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20198,7 +20442,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20271,7 +20516,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair → 150g single",
+      "correction_note": "300g pair \u2192 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -20283,7 +20528,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20358,7 +20604,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair → 150g single",
+      "correction_note": "300g pair \u2192 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "soft",
@@ -20370,7 +20616,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20442,7 +20689,7 @@
     "admin_flags": null,
     "data_confidence": {
       "weight_source": "weighmyrack.com",
-      "correction_note": "300g pair → 150g single",
+      "correction_note": "300g pair \u2192 150g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -20454,7 +20701,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20536,7 +20784,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20604,7 +20853,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 340g pair → 170g single",
+      "weight_source": "weighmyrack: 340g pair \u2192 170g single",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -20616,7 +20865,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20693,7 +20943,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20778,7 +21029,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20855,7 +21107,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -20940,7 +21193,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -21010,7 +21264,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "Estimated from brand pattern: 350g pair → 175g",
+      "weight_source": "Estimated from brand pattern: 350g pair \u2192 175g",
       "weight_verified": true
     },
     "midsole_stiffness": "medium_soft",
@@ -21022,7 +21276,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Saltic",
@@ -21104,7 +21359,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21194,7 +21450,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21284,7 +21541,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21374,7 +21632,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21465,7 +21724,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21553,7 +21813,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21644,7 +21905,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21735,7 +21997,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21815,7 +22078,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21903,7 +22167,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -21991,7 +22256,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22079,7 +22345,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22160,7 +22427,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22247,7 +22515,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22338,7 +22607,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22409,7 +22679,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 440g pair → 220g single",
+      "weight_source": "weighmyrack: 440g pair \u2192 220g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -22421,7 +22691,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22506,7 +22777,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22593,7 +22865,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22678,7 +22951,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22763,7 +23037,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22855,7 +23130,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -22945,7 +23221,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23029,7 +23306,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23118,7 +23396,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23210,7 +23489,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23302,7 +23582,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23392,7 +23673,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23481,7 +23763,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23560,7 +23843,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23641,7 +23925,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23720,7 +24005,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23801,7 +24087,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23893,7 +24180,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -23982,7 +24270,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24068,7 +24357,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24154,7 +24444,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24243,7 +24534,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24324,7 +24616,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24413,7 +24706,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24500,7 +24794,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24589,7 +24884,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24679,7 +24975,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24768,7 +25065,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24857,7 +25155,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -24949,7 +25248,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25033,7 +25333,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25122,7 +25423,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25210,7 +25512,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25298,7 +25601,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25386,7 +25690,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25474,7 +25779,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25555,7 +25861,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Scarpa",
@@ -25636,7 +25943,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Simond",
@@ -25715,7 +26023,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Simond",
@@ -25793,7 +26102,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Simond",
@@ -25868,7 +26178,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Simond",
@@ -25950,7 +26261,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26037,7 +26349,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26125,7 +26438,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26208,7 +26522,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26295,7 +26610,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26383,7 +26699,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26471,7 +26788,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26558,7 +26876,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26645,7 +26964,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26733,7 +27053,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26817,7 +27138,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26904,7 +27226,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -26991,7 +27314,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "So iLL",
@@ -27078,11 +27402,12 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
-    "model": "Araí",
+    "model": "Ara\u00ed",
     "slug": "tenaya-arai",
     "image_url": "/images/shoes/tenaya-arai.jpg",
     "images": [
@@ -27164,7 +27489,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27253,7 +27579,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Accommodates narrow heel with wide forefoot. Reviewer: 'fits almost perfectly' for this foot shape."
   },
   {
     "brand": "Tenaya",
@@ -27341,7 +27668,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27424,7 +27752,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27515,7 +27844,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27530,7 +27860,7 @@
       "{\"url\": \"/images/shoes/tenaya-mastia-vista-suela.jpg\", \"label\": \"Sole\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
@@ -27602,7 +27932,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27690,7 +28021,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27781,7 +28113,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27872,7 +28205,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -27887,7 +28221,7 @@
       "{\"url\": \"/images/shoes/tenaya-ra-vista-suela.jpg\", \"label\": \"Sole\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "wide",
+    "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
       "hobby",
@@ -27941,7 +28275,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "The shoe that put Tenaya on the map  -  a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ramón Julián's shoe of choice.",
+    "description": "The shoe that put Tenaya on the map  -  a beautifully simple design achieving a perfect balance between power, precision, and comfort. Slight downturn and slight asymmetry keep it versatile from slab to moderate overhangs. Integrated tongue, rubber-reinforced toe box, and Vibram XS Grip 4mm rubber handle everything from gym training to outdoor sport routes. Two-time World Champion Ram\u00f3n Juli\u00e1n's shoe of choice.",
     "pros": "[\"Versatile enough for slab, vertical, and moderate overhang\", \"Integrated tongue for a clean, comfortable fit\", \"Rubber toe reinforcement improves toe-hooking durability\", \"Full midsole provides dependable support\", \"Proven on the hardest routes across five continents\"]",
     "cons": "[\"Slight downturn lacks power on steep roof climbing\", \"Not as sensitive as split-sole designs\", \"Extra volume reduces precision on small holds\"]",
     "sizing": "True to size with minimal stretching expected. Best for wide feet and those seeking roomy, all-day comfort.",
@@ -27961,7 +28295,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -28050,7 +28385,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -28136,7 +28472,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -28221,7 +28558,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -28236,7 +28574,7 @@
       "{\"url\": \"/images/shoes/tenaya-tarifa-vista-suela.jpg\", \"label\": \"Sole\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
@@ -28311,7 +28649,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tenaya",
@@ -28380,7 +28719,7 @@
     "weight_g": 340,
     "stretch_expectation": "none",
     "break_in_period": "minimal",
-    "description": "Lace-up version of the Inti, developed as Ramón Julián's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
+    "description": "Lace-up version of the Inti, developed as Ram\u00f3n Juli\u00e1n's performance shoe for routes demanding both sensitivity and all-day wearability. Slightly softer than the other Balance Pro shoes, the Tatanka prioritises feel and feedback over raw stiffness. Asymmetric toe box with Vibram XS Grip 4mm rubber channels power efficiently to the rock. Lace closure and powerful heel cup lock the foot in for sustained performance.",
     "pros": "[\"Softer than the Masai  -  better sensitivity on smears and volumes\", \"Lace closure for precise, secure fit\", \"Asymmetric toe provides good power transfer\", \"Comfortable enough for long routes and multi-pitch\", \"4mm Vibram XS Grip lasts well on rough rock\"]",
     "cons": "[\"Softer sole means less support on micro-edges than the Masai\", \"Laces slower to adjust mid-session\", \"What you buy is what you get - no stretch to count on\"]",
     "sizing": "True to size. Lace closure provides adjustable fit across foot shapes.",
@@ -28400,7 +28739,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Reviewer: 'absolutely amazing for duck feet - wide forefoot with narrow heel'."
   },
   {
     "brand": "Tulson Tolf",
@@ -28482,7 +28822,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -28565,7 +28906,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -28643,7 +28985,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -28722,7 +29065,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -28804,7 +29148,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -28883,7 +29228,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -28953,7 +29299,7 @@
     "resoleable": false,
     "admin_flags": null,
     "data_confidence": {
-      "weight_source": "weighmyrack: 330g pair → 165g single",
+      "weight_source": "weighmyrack: 330g pair \u2192 165g single",
       "weight_verified": true
     },
     "midsole_stiffness": "none",
@@ -28965,7 +29311,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29043,7 +29390,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29124,7 +29472,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29205,7 +29554,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29284,7 +29634,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29366,7 +29717,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29444,7 +29796,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Tulson Tolf",
@@ -29520,7 +29873,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -29609,7 +29963,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -29698,7 +30053,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -29787,7 +30143,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -29802,9 +30159,9 @@
       "{\"url\": \"/images/shoes/unparallel-flagship-D.jpg\", \"label\": \"Sole\"}",
       "{\"url\": \"/images/shoes/unparallel-flagship-E.jpg\", \"label\": \"Heel\"}"
     ],
-    "forefoot_volume": "standard",
+    "forefoot_volume": "high",
     "width": "medium",
-    "heel_volume": "narrow",
+    "heel_volume": "wide",
     "skill_level": [
       "advanced",
       "elite"
@@ -29877,7 +30234,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": "Narrow but high volume forefoot. May suit duck feet who need vertical space. Reviewer with wide forefoot/high arch found good conforming fit."
   },
   {
     "brand": "Unparallel",
@@ -29967,7 +30325,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -29982,7 +30341,7 @@
       "{\"url\": \"/images/shoes/unparallel-flagship-pro-E.jpg\", \"label\": \"Sole\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "advanced",
@@ -30052,7 +30411,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30063,9 +30423,9 @@
       "{\"url\": \"/images/shoes/unparallel-hold-up-vcs.jpg\", \"label\": \"Side view\"}",
       "{\"url\": \"/images/shoes/unparallel-hold-up-vcs-A.jpg\", \"label\": \"Top view\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "beginner",
       "hobby"
@@ -30117,7 +30477,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30206,7 +30567,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30292,7 +30654,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30307,9 +30670,9 @@
       "{\"url\": \"/images/shoes/unparallel-newtro-vcs-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-newtro-vcs-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "narrow",
+    "heel_volume": "narrow",
     "skill_level": [
       "advanced",
       "elite"
@@ -30363,7 +30726,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30378,9 +30742,9 @@
       "{\"url\": \"/images/shoes/unparallel-orbit-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-orbit-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced"
     ],
@@ -30436,7 +30800,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30450,9 +30815,9 @@
       "{\"url\": \"/images/shoes/unparallel-qubit-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-qubit-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced"
     ],
@@ -30508,7 +30873,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30522,9 +30888,9 @@
       "{\"url\": \"/images/shoes/unparallel-qubit-lv-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-qubit-lv-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "narrow",
     "skill_level": [
       "advanced"
     ],
@@ -30580,7 +30946,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30595,7 +30962,7 @@
       "{\"url\": \"/images/shoes/unparallel-regulus-6.jpg\", \"label\": \"View 6\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
@@ -30670,7 +31037,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30760,7 +31128,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30776,7 +31145,7 @@
       "{\"url\": \"/images/shoes/unparallel-sirius-E.jpg\", \"label\": \"Heel\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
@@ -30851,7 +31220,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30942,7 +31312,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -30957,7 +31328,7 @@
       "{\"url\": \"/images/shoes/unparallel-souped-up-E.jpg\", \"label\": \"Sole\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "wide",
     "heel_volume": "medium",
     "skill_level": [
       "advanced",
@@ -31029,7 +31400,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31044,9 +31416,9 @@
       "{\"url\": \"/images/shoes/unparallel-tn-finity-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-tn-finity-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced"
     ],
@@ -31103,7 +31475,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31189,7 +31562,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31275,7 +31649,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31292,7 +31667,7 @@
     ],
     "forefoot_volume": "high",
     "width": "wide",
-    "heel_volume": "medium",
+    "heel_volume": "wide",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -31365,7 +31740,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31379,9 +31755,9 @@
       "{\"url\": \"/images/shoes/unparallel-up-duel-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-up-duel-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "wide",
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -31436,7 +31812,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31525,7 +31902,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31535,9 +31913,9 @@
     "images": [
       "{\"url\": \"/images/shoes/unparallel-up-grade-engage.jpg\", \"label\": \"Side view\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "beginner",
       "hobby"
@@ -31589,7 +31967,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31676,7 +32055,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31763,7 +32143,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31778,9 +32159,9 @@
       "{\"url\": \"/images/shoes/unparallel-up-lift-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-up-lift-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "high",
+    "width": "wide",
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -31833,7 +32214,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31918,7 +32300,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -31932,9 +32315,9 @@
       "{\"url\": \"/images/shoes/unparallel-up-pivot-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-up-pivot-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "advanced",
       "elite"
@@ -31988,7 +32371,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32080,7 +32464,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32171,7 +32556,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32262,7 +32648,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32277,9 +32664,9 @@
       "{\"url\": \"/images/shoes/unparallel-up-virtu-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-up-virtu-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -32333,7 +32720,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32348,9 +32736,9 @@
       "{\"url\": \"/images/shoes/unparallel-up-virtu-lv-D.jpg\", \"label\": \"Top\"}",
       "{\"url\": \"/images/shoes/unparallel-up-virtu-lv-E.jpg\", \"label\": \"Sole\"}"
     ],
-    "forefoot_volume": null,
-    "width": null,
-    "heel_volume": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "narrow",
     "skill_level": [
       "intermediate",
       "advanced"
@@ -32404,7 +32792,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32421,7 +32810,7 @@
     ],
     "forefoot_volume": "standard",
     "width": "medium",
-    "heel_volume": "medium",
+    "heel_volume": "narrow",
     "skill_level": [
       "beginner",
       "hobby"
@@ -32491,7 +32880,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Unparallel",
@@ -32507,7 +32897,7 @@
       "{\"url\": \"/images/shoes/unparallel-vim-E.jpg\", \"label\": \"Sole\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "intermediate",
@@ -32577,7 +32967,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -32658,7 +33049,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -32740,7 +33132,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -32819,7 +33212,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -32895,7 +33289,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -32971,7 +33366,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -33052,7 +33448,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -33133,7 +33530,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -33213,7 +33611,8 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   },
   {
     "brand": "Wild Climb",
@@ -33291,6 +33690,7 @@
     "mfr_toe_box": null,
     "mfr_heel": null,
     "mfr_volume": null,
-    "no_edge": false
+    "no_edge": false,
+    "special_fit_notes": null
   }
 ]
