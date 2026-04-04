@@ -75,7 +75,7 @@ function MetricBar({ ratioKey, value }) {
 }
 
 // ── Shoe recommendation card ─────────────────────────────────
-function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote, bestOffer }) {
+function ShoeCard({ slug, brand, model, description, why, tradeoffs, imageUrl, recommendedSize, sizeNote, bestOffer }) {
   return (
     <div style={{
       background: T.card, border: `1px solid #eee8dc`, borderRadius: 12,
@@ -123,7 +123,13 @@ function ShoeCard({ slug, brand, model, why, imageUrl, recommendedSize, sizeNote
               {sizeNote}
             </div>
           )}
+          {description && (
+            <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5, marginBottom: "0.3rem" }}>{description}</div>
+          )}
           <div style={{ fontSize: "0.75rem", color: "#5a5344", lineHeight: 1.5 }}>{why}</div>
+          {tradeoffs && (
+            <div style={{ fontSize: "0.73rem", color: "#8a7e6e", lineHeight: 1.5, fontStyle: "italic", marginTop: "0.3rem" }}>{tradeoffs}</div>
+          )}
           <div style={{
             marginTop: "0.6rem", padding: "0.45rem 0", textAlign: "center",
             fontSize: "0.75rem", fontWeight: 600, color: T.accent,
@@ -399,7 +405,9 @@ export default function ScanResult({ shoes }) {
                         slug={r.slug}
                         brand={brand}
                         model={model}
+                        description={r.description || ""}
                         why={why}
+                        tradeoffs={r.tradeoffs || ""}
                         imageUrl={r.image_url}
                         recommendedSize={r.recommended_size_eu}
                         sizeNote={r.size_note}
