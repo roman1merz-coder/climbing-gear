@@ -303,58 +303,68 @@ def _para_description(pick, profile):
     if perf_parts:
         parts.append(". ".join(perf_parts) + ".")
 
-    # ── 3. Rubber / sole / upper ──
-    # Use structured DB fields; fall back to description parsing only if missing
+    # ── 3. Rubber / sole / stiffness ──
+    # Format: "{thickness} {compound} rubber with a {coverage}, {midsole_stiffness} midsole,
+    #          resulting in a {overall_stiffness} shoe."
     sole_bits = []
 
-    # Rubber compound + hardness + thickness
+    # Rubber compound name (cleaned) + thickness
     rubber_name = _clean_rubber_name(db_rubber)
-    hardness = _RUBBER_HARDNESS.get(rubber_name.lower(), None) if rubber_name else None
-
     if not rubber_name:
-        # Fallback: try extracting from description
         rinfo = _extract_rubber_info(desc)
         rubber_name = rinfo.get("rubber", "")
-        if rubber_name:
-            hardness = _RUBBER_HARDNESS.get(rubber_name.lower(), None)
 
-    thickness_str = ""
-    if db_thick:
-        thickness_str = f"{db_thick:g}mm"
+    thickness_str = f"{db_thick:g}mm" if db_thick else ""
 
-    # Build the rubber phrase: "{thick} {name} rubber ({hardness})"
+    # Build rubber phrase: "{thickness} {compound} rubber"
     rubber_phrase = ""
     if rubber_name:
-        # Avoid "Tenaya proprietary rubber rubber"
         base = rubber_name if rubber_name.lower().endswith("rubber") else f"{rubber_name} rubber"
-        rubber_phrase = base
-        if hardness:
-            rubber_phrase = f"{base} ({hardness})"
-        if thickness_str:
-            rubber_phrase = f"{thickness_str} {rubber_phrase}"
+        rubber_phrase = f"{thickness_str} {base}".strip() if thickness_str else base
     elif thickness_str:
         rubber_phrase = f"{thickness_str} rubber"
 
-    # Midsole -- from description (no structured field yet)
-    rinfo_desc = _extract_rubber_info(desc) if desc else {}
-    midsole = rinfo_desc.get("midsole", "")
-    midsole_phrase = ""
-    if midsole == "no midsole":
-        midsole_phrase = "no midsole"
-    elif midsole == "split sole":
-        midsole_phrase = "split sole"
-    elif midsole == "partial midsole":
-        midsole_phrase = "partial midsole"
-    elif midsole == "stiff midsole":
-        midsole_phrase = "stiff midsole"
-    elif midsole in ("full midsole", "full-length midsole", "curved midsole"):
-        midsole_phrase = midsole
+    # Midsole: use structured DB fields (midsole = coverage, midsole_stiffness = stiffness)
+    db_midsole = (pick.get("midsole") or "").lower()
+    db_midsole_stiff = (pick.get("midsole_stiffness") or "").lower()
 
-    # Sole stiffness summary from computed_stiffness
+    _MIDSOLE_COVERAGE_LABEL = {
+        "none": None,
+        "toe": "toe-only",
+        "partial": "partial",
+        "forefoot": "forefoot",
+        "half": "half-length",
+        "three_quarter": "three-quarter",
+        "full": "full",
+    }
+    _MIDSOLE_STIFF_LABEL = {
+        "none": None,
+        "soft": "soft",
+        "medium_soft": "medium-soft",
+        "medium": "medium",
+        "medium_hard": "medium-hard",
+        "hard": "hard",
+    }
+
+    coverage_label = _MIDSOLE_COVERAGE_LABEL.get(db_midsole)
+    stiff_label = _MIDSOLE_STIFF_LABEL.get(db_midsole_stiff)
+
+    # Build midsole phrase: "no midsole" or "{coverage}, {stiffness} midsole"
+    midsole_phrase = ""
+    if db_midsole == "none" or coverage_label is None:
+        midsole_phrase = "no midsole"
+    elif coverage_label and stiff_label:
+        midsole_phrase = f"a {coverage_label}, {stiff_label} midsole"
+    elif coverage_label:
+        midsole_phrase = f"a {coverage_label} midsole"
+
+    # Overall stiffness from computed_stiffness (7 levels)
     stiffness = pick.get("stiffness")
     stiff_word = ""
     if stiffness is not None:
-        if stiffness < 0.25:
+        if stiffness < 0.15:
+            stiff_word = "super sensitive"
+        elif stiffness <= 0.25:
             stiff_word = "very sensitive"
         elif stiffness < 0.40:
             stiff_word = "sensitive"
@@ -362,8 +372,10 @@ def _para_description(pick, profile):
             stiff_word = "balanced"
         elif stiffness < 0.75:
             stiff_word = "supportive"
-        else:
+        elif stiffness <= 0.85:
             stiff_word = "very supportive"
+        else:
+            stiff_word = "super supportive"
 
     # Assemble: "{rubber} with {midsole}, resulting in a {stiffness} shoe."
     if rubber_phrase:

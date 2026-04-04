@@ -482,7 +482,10 @@ def generate_recommendations(scan_id, profile):
             pick["special_fit_notes"] = db.get("special_fit_notes")
             pick["description"] = db.get("description")
             pick["rubber_type"] = db.get("rubber_type")
+            pick["rubber_hardness"] = db.get("rubber_hardness")
             pick["rubber_thickness_mm"] = db.get("rubber_thickness_mm")
+            pick["midsole"] = db.get("midsole")
+            pick["midsole_stiffness"] = db.get("midsole_stiffness")
             pick["upper_material"] = db.get("upper_material")
             enriched_picks.append(pick)
 

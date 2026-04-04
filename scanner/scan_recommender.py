@@ -110,7 +110,8 @@ def _load_shoes():
             "select": "slug,brand,model,width,heel_volume,toe_form,forefoot_volume,"
                       "closure,downturn,asymmetry,feel,kids_friendly,gender,"
                       "skill_level,use_cases,description,"
-                      "midsole,rand,rubber_thickness_mm,upper_material,no_edge,"
+                      "midsole,midsole_stiffness,rand,rubber_type,"
+                      "rubber_hardness,rubber_thickness_mm,upper_material,no_edge,"
                       "computed_stiffness",
             "limit": 600,
         },
@@ -271,31 +272,54 @@ def _load_best_prices():
 
 def _get_best_price_for_size(slug: str, recommended_size: float,
                               prices: dict) -> Optional[float]:
-    """Get the cheapest price for a shoe in the recommended size (+/- 0.5).
+    """Get the cheapest price for a shoe within 0.5 EU of the recommended size.
 
-    Returns None if no price found for that size range.
+    Uses range matching (abs diff <= 0.5) instead of exact key lookups,
+    so non-standard recommended sizes (e.g. 42.2) still match standard
+    size ladder values (e.g. 42.0, 42.5).
     """
     slug_prices = prices.get(slug)
     if not slug_prices:
         return None
     best = None
-    for offset in (0, 0.5, -0.5):
-        sz = round(recommended_size + offset, 1)
-        p = slug_prices.get(sz)
-        if p is not None and (best is None or p < best):
-            best = p
+    for sz, p in slug_prices.items():
+        if abs(sz - recommended_size) <= 0.5:
+            if best is None or p < best:
+                best = p
     return best
 
 
 def _calc_recommended_size(user_anchor_size: float, anchor_brand: str,
-                           target_brand: str, brand_sizing: dict) -> float:
+                           target_brand: str, brand_sizing: dict,
+                           street_size: float = None,
+                           preference: str = None) -> float:
     """Calculate recommended EU size using the sizing formula.
 
-    recommended_size = anchor_size + (anchor_downsize - target_downsize)
+    Base formula:
+        anchor_based = anchor_size + (anchor_downsize - target_downsize)
+
+    This preserves the user's personal tightness from their anchor shoe.
+    However, for comfort-preference users this can over-downsize when
+    the anchor shoe is already tighter than the brand's typical fit.
+
+    Fix: blend with street-size-based calculation for comfort users.
+        street_based = street_size - target_downsize
+        comfort result = max(anchor_based, street_based)
+
+    For performance users, the anchor-based result is used directly
+    (they chose that tightness deliberately).
     """
     anchor_ds = brand_sizing.get(anchor_brand, 1.0)
     target_ds = brand_sizing.get(target_brand, 1.0)
-    return round(user_anchor_size + (anchor_ds - target_ds), 1)
+    anchor_based = round(user_anchor_size + (anchor_ds - target_ds), 1)
+
+    # For comfort preference: don't propagate over-downsizing from anchor
+    if preference in ("comfort", None) and street_size is not None:
+        street_based = round(street_size - target_ds, 1)
+        # Use the larger (less aggressive) of the two calculations
+        return max(anchor_based, street_based)
+
+    return anchor_based
 
 
 def _check_size_available(slug: str, recommended_size: float,
@@ -437,9 +461,17 @@ def _parse_feel_preference(profile: dict) -> Optional[str]:
 def _user_current_shoe_widths(profile: dict, shoes_db: list) -> dict:
     """Look up the width and heel_volume of the user's current shoes in the DB.
 
-    Returns {"widths": set, "heel_volumes": set, "forefoot_fits": set}.
+    Returns {
+        "widths": set,
+        "heel_volumes": set,
+        "forefoot_fits": set,
+        "heel_fit_signals": list of {"heel_fit": str, "shoe_heel_volume": str},
+    }.
     Used to temper width scoring when the user's measured width class
     is borderline but their current shoe width already fits well.
+    heel_fit_signals pairs each shoe's user-reported heel fit with
+    the shoe's actual heel_volume from the DB, so scoring can reason
+    about what heel volume the user actually needs.
     """
     shoe_by_key = {}
     for s in shoes_db:
@@ -449,6 +481,7 @@ def _user_current_shoe_widths(profile: dict, shoes_db: list) -> dict:
     widths = set()
     heel_volumes = set()
     forefoot_fits = set()
+    heel_fit_signals = []
 
     for us in profile.get("shoes") or []:
         brand = us.get("brand", "")
@@ -463,12 +496,25 @@ def _user_current_shoe_widths(profile: dict, shoes_db: list) -> dict:
         if db_shoe:
             widths.add(str(db_shoe.get("width") or ""))
             heel_volumes.add(str(db_shoe.get("heel_volume") or ""))
+            # Pair heel fit feedback with the shoe's actual heel_volume
+            fit = us.get("fit") or {}
+            heel_fit = fit.get("heel", "")
+            if heel_fit:
+                heel_fit_signals.append({
+                    "heel_fit": heel_fit,
+                    "shoe_heel_volume": str(db_shoe.get("heel_volume") or ""),
+                })
         # Collect forefoot fit ratings from user's shoe assessments
         fit = us.get("fit") or {}
         if fit.get("forefoot"):
             forefoot_fits.add(fit["forefoot"])
 
-    return {"widths": widths, "heel_volumes": heel_volumes, "forefoot_fits": forefoot_fits}
+    return {
+        "widths": widths,
+        "heel_volumes": heel_volumes,
+        "forefoot_fits": forefoot_fits,
+        "heel_fit_signals": heel_fit_signals,
+    }
 
 
 def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
@@ -511,27 +557,66 @@ def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
         and "perfect" in current_widths.get("forefoot_fits", set())
     )
 
-    # Check if user has an explicit heel fit problem (empty or squeezed)
-    # from their current shoe data. If so, heel match is critical.
-    heel_problem = False
-    for us in profile.get("shoes") or []:
-        heel_fit = (us.get("fit") or {}).get("heel", "")
-        if heel_fit in ("empty", "squeezed", "tight"):
-            heel_problem = True
-            break
+    # ── Derive target heel volume from fit feedback (strongest signal) ──
+    # If user reports "empty" in a narrow-heel shoe, they need narrow or
+    # narrower - NOT medium. If "empty" in medium, they need narrow.
+    # If "squeezed" in narrow, they need medium. Etc.
+    # This overrides scan-based heel_width_class when feedback exists.
+    _HEEL_VOL_ORDER = ["narrow", "low", "medium", "standard", "high", "wide"]
+
+    def _heel_vol_rank(v):
+        """Return rank (lower = narrower). Treat synonyms."""
+        v = v.lower().strip() if v else ""
+        # Normalize synonyms
+        if v in ("low", "narrow"):
+            return 0
+        if v in ("standard", "medium"):
+            return 1
+        if v in ("high", "wide"):
+            return 2
+        return 1  # default to medium if unknown
+
+    heel_fit_signals = current_widths.get("heel_fit_signals", [])
+    target_heel_rank = None  # None = no fit feedback, use scan-based logic
+
+    for sig in heel_fit_signals:
+        shoe_hv_rank = _heel_vol_rank(sig["shoe_heel_volume"])
+        if sig["heel_fit"] in ("empty",):
+            # Heel is empty - need same or narrower, not wider
+            target_heel_rank = shoe_hv_rank  # stay at this level or go narrower
+        elif sig["heel_fit"] in ("squeezed", "tight"):
+            # Heel is squeezed - need one step wider
+            target_heel_rank = shoe_hv_rank + 1
+        elif sig["heel_fit"] == "perfect":
+            # Perfect - target same volume
+            target_heel_rank = shoe_hv_rank
 
     # ── Priority 1: Fit geometry (up to +10) ──────────────────────────
 
-    # Heel match (most important for narrow-heel users)
-    if "narrow" in user_heel:
+    # Heel match - use fit-feedback-derived target if available,
+    # otherwise fall back to scan-based heel_width_class.
+    candidate_hv_rank = _heel_vol_rank(hv)
+
+    if target_heel_rank is not None:
+        # Fit feedback is the strongest signal
+        dist = candidate_hv_rank - target_heel_rank
+        if dist == 0:
+            score += 4   # exact match to target
+        elif dist == -1:
+            score += 2   # one step narrower than target - acceptable
+        elif dist == 1:
+            score -= 4   # one step wider than what's already empty/tight
+        elif dist >= 2:
+            score -= 6   # much wider - actively harmful
+        else:
+            score += 0   # much narrower - unusual but not penalized
+    elif "narrow" in user_heel:
         if hv in ("low", "narrow"):
-            score += 4  # strong match
+            score += 4
         elif hv in ("standard", "medium"):
-            # If user has an explicit heel problem (empty/squeezed),
-            # medium heel is NOT neutral - it won't fix the issue.
-            score += -3 if heel_problem else 0
+            score += 0
         elif hv in ("high", "wide"):
-            score -= 3  # actively bad
+            score -= 3
     elif "wide" in user_heel:
         if hv in ("high", "wide"):
             score += 3
@@ -540,6 +625,17 @@ def score_shoe(shoe: dict, profile: dict, user_shoe_profile: dict = None,
     else:
         if hv in ("standard", "medium"):
             score += 2
+
+    # Heel depth scoring - shallow heels don't project backward enough
+    # to engage standard heel cups, so narrow heel volume is better.
+    user_heel_depth = profile.get("heel_depth_class", "")
+    if "shallow" in user_heel_depth:
+        if candidate_hv_rank == 0:  # narrow/low
+            score += 3  # shallow heel fits better in a tight heel cup
+        elif candidate_hv_rank == 1:  # medium/standard
+            score -= 1  # standard heel cups will feel loose
+        elif candidate_hv_rank >= 2:  # wide/high
+            score -= 3  # big heel cup + shallow heel = cavernous
 
     # Forefoot width match
     # When the user is classified "narrow" but their current medium-width
@@ -736,6 +832,9 @@ def get_shoe_candidates(profile: dict, top_n: int = 30) -> list:
         anchor_size = user_shoes[0].get("size_eu")
         anchor_brand = user_shoes[0].get("brand")
 
+    street_size = profile.get("street_size_eu")
+    preference = profile.get("next_shoe_preference")
+
     candidates = []
 
     for s in shoes:
@@ -750,7 +849,8 @@ def get_shoe_candidates(profile: dict, top_n: int = 30) -> list:
         # Size availability penalty
         if anchor_size and anchor_brand:
             rec_size = _calc_recommended_size(
-                anchor_size, anchor_brand, s["brand"], brand_sizing
+                anchor_size, anchor_brand, s["brand"], brand_sizing,
+                street_size=street_size, preference=preference
             )
             s_copy["_recommended_size_eu"] = rec_size
             if not _check_size_available(s["slug"], rec_size, size_avail):
@@ -801,24 +901,18 @@ def performance_label(downturn: str) -> str:
 
 
 def get_categorized_candidates(profile: dict) -> dict:
-    """Return shoe candidates organized into 4 categories for the LLM.
+    """Return top 50 shoe candidates for the LLM to pick from freely.
 
-    Categories (3 shoes each, 12 total):
-    - baseline: similar stiffness to user's current shoe average
-    - softer: noticeably softer than current average
-    - stiffer: noticeably stiffer than current average
-    - budget: cheapest available options that still address fit issues
-
-    All candidates must address the user's fit issues (priority 1).
-    Within each category, shoes are sorted by overall score.
+    No pre-categorization - Sonnet decides which shoes go into which
+    category (baseline/softer/stiffer/budget) based on stiffness distance
+    and price. We just provide the data it needs to make those decisions.
 
     Returns dict with:
-    - categories: {baseline: [...], softer: [...], stiffer: [...], budget: [...]}
+    - categories: {all: [...]}  (flat list of all candidates)
     - user_avg_stiffness: float
     - user_stiffness_label: str
     - user_performance_label: str
     """
-    # Get a broad pool of fit-scored candidates (top 50 for more category coverage)
     all_candidates = get_shoe_candidates(profile, top_n=50)
     best_prices = _load_best_prices()
     user_shoe_profile = _extract_user_shoe_profile(profile)
@@ -862,109 +956,17 @@ def get_categorized_candidates(profile: dict) -> dict:
         else:
             avg_perf_label = "aggressive"
 
-    # Minimum fit score threshold: only consider candidates with positive fit scores
-    # (we want all 9 shoes to actually address fit issues)
-    MIN_SCORE = 0
-    fit_candidates = [c for c in all_candidates if c["_score"] >= MIN_SCORE]
-
-    # If too few candidates pass the threshold, relax it
-    if len(fit_candidates) < 15:
-        fit_candidates = all_candidates[:30]
-
     # Attach best price for the recommended size to each candidate
-    for c in fit_candidates:
+    for c in all_candidates:
         rec_size = c.get("_recommended_size_eu")
         if rec_size is not None:
             c["_best_price_eur"] = _get_best_price_for_size(c["slug"], rec_size, best_prices)
         else:
             c["_best_price_eur"] = None
 
-    # Classify by stiffness distance from user average
-    STIFF_NEAR = 0.08   # within this = baseline
-    STIFF_FAR = 0.08    # beyond this = softer/stiffer
-
-    baseline = []
-    softer = []
-    stiffer = []
-
-    for c in fit_candidates:
-        cs = c["_computed_stiffness"]
-        diff = cs - avg_stiffness
-        if abs(diff) <= STIFF_NEAR:
-            baseline.append(c)
-        elif diff < -STIFF_FAR:
-            softer.append(c)
-        elif diff > STIFF_FAR:
-            stiffer.append(c)
-
-    # Budget: fit candidates sorted by price, with guardrails:
-    # 1. Stiffness: max 0.25 distance from user average
-    # 2. Minimum score threshold (75% of weakest baseline pick)
-    # 3. Hard heel constraint: if user has empty/squeezed heel, budget
-    #    shoes MUST have matching heel volume - cheap shoes that don't
-    #    fix the primary issue are useless recommendations.
-    BUDGET_STIFF_MAX_DIST = 0.25
-    baseline_scores = [c["_score"] for c in baseline] if baseline else [0]
-    budget_min_score = max(5, min(baseline_scores) * 3 // 4)
-
-    # Determine hard heel constraint from user's shoe fit data
-    user_heel_problem = None  # None = no constraint
-    for us in profile.get("shoes") or []:
-        heel_fit = (us.get("fit") or {}).get("heel", "")
-        if heel_fit in ("empty", "squeezed", "tight"):
-            user_heel_problem = heel_fit
-            break
-
-    def _budget_heel_ok(candidate: dict) -> bool:
-        """Check if a budget candidate's heel volume addresses the user's heel problem."""
-        if user_heel_problem is None:
-            return True  # no heel problem = no constraint
-        hv = str(candidate.get("heel_volume") or "")
-        user_heel = profile.get("heel_width_class", "")
-        if "narrow" in user_heel and user_heel_problem == "empty":
-            # User needs narrow heel - medium/wide won't fix it
-            return hv in ("low", "narrow")
-        if "wide" in user_heel and user_heel_problem in ("squeezed", "tight"):
-            return hv in ("high", "wide")
-        return True
-
-    priced = [
-        c for c in fit_candidates
-        if c.get("_best_price_eur") is not None
-        and abs(c["_computed_stiffness"] - avg_stiffness) <= BUDGET_STIFF_MAX_DIST
-        and c["_score"] >= budget_min_score
-        and _budget_heel_ok(c)
-    ]
-    priced.sort(key=lambda x: x["_best_price_eur"])
-
-    # Tag each candidate with its eligible categories (a shoe can appear
-    # in multiple categories, e.g. baseline + budget).  Send all to the
-    # LLM which picks 3 per category (12 total) from the full pool.
-    seen = {}  # slug -> candidate dict
-    for pool, cat_name in [
-        (baseline, "baseline"),
-        (softer, "softer"),
-        (stiffer, "stiffer"),
-        (priced, "budget"),
-    ]:
-        for c in pool:
-            slug = c["slug"]
-            if slug not in seen:
-                c["_categories"] = [cat_name]
-                seen[slug] = c
-            else:
-                if cat_name not in seen[slug].get("_categories", []):
-                    seen[slug]["_categories"].append(cat_name)
-
-    all_candidates = list(seen.values())
-    cat_counts = {}
-    for c in all_candidates:
-        for cat in c["_categories"]:
-            cat_counts[cat] = cat_counts.get(cat, 0) + 1
-
-    print(f"[scan_recommender] Categorized: {cat_counts.get('baseline', 0)} baseline, "
-          f"{cat_counts.get('softer', 0)} softer, {cat_counts.get('stiffer', 0)} stiffer, "
-          f"{cat_counts.get('budget', 0)} budget = {len(all_candidates)} unique shoes")
+    n_priced = sum(1 for c in all_candidates if c.get("_best_price_eur") is not None)
+    print(f"[scan_recommender] Sending {len(all_candidates)} candidates to Sonnet "
+          f"({n_priced} with prices, avg stiffness {avg_stiffness:.3f})")
 
     return {
         "categories": {
