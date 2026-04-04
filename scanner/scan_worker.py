@@ -85,9 +85,18 @@ def validate_scan_quality(sole_m, side_m):
     if arch_ratio < 0.50 or arch_ratio > 0.85:
         return False, f"Arch length measurement looks unusual ({arch_ratio:.2f}). Try again with a clearer sole view."
 
-    # Check side view measurements exist
-    if not side_m.get("instep_height_ratio"):
+    # Check side view measurements are present and plausible
+    instep = side_m.get("instep_height_ratio")
+    heel_depth = side_m.get("heel_depth_ratio")
+
+    if not instep:
         return False, "Could not measure instep height from side view. Please ensure the side view clearly shows your foot profile."
+
+    if instep < 0.15 or instep > 0.50:
+        return False, f"Side view instep measurement looks unusual ({instep:.2f}). Please retake the side photo with your full foot visible."
+
+    if heel_depth is not None and heel_depth > 0.20:
+        return False, f"Side view heel measurement looks unusual ({heel_depth:.2f}). Please retake the side photo - make sure the camera is level with your foot."
 
     return True, None
 
@@ -319,9 +328,87 @@ def write_measurements_to_db(scan_id, profile, sole_m, side_m):
     scan_recommender.update_scan(scan_id, update_data)
 
 
+# ── Deterministic engine imports (lazy-loaded) ──────────────────────────
+_engine_data = None  # cached shoe DB + sizing data
+
+def _load_engine_data():
+    """Load and cache matrix_scorer data. Called once on first recommendation."""
+    global _engine_data
+    if _engine_data is not None:
+        return _engine_data
+    from benchmark.matrix_scorer import (
+        load_shoes, load_brand_sizing, load_size_availability, load_best_prices,
+    )
+    log("  Loading shoe database for deterministic engine...")
+    shoes_db = load_shoes()
+    brand_sizing = load_brand_sizing()
+    size_avail = load_size_availability()
+    best_prices = load_best_prices()
+    log(f"  Loaded {len(shoes_db)} shoes, {len(brand_sizing)} brands, "
+        f"{len(size_avail)} size entries, {len(best_prices)} prices")
+    _engine_data = {
+        "shoes_db": shoes_db,
+        "brand_sizing": brand_sizing,
+        "size_avail": size_avail,
+        "best_prices": best_prices,
+        "shoe_by_slug": {s["slug"]: s for s in shoes_db},
+    }
+    return _engine_data
+
+
+def _enrich_user_shoes(user_shoes, shoes_db):
+    """Enrich raw user shoe entries with DB properties (db_stiffness, db_width, etc.).
+
+    The interpretation engines expect user shoes to have db_* prefixed fields
+    from the shoes table (same format as generate_review_data.py produces).
+    """
+    from benchmark.matrix_scorer import _lookup_user_shoes
+    enriched = []
+    for us, db in _lookup_user_shoes({"shoes": user_shoes}, shoes_db):
+        info = dict(us)  # preserve original fields (brand, model, size_eu, fit)
+        if db:
+            info["db_width"] = db.get("width")
+            info["db_heel_volume"] = db.get("heel_volume")
+            info["db_toe_form"] = db.get("toe_form")
+            info["db_closure"] = db.get("closure")
+            info["db_downturn"] = db.get("downturn")
+            info["db_stiffness"] = db.get("computed_stiffness")
+            info["db_asymmetry"] = db.get("asymmetry")
+            info["db_forefoot_volume"] = db.get("forefoot_volume")
+            info["db_feel"] = db.get("feel")
+            info["db_skill_level"] = db.get("skill_level")
+            info["db_no_edge"] = db.get("no_edge")
+            info["db_gender"] = db.get("gender")
+            info["slug"] = db.get("slug")
+        enriched.append(info)
+    return enriched
+
+
 def generate_recommendations(scan_id, profile):
-    """Pre-filter shoes, call Sonnet API, validate slugs, write to DB."""
-    import scan_llm_sonnet
+    """Score shoes deterministically, generate interpretation, write to DB.
+
+    Replaces the previous Sonnet API call with:
+    - matrix_scorer for shoe selection + scoring (4 tiers: baseline/softer/stiffer/budget)
+    - interp_foot_shape for Section 1
+    - interp_shoe_fit for Section 2
+    - interp_what_to_look_for for Section 3
+    - interp_shoe_desc for per-shoe description paragraphs (P1/P2/P3)
+    """
+    from benchmark.matrix_scorer import (
+        run_case_full, calc_recommended_size, check_size_available,
+    )
+    from benchmark.interp_foot_shape import generate_foot_shape
+    from benchmark.interp_shoe_fit import generate_shoe_fit
+    from benchmark.interp_what_to_look_for import generate_what_to_look_for
+    from benchmark.interp_shoe_desc import generate_shoe_description
+
+    # Load cached shoe data
+    ed = _load_engine_data()
+    shoes_db = ed["shoes_db"]
+    brand_sizing = ed["brand_sizing"]
+    size_avail = ed["size_avail"]
+    best_prices = ed["best_prices"]
+    shoe_by_slug = ed["shoe_by_slug"]
 
     # Fetch full scan data (measurements + preferences)
     scan_data = scan_recommender.fetch_scan_data(scan_id)
@@ -332,59 +419,87 @@ def generate_recommendations(scan_id, profile):
     merged = {**scan_data, **profile}
     merged["next_shoe_preference"] = scan_data.get("next_shoe_preference", "allround")
     merged["sex"] = scan_data.get("sex", "")
-    merged["shoes"] = scan_data.get("shoes") or []
     merged["next_shoe_notes"] = scan_data.get("next_shoe_notes", "")
 
-    # Pre-filter candidates
-    log(f"  Pre-filtering shoe candidates...")
-    cat_result = scan_recommender.get_categorized_candidates(merged)
-    insights = scan_recommender.get_applicable_insights(merged)
+    # Raw user shoes from DB
+    raw_shoes = scan_data.get("shoes") or []
+    merged["shoes"] = raw_shoes
 
-    # All candidates already tagged with _categories by the recommender
-    candidates = cat_result["categories"].get("all", [])
+    # Enrich user shoes with DB properties for interpretation engines
+    enriched_shoes = _enrich_user_shoes(raw_shoes, shoes_db)
 
-    # Build LLM input (exclude output/internal fields)
-    _llm_exclude_keys = {
-        "interpretation", "recommendations", "id", "created_at",
-        "landmarks", "validation_results", "generated_at", "status",
-        "confidence", "notes", "volume_class", "email",
-        "pipeline_stage", "pipeline_error", "pipeline_started_at",
-    }
-    llm_scan_data = {
-        k: v for k, v in merged.items()
-        if k not in _llm_exclude_keys
-    }
-    llm_scan_data["user_avg_stiffness"] = cat_result["user_avg_stiffness"]
-    llm_scan_data["user_stiffness_label"] = cat_result["user_stiffness_label"]
-    llm_scan_data["user_performance_label"] = cat_result["user_performance_label"]
+    # Build profile for interpretation engines (needs enriched shoes)
+    interp_profile = dict(merged)
+    interp_profile["shoes"] = enriched_shoes
 
-    # Call Sonnet API
-    log(f"  Calling Sonnet API with {len(candidates)} candidates...")
-    llm_result = scan_llm_sonnet.generate_interpretation_sonnet(
-        scan_data=llm_scan_data,
-        shoe_candidates=candidates,
-    )
+    # ── Section 1-3: Interpretation ──────────────────────────────────
+    log(f"  Generating interpretation sections...")
+    interpretation = []
 
-    if not llm_result:
-        raise Exception("Sonnet API returned no result")
+    s1 = generate_foot_shape(interp_profile)
+    if s1:
+        interpretation.append({"title": "Your Foot Shape", "paragraphs": s1})
 
-    interpretation = llm_result.get("interpretation")
-    recommendations = llm_result.get("recommendations", [])
+    s2 = generate_shoe_fit(interp_profile)
+    if s2:
+        interpretation.append({"title": "What Your Current Shoe Fit Tells Us", "paragraphs": s2})
 
-    # Validate slugs
-    validated_recs = []
-    for rec in recommendations:
-        if scan_recommender.verify_slug(rec.get("slug", "")):
-            validated_recs.append(rec)
-        else:
-            log(f"  Dropping unverified slug: {rec.get('slug')}")
-    recommendations = validated_recs
+    s3 = generate_what_to_look_for(interp_profile, enriched_shoes)
+    if s3:
+        interpretation.append({"title": "What to Look For", "paragraphs": s3})
 
-    # Strip any LLM-provided price_eur from recommendations.
-    # Prices are fetched live by the frontend via get_best_prices() RPC
-    # so we don't store stale prices in the DB.
-    for rec in recommendations:
-        rec.pop("price_eur", None)
+    # ── Shoe scoring + selection (4 tiers) ───────────────────────────
+    log(f"  Running matrix scorer...")
+    case = {"profile": merged}
+    tier_result = run_case_full(case, shoes_db, brand_sizing, size_avail,
+                                best_prices=best_prices)
+
+    # ── Build recommendations in frontend format ─────────────────────
+    recommendations = []
+    for tier_name in ("baseline", "softer", "stiffer", "budget"):
+        tier_picks = tier_result.get(tier_name, [])
+
+        # Enrich picks with DB properties for shoe descriptions
+        enriched_picks = []
+        for p in tier_picks:
+            db = shoe_by_slug.get(p["slug"], {})
+            pick = dict(p)
+            pick["tier"] = tier_name
+            pick["asymmetry"] = db.get("asymmetry") or p.get("asymmetry")
+            pick["forefoot_volume"] = db.get("forefoot_volume")
+            pick["feel"] = db.get("feel") or p.get("feel")
+            pick["skill_level"] = db.get("skill_level")
+            pick["gender"] = db.get("gender")
+            pick["special_fit_notes"] = db.get("special_fit_notes")
+            pick["description"] = db.get("description")
+            pick["rubber_type"] = db.get("rubber_type")
+            pick["rubber_thickness_mm"] = db.get("rubber_thickness_mm")
+            pick["upper_material"] = db.get("upper_material")
+            enriched_picks.append(pick)
+
+        # Generate shoe descriptions (P1/P2/P3) within this tier
+        for pick in enriched_picks:
+            pick["shoe_desc"] = generate_shoe_description(
+                pick, interp_profile, all_picks=enriched_picks)
+
+        # Convert to frontend recommendation format
+        for pick in enriched_picks:
+            desc = pick.get("shoe_desc", ["", "", ""])
+            rec_size = pick.get("rec_size")
+
+            rec = {
+                "slug": pick["slug"],
+                "brand": pick["brand"],
+                "model": pick["model"],
+                "category": tier_name,
+                "recommended_size_eu": round(rec_size * 2) / 2 if rec_size else None,
+                "description": desc[0] if len(desc) > 0 else "",  # P1 = shoe description
+                "why": desc[1] if len(desc) > 1 else "",           # P2 = why selected
+                "tradeoffs": desc[2] if len(desc) > 2 else "",     # P3 = tradeoffs
+            }
+            recommendations.append(rec)
+
+    log(f"  Generated {len(recommendations)} recommendations across 4 tiers")
 
     # Write results to DB
     result_data = {"pipeline_stage": "complete"}

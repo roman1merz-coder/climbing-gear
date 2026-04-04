@@ -583,8 +583,14 @@ body {
 .shoe-rec-size {
   font-size: 0.82rem; color: #c98a42; font-weight: 600;
 }
+.shoe-rec-desc {
+  font-size: 0.88rem; color: #5a5347; line-height: 1.5; margin-bottom: 6px;
+}
 .shoe-rec-why {
-  font-size: 0.88rem; color: #5a5347; line-height: 1.5;
+  font-size: 0.88rem; color: #5a5347; line-height: 1.5; margin-bottom: 6px;
+}
+.shoe-rec-tradeoffs {
+  font-size: 0.84rem; color: #8a7e6e; line-height: 1.5; font-style: italic;
 }
 .results-email-section {
   max-width: 340px; margin: 1.5rem auto; text-align: left;
@@ -2300,13 +2306,17 @@ function renderRecommendations(category) {
     const card = document.createElement('div');
     card.className = 'shoe-rec-card';
     const priceHtml = rec.price_eur ? '<span class="shoe-rec-price">' + rec.price_eur.toFixed(2) + ' EUR</span>' : '';
+    const descHtml = rec.description ? '<div class="shoe-rec-desc">' + escHtml(rec.description) + '</div>' : '';
+    const tradeoffsHtml = rec.tradeoffs ? '<div class="shoe-rec-tradeoffs">' + escHtml(rec.tradeoffs) + '</div>' : '';
     card.innerHTML =
       '<div class="shoe-rec-header">' +
         '<span class="shoe-rec-name">' + escHtml(rec.brand + ' ' + rec.model) + '</span>' +
         '<span class="shoe-rec-size">EU ' + (rec.recommended_size_eu || '?') + '</span>' +
         priceHtml +
       '</div>' +
-      '<div class="shoe-rec-why">' + escHtml(rec.why || '') + '</div>';
+      descHtml +
+      '<div class="shoe-rec-why">' + escHtml(rec.why || '') + '</div>' +
+      tradeoffsHtml;
     container.appendChild(card);
   });
 }
