@@ -621,14 +621,23 @@ def generate_foot_shape(profile):
 
 def _toe_shape_text(p):
     """Toe shape phrase for the opening sentence.
-    When confidence is low, qualify the classification as borderline."""
-    ts = p["toe_shape"]
-    conf = p.get("toe_confidence")
 
-    # Borderline: only when confidence is very low (below 0.5).
-    # Confidence mapping: low=0.4, moderate=0.65, high=0.9.
-    # Moderate confidence is good enough -- don't call it borderline.
-    if conf is not None and conf < 0.5:
+    Uses toe_delta_ratio (from foot_measure) to decide if the classification
+    is clear or borderline. The ratio is normalized by foot length:
+      negative = big toe longer (egyptian)
+      positive = 2nd toe longer (greek)
+      near zero = roughly equal (roman)
+
+    Borderline threshold: abs(ratio) < 0.02 means the toes are almost equal
+    and the classification could go either way.
+    """
+    ts = p["toe_shape"]
+    tdr = p.get("toe_delta_ratio")
+
+    # Borderline: delta is very small (toes nearly equal length)
+    is_borderline = tdr is not None and abs(tdr) < 0.02
+
+    if is_borderline:
         borderline = {
             "egyptian": (
                 "a borderline Egyptian toe shape -- your big toe is the longest "

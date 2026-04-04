@@ -328,16 +328,8 @@ def _find_second_toe_tip(mask):
     if len(toe_tips) < 2:
         return toe_tips[0], toe_tips
 
-    # Determine big-toe side: compare leftmost vs rightmost tip heights.
-    # The big toe is on the side with the lower y (higher in image).
-    # Then order tips from big-toe side so index 0 = big toe, index 1 = 2nd toe.
-    left_tip_y = toe_tips[0][1]
-    right_tip_y = toe_tips[-1][1]
-    if right_tip_y < left_tip_y:
-        # Big toe is on the right → reverse so big toe comes first
-        toe_tips = toe_tips[::-1]
-
-    # toe_tips[0] = big toe, toe_tips[1] = 2nd toe (positionally)
+    # Right foot only: big toe is always leftmost (most medial).
+    # Second toe = toe_tips[1] (second from left). No reversal needed.
     second_toe = toe_tips[1]
 
     return second_toe, toe_tips
@@ -478,9 +470,14 @@ def detect_toe_shape(mask, upper_row, ball_row):
 
     Method:
     1. Build skyline: for each column, find topmost mask pixel in toe zone
-    2. Smooth skyline to reduce noise
-    3. Find peaks (toe tips) as local minima in skyline y-values
-    4. Compare relative heights of the first two peaks
+    2. Smooth skyline for peak detection (toe tip coordinates)
+    3. Classify shape using zone-based comparison on the RAW skyline:
+       - Big toe zone: first 5-20% of forefoot width (medial side)
+       - Second toe zone: 20-38% of forefoot width
+       This avoids the problem of adjacent toes merging into one peak
+       in the smoothed skyline (common when toes touch in sole photos).
+
+    Right foot only: big toe is always on the left (most medial) side.
 
     Returns: (shape_name, [(x, y), ...] list of toe tip coordinates)
     """
@@ -492,15 +489,16 @@ def detect_toe_shape(mask, upper_row, ball_row):
 
     col_min, col_max = cols_with_pixels[0], cols_with_pixels[-1]
 
-    # Build skyline: topmost mask pixel per column
-    skyline = np.full(col_max - col_min + 1, toe_zone_end, dtype=np.float64)
+    # Build raw skyline: topmost mask pixel per column
+    n_cols = col_max - col_min + 1
+    skyline = np.full(n_cols, toe_zone_end, dtype=np.float64)
     for i, col in enumerate(range(col_min, col_max + 1)):
         col_pixels = np.where(mask[upper_row:toe_zone_end, col] > 0)[0]
         if len(col_pixels) > 0:
             skyline[i] = upper_row + col_pixels[0]
 
-    # Smooth to remove noise
-    kernel_size = max(5, len(skyline) // 30)
+    # Smooth for peak detection (toe tip coordinates for overlay/HVA)
+    kernel_size = max(5, n_cols // 30)
     if kernel_size % 2 == 0:
         kernel_size += 1
     from scipy.ndimage import uniform_filter1d
@@ -509,11 +507,11 @@ def detect_toe_shape(mask, upper_row, ball_row):
     # Find peaks (local minima in y = toe tips sticking up)
     from scipy.signal import find_peaks
     inverted = -skyline_smooth
-    peaks, properties = find_peaks(inverted, distance=len(skyline) // 8, prominence=3)
+    peaks, properties = find_peaks(inverted, distance=n_cols // 8, prominence=3)
 
     # If too few peaks, retry with relaxed parameters
     if len(peaks) < 2:
-        peaks2, _ = find_peaks(inverted, distance=len(skyline) // 10, prominence=2)
+        peaks2, _ = find_peaks(inverted, distance=n_cols // 10, prominence=2)
         if len(peaks2) >= 2:
             peaks = peaks2
 
@@ -529,40 +527,54 @@ def detect_toe_shape(mask, upper_row, ball_row):
 
     toe_tips.sort(key=lambda t: t[0])
 
-    # Big toe = side with lowest y (highest tip)
-    left_tip_y = toe_tips[0][1]
-    right_tip_y = toe_tips[-1][1]
-    if right_tip_y < left_tip_y:
-        toe_tips = toe_tips[::-1]
+    # Right foot only: big toe is always the leftmost (most medial) peak.
+    # No reversal needed -- left-to-right order = big toe first.
 
     toe_tips = toe_tips[:5]
-    tip_ys = [t[1] for t in toe_tips]
 
-    if len(tip_ys) < 2:
-        return "unknown", toe_tips
+    # ── Toe shape classification using raw skyline at peak locations ──
+    # Use lightly smoothed skyline (kernel=5) to get actual tip heights
+    # at the peak x-positions found by the peak detector.
+    # This avoids the heavy smoothing bias that can flatten narrow toes.
+    skyline_light = uniform_filter1d(skyline, size=5)
 
-    t1, t2 = tip_ys[0], tip_ys[1]
-    t3 = tip_ys[2] if len(tip_ys) > 2 else t2 + 10
+    # Get raw heights at each peak position
+    tip_ys_raw = []
+    for (tx, _ty) in toe_tips:
+        idx = tx - col_min
+        # Use min y in a small +/- 5 col window on the light skyline
+        win = 5
+        start_w = max(0, idx - win)
+        end_w = min(n_cols, idx + win + 1)
+        tip_ys_raw.append(float(np.min(skyline_light[start_w:end_w])))
+
+    if len(tip_ys_raw) < 2:
+        return "unknown", toe_tips, 0.0
+
+    t1, t2 = tip_ys_raw[0], tip_ys_raw[1]
+    t3 = tip_ys_raw[2] if len(tip_ys_raw) > 2 else t2 + 10
 
     # Positive diff = second toe higher (lower y in image coords)
-    diff_12 = t1 - t2  # >0 means toe 2 higher than toe 1
-    diff_23 = t2 - t3  # >0 means toe 3 higher than toe 2
-    threshold = max(5, (ball_row - upper_row) * 0.02)
+    diff_12 = t1 - t2
+    diff_23 = t2 - t3
+    foot_length = ball_row - upper_row
+    threshold = max(3, foot_length * 0.012)
 
     toes_12_equal = abs(diff_12) <= threshold
     toes_23_equal = abs(diff_23) <= threshold
 
     if toes_12_equal and toes_23_equal:
-        # First 3 toes roughly equal height
         shape = "roman"
     elif diff_12 > threshold:
-        # Toe 2 higher than toe 1 → greek
         shape = "greek"
     else:
-        # Toe 1 higher than (or equal to) toe 2 → egyptian
         shape = "egyptian"
 
-    return shape, toe_tips
+    # Normalized delta: how far apart toe 1 and toe 2 are relative to foot length.
+    # Negative = big toe longer (egyptian), positive = 2nd toe longer (greek), ~0 = roman.
+    toe_delta_ratio = round(-diff_12 / foot_length, 4) if foot_length > 0 else 0.0
+
+    return shape, toe_tips, toe_delta_ratio
 
 
 # ── Hallux valgus (HVA) measurement ─────────────────────────────────────
@@ -667,7 +679,7 @@ def measure_sole(mask):
     heel_width_ratio = round(max_hw / foot_length, 3) if foot_length > 0 else 0.0
 
     # Toe shape detection
-    toe_shape, toe_tips = detect_toe_shape(mask, upper_row, ball_row)
+    toe_shape, toe_tips, toe_delta_ratio = detect_toe_shape(mask, upper_row, ball_row)
 
     # Hallux valgus measurement
     hva_offset_ratio, hallux_valgus_class = measure_hallux_valgus(
@@ -696,6 +708,7 @@ def measure_sole(mask):
         "heel_width_class": classify_ratio("heel_width_ratio", heel_width_ratio),
         "toe_shape": toe_shape,
         "toe_tips": toe_tips,
+        "toe_delta_ratio": toe_delta_ratio,
         "hva_offset_ratio": hva_offset_ratio,
         "hallux_valgus_class": hallux_valgus_class,
     }

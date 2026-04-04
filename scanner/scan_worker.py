@@ -265,7 +265,7 @@ def process_photos(scan_id):
     # Build profile
     profile = {
         "toe_shape": sole_m.get("toe_shape"),
-        "toe_confidence": sole_m.get("toe_confidence"),
+        "toe_delta_ratio": sole_m.get("toe_delta_ratio", 0.0),
         "forefoot_width_ratio": sole_m.get("forefoot_width_ratio"),
         "heel_width_ratio": sole_m.get("heel_width_ratio"),
         "arch_length_ratio": sole_m.get("arch_length_ratio"),
@@ -288,13 +288,22 @@ def process_photos(scan_id):
 
 def write_measurements_to_db(scan_id, profile, sole_m, side_m):
     """Write measurement results to Supabase."""
-    toe_conf_map = {"high": 0.9, "moderate": 0.65, "low": 0.4}
-    toe_conf_str = str(sole_m.get("toe_confidence", "low"))
-    toe_conf_num = toe_conf_map.get(toe_conf_str, 0.5)
+    # Compute toe_confidence from toe_delta_ratio for DB storage.
+    # toe_delta_ratio: negative = egyptian, positive = greek, ~0 = roman.
+    # Confidence = how clearly the shape is one type vs borderline.
+    # |ratio| >= 0.04 -> high (0.9), 0.02-0.04 -> moderate (0.65), < 0.02 -> low (0.4)
+    tdr = abs(sole_m.get("toe_delta_ratio", 0.0))
+    if tdr >= 0.04:
+        toe_conf_num = 0.9
+    elif tdr >= 0.02:
+        toe_conf_num = 0.65
+    else:
+        toe_conf_num = 0.4
 
     update_data = {
         "toe_shape": profile.get("toe_shape"),
         "toe_confidence": toe_conf_num,
+        "toe_delta_ratio": sole_m.get("toe_delta_ratio", 0.0),
         "forefoot_width_ratio": profile.get("forefoot_width_ratio"),
         "heel_width_ratio": profile.get("heel_width_ratio"),
         "arch_length_ratio": profile.get("arch_length_ratio"),
@@ -589,6 +598,7 @@ def check_waiting_scans():
 
                 profile = {
                     "toe_shape": scan_data.get("toe_shape"),
+                    "toe_delta_ratio": scan_data.get("toe_delta_ratio", 0.0),
                     "forefoot_width_ratio": scan_data.get("forefoot_width_ratio"),
                     "heel_width_ratio": scan_data.get("heel_width_ratio"),
                     "arch_length_ratio": scan_data.get("arch_length_ratio"),
