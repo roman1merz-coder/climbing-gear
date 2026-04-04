@@ -746,18 +746,20 @@ def _para_tradeoffs(pick, profile, all_picks=None):
     _dt_mentioned = False
 
     if ds_score < 0:
-        # Different from what user wears -- find which ref shoe is most aggressive
-        ref_name = None
+        # Different from what user wears -- compare against average
         if user_shoes:
-            max_rank = -1
-            for s in user_shoes:
-                rd = (s.get("db_downturn") or "").lower()
-                r = _DT_RANK.get(rd, -1)
-                if r > max_rank:
-                    max_rank = r
-                    ref_name = f"{s['brand']} {s['model']}"
-        if ref_name:
-            issues.append(f"the {dt_short} downturn differs from your {ref_name}")
+            ref_ranks = [_DT_RANK.get((s.get("db_downturn") or "").lower(), -1)
+                         for s in user_shoes]
+            ref_ranks = [r for r in ref_ranks if r >= 0]
+            shoe_dt_rank = _DT_RANK.get(shoe_dt, 0)
+            if ref_ranks:
+                avg_rank = sum(ref_ranks) / len(ref_ranks)
+                if shoe_dt_rank < avg_rank:
+                    issues.append(f"the {dt_short} downturn is less aggressive than what you currently climb in")
+                else:
+                    issues.append(f"the {dt_short} downturn is more aggressive than what you currently climb in")
+            else:
+                issues.append(f"the {dt_short} downturn differs from what you are used to")
         else:
             issues.append(f"the {dt_short} downturn differs from what you are used to")
         _dt_mentioned = True
@@ -772,17 +774,10 @@ def _para_tradeoffs(pick, profile, all_picks=None):
     if not _dt_mentioned and shoe_dt and user_shoes:
         ref_dts = [(s.get("db_downturn") or "").lower() for s in user_shoes if s.get("db_downturn")]
         if ref_dts:
-            max_ref_rank = max(_DT_RANK.get(d, 0) for d in ref_dts)
+            avg_ref_rank = sum(_DT_RANK.get(d, 0) for d in ref_dts) / len(ref_dts)
             shoe_dt_rank = _DT_RANK.get(shoe_dt, 0)
-            if shoe_dt_rank < max_ref_rank:
-                ref_name = None
-                for s in user_shoes:
-                    rd = (s.get("db_downturn") or "").lower()
-                    if _DT_RANK.get(rd, 0) == max_ref_rank:
-                        ref_name = f"{s['brand']} {s['model']}"
-                        break
-                if ref_name:
-                    issues.append(f"the {dt_short} downturn is less aggressive than your {ref_name}")
+            if shoe_dt_rank < avg_ref_rank - 0.5:
+                issues.append(f"the {dt_short} downturn is less aggressive than what you currently climb in")
 
     # Property-level downturn: less aggressive than performance preference
     if not _dt_mentioned and shoe_dt and pref == "performance" and _DT_RANK.get(shoe_dt, 2) < 3:
@@ -827,58 +822,54 @@ def _para_tradeoffs(pick, profile, all_picks=None):
             issues.append("the stiffness does not match what you asked for")
     elif st_score < 0:
         if sw:
-            ref_name, ref_val, ref_sw = _closest_ref_shoe(
-                user_shoes, shoe_stiff, "db_stiffness", _stiffness_word)
-            if ref_name and ref_val is not None:
-                if shoe_stiff < ref_val:
-                    issues.append(f"the {sw} sole is softer than your {ref_sw} {ref_name}")
+            # Compare against average stiffness of user's shoes
+            stiff_vals = [rs.get("db_stiffness") for rs in (user_shoes or [])
+                          if rs.get("db_stiffness") is not None]
+            if stiff_vals:
+                avg_stiff = sum(stiff_vals) / len(stiff_vals)
+                avg_sw = _stiffness_word(avg_stiff)
+                if shoe_stiff < avg_stiff:
+                    issues.append(f"the {sw} sole is softer than what you currently climb in")
                 else:
-                    issues.append(f"the {sw} sole is stiffer than your {ref_sw} {ref_name}")
+                    issues.append(f"the {sw} sole is stiffer than what you currently climb in")
             else:
                 direction = "stiffer" if shoe_stiff and shoe_stiff > 0.5 else "softer"
                 issues.append(f"the {sw} stiffness is {direction} than what you currently climb in")
 
-    # Feel -- name the closest ref shoe with a 2+ rank difference
-    def _feel_label(val):
-        """Map numeric feel rank back to label -- used by _closest_ref_shoe."""
-        return None  # we don't need label-based filtering for feel
+    # Feel -- compare against average feel rank of user's shoes
+    feel_score = bd.get("8b_feel", 0)
+    shoe_feel_rank = _FEEL_RANK.get(shoe_feel)
 
-    def _find_feel_ref():
-        """Find the closest user shoe with a 2+ feel rank difference."""
-        if not shoe_feel or not user_shoes:
-            return None, None
-        shoe_feel_rank = _FEEL_RANK.get(shoe_feel)
-        if shoe_feel_rank is None:
-            return None, None
-        best = (None, None, float('inf'))
+    def _avg_feel_rank():
+        """Compute average feel rank across user shoes."""
+        if not user_shoes:
+            return None
+        ranks = []
         for rs in user_shoes:
             rf = (rs.get("db_feel") or "").lower()
-            ref_rank = _FEEL_RANK.get(rf)
-            if ref_rank is not None and abs(shoe_feel_rank - ref_rank) >= 2:
-                dist = abs(shoe_feel_rank - ref_rank)
-                # Prefer closest (smallest difference that's still >= 2)
-                if dist < best[2]:
-                    name = f"{rs['brand']} {rs['model']}"
-                    direction = "stiffer" if shoe_feel_rank > ref_rank else "softer"
-                    best = (name, direction, dist)
-        if best[0]:
-            return best[0], best[1]
-        return None, None
+            rk = _FEEL_RANK.get(rf)
+            if rk is not None:
+                ranks.append(rk)
+        return sum(ranks) / len(ranks) if ranks else None
 
-    feel_score = bd.get("8b_feel", 0)
     if feel_score < 0:
-        ref_feel_name, feel_dir = _find_feel_ref()
-        if ref_feel_name:
-            issues.append(f"the {shoe_feel} feel is noticeably {feel_dir} than your {ref_feel_name}")
+        avg_rank = _avg_feel_rank()
+        if shoe_feel and shoe_feel_rank is not None and avg_rank is not None:
+            if abs(shoe_feel_rank - avg_rank) >= 1.5:
+                direction = "stiffer" if shoe_feel_rank > avg_rank else "softer"
+                issues.append(f"the {shoe_feel} feel is noticeably {direction} than what you currently climb in")
+            else:
+                issues.append(f"the {shoe_feel} feel differs from what you climb in now")
         elif shoe_feel:
             issues.append(f"the {shoe_feel} feel differs from what you climb in now")
     else:
-        # Feel score is >= 0, but property-level check: 2+ ranks from ref shoes
+        # Feel score is >= 0, but property-level check: 2+ ranks from average
         _already = any("feel" in i for i in issues)
-        if not _already:
-            ref_feel_name, feel_dir = _find_feel_ref()
-            if ref_feel_name:
-                issues.append(f"the {shoe_feel} feel is noticeably {feel_dir} than your {ref_feel_name}")
+        if not _already and shoe_feel_rank is not None:
+            avg_rank = _avg_feel_rank()
+            if avg_rank is not None and abs(shoe_feel_rank - avg_rank) >= 2:
+                direction = "stiffer" if shoe_feel_rank > avg_rank else "softer"
+                issues.append(f"the {shoe_feel} feel is noticeably {direction} than what you currently climb in")
 
     # Closure / instep
     instep_score = bd.get("8c_instep", 0)
@@ -935,27 +926,18 @@ def _para_tradeoffs(pick, profile, all_picks=None):
 
     _FEEL_RANK = _FEEL_RANK  # already defined above
 
-    # Feel doesn't match reference shoes (score 0-1 = very different feel)
+    # Feel doesn't match user's shoes (score 0-1 = very different feel)
     if bd.get("8b_feel", 99) <= 1 and shoe_feel and user_shoes:
         _already = any("feel" in i for i in issues)
         if not _already:
-            for rs in user_shoes:
-                rf = (rs.get("db_feel") or "").lower()
-                if rf and rf != shoe_feel:
-                    issues.append(f"the {shoe_feel} feel differs from the {rf} feel of your {rs['brand']} {rs['model']}")
-                    break
+            issues.append(f"the {shoe_feel} feel differs from what you currently climb in")
 
-    # Downturn doesn't match reference (dt_same = 0 means completely different)
+    # Downturn doesn't match user's shoes (dt_same = 0 means completely different)
     if bd.get("6-11_downturn_same", 99) == 0 and shoe_dt and user_shoes:
         _already = any("downturn" in i for i in issues)
         if not _already:
-            for rs in user_shoes:
-                rd = (rs.get("db_downturn") or "").lower()
-                if rd and rd != shoe_dt:
-                    dt_short_val = _DT_SHORT.get(shoe_dt, shoe_dt)
-                    rd_short = _DT_SHORT.get(rd, rd)
-                    issues.append(f"the {dt_short_val} downturn is a different profile than the {rd_short} downturn on your {rs['brand']} {rs['model']}")
-                    break
+            dt_short_val = _DT_SHORT.get(shoe_dt, shoe_dt)
+            issues.append(f"the {dt_short_val} downturn is a different profile than what you currently climb in")
 
     # Width match weak (score <= 2 = not a close fit)
     fw_score = bd.get("1-1_fw_baseline", 99)
@@ -983,13 +965,14 @@ def _para_tradeoffs(pick, profile, all_picks=None):
         if not _already:
             sw = _stiffness_word(shoe_stiff)
             if sw:
-                ref_stiff_name, ref_stiff_val, ref_sw_label = _closest_ref_shoe(
-                    user_shoes, shoe_stiff, "db_stiffness", _stiffness_word)
-                if ref_stiff_name:
-                    if shoe_stiff < ref_stiff_val:
-                        issues.append(f"the {sw} sole is softer than your {ref_sw_label} {ref_stiff_name}")
+                stiff_vals = [rs.get("db_stiffness") for rs in (user_shoes or [])
+                              if rs.get("db_stiffness") is not None]
+                if stiff_vals:
+                    avg_stiff = sum(stiff_vals) / len(stiff_vals)
+                    if shoe_stiff < avg_stiff:
+                        issues.append(f"the {sw} sole is softer than what you currently climb in")
                     else:
-                        issues.append(f"the {sw} sole is stiffer than your {ref_sw_label} {ref_stiff_name}")
+                        issues.append(f"the {sw} sole is stiffer than what you currently climb in")
                 else:
                     issues.append(f"the {sw} sole is a different stiffness than what you currently climb in")
 
@@ -1021,10 +1004,10 @@ def _para_tradeoffs(pick, profile, all_picks=None):
             neg_dims.sort(key=lambda x: x[1])  # most negative first
             worst_key, worst_val = neg_dims[0]
             _SUPPRESSED_MSG = {
-                "1-3_long_arch": "the shoe runs short internally -- check comfort with your long arch when trying on",
-                "1-15_toes_squeezed": "the toe box is on the narrow side -- check toe comfort when trying on",
-                "1-15_toes_roomy": "the toe box runs roomy -- check that your toes feel secure",
-                "3-1_fv_baseline": "the forefoot volume is not ideal for your foot -- check fit when trying on",
+                "1-3_long_arch": "the shoe runs short internally, so check comfort with your long arch when trying on",
+                "1-15_toes_squeezed": "the toe box is on the narrow side, so check toe comfort when trying on",
+                "1-15_toes_roomy": "the toe box runs roomy, so check that your toes feel secure",
+                "3-1_fv_baseline": "the forefoot volume is not ideal for your foot, so check fit when trying on",
                 "4-15_toe_mismatch_hint": "the toe box shape is not a perfect match for your foot",
                 "7-15_asym_hint": f"the {shoe_asym} asymmetry could put pressure on your second toe" if user_toe == "greek" and shoe_asym_rank >= 2 else None,
             }
@@ -1064,7 +1047,7 @@ def generate_shoe_description(pick, profile, all_picks=None):
     """
     p2 = _para_why_selected(pick, profile, all_picks=all_picks)
     if pick.get("not_in_stock"):
-        p2 += " Note: this shoe is not currently available online -- check local shops or wait for restocks."
+        p2 += " Note: this shoe is not currently available online. Check local shops or wait for restocks."
     return [
         _para_description(pick, profile),
         p2,

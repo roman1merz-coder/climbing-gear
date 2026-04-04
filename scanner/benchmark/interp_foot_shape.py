@@ -160,8 +160,8 @@ def _dim_heel_depth(p):
         return None
     elif cls == "shallow heel":
         adv = _intensity_adverb(z)
-        return (f"Your heel has a {adv} shallow profile (ratio {_ratio_str(ratio)}) -- "
-                "it does not project backward as much as most feet. "
+        return (f"Your heel has a {adv} shallow profile (ratio {_ratio_str(ratio)}). "
+                "It does not project backward as much as most feet. "
                 "Deeply sculpted heel cups can feel empty at the back even when the width is right. "
                 "This is a shape issue, not a volume issue.")
     else:  # deep
@@ -202,7 +202,7 @@ def _dim_heel_combined(p):
         return (
             f"Your heel is {adv_hw} narrower than average (width ratio {_ratio_str(hw_ratio)}) "
             f"and has a {adv_hd} shallow profile (depth ratio {_ratio_str(hd_ratio)}). "
-            "Together, this means most heel cups will feel empty -- "
+            "Together, this means most heel cups will feel empty because "
             "they are both too wide and too deeply sculpted for your heel shape. "
             "A narrow, flat-backed heel pocket is the best match."
         )
@@ -234,7 +234,7 @@ def _dim_heel_combined(p):
             return (
                 f"Your heel is {adv_hw} narrower than average (ratio {_ratio_str(hw_ratio)}), "
                 f"with normal heel depth ({_ratio_str(hd_ratio)}). "
-                "Like your forefoot, the heel needs a snug fit -- standard or wide heel cups "
+                "Like your forefoot, the heel needs a snug fit. Standard or wide heel cups "
                 "leave dead space that no amount of tightening fixes."
             )
         else:
@@ -255,8 +255,8 @@ def _dim_heel_combined(p):
     elif hw_normal and hd_shallow:
         return (
             f"Your heel width ({_ratio_str(hw_ratio)}) is average, but your heel has a "
-            f"{adv_hd} shallow profile (depth ratio {_ratio_str(hd_ratio)}) -- "
-            "it does not project backward as much as most feet. "
+            f"{adv_hd} shallow profile (depth ratio {_ratio_str(hd_ratio)}). "
+            "It does not project backward as much as most feet. "
             "Deeply sculpted heel cups can feel empty at the back even when the width is right."
         )
     elif hw_normal and hd_deep:
@@ -284,26 +284,26 @@ def _paras_hallux_valgus(p):
     paras.append(
         f"Our scan measured how far your big toe tip sits from the inner edge of your forefoot, "
         f"relative to your foot width. Your result suggests a {hva} inward drift of the big toe{ratio_note} "
-        f"-- a pattern commonly known as hallux valgus. This is very common among climbers and does not "
+        f", a pattern commonly known as hallux valgus. This is very common among climbers and does not "
         f"necessarily mean anything is wrong. Scan angle or foot placement can influence this measurement. "
         f"If the result surprises you, try re-scanning with your foot held flat and straight above the camera "
-        f"during the sole scan. This is not a medical diagnosis -- if you have concerns, consult a podiatrist."
+        f"during the sole scan. This is not a medical diagnosis. If you have concerns, consult a podiatrist."
     )
     toe = p.get("toe_shape", "egyptian")
     if toe == "greek":
         paras.append(
             "What this means for shoe fit: with Greek toes, your big toe is already shorter than your second "
             "toe. Combined with an inward drift, the big toe can lose contact with the inner front of the shoe "
-            "entirely -- reducing power transfer and sensitivity on footholds, and reinforcing the drift over time. "
+            "entirely, reducing power transfer and sensitivity on footholds and reinforcing the drift over time. "
             "Avoid very asymmetric Egyptian lasts that taper sharply to the big-toe side. A moderately wide, "
             "rounded toe box keeps both your second toe and your drifting big toe in contact with the shoe."
         )
     else:
         paras.append(
             "What this means for shoe fit: in shoes with a pointy, tapered toe box, your big toe may not reach "
-            "the actual tip of the shoe. The toe curls inward and leaves the tip empty -- you lose sensitivity "
+            "the actual tip of the shoe. The toe curls inward and leaves the tip empty, so you lose sensitivity "
             "and power transfer on footholds, and your hallux valgus is being reinforced whilst climbing. "
-            "Instead look for a shoe that actually pushes your big toe out -- also meaning that falling back to "
+            "Instead look for a shoe that actually pushes your big toe out. This also means that falling back to "
             "a Greek toe shape might be a bad idea as it pronounces your wrong toe position further."
         )
     return paras
@@ -349,7 +349,7 @@ def _build_closing(p):
         pieces.append(
             "Since both forefoot and heel are wider than average, HV or "
             "wide-fit shoes should work well across the board. Avoid LV "
-            "models -- they will compress both ends."
+            "models because they will compress both ends."
         )
     elif fw_cls == "narrow" and hw_narrow:
         pieces.append(
@@ -391,7 +391,7 @@ def _build_closing(p):
         if fw_cls in ("narrow", "normal"):
             pieces.append(
                 "Combined with your long arch, the toe box may feel tighter "
-                "than your forefoot width alone would suggest -- look for shoes "
+                "than your forefoot width alone would suggest. Look for shoes "
                 "with a compact forefoot zone that does not force your toes to "
                 "fill space they cannot reach."
             )
@@ -403,7 +403,7 @@ def _build_closing(p):
             )
     elif arch_cls == "short arch" and fw_cls == "narrow":
         pieces.append(
-            "Your short arch offsets your narrow forefoot somewhat -- the ball "
+            "Your short arch offsets your narrow forefoot somewhat: the ball "
             "sits further forward, giving your toes more breathing room than "
             "the width ratio alone implies."
         )
@@ -412,7 +412,7 @@ def _build_closing(p):
     if instep_high and heel_d_cls == "shallow heel":
         pieces.append(
             "Your foot needs volume over the midfoot but not behind it. "
-            "Lace-ups are ideal -- you can open them across the instep without affecting heel fit."
+            "Lace-ups are ideal because you can open them across the instep without affecting heel fit."
         )
     elif instep_high and hw_narrow and heel_d_cls != "shallow heel":
         pieces.append(
@@ -422,7 +422,7 @@ def _build_closing(p):
     elif instep_low and fw_cls == "narrow":
         pieces.append(
             "Your narrow forefoot and low instep give your foot a low overall volume. "
-            "Even LV shoes may gap over the instep -- lace-ups let you cinch down for a precise fit."
+            "Even LV shoes may gap over the instep. Lace-ups let you cinch down for a precise fit."
         )
 
     # ── 5. Toe shape + hallux valgus ──
@@ -586,8 +586,8 @@ def generate_foot_shape(profile):
         # All normal -- concise opening, no repetition
         paragraphs.append(
             f"Your foot scan reveals {toe_desc}. "
-            "All five dimensions we measure -- forefoot width, arch length, instep height, "
-            "heel width, and heel depth -- are within the normal range for climbers."
+            "All five dimensions we measure (forefoot width, arch length, instep height, "
+            "heel width, and heel depth) are within the normal range for climbers."
         )
 
     # ── Normal dimensions: one compact sentence (only when mixed with notable) ──
@@ -624,8 +624,8 @@ def _toe_shape_text(p):
 
     Uses toe_delta_ratio (from foot_measure) to decide if the classification
     is clear or borderline. The ratio is normalized by foot length:
-      negative = big toe longer (egyptian)
-      positive = 2nd toe longer (greek)
+      positive = big toe longer (egyptian)
+      negative = 2nd toe longer (greek)
       near zero = roughly equal (roman)
 
     Borderline threshold: abs(ratio) < 0.02 means the toes are almost equal
@@ -640,15 +640,15 @@ def _toe_shape_text(p):
     if is_borderline:
         borderline = {
             "egyptian": (
-                "a borderline Egyptian toe shape -- your big toe is the longest "
+                "a borderline Egyptian toe shape, where your big toe is the longest "
                 "but only barely longer than your second toe"
             ),
             "greek": (
-                "a borderline Greek toe shape -- your second toe extends just "
+                "a borderline Greek toe shape, where your second toe extends just "
                 "slightly past your big toe"
             ),
             "roman": (
-                "a borderline Roman toe shape -- your first toes are close "
+                "a borderline Roman toe shape, where your first toes are close "
                 "to equal length but not clearly so"
             ),
         }
