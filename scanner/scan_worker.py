@@ -324,7 +324,7 @@ def write_measurements_to_db(scan_id, profile, sole_m, side_m):
 
     # Build notes
     notes_parts = [
-        f"Toe: {profile.get('toe_shape')} ({toe_conf_str} confidence)",
+        f"Toe: {profile.get('toe_shape')} (delta {sole_m.get('toe_delta_ratio', 0.0):.4f})",
         f"Width: {profile.get('forefoot_width_ratio')} ({profile.get('forefoot_width_class')})",
         f"Heel: {profile.get('heel_width_ratio')} ({profile.get('heel_width_class')})",
         f"Arch: {profile.get('arch_length_ratio')} ({profile.get('arch_length_class')})",
