@@ -664,44 +664,12 @@ body.scanner-active {
   <div id="gyro-warning"></div>
 </div>
 
-<div id="transition-screen">
-  <h2>Sole captured ✓</h2>
-  <img id="sole-preview" />
-  <p class="transition-info">Now let's capture the side profile of your foot.</p>
-  <ol class="transition-steps">
-    <li><strong>Prop your phone upright</strong> (lean it against something)</li>
-    <li><strong>Position your foot sideways</strong> in front of the camera</li>
-    <li>Align with the <strong>side outline guide</strong></li>
-    <li>Hold steady - auto-captures when aligned</li>
-  </ol>
-  <div class="btn-row-transition">
-    <button id="retake-sole-btn">Retake Sole</button>
-    <button id="continue-side-btn">Continue to Side</button>
-  </div>
-</div>
-
-<div id="result-screen">
-  <div class="result-photos">
-    <img id="result-sole-img" />
-    <img id="result-side-img" />
-  </div>
-  <div class="result-labels">
-    <span>Sole</span>
-    <span>Side Profile</span>
-  </div>
-  <div class="result-info">
-    Both photos captured. Save to upload for analysis, or retake to start over.
-  </div>
-  <div class="btn-row">
-    <button id="retake-btn">Retake</button>
-    <button id="save-btn">Save &amp; Upload</button>
-  </div>
-  <div id="save-status"></div>
-</div>
+<!-- transition-screen and result-screen removed - replaced by instruction/review flow -->
 
 
 <!-- ── Sole Instruction Screen ── -->
 <div id="sole-instruction" class="instruction-screen">
+  <span class="step-badge">Step 1 of 2 - Sole</span>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-sole.jpg" alt="How to take sole photo" />
   <p class="instruction-text">
     <strong>Lay your phone flat on the ground</strong>, screen up, and lift your foot above the camera.
@@ -713,6 +681,7 @@ body.scanner-active {
 
 <!-- ── Sole Review Screen ── -->
 <div id="sole-review" class="review-screen">
+  <span class="step-badge" style="background:#3d7a52">Step 1 of 2 - Review</span>
   <h2>Check Your Sole Photo</h2>
   <div class="review-img-wrap">
     <img class="review-img" id="review-sole-img" />
@@ -735,12 +704,12 @@ body.scanner-active {
 
 <!-- ── Side Instruction Screen ── -->
 <div id="side-instruction" class="instruction-screen">
+  <span class="step-badge">Step 2 of 2 - Side Profile</span>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-side.jpg" alt="How to take side photo" />
   <p class="instruction-text">
     <strong>Hold your phone horizontally on the ground</strong>, screen facing the inside of your right foot
     so the camera captures your side profile. Keep your foot flat on the ground and stay still,
-    it will snap automatically. Try to align your foot with the outline on the screen.<br><br>
-    <strong>Before you start:</strong> Lock your screen rotation so the display doesn't flip when you turn the phone sideways.
+    it will snap automatically. Try to align your foot with the outline on the screen.
     Voice guidance will talk you through the scan.
   </p>
   <button class="btn-primary" id="start-side-scan" style="max-width:360px;width:100%">Start Side Scan</button>
@@ -748,6 +717,7 @@ body.scanner-active {
 
 <!-- ── Side Review Screen ── -->
 <div id="side-review" class="review-screen">
+  <span class="step-badge" style="background:#3d7a52">Step 2 of 2 - Review</span>
   <h2>Check Your Side Photo</h2>
   <div class="review-img-wrap">
     <img class="review-img" id="review-side-img" />
@@ -875,7 +845,7 @@ body.scanner-active {
   </p>
   <button class="btn-done" id="done-btn">Done</button>
   <div class="done-status" id="done-status"></div>
-  <a class="btn-browse" href="https://climbing-gear.com/shoes">Browse Shoes</a>
+  <a class="btn-browse" href="https://www.climbing-gear.com/shoes">Browse Shoes</a>
   <p class="thankyou-text" style="margin-top:0.5rem">
     Meanwhile, feel free to browse climbing shoes from our database - happy climbing!
   </p>
@@ -932,7 +902,7 @@ body.scanner-active {
   </div>
   <div class="results-actions">
     <button class="btn-done" id="results-done-btn">Done</button>
-    <a class="btn-browse" href="https://climbing-gear.com/shoes">Browse All Shoes</a>
+    <a class="btn-browse" href="https://www.climbing-gear.com/shoes">Browse All Shoes</a>
   </div>
 </div>
 
@@ -1132,7 +1102,7 @@ function showScreen(id, pushState) {
     history.pushState({ screen: id }, '', '');
   }
   currentScreen = id;
-  ['start-screen','scanner','transition-screen','result-screen','sole-instruction','sole-review','side-instruction','side-review','shoe-fit-screen','processing-screen','results-screen','thankyou-screen'].forEach(s => {
+  ['start-screen','scanner','sole-instruction','sole-review','side-instruction','side-review','shoe-fit-screen','processing-screen','results-screen','thankyou-screen'].forEach(s => {
     document.getElementById(s).style.display = 'none';
   });
   document.getElementById(id).style.display = id === 'scanner' ? 'block' : 'flex';
@@ -1173,15 +1143,7 @@ document.getElementById('start-btn').addEventListener('click', () => {
   initSpeech();
   showScreen('sole-instruction');
 });
-document.getElementById('retake-sole-btn').addEventListener('click', () => {
-  soleDataUrl = null;
-  startScanner('sole');
-});
-document.getElementById('continue-side-btn').addEventListener('click', () => startScanner('side'));
-document.getElementById('retake-btn').addEventListener('click', retakeAll);
-document.getElementById('save-btn').addEventListener('click', saveResult);
-
-/* New instruction + review screen listeners */
+/* Instruction + review screen listeners */
 document.getElementById('start-sole-scan').addEventListener('click', () => { initSpeech(); startScanner('sole'); });
 document.getElementById('retake-sole-review').addEventListener('click', () => showScreen('sole-instruction'));
 document.getElementById('approve-sole').addEventListener('click', () => showScreen('side-instruction'));
