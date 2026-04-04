@@ -496,9 +496,14 @@ def _para_why_selected(pick, profile, all_picks=None):
     if not unique_feedback and shared_feedback:
         reasons.append(shared_feedback[0])
 
-    # Shallow heel (specific user anatomy)
+    # Shallow heel (specific user anatomy) -- merge with heel-empty if both fire
     sh_score = bd.get("2-5_shallow_heel", 0)
-    if sh_score >= 3:
+    _has_heel_reason = any("heel" in r for r in reasons)
+    if sh_score >= 3 and _has_heel_reason:
+        # Replace the existing heel reason with a merged version
+        reasons = [r for r in reasons if "heel" not in r]
+        reasons.insert(0, "the narrow heel cup fits your shallow heel and should fix the empty-heel feeling from your current shoes")
+    elif sh_score >= 3:
         reasons.append("the narrow heel cup suits your shallow heel")
 
     # Instep relief
@@ -726,11 +731,6 @@ def _para_tradeoffs(pick, profile, all_picks=None):
             issues.append(f"the toe box is built for {tf_str} feet, not {user_toe}")
     elif toe_hint < 0 and toe_score <= 0:
         issues.append(f"the toe box shape is not a perfect match for your {user_toe} foot")
-
-    # Long arch penalty -- suppress if it hits nearly every pick (case-level, not shoe-level)
-    la_score = bd.get("1-3_long_arch", 0)
-    if la_score < 0 and not _shared_by_most("1-3_long_arch"):
-        issues.append("the shoe runs short internally, which can feel cramped with your long arch")
 
     # Reference-shoe forefoot comparisons -- name the shoe; suppress if shared
     ffl_score = bd.get("1-16_ff_loose", 0)
@@ -1016,7 +1016,6 @@ def _para_tradeoffs(pick, profile, all_picks=None):
             neg_dims.sort(key=lambda x: x[1])  # most negative first
             worst_key, worst_val = neg_dims[0]
             _SUPPRESSED_MSG = {
-                "1-3_long_arch": "the shoe runs short internally, so check comfort with your long arch when trying on",
                 "1-15_toes_squeezed": "the toe box is on the narrow side, so check toe comfort when trying on",
                 "1-15_toes_roomy": "the toe box runs roomy, so check that your toes feel secure",
                 "3-1_fv_baseline": "the forefoot volume is not ideal for your foot, so check fit when trying on",
@@ -1060,6 +1059,10 @@ def generate_shoe_description(pick, profile, all_picks=None):
     p2 = _para_why_selected(pick, profile, all_picks=all_picks)
     if pick.get("not_in_stock"):
         p2 += " Note: this shoe is not currently available online. Check local shops or wait for restocks."
+    # Budget tier: lead with price
+    if pick.get("tier") == "budget" and pick.get("best_price") is not None:
+        price = pick["best_price"]
+        p2 = f"At EUR {price:.0f}, this is a strong value pick. {p2}"
     return [
         _para_description(pick, profile),
         p2,

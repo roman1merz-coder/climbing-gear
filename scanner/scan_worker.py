@@ -509,6 +509,9 @@ def generate_recommendations(scan_id, profile):
                 "why": desc[1] if len(desc) > 1 else "",           # P2 = why selected
                 "tradeoffs": desc[2] if len(desc) > 2 else "",     # P3 = tradeoffs
             }
+            # Include price for budget tier
+            if tier_name == "budget" and pick.get("best_price") is not None:
+                rec["best_offer"] = {"price_eur": round(pick["best_price"], 2)}
             recommendations.append(rec)
 
     log(f"  Generated {len(recommendations)} recommendations across 4 tiers")
