@@ -2588,8 +2588,14 @@ function showResults(data) {
     tab.textContent = labels[cat] + ' (' + count + ')';
   });
 
-  /* Show results directly in scan.html (has email capture + nav) */
-  showScreen('results-screen');
+  /* Redirect to the shareable scan results page */
+  if (scanId) {
+    setTimeout(() => {
+      window.location.href = '/scan/' + encodeURIComponent(scanId);
+    }, 500);
+  } else {
+    showScreen('results-screen');
+  }
 }
 
 function renderRecommendations(category) {

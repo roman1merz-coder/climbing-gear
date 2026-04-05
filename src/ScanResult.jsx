@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import { supabaseFetch, supabaseRpc, SUPABASE_URL } from "./supabase.js";
 import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
+
+// Service-role key for writes (same key already public in scan.html)
+const SB_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4";
 
 // ══════════════════════════════════════════════════════════════
 // Population reference values (from spec / literature)
@@ -143,6 +146,140 @@ function ShoeCard({ slug, brand, model, description, why, tradeoffs, imageUrl, r
   );
 }
 
+// ── Email capture card ───────────────────────────────────────
+function EmailCapture({ scanId }) {
+  const [email, setEmail] = useState("");
+  const [freq, setFreq] = useState("once");
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+
+  async function handleSend() {
+    if (!email.trim() || !scanId) return;
+    setStatus("sending");
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${SB_SERVICE_KEY}`,
+          apikey: SB_SERVICE_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      setStatus("sent");
+    } catch (e) {
+      console.error("Email save failed:", e);
+      setStatus("error");
+    }
+  }
+
+  return (
+    <div style={{
+      background: "#fff", borderRadius: 14, border: "1px solid #e8e2d6",
+      padding: "1rem 1.2rem", marginBottom: "1rem",
+      boxShadow: "0 2px 16px rgba(44,50,39,0.05)",
+    }}>
+      <div style={{ fontSize: "0.85rem", fontWeight: 700, color: T.text, marginBottom: "0.5rem" }}>
+        Get your results via email
+      </div>
+      <input
+        type="email"
+        placeholder="your@email.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{
+          width: "100%", padding: "10px 12px", border: "1.5px solid #e8e2d6",
+          borderRadius: 10, fontSize: "0.85rem", fontFamily: "inherit",
+          background: "#faf8f4", boxSizing: "border-box", marginBottom: "0.6rem",
+          outline: "none",
+        }}
+      />
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", marginBottom: "0.7rem" }}>
+        <label style={{
+          display: "flex", gap: "0.5rem", padding: "0.5rem 0.65rem",
+          border: `1.5px solid ${freq === "once" ? "#c98a42" : "#e8e2d6"}`,
+          borderRadius: 10, cursor: "pointer",
+          background: freq === "once" ? "#fdf8f1" : "#fff",
+        }}>
+          <input
+            type="radio" name="email-freq" value="once"
+            checked={freq === "once"} onChange={() => setFreq("once")}
+            style={{ marginTop: 2, accentColor: "#c98a42", flexShrink: 0 }}
+          />
+          <span>
+            <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#2c3227", lineHeight: 1.3 }}>
+              Send results only
+            </div>
+            <div style={{ fontSize: "0.72rem", color: "#7a7462", lineHeight: 1.4 }}>
+              One-time email with your scan results and shoe recommendations.
+            </div>
+          </span>
+        </label>
+        <label style={{
+          display: "flex", gap: "0.5rem", padding: "0.5rem 0.65rem",
+          border: `1.5px solid ${freq === "updates" ? "#c98a42" : "#e8e2d6"}`,
+          borderRadius: 10, cursor: "pointer",
+          background: freq === "updates" ? "#fdf8f1" : "#fff",
+        }}>
+          <input
+            type="radio" name="email-freq" value="updates"
+            checked={freq === "updates"} onChange={() => setFreq("updates")}
+            style={{ marginTop: 2, accentColor: "#c98a42", flexShrink: 0 }}
+          />
+          <span>
+            <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#2c3227", lineHeight: 1.3 }}>
+              Send results + scan updates
+            </div>
+            <div style={{ fontSize: "0.72rem", color: "#7a7462", lineHeight: 1.4 }}>
+              We continuously improve our model. When we make a significant improvement, we'll re-run your scan and send you updated recommendations.
+            </div>
+          </span>
+        </label>
+      </div>
+      <button
+        onClick={handleSend}
+        disabled={status === "sending" || status === "sent"}
+        style={{
+          width: "100%", padding: "12px", border: "none", borderRadius: 10,
+          background: status === "sent" ? "#6b8f5e" : "#c98a42",
+          color: "#fff", fontSize: "0.9rem", fontWeight: 700,
+          cursor: status === "sent" ? "default" : "pointer",
+          fontFamily: "inherit", opacity: status === "sending" ? 0.7 : 1,
+        }}
+      >
+        {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Send Results"}
+      </button>
+    </div>
+  );
+}
+
+// ── Section navigation ───────────────────────────────────────
+function SectionNav({ groups, onScrollTo }) {
+  const navStyle = {
+    display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "center",
+    maxWidth: 500, margin: "0 auto 1.2rem", padding: "0 4px",
+  };
+  const linkStyle = {
+    padding: "6px 12px", borderRadius: 20, fontSize: "0.72rem", fontWeight: 600,
+    color: "#8a6930", background: "transparent", border: "1.5px solid #e8e2d6",
+    cursor: "pointer", textDecoration: "none", whiteSpace: "nowrap",
+    transition: "background 0.15s, border-color 0.15s",
+  };
+  return (
+    <div style={navStyle}>
+      <a href="#interpretation-section" style={linkStyle}
+        onClick={(e) => { e.preventDefault(); onScrollTo("interpretation"); }}>
+        Your foot profile
+      </a>
+      {groups.map((g) => (
+        <a key={g.cat} href={`#recs-${g.cat}`} style={linkStyle}
+          onClick={(e) => { e.preventDefault(); onScrollTo(g.cat); }}>
+          {g.label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 // ══════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ══════════════════════════════════════════════════════════════
@@ -152,6 +289,8 @@ export default function ScanResult({ shoes }) {
   const [scan, setScan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const interpretationRef = useRef(null);
+  const recSectionRefs = useRef({});
 
   usePageMeta(
     scan ? "Your Foot Profile" : "Scan Results",
@@ -246,7 +385,7 @@ export default function ScanResult({ shoes }) {
     <div style={{ maxWidth: 1060, margin: "0 auto", padding: mobile ? "1rem 0.75rem" : "2rem 1.5rem", fontFamily: T.font }}>
 
       {/* ── Header ── */}
-      <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+      <div style={{ textAlign: "center", marginBottom: "1.2rem" }}>
         <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: T.accent, marginBottom: 6 }}>
           climbing-gear.com
         </div>
@@ -257,6 +396,31 @@ export default function ScanResult({ shoes }) {
           Scan analysis - sole &amp; side view
         </div>
       </div>
+
+      {/* ── Email capture ── */}
+      <EmailCapture scanId={scanId} />
+
+      {/* ── Section navigation ── */}
+      {recommendations.length > 0 && (() => {
+        const CATEGORY_LABELS = {
+          baseline: "Your Best Match", softer: "Softer Feel", stiffer: "Stiffer Feel", budget: "Best Value",
+        };
+        const navGroups = ["baseline", "softer", "stiffer", "budget"]
+          .map((cat) => ({ cat, label: CATEGORY_LABELS[cat], shoes: recommendations.filter((r) => r.category === cat) }))
+          .filter((g) => g.shoes.length > 0);
+        return (
+          <SectionNav
+            groups={navGroups}
+            onScrollTo={(target) => {
+              if (target === "interpretation" && interpretationRef.current) {
+                interpretationRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+              } else if (recSectionRefs.current[target]) {
+                recSectionRefs.current[target].scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
+          />
+        );
+      })()}
 
       {/* ── Views Row: Sole + Side ── */}
       <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: "1.25rem", marginBottom: "1.25rem" }}>
@@ -322,7 +486,7 @@ export default function ScanResult({ shoes }) {
 
       {/* ── Interpretation ── */}
       {s.interpretation && (
-        <div style={{ marginTop: "1.5rem" }}>
+        <div ref={interpretationRef} id="interpretation-section" style={{ marginTop: "1.5rem" }}>
           <h2 style={{ fontFamily: T.display, fontSize: "1.3rem", color: T.text, margin: "0 0 1rem" }}>What This Means</h2>
           {Array.isArray(s.interpretation)
             ? s.interpretation.map((block, i) => {
@@ -383,7 +547,7 @@ export default function ScanResult({ shoes }) {
           <div style={{ marginTop: "1.5rem" }}>
             <h2 style={{ fontFamily: T.display, fontSize: "1.3rem", color: T.text, margin: "0 0 1rem" }}>Recommended Shoes</h2>
             {groups.map((g) => (
-              <div key={g.cat} style={{ marginBottom: "1.5rem" }}>
+              <div key={g.cat} id={`recs-${g.cat}`} ref={(el) => { recSectionRefs.current[g.cat] = el; }} style={{ marginBottom: "1.5rem" }}>
                 {hasCats && (
                   <div style={{ margin: "0 0 0.6rem" }}>
                     <h3 style={{ fontSize: "0.85rem", fontWeight: 700, color: "#8a6930", margin: 0, textTransform: "uppercase", letterSpacing: "0.03em" }}>{g.label}</h3>
