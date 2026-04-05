@@ -1700,8 +1700,19 @@ function capture() {
       showScreen('sole-review');
     } else {
       sideDataUrl = dataUrl;
-      document.getElementById('review-side-img').src = sideDataUrl;
-      /* Render side guide onto a canvas matching the captured photo orientation */
+      const reviewImg = document.getElementById('review-side-img');
+      reviewImg.src = sideDataUrl;
+      /* Check if phone was in landscape (auto-rotation not locked) at capture time.
+         The raw canvas frame is always in the video's native orientation (typically
+         portrait for front camera). If the user was in landscape, the foot appears
+         sideways in the captured frame and needs a 90deg rotation on the review screen. */
+      const wasLandscape = window.matchMedia('(orientation: landscape)').matches;
+      if (wasLandscape) {
+        reviewImg.style.transform = 'rotate(90deg)';
+      } else {
+        reviewImg.style.transform = '';
+      }
+      /* Render side guide onto review */
       const sideGuide = document.getElementById('side-guide-img');
       const revSide = document.getElementById('review-side-overlay');
       if (sideGuide && revSide) {
