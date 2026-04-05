@@ -1700,7 +1700,13 @@ function capture() {
       showScreen('sole-review');
     } else {
       sideDataUrl = dataUrl;
-      document.getElementById('review-side-img').src = sideDataUrl;
+      const reviewImg = document.getElementById('review-side-img');
+      reviewImg.src = sideDataUrl;
+      /* In portrait (rotation locked), the foot is captured with toes pointing up.
+         Rotate 90deg clockwise so toes point right, matching the overlay.
+         In landscape (auto-rotation on), the foot is already horizontal -- no rotation. */
+      const isPortrait = !window.matchMedia('(orientation: landscape)').matches;
+      reviewImg.style.transform = isPortrait ? 'rotate(90deg)' : '';
       /* Render side guide onto review */
       const sideGuide = document.getElementById('side-guide-img');
       const revSide = document.getElementById('review-side-overlay');
