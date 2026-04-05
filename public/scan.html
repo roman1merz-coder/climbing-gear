@@ -869,7 +869,7 @@ body {
     It is important to have your foot level above the phone - toes and heel should have the same distance from the phone!
     Then just keep your foot steady - the voice guide instructs you and the scanner will snap automatically.
   </p>
-  <button class="btn-primary" id="start-sole-scan" style="max-width:360px;width:100%">Start Sole Scan</button>
+  <button class="btn-primary" id="start-sole-scan" style="max-width:360px;width:100%;padding:10px 14px">Start Sole Scan</button>
 </div>
 
 <!-- ── Sole Review Screen ── -->
@@ -920,7 +920,7 @@ body {
     Foot stands flat on the ground, leg straight. Stay still - it will snap automatically.
     The voice guidance will talk you through the scan.
   </p>
-  <button class="btn-primary" id="start-side-scan" style="max-width:360px;width:100%">Start Side Scan</button>
+  <button class="btn-primary" id="start-side-scan" style="max-width:360px;width:100%;padding:10px 14px">Start Side Scan</button>
 </div>
 
 <!-- ── Side Review Screen ── -->
@@ -1083,7 +1083,8 @@ body {
       <div class="progress-bar-fill" id="progress-bar"></div>
     </div>
     <div class="progress-percent" id="progress-percent">0%</div>
-    <div class="progress-time">Usually takes about 20 seconds</div>
+    <div class="progress-time" id="progress-time">Usually takes about 20 seconds</div>
+    <div id="queue-info" style="display:none;font-size:0.78rem;color:#c98a42;font-weight:600;margin-top:0.3rem"></div>
     <ul class="stage-list">
       <li class="stage-item active" id="stage-segment">
         <span class="stage-dot">1</span>
@@ -2358,6 +2359,7 @@ function startProgressPolling() {
   document.getElementById('stage-segment').classList.add('active');
 
   pollFailures = 0;
+  let lastQueueCheck = 0;
   pollTimer = setInterval(async () => {
     try {
       const resp = await fetch(
@@ -2375,6 +2377,35 @@ function startProgressPolling() {
 
       const row = rows[0];
       pollFailures = 0;
+
+      /* Check queue position when scan is pending (every 6s to avoid spamming) */
+      const queueEl = document.getElementById('queue-info');
+      const timeEl = document.getElementById('progress-time');
+      const now = Date.now();
+      if (row.pipeline_stage === 'pending' && now - lastQueueCheck > 6000) {
+        lastQueueCheck = now;
+        try {
+          const qResp = await fetch(
+            `${SB_URL}/rest/v1/foot_scan_fits?pipeline_stage=in.(pending,segmenting,finding_shoes)&select=scan_id,created_at&order=created_at.asc`,
+            { headers: { 'Authorization': `Bearer ${SB_KEY}`, 'apikey': SB_KEY } }
+          );
+          if (qResp.ok) {
+            const qRows = await qResp.json();
+            const pos = qRows.findIndex(r => r.scan_id === scanId);
+            if (pos > 0) {
+              queueEl.style.display = 'block';
+              queueEl.textContent = `Your scan is #${pos + 1} in queue (${pos} ahead of you)`;
+              timeEl.textContent = `Estimated wait: ~${pos * 15 + 20} seconds`;
+            } else {
+              queueEl.style.display = 'none';
+              timeEl.textContent = 'Usually takes about 20 seconds';
+            }
+          }
+        } catch(qe) { /* queue check is best-effort */ }
+      } else if (row.pipeline_stage !== 'pending') {
+        queueEl.style.display = 'none';
+        timeEl.textContent = 'Usually takes about 20 seconds';
+      }
 
       /* Estimate progress from stage + elapsed time */
       const elapsed = pipelineStartedAt ? (Date.now() - pipelineStartedAt) / 1000 : 0;
