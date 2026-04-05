@@ -176,12 +176,14 @@ async function loadData() {
   const withEmail = merged.filter(m => m.fit?.email).length;
   const withShoes = merged.filter(m => m.fit?.shoes?.length > 0).length;
   const photosOnly = merged.filter(m => m.photos && !m.fit).length;
+  const withErrors = merged.filter(m => m.fit?.pipeline_stage === 'error' || m.fit?.pipeline_stage === 'validation_failed').length;
 
   document.getElementById('stats').innerHTML = `
     <div class="stat-card"><div class="num">${totalScans}</div><div class="label">Total Scans</div></div>
     <div class="stat-card"><div class="num">${withEmail}</div><div class="label">With Email</div></div>
     <div class="stat-card"><div class="num">${withShoes}</div><div class="label">With Shoe Data</div></div>
     <div class="stat-card"><div class="num">${photosOnly}</div><div class="label">Photos Only</div></div>
+    ${withErrors ? `<div class="stat-card" style="border-color:#e74c3c"><div class="num" style="color:#e74c3c">${withErrors}</div><div class="label">Errors</div></div>` : ''}
   `;
 
   if (merged.length === 0) {
@@ -268,8 +270,13 @@ function renderScan(m) {
       ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}${m.fit.email_freq === 'updates' ? ' <span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:3px;font-size:0.65rem;font-weight:600">updates</span>' : ''}</span>` : ''}
       ${hasFit && m.fit.recommendations ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Recs</span>' : ''}
       ${hasFit && m.fit.interpretation ? '<span style="background:#e8eaf6;color:#5c6bc0;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Report</span>' : ''}
+      ${hasFit && (m.fit.pipeline_stage === 'error' || m.fit.pipeline_stage === 'validation_failed') ? `<span style="background:#fdecea;color:#c0392b;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">${m.fit.pipeline_stage === 'validation_failed' ? 'Validation Failed' : 'Error'}</span>` : ''}
       <button class="delete-btn" onclick="deleteScan('${m.scanId}', this)">Delete</button>
     </div>
+    ${hasFit && m.fit.pipeline_error ? `<div style="margin:0 12px 8px;padding:8px 12px;background:#fdecea;border-radius:8px;border:1px solid #f5c6cb;font-size:0.82rem">
+      <div style="font-weight:600;color:#c0392b;margin-bottom:2px">${m.fit.pipeline_stage === 'validation_failed' ? 'Validation Failed' : 'Pipeline Error'} <span style="font-weight:400;color:#999;font-size:0.75rem">(${m.fit.pipeline_stage})</span></div>
+      <div style="color:#666">${m.fit.pipeline_error}</div>
+    </div>` : ''}
     <div class="scan-body">${photosHtml}<div class="scan-info">${infoHtml}</div></div>
   </div>`;
 }
