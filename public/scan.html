@@ -303,7 +303,13 @@ body {
   border-radius: 14px; overflow: hidden; border: 1px solid #d5cdbf;
   background: #fff; aspect-ratio: 3/4;
 }
+.review-img-wrap-side {
+  aspect-ratio: 4/3; width: 85%; max-width: 340px;
+}
 .review-img { width: 100%; display: block; }
+.review-img-wrap-side .review-img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+}
 .review-overlay {
   position: absolute; top: 50%; left: 50%;
   pointer-events: none; opacity: 0.55;
@@ -313,8 +319,8 @@ body {
   transform: translate(-50%, -50%) scaleX(-1);
 }
 .review-overlay-side {
-  width: auto; height: 80%;
-  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 85%; height: auto;
+  transform: translate(-50%, -50%) scaleX(-1);
 }
 .checklist {
   max-width: 340px; margin: 0 auto 1.2rem;
@@ -934,7 +940,7 @@ body {
     <div class="progress-dot active"></div>
   </div>
   <h2>Check Your Side Photo</h2>
-  <div class="review-img-wrap">
+  <div class="review-img-wrap review-img-wrap-side">
     <img class="review-img" id="review-side-img" />
     <img class="review-overlay review-overlay-side" id="review-side-overlay" />
   </div>
@@ -1700,10 +1706,6 @@ function capture() {
       const revSide = document.getElementById('review-side-overlay');
       if (sideGuide && revSide) {
         revSide.src = sideGuide.src;
-        const isLandscape = window.matchMedia('(orientation: landscape)').matches;
-        revSide.style.transform = isLandscape
-          ? 'translate(-50%, -50%)'
-          : 'translate(-50%, -50%) rotate(-90deg)';
       }
       showScreen('side-review');
     }
