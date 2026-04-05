@@ -130,12 +130,73 @@ export default function InsightScanner() {
         </p>
       </Prose>
 
-      {/* TODO: Add scan photo/overlay image here */}
+      {/* Scan Photos */}
+      <div style={{ display: "flex", gap: "16px", margin: "16px 0", flexWrap: isMobile ? "wrap" : "nowrap" }}>
+        <div style={{ flex: "1 1 0", minWidth: isMobile ? "100%" : "0" }}>
+          <div style={{ position: "relative", borderRadius: T.radius, overflow: "hidden", border: `1px solid ${T.border}` }}>
+            <img
+              src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-03-30T19-21-23-sole.jpg"
+              alt="Sole photo of a male climber's right foot, taken from below"
+              style={{ width: "100%", display: "block" }}
+              loading="lazy"
+            />
+            <img
+              src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-03-30T19-21-23-sole_overlay.png"
+              alt="Scanner overlay showing detected foot outline, toe tips, and measurement lines on the sole photo"
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "contain" }}
+              loading="lazy"
+            />
+          </div>
+          <div style={{ fontSize: "11px", color: T.muted, textAlign: "center", marginTop: "8px", fontWeight: 600 }}>
+            Sole scan with detected outline and measurement points
+          </div>
+        </div>
+        <div style={{ flex: "1 1 0", minWidth: isMobile ? "100%" : "0" }}>
+          <div style={{ position: "relative", borderRadius: T.radius, overflow: "hidden", border: `1px solid ${T.border}` }}>
+            <img
+              src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-03-30T19-21-23-side.jpg"
+              alt="Side profile photo of a male climber's right foot"
+              style={{ width: "100%", display: "block" }}
+              loading="lazy"
+            />
+            <img
+              src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-03-30T19-21-23-side_overlay.png"
+              alt="Scanner overlay showing instep height and heel depth measurement on the side profile"
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "contain" }}
+              loading="lazy"
+            />
+          </div>
+          <div style={{ fontSize: "11px", color: T.muted, textAlign: "center", marginTop: "8px", fontWeight: 600 }}>
+            Side profile with instep and heel depth measurements
+          </div>
+        </div>
+      </div>
+
+      {/* Measurement Summary */}
       <div style={{
-        background: T.card, borderRadius: T.radius, border: `1px dashed ${T.border}`,
-        padding: "32px", textAlign: "center", margin: "16px 0",
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
+        gap: "10px", margin: "16px 0",
       }}>
-        <div style={{ fontSize: "13px", color: T.muted }}>[ Scan photo placeholder - to be added ]</div>
+        {[
+          { label: "Toe Shape", value: "Egyptian", sub: "big toe longest" },
+          { label: "Forefoot Width", value: "Narrow", sub: "ratio 0.343" },
+          { label: "Heel Width", value: "Narrow", sub: "ratio 0.213" },
+          { label: "Instep Height", value: "Low", sub: "ratio 0.242" },
+          { label: "Arch Length", value: "Long", sub: "ratio 0.732" },
+          { label: "Heel Depth", value: "Shallow", sub: "ratio 0.038" },
+          { label: "Hallux Valgus", value: "Normal", sub: "no deviation" },
+          { label: "Overall Profile", value: "Low Volume", sub: "slim front to back" },
+        ].map(m => (
+          <div key={m.label} style={{
+            background: T.surface, border: `1px solid ${T.border}`, borderRadius: "10px",
+            padding: "12px", textAlign: "center",
+          }}>
+            <div style={{ fontSize: "10px", color: T.muted, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.3px", marginBottom: "4px" }}>{m.label}</div>
+            <div style={{ fontSize: "15px", fontWeight: 800, color: T.text }}>{m.value}</div>
+            <div style={{ fontSize: "10px", color: T.muted, marginTop: "2px" }}>{m.sub}</div>
+          </div>
+        ))}
       </div>
 
       <Prose>
@@ -154,8 +215,7 @@ export default function InsightScanner() {
         <p>
           Top recommendations included the Tenaya Mastia, Unparallel Souped Up, and Red Chili Voltage
           Lace in the baseline tier, with the La Sportiva Mantra and Evolv Zenist as softer alternatives.
-          Budget picks included the Black Diamond Shadow and Boreal Ninja. You can see the full results
-          for this scan <a href="/scan/scan-2026-03-30T19-21-23" style={linkStyle}>here</a>.
+          Budget picks included the Black Diamond Shadow and Boreal Ninja.
         </p>
       </Prose>
 
