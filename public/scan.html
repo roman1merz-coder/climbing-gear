@@ -2498,50 +2498,41 @@ function updateProgressUI(data) {
   }
 }
 
-function showProcessingError(message) {
+function buildErrorScreen(title, message) {
   const errEl = document.getElementById('processing-error');
   errEl.innerHTML = '';
   errEl.style.display = 'block';
 
   const titleEl = document.createElement('div');
   titleEl.style.cssText = 'font-weight:600;margin-bottom:0.5rem;color:#c84f2c';
-  titleEl.textContent = 'Something went wrong';
+  titleEl.textContent = title;
   errEl.appendChild(titleEl);
 
   const msgEl = document.createElement('p');
-  msgEl.style.cssText = 'margin:0 0 1.5rem 0;line-height:1.5';
+  msgEl.style.cssText = 'margin:0 0 1rem 0;line-height:1.5';
   msgEl.textContent = message;
   errEl.appendChild(msgEl);
+
+  const feedbackEl = document.createElement('p');
+  feedbackEl.style.cssText = 'margin:0 0 1.5rem 0;font-size:0.85rem;color:#8a7f72';
+  const sid = scanId || 'unknown';
+  feedbackEl.innerHTML = 'If this keeps happening, <a href="https://climbing-gear.com/scan-feedback?scan_id=' + encodeURIComponent(sid) + '" target="_blank" style="color:#3d7a52;text-decoration:underline">let us know</a>.';
+  errEl.appendChild(feedbackEl);
 
   const restartBtn = document.createElement('button');
   restartBtn.textContent = 'Retake photos';
   restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
   restartBtn.onclick = resetForRetake;
   errEl.appendChild(restartBtn);
+}
 
+function showProcessingError(message) {
+  buildErrorScreen('Something went wrong', message);
   document.getElementById('processing-title').textContent = 'Something went wrong';
 }
 
 function showValidationError(message) {
-  const errEl = document.getElementById('processing-error');
-  errEl.innerHTML = '';
-  errEl.style.display = 'block';
-
-  const titleEl = document.createElement('div');
-  titleEl.style.cssText = 'font-weight:600;margin-bottom:0.5rem;color:#c84f2c';
-  titleEl.textContent = 'Scan validation failed';
-  errEl.appendChild(titleEl);
-
-  const msgEl = document.createElement('p');
-  msgEl.style.cssText = 'margin:0 0 1.5rem 0;line-height:1.5';
-  msgEl.textContent = message;
-  errEl.appendChild(msgEl);
-
-  const restartBtn = document.createElement('button');
-  restartBtn.textContent = 'Retake photos';
-  restartBtn.style.cssText = 'padding:0.6rem 1.2rem;background:#3d7a52;color:white;border:none;border-radius:4px;cursor:pointer;font-size:0.9rem';
-  restartBtn.onclick = resetForRetake;
-  errEl.appendChild(restartBtn);
+  buildErrorScreen('Scan quality check failed', message);
 }
 
 function resetForRetake() {
