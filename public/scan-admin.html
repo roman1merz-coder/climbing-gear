@@ -265,7 +265,7 @@ function renderScan(m) {
     <div class="scan-header">
       <a class="scan-id" href="/scan/${m.scanId}" target="_blank" style="color:#3d7a52;text-decoration:none" title="Open scan results page">${m.scanId || 'unknown'}</a>
       <span class="scan-date">${fmtDate(m.date)}</span>
-      ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}</span>` : ''}
+      ${hasFit && m.fit.email ? `<span class="scan-email">${m.fit.email}${m.fit.email_freq === 'updates' ? ' <span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:3px;font-size:0.65rem;font-weight:600">updates</span>' : ''}</span>` : ''}
       ${hasFit && m.fit.recommendations ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Recs</span>' : ''}
       ${hasFit && m.fit.interpretation ? '<span style="background:#e8eaf6;color:#5c6bc0;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Report</span>' : ''}
       <button class="delete-btn" onclick="deleteScan('${m.scanId}', this)">Delete</button>
@@ -383,7 +383,7 @@ function renderArchived(a) {
     <div class="scan-header">
       <span class="scan-id">${scanId}</span>
       <span class="scan-date">Archived ${fmtDate(a.archived_at)}</span>
-      ${a.email ? `<span class="scan-email">${a.email}</span>` : ''}
+      ${a.email ? `<span class="scan-email">${a.email}${a.email_freq === 'updates' ? ' <span style="background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:3px;font-size:0.65rem;font-weight:600">updates</span>' : ''}</span>` : ''}
       <span class="archive-badge">Archived</span>
       ${hasRecs ? '<span style="background:#e8f5e9;color:#27ae60;padding:2px 8px;border-radius:4px;font-size:0.72rem;font-weight:600">Recs</span>' : ''}
       <button class="restore-btn" onclick="restoreScan('${a.id}', '${scanId}', this)">Restore</button>

@@ -2214,12 +2214,20 @@ document.getElementById('btn-send-results').addEventListener('click', async () =
         'Authorization': 'Bearer ' + SB_KEY, 'apikey': SB_KEY,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, email_freq: freq }),
     });
-    btn.textContent = 'Sent!';
+    btn.textContent = 'Saved!';
+    btn.style.background = '#6b8f5e';
+    const msg = document.createElement('div');
+    msg.style.cssText = 'font-size:0.78rem;color:#6b8f5e;text-align:center;margin-top:0.4rem;font-weight:500';
+    msg.textContent = freq === 'updates'
+      ? 'Your email and preference have been saved. We will notify you when we improve your recommendations.'
+      : 'Your email and preference have been saved. You will receive your results shortly.';
+    btn.parentNode.appendChild(msg);
   } catch(e) {
     console.error('Email save failed:', e);
-    btn.textContent = 'Send Results';
+    btn.textContent = 'Failed - try again';
+    btn.style.background = '#c9424a';
     btn.disabled = false;
   }
 });

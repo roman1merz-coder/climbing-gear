@@ -156,15 +156,16 @@ function EmailCapture({ scanId }) {
     if (!email.trim() || !scanId) return;
     setStatus("sending");
     try {
-      await fetch(`${SUPABASE_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`, {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${SB_SERVICE_KEY}`,
           apikey: SB_SERVICE_KEY,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({ email: email.trim(), email_freq: freq }),
       });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("sent");
     } catch (e) {
       console.error("Email save failed:", e);
@@ -236,18 +237,29 @@ function EmailCapture({ scanId }) {
         </label>
       </div>
       <button
-        onClick={handleSend}
-        disabled={status === "sending" || status === "sent"}
+        disabled={status === "sending" || status === "sent" || !email.trim()}
+        onClick={() => { if (status === "error") { setStatus("idle"); } else { handleSend(); } }}
         style={{
           width: "100%", padding: "12px", border: "none", borderRadius: 10,
-          background: status === "sent" ? "#6b8f5e" : "#c98a42",
+          background: status === "sent" ? "#6b8f5e" : status === "error" ? "#c9424a" : "#c98a42",
           color: "#fff", fontSize: "0.9rem", fontWeight: 700,
-          cursor: status === "sent" ? "default" : "pointer",
-          fontFamily: "inherit", opacity: status === "sending" ? 0.7 : 1,
+          cursor: (status === "sent" || !email.trim()) ? "default" : "pointer",
+          fontFamily: "inherit", opacity: (status === "sending" || !email.trim()) ? 0.6 : 1,
+          transition: "background 0.3s, opacity 0.3s",
         }}
       >
-        {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Send Results"}
+        {status === "sending" ? "Saving..." : status === "sent" ? "Saved!" : status === "error" ? "Failed - try again" : "Send Results"}
       </button>
+      {status === "sent" && (
+        <div style={{ fontSize: "0.78rem", color: "#6b8f5e", textAlign: "center", marginTop: "0.4rem", fontWeight: 500 }}>
+          Your email and preference have been saved. {freq === "updates" ? "We'll notify you when we improve your recommendations." : "You'll receive your results shortly."}
+        </div>
+      )}
+      {status === "error" && (
+        <div style={{ fontSize: "0.78rem", color: "#c9424a", textAlign: "center", marginTop: "0.4rem" }}>
+          Something went wrong. Please try again.
+        </div>
+      )}
     </div>
   );
 }
