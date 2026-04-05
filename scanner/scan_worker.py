@@ -125,7 +125,11 @@ def fetch_pending_scans():
 
 
 def fetch_waiting_scans():
-    """Find scans waiting for preferences (pipeline_stage = 'waiting_preferences')."""
+    """Find scans waiting for preferences that actually have preferences filled.
+
+    Only returns scans where sex is not null (the required preference field),
+    so abandoned scans without preferences don't clog the queue.
+    """
     resp = requests.get(
         f"{SB_URL}/rest/v1/foot_scan_fits",
         headers={
@@ -134,9 +138,10 @@ def fetch_waiting_scans():
         },
         params={
             "pipeline_stage": "eq.waiting_preferences",
+            "sex": "not.is.null",
             "select": "scan_id,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes",
             "order": "created_at.asc",
-            "limit": "5",
+            "limit": "10",
         },
     )
     if resp.status_code != 200:
