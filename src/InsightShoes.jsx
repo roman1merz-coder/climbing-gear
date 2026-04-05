@@ -182,7 +182,7 @@ export default function InsightShoes() {
       </Prose>
 
       <KeyInsight color={T.blue}>
-        <strong>Know your foot before you shop.</strong> Stand on a piece of paper, trace your foot, and identify your toe form (Egyptian, Roman, or Greek). Try on shoes at a local shop to learn your width and volume. Then use these parameters in our <Link to="/find" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> - they'll eliminate mismatches before you ever look at performance scores.
+        <strong>Know your foot before you shop.</strong> Stand on a piece of paper, trace your foot, and identify your toe form (Egyptian, Roman, or Greek). Try on shoes at a local shop to learn your width and volume. Or skip the guesswork and use our <Link to="/scan" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>free foot scanner</Link> - two phone photos, and it measures everything for you. Then use these parameters in our <Link to="/find" style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>Shoe Finder</Link> - they'll eliminate mismatches before you ever look at performance scores.
       </KeyInsight>
 
       <SectionHeading>Explore the Full Shoe Database</SectionHeading>
