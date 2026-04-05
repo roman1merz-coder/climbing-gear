@@ -13,6 +13,13 @@ import PADS from "./crashpad_seed_data.json";
 
 const ARTICLES = [
   {
+    to: "/insights/foot-scanner",
+    tag: "Scanner", tagColor: T.green,
+    title: "How the Foot Scanner Works - A Practical Guide",
+    desc: "Two photos, seven measurements, 400+ shoes ranked. See a real scan walkthrough from photo to recommendation.",
+    stats: ["7 measurements", "400+ shoes", "~10s processing"],
+  },
+  {
     to: "/insights/climbing-shoe-guide",
     tag: "Shoes", tagColor: T.accent,
     title: `How We Score ${SHOES.length} Climbing Shoes - and How to Pick Yours`,
