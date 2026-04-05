@@ -229,9 +229,8 @@ export default function InsightScanner() {
       <SectionHeading>What it can't do (yet)</SectionHeading>
       <Prose>
         <p>
-          The scanner is good at matching foot geometry to shoe geometry. It doesn't know how a shoe
-          will feel after 20 sessions of break-in, and it can't predict rubber sensitivity on
-          granite vs limestone. Photo quality matters: a blurry or poorly lit photo will produce
+          It doesn't know how a shoe will feel after 20 sessions of break-in, and it can't predict
+          rubber sensitivity on granite vs limestone. Photo quality matters: a blurry or poorly lit photo will produce
           unreliable measurements, and the scanner will tell you when it can't get a good read rather
           than guessing.
         </p>
