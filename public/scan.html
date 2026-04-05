@@ -2516,7 +2516,7 @@ function buildErrorScreen(title, message) {
   const feedbackEl = document.createElement('p');
   feedbackEl.style.cssText = 'margin:0 0 1.5rem 0;font-size:0.85rem;color:#8a7f72';
   const sid = scanId || 'unknown';
-  feedbackEl.innerHTML = 'If this keeps happening, <a href="https://climbing-gear.com/scan-feedback?scan_id=' + encodeURIComponent(sid) + '" target="_blank" style="color:#3d7a52;text-decoration:underline">let us know</a>.';
+  feedbackEl.innerHTML = 'If this keeps happening, <a href="mailto:roman@climbing-gear.com?subject=' + encodeURIComponent('Scan issue - ' + sid) + '&body=' + encodeURIComponent('Hi, my scan (' + sid + ') failed with this error:\n\n' + message + '\n\nAdditional info:\n') + '" style="color:#3d7a52;text-decoration:underline">let us know</a>.';
   errEl.appendChild(feedbackEl);
 
   const restartBtn = document.createElement('button');
