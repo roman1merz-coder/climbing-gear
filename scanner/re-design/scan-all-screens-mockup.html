@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foot Scanner - All Screens Mockup</title>
+<style>
+/* ══════════════════════════════════════════════
+   MOCKUP WRAPPER - not part of the actual design
+   ══════════════════════════════════════════════ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #e8e3da; font-family: -apple-system, system-ui, sans-serif; }
+.mockup-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #2c3227; padding: 12px 20px;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.mockup-nav a {
+  color: #d5cdbf; text-decoration: none; font-size: 0.75rem; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px; background: rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+.mockup-nav a:hover { background: #c98a42; color: #fff; }
+.mockup-nav .nav-label { color: #7a7462; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.mockup-section {
+  max-width: 390px; margin: 30px auto;
+  border: 2px solid #2c3227; border-radius: 20px; overflow: hidden;
+  background: #f5f0e8; position: relative;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+.mockup-label {
+  background: #2c3227; color: #fff; padding: 10px 16px;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.mockup-label .change-tag {
+  background: #c98a42; color: #fff; padding: 3px 8px; border-radius: 4px;
+  font-size: 0.65rem; font-weight: 700;
+}
+.mockup-label .change-tag.minor { background: #3d7a52; }
+
+/* ══════════════════════════════════════════════
+   SHARED DESIGN SYSTEM
+   ══════════════════════════════════════════════ */
+.screen {
+  font-family: 'DM Sans', -apple-system, system-ui, sans-serif;
+  background: #f5f0e8; color: #2c3227;
+  min-height: 600px; /* simulate mobile viewport */
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+}
+
+/* Top bar */
+.scan-topbar {
+  width: 100%; padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.scan-topbar a {
+  color: #7a7462; text-decoration: none; font-size: 0.78rem; font-weight: 600;
+}
+.scan-back {
+  display: flex; align-items: center; gap: 4px;
+  color: #7a7462; font-size: 0.82rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; border: none; background: none;
+  font-family: inherit; padding: 4px 0;
+}
+.scan-back svg { width: 16px; height: 16px; }
+
+/* Step badge */
+.step-badge {
+  display: inline-block; background: #c98a42; color: #fff;
+  font-size: 0.78rem; font-weight: 700; padding: 6px 16px;
+  border-radius: 20px; margin-bottom: 0.6rem; letter-spacing: 0.3px;
+}
+.step-badge.review { background: #3d7a52; }
+
+/* Progress dots */
+.progress-dots {
+  display: flex; gap: 6px; justify-content: center; margin-bottom: 1rem;
+}
+.progress-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #d5cdbf;
+}
+.progress-dot.active { background: #c98a42; width: 24px; border-radius: 4px; }
+.progress-dot.done { background: #3d7a52; }
+
+/* Buttons */
+.btn-primary {
+  background: #c98a42; color: #fff; border: none;
+  padding: 14px 24px; border-radius: 12px;
+  font-size: 1rem; font-weight: 700; cursor: pointer;
+  font-family: inherit; width: 100%; max-width: 360px;
+}
+.btn-primary:active { background: #b47a38; }
+.btn-secondary {
+  background: #fff; color: #2c3227; border: 1px solid #d5cdbf;
+  padding: 14px 24px; border-radius: 12px;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+  font-family: inherit; width: 100%; max-width: 360px;
+}
+.btn-row { display: flex; gap: 10px; max-width: 360px; width: 100%; }
+.btn-row > * { flex: 1; }
+
+/* ══════════════════════════════════════════════
+   1. START SCREEN
+   ══════════════════════════════════════════════ */
+.start-screen {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 0;
+}
+.start-hero {
+  flex: 0 0 auto; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 1.5rem 1.5rem 1.2rem; max-width: 420px;
+}
+.start-hero h1 {
+  font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px;
+  margin-bottom: 0.4rem; line-height: 1.2;
+}
+.start-hero .tagline {
+  color: #7a7462; font-size: 0.9rem; line-height: 1.5;
+  margin-bottom: 1.2rem; max-width: 320px;
+}
+.scan-steps {
+  display: flex; gap: 8px; margin-bottom: 1.2rem; max-width: 360px; width: 100%;
+}
+.scan-step {
+  flex: 1; background: #fff; border: 1px solid #d5cdbf; border-radius: 10px;
+  padding: 10px 6px; text-align: center;
+}
+.scan-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #c98a42; color: #fff;
+  font-size: 0.72rem; font-weight: 700; margin-bottom: 4px;
+}
+.scan-step-label { font-size: 0.75rem; font-weight: 600; color: #2c3227; line-height: 1.2; }
+.scan-step-time { font-size: 0.68rem; color: #7a7462; margin-top: 2px; }
+.trust-line {
+  font-size: 0.75rem; color: #b8b0a0; max-width: 300px; line-height: 1.4;
+  margin: 0.8rem 0 1.2rem;
+}
+/* divider + seo-content removed from mockup - kept only in production for SEO */
+
+/* ══════════════════════════════════════════════
+   2/5. INSTRUCTION SCREENS
+   ══════════════════════════════════════════════ */
+.instruction-screen {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 1.5rem 1.5rem; text-align: center;
+}
+.instruction-img {
+  width: 80%; max-width: 300px; border-radius: 14px;
+  margin-bottom: 1rem; border: 1px solid #d5cdbf;
+  background: #e0dbd0; min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  color: #7a7462; font-size: 0.85rem; font-style: italic;
+}
+.instruction-text {
+  max-width: 340px; font-size: 0.9rem; color: #7a7462; line-height: 1.55;
+  text-align: left; margin-bottom: 1.2rem;
+}
+.instruction-text strong { color: #2c3227; }
+
+/* ══════════════════════════════════════════════
+   3/6. REVIEW SCREENS
+   ══════════════════════════════════════════════ */
+.review-screen {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 1.5rem 1.5rem; text-align: center;
+}
+.review-screen h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.8rem; }
+.review-img-wrap {
+  position: relative; width: 65%; max-width: 260px; margin: 0 auto 1rem;
+  border-radius: 14px; overflow: hidden; border: 1px solid #d5cdbf;
+  background: #e0dbd0; aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  color: #7a7462; font-size: 0.85rem; font-style: italic;
+}
+.checklist {
+  max-width: 340px; margin: 0 auto 1.2rem;
+  text-align: left; list-style: none; padding: 0; width: 100%;
+}
+.check-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 8px; font-size: 0.85rem; color: #5a5347; line-height: 1.35;
+  cursor: pointer;
+}
+.check-box {
+  width: 20px; height: 20px; border: 2px solid #d5cdbf; border-radius: 5px;
+  flex-shrink: 0; margin-top: 1px; display: flex; align-items: center;
+  justify-content: center; transition: all 0.15s; background: #fff;
+}
+.check-item.checked .check-box { border-color: #3d7a52; background: #3d7a52; }
+.check-item.checked .check-box::after { content: '\2713'; color: #fff; font-size: 0.72rem; font-weight: 700; }
+
+/* ══════════════════════════════════════════════
+   7. SHOE FIT SCREEN (REDESIGNED)
+   ══════════════════════════════════════════════ */
+.shoe-fit-screen {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 1.2rem 1.5rem; text-align: center;
+}
+.shoe-fit-screen h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.3rem; }
+.shoe-fit-subtitle {
+  font-size: 0.82rem; color: #7a7462; margin-bottom: 1rem; line-height: 1.4;
+  max-width: 340px;
+}
+.shoe-fit-container { max-width: 400px; width: 100%; }
+.shoe-card {
+  background: #fff; border-radius: 14px; padding: 14px;
+  margin-bottom: 10px; border: 1px solid #d5cdbf; text-align: left;
+}
+/* Fit groups - stacked labels */
+.fit-group-v { margin-bottom: 12px; }
+.fit-group-v:last-child { margin-bottom: 0; }
+.fit-label-top {
+  font-size: 0.75rem; color: #7a7462; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.3px;
+  margin-bottom: 5px;
+}
+.fit-options {
+  display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden;
+}
+.fit-option {
+  flex: 1; min-height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 4px; text-align: center;
+  font-size: 0.75rem; font-weight: 600;
+  background: #faf8f4; color: #7a7462; border: none;
+  border-right: 1px solid #d5cdbf;
+  font-family: inherit; line-height: 1.2; cursor: pointer;
+}
+.fit-option:last-child { border-right: none; }
+.fit-option.active { background: #c98a42; color: #fff; }
+/* Personal info row */
+.personal-row {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;
+}
+.personal-field { display: flex; flex-direction: column; gap: 4px; }
+.personal-field label { font-size: 0.75rem; color: #7a7462; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.sex-options { display: flex; gap: 0; border: 1px solid #d5cdbf; border-radius: 8px; overflow: hidden; }
+.sex-option {
+  flex: 1; min-height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px 4px; font-size: 0.82rem; font-weight: 600;
+  background: #faf8f4; color: #7a7462; border: none;
+  border-right: 1px solid #d5cdbf; cursor: pointer; font-family: inherit;
+}
+.sex-option:last-child { border-right: none; }
+.sex-option.active { background: #c98a42; color: #fff; }
+.size-select {
+  padding: 10px 12px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+  appearance: auto; width: 100%;
+}
+/* Shoe entry */
+.shoe-entry-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+.shoe-number {
+  background: #c98a42; color: #fff; width: 24px; height: 24px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700; flex-shrink: 0;
+}
+.shoe-entry-title { font-size: 0.88rem; font-weight: 700; color: #2c3227; }
+.shoe-selects-v { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.shoe-selects-v select, .shoe-selects-v input {
+  width: 100%; padding: 10px 12px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.85rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+  appearance: auto;
+}
+.remove-shoe {
+  margin-left: auto; background: none; border: none; color: #b8b0a0;
+  font-size: 1.1rem; cursor: pointer; padding: 4px 8px; line-height: 1;
+  min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center;
+}
+.add-shoe-btn {
+  background: none; border: 2px dashed #d5cdbf; border-radius: 12px;
+  padding: 12px; width: 100%;
+  font-size: 0.85rem; color: #7a7462; cursor: pointer;
+  font-family: inherit; font-weight: 600; margin-bottom: 1rem;
+}
+/* Preference card */
+.pref-card { background: #fff; border-radius: 14px; padding: 14px; border: 1px solid #d5cdbf; text-align: left; margin-bottom: 1rem; }
+.pref-card .pref-title { font-size: 0.85rem; font-weight: 700; color: #2c3227; margin-bottom: 8px; }
+.pref-card textarea {
+  width: 100%; min-height: 50px; padding: 10px; border: 1px solid #d5cdbf;
+  border-radius: 8px; font-size: 0.82rem; font-family: inherit;
+  background: #faf8f4; color: #2c3227; resize: vertical; margin-top: 8px;
+}
+.shoe-fit-buttons { display: flex; gap: 10px; width: 100%; max-width: 400px; }
+.btn-skip {
+  flex: 1; background: #fff; color: #7a7462; border: 1px solid #d5cdbf;
+  padding: 14px; border-radius: 10px; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.btn-next {
+  flex: 2; background: #c98a42; color: #fff; border: none;
+  padding: 14px; border-radius: 10px; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+
+/* ══════════════════════════════════════════════
+   8. PROCESSING SCREEN
+   ══════════════════════════════════════════════ */
+.processing-screen { text-align: center; overflow: hidden; }
+.mountain-scene {
+  width: 100%; height: 160px; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #c4dae6 0%, #e0edf3 50%, #f5f0e8 100%);
+}
+.mountain-back {
+  position: absolute; bottom: 0; width: 100%; height: 120px; background: #a8c4d4;
+  clip-path: polygon(0 100%, 0 70%, 8% 55%, 18% 35%, 28% 50%, 38% 25%, 48% 45%, 55% 15%, 65% 40%, 75% 30%, 85% 50%, 92% 35%, 100% 55%, 100% 100%);
+}
+.mountain-front {
+  position: absolute; bottom: 0; width: 100%; height: 100px; background: #8aacbf;
+  clip-path: polygon(0 100%, 0 80%, 10% 55%, 22% 40%, 32% 60%, 42% 30%, 52% 50%, 60% 25%, 70% 45%, 78% 35%, 88% 55%, 95% 40%, 100% 65%, 100% 100%);
+}
+.mountain-ground {
+  position: absolute; bottom: 0; width: 100%; height: 40px; background: #7a9aab;
+  clip-path: polygon(0 100%, 0 50%, 15% 35%, 30% 45%, 50% 30%, 70% 40%, 85% 30%, 100% 45%, 100% 100%);
+}
+.processing-content { padding: 1.2rem 1.5rem 2rem; }
+.processing-content h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; }
+.progress-bar-wrap {
+  max-width: 340px; margin: 0 auto 0.5rem; background: #e0dbd0;
+  border-radius: 20px; height: 12px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; background: linear-gradient(90deg, #c98a42, #3d7a52);
+  border-radius: 20px; width: 65%;
+}
+.progress-percent { font-size: 0.82rem; color: #7a7462; font-weight: 600; margin-bottom: 0.3rem; }
+.progress-time { font-size: 0.75rem; color: #b8b0a0; margin-bottom: 1.2rem; }
+.stage-list { max-width: 300px; margin: 0 auto; text-align: left; list-style: none; padding: 0; }
+.stage-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 0; font-size: 0.88rem; color: #b8b0a0;
+}
+.stage-item.active { color: #2c3227; font-weight: 600; }
+.stage-item.completed { color: #3d7a52; }
+.stage-dot {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700;
+  background: #e0dbd0; color: #7a7462; flex-shrink: 0;
+}
+.stage-item.active .stage-dot { background: #c98a42; color: #fff; }
+.stage-item.completed .stage-dot { background: #3d7a52; color: #fff; }
+
+/* ══════════════════════════════════════════════
+   9. RESULTS SCREEN
+   ══════════════════════════════════════════════ */
+.results-screen {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1.2rem 1rem 2rem; text-align: center;
+}
+.results-screen h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; }
+.results-subtitle { font-size: 0.82rem; color: #7a7462; margin-bottom: 1rem; }
+.interpretation-block {
+  max-width: 500px; margin: 0 auto 1.2rem; text-align: left;
+  background: #fff; border: 1px solid #d5cdbf; border-radius: 14px;
+  padding: 14px 16px;
+}
+.interpretation-block h3 {
+  font-size: 0.95rem; font-weight: 700; color: #2c3227;
+  margin-bottom: 0.4rem; margin-top: 0.8rem;
+}
+.interpretation-block h3:first-child { margin-top: 0; }
+.interpretation-block p { font-size: 0.85rem; color: #5a5347; line-height: 1.55; margin-bottom: 0.4rem; }
+.category-tabs {
+  display: flex; gap: 0; max-width: 500px; width: 100%; margin: 0 auto 0.8rem;
+  border: 1px solid #d5cdbf; border-radius: 10px; overflow: hidden;
+}
+.cat-tab {
+  flex: 1; padding: 10px 4px; border: none; background: #faf8f4;
+  font-size: 0.78rem; font-weight: 600; color: #7a7462;
+  cursor: pointer; font-family: inherit;
+  border-right: 1px solid #d5cdbf;
+}
+.cat-tab:last-child { border-right: none; }
+.cat-tab.active { background: #c98a42; color: #fff; }
+.shoe-rec-card {
+  background: #fff; border: 1px solid #d5cdbf; border-radius: 14px;
+  padding: 14px 16px; margin-bottom: 8px; text-align: left;
+  max-width: 500px; width: 100%;
+}
+.shoe-rec-rank {
+  font-size: 0.72rem; font-weight: 700; color: #c98a42;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;
+}
+.shoe-rec-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.shoe-rec-name { font-size: 0.95rem; font-weight: 700; color: #2c3227; }
+.shoe-rec-size { font-size: 0.78rem; color: #c98a42; font-weight: 600; }
+.shoe-rec-desc { font-size: 0.88rem; color: #5a5347; line-height: 1.5; margin-bottom: 6px; }
+.shoe-rec-why { font-size: 0.88rem; color: #5a5347; line-height: 1.5; margin-bottom: 6px; }
+.shoe-rec-tradeoffs { font-size: 0.84rem; color: #8a7e6e; line-height: 1.5; font-style: italic; }
+.shoe-rec-price { font-size: 0.82rem; color: #7a7462; font-weight: 600; margin-left: 8px; }
+/* Results section nav */
+.results-nav {
+  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+  max-width: 500px; margin: 0 auto 1.2rem; padding: 0 4px;
+}
+.results-nav a {
+  font-size: 0.72rem; font-weight: 600; color: #7a7462;
+  text-decoration: none; padding: 6px 10px;
+  background: #fff; border: 1px solid #d5cdbf; border-radius: 8px;
+  white-space: nowrap; transition: all 0.15s;
+}
+.results-nav a:hover, .results-nav a:active { background: #c98a42; color: #fff; border-color: #c98a42; }
+/* Results section anchors */
+.results-section-title {
+  font-size: 1.05rem; font-weight: 700; color: #2c3227;
+  text-align: left; max-width: 500px; margin: 1.5rem auto 0.6rem;
+  padding-top: 0.5rem;
+}
+/* Email capture card */
+.email-capture-card {
+  background: #fff; border: 1px solid #d5cdbf; border-radius: 14px;
+  padding: 14px 16px; margin: 1rem auto; max-width: 500px; width: 100%;
+  text-align: left;
+}
+.email-capture-card .email-title { font-size: 0.88rem; font-weight: 700; color: #2c3227; margin-bottom: 8px; }
+.email-capture-card input[type="email"] {
+  width: 100%; padding: 10px 12px; border: 1px solid #d5cdbf; border-radius: 8px;
+  font-size: 0.9rem; font-family: inherit; background: #faf8f4; color: #2c3227;
+}
+.email-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.email-opt {
+  display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+  padding: 10px 12px; border: 1px solid #d5cdbf; border-radius: 10px;
+  background: #faf8f4; transition: border-color 0.15s, background 0.15s;
+}
+.email-opt:has(input:checked) { border-color: #c98a42; background: #fdf8f1; }
+.email-opt input[type="radio"] { margin-top: 2px; accent-color: #c98a42; flex-shrink: 0; }
+.email-opt-content { display: flex; flex-direction: column; gap: 2px; }
+.email-opt-label { font-size: 0.82rem; font-weight: 600; color: #2c3227; line-height: 1.3; }
+.email-opt-desc { font-size: 0.72rem; color: #7a7462; line-height: 1.4; }
+.btn-send-results {
+  width: 100%; padding: 12px; border: none; border-radius: 10px;
+  background: #c98a42; color: #fff; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.btn-send-results:active { background: #b47a38; }
+.results-actions { max-width: 500px; width: 100%; margin: 0.8rem auto 0; display: flex; flex-direction: column; gap: 8px; }
+.btn-done {
+  background: #c98a42; color: #fff; border: none;
+  padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 700;
+  cursor: pointer; font-family: inherit; width: 100%;
+}
+.btn-browse {
+  background: #3d7a52; color: #fff; border: none;
+  padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 700;
+  cursor: pointer; font-family: inherit; width: 100%;
+  text-decoration: none; display: block; text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="mockup-nav">
+  <span class="nav-label">Screens:</span>
+  <a href="#s1">1. Start</a>
+  <a href="#s2">2. Sole Instruction</a>
+  <a href="#s3">3. Sole Review</a>
+  <a href="#s4">4. Side Instruction</a>
+  <a href="#s5">5. Side Review</a>
+  <a href="#s6">6. Shoe Fit</a>
+  <a href="#s7">7. Processing</a>
+  <a href="#s8">8. Results</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 1: START
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s1">
+  <div class="mockup-label">1. Start Screen <span class="change-tag">REDESIGNED</span></div>
+  <div class="screen start-screen">
+    <div class="scan-topbar">
+      <span></span>
+      <a href="#">climbing-gear.com</a>
+    </div>
+    <div class="start-hero">
+      <h1>Find Your Perfect<br>Climbing Shoe</h1>
+      <p class="tagline">Scan your feet with the phone camera. We score your foot shape via 30 attributes against our database of 400+ climbing shoes to find the best fit. For free!</p>
+      <div class="scan-steps">
+        <div class="scan-step">
+          <div class="scan-step-num">1</div>
+          <div class="scan-step-label">Sole scan</div>
+          <div class="scan-step-time">~10 sec</div>
+        </div>
+        <div class="scan-step">
+          <div class="scan-step-num">2</div>
+          <div class="scan-step-label">Side scan</div>
+          <div class="scan-step-time">~10 sec</div>
+        </div>
+        <div class="scan-step">
+          <div class="scan-step-num">3</div>
+          <div class="scan-step-label">Current shoes</div>
+          <div class="scan-step-time">~20 sec</div>
+        </div>
+        <div class="scan-step">
+          <div class="scan-step-num">4</div>
+          <div class="scan-step-label">Results</div>
+          <div class="scan-step-time">~20 sec</div>
+        </div>
+      </div>
+      <button class="btn-primary" style="margin-bottom: 0">Scan My Feet</button>
+      <p class="trust-line">No account needed. Photos are processed instantly and not stored.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 2: SOLE INSTRUCTION
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s2">
+  <div class="mockup-label">2. Sole Instruction <span class="change-tag minor">IMPROVED</span></div>
+  <div class="screen instruction-screen">
+    <div class="scan-topbar">
+      <button class="scan-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Back</button>
+      <span></span>
+    </div>
+    <span class="step-badge">Step 1 of 2 - Sole</span>
+    <div class="progress-dots">
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+    </div>
+    <div class="instruction-img">[Sole instruction photo]</div>
+    <p class="instruction-text">
+      <strong>Lay your phone flat on the ground</strong>, screen up, and hold your foot above the camera.
+      It is important to have your foot in level above the phone - toes and heel should have the same distance from the phone!
+      Then just keep your foot steady - the voice guide instructs you and the scanner will snap automatically.
+    </p>
+    <button class="btn-primary">Start Sole Scan</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 3: SOLE REVIEW
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s3">
+  <div class="mockup-label">3. Sole Review <span class="change-tag minor">IMPROVED</span></div>
+  <div class="screen review-screen">
+    <div class="scan-topbar"><span></span><span></span></div>
+    <span class="step-badge review">Step 1 of 2 - Review</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+    </div>
+    <h2>Check Your Sole Photo</h2>
+    <div class="review-img-wrap">[Captured sole photo with outline overlay]</div>
+    <ul class="checklist">
+      <li class="check-item"><span class="check-box"></span> Scan matches the outline?</li>
+      <li class="check-item"><span class="check-box"></span> Entire sole visible, no toes cut off?</li>
+      <li class="check-item"><span class="check-box"></span> Foot is level - toes and heel same distance from camera?</li>
+      <li class="check-item"><span class="check-box"></span> Image is sharp, not blurry?</li>
+    </ul>
+    <div class="btn-row">
+      <button class="btn-secondary">Retake</button>
+      <button class="btn-primary">Looks Good</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 4: SIDE INSTRUCTION
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s4">
+  <div class="mockup-label">4. Side Instruction <span class="change-tag minor">IMPROVED</span></div>
+  <div class="screen instruction-screen">
+    <div class="scan-topbar">
+      <button class="scan-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Back</button>
+      <span></span>
+    </div>
+    <span class="step-badge">Step 2 of 2 - Side Profile</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot done"></div>
+      <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+    </div>
+    <div class="instruction-img">[Side instruction photo]</div>
+    <p class="instruction-text">
+      <strong>Hold your phone horizontally on the ground</strong>, screen facing the inside of your right foot.
+      Foot stands flat on the ground, leg straight. Stay still — it will snap automatically.
+      The voice guidance will talk you through the scan.
+    </p>
+    <button class="btn-primary">Start Side Scan</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 5: SIDE REVIEW
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s5">
+  <div class="mockup-label">5. Side Review <span class="change-tag minor">IMPROVED</span></div>
+  <div class="screen review-screen">
+    <div class="scan-topbar"><span></span><span></span></div>
+    <span class="step-badge review">Step 2 of 2 - Review</span>
+    <div class="progress-dots">
+      <div class="progress-dot done"></div>
+      <div class="progress-dot done"></div>
+      <div class="progress-dot done"></div>
+      <div class="progress-dot active"></div>
+    </div>
+    <h2>Check Your Side Photo</h2>
+    <div class="review-img-wrap">[Captured side photo with outline overlay]</div>
+    <ul class="checklist">
+      <li class="check-item"><span class="check-box"></span> Scan matches the outline?</li>
+      <li class="check-item"><span class="check-box"></span> Full profile visible, heel to toes?</li>
+      <li class="check-item"><span class="check-box"></span> Foot is flat on the ground?</li>
+      <li class="check-item"><span class="check-box"></span> Arch shape is clearly defined?</li>
+      <li class="check-item"><span class="check-box"></span> Image is sharp, not blurry?</li>
+    </ul>
+    <div class="btn-row">
+      <button class="btn-secondary">Retake</button>
+      <button class="btn-primary">Looks Good</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 6: SHOE FIT (REDESIGNED)
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s6">
+  <div class="mockup-label">6. Shoe Fit <span class="change-tag">REDESIGNED</span></div>
+  <div class="screen shoe-fit-screen">
+    <div class="scan-topbar"><span></span><span></span></div>
+    <h2>Which shoes fit you well?</h2>
+    <p class="shoe-fit-subtitle">Helps us give you better size and fit recommendations.</p>
+
+    <div class="shoe-fit-container">
+
+      <!-- Personal info -->
+      <div class="shoe-card">
+        <div class="personal-row">
+          <div class="personal-field">
+            <label>Sex</label>
+            <div class="sex-options">
+              <button class="sex-option active">Male</button>
+              <button class="sex-option">Female</button>
+            </div>
+          </div>
+          <div class="personal-field">
+            <label>Street shoe size</label>
+            <select class="size-select"><option>EU 43</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shoe 1 -->
+      <div class="shoe-card">
+        <div class="shoe-entry-header">
+          <span class="shoe-number">1</span>
+          <span class="shoe-entry-title">Current climbing shoe</span>
+          <button class="remove-shoe">&times;</button>
+        </div>
+        <div class="shoe-selects-v">
+          <select><option>La Sportiva</option></select>
+          <select><option>Solution Comp</option></select>
+          <select><option>EU 41</option></select>
+        </div>
+        <div class="fit-group-v">
+          <div class="fit-label-top">Toes</div>
+          <div class="fit-options">
+            <button class="fit-option active" data-val="squeezed">Tight</button>
+            <button class="fit-option" data-val="perfect">Perfect</button>
+            <button class="fit-option" data-val="roomy">Loose</button>
+          </div>
+        </div>
+        <div class="fit-group-v">
+          <div class="fit-label-top">Forefoot</div>
+          <div class="fit-options">
+            <button class="fit-option" data-val="tight">Tight</button>
+            <button class="fit-option active" data-val="perfect">Perfect</button>
+            <button class="fit-option" data-val="loose">Loose</button>
+          </div>
+        </div>
+        <div class="fit-group-v">
+          <div class="fit-label-top">Heel</div>
+          <div class="fit-options">
+            <button class="fit-option" data-val="tight">Tight</button>
+            <button class="fit-option active" data-val="perfect">Perfect</button>
+            <button class="fit-option" data-val="empty">Loose</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="add-shoe-btn">+ Add another shoe</button>
+
+      <!-- Preference -->
+      <div class="pref-card">
+        <div class="pref-title">What should your next shoe prioritise?</div>
+        <div class="fit-options">
+          <button class="fit-option">More comfort</button>
+          <button class="fit-option active">Same balance</button>
+          <button class="fit-option">More performance</button>
+        </div>
+        <textarea placeholder="Any other preferences? (optional)"></textarea>
+      </div>
+
+      <p style="font-size:0.75rem;color:#8a7e6e;text-align:center;margin-bottom:8px;">Sex, street shoe size, and at least one shoe with fit ratings are required.</p>
+      <div class="shoe-fit-buttons">
+        <button class="btn-next">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 7: PROCESSING
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s7">
+  <div class="mockup-label">7. Processing <span class="change-tag minor">IMPROVED</span></div>
+  <div class="screen processing-screen">
+    <div class="mountain-scene">
+      <div class="mountain-back"></div>
+      <div class="mountain-front"></div>
+      <div class="mountain-ground"></div>
+    </div>
+    <div class="processing-content">
+      <h2>Analysing your foot...</h2>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <div class="progress-percent">65%</div>
+      <div class="progress-time">Usually takes about 20 seconds</div>
+      <ul class="stage-list">
+        <li class="stage-item completed">
+          <span class="stage-dot">&#10003;</span>
+          <span>Segmenting your foot</span>
+        </li>
+        <li class="stage-item active">
+          <span class="stage-dot">2</span>
+          <span>Analysing measurements</span>
+        </li>
+        <li class="stage-item">
+          <span class="stage-dot">3</span>
+          <span>Finding your perfect shoes</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SCREEN 8: RESULTS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="mockup-section" id="s8">
+  <div class="mockup-label">8. Results <span class="change-tag minor">IMPROVED</span></div>
+  <div class="screen results-screen">
+    <h2>Your Shoe Recommendations</h2>
+    <p class="results-subtitle">Based on your foot shape and preferences</p>
+
+    <!-- EMAIL CAPTURE — moved to top (NEW) -->
+    <div class="email-capture-card">
+      <div class="email-title">Get your results by email</div>
+      <input type="email" placeholder="name@example.com" style="margin-bottom:10px" />
+      <div class="email-options">
+        <label class="email-opt">
+          <input type="radio" name="email-opt" value="once" checked>
+          <span class="email-opt-content">
+            <span class="email-opt-label">Send me these results</span>
+          </span>
+        </label>
+        <label class="email-opt">
+          <input type="radio" name="email-opt" value="updates">
+          <span class="email-opt-content">
+            <span class="email-opt-label">Send results + scan updates</span>
+            <span class="email-opt-desc">We continuously improve our model. When we make a significant improvement, we'll re-run your scan and send you updated recommendations.</span>
+          </span>
+        </label>
+      </div>
+      <button class="btn-send-results">Send Results</button>
+    </div>
+
+    <!-- SECTION NAVIGATION (NEW) -->
+    <div class="results-nav">
+      <a href="#res-profile">Your foot profile</a>
+      <a href="#res-interpretation">What this means</a>
+      <a href="#res-baseline">Baseline</a>
+      <a href="#res-softer">Softer</a>
+      <a href="#res-stiffer">Stiffer</a>
+      <a href="#res-budget">Budget</a>
+    </div>
+
+    <!-- SECTION: Your foot profile (interpretation block - dynamically populated) -->
+    <h3 class="results-section-title" id="res-profile">Your foot profile</h3>
+    <div class="interpretation-block">
+      <h3>Foot type</h3>
+      <p>Egyptian foot shape — big toe is the longest. Slightly wide forefoot with a medium-height arch. Moderate asymmetry.</p>
+      <h3>Key measurements</h3>
+      <p>Foot length: 261 mm · Width: 101 mm · Arch height: 32 mm · Heel width: 64 mm · Volume: medium.</p>
+    </div>
+
+    <!-- SECTION: What this means -->
+    <h3 class="results-section-title" id="res-interpretation">What this means</h3>
+    <div class="interpretation-block">
+      <h3>Fit implications</h3>
+      <p>Your Egyptian toe profile means asymmetric lasts will feel most natural. The medium arch works well with shoes that have moderate midsole stiffness. Your slightly wide forefoot may feel cramped in low-volume models — look for "wide" or standard-volume options.</p>
+      <h3>Size estimate</h3>
+      <p>Based on your measurements, your climbing shoe size is likely EU 40–41 depending on the brand and how aggressively you want to downsize.</p>
+    </div>
+
+    <!-- SECTION: Baseline recommendations -->
+    <h3 class="results-section-title" id="res-baseline">Baseline recommendations</h3>
+    <div style="max-width:500px;margin:0 auto;">
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">La Sportiva Solution Comp</span>
+          <span class="shoe-rec-size">EU 40.5</span>
+        </div>
+        <div class="shoe-rec-desc">All-round performance shoe with asymmetric last.</div>
+        <div class="shoe-rec-why">Asymmetric last matches your Egyptian toe profile. Medium-stiff midsole suits your arch height. Known for snug forefoot with room for wider feet.</div>
+        <div class="shoe-rec-tradeoffs">May feel tight on first wear — expect 1–2 sessions to break in.</div>
+      </div>
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Scarpa Drago LV</span>
+          <span class="shoe-rec-size">EU 41</span>
+        </div>
+        <div class="shoe-rec-desc">Sensitive all-rounder in low-volume fit.</div>
+        <div class="shoe-rec-why">Low-volume version accommodates your foot width. Soft rubber gives excellent sensitivity for technical climbing.</div>
+        <div class="shoe-rec-tradeoffs">Less edge support than Solution Comp — better for overhangs than slabs.</div>
+      </div>
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Tenaya Iati</span>
+          <span class="shoe-rec-size">EU 41</span>
+        </div>
+        <div class="shoe-rec-desc">Split-sole with a generous toe box.</div>
+        <div class="shoe-rec-why">Wide toe box designed for Egyptian feet. Split sole provides good sensitivity while maintaining support.</div>
+        <div class="shoe-rec-tradeoffs">Runs slightly large — consider going half size down.</div>
+      </div>
+    </div>
+
+    <!-- SECTION: Softer recommendations -->
+    <h3 class="results-section-title" id="res-softer">Softer recommendations</h3>
+    <div style="max-width:500px;margin:0 auto;">
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Unparallel Up Rise VCS</span>
+          <span class="shoe-rec-size">EU 41</span>
+        </div>
+        <div class="shoe-rec-why">Very soft rubber for maximum sensitivity. Comfortable enough for long bouldering sessions.</div>
+        <div class="shoe-rec-tradeoffs">Won't edge as well on small holds — best for overhangs and volumes.</div>
+      </div>
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Butora Acro Comp</span>
+          <span class="shoe-rec-size">EU 40.5</span>
+        </div>
+        <div class="shoe-rec-why">Soft, flexible shoe with wide fit. Good sensitivity on smeary holds.</div>
+        <div class="shoe-rec-tradeoffs">Stretches quickly — may need to size down aggressively.</div>
+      </div>
+    </div>
+
+    <!-- SECTION: Stiffer recommendations -->
+    <h3 class="results-section-title" id="res-stiffer">Stiffer recommendations</h3>
+    <div style="max-width:500px;margin:0 auto;">
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">La Sportiva Otaki</span>
+          <span class="shoe-rec-size">EU 40.5</span>
+        </div>
+        <div class="shoe-rec-why">Stiff midsole for powerful edging. P3 permanent power platform keeps its shape over time.</div>
+        <div class="shoe-rec-tradeoffs">Less sensitive on smeary holds — better for vertical and slab.</div>
+      </div>
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Scarpa Maestro Mid</span>
+          <span class="shoe-rec-size">EU 41</span>
+        </div>
+        <div class="shoe-rec-why">Stiff multi-pitch shoe with ankle support. Great for all-day comfort on long trad routes.</div>
+        <div class="shoe-rec-tradeoffs">Too stiff for aggressive bouldering — purpose-built for sport/trad.</div>
+      </div>
+    </div>
+
+    <!-- SECTION: Budget recommendations -->
+    <h3 class="results-section-title" id="res-budget">Budget recommendations</h3>
+    <div style="max-width:500px;margin:0 auto;">
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Mad Rock Drone HV</span>
+          <span class="shoe-rec-size">EU 41</span>
+          <span class="shoe-rec-price">89.00 EUR</span>
+        </div>
+        <div class="shoe-rec-why">High-volume fit suits your wider forefoot. Solid all-round performance at a lower price point.</div>
+        <div class="shoe-rec-tradeoffs">Rubber quality not as refined as premium brands — will resole sooner.</div>
+      </div>
+      <div class="shoe-rec-card">
+        <div class="shoe-rec-header">
+          <span class="shoe-rec-name">Simond Edge</span>
+          <span class="shoe-rec-size">EU 41</span>
+          <span class="shoe-rec-price">69.00 EUR</span>
+        </div>
+        <div class="shoe-rec-why">Very affordable entry-level shoe. Comfortable fit right out of the box.</div>
+        <div class="shoe-rec-tradeoffs">Basic construction — good for gym climbing, limited on outdoor rock.</div>
+      </div>
+    </div>
+
+    <!-- Bottom actions (same as live) -->
+    <div class="results-actions">
+      <button class="btn-done">Done</button>
+      <a class="btn-browse" href="#">Browse All Shoes</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Make checklist items interactive in mockup */
+document.querySelectorAll('.check-item').forEach(item => {
+  item.addEventListener('click', () => item.classList.toggle('checked'));
+});
+/* Smooth scroll for results nav links */
+document.querySelectorAll('.results-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
