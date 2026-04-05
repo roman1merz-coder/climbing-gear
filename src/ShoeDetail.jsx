@@ -1214,6 +1214,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <div style={{ background: T.card, borderRadius: T.radius, padding: "20px", border: `1px solid ${T.border}` }}>
                   <FootShapeDiagram toe_form={shoe.toe_form} forefoot_volume={shoe.forefoot_volume} width={shoe.width} heel_volume={shoe.heel_volume} />
                 </div>
+                <a href="/scan" style={{ display: "block", marginTop: "10px", fontSize: "12.5px", color: T.muted, textDecoration: "none" }}>
+                  Not sure which shoe fits? <span style={{ color: T.accent, textDecoration: "underline" }}>Try our free foot scanner</span>
+                </a>
               </div>
 
               {/* Right col */}
