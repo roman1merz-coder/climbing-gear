@@ -229,9 +229,9 @@ export default function InsightScanner() {
       <SectionHeading>What it can't do (yet)</SectionHeading>
       <Prose>
         <p>
-          Photo quality matters: a blurry or poorly lit photo will produce
-          unreliable measurements, and the scanner will tell you when it can't get a good read rather
-          than guessing.
+          The scanner is good at matching foot geometry to shoe geometry. Photo quality matters: a
+          blurry or poorly lit photo will produce unreliable measurements, and the scanner will tell
+          you when it can't get a good read rather than guessing.
         </p>
         <p>
           Processing is sequential right now. If many people scan at the same time, you'll wait in
