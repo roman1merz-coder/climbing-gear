@@ -26,7 +26,7 @@ const STORAGE_KEY = "cg_cookie_consent";
 const CATEGORIES = {
   essential: true,   // always on (no actual cookies set yet)
   affiliate: false,  // Skimlinks / Amazon Associates tracking cookies
-  analytics: false,  // PostHog session replays (base analytics runs cookieless, no consent needed)
+  analytics: false,  // session replays (base analytics runs cookieless, no consent needed)
 };
 
 /** Check if user has consented to a specific category */
@@ -87,9 +87,9 @@ export default function CookieConsent() {
       animation: "fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards",
     }}>
       <span style={{ maxWidth: "600px", lineHeight: 1.6 }}>
-        Diese Website kann Cookies von Affiliate-Partnern und anonymisierte Session-Aufnahmen (PostHog) verwenden.{" "}
+        This site may use affiliate cookies and anonymous session recordings to improve the experience.{" "}
         <a href="/privacy" style={{ color: T.accent, textDecoration: "underline" }}>
-          Datenschutz
+          Privacy policy
         </a>
       </span>
       <div style={{ display: "flex", gap: "8px" }}>
@@ -102,7 +102,7 @@ export default function CookieConsent() {
             fontSize: "13px", fontWeight: 600,
           }}
         >
-          Nur Essenzielle
+          Essential only
         </button>
         <button
           onClick={() => saveChoice(true)}
@@ -113,7 +113,7 @@ export default function CookieConsent() {
             fontSize: "13px", fontWeight: 700,
           }}
         >
-          Alle akzeptieren
+          Accept all
         </button>
       </div>
     </div>
