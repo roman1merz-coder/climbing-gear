@@ -87,7 +87,7 @@ export default function CookieConsent() {
       animation: "fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards",
     }}>
       <span style={{ maxWidth: "600px", lineHeight: 1.6 }}>
-        This site may use affiliate cookies and anonymous session recordings to improve the experience.{" "}
+        We use cookies and analytics to improve your experience.{" "}
         <a href="/privacy" style={{ color: T.accent, textDecoration: "underline" }}>
           Privacy policy
         </a>
