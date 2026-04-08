@@ -12,14 +12,36 @@ import posthog from "posthog-js";
 
 const POSTHOG_KEY = "phc_OkrxqJzUXVGEdKKvbuAMZ5jdZ2R9Vp9GItLNYW9UIWe";
 // Proxy through our own domain to avoid ad-blocker interference.
-// Vercel rewrites /ingest/* → eu.i.posthog.com/* (see vercel.json).
+// Vercel rewrites /ingest/* -> eu.i.posthog.com/* (see vercel.json).
 const POSTHOG_HOST = "/ingest";
 const POSTHOG_UI_HOST = "https://eu.posthog.com";
+
+const STAFF_COOKIE = "cg_staff";
+
+/** Check if ?_staff=1 is in the URL; if so, set a persistent cookie. */
+function checkStaffParam() {
+  if (typeof window === "undefined") return;
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("_staff") === "1") {
+    document.cookie = `${STAFF_COOKIE}=1; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+  }
+  if (params.get("_staff") === "0") {
+    document.cookie = `${STAFF_COOKIE}=; path=/; max-age=0`;
+  }
+}
+
+/** Return true if the staff cookie is set. */
+function isStaff() {
+  if (typeof document === "undefined") return false;
+  return document.cookie.split(";").some((c) => c.trim().startsWith(`${STAFF_COOKIE}=1`));
+}
 
 let initialized = false;
 
 export function initPostHog() {
   if (initialized || typeof window === "undefined") return;
+  // Set or clear the staff cookie before PostHog init
+  checkStaffParam();
   try {
     posthog.init(POSTHOG_KEY, {
       api_host: POSTHOG_HOST,
@@ -33,15 +55,19 @@ export function initPostHog() {
       // Session replay OFF by default - enabled when user consents
       disable_session_recording: true,
       respect_dnt: false,
-      // Don't send data in dev
+      // Don't send data in dev or for staff
       loaded: (ph) => {
-        if (import.meta.env.DEV) {
+        if (import.meta.env.DEV || isStaff()) {
           ph.opt_out_capturing();
         }
       },
     });
     initialized = true;
-    console.log("[PostHog] initialized - routing through", POSTHOG_HOST);
+    if (isStaff()) {
+      console.log("[PostHog] staff mode - analytics disabled");
+    } else {
+      console.log("[PostHog] initialized - routing through", POSTHOG_HOST);
+    }
   } catch (err) {
     console.error("[PostHog] init failed:", err);
   }
