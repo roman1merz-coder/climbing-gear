@@ -145,14 +145,36 @@ const REPO = 'roman1merz-coder/climbing-gear';
 const BRANCH = 'main';
 const API = 'https://api.github.com';
 
-function startWithToken() {
+async function startWithToken() {
   const input = document.getElementById('pat-input');
+  const errEl = document.getElementById('auth-error');
   const token = input.value.trim();
   if (!token) {
-    document.getElementById('auth-error').textContent = 'Please enter a token';
-    document.getElementById('auth-error').style.display = 'block';
+    errEl.textContent = 'Please enter a token';
+    errEl.style.display = 'block';
     return;
   }
+  errEl.style.display = 'none';
+  input.disabled = true;
+
+  // Validate token by fetching repo info
+  try {
+    const res = await fetch(`${API}/repos/${REPO}`, {
+      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' },
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      throw new Error(res.status === 401 ? 'Invalid token' : `GitHub API ${res.status}: ${body}`);
+    }
+  } catch (err) {
+    errEl.textContent = err.message === 'Invalid token'
+      ? 'Invalid token - check that your PAT has repo access'
+      : 'Connection failed: ' + err.message;
+    errEl.style.display = 'block';
+    input.disabled = false;
+    return;
+  }
+
   GITHUB_PAT = token;
   document.getElementById('auth-gate').style.display = 'none';
   document.getElementById('articles').style.display = 'block';
@@ -544,13 +566,14 @@ async function init() {
 
   try {
     // Fetch all files in parallel
+    const errors = [];
     const results = await Promise.all(
-      ARTICLE_FILES.map(async ({ path }) => {
+      ARTICLE_FILES.map(async ({ path, label }) => {
         try {
           const data = await fetchFile(path);
           return { path, ...data };
         } catch (err) {
-          console.warn(`Failed to load ${path}:`, err);
+          errors.push(`${label}: ${err.message}`);
           return { path, content: null, sha: null };
         }
       })
@@ -570,10 +593,28 @@ async function init() {
     reloadBtn.disabled = false;
 
     const totalBlocks = Object.values(blockData).reduce((s, b) => s + b.length, 0);
-    setStatus(`Loaded ${Object.keys(blockData).length} articles, ${totalBlocks} editable blocks`, 'saved');
+    const loaded = Object.keys(blockData).length;
+
+    if (loaded === 0 && errors.length > 0) {
+      setStatus('Failed to load articles', 'error');
+      document.getElementById('articles').innerHTML = `
+        <div style="background:#ef444415;border:1px solid #ef444430;border-radius:10px;padding:16px;margin-top:12px;">
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px;">All fetches failed</div>
+          <div style="font-size:12px;color:#9ca3af;line-height:1.8;">${errors.map(e => '- ' + e).join('<br>')}</div>
+        </div>`;
+    } else if (errors.length > 0) {
+      setStatus(`Loaded ${loaded} articles (${errors.length} failed), ${totalBlocks} editable blocks`, 'unsaved');
+    } else {
+      setStatus(`Loaded ${loaded} articles, ${totalBlocks} editable blocks`, 'saved');
+    }
   } catch (err) {
     console.error('Init failed:', err);
     setStatus('Failed to load: ' + err.message, 'error');
+    document.getElementById('articles').innerHTML = `
+      <div style="background:#ef444415;border:1px solid #ef444430;border-radius:10px;padding:16px;">
+        <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:4px;">Error</div>
+        <div style="font-size:12px;color:#9ca3af;">${err.message}</div>
+      </div>`;
     reloadBtn.disabled = false;
   }
 }
