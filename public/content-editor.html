@@ -1,1 +1,600 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Content Editor - climbing-gear.com</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0e1117; color: #e0e4ec; line-height: 1.5;
+    padding: 20px; max-width: 900px; margin: 0 auto;
+  }
+  h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #6b7280; margin-bottom: 24px; }
+  .status-bar {
+    position: sticky; top: 0; z-index: 100; background: #0e1117;
+    padding: 12px 0; border-bottom: 1px solid #1e2330;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .status-msg { font-size: 13px; color: #6b7280; }
+  .status-msg.unsaved { color: #f59e0b; font-weight: 600; }
+  .status-msg.saving { color: #3b82f6; }
+  .status-msg.saved { color: #22c55e; }
+  .status-msg.error { color: #ef4444; }
+  .btn {
+    padding: 8px 20px; border-radius: 8px; font-size: 13px; font-weight: 700;
+    border: none; cursor: pointer; transition: transform 0.15s, opacity 0.15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-primary { background: #6366f1; color: #fff; }
+  .btn-secondary { background: #1e2330; color: #e0e4ec; border: 1px solid #2d3348; }
+
+  /* Article sections */
+  .article {
+    background: #151922; border: 1px solid #1e2330; border-radius: 12px;
+    margin-bottom: 16px; overflow: hidden;
+  }
+  .article-header {
+    padding: 16px 20px; cursor: pointer; display: flex; align-items: center;
+    justify-content: space-between; user-select: none;
+  }
+  .article-header:hover { background: #1a1f2e; }
+  .article-title { font-size: 15px; font-weight: 700; }
+  .article-meta { font-size: 11px; color: #6b7280; }
+  .article-toggle { font-size: 18px; color: #6b7280; transition: transform 0.2s; }
+  .article-toggle.open { transform: rotate(90deg); }
+  .article-body { padding: 0 20px 20px; display: none; }
+  .article-body.open { display: block; }
+
+  /* Block editors */
+  .block { margin-bottom: 16px; }
+  .block-label {
+    font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .block-tag {
+    font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 700;
+  }
+  .tag-prose { background: #6366f118; color: #818cf8; }
+  .tag-insight { background: #f59e0b18; color: #fbbf24; }
+  .tag-heading { background: #22c55e18; color: #4ade80; }
+  .tag-meta { background: #3b82f618; color: #60a5fa; }
+
+  .block input[type="text"] {
+    width: 100%; padding: 10px 12px; background: #0e1117; color: #e0e4ec;
+    border: 1px solid #2d3348; border-radius: 8px; font-size: 14px; font-weight: 600;
+    outline: none; transition: border-color 0.2s;
+  }
+  .block input[type="text"]:focus { border-color: #6366f1; }
+  .block textarea {
+    width: 100%; padding: 12px; background: #0e1117; color: #e0e4ec;
+    border: 1px solid #2d3348; border-radius: 8px; font-size: 13px;
+    line-height: 1.7; resize: vertical; min-height: 80px; outline: none;
+    font-family: inherit; transition: border-color 0.2s;
+  }
+  .block textarea:focus { border-color: #6366f1; }
+  .block .modified input, .block .modified textarea { border-color: #f59e0b; }
+
+  .help-text { font-size: 11px; color: #4b5563; margin-top: 4px; }
+  .loading { text-align: center; padding: 60px; color: #6b7280; font-size: 14px; }
+
+  /* Info banner */
+  .info-banner {
+    background: #6366f10a; border: 1px solid #6366f120; border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 20px; font-size: 12px; color: #9ca3af; line-height: 1.6;
+  }
+  .info-banner strong { color: #e0e4ec; }
+
+  /* Diff indicator */
+  .diff-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #f59e0b;
+    display: inline-block; margin-left: 6px; vertical-align: middle;
+  }
+  .change-count {
+    font-size: 11px; color: #f59e0b; font-weight: 600;
+    background: #f59e0b15; padding: 2px 8px; border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Content Editor</h1>
+<p class="subtitle">Edit article text directly. Changes commit to GitHub and auto-deploy via Vercel.</p>
+
+<div class="info-banner">
+  <strong>How it works:</strong> Edit the text below, then hit Save. The editor commits the changes to GitHub,
+  which triggers an automatic Vercel deploy (~30s). Text in <code>{curly braces}</code> is auto-calculated from
+  the database - leave those as-is. HTML tags like <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, and
+  <code>&lt;a href="..."&gt;</code> control formatting - edit the words between them but keep the tags intact.
+</div>
+
+<div class="status-bar">
+  <span class="status-msg" id="status">Loading articles...</span>
+  <div style="display:flex;gap:8px;">
+    <button class="btn btn-secondary" id="btn-reload" onclick="init()" disabled>Reload</button>
+    <button class="btn btn-primary" id="btn-save" onclick="saveAll()" disabled>Save &amp; Deploy</button>
+  </div>
+</div>
+
+<div id="auth-gate" style="text-align:center;padding:60px 20px;">
+  <div style="max-width:400px;margin:0 auto;">
+    <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Enter GitHub Token</div>
+    <div style="font-size:12px;color:#6b7280;margin-bottom:16px;">Your PAT is never stored - only kept in memory for this session.</div>
+    <input type="password" id="pat-input" placeholder="ghp_..." style="
+      width:100%;padding:10px 12px;background:#0e1117;color:#e0e4ec;
+      border:1px solid #2d3348;border-radius:8px;font-size:14px;
+      outline:none;margin-bottom:12px;font-family:monospace;
+    ">
+    <button class="btn btn-primary" style="width:100%;" onclick="startWithToken()">Load Articles</button>
+    <div id="auth-error" style="font-size:12px;color:#ef4444;margin-top:8px;display:none;"></div>
+  </div>
+</div>
+
+<div id="articles" style="display:none;">
+</div>
+
+<script>
+/* ─── Config ─── */
+var GITHUB_PAT = '';
+var REPO = 'roman1merz-coder/climbing-gear';
+var BRANCH = 'main';
+var API = 'https://api.github.com';
+
+async function startWithToken() {
+  const input = document.getElementById('pat-input');
+  const errEl = document.getElementById('auth-error');
+  const token = input.value.trim();
+  if (!token) {
+    errEl.textContent = 'Please enter a token';
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  input.disabled = true;
+
+  // Clean token - strip whitespace, quotes, and common paste artifacts
+  const cleanToken = token.replace(/[\s"'`]/g, '');
+
+  // Validate token by fetching repo info
+  try {
+    const res = await fetch(`${API}/repos/${REPO}`, {
+      headers: { 'Authorization': `token ${cleanToken}`, 'Accept': 'application/vnd.github.v3+json' },
+    });
+    if (!res.ok) {
+      const body = await res.text();
+      const hint = cleanToken.length < 30
+        ? ` (token seems too short: ${cleanToken.length} chars, expected ~40)`
+        : cleanToken.startsWith('ghp_') ? '' : ' (token should start with ghp_)';
+      throw new Error(`HTTP ${res.status}${hint}`);
+    }
+  } catch (err) {
+    if (err.message.startsWith('HTTP ')) {
+      errEl.textContent = err.message.includes('401')
+        ? 'Invalid token - check that your PAT has repo access. ' + err.message
+        : 'GitHub API error: ' + err.message;
+    } else {
+      errEl.textContent = 'Connection failed: ' + err.message;
+    }
+    errEl.style.display = 'block';
+    input.disabled = false;
+    return;
+  }
+
+  GITHUB_PAT = cleanToken;
+  document.getElementById('auth-gate').style.display = 'none';
+  document.getElementById('articles').style.display = 'block';
+  init();
+}
+
+// Allow Enter key to submit
+document.getElementById('pat-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') startWithToken();
+});
+
+var ARTICLE_FILES = [
+  { path: 'src/InsightShoes.jsx', label: 'Climbing Shoe Guide' },
+  { path: 'src/InsightCrashpads.jsx', label: 'Inflatable Crashpads' },
+  { path: 'src/InsightRopes.jsx', label: 'Rope Cost vs Safety' },
+  { path: 'src/InsightScanner.jsx', label: 'Foot Scanner Guide' },
+  { path: 'src/InsightFootMeasurement.jsx', label: 'Foot Measurement Guide' },
+  { path: 'src/GearNews.jsx', label: 'Gear News' },
+];
+
+/* ─── State ─── */
+var fileData = {};   // path -> { content, sha, originalContent }
+var blockData = {};  // path -> [ { type, label, tagLabel, tagClass, start, end, original, current } ]
+
+/* ─── GitHub API helpers ─── */
+async function ghFetch(url, opts = {}) {
+  const res = await fetch(url, {
+    ...opts,
+    headers: { 'Authorization': `token ${GITHUB_PAT}`, 'Accept': 'application/vnd.github.v3+json', ...(opts.headers || {}) },
+  });
+  if (!res.ok) throw new Error(`GitHub API ${res.status}: ${await res.text()}`);
+  return res.json();
+}
+
+async function fetchFile(path) {
+  const data = await ghFetch(`${API}/repos/${REPO}/contents/${path}?ref=${BRANCH}`);
+  const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+  return { content, sha: data.sha };
+}
+
+async function commitFile(path, content, sha, message) {
+  // Use the simpler Contents API - one commit per file
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+  return await ghFetch(`${API}/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, content: encoded, sha, branch: BRANCH }),
+  });
+}
+
+/* ─── Block parser ─── */
+function parseBlocks(content) {
+  const blocks = [];
+
+  // ArticleHeader - title and subtitle props
+  const ahRegex = /<ArticleHeader\s[\s\S]*?\/>/g;
+  let m;
+  while ((m = ahRegex.exec(content)) !== null) {
+    const full = m[0];
+    const fullStart = m.index;
+    // Extract title
+    const titleMatch = full.match(/title=(?:"([^"]*)"|[{]`([^`]*)`[}])/);
+    if (titleMatch) {
+      const val = titleMatch[1] !== undefined ? titleMatch[1] : titleMatch[2];
+      const propStr = titleMatch[0];
+      const propIdx = full.indexOf(propStr);
+      const valStart = propStr.indexOf(val);
+      blocks.push({
+        type: 'article_title', label: 'Article Title',
+        tagLabel: 'META', tagClass: 'tag-meta',
+        start: fullStart + propIdx + valStart,
+        end: fullStart + propIdx + valStart + val.length,
+        original: val, current: val, inputType: 'text',
+      });
+    }
+    const subMatch = full.match(/subtitle=(?:"([^"]*)"|[{]`([^`]*)`[}])/);
+    if (subMatch) {
+      const val = subMatch[1] !== undefined ? subMatch[1] : subMatch[2];
+      const propStr = subMatch[0];
+      // Find the subtitle prop position (search after title to avoid overlap)
+      const subSearchStart = titleMatch ? full.indexOf(propStr, full.indexOf(titleMatch[0]) + titleMatch[0].length) : full.indexOf(propStr);
+      const propIdx = subSearchStart >= 0 ? subSearchStart : full.indexOf(propStr);
+      const valStart = propStr.indexOf(val);
+      blocks.push({
+        type: 'article_subtitle', label: 'Article Subtitle',
+        tagLabel: 'META', tagClass: 'tag-meta',
+        start: fullStart + propIdx + valStart,
+        end: fullStart + propIdx + valStart + val.length,
+        original: val, current: val, inputType: 'text',
+      });
+    }
+  }
+
+  // SectionHeading
+  const shRegex = /<SectionHeading>([\s\S]*?)<\/SectionHeading>/g;
+  while ((m = shRegex.exec(content)) !== null) {
+    blocks.push({
+      type: 'section_heading', label: 'Section Heading',
+      tagLabel: 'HEADING', tagClass: 'tag-heading',
+      start: m.index + m[0].indexOf(m[1]),
+      end: m.index + m[0].indexOf(m[1]) + m[1].length,
+      original: m[1], current: m[1], inputType: 'text',
+    });
+  }
+
+  // Prose
+  const proseRegex = /<Prose>([\s\S]*?)<\/Prose>/g;
+  while ((m = proseRegex.exec(content)) !== null) {
+    const inner = m[1];
+    const innerStart = m.index + m[0].indexOf(inner);
+    blocks.push({
+      type: 'prose', label: 'Prose',
+      tagLabel: 'PROSE', tagClass: 'tag-prose',
+      start: innerStart, end: innerStart + inner.length,
+      original: inner, current: inner, inputType: 'textarea',
+    });
+  }
+
+  // KeyInsight
+  const kiRegex = /<KeyInsight(?:\s[^>]*)?>( *\n?)([\s\S]*?)<\/KeyInsight>/g;
+  while ((m = kiRegex.exec(content)) !== null) {
+    // Capture everything after the opening tag (including leading whitespace) up to closing tag
+    const fullInner = m[1] + m[2];
+    const innerStart = m.index + m[0].indexOf(fullInner);
+    blocks.push({
+      type: 'key_insight', label: 'Key Insight',
+      tagLabel: 'INSIGHT', tagClass: 'tag-insight',
+      start: innerStart, end: innerStart + fullInner.length,
+      original: fullInner, current: fullInner, inputType: 'textarea',
+    });
+  }
+
+  // Collapsible title
+  const collRegex = /<Collapsible\s+title="([^"]*)"(?:\s[^>]*)?>/g;
+  while ((m = collRegex.exec(content)) !== null) {
+    const val = m[1];
+    const propStr = `title="${val}"`;
+    const propIdx = m[0].indexOf(propStr);
+    const valStart = propStr.indexOf(val);
+    blocks.push({
+      type: 'collapsible_title', label: 'Collapsible Section',
+      tagLabel: 'HEADING', tagClass: 'tag-heading',
+      start: m.index + propIdx + valStart,
+      end: m.index + propIdx + valStart + val.length,
+      original: val, current: val, inputType: 'text',
+    });
+  }
+
+  // Sort by position in file
+  blocks.sort((a, b) => a.start - b.start);
+  return blocks;
+}
+
+/* ─── Apply edits back to file content ─── */
+function applyEdits(originalContent, blocks) {
+  let result = originalContent;
+  let offset = 0;
+
+  // Blocks are sorted by start position - apply in order, adjusting offset
+  for (const block of blocks) {
+    if (block.current === block.original) continue;
+    const adjStart = block.start + offset;
+    const adjEnd = block.end + offset;
+    result = result.slice(0, adjStart) + block.current + result.slice(adjEnd);
+    offset += block.current.length - (block.end - block.start);
+  }
+  return result;
+}
+
+/* ─── UI ─── */
+function setStatus(msg, cls) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status-msg' + (cls ? ' ' + cls : '');
+}
+
+function getChangeCount() {
+  let count = 0;
+  for (const path of Object.keys(blockData)) {
+    for (const b of blockData[path]) {
+      if (b.current !== b.original) count++;
+    }
+  }
+  return count;
+}
+
+function updateStatus() {
+  const count = getChangeCount();
+  if (count === 0) {
+    setStatus('All saved', 'saved');
+    document.getElementById('btn-save').disabled = true;
+  } else {
+    setStatus(`${count} unsaved change${count > 1 ? 's' : ''}`, 'unsaved');
+    document.getElementById('btn-save').disabled = false;
+  }
+
+  // Update per-article change counts
+  for (const { path } of ARTICLE_FILES) {
+    const countEl = document.getElementById(`count-${path}`);
+    if (!countEl || !blockData[path]) continue;
+    const n = blockData[path].filter(b => b.current !== b.original).length;
+    countEl.textContent = n > 0 ? `${n} change${n > 1 ? 's' : ''}` : '';
+    countEl.style.display = n > 0 ? 'inline' : 'none';
+  }
+}
+
+function cleanDisplayText(raw) {
+  // Trim leading/trailing whitespace for display, preserve internal structure
+  return raw.replace(/^\n\s*/, '').replace(/\s*\n\s*$/, '');
+}
+
+function renderArticles() {
+  const container = document.getElementById('articles');
+  container.innerHTML = '';
+
+  for (const { path, label } of ARTICLE_FILES) {
+    const blocks = blockData[path];
+    if (!blocks || blocks.length === 0) continue;
+
+    const article = document.createElement('div');
+    article.className = 'article';
+
+    const header = document.createElement('div');
+    header.className = 'article-header';
+    header.innerHTML = `
+      <div>
+        <span class="article-title">${label}</span>
+        <span class="change-count" id="count-${path}" style="display:none;margin-left:8px;"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="article-meta">${blocks.length} editable blocks</span>
+        <span class="article-toggle">&#9654;</span>
+      </div>
+    `;
+
+    const body = document.createElement('div');
+    body.className = 'article-body';
+
+    header.addEventListener('click', () => {
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open');
+      header.querySelector('.article-toggle').classList.toggle('open');
+    });
+
+    blocks.forEach((block, idx) => {
+      const div = document.createElement('div');
+      div.className = 'block';
+      div.id = `block-${path}-${idx}`;
+
+      const labelHtml = `
+        <div class="block-label">
+          <span class="block-tag ${block.tagClass}">${block.tagLabel}</span>
+          ${block.label}
+        </div>
+      `;
+
+      if (block.inputType === 'text') {
+        div.innerHTML = labelHtml + `<input type="text" value="" data-path="${path}" data-idx="${idx}">`;
+        const input = div.querySelector('input');
+        input.value = block.current;
+        input.addEventListener('input', (e) => {
+          block.current = e.target.value;
+          updateStatus();
+        });
+      } else {
+        const displayVal = cleanDisplayText(block.current);
+        div.innerHTML = labelHtml + `<textarea data-path="${path}" data-idx="${idx}" rows="${Math.max(3, displayVal.split('\n').length + 1)}">${escapeHtml(displayVal)}</textarea>`;
+        const ta = div.querySelector('textarea');
+        ta.addEventListener('input', (e) => {
+          // Reconstruct with original leading/trailing whitespace
+          const leadMatch = block.original.match(/^(\n\s*)/);
+          const trailMatch = block.original.match(/(\s*\n\s*)$/);
+          const lead = leadMatch ? leadMatch[1] : '';
+          const trail = trailMatch ? trailMatch[1] : '';
+          block.current = lead + e.target.value + trail;
+          // Auto-resize
+          ta.rows = Math.max(3, e.target.value.split('\n').length + 1);
+          updateStatus();
+        });
+      }
+
+      body.appendChild(div);
+    });
+
+    article.appendChild(header);
+    article.appendChild(body);
+    container.appendChild(article);
+  }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* ─── Save ─── */
+async function saveAll() {
+  const changes = [];
+  for (const { path } of ARTICLE_FILES) {
+    const blocks = blockData[path];
+    if (!blocks) continue;
+    const hasChanges = blocks.some(b => b.current !== b.original);
+    if (!hasChanges) continue;
+    const newContent = applyEdits(fileData[path].originalContent, blocks);
+    changes.push({ path, content: newContent });
+  }
+
+  if (changes.length === 0) {
+    setStatus('No changes to save', '');
+    return;
+  }
+
+  const btn = document.getElementById('btn-save');
+  const reloadBtn = document.getElementById('btn-reload');
+  btn.disabled = true;
+  reloadBtn.disabled = true;
+  setStatus(`Saving ${changes.length} file${changes.length > 1 ? 's' : ''}...`, 'saving');
+
+  try {
+    // Commit each changed file sequentially (each gets its own commit)
+    for (let i = 0; i < changes.length; i++) {
+      const { path, content } = changes[i];
+      const af = ARTICLE_FILES.find(a => a.path === path);
+      const label = af ? af.label : path;
+      setStatus(`Saving ${i + 1}/${changes.length}: ${label}...`, 'saving');
+
+      const msg = `Update article text: ${label}`;
+      const result = await commitFile(path, content, fileData[path].sha, msg);
+
+      // Update SHA for the file (needed if saving multiple files)
+      fileData[path].sha = result.content.sha;
+      fileData[path].originalContent = content;
+      blockData[path] = parseBlocks(content);
+    }
+
+    renderArticles();
+    setStatus('Saved and deploying! Changes will be live in ~30s.', 'saved');
+  } catch (err) {
+    console.error('Save failed:', err);
+    setStatus('Save failed: ' + err.message, 'error');
+    btn.disabled = false;
+  }
+  reloadBtn.disabled = false;
+}
+
+/* ─── Init ─── */
+async function init() {
+  const btn = document.getElementById('btn-save');
+  const reloadBtn = document.getElementById('btn-reload');
+  btn.disabled = true;
+  reloadBtn.disabled = true;
+  setStatus('Loading articles from GitHub...', '');
+  document.getElementById('articles').innerHTML = '<div class="loading">Loading articles from GitHub...</div>';
+
+  try {
+    // Fetch all files in parallel
+    const errors = [];
+    const results = await Promise.all(
+      ARTICLE_FILES.map(async ({ path, label }) => {
+        try {
+          const data = await fetchFile(path);
+          return { path, ...data };
+        } catch (err) {
+          errors.push(`${label}: ${err.message}`);
+          return { path, content: null, sha: null };
+        }
+      })
+    );
+
+    fileData = {};
+    blockData = {};
+
+    for (const { path, content, sha } of results) {
+      if (!content) continue;
+      fileData[path] = { content, sha, originalContent: content };
+      blockData[path] = parseBlocks(content);
+    }
+
+    renderArticles();
+    updateStatus();
+    reloadBtn.disabled = false;
+
+    const totalBlocks = Object.values(blockData).reduce((s, b) => s + b.length, 0);
+    const loaded = Object.keys(blockData).length;
+
+    if (loaded === 0 && errors.length > 0) {
+      setStatus('Failed to load articles', 'error');
+      document.getElementById('articles').innerHTML = `
+        <div style="background:#ef444415;border:1px solid #ef444430;border-radius:10px;padding:16px;margin-top:12px;">
+          <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:8px;">All fetches failed</div>
+          <div style="font-size:12px;color:#9ca3af;line-height:1.8;">${errors.map(e => '- ' + e).join('<br>')}</div>
+        </div>`;
+    } else if (errors.length > 0) {
+      setStatus(`Loaded ${loaded} articles (${errors.length} failed), ${totalBlocks} editable blocks`, 'unsaved');
+    } else {
+      setStatus(`Loaded ${loaded} articles, ${totalBlocks} editable blocks`, 'saved');
+    }
+  } catch (err) {
+    console.error('Init failed:', err);
+    setStatus('Failed to load: ' + err.message, 'error');
+    document.getElementById('articles').innerHTML = `
+      <div style="background:#ef444415;border:1px solid #ef444430;border-radius:10px;padding:16px;">
+        <div style="font-size:13px;font-weight:700;color:#ef4444;margin-bottom:4px;">Error</div>
+        <div style="font-size:12px;color:#9ca3af;">${err.message}</div>
+      </div>`;
+    reloadBtn.disabled = false;
+  }
+}
+
+// Auto-focus the token input
+document.getElementById('pat-input').focus();
+</script>
+</body>
+</html>
