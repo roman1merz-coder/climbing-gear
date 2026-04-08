@@ -34,8 +34,8 @@ export default function InsightScanner() {
   return (
     <ArticleLayout isMobile={isMobile} breadcrumb="Foot Scanner Guide">
       <ArticleHeader
-        title="How the Foot Scanner Works"
-        subtitle="Two photos, seven measurements, 400+ shoes ranked. Here's what actually happens when you scan your foot."
+        title="How our Foot Scanner Works"
+        subtitle="Two photos, seven measurements, 400+ shoes ranked over 30 attributes. Here's what actually happens when you scan your foot."
       />
 
       {/* ── What You Need ── */}
@@ -58,9 +58,9 @@ export default function InsightScanner() {
       <SectionHeading>How to get a good scan</SectionHeading>
       <Prose>
         <p>
-          Photo quality is the single biggest factor in scan accuracy. Good lighting matters more than
+          Photo quality is the single biggest factor in scan accuracy. Straight camera angle and good lighting matters more than
           camera resolution. Stand on a flat, contrasting surface (light floor works best). For the sole
-          photo, point the camera straight down at your foot. For the side photo, place the camera level
+          photo, point the camera straight down at your foot. For the side photo, place the camera on the floor, level
           with your foot so your full profile is visible from heel to toes.
         </p>
         <p>
@@ -96,11 +96,10 @@ export default function InsightScanner() {
       <SectionHeading>What you tell it</SectionHeading>
       <Prose>
         <p>
-          After the photos, the scanner asks a few questions: your street shoe size, whether you climb in
-          men's or women's shoes, and your current climbing shoe (brand, model, size, and how it fits in
+          After the photos, the scanner asks a few questions: your street shoe size and your current climbing shoe (brand, model, size, and how it fits in
           three zones: toes, forefoot, and heel). This fit feedback is critical because it tells the
-          system what works and what doesn't in a shoe you already know. If your Solution's heel
-          feels empty but the forefoot is perfect, the scanner knows to find shoes with a tighter heel
+          system what works and what doesn't in a shoe you already know. If your heel
+          feels empty but the forefoot is perfect, the scanner considers this on top to the measurements to find shoes with a fitting heel
           cup but keep the forefoot geometry.
         </p>
       </Prose>
@@ -210,10 +209,10 @@ export default function InsightScanner() {
           sizes down vs the typical 2.5 for La Sportiva) flagged a toe box shape mismatch, not a width
           problem. The empty heel confirmed the narrow, shallow heel profile from the scan. The scanner
           adjusted its targets accordingly: medium-width shoes (one step wider than the raw scan suggests)
-          to avoid repeating the toe squeeze, while keeping narrow heel volume to fix the empty heel.
+          to avoid repeating the toe squeeze, while looking for a narrow heel volume to fix the empty heel.
         </p>
         <p>
-          Top recommendations included the Tenaya Mastia, Unparallel Souped Up, and Red Chili Voltage
+          Top recommendations included the Drone 2.1 HV, Unparallel Souped Up, and Red Chili Voltage
           Lace in the baseline tier, with the La Sportiva Mantra and Evolv Zenist as softer alternatives.
           Budget picks included the Black Diamond Shadow and Boreal Ninja.
         </p>
@@ -229,9 +228,7 @@ export default function InsightScanner() {
       <SectionHeading>What it can't do (yet)</SectionHeading>
       <Prose>
         <p>
-          The scanner is good at matching foot geometry to shoe geometry. Photo quality matters: a
-          blurry or poorly lit photo will produce unreliable measurements, and the scanner will tell
-          you when it can't get a good read rather than guessing.
+          The scanner is good at matching foot geometry to shoe geometry and selecting models from our database. But for now the database relies mostly on manufacturer inputs and selected reviews which are often not accurate and not based on a underlying foot geometry - however, this will impove with every scan and fit input.
         </p>
         <p>
           Processing is sequential right now. If many people scan at the same time, you'll wait in
