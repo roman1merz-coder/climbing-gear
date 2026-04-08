@@ -225,50 +225,14 @@ async function fetchFile(path) {
   return { content, sha: data.sha };
 }
 
-async function commitFiles(changes, message) {
-  // Get latest commit SHA
-  const ref = await ghFetch(`${API}/repos/${REPO}/git/ref/heads/${BRANCH}`);
-  const commitSha = ref.object.sha;
-  const commit = await ghFetch(`${API}/repos/${REPO}/git/commits/${commitSha}`);
-  const treeSha = commit.tree.sha;
-
-  // Create blobs for each changed file
-  const treeItems = [];
-  for (const { path, content } of changes) {
-    const blob = await ghFetch(`${API}/repos/${REPO}/git/blobs`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content: content, encoding: 'utf-8' }),
-    });
-    treeItems.push({ path, mode: '100644', type: 'blob', sha: blob.sha });
-  }
-
-  // Create new tree
-  const newTree = await ghFetch(`${API}/repos/${REPO}/git/trees`, {
-    method: 'POST',
+async function commitFile(path, content, sha, message) {
+  // Use the simpler Contents API - one commit per file
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+  return await ghFetch(`${API}/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ base_tree: treeSha, tree: treeItems }),
+    body: JSON.stringify({ message, content: encoded, sha, branch: BRANCH }),
   });
-
-  // Create commit
-  const newCommit = await ghFetch(`${API}/repos/${REPO}/git/commits`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message,
-      tree: newTree.sha,
-      parents: [commitSha],
-    }),
-  });
-
-  // Update ref
-  await ghFetch(`${API}/repos/${REPO}/git/ref/heads/${BRANCH}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sha: newCommit.sha }),
-  });
-
-  return newCommit.sha;
 }
 
 /* ─── Block parser ─── */
@@ -539,19 +503,19 @@ async function saveAll() {
   setStatus(`Saving ${changes.length} file${changes.length > 1 ? 's' : ''}...`, 'saving');
 
   try {
-    // Build commit message from changed file labels
-    const changedLabels = changes.map(c => {
-      const af = ARTICLE_FILES.find(a => a.path === c.path);
-      return af ? af.label : c.path;
-    });
-    const msg = `Update article text: ${changedLabels.join(', ')}`;
+    // Commit each changed file sequentially (each gets its own commit)
+    for (let i = 0; i < changes.length; i++) {
+      const { path, content } = changes[i];
+      const af = ARTICLE_FILES.find(a => a.path === path);
+      const label = af ? af.label : path;
+      setStatus(`Saving ${i + 1}/${changes.length}: ${label}...`, 'saving');
 
-    await commitFiles(changes, msg);
+      const msg = `Update article text: ${label}`;
+      const result = await commitFile(path, content, fileData[path].sha, msg);
 
-    // Refresh file data so originals match the new state
-    for (const { path, content } of changes) {
+      // Update SHA for the file (needed if saving multiple files)
+      fileData[path].sha = result.content.sha;
       fileData[path].originalContent = content;
-      // Re-parse blocks with new content
       blockData[path] = parseBlocks(content);
     }
 
