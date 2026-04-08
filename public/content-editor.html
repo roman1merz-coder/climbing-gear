@@ -157,25 +157,35 @@ async function startWithToken() {
   errEl.style.display = 'none';
   input.disabled = true;
 
+  // Clean token - strip whitespace, quotes, and common paste artifacts
+  const cleanToken = token.replace(/[\s"'`]/g, '');
+
   // Validate token by fetching repo info
   try {
     const res = await fetch(`${API}/repos/${REPO}`, {
-      headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' },
+      headers: { 'Authorization': `token ${cleanToken}`, 'Accept': 'application/vnd.github.v3+json' },
     });
     if (!res.ok) {
       const body = await res.text();
-      throw new Error(res.status === 401 ? 'Invalid token' : `GitHub API ${res.status}: ${body}`);
+      const hint = cleanToken.length < 30
+        ? ` (token seems too short: ${cleanToken.length} chars, expected ~40)`
+        : cleanToken.startsWith('ghp_') ? '' : ' (token should start with ghp_)';
+      throw new Error(`HTTP ${res.status}${hint}`);
     }
   } catch (err) {
-    errEl.textContent = err.message === 'Invalid token'
-      ? 'Invalid token - check that your PAT has repo access'
-      : 'Connection failed: ' + err.message;
+    if (err.message.startsWith('HTTP ')) {
+      errEl.textContent = err.message.includes('401')
+        ? 'Invalid token - check that your PAT has repo access. ' + err.message
+        : 'GitHub API error: ' + err.message;
+    } else {
+      errEl.textContent = 'Connection failed: ' + err.message;
+    }
     errEl.style.display = 'block';
     input.disabled = false;
     return;
   }
 
-  GITHUB_PAT = token;
+  GITHUB_PAT = cleanToken;
   document.getElementById('auth-gate').style.display = 'none';
   document.getElementById('articles').style.display = 'block';
   init();
