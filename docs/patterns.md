@@ -85,7 +85,7 @@ Schema builders live in `useStructuredData.js` (client-side, with live price dat
 
 **BreadcrumbList schema:** Every prerendered page gets a BreadcrumbList: product detail pages have 3-level crumbs (Home > Category > Product), category pages have 2-level (Home > Category), insight articles have 3-level (Home > Insights > Article), and other static pages have 2-level (Home > Page).
 
-**Price data in JSON-LD:** All product pages include AggregateOffer with per-retailer Offer entries fetched from their respective `*_prices` tables at build time (filter: `product_slug IS NOT NULL`, `in_stock=true`, `match_confidence=1`). All five categories are fetched in parallel. Products without matched prices simply get no offers in the schema.
+**Price data in JSON-LD and HTML:** All product pages include AggregateOffer with per-retailer Offer entries fetched from their respective `*_prices` tables at build time (filter: `product_slug IS NOT NULL`, `in_stock=true`, `match_confidence=1`). All five categories are fetched in parallel. Products without matched prices simply get no offers. Additionally, a visible price comparison table (up to 10 retailers, sorted cheapest first, deduplicated by retailer) is rendered in the SSR HTML so crawlers see prices as text too.
 
 ## Analytics (PostHog)
 

@@ -369,6 +369,31 @@ function findRelatedQds(target, all) {
     .map(r => r.item);
 }
 
+// --- Price table helper for SSR content ----------------------------------
+function priceTableHtml(prices) {
+  if (!prices || prices.length === 0) return '';
+  // Sort by price ascending, deduplicate by retailer (keep cheapest)
+  const byRetailer = new Map();
+  for (const p of prices) {
+    const key = p.retailer;
+    if (!byRetailer.has(key) || p.price < byRetailer.get(key).price) {
+      byRetailer.set(key, p);
+    }
+  }
+  const sorted = [...byRetailer.values()].sort((a, b) => a.price - b.price);
+  // Show up to 10 retailers to keep HTML size reasonable
+  const shown = sorted.slice(0, 10);
+  let h = `<h2>Prices</h2><table><tr><th>Retailer</th><th>Price</th></tr>`;
+  for (const p of shown) {
+    h += `<tr><td>${escHtml(p.retailer)}</td><td>${p.price.toFixed(2)} EUR</td></tr>`;
+  }
+  if (sorted.length > 10) {
+    h += `<tr><td colspan="2">+ ${sorted.length - 10} more retailers</td></tr>`;
+  }
+  h += `</table>`;
+  return h;
+}
+
 // --- Shoe pages -------------------------------------------------------
 function shoeTitle(s) { return `${s.brand} ${s.model || s.slug} - Specs, Scores & Prices`; }
 function shoeDesc(s) {
@@ -380,7 +405,7 @@ function shoeDesc(s) {
   parts.push('Compare specs, performance scores, and prices across retailers.');
   return parts.join('. ');
 }
-function shoeSsr(s, allShoes) {
+function shoeSsr(s, allShoes, priceMap) {
   let h = `<article itemscope itemtype="https://schema.org/Product">`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/shoes">Climbing Shoes</a> / ${escHtml(s.brand)} ${escHtml(s.model || s.slug)}</nav>`;
   h += `<h1 itemprop="name">${escHtml(s.brand)} ${escHtml(s.model || s.slug)}</h1>`;
@@ -400,6 +425,7 @@ function shoeSsr(s, allShoes) {
     specRow('Vegan', s.vegan ? 'Yes' : 'No'),
     specRow('Kids', s.kids_friendly ? 'Yes' : 'No'),
   ]);
+  h += priceTableHtml(priceMap?.get(s.slug));
   if (allShoes) h += relatedLinksHtml(findRelatedShoes(s, allShoes), 'shoe', 'Similar Climbing Shoes');
   h += `<p><a href="${BASE}/shoes">Browse all climbing shoes</a></p>`;
   h += `</article>`;
@@ -444,7 +470,7 @@ function ropeDesc(r) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function ropeSsr(r, allRopes) {
+function ropeSsr(r, allRopes, priceMap) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/ropes">Climbing Ropes</a> / ${escHtml(r.brand)} ${escHtml(r.model || r.slug)}</nav>`;
   h += `<h1>${escHtml(r.brand)} ${escHtml(r.model || r.slug)}</h1>`;
@@ -463,6 +489,7 @@ function ropeSsr(r, allRopes) {
     r.impact_force_kn ? specRow('Impact Force', `${r.impact_force_kn}kN`) : '',
     specRow('Dry Treatment', r.dry_treatment ? 'Yes' : 'No'),
   ]);
+  h += priceTableHtml(priceMap?.get(r.slug));
   if (allRopes) h += relatedLinksHtml(findRelatedRopes(r, allRopes), 'rope', 'Similar Climbing Ropes');
   h += `<p><a href="${BASE}/ropes">Browse all climbing ropes</a></p>`;
   h += `</article>`;
@@ -493,7 +520,7 @@ function padDesc(p) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function padSsr(p, allPads) {
+function padSsr(p, allPads, priceMap) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/crashpads">Crashpads</a> / ${escHtml(p.brand)} ${escHtml(p.model || p.slug)}</nav>`;
   h += `<h1>${escHtml(p.brand)} ${escHtml(p.model || p.slug)}</h1>`;
@@ -508,6 +535,7 @@ function padSsr(p, allPads) {
     specRow('Fold Type', cap(p.fold_type)),
     specRow('Foam Type', cap(p.foam_type)),
   ]);
+  h += priceTableHtml(priceMap?.get(p.slug));
   if (allPads) h += relatedLinksHtml(findRelatedPads(p, allPads), 'crashpad', 'Similar Crashpads');
   h += `<p><a href="${BASE}/crashpads">Browse all crashpads</a></p>`;
   h += `</article>`;
@@ -537,7 +565,7 @@ function belayDesc(b) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function belaySsr(b, allBelays) {
+function belaySsr(b, allBelays, priceMap) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/belays">Belay Devices</a> / ${escHtml(b.brand)} ${escHtml(b.model || b.slug)}</nav>`;
   h += `<h1>${escHtml(b.brand)} ${escHtml(b.model || b.slug)}</h1>`;
@@ -551,6 +579,7 @@ function belaySsr(b, allBelays) {
     b.rope_diameter_min_mm ? specRow('Min Rope Diameter', `${b.rope_diameter_min_mm}mm`) : '',
     b.rope_diameter_max_mm ? specRow('Max Rope Diameter', `${b.rope_diameter_max_mm}mm`) : '',
   ]);
+  h += priceTableHtml(priceMap?.get(b.slug));
   if (allBelays) h += relatedLinksHtml(findRelatedBelays(b, allBelays), 'belay', 'Similar Belay Devices');
   h += `<p><a href="${BASE}/belays">Browse all belay devices</a></p>`;
   h += `</article>`;
@@ -580,7 +609,7 @@ function qdDesc(q) {
   parts.push('Compare specs and prices.');
   return parts.join('. ');
 }
-function qdSsr(q, allQds) {
+function qdSsr(q, allQds, priceMap) {
   let h = `<article>`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/quickdraws">Quickdraws</a> / ${escHtml(q.brand)} ${escHtml(q.model || q.slug)}</nav>`;
   h += `<h1>${escHtml(q.brand)} ${escHtml(q.model || q.slug)}</h1>`;
@@ -592,6 +621,7 @@ function qdSsr(q, allQds) {
     q.length_cm ? specRow('Length', `${q.length_cm}cm`) : '',
     q.weight_g ? specRow('Weight', `${q.weight_g}g`) : '',
   ]);
+  h += priceTableHtml(priceMap?.get(q.slug));
   if (allQds) h += relatedLinksHtml(findRelatedQds(q, allQds), 'quickdraw', 'Similar Quickdraws');
   h += `<p><a href="${BASE}/quickdraws">Browse all quickdraws</a></p>`;
   h += `</article>`;
@@ -733,16 +763,16 @@ async function main() {
   count++;
 
   // Product detail pages - pass full items array to SSR for cross-linking
-  // Price maps are passed to jsonLd functions so AggregateOffer appears in pre-rendered JSON-LD
+  // Price maps are passed to both jsonLd and SSR functions for structured data + visible price tables
   const datasets = [
-    { file: 'seed_data.json', prefix: '/shoe', catPrefix: 'shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: (item) => shoeJsonLd(item, shoePriceMap) },
-    { file: 'rope_seed_data.json', prefix: '/rope', catPrefix: 'rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: (item) => ropeJsonLd(item, ropePriceMap) },
-    { file: 'crashpad_seed_data.json', prefix: '/crashpad', catPrefix: 'crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: (item) => padJsonLd(item, crashpadPriceMap) },
-    { file: 'belay_seed_data.json', prefix: '/belay', catPrefix: 'belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: (item) => belayJsonLd(item, belayPriceMap) },
-    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', catPrefix: 'quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: (item) => qdJsonLd(item, quickdrawPriceMap) },
+    { file: 'seed_data.json', prefix: '/shoe', catPrefix: 'shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: (item) => shoeJsonLd(item, shoePriceMap), priceMap: shoePriceMap },
+    { file: 'rope_seed_data.json', prefix: '/rope', catPrefix: 'rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: (item) => ropeJsonLd(item, ropePriceMap), priceMap: ropePriceMap },
+    { file: 'crashpad_seed_data.json', prefix: '/crashpad', catPrefix: 'crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: (item) => padJsonLd(item, crashpadPriceMap), priceMap: crashpadPriceMap },
+    { file: 'belay_seed_data.json', prefix: '/belay', catPrefix: 'belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: (item) => belayJsonLd(item, belayPriceMap), priceMap: belayPriceMap },
+    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', catPrefix: 'quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: (item) => qdJsonLd(item, quickdrawPriceMap), priceMap: quickdrawPriceMap },
   ];
 
-  for (const { file, prefix, catPrefix, key, ssrFn, titleFn, descFn, jsonLdFn } of datasets) {
+  for (const { file, prefix, catPrefix, key, ssrFn, titleFn, descFn, jsonLdFn, priceMap } of datasets) {
     let items = loadJSON(file);
     if (key && items[key]) items = items[key];
     const catInfo = CATEGORY_BREADCRUMBS[catPrefix];
@@ -754,7 +784,7 @@ async function main() {
         { name: catInfo.name, url: `${BASE}${catInfo.route}` },
         { name: productName, url: `${BASE}${route}` },
       ]);
-      const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item, items), jsonLdFn(item), breadcrumb);
+      const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item, items, priceMap), jsonLdFn(item), breadcrumb);
       writePage(route, html);
       count++;
     }
