@@ -76,10 +76,14 @@ Weighted score from: prices available (30pts) + discount % (20pts) + has image (
 Every route is prerendered at build time (`scripts/prerender.mjs`). The build:
 - Renders each route's visible HTML
 - Injects JSON-LD structured data (Product, ItemList, WebSite schemas)
+- Fetches live shoe prices from Supabase and injects AggregateOffer into Product JSON-LD (so Google/AI engines see prices without running JS)
 - Embeds meta tags (title, description, OG, Twitter card, canonical)
 - React hydrates over SSR content on load
+- If Supabase is unreachable at build time, the build continues without price data (graceful fallback)
 
-Schema builders live in `useStructuredData.js`: buildShoeSchema, buildRopeSchema, buildBelaySchema, buildQuickdrawSchema, buildCrashpadSchema, buildWebsiteSchema, buildItemListSchema.
+Schema builders live in `useStructuredData.js` (client-side, with live price data) and `prerender.mjs` (build-time, with Supabase snapshot). The client-side schemas replace the prerendered ones on hydration.
+
+**Price data in JSON-LD:** Shoe product pages include AggregateOffer with per-retailer Offer entries fetched from `shoe_prices` at build time (filter: `product_slug IS NOT NULL`, `in_stock=true`, `match_confidence=1`). Other categories (ropes, crashpads, belays, quickdraws) do not yet have matched price slugs, so their JSON-LD has no offers until price matching is implemented for those tables.
 
 ## Analytics (PostHog)
 

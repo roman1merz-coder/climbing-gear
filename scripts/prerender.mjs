@@ -4,6 +4,7 @@
  * Reads the Vite-built dist/index.html as a template, then for each route:
  *  - Injects a unique <title> and <meta description>
  *  - Adds JSON-LD structured data (Product/ItemList schema)
+ *  - Fetches live prices from Supabase and injects AggregateOffer into JSON-LD
  *  - Injects VISIBLE HTML content inside <div id="root"> for first-pass crawling
  *  - React replaces this content on hydration - no user sees raw HTML
  *  - Writes to dist/{route}/index.html
@@ -12,6 +13,11 @@
  * and only queues JS rendering if the page seems worth it. An empty <div id="root">
  * signals "thin content" and many pages never get rendered. By injecting real
  * visible content, Google indexes the page on the first pass.
+ *
+ * Price data in JSON-LD: Without AggregateOffer in the pre-rendered HTML,
+ * Google cannot show price rich snippets and AI answer engines will cite
+ * retailers directly instead of climbing-gear.com. Prices are fetched from
+ * Supabase at build time so the static HTML includes full Offer schema.
  *
  * Run AFTER `vite build`: node scripts/prerender.mjs
  */
@@ -27,6 +33,57 @@ const SRC = path.join(ROOT, 'src');
 const BASE = 'https://www.climbing-gear.com';
 
 const TEMPLATE = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
+
+// --- Supabase price fetching for AggregateOffer in JSON-LD ---------------
+const SUPABASE_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI';
+
+/**
+ * Fetch all in-stock, matched shoe prices from Supabase and group by product_slug.
+ * Returns a Map: slug -> [{ retailer, price_eur, product_url }, ...]
+ * Uses pagination (Supabase default limit = 1000) to fetch all rows.
+ * Gracefully returns empty map on failure so the build never breaks.
+ */
+async function fetchShoePriceMap() {
+  const priceMap = new Map();
+  const pageSize = 1000;
+  let offset = 0;
+  let total = 0;
+
+  try {
+    while (true) {
+      const url = `${SUPABASE_URL}/rest/v1/shoe_prices?select=product_slug,retailer,price_eur,product_url&product_slug=not.is.null&in_stock=eq.true&match_confidence=eq.1&order=product_slug&offset=${offset}&limit=${pageSize}`;
+      const res = await fetch(url, {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+      });
+      if (!res.ok) {
+        console.warn(`  Warning: Supabase shoe_prices fetch failed (${res.status}). Skipping price injection.`);
+        return new Map();
+      }
+      const rows = await res.json();
+      for (const row of rows) {
+        if (!row.product_slug || !row.price_eur) continue;
+        if (!priceMap.has(row.product_slug)) priceMap.set(row.product_slug, []);
+        priceMap.get(row.product_slug).push({
+          retailer: row.retailer,
+          price: row.price_eur,
+          url: row.product_url,
+        });
+      }
+      total += rows.length;
+      if (rows.length < pageSize) break;
+      offset += pageSize;
+    }
+    console.log(`  Fetched ${total} shoe prices for ${priceMap.size} products from Supabase`);
+  } catch (err) {
+    console.warn(`  Warning: Could not fetch shoe prices: ${err.message}. Skipping price injection.`);
+    return new Map();
+  }
+  return priceMap;
+}
 
 function loadJSON(file) {
   return JSON.parse(fs.readFileSync(path.join(SRC, file), 'utf8'));
@@ -297,8 +354,8 @@ function shoeSsr(s, allShoes) {
   h += `</article>`;
   return h;
 }
-function shoeJsonLd(s) {
-  return {
+function shoeJsonLd(s, shoePriceMap) {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${s.brand} ${s.model || s.slug}`,
@@ -317,6 +374,34 @@ function shoeJsonLd(s) {
       s.rubber_type && { '@type': 'PropertyValue', name: 'Rubber', value: s.rubber_type },
     ].filter(Boolean),
   };
+
+  // Inject AggregateOffer from Supabase price data fetched at build time
+  const prices = shoePriceMap?.get(s.slug);
+  if (prices && prices.length > 0) {
+    const allPrices = prices.map(p => p.price);
+    const offers = prices.map(p => ({
+      '@type': 'Offer',
+      url: p.url,
+      priceCurrency: 'EUR',
+      price: p.price,
+      availability: 'https://schema.org/InStock',
+      seller: { '@type': 'Organization', name: p.retailer },
+    }));
+    if (offers.length === 1) {
+      schema.offers = offers[0];
+    } else {
+      schema.offers = {
+        '@type': 'AggregateOffer',
+        lowPrice: Math.min(...allPrices),
+        highPrice: Math.max(...allPrices),
+        priceCurrency: 'EUR',
+        offerCount: offers.length,
+        offers,
+      };
+    }
+  }
+
+  return schema;
 }
 
 // --- Rope pages -------------------------------------------------------
@@ -566,8 +651,12 @@ function homepageSsr() {
 }
 
 // --- Main -------------------------------------------------------------
-function main() {
+async function main() {
   let count = 0;
+
+  // Fetch live prices from Supabase for AggregateOffer in JSON-LD
+  console.log('Fetching shoe prices from Supabase for JSON-LD AggregateOffer...');
+  const shoePriceMap = await fetchShoePriceMap();
 
   // Homepage
   let homepageHtml = renderPage('/', 'climbing-gear.com - Scroll less. Climb more.', 'Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.', homepageSsr(), {
@@ -592,8 +681,9 @@ function main() {
   count++;
 
   // Product detail pages - pass full items array to SSR for cross-linking
+  // shoePriceMap is passed to shoeJsonLd so AggregateOffer appears in pre-rendered JSON-LD
   const datasets = [
-    { file: 'seed_data.json', prefix: '/shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: shoeJsonLd },
+    { file: 'seed_data.json', prefix: '/shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: (item) => shoeJsonLd(item, shoePriceMap) },
     { file: 'rope_seed_data.json', prefix: '/rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: ropeJsonLd },
     { file: 'crashpad_seed_data.json', prefix: '/crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: padJsonLd },
     { file: 'belay_seed_data.json', prefix: '/belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: belayJsonLd },
@@ -635,4 +725,7 @@ function main() {
   console.log(`Done: pre-rendered ${count} pages into dist/`);
 }
 
-main();
+main().catch(err => {
+  console.error('Prerender failed:', err);
+  process.exit(1);
+});
