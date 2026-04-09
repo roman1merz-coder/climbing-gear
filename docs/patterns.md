@@ -83,7 +83,7 @@ Every route is prerendered at build time (`scripts/prerender.mjs`). The build:
 
 Schema builders live in `useStructuredData.js` (client-side, with live price data) and `prerender.mjs` (build-time, with Supabase snapshot). The client-side schemas replace the prerendered ones on hydration.
 
-**Price data in JSON-LD:** Shoe product pages include AggregateOffer with per-retailer Offer entries fetched from `shoe_prices` at build time (filter: `product_slug IS NOT NULL`, `in_stock=true`, `match_confidence=1`). Other categories (ropes, crashpads, belays, quickdraws) do not yet have matched price slugs, so their JSON-LD has no offers until price matching is implemented for those tables.
+**Price data in JSON-LD:** All product pages include AggregateOffer with per-retailer Offer entries fetched from their respective `*_prices` tables at build time (filter: `product_slug IS NOT NULL`, `in_stock=true`, `match_confidence=1`). All five categories are fetched in parallel. Products without matched prices simply get no offers in the schema.
 
 ## Analytics (PostHog)
 

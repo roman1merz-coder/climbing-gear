@@ -39,12 +39,13 @@ const SUPABASE_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI';
 
 /**
- * Fetch all in-stock, matched shoe prices from Supabase and group by product_slug.
- * Returns a Map: slug -> [{ retailer, price_eur, product_url }, ...]
+ * Fetch all in-stock, high-confidence prices from a Supabase price table
+ * and group by product_slug.
+ * Returns a Map: slug -> [{ retailer, price, url }, ...]
  * Uses pagination (Supabase default limit = 1000) to fetch all rows.
  * Gracefully returns empty map on failure so the build never breaks.
  */
-async function fetchShoePriceMap() {
+async function fetchPriceMap(table) {
   const priceMap = new Map();
   const pageSize = 1000;
   let offset = 0;
@@ -52,7 +53,7 @@ async function fetchShoePriceMap() {
 
   try {
     while (true) {
-      const url = `${SUPABASE_URL}/rest/v1/shoe_prices?select=product_slug,retailer,price_eur,product_url&product_slug=not.is.null&in_stock=eq.true&match_confidence=eq.1&order=product_slug&offset=${offset}&limit=${pageSize}`;
+      const url = `${SUPABASE_URL}/rest/v1/${table}?select=product_slug,retailer,price_eur,product_url&product_slug=not.is.null&in_stock=eq.true&match_confidence=eq.1&order=product_slug&offset=${offset}&limit=${pageSize}`;
       const res = await fetch(url, {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
@@ -60,7 +61,7 @@ async function fetchShoePriceMap() {
         },
       });
       if (!res.ok) {
-        console.warn(`  Warning: Supabase shoe_prices fetch failed (${res.status}). Skipping price injection.`);
+        console.warn(`  Warning: Supabase ${table} fetch failed (${res.status}). Skipping.`);
         return new Map();
       }
       const rows = await res.json();
@@ -77,12 +78,38 @@ async function fetchShoePriceMap() {
       if (rows.length < pageSize) break;
       offset += pageSize;
     }
-    console.log(`  Fetched ${total} shoe prices for ${priceMap.size} products from Supabase`);
+    console.log(`  ${table}: ${total} prices for ${priceMap.size} products`);
   } catch (err) {
-    console.warn(`  Warning: Could not fetch shoe prices: ${err.message}. Skipping price injection.`);
+    console.warn(`  Warning: Could not fetch ${table}: ${err.message}. Skipping.`);
     return new Map();
   }
   return priceMap;
+}
+
+/**
+ * Build the AggregateOffer (or single Offer) schema fragment from a price list.
+ * Returns undefined if no prices available - caller spreads into schema.
+ */
+function buildOfferSchema(prices) {
+  if (!prices || prices.length === 0) return undefined;
+  const allPrices = prices.map(p => p.price);
+  const offers = prices.map(p => ({
+    '@type': 'Offer',
+    url: p.url,
+    priceCurrency: 'EUR',
+    price: p.price,
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'Organization', name: p.retailer },
+  }));
+  if (offers.length === 1) return offers[0];
+  return {
+    '@type': 'AggregateOffer',
+    lowPrice: Math.min(...allPrices),
+    highPrice: Math.max(...allPrices),
+    priceCurrency: 'EUR',
+    offerCount: offers.length,
+    offers,
+  };
 }
 
 function loadJSON(file) {
@@ -376,30 +403,8 @@ function shoeJsonLd(s, shoePriceMap) {
   };
 
   // Inject AggregateOffer from Supabase price data fetched at build time
-  const prices = shoePriceMap?.get(s.slug);
-  if (prices && prices.length > 0) {
-    const allPrices = prices.map(p => p.price);
-    const offers = prices.map(p => ({
-      '@type': 'Offer',
-      url: p.url,
-      priceCurrency: 'EUR',
-      price: p.price,
-      availability: 'https://schema.org/InStock',
-      seller: { '@type': 'Organization', name: p.retailer },
-    }));
-    if (offers.length === 1) {
-      schema.offers = offers[0];
-    } else {
-      schema.offers = {
-        '@type': 'AggregateOffer',
-        lowPrice: Math.min(...allPrices),
-        highPrice: Math.max(...allPrices),
-        priceCurrency: 'EUR',
-        offerCount: offers.length,
-        offers,
-      };
-    }
-  }
+  const offerSchema = buildOfferSchema(shoePriceMap?.get(s.slug));
+  if (offerSchema) schema.offers = offerSchema;
 
   return schema;
 }
@@ -439,8 +444,8 @@ function ropeSsr(r, allRopes) {
   h += `</article>`;
   return h;
 }
-function ropeJsonLd(r) {
-  return {
+function ropeJsonLd(r, priceMap) {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${r.brand} ${r.model || r.slug}`,
@@ -449,6 +454,9 @@ function ropeJsonLd(r) {
     category: 'Climbing Ropes',
     url: `${BASE}/rope/${r.slug}`,
   };
+  const offerSchema = buildOfferSchema(priceMap?.get(r.slug));
+  if (offerSchema) schema.offers = offerSchema;
+  return schema;
 }
 
 // --- Crashpad pages ---------------------------------------------------
@@ -481,8 +489,8 @@ function padSsr(p, allPads) {
   h += `</article>`;
   return h;
 }
-function padJsonLd(p) {
-  return {
+function padJsonLd(p, priceMap) {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${p.brand} ${p.model || p.slug}`,
@@ -491,6 +499,9 @@ function padJsonLd(p) {
     category: 'Bouldering Crashpads',
     url: `${BASE}/crashpad/${p.slug}`,
   };
+  const offerSchema = buildOfferSchema(priceMap?.get(p.slug));
+  if (offerSchema) schema.offers = offerSchema;
+  return schema;
 }
 
 // --- Belay pages ------------------------------------------------------
@@ -521,8 +532,8 @@ function belaySsr(b, allBelays) {
   h += `</article>`;
   return h;
 }
-function belayJsonLd(b) {
-  return {
+function belayJsonLd(b, priceMap) {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${b.brand} ${b.model || b.slug}`,
@@ -531,6 +542,9 @@ function belayJsonLd(b) {
     category: 'Belay Devices',
     url: `${BASE}/belay/${b.slug}`,
   };
+  const offerSchema = buildOfferSchema(priceMap?.get(b.slug));
+  if (offerSchema) schema.offers = offerSchema;
+  return schema;
 }
 
 // --- Quickdraw pages --------------------------------------------------
@@ -559,8 +573,8 @@ function qdSsr(q, allQds) {
   h += `</article>`;
   return h;
 }
-function qdJsonLd(q) {
-  return {
+function qdJsonLd(q, priceMap) {
+  const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${q.brand} ${q.model || q.slug}`,
@@ -569,6 +583,9 @@ function qdJsonLd(q) {
     category: 'Quickdraws',
     url: `${BASE}/quickdraw/${q.slug}`,
   };
+  const offerSchema = buildOfferSchema(priceMap?.get(q.slug));
+  if (offerSchema) schema.offers = offerSchema;
+  return schema;
 }
 
 // --- Category list pages with product links ---------------------------
@@ -655,8 +672,14 @@ async function main() {
   let count = 0;
 
   // Fetch live prices from Supabase for AggregateOffer in JSON-LD
-  console.log('Fetching shoe prices from Supabase for JSON-LD AggregateOffer...');
-  const shoePriceMap = await fetchShoePriceMap();
+  console.log('Fetching prices from Supabase for JSON-LD AggregateOffer...');
+  const [shoePriceMap, ropePriceMap, crashpadPriceMap, belayPriceMap, quickdrawPriceMap] = await Promise.all([
+    fetchPriceMap('shoe_prices'),
+    fetchPriceMap('rope_prices'),
+    fetchPriceMap('crashpad_prices'),
+    fetchPriceMap('belay_prices'),
+    fetchPriceMap('quickdraw_prices'),
+  ]);
 
   // Homepage
   let homepageHtml = renderPage('/', 'climbing-gear.com - Scroll less. Climb more.', 'Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.', homepageSsr(), {
@@ -681,13 +704,13 @@ async function main() {
   count++;
 
   // Product detail pages - pass full items array to SSR for cross-linking
-  // shoePriceMap is passed to shoeJsonLd so AggregateOffer appears in pre-rendered JSON-LD
+  // Price maps are passed to jsonLd functions so AggregateOffer appears in pre-rendered JSON-LD
   const datasets = [
     { file: 'seed_data.json', prefix: '/shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: (item) => shoeJsonLd(item, shoePriceMap) },
-    { file: 'rope_seed_data.json', prefix: '/rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: ropeJsonLd },
-    { file: 'crashpad_seed_data.json', prefix: '/crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: padJsonLd },
-    { file: 'belay_seed_data.json', prefix: '/belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: belayJsonLd },
-    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: qdJsonLd },
+    { file: 'rope_seed_data.json', prefix: '/rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: (item) => ropeJsonLd(item, ropePriceMap) },
+    { file: 'crashpad_seed_data.json', prefix: '/crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: (item) => padJsonLd(item, crashpadPriceMap) },
+    { file: 'belay_seed_data.json', prefix: '/belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: (item) => belayJsonLd(item, belayPriceMap) },
+    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: (item) => qdJsonLd(item, quickdrawPriceMap) },
   ];
 
   for (const { file, prefix, key, ssrFn, titleFn, descFn, jsonLdFn } of datasets) {
