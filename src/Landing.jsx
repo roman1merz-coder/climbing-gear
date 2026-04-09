@@ -85,9 +85,11 @@ const SELECTORS = [
 ];
 
 const INSIGHTS = [
-  { title: `How We Score ${SHOES.length} Climbing Shoes \u2014 and How to Pick Yours`, description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
+  { title: "How the Foot Scanner Works", description: "Two photos, seven measurements, 400+ shoes ranked. See a real scan walkthrough from photo to recommendation.", to: "/insights/foot-scanner" },
+  { title: `How We Score ${SHOES.length} Climbing Shoes - and How to Pick Yours`, description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
   { title: "Inflatable Crashpads: Game-Changer or Gimmick?", description: "They shatter the weight curve, fit inside your backpack, and inflate in minutes. But how safe are they really?", to: "/insights/inflatable-crashpads" },
   { title: "Does Spending More Buy a Safer Rope?", description: `We crunched cost-per-gram, UIAA falls, and impact force across ${DYNAMIC_ROPES.length}+ ropes to find out.`, to: "/insights/rope-cost-vs-safety" },
+  { title: "How to Measure Your Foot for Climbing Shoes", description: "Climbing shoe sizes vary wildly between brands. Here's how to find shoes that actually fit - using your phone camera or a piece of paper.", to: "/insights/foot-measurement" },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -306,23 +308,55 @@ function FootScannerSection({ isMobile }) {
 // INSIGHTS SECTION
 // ═══════════════════════════════════════════════════════════════
 function InsightsSection({ isMobile }) {
+  const scrollRef = useRef(null);
+  const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+  const cardWidth = isMobile ? 280 : 360;
+  const gap = isMobile ? 12 : 16;
+
+  const scroll = (dir) => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: dir * (cardWidth + gap), behavior: "smooth" });
+  };
+
   return (
-    <section id="insights" style={{ padding: isMobile ? "48px 16px" : "80px 40px", maxWidth: "1200px", margin: "0 auto", scrollMarginTop: "60px" }}>
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: isMobile ? "24px" : "40px" }}>
+    <section id="insights" style={{ padding: isMobile ? "48px 0" : "80px 0", maxWidth: "1200px", margin: "0 auto", scrollMarginTop: "60px" }}>
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: isMobile ? "24px" : "40px", padding: isMobile ? "0 16px" : "0 40px" }}>
         <span style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: T.accent, display: "block", marginBottom: "10px" }}>Learn & Decide</span>
-        <h2 style={{ fontSize: isMobile ? "24px" : "38px", fontWeight: 800, color: T.text, letterSpacing: "-0.5px", margin: 0, fontFamily: T.font }}>Gear Insights</h2>
-        <p style={{ marginTop: "12px", color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "520px" }}>Deep dives into specs, safety data, and performance {"\u2014"} so you know exactly what you're buying.</p>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div>
+            <h2 style={{ fontSize: isMobile ? "24px" : "38px", fontWeight: 800, color: T.text, letterSpacing: "-0.5px", margin: 0, fontFamily: T.font }}>Gear Insights</h2>
+            <p style={{ marginTop: "12px", color: T.muted, fontSize: isMobile ? "14px" : "16px", lineHeight: 1.7, maxWidth: "520px" }}>Deep dives into specs, safety data, and performance - so you know exactly what you're buying.</p>
+          </div>
+          {!isMobile && (
+            <div style={{ display: "flex", gap: "8px", flexShrink: 0, marginLeft: "24px" }}>
+              <button onClick={() => scroll(-1)} style={{ width: "40px", height: "40px", borderRadius: "50%", border: `1px solid ${T.border}`, background: T.card, color: T.muted, fontSize: "18px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.color = T.accent; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.muted; }}
+                aria-label="Previous insight">{"\u2190"}</button>
+              <button onClick={() => scroll(1)} style={{ width: "40px", height: "40px", borderRadius: "50%", border: `1px solid ${T.border}`, background: T.card, color: T.muted, fontSize: "18px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = T.accent; e.currentTarget.style.color = T.accent; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.color = T.muted; }}
+                aria-label="Next insight">{"\u2192"}</button>
+            </div>
+          )}
+        </div>
       </motion.div>
 
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? "12px" : "16px" }}>
+      <div ref={scrollRef} style={{
+        display: "flex", gap: `${gap}px`, overflowX: "auto", scrollSnapType: "x mandatory",
+        padding: isMobile ? "0 16px 16px" : "0 40px 16px",
+        WebkitOverflowScrolling: "touch", scrollbarWidth: "none", msOverflowStyle: "none",
+      }}>
+        <style>{`#insights div[style*="overflowX"]::-webkit-scrollbar { display: none; }`}</style>
         {INSIGHTS.map((insight, i) => (
-          <motion.div key={insight.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}>
+          <motion.div key={insight.to} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: Math.min(i * 0.1, 0.3), duration: 0.5 }}
+            style={{ flex: `0 0 ${cardWidth}px`, scrollSnapAlign: "start" }}>
             <Link to={insight.to} style={{ display: "flex", flexDirection: "column", padding: isMobile ? "20px" : "24px", borderRadius: "16px", border: `1px solid ${T.border}`, background: T.card, textDecoration: "none", transition: "all 0.3s ease", height: "100%" }}
               onMouseOver={e => { e.currentTarget.style.borderColor = `${T.accent}40`; e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)"; }}
               onMouseOut={e => { e.currentTarget.style.borderColor = T.border; e.currentTarget.style.boxShadow = "none"; }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
                 <IconBook size={14} color={T.accent} />
-                <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: T.accent }}>Insight {["I", "II", "III"][i]}</span>
+                <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", color: T.accent }}>Insight {ROMAN[i] || i + 1}</span>
               </div>
               <h3 style={{ fontSize: "16px", fontWeight: 800, color: T.text, lineHeight: 1.35, marginBottom: "10px", fontFamily: T.font }}>{insight.title}</h3>
               <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.65, flex: 1 }}>{insight.description}</p>
