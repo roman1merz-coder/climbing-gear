@@ -131,7 +131,23 @@ function cap(s) {
  * ssrContent goes INSIDE <div id="root"> so Google sees it on first crawl.
  * React's createRoot will replace it when JS loads.
  */
-function renderPage(routePath, title, description, ssrContent, jsonLd) {
+// --- BreadcrumbList schema builder for Google breadcrumb rich snippets ---
+function buildBreadcrumbSchema(crumbs) {
+  // crumbs: [{ name, url }, ...] - ordered from root to current page
+  if (!crumbs || crumbs.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
+  };
+}
+
+function renderPage(routePath, title, description, ssrContent, jsonLd, breadcrumbSchema) {
   const fullTitle = `${title} | climbing-gear.com`;
   const canonical = `${BASE}${routePath}`;
 
@@ -175,6 +191,14 @@ function renderPage(routePath, title, description, ssrContent, jsonLd) {
     html = html.replace(
       '</head>',
       `<script type="application/ld+json" id="structured-data-jsonld">${JSON.stringify(jsonLd)}</script>\n</head>`
+    );
+  }
+
+  // Inject BreadcrumbList JSON-LD as separate tag (not replaced by React)
+  if (breadcrumbSchema) {
+    html = html.replace(
+      '</head>',
+      `<script type="application/ld+json" id="structured-data-breadcrumb">${JSON.stringify(breadcrumbSchema)}</script>\n</head>`
     );
   }
 
@@ -623,12 +647,17 @@ function categorySsr(title, desc, items, pathPrefix, categoryPath) {
 
 // --- Category definitions ---------------------------------------------
 const CATEGORIES = [
-  { route: '/shoes', title: 'Climbing Shoes - Compare 750+ Models', desc: 'Find the perfect climbing shoe. Compare specs, performance scores, and prices across 750+ models from La Sportiva, Scarpa, Evolv, and more.', file: 'seed_data.json', prefix: 'shoe', key: 'shoes' },
-  { route: '/ropes', title: 'Climbing Ropes - Compare 190+ Models', desc: 'Compare dynamic, static, half, and twin ropes. Filter by diameter, weight, falls rated, and dry treatment.', file: 'rope_seed_data.json', prefix: 'rope', filterFn: items => items.filter(r => r.rope_type !== 'static') },
-  { route: '/crashpads', title: 'Crashpads - Compare 110+ Models', desc: 'Compare bouldering crashpads by size, thickness, weight, foam type, and price.', file: 'crashpad_seed_data.json', prefix: 'crashpad' },
-  { route: '/belays', title: 'Belay Devices - Compare 50+ Models', desc: 'Compare belay devices: assisted-braking, tube, and guide. Filter by weight, rope range, and safety features.', file: 'belay_seed_data.json', prefix: 'belay' },
-  { route: '/quickdraws', title: 'Quickdraws - Compare 40+ Models', desc: 'Compare quickdraws by weight, length, gate type, and price.', file: 'quickdraw_seed_data.json', prefix: 'quickdraw' },
+  { route: '/shoes', title: 'Climbing Shoes - Compare 750+ Models', desc: 'Find the perfect climbing shoe. Compare specs, performance scores, and prices across 750+ models from La Sportiva, Scarpa, Evolv, and more.', file: 'seed_data.json', prefix: 'shoe', key: 'shoes', breadcrumbName: 'Climbing Shoes' },
+  { route: '/ropes', title: 'Climbing Ropes - Compare 190+ Models', desc: 'Compare dynamic, static, half, and twin ropes. Filter by diameter, weight, falls rated, and dry treatment.', file: 'rope_seed_data.json', prefix: 'rope', filterFn: items => items.filter(r => r.rope_type !== 'static'), breadcrumbName: 'Climbing Ropes' },
+  { route: '/crashpads', title: 'Crashpads - Compare 110+ Models', desc: 'Compare bouldering crashpads by size, thickness, weight, foam type, and price.', file: 'crashpad_seed_data.json', prefix: 'crashpad', breadcrumbName: 'Crashpads' },
+  { route: '/belays', title: 'Belay Devices - Compare 50+ Models', desc: 'Compare belay devices: assisted-braking, tube, and guide. Filter by weight, rope range, and safety features.', file: 'belay_seed_data.json', prefix: 'belay', breadcrumbName: 'Belay Devices' },
+  { route: '/quickdraws', title: 'Quickdraws - Compare 40+ Models', desc: 'Compare quickdraws by weight, length, gate type, and price.', file: 'quickdraw_seed_data.json', prefix: 'quickdraw', breadcrumbName: 'Quickdraws' },
 ];
+
+// Lookup: product prefix -> breadcrumb category name and route
+const CATEGORY_BREADCRUMBS = Object.fromEntries(
+  CATEGORIES.map(c => [c.prefix, { name: c.breadcrumbName, route: c.route }])
+);
 
 // --- Static pages -----------------------------------------------------
 const STATIC = [
@@ -706,19 +735,26 @@ async function main() {
   // Product detail pages - pass full items array to SSR for cross-linking
   // Price maps are passed to jsonLd functions so AggregateOffer appears in pre-rendered JSON-LD
   const datasets = [
-    { file: 'seed_data.json', prefix: '/shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: (item) => shoeJsonLd(item, shoePriceMap) },
-    { file: 'rope_seed_data.json', prefix: '/rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: (item) => ropeJsonLd(item, ropePriceMap) },
-    { file: 'crashpad_seed_data.json', prefix: '/crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: (item) => padJsonLd(item, crashpadPriceMap) },
-    { file: 'belay_seed_data.json', prefix: '/belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: (item) => belayJsonLd(item, belayPriceMap) },
-    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: (item) => qdJsonLd(item, quickdrawPriceMap) },
+    { file: 'seed_data.json', prefix: '/shoe', catPrefix: 'shoe', key: 'shoes', ssrFn: shoeSsr, titleFn: shoeTitle, descFn: shoeDesc, jsonLdFn: (item) => shoeJsonLd(item, shoePriceMap) },
+    { file: 'rope_seed_data.json', prefix: '/rope', catPrefix: 'rope', ssrFn: ropeSsr, titleFn: ropeTitle, descFn: ropeDesc, jsonLdFn: (item) => ropeJsonLd(item, ropePriceMap) },
+    { file: 'crashpad_seed_data.json', prefix: '/crashpad', catPrefix: 'crashpad', ssrFn: padSsr, titleFn: padTitle, descFn: padDesc, jsonLdFn: (item) => padJsonLd(item, crashpadPriceMap) },
+    { file: 'belay_seed_data.json', prefix: '/belay', catPrefix: 'belay', ssrFn: belaySsr, titleFn: belayTitle, descFn: belayDesc, jsonLdFn: (item) => belayJsonLd(item, belayPriceMap) },
+    { file: 'quickdraw_seed_data.json', prefix: '/quickdraw', catPrefix: 'quickdraw', ssrFn: qdSsr, titleFn: qdTitle, descFn: qdDesc, jsonLdFn: (item) => qdJsonLd(item, quickdrawPriceMap) },
   ];
 
-  for (const { file, prefix, key, ssrFn, titleFn, descFn, jsonLdFn } of datasets) {
+  for (const { file, prefix, catPrefix, key, ssrFn, titleFn, descFn, jsonLdFn } of datasets) {
     let items = loadJSON(file);
     if (key && items[key]) items = items[key];
+    const catInfo = CATEGORY_BREADCRUMBS[catPrefix];
     for (const item of items) {
       const route = `${prefix}/${item.slug}`;
-      const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item, items), jsonLdFn(item));
+      const productName = `${item.brand} ${item.model || item.slug}`;
+      const breadcrumb = buildBreadcrumbSchema([
+        { name: 'Home', url: BASE },
+        { name: catInfo.name, url: `${BASE}${catInfo.route}` },
+        { name: productName, url: `${BASE}${route}` },
+      ]);
+      const html = renderPage(route, titleFn(item), descFn(item), ssrFn(item, items), jsonLdFn(item), breadcrumb);
       writePage(route, html);
       count++;
     }
@@ -732,7 +768,11 @@ async function main() {
     const catName = cat.route.replace('/', '');
     const ssr = categorySsr(cat.title, cat.desc, items, cat.prefix, cat.route);
     const jsonLd = categoryItemListJsonLd(items, cap(catName), cat.prefix);
-    const html = renderPage(cat.route, cat.title, cat.desc, ssr, jsonLd);
+    const breadcrumb = buildBreadcrumbSchema([
+      { name: 'Home', url: BASE },
+      { name: cat.breadcrumbName, url: `${BASE}${cat.route}` },
+    ]);
+    const html = renderPage(cat.route, cat.title, cat.desc, ssr, jsonLd, breadcrumb);
     writePage(cat.route, html);
     count++;
   }
@@ -740,7 +780,14 @@ async function main() {
   // Static pages
   for (const pg of STATIC) {
     const ssr = `<article><nav><a href="${BASE}/">Home</a> / ${escHtml(pg.title)}</nav><h1>${escHtml(pg.title)}</h1><p>${escHtml(pg.desc)}</p><p><a href="${BASE}/">Back to homepage</a></p></article>`;
-    const html = renderPage(pg.route, pg.title, pg.desc, ssr, null);
+    // Build breadcrumb: insights sub-pages get 3-level crumbs (Home > Insights > Article)
+    let breadcrumbCrumbs = [{ name: 'Home', url: BASE }];
+    if (pg.route.startsWith('/insights/')) {
+      breadcrumbCrumbs.push({ name: 'Insights', url: `${BASE}/insights` });
+    }
+    breadcrumbCrumbs.push({ name: pg.title, url: `${BASE}${pg.route}` });
+    const breadcrumb = buildBreadcrumbSchema(breadcrumbCrumbs);
+    const html = renderPage(pg.route, pg.title, pg.desc, ssr, null, breadcrumb);
     writePage(pg.route, html);
     count++;
   }

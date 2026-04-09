@@ -81,7 +81,9 @@ Every route is prerendered at build time (`scripts/prerender.mjs`). The build:
 - React hydrates over SSR content on load
 - If Supabase is unreachable at build time, the build continues without price data (graceful fallback)
 
-Schema builders live in `useStructuredData.js` (client-side, with live price data) and `prerender.mjs` (build-time, with Supabase snapshot). The client-side schemas replace the prerendered ones on hydration.
+Schema builders live in `useStructuredData.js` (client-side, with live price data) and `prerender.mjs` (build-time, with Supabase snapshot). The client-side schemas replace the prerendered Product schema on hydration. BreadcrumbList is injected as a separate JSON-LD tag (`id="structured-data-breadcrumb"`) that persists through hydration.
+
+**BreadcrumbList schema:** Every prerendered page gets a BreadcrumbList: product detail pages have 3-level crumbs (Home > Category > Product), category pages have 2-level (Home > Category), insight articles have 3-level (Home > Insights > Article), and other static pages have 2-level (Home > Page).
 
 **Price data in JSON-LD:** All product pages include AggregateOffer with per-retailer Offer entries fetched from their respective `*_prices` tables at build time (filter: `product_slug IS NOT NULL`, `in_stock=true`, `match_confidence=1`). All five categories are fetched in parallel. Products without matched prices simply get no offers in the schema.
 
