@@ -689,13 +689,39 @@ const CATEGORY_BREADCRUMBS = Object.fromEntries(
   CATEGORIES.map(c => [c.prefix, { name: c.breadcrumbName, route: c.route }])
 );
 
+// --- Article JSON-LD builder for insight/news pages ----------------------
+function buildArticleSchema(article) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.headline,
+    description: article.desc,
+    url: `${BASE}${article.route}`,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified || article.datePublished,
+    author: { '@type': 'Organization', name: 'climbing-gear.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'climbing-gear.com',
+      url: BASE,
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE}${article.route}` },
+    ...(article.image && { image: `${BASE}${article.image}` }),
+  };
+}
+
 // --- Static pages -----------------------------------------------------
+// Articles get Article JSON-LD schema for Google/AI engines
+const ARTICLES = [
+  { route: '/insights/climbing-shoe-guide', title: 'How to Choose Climbing Shoes: Data-Driven Guide', desc: 'A comprehensive guide to choosing climbing shoes, backed by data from 750+ models. Learn what specs actually matter.', headline: 'How to Choose Climbing Shoes: A Data-Driven Guide', datePublished: '2026-02-18', dateModified: '2026-04-09', image: '/images/insights/shoe-guide-hero.jpg' },
+  { route: '/insights/inflatable-crashpads', title: 'Inflatable Crashpads: Are They Worth It?', desc: 'Data analysis of inflatable vs traditional crashpads. Compare weight, packability, protection, and value.', headline: 'Inflatable Crashpads: Game-Changer or Gimmick?', datePublished: '2026-02-18', dateModified: '2026-04-09', image: '/images/insights/inflatable-packed-size.jpg' },
+  { route: '/insights/rope-cost-vs-safety', title: 'Rope Cost vs Safety: What the Data Says', desc: 'Analyzing whether expensive climbing ropes are actually safer. Data from 190+ ropes compared.', headline: 'Does Spending More Buy a Safer Rope?', datePublished: '2026-02-25', dateModified: '2026-04-09' },
+  { route: '/insights/foot-scanner', title: 'How the Foot Scanner Works - Real Scan Walkthrough', desc: 'Two photos, seven measurements, 400+ shoes ranked. See a real scan walkthrough from photo to recommendation.', headline: 'How the Foot Scanner Works', datePublished: '2026-04-05', dateModified: '2026-04-09' },
+];
+
 const STATIC = [
   { route: '/find', title: 'Climbing Shoe Finder - Find Your Perfect Shoe', desc: 'Answer a few questions and get personalized climbing shoe recommendations based on 750+ shoes and our scoring algorithms.' },
   { route: '/insights', title: 'Climbing Gear Insights - Data-Driven Articles', desc: 'Data-driven articles and guides about climbing gear: shoe selection, crashpad analysis, rope safety, and more.' },
-  { route: '/insights/climbing-shoe-guide', title: 'How to Choose Climbing Shoes: Data-Driven Guide', desc: 'A comprehensive guide to choosing climbing shoes, backed by data from 750+ models. Learn what specs actually matter.' },
-  { route: '/insights/inflatable-crashpads', title: 'Inflatable Crashpads: Are They Worth It?', desc: 'Data analysis of inflatable vs traditional crashpads. Compare weight, packability, protection, and value.' },
-  { route: '/insights/rope-cost-vs-safety', title: 'Rope Cost vs Safety: What the Data Says', desc: 'Analyzing whether expensive climbing ropes are actually safer. Data from 190+ ropes compared.' },
   { route: '/news', title: 'Gear News - Latest Climbing Equipment Updates', desc: 'Latest climbing gear news: new product releases, industry trends, and equipment updates.' },
   { route: '/methodology', title: 'Methodology - How We Score Climbing Gear', desc: 'Our 10-axis performance model, data sources, and scoring algorithms explained.' },
   { route: '/about', title: 'About climbing-gear.com', desc: 'Our mission: help climbers find the right gear through data, not marketing.' },
@@ -807,14 +833,24 @@ async function main() {
     count++;
   }
 
-  // Static pages
+  // Article pages (insights) - with Article JSON-LD schema
+  for (const art of ARTICLES) {
+    const ssr = `<article><nav><a href="${BASE}/">Home</a> / <a href="${BASE}/insights">Insights</a> / ${escHtml(art.headline)}</nav><h1>${escHtml(art.headline)}</h1><p>${escHtml(art.desc)}</p><p><a href="${BASE}/insights">All insights</a></p></article>`;
+    const breadcrumb = buildBreadcrumbSchema([
+      { name: 'Home', url: BASE },
+      { name: 'Insights', url: `${BASE}/insights` },
+      { name: art.headline, url: `${BASE}${art.route}` },
+    ]);
+    const articleSchema = buildArticleSchema(art);
+    const html = renderPage(art.route, art.title, art.desc, ssr, articleSchema, breadcrumb);
+    writePage(art.route, html);
+    count++;
+  }
+
+  // Static pages (non-article)
   for (const pg of STATIC) {
     const ssr = `<article><nav><a href="${BASE}/">Home</a> / ${escHtml(pg.title)}</nav><h1>${escHtml(pg.title)}</h1><p>${escHtml(pg.desc)}</p><p><a href="${BASE}/">Back to homepage</a></p></article>`;
-    // Build breadcrumb: insights sub-pages get 3-level crumbs (Home > Insights > Article)
     let breadcrumbCrumbs = [{ name: 'Home', url: BASE }];
-    if (pg.route.startsWith('/insights/')) {
-      breadcrumbCrumbs.push({ name: 'Insights', url: `${BASE}/insights` });
-    }
     breadcrumbCrumbs.push({ name: pg.title, url: `${BASE}${pg.route}` });
     const breadcrumb = buildBreadcrumbSchema(breadcrumbCrumbs);
     const html = renderPage(pg.route, pg.title, pg.desc, ssr, null, breadcrumb);
