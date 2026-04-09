@@ -3,6 +3,18 @@
 This file contains rules discovered and validated during data work sessions.
 These rules are NON-NEGOTIABLE and must always be followed.
 
+## Knowledge Wiki
+
+For deeper context beyond rules, read the relevant file in `docs/` before working on that area:
+
+- **[docs/architecture.md](docs/architecture.md)** - Component map, routing, data flow, build process, hooks, shared modules
+- **[docs/schemas.md](docs/schemas.md)** - All Supabase table schemas with column types and notes
+- **[docs/scanner.md](docs/scanner.md)** - Foot scanner pipeline, POP values, recommendation rules, gotchas
+- **[docs/patterns.md](docs/patterns.md)** - Code conventions, design system, data sync workflow, SEO, analytics
+- **[docs/crawlers.md](docs/crawlers.md)** - Price crawler infrastructure, retailer list, how to run
+
+These docs are the project's persistent knowledge base. Update them when making significant changes.
+
 ---
 
 ## No Em Dashes (NON-NEGOTIABLE)
@@ -123,7 +135,7 @@ Examples:
 
 ## Foot Scanner
 
-The foot scanner lives at `climbing-gear.com/scanner-test.html` (static HTML, not part of the React SPA).
+The foot scanner lives at `climbing-gear.com/scan` (static HTML scan.html, rewritten via vercel.json). Old URL `/scanner-test.html` 301-redirects to `/scan`.
 
 ### Flow
 1. User takes 2 photos: **sole** and **side** (no other views)
@@ -186,66 +198,65 @@ These pages are excluded from the Vercel SPA rewrite in `vercel.json`: `scanner-
 
 ---
 
-## Scan Analysis Pipeline (Mac Mini M4 Pro)
+## Scan Analysis Pipeline (Mac Mini M4 Pro, 64GB)
 
-The scan analysis pipeline runs on Roman's Mac Mini (M4 Pro, 48GB). It segments foot photos using SAM3, normalizes orientation, measures proportions, generates overlays, and uploads results to Supabase.
+The scan analysis pipeline runs on Roman's Mac Mini (M4 Pro, 64GB) via `scan_worker.py` (launchd service). It is **fully automated and deterministic** - no LLM or API calls needed.
+
+### Production Pipeline (scan_worker.py)
+
+`scan_worker.py` polls Supabase every 5s for rows with `pipeline_stage='pending'`. When found:
+
+1. **SAM3 segmentation** (~8s) - segments foot from background, normalizes orientation, measures proportions, generates overlays
+2. **Upload** - overlays to Supabase Storage, measurements to `foot_scan_fits` row
+3. **Deterministic interpretation** (~1s) - four rule-based engines generate all text:
+   - `interp_foot_shape.py` - Section 1: "Your Foot Shape"
+   - `interp_shoe_fit.py` - Section 2: "What Your Current Shoe Fit Tells Us"
+   - `interp_what_to_look_for.py` - Section 3: "What to Look For"
+   - `interp_shoe_desc.py` - Per-shoe P1 (description), P2 (why selected), P3 (tradeoffs)
+4. **Matrix scoring** - `matrix_scorer.py` scores all shoes deterministically, selects 12 recs in 4 tiers (baseline, softer, stiffer, budget)
+5. **Write results** - interpretation + recommendations written to Supabase, `pipeline_stage` set to `'done'`
+
+Total: ~10-15s per scan, $0/scan. No Sonnet API, no LLM.
+
+### Worker Management
+```bash
+# Restart worker (after code changes):
+launchctl kickstart -k gui/$(id -u)/com.climbing-gear.scan-worker
+
+# Check worker status:
+launchctl list | grep scan-worker
+```
 
 ### Location
-- **Code:** `/Users/rolfes/foot-scanner/sole_measure.py` (all measurement + overlay logic)
-- **Server:** `/Users/rolfes/foot-scanner/server.py` (FastAPI, port 8787)
-- **Test scans:** `/Users/rolfes/foot-scanner/test_scans/` (raw photos)
-- **Results:** `/Users/rolfes/foot-scanner/results/` (generated overlays)
-- **Silhouette SVG:** `/Users/rolfes/graphics/foot bottom.svg` (symlink to iCloud climbing-gear/graphics/)
+- **Worker:** `/Users/rolfes/foot-scanner/scan_worker.py` (symlink to iCloud climbing-gear/scanner/)
+- **Measurement code:** `/Users/rolfes/foot-scanner/foot_measure.py`
+- **Interp engines:** `/Users/rolfes/foot-scanner/benchmark/interp_*.py` (synced via iCloud)
+- **Server (debug only):** `/Users/rolfes/foot-scanner/server.py` (FastAPI, port 8787)
+- **Test scans:** `/Users/rolfes/foot-scanner/test_scans/`
+- **Results:** `/Users/rolfes/foot-scanner/results/`
+- **Silhouette SVG:** `/Users/rolfes/graphics/foot bottom.svg` (symlink to iCloud)
 
-### Server Endpoints
-- `GET /health` - check if server + SAM3 model are loaded
-- `POST /segment` - raw segmentation mask as PNG (params: photo, prompt)
-- `POST /process-scan` - **full pipeline** (params: sole photo, optional side photo, scan_id, out_dir). Returns measurements JSON + saves overlay PNGs
+### Legacy Modules (NOT used in production)
+- `scan_llm_sonnet.py` - Anthropic Sonnet API module (was ~$0.05/scan, ~55s). Replaced by deterministic engines.
+- `scan_llm.py` - Local fine-tuned Qwen 3.5 27B via MLX-LM. Replaced by deterministic engines.
+- `server.py` async endpoints - still work for local/debug but NOT used by production frontend.
 
-### Running the Pipeline for a New Scan
+### Manual Pipeline (debug/reprocess only)
 
-**Step 1: Start server (if not running)**
+**Start server (if not running):**
 ```bash
 cd /Users/rolfes/foot-scanner
 python3 -m uvicorn server:app --host 0.0.0.0 --port 8787
 ```
 Verify: `curl http://localhost:8787/health` should return `{"status":"ok","model_loaded":true}`
 
-**Step 2: Run analysis via /process-scan**
+**Run analysis via /process-scan:**
 ```bash
 curl -X POST http://localhost:8787/process-scan \
   -F "sole=@/path/to/sole.jpg" \
   -F "side=@/path/to/side.jpg" \
   -F "scan_id=scan-2026-03-06T08-33-33" \
   -F "out_dir=/Users/rolfes/foot-scanner/results"
-```
-This returns JSON with all measurements and saves overlay PNGs to out_dir.
-
-**Step 3: Upload overlays to Supabase**
-```bash
-SERVICE_KEY="eyJhbGci...6cYE1ElsvX7..."
-
-curl -X POST "https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/foot-scans/scans/{scanId}-sole_overlay.png" \
-  -H "Authorization: Bearer $SERVICE_KEY" \
-  -H "Content-Type: image/png" \
-  -H "x-upsert: true" \
-  --data-binary @/Users/rolfes/foot-scanner/results/{scanId}-sole_overlay.png
-
-# Same for side overlay:
-curl -X POST "https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/foot-scans/scans/{scanId}-side_side_overlay.png" \
-  -H "Authorization: Bearer $SERVICE_KEY" \
-  -H "Content-Type: image/png" \
-  -H "x-upsert: true" \
-  --data-binary @/Users/rolfes/foot-scanner/results/{scanId}-side_side_overlay.png
-```
-
-**Step 4: Update foot_scan_fits row with measurements**
-```bash
-curl -X PATCH "https://wsjsuhvpgupalwgcjatp.supabase.co/rest/v1/foot_scan_fits?scan_id=eq.{scanId}" \
-  -H "apikey: $SERVICE_KEY" \
-  -H "Authorization: Bearer $SERVICE_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"toe_shape":"egyptian","width_ratio":0.359,"heel_ratio":0.702,"arch_ratio":0.663,...}'
 ```
 
 ### Sole Processing Pipeline (sole_measure.py)

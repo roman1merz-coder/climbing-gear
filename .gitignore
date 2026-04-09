@@ -12,3 +12,6 @@ scrape_images.py
 
 # Contains API keys and tokens — kept locally only
 CLAUDE-README.md
+
+# Obsidian local workspace state (if using Obsidian to browse docs/)
+.obsidian/
