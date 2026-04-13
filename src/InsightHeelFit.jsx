@@ -18,7 +18,7 @@ export default function InsightHeelFit() {
 
   usePageMeta(
     "What Our First 200 Foot Scans Revealed About Heel Fit — climbing-gear.com",
-    "Every climber cares about heel fit — and almost no one can predict it. Our scanner measures heel width and heel depth separately, then cross-references 280 real fit reports across 97 shoes to show which dimension actually drives the mismatch for each shoe.",
+    "Heel fit is one of the first things climbers check, but hard to predict from a single adjective. Our scanner measures heel width and heel depth separately, then cross-references 280 real fit reports across 97 shoes to show which dimension actually drives the mismatch for each shoe.",
   );
 
   useStructuredData({
@@ -38,21 +38,15 @@ export default function InsightHeelFit() {
         subtitle="Two measurements, one fit question, and what 280 shoe fit observations are teaching us."
       />
 
-      <SectionHeading>Everyone cares. Nobody can predict it.</SectionHeading>
+      <SectionHeading>Heel fit is hard to predict</SectionHeading>
       <Prose>
         <p>
-          Heel fit is the thing climbers actually talk about. Every review has a paragraph on it.
-          Every forum thread about the Skwama, the Solution, the Instinct eventually comes down to
-          whose heel the cup actually grips. A heel that doesn't lock in costs you every time you
-          hook, every time you trust a smear on a slab, every time you press into a heel-toe cam.
-          People know.
-        </p>
-        <p>
-          What's strange is how little that care translates into prediction. Brands describe heels
-          with one word — "narrow," "low-volume," "cupped" — and climbers do the same back:
-          "my heel is narrow, so the Skwama should work." Then it doesn't, and nobody knows why.
-          The problem isn't that the heel is ignored. It's that a single adjective can't describe
-          a three-dimensional pocket, and a single adjective can't describe a foot either.
+          Climbers care about heel fit — it's one of the first things people check when they try
+          on a shoe, and a loose heel is a common reason to send a pair back. The tricky part
+          isn't caring, it's predicting. Heels get described with single words like "narrow" or
+          "low-volume" on both the foot and the shoe side, and those words turn out to hide a lot.
+          Two climbers with the same "narrow heel" can get very different results in the same
+          shoe. This article is a look at why, using data from our first 200 scans.
         </p>
       </Prose>
 
