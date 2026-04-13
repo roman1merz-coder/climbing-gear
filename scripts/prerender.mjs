@@ -717,6 +717,8 @@ const ARTICLES = [
   { route: '/insights/inflatable-crashpads', title: 'Inflatable Crashpads: Are They Worth It?', desc: 'Data analysis of inflatable vs traditional crashpads. Compare weight, packability, protection, and value.', headline: 'Inflatable Crashpads: Game-Changer or Gimmick?', datePublished: '2026-02-18', dateModified: '2026-04-09', image: '/images/insights/inflatable-packed-size.jpg' },
   { route: '/insights/rope-cost-vs-safety', title: 'Rope Cost vs Safety: What the Data Says', desc: 'Analyzing whether expensive climbing ropes are actually safer. Data from 190+ ropes compared.', headline: 'Does Spending More Buy a Safer Rope?', datePublished: '2026-02-25', dateModified: '2026-04-09' },
   { route: '/insights/foot-scanner', title: 'How the Foot Scanner Works - Real Scan Walkthrough', desc: 'Two photos, seven measurements, 400+ shoes ranked. See a real scan walkthrough from photo to recommendation.', headline: 'How the Foot Scanner Works', datePublished: '2026-04-05', dateModified: '2026-04-09' },
+  // Not yet linked from /insights hub or sitemap — direct URL only
+  { route: '/insights/heel-fit', title: 'What Our First 200 Foot Scans Revealed About Heel Fit', desc: 'Across our first 200 foot scans, a too-loose heel was the most common fit complaint. Two measurements, one fit question, and what 280 shoe fit observations are teaching us.', headline: 'What Our First 200 Foot Scans Revealed About Heel Fit', datePublished: '2026-04-13', dateModified: '2026-04-13' },
 ];
 
 const STATIC = [
