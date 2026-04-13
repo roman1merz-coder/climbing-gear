@@ -18,7 +18,7 @@ export default function InsightHeelFit() {
 
   usePageMeta(
     "What Our First 200 Foot Scans Revealed About Heel Fit — climbing-gear.com",
-    "Across our first 200 foot scans, a too-loose heel was the most common fit complaint. Our scanner measures heel width and heel depth separately, then cross-references against real fit reports to figure out which dimension is actually driving the mismatch.",
+    "Every climber cares about heel fit — and almost no one can predict it. Our scanner measures heel width and heel depth separately, then cross-references 280 real fit reports across 97 shoes to show which dimension actually drives the mismatch for each shoe.",
   );
 
   useStructuredData({
@@ -38,14 +38,21 @@ export default function InsightHeelFit() {
         subtitle="Two measurements, one fit question, and what 280 shoe fit observations are teaching us."
       />
 
-      <SectionHeading>The heel problem nobody talks about</SectionHeading>
+      <SectionHeading>Everyone cares. Nobody can predict it.</SectionHeading>
       <Prose>
         <p>
-          Ask a climber about shoe fit and they'll talk about toe curl, downsizing, forefoot width.
-          The heel gets a passing mention: "a bit loose" or "feels fine." But a heel that doesn't
-          lock in costs you every time you hook, every time you trust a smear on a slab, every time
-          you press into a heel-toe cam. It's the part of the shoe most people accept as "good
-          enough" because they've never had it actually fit.
+          Heel fit is the thing climbers actually talk about. Every review has a paragraph on it.
+          Every forum thread about the Skwama, the Solution, the Instinct eventually comes down to
+          whose heel the cup actually grips. A heel that doesn't lock in costs you every time you
+          hook, every time you trust a smear on a slab, every time you press into a heel-toe cam.
+          People know.
+        </p>
+        <p>
+          What's strange is how little that care translates into prediction. Brands describe heels
+          with one word — "narrow," "low-volume," "cupped" — and climbers do the same back:
+          "my heel is narrow, so the Skwama should work." Then it doesn't, and nobody knows why.
+          The problem isn't that the heel is ignored. It's that a single adjective can't describe
+          a three-dimensional pocket, and a single adjective can't describe a foot either.
         </p>
       </Prose>
 
