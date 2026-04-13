@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dein Fußprofil - Petz Boulderhalle x climbing-gear.com</title>
+<style>
+  :root {
+    --bg: #faf8f4;
+    --card: #fff;
+    --text: #2c3227;
+    --muted: #8a8272;
+    --accent: #c98a42;
+    --accent-soft: #f5f0e8;
+    --border: #eee8dc;
+    --green: #6b8f5e;
+    --yellow: #d4a843;
+    --red: #c9424a;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --display: Georgia, 'Times New Roman', serif;
+    --petz-red: #ef3340;
+    --petz-red-dark: #c2212d;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+  .container { max-width: 1060px; margin: 0 auto; padding: 2rem 1.5rem; }
+  @media (max-width: 640px) { .container { padding: 1rem 0.75rem; } }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 1.5rem; }
+  .header-logos {
+    display: flex; align-items: center; justify-content: center; gap: 1.2rem;
+    margin-bottom: 1rem; flex-wrap: wrap;
+  }
+  .petz-logo { display: flex; align-items: center; }
+  .petz-logo img { width: 90px; height: auto; display: block; }
+  .logo-divider { color: var(--muted); font-size: 1.2rem; font-weight: 300; }
+  .cg-logo { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+  .header h1 { font-size: 26px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+  .header .subtitle { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  @media (max-width: 640px) { .header h1 { font-size: 22px; } }
+
+  /* Cards */
+  .card {
+    background: var(--card); border-radius: 14px; border: 1px solid var(--border);
+    overflow: hidden; box-shadow: 0 2px 16px rgba(44,50,39,0.05);
+    margin-bottom: 1.25rem;
+  }
+  .card-header {
+    padding: 0.6rem 1.25rem; border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #fdf8f1, #faf8f4);
+  }
+  .card-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  .card-body { padding: 1rem 1.25rem; }
+
+  /* Grid */
+  .scan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+  @media (max-width: 768px) { .scan-grid { grid-template-columns: 1fr; } }
+  .scan-inner-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 640px) { .scan-inner-grid { grid-template-columns: 1fr; } }
+
+  .img-panel {
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem; background: var(--bg); min-height: 200px;
+  }
+  .img-panel img { max-width: 100%; max-height: 280px; border-radius: 8px; }
+  .metrics-panel { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; }
+
+  /* Metric bars */
+  .metric { display: flex; flex-direction: column; gap: 3px; }
+  .metric-header { display: flex; justify-content: space-between; align-items: baseline; }
+  .metric-label { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+  .metric-level { font-size: 0.78rem; font-weight: 700; }
+  .metric-track { height: 5px; background: #e8e2d6; border-radius: 3px; position: relative; }
+  .metric-fill { height: 100%; border-radius: 3px; background: var(--accent); transition: width 1.2s cubic-bezier(0.22,1,0.36,1); }
+  .metric-avg { position: absolute; top: -3px; width: 2px; height: 11px; background: #a8a08e; border-radius: 1px; transform: translateX(-1px); }
+  .metric-range { display: flex; justify-content: space-between; font-size: 0.58rem; color: #a8a08e; }
+
+  /* Toe shape */
+  .toe-badge {
+    display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem;
+    background: var(--accent-soft); border-radius: 10px; border: 1px solid var(--border);
+    margin-bottom: 0.25rem;
+  }
+  .toe-badge .name { font-size: 13px; font-weight: 700; color: var(--text); text-transform: capitalize; }
+  .toe-badge .desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* Interpretation */
+  .interp-section { margin-top: 1.5rem; }
+  .interp-section h2 { font-family: var(--display); font-size: 1.3rem; color: var(--text); margin-bottom: 1rem; }
+  .interp-block { margin-bottom: 1.2rem; }
+  .interp-block h3 { font-size: 0.85rem; font-weight: 700; color: #8a6930; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  .interp-block p { font-size: 0.82rem; color: #4a4538; line-height: 1.55; margin-top: 0.4rem; }
+  .interp-block p:first-of-type { margin-top: 0; }
+
+  /* Section nav */
+  .section-nav {
+    display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+    max-width: 600px; margin: 0 auto 1.2rem; padding: 0 4px;
+  }
+  .section-nav a {
+    padding: 6px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+    color: #8a6930; background: transparent; border: 1.5px solid var(--border);
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .section-nav a:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .section-nav a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Petz badge */
+  .petz-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--petz-red); color: #fff; font-size: 0.6rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* Shoe category section */
+  .rec-section { margin-top: 2rem; }
+  .rec-section-header {
+    display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);
+  }
+  .rec-section-header h3 { font-family: var(--display); font-size: 1.15rem; color: var(--text); }
+  .rec-section-header .count { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
+  .rec-section-header.petz-header { border-bottom-color: var(--petz-red); }
+
+  /* Shoe grid */
+  .shoe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  @media (max-width: 768px) { .shoe-grid { grid-template-columns: 1fr; } }
+
+  /* Shoe card */
+  .shoe-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; transition: box-shadow 0.15s;
+  }
+  .shoe-card:hover { box-shadow: 0 4px 20px rgba(44,50,39,0.1); }
+  .shoe-card.petz-highlight { border-color: var(--petz-red); border-width: 2px; }
+  .shoe-img {
+    width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--bg); padding: 12px;
+  }
+  .shoe-body { padding: 0.8rem 1rem; }
+  .shoe-brand { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .shoe-model { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 0.15rem 0 0.4rem; }
+  .shoe-size-row {
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    margin: 0 0 0.4rem; padding: 0.35rem 0.5rem;
+    background: var(--accent-soft); border-radius: 6px;
+  }
+  .shoe-size { font-size: 0.72rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .shoe-desc { font-size: 0.75rem; color: #5a5344; line-height: 1.5; margin-bottom: 0.3rem; }
+  .shoe-why { font-size: 0.75rem; color: #5a5344; line-height: 1.5; }
+  .shoe-tradeoffs { font-size: 0.73rem; color: #8a7e6e; line-height: 1.5; font-style: italic; margin-top: 0.3rem; }
+  .shoe-cta {
+    margin-top: 0.6rem; padding: 0.45rem 0; text-align: center;
+    font-size: 0.75rem; font-weight: 600; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 6px;
+  }
+  .shoe-cta.petz-cta { color: var(--petz-red); border-color: var(--petz-red); }
+
+  /* Petz store banner */
+  .petz-store-banner {
+    background: linear-gradient(135deg, var(--petz-red), var(--petz-red-dark));
+    color: #fff; border-radius: 14px; padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem; text-align: center;
+  }
+  .petz-store-banner h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .petz-store-banner p { font-size: 0.8rem; opacity: 0.85; line-height: 1.5; }
+
+  /* Footer */
+  .footer {
+    text-align: center; margin-top: 3rem; padding: 1.5rem 0;
+    border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--muted);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header with Petz + climbing-gear co-branding -->
+  <div class="header">
+    <div class="header-logos">
+      <div class="petz-logo">
+        <img src="https://boulderhalle-neustadt.de/wp-content/uploads/logo-petz-boulderhalle.svg" alt="PETZ Boulderhalle Neustadt">
+      </div>
+      <span class="logo-divider">x</span>
+      <div class="cg-logo">climbing-gear.com</div>
+    </div>
+    <h1>Deine Scan-Ergebnisse und Empfehlungen</h1>
+  </div>
+
+  <!-- Section Navigation -->
+  <div class="section-nav">
+    <a href="#interpretation-section">Dein Fußprofil</a>
+    <a href="#recs-baseline">Baseline</a>
+    <a href="#recs-softer">Weicher</a>
+    <a href="#recs-stiffer">Steifer</a>
+    <a href="#recs-alternativen">Alternativen</a>
+  </div>
+
+  <!-- Scan Overlays Grid -->
+  <div class="scan-grid">
+
+    <!-- Sole View Card -->
+    <div class="card">
+      <div class="card-header"><div class="card-label">Sohlen-Scan</div></div>
+      <div class="scan-inner-grid">
+        <div class="img-panel" style="border-right: 1px solid var(--border);">
+          <img src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-04-13T15-21-21-sole_overlay.png" alt="Sohlen-Overlay">
+        </div>
+        <div class="metrics-panel">
+          <!-- Toe shape badge -->
+          <div class="toe-badge">
+            <div>
+              <div class="name">Griechisch</div>
+              <div class="desc">Dein zweiter Zeh ist länger als der große Zeh und ragt nach vorne heraus. Braucht eine etwas tiefere Zehenbox.</div>
+            </div>
+          </div>
+          <!-- Forefoot Width -->
+          <div class="metric">
+            <div class="metric-header">
+              <span class="metric-label">Vorfußbreite</span>
+              <span class="metric-level" style="color: var(--green);">mittel</span>
+            </div>
+            <div class="metric-track">
+              <div class="metric-fill" style="width: 52.9%;"></div>
+              <div class="metric-avg" style="left: 50%;" title="Durchschnitt: 0.360"></div>
+            </div>
+            <div class="metric-range"><span>0.29</span><span>0.43</span></div>
+          </div>
+          <!-- Arch Length -->
+          <div class="metric">
+            <div class="metric-header">
+              <span class="metric-label">Gewölbelänge</span>
+              <span class="metric-level" style="color: var(--green);">mittel</span>
+            </div>
+            <div class="metric-track">
+              <div class="metric-fill" style="width: 62.5%;"></div>
+              <div class="metric-avg" style="left: 56.3%;" title="Durchschnitt: 0.700"></div>
+            </div>
+            <div class="metric-range"><span>0.61</span><span>0.77</span></div>
+          </div>
+          <!-- Heel Width -->
+          <div class="metric">
+            <div class="metric-header">
+              <span class="metric-label">Fersenbreite</span>
+              <span class="metric-level" style="color: var(--green);">mittel</span>
+            </div>
+            <div class="metric-track">
+              <div class="metric-fill" style="width: 43%;"></div>
+              <div class="metric-avg" style="left: 50%;" title="Durchschnitt: 0.240"></div>
+            </div>
+            <div class="metric-range"><span>0.19</span><span>0.29</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side View Card -->
+    <div class="card">
+      <div class="card-header"><div class="card-label">Seiten-Scan</div></div>
+      <div style="display: flex; flex-direction: column;">
+        <div class="img-panel" style="border-bottom: 1px solid var(--border);">
+          <img src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-04-13T15-21-21-side_overlay.png" alt="Seiten-Overlay" style="max-width: 90%; height: auto; border-radius: 8px;">
+        </div>
+        <div style="padding: 0.75rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0.65rem 2rem;">
+          <!-- Instep Height -->
+          <div class="metric" style="flex: 1; min-width: 180px;">
+            <div class="metric-header">
+              <span class="metric-label">Spannhöhe</span>
+              <span class="metric-level" style="color: var(--green);">mittel</span>
+            </div>
+            <div class="metric-track">
+              <div class="metric-fill" style="width: 36.1%;"></div>
+              <div class="metric-avg" style="left: 38.9%;" title="Durchschnitt: 0.270"></div>
+            </div>
+            <div class="metric-range"><span>0.20</span><span>0.38</span></div>
+          </div>
+          <!-- Heel Depth -->
+          <div class="metric" style="flex: 1; min-width: 180px;">
+            <div class="metric-header">
+              <span class="metric-label">Fersentiefe</span>
+              <span class="metric-level" style="color: var(--green);">flach</span>
+            </div>
+            <div class="metric-track">
+              <div class="metric-fill" style="width: 21%;"></div>
+              <div class="metric-avg" style="left: 40%;" title="Durchschnitt: 0.040"></div>
+            </div>
+            <div class="metric-range"><span>0.00</span><span>0.10</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interpretation -->
+  <div class="interp-section" id="interpretation-section">
+    <h2>Was das bedeutet</h2>
+
+    <div class="interp-block">
+      <h3>Deine Fußform</h3>
+      <p>Dein Fuß-Scan zeigt eine griechische Zehenform: Dein zweiter Zeh ist länger als der große Zeh und ragt nach vorne heraus.</p>
+      <p>Vorfußbreite (0.364), Gewölbelänge (0.710) und Spannhöhe (0.265) liegen alle im normalen Bereich.</p>
+      <p>Deine Fersenbreite (0.233) ist ebenfalls durchschnittlich, allerdings hat deine Ferse ein auffallend flaches Profil (Tiefenverhältnis 0.021). Sie ragt nach hinten deutlich weniger heraus als bei den meisten Füßen. Das ist eine reine Formeigenschaft, unabhängig von der seitlichen Breite.</p>
+      <p><strong>Leichter Hallux valgus.</strong> Zusätzlich hat unser Scan gemessen, wie weit deine große Zehe relativ zur Fußbreite von der Innenkante des Vorfußes abweicht. Dein Offset-Verhältnis von 0.326 liegt oberhalb unserer Schwelle für „leichten Hallux valgus“ (ab 0.25) und deutlich unter dem ausgeprägten Bereich (ab 0.35). Die große Zehe driftet also am Grundgelenk leicht nach innen ab – ein sehr weit verbreitetes Muster und in dieser Ausprägung meist unproblematisch.</p>
+      <p>Wichtig zu wissen: Der Wert kann auch durch die Scan-Pose beeinflusst werden. Wenn dich das Ergebnis überrascht, scanne die Sohle gerne noch einmal mit bewusst flach und gerade über der Kamera gehaltenem Fuß. Dies ist keine medizinische Diagnose – falls du Beschwerden hast, lass das einen Orthopäden oder Podologen anschauen.</p>
+      <p>Was das für deinen Fuß im Kletterschuh bedeutet: Bei griechischer Zehenform ist dein großer Zeh von Haus aus kürzer als der zweite. Zusammen mit der leichten Einwärtsdrift kann der große Zeh in einer spitzen oder stark asymmetrischen Zehenbox den Kontakt zur Innenseite verlieren – und damit sinkt die Kraftübertragung auf kleinen Tritten. Gleichzeitig kann ein zu enger, spitz zulaufender Leisten den Druck auf das Großzehengrundgelenk erhöhen und die Drift langfristig verstärken.</p>
+    </div>
+
+    <div class="interp-block">
+      <h3>Was dein aktueller Schuh verrät</h3>
+      <p>Du kletterst deinen La Sportiva Mythos in EU 42.5 – zwei Größen unter deiner Straßengröße von 44.5. Für La Sportiva ist das eine ganz normale Downsize-Range.</p>
+      <p>Der Mythos sitzt bei dir in allen Dimensionen perfekt: Ferse, Zehen und Vorfuß. Das heißt, die Geometrie des Schuhs passt sauber zu deinem Fuß – wir können ihn als zuverlässige Referenz für vergleichbare Leisten verwenden.</p>
+    </div>
+
+    <div class="interp-block">
+      <h3>Worauf du achten solltest</h3>
+      <p>Dein Feedback verschiebt das Fersen-Ziel von mittel auf schmal. Zusammen mit deiner scan-bestätigten mittleren Breite suchen wir Schuhe mit mittlerem Vorfuß und schmalem Fersenvolumen.</p>
+      <p>Du willst auf einen echten Performance-Schuh umsteigen. Im Vergleich zum Mythos heißt das mehr Downturn, stärkere Asymmetrie und einen engeren Sitz. Rechne mit einer Einlaufzeit und spürbar weniger Komfort auf längeren Routen.</p>
+      <p>Wegen deines leichten Hallux valgus priorisieren wir eine etwas breitere und weniger spitze Zehenbox sowie Leisten mit moderater, nicht starker Asymmetrie – so bleibt die Linie von Großzehe zur Schuhspitze möglichst gerade und die Einwärtsdrift wird nicht zusätzlich verstärkt. Ein Modell mit Schnürung gibt dir zusätzlich die Möglichkeit, den Druck im Bereich des Großzehengrundgelenks individuell zu dosieren.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- RECOMMENDATIONS -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+
+  <!-- Category: Baseline -->
+  <div class="rec-section" id="recs-baseline">
+    <div class="rec-section-header">
+      <h3>Baseline</h3>
+      <span class="count">3 Schuhe</span>
+    </div>
+    <div class="shoe-grid">
+
+      <!-- Scarpa Instinct -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/scarpa-instinct-lace.jpg" alt="Scarpa Instinct">
+        <div class="shoe-body">
+          <div class="shoe-brand">Scarpa</div>
+          <div class="shoe-model">Instinct</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 43.5</span>
+          </div>
+          <div class="shoe-desc">Mittlerer Vorfuß mit schmaler Fersenkappe, Schnürung. Griechische Zehenbox. Moderater Downturn, moderate Asymmetrie. 3,5 mm Vibram XS Edge auf einer dreiviertellangen, mittelweichen Zwischensohle – insgesamt ein ausgewogener Schuh.</div>
+          <div class="shoe-why">Die flache Fersenkappe legt sich eng um deine Ferse, ohne dass über der Achillessehne Leerraum entsteht. Der moderate Downturn hat mehr Formspannung als die meisten anderen Picks und taugt damit auch für leicht überhängendes Gelände.</div>
+          <div class="shoe-tradeoffs">Kompromiss: Der moderate Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Evolv V6 -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/evolv-v6.jpg" alt="Evolv V6">
+        <div class="shoe-body">
+          <div class="shoe-brand">Evolv</div>
+          <div class="shoe-model">V6</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 45</span>
+          </div>
+          <div class="shoe-desc">Breiter Vorfuß mit mittlerer Fersenkappe, Klettverschluss. Ägyptische oder römische Zehenbox. Moderater Downturn, moderate Asymmetrie. 4,2 mm TRAX SAS auf einer teilweisen, mittelsteifen Zwischensohle – insgesamt ein ausgewogener Schuh.</div>
+          <div class="shoe-why">Die Fersengeometrie liegt nah an dem, was dir am Mythos schon gut passt. Ein guter Einstieg in mehr Performance, ohne dass die Ferse fremd wirkt.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der moderate Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh; die Sohle ist insgesamt weicher als dein Mythos; und das Sohlen-Feedback wird sich anders anfühlen als gewohnt.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Scarpa Vapor -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/scarpa-vapor-lace.jpg" alt="Scarpa Vapor">
+        <div class="shoe-body">
+          <div class="shoe-brand">Scarpa</div>
+          <div class="shoe-model">Vapor</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 43.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Schnürung. Griechische Zehenbox. Leichter Downturn, moderate Asymmetrie. 3,5 mm Vibram XS Edge auf einer vollen, mittelharten Zwischensohle – insgesamt ein stützender Schuh.</div>
+          <div class="shoe-why">Spürbar steifer als die meisten anderen Picks und damit mehr Support auf kleinen Tritten. Der mittlere Vorfuß trifft deine Fußbreite fast punktgenau.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der leichte Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh, und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category: Weicher (Softer) -->
+  <div class="rec-section" id="recs-softer">
+    <div class="rec-section-header">
+      <h3>Weicheres Gefühl</h3>
+      <span class="count">3 Schuhe</span>
+    </div>
+    <div class="shoe-grid">
+
+      <!-- Scarpa Arpia V -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/scarpa-arpia-v.jpg" alt="Scarpa Arpia V">
+        <div class="shoe-body">
+          <div class="shoe-brand">Scarpa</div>
+          <div class="shoe-model">Arpia V</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 43.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Klettverschluss. Griechische Zehenbox. Leichter Downturn, leichte Asymmetrie. 3,5 mm Vibram XS Grip2 auf einer vollen, mittelweichen Zwischensohle – insgesamt ein ausgewogener Schuh.</div>
+          <div class="shoe-why">Deutlich weicher als die meisten anderen Picks und dadurch sensibler am Fels. Der Klettverschluss macht schnelles An- und Ausziehen zwischen Versuchen einfach.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der leichte Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh, und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Scarpa Veloce -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/scarpa-veloce.jpg" alt="Scarpa Veloce">
+        <div class="shoe-body">
+          <div class="shoe-brand">Scarpa</div>
+          <div class="shoe-model">Veloce</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 43.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform. Römische Zehenbox. Leichter Downturn, leichte Asymmetrie. 4 mm S72 auf einer mittelweichen Vorfuß-Zwischensohle – insgesamt ein sensibler Schuh.</div>
+          <div class="shoe-why">Der leichte Downturn setzt eher auf Komfort statt Power – angenehm für längere Sessions. Der mittlere Vorfuß trifft deine Fußbreite fast punktgenau.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der leichte Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh; das moderat-weiche Gefühl ist spürbar weicher als dein Mythos; und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Evolv Zenist -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/evolv-zenist.jpg" alt="Evolv Zenist">
+        <div class="shoe-body">
+          <div class="shoe-brand">Evolv</div>
+          <div class="shoe-model">Zenist</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 45</span>
+          </div>
+          <div class="shoe-desc">Mittlerer Vorfuß mit schmaler Fersenkappe. Ägyptische Zehenbox. Aggressiver Downturn, starke Asymmetrie. 4,2 mm TRAX SAS auf einer vollen, weichen Zwischensohle – insgesamt ein sensibler Schuh.</div>
+          <div class="shoe-why">Das flache Fersenkappen-Profil passt gut zu deiner flachen Ferse. Der aggressive Downturn ist deutlich aggressiver als die meisten anderen Picks, gebaut für steiles Gelände, und die weiche Sohle gibt viel Feedback.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Die Zehenbox ist für ägyptische Füße ausgelegt, nicht für griechische; die starke Asymmetrie kann Druck auf deinen längeren zweiten Zeh ausüben; und die weiche Sohle ist spürbar weicher als dein Mythos.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category: Steifer (Stiffer) -->
+  <div class="rec-section" id="recs-stiffer">
+    <div class="rec-section-header">
+      <h3>Steiferes Gefühl</h3>
+      <span class="count">3 Schuhe</span>
+    </div>
+    <div class="shoe-grid">
+
+      <!-- Scarpa Generator Mid -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/scarpa-generator-mid.jpg" alt="Scarpa Generator Mid">
+        <div class="shoe-body">
+          <div class="shoe-brand">Scarpa</div>
+          <div class="shoe-model">Generator Mid</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 43.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Schnürung. Griechische Zehenbox. Leichter Downturn, leichte Asymmetrie. 4 mm Vibram XS Edge auf einer vollen, harten Zwischensohle – insgesamt ein sehr stützender Schuh.</div>
+          <div class="shoe-why">Der leichte Downturn hat mehr Formspannung als die meisten Picks in dieser Kategorie, und der mittlere Vorfuß trifft deine Fußbreite fast punktgenau.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der leichte Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh, und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Scarpa Velocity -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/scarpa-velocity-mens.jpg" alt="Scarpa Velocity">
+        <div class="shoe-body">
+          <div class="shoe-brand">Scarpa</div>
+          <div class="shoe-model">Velocity</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 43.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Schnürung. Römische Zehenbox. Flach gebaut, leichte Asymmetrie. 4 mm Vibram Vision auf einer vollen, harten Zwischensohle – insgesamt ein stützender Schuh.</div>
+          <div class="shoe-why">Der mittlere Vorfuß trifft deine Fußbreite fast punktgenau, und die harte Sohle gibt maximalen Support auf langen Routen.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der flache Leisten ist weniger aggressiv als ein reinrassiger Performance-Schuh, und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Evolv Kronos -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/evolv-kronos.jpg" alt="Evolv Kronos">
+        <div class="shoe-body">
+          <div class="shoe-brand">Evolv</div>
+          <div class="shoe-model">Kronos</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 45</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Klettverschluss. Römische Zehenbox. Flach gebaut, leichte Asymmetrie. 4,2 mm TRAX SAS auf einer vollen, mittelsteifen Zwischensohle – insgesamt ein ausgewogener Schuh.</div>
+          <div class="shoe-why">Der mittlere Vorfuß trifft deine Fußbreite fast punktgenau, und die Fersengeometrie liegt nah an dem, was dir am Mythos schon gut passt.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der flache Leisten ist weniger aggressiv als ein reinrassiger Performance-Schuh; das Sohlen-Feedback wird sich anders anfühlen als gewohnt; und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category: Alternativen (non-Scarpa/Evolv baseline picks, NOT at Petz) -->
+  <div class="rec-section" id="recs-alternativen">
+    <div class="rec-section-header">
+      <h3>Alternativen</h3>
+      <span class="count">3 Schuhe</span>
+    </div>
+    <p style="font-size: 0.78rem; color: var(--muted); margin: -0.5rem 0 1rem; line-height: 1.5;">
+      Diese Modelle passen ebenfalls gut zu deinem Fußprofil, sind aber nicht bei Petz erhältlich. Wenn dich einer davon interessiert, musst du ihn anderweitig beziehen.
+    </p>
+    <div class="shoe-grid">
+
+      <!-- La Sportiva TC Pro -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/la-sportiva-tc-pro.jpg" alt="La Sportiva TC Pro">
+        <div class="shoe-body">
+          <div class="shoe-brand">La Sportiva</div>
+          <div class="shoe-model">TC Pro</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 42.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Schnürung mit Knöchelschutz. Römische Zehenbox. Moderater Downturn, leichte Asymmetrie. 4 mm Vibram XS Edge (hart) auf einer vollen, mittelharten Zwischensohle – insgesamt ein stützender Schuh.</div>
+          <div class="shoe-why">Die stützende Steifigkeit liegt sehr nah an dem, was du am Mythos gewohnt bist, und die Schnürung erlaubt dir, die Passform präzise an deinen Fuß anzupassen – hilfreich bei leichter Hallux-Valgus-Neigung.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Deutlich schwerer und mit längerer Einlaufphase als die anderen Empfehlungen; das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen; und der Knöchelschutz ist am Boulder/Sportkletter-Plastik eher unnötig, glänzt aber an Riss- und Mehrseillängen-Routen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- Ocun Advancer QC -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/ocun-advancer-qc.jpg" alt="Ocun Advancer QC">
+        <div class="shoe-body">
+          <div class="shoe-brand">Ocun</div>
+          <div class="shoe-model">Advancer QC</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 44.5</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Klettverschluss. Griechische Zehenbox. Leichter Downturn, leichte Asymmetrie. 4 mm CAT 1.5 auf einer vollen, mittelharten Zwischensohle – insgesamt ein stützender Schuh.</div>
+          <div class="shoe-why">Die stützende Steifigkeit passt zu deiner Performance-Präferenz. Dazu trifft der mittlere Vorfuß deine Fußbreite sehr genau, und die Fersengeometrie liegt nah an dem, was dir am Mythos schon gut passt.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der leichte Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh; das Sohlen-Feedback wird sich anders anfühlen als gewohnt; und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+
+      <!-- So iLL Step -->
+      <div class="shoe-card">
+        <img class="shoe-img" src="https://climbing-gear.com/images/shoes/so-ill-step.jpg" alt="So iLL Step">
+        <div class="shoe-body">
+          <div class="shoe-brand">So iLL</div>
+          <div class="shoe-model">Step</div>
+          <div class="shoe-size-row">
+            <span class="shoe-size">EU 44</span>
+          </div>
+          <div class="shoe-desc">Durchgängig mittlere Passform, Klettverschluss. Römische oder ägyptische Zehenbox. Leichter Downturn, leichte Asymmetrie. 3 mm So iLL Proprietary auf einer vollen, mittelharten Zwischensohle – insgesamt ein ausgewogener Schuh.</div>
+          <div class="shoe-why">Der mittlere Vorfuß trifft deine Fußbreite fast punktgenau, und die Fersengeometrie liegt nah an dem, was dir am Mythos schon gut passt. Eine weniger bekannte Marke, aber ein solider Allrounder mit sehr sanftem Profil.</div>
+          <div class="shoe-tradeoffs">Kompromisse: Der leichte Downturn ist weniger aggressiv als ein reinrassiger Performance-Schuh, und das mittlere Fersenvolumen ist etwas weiter als die schmale Passform, die wir dir eigentlich empfehlen.</div>
+          <div class="shoe-cta">Details und Verfügbarkeit prüfen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p style="margin-bottom: 0.5rem;">Scan-Analyse bereitgestellt von <a href="https://climbing-gear.com/scan" target="_blank">climbing-gear.com</a></p>
+    <p>Alle Scarpa- und Evolv-Modelle aus den ersten drei Kategorien sind bei der <strong>Petz Boulderhalle Neustadt</strong> zum Anprobieren verfügbar.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.65rem;">Scan-ID: scan-2026-04-13T15-21-21 | Erstellt am 13. April 2026</p>
+  </div>
+
+</div>
+</body>
+</html>

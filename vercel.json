@@ -13,6 +13,7 @@
     { "source": "/compare-quickdraws", "destination": "/index.html" },
     { "source": "/wishlist", "destination": "/index.html" },
     { "source": "/scan", "destination": "/scan.html" },
+    { "source": "/scan/petz/:scanId", "destination": "/scan/petz/:scanId.html" },
     { "source": "/scan/:scanId", "destination": "/index.html" }
   ],
   "functions": {
