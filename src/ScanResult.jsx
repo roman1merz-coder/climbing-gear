@@ -642,6 +642,9 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
       next_shoe_preference: nextPref || null,
       next_shoe_notes: notes.trim() || null,
       pipeline_stage: "rescore",
+      // Reset the start timestamp so the ProcessingScreen progress bar
+      // counts from 0 rather than whatever the original scan recorded.
+      pipeline_started_at: new Date().toISOString(),
     };
     if (streetSize.trim()) {
       const n = Number(streetSize);
@@ -1059,6 +1062,188 @@ function RetakeModal({ scanId, view, onClose }) {
 }
 
 // ══════════════════════════════════════════════════════════════
+// PROCESSING SCREEN
+// Shown full-page whenever pipeline_stage is in progress — either a
+// single-photo retake (pending → segmenting → finding_shoes) or a
+// preference edit (rescore → rescoring). Prevents the user from seeing
+// stale recommendations while the worker is still updating them.
+// Mirrors the UX of scan.html's processing screen so the experience
+// feels identical to the first scan.
+// ══════════════════════════════════════════════════════════════
+function buildProgress(stage, elapsedSec) {
+  // Matches the curve used in public/scan.html so retakes feel the same
+  // as the initial scan. Rescore paths have their own short curve.
+  if (stage === "pending")       return Math.min(8,  Math.round(elapsedSec / 5  * 8));
+  if (stage === "segmenting")    return Math.min(30, 8 + Math.round(elapsedSec / 10 * 22));
+  if (stage === "finding_shoes") return Math.min(99, 35 + Math.round(elapsedSec / 20 * 64));
+  if (stage === "rescore")       return Math.min(15, Math.round(elapsedSec / 3 * 15));
+  if (stage === "rescoring")     return Math.min(99, 15 + Math.round(elapsedSec / 4 * 80));
+  if (stage === "complete")      return 100;
+  return 0;
+}
+
+function stageTitle(stage, isRescore) {
+  if (isRescore) return "Updating your recommendations...";
+  if (stage === "pending")        return "Queued for analysis...";
+  if (stage === "segmenting")     return "Segmenting your foot...";
+  if (stage === "finding_shoes")  return "Finding your perfect shoes...";
+  return "Processing your scan...";
+}
+
+function ProcessingScreen({ scan, scanId }) {
+  const mobile = useIsMobile();
+  const stage = scan?.pipeline_stage || "pending";
+  const isRescore = stage === "rescore" || stage === "rescoring";
+
+  // Elapsed time drives the progress curve. We re-render every second so
+  // the bar animates smoothly between the 2s DB polls.
+  const [elapsed, setElapsed] = useState(0);
+  const startedAtRef = useRef(null);
+  useEffect(() => {
+    // Prefer the server-recorded start timestamp so refreshes don't reset
+    // the bar. Falls back to "now" for the rescore path where the column
+    // isn't written.
+    const iso = scan?.pipeline_started_at;
+    startedAtRef.current = iso ? new Date(iso).getTime() : Date.now();
+    const tick = () => {
+      const s = Math.max(0, Math.floor((Date.now() - startedAtRef.current) / 1000));
+      setElapsed(s);
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [scan?.pipeline_started_at, stage]);
+
+  const progress = buildProgress(stage, elapsed);
+  const title = stageTitle(stage, isRescore);
+  const subtitle = isRescore
+    ? "No new photos needed — usually takes about 3 seconds."
+    : "This usually takes about 15–20 seconds.";
+
+  // Stage list (full pipeline) — hidden for the rescore path which only
+  // re-scores, doesn't re-segment.
+  const stages = isRescore
+    ? null
+    : [
+        { key: "seg",   label: "Segmenting your foot",       done: ["finding_shoes","complete"].includes(stage), active: stage === "segmenting" || stage === "pending" },
+        { key: "meas",  label: "Analysing measurements",     done: ["finding_shoes","complete"].includes(stage), active: false },
+        { key: "shoes", label: "Finding your perfect shoes", done: stage === "complete", active: stage === "finding_shoes" },
+      ];
+
+  return (
+    <div style={{
+      minHeight: "70vh", display: "flex", alignItems: "center", justifyContent: "center",
+      fontFamily: T.font, padding: mobile ? "1.5rem 1rem" : "3rem 1.5rem",
+    }}>
+      <div style={{
+        maxWidth: 520, width: "100%",
+        background: T.card, borderRadius: 14,
+        border: `1px solid ${T.border}`,
+        padding: mobile ? "1.5rem 1.25rem" : "2rem 2rem",
+        boxShadow: "0 6px 24px rgba(0,0,0,0.05)",
+        textAlign: "center",
+      }}>
+        <div style={{
+          fontSize: 11, fontWeight: 700, textTransform: "uppercase",
+          letterSpacing: 2, color: T.accent, marginBottom: 8,
+        }}>
+          climbing-gear.com
+        </div>
+        <h1 style={{
+          fontSize: mobile ? 20 : 24, fontWeight: 800,
+          color: T.text, letterSpacing: -0.3, margin: "0 0 0.4rem",
+        }}>
+          {title}
+        </h1>
+        <div style={{ fontSize: 13, color: T.muted, marginBottom: "1.4rem" }}>
+          {subtitle}
+        </div>
+
+        {/* Progress bar */}
+        <div style={{
+          height: 10, width: "100%", background: "#f2ede2",
+          borderRadius: 999, overflow: "hidden", marginBottom: 6,
+        }}>
+          <div style={{
+            height: "100%", width: `${progress}%`,
+            background: `linear-gradient(90deg, ${T.accent}, #c98a42)`,
+            transition: "width 0.6s ease-out",
+          }} />
+        </div>
+        <div style={{ fontSize: 12, color: T.muted, marginBottom: "1.4rem" }}>
+          {progress}%
+        </div>
+
+        {stages && (
+          <ul style={{
+            listStyle: "none", padding: 0, margin: "0 auto",
+            textAlign: "left", maxWidth: 320,
+          }}>
+            {stages.map((st, i) => {
+              const color = st.done ? "#3d7a52" : st.active ? T.accent : T.muted;
+              return (
+                <li key={st.key} style={{
+                  display: "flex", alignItems: "center", gap: 10,
+                  padding: "0.45rem 0",
+                  fontSize: 13,
+                  color: st.done || st.active ? T.text : T.muted,
+                  fontWeight: st.active ? 700 : 500,
+                }}>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    width: 22, height: 22, borderRadius: "50%",
+                    background: st.done ? "#3d7a52" : "transparent",
+                    border: st.done ? "none" : `2px solid ${color}`,
+                    color: st.done ? "#fff" : color,
+                    fontSize: 11, fontWeight: 800, flexShrink: 0,
+                  }}>
+                    {st.done ? "✓" : i + 1}
+                  </span>
+                  <span>{st.label}</span>
+                  {st.active && (
+                    <span style={{
+                      width: 10, height: 10, marginLeft: "auto",
+                      border: `2px solid ${T.border}`, borderTopColor: T.accent,
+                      borderRadius: "50%", animation: "spin 0.8s linear infinite",
+                    }} />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        {isRescore && (
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+            marginTop: 4,
+          }}>
+            <div style={{
+              width: 12, height: 12,
+              border: `2px solid ${T.border}`, borderTopColor: T.accent,
+              borderRadius: "50%", animation: "spin 0.8s linear infinite",
+            }} />
+            <span style={{ fontSize: 12, color: T.muted }}>
+              Re-running the scoring engine against the same foot scan
+            </span>
+          </div>
+        )}
+
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+
+        <div style={{
+          marginTop: "1.6rem", fontSize: 11, color: T.muted,
+          borderTop: `1px solid ${T.border}`, paddingTop: "0.9rem",
+        }}>
+          You'll be redirected here automatically when it's ready.
+          Scan ID: <code style={{ fontSize: 10 }}>{scanId}</code>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ══════════════════════════════════════════════════════════════
 export default function ScanResult({ shoes }) {
@@ -1176,6 +1361,15 @@ export default function ScanResult({ shoes }) {
   );
 
   const s = scan; // shorthand
+
+  // Pipeline in flight (rescore after preference edit, or full re-run after
+  // a single-photo retake) — show a full processing screen instead of the
+  // stale results. Polling continues in the useEffect above; once the stage
+  // flips to 'complete' this branch falls through and the results render.
+  if (IN_PROGRESS_STAGES.has(s.pipeline_stage)) {
+    return <ProcessingScreen scan={s} scanId={scanId} />;
+  }
+
   const toeShape = s.toe_shape || "egyptian";
   const toeDesc = TOE_DESCRIPTIONS[toeShape] || TOE_DESCRIPTIONS.egyptian;
 
@@ -1221,9 +1415,14 @@ export default function ScanResult({ shoes }) {
           scanId={scanId}
           onClose={() => setEditOpen(false)}
           onSaved={() => {
-            // Optimistic: immediately reflect rescore stage so the updating
-            // banner appears without waiting for the next poll tick.
-            setScan((prev) => prev ? { ...prev, pipeline_stage: "rescore" } : prev);
+            // Optimistic: immediately reflect rescore stage + fresh start
+            // time so the ProcessingScreen appears instantly with a clean
+            // 0% progress bar, no wait for the next poll tick.
+            setScan((prev) => prev ? {
+              ...prev,
+              pipeline_stage: "rescore",
+              pipeline_started_at: new Date().toISOString(),
+            } : prev);
             // Restart the polling loop (it stopped when the scan was 'complete').
             setPollEpoch((n) => n + 1);
           }}
@@ -1238,27 +1437,9 @@ export default function ScanResult({ shoes }) {
         />
       )}
 
-      {/* ── Processing indicator (shown while a rescore or re-run is in flight) ── */}
-      {IN_PROGRESS_STAGES.has(s.pipeline_stage) && (
-        <div style={{
-          display: "flex", alignItems: "center", gap: "0.6rem",
-          padding: "0.6rem 1rem", marginBottom: "1.1rem",
-          background: "#fff7e8", border: `1px solid ${T.border}`, borderRadius: 10,
-          fontSize: "0.8rem", color: T.text,
-        }}>
-          <div style={{
-            width: 14, height: 14, border: `2.5px solid ${T.border}`,
-            borderTopColor: T.accent, borderRadius: "50%",
-            animation: "spin 0.8s linear infinite",
-          }} />
-          <span>
-            {s.pipeline_stage === "rescore" || s.pipeline_stage === "rescoring"
-              ? "Updating recommendations based on your new inputs..."
-              : "Processing your scan..."}
-          </span>
-          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-        </div>
-      )}
+      {/* Note: processing banner removed — ScanResult now returns the
+          full ProcessingScreen when IN_PROGRESS_STAGES.has(stage), so
+          the stale results never render alongside an "updating..." badge. */}
 
       {/* ── Section navigation ── */}
       {recommendations.length > 0 && (() => {

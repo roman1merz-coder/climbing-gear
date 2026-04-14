@@ -2023,7 +2023,14 @@ async function saveRetakeAndReturn(view) {
           'Content-Type': 'application/json',
           'Prefer': 'return=minimal',
         },
-        body: JSON.stringify({ pipeline_stage: 'pending', pipeline_error: null }),
+        /* Reset pipeline_started_at so the results page's ProcessingScreen
+         * elapsed-time progress curve starts from 0 instead of whatever the
+         * original scan recorded. */
+        body: JSON.stringify({
+          pipeline_stage: 'pending',
+          pipeline_error: null,
+          pipeline_started_at: new Date().toISOString(),
+        }),
       }
     );
     if (!patchRes.ok) throw new Error('pipeline trigger failed: ' + patchRes.status);
