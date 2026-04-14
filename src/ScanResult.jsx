@@ -4,6 +4,7 @@ import { T } from "./tokens.js";
 import { supabaseFetch, supabaseRpc, SUPABASE_URL } from "./supabase.js";
 import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
+import { SHOE_DB, BRANDS, modelsFor, SHOE_SIZES_EU, STREET_SIZES_EU, formatSize } from "./shoeDb.js";
 
 // Service-role key for writes (same key already public in scan.html)
 const SB_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4";
@@ -748,14 +749,21 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
         {/* Street size */}
         <div style={{ marginBottom: "0.85rem" }}>
           <div style={labelStyle}>Street shoe size (EU)</div>
-          <input
-            type="number" step="0.5" inputMode="decimal"
+          <select
             value={streetSize}
             onChange={(e) => setStreetSize(e.target.value)}
             disabled={saving}
-            style={{ ...inputStyle, maxWidth: 120 }}
-            placeholder="e.g. 42"
-          />
+            style={{ ...inputStyle, maxWidth: 140 }}
+          >
+            <option value="">Size...</option>
+            {/* preserve any legacy off-grid value */}
+            {streetSize && !STREET_SIZES_EU.includes(Number(streetSize)) && (
+              <option value={streetSize}>{streetSize}</option>
+            )}
+            {STREET_SIZES_EU.map((s) => (
+              <option key={s} value={s}>{formatSize(s)}</option>
+            ))}
+          </select>
         </div>
 
         {/* Shoes editor */}
@@ -772,27 +780,63 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
                 padding: "0.7rem 0.8rem", background: "#faf8f4",
                 borderRadius: 8, border: `1px solid ${T.border}`,
               }}>
-                <div style={{ display: "flex", gap: 6, marginBottom: 6 }}>
-                  <input
-                    type="text" value={sh.brand} placeholder="Brand"
-                    onChange={(e) => updateShoe(idx, { brand: e.target.value })}
-                    disabled={saving}
-                    style={{ ...inputStyle, flex: 1 }}
-                  />
-                  <input
-                    type="text" value={sh.model} placeholder="Model"
-                    onChange={(e) => updateShoe(idx, { model: e.target.value })}
-                    disabled={saving}
-                    style={{ ...inputStyle, flex: 1 }}
-                  />
-                  <input
-                    type="number" step="0.5" inputMode="decimal"
-                    value={sh.size_eu} placeholder="EU size"
-                    onChange={(e) => updateShoe(idx, { size_eu: e.target.value })}
-                    disabled={saving}
-                    style={{ ...inputStyle, width: 90 }}
-                  />
-                </div>
+                {(() => {
+                  const brandInDb = !!sh.brand && Object.prototype.hasOwnProperty.call(SHOE_DB, sh.brand);
+                  const models = brandInDb ? modelsFor(sh.brand) : [];
+                  const modelInDb = brandInDb && !!sh.model && models.includes(sh.model);
+                  const sizeNum = sh.size_eu === "" ? null : Number(sh.size_eu);
+                  const sizeInDb = sizeNum != null && !Number.isNaN(sizeNum) && SHOE_SIZES_EU.includes(sizeNum);
+                  return (
+                    <div style={{ display: "flex", gap: 6, marginBottom: 6, flexWrap: "wrap" }}>
+                      <select
+                        value={sh.brand || ""}
+                        onChange={(e) => {
+                          // Changing brand clears model so a stale pair
+                          // can't survive a switch.
+                          updateShoe(idx, { brand: e.target.value, model: "" });
+                        }}
+                        disabled={saving}
+                        style={{ ...inputStyle, flex: "1 1 140px", minWidth: 0 }}
+                      >
+                        <option value="">Brand...</option>
+                        {sh.brand && !brandInDb && (
+                          <option value={sh.brand}>{sh.brand} (legacy)</option>
+                        )}
+                        {BRANDS.map((b) => (
+                          <option key={b} value={b}>{b}</option>
+                        ))}
+                      </select>
+                      <select
+                        value={sh.model || ""}
+                        onChange={(e) => updateShoe(idx, { model: e.target.value })}
+                        disabled={saving || !brandInDb}
+                        style={{ ...inputStyle, flex: "1 1 140px", minWidth: 0 }}
+                      >
+                        <option value="">Model...</option>
+                        {sh.model && !modelInDb && (
+                          <option value={sh.model}>{sh.model} (legacy)</option>
+                        )}
+                        {models.map((m) => (
+                          <option key={m} value={m}>{m}</option>
+                        ))}
+                      </select>
+                      <select
+                        value={sh.size_eu || ""}
+                        onChange={(e) => updateShoe(idx, { size_eu: e.target.value })}
+                        disabled={saving}
+                        style={{ ...inputStyle, flex: "0 0 100px", minWidth: 90 }}
+                      >
+                        <option value="">EU size...</option>
+                        {sh.size_eu && !sizeInDb && (
+                          <option value={sh.size_eu}>{sh.size_eu}</option>
+                        )}
+                        {SHOE_SIZES_EU.map((s) => (
+                          <option key={s} value={s}>{formatSize(s)}</option>
+                        ))}
+                      </select>
+                    </div>
+                  );
+                })()}
                 <div style={{
                   display: "flex", flexDirection: "column",
                   gap: 6, marginTop: 8,
