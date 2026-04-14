@@ -208,8 +208,6 @@ export default function InsightHeelFit() {
           measurements={{
             heel_width_ratio: 0.216,
             heel_depth_ratio: 0.047,
-            forefoot_width_ratio: 0.340,
-            arch_length_ratio: 0.751,
           }}
           shoes={[
             { brand: "Scarpa", model: "Drago", size: 44, heel: "empty" },
@@ -229,8 +227,6 @@ export default function InsightHeelFit() {
           measurements={{
             heel_width_ratio: 0.254,
             heel_depth_ratio: 0.014,
-            forefoot_width_ratio: 0.397,
-            arch_length_ratio: 0.731,
           }}
           shoes={[
             { brand: "La Sportiva", model: "Skwama", size: 40, heel: "empty" },
