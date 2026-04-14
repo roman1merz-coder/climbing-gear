@@ -64,16 +64,20 @@ def _load_sam3():
     return _sam3_model, _sam3_processor, _sam3_device
 
 
-# ── Population reference values (from spec / literature) ──────────────────
-# Mean ± SD from Jurca et al. 2019, Karger 2024, Goonetilleke, PMC10226764
+# ── Population reference values (tertile-calibrated, 2026-04-14) ─────────
+# Source: empirical distribution from 204 foot_scan_fits rows (see
+# scan_distribution_2026_04_14.md). "mean" = population median, "std" =
+# real population std (used only for z-score intensity wording). "lo"/"hi"
+# are the classification band boundaries set at the 33rd/67th percentile
+# so that narrow/normal/wide each cover ~1/3 of the population.
 POP = {
     # Sole view
-    "forefoot_width_ratio":  {"mean": 0.383, "std": 0.021},  # ball_width / foot_length
-    "arch_length_ratio":     {"mean": 0.700, "std": 0.025},  # arch_length / foot_length
-    "heel_width_ratio":      {"mean": 0.251, "std": 0.018},  # heel_width / foot_length
+    "forefoot_width_ratio":  {"mean": 0.355, "std": 0.028, "lo": 0.344, "hi": 0.367},
+    "arch_length_ratio":     {"mean": 0.725, "std": 0.025, "lo": 0.712, "hi": 0.734},
+    "heel_width_ratio":      {"mean": 0.238, "std": 0.022, "lo": 0.228, "hi": 0.245},
     # Side view
-    "instep_height_ratio":   {"mean": 0.290, "std": 0.030},  # instep_height / foot_length
-    "heel_depth_ratio":      {"mean": 0.070, "std": 0.025},  # heel_depth / foot_length
+    "instep_height_ratio":   {"mean": 0.264, "std": 0.036, "lo": 0.255, "hi": 0.273},
+    "heel_depth_ratio":      {"mean": 0.034, "std": 0.020, "lo": 0.028, "hi": 0.041},
 }
 
 # Labels per ratio for classify_ratio()
@@ -87,13 +91,12 @@ _RATIO_LABELS = {
 
 
 def classify_ratio(name, value):
-    """Classify a ratio as low/normal/high based on ±1 SD from population mean."""
+    """Classify a ratio as low/normal/high via explicit tertile bands."""
     p = POP[name]
-    z = (value - p["mean"]) / p["std"]
     labels = _RATIO_LABELS.get(name, ("low", "normal", "high"))
-    if z < -1:
+    if value < p["lo"]:
         return labels[0]
-    if z > 1:
+    if value > p["hi"]:
         return labels[2]
     return labels[1]
 
@@ -552,18 +555,20 @@ def detect_toe_shape(mask, upper_row, ball_row):
         return "unknown", toe_tips, 0.0
 
     t1, t2 = tip_ys_raw[0], tip_ys_raw[1]
-    t3 = tip_ys_raw[2] if len(tip_ys_raw) > 2 else t2 + 10
 
-    # Positive diff = second toe higher (lower y in image coords)
+    # Positive diff_12 = second toe higher in image (smaller y) = second toe longer
     diff_12 = t1 - t2
-    diff_23 = t2 - t3
     foot_length = ball_row - upper_row
-    threshold = max(3, foot_length * 0.012)
 
-    toes_12_equal = abs(diff_12) <= threshold
-    toes_23_equal = abs(diff_23) <= threshold
+    # Classify on the 1st/2nd toe relationship only. The earlier design
+    # additionally required the 2nd/3rd toes to be near-equal for "roman",
+    # but 3rd toe detection is noisy and the combined constraint produced
+    # 0/204 roman classifications in the dataset. Threshold 2.5% of foot
+    # length (~5-7px on a typical scan) yields ~14% roman / 56% egyptian /
+    # 30% greek on the current population, which is biologically plausible.
+    threshold = max(3, foot_length * 0.025)
 
-    if toes_12_equal and toes_23_equal:
+    if abs(diff_12) <= threshold:
         shape = "roman"
     elif diff_12 > threshold:
         shape = "greek"
@@ -571,7 +576,7 @@ def detect_toe_shape(mask, upper_row, ball_row):
         shape = "egyptian"
 
     # Normalized delta: how far apart toe 1 and toe 2 are relative to foot length.
-    # Negative = big toe longer (egyptian), positive = 2nd toe longer (greek), ~0 = roman.
+    # Positive = big toe longer (egyptian), negative = 2nd toe longer (greek), ~0 = roman.
     toe_delta_ratio = round(-diff_12 / foot_length, 4) if foot_length > 0 else 0.0
 
     return shape, toe_tips, toe_delta_ratio

@@ -93,8 +93,8 @@ The foot profile auto-sets filters in the shoe search view:
 | Heel volume: high | Heel volume → high | Wide heel + deep heel |
 | Forefoot: wide | Width → wide | Direct match |
 | Heel: narrow | Heel fit → narrow | Direct match |
-| Arch length < 0.675 | Flex point → forward | Long toes → need forward flex point |
-| Arch length > 0.725 | Flex point → rearward | Short toes → need rearward flex point |
+| Arch length < 0.712 | Flex point → forward | Long toes → need forward flex point |
+| Arch length > 0.734 | Flex point → rearward | Short toes → need rearward flex point |
 
 User lands on `/shoes` with these filters pre-applied but can adjust any of them.
 
@@ -105,27 +105,35 @@ User lands on `/shoes` with these filters pre-applied but can adjust any of them
 **Single source of truth: `foot_measure.py` → `POP` dict.** Values below are a snapshot
 for spec reference. If they diverge from the Python code, `foot_measure.py` wins.
 
-All thresholds are ±1 SD from mean. Sources: Jurca et al. 2019 (Nature, 1.2M foot scans),
-Nepal anthropometric study (PMC11455646), Arch Height Index literature (eCommons/Dayton),
-Karger 2024 (n=347), Goonetilleke regression (HK PolyU).
+Values tertile-calibrated 2026-04-14 from the empirical distribution of
+204 foot_scan_fits rows (see `scan_distribution_2026_04_14.md`). The
+older NWB literature-derived means (2026-04-12) over-narrowed the middle
+band because real population std is larger than the lit-derived std and
+the arch-length mean was ~0.025 too low for our NWB photography setup.
+The new lo/hi are explicit 33rd/67th percentile boundaries so each of
+the three bands covers roughly one-third of users.
 
-| Ratio | Field | Formula | What It Measures | Mean ± SD |
-|-------|-------|---------|------------------|-----------|
-| Forefoot width | `forefoot_width_ratio` | ball_width / foot_length | Forefoot width relative to foot length | 0.383 ± 0.021 |
-| Arch length | `arch_length_ratio` | heel_to_ball / foot_length | Relative toe length (higher = shorter toes) | 0.700 ± 0.025 |
-| Heel width | `heel_width_ratio` | heel_width / foot_length | Heel width relative to foot length | 0.251 ± 0.018 |
-| Instep height | `instep_height_ratio` | instep_height / foot_length | Dorsal to ground plane at 50% from toe tip | 0.290 ± 0.030 |
-| Heel depth | `heel_depth_ratio` | heel_depth / foot_length | Heel protrusion depth | 0.070 ± 0.025 |
+`mean` = population median, `std` = actual population standard deviation
+(used for z-score intensity wording only), `lo`/`hi` = tertile band
+boundaries (classification cutoffs).
 
-**Classification thresholds (±1 SD):**
+| Ratio | Field | Formula | What It Measures | Median | Std | lo | hi |
+|-------|-------|---------|------------------|--------|-----|------|------|
+| Forefoot width | `forefoot_width_ratio` | ball_width / foot_length | Forefoot width relative to foot length | 0.355 | 0.028 | 0.344 | 0.367 |
+| Arch length | `arch_length_ratio` | heel_to_ball / foot_length | Relative toe length (higher = shorter toes) | 0.725 | 0.025 | 0.712 | 0.734 |
+| Heel width | `heel_width_ratio` | heel_width / foot_length | Heel width relative to foot length | 0.238 | 0.022 | 0.228 | 0.245 |
+| Instep height | `instep_height_ratio` | instep_height / foot_length | Dorsal to ground plane at 50% from toe tip | 0.264 | 0.036 | 0.255 | 0.273 |
+| Heel depth | `heel_depth_ratio` | heel_depth / foot_length | Heel protrusion depth | 0.034 | 0.020 | 0.028 | 0.041 |
+
+**Classification thresholds (tertile bands):**
 
 | Ratio | Low / Narrow | Normal Range | High / Wide |
 |-------|-------------|--------------|-------------|
-| `forefoot_width_ratio` | < 0.362 (narrow) | 0.362 – 0.404 | > 0.404 (wide) |
-| `arch_length_ratio` | < 0.675 (short arch) | 0.675 – 0.725 | > 0.725 (long arch) |
-| `heel_width_ratio` | < 0.233 (narrow heel) | 0.233 – 0.269 | > 0.269 (wide heel) |
-| `instep_height_ratio` | < 0.260 (low instep) | 0.260 – 0.320 | > 0.320 (high instep) |
-| `heel_depth_ratio` | < 0.045 (shallow heel) | 0.045 – 0.095 | > 0.095 (deep heel) |
+| `forefoot_width_ratio` | < 0.344 (narrow) | 0.344 – 0.367 | > 0.367 (wide) |
+| `arch_length_ratio` | < 0.712 (short arch) | 0.712 – 0.734 | > 0.734 (long arch) |
+| `heel_width_ratio` | < 0.228 (narrow heel) | 0.228 – 0.245 | > 0.245 (wide heel) |
+| `instep_height_ratio` | < 0.255 (low instep) | 0.255 – 0.273 | > 0.273 (high instep) |
+| `heel_depth_ratio` | < 0.028 (shallow heel) | 0.028 – 0.041 | > 0.041 (deep heel) |
 
 **Volume classification (derived):**
 
@@ -172,9 +180,9 @@ Returns: {
   "view": "sole",
   "processing_time_s": 2.31,
   "foot_length_px": 1842,
-  "forefoot_width_ratio": 0.383,
-  "arch_length_ratio": 0.700,
-  "heel_width_ratio": 0.250,
+  "forefoot_width_ratio": 0.355,
+  "arch_length_ratio": 0.725,
+  "heel_width_ratio": 0.238,
   "forefoot_width_class": "normal",
   "arch_length_class": "normal",
   "heel_width_class": "normal",
@@ -193,15 +201,15 @@ Fields:
   shoe_size_eu: 42         (optional)
 Returns: {
   "shoe_size_eu": 42,
-  "forefoot_width_ratio": 0.383,
-  "arch_length_ratio": 0.700,
-  "heel_width_ratio": 0.251,
+  "forefoot_width_ratio": 0.355,
+  "arch_length_ratio": 0.725,
+  "heel_width_ratio": 0.238,
   "toe_shape": "egyptian",
   "forefoot_width_class": "normal",
   "arch_length_class": "normal",
   "heel_width_class": "normal",
-  "instep_height_ratio": 0.290,
-  "heel_depth_ratio": 0.070,
+  "instep_height_ratio": 0.264,
+  "heel_depth_ratio": 0.034,
   "instep_height_class": "normal",
   "heel_depth_class": "normal",
   "forefoot_volume": "standard",

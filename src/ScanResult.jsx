@@ -9,23 +9,30 @@ import usePageMeta from "./usePageMeta.js";
 const SB_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4";
 
 // ══════════════════════════════════════════════════════════════
-// Population reference values (from spec / literature)
-// Mean +/- SD from Jurca et al. 2019, Karger 2024, Goonetilleke
+// Population reference (tertile-calibrated, 2026-04-14)
+// Must stay in sync with scanner/foot_measure.py POP.
+// lo/hi are explicit tertile boundaries (33rd/67th percentile on
+// the current ~200-scan dataset) so narrow/normal/wide each cover
+// ~1/3 of the population. The slider renders these three bands as
+// three equal-width visual sections.
 // ══════════════════════════════════════════════════════════════
 const POP = {
-  forefoot_width_ratio:  { mean: 0.383, std: 0.021 },
-  arch_length_ratio:     { mean: 0.700, std: 0.025 },
-  heel_width_ratio:      { mean: 0.251, std: 0.018 },
-  instep_height_ratio:   { mean: 0.290, std: 0.030 },
-  heel_depth_ratio:      { mean: 0.035, std: 0.020 },
+  forefoot_width_ratio:  { mean: 0.355, std: 0.028, lo: 0.344, hi: 0.367 },
+  arch_length_ratio:     { mean: 0.725, std: 0.025, lo: 0.712, hi: 0.734 },
+  heel_width_ratio:      { mean: 0.238, std: 0.022, lo: 0.228, hi: 0.245 },
+  instep_height_ratio:   { mean: 0.264, std: 0.036, lo: 0.255, hi: 0.273 },
+  heel_depth_ratio:      { mean: 0.034, std: 0.020, lo: 0.028, hi: 0.041 },
 };
 
+// min/max are soft visual bounds roughly covering the 5-95th percentile
+// of observed data. The slider clamps to these so extreme values still
+// render within the outer bands without overflowing.
 const META = {
-  forefoot_width_ratio:  { min: 0.31, max: 0.45, label: "Forefoot Width",  color: T.accent },
-  arch_length_ratio:     { min: 0.61, max: 0.77, label: "Arch Length",     color: T.accent },
-  heel_width_ratio:      { min: 0.20, max: 0.31, label: "Heel Width",      color: T.accent },
-  instep_height_ratio:   { min: 0.20, max: 0.38, label: "Instep Height",   color: "#34d399" },
-  heel_depth_ratio:      { min: 0.00, max: 0.15, label: "Heel Depth",      color: "#f472b6" },
+  forefoot_width_ratio:  { min: 0.30, max: 0.42, label: "Forefoot Width" },
+  arch_length_ratio:     { min: 0.66, max: 0.77, label: "Arch Length"    },
+  heel_width_ratio:      { min: 0.20, max: 0.28, label: "Heel Width"     },
+  instep_height_ratio:   { min: 0.22, max: 0.32, label: "Instep Height"  },
+  heel_depth_ratio:      { min: 0.00, max: 0.08, label: "Heel Depth"     },
 };
 
 const TOE_DESCRIPTIONS = {
@@ -35,43 +42,87 @@ const TOE_DESCRIPTIONS = {
 };
 
 // ── Helpers ──────────────────────────────────────────────────
-function zColor(val, mean, std) {
-  const z = Math.abs(val - mean) / std;
-  if (z < 0.7) return T.green;
-  if (z < 1.5) return T.yellow;
-  return T.red;
+
+// Map a measured value into the three-equal-section slider space
+// (0-100%). Uses piecewise-linear mapping so each of the three
+// classification bands (low / mid / high) occupies exactly 33.33%
+// of visible width, regardless of how wide each band is in real units.
+function sectionPct(val, min, lo, hi, max) {
+  if (val <= lo) {
+    const span = lo - min;
+    const t = span > 0 ? (val - min) / span : 0.5;
+    return Math.max(0, Math.min(1, t)) * 33.333;
+  }
+  if (val <= hi) {
+    const span = hi - lo;
+    const t = span > 0 ? (val - lo) / span : 0.5;
+    return 33.333 + Math.max(0, Math.min(1, t)) * 33.334;
+  }
+  const span = max - hi;
+  const t = span > 0 ? (val - hi) / span : 0.5;
+  return 66.667 + Math.max(0, Math.min(1, t)) * 33.333;
 }
-function pct(val, mn, mx) {
-  return Math.max(0, Math.min(100, ((val - mn) / (mx - mn)) * 100));
-}
-function levelLabel(val, mean, std) {
-  const z = (val - mean) / std;
-  if (z < -0.7) return "low";
-  if (z > 0.7) return "high";
+
+function levelLabel(val, lo, hi) {
+  if (val < lo) return "low";
+  if (val > hi) return "high";
   return "mid";
 }
 
+function levelColor(lbl) {
+  if (lbl === "low")  return T.accent;
+  if (lbl === "high") return T.accent;
+  return T.green || "#6a8a4f";
+}
+
 // ── Metric bar component ─────────────────────────────────────
+// Three equal-width sections (low | mid | high). Pointer shows
+// where the user sits, with its left/right offset within a section
+// indicating closeness to the boundary.
 function MetricBar({ ratioKey, value }) {
   const p = POP[ratioKey];
   const m = META[ratioKey];
   if (!p || !m || value == null) return null;
-  const fill = pct(value, m.min, m.max);
-  const avg = pct(p.mean, m.min, m.max);
-  const color = zColor(value, p.mean, p.std);
-  const lbl = levelLabel(value, p.mean, p.std);
+
+  const lo  = p.lo;
+  const hi  = p.hi;
+  const pos = sectionPct(value, m.min, lo, hi, m.max);
+  const lbl = levelLabel(value, lo, hi);
+  const col = levelColor(lbl);
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
         <span style={{ fontSize: "0.78rem", fontWeight: 600, color: T.text }}>{m.label}</span>
-        <span style={{ fontSize: "0.78rem", fontWeight: 700, color }}>{lbl}</span>
+        <span style={{ fontSize: "0.78rem", fontWeight: 700, color: col }}>{lbl}</span>
       </div>
-      <div style={{ height: 5, background: "#e8e2d6", borderRadius: 3, position: "relative" }}>
-        <div style={{ height: "100%", borderRadius: 3, background: T.accent, width: `${fill}%`, transition: "width 1.2s cubic-bezier(0.22,1,0.36,1)" }} />
-        <div style={{ position: "absolute", top: -3, left: `${avg}%`, width: 2, height: 11, background: "#a8a08e", borderRadius: 1, transform: "translateX(-1px)" }} title={`Average: ${p.mean.toFixed(3)}`} />
+
+      {/* Three equal-width bands */}
+      <div style={{ height: 8, borderRadius: 4, position: "relative", overflow: "visible" }}>
+        <div style={{ position: "absolute", inset: 0, display: "flex", borderRadius: 4, overflow: "hidden" }}>
+          <div style={{ flex: 1, background: "#ece5d4" }} />
+          <div style={{ flex: 1, background: "#d6cdb4", borderLeft: "1px solid #c4b99a", borderRight: "1px solid #c4b99a" }} />
+          <div style={{ flex: 1, background: "#ece5d4" }} />
+        </div>
+        {/* Pointer */}
+        <div
+          title={value.toFixed(3)}
+          style={{
+            position: "absolute", top: -3, left: `${pos}%`,
+            transform: "translateX(-50%)",
+            width: 4, height: 14, background: col,
+            borderRadius: 2,
+            boxShadow: "0 0 0 1.5px #fff",
+            transition: "left 1.2s cubic-bezier(0.22,1,0.36,1)",
+          }}
+        />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.58rem", color: "#a8a08e" }}>
-        <span>{m.min}</span><span>{m.max}</span>
+
+      {/* Section labels */}
+      <div style={{ display: "flex", fontSize: "0.58rem", color: "#a8a08e", textTransform: "lowercase" }}>
+        <span style={{ flex: 1, textAlign: "left" }}>low</span>
+        <span style={{ flex: 1, textAlign: "center" }}>mid</span>
+        <span style={{ flex: 1, textAlign: "right" }}>high</span>
       </div>
     </div>
   );

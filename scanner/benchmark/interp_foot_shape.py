@@ -11,12 +11,15 @@ import json
 from pathlib import Path
 
 # ── Population reference (mirrors foot_measure.py) ──────────────────────
+# Tertile-calibrated 2026-04-14 — must stay in sync with scanner/foot_measure.py.
+# mean = population median, std = real population std (used for z-score
+# intensity wording), lo/hi = 33rd/67th percentile (classification bands).
 POP = {
-    "forefoot_width_ratio":  {"mean": 0.383, "std": 0.021},
-    "arch_length_ratio":     {"mean": 0.700, "std": 0.025},
-    "heel_width_ratio":      {"mean": 0.251, "std": 0.018},
-    "instep_height_ratio":   {"mean": 0.290, "std": 0.030},
-    "heel_depth_ratio":      {"mean": 0.070, "std": 0.025},
+    "forefoot_width_ratio":  {"mean": 0.355, "std": 0.028, "lo": 0.344, "hi": 0.367},
+    "arch_length_ratio":     {"mean": 0.725, "std": 0.025, "lo": 0.712, "hi": 0.734},
+    "heel_width_ratio":      {"mean": 0.238, "std": 0.022, "lo": 0.228, "hi": 0.245},
+    "instep_height_ratio":   {"mean": 0.264, "std": 0.036, "lo": 0.255, "hi": 0.273},
+    "heel_depth_ratio":      {"mean": 0.034, "std": 0.020, "lo": 0.028, "hi": 0.041},
 }
 
 
@@ -475,8 +478,10 @@ def _build_closing(p):
                     "toe needs room at the front."
                 ),
                 "roman": (
-                    "For the toe box, your Roman toe shape works best with a wider, "
-                    "less tapered design that gives all your toes equal room."
+                    "For the toe box, your Roman toe shape -- with your first toes close to "
+                    "equal in length -- is forgiving: moderately asymmetric Egyptian lasts work, "
+                    "and so do Greek-friendly rounded toe boxes. Avoid only the sharpest, "
+                    "single-point tapers."
                 ),
             }
             pieces.append(toe_advice.get(toe, toe_advice["egyptian"]))
@@ -495,8 +500,9 @@ def _build_closing(p):
                 ),
                 "roman": (
                     "With no dimensions standing out, the main fitting decision is the toe box shape. "
-                    "Your Roman toe shape works best with a wider, less tapered toe box "
-                    "that gives all your toes equal room."
+                    "Your Roman toe shape -- with your first toes close to equal in length -- is forgiving: "
+                    "moderately asymmetric Egyptian lasts work, and so do Greek-friendly rounded toe boxes. "
+                    "Avoid only the sharpest, single-point tapers."
                 ),
             }
             pieces.append(toe_advice.get(toe, toe_advice["egyptian"]))

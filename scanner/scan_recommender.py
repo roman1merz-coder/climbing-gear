@@ -18,59 +18,66 @@ HEADERS = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
 # --- Knowledge Base (baked in from Fit_Knowledge_Base.xlsx) ---
 
 INSIGHTS = [
+    # Thresholds tertile-calibrated 2026-04-14. See scanner/foot_measure.py POP.
+    # Class boundaries (33rd/67th percentile on ~200 scans):
+    #   forefoot: narrow < 0.344, wide > 0.367
+    #   heel:     narrow < 0.228, wide > 0.245
+    #   instep:   low    < 0.255, high > 0.273
+    #   heel_dep: shallow< 0.028, deep > 0.041
+    #   arch:     short  < 0.712, long > 0.734
     {
         "id": 1,
         "title": "Phantom Toe Squeeze (Long Arch + Narrow Forefoot)",
-        "trigger": {"arch_length_ratio": ">=0.735", "forefoot_width_ratio": "<0.362"},
+        "trigger": {"arch_length_ratio": ">=0.734", "forefoot_width_ratio": "<0.344"},
         "insight": "When the arch ratio is high and the forefoot is narrow, the ball of the foot sits far back, leaving a long but narrow toe zone. Shoes with compact toe boxes crush the toes even though the foot IS narrow.",
         "consequence": "Recommend shoes with shorter, more compact toe boxes or downturn designs that curve naturally into the toe zone. Avoid very aggressive toe boxes built for short toes.",
     },
     {
         "id": 2,
         "title": "LV Shoes Fail with Narrow Forefoot + High Instep",
-        "trigger": {"instep_height_ratio": ">=0.280", "forefoot_width_ratio": "<0.362"},
+        "trigger": {"instep_height_ratio": ">=0.273", "forefoot_width_ratio": "<0.344"},
         "insight": "A narrow forefoot with a high instep creates a foot that is slim from the front but tall through the midfoot. LV shoes compress the midfoot painfully.",
         "consequence": "Recommend closure systems (laces or dual Velcro) that can cinch width independently of volume. Avoid pure LV models without adjustable closure.",
     },
     {
         "id": 3,
         "title": "Normal Width + High Instep -> LV is Wrong",
-        "trigger": {"instep_height_ratio": ">=0.280", "forefoot_width_ratio": "0.362-0.404"},
+        "trigger": {"instep_height_ratio": ">=0.273", "forefoot_width_ratio": "0.344-0.367"},
         "insight": "When forefoot width is normal but instep is high, LV models compress the forefoot too much. The foot needs standard volume with adjustable closures.",
         "consequence": "Recommend standard-volume shoes with adjustable closures. Do not recommend LV.",
     },
     {
         "id": 4,
         "title": "Greek Toe + Narrow Heel = Hardest Fit",
-        "trigger": {"toe_shape": "greek", "heel_width_ratio": "<0.233"},
+        "trigger": {"toe_shape": "greek", "heel_width_ratio": "<0.228"},
         "insight": "Most shoes with narrow heels also have narrow, pointed toe boxes optimised for Egyptian toes. Greek toes need width at the second toe but narrowness everywhere else.",
         "consequence": "Recommend from the short list of narrow heel + Greek-compatible shoes: Unparallel Flagship, Regulus, La Sportiva Skwama, Mad Rock D2.ONE HV, Tenaya Oasi.",
     },
     {
         "id": 5,
         "title": "Wide Heel + Shallow Depth -> Narrow Cup Fits Well",
-        "trigger": {"heel_depth_ratio": "<0.045", "heel_width_ratio": ">=0.269"},
+        "trigger": {"heel_depth_ratio": "<0.028", "heel_width_ratio": ">=0.245"},
         "insight": "A heel that is proportionally wide but very shallow in depth doesn't protrude much backward. Narrow heel cups still fit because the heel lacks the backward projection that creates slippage.",
         "consequence": "Don't rule out narrow heel cups just because heel width is classified as 'wide'. Shallow heels are forgiving.",
     },
     {
         "id": 6,
         "title": "Shallow Heel Profile -> Empty Heel in Standard Shoes",
-        "trigger": {"heel_depth_ratio": "<0.035"},
+        "trigger": {"heel_depth_ratio": "<0.020"},
         "insight": "When heel depth ratio is very low, the heel doesn't project backward enough to engage the heel cup. Standard shoes will feel empty.",
         "consequence": "Recommend shoes with sculpted, three-dimensional heel pockets (e.g. La Sportiva Miura, Solution). Avoid flat heel designs.",
     },
     {
         "id": 7,
         "title": "High Instep -> Aggressive Downturn is Comfortable",
-        "trigger": {"instep_height_ratio": ">=0.290"},
+        "trigger": {"instep_height_ratio": ">=0.273"},
         "insight": "A high arch/instep naturally conforms to a downturned last. The foot's shape already matches the curve.",
         "consequence": "Note that aggressive shoes may be more comfortable than expected. Lace closure is ideal for fine-tuning over the instep.",
     },
     {
         "id": 8,
         "title": "Low Instep + Narrow Forefoot = Ideal LV Candidate",
-        "trigger": {"instep_height_ratio": "<0.250", "forefoot_width_ratio": "<0.362"},
+        "trigger": {"instep_height_ratio": "<0.255", "forefoot_width_ratio": "<0.344"},
         "insight": "When both instep and forefoot are narrow/low, LV shoes are the perfect match.",
         "consequence": "Prioritise LV variants whenever available.",
     },
