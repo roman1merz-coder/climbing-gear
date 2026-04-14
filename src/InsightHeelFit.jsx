@@ -157,7 +157,7 @@ export default function InsightHeelFit() {
   const isMobile = useIsMobile();
 
   usePageMeta(
-    "What Our First 200 Foot Scans Revealed About Heel Fit — climbing-gear.com",
+    "What Our First 200 Foot Scans Revealed About Heel Fit | climbing-gear.com",
     "Heel fit is hard to predict from a single adjective. Our scanner measures heel width and heel depth separately, then cross-references 280 fit reports across 97 shoes to show which dimension drives the mismatch for each shoe.",
   );
 
@@ -205,7 +205,7 @@ export default function InsightHeelFit() {
           length. Our scans range from 0.20 (very narrow) to 0.28 (wide). The average sits around 0.24.
         </p>
         <p>
-          <strong>Heel depth ratio</strong> captures the vertical profile of your heel — essentially
+          <strong>Heel depth ratio</strong> captures the vertical profile of your heel, essentially
           how much it projects backward from your ankle. This ranges from 0.01 to 0.12, with the
           average around 0.035. A shallow heel (under 0.03) and a deep heel (over 0.05) need
           fundamentally different cup shapes.
@@ -278,7 +278,7 @@ export default function InsightHeelFit() {
           cup reinforced by P3 randing. Both of our other shallow-heel scans who wear the Solution
           (heel depth 0.021 and 0.024) also report perfect heel fit. Three out of three shallow
           heels in firm pre-formed cups land on "perfect" is a small sample, but it is a
-          consistent one — we'll keep watching it.
+          consistent one, we'll keep watching it.
         </p>
       </Prose>
 
@@ -307,11 +307,11 @@ export default function InsightHeelFit() {
 
       <KeyInsight color={T.blue}>
         <strong>La Sportiva Skwama</strong> (10 reports): 90% empty heels. Eight of the nine
-        empty-heel users have normal-to-wide heel width (avg 0.245) — they're not narrow-heeled.
+        empty-heel users have normal-to-wide heel width (avg 0.245), they're not narrow-heeled.
         What unites them is shallow depth (avg 0.027). Worth noting: the Skwama also uses a 3D
         molded heel cup, but a notably softer one than the Mastia or Solution. Its reinforcement
         (La Sportiva's "S-Heel") is a stiffener on the sides of the cup, not a firm backwards
-        shell. So "3D molded" alone doesn't guarantee a shallow heel will grip — cup firmness
+        shell. So "3D molded" alone doesn't guarantee a shallow heel will grip, cup firmness
         matters too.
       </KeyInsight>
 
@@ -350,8 +350,8 @@ export default function InsightHeelFit() {
           Hence, our scorer uses two dimensions. When it evaluates whether a shoe's heel cup will
           work for you, it weights heel width and heel depth separately, calibrated by what we've
           learned from each shoe's fit pattern. We're also starting to tag shoes by heel-cup
-          construction — firm pre-formed cups (Solution, Mastia) versus soft/thin cups with side
-          reinforcement (Skwama) — because the same shallow-heel foot gets opposite outcomes
+          construction, firm pre-formed cups (Solution, Mastia) versus soft/thin cups with side
+          reinforcement (Skwama), because the same shallow-heel foot gets opposite outcomes
           depending on which type it meets. Moving forward we also want to introduce a proper 3D
           modelled heel to identify additional patterns and improve the quality of our
           recommendations.
@@ -361,7 +361,7 @@ export default function InsightHeelFit() {
       <SectionHeading>Still early, getting sharper</SectionHeading>
       <Prose>
         <p>
-          We have performed 200 scans so far — enough to see first patterns for the four most
+          We have performed 200 scans so far, enough to see first patterns for the four most
           popular models, but for many shoes we still only have 1–2 data points. Incoming scans
           are growing rapidly and every scan that includes a current shoe fit adds to our
           recommendation engine. The model doesn't guess: it uses what it has, flags uncertainty

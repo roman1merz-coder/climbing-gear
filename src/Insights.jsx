@@ -20,6 +20,13 @@ const ARTICLES = [
     stats: ["7 measurements", "400+ shoes", "~10s processing"],
   },
   {
+    to: "/insights/heel-fit",
+    tag: "Fit", tagColor: T.blue,
+    title: "What Our First 200 Foot Scans Revealed About Heel Fit",
+    desc: "Heel fit is hard to predict from a single adjective. Our scanner measures heel width and heel depth separately, then cross-references 280 fit reports across 97 shoes to show which dimension drives the mismatch for each shoe.",
+    stats: ["200 scans", "280 fit reports", "2 dimensions"],
+  },
+  {
     to: "/insights/climbing-shoe-guide",
     tag: "Shoes", tagColor: T.accent,
     title: `How We Score ${SHOES.length} Climbing Shoes - and How to Pick Yours`,

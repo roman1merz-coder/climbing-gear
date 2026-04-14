@@ -24,7 +24,7 @@ import InsightCrashpads from "./InsightCrashpads.jsx";
 import InsightRopes from "./InsightRopes.jsx";
 // import InsightFootMeasurement from "./InsightFootMeasurement.jsx"; // TODO: re-enable after review
 import InsightScanner from "./InsightScanner.jsx";
-import InsightHeelFit from "./InsightHeelFit.jsx"; // live but intentionally NOT listed on /insights hub yet
+import InsightHeelFit from "./InsightHeelFit.jsx";
 import GearNews from "./GearNews.jsx";
 import NavBar from "./NavBar.jsx";
 import { CompareProvider } from "./CompareContext.jsx";
@@ -564,7 +564,7 @@ function Root() {
               <Route path="/insights/climbing-shoe-guide" element={<InsightShoes />} />
               <Route path="/insights/inflatable-crashpads" element={<InsightCrashpads />} />
               <Route path="/insights/rope-cost-vs-safety" element={<InsightRopes />} />
-              <Route path="/insights/heel-fit" element={<InsightHeelFit />} />{/* live; not yet linked from /insights hub */}
+              <Route path="/insights/heel-fit" element={<InsightHeelFit />} />
               {/* <Route path="/insights/foot-measurement-guide" element={<InsightFootMeasurement />} /> */}
               <Route path="/news" element={<GearNews />} />
               <Route path="/methodology" element={<Methodology />} />
