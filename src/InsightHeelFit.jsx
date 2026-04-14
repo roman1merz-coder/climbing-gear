@@ -488,6 +488,32 @@ export default function InsightHeelFit() {
         </p>
       </Prose>
 
+      <SectionHeading>Recommendations for narrow heels</SectionHeading>
+      <Prose>
+        <p>
+          You can mostly rely on the manufacturer data: shoes advertised with a narrow overall
+          and/or narrow heel fit should work well. If you have a wider forefoot but a rather narrow
+          heel, we'd recommend looking into the Mad Rock Drone series (HV models) and some Evolv
+          models such as the <S slug="evolv-v6">V6</S> and{" "}
+          <S slug="evolv-zenist-pro">Zenist Pro</S>.
+        </p>
+      </Prose>
+
+      <SectionHeading>Recommendations for shallow heels</SectionHeading>
+      <Prose>
+        <p>
+          This is where it gets trickier. In most online sources, including manufacturer data,
+          heel depth is not clearly distinguished from heel width. From the current scan data, one
+          viable path might be a firm, molded cup that potentially leaves some dead space but
+          preserves its shape even when not fully filled by the heel, such as the{" "}
+          <S slug="la-sportiva-solution-mens">La Sportiva Solution</S> and the{" "}
+          <S slug="tenaya-mastia">Tenaya Mastia</S>. Alternatively you can visually inspect the
+          shoe's construction and heel form: is it a rather flat back, or does it bulge
+          significantly below the tensioning rand? We will update this article as soon as we have
+          more data and hopefully provide clearer recommendations for shallow heels.
+        </p>
+      </Prose>
+
       <SectionHeading>Why two-dimensional heel scoring beats single adjectives</SectionHeading>
       <Prose>
         <p>
