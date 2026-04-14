@@ -1067,67 +1067,100 @@ function RetakeModal({ scanId, view, onClose }) {
 // single-photo retake (pending → segmenting → finding_shoes) or a
 // preference edit (rescore → rescoring). Prevents the user from seeing
 // stale recommendations while the worker is still updating them.
-// Mirrors the UX of scan.html's processing screen so the experience
-// feels identical to the first scan.
+//
+// Key design choice: the progress bar + stage list are driven CLIENT-SIDE
+// off a monotonic timer, *not* off the server's pipeline_stage polls.
+// Reason: the deterministic scoring engine runs in well under 2 seconds,
+// so `finding_shoes` often finishes between two polls and the user never
+// sees it. A purely-server-driven UI would jump from 30 % straight to the
+// results page, which felt like recommendations weren't being rewritten.
+//
+// We enforce a minimum dwell (≈6 s retake, ≈2.5 s rescore) so every stage
+// is visible; if the server is still working past that, we keep showing
+// the screen until stage=='complete'; if the server finished early, we
+// animate cleanly to 100 %, flash "Done!" for a beat, then dismiss.
 // ══════════════════════════════════════════════════════════════
-function buildProgress(stage, elapsedSec) {
-  // Matches the curve used in public/scan.html so retakes feel the same
-  // as the initial scan. Rescore paths have their own short curve.
-  if (stage === "pending")       return Math.min(8,  Math.round(elapsedSec / 5  * 8));
-  if (stage === "segmenting")    return Math.min(30, 8 + Math.round(elapsedSec / 10 * 22));
-  if (stage === "finding_shoes") return Math.min(99, 35 + Math.round(elapsedSec / 20 * 64));
-  if (stage === "rescore")       return Math.min(15, Math.round(elapsedSec / 3 * 15));
-  if (stage === "rescoring")     return Math.min(99, 15 + Math.round(elapsedSec / 4 * 80));
-  if (stage === "complete")      return 100;
-  return 0;
-}
 
-function stageTitle(stage, isRescore) {
-  if (isRescore) return "Updating your recommendations...";
-  if (stage === "pending")        return "Queued for analysis...";
-  if (stage === "segmenting")     return "Segmenting your foot...";
-  if (stage === "finding_shoes")  return "Finding your perfect shoes...";
-  return "Processing your scan...";
-}
-
-function ProcessingScreen({ scan, scanId }) {
+function ProcessingScreen({ scan, scanId, onDismiss }) {
   const mobile = useIsMobile();
-  const stage = scan?.pipeline_stage || "pending";
-  const isRescore = stage === "rescore" || stage === "rescoring";
+  const serverStage = scan?.pipeline_stage || "pending";
 
-  // Elapsed time drives the progress curve. We re-render every second so
-  // the bar animates smoothly between the 2s DB polls.
-  const [elapsed, setElapsed] = useState(0);
-  const startedAtRef = useRef(null);
+  // Capture whether this session started as a rescore at mount-time, so a
+  // mid-flight transition (e.g. worker flips from `rescore` to `complete`)
+  // doesn't make us suddenly switch to the full-pipeline copy.
+  const isRescoreRef = useRef(
+    serverStage === "rescore" || serverStage === "rescoring"
+  );
+  const isRescore = isRescoreRef.current;
+
+  const MIN_DWELL_MS = isRescore ? 2500 : 6500;
+  const DONE_HOLD_MS = 1200;
+
+  const mountedAtRef = useRef(Date.now());
+  const [clientProgress, setClientProgress] = useState(0);
+  const [done, setDone] = useState(false);
+
   useEffect(() => {
-    // Prefer the server-recorded start timestamp so refreshes don't reset
-    // the bar. Falls back to "now" for the rescore path where the column
-    // isn't written.
-    const iso = scan?.pipeline_started_at;
-    startedAtRef.current = iso ? new Date(iso).getTime() : Date.now();
-    const tick = () => {
-      const s = Math.max(0, Math.floor((Date.now() - startedAtRef.current) / 1000));
-      setElapsed(s);
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [scan?.pipeline_started_at, stage]);
+    const id = setInterval(() => {
+      const ms = Date.now() - mountedAtRef.current;
 
-  const progress = buildProgress(stage, elapsed);
-  const title = stageTitle(stage, isRescore);
+      // Client-side curve: 0→95% over MIN_DWELL_MS with a brief pause at
+      // the stage boundaries so the eye can read "segmenting" and
+      // "finding shoes" distinctly.
+      const t = Math.min(1, ms / MIN_DWELL_MS);
+      const target = Math.round(t * 95);
+      setClientProgress((p) => Math.max(p, target));
+
+      // Server finished AND we've held the screen long enough: close out.
+      if (serverStage === "complete" && ms >= MIN_DWELL_MS) {
+        setClientProgress(100);
+        setDone(true);
+        clearInterval(id);
+        const t2 = setTimeout(() => { if (onDismiss) onDismiss(); }, DONE_HOLD_MS);
+        // setTimeout returns a number; stash it on the ref so cleanup below
+        // can cancel if the component unmounts mid-hold.
+        mountedAtRef.closeTimer = t2;
+      }
+    }, 120);
+    return () => {
+      clearInterval(id);
+      if (mountedAtRef.closeTimer) clearTimeout(mountedAtRef.closeTimer);
+    };
+  }, [serverStage, onDismiss, MIN_DWELL_MS]);
+
+  const progress = clientProgress;
+
+  // Derive the visible stage from the CLIENT timeline (not the server's
+  // pipeline_stage) so every stage has a guaranteed dwell. Maps cleanly
+  // onto the same 3-step layout as the initial scan in scan.html.
+  let displayStage;
+  if (done) displayStage = "complete";
+  else if (isRescore) displayStage = "rescoring";
+  else if (progress < 6)  displayStage = "pending";
+  else if (progress < 40) displayStage = "segmenting";
+  else                    displayStage = "finding_shoes";
+
+  const title = done
+    ? "Done!"
+    : isRescore
+      ? "Updating your recommendations..."
+      : displayStage === "pending"       ? "Queued for analysis..."
+      : displayStage === "segmenting"    ? "Segmenting your foot..."
+      : displayStage === "finding_shoes" ? "Finding your perfect shoes..."
+      : "Processing your scan...";
+
   const subtitle = isRescore
-    ? "No new photos needed — usually takes about 3 seconds."
-    : "This usually takes about 15–20 seconds.";
+    ? "No new photos needed — usually takes a couple of seconds."
+    : "This usually takes about 10–15 seconds.";
 
   // Stage list (full pipeline) — hidden for the rescore path which only
   // re-scores, doesn't re-segment.
   const stages = isRescore
     ? null
     : [
-        { key: "seg",   label: "Segmenting your foot",       done: ["finding_shoes","complete"].includes(stage), active: stage === "segmenting" || stage === "pending" },
-        { key: "meas",  label: "Analysing measurements",     done: ["finding_shoes","complete"].includes(stage), active: false },
-        { key: "shoes", label: "Finding your perfect shoes", done: stage === "complete", active: stage === "finding_shoes" },
+        { key: "seg",   label: "Segmenting your foot",       done: ["finding_shoes","complete"].includes(displayStage), active: displayStage === "segmenting" || displayStage === "pending" },
+        { key: "meas",  label: "Analysing measurements",     done: ["finding_shoes","complete"].includes(displayStage), active: false },
+        { key: "shoes", label: "Finding your perfect shoes", done: displayStage === "complete", active: displayStage === "finding_shoes" },
       ];
 
   return (
@@ -1258,8 +1291,28 @@ export default function ScanResult({ shoes }) {
   // Bumped whenever we want to (re)start polling - e.g. after the user saves
   // edits and the backend transitions complete -> rescore -> complete.
   const [pollEpoch, setPollEpoch] = useState(0);
+  // Flipped to true by ProcessingScreen's onDismiss once it has held the
+  // screen long enough AND the server reports complete. Reset back to
+  // false whenever the pipeline re-enters an in-progress stage (new
+  // retake or new rescore triggered by the user).
+  const [processingDone, setProcessingDone] = useState(false);
+  // Tracks whether we've seen the pipeline in-progress at least once for
+  // this scan view. Keeps ProcessingScreen mounted through the brief
+  // window between the server flipping to `complete` and the client's
+  // min-dwell timer firing onDismiss.
+  const pipelineWasInFlightRef = useRef(false);
   const interpretationRef = useRef(null);
   const recSectionRefs = useRef({});
+
+  // When the pipeline re-enters an in-progress stage (retake/rescore),
+  // remember that we're mid-flight and clear any previous "done" flag so
+  // the ProcessingScreen takes over again.
+  useEffect(() => {
+    if (scan && IN_PROGRESS_STAGES.has(scan.pipeline_stage)) {
+      pipelineWasInFlightRef.current = true;
+      setProcessingDone(false);
+    }
+  }, [scan?.pipeline_stage]);
 
   usePageMeta(
     scan ? "Your Foot Profile" : "Scan Results",
@@ -1362,12 +1415,20 @@ export default function ScanResult({ shoes }) {
 
   const s = scan; // shorthand
 
-  // Pipeline in flight (rescore after preference edit, or full re-run after
-  // a single-photo retake) — show a full processing screen instead of the
-  // stale results. Polling continues in the useEffect above; once the stage
-  // flips to 'complete' this branch falls through and the results render.
-  if (IN_PROGRESS_STAGES.has(s.pipeline_stage)) {
-    return <ProcessingScreen scan={s} scanId={scanId} />;
+  // Pipeline gate: we never show stale results while the worker is
+  // running. ProcessingScreen also enforces a client-side minimum dwell
+  // (because the scoring engine runs in <1 s, faster than our 2 s poll,
+  // so `finding_shoes` would never be visible otherwise). It only fires
+  // onDismiss once the server reports complete AND its min dwell has
+  // elapsed, at which point we render the refreshed results.
+  if (IN_PROGRESS_STAGES.has(s.pipeline_stage) || (!processingDone && pipelineWasInFlightRef.current)) {
+    return (
+      <ProcessingScreen
+        scan={s}
+        scanId={scanId}
+        onDismiss={() => setProcessingDone(true)}
+      />
+    );
   }
 
   const toeShape = s.toe_shape || "egyptian";
@@ -1375,7 +1436,11 @@ export default function ScanResult({ shoes }) {
 
   // Overlay image URLs - predictable paths in Supabase Storage
   const storageBase = `${SUPABASE_URL}/storage/v1/object/public/foot-scans/scans`;
-  const cacheBust = s.updated_at ? `?t=${new Date(s.updated_at).getTime()}` : "";
+  // Bust overlay caches whenever the pipeline last ran — the worker
+  // rewrites *-sole_overlay.png / *-side_overlay.png on every retake, and
+  // browsers will otherwise show the stale image. The row has no
+  // `updated_at`; `pipeline_started_at` advances on every fresh run.
+  const cacheBust = s.pipeline_started_at ? `?t=${new Date(s.pipeline_started_at).getTime()}` : "";
   const soleOverlay = s.toe_shape ? `${storageBase}/${scanId}-sole_overlay.png${cacheBust}` : null;
   const sideOverlay = (s.instep_height_ratio != null || s.heel_depth_ratio != null) ? `${storageBase}/${scanId}-side_overlay.png${cacheBust}` : null;
 
