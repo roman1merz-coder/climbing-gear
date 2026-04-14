@@ -221,17 +221,20 @@ export default function InsightHeelFit() {
         />
         <ScanCard
           label="Scan B"
-          oneLine="Normal heel width, very shallow depth"
+          oneLine="Average heel width, shallow depth"
           toeShape="Egyptian"
-          streetSize={41}
+          streetSize={42.5}
           measurements={{
-            heel_width_ratio: 0.254,
-            heel_depth_ratio: 0.014,
+            heel_width_ratio: 0.251,
+            heel_depth_ratio: 0.024,
           }}
           shoes={[
-            { brand: "La Sportiva", model: "Skwama", size: 40, heel: "empty" },
+            { brand: "La Sportiva", model: "Skwama", size: 39.5, heel: "empty" },
+            { brand: "La Sportiva", model: "TC Pro", size: 41, heel: "empty" },
+            { brand: "Evolv", model: "Shaman", size: 42.5, heel: "empty" },
+            { brand: "Tenaya", model: "Mastia", size: 39.5, heel: "perfect" },
           ]}
-          takeaway="Heel width sits right on the average (0.254). Heel depth is at the bottom of the distribution (0.014 vs 0.035 average). The Skwama's cup needs backward heel projection to lock in — without it, the cup sits off the back of the heel. Going narrower on width wouldn't help; this is a depth problem."
+          takeaway="Heel width sits exactly on the population average (0.251). Heel depth is clearly below average (0.024 vs 0.035). Three shoes with deep, backward-projecting cups — Skwama, TC Pro, Shaman — all report empty heels on the same foot. The Tenaya Mastia, which uses a pre-shaped thermo-molded heel cup, locks in. Going narrower on width wouldn't help any of the empty-heel shoes; this is a depth problem."
           tone="red"
         />
       </div>
@@ -241,6 +244,17 @@ export default function InsightHeelFit() {
           Same written complaint — "empty heel" — two different mechanisms. If you treated both
           climbers as "narrow-heeled" and pointed them at low-volume lasts, you'd help Scan A and
           make Scan B worse.
+        </p>
+        <p>
+          There is an interesting wrinkle on the Scan B side: the one shoe that gripped was the
+          Tenaya Mastia, which uses a pre-shaped, thermo-molded heel cup rather than relying on
+          the rand to pull a flat piece of rubber into shape around the heel. The La Sportiva
+          Solution uses a similar pre-formed heel construction, and both of our other shallow-heel
+          climbers who tried the Solution (heel depth 0.021 and 0.024, both with heel widths a
+          touch below average) also report perfect heel fit. Three out of three shallow-heel
+          users in shoes with a pre-moulded heel cup land on "perfect" is a small sample, but it
+          is a consistent one. For shallow heels that are not also narrow, this construction style
+          is worth trying before concluding the foot is un-shoeable.
         </p>
       </Prose>
 
