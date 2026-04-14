@@ -308,15 +308,6 @@ export default function InsightHeelFit() {
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.climbing-gear.com/insights/heel-fit" },
       },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.climbing-gear.com/insights/heel-fit#faq",
-        mainEntity: FAQ_ITEMS_SCHEMA.map(([q, a]) => ({
-          "@type": "Question",
-          name: q,
-          acceptedAnswer: { "@type": "Answer", text: a },
-        })),
-      },
     ],
   });
 
@@ -486,33 +477,6 @@ export default function InsightHeelFit() {
         </KeyInsight>
       </div>
 
-      <SectionHeading>Best climbing shoes for narrow heels</SectionHeading>
-      <Prose>
-        <p>
-          If your heel width ratio is under ~0.23, standard-last cups will feel empty no matter
-          how aggressively you downsize. The two shoes that grip narrow heels most reliably in our
-          dataset are the <S slug="scarpa-instinct-vsr-lv">Scarpa Instinct VSR LV</S>, which is
-          explicitly the low-volume variant of the Instinct VSR, and the{" "}
-          <S slug="mad-rock-d2-one-hv">Mad Rock D2.ONE HV</S>, whose heel cup is unusually narrow
-          despite the shoe's high-volume forefoot. Avoid the standard Instinct VSR, Drago and
-          Ondra Comp if narrow heel fit is your priority.
-        </p>
-      </Prose>
-
-      <SectionHeading>Best climbing shoes for shallow heels</SectionHeading>
-      <Prose>
-        <p>
-          If your heel depth ratio is under ~0.03, you need a cup that holds its shape rather
-          than one that depends on rand tension wrapping flat rubber around your heel. The{" "}
-          <S slug="tenaya-mastia">Tenaya Mastia</S> (firm thermo-molded shell) and the{" "}
-          <S slug="la-sportiva-solution-mens">La Sportiva Solution</S> (firm P3 molded cup) both
-          grip shallow heels in our data. Soft 3D-molded cups with side stiffeners, like the{" "}
-          <S slug="la-sportiva-skwama">Skwama</S>, do not — they still need the foot to push
-          backward to generate grip. Also avoid the <S slug="evolv-shaman">Shaman</S> and{" "}
-          <S slug="la-sportiva-tc-pro">TC Pro</S> if your heel projects little.
-        </p>
-      </Prose>
-
       <SectionHeading>A new shape emerging? Mad Rock D2.ONE HV</SectionHeading>
       <Prose>
         <p>
@@ -523,9 +487,6 @@ export default function InsightHeelFit() {
           We'll watch it closely as the sample grows.
         </p>
       </Prose>
-
-      <SectionHeading>Frequently asked questions about climbing shoe heel fit</SectionHeading>
-      <FAQ />
 
       <SectionHeading>Why two-dimensional heel scoring beats single adjectives</SectionHeading>
       <Prose>
