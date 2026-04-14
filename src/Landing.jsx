@@ -89,7 +89,7 @@ const INSIGHTS = [
   { title: `How We Score ${SHOES.length} Climbing Shoes - and How to Pick Yours`, description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
   { title: "Inflatable Crashpads: Game-Changer or Gimmick?", description: "They shatter the weight curve, fit inside your backpack, and inflate in minutes. But how safe are they really?", to: "/insights/inflatable-crashpads" },
   { title: "Does Spending More Buy a Safer Rope?", description: `We crunched cost-per-gram, UIAA falls, and impact force across ${DYNAMIC_ROPES.length}+ ropes to find out.`, to: "/insights/rope-cost-vs-safety" },
-  { title: "How to Measure Your Foot for Climbing Shoes", description: "Climbing shoe sizes vary wildly between brands. Here's how to find shoes that actually fit - using your phone camera or a piece of paper.", to: "/insights/foot-measurement" },
+  { title: "What Our First 200 Foot Scans Revealed About Heel Fit", description: "Heel width and heel depth are independent. We crossed 280 fit reports across 97 shoes with real scans to show which dimension actually drives the mismatch.", to: "/insights/heel-fit" },
 ];
 
 // ═══════════════════════════════════════════════════════════════
