@@ -24,16 +24,22 @@ const POP = {
   heel_depth_ratio:      { mean: 0.034, std: 0.020, lo: 0.028, hi: 0.041 },
 };
 
-// min/max are soft visual bounds roughly covering the 5-95th percentile
-// of observed data. The slider clamps to these so extreme values still
-// render within the outer bands without overflowing.
+// Labels only. Visual min/max are derived below as mean ± 3σ from POP,
+// so the outer band edges track real population spread instead of hand-
+// picked cutoffs. Keeps the slider in sync with the single source of truth.
 const META = {
-  forefoot_width_ratio:  { min: 0.30, max: 0.42, label: "Forefoot Width" },
-  arch_length_ratio:     { min: 0.66, max: 0.77, label: "Arch Length"    },
-  heel_width_ratio:      { min: 0.20, max: 0.28, label: "Heel Width"     },
-  instep_height_ratio:   { min: 0.22, max: 0.32, label: "Instep Height"  },
-  heel_depth_ratio:      { min: 0.00, max: 0.08, label: "Heel Depth"     },
+  forefoot_width_ratio:  { label: "Forefoot Width" },
+  arch_length_ratio:     { label: "Arch Length"    },
+  heel_width_ratio:      { label: "Heel Width"     },
+  instep_height_ratio:   { label: "Instep Height"  },
+  heel_depth_ratio:      { label: "Heel Depth"     },
 };
+
+// Number of population standard deviations used for the slider's outer
+// visual bounds. 3σ ≈ 99.7% of a normal population; measurements outside
+// this just clamp to the ends, which is the correct visual signal for
+// "genuinely extreme".
+const VISUAL_SIGMA = 3;
 
 const TOE_DESCRIPTIONS = {
   egyptian: "Big toe is the longest, toes descend in a smooth slope.",
@@ -86,7 +92,11 @@ function MetricBar({ ratioKey, value }) {
 
   const lo  = p.lo;
   const hi  = p.hi;
-  const pos = sectionPct(value, m.min, lo, hi, m.max);
+  // Derive visual bounds from real population spread (mean ± 3σ),
+  // floored at 0 for ratios where negative is nonsensical.
+  const vmin = Math.max(0, p.mean - VISUAL_SIGMA * p.std);
+  const vmax = p.mean + VISUAL_SIGMA * p.std;
+  const pos = sectionPct(value, vmin, lo, hi, vmax);
   const lbl = levelLabel(value, lo, hi);
   const col = levelColor(lbl);
 
