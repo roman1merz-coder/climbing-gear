@@ -166,9 +166,6 @@ function HeelFitTable() {
     { slug: "la-sportiva-skwama",       shoe: "La Sportiva Skwama",    n: 10, pct: "10%", driver: "Shallow depth fails (soft 3D cup)", fits: "Deeper heels, any width" },
     { slug: "scarpa-drago",             shoe: "Scarpa Drago",          n: 11, pct: "55%", driver: "Narrow heels fail; depth-tolerant", fits: "Average-to-wide heels" },
     { slug: "evolv-shaman",             shoe: "Evolv Shaman",          n: 10, pct: "50%", driver: "Depth is everything (2.3× split)", fits: "Deep-projecting heels" },
-    { slug: "mad-rock-d2-one-hv",       shoe: "Mad Rock D2.ONE HV",    n: 8,  pct: "88%", driver: "Narrow cup on HV shoe", fits: "Narrow heels (so far)" },
-    { slug: "tenaya-mastia",            shoe: "Tenaya Mastia",         n: 5,  pct: "≈100%*", driver: "Firm pre-shaped cup", fits: "Shallow heels" },
-    { slug: "la-sportiva-solution-mens", shoe: "La Sportiva Solution",  n: 3,  pct: "100%*", driver: "Firm P3 molded cup", fits: "Shallow heels (small sample)" },
   ];
   const cellStyle = { padding: "8px 10px", borderBottom: `1px solid ${T.border}`, fontSize: "12.5px", lineHeight: 1.5, verticalAlign: "top" };
   const hcell = { ...cellStyle, fontSize: "11px", fontWeight: 800, letterSpacing: "0.5px", textTransform: "uppercase", color: T.muted, background: T.bg };
@@ -176,7 +173,7 @@ function HeelFitTable() {
     <div style={{ overflowX: "auto", margin: "16px 0 8px" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", background: T.surface, border: `1px solid ${T.border}`, borderRadius: 8 }}>
         <caption style={{ captionSide: "bottom", fontSize: "11px", color: T.muted, textAlign: "left", padding: "8px 10px 0" }}>
-          Source: climbing-gear.com foot-scan dataset, 280 fit reports as of 2026-04-13. * = small sample (≤5).
+          Source: climbing-gear.com foot-scan dataset, 280 fit reports as of 2026-04-13.
         </caption>
         <thead>
           <tr>
@@ -327,23 +324,6 @@ export default function InsightHeelFit() {
     <ArticleLayout isMobile={isMobile} breadcrumb="Heel Fit">
       <ArticleHeader title={H1} subtitle={SUBTITLE} />
 
-      {/* TL;DR for humans + GEO extractability */}
-      <div style={{
-        background: T.accentSoft, border: `1px solid ${T.accent}`, borderRadius: 10,
-        padding: "14px 18px", margin: "8px 0 20px",
-      }}>
-        <div style={{ fontSize: "11px", fontWeight: 800, letterSpacing: "1px", color: T.accent, textTransform: "uppercase", marginBottom: 8 }}>
-          TL;DR
-        </div>
-        <ul style={{ margin: 0, paddingLeft: 18, fontSize: "13.5px", lineHeight: 1.7, color: T.text }}>
-          <li>Heel fit is two dimensions, not one: <strong>heel width</strong> (avg 0.24) and <strong>heel depth</strong> (avg 0.034). They're largely independent.</li>
-          <li><strong>Narrow heels</strong> (&lt; ~0.23) grip in the <S slug="scarpa-instinct-vsr-lv">Scarpa Instinct VSR LV</S> and <S slug="mad-rock-d2-one-hv">Mad Rock D2.ONE HV</S>; fail in the <S slug="scarpa-instinct-vsr-mens">Instinct VSR</S>, <S slug="scarpa-drago">Drago</S>, and <S slug="la-sportiva-ondra-comp">Ondra Comp</S>.</li>
-          <li><strong>Shallow heels</strong> (&lt; ~0.03) need a firm pre-shaped cup: the <S slug="tenaya-mastia">Tenaya Mastia</S> and <S slug="la-sportiva-solution-mens">La Sportiva Solution</S> work; the <S slug="la-sportiva-skwama">Skwama</S> (90% empty), <S slug="evolv-shaman">Shaman</S> and <S slug="la-sportiva-tc-pro">TC Pro</S> don't.</li>
-          <li>"3D molded" alone isn't enough: the Skwama has a molded cup too, but it's a soft side-stiffened shell rather than a firm rear shell. Cup firmness is the real differentiator.</li>
-          <li>Based on 280 heel-fit reports across 97 shoes in the climbing-gear.com foot-scan dataset (as of April 2026).</li>
-        </ul>
-      </div>
-
       <SectionHeading>Why climbing shoe heel fit is hard to predict</SectionHeading>
       <Prose>
         <p>
@@ -454,8 +434,8 @@ export default function InsightHeelFit() {
           When someone scans their feet, they also tell us what shoes they currently climb in and
           how those shoes fit: toes, forefoot, and heel, each rated as squeezed/tight, perfect, or
           loose/empty. That lets us match real fit outcomes against measured foot geometry. The
-          table below summarises heel-fit patterns for every shoe in the dataset with enough
-          reports to say something useful.
+          table below summarises heel-fit patterns for every shoe in the dataset with more than 10
+          fit reports.
         </p>
       </Prose>
 
