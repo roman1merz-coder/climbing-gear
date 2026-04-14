@@ -36,9 +36,9 @@ const META = {
 };
 
 const TOE_DESCRIPTIONS = {
-  egyptian: "Big toe is the longest, toes descend in a smooth slope. Most common shape.",
-  greek:    "Second toe is the longest, extends past the big toe. Needs a slightly deeper toe box.",
-  roman:    "First two toes are nearly equal in length. Works with symmetrical toe boxes.",
+  egyptian: "Big toe is the longest, toes descend in a smooth slope.",
+  greek:    "Second toe is the longest, extends past the big toe.",
+  roman:    "First two toes are nearly equal in length.",
 };
 
 // ── Helpers ──────────────────────────────────────────────────
