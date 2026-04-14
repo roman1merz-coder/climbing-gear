@@ -6,58 +6,82 @@ import {
   Prose, KeyInsight, StatCard,
 } from "./InsightsShared.jsx";
 
-/* ─── Population reference values (from spec / literature) ───
-   Same distributions as shown on /scan/:id pages. */
+/* ─── Population reference (kept in sync with ScanResult.jsx POP) ───
+   Tertile calibration from ~200-scan dataset. `lo`/`hi` are the
+   low/mid and mid/high tertile boundaries. `mean` ± 3σ defines the
+   visible slider bounds. */
 const POP = {
-  forefoot_width_ratio:  { mean: 0.383, std: 0.021 },
-  arch_length_ratio:     { mean: 0.700, std: 0.025 },
-  heel_width_ratio:      { mean: 0.251, std: 0.018 },
-  heel_depth_ratio:      { mean: 0.035, std: 0.020 },
+  heel_width_ratio: { mean: 0.238, std: 0.022, lo: 0.228, hi: 0.245 },
+  heel_depth_ratio: { mean: 0.034, std: 0.020, lo: 0.028, hi: 0.041 },
 };
 const META = {
-  forefoot_width_ratio: { min: 0.31, max: 0.45, label: "Forefoot Width" },
-  arch_length_ratio:    { min: 0.61, max: 0.77, label: "Arch Length" },
-  heel_width_ratio:     { min: 0.20, max: 0.31, label: "Heel Width" },
-  heel_depth_ratio:     { min: 0.00, max: 0.15, label: "Heel Depth" },
+  heel_width_ratio: { label: "Heel Width" },
+  heel_depth_ratio: { label: "Heel Depth" },
 };
+const VISUAL_SIGMA = 3;
 
-function clamp01(x) { return Math.max(0, Math.min(100, x)); }
-function pctPos(val, mn, mx) { return clamp01(((val - mn) / (mx - mn)) * 100); }
-function levelLabel(val, mean, std) {
-  const z = (val - mean) / std;
-  if (z < -0.7) return "low";
-  if (z > 0.7) return "high";
+function sectionPct(val, min, lo, hi, max) {
+  if (val <= lo) {
+    const span = lo - min;
+    const t = span > 0 ? (val - min) / span : 0.5;
+    return Math.max(0, Math.min(1, t)) * 33.333;
+  }
+  if (val <= hi) {
+    const span = hi - lo;
+    const t = span > 0 ? (val - lo) / span : 0.5;
+    return 33.333 + Math.max(0, Math.min(1, t)) * 33.334;
+  }
+  const span = max - hi;
+  const t = span > 0 ? (val - hi) / span : 0.5;
+  return 66.667 + Math.max(0, Math.min(1, t)) * 33.333;
+}
+function levelLabel(val, lo, hi) {
+  if (val < lo) return "low";
+  if (val > hi) return "high";
   return "mid";
 }
-function levelColor(val, mean, std) {
-  const z = Math.abs(val - mean) / std;
-  if (z < 0.7) return T.green;
-  if (z < 1.5) return T.yellow;
-  return T.red;
+function levelColor(lbl) {
+  if (lbl === "low")  return T.accent;
+  if (lbl === "high") return T.accent;
+  return T.green || "#6a8a4f";
 }
 
-/* ─── A single measurement bar (same style as /scan result page) ─── */
+/* ─── New tertile-band MetricBar (mirrors ScanResult.jsx) ─── */
 function MetricBar({ ratioKey, value }) {
   const p = POP[ratioKey]; const m = META[ratioKey];
   if (!p || !m || value == null) return null;
-  const fill = pctPos(value, m.min, m.max);
-  const avg = pctPos(p.mean, m.min, m.max);
-  const color = levelColor(value, p.mean, p.std);
-  const lbl = levelLabel(value, p.mean, p.std);
+  const lo = p.lo, hi = p.hi;
+  const vmin = Math.max(0, p.mean - VISUAL_SIGMA * p.std);
+  const vmax = p.mean + VISUAL_SIGMA * p.std;
+  const pos = sectionPct(value, vmin, lo, hi, vmax);
+  const lbl = levelLabel(value, lo, hi);
+  const col = levelColor(lbl);
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <span style={{ fontSize: "12px", fontWeight: 600, color: T.text }}>{m.label}</span>
-        <span style={{ fontSize: "12px", fontWeight: 700, color }}>
-          {value.toFixed(3)} <span style={{ color: T.muted, fontWeight: 500 }}>({lbl})</span>
-        </span>
+        <span style={{ fontSize: "0.78rem", fontWeight: 600, color: T.text }}>{m.label}</span>
+        <span style={{ fontSize: "0.78rem", fontWeight: 700, color: col }}>{lbl}</span>
       </div>
-      <div style={{ height: 5, background: "#e8e2d6", borderRadius: 3, position: "relative" }}>
-        <div style={{ height: "100%", borderRadius: 3, background: T.accent, width: `${fill}%` }} />
-        <div style={{ position: "absolute", top: -3, left: `${avg}%`, width: 2, height: 11, background: "#a8a08e", borderRadius: 1, transform: "translateX(-1px)" }} title={`Population avg: ${p.mean.toFixed(3)}`} />
+      <div style={{ height: 8, borderRadius: 4, position: "relative", overflow: "visible" }}>
+        <div style={{ position: "absolute", inset: 0, display: "flex", borderRadius: 4, overflow: "hidden" }}>
+          <div style={{ flex: 1, background: "#ece5d4" }} />
+          <div style={{ flex: 1, background: "#d6cdb4", borderLeft: "1px solid #c4b99a", borderRight: "1px solid #c4b99a" }} />
+          <div style={{ flex: 1, background: "#ece5d4" }} />
+        </div>
+        <div
+          title={value.toFixed(3)}
+          style={{
+            position: "absolute", top: -3, left: `${pos}%`,
+            transform: "translateX(-50%)",
+            width: 4, height: 14, background: col, borderRadius: 2,
+            boxShadow: "0 0 0 1.5px #fff",
+          }}
+        />
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "10px", color: "#a8a08e" }}>
-        <span>{m.min}</span><span style={{ fontSize: "9px", color: "#b8b0a0" }}>pop. avg {p.mean.toFixed(3)}</span><span>{m.max}</span>
+      <div style={{ display: "flex", fontSize: "0.58rem", color: "#a8a08e", textTransform: "lowercase" }}>
+        <span style={{ flex: 1, textAlign: "left" }}>low</span>
+        <span style={{ flex: 1, textAlign: "center" }}>mid</span>
+        <span style={{ flex: 1, textAlign: "right" }}>high</span>
       </div>
     </div>
   );
@@ -79,7 +103,7 @@ function FitPill({ fit }) {
   );
 }
 
-/* ─── One scan card (real profile + shoes + fit outcomes) ─── */
+/* ─── One scan card ─── */
 function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, takeaway, tone = "accent" }) {
   const border = tone === "red" ? T.red : tone === "blue" ? T.blue : T.accent;
   return (
@@ -96,14 +120,14 @@ function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, t
         {toeShape} toes · street size EU {streetSize}
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}>
         {Object.entries(measurements).map(([k, v]) => (
           <MetricBar key={k} ratioKey={k} value={v} />
         ))}
       </div>
 
       <div style={{ fontSize: "11px", fontWeight: 700, color: T.muted, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 6 }}>
-        Shoes this climber tested
+        Heel feedback from this climber
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 12 }}>
         {shoes.map((s, i) => (
@@ -127,7 +151,6 @@ function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, t
    INSIGHT: What Our First 200 Foot Scans Revealed About Heel Fit
    Data derived from Supabase foot_scan_fits on 2026-04-13:
    201 scans, 280 fit observations, 97 unique shoes.
-   Route live, but intentionally NOT linked from /insights hub yet.
    ═══════════════════════════════════════════════════════════════ */
 
 export default function InsightHeelFit() {
@@ -135,16 +158,17 @@ export default function InsightHeelFit() {
 
   usePageMeta(
     "What Our First 200 Foot Scans Revealed About Heel Fit — climbing-gear.com",
-    "Heel fit is one of the first things climbers check, but hard to predict from a single adjective. Our scanner measures heel width and heel depth separately, then cross-references 280 real fit reports across 97 shoes to show which dimension actually drives the mismatch for each shoe.",
+    "Heel fit is hard to predict from a single adjective. Our scanner measures heel width and heel depth separately, then cross-references 280 fit reports across 97 shoes to show which dimension drives the mismatch for each shoe.",
   );
 
   useStructuredData({
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "What Our First 200 Foot Scans Revealed About Heel Fit",
-    description: "Two measurements, one fit question, and what 280 shoe fit observations are teaching us about why climbing shoe heels don't lock in.",
+    description: "Two measurements, one fit question, and how we keep iterating heel fit.",
     image: "https://www.climbing-gear.com/images/og-default.jpg",
     datePublished: "2026-04-13",
+    dateModified: "2026-04-14",
     author: { "@type": "Organization", name: "climbing-gear.com" },
   });
 
@@ -152,37 +176,39 @@ export default function InsightHeelFit() {
     <ArticleLayout isMobile={isMobile} breadcrumb="Heel Fit">
       <ArticleHeader
         title="What Our First 200 Foot Scans Revealed About Heel Fit"
-        subtitle="Two measurements, one fit question, and what 280 shoe fit observations are teaching us."
+        subtitle="Two measurements, one fit question, and how we keep iterating heel fit."
       />
 
       <SectionHeading>Heel fit is hard to predict</SectionHeading>
       <Prose>
         <p>
-          Climbers care about heel fit — it's one of the first things people check when they try
-          on a shoe, and a loose heel is a common reason to send a pair back. The tricky part
-          isn't caring, it's predicting. Heels get described with single words like "narrow" or
-          "low-volume" on both the foot and the shoe side, and those words turn out to hide a lot.
-          Two climbers with the same "narrow heel" can get very different results in the same
-          shoe. This article is a look at why, using data from our first 200 scans.
+          Heel fit is key to climbing shoe performance, especially for hard boulders where a
+          subtle better fit and hence less slip on aggressive heel hooks makes a big difference.
+          Yet, it's incredibly hard to pick the right heel from today's available online
+          descriptions. Climbing shoes get often described with single words like "narrow" or
+          "low-volume" on both the forefoot and the heel side, and those words turn out to hide a
+          lot. Two climbers with the same "narrow heel" can get very different results in the
+          same shoe. This article is a look at why, breaking down heel width and depth using data
+          from our first 200 scans.
         </p>
       </Prose>
 
       <SectionHeading>One measurement isn't enough</SectionHeading>
       <Prose>
         <p>
-          Most sizing guides treat the heel as a single dimension: narrow, normal, or wide. That's
-          like describing a climbing hold by its colour. The scanner measures two independent
-          dimensions from your side photo.
+          Sizing guides often treat the heel as a single dimension: narrow, normal, or wide.
+          That's simply not enough. Our scanner explicitly captures two photos, sole and side, to
+          measure two completely independent dimensions.
         </p>
         <p>
           <strong>Heel width ratio</strong> captures how wide your heel is relative to your foot
-          length. Our scans range from 0.20 (very narrow) to 0.28 (wide). The average sits around 0.23.
+          length. Our scans range from 0.20 (very narrow) to 0.28 (wide). The average sits around 0.24.
         </p>
         <p>
           <strong>Heel depth ratio</strong> captures the vertical profile of your heel — essentially
           how much it projects backward from your ankle. This ranges from 0.01 to 0.12, with the
           average around 0.035. A shallow heel (under 0.03) and a deep heel (over 0.05) need
-          fundamentally different cup shapes, but most shoe brands only design for one.
+          fundamentally different cup shapes.
         </p>
         <p>
           These two numbers are surprisingly independent. You can have a narrow heel with deep
@@ -202,7 +228,7 @@ export default function InsightHeelFit() {
       <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", margin: "20px 0" }}>
         <ScanCard
           label="Scan A"
-          oneLine="Narrow heel, normal-to-deep projection"
+          oneLine="Narrow heel width with average depth"
           toeShape="Egyptian"
           streetSize={45.5}
           measurements={{
@@ -216,12 +242,12 @@ export default function InsightHeelFit() {
             { brand: "Scarpa", model: "Instinct VSR LV", size: 44, heel: "perfect" },
             { brand: "Mad Rock", model: "D2.ONE HV", size: 46, heel: "perfect" },
           ]}
-          takeaway="Heel width is well below the population average (0.216 vs 0.251). Depth is slightly above average. The three empty heels are all shoes whose cups are too wide for this climber. The low-volume Instinct VSR LV and the high-volume D2.ONE HV both grip — the standard-fit cups in the same line don't. The problem here is width, not depth."
+          takeaway="Heel width is well below the population average (climber 0.216 vs population 0.238). Depth is slightly above average. The three empty heels are all shoes whose cups are too wide for this climber. The low-volume Instinct VSR LV and the high-volume D2.ONE HV with rather narrow heel both grip, the standard-fit heels don't. The problem here is clearly width, not depth."
           tone="blue"
         />
         <ScanCard
           label="Scan B"
-          oneLine="Average heel width, shallow depth"
+          oneLine="Shallow heel depth with average width"
           toeShape="Egyptian"
           streetSize={42.5}
           measurements={{
@@ -234,27 +260,25 @@ export default function InsightHeelFit() {
             { brand: "Evolv", model: "Shaman", size: 42.5, heel: "empty" },
             { brand: "Tenaya", model: "Mastia", size: 39.5, heel: "perfect" },
           ]}
-          takeaway="Heel width sits exactly on the population average (0.251). Heel depth is clearly below average (0.024 vs 0.035). Three shoes with deep, backward-projecting cups — Skwama, TC Pro, Shaman — all report empty heels on the same foot. The Tenaya Mastia, which uses a pre-shaped thermo-molded heel cup, locks in. Going narrower on width wouldn't help any of the empty-heel shoes; this is a depth problem."
+          takeaway="Heel width is around the population average (climber 0.251 vs population 0.238), while heel depth is clearly below (0.024 vs 0.034). Three shoes report empty heels and only the Tenaya Mastia, which uses a pre-shaped and rather firm heel cup, locks in. Going narrower on width wouldn't help any of the empty-heel shoes; this is a depth problem."
           tone="red"
         />
       </div>
 
       <Prose>
         <p>
-          Same written complaint — "empty heel" — two different mechanisms. If you treated both
+          Same written complaint "empty heel" but two different mechanisms. If you treated both
           climbers as "narrow-heeled" and pointed them at low-volume lasts, you'd help Scan A and
           make Scan B worse.
         </p>
         <p>
-          There is an interesting wrinkle on the Scan B side: the one shoe that gripped was the
-          Tenaya Mastia, which uses a pre-shaped, thermo-molded heel cup rather than relying on
-          the rand to pull a flat piece of rubber into shape around the heel. The La Sportiva
-          Solution uses a similar pre-formed heel construction, and both of our other shallow-heel
-          climbers who tried the Solution (heel depth 0.021 and 0.024, both with heel widths a
-          touch below average) also report perfect heel fit. Three out of three shallow-heel
-          users in shoes with a pre-moulded heel cup land on "perfect" is a small sample, but it
-          is a consistent one. For shallow heels that are not also narrow, this construction style
-          is worth trying before concluding the foot is un-shoeable.
+          There is a wrinkle on the Scan B side. The one shoe that gripped was the Tenaya Mastia,
+          whose heel cup is pre-shaped from a firm, thermo-molded rubber shell, meaning the cup
+          holds its own form. The La Sportiva Solution uses the same idea: a firm, bulbous molded
+          cup reinforced by P3 randing. Both of our other shallow-heel scans who wear the Solution
+          (heel depth 0.021 and 0.024) also report perfect heel fit. Three out of three shallow
+          heels in firm pre-formed cups land on "perfect" is a small sample, but it is a
+          consistent one — we'll keep watching it.
         </p>
       </Prose>
 
@@ -275,40 +299,42 @@ export default function InsightHeelFit() {
       </Prose>
 
       <KeyInsight>
-        <strong>Scarpa Instinct VSR</strong> (13 reports) — 77% empty heels. Empty-heel users
+        <strong>Scarpa Instinct VSR</strong> (13 reports): 77% empty heels. Empty-heel users
         average heel width 0.231 (narrow) with normal depth (0.036). The two users reporting a
         perfect heel have slightly wider heels (0.239) <em>and</em> notably deeper projection
-        (0.053). Both dimensions matter: narrow + shallow is where this cup fails.
+        (0.053). Both dimensions seem to matter: narrow + shallow is where this cup fails.
       </KeyInsight>
 
       <KeyInsight color={T.blue}>
-        <strong>La Sportiva Skwama</strong> (10 reports) — 90% empty heels. Eight of the nine
-        empty-heel users have normal-to-wide heel width (avg 0.245) — they're not narrow-heeled
-        people. What unites them is shallow depth (avg 0.027). The Skwama's cup is designed for a
-        heel that projects further back than most climbers actually have. A pure depth story.
+        <strong>La Sportiva Skwama</strong> (10 reports): 90% empty heels. Eight of the nine
+        empty-heel users have normal-to-wide heel width (avg 0.245) — they're not narrow-heeled.
+        What unites them is shallow depth (avg 0.027). Worth noting: the Skwama also uses a 3D
+        molded heel cup, but a notably softer one than the Mastia or Solution. Its reinforcement
+        (La Sportiva's "S-Heel") is a stiffener on the sides of the cup, not a firm backwards
+        shell. So "3D molded" alone doesn't guarantee a shallow heel will grip — cup firmness
+        matters too.
       </KeyInsight>
 
       <KeyInsight color={T.yellow}>
-        <strong>Scarpa Drago</strong> (11 reports) — 55% perfect, 36% empty. Used to look like the
-        universal cup. With more data a real pattern has emerged: empty-heel users average heel
-        width 0.225, perfect-heel users 0.251. Forgiving on depth, but punishes narrow heels.
+        <strong>Scarpa Drago</strong> (11 reports): 55% perfect, 36% empty. Empty-heel users
+        average heel width 0.225, perfect-heel users 0.251 with quite mixed heel depth. Apparently
+        forgiving on depth, but not a good fit for narrow heels.
       </KeyInsight>
 
       <KeyInsight color={T.green}>
-        <strong>Evolv Shaman</strong> (10 reports) — a textbook depth split. Heel width is nearly
+        <strong>Evolv Shaman</strong> (10 reports): a textbook depth split. Heel width is nearly
         identical between perfect-fit (0.245) and empty-fit (0.246) users. Depth tells the whole
         story: perfect users average 0.072, empty users 0.031. A 2.3× difference. If your heel
         projects deeply, the Shaman's aggressive rand tension grips it. If it doesn't, you float.
       </KeyInsight>
 
-      <SectionHeading>A new shape at the other end</SectionHeading>
+      <SectionHeading>A new shape emerging?</SectionHeading>
       <Prose>
         <p>
           An interesting counterpoint is emerging in the <strong>Mad Rock D2.ONE HV</strong>
           {" "}(8 reports so far): 7 perfect heels, 1 tight, zero empty. It's marketed as a
-          high-volume shoe, and that's exactly who reports wearing it — climbers with deeper, fuller
-          heels who struggle in mainstream cups. It's the first shoe in our dataset where "empty
-          heel" essentially doesn't show up. We'll watch it closely as the sample grows past ten.
+          high-volume shoe yet has a rather narrow heel cup. The first shoe in our dataset where
+          "empty heel" essentially doesn't show up. We'll watch it closely as the sample grows.
         </p>
       </Prose>
 
@@ -316,32 +342,30 @@ export default function InsightHeelFit() {
       <Prose>
         <p>
           This is what makes heel fit hard. The same "empty heel" complaint has completely
-          different causes depending on the shoe. The Instinct VSR punishes narrow-and-shallow
-          combos. The Skwama punishes shallow heels at any width. The Drago is forgiving on depth
-          but punishes narrow width. The Shaman doesn't care about width at all, only depth. The
-          D2.ONE HV flips the problem and asks for volume most climbers don't have. Treating "heel"
-          as one variable misses the mechanism.
+          different causes depending on the shoe and foot, but standard manufacturer descriptions
+          often rely on a single generic fit aspect. Treating "heel" as one variable misses the
+          mechanism.
         </p>
         <p>
-          Our scorer uses both dimensions. When it evaluates whether a shoe's heel cup will work
-          for you, it weights heel width and heel depth separately, calibrated by what we've
-          learned from each shoe's fit pattern. A narrow-heeled climber gets steered away from the
-          Drago and Instinct VSR. A shallow-heeled climber gets warned about the Skwama and Shaman.
-          Someone with deep projection and normal width sees the Shaman bubble to the top.
+          Hence, our scorer uses two dimensions. When it evaluates whether a shoe's heel cup will
+          work for you, it weights heel width and heel depth separately, calibrated by what we've
+          learned from each shoe's fit pattern. We're also starting to tag shoes by heel-cup
+          construction — firm pre-formed cups (Solution, Mastia) versus soft/thin cups with side
+          reinforcement (Skwama) — because the same shallow-heel foot gets opposite outcomes
+          depending on which type it meets. Moving forward we also want to introduce a proper 3D
+          modelled heel to identify additional patterns and improve the quality of our
+          recommendations.
         </p>
       </Prose>
 
       <SectionHeading>Still early, getting sharper</SectionHeading>
       <Prose>
         <p>
-          We have 280 observations across 97 shoes, up from 166 and 71 a week ago. That's enough
-          to see clear patterns for the four most popular models, but for many shoes we still only
-          have 1–2 data points. Scarpa Instinct VS, La Sportiva Theory, La Sportiva Tarantula,
-          La Sportiva Solution, Scarpa Drago XT, La Sportiva Kubo, La Sportiva Ondra Comp, Scarpa
-          Drago LV, and Scarpa Instinct VSR LV are all sitting in the 6–9 report range and should
-          cross the ten-report line within the next few weeks. Every scan that includes a current
-          shoe fit adds to what we know. The model doesn't guess: it uses what it has, flags
-          uncertainty where data is thin, and gets more precise as the dataset grows.
+          We have performed 200 scans so far — enough to see first patterns for the four most
+          popular models, but for many shoes we still only have 1–2 data points. Incoming scans
+          are growing rapidly and every scan that includes a current shoe fit adds to our
+          recommendation engine. The model doesn't guess: it uses what it has, flags uncertainty
+          where data is thin, and gets more precise as the dataset grows.
         </p>
         <p>
           The goal isn't to replace trying shoes on. It's to narrow the field from 400+ shoes to
