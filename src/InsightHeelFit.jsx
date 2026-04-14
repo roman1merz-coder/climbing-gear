@@ -493,9 +493,10 @@ export default function InsightHeelFit() {
         <p>
           You can mostly rely on the manufacturer data: shoes advertised with a narrow overall
           and/or narrow heel fit should work well. If you have a wider forefoot but a rather narrow
-          heel, we'd recommend looking into the Mad Rock Drone series (HV models) and some Evolv
-          models such as the <S slug="evolv-v6">V6</S> and{" "}
-          <S slug="evolv-zenist-pro">Zenist Pro</S>.
+          heel, we'd recommend looking into the Mad Rock Drone series HV models (the{" "}
+          <S slug="mad-rock-drone-2-hv">Drone 2.0 HV</S>, Drone 2.1 HV, and{" "}
+          <S slug="mad-rock-drone-cs-hv">Drone CS HV</S>) and some Evolv models such as the{" "}
+          <S slug="evolv-v6">V6</S> and <S slug="evolv-zenist-pro">Zenist Pro</S>.
         </p>
       </Prose>
 
