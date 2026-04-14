@@ -178,7 +178,7 @@ export default function InsightShoes() {
       </Prose>
 
       <Prose>
-        Width and volume matter just as much. Most shoes have a medium heel volume, while roughly a third are narrow. If you have wide heels, only a small fraction of shoes in our database will fit comfortably - and no amount of break-in will fix a heel cup that's fundamentally too narrow. Similarly, most shoes target a standard forefoot volume, with far fewer options for low-volume or high-volume forefeet. Our Finder rewards foot shape matches, but the more important role of foot data is <em>filtering out</em> shoes that will never fit.
+        Width and volume matter just as much. Most shoes have a medium heel volume, while roughly a third are narrow. If you have wide heels, only a small fraction of shoes in our database will fit comfortably - and no amount of break-in will fix a heel cup that's fundamentally too narrow. For heel specifically, <Link to="/insights/heel-fit" style={{ color: T.accent, fontWeight: 600 }}>width and depth are two independent dimensions</Link> — we have a full write-up on which shoes fit narrow vs. shallow heels. Similarly, most shoes target a standard forefoot volume, with far fewer options for low-volume or high-volume forefeet. Our Finder rewards foot shape matches, but the more important role of foot data is <em>filtering out</em> shoes that will never fit.
       </Prose>
 
       <KeyInsight color={T.blue}>

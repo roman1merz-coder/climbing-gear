@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import usePageMeta from "./usePageMeta.js";
 import useStructuredData from "./useStructuredData.js";
@@ -133,7 +134,11 @@ function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, t
         {shoes.map((s, i) => (
           <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, fontSize: "12px" }}>
             <span style={{ color: T.text }}>
-              <span style={{ color: T.muted }}>{s.brand}</span> <strong>{s.model}</strong> <span style={{ color: T.muted, fontSize: "11px" }}>· EU {s.size}</span>
+              <span style={{ color: T.muted }}>{s.brand}</span>{" "}
+              {s.slug
+                ? <Link to={`/shoe/${s.slug}`} style={{ color: T.text, textDecoration: "none", fontWeight: 700 }}><strong>{s.model}</strong></Link>
+                : <strong>{s.model}</strong>}
+              <span style={{ color: T.muted, fontSize: "11px" }}> · EU {s.size}</span>
             </span>
             <FitPill fit={s.heel} />
           </div>
@@ -147,53 +152,213 @@ function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, t
   );
 }
 
+/* ─── Small shoe link helper ─── */
+const S = ({ slug, children }) => (
+  <Link to={`/shoe/${slug}`} style={{ color: "inherit", textDecoration: "underline", textDecorationColor: "rgba(0,0,0,0.25)", textUnderlineOffset: "2px" }}>
+    {children}
+  </Link>
+);
+
+/* ─── Comparison table ─── */
+function HeelFitTable() {
+  const rows = [
+    { slug: "scarpa-instinct-vsr-mens", shoe: "Scarpa Instinct VSR",  n: 13, pct: "23%", driver: "Narrow + shallow heels fail", fits: "Wider, deeper heels" },
+    { slug: "la-sportiva-skwama",       shoe: "La Sportiva Skwama",    n: 10, pct: "10%", driver: "Shallow depth fails (soft 3D cup)", fits: "Deeper heels, any width" },
+    { slug: "scarpa-drago",             shoe: "Scarpa Drago",          n: 11, pct: "55%", driver: "Narrow heels fail; depth-tolerant", fits: "Average-to-wide heels" },
+    { slug: "evolv-shaman",             shoe: "Evolv Shaman",          n: 10, pct: "50%", driver: "Depth is everything (2.3× split)", fits: "Deep-projecting heels" },
+    { slug: "mad-rock-d2-one-hv",       shoe: "Mad Rock D2.ONE HV",    n: 8,  pct: "88%", driver: "Narrow cup on HV shoe", fits: "Narrow heels (so far)" },
+    { slug: "tenaya-mastia",            shoe: "Tenaya Mastia",         n: 5,  pct: "≈100%*", driver: "Firm pre-shaped cup", fits: "Shallow heels" },
+    { slug: "la-sportiva-solution-mens", shoe: "La Sportiva Solution",  n: 3,  pct: "100%*", driver: "Firm P3 molded cup", fits: "Shallow heels (small sample)" },
+  ];
+  const cellStyle = { padding: "8px 10px", borderBottom: `1px solid ${T.border}`, fontSize: "12.5px", lineHeight: 1.5, verticalAlign: "top" };
+  const hcell = { ...cellStyle, fontSize: "11px", fontWeight: 800, letterSpacing: "0.5px", textTransform: "uppercase", color: T.muted, background: T.bg };
+  return (
+    <div style={{ overflowX: "auto", margin: "16px 0 8px" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", background: T.surface, border: `1px solid ${T.border}`, borderRadius: 8 }}>
+        <caption style={{ captionSide: "bottom", fontSize: "11px", color: T.muted, textAlign: "left", padding: "8px 10px 0" }}>
+          Source: climbing-gear.com foot-scan dataset, 280 fit reports as of 2026-04-13. * = small sample (≤5).
+        </caption>
+        <thead>
+          <tr>
+            <th style={hcell}>Shoe</th>
+            <th style={hcell}>Reports</th>
+            <th style={hcell}>Perfect heel</th>
+            <th style={hcell}>Dominant fit driver</th>
+            <th style={hcell}>Fits best</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.slug}>
+              <td style={cellStyle}>
+                <Link to={`/shoe/${r.slug}`} style={{ color: T.text, fontWeight: 700, textDecoration: "none" }}>{r.shoe}</Link>
+              </td>
+              <td style={cellStyle}>{r.n}</td>
+              <td style={cellStyle}>{r.pct}</td>
+              <td style={cellStyle}>{r.driver}</td>
+              <td style={cellStyle}>{r.fits}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ─── FAQ block (visible on page + matches JSON-LD) ─── */
+function FAQ() {
+  const items = [
+    {
+      q: "Why does my climbing shoe heel feel empty?",
+      a: "An empty heel almost always comes down to one of two independent mismatches between your foot and the shoe's heel cup: heel width (how wide your heel is relative to your foot length) or heel depth (how far your heel projects backward from your ankle). A single adjective like \"narrow heel\" hides which one is actually wrong. In the climbing-gear.com foot-scan dataset (April 2026), the Scarpa Instinct VSR, La Sportiva Skwama, Scarpa Drago and Evolv Shaman each fail for different reasons.",
+    },
+    {
+      q: "Which climbing shoes fit narrow heels?",
+      a: "Based on climbing-gear.com foot-scan data, the best bets for narrow heels (heel width ratio under ~0.23) are the Scarpa Instinct VSR LV and the Mad Rock D2.ONE HV. The Instinct VSR LV is specifically narrowed through the heel; the D2.ONE HV is unusual in pairing a high-volume last with a rather narrow heel cup. Standard-width cups from Scarpa Drago, Scarpa Instinct VSR, and La Sportiva Ondra Comp often leave narrow heels empty.",
+    },
+    {
+      q: "Which climbing shoes fit shallow heels?",
+      a: "Shoes with firm, pre-shaped heel cups work best for shallow heels (heel depth ratio under ~0.03). In our dataset, the Tenaya Mastia and La Sportiva Solution both lock shallow heels in because their molded rubber shells hold their own form, rather than relying on rand tension to pull flat rubber tight. Shoes that consistently fail on shallow heels include the La Sportiva Skwama (90% empty), Evolv Shaman, and La Sportiva TC Pro.",
+    },
+    {
+      q: "Does the Scarpa Instinct VSR fit narrow heels?",
+      a: "Not reliably. Across 13 reports, the Scarpa Instinct VSR produced empty heels in 77% of cases, concentrated on climbers with heel width below 0.23 and normal-to-shallow depth. The low-volume Scarpa Instinct VSR LV is a much better choice for narrow heels.",
+    },
+    {
+      q: "Does the La Sportiva Skwama fit shallow heels?",
+      a: "No. Across 10 reports, the Skwama produced empty heels in 90% of cases, and the pattern is clearly shallow depth rather than narrow width. The Skwama's \"S-Heel\" reinforcement is a side stiffener, not a firm rear shell, so a shallow heel can't generate enough rearward pressure to fill the cup.",
+    },
+    {
+      q: "What's the difference between a narrow heel and a shallow heel?",
+      a: "Heel width is how wide your heel is relative to foot length (population average ~0.24). Heel depth is how far your heel projects backward from your ankle (population average ~0.034). They're largely independent: you can have a narrow heel with deep projection, or a wide heel that's shallow. Each needs a different cup shape, which is why single-adjective descriptions like \"narrow heel\" aren't enough.",
+    },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 14, margin: "12px 0" }}>
+      {items.map((it, i) => (
+        <div key={i} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 8, padding: "14px 16px" }}>
+          <h3 style={{ fontSize: "15px", fontWeight: 800, color: T.text, margin: "0 0 8px" }}>{it.q}</h3>
+          <p style={{ fontSize: "13.5px", color: T.text, lineHeight: 1.65, margin: 0 }}>{it.a}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════
-   INSIGHT: What Our First 200 Foot Scans Revealed About Heel Fit
+   INSIGHT: Climbing Shoe Heel Fit — narrow vs. shallow heels
    Data derived from Supabase foot_scan_fits on 2026-04-13:
    201 scans, 280 fit observations, 97 unique shoes.
    ═══════════════════════════════════════════════════════════════ */
 
+const TITLE_TAG = "Climbing Shoe Heel Fit: Narrow vs. Shallow Heels (Data from 200 Scans) | climbing-gear.com";
+const H1 = "Climbing Shoe Heel Fit: Why \"Narrow Heel\" Isn't Enough";
+const SUBTITLE = "Narrow heel or shallow heel? The same \"empty heel\" complaint has two completely different causes — and different shoes fix each one.";
+const META_DESC = "Empty heel in your climbing shoe? It's usually one of two things: narrow heel width or shallow heel depth. We analysed 280 fit reports across 97 shoes to show which dimension drives the mismatch for the Skwama, Instinct VSR, Drago, Shaman, Mastia, Solution and more.";
+
+const FAQ_ITEMS_SCHEMA = [
+  ["Why does my climbing shoe heel feel empty?", "An empty heel almost always comes down to one of two independent mismatches between your foot and the shoe's heel cup: heel width (how wide your heel is relative to your foot length) or heel depth (how far your heel projects backward from your ankle). A single adjective like \"narrow heel\" hides which one is actually wrong. In the climbing-gear.com foot-scan dataset (April 2026), the Scarpa Instinct VSR, La Sportiva Skwama, Scarpa Drago and Evolv Shaman each fail for different reasons."],
+  ["Which climbing shoes fit narrow heels?", "Based on climbing-gear.com foot-scan data, the best bets for narrow heels (heel width ratio under ~0.23) are the Scarpa Instinct VSR LV and the Mad Rock D2.ONE HV. The Instinct VSR LV is specifically narrowed through the heel; the D2.ONE HV is unusual in pairing a high-volume last with a rather narrow heel cup. Standard-width cups from Scarpa Drago, Scarpa Instinct VSR, and La Sportiva Ondra Comp often leave narrow heels empty."],
+  ["Which climbing shoes fit shallow heels?", "Shoes with firm, pre-shaped heel cups work best for shallow heels (heel depth ratio under ~0.03). In our dataset, the Tenaya Mastia and La Sportiva Solution both lock shallow heels in because their molded rubber shells hold their own form, rather than relying on rand tension to pull flat rubber tight. Shoes that consistently fail on shallow heels include the La Sportiva Skwama (90% empty), Evolv Shaman, and La Sportiva TC Pro."],
+  ["Does the Scarpa Instinct VSR fit narrow heels?", "Not reliably. Across 13 reports, the Scarpa Instinct VSR produced empty heels in 77% of cases, concentrated on climbers with heel width below 0.23 and normal-to-shallow depth. The low-volume Scarpa Instinct VSR LV is a much better choice for narrow heels."],
+  ["Does the La Sportiva Skwama fit shallow heels?", "No. Across 10 reports, the Skwama produced empty heels in 90% of cases, and the pattern is clearly shallow depth rather than narrow width. The Skwama's \"S-Heel\" reinforcement is a side stiffener, not a firm rear shell, so a shallow heel can't generate enough rearward pressure to fill the cup."],
+  ["What's the difference between a narrow heel and a shallow heel?", "Heel width is how wide your heel is relative to foot length (population average ~0.24). Heel depth is how far your heel projects backward from your ankle (population average ~0.034). They're largely independent: you can have a narrow heel with deep projection, or a wide heel that's shallow. Each needs a different cup shape, which is why single-adjective descriptions like \"narrow heel\" aren't enough."],
+];
+
 export default function InsightHeelFit() {
   const isMobile = useIsMobile();
 
-  usePageMeta(
-    "What Our First 200 Foot Scans Revealed About Heel Fit | climbing-gear.com",
-    "Heel fit is hard to predict from a single adjective. Our scanner measures heel width and heel depth separately, then cross-references 280 fit reports across 97 shoes to show which dimension drives the mismatch for each shoe.",
-  );
+  usePageMeta(TITLE_TAG, META_DESC);
 
   useStructuredData({
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "What Our First 200 Foot Scans Revealed About Heel Fit",
-    description: "Two measurements, one fit question, and how we keep iterating heel fit.",
-    image: "https://www.climbing-gear.com/images/og-default.jpg",
-    datePublished: "2026-04-13",
-    dateModified: "2026-04-14",
-    author: { "@type": "Organization", name: "climbing-gear.com" },
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://www.climbing-gear.com/insights/heel-fit#article",
+        headline: H1,
+        alternativeHeadline: "What 200 foot scans reveal about heel width vs. heel depth",
+        description: META_DESC,
+        image: "https://www.climbing-gear.com/og-image.png",
+        datePublished: "2026-04-13",
+        dateModified: "2026-04-14",
+        inLanguage: "en",
+        wordCount: 1400,
+        about: [
+          { "@type": "Thing", name: "Climbing shoe heel fit" },
+          { "@type": "Thing", name: "Climbing shoes" },
+          { "@type": "Thing", name: "Foot scanning" },
+        ],
+        keywords: "climbing shoe heel fit, narrow heel climbing shoes, shallow heel climbing shoes, empty heel climbing shoe, heel width, heel depth, Scarpa Instinct VSR, La Sportiva Skwama, Tenaya Mastia, La Sportiva Solution, Evolv Shaman",
+        mentions: [
+          { "@type": "Product", name: "Scarpa Instinct VSR", url: "https://www.climbing-gear.com/shoe/scarpa-instinct-vsr-mens" },
+          { "@type": "Product", name: "Scarpa Instinct VSR LV", url: "https://www.climbing-gear.com/shoe/scarpa-instinct-vsr-lv" },
+          { "@type": "Product", name: "Scarpa Drago", url: "https://www.climbing-gear.com/shoe/scarpa-drago" },
+          { "@type": "Product", name: "La Sportiva Skwama", url: "https://www.climbing-gear.com/shoe/la-sportiva-skwama" },
+          { "@type": "Product", name: "La Sportiva Solution", url: "https://www.climbing-gear.com/shoe/la-sportiva-solution-mens" },
+          { "@type": "Product", name: "La Sportiva TC Pro", url: "https://www.climbing-gear.com/shoe/la-sportiva-tc-pro" },
+          { "@type": "Product", name: "La Sportiva Ondra Comp", url: "https://www.climbing-gear.com/shoe/la-sportiva-ondra-comp" },
+          { "@type": "Product", name: "Tenaya Mastia", url: "https://www.climbing-gear.com/shoe/tenaya-mastia" },
+          { "@type": "Product", name: "Evolv Shaman", url: "https://www.climbing-gear.com/shoe/evolv-shaman" },
+          { "@type": "Product", name: "Mad Rock D2.ONE HV", url: "https://www.climbing-gear.com/shoe/mad-rock-d2-one-hv" },
+        ],
+        author: { "@type": "Organization", name: "climbing-gear.com", url: "https://www.climbing-gear.com" },
+        publisher: {
+          "@type": "Organization",
+          name: "climbing-gear.com",
+          url: "https://www.climbing-gear.com",
+          logo: { "@type": "ImageObject", url: "https://www.climbing-gear.com/og-image.png" },
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://www.climbing-gear.com/insights/heel-fit" },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.climbing-gear.com/insights/heel-fit#faq",
+        mainEntity: FAQ_ITEMS_SCHEMA.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+    ],
   });
 
   return (
     <ArticleLayout isMobile={isMobile} breadcrumb="Heel Fit">
-      <ArticleHeader
-        title="What Our First 200 Foot Scans Revealed About Heel Fit"
-        subtitle="Two measurements, one fit question, and how we keep iterating heel fit."
-      />
+      <ArticleHeader title={H1} subtitle={SUBTITLE} />
 
-      <SectionHeading>Heel fit is hard to predict</SectionHeading>
+      {/* TL;DR for humans + GEO extractability */}
+      <div style={{
+        background: T.accentSoft, border: `1px solid ${T.accent}`, borderRadius: 10,
+        padding: "14px 18px", margin: "8px 0 20px",
+      }}>
+        <div style={{ fontSize: "11px", fontWeight: 800, letterSpacing: "1px", color: T.accent, textTransform: "uppercase", marginBottom: 8 }}>
+          TL;DR
+        </div>
+        <ul style={{ margin: 0, paddingLeft: 18, fontSize: "13.5px", lineHeight: 1.7, color: T.text }}>
+          <li>Heel fit is two dimensions, not one: <strong>heel width</strong> (avg 0.24) and <strong>heel depth</strong> (avg 0.034). They're largely independent.</li>
+          <li><strong>Narrow heels</strong> (&lt; ~0.23) grip in the <S slug="scarpa-instinct-vsr-lv">Scarpa Instinct VSR LV</S> and <S slug="mad-rock-d2-one-hv">Mad Rock D2.ONE HV</S>; fail in the <S slug="scarpa-instinct-vsr-mens">Instinct VSR</S>, <S slug="scarpa-drago">Drago</S>, and <S slug="la-sportiva-ondra-comp">Ondra Comp</S>.</li>
+          <li><strong>Shallow heels</strong> (&lt; ~0.03) need a firm pre-shaped cup: the <S slug="tenaya-mastia">Tenaya Mastia</S> and <S slug="la-sportiva-solution-mens">La Sportiva Solution</S> work; the <S slug="la-sportiva-skwama">Skwama</S> (90% empty), <S slug="evolv-shaman">Shaman</S> and <S slug="la-sportiva-tc-pro">TC Pro</S> don't.</li>
+          <li>"3D molded" alone isn't enough: the Skwama has a molded cup too, but it's a soft side-stiffened shell rather than a firm rear shell. Cup firmness is the real differentiator.</li>
+          <li>Based on 280 heel-fit reports across 97 shoes in the climbing-gear.com foot-scan dataset (as of April 2026).</li>
+        </ul>
+      </div>
+
+      <SectionHeading>Why climbing shoe heel fit is hard to predict</SectionHeading>
       <Prose>
         <p>
           Heel fit is key to climbing shoe performance, especially for hard boulders where a
-          subtle better fit and hence less slip on aggressive heel hooks makes a big difference.
+          subtle better fit, and hence less slip on aggressive heel hooks, makes a big difference.
           Yet, it's incredibly hard to pick the right heel from today's available online
           descriptions. Climbing shoes get often described with single words like "narrow" or
           "low-volume" on both the forefoot and the heel side, and those words turn out to hide a
           lot. Two climbers with the same "narrow heel" can get very different results in the
-          same shoe. This article is a look at why, breaking down heel width and depth using data
-          from our first 200 scans.
+          same shoe. This article breaks down heel width and heel depth using data from our first
+          200 foot scans.
         </p>
       </Prose>
 
-      <SectionHeading>One measurement isn't enough</SectionHeading>
+      <SectionHeading>Heel width vs. heel depth: two independent dimensions</SectionHeading>
       <Prose>
         <p>
           Sizing guides often treat the heel as a single dimension: narrow, normal, or wide.
@@ -217,7 +382,7 @@ export default function InsightHeelFit() {
         </p>
       </Prose>
 
-      <SectionHeading>Two scans, same complaint, different cause</SectionHeading>
+      <SectionHeading>Narrow heel vs. shallow heel: two climbers, two causes</SectionHeading>
       <Prose>
         <p>
           Here are two real scans from our dataset. Both climbers reported an empty heel in at
@@ -231,18 +396,15 @@ export default function InsightHeelFit() {
           oneLine="Narrow heel width with average depth"
           toeShape="Egyptian"
           streetSize={45.5}
-          measurements={{
-            heel_width_ratio: 0.216,
-            heel_depth_ratio: 0.047,
-          }}
+          measurements={{ heel_width_ratio: 0.216, heel_depth_ratio: 0.047 }}
           shoes={[
-            { brand: "Scarpa", model: "Drago", size: 44, heel: "empty" },
-            { brand: "Scarpa", model: "Instinct VSR", size: 44, heel: "empty" },
-            { brand: "La Sportiva", model: "Ondra Comp", size: 43, heel: "empty" },
-            { brand: "Scarpa", model: "Instinct VSR LV", size: 44, heel: "perfect" },
-            { brand: "Mad Rock", model: "D2.ONE HV", size: 46, heel: "perfect" },
+            { brand: "Scarpa", model: "Drago", slug: "scarpa-drago", size: 44, heel: "empty" },
+            { brand: "Scarpa", model: "Instinct VSR", slug: "scarpa-instinct-vsr-mens", size: 44, heel: "empty" },
+            { brand: "La Sportiva", model: "Ondra Comp", slug: "la-sportiva-ondra-comp", size: 43, heel: "empty" },
+            { brand: "Scarpa", model: "Instinct VSR LV", slug: "scarpa-instinct-vsr-lv", size: 44, heel: "perfect" },
+            { brand: "Mad Rock", model: "D2.ONE HV", slug: "mad-rock-d2-one-hv", size: 46, heel: "perfect" },
           ]}
-          takeaway="Heel width is well below the population average (climber 0.216 vs population 0.238). Depth is slightly above average. The three empty heels are all shoes whose cups are too wide for this climber. The low-volume Instinct VSR LV and the high-volume D2.ONE HV with rather narrow heel both grip, the standard-fit heels don't. The problem here is clearly width, not depth."
+          takeaway="Heel width is well below the population average (climber 0.216 vs population 0.238). Depth is slightly above average. The three empty heels are all shoes whose cups are too wide for this climber. The low-volume Instinct VSR LV and the high-volume D2.ONE HV with its rather narrow heel both grip, the standard-fit heels don't. The problem here is clearly width, not depth."
           tone="blue"
         />
         <ScanCard
@@ -250,15 +412,12 @@ export default function InsightHeelFit() {
           oneLine="Shallow heel depth with average width"
           toeShape="Egyptian"
           streetSize={42.5}
-          measurements={{
-            heel_width_ratio: 0.251,
-            heel_depth_ratio: 0.024,
-          }}
+          measurements={{ heel_width_ratio: 0.251, heel_depth_ratio: 0.024 }}
           shoes={[
-            { brand: "La Sportiva", model: "Skwama", size: 39.5, heel: "empty" },
-            { brand: "La Sportiva", model: "TC Pro", size: 41, heel: "empty" },
-            { brand: "Evolv", model: "Shaman", size: 42.5, heel: "empty" },
-            { brand: "Tenaya", model: "Mastia", size: 39.5, heel: "perfect" },
+            { brand: "La Sportiva", model: "Skwama", slug: "la-sportiva-skwama", size: 39.5, heel: "empty" },
+            { brand: "La Sportiva", model: "TC Pro", slug: "la-sportiva-tc-pro", size: 41, heel: "empty" },
+            { brand: "Evolv", model: "Shaman", slug: "evolv-shaman", size: 42.5, heel: "empty" },
+            { brand: "Tenaya", model: "Mastia", slug: "tenaya-mastia", size: 39.5, heel: "perfect" },
           ]}
           takeaway="Heel width is around the population average (climber 0.251 vs population 0.238), while heel depth is clearly below (0.024 vs 0.034). Three shoes report empty heels and only the Tenaya Mastia, which uses a pre-shaped and rather firm heel cup, locks in. Going narrower on width wouldn't help any of the empty-heel shoes; this is a depth problem."
           tone="red"
@@ -267,18 +426,19 @@ export default function InsightHeelFit() {
 
       <Prose>
         <p>
-          Same written complaint "empty heel" but two different mechanisms. If you treated both
+          Same written complaint, "empty heel", but two different mechanisms. If you treated both
           climbers as "narrow-heeled" and pointed them at low-volume lasts, you'd help Scan A and
           make Scan B worse.
         </p>
         <p>
-          There is a wrinkle on the Scan B side. The one shoe that gripped was the Tenaya Mastia,
-          whose heel cup is pre-shaped from a firm, thermo-molded rubber shell, meaning the cup
-          holds its own form. The La Sportiva Solution uses the same idea: a firm, bulbous molded
-          cup reinforced by P3 randing. Both of our other shallow-heel scans who wear the Solution
-          (heel depth 0.021 and 0.024) also report perfect heel fit. Three out of three shallow
-          heels in firm pre-formed cups land on "perfect" is a small sample, but it is a
-          consistent one, we'll keep watching it.
+          There is a wrinkle on the Scan B side. The one shoe that gripped was the{" "}
+          <S slug="tenaya-mastia">Tenaya Mastia</S>, whose heel cup is pre-shaped from a firm,
+          thermo-molded rubber shell, meaning the cup holds its own form. The{" "}
+          <S slug="la-sportiva-solution-mens">La Sportiva Solution</S> uses the same idea: a firm,
+          bulbous molded cup reinforced by P3 randing. Both of our other shallow-heel scans who
+          wear the Solution (heel depth 0.021 and 0.024) also report perfect heel fit. Three out
+          of three shallow heels in firm pre-formed cups landing on "perfect" is a small sample,
+          but it is a consistent one, we'll keep watching it.
         </p>
       </Prose>
 
@@ -288,57 +448,106 @@ export default function InsightHeelFit() {
         <StatCard label="Shoes with ≥10 reports" value="4" sub="enough for clear patterns" color={T.yellow} />
       </div>
 
-      <SectionHeading>What 280 fit observations tell us</SectionHeading>
+      <SectionHeading>Which climbing shoes fit which heel shapes? (Data from 280 reports)</SectionHeading>
       <Prose>
         <p>
           When someone scans their feet, they also tell us what shoes they currently climb in and
           how those shoes fit: toes, forefoot, and heel, each rated as squeezed/tight, perfect, or
-          loose/empty. That lets us match real fit outcomes against measured foot geometry.
+          loose/empty. That lets us match real fit outcomes against measured foot geometry. The
+          table below summarises heel-fit patterns for every shoe in the dataset with enough
+          reports to say something useful.
         </p>
-        <p>Four shoes now have 10 or more reports. The patterns are striking:</p>
       </Prose>
 
-      <KeyInsight>
-        <strong>Scarpa Instinct VSR</strong> (13 reports): 77% empty heels. Empty-heel users
-        average heel width 0.231 (narrow) with normal depth (0.036). The two users reporting a
-        perfect heel have slightly wider heels (0.239) <em>and</em> notably deeper projection
-        (0.053). Both dimensions seem to matter: narrow + shallow is where this cup fails.
-      </KeyInsight>
+      <HeelFitTable />
 
-      <KeyInsight color={T.blue}>
-        <strong>La Sportiva Skwama</strong> (10 reports): 90% empty heels. Eight of the nine
-        empty-heel users have normal-to-wide heel width (avg 0.245), they're not narrow-heeled.
-        What unites them is shallow depth (avg 0.027). Worth noting: the Skwama also uses a 3D
-        molded heel cup, but a notably softer one than the Mastia or Solution. Its reinforcement
-        (La Sportiva's "S-Heel") is a stiffener on the sides of the cup, not a firm backwards
-        shell. So "3D molded" alone doesn't guarantee a shallow heel will grip, cup firmness
-        matters too.
-      </KeyInsight>
+      <Prose>
+        <p>Four shoes now have 10 or more reports. The per-shoe patterns:</p>
+      </Prose>
 
-      <KeyInsight color={T.yellow}>
-        <strong>Scarpa Drago</strong> (11 reports): 55% perfect, 36% empty. Empty-heel users
-        average heel width 0.225, perfect-heel users 0.251 with quite mixed heel depth. Apparently
-        forgiving on depth, but not a good fit for narrow heels.
-      </KeyInsight>
+      <div id="scarpa-instinct-vsr-heel-fit">
+        <KeyInsight>
+          <strong><S slug="scarpa-instinct-vsr-mens">Scarpa Instinct VSR</S></strong>{" "}
+          (13 reports): 77% empty heels. Empty-heel users average heel width 0.231 (narrow) with
+          normal depth (0.036). The two users reporting a perfect heel have slightly wider heels
+          (0.239) <em>and</em> notably deeper projection (0.053). Both dimensions seem to matter:
+          narrow + shallow is where this cup fails.
+        </KeyInsight>
+      </div>
 
-      <KeyInsight color={T.green}>
-        <strong>Evolv Shaman</strong> (10 reports): a textbook depth split. Heel width is nearly
-        identical between perfect-fit (0.245) and empty-fit (0.246) users. Depth tells the whole
-        story: perfect users average 0.072, empty users 0.031. A 2.3× difference. If your heel
-        projects deeply, the Shaman's aggressive rand tension grips it. If it doesn't, you float.
-      </KeyInsight>
+      <div id="la-sportiva-skwama-heel-fit">
+        <KeyInsight color={T.blue}>
+          <strong><S slug="la-sportiva-skwama">La Sportiva Skwama</S></strong>{" "}
+          (10 reports): 90% empty heels. Eight of the nine empty-heel users have normal-to-wide
+          heel width (avg 0.245), they're not narrow-heeled. What unites them is shallow depth
+          (avg 0.027). Worth noting: the Skwama also uses a 3D molded heel cup, but a notably
+          softer one than the Mastia or Solution. Its reinforcement (La Sportiva's "S-Heel") is a
+          stiffener on the sides of the cup, not a firm backwards shell. So "3D molded" alone
+          doesn't guarantee a shallow heel will grip, cup firmness matters too.
+        </KeyInsight>
+      </div>
 
-      <SectionHeading>A new shape emerging?</SectionHeading>
+      <div id="scarpa-drago-heel-fit">
+        <KeyInsight color={T.yellow}>
+          <strong><S slug="scarpa-drago">Scarpa Drago</S></strong>{" "}
+          (11 reports): 55% perfect, 36% empty. Empty-heel users average heel width 0.225,
+          perfect-heel users 0.251 with quite mixed heel depth. Apparently forgiving on depth, but
+          not a good fit for narrow heels.
+        </KeyInsight>
+      </div>
+
+      <div id="evolv-shaman-heel-fit">
+        <KeyInsight color={T.green}>
+          <strong><S slug="evolv-shaman">Evolv Shaman</S></strong>{" "}
+          (10 reports): a textbook depth split. Heel width is nearly identical between perfect-fit
+          (0.245) and empty-fit (0.246) users. Depth tells the whole story: perfect users average
+          0.072, empty users 0.031. A 2.3× difference. If your heel projects deeply, the Shaman's
+          aggressive rand tension grips it. If it doesn't, you float.
+        </KeyInsight>
+      </div>
+
+      <SectionHeading>Best climbing shoes for narrow heels</SectionHeading>
       <Prose>
         <p>
-          An interesting counterpoint is emerging in the <strong>Mad Rock D2.ONE HV</strong>
-          {" "}(8 reports so far): 7 perfect heels, 1 tight, zero empty. It's marketed as a
-          high-volume shoe yet has a rather narrow heel cup. The first shoe in our dataset where
-          "empty heel" essentially doesn't show up. We'll watch it closely as the sample grows.
+          If your heel width ratio is under ~0.23, standard-last cups will feel empty no matter
+          how aggressively you downsize. The two shoes that grip narrow heels most reliably in our
+          dataset are the <S slug="scarpa-instinct-vsr-lv">Scarpa Instinct VSR LV</S>, which is
+          explicitly the low-volume variant of the Instinct VSR, and the{" "}
+          <S slug="mad-rock-d2-one-hv">Mad Rock D2.ONE HV</S>, whose heel cup is unusually narrow
+          despite the shoe's high-volume forefoot. Avoid the standard Instinct VSR, Drago and
+          Ondra Comp if narrow heel fit is your priority.
         </p>
       </Prose>
 
-      <SectionHeading>Two dimensions, different shoes, different answers</SectionHeading>
+      <SectionHeading>Best climbing shoes for shallow heels</SectionHeading>
+      <Prose>
+        <p>
+          If your heel depth ratio is under ~0.03, you need a cup that holds its shape rather
+          than one that depends on rand tension wrapping flat rubber around your heel. The{" "}
+          <S slug="tenaya-mastia">Tenaya Mastia</S> (firm thermo-molded shell) and the{" "}
+          <S slug="la-sportiva-solution-mens">La Sportiva Solution</S> (firm P3 molded cup) both
+          grip shallow heels in our data. Soft 3D-molded cups with side stiffeners, like the{" "}
+          <S slug="la-sportiva-skwama">Skwama</S>, do not — they still need the foot to push
+          backward to generate grip. Also avoid the <S slug="evolv-shaman">Shaman</S> and{" "}
+          <S slug="la-sportiva-tc-pro">TC Pro</S> if your heel projects little.
+        </p>
+      </Prose>
+
+      <SectionHeading>A new shape emerging? Mad Rock D2.ONE HV</SectionHeading>
+      <Prose>
+        <p>
+          An interesting counterpoint is emerging in the{" "}
+          <S slug="mad-rock-d2-one-hv">Mad Rock D2.ONE HV</S> (8 reports so far): 7 perfect heels,
+          1 tight, zero empty. It's marketed as a high-volume shoe yet has a rather narrow heel
+          cup. The first shoe in our dataset where "empty heel" essentially doesn't show up.
+          We'll watch it closely as the sample grows.
+        </p>
+      </Prose>
+
+      <SectionHeading>Frequently asked questions about climbing shoe heel fit</SectionHeading>
+      <FAQ />
+
+      <SectionHeading>Why two-dimensional heel scoring beats single adjectives</SectionHeading>
       <Prose>
         <p>
           This is what makes heel fit hard. The same "empty heel" complaint has completely
@@ -375,7 +584,8 @@ export default function InsightHeelFit() {
       </Prose>
 
       <KeyInsight color={T.accent}>
-        <strong>Try it yourself:</strong> <a href="/scan" style={{ color: T.accent, fontWeight: 700 }}>climbing-gear.com/scan</a>.
+        <strong>Try it yourself:</strong>{" "}
+        <a href="/scan" style={{ color: T.accent, fontWeight: 700 }}>climbing-gear.com/scan</a>.
         Two photos, ten seconds, free.
       </KeyInsight>
     </ArticleLayout>

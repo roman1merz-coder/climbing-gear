@@ -47,7 +47,7 @@ function generateSitemaps() {
     coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.8'));
   }
   for (const page of [
-    '/insights', '/insights/climbing-shoe-guide',
+    '/insights', '/insights/climbing-shoe-guide', '/insights/foot-scanner', '/insights/heel-fit',
     '/insights/inflatable-crashpads', '/insights/rope-cost-vs-safety',
     '/news', '/methodology', '/about', '/impressum', '/privacy', '/terms',
   ]) {

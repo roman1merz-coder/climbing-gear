@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { T } from "./tokens.js";
 import usePageMeta from "./usePageMeta.js";
 import useStructuredData from "./useStructuredData.js";
@@ -101,6 +102,9 @@ export default function InsightScanner() {
           system what works and what doesn't in a shoe you already know. If your heel
           feels empty but the forefoot is perfect, the scanner considers this on top to the measurements to find shoes with a fitting heel
           cup but keep the forefoot geometry.
+        </p>
+      <p style={{ fontSize: "13.5px", color: "#6a6a6a", marginTop: 10 }}>
+          Related reading: <Link to="/insights/heel-fit" style={{ color: T.accent, fontWeight: 600 }}>Climbing shoe heel fit: narrow vs. shallow heels</Link> — why the same "empty heel" complaint has two completely different causes.
         </p>
       </Prose>
 

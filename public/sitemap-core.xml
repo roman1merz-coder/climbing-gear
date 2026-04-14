@@ -61,6 +61,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.climbing-gear.com/insights/foot-scanner</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/insights/heel-fit</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.climbing-gear.com/insights/inflatable-crashpads</loc>
     <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
