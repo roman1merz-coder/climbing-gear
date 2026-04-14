@@ -934,6 +934,7 @@ body {
     <button class="btn-secondary" id="retake-sole-review">Retake</button>
     <button class="btn-primary" id="approve-sole">Looks Good</button>
   </div>
+  <div id="save-status-sole" style="text-align:center;font-size:0.85rem;color:#3d7a52;margin-top:8px;min-height:1.2em"></div>
 </div>
 
 <!-- ── Side Instruction Screen ── -->
@@ -1196,6 +1197,24 @@ body {
 const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
 
+/* ── Retake mode ─────────────────────────────────────────────
+ * When the user lands here via /scan?retake=sole&scan_id=XXX
+ * (from the "Retake" button in ScanResult.jsx), we skip the
+ * start screen, the shoe-fit form, and the processing screen:
+ * we capture only the one requested view, upsert it into Storage
+ * under the existing scan_id, set pipeline_stage='pending' so
+ * scan_worker re-runs the full pipeline (SAM3 + measurements +
+ * scoring + interpretation), and redirect back to /scan/{scan_id}.
+ */
+const _scanUrlParams = new URLSearchParams(location.search);
+const _retakeParam   = _scanUrlParams.get('retake');
+const RETAKE_MODE    = (_retakeParam === 'sole' || _retakeParam === 'side') ? _retakeParam : null;
+const RETAKE_SCAN_ID = RETAKE_MODE ? (_scanUrlParams.get('scan_id') || null) : null;
+
+/* Hoisted up so the retake-mode init block below can seed it before
+ * the upload flow later in the file reaches its own declaration. */
+let scanId = null;
+
 /* ── Auto-capture config ── */
 const CHECK_INTERVAL = 200;
 const STILL_THRESHOLD = 0.03;
@@ -1457,10 +1476,39 @@ document.getElementById('save-btn').addEventListener('click', saveResult);
 /* New instruction + review screen listeners */
 document.getElementById('start-sole-scan').addEventListener('click', () => { initSpeech(); startScanner('sole'); });
 document.getElementById('retake-sole-review').addEventListener('click', () => showScreen('sole-instruction'));
-document.getElementById('approve-sole').addEventListener('click', () => showScreen('side-instruction'));
+document.getElementById('approve-sole').addEventListener('click', () => {
+  if (RETAKE_MODE === 'sole') { saveRetakeAndReturn('sole'); return; }
+  showScreen('side-instruction');
+});
 document.getElementById('start-side-scan').addEventListener('click', () => { initSpeech(); startScanner('side'); });
 document.getElementById('retake-side-review').addEventListener('click', () => showScreen('side-instruction'));
-document.getElementById('approve-side').addEventListener('click', uploadThenShoeFit);
+document.getElementById('approve-side').addEventListener('click', () => {
+  if (RETAKE_MODE === 'side') { saveRetakeAndReturn('side'); return; }
+  uploadThenShoeFit();
+});
+
+/* ── Retake-mode init ──
+ * When arriving at /scan?retake=sole&scan_id=XXX (or retake=side),
+ * skip the start screen entirely and go straight to the instruction
+ * screen for the requested view. The scan_id is reused so the worker
+ * re-runs the full pipeline on the same row.
+ */
+if (RETAKE_MODE && RETAKE_SCAN_ID) {
+  scanId = RETAKE_SCAN_ID;
+  const returnUrl = '/scan/' + encodeURIComponent(RETAKE_SCAN_ID);
+  /* Rewrite back buttons on the instruction screens so they return to the results page */
+  const soleBack = document.querySelector('#sole-instruction .scan-back');
+  if (soleBack) soleBack.onclick = () => { window.location.href = returnUrl; };
+  const sideBack = document.querySelector('#side-instruction .scan-back');
+  if (sideBack) sideBack.onclick = () => { window.location.href = returnUrl; };
+  /* Badge wording reflects retake, not "step 1/3" */
+  const soleBadge = document.querySelector('#sole-instruction .step-badge');
+  if (soleBadge && RETAKE_MODE === 'sole') soleBadge.textContent = 'Retake Sole Photo';
+  const sideBadge = document.querySelector('#side-instruction .step-badge');
+  if (sideBadge && RETAKE_MODE === 'side') sideBadge.textContent = 'Retake Side Photo';
+  /* Jump directly to the relevant instruction screen */
+  showScreen(RETAKE_MODE + '-instruction');
+}
 
 function startScanner(step) {
   currentStep = step;
@@ -1857,8 +1905,9 @@ async function saveFromReview() {
 }
 
 
-/* ── Scan ID (shared between upload and shoe fit save) ── */
-let scanId = null;
+/* ── Scan ID (shared between upload and shoe fit save)
+ * NOTE: declared at the top of the script alongside RETAKE_SCAN_ID so
+ * retake-mode init can seed it. Do NOT redeclare here. */
 
 /* Upload photos then proceed to shoe fit screen */
 async function uploadThenShoeFit() {
@@ -1922,6 +1971,69 @@ async function uploadThenShoeFit() {
       if (bs && bs.options.length <= 1) populateBrands(bs);
       showScreen('shoe-fit-screen');
     }, 800);
+  }
+}
+
+/* ── Retake single-view save path ──
+ * Used only in RETAKE_MODE. Uploads the newly-captured photo for the
+ * requested view (sole or side) to the SAME scan_id (upsert), then
+ * sets pipeline_stage='pending' so scan_worker re-runs the full
+ * pipeline (SAM3 + measurements + scoring + interpretation) against
+ * the updated photo. Finally, redirects back to the results page.
+ *
+ * Note: we deliberately do NOT touch the other view's photo, the
+ * shoe-fit form, or any user preferences - those are preserved.
+ */
+async function saveRetakeAndReturn(view) {
+  const dataUrl = view === 'sole' ? soleDataUrl : sideDataUrl;
+  if (!dataUrl || !RETAKE_SCAN_ID) return;
+
+  const btnId = view === 'sole' ? 'approve-sole' : 'approve-side';
+  const statusId = view === 'sole' ? 'save-status-sole' : 'save-status-side';
+  const btn = document.getElementById(btnId);
+  const status = document.getElementById(statusId);
+  if (btn) { btn.disabled = true; btn.textContent = 'Uploading...'; }
+  if (status) status.textContent = '';
+
+  try {
+    const blob = await (await fetch(dataUrl)).blob();
+    const upRes = await fetch(
+      `${SB_URL}/storage/v1/object/foot-scans/scans/${RETAKE_SCAN_ID}-${view}.jpg`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SB_KEY}`,
+          'apikey': SB_KEY,
+          'Content-Type': 'image/jpeg',
+          'x-upsert': 'true',
+        },
+        body: blob,
+      }
+    );
+    if (!upRes.ok) throw new Error('upload failed: ' + upRes.status);
+
+    /* Kick the worker: full pipeline re-run on the same scan row. */
+    const patchRes = await fetch(
+      `${SB_URL}/rest/v1/foot_scan_fits?scan_id=eq.${encodeURIComponent(RETAKE_SCAN_ID)}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${SB_KEY}`,
+          'apikey': SB_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({ pipeline_stage: 'pending', pipeline_error: null }),
+      }
+    );
+    if (!patchRes.ok) throw new Error('pipeline trigger failed: ' + patchRes.status);
+
+    if (status) status.textContent = 'Uploaded - reprocessing...';
+    window.location.href = '/scan/' + encodeURIComponent(RETAKE_SCAN_ID);
+  } catch (e) {
+    console.error('[retake] save failed', e);
+    if (status) status.textContent = 'Save failed: ' + (e && e.message || e);
+    if (btn) { btn.disabled = false; btn.textContent = 'Looks Good'; }
   }
 }
 

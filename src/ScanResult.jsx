@@ -41,6 +41,13 @@ const META = {
 // "genuinely extreme".
 const VISUAL_SIGMA = 3;
 
+// Pipeline stages during which the page should keep polling for updates.
+// Everything else (complete, error, validation_failed, waiting_preferences)
+// is terminal from the results-page perspective.
+const IN_PROGRESS_STAGES = new Set([
+  "pending", "segmenting", "finding_shoes", "rescore", "rescoring",
+]);
+
 const TOE_DESCRIPTIONS = {
   egyptian: "Big toe is the longest, toes descend in a smooth slope.",
   greek:    "Second toe is the longest, extends past the big toe.",
@@ -354,6 +361,660 @@ function SectionNav({ groups, onScrollTo }) {
 }
 
 // ══════════════════════════════════════════════════════════════
+// User Inputs Panel
+// ══════════════════════════════════════════════════════════════
+// Read-only summary of what the user submitted (shoes, fit ratings,
+// next-shoe preference, notes). Edit + Retake buttons are wired in
+// a later step - for now the panel just shows the data so users can
+// verify what the recommendations are based on.
+const PREF_LABELS = {
+  comfort:     "More comfort",
+  same:        "Same balance",
+  performance: "More performance",
+  allround:    "Not specified",
+};
+const FIT_LABELS = { tight: "Tight", perfect: "Perfect", loose: "Loose" };
+
+function FitBadge({ value }) {
+  if (!value) return null;
+  const palette = {
+    tight:   { bg: "#f3e3d8", fg: "#8a4f20" },
+    perfect: { bg: "#e3ede0", fg: "#4a6a3a" },
+    loose:   { bg: "#f3e3d8", fg: "#8a4f20" },
+  };
+  const c = palette[value] || { bg: "#ece5d4", fg: "#6a5c42" };
+  return (
+    <span style={{
+      display: "inline-block", padding: "1px 7px", borderRadius: 10,
+      background: c.bg, color: c.fg, fontSize: "0.68rem", fontWeight: 700,
+      textTransform: "uppercase", letterSpacing: 0.3,
+    }}>{FIT_LABELS[value] || value}</span>
+  );
+}
+
+function UserInputsPanel({ scan, onEdit, disabled }) {
+  if (!scan) return null;
+  const shoes = Array.isArray(scan.shoes) ? scan.shoes : [];
+  const pref = PREF_LABELS[scan.next_shoe_preference] || scan.next_shoe_preference || "Not specified";
+  const sex = scan.sex ? scan.sex.charAt(0).toUpperCase() + scan.sex.slice(1) : "Not specified";
+  const size = scan.street_size_eu != null ? `EU ${scan.street_size_eu}` : "Not specified";
+
+  const rowStyle = {
+    display: "flex", alignItems: "baseline", gap: "0.5rem",
+    padding: "0.4rem 0", borderBottom: "1px dashed #eee8dc",
+    fontSize: "0.8rem",
+  };
+  const keyStyle = {
+    flex: "0 0 120px", color: T.muted, fontWeight: 600,
+    textTransform: "uppercase", fontSize: "0.7rem", letterSpacing: 0.5,
+  };
+
+  return (
+    <div style={{
+      background: T.card, borderRadius: 12, border: `1px solid ${T.border}`,
+      padding: "0.9rem 1.1rem", marginBottom: "1.1rem",
+    }}>
+      <div style={{
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        marginBottom: "0.5rem", gap: "0.75rem",
+      }}>
+        <div style={{
+          fontSize: 10, fontWeight: 700, textTransform: "uppercase",
+          letterSpacing: 1.5, color: T.accent,
+        }}>Your inputs</div>
+        {onEdit && (
+          <button
+            type="button"
+            onClick={onEdit}
+            disabled={disabled}
+            style={{
+              fontSize: "0.72rem", fontWeight: 700,
+              padding: "0.25rem 0.7rem", borderRadius: 6,
+              border: `1px solid ${T.accent}`,
+              background: "transparent", color: T.accent,
+              cursor: disabled ? "not-allowed" : "pointer",
+              opacity: disabled ? 0.5 : 1,
+              textTransform: "uppercase", letterSpacing: 0.5,
+            }}
+          >
+            Edit
+          </button>
+        )}
+      </div>
+
+      <div style={{ ...rowStyle, paddingTop: 0 }}>
+        <span style={keyStyle}>Sex</span>
+        <span style={{ color: T.text }}>{sex}</span>
+      </div>
+      <div style={rowStyle}>
+        <span style={keyStyle}>Street size</span>
+        <span style={{ color: T.text }}>{size}</span>
+      </div>
+      <div style={rowStyle}>
+        <span style={keyStyle}>Next shoe</span>
+        <span style={{ color: T.text }}>{pref}</span>
+      </div>
+      {scan.next_shoe_notes && (
+        <div style={rowStyle}>
+          <span style={keyStyle}>Notes</span>
+          <span style={{ color: T.text, fontStyle: "italic" }}>"{scan.next_shoe_notes}"</span>
+        </div>
+      )}
+
+      <div style={{ paddingTop: "0.6rem" }}>
+        <div style={{ ...keyStyle, marginBottom: 6 }}>
+          Current shoes {shoes.length > 0 ? `(${shoes.length})` : ""}
+        </div>
+        {shoes.length === 0 ? (
+          <div style={{ fontSize: "0.78rem", color: T.muted, fontStyle: "italic" }}>
+            None submitted
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {shoes.map((sh, i) => (
+              <div key={i} style={{
+                display: "flex", alignItems: "center", gap: "0.5rem",
+                flexWrap: "wrap", padding: "0.35rem 0.6rem",
+                background: T.accentSoft || "#faf8f4",
+                borderRadius: 8, fontSize: "0.78rem",
+              }}>
+                <span style={{ fontWeight: 700, color: T.text }}>
+                  {[sh.brand, sh.model].filter(Boolean).join(" ") || "(unnamed)"}
+                </span>
+                {sh.size_eu && (
+                  <span style={{ color: T.muted }}>EU {sh.size_eu}</span>
+                )}
+                {sh.fit && (
+                  <span style={{ display: "inline-flex", gap: 4, marginLeft: "auto" }}>
+                    {sh.fit.toes     && <><span style={{ fontSize: "0.68rem", color: T.muted }}>toes</span><FitBadge value={sh.fit.toes} /></>}
+                    {sh.fit.forefoot && <><span style={{ fontSize: "0.68rem", color: T.muted }}>forefoot</span><FitBadge value={sh.fit.forefoot} /></>}
+                    {sh.fit.heel     && <><span style={{ fontSize: "0.68rem", color: T.muted }}>heel</span><FitBadge value={sh.fit.heel} /></>}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// Edit Inputs Modal
+// ══════════════════════════════════════════════════════════════
+// Unified editor for sex, street size, shoes, next-shoe preference, notes.
+// Save PATCHes foot_scan_fits with the new values and sets pipeline_stage='rescore',
+// which the scan_worker picks up within ~5s and regenerates recommendations in ~1s.
+// The parent ScanResult is polling, so the refreshed data appears automatically.
+
+const FIT_VALUES = ["tight", "perfect", "loose"];
+const PREF_VALUES = ["comfort", "same", "performance"];
+
+// Small retake trigger shown in each scan-card header.
+// Disabled while a pipeline run is in flight so we never queue two
+// concurrent uploads against the same scan row.
+function RetakeLink({ onClick, disabled }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      title={disabled ? "Wait for current processing to finish" : "Retake this photo"}
+      style={{
+        padding: "0.25rem 0.55rem",
+        fontSize: "0.7rem", fontWeight: 700,
+        background: "transparent",
+        border: `1px solid ${T.border}`, borderRadius: 6,
+        color: disabled ? T.muted : T.accent,
+        cursor: disabled ? "not-allowed" : "pointer",
+        textTransform: "uppercase", letterSpacing: 0.5,
+        opacity: disabled ? 0.55 : 1,
+      }}
+    >
+      Retake
+    </button>
+  );
+}
+
+function SegmentedToggle({ value, options, labels, onChange, disabled }) {
+  return (
+    <div style={{ display: "flex", gap: 4 }}>
+      {options.map((opt) => {
+        const active = value === opt;
+        return (
+          <button
+            key={opt}
+            type="button"
+            disabled={disabled}
+            onClick={() => onChange(active ? null : opt)}
+            style={{
+              flex: 1, padding: "0.35rem 0.5rem",
+              fontSize: "0.72rem", fontWeight: 700,
+              border: `1px solid ${active ? T.accent : T.border}`,
+              background: active ? T.accent : "#fff",
+              color: active ? "#fff" : T.text,
+              borderRadius: 6, cursor: disabled ? "not-allowed" : "pointer",
+              textTransform: "capitalize",
+            }}
+          >
+            {(labels && labels[opt]) || opt}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function EditInputsModal({ scan, scanId, onClose, onSaved }) {
+  const [sex, setSex] = useState(scan?.sex || "");
+  const [streetSize, setStreetSize] = useState(
+    scan?.street_size_eu != null ? String(scan.street_size_eu) : ""
+  );
+  const [shoes, setShoes] = useState(() => {
+    const src = Array.isArray(scan?.shoes) ? scan.shoes : [];
+    // Deep-copy so edits don't mutate the parent scan object
+    return src.map((sh) => ({
+      brand: sh.brand || "",
+      model: sh.model || "",
+      size_eu: sh.size_eu != null ? String(sh.size_eu) : "",
+      fit: {
+        toes: sh.fit?.toes || null,
+        forefoot: sh.fit?.forefoot || null,
+        heel: sh.fit?.heel || null,
+      },
+    }));
+  });
+  const [nextPref, setNextPref] = useState(scan?.next_shoe_preference || "");
+  const [notes, setNotes] = useState(scan?.next_shoe_notes || "");
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState(null);
+
+  const addShoe = () => setShoes((prev) => [
+    ...prev,
+    { brand: "", model: "", size_eu: "", fit: { toes: null, forefoot: null, heel: null } },
+  ]);
+
+  const removeShoe = (idx) => setShoes((prev) => prev.filter((_, i) => i !== idx));
+
+  const updateShoe = (idx, patch) => setShoes((prev) =>
+    prev.map((sh, i) => (i === idx ? { ...sh, ...patch } : sh))
+  );
+  const updateShoeFit = (idx, part, val) => setShoes((prev) =>
+    prev.map((sh, i) => (i === idx ? { ...sh, fit: { ...sh.fit, [part]: val } } : sh))
+  );
+
+  const validate = () => {
+    if (!sex) return "Please select a sex - the recommendation engine needs this to compute sizes.";
+    return null;
+  };
+
+  const handleSave = async () => {
+    const err = validate();
+    if (err) { setSaveError(err); return; }
+    setSaving(true);
+    setSaveError(null);
+
+    // Clean payload: drop empty shoes, convert numeric strings, null out blanks
+    const cleanedShoes = shoes
+      .filter((sh) => sh.brand.trim() || sh.model.trim())
+      .map((sh) => {
+        const out = {
+          brand: sh.brand.trim(),
+          model: sh.model.trim(),
+        };
+        if (sh.size_eu.trim()) {
+          const n = Number(sh.size_eu);
+          if (!Number.isNaN(n)) out.size_eu = n;
+        }
+        const fit = {};
+        if (sh.fit.toes) fit.toes = sh.fit.toes;
+        if (sh.fit.forefoot) fit.forefoot = sh.fit.forefoot;
+        if (sh.fit.heel) fit.heel = sh.fit.heel;
+        if (Object.keys(fit).length) out.fit = fit;
+        return out;
+      });
+
+    const body = {
+      sex,
+      shoes: cleanedShoes,
+      next_shoe_preference: nextPref || null,
+      next_shoe_notes: notes.trim() || null,
+      pipeline_stage: "rescore",
+    };
+    if (streetSize.trim()) {
+      const n = Number(streetSize);
+      if (!Number.isNaN(n)) body.street_size_eu = n;
+    }
+
+    try {
+      const resp = await fetch(
+        `${SUPABASE_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`,
+        {
+          method: "PATCH",
+          headers: {
+            apikey: SB_SERVICE_KEY,
+            Authorization: `Bearer ${SB_SERVICE_KEY}`,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      if (!resp.ok) {
+        const txt = await resp.text();
+        throw new Error(`Save failed (${resp.status}): ${txt.slice(0, 200)}`);
+      }
+      setSaving(false);
+      if (onSaved) onSaved();
+      onClose();
+    } catch (e) {
+      setSaving(false);
+      setSaveError(e.message || "Save failed");
+    }
+  };
+
+  // Close on Escape
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape" && !saving) onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose, saving]);
+
+  const labelStyle = {
+    fontSize: "0.7rem", fontWeight: 700, color: T.muted,
+    textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 4,
+  };
+  const inputStyle = {
+    width: "100%", padding: "0.4rem 0.6rem", fontSize: "0.82rem",
+    border: `1px solid ${T.border}`, borderRadius: 6,
+    background: "#fff", color: T.text, fontFamily: T.font, boxSizing: "border-box",
+  };
+
+  return (
+    <div
+      onClick={(e) => { if (e.target === e.currentTarget && !saving) onClose(); }}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000,
+        background: "rgba(26,22,15,0.55)",
+        display: "flex", alignItems: "flex-start", justifyContent: "center",
+        padding: "2rem 1rem", overflowY: "auto",
+      }}
+    >
+      <div style={{
+        background: T.card, borderRadius: 14, maxWidth: 560, width: "100%",
+        padding: "1.2rem 1.25rem", boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+        fontFamily: T.font,
+      }}>
+        <div style={{
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          marginBottom: "0.8rem",
+        }}>
+          <h3 style={{ margin: 0, fontSize: "1rem", fontWeight: 800, color: T.text }}>
+            Edit your inputs
+          </h3>
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={saving}
+            style={{
+              background: "transparent", border: "none",
+              fontSize: "1.2rem", cursor: saving ? "not-allowed" : "pointer",
+              color: T.muted, padding: 0, lineHeight: 1,
+            }}
+            aria-label="Close"
+          >x</button>
+        </div>
+
+        <p style={{
+          fontSize: "0.75rem", color: T.muted, lineHeight: 1.5,
+          margin: "0 0 1rem",
+        }}>
+          Changes here re-run the scoring engine against the same foot scan.
+          No new photos needed - this takes about 3 seconds.
+        </p>
+
+        {/* Sex */}
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>Sex *</div>
+          <SegmentedToggle
+            value={sex}
+            options={["male", "female"]}
+            onChange={(v) => setSex(v || "")}
+            disabled={saving}
+          />
+        </div>
+
+        {/* Street size */}
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>Street shoe size (EU)</div>
+          <input
+            type="number" step="0.5" inputMode="decimal"
+            value={streetSize}
+            onChange={(e) => setStreetSize(e.target.value)}
+            disabled={saving}
+            style={{ ...inputStyle, maxWidth: 120 }}
+            placeholder="e.g. 42"
+          />
+        </div>
+
+        {/* Shoes editor */}
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>Current climbing shoes</div>
+          {shoes.length === 0 && (
+            <div style={{ fontSize: "0.78rem", color: T.muted, fontStyle: "italic", marginBottom: 6 }}>
+              No shoes submitted. Add one below to get more precise recommendations.
+            </div>
+          )}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            {shoes.map((sh, idx) => (
+              <div key={idx} style={{
+                padding: "0.7rem 0.8rem", background: "#faf8f4",
+                borderRadius: 8, border: `1px solid ${T.border}`,
+              }}>
+                <div style={{ display: "flex", gap: 6, marginBottom: 6 }}>
+                  <input
+                    type="text" value={sh.brand} placeholder="Brand"
+                    onChange={(e) => updateShoe(idx, { brand: e.target.value })}
+                    disabled={saving}
+                    style={{ ...inputStyle, flex: 1 }}
+                  />
+                  <input
+                    type="text" value={sh.model} placeholder="Model"
+                    onChange={(e) => updateShoe(idx, { model: e.target.value })}
+                    disabled={saving}
+                    style={{ ...inputStyle, flex: 1 }}
+                  />
+                  <input
+                    type="number" step="0.5" inputMode="decimal"
+                    value={sh.size_eu} placeholder="EU size"
+                    onChange={(e) => updateShoe(idx, { size_eu: e.target.value })}
+                    disabled={saving}
+                    style={{ ...inputStyle, width: 90 }}
+                  />
+                </div>
+                <div style={{
+                  display: "flex", flexDirection: "column",
+                  gap: 6, marginTop: 8,
+                }}>
+                  {["toes", "forefoot", "heel"].map((part) => (
+                    <div key={part} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <div style={{
+                        flex: "0 0 72px",
+                        fontSize: "0.68rem", fontWeight: 700,
+                        color: T.muted, textTransform: "uppercase", letterSpacing: 0.5,
+                      }}>{part}</div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <SegmentedToggle
+                          value={sh.fit[part]}
+                          options={FIT_VALUES}
+                          onChange={(v) => updateShoeFit(idx, part, v)}
+                          disabled={saving}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ textAlign: "right", marginTop: 6 }}>
+                  <button
+                    type="button"
+                    onClick={() => removeShoe(idx)}
+                    disabled={saving}
+                    style={{
+                      background: "transparent", border: "none",
+                      color: T.muted, fontSize: "0.7rem",
+                      cursor: saving ? "not-allowed" : "pointer",
+                      textDecoration: "underline",
+                    }}
+                  >Remove</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={addShoe}
+            disabled={saving}
+            style={{
+              marginTop: 8, padding: "0.35rem 0.9rem",
+              background: "transparent", border: `1px dashed ${T.accent}`,
+              color: T.accent, borderRadius: 6,
+              fontSize: "0.75rem", fontWeight: 700,
+              cursor: saving ? "not-allowed" : "pointer",
+            }}
+          >+ Add shoe</button>
+        </div>
+
+        {/* Next shoe preference */}
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>What should your next shoe prioritise?</div>
+          <SegmentedToggle
+            value={nextPref}
+            options={PREF_VALUES}
+            labels={{ comfort: "More comfort", same: "Same balance", performance: "More performance" }}
+            onChange={(v) => setNextPref(v || "")}
+            disabled={saving}
+          />
+        </div>
+
+        {/* Notes */}
+        <div style={{ marginBottom: "1rem" }}>
+          <div style={labelStyle}>Additional notes (optional)</div>
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            disabled={saving}
+            rows={3}
+            style={{ ...inputStyle, resize: "vertical", minHeight: 60 }}
+            placeholder="Any other preferences?"
+          />
+        </div>
+
+        {saveError && (
+          <div style={{
+            padding: "0.5rem 0.75rem", marginBottom: "0.75rem",
+            background: "#fbebe6", color: "#8a3d1d", borderRadius: 6,
+            fontSize: "0.78rem",
+          }}>{saveError}</div>
+        )}
+
+        <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={saving}
+            style={{
+              padding: "0.5rem 1rem", background: "transparent",
+              border: `1px solid ${T.border}`, borderRadius: 6,
+              color: T.text, fontSize: "0.82rem", fontWeight: 600,
+              cursor: saving ? "not-allowed" : "pointer",
+            }}
+          >Cancel</button>
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saving}
+            style={{
+              padding: "0.5rem 1.2rem", background: T.accent,
+              border: `1px solid ${T.accent}`, borderRadius: 6,
+              color: "#fff", fontSize: "0.82rem", fontWeight: 700,
+              cursor: saving ? "not-allowed" : "pointer",
+              opacity: saving ? 0.7 : 1,
+            }}
+          >{saving ? "Saving..." : "Save & re-run"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
+// Retake Modal
+// ══════════════════════════════════════════════════════════════
+// Lets the user replace a single view (sole or side). Instead of a
+// simple file picker, we redirect the user through the REAL capture
+// flow at /scan - the same getUserMedia camera stream, voice guide,
+// brightness auto-snap, alignment overlay, and review screen as the
+// original scan. scan.html detects retake-mode via ?retake=sole|side
+// &scan_id=XXX, shows only the relevant instruction screen, skips
+// start / shoe-fit / processing screens, upserts the new JPEG into
+// scans/{scan_id}-{view}.jpg, sets pipeline_stage='pending' so
+// scan_worker re-runs the FULL pipeline (SAM3 + measurements +
+// scoring + interpretation), and redirects back here.
+//
+// This modal is therefore a simple confirmation step - no upload
+// happens here; the navigation is the action.
+
+function RetakeModal({ scanId, view, onClose }) {
+  const viewLabel = view === "sole" ? "Sole (bottom of foot)" : "Side (profile)";
+  const viewHint = view === "sole"
+    ? "Lay your phone flat on the ground, screen up, and hold your foot above the camera. Toes and heel should be the same distance from the phone."
+    : "Hold your phone horizontally on the ground, screen facing the inside of your right foot. Foot flat, leg straight, full profile in frame.";
+
+  const handleStart = () => {
+    window.location.href = `/scan?retake=${view}&scan_id=${encodeURIComponent(scanId)}`;
+  };
+
+  // Close on Escape
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      style={{
+        position: "fixed", inset: 0, zIndex: 1000,
+        background: "rgba(26,22,15,0.55)",
+        display: "flex", alignItems: "flex-start", justifyContent: "center",
+        padding: "2rem 1rem", overflowY: "auto",
+      }}
+    >
+      <div style={{
+        background: T.card, borderRadius: 14, maxWidth: 460, width: "100%",
+        padding: "1.2rem 1.25rem", boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+      }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+          <h2 style={{ fontSize: "1.05rem", fontWeight: 700, color: T.text, margin: 0 }}>
+            Retake {viewLabel} photo
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              background: "none", border: "none", fontSize: "1.3rem",
+              color: T.muted, cursor: "pointer", padding: 0, lineHeight: 1,
+            }}
+          >×</button>
+        </div>
+
+        <div style={{
+          fontSize: "0.8rem", color: T.text, lineHeight: 1.55, marginBottom: "0.9rem",
+        }}>
+          {viewHint}
+        </div>
+
+        <div style={{
+          fontSize: "0.78rem", color: T.muted, lineHeight: 1.5, marginBottom: "0.9rem",
+          padding: "0.7rem 0.85rem",
+          background: "#faf8f4", border: `1px solid ${T.border}`, borderRadius: 8,
+        }}>
+          We'll open the scanner with the camera, voice guide, and alignment overlay - exactly the same capture flow as your original scan. Your shoe-fit preferences and the other photo stay as they are.
+        </div>
+
+        <div style={{
+          display: "flex", justifyContent: "flex-end", gap: 8,
+          marginTop: "1rem", paddingTop: "0.75rem", borderTop: `1px solid ${T.border}`,
+        }}>
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              padding: "0.5rem 1rem", background: "#fff",
+              border: `1px solid ${T.border}`, borderRadius: 6,
+              color: T.text, fontSize: "0.82rem", fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >Cancel</button>
+          <button
+            type="button"
+            onClick={handleStart}
+            style={{
+              padding: "0.5rem 1.2rem", background: T.accent,
+              border: `1px solid ${T.accent}`, borderRadius: 6,
+              color: "#fff", fontSize: "0.82rem", fontWeight: 700,
+              cursor: "pointer",
+            }}
+          >Open scanner</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ══════════════════════════════════════════════════════════════
 export default function ScanResult({ shoes }) {
@@ -362,6 +1023,12 @@ export default function ScanResult({ shoes }) {
   const [scan, setScan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editOpen, setEditOpen] = useState(false);
+  // Which view the user is retaking: null | 'sole' | 'side'
+  const [retakeView, setRetakeView] = useState(null);
+  // Bumped whenever we want to (re)start polling - e.g. after the user saves
+  // edits and the backend transitions complete -> rescore -> complete.
+  const [pollEpoch, setPollEpoch] = useState(0);
   const interpretationRef = useRef(null);
   const recSectionRefs = useRef({});
 
@@ -370,19 +1037,43 @@ export default function ScanResult({ shoes }) {
     "AI-powered foot scan analysis for climbing shoe fitting"
   );
 
-  // Single source of truth: foot_scan_fits table
+  // Single source of truth: foot_scan_fits table.
+  // Poll while the pipeline is running (full scan or rescore) so the page
+  // updates in place when the user edits preferences or retakes a photo.
+  // Stops on terminal stages (complete, error, validation_failed, waiting_preferences).
   useEffect(() => {
     if (!scanId) return;
-    setLoading(true);
+    let cancelled = false;
+    let timer = null;
+
+    const tick = () => {
+      supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`)
+        .then((rows) => {
+          if (cancelled) return;
+          if (!rows.length) { setError("Scan not found"); setLoading(false); return; }
+          setScan(rows[0]);
+          setLoading(false);
+          if (IN_PROGRESS_STAGES.has(rows[0].pipeline_stage)) {
+            timer = setTimeout(tick, 2000);
+          }
+        })
+        .catch((e) => {
+          if (cancelled) return;
+          setError(e.message);
+          setLoading(false);
+        });
+    };
+
+    // Only show the full-screen loader on first mount, not on poll restarts
+    if (pollEpoch === 0) setLoading(true);
     setError(null);
-    supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`)
-      .then((rows) => {
-        if (!rows.length) { setError("Scan not found"); setLoading(false); return; }
-        setScan(rows[0]);
-        setLoading(false);
-      })
-      .catch((e) => { setError(e.message); setLoading(false); });
-  }, [scanId]);
+    tick();
+
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+    };
+  }, [scanId, pollEpoch]);
 
   // ── Build recommendations from shoe database ──────────────
   // Match shoes based on scan profile
@@ -473,6 +1164,58 @@ export default function ScanResult({ shoes }) {
       {/* ── Email capture ── */}
       <EmailCapture scanId={scanId} />
 
+      {/* ── Your inputs (read-only summary of what was submitted) ── */}
+      <UserInputsPanel
+        scan={s}
+        onEdit={() => setEditOpen(true)}
+        disabled={IN_PROGRESS_STAGES.has(s.pipeline_stage)}
+      />
+
+      {editOpen && (
+        <EditInputsModal
+          scan={s}
+          scanId={scanId}
+          onClose={() => setEditOpen(false)}
+          onSaved={() => {
+            // Optimistic: immediately reflect rescore stage so the updating
+            // banner appears without waiting for the next poll tick.
+            setScan((prev) => prev ? { ...prev, pipeline_stage: "rescore" } : prev);
+            // Restart the polling loop (it stopped when the scan was 'complete').
+            setPollEpoch((n) => n + 1);
+          }}
+        />
+      )}
+
+      {retakeView && (
+        <RetakeModal
+          scanId={scanId}
+          view={retakeView}
+          onClose={() => setRetakeView(null)}
+        />
+      )}
+
+      {/* ── Processing indicator (shown while a rescore or re-run is in flight) ── */}
+      {IN_PROGRESS_STAGES.has(s.pipeline_stage) && (
+        <div style={{
+          display: "flex", alignItems: "center", gap: "0.6rem",
+          padding: "0.6rem 1rem", marginBottom: "1.1rem",
+          background: "#fff7e8", border: `1px solid ${T.border}`, borderRadius: 10,
+          fontSize: "0.8rem", color: T.text,
+        }}>
+          <div style={{
+            width: 14, height: 14, border: `2.5px solid ${T.border}`,
+            borderTopColor: T.accent, borderRadius: "50%",
+            animation: "spin 0.8s linear infinite",
+          }} />
+          <span>
+            {s.pipeline_stage === "rescore" || s.pipeline_stage === "rescoring"
+              ? "Updating recommendations based on your new inputs..."
+              : "Processing your scan..."}
+          </span>
+          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      )}
+
       {/* ── Section navigation ── */}
       {recommendations.length > 0 && (() => {
         const CATEGORY_LABELS = {
@@ -500,7 +1243,13 @@ export default function ScanResult({ shoes }) {
 
         {/* Sole View Card */}
         <div style={cardStyle}>
-          <div style={cardHeaderStyle}><div style={labelStyle}>Sole Scan Results</div></div>
+          <div style={{ ...cardHeaderStyle, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+            <div style={labelStyle}>Sole Scan Results</div>
+            <RetakeLink
+              onClick={() => setRetakeView("sole")}
+              disabled={IN_PROGRESS_STAGES.has(s.pipeline_stage)}
+            />
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr" }}>
             <div style={{ ...imgPanelStyle, borderRight: mobile ? "none" : "1px solid #eee8dc", borderBottom: mobile ? "1px solid #eee8dc" : "none" }}>
               {soleOverlay ? (
@@ -530,7 +1279,13 @@ export default function ScanResult({ shoes }) {
 
         {/* Side View Card */}
         <div style={cardStyle}>
-          <div style={cardHeaderStyle}><div style={labelStyle}>Side Scan Results</div></div>
+          <div style={{ ...cardHeaderStyle, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+            <div style={labelStyle}>Side Scan Results</div>
+            <RetakeLink
+              onClick={() => setRetakeView("side")}
+              disabled={IN_PROGRESS_STAGES.has(s.pipeline_stage)}
+            />
+          </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ background: "#faf8f4", padding: "0.75rem 1rem", display: "flex", alignItems: "center", justifyContent: "center", borderBottom: "1px solid #eee8dc" }}>
               {sideOverlay ? (
