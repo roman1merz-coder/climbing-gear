@@ -7,6 +7,29 @@ import {
   Prose, KeyInsight, StatCard,
 } from "./InsightsShared.jsx";
 
+/* ─── Per-shoe color palette ───
+   Each linked shoe gets a unique, readable color so readers can visually
+   track the same shoe across the article. Colors grouped loosely by brand
+   family (Scarpa warm, La Sportiva blue/teal/purple, Tenaya green, Evolv
+   green/olive, Mad Rock magenta/indigo/brown) but every slug is distinct. */
+const SHOE_COLOR = {
+  "scarpa-instinct-vsr-mens":  "#B8352C", // scarpa red
+  "scarpa-instinct-vsr-lv":    "#D9567A", // rose
+  "scarpa-drago":              "#E07B00", // warm orange
+  "la-sportiva-skwama":        "#1E5FA8", // la sportiva blue
+  "la-sportiva-solution-mens": "#0B8A8F", // teal
+  "la-sportiva-tc-pro":        "#3B73C2", // steel blue
+  "la-sportiva-ondra-comp":    "#6D4BA1", // deep purple
+  "tenaya-mastia":             "#2E7D3A", // forest green
+  "evolv-shaman":              "#6A8A4F", // olive
+  "evolv-v6":                  "#0F9D58", // emerald
+  "evolv-zenist-pro":          "#7A8B18", // olive-yellow
+  "mad-rock-d2-one-hv":        "#8E2E80", // magenta
+  "mad-rock-drone-2-hv":       "#4B4BB0", // indigo
+  "mad-rock-drone-cs-hv":      "#8B5A2B", // brown
+};
+const shoeColor = (slug) => SHOE_COLOR[slug] || T.text;
+
 /* ─── Population reference (kept in sync with ScanResult.jsx POP) ───
    Tertile calibration from ~200-scan dataset. `lo`/`hi` are the
    low/mid and mid/high tertile boundaries. `mean` ± 3σ defines the
@@ -136,7 +159,7 @@ function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, t
             <span style={{ color: T.text }}>
               <span style={{ color: T.muted }}>{s.brand}</span>{" "}
               {s.slug
-                ? <Link to={`/shoe/${s.slug}`} style={{ color: T.text, textDecoration: "none", fontWeight: 700 }}><strong>{s.model}</strong></Link>
+                ? <Link to={`/shoe/${s.slug}`} style={{ color: shoeColor(s.slug), textDecoration: "none", fontWeight: 700 }}><strong>{s.model}</strong></Link>
                 : <strong>{s.model}</strong>}
               <span style={{ color: T.muted, fontSize: "11px" }}> · EU {s.size}</span>
             </span>
@@ -153,11 +176,23 @@ function ScanCard({ label, oneLine, measurements, toeShape, streetSize, shoes, t
 }
 
 /* ─── Small shoe link helper ─── */
-const S = ({ slug, children }) => (
-  <Link to={`/shoe/${slug}`} style={{ color: "inherit", textDecoration: "underline", textDecorationColor: "rgba(0,0,0,0.25)", textUnderlineOffset: "2px" }}>
-    {children}
-  </Link>
-);
+const S = ({ slug, children }) => {
+  const col = shoeColor(slug);
+  return (
+    <Link
+      to={`/shoe/${slug}`}
+      style={{
+        color: col,
+        fontWeight: 600,
+        textDecoration: "underline",
+        textDecorationColor: `${col}55`,
+        textUnderlineOffset: "2px",
+      }}
+    >
+      {children}
+    </Link>
+  );
+};
 
 /* ─── Comparison table ─── */
 function HeelFitTable() {
@@ -188,7 +223,7 @@ function HeelFitTable() {
           {rows.map((r) => (
             <tr key={r.slug}>
               <td style={cellStyle}>
-                <Link to={`/shoe/${r.slug}`} style={{ color: T.text, fontWeight: 700, textDecoration: "none" }}>{r.shoe}</Link>
+                <Link to={`/shoe/${r.slug}`} style={{ color: shoeColor(r.slug), fontWeight: 700, textDecoration: "none" }}>{r.shoe}</Link>
               </td>
               <td style={cellStyle}>{r.n}</td>
               <td style={cellStyle}>{r.pct}</td>
@@ -512,7 +547,7 @@ export default function InsightHeelFit() {
           shoe's construction and heel form: is it a rather flat back, or does it bulge
           significantly below the tensioning rand? We will update this article as soon as we have
           more data and hopefully provide clearer recommendations for shallow heels, i.e. if
-          trends that we see for example at Scarpa Drago manifest.
+          trends that we see for example at the <S slug="scarpa-drago">Scarpa Drago</S> manifest.
         </p>
       </Prose>
 
