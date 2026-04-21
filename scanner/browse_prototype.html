@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse more shoes — prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --surface: #ffffff;
+    --card: #ffffff;
+    --border: #d5cdbf;
+    --text: #2c3227;
+    --muted: #7a7462;
+    --accent: #c98a42;
+    --accent-soft: rgba(201,138,66,0.10);
+    --accent-border: rgba(201,138,66,0.25);
+    --primary: #3d7a52;
+    --primary-soft: rgba(61,122,82,0.08);
+    --green: #3d7a52;
+    --green-soft: rgba(61,122,82,0.08);
+    --green-border: rgba(61,122,82,0.2);
+    --blue: #4a7fb5;
+    --blue-soft: rgba(74,127,181,0.08);
+    --blue-border: rgba(74,127,181,0.2);
+    --purple: #7c5cbf;
+    --purple-soft: rgba(124,92,191,0.08);
+    --red: #c0392b;
+    --font: 'DM Sans', system-ui, sans-serif;
+    --display: 'Playfair Display', Georgia, serif;
+    --mono: 'JetBrains Mono', monospace;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  header { margin-bottom: 20px; }
+  h1 {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+
+  .scan-picker {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .scan-picker label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .scan-picker select {
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    background: #fff;
+    color: var(--text);
+    flex: 1;
+    min-width: 220px;
+  }
+  .scan-meta {
+    font-size: 12px;
+    color: var(--muted);
+    width: 100%;
+  }
+  .scan-meta strong { color: var(--text); font-weight: 600; }
+
+  /* Primary navigators — tier tabs */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin: 18px 0 8px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.15s;
+    font-family: var(--font);
+  }
+  .tab:hover { border-color: var(--accent); color: var(--text); }
+  .tab.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+
+  /* Secondary navigators */
+  .subnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .subnav a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 4px 0;
+    transition: color 0.15s;
+  }
+  .subnav a:hover { color: var(--accent); }
+
+  /* Shoe cards */
+  .grid {
+    display: grid;
+    gap: 10px;
+  }
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .card:hover {
+    border-color: var(--accent-border);
+    background: var(--surface);
+  }
+  .rank {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .rank.rank-1 { color: var(--accent); font-weight: 700; }
+  .rank.rank-top3 { color: var(--text); font-weight: 700; }
+  .thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .thumb .emoji { font-size: 24px; }
+  .info { flex: 1; min-width: 0; }
+  .brand {
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .model {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 2px 0 0;
+    letter-spacing: -0.2px;
+    color: var(--text);
+  }
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-shrink: 0;
+    gap: 6px;
+    min-width: 150px;
+  }
+  .callout {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: var(--radius-xs);
+    white-space: nowrap;
+    font-family: var(--font);
+  }
+  .callout .lbl {
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-size: 9px;
+  }
+  .callout .val {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .callout-size {
+    background: var(--primary-soft);
+    border: 1px solid rgba(61,122,82,0.2);
+  }
+  .callout-size .val { color: var(--primary); }
+  .callout-price {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+  }
+  .callout-price .val { color: var(--accent); }
+  .callout-oos {
+    background: transparent;
+    border: 1px dashed var(--border);
+  }
+  .callout-oos .val { color: var(--muted); font-size: 11px; font-style: italic; font-family: var(--font); font-weight: 500; }
+  .chevron {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px 7px 14px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .chevron .arr {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: -2px;
+  }
+  .card:hover .chevron {
+    background: var(--accent);
+    color: #fff;
+    transform: translateX(2px);
+  }
+
+  .empty, .loading, .error {
+    padding: 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+  }
+  .error { color: var(--red); border-color: var(--red); background: rgba(192,57,43,0.06); }
+  .loading .spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 560px) {
+    body { padding: 16px; }
+    .card { padding: 12px 14px; gap: 10px; flex-wrap: wrap; }
+    .thumb { width: 44px; height: 44px; }
+    .right-col { min-width: 130px; }
+    .chevron { padding: 6px 10px; font-size: 11px; }
+    .chevron .arr { font-size: 14px; }
+    .model { font-size: 14px; }
+  }
+
+  footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Browse more shoes</h1>
+  <p class="subtitle">Top 30 picks per tier, ranked by scanner score.</p>
+  <div class="scan-picker" id="scan-picker">
+    <label for="scan-select">Scan:</label>
+    <select id="scan-select">
+      <option value="">Loading scans...</option>
+    </select>
+    <div class="scan-meta" id="scan-meta"></div>
+  </div>
+</header>
+
+<div id="status-area"></div>
+
+<div id="content" style="display:none;">
+  <div class="tabs" id="tabs"></div>
+  <nav class="subnav">
+    <a id="back-scan-result" href="#">← Back to scan results</a>
+    <a id="browse-all" href="https://climbing-gear.com/shoes">Browse all shoes →</a>
+  </nav>
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer>
+  <div id="footer-left">Ranked by matrix_scorer. Sizes are per-brand recommendations.</div>
+  <div id="footer-right"></div>
+</footer>
+
+<script>
+// ---------- Supabase config ----------
+const SB_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co";
+const SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI";
+
+async function sb(path) {
+  const r = await fetch(`${SB_URL}/rest/v1/${path}`, {
+    headers: { apikey: SB_ANON, Authorization: `Bearer ${SB_ANON}` }
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+  return await r.json();
+}
+
+const TIERS = ["baseline", "softer", "stiffer", "budget"];
+const TIER_LABEL = { baseline: "Baseline", softer: "Softer", stiffer: "Stiffer", budget: "Budget" };
+
+let state = {
+  scans: [],
+  scan: null,
+  browse: null,
+  tier: "baseline",
+  shoeMeta: {},   // slug -> {image_url, weight_g, rubber_type}
+  offers: {}      // slug -> [{price, sizes:Set}]
+};
+
+const $ = (id) => document.getElementById(id);
+
+function scanIdFromUrl() {
+  // Supports:
+  //   /scan/{scanId}/browse
+  //   /scan-browse/{scanId}
+  //   ?scan={scanId} query param
+  const q = new URLSearchParams(window.location.search).get("scan");
+  if (q) return q;
+  const path = window.location.pathname;
+  let m = path.match(/\/scan\/([^/]+)\/browse\/?$/);
+  if (m) return decodeURIComponent(m[1]);
+  m = path.match(/\/scan-browse\/([^/]+)\/?$/);
+  if (m) return decodeURIComponent(m[1]);
+  return null;
+}
+
+async function boot() {
+  try {
+    const pinnedScanId = scanIdFromUrl();
+
+    // Load shoes metadata always (for image_url, weight_g, rubber_type)
+    setStatus("<div class='loading'><span class='spinner'></span>Loading data from Supabase...</div>");
+    const shoesReq = sb("shoes?select=slug,image_url,weight_g,rubber_type");
+
+    if (pinnedScanId) {
+      // Pinned-scan mode: hide the dropdown, load only this scan
+      $("scan-picker").style.display = "none";
+      const shoes = await shoesReq;
+      shoes.forEach(sh => {
+        state.shoeMeta[sh.slug] = { image_url: sh.image_url, weight_g: sh.weight_g, rubber_type: sh.rubber_type };
+      });
+      setStatus("");
+      await loadScan(pinnedScanId);
+      return;
+    }
+
+    // Prototype mode: dropdown picker
+    const [scans, shoes] = await Promise.all([
+      sb("foot_scan_fits?select=scan_id,created_at,sex,street_size_eu,toe_shape,browse_extended&order=created_at.desc&limit=50"),
+      shoesReq
+    ]);
+    state.scans = scans.filter(s => s.browse_extended != null);
+    shoes.forEach(sh => {
+      state.shoeMeta[sh.slug] = { image_url: sh.image_url, weight_g: sh.weight_g, rubber_type: sh.rubber_type };
+    });
+
+    if (state.scans.length === 0) {
+      setStatus("<div class='error'>No scans with browse_extended data found. Run backfill_browse_extended.py first.</div>");
+      return;
+    }
+
+    const sel = $("scan-select");
+    sel.innerHTML = "";
+    state.scans.forEach((s) => {
+      const dt = new Date(s.created_at);
+      const dateStr = dt.toISOString().slice(0, 16).replace("T", " ");
+      const label = `${dateStr} · EU ${s.street_size_eu ?? "?"} · ${s.toe_shape || "?"}`;
+      const opt = document.createElement("option");
+      opt.value = s.scan_id;
+      opt.textContent = label;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", () => loadScan(sel.value));
+
+    setStatus("");
+    await loadScan(state.scans[0].scan_id);
+  } catch (e) {
+    setStatus(`<div class='error'>Failed to load scans: ${e.message}</div>`);
+    console.error(e);
+  }
+}
+
+function setStatus(html) {
+  $("status-area").innerHTML = html;
+  $("content").style.display = html ? "none" : "";
+}
+
+async function loadScan(scanId) {
+  try {
+    setStatus("<div class='loading'><span class='spinner'></span>Loading scan data...</div>");
+    const rows = await sb(`foot_scan_fits?select=*&scan_id=eq.${encodeURIComponent(scanId)}`);
+    if (rows.length === 0) throw new Error("Scan not found");
+    const scan = rows[0];
+    if (!scan.browse_extended) throw new Error("No browse_extended data on this scan");
+
+    state.scan = scan;
+    state.browse = normalizeBrowse(scan.browse_extended);
+    state.tier = "baseline";
+    renderScanMeta();
+    $("back-scan-result").href = `https://climbing-gear.com/scan/${encodeURIComponent(scanId)}`;
+    await loadOffers();
+    render();
+    setStatus("");
+  } catch (e) {
+    setStatus(`<div class='error'>Failed to load scan: ${e.message}</div>`);
+    console.error(e);
+  }
+}
+
+async function loadOffers() {
+  // Collect unique slugs across all 4 tiers
+  const slugs = new Set();
+  for (const t of TIERS) {
+    (state.browse?.tiers?.[t] || []).forEach(p => slugs.add(p.slug));
+  }
+  if (slugs.size === 0) return;
+
+  const list = Array.from(slugs).map(s => `"${s}"`).join(",");
+  const rows = await sb(
+    `shoe_prices?select=product_slug,price_eur,sizes_available&in_stock=eq.true&price_eur=not.is.null&product_slug=in.(${list})&limit=2000`
+  );
+  state.offers = {};
+  rows.forEach(r => {
+    let sizes = r.sizes_available;
+    if (typeof sizes === "string") {
+      try { sizes = JSON.parse(sizes); } catch { sizes = []; }
+    }
+    if (!Array.isArray(sizes)) sizes = [];
+    const sizeSet = new Set(sizes.map(s => Number(s)).filter(n => !isNaN(n)));
+    const slug = r.product_slug;
+    if (!state.offers[slug]) state.offers[slug] = [];
+    state.offers[slug].push({ price: Number(r.price_eur), sizes: sizeSet });
+  });
+}
+
+function bestPriceAtSize(slug, size) {
+  const offers = state.offers[slug] || [];
+  if (size == null) return null;
+  const target = Number(size);
+  let best = null;
+  for (const o of offers) {
+    if (o.sizes.has(target)) {
+      if (best == null || o.price < best) best = o.price;
+    }
+  }
+  return best;
+}
+
+function normalizeBrowse(be) {
+  const flat = (v) => Array.isArray(v) ? v.join("/") : v;
+  for (const tier of TIERS) {
+    const list = be.tiers?.[tier] || [];
+    list.forEach(p => {
+      p.toe_form = flat(p.toe_form);
+      p.feel = flat(p.feel);
+    });
+  }
+  return be;
+}
+
+function renderScanMeta() {
+  const s = state.scan;
+  const shoes = (s.shoes || []).length;
+  $("scan-meta").innerHTML = `
+    <strong>${s.toe_shape || "?"}</strong> toes · EU <strong>${s.street_size_eu ?? "?"}</strong> ·
+    ${shoes} current shoe${shoes === 1 ? "" : "s"} on file
+  `;
+}
+
+function render() {
+  renderTabs();
+  renderGrid();
+  renderFooter();
+}
+
+function renderTabs() {
+  const tabs = $("tabs");
+  tabs.innerHTML = "";
+  TIERS.forEach(tier => {
+    const btn = document.createElement("button");
+    btn.className = "tab" + (tier === state.tier ? " active" : "");
+    btn.textContent = TIER_LABEL[tier];
+    btn.onclick = () => { state.tier = tier; render(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderGrid() {
+  const picks = state.browse?.tiers?.[state.tier] || [];
+  const grid = $("grid");
+
+  if (picks.length === 0) {
+    grid.innerHTML = `<div class="empty">No shoes in this tier.</div>`;
+    return;
+  }
+
+  grid.innerHTML = picks.map((p, idx) => cardHtml(p, idx + 1)).join("");
+}
+
+function cardHtml(p, rank) {
+  const meta = state.shoeMeta[p.slug] || {};
+  const imgUrl = meta.image_url
+    ? (meta.image_url.startsWith("http") ? meta.image_url : `https://climbing-gear.com${meta.image_url}`)
+    : null;
+  const img = imgUrl
+    ? `<img src="${imgUrl}" alt="${escapeAttr(p.brand + ' ' + p.model)}" loading="lazy">`
+    : `<span class="emoji">🧗</span>`;
+
+  const rankCls = rank === 1 ? "rank rank-1" : rank <= 3 ? "rank rank-top3" : "rank";
+  const sz = p.recommended_size_eu;
+
+  const sizeCallout = sz != null
+    ? `<div class="callout callout-size"><span class="lbl">Recommended size</span><span class="val">EU ${sz}</span></div>`
+    : `<div class="callout callout-oos"><span class="lbl">Recommended size</span><span class="val">—</span></div>`;
+
+  const priceAtSize = bestPriceAtSize(p.slug, sz);
+  let priceCallout = "";
+  if (sz == null) {
+    priceCallout = "";
+  } else if (priceAtSize != null) {
+    priceCallout = `<div class="callout callout-price"><span class="lbl">Best price</span><span class="val">€${priceAtSize.toFixed(2).replace(/\.00$/, "")}</span></div>`;
+  } else {
+    priceCallout = `<div class="callout callout-oos"><span class="lbl">Best price</span><span class="val">out of stock</span></div>`;
+  }
+
+  return `
+    <a class="card-link" href="https://climbing-gear.com/shoe/${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">
+      <div class="card">
+        <div class="${rankCls}">${rank}</div>
+        <div class="thumb">${img}</div>
+        <div class="info">
+          <div class="brand">${escapeHtml(p.brand)}</div>
+          <div class="model">${escapeHtml(p.model)}</div>
+        </div>
+        <div class="right-col">
+          ${sizeCallout}
+          ${priceCallout}
+        </div>
+        <div class="chevron"><span>Check details</span><span class="arr">›</span></div>
+      </div>
+    </a>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+function renderFooter() {
+  const s = state.scan;
+  const dt = new Date(s.created_at).toISOString().slice(0, 16).replace("T", " ");
+  $("footer-right").textContent = `Scan ${s.scan_id} · captured ${dt}`;
+}
+
+boot();
+</script>
+</body>
+</html>
