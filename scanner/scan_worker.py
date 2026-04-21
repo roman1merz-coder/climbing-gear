@@ -39,6 +39,10 @@ RESULTS_DIR = "/Users/rolfes/foot-scanner/results"
 SB_URL = scan_recommender.SB_URL
 SB_KEY = scan_recommender.SB_KEY
 
+# /scan/:scanId/browse page fetches foot_scan_fits.browse_extended and renders
+# top_n shoes per tier. Must match scripts/backfill_browse_extended.py.
+_BROWSE_TOP_N = 30
+
 
 def log(msg):
     """Print with timestamp."""
@@ -139,6 +143,28 @@ def fetch_waiting_scans():
         params={
             "pipeline_stage": "eq.waiting_preferences",
             "sex": "not.is.null",
+            "select": "scan_id,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes",
+            "order": "created_at.asc",
+            "limit": "10",
+        },
+    )
+    if resp.status_code != 200:
+        return []
+    return resp.json()
+
+
+def fetch_rescore_scans():
+    """Find scans in 'rescore' stage - triggered when user changes
+    preferences on the results page. Skip SAM3, regenerate recs only.
+    """
+    resp = requests.get(
+        f"{SB_URL}/rest/v1/foot_scan_fits",
+        headers={
+            "apikey": SB_KEY,
+            "Authorization": f"Bearer {SB_KEY}",
+        },
+        params={
+            "pipeline_stage": "eq.rescore",
             "select": "scan_id,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes",
             "order": "created_at.asc",
             "limit": "10",
@@ -398,6 +424,241 @@ def _enrich_user_shoes(user_shoes, shoes_db):
     return enriched
 
 
+def _build_browse_extended(tier_result, profile, shoes_db, brand_sizing,
+                           best_prices, shoe_by_slug):
+    """Build the browse_extended JSONB payload for /scan/:id/browse.
+
+    Produces the same shape as scripts/backfill_browse_extended.py:
+    top-30 picks per tier (baseline/softer/stiffer/budget) with full DB
+    metadata, plus filters, top_picks (the 3 production picks per tier),
+    and brand_sizing. Any failure here is caught at the call site and
+    logged -- it must never block the recommendations write.
+
+    Reuses the 'scored' list that run_case_full already computed, so
+    this costs no extra scoring work.
+    """
+    from benchmark.matrix_scorer import (
+        _tier_stiffness_filter, _has_hard_violation, _model_key,
+        calc_recommended_size,
+    )
+
+    scored = tier_result.get("scored") or []
+    baseline_3 = tier_result.get("baseline") or []
+    softer_3 = tier_result.get("softer") or []
+    stiffer_3 = tier_result.get("stiffer") or []
+    budget_3 = tier_result.get("budget") or []
+
+    softer_band = _tier_stiffness_filter("softer", baseline_3)
+    stiffer_band = _tier_stiffness_filter("stiffer", baseline_3)
+
+    # Budget ceiling matches select_budget's rule: 80% of baseline median price.
+    baseline_prices = [best_prices.get(p["slug"]) for p in baseline_3
+                       if best_prices.get(p["slug"]) is not None]
+    if baseline_prices:
+        sorted_bp = sorted(baseline_prices)
+        mid = len(sorted_bp) // 2
+        if len(sorted_bp) % 2:
+            baseline_median = sorted_bp[mid]
+        else:
+            baseline_median = (sorted_bp[mid - 1] + sorted_bp[mid]) / 2
+        budget_ceiling = baseline_median * 0.80
+    else:
+        budget_ceiling = None
+
+    def _top_n_baseline(n):
+        seen_models = set()
+        out = []
+        for s in scored:
+            if _has_hard_violation(s):
+                continue
+            mk = _model_key(s)
+            if mk in seen_models:
+                continue
+            seen_models.add(mk)
+            out.append(s)
+            if len(out) >= n:
+                break
+        return out
+
+    def _top_n_band(n, band):
+        if not band:
+            return []
+        lo, hi = band
+        seen_models = set()
+        out = []
+        for s in scored:
+            if _has_hard_violation(s):
+                continue
+            st = s.get("stiffness") or 0.5
+            if st < lo or st >= hi:
+                continue
+            mk = _model_key(s)
+            if mk in seen_models:
+                continue
+            seen_models.add(mk)
+            out.append(s)
+            if len(out) >= n:
+                break
+        return out
+
+    def _top_n_budget(n, ceiling):
+        def _price_bonus(price):
+            if price is None:
+                return -999
+            if price < 60:
+                return 25
+            if price < 80:
+                return 20
+            if price < 100:
+                return 15
+            if price < 120:
+                return 10
+            if price < 140:
+                return 5
+            return 0
+
+        def _model_root(model):
+            m = (model or "").strip().lower()
+            return m.split()[0] if m else ""
+
+        user_shoe_families = set()
+        for us in profile.get("shoes") or []:
+            b = (us.get("brand") or "").strip().lower()
+            r = _model_root(us.get("model") or "")
+            if b and r:
+                user_shoe_families.add((b, r))
+
+        scored_budget = []
+        for s in scored:
+            if _has_hard_violation(s):
+                continue
+            price = best_prices.get(s["slug"])
+            if price is None:
+                continue
+            if ceiling is not None and price > ceiling:
+                continue
+            cand_brand = (s.get("brand") or "").strip().lower()
+            cand_root = _model_root(s.get("model") or "")
+            if (cand_brand and cand_root
+                    and (cand_brand, cand_root) in user_shoe_families):
+                continue
+            bonus = _price_bonus(price)
+            scored_budget.append({
+                **s,
+                "budget_score": s["score"] + bonus,
+                "best_price": price,
+            })
+        scored_budget.sort(key=lambda x: -x["budget_score"])
+
+        seen_models = set()
+        out = []
+        for s in scored_budget:
+            mk = _model_key(s)
+            if mk in seen_models:
+                continue
+            seen_models.add(mk)
+            out.append(s)
+            if len(out) >= n:
+                break
+        return out
+
+    baseline_topn = _top_n_baseline(_BROWSE_TOP_N)
+    softer_topn = _top_n_band(_BROWSE_TOP_N, softer_band)
+    stiffer_topn = _top_n_band(_BROWSE_TOP_N, stiffer_band)
+    budget_topn = _top_n_budget(_BROWSE_TOP_N, budget_ceiling)
+
+    # Prepend the 3 production picks so they are guaranteed to lead each
+    # list, even if run_case_full's diversity / brand-cap swaps moved them
+    # outside the nominal stiffness band.
+    scored_by_slug = {s["slug"]: s for s in scored}
+
+    def _prepend_stored(top_n_list, stored_picks):
+        seen = set()
+        out = []
+        for pick in stored_picks:
+            slug = pick.get("slug")
+            if slug and slug in scored_by_slug and slug not in seen:
+                out.append(scored_by_slug[slug])
+                seen.add(slug)
+        for p in top_n_list:
+            if p["slug"] not in seen:
+                out.append(p)
+                seen.add(p["slug"])
+            if len(out) >= _BROWSE_TOP_N:
+                break
+        return out[:_BROWSE_TOP_N]
+
+    baseline_topn = _prepend_stored(baseline_topn, baseline_3)
+    softer_topn = _prepend_stored(softer_topn, softer_3)
+    stiffer_topn = _prepend_stored(stiffer_topn, stiffer_3)
+    budget_topn = _prepend_stored(budget_topn, budget_3)
+
+    # Anchor for brand-by-brand recommended-size calc
+    user_shoes = profile.get("shoes") or []
+    anchor = user_shoes[0] if user_shoes else {}
+    anchor_size = anchor.get("size_eu")
+    anchor_brand = anchor.get("brand")
+    street_size = profile.get("street_size_eu")
+
+    def _enrich(pick):
+        db = shoe_by_slug.get(pick["slug"], {})
+        rec_size = None
+        if anchor_size and anchor_brand:
+            rec_size = calc_recommended_size(
+                anchor_size, anchor_brand, pick["brand"], brand_sizing,
+                street_size=street_size,
+            )
+        if rec_size is not None:
+            rec_size = round(rec_size * 2) / 2
+        return {
+            "slug": pick["slug"],
+            "brand": pick["brand"],
+            "model": pick["model"],
+            "score": round(pick.get("score", 0), 1),
+            "recommended_size_eu": rec_size,
+            "price_eur": best_prices.get(pick["slug"]),
+            "width": db.get("width") or pick.get("width"),
+            "heel_volume": db.get("heel_volume") or pick.get("heel_volume"),
+            "toe_form": db.get("toe_form") or pick.get("toe_form"),
+            "forefoot_volume": db.get("forefoot_volume"),
+            "closure": db.get("closure") or pick.get("closure"),
+            "downturn": db.get("downturn") or pick.get("downturn"),
+            "asymmetry": db.get("asymmetry") or pick.get("asymmetry"),
+            "feel": db.get("feel") or pick.get("feel"),
+            "stiffness": pick.get("stiffness"),
+            "no_edge": pick.get("no_edge"),
+            "rubber_thickness_mm": db.get("rubber_thickness_mm"),
+            "midsole": db.get("midsole"),
+            "upper_material": db.get("upper_material"),
+            "gender": db.get("gender"),
+            "description": db.get("description"),
+        }
+
+    def _en(picks):
+        return [_enrich(p) for p in picks]
+
+    return {
+        "filters": {
+            "softer_stiffness_band": list(softer_band) if softer_band else None,
+            "stiffer_stiffness_band": list(stiffer_band) if stiffer_band else None,
+            "budget_ceiling_eur": round(budget_ceiling, 2) if budget_ceiling else None,
+        },
+        "tiers": {
+            "baseline": _en(baseline_topn),
+            "softer": _en(softer_topn),
+            "stiffer": _en(stiffer_topn),
+            "budget": _en(budget_topn),
+        },
+        "top_picks": {
+            "baseline": [p["slug"] for p in baseline_3],
+            "softer": [p["slug"] for p in softer_3],
+            "stiffer": [p["slug"] for p in stiffer_3],
+            "budget": [p["slug"] for p in budget_3],
+        },
+        "brand_sizing": brand_sizing,
+    }
+
+
 def generate_recommendations(scan_id, profile):
     """Score shoes deterministically, generate interpretation, write to DB.
 
@@ -528,6 +789,23 @@ def generate_recommendations(scan_id, profile):
     if recommendations:
         result_data["recommendations"] = recommendations
 
+    # Build browse_extended (powers /scan/:id/browse).
+    # NON-FATAL: any failure here is logged but must not block the
+    # recommendations write -- the browse page is a nice-to-have.
+    try:
+        browse_extended = _build_browse_extended(
+            tier_result, merged, shoes_db, brand_sizing,
+            best_prices, shoe_by_slug,
+        )
+        if browse_extended:
+            result_data["browse_extended"] = browse_extended
+            tiers_counts = {t: len(browse_extended["tiers"].get(t, []))
+                            for t in ("baseline", "softer", "stiffer", "budget")}
+            log(f"  Built browse_extended: {tiers_counts}")
+    except Exception as e:
+        log(f"  WARNING: browse_extended generation failed (non-fatal): {e}")
+        traceback.print_exc()
+
     scan_recommender.update_scan(scan_id, result_data)
     return len(recommendations)
 
@@ -593,49 +871,65 @@ def process_pending_scan(scan):
             pass
 
 
+def _regenerate_from_stored(scan_id, log_prefix):
+    """Run rec generation using stored measurements (no SAM3).
+
+    Shared by check_waiting_scans (preferences just filled) and
+    check_rescore_scans (preferences changed on results page).
+    """
+    log(f"{log_prefix} for {scan_id} - generating recommendations")
+    try:
+        update_stage(scan_id, "finding_shoes")
+        scan_data = scan_recommender.fetch_scan_data(scan_id)
+        if not scan_data:
+            raise Exception("No scan data found")
+
+        profile = {
+            "toe_shape": scan_data.get("toe_shape"),
+            "toe_delta_ratio": scan_data.get("toe_delta_ratio", 0.0),
+            "forefoot_width_ratio": scan_data.get("forefoot_width_ratio"),
+            "heel_width_ratio": scan_data.get("heel_width_ratio"),
+            "arch_length_ratio": scan_data.get("arch_length_ratio"),
+            "forefoot_width_class": scan_data.get("forefoot_width_class"),
+            "heel_width_class": scan_data.get("heel_width_class"),
+            "arch_length_class": scan_data.get("arch_length_class"),
+            "hallux_valgus_class": scan_data.get("hallux_valgus_class", "normal"),
+            "hva_offset_ratio": scan_data.get("hva_offset_ratio"),
+            "instep_height_ratio": scan_data.get("instep_height_ratio"),
+            "heel_depth_ratio": scan_data.get("heel_depth_ratio"),
+            "instep_height_class": scan_data.get("instep_height_class"),
+            "heel_depth_class": scan_data.get("heel_depth_class"),
+        }
+
+        t0 = time.time()
+        n_recs = generate_recommendations(scan_id, profile)
+        elapsed = time.time() - t0
+        log(f"  Recommendations done in {elapsed:.1f}s ({n_recs} recs)")
+
+    except Exception as e:
+        log(f"  ERROR: {e}")
+        traceback.print_exc()
+        try:
+            update_stage(scan_id, "error", str(e))
+        except Exception:
+            pass
+
+
 def check_waiting_scans():
     """Re-check scans that were waiting for preferences."""
-    waiting = fetch_waiting_scans()
-    for scan in waiting:
+    for scan in fetch_waiting_scans():
         if has_preferences(scan):
-            scan_id = scan["scan_id"]
-            log(f"Preferences ready for {scan_id} - generating recommendations")
-            try:
-                update_stage(scan_id, "finding_shoes")
-                # Re-fetch full scan data to get measurements
-                scan_data = scan_recommender.fetch_scan_data(scan_id)
-                if not scan_data:
-                    raise Exception("No scan data found")
+            _regenerate_from_stored(scan["scan_id"], "Preferences ready")
 
-                profile = {
-                    "toe_shape": scan_data.get("toe_shape"),
-                    "toe_delta_ratio": scan_data.get("toe_delta_ratio", 0.0),
-                    "forefoot_width_ratio": scan_data.get("forefoot_width_ratio"),
-                    "heel_width_ratio": scan_data.get("heel_width_ratio"),
-                    "arch_length_ratio": scan_data.get("arch_length_ratio"),
-                    "forefoot_width_class": scan_data.get("forefoot_width_class"),
-                    "heel_width_class": scan_data.get("heel_width_class"),
-                    "arch_length_class": scan_data.get("arch_length_class"),
-                    "hallux_valgus_class": scan_data.get("hallux_valgus_class", "normal"),
-                    "hva_offset_ratio": scan_data.get("hva_offset_ratio"),
-                    "instep_height_ratio": scan_data.get("instep_height_ratio"),
-                    "heel_depth_ratio": scan_data.get("heel_depth_ratio"),
-                    "instep_height_class": scan_data.get("instep_height_class"),
-                    "heel_depth_class": scan_data.get("heel_depth_class"),
-                }
 
-                t0 = time.time()
-                n_recs = generate_recommendations(scan_id, profile)
-                elapsed = time.time() - t0
-                log(f"  Recommendations done in {elapsed:.1f}s ({n_recs} recs)")
+def check_rescore_scans():
+    """Re-check scans whose preferences were edited on the results page.
 
-            except Exception as e:
-                log(f"  ERROR: {e}")
-                traceback.print_exc()
-                try:
-                    update_stage(scan_id, "error", str(e))
-                except Exception:
-                    pass
+    Triggered by frontend PATCHing pipeline_stage='rescore'. We skip SAM3
+    and regenerate recommendations + interpretation from stored measurements.
+    """
+    for scan in fetch_rescore_scans():
+        _regenerate_from_stored(scan["scan_id"], "Rescore requested")
 
 
 def recover_stuck_scans():
@@ -687,6 +981,9 @@ def main():
 
             # Check scans waiting for preferences
             check_waiting_scans()
+
+            # Check scans needing a rescore (preferences edited on results page)
+            check_rescore_scans()
 
             # Recover scans stuck in transient stages (crash recovery)
             recover_stuck_scans()
