@@ -115,19 +115,6 @@ function SuggestionHub() {
   );
 }
 
-/* ─── Small helper card for "what to share" examples ─── */
-function ExampleCard({ icon, title, text }) {
-  return (
-    <div style={{
-      background: T.card, border: `1px solid ${T.border}`, borderRadius: "10px", padding: "16px",
-    }}>
-      <div style={{ fontSize: "18px", marginBottom: "8px" }}>{icon}</div>
-      <div style={{ fontSize: "13px", fontWeight: 700, color: T.text, marginBottom: "4px" }}>{title}</div>
-      <div style={{ fontSize: "12px", color: T.muted, lineHeight: 1.6 }}>{text}</div>
-    </div>
-  );
-}
-
 export default function Feedback() {
   usePageMeta(
     "Share Your Feedback",
@@ -158,28 +145,8 @@ export default function Feedback() {
           </p>
         </div>
 
-        {/* Examples */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "12px", marginBottom: "32px" }}>
-          <ExampleCard
-            icon={"\u{1F4A1}"} title="Feature idea"
-            text="A filter or comparison you wish existed."
-          />
-          <ExampleCard
-            icon={"\u{1F41B}"} title="Bug report"
-            text="Something broken, confusing, or just weird."
-          />
-          <ExampleCard
-            icon={"\u{1F4CA}"} title="Data correction"
-            text="A spec, weight, or price that looks off."
-          />
-          <ExampleCard
-            icon={"\u{1F4AC}"} title="General feedback"
-            text="Anything else you want to share."
-          />
-        </div>
-
         {/* Suggestion Hub form */}
-        <div id="suggestion-hub" style={{ marginBottom: "40px", scrollMarginTop: "70px" }}>
+        <div id="suggestion-hub" style={{ marginBottom: "40px", marginTop: "32px", scrollMarginTop: "70px" }}>
           <SuggestionHub />
         </div>
 
