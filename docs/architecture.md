@@ -47,6 +47,7 @@ Five gear types, each following the same pattern: list app, detail page, scatter
 | `/news` | GearNews | Gear news |
 | `/methodology` | Methodology | How data is compiled |
 | `/about` | About | Company info |
+| `/feedback` | Feedback | Standalone Suggestion Hub page (QR-code landing) |
 | `/legal`, `/privacy`, `/impressum` | Legal | Legal pages |
 
 ## Data Flow
