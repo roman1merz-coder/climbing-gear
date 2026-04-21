@@ -15,6 +15,7 @@ import Legal from "./Legal.jsx";
 import Compare from "./Compare.jsx";
 import CompareGeneric from "./CompareGeneric.jsx";
 import About from "./About.jsx";
+import Feedback from "./Feedback.jsx";
 import Landing from "./Landing.jsx";
 import Methodology from "./Methodology.jsx";
 import Footer from "./Footer.jsx";
@@ -569,6 +570,7 @@ function Root() {
               <Route path="/news" element={<GearNews />} />
               <Route path="/methodology" element={<Methodology />} />
               <Route path="/about" element={<About />} />
+              <Route path="/feedback" element={<Feedback />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
               <Route path="/terms" element={<Legal />} />

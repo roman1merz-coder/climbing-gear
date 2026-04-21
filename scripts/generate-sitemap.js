@@ -49,7 +49,7 @@ function generateSitemaps() {
   for (const page of [
     '/insights', '/insights/climbing-shoe-guide', '/insights/foot-scanner', '/insights/heel-fit',
     '/insights/inflatable-crashpads', '/insights/rope-cost-vs-safety',
-    '/news', '/methodology', '/about', '/impressum', '/privacy', '/terms',
+    '/news', '/methodology', '/about', '/feedback', '/impressum', '/privacy', '/terms',
   ]) {
     coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'monthly', '0.7'));
   }
