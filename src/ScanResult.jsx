@@ -1379,21 +1379,78 @@ export default function ScanResult({ shoes }) {
   // Poll while the pipeline is running (full scan or rescore) so the page
   // updates in place when the user edits preferences or retakes a photo.
   // Stops on terminal stages (complete, error, validation_failed, waiting_preferences).
+  //
+  // Payload optimisation (2026-04-22): foot_scan_fits rows grew to ~100 KB
+  // once browse_extended started carrying 4x30 tier shoes with full specs.
+  // Re-pulling select=* on every 2 s tick meant ~50 KB/s of sustained
+  // traffic during rescore, which stalled the page whenever Supabase REST
+  // latency spiked (we saw 10-14 s responses). Fix:
+  //   - First tick after mount / pollEpoch bump: full select=* (we need
+  //     the fat columns to render the results page at all).
+  //   - Subsequent ticks while IN_PROGRESS: narrow select (~150 B) just
+  //     to watch pipeline_stage flip.
+  //   - When the stage flips OUT of IN_PROGRESS: one final full fetch so
+  //     the newly-written interpretation / recommendations / browse_extended
+  //     replace the pre-rescore snapshot in state.
   useEffect(() => {
     if (!scanId) return;
     let cancelled = false;
     let timer = null;
+    let haveFullSnapshot = false;
+
+    const POLL_COLS = "scan_id,pipeline_stage,pipeline_error,pipeline_started_at";
+
+    const fetchFull = () =>
+      supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`);
+    const fetchNarrow = () =>
+      supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=${POLL_COLS}`);
 
     const tick = () => {
-      supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`)
+      const req = haveFullSnapshot ? fetchNarrow() : fetchFull();
+      req
         .then((rows) => {
           if (cancelled) return;
           if (!rows.length) { setError("Scan not found"); setLoading(false); return; }
-          setScan(rows[0]);
-          setLoading(false);
-          if (IN_PROGRESS_STAGES.has(rows[0].pipeline_stage)) {
-            timer = setTimeout(tick, 2000);
+          const row = rows[0];
+          const inProgress = IN_PROGRESS_STAGES.has(row.pipeline_stage);
+
+          if (!haveFullSnapshot) {
+            // First tick: full row — populate state as before.
+            setScan(row);
+            haveFullSnapshot = true;
+            setLoading(false);
+            if (inProgress) timer = setTimeout(tick, 2000);
+            return;
           }
+
+          if (inProgress) {
+            // Narrow poll: merge only the small fields that change during
+            // the run so the fat columns (browse_extended, recommendations,
+            // interpretation, measurements) stay intact in React state.
+            setScan((prev) => prev ? { ...prev, ...row } : row);
+            timer = setTimeout(tick, 2000);
+            return;
+          }
+
+          // Pipeline just left IN_PROGRESS → the fat columns are now stale.
+          // Hold off on flipping pipeline_stage in state until the full
+          // fresh row arrives, so ProcessingScreen keeps covering the UI
+          // through the transition. If the full fetch fails, fall back to
+          // the narrow merge so the UI can still transition (stale fat
+          // columns + manual-refresh recovery is better than being stuck).
+          fetchFull()
+            .then((rows2) => {
+              if (cancelled) return;
+              if (rows2.length) {
+                setScan(rows2[0]);
+              } else {
+                setScan((prev) => prev ? { ...prev, ...row } : row);
+              }
+            })
+            .catch(() => {
+              if (cancelled) return;
+              setScan((prev) => prev ? { ...prev, ...row } : row);
+            });
         })
         .catch((e) => {
           if (cancelled) return;
