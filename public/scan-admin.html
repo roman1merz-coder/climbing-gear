@@ -135,7 +135,7 @@ function switchTab(tab) {
 <script>
 async function loadData() {
   const [fitsRes, photosRes] = await Promise.all([
-    fetch(`${SB_URL}/rest/v1/foot_scan_fits?select=scan_id,created_at,email,email_freq,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes,toe_shape,toe_confidence,width_ratio,width,heel_ratio,heel_width,arch_ratio,instep_ratio,volume,confidence,notes,pipeline_stage,pipeline_error,recommendations,interpretation&order=created_at.desc`, { headers }),
+    fetch(`${SB_URL}/rest/v1/foot_scan_fits?select=id,scan_id,status,created_at,generated_at,pipeline_started_at,email,email_freq,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes,toe_shape,toe_confidence,toe_delta_ratio,forefoot_width_ratio,forefoot_width_class,heel_width_ratio,heel_width_class,heel_depth_ratio,heel_depth_class,arch_length_ratio,arch_length_class,instep_height_ratio,instep_height_class,volume_class,hallux_valgus_class,hva_offset_ratio,confidence,notes,pipeline_stage,pipeline_error,recommendations,interpretation,landmarks,validation_results&order=created_at.desc`, { headers }),
     fetch(`${SB_URL}/storage/v1/object/list/foot-scans`, {
       method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify({ prefix: 'scans/', limit: 500, offset: 0, sortBy: { column: 'created_at', order: 'desc' } })
