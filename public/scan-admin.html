@@ -135,7 +135,7 @@ function switchTab(tab) {
 <script>
 async function loadData() {
   const [fitsRes, photosRes] = await Promise.all([
-    fetch(`${SB_URL}/rest/v1/foot_scan_fits?select=*&order=created_at.desc`, { headers }),
+    fetch(`${SB_URL}/rest/v1/foot_scan_fits?select=scan_id,created_at,email,email_freq,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes,toe_shape,toe_confidence,width_ratio,width,heel_ratio,heel_width,arch_ratio,instep_ratio,volume,confidence,notes,pipeline_stage,pipeline_error,recommendations,interpretation&order=created_at.desc`, { headers }),
     fetch(`${SB_URL}/storage/v1/object/list/foot-scans`, {
       method: 'POST', headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify({ prefix: 'scans/', limit: 500, offset: 0, sortBy: { column: 'created_at', order: 'desc' } })
@@ -464,7 +464,7 @@ loadData().catch(e => {
 
 setInterval(() => {
   if (currentTab === 'active') loadData().catch(console.error);
-}, 30000);
+}, 120000);
 </script>
 </div><!-- /admin-content -->
 <script>
