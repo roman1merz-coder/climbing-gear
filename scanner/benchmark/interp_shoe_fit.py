@@ -713,7 +713,14 @@ def _para_anchor(shoes, street):
 
     fit = anchor.get("fit", {})
     perfect_dims = [d for d in ("heel", "toes", "forefoot") if fit.get(d) == "perfect"]
-    imperfect_dims = {d: fit[d] for d in ("heel", "toes", "forefoot") if fit.get(d) != "perfect"}
+    # Use .get() so a shoe missing one of the three dims doesn't crash
+    # the pipeline -- the frontend validator now guarantees all three are
+    # present, but older rows or direct Supabase edits can still be sparse.
+    imperfect_dims = {
+        d: fit.get(d)
+        for d in ("heel", "toes", "forefoot")
+        if fit.get(d) and fit.get(d) != "perfect"
+    }
 
     def _dim_are(d, r):
         """'toes are squeezed' vs 'heel is empty'."""

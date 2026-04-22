@@ -538,7 +538,7 @@ function RetakeLink({ onClick, disabled }) {
   );
 }
 
-function SegmentedToggle({ value, options, labels, onChange, disabled }) {
+function SegmentedToggle({ value, options, labels, onChange, disabled, allowDeselect = true }) {
   return (
     <div style={{ display: "flex", gap: 4 }}>
       {options.map((opt) => {
@@ -548,7 +548,14 @@ function SegmentedToggle({ value, options, labels, onChange, disabled }) {
             key={opt}
             type="button"
             disabled={disabled}
-            onClick={() => onChange(active ? null : opt)}
+            onClick={() => {
+              if (active) {
+                if (allowDeselect) onChange(null);
+                // else no-op - keep the current selection
+              } else {
+                onChange(opt);
+              }
+            }}
             style={{
               flex: 1, padding: "0.35rem 0.5rem",
               fontSize: "0.72rem", fontWeight: 700,
@@ -605,36 +612,70 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
     prev.map((sh, i) => (i === idx ? { ...sh, fit: { ...sh.fit, [part]: val } } : sh))
   );
 
+  // Returns list of human-readable error strings. Empty list = valid.
+  // Rules: sex required; at least 1 climbing shoe; every shoe row that is
+  // not entirely blank must have brand + model + size + all 3 fit ratings.
   const validate = () => {
-    if (!sex) return "Please select a sex - the recommendation engine needs this to compute sizes.";
-    return null;
+    const errors = [];
+    if (!sex) {
+      errors.push("Please select a sex - the recommendation engine needs this to compute sizes.");
+    }
+
+    // A row "counts" if any field is set; completely empty rows are silently dropped.
+    const activeRows = shoes
+      .map((sh, idx) => ({ sh, idx, rowNum: idx + 1 }))
+      .filter(({ sh }) =>
+        sh.brand.trim() ||
+        sh.model.trim() ||
+        sh.size_eu.trim() ||
+        sh.fit.toes ||
+        sh.fit.forefoot ||
+        sh.fit.heel
+      );
+
+    if (activeRows.length === 0) {
+      errors.push("Please add at least one climbing shoe with brand, model, size, and fit ratings.");
+    }
+
+    activeRows.forEach(({ sh, rowNum }) => {
+      if (!sh.brand.trim()) errors.push(`Shoe ${rowNum}: please select a brand.`);
+      if (!sh.model.trim()) errors.push(`Shoe ${rowNum}: please select a model.`);
+      if (!sh.size_eu.trim()) errors.push(`Shoe ${rowNum}: please select the EU size.`);
+      if (!sh.fit.toes) errors.push(`Shoe ${rowNum}: please rate the toes fit.`);
+      if (!sh.fit.forefoot) errors.push(`Shoe ${rowNum}: please rate the forefoot fit.`);
+      if (!sh.fit.heel) errors.push(`Shoe ${rowNum}: please rate the heel fit.`);
+    });
+
+    return errors;
   };
 
   const handleSave = async () => {
-    const err = validate();
-    if (err) { setSaveError(err); return; }
+    const errors = validate();
+    if (errors.length) { setSaveError(errors); return; }
     setSaving(true);
     setSaveError(null);
 
-    // Clean payload: drop empty shoes, convert numeric strings, null out blanks
+    // validate() has already ensured every non-empty row is fully specified.
+    // Drop entirely-blank rows, then serialise the rest with full fit objects.
     const cleanedShoes = shoes
-      .filter((sh) => sh.brand.trim() || sh.model.trim())
-      .map((sh) => {
-        const out = {
-          brand: sh.brand.trim(),
-          model: sh.model.trim(),
-        };
-        if (sh.size_eu.trim()) {
-          const n = Number(sh.size_eu);
-          if (!Number.isNaN(n)) out.size_eu = n;
-        }
-        const fit = {};
-        if (sh.fit.toes) fit.toes = sh.fit.toes;
-        if (sh.fit.forefoot) fit.forefoot = sh.fit.forefoot;
-        if (sh.fit.heel) fit.heel = sh.fit.heel;
-        if (Object.keys(fit).length) out.fit = fit;
-        return out;
-      });
+      .filter((sh) =>
+        sh.brand.trim() ||
+        sh.model.trim() ||
+        sh.size_eu.trim() ||
+        sh.fit.toes ||
+        sh.fit.forefoot ||
+        sh.fit.heel
+      )
+      .map((sh) => ({
+        brand: sh.brand.trim(),
+        model: sh.model.trim(),
+        size_eu: Number(sh.size_eu),
+        fit: {
+          toes: sh.fit.toes,
+          forefoot: sh.fit.forefoot,
+          heel: sh.fit.heel,
+        },
+      }));
 
     const body = {
       sex,
@@ -857,6 +898,7 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
                           options={FIT_VALUES}
                           onChange={(v) => updateShoeFit(idx, part, v)}
                           disabled={saving}
+                          allowDeselect={false}
                         />
                       </div>
                     </div>
@@ -921,8 +963,22 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
           <div style={{
             padding: "0.5rem 0.75rem", marginBottom: "0.75rem",
             background: "#fbebe6", color: "#8a3d1d", borderRadius: 6,
-            fontSize: "0.78rem",
-          }}>{saveError}</div>
+            fontSize: "0.78rem", lineHeight: 1.5,
+          }}>
+            {Array.isArray(saveError) ? (
+              saveError.length === 1 ? (
+                saveError[0]
+              ) : (
+                <ul style={{ margin: 0, paddingLeft: "1.1rem" }}>
+                  {saveError.map((msg, i) => (
+                    <li key={i}>{msg}</li>
+                  ))}
+                </ul>
+              )
+            ) : (
+              saveError
+            )}
+          </div>
         )}
 
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>
