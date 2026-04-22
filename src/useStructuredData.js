@@ -298,7 +298,10 @@ export function buildWebsiteSchema() {
     description: "Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.",
     potentialAction: {
       "@type": "SearchAction",
-      target: `${BASE_URL}/shoes?q={search_term_string}`,
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/shoes?q={search_term_string}`,
+      },
       "query-input": "required name=search_term_string",
     },
   };
