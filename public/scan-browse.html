@@ -359,20 +359,52 @@
       grid-area: cols;
       flex-direction: row;
       min-width: 0;
-      gap: 8px;
+      gap: 6px;
     }
-    .card > .right-col .callout { padding: 6px 9px; flex: 1 1 auto; min-width: 0; }
-    .card > .right-col .callout .lbl { font-size: 8.5px; }
-    .card > .right-col .callout .val { font-size: 12px; }
+    /* Stack label over value inside each callout — saves a lot of horizontal space */
+    .card > .right-col .callout {
+      flex: 1 1 0;
+      min-width: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 1px;
+      padding: 5px 8px;
+      white-space: normal;
+      overflow: hidden;
+    }
+    .card > .right-col .callout .lbl {
+      font-size: 9px;
+      letter-spacing: 0.25px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    .card > .right-col .callout .val {
+      font-size: 12.5px;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
     .card > .right-col .callout-oos .val { font-size: 10.5px; }
+
+    /* Chevron on mobile: arrow only, compact circular pill */
     .card > .chevron {
       grid-area: chev;
       align-self: center;
-      padding: 7px 12px;
-      font-size: 12px;
-      min-height: 36px;
+      justify-content: center;
+      padding: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      gap: 0;
     }
-    .card > .chevron .arr { font-size: 15px; }
+    .card > .chevron > span:first-child { display: none; } /* hide "Check details" label */
+    .card > .chevron .arr { font-size: 16px; margin-top: 0; }
 
     /* No hover-slide on touch (feels jittery) */
     .card:hover .chevron { transform: none; }
@@ -385,7 +417,10 @@
     h1 { font-size: 20px; }
     .card { padding: 10px; column-gap: 8px; }
     .card > .thumb { width: 42px; height: 42px; }
-    .card > .chevron { padding: 6px 10px; font-size: 11.5px; }
+    .card > .chevron { width: 32px; height: 32px; padding: 0; }
+    .card > .chevron .arr { font-size: 15px; }
+    .card > .right-col .callout { padding: 5px 7px; }
+    .card > .right-col .callout .val { font-size: 12px; }
     .tabs { margin: 12px -12px 6px; padding: 2px 12px; }
   }
 
