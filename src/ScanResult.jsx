@@ -1703,10 +1703,10 @@ export default function ScanResult({ shoes }) {
       {recommendations.length > 0 && (() => {
         // Group recommendations by category (new format) or show flat list (legacy)
         const CATEGORY_META = {
-          baseline: { label: "Your Best Match", desc: "Similar feel to your current shoes", ctaText: "top matches" },
-          softer: { label: "Softer Feel", desc: "More sensitivity and smearing", ctaText: "softer picks" },
-          stiffer: { label: "Stiffer Feel", desc: "More support and edging power", ctaText: "stiffer picks" },
-          budget: { label: "Best Value", desc: "Affordable picks that address your fit", ctaText: "value picks" },
+          baseline: { label: "Your Best Match", desc: "Similar feel and use case to your current shoes", ctaText: "top matches" },
+          softer: { label: "Softer Shoes", desc: "For more sensitivity, recommended for indoors and bouldering", ctaText: "softer picks" },
+          stiffer: { label: "Stiffer Shoes", desc: "For more support, recommended for outdoors and sport/trad climbing", ctaText: "stiffer picks" },
+          budget: { label: "Best Value", desc: "Affordable picks at your recommended size", ctaText: "value picks" },
         };
         const hasCats = recommendations.some((r) => r.category);
         const groups = hasCats
