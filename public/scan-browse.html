@@ -463,7 +463,8 @@ async function loadScan(scanId) {
 
     state.scan = scan;
     state.browse = normalizeBrowse(scan.browse_extended);
-    state.tier = "baseline";
+    const urlTier = new URLSearchParams(window.location.search).get("tier");
+    state.tier = TIERS.includes(urlTier) ? urlTier : "baseline";
     renderScanMeta();
     $("back-scan-result").href = `https://climbing-gear.com/scan/${encodeURIComponent(scanId)}`;
     await loadOffers();

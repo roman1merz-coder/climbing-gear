@@ -1698,6 +1698,23 @@ export default function ScanResult({ shoes }) {
                     );
                   })}
                 </div>
+                {hasCats && scan?.browse_extended && g.cat !== "all" && scanId && (
+                  <div style={{ marginTop: "0.75rem", textAlign: "right" }}>
+                    <a
+                      href={`/scan/${encodeURIComponent(scanId)}/browse?tier=${g.cat}`}
+                      style={{
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        color: T.accent,
+                        textDecoration: "none",
+                        borderBottom: `1px solid ${T.accent}`,
+                        paddingBottom: "1px",
+                      }}
+                    >
+                      See similar shoes →
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
           </div>
