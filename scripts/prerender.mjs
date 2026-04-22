@@ -25,6 +25,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { ARTICLE_BODIES } from './article-bodies.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -840,7 +841,8 @@ async function main() {
 
   // Article pages (insights) - with Article JSON-LD schema
   for (const art of ARTICLES) {
-    const ssr = `<article><nav><a href="${BASE}/">Home</a> / <a href="${BASE}/insights">Insights</a> / ${escHtml(art.headline)}</nav><h1>${escHtml(art.headline)}</h1><p>${escHtml(art.desc)}</p><p><a href="${BASE}/insights">All insights</a></p></article>`;
+    const body = (ARTICLE_BODIES[art.route] || '').replaceAll('$BASE', BASE);
+    const ssr = `<article><nav><a href="${BASE}/">Home</a> / <a href="${BASE}/insights">Insights</a> / ${escHtml(art.headline)}</nav><h1>${escHtml(art.headline)}</h1>${body}<p><a href="${BASE}/insights">All insights</a></p></article>`;
     const breadcrumb = buildBreadcrumbSchema([
       { name: 'Home', url: BASE },
       { name: 'Insights', url: `${BASE}/insights` },
