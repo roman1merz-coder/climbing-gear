@@ -1647,10 +1647,10 @@ export default function ScanResult({ shoes }) {
       {recommendations.length > 0 && (() => {
         // Group recommendations by category (new format) or show flat list (legacy)
         const CATEGORY_META = {
-          baseline: { label: "Your Best Match", desc: "Similar feel to your current shoes" },
-          softer: { label: "Softer Feel", desc: "More sensitivity and smearing" },
-          stiffer: { label: "Stiffer Feel", desc: "More support and edging power" },
-          budget: { label: "Best Value", desc: "Affordable picks that address your fit" },
+          baseline: { label: "Your Best Match", desc: "Similar feel to your current shoes", ctaText: "top matches" },
+          softer: { label: "Softer Feel", desc: "More sensitivity and smearing", ctaText: "softer picks" },
+          stiffer: { label: "Stiffer Feel", desc: "More support and edging power", ctaText: "stiffer picks" },
+          budget: { label: "Best Value", desc: "Affordable picks that address your fit", ctaText: "value picks" },
         };
         const hasCats = recommendations.some((r) => r.category);
         const groups = hasCats
@@ -1699,19 +1699,26 @@ export default function ScanResult({ shoes }) {
                   })}
                 </div>
                 {hasCats && scan?.browse_extended && g.cat !== "all" && scanId && (
-                  <div style={{ marginTop: "0.75rem", textAlign: "right" }}>
+                  <div style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                     <a
                       href={`/scan/${encodeURIComponent(scanId)}/browse?tier=${g.cat}`}
                       style={{
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        color: T.accent,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.45rem",
+                        padding: mobile ? "0.7rem 1.3rem" : "0.65rem 1.5rem",
+                        borderRadius: 999,
+                        background: T.accent,
+                        color: "#fff",
+                        fontSize: mobile ? "0.88rem" : "0.85rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.2px",
                         textDecoration: "none",
-                        borderBottom: `1px solid ${T.accent}`,
-                        paddingBottom: "1px",
+                        boxShadow: "0 2px 8px rgba(201,138,66,0.28)",
                       }}
                     >
-                      See similar shoes →
+                      See more {g.ctaText || "shoes"}
+                      <span style={{ fontSize: "1rem", lineHeight: 1, marginTop: "-1px" }}>→</span>
                     </a>
                   </div>
                 )}
