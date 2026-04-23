@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { T } from "./tokens.js";
+import SHOES from "./seed_data.json";
 import usePageMeta from "./usePageMeta.js";
 
 /*
@@ -104,7 +105,7 @@ function QBlock({ num, label, children }) {
 
 export default function PetzFeedback() {
   usePageMeta(
-    "Feedback - PETZ Boulderhalle x climbing-gear.com",
+    "Feedback · PETZ Boulderhalle × climbing-gear.com",
     "Feedback zum Kletterschuh-Scanner Event in der PETZ Boulderhalle Neustadt."
   );
 
@@ -112,18 +113,37 @@ export default function PetzFeedback() {
   const [desiredFeatures, setDesiredFeatures] = useState("");
   const [tryAtPetz, setTryAtPetz] = useState("");
   const [payPremium, setPayPremium] = useState("");
+  const [brandToTry, setBrandToTry] = useState("");
   const [modelToTry, setModelToTry] = useState("");
   const [generalComment, setGeneralComment] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [errorMsg, setErrorMsg] = useState("");
 
+  // Build brand → models map from the shoe database (same source as the scanner).
+  const SHOE_DB = useMemo(() => {
+    const db = {};
+    for (const s of SHOES) {
+      if (!s.brand || !s.model) continue;
+      if (!db[s.brand]) db[s.brand] = new Set();
+      db[s.brand].add(s.model);
+    }
+    const out = {};
+    Object.keys(db).sort((a, b) => a.localeCompare(b)).forEach(b => {
+      out[b] = [...db[b]].sort((a, c) => a.localeCompare(c));
+    });
+    return out;
+  }, []);
+  const brands = useMemo(() => Object.keys(SHOE_DB), [SHOE_DB]);
+  const models = brandToTry && SHOE_DB[brandToTry] ? SHOE_DB[brandToTry] : [];
+
   const hasContent =
     scanHelpful > 0 ||
     desiredFeatures.trim() ||
     tryAtPetz ||
     payPremium ||
-    modelToTry.trim() ||
+    brandToTry ||
+    modelToTry ||
     generalComment.trim();
 
   const handleSubmit = async (e) => {
@@ -140,7 +160,7 @@ export default function PetzFeedback() {
           desired_features: desiredFeatures.trim(),
           try_at_petz: tryAtPetz,
           pay_premium: payPremium,
-          model_to_try: modelToTry.trim(),
+          model_to_try: [brandToTry, modelToTry].filter(Boolean).join(" ").trim(),
           general_comment: generalComment.trim(),
           email: email.trim(),
           page_url: typeof window !== "undefined" ? window.location.href : "",
@@ -171,10 +191,10 @@ export default function PetzFeedback() {
         }}>
           <div style={{ fontSize: "56px", marginBottom: "16px" }}>{"\u{1F64F}"}</div>
           <h1 style={{ fontSize: "26px", fontWeight: 800, margin: "0 0 12px", letterSpacing: "-0.4px" }}>
-            Danke fur dein Feedback!
+            Danke für dein Feedback!
           </h1>
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.7, margin: "0 0 22px" }}>
-            Das hilft uns den Scanner und das Angebot fur euch in Neustadt weiter zu verbessern. Viel Spass beim Bouldern!
+            Das hilft uns den Scanner und das Angebot für euch in Neustadt weiter zu verbessern. Viel Spaß beim Bouldern!
           </p>
           <a href="https://climbing-gear.com/" style={{
             display: "inline-block", padding: "10px 20px",
@@ -237,7 +257,7 @@ export default function PetzFeedback() {
             fontSize: "14px", color: T.muted, lineHeight: 1.7,
             maxWidth: "480px", margin: "0 auto",
           }}>
-            Dein Feedback hilft uns den Fu&szlig;-Scanner besser zu machen und herauszufinden,
+            Dein Feedback hilft uns den Fuß-Scanner besser zu machen und herauszufinden,
             ob lokales Probieren & Kaufen von Kletterschuhen in Neustadt Sinn macht.
             Dauert ca. 90 Sekunden.
           </p>
@@ -246,7 +266,7 @@ export default function PetzFeedback() {
         <form onSubmit={handleSubmit}>
 
           {/* Q1 - Scan hilfreich */}
-          <QBlock num="01" label="Wie hilfreich war der Scan fur dich?">
+          <QBlock num="01" label="Wie hilfreich war der Scan für dich?">
             <StarRating value={scanHelpful} onChange={setScanHelpful} />
             <div style={{
               display: "flex", justifyContent: "space-between",
@@ -258,11 +278,11 @@ export default function PetzFeedback() {
           </QBlock>
 
           {/* Q2 - Welche Funktionen */}
-          <QBlock num="02" label="Welche zusatzlichen Funktionen wurdest du dir wunschen?">
+          <QBlock num="02" label="Welche zusätzlichen Funktionen würdest du dir wünschen?">
             <textarea
               value={desiredFeatures}
               onChange={e => setDesiredFeatures(e.target.value)}
-              placeholder="z.B. Vergleich zweier Schuhe, andere Disziplinen, ..."
+              placeholder="z.B. Vergleich zweier Schuhe, andere Disziplinen, …"
               rows={3}
               style={{
                 width: "100%", padding: "12px", borderRadius: "10px",
@@ -276,7 +296,7 @@ export default function PetzFeedback() {
           </QBlock>
 
           {/* Q3 - Probieren/Kaufen im Petz */}
-          <QBlock num="03" label="Ware es hilfreich, die Schuhe direkt hier im PETZ probieren & kaufen zu konnen?">
+          <QBlock num="03" label="Wäre es hilfreich, die Schuhe direkt hier im PETZ probieren & kaufen zu können?">
             <ChipGroup
               options={["Ja, auf jeden Fall", "Vielleicht", "Nein", "Brauche keine neuen Schuhe"]}
               value={tryAtPetz}
@@ -285,7 +305,7 @@ export default function PetzFeedback() {
           </QBlock>
 
           {/* Q4 - Premium */}
-          <QBlock num="04" label="Warst du bereit, 10-20 EUR mehr als online zu zahlen, dafur aber hier zu probieren & sofort mitzunehmen?">
+          <QBlock num="04" label="Wärst du bereit, 10–20 € mehr als online zu zahlen, dafür aber hier zu probieren & sofort mitzunehmen?">
             <ChipGroup
               options={["Ja", "Vielleicht", "Nein"]}
               value={payPremium}
@@ -293,22 +313,68 @@ export default function PetzFeedback() {
             />
           </QBlock>
 
-          {/* Q5 - Modell */}
-          <QBlock num="05" label="Welches Modell wurdest du am liebsten lokal probieren?">
-            <input
-              type="text"
-              value={modelToTry}
-              onChange={e => setModelToTry(e.target.value)}
-              placeholder="z.B. Scarpa Drago, Solution Comp, Tenaya Oasi, ..."
-              style={{
-                width: "100%", padding: "12px", borderRadius: "10px",
-                border: `1px solid ${T.border}`, background: T.surface, color: T.text,
-                fontSize: "14px", fontFamily: T.font,
-                outline: "none", boxSizing: "border-box",
-              }}
-              onFocus={e => e.target.style.borderColor = T.accent}
-              onBlur={e => e.target.style.borderColor = T.border}
-            />
+          {/* Q5 - Modell (Brand + Model Dropdowns, gleiche Quelle wie der Scanner) */}
+          <QBlock num="05" label="Welches Modell würdest du am liebsten lokal probieren?">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+              <select
+                value={brandToTry}
+                onChange={e => {
+                  setBrandToTry(e.target.value);
+                  setModelToTry("");
+                }}
+                style={{
+                  width: "100%", padding: "12px", borderRadius: "10px",
+                  border: `1px solid ${T.border}`, background: T.surface, color: T.text,
+                  fontSize: "14px", fontFamily: T.font,
+                  outline: "none", boxSizing: "border-box",
+                  appearance: "none",
+                  WebkitAppearance: "none",
+                  backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%237a7462' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 12px center",
+                  paddingRight: "32px",
+                }}
+                onFocus={e => e.target.style.borderColor = T.accent}
+                onBlur={e => e.target.style.borderColor = T.border}
+              >
+                <option value="">Marke wählen …</option>
+                {brands.map(b => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
+              </select>
+              <select
+                value={modelToTry}
+                onChange={e => setModelToTry(e.target.value)}
+                disabled={!brandToTry}
+                style={{
+                  width: "100%", padding: "12px", borderRadius: "10px",
+                  border: `1px solid ${T.border}`,
+                  background: brandToTry ? T.surface : T.bg,
+                  color: brandToTry ? T.text : T.muted,
+                  fontSize: "14px", fontFamily: T.font,
+                  outline: "none", boxSizing: "border-box",
+                  cursor: brandToTry ? "pointer" : "not-allowed",
+                  appearance: "none",
+                  WebkitAppearance: "none",
+                  backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%237a7462' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 12px center",
+                  paddingRight: "32px",
+                }}
+                onFocus={e => brandToTry && (e.target.style.borderColor = T.accent)}
+                onBlur={e => e.target.style.borderColor = T.border}
+              >
+                <option value="">
+                  {brandToTry ? "Modell wählen …" : "zuerst Marke wählen"}
+                </option>
+                {models.map(m => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
+              </select>
+            </div>
+            <div style={{ fontSize: "11px", color: T.muted, marginTop: "8px", lineHeight: 1.5 }}>
+              Kein Wunsch-Modell dabei? Schreib's einfach unten in das Kommentarfeld.
+            </div>
           </QBlock>
 
           {/* Q6 - General comment */}
@@ -316,7 +382,7 @@ export default function PetzFeedback() {
             <textarea
               value={generalComment}
               onChange={e => setGeneralComment(e.target.value)}
-              placeholder="Ideen, Lob, Kritik, was immer dir einfallt ..."
+              placeholder="Ideen, Lob, Kritik, was immer dir einfällt …"
               rows={2}
               style={{
                 width: "100%", padding: "12px", borderRadius: "10px",
@@ -338,7 +404,7 @@ export default function PetzFeedback() {
               E-Mail (optional)
             </div>
             <div style={{ fontSize: "12px", color: T.muted, marginBottom: "10px", lineHeight: 1.5 }}>
-              Nur wenn du willst, dass wir uns melden - z.B. wenn du ein Modell lokal probieren mochtest oder Neues vom Scanner horen willst.
+              Nur wenn du willst, dass wir uns melden – z.B. wenn du ein Modell lokal probieren möchtest oder Neues vom Scanner hören willst.
             </div>
             <input
               type="email"
@@ -375,8 +441,8 @@ export default function PetzFeedback() {
                 transition: "all 0.2s ease",
               }}
             >
-              {status === "sending" ? "Wird gesendet ..." :
-               status === "error" ? "Fehler - nochmal versuchen" :
+              {status === "sending" ? "Wird gesendet …" :
+               status === "error" ? "Fehler – nochmal versuchen" :
                "Feedback senden"}
             </button>
             {status === "error" && errorMsg && (
@@ -401,7 +467,7 @@ export default function PetzFeedback() {
           marginTop: "24px", textAlign: "center",
           fontSize: "11px", color: T.muted, lineHeight: 1.6,
         }}>
-          Live-Event in der PETZ Boulderhalle, 24. April 2026 - climbing-gear.com x PETZ
+          Live-Event in der PETZ Boulderhalle, 24. April 2026 · climbing-gear.com × PETZ
         </div>
 
       </div>
