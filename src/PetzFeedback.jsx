@@ -216,33 +216,26 @@ export default function PetzFeedback() {
         maxWidth: "640px", margin: "0 auto", padding: "28px 18px 80px",
       }}>
 
-        {/* Co-branded header */}
+        {/* Co-branded header - logos only */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          gap: "18px", marginBottom: "22px", flexWrap: "wrap",
+          gap: "28px", marginBottom: "22px", flexWrap: "wrap",
         }}>
           <img
             src="/images/logo.svg"
             alt="climbing-gear.com"
-            width="48" height="48"
-            style={{ display: "block", objectFit: "contain" }}
+            height="56"
+            style={{ display: "block", objectFit: "contain", maxWidth: "180px" }}
           />
-          <div style={{ fontSize: "14px", fontWeight: 800, color: T.text, lineHeight: 1.2 }}>
-            climbing-gear<span style={{ color: T.primary }}>.com</span>
-          </div>
           <div style={{
-            width: "1px", height: "36px", background: T.border,
+            width: "1px", height: "40px", background: T.border,
           }} />
           <img
             src="/images/brands/petz-boulderhalle.svg"
             alt="PETZ Boulderhalle Neustadt"
-            width="48" height="48"
-            style={{ display: "block", objectFit: "contain" }}
+            height="56"
+            style={{ display: "block", objectFit: "contain", maxWidth: "180px" }}
           />
-          <div style={{ fontSize: "14px", fontWeight: 800, color: T.text, lineHeight: 1.2 }}>
-            PETZ Boulderhalle<br />
-            <span style={{ color: T.muted, fontWeight: 500, fontSize: "12px" }}>Neustadt</span>
-          </div>
         </div>
 
         {/* Hero */}
@@ -259,7 +252,6 @@ export default function PetzFeedback() {
           }}>
             Dein Feedback hilft uns den Fuß-Scanner besser zu machen und herauszufinden,
             ob lokales Probieren & Kaufen von Kletterschuhen in Neustadt Sinn macht.
-            Dauert ca. 90 Sekunden.
           </p>
         </div>
 
