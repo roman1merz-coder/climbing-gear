@@ -728,7 +728,7 @@ const STATIC = [
   { route: '/methodology', title: 'Methodology - How We Score Climbing Gear', desc: 'Our 10-axis performance model, data sources, and scoring algorithms explained.' },
   { route: '/about', title: 'About climbing-gear.com', desc: 'Our mission: help climbers find the right gear through data, not marketing.' },
   { route: '/feedback', title: 'Share Your Feedback - climbing-gear.com', desc: 'Share feedback, report bugs, suggest features, or flag data corrections. Every message is read by a real human.' },
-  { route: '/petz-feedback', title: 'Feedback - PETZ Boulderhalle x climbing-gear.com', desc: 'Feedback zum Kletterschuh-Scanner Event in der PETZ Boulderhalle Neustadt.' },
+  { route: '/petz-feedback', title: 'Feedback · PETZ Boulderhalle × climbing-gear.com', desc: 'Feedback zum Kletterschuh-Scanner Event in der PETZ Boulderhalle Neustadt.' },
   { route: '/impressum', title: 'Impressum', desc: 'Legal notice and contact information for climbing-gear.com.' },
   { route: '/privacy', title: 'Privacy Policy', desc: 'How climbing-gear.com handles your data.' },
   { route: '/terms', title: 'Terms of Service', desc: 'Terms and conditions for using climbing-gear.com.' },
