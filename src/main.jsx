@@ -16,6 +16,7 @@ import Compare from "./Compare.jsx";
 import CompareGeneric from "./CompareGeneric.jsx";
 import About from "./About.jsx";
 import Feedback from "./Feedback.jsx";
+import PetzFeedback from "./PetzFeedback.jsx";
 import Landing from "./Landing.jsx";
 import Methodology from "./Methodology.jsx";
 import Footer from "./Footer.jsx";
@@ -333,6 +334,9 @@ function FeedbackFAB() {
   const [hover, setHover] = useState(false);
   const isLanding = pathname === "/" || pathname === "";
 
+  // Hide on standalone event pages so the dedicated form is the only CTA
+  if (pathname === "/petz-feedback") return null;
+
   const handleClick = () => {
     if (isLanding) {
       const el = document.getElementById("suggestion-hub");
@@ -571,6 +575,7 @@ function Root() {
               <Route path="/methodology" element={<Methodology />} />
               <Route path="/about" element={<About />} />
               <Route path="/feedback" element={<Feedback />} />
+              <Route path="/petz-feedback" element={<PetzFeedback />} />
               <Route path="/impressum" element={<Legal />} />
               <Route path="/privacy" element={<Legal />} />
               <Route path="/terms" element={<Legal />} />
