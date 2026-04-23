@@ -59,9 +59,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Leere Antwort" });
     }
 
+    // The feedback table CHECKs type IN ('feature','bug','data','general').
+    // We use 'general' and mark the payload with event_label for filtering.
     const row = {
-      type: "petz-event",
-      message: JSON.stringify(payload),
+      type: "general",
+      message: "[PETZ-EVENT] " + JSON.stringify(payload),
       page_url: String(body.page_url || "https://climbing-gear.com/petz-feedback").slice(0, 500),
     };
 
