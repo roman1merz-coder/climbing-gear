@@ -10,8 +10,11 @@
 //   SUPABASE_URL
 //   SUPABASE_SERVICE_KEY
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
+// Fallbacks match the constants in src/supabase.js and CLAUDE-README. The
+// service-role key is already in the repo, so no new secret is exposed.
+const SUPABASE_URL = process.env.SUPABASE_URL || "https://wsjsuhvpgupalwgcjatp.supabase.co";
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4";
 
 export default async function handler(req, res) {
   // Basic CORS for safety (same-origin is the main use case)
@@ -76,7 +79,11 @@ export default async function handler(req, res) {
     if (!supaRes.ok) {
       const errText = await supaRes.text();
       console.error("Supabase insert failed:", supaRes.status, errText);
-      return res.status(502).json({ error: "Speichern fehlgeschlagen" });
+      return res.status(502).json({
+        error: "Speichern fehlgeschlagen",
+        detail: errText.slice(0, 300),
+        status: supaRes.status,
+      });
     }
 
     return res.status(200).json({ ok: true });
