@@ -235,6 +235,47 @@ body {
 }
 #gyro-warning.warn { color: #ffcc44; font-weight: 700; }
 
+/* ── Manual 5s timer (fallback when auto-capture struggles) ── */
+#timer-btn {
+  position: absolute; left: 50%; bottom: max(24px, env(safe-area-inset-bottom));
+  transform: translateX(-50%); z-index: 11;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,0.65); color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  padding: 12px 18px; border-radius: 999px;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+#timer-btn:active { background: rgba(0,0,0,0.85); }
+#timer-btn svg { width: 18px; height: 18px; }
+#timer-countdown {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); z-index: 12;
+  display: none; pointer-events: auto;
+  font-family: inherit; font-size: 9rem; font-weight: 800;
+  color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+  line-height: 1; letter-spacing: -2px;
+  width: 180px; height: 180px; border-radius: 50%;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.35);
+  cursor: pointer;
+  animation: countdown-pulse 1s ease-out infinite;
+}
+#timer-countdown.show { display: flex; }
+#timer-countdown .cancel-hint {
+  position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%);
+  font-size: 0.78rem; font-weight: 600; color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  white-space: nowrap; letter-spacing: 0;
+}
+@keyframes countdown-pulse {
+  0%   { transform: translate(-50%, -50%) scale(1.0); opacity: 1; }
+  60%  { transform: translate(-50%, -50%) scale(1.15); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(1.0); opacity: 1; }
+}
+
 /* ── Transition Screen (between sole and side) ── */
 #transition-screen {
   display: none; position: relative;
@@ -800,6 +841,7 @@ body {
   <div class="start-hero">
     <h1>Climbing Shoe<br>Foot Scan</h1>
     <p class="tagline">Scan your feet with the phone camera. We score your foot shape via 30 attributes against our database of 400+ climbing shoes to find the best fit. For free!</p>
+    <p class="tagline" style="margin-top:-0.6rem"><strong>Get ready:</strong> right foot, barefoot.</p>
     <div class="scan-steps">
       <div class="scan-step">
         <div class="scan-step-num">1</div>
@@ -847,6 +889,19 @@ body {
     <div id="gyro-dot"></div>
   </div>
   <div id="gyro-warning"></div>
+  <!-- Manual 5s timer (alternative to auto-capture) -->
+  <button id="timer-btn" type="button" aria-label="Start 5 second timer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="13" r="8"/>
+      <path d="M12 9v4l2 2"/>
+      <path d="M9 2h6"/>
+    </svg>
+    Use 5s timer
+  </button>
+  <div id="timer-countdown" role="button" aria-label="Cancel timer">
+    <span id="timer-countdown-num">5</span>
+    <span class="cancel-hint">tap to cancel</span>
+  </div>
 </div>
 
 <div id="transition-screen">
@@ -900,9 +955,9 @@ body {
   </div>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-sole.jpg" alt="How to take sole photo" />
   <p class="instruction-text">
-    <strong>Lay your phone flat on the ground</strong>, screen up, and hold your foot above the camera.
+    <strong>Use your right foot, barefoot.</strong> Lay your phone flat on the ground, screen up, and hold your foot above the camera.
     It is important to have your foot level above the phone - toes and heel should have the same distance from the phone!
-    Then just keep your foot steady - the voice guide instructs you and the scanner will snap automatically.
+    Then just keep your foot steady - the voice guide instructs you and the scanner will snap automatically. If auto-capture struggles, tap the <strong>5s timer</strong> button on the camera screen.
   </p>
   <button class="btn-primary" id="start-sole-scan" style="max-width:360px;width:100%;padding:10px 14px">Start Sole Scan</button>
 </div>
@@ -952,9 +1007,9 @@ body {
   </div>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-side.jpg" alt="How to take side photo" />
   <p class="instruction-text">
-    <strong>Hold your phone horizontally on the ground</strong>, screen facing the inside of your right foot.
+    <strong>Use your right foot, barefoot.</strong> Hold your phone horizontally on the ground, screen facing the inside of your right foot.
     Foot stands flat on the ground, leg straight. Stay still - it will snap automatically.
-    The voice guidance will talk you through the scan.
+    The voice guidance will talk you through the scan. If auto-capture struggles, tap the <strong>5s timer</strong> button on the camera screen.
   </p>
   <button class="btn-primary" id="start-side-scan" style="max-width:360px;width:100%;padding:10px 14px">Start Side Scan</button>
 </div>
@@ -1247,6 +1302,11 @@ let stillCount = 0;
 let footFrames = 0;
 let currentStep = 'sole'; // 'sole' or 'side'
 
+/* ── Manual 5s timer state (alternative to auto-capture) ── */
+let manualTimerActive = false;
+let manualTimerInterval = null;
+let manualTimerSecond = 0;
+
 /* ── Gyroscope state ── */
 let gyroAvailable = false;
 let gyroBeta = null;  // front-back tilt (-180 to 180)
@@ -1445,6 +1505,11 @@ window.addEventListener('popstate', (e) => {
     if (e.state.screen !== 'scanner' && video && video.srcObject) {
       video.srcObject.getTracks().forEach(t => t.stop());
       if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+      /* Also abort any in-flight manual timer so it does not fire post-navigation */
+      if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+      manualTimerActive = false;
+      const _tcOverlayBack = document.getElementById('timer-countdown');
+      if (_tcOverlayBack) _tcOverlayBack.classList.remove('show');
     }
   } else {
     /* No state = user went all the way back to start, show start screen */
@@ -1487,6 +1552,10 @@ document.getElementById('approve-side').addEventListener('click', () => {
   uploadThenShoeFit();
 });
 
+/* Manual 5s timer button + cancel handler */
+document.getElementById('timer-btn').addEventListener('click', () => { initSpeech(); startManualTimer(); });
+document.getElementById('timer-countdown').addEventListener('click', cancelManualTimer);
+
 /* ── Retake-mode init ──
  * When arriving at /scan?retake=sole&scan_id=XXX (or retake=side),
  * skip the start screen entirely and go straight to the instruction
@@ -1516,6 +1585,13 @@ function startScanner(step) {
   stillCount = 0;
   footFrames = 0;
   prevPixelData = null;
+  /* Reset manual timer state for this scan */
+  manualTimerActive = false;
+  if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+  const _tcOverlayInit = document.getElementById('timer-countdown');
+  const _tcBtnInit = document.getElementById('timer-btn');
+  if (_tcOverlayInit) _tcOverlayInit.classList.remove('show');
+  if (_tcBtnInit) _tcBtnInit.style.display = '';
 
   showScreen('scanner');
 
@@ -1599,7 +1675,7 @@ function startScanner(step) {
  * 3) When shape is good AND frame is stable for N consecutive checks → snap
  */
 function analyzeFrame() {
-  if (captured || !video || video.readyState < 2) return;
+  if (captured || manualTimerActive || !video || video.readyState < 2) return;
 
   analyzeCtx.drawImage(video, 0, 0, analyzeCanvas.width, analyzeCanvas.height);
 
@@ -1741,9 +1817,85 @@ function analyzeFrame() {
   }
 }
 
+/**
+ * Manual 5s timer. Triggered from the "Use 5s timer" button.
+ * Cancels auto-capture for the rest of this scan, then snaps when 0 hits.
+ * Tap the countdown circle to cancel and fall back to auto-capture.
+ */
+function startManualTimer() {
+  if (captured || manualTimerActive) return;
+  manualTimerActive = true;
+  /* Stop auto-capture while the user is using the timer */
+  if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+
+  const btn = document.getElementById('timer-btn');
+  const overlay = document.getElementById('timer-countdown');
+  const num = document.getElementById('timer-countdown-num');
+  const guideEl = currentStep === 'sole'
+    ? document.getElementById('foot-guide-svg')
+    : document.getElementById('side-guide-img');
+  const msgBox = document.getElementById('gyro-warning');
+
+  if (btn) btn.style.display = 'none';
+  if (msgBox) msgBox.style.display = 'none';
+  if (guideEl) guideEl.classList.add('ready');
+
+  manualTimerSecond = 5;
+  if (num) num.textContent = String(manualTimerSecond);
+  if (overlay) overlay.classList.add('show');
+
+  /* Re-trigger pulse animation each tick */
+  function bump() {
+    if (!overlay) return;
+    overlay.style.animation = 'none';
+    /* force reflow */
+    void overlay.offsetWidth;
+    overlay.style.animation = '';
+  }
+
+  speak('Hold still. Five seconds.');
+  bump();
+
+  manualTimerInterval = setInterval(() => {
+    manualTimerSecond -= 1;
+    if (manualTimerSecond <= 0) {
+      clearInterval(manualTimerInterval);
+      manualTimerInterval = null;
+      if (overlay) overlay.classList.remove('show');
+      capture();
+      return;
+    }
+    if (num) num.textContent = String(manualTimerSecond);
+    bump();
+    /* Voice ticks for the last 3 seconds (avoids spam, fits SPEAK_MIN_GAP) */
+    if (manualTimerSecond === 3) speak('Three.');
+    else if (manualTimerSecond === 1) speak('One.');
+  }, 1000);
+}
+
+function cancelManualTimer() {
+  if (!manualTimerActive) return;
+  manualTimerActive = false;
+  if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+  const overlay = document.getElementById('timer-countdown');
+  const btn = document.getElementById('timer-btn');
+  if (overlay) overlay.classList.remove('show');
+  if (btn && currentScreen === 'scanner' && !captured) btn.style.display = '';
+  /* Resume auto-capture */
+  if (!captured && !checkTimer && video && video.readyState >= 2) {
+    checkTimer = setInterval(analyzeFrame, CHECK_INTERVAL);
+  }
+}
+
 function capture() {
   if (captured) return;
   captured = true;
+  manualTimerActive = false;
+  if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+  const _tcOverlay = document.getElementById('timer-countdown');
+  const _tcBtn = document.getElementById('timer-btn');
+  if (_tcOverlay) _tcOverlay.classList.remove('show');
+  if (_tcBtn) _tcBtn.style.display = 'none';
   if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
 
   speak('Photo captured.');
