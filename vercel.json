@@ -13,6 +13,7 @@
     { "source": "/compare-quickdraws", "destination": "/index.html" },
     { "source": "/wishlist", "destination": "/index.html" },
     { "source": "/scan", "destination": "/scan.html" },
+    { "source": "/scan-testv2", "destination": "/scan-testv2.html" },
     { "source": "/scan/petz/:scanId", "destination": "/scan/petz/:scanId.html" },
     { "source": "/scan/:scanId/browse", "destination": "/scan-browse.html" },
     { "source": "/scan/:scanId", "destination": "/index.html" }
@@ -47,6 +48,18 @@
     },
     {
       "source": "/scan.html",
+      "headers": [
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+      ]
+    },
+    {
+      "source": "/scan-testv2",
+      "headers": [
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+      ]
+    },
+    {
+      "source": "/scan-testv2.html",
       "headers": [
         { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
       ]
