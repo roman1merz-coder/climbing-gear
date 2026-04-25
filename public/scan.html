@@ -237,19 +237,35 @@ body {
 
 /* ── Manual 5s timer (fallback when auto-capture struggles) ── */
 #timer-btn {
-  position: absolute; left: 50%; bottom: max(24px, env(safe-area-inset-bottom));
+  position: absolute; left: 50%; bottom: max(28px, env(safe-area-inset-bottom));
   transform: translateX(-50%); z-index: 11;
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(0,0,0,0.65); color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.35);
-  padding: 12px 18px; border-radius: 999px;
-  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  background: #c98a42; color: #fff;
+  border: 2px solid #fff;
+  padding: 16px 28px; border-radius: 999px;
+  font-family: inherit; font-size: 1.08rem; font-weight: 700;
+  letter-spacing: 0.2px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.4), 0 0 0 5px rgba(201,138,66,0.22);
+  animation: timer-btn-attention 2.8s ease-in-out infinite;
+  transform-origin: 50% 50%;
 }
-#timer-btn:active { background: rgba(0,0,0,0.85); }
-#timer-btn svg { width: 18px; height: 18px; }
+#timer-btn:active { background: #b97a35; box-shadow: 0 3px 10px rgba(0,0,0,0.4); }
+#timer-btn svg { width: 22px; height: 22px; }
+#timer-btn .timer-btn-hint {
+  display: block; font-size: 0.7rem; font-weight: 600;
+  opacity: 0.85; margin-top: 1px; letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+#timer-btn .timer-btn-text {
+  display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1;
+}
+@keyframes timer-btn-attention {
+  0%,  55%, 100% { transform: translateX(-50%) scale(1.0); box-shadow: 0 6px 22px rgba(0,0,0,0.4), 0 0 0 5px rgba(201,138,66,0.22); }
+  65%            { transform: translateX(-50%) scale(1.06); box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 0 10px rgba(201,138,66,0.0); }
+  75%            { transform: translateX(-50%) scale(1.0); }
+}
 #timer-countdown {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%); z-index: 12;
@@ -891,12 +907,15 @@ body {
   <div id="gyro-warning"></div>
   <!-- Manual 5s timer (alternative to auto-capture) -->
   <button id="timer-btn" type="button" aria-label="Start 5 second timer">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="13" r="8"/>
       <path d="M12 9v4l2 2"/>
       <path d="M9 2h6"/>
     </svg>
-    Use 5s timer
+    <span class="timer-btn-text">
+      <span>Use 5s timer</span>
+      <span class="timer-btn-hint">tap if scanner does not snap</span>
+    </span>
   </button>
   <div id="timer-countdown" role="button" aria-label="Cancel timer">
     <span id="timer-countdown-num">5</span>
