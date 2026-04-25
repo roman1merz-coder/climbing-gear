@@ -210,6 +210,7 @@ const GROUPS = [
         type: "single",
         options: ["narrow", "medium", "wide"],
       },
+      { key: "kids_friendly", label: "Kids only", type: "bool" },
     ],
   },
   {
@@ -847,7 +848,15 @@ export default function ClimbingGearApp({ shoes = [], src = "local", priceData =
   }, [shoes, query]);
 
   // When search is active, pre-filter to matched shoes; otherwise pass all
-  const filtered = searchScored ? searchScored.map((r) => r.shoe) : shoes;
+  // Also hard-filter on kids_friendly when "Kids only" is on (kids shoes are
+  // categorically different in size/build, so soft scoring isn't enough).
+  const filtered = useMemo(() => {
+    const base = searchScored ? searchScored.map((r) => r.shoe) : shoes;
+    if (filters.kids_friendly === true) {
+      return base.filter((s) => s.kids_friendly === true);
+    }
+    return base;
+  }, [searchScored, shoes, filters.kids_friendly]);
   // Build a relevance lookup for blending
   const relevanceMap = useMemo(() => {
     if (!searchScored) return null;
