@@ -1350,6 +1350,7 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
                 <SpecRow label="Asymmetry" value={cap(shoe.asymmetry)} />
                 <SpecRow label="Toe Patch" value={cap(shoe.toe_patch)} />
                 <SpecRow label="Heel Rubber" value={cap(shoe.heel_rubber_coverage)} />
+                <SpecRow label="Ankle Protection" value={cap(shoe.ankle_protection)} />
                 <SpecRow label="Midsole" value={cap(shoe.midsole)} />
                 <SpecRow label="Midsole Stiffness" value={cap(shoe.midsole_stiffness)} />
                 <SpecRow label="Rand" value={cap(shoe.rand)} />

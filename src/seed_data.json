@@ -6389,7 +6389,7 @@
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
-    "ankle_protection": null,
+    "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
@@ -6415,7 +6415,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T10:05:21.062219+00:00",
+    "updated_at": "2026-04-26T12:16:12.54139+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -6478,7 +6478,7 @@
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
-    "ankle_protection": null,
+    "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
@@ -6504,7 +6504,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T10:05:21.183137+00:00",
+    "updated_at": "2026-04-26T12:16:12.68887+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -6999,7 +6999,7 @@
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
-    "ankle_protection": null,
+    "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
@@ -7025,7 +7025,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:44.424673+00:00",
+    "updated_at": "2026-04-26T12:16:12.834932+00:00",
     "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian"
@@ -7588,7 +7588,7 @@
     "downturn": "moderate",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
-    "ankle_protection": null,
+    "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
@@ -7614,7 +7614,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:49.941461+00:00",
+    "updated_at": "2026-04-26T12:16:13.13668+00:00",
     "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian"
@@ -7678,7 +7678,7 @@
     "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
-    "ankle_protection": null,
+    "ankle_protection": "none",
     "durability": [
       "moderate"
     ],
@@ -7704,7 +7704,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T10:05:21.306874+00:00",
+    "updated_at": "2026-04-26T12:16:13.001805+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -8357,7 +8357,7 @@
     "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
-    "ankle_protection": null,
+    "ankle_protection": "high",
     "durability": [
       "high"
     ],
@@ -8383,7 +8383,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T10:05:21.424092+00:00",
+    "updated_at": "2026-04-26T12:16:12.240969+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "greek",
@@ -8444,7 +8444,7 @@
     "downturn": "flat",
     "toe_patch": "medium",
     "heel_rubber_coverage": "partial",
-    "ankle_protection": null,
+    "ankle_protection": "high",
     "durability": [
       "high"
     ],
@@ -8470,7 +8470,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T10:05:21.588313+00:00",
+    "updated_at": "2026-04-26T12:16:12.41189+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "greek",
