@@ -14,16 +14,16 @@
       "EN 1891"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 67.0,
+    "weight_per_meter_g": 67,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": 0.9,
     "static_elongation_pct": 2.9,
     "uiaa_falls": null,
     "impact_force_kn": null,
     "dynamic_elongation_pct": null,
     "breaking_strength_kn": 30.6,
-    "working_elongation_pct": 2.0,
+    "working_elongation_pct": 2,
     "falls_en1891": null,
     "core_material": "nylon",
     "dry_treatment": "none",
@@ -89,7 +89,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#f8fafc"
+    "rope_color_2": "#f8fafc",
+    "updated_at": "2026-02-25T20:16:17.025295+00:00"
   },
   {
     "slug": "beal-antidote-10.2",
@@ -107,14 +108,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 66.0,
+    "weight_per_meter_g": 66,
     "sheath_percentage": 33,
-    "sheath_slippage_mm": 3.0,
+    "sheath_slippage_mm": 3,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 7,
     "impact_force_kn": 7.8,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -184,7 +185,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#6b21a8",
-    "rope_color_2": "#ff9f1c"
+    "rope_color_2": "#ff9f1c",
+    "updated_at": "2026-02-25T20:16:17.171285+00:00"
   },
   {
     "slug": "beal-apollo-ii-11.0",
@@ -201,15 +203,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 77.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 77,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 4.7,
     "uiaa_falls": 12,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -281,7 +283,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2d7a47",
-    "rope_color_2": "#ffcc00"
+    "rope_color_2": "#ffcc00",
+    "updated_at": "2026-02-25T20:16:18.067582+00:00"
   },
   {
     "slug": "beal-berlin-9.8-unicore",
@@ -299,14 +302,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.2,
     "uiaa_falls": 5,
     "impact_force_kn": 8.2,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -355,7 +358,7 @@
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.95,
     "price_per_meter_eur_min": 3.3,
-    "price_per_meter_eur_max": 4.0,
+    "price_per_meter_eur_max": 4,
     "discount_pct": 16.5,
     "available_in": [
       "DE",
@@ -377,7 +380,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#cc0000",
-    "rope_color_2": "#1a1a1a"
+    "rope_color_2": "#1a1a1a",
+    "updated_at": "2026-03-02T14:15:36.821404+00:00"
   },
   {
     "slug": "beal-booster-9-7-dry-cover",
@@ -395,14 +399,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.7,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 6.0,
+    "static_elongation_pct": 6,
     "uiaa_falls": 6,
     "impact_force_kn": 7.5,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -474,7 +478,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#10b981",
-    "rope_color_2": "#059669"
+    "rope_color_2": "#059669",
+    "updated_at": "2026-02-25T20:16:18.663383+00:00"
   },
   {
     "slug": "beal-booster-9-7-unicore-golden-dry",
@@ -492,14 +497,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.7,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 6.0,
+    "static_elongation_pct": 6,
     "uiaa_falls": 6,
     "impact_force_kn": 7.5,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -546,7 +551,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -563,7 +568,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:18.824018+00:00"
   },
   {
     "slug": "beal-cobra-ii-8.6-unicore",
@@ -581,14 +587,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.6,
-    "weight_per_meter_g": 50.0,
+    "weight_per_meter_g": 50,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 12,
     "impact_force_kn": 5.5,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -659,7 +665,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
-    "rope_color_2": "#1a1a1a"
+    "rope_color_2": "#1a1a1a",
+    "updated_at": "2026-03-02T14:15:37.052868+00:00"
   },
   {
     "slug": "beal-diablo-10-2-unicore",
@@ -677,14 +684,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 5,
     "impact_force_kn": 8.7,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -731,7 +738,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -748,7 +755,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:19.124427+00:00"
   },
   {
     "slug": "beal-diablo-9-8-unicore",
@@ -765,14 +773,14 @@
       "EN 892"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.2,
     "uiaa_falls": 5,
     "impact_force_kn": 8.2,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -816,9 +824,9 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.9,
-    "price_per_meter_eur_min": 2.87,
+    "price_per_meter_eur_min": 3.12,
     "price_per_meter_eur_max": 3.14,
-    "discount_pct": 26.4,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -835,7 +843,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-03-28T10:37:59.889207+00:00"
   },
   {
     "slug": "beal-flyer-10-2-dry-cover",
@@ -853,14 +862,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 3.0,
+    "sheath_slippage_mm": 3,
     "knotability_mm": null,
     "static_elongation_pct": 6.1,
     "uiaa_falls": 7,
     "impact_force_kn": 7.5,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -908,7 +917,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -925,7 +934,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:19.508398+00:00"
   },
   {
     "slug": "beal-gully-7.3-unicore-golden-dry",
@@ -943,14 +953,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.3,
-    "weight_per_meter_g": 36.0,
+    "weight_per_meter_g": 36,
     "sheath_percentage": 45,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 10.1,
     "uiaa_falls": 15,
-    "impact_force_kn": 5.0,
-    "dynamic_elongation_pct": 35.0,
+    "impact_force_kn": 5,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1018,7 +1028,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8c44a",
-    "rope_color_2": "#d4a830"
+    "rope_color_2": "#d4a830",
+    "updated_at": "2026-02-25T20:16:19.688018+00:00"
   },
   {
     "slug": "beal-ice-line-8-1-unicore-golden-dry",
@@ -1036,14 +1047,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.1,
-    "weight_per_meter_g": 46.0,
+    "weight_per_meter_g": 46,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 11.7,
     "uiaa_falls": 5,
     "impact_force_kn": 5.2,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1111,7 +1122,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#f97316"
+    "rope_color_2": "#f97316",
+    "updated_at": "2026-03-02T14:15:36.940319+00:00"
   },
   {
     "slug": "beal-industrie-11",
@@ -1127,8 +1139,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 74.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 74,
     "sheath_percentage": 34,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -1201,7 +1213,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:20.098297+00:00"
   },
   {
     "slug": "beal-intervention-11",
@@ -1217,8 +1230,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 74.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 74,
     "sheath_percentage": 34,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -1287,7 +1300,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:20.294423+00:00"
   },
   {
     "slug": "beal-joker-9-1-golden-dry",
@@ -1305,14 +1319,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 52.0,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 5,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1382,7 +1396,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#22c55e"
+    "rope_color_2": "#22c55e",
+    "updated_at": "2026-02-25T20:16:20.493832+00:00"
   },
   {
     "slug": "beal-joker-9-1-unicore-dry-cover",
@@ -1400,14 +1415,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 52.0,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 5,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1455,7 +1470,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -1472,7 +1487,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:21:18.659643+00:00"
   },
   {
     "slug": "beal-joker-soft-9-1-unicore-dry-cover",
@@ -1489,14 +1505,14 @@
       "EN 892"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 52.0,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 5,
     "impact_force_kn": 7.3,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1544,7 +1560,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -1562,7 +1578,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:20.888976+00:00"
   },
   {
     "slug": "beal-karma-9-8",
@@ -1580,14 +1597,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 33,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.4,
     "uiaa_falls": 5,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1658,7 +1675,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#ea580c"
+    "rope_color_2": "#ea580c",
+    "updated_at": "2026-03-02T14:15:36.560708+00:00"
   },
   {
     "slug": "beal-opera-8-5-unicore-dry-cover",
@@ -1676,14 +1694,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.5,
-    "weight_per_meter_g": 48.0,
+    "weight_per_meter_g": 48,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.4,
     "uiaa_falls": 5,
     "impact_force_kn": 7.3,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1731,7 +1749,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -1748,7 +1766,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:21.278618+00:00"
   },
   {
     "slug": "beal-opera-unicore-golden-dry-8.5",
@@ -1766,14 +1785,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.5,
-    "weight_per_meter_g": 48.0,
+    "weight_per_meter_g": 48,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.4,
     "uiaa_falls": 5,
     "impact_force_kn": 7.3,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1824,7 +1843,7 @@
     "price_uvp_per_meter_eur": 4.29,
     "price_per_meter_eur_min": 3.86,
     "price_per_meter_eur_max": 4.4,
-    "discount_pct": 10.0,
+    "discount_pct": 10,
     "available_in": [
       "DE",
       "AT",
@@ -1845,7 +1864,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#cc6b33"
+    "rope_color_2": "#cc6b33",
+    "updated_at": "2026-02-25T20:16:21.477235+00:00"
   },
   {
     "slug": "beal-rando-8.0",
@@ -1862,15 +1882,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 42.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 42,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.4,
     "uiaa_falls": 8,
     "impact_force_kn": 7.9,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -1916,7 +1936,7 @@
     "price_uvp_per_meter_eur": 4.05,
     "price_per_meter_eur_min": 3.4,
     "price_per_meter_eur_max": 4.1,
-    "discount_pct": 16.0,
+    "discount_pct": 16,
     "available_in": [
       "DE",
       "AT",
@@ -1935,7 +1955,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#808080",
-    "rope_color_2": "#0066cc"
+    "rope_color_2": "#0066cc",
+    "updated_at": "2026-03-02T14:15:37.23032+00:00"
   },
   {
     "slug": "beal-stinger-9-4-unicore-dry-cover",
@@ -1953,14 +1974,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.2,
     "uiaa_falls": 6,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2008,9 +2029,9 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.75,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.75,
-    "discount_pct": 20.0,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -2031,7 +2052,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#3b82f6"
+    "rope_color_2": "#3b82f6",
+    "updated_at": "2026-02-25T20:16:21.876658+00:00"
   },
   {
     "slug": "beal-stinger-9-4-unicore-golden-dry",
@@ -2049,14 +2071,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.2,
     "uiaa_falls": 6,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2103,7 +2125,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -2120,7 +2142,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:22.085711+00:00"
   },
   {
     "slug": "beal-sunrise-9.2",
@@ -2138,14 +2161,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.4,
     "uiaa_falls": 5,
     "impact_force_kn": 7.6,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2213,7 +2236,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
-    "rope_color_2": "#ffb81c"
+    "rope_color_2": "#ffb81c",
+    "updated_at": "2026-02-25T20:16:22.244524+00:00"
   },
   {
     "slug": "beal-the-one-9.6",
@@ -2231,14 +2255,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 6,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2308,7 +2332,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e60012",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-03-02T15:58:17.261639+00:00"
   },
   {
     "slug": "beal-tiger-10-0-unicore",
@@ -2325,15 +2350,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 60.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.1,
     "uiaa_falls": 6,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2404,7 +2429,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#f97316"
+    "rope_color_2": "#f97316",
+    "updated_at": "2026-02-25T20:16:22.619242+00:00"
   },
   {
     "slug": "beal-tiger-10-0-unicore-golden-dry",
@@ -2421,15 +2447,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 60.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.1,
     "uiaa_falls": 6,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2477,7 +2503,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -2494,7 +2520,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:22.795774+00:00"
   },
   {
     "slug": "beal-top-gun-ii-10-5-unicore-dry-cover",
@@ -2512,14 +2539,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 67.0,
+    "weight_per_meter_g": 67,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 4.6,
     "uiaa_falls": 10,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2567,7 +2594,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -2584,7 +2611,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:23.025198+00:00"
   },
   {
     "slug": "beal-top-gun-ii-10-5-unicore-golden-dry",
@@ -2602,14 +2630,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 67.0,
+    "weight_per_meter_g": 67,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 4.6,
     "uiaa_falls": 10,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2657,7 +2685,7 @@
     "price_uvp_per_meter_eur": null,
     "price_per_meter_eur_min": null,
     "price_per_meter_eur_max": null,
-    "discount_pct": 0.0,
+    "discount_pct": 0,
     "available_in": [
       "DE",
       "AT",
@@ -2676,7 +2704,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:23.207236+00:00"
   },
   {
     "slug": "beal-virus-10-0",
@@ -2693,15 +2722,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 63.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 4.0,
+    "sheath_slippage_mm": 4,
     "knotability_mm": null,
     "static_elongation_pct": 9.7,
     "uiaa_falls": 7,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2772,7 +2801,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#16a34a",
-    "rope_color_2": "#15803d"
+    "rope_color_2": "#15803d",
+    "updated_at": "2026-02-25T20:16:23.404905+00:00"
   },
   {
     "slug": "beal-wall-cruiser-9.6-unicore",
@@ -2790,14 +2820,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.7,
     "uiaa_falls": 8,
     "impact_force_kn": 7.9,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2869,7 +2899,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0066cc",
-    "rope_color_2": "#ffcc00"
+    "rope_color_2": "#ffcc00",
+    "updated_at": "2026-03-02T14:15:36.715139+00:00"
   },
   {
     "slug": "beal-wall-master-vi-10-5",
@@ -2887,14 +2918,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 71.0,
+    "weight_per_meter_g": 71,
     "sheath_percentage": 47,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.8,
     "uiaa_falls": 6,
     "impact_force_kn": 7.8,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -2964,7 +2995,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1e40af",
-    "rope_color_2": "#1e3a8a"
+    "rope_color_2": "#1e3a8a",
+    "updated_at": "2026-03-02T15:58:17.841757+00:00"
   },
   {
     "slug": "beal-zenith-9-5",
@@ -2982,14 +3014,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 1.0,
+    "sheath_slippage_mm": 1,
     "knotability_mm": null,
     "static_elongation_pct": 9.2,
     "uiaa_falls": 5,
     "impact_force_kn": 7.5,
-    "dynamic_elongation_pct": 38.0,
+    "dynamic_elongation_pct": 38,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3058,7 +3090,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2563eb",
-    "rope_color_2": "#1d4ed8"
+    "rope_color_2": "#1d4ed8",
+    "updated_at": "2026-02-25T20:16:24.021834+00:00"
   },
   {
     "slug": "black-diamond-7-0-dry",
@@ -3075,15 +3108,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 7.0,
-    "weight_per_meter_g": 36.0,
+    "diameter_mm": 7,
+    "weight_per_meter_g": 36,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 3.6,
     "uiaa_falls": 14,
     "impact_force_kn": 8.9,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3150,7 +3183,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0ea5e9",
-    "rope_color_2": "#0284c7"
+    "rope_color_2": "#0284c7",
+    "updated_at": "2026-03-02T20:00:41.770219+00:00"
   },
   {
     "slug": "black-diamond-8-5-dry",
@@ -3168,14 +3202,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.5,
-    "weight_per_meter_g": 48.0,
+    "weight_per_meter_g": 48,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 10,
-    "impact_force_kn": 5.0,
-    "dynamic_elongation_pct": 35.0,
+    "impact_force_kn": 5,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3244,7 +3278,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#6366f1",
-    "rope_color_2": "#4f46e5"
+    "rope_color_2": "#4f46e5",
+    "updated_at": "2026-03-02T20:00:42.216816+00:00"
   },
   {
     "slug": "black-diamond-9-4-dry",
@@ -3262,14 +3297,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.4,
     "uiaa_falls": 7,
-    "impact_force_kn": 8.0,
-    "dynamic_elongation_pct": 34.0,
+    "impact_force_kn": 8,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3321,7 +3356,7 @@
     "price_uvp_per_meter_eur": 4.86,
     "price_per_meter_eur_min": 3.5,
     "price_per_meter_eur_max": 4.86,
-    "discount_pct": 28.0,
+    "discount_pct": 28,
     "available_in": [
       "DE",
       "AT",
@@ -3342,7 +3377,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2563eb",
-    "rope_color_2": "#1d4ed8"
+    "rope_color_2": "#1d4ed8",
+    "updated_at": "2026-02-25T20:16:24.717204+00:00"
   },
   {
     "slug": "black-diamond-9-9",
@@ -3360,14 +3396,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.9,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.6,
     "uiaa_falls": 6,
     "impact_force_kn": 8.4,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3438,7 +3474,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
-    "rope_color_2": "#b91c1c"
+    "rope_color_2": "#b91c1c",
+    "updated_at": "2026-03-02T20:00:43.293509+00:00"
   },
   {
     "slug": "black-diamond-9.2-dry",
@@ -3456,14 +3493,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 56.0,
+    "weight_per_meter_g": 56,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.5,
     "uiaa_falls": 9,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3532,7 +3569,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
-    "rope_color_2": "#808080"
+    "rope_color_2": "#808080",
+    "updated_at": "2026-03-02T20:00:42.785746+00:00"
   },
   {
     "slug": "bluewater-accelerator-10-5",
@@ -3550,9 +3588,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 68.0,
+    "weight_per_meter_g": 68,
     "sheath_percentage": 31,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.7,
     "uiaa_falls": 11,
@@ -3627,7 +3665,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
-    "rope_color_2": "#f4d03f"
+    "rope_color_2": "#f4d03f",
+    "updated_at": "2026-03-02T20:02:23.653276+00:00"
   },
   {
     "slug": "bluewater-eliminator-10-2",
@@ -3645,14 +3684,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 34,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.5,
     "uiaa_falls": 8,
     "impact_force_kn": 8.1,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -3719,7 +3758,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#d94040"
+    "rope_color_2": "#d94040",
+    "updated_at": "2026-03-02T20:02:24.167689+00:00"
   },
   {
     "slug": "bluewater-enduro-11",
@@ -3736,10 +3776,10 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 76.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 76,
     "sheath_percentage": 43,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.7,
     "uiaa_falls": 15,
@@ -3812,7 +3852,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#000000"
+    "rope_color_2": "#000000",
+    "updated_at": "2026-03-02T20:02:24.677279+00:00"
   },
   {
     "slug": "bluewater-icon-9-1",
@@ -3830,9 +3871,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 55.0,
+    "weight_per_meter_g": 55,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.2,
     "uiaa_falls": 5,
@@ -3885,7 +3926,7 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 2.43,
-    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_min": 2,
     "price_per_meter_eur_max": 2.43,
     "discount_pct": 17.7,
     "available_in": [
@@ -3908,7 +3949,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#06b6d4",
-    "rope_color_2": "#0891b2"
+    "rope_color_2": "#0891b2",
+    "updated_at": "2026-03-02T20:02:25.519342+00:00"
   },
   {
     "slug": "bluewater-lightning-pro-9-7",
@@ -3926,9 +3968,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.7,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 1.0,
+    "sheath_slippage_mm": 1,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 8,
@@ -4006,7 +4048,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1e40af",
-    "rope_color_2": "#1e3a8a"
+    "rope_color_2": "#1e3a8a",
+    "updated_at": "2026-03-02T20:02:26.008433+00:00"
   },
   {
     "slug": "bluewater-neon-10",
@@ -4023,14 +4066,14 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 63.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.5,
     "uiaa_falls": 8,
-    "impact_force_kn": 8.0,
+    "impact_force_kn": 8,
     "dynamic_elongation_pct": 27.7,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
@@ -4099,7 +4142,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff6b35",
-    "rope_color_2": "#ffd700"
+    "rope_color_2": "#ffd700",
+    "updated_at": "2026-03-02T20:02:26.431955+00:00"
   },
   {
     "slug": "bluewater-xenon-9-2",
@@ -4117,9 +4161,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 55.0,
+    "weight_per_meter_g": 55,
     "sheath_percentage": 33,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 4.7,
     "uiaa_falls": 7,
@@ -4169,7 +4213,7 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.35,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.45,
     "discount_pct": 10.4,
     "available_in": [
@@ -4191,7 +4235,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T20:02:26.922486+00:00"
   },
   {
     "slug": "edelrid-apus-pro-dry-7-9",
@@ -4209,14 +4254,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.9,
-    "weight_per_meter_g": 43.0,
+    "weight_per_meter_g": 43,
     "sheath_percentage": 33,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.7,
     "uiaa_falls": 9,
     "impact_force_kn": 6.7,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4262,7 +4307,7 @@
     "price_uvp_per_meter_eur": 4.2,
     "price_per_meter_eur_min": 3.4,
     "price_per_meter_eur_max": 4.2,
-    "discount_pct": 19.0,
+    "discount_pct": 19,
     "available_in": [
       "DE",
       "AT",
@@ -4283,7 +4328,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#06b6d4"
+    "rope_color_2": "#06b6d4",
+    "updated_at": "2026-03-02T14:15:38.651227+00:00"
   },
   {
     "slug": "edelrid-birdlime-1r-9-8",
@@ -4301,14 +4347,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.9,
     "uiaa_falls": 6,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4378,7 +4424,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#16a34a"
+    "rope_color_2": "#16a34a",
+    "updated_at": "2026-03-02T14:15:37.602469+00:00"
   },
   {
     "slug": "edelrid-boa-eco-2r-9-6",
@@ -4396,14 +4443,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.2,
     "uiaa_falls": 7,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4453,7 +4500,7 @@
     "pfc_free": true,
     "eco_label": "2R — Reuse (upcycled production yarns)",
     "price_uvp_per_meter_eur": 2.57,
-    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_min": 2,
     "price_per_meter_eur_max": 2.57,
     "discount_pct": 22.2,
     "available_in": [
@@ -4476,7 +4523,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#4ade80",
-    "rope_color_2": "#22c55e"
+    "rope_color_2": "#22c55e",
+    "updated_at": "2026-03-02T20:05:13.167307+00:00"
   },
   {
     "slug": "edelrid-boa-eco-9.8",
@@ -4494,14 +4542,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.3,
     "uiaa_falls": 7,
     "impact_force_kn": 8.8,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4573,7 +4621,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#4a7de8",
-    "rope_color_2": "#3565c4"
+    "rope_color_2": "#3565c4",
+    "updated_at": "2026-03-02T14:15:38.457346+00:00"
   },
   {
     "slug": "edelrid-canary-pro-dry-8-6",
@@ -4591,14 +4640,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.6,
-    "weight_per_meter_g": 51.0,
+    "weight_per_meter_g": 51,
     "sheath_percentage": 47,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.4,
     "uiaa_falls": 5,
     "impact_force_kn": 8.4,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4669,7 +4718,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#2563eb"
+    "rope_color_2": "#2563eb",
+    "updated_at": "2026-02-25T20:16:27.771023+00:00"
   },
   {
     "slug": "edelrid-eagle-lite-9-5",
@@ -4687,14 +4737,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.1,
     "uiaa_falls": 9,
-    "impact_force_kn": 9.0,
-    "dynamic_elongation_pct": 29.0,
+    "impact_force_kn": 9,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4743,7 +4793,7 @@
     "pfc_free": true,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.8,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.8,
     "discount_pct": 21.1,
     "available_in": [
@@ -4766,7 +4816,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ef4444",
-    "rope_color_2": "#3b82f6"
+    "rope_color_2": "#3b82f6",
+    "updated_at": "2026-03-02T14:15:37.377441+00:00"
   },
   {
     "slug": "edelrid-eagle-lite-protect-pro-dry-9-5",
@@ -4784,14 +4835,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 4.7,
     "uiaa_falls": 6,
     "impact_force_kn": 8.7,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4841,7 +4892,7 @@
     "price_uvp_per_meter_eur": 4.43,
     "price_per_meter_eur_min": 3.5,
     "price_per_meter_eur_max": 4.43,
-    "discount_pct": 21.0,
+    "discount_pct": 21,
     "available_in": [
       "DE",
       "AT",
@@ -4862,7 +4913,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#ea580c"
+    "rope_color_2": "#ea580c",
+    "updated_at": "2026-03-02T20:05:13.825719+00:00"
   },
   {
     "slug": "edelrid-neo-100-3r-9-6",
@@ -4880,14 +4932,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.8,
     "uiaa_falls": 7,
     "impact_force_kn": 8.4,
-    "dynamic_elongation_pct": 38.0,
+    "dynamic_elongation_pct": 38,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -4936,7 +4988,7 @@
     "price_uvp_per_meter_eur": 3.29,
     "price_per_meter_eur_min": 2.6,
     "price_per_meter_eur_max": 3.29,
-    "discount_pct": 21.0,
+    "discount_pct": 21,
     "available_in": [
       "DE",
       "AT",
@@ -4956,7 +5008,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#059669",
-    "rope_color_2": "#047857"
+    "rope_color_2": "#047857",
+    "updated_at": "2026-03-02T14:15:37.774193+00:00"
   },
   {
     "slug": "edelrid-neo-3r-9.8",
@@ -4974,14 +5027,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.2,
     "uiaa_falls": 9,
     "impact_force_kn": 8.8,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5053,7 +5106,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2d7a47",
-    "rope_color_2": "#ff9f1c"
+    "rope_color_2": "#ff9f1c",
+    "updated_at": "2026-02-25T20:16:28.514132+00:00"
   },
   {
     "slug": "edelrid-performance-static-10.5",
@@ -5071,15 +5125,15 @@
       "UIAA 107"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 72.0,
+    "weight_per_meter_g": 72,
     "sheath_percentage": 45,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 3.8,
     "uiaa_falls": null,
     "impact_force_kn": null,
     "dynamic_elongation_pct": null,
-    "breaking_strength_kn": 31.0,
+    "breaking_strength_kn": 31,
     "working_elongation_pct": 3.5,
     "falls_en1891": 16,
     "core_material": "polyamide",
@@ -5147,7 +5201,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#c8c8c8",
-    "rope_color_2": "#a0a0a0"
+    "rope_color_2": "#a0a0a0",
+    "updated_at": "2026-02-25T20:16:28.711359+00:00"
   },
   {
     "slug": "edelrid-performance-static-11",
@@ -5163,8 +5218,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 79.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 79,
     "sheath_percentage": 41,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -5232,7 +5287,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:28.89634+00:00"
   },
   {
     "slug": "edelrid-pintail-10",
@@ -5248,15 +5304,15 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 70.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 70,
     "sheath_percentage": 40,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
     "static_elongation_pct": 2.9,
     "uiaa_falls": 12,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5299,7 +5355,7 @@
     "price_uvp_per_meter_eur": 2.88,
     "price_per_meter_eur_min": 2.65,
     "price_per_meter_eur_max": 2.88,
-    "discount_pct": 8.0,
+    "discount_pct": 8,
     "available_in": [
       "DE",
       "AT",
@@ -5316,7 +5372,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:29.073435+00:00"
   },
   {
     "slug": "edelrid-siskin-eco-dry-8-6",
@@ -5334,14 +5391,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.6,
-    "weight_per_meter_g": 48.0,
+    "weight_per_meter_g": 48,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.3,
     "uiaa_falls": 5,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5386,10 +5443,10 @@
     "recycled_materials": "none",
     "pfc_free": true,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 5.0,
-    "price_per_meter_eur_min": 4.0,
-    "price_per_meter_eur_max": 5.0,
-    "discount_pct": 20.0,
+    "price_uvp_per_meter_eur": 5,
+    "price_per_meter_eur_min": 4,
+    "price_per_meter_eur_max": 5,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -5410,7 +5467,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0ea5e9",
-    "rope_color_2": "#0284c7"
+    "rope_color_2": "#0284c7",
+    "updated_at": "2026-03-02T14:15:37.891539+00:00"
   },
   {
     "slug": "edelrid-skimmer-eco-dry-7.1",
@@ -5428,14 +5486,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.1,
-    "weight_per_meter_g": 36.0,
+    "weight_per_meter_g": 36,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 5,
     "impact_force_kn": 6.1,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5502,7 +5560,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0066cc",
-    "rope_color_2": "#ffcc00"
+    "rope_color_2": "#ffcc00",
+    "updated_at": "2026-03-02T14:15:38.352457+00:00"
   },
   {
     "slug": "edelrid-starling-protect-pro-dry-8.2",
@@ -5520,14 +5579,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.2,
-    "weight_per_meter_g": 46.0,
+    "weight_per_meter_g": 46,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.8,
     "uiaa_falls": 7,
-    "impact_force_kn": 7.0,
-    "dynamic_elongation_pct": 28.0,
+    "impact_force_kn": 7,
+    "dynamic_elongation_pct": 28,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5573,7 +5632,7 @@
     "price_uvp_per_meter_eur": 3.75,
     "price_per_meter_eur_min": 3.15,
     "price_per_meter_eur_max": 3.8,
-    "discount_pct": 16.0,
+    "discount_pct": 16,
     "available_in": [
       "DE",
       "AT",
@@ -5593,7 +5652,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#808080",
-    "rope_color_2": "#ff9f1c"
+    "rope_color_2": "#ff9f1c",
+    "updated_at": "2026-03-02T14:15:38.234454+00:00"
   },
   {
     "slug": "edelrid-superstatic-link-tec-11",
@@ -5609,8 +5669,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 78.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 78,
     "sheath_percentage": null,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -5677,7 +5737,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:29.842287+00:00"
   },
   {
     "slug": "edelrid-swift-48-8.9",
@@ -5696,14 +5757,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.9,
-    "weight_per_meter_g": 53.0,
+    "weight_per_meter_g": 53,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.2,
     "uiaa_falls": 6,
     "impact_force_kn": 8.7,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": 5,
@@ -5774,7 +5835,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0066cc",
-    "rope_color_2": "#ff9f1c"
+    "rope_color_2": "#ff9f1c",
+    "updated_at": "2026-03-02T14:15:38.033402+00:00"
   },
   {
     "slug": "edelrid-swift-eco-dry-8-9",
@@ -5792,14 +5854,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.9,
-    "weight_per_meter_g": 52.0,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 34,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.8,
     "uiaa_falls": 7,
-    "impact_force_kn": 9.0,
-    "dynamic_elongation_pct": 35.0,
+    "impact_force_kn": 9,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5849,10 +5911,10 @@
     "recycled_materials": "none",
     "pfc_free": true,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 4.0,
-    "price_per_meter_eur_min": 3.0,
-    "price_per_meter_eur_max": 4.0,
-    "discount_pct": 25.0,
+    "price_uvp_per_meter_eur": 4,
+    "price_per_meter_eur_min": 3,
+    "price_per_meter_eur_max": 4,
+    "discount_pct": 25,
     "available_in": [
       "DE",
       "AT",
@@ -5872,7 +5934,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#059669",
-    "rope_color_2": "#047857"
+    "rope_color_2": "#047857",
+    "updated_at": "2026-02-25T20:16:30.564171+00:00"
   },
   {
     "slug": "edelrid-swift-protect-pro-dry-8.9",
@@ -5890,14 +5953,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.9,
-    "weight_per_meter_g": 53.0,
+    "weight_per_meter_g": 53,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.5,
     "uiaa_falls": 20,
     "impact_force_kn": 9.9,
-    "dynamic_elongation_pct": 29.0,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -5966,7 +6029,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2d5b4e",
-    "rope_color_2": "#4acfa0"
+    "rope_color_2": "#4acfa0",
+    "updated_at": "2026-02-25T20:16:30.777761+00:00"
   },
   {
     "slug": "edelrid-tommy-caldwell-eco-dry-9.6",
@@ -5984,14 +6048,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.4,
     "uiaa_falls": 8,
     "impact_force_kn": 9.1,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6062,7 +6126,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#3a6fc9"
+    "rope_color_2": "#3a6fc9",
+    "updated_at": "2026-02-25T20:16:30.946181+00:00"
   },
   {
     "slug": "edelrid-tommy-caldwell-eco-dry-colortec-9-3",
@@ -6080,14 +6145,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.3,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.4,
     "uiaa_falls": 7,
-    "impact_force_kn": 9.0,
-    "dynamic_elongation_pct": 34.0,
+    "impact_force_kn": 9,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6134,7 +6199,7 @@
     "pfc_free": true,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.71,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.71,
     "discount_pct": 19.1,
     "available_in": [
@@ -6157,7 +6222,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#8b5cf6",
-    "rope_color_2": "#7c3aed"
+    "rope_color_2": "#7c3aed",
+    "updated_at": "2026-03-02T14:15:37.492497+00:00"
   },
   {
     "slug": "edelrid-tower-lite-synctec-10.0",
@@ -6174,15 +6240,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 63.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 9,
     "impact_force_kn": 8.7,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6250,7 +6316,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e60012",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-03-02T20:05:14.355376+00:00"
   },
   {
     "slug": "edelweiss-curve-9-8",
@@ -6268,14 +6335,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.4,
     "uiaa_falls": 8,
     "impact_force_kn": 8.1,
-    "dynamic_elongation_pct": 37.0,
+    "dynamic_elongation_pct": 37,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6345,7 +6412,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:45:15.808191+00:00"
   },
   {
     "slug": "edelweiss-discover-8",
@@ -6361,15 +6429,15 @@
     "certification": [
       "EN 892"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 47.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 47,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 14,
-    "impact_force_kn": 9.0,
-    "dynamic_elongation_pct": 32.0,
+    "impact_force_kn": 9,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": 12,
@@ -6437,7 +6505,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#808080"
+    "rope_color_2": "#808080",
+    "updated_at": "2026-03-02T19:45:16.256257+00:00"
   },
   {
     "slug": "edelweiss-element-ii-10-2",
@@ -6455,14 +6524,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 66.0,
+    "weight_per_meter_g": 66,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.6,
     "uiaa_falls": 11,
     "impact_force_kn": 8.3,
-    "dynamic_elongation_pct": 29.0,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6533,7 +6602,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
-    "rope_color_2": "#e8844a"
+    "rope_color_2": "#e8844a",
+    "updated_at": "2026-03-02T19:45:16.692993+00:00"
   },
   {
     "slug": "edelweiss-elite-7-8",
@@ -6551,14 +6621,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.8,
-    "weight_per_meter_g": 39.0,
+    "weight_per_meter_g": 39,
     "sheath_percentage": 34,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 6,
     "impact_force_kn": 5.5,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6603,7 +6673,7 @@
     "price_uvp_per_meter_eur": 4.45,
     "price_per_meter_eur_min": 4.05,
     "price_per_meter_eur_max": 4.6,
-    "discount_pct": 9.0,
+    "discount_pct": 9,
     "available_in": [
       "DE",
       "AT",
@@ -6624,7 +6694,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#8b4789",
-    "rope_color_2": "#e8844a"
+    "rope_color_2": "#e8844a",
+    "updated_at": "2026-03-02T19:45:17.117858+00:00"
   },
   {
     "slug": "edelweiss-energy-arc-9-5",
@@ -6642,14 +6713,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.8,
     "uiaa_falls": 7,
     "impact_force_kn": 7.8,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6716,7 +6787,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:45:17.503459+00:00"
   },
   {
     "slug": "edelweiss-geos-10-5",
@@ -6734,14 +6806,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 71.0,
+    "weight_per_meter_g": 71,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.2,
     "uiaa_falls": 13,
     "impact_force_kn": 8.3,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6813,7 +6885,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#d94040"
+    "rope_color_2": "#d94040",
+    "updated_at": "2026-03-02T19:45:18.460165+00:00"
   },
   {
     "slug": "edelweiss-oxygen-ii-superevedry-8-2",
@@ -6831,14 +6904,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.2,
-    "weight_per_meter_g": 46.0,
+    "weight_per_meter_g": 46,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 7,
     "impact_force_kn": 5.5,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6907,7 +6980,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#14b8a6",
-    "rope_color_2": "#0d9488"
+    "rope_color_2": "#0d9488",
+    "updated_at": "2026-03-02T19:45:18.854513+00:00"
   },
   {
     "slug": "edelweiss-performance-9-2",
@@ -6925,14 +6999,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 52.0,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 5,
     "impact_force_kn": 8.2,
-    "dynamic_elongation_pct": 37.0,
+    "dynamic_elongation_pct": 37,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -6981,7 +7055,7 @@
     "price_uvp_per_meter_eur": 3.68,
     "price_per_meter_eur_min": 3.35,
     "price_per_meter_eur_max": 3.8,
-    "discount_pct": 9.0,
+    "discount_pct": 9,
     "available_in": [
       "DE",
       "AT",
@@ -7001,7 +7075,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#3b9a5b"
+    "rope_color_2": "#3b9a5b",
+    "updated_at": "2026-03-02T19:45:19.267701+00:00"
   },
   {
     "slug": "edelweiss-spirit-arc-8-8",
@@ -7019,14 +7094,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.8,
-    "weight_per_meter_g": 45.0,
+    "weight_per_meter_g": 45,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 18,
-    "impact_force_kn": 6.0,
-    "dynamic_elongation_pct": 29.0,
+    "impact_force_kn": 6,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7091,7 +7166,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:45:19.623865+00:00"
   },
   {
     "slug": "fixe-foixarda-9-8",
@@ -7109,14 +7185,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 7,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7162,7 +7238,7 @@
     "eco_label": null,
     "price_uvp_per_meter_eur": 2.85,
     "price_per_meter_eur_min": 2.55,
-    "price_per_meter_eur_max": 3.0,
+    "price_per_meter_eur_max": 3,
     "discount_pct": 10.5,
     "available_in": [
       "ES",
@@ -7182,7 +7258,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
-    "rope_color_2": "#d94040"
+    "rope_color_2": "#d94040",
+    "updated_at": "2026-03-02T19:48:52.503831+00:00"
   },
   {
     "slug": "fixe-montserrat-9-4",
@@ -7200,14 +7277,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.1,
     "uiaa_falls": 6,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7275,7 +7352,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#f4d03f"
+    "rope_color_2": "#f4d03f",
+    "updated_at": "2026-03-02T19:48:53.075017+00:00"
   },
   {
     "slug": "fixe-oliana-9-2",
@@ -7293,14 +7371,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 5,
     "impact_force_kn": 7.1,
-    "dynamic_elongation_pct": 37.0,
+    "dynamic_elongation_pct": 37,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7373,7 +7451,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#1d4ed8"
+    "rope_color_2": "#1d4ed8",
+    "updated_at": "2026-02-25T20:16:33.327206+00:00"
   },
   {
     "slug": "fixe-pedraforca-8-8",
@@ -7391,14 +7470,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.8,
-    "weight_per_meter_g": 46.0,
+    "weight_per_meter_g": 46,
     "sheath_percentage": 30,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 6,
     "impact_force_kn": 7.2,
-    "dynamic_elongation_pct": 37.0,
+    "dynamic_elongation_pct": 37,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7444,7 +7523,7 @@
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.85,
     "price_per_meter_eur_min": 3.5,
-    "price_per_meter_eur_max": 4.0,
+    "price_per_meter_eur_max": 4,
     "discount_pct": 9.1,
     "available_in": [
       "ES",
@@ -7465,7 +7544,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
-    "rope_color_2": "#e8844a"
+    "rope_color_2": "#e8844a",
+    "updated_at": "2026-03-02T19:48:53.523141+00:00"
   },
   {
     "slug": "fixe-rocco-10",
@@ -7482,15 +7562,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 67.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 67,
     "sheath_percentage": 34,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.1,
     "uiaa_falls": 7,
     "impact_force_kn": 7.8,
-    "dynamic_elongation_pct": 26.0,
+    "dynamic_elongation_pct": 26,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7559,7 +7639,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
-    "rope_color_2": "#d94040"
+    "rope_color_2": "#d94040",
+    "updated_at": "2026-03-02T19:48:53.91637+00:00"
   },
   {
     "slug": "fixe-rodellar-9-4-dry-fusion",
@@ -7577,14 +7658,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 6,
     "impact_force_kn": 7.6,
-    "dynamic_elongation_pct": 37.0,
+    "dynamic_elongation_pct": 37,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7633,7 +7714,7 @@
     "price_uvp_per_meter_eur": 3.35,
     "price_per_meter_eur_min": 3.05,
     "price_per_meter_eur_max": 3.5,
-    "discount_pct": 9.0,
+    "discount_pct": 9,
     "available_in": [
       "ES",
       "FR",
@@ -7652,7 +7733,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#8b4789"
+    "rope_color_2": "#8b4789",
+    "updated_at": "2026-03-02T19:48:54.299415+00:00"
   },
   {
     "slug": "fixe-siurana-9-6",
@@ -7670,14 +7752,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 6,
     "impact_force_kn": 8.8,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7745,7 +7827,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:48:54.652954+00:00"
   },
   {
     "slug": "fixe-zen-8-1",
@@ -7763,14 +7846,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.1,
-    "weight_per_meter_g": 41.0,
+    "weight_per_meter_g": 41,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 8,
     "impact_force_kn": 5.7,
-    "dynamic_elongation_pct": 36.0,
+    "dynamic_elongation_pct": 36,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7835,7 +7918,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff6b35",
-    "rope_color_2": "#ff6b35"
+    "rope_color_2": "#ff6b35",
+    "updated_at": "2026-03-02T19:48:55.022515+00:00"
   },
   {
     "slug": "mammut-10-2-gravity",
@@ -7853,14 +7937,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 70.0,
+    "weight_per_meter_g": 70,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.8,
     "uiaa_falls": 10,
     "impact_force_kn": 8.9,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -7913,7 +7997,7 @@
     "price_uvp_per_meter_eur": 3.5,
     "price_per_meter_eur_min": 2.8,
     "price_per_meter_eur_max": 3.5,
-    "discount_pct": 20.0,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -7934,7 +8018,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#2563eb"
+    "rope_color_2": "#2563eb",
+    "updated_at": "2026-03-02T16:06:31.7912+00:00"
   },
   {
     "slug": "mammut-7-5-alpine-sender-dry",
@@ -7952,14 +8037,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.5,
-    "weight_per_meter_g": 37.0,
+    "weight_per_meter_g": 37,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.8,
     "uiaa_falls": 8,
     "impact_force_kn": 5.5,
-    "dynamic_elongation_pct": 29.0,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8026,7 +8111,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2563eb",
-    "rope_color_2": "#1d4ed8"
+    "rope_color_2": "#1d4ed8",
+    "updated_at": "2026-03-02T14:23:33.789403+00:00"
   },
   {
     "slug": "mammut-8-7-alpine-sender-dry",
@@ -8044,14 +8130,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.7,
-    "weight_per_meter_g": 51.0,
+    "weight_per_meter_g": 51,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 5,
     "impact_force_kn": 8.2,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8100,7 +8186,7 @@
     "price_uvp_per_meter_eur": 4.5,
     "price_per_meter_eur_min": 3.6,
     "price_per_meter_eur_max": 4.5,
-    "discount_pct": 20.0,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -8121,7 +8207,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#06b6d4",
-    "rope_color_2": "#0891b2"
+    "rope_color_2": "#0891b2",
+    "updated_at": "2026-03-02T21:05:44.467013+00:00"
   },
   {
     "slug": "mammut-8.0-alpine-classic",
@@ -8138,15 +8225,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 44.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 44,
     "sheath_percentage": 45,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.5,
     "uiaa_falls": 6,
     "impact_force_kn": 5.4,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8212,7 +8299,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0066cc",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-03-02T14:23:33.638726+00:00"
   },
   {
     "slug": "mammut-8.0-alpine-core-protect-dry",
@@ -8229,15 +8317,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 46.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 46,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 5,
     "impact_force_kn": 6.4,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8304,7 +8392,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
-    "rope_color_2": "#1a1a1a"
+    "rope_color_2": "#1a1a1a",
+    "updated_at": "2026-03-02T14:23:33.354376+00:00"
   },
   {
     "slug": "mammut-8.0-alpine-dry",
@@ -8321,15 +8410,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 43.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 43,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 9,
     "impact_force_kn": 5.6,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8398,7 +8487,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94080",
-    "rope_color_2": "#c43070"
+    "rope_color_2": "#c43070",
+    "updated_at": "2026-02-25T20:16:35.239053+00:00"
   },
   {
     "slug": "mammut-8.0-alpine-eco-dry",
@@ -8415,15 +8505,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 45.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 45,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 9,
     "impact_force_kn": 5.6,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8487,7 +8577,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2d7a47",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-03-02T16:06:30.937584+00:00"
   },
   {
     "slug": "mammut-9-0-crag-sender-dry",
@@ -8504,15 +8595,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 9.0,
-    "weight_per_meter_g": 52.0,
+    "diameter_mm": 9,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.8,
     "uiaa_falls": 6,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8583,7 +8674,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#eab308",
-    "rope_color_2": "#ca8a04"
+    "rope_color_2": "#ca8a04",
+    "updated_at": "2026-03-02T14:23:32.728274+00:00"
   },
   {
     "slug": "mammut-9-5-gym-classic",
@@ -8601,14 +8693,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.5,
     "uiaa_falls": 6,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8653,10 +8745,10 @@
     "recycled_materials": "none",
     "pfc_free": true,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 2.0,
+    "price_uvp_per_meter_eur": 2,
     "price_per_meter_eur_min": 1.6,
-    "price_per_meter_eur_max": 2.0,
-    "discount_pct": 20.0,
+    "price_per_meter_eur_max": 2,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -8677,7 +8769,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#16a34a"
+    "rope_color_2": "#16a34a",
+    "updated_at": "2026-03-02T14:23:33.063115+00:00"
   },
   {
     "slug": "mammut-9-5-infinity-dry",
@@ -8695,14 +8788,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.8,
     "uiaa_falls": 8,
     "impact_force_kn": 8.7,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8754,7 +8847,7 @@
     "price_uvp_per_meter_eur": 3.67,
     "price_per_meter_eur_min": 2.9,
     "price_per_meter_eur_max": 3.7,
-    "discount_pct": 21.0,
+    "discount_pct": 21,
     "available_in": [
       "DE",
       "AT",
@@ -8775,7 +8868,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#16a34a"
+    "rope_color_2": "#16a34a",
+    "updated_at": "2026-03-02T16:06:29.450808+00:00"
   },
   {
     "slug": "mammut-9-8-crag-classic",
@@ -8793,14 +8887,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 8,
     "impact_force_kn": 7.8,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8873,7 +8967,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ef4444",
-    "rope_color_2": "#dc2626"
+    "rope_color_2": "#dc2626",
+    "updated_at": "2026-02-25T20:16:36.160419+00:00"
   },
   {
     "slug": "mammut-9.5-crag-dry",
@@ -8891,14 +8986,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 6.0,
+    "static_elongation_pct": 6,
     "uiaa_falls": 8,
-    "impact_force_kn": 8.0,
-    "dynamic_elongation_pct": 30.0,
+    "impact_force_kn": 8,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -8946,10 +9041,10 @@
     "recycled_materials": "none",
     "pfc_free": true,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 3.0,
+    "price_uvp_per_meter_eur": 3,
     "price_per_meter_eur_min": 2.79,
     "price_per_meter_eur_max": 3.3,
-    "discount_pct": 7.0,
+    "discount_pct": 7,
     "available_in": [
       "DE",
       "AT",
@@ -8970,7 +9065,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#2d7a47"
+    "rope_color_2": "#2d7a47",
+    "updated_at": "2026-03-02T14:23:32.944732+00:00"
   },
   {
     "slug": "mammut-9.5-crag-dry-duodess",
@@ -8988,14 +9084,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 6.0,
+    "static_elongation_pct": 6,
     "uiaa_falls": 8,
-    "impact_force_kn": 8.0,
-    "dynamic_elongation_pct": 30.0,
+    "impact_force_kn": 8,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9064,7 +9160,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff69b4",
-    "rope_color_2": "#9370db"
+    "rope_color_2": "#9370db",
+    "updated_at": "2026-03-02T16:06:28.987462+00:00"
   },
   {
     "slug": "mammut-9.8-crag-dry",
@@ -9082,13 +9179,13 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 6.0,
+    "static_elongation_pct": 6,
     "uiaa_falls": 8,
-    "impact_force_kn": 8.0,
+    "impact_force_kn": 8,
     "dynamic_elongation_pct": 30.5,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
@@ -9160,7 +9257,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#cc0000"
+    "rope_color_2": "#cc0000",
+    "updated_at": "2026-03-02T16:06:31.382028+00:00"
   },
   {
     "slug": "mammut-alpine-core-protect-9-5",
@@ -9178,14 +9276,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 5,
     "impact_force_kn": 8.9,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9255,7 +9353,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#ea580c"
+    "rope_color_2": "#ea580c",
+    "updated_at": "2026-03-02T14:23:33.497554+00:00"
   },
   {
     "slug": "mammut-crag-sender-dry-9-0-triple",
@@ -9272,15 +9371,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 9.0,
-    "weight_per_meter_g": 54.0,
+    "diameter_mm": 9,
+    "weight_per_meter_g": 54,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.8,
     "uiaa_falls": 5,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9350,7 +9449,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#facc15",
-    "rope_color_2": "#eab308"
+    "rope_color_2": "#eab308",
+    "updated_at": "2026-03-02T16:06:28.472438+00:00"
   },
   {
     "slug": "mammut-crag-we-care-classic-9-5",
@@ -9368,14 +9468,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 6,
     "impact_force_kn": 8.8,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9445,7 +9545,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#16a34a"
+    "rope_color_2": "#16a34a",
+    "updated_at": "2026-03-02T14:23:33.203748+00:00"
   },
   {
     "slug": "mammut-eternity-protect-9-8",
@@ -9463,14 +9564,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.5,
     "uiaa_falls": 9,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9519,10 +9620,10 @@
     "recycled_materials": "none",
     "pfc_free": true,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 3.0,
+    "price_uvp_per_meter_eur": 3,
     "price_per_meter_eur_min": 2.4,
-    "price_per_meter_eur_max": 3.0,
-    "discount_pct": 20.0,
+    "price_per_meter_eur_max": 3,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -9543,7 +9644,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#ea580c"
+    "rope_color_2": "#ea580c",
+    "updated_at": "2026-02-25T20:16:37.333816+00:00"
   },
   {
     "slug": "mammut-galaxy-classic-10-0",
@@ -9560,15 +9662,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 67.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 67,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.5,
     "uiaa_falls": 9,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9642,7 +9744,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
-    "rope_color_2": "#b91c1c"
+    "rope_color_2": "#b91c1c",
+    "updated_at": "2026-03-02T16:06:29.988812+00:00"
   },
   {
     "slug": "mammut-gym-workhorse-classic-9-9",
@@ -9660,14 +9763,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.9,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.6,
     "uiaa_falls": 8,
     "impact_force_kn": 8.3,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -9715,9 +9818,9 @@
     "pfc_free": true,
     "eco_label": null,
     "price_uvp_per_meter_eur": 2.5,
-    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_min": 2,
     "price_per_meter_eur_max": 2.5,
-    "discount_pct": 20.0,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -9738,7 +9841,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ec4899",
-    "rope_color_2": "#db2777"
+    "rope_color_2": "#db2777",
+    "updated_at": "2026-03-02T16:06:30.524303+00:00"
   },
   {
     "slug": "mammut-performance-static-10",
@@ -9754,8 +9858,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 66.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 66,
     "sheath_percentage": 37,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -9823,7 +9927,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:37.966773+00:00"
   },
   {
     "slug": "mammut-performance-static-10-5",
@@ -9840,7 +9945,7 @@
       "EN 1891"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 72.0,
+    "weight_per_meter_g": 72,
     "sheath_percentage": 37,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -9891,7 +9996,7 @@
     "price_uvp_per_meter_eur": 3.2,
     "price_per_meter_eur_min": 2.56,
     "price_per_meter_eur_max": 3.2,
-    "discount_pct": 20.0,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -9908,7 +10013,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:38.124862+00:00"
   },
   {
     "slug": "maxim-airliner",
@@ -9926,14 +10032,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 46.0,
+    "weight_per_meter_g": 46,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.4,
     "uiaa_falls": 5,
     "impact_force_kn": 9.8,
-    "dynamic_elongation_pct": 28.0,
+    "dynamic_elongation_pct": 28,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10001,7 +10107,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T20:10:31.935708+00:00"
   },
   {
     "slug": "maxim-apex",
@@ -10019,14 +10126,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 68.0,
+    "weight_per_meter_g": 68,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 4.8,
     "uiaa_falls": 10,
     "impact_force_kn": 9.4,
-    "dynamic_elongation_pct": 29.0,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10096,7 +10203,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#e8844a"
+    "rope_color_2": "#e8844a",
+    "updated_at": "2026-03-02T20:10:32.369138+00:00"
   },
   {
     "slug": "maxim-equinox-elite",
@@ -10114,14 +10222,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.7,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 7,
     "impact_force_kn": 9.3,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10190,7 +10298,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1a4d7a",
-    "rope_color_2": "#f4d03f"
+    "rope_color_2": "#f4d03f",
+    "updated_at": "2026-03-02T20:10:32.78862+00:00"
   },
   {
     "slug": "maxim-glider-9-9",
@@ -10208,14 +10317,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.9,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 5.0,
+    "static_elongation_pct": 5,
     "uiaa_falls": 7,
     "impact_force_kn": 9.5,
-    "dynamic_elongation_pct": 29.0,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10285,7 +10394,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#3b82f6"
+    "rope_color_2": "#3b82f6",
+    "updated_at": "2026-03-02T20:10:00.554317+00:00"
   },
   {
     "slug": "maxim-pinnacle-9-4",
@@ -10303,14 +10413,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 5.0,
+    "static_elongation_pct": 5,
     "uiaa_falls": 5,
     "impact_force_kn": 10.3,
-    "dynamic_elongation_pct": 26.0,
+    "dynamic_elongation_pct": 26,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10361,7 +10471,7 @@
     "price_uvp_per_meter_eur": 3.29,
     "price_per_meter_eur_min": 2.6,
     "price_per_meter_eur_max": 3.29,
-    "discount_pct": 21.0,
+    "discount_pct": 21,
     "available_in": [
       "DE",
       "AT",
@@ -10381,7 +10491,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ef4444",
-    "rope_color_2": "#dc2626"
+    "rope_color_2": "#dc2626",
+    "updated_at": "2026-03-02T20:10:01.535888+00:00"
   },
   {
     "slug": "maxim-unity-7-8",
@@ -10398,15 +10509,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 39.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 39,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 9.6,
     "uiaa_falls": 7,
-    "impact_force_kn": 6.0,
-    "dynamic_elongation_pct": 29.0,
+    "impact_force_kn": 6,
+    "dynamic_elongation_pct": 29,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10452,7 +10563,7 @@
     "pfc_free": true,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.86,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.86,
     "discount_pct": 22.3,
     "available_in": [
@@ -10475,7 +10586,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#2563eb",
-    "rope_color_2": "#1d4ed8"
+    "rope_color_2": "#1d4ed8",
+    "updated_at": "2026-03-02T20:10:02.086941+00:00"
   },
   {
     "slug": "ocun-cult-9-8",
@@ -10493,14 +10605,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.9,
     "uiaa_falls": 6,
     "impact_force_kn": 9.5,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10549,7 +10661,7 @@
     "pfc_free": true,
     "eco_label": null,
     "price_uvp_per_meter_eur": 2.57,
-    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_min": 2,
     "price_per_meter_eur_max": 2.57,
     "discount_pct": 22.2,
     "available_in": [
@@ -10570,7 +10682,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#059669",
-    "rope_color_2": "#047857"
+    "rope_color_2": "#047857",
+    "updated_at": "2026-03-02T20:15:48.597048+00:00"
   },
   {
     "slug": "ocun-guru-10-0",
@@ -10587,15 +10700,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 66.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 66,
     "sheath_percentage": 32,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.9,
     "uiaa_falls": 11,
     "impact_force_kn": 8.3,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10666,7 +10779,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#eab308",
-    "rope_color_2": "#ca8a04"
+    "rope_color_2": "#ca8a04",
+    "updated_at": "2026-03-02T20:15:49.589876+00:00"
   },
   {
     "slug": "ocun-spirit-9-5",
@@ -10684,14 +10798,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.7,
     "uiaa_falls": 9,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 38.0,
+    "dynamic_elongation_pct": 38,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10763,7 +10877,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
-    "rope_color_2": "#b91c1c"
+    "rope_color_2": "#b91c1c",
+    "updated_at": "2026-02-25T20:16:39.741429+00:00"
   },
   {
     "slug": "ocun-vision-9-1",
@@ -10781,14 +10896,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 55.0,
+    "weight_per_meter_g": 55,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.2,
     "uiaa_falls": 6,
     "impact_force_kn": 8.3,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10858,7 +10973,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0284c7",
-    "rope_color_2": "#0369a1"
+    "rope_color_2": "#0369a1",
+    "updated_at": "2026-03-02T20:15:50.328149+00:00"
   },
   {
     "slug": "petzl-arial-9-5",
@@ -10876,14 +10992,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.5,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.6,
     "uiaa_falls": 7,
     "impact_force_kn": 8.8,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -10954,7 +11070,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#fbbf24"
+    "rope_color_2": "#fbbf24",
+    "updated_at": "2026-03-02T14:43:17.665927+00:00"
   },
   {
     "slug": "petzl-axis-11",
@@ -10970,12 +11087,12 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 82.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 82,
     "sheath_percentage": 41,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
-    "static_elongation_pct": 3.0,
+    "static_elongation_pct": 3,
     "uiaa_falls": null,
     "impact_force_kn": null,
     "dynamic_elongation_pct": null,
@@ -11039,7 +11156,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:40.44315+00:00"
   },
   {
     "slug": "petzl-contact-9-8",
@@ -11057,14 +11175,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 7,
     "impact_force_kn": 8.4,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11133,7 +11251,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#22c55e",
-    "rope_color_2": "#3b82f6"
+    "rope_color_2": "#3b82f6",
+    "updated_at": "2026-03-02T14:43:19.541833+00:00"
   },
   {
     "slug": "petzl-contact-wall-9-8",
@@ -11151,14 +11270,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 7,
     "impact_force_kn": 8.4,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11204,7 +11323,7 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 2.57,
-    "price_per_meter_eur_min": 2.0,
+    "price_per_meter_eur_min": 2,
     "price_per_meter_eur_max": 2.57,
     "discount_pct": 22.2,
     "available_in": [
@@ -11227,7 +11346,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#a855f7",
-    "rope_color_2": "#9333ea"
+    "rope_color_2": "#9333ea",
+    "updated_at": "2026-03-02T20:17:05.551188+00:00"
   },
   {
     "slug": "petzl-mambo-10-1",
@@ -11245,14 +11365,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.1,
-    "weight_per_meter_g": 65.0,
+    "weight_per_meter_g": 65,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 7,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11323,7 +11443,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#06b6d4",
-    "rope_color_2": "#f97316"
+    "rope_color_2": "#f97316",
+    "updated_at": "2026-03-02T14:43:20.058583+00:00"
   },
   {
     "slug": "petzl-parallel-10-5",
@@ -11340,7 +11461,7 @@
       "EN 1891"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 75.0,
+    "weight_per_meter_g": 75,
     "sheath_percentage": 45,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -11408,7 +11529,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:41.294571+00:00"
   },
   {
     "slug": "petzl-paso-guide-7-7",
@@ -11426,14 +11548,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.7,
-    "weight_per_meter_g": 40.0,
+    "weight_per_meter_g": 40,
     "sheath_percentage": 36,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 7,
-    "impact_force_kn": 6.0,
-    "dynamic_elongation_pct": 31.0,
+    "impact_force_kn": 6,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11500,7 +11622,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#22c55e"
+    "rope_color_2": "#22c55e",
+    "updated_at": "2026-03-02T14:43:20.538966+00:00"
   },
   {
     "slug": "petzl-push-9",
@@ -11516,8 +11639,8 @@
     "certification": [
       "EN 1891 Type B"
     ],
-    "diameter_mm": 9.0,
-    "weight_per_meter_g": 55.0,
+    "diameter_mm": 9,
+    "weight_per_meter_g": 55,
     "sheath_percentage": 46,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -11585,7 +11708,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:41.642215+00:00"
   },
   {
     "slug": "petzl-rumba-8-0",
@@ -11602,15 +11726,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 8.0,
-    "weight_per_meter_g": 44.0,
+    "diameter_mm": 8,
+    "weight_per_meter_g": 44,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 11.0,
+    "static_elongation_pct": 11,
     "uiaa_falls": 7,
     "impact_force_kn": 5.9,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11678,7 +11802,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f97316",
-    "rope_color_2": "#ea580c"
+    "rope_color_2": "#ea580c",
+    "updated_at": "2026-02-25T20:16:41.784105+00:00"
   },
   {
     "slug": "petzl-salsa-8-2",
@@ -11696,14 +11821,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.2,
-    "weight_per_meter_g": 45.0,
+    "weight_per_meter_g": 45,
     "sheath_percentage": 31,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 9,
     "impact_force_kn": 6.4,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11771,7 +11896,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#fb7185",
-    "rope_color_2": "#f43f5e"
+    "rope_color_2": "#f43f5e",
+    "updated_at": "2026-02-25T20:21:20.386776+00:00"
   },
   {
     "slug": "petzl-tango-8-5",
@@ -11789,14 +11915,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.5,
-    "weight_per_meter_g": 47.0,
+    "weight_per_meter_g": 47,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.5,
     "uiaa_falls": 10,
     "impact_force_kn": 6.6,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11863,7 +11989,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e5e7eb",
-    "rope_color_2": "#3b82f6"
+    "rope_color_2": "#3b82f6",
+    "updated_at": "2026-02-25T20:16:42.118531+00:00"
   },
   {
     "slug": "petzl-volta-9.2",
@@ -11881,14 +12008,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 55.0,
+    "weight_per_meter_g": 55,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.5,
     "uiaa_falls": 6,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -11961,7 +12088,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e86a3a",
-    "rope_color_2": "#d4572a"
+    "rope_color_2": "#d4572a",
+    "updated_at": "2026-03-02T14:43:18.491306+00:00"
   },
   {
     "slug": "petzl-volta-guide-9-0",
@@ -11978,15 +12106,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 9.0,
-    "weight_per_meter_g": 52.0,
+    "diameter_mm": 9,
+    "weight_per_meter_g": 52,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.6,
     "uiaa_falls": 5,
     "impact_force_kn": 8.5,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12033,10 +12161,10 @@
     "recycled_materials": "none",
     "pfc_free": false,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 5.0,
-    "price_per_meter_eur_min": 4.0,
-    "price_per_meter_eur_max": 5.0,
-    "discount_pct": 20.0,
+    "price_uvp_per_meter_eur": 5,
+    "price_per_meter_eur_min": 4,
+    "price_per_meter_eur_max": 5,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -12056,7 +12184,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#2563eb"
+    "rope_color_2": "#2563eb",
+    "updated_at": "2026-03-02T14:43:19.027574+00:00"
   },
   {
     "slug": "singing-rock-accord-8-3",
@@ -12073,14 +12202,14 @@
       "EN 892"
     ],
     "diameter_mm": 8.3,
-    "weight_per_meter_g": 42.0,
+    "weight_per_meter_g": 42,
     "sheath_percentage": 43,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 11.0,
+    "static_elongation_pct": 11,
     "uiaa_falls": 5,
     "impact_force_kn": 6.3,
-    "dynamic_elongation_pct": 33.0,
+    "dynamic_elongation_pct": 33,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": 13,
@@ -12146,7 +12275,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:38:27.596211+00:00"
   },
   {
     "slug": "singing-rock-duran-10-4",
@@ -12164,14 +12294,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.4,
-    "weight_per_meter_g": 68.0,
+    "weight_per_meter_g": 68,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.1,
     "uiaa_falls": 8,
     "impact_force_kn": 9.8,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12240,7 +12370,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#000000"
+    "rope_color_2": "#000000",
+    "updated_at": "2026-03-02T19:38:28.196626+00:00"
   },
   {
     "slug": "singing-rock-gemini-7-9",
@@ -12257,14 +12388,14 @@
       "EN 892"
     ],
     "diameter_mm": 7.9,
-    "weight_per_meter_g": 40.0,
+    "weight_per_meter_g": 40,
     "sheath_percentage": 45,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 10.5,
     "uiaa_falls": 5,
     "impact_force_kn": 5.1,
-    "dynamic_elongation_pct": 38.0,
+    "dynamic_elongation_pct": 38,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": 16,
@@ -12307,10 +12438,10 @@
     "recycled_materials": "none",
     "pfc_free": false,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 4.0,
+    "price_uvp_per_meter_eur": 4,
     "price_per_meter_eur_min": 3.6,
     "price_per_meter_eur_max": 4.2,
-    "discount_pct": 10.0,
+    "discount_pct": 10,
     "available_in": [
       "CZ",
       "DE",
@@ -12331,7 +12462,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f4d03f",
-    "rope_color_2": "#3b9a5b"
+    "rope_color_2": "#3b9a5b",
+    "updated_at": "2026-03-02T19:38:28.873534+00:00"
   },
   {
     "slug": "singing-rock-hero-9-6",
@@ -12349,14 +12481,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.6,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 42,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.1,
     "uiaa_falls": 7,
     "impact_force_kn": 7.9,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12429,7 +12561,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
-    "rope_color_2": "#b91c1c"
+    "rope_color_2": "#b91c1c",
+    "updated_at": "2026-03-02T19:38:29.547469+00:00"
   },
   {
     "slug": "singing-rock-icon-9-3",
@@ -12447,14 +12580,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.3,
-    "weight_per_meter_g": 59.0,
+    "weight_per_meter_g": 59,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 5,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12522,7 +12655,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:38:30.177837+00:00"
   },
   {
     "slug": "singing-rock-kata-9-7",
@@ -12540,14 +12674,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.7,
-    "weight_per_meter_g": 61.0,
+    "weight_per_meter_g": 61,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 9.0,
+    "static_elongation_pct": 9,
     "uiaa_falls": 5,
     "impact_force_kn": 7.7,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12614,7 +12748,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#e8844a",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:38:30.62962+00:00"
   },
   {
     "slug": "singing-rock-mystic-10.1",
@@ -12632,14 +12767,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.1,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.7,
     "uiaa_falls": 9,
     "impact_force_kn": 7.9,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12708,7 +12843,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#9370db",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-03-02T19:38:31.148226+00:00"
   },
   {
     "slug": "singing-rock-patron-11",
@@ -12725,15 +12861,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 79.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 79,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.3,
     "uiaa_falls": 16,
     "impact_force_kn": 9.1,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12800,7 +12936,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#d94040",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:38:31.609546+00:00"
   },
   {
     "slug": "singing-rock-score-9.6",
@@ -12818,14 +12955,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.1,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 8,
     "impact_force_kn": 9.5,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -12895,7 +13032,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
-    "rope_color_2": "#1a1a1a"
+    "rope_color_2": "#1a1a1a",
+    "updated_at": "2026-03-02T19:38:56.388636+00:00"
   },
   {
     "slug": "singing-rock-static-r44-10-5",
@@ -12912,7 +13050,7 @@
       "EN 1891"
     ],
     "diameter_mm": 10.5,
-    "weight_per_meter_g": 72.0,
+    "weight_per_meter_g": 72,
     "sheath_percentage": null,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -12979,7 +13117,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:44.368837+00:00"
   },
   {
     "slug": "singing-rock-static-r44-11",
@@ -12995,12 +13134,12 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 82.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 82,
     "sheath_percentage": null,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
-    "static_elongation_pct": 3.0,
+    "static_elongation_pct": 3,
     "uiaa_falls": null,
     "impact_force_kn": null,
     "dynamic_elongation_pct": null,
@@ -13064,7 +13203,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:44.52713+00:00"
   },
   {
     "slug": "singing-rock-storm-9-8",
@@ -13082,14 +13222,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 65.0,
+    "weight_per_meter_g": 65,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.9,
     "uiaa_falls": 9,
     "impact_force_kn": 9.1,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -13136,7 +13276,7 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.32,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.5,
     "discount_pct": 9.6,
     "available_in": [
@@ -13159,7 +13299,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#808080",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T19:39:12.332612+00:00"
   },
   {
     "slug": "sterling-aero-9-2-xeros",
@@ -13177,9 +13318,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 55.0,
+    "weight_per_meter_g": 55,
     "sheath_percentage": 41,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.5,
     "uiaa_falls": 7,
@@ -13251,7 +13392,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0ea5e9",
-    "rope_color_2": "#0284c7"
+    "rope_color_2": "#0284c7",
+    "updated_at": "2026-03-02T19:57:25.506728+00:00"
   },
   {
     "slug": "sterling-canyonprime-9.2",
@@ -13269,15 +13411,15 @@
       "EN 1891"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 58.0,
+    "weight_per_meter_g": 58,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 3.5,
     "uiaa_falls": null,
     "impact_force_kn": null,
     "dynamic_elongation_pct": null,
-    "breaking_strength_kn": 17.0,
+    "breaking_strength_kn": 17,
     "working_elongation_pct": null,
     "falls_en1891": 15,
     "core_material": null,
@@ -13344,7 +13486,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ffffff",
-    "rope_color_2": "#ff9f1c"
+    "rope_color_2": "#ff9f1c",
+    "updated_at": "2026-02-25T20:16:45.005692+00:00"
   },
   {
     "slug": "sterling-evolution-velocity-9-8",
@@ -13362,9 +13505,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.6,
     "uiaa_falls": 6,
@@ -13417,7 +13560,7 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 3.8,
-    "price_per_meter_eur_min": 3.0,
+    "price_per_meter_eur_min": 3,
     "price_per_meter_eur_max": 3.8,
     "discount_pct": 21.1,
     "available_in": [
@@ -13440,7 +13583,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#22c55e"
+    "rope_color_2": "#22c55e",
+    "updated_at": "2026-03-02T19:57:26.01535+00:00"
   },
   {
     "slug": "sterling-fusion-nano-ix-9.0-dryxp",
@@ -13457,12 +13601,12 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 9.0,
-    "weight_per_meter_g": 56.0,
+    "diameter_mm": 9,
+    "weight_per_meter_g": 56,
     "sheath_percentage": 29,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 7.0,
+    "static_elongation_pct": 7,
     "uiaa_falls": 6,
     "impact_force_kn": 8.5,
     "dynamic_elongation_pct": 26.4,
@@ -13535,7 +13679,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#cc0000",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-03-02T19:57:26.509186+00:00"
   },
   {
     "slug": "sterling-htp-static-11",
@@ -13551,8 +13696,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 95.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 95,
     "sheath_percentage": null,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -13619,7 +13764,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:45.53266+00:00"
   },
   {
     "slug": "sterling-ionr-9-4-xeros",
@@ -13637,9 +13783,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.2,
     "uiaa_falls": 5,
@@ -13692,10 +13838,10 @@
     "recycled_materials": "none",
     "pfc_free": false,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 5.0,
-    "price_per_meter_eur_min": 4.0,
-    "price_per_meter_eur_max": 5.0,
-    "discount_pct": 20.0,
+    "price_uvp_per_meter_eur": 5,
+    "price_per_meter_eur_min": 4,
+    "price_per_meter_eur_max": 5,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -13714,7 +13860,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f59e0b",
-    "rope_color_2": "#d97706"
+    "rope_color_2": "#d97706",
+    "updated_at": "2026-03-02T19:57:26.946071+00:00"
   },
   {
     "slug": "sterling-marathon-pro-10-1",
@@ -13732,15 +13879,15 @@
       "NFPA 1983"
     ],
     "diameter_mm": 10.1,
-    "weight_per_meter_g": 63.0,
+    "weight_per_meter_g": 63,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 3.5,
     "uiaa_falls": null,
     "impact_force_kn": null,
     "dynamic_elongation_pct": null,
-    "breaking_strength_kn": 28.0,
+    "breaking_strength_kn": 28,
     "working_elongation_pct": 2.5,
     "falls_en1891": null,
     "core_material": null,
@@ -13809,7 +13956,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#f8fafc",
-    "rope_color_2": "#3b82f6"
+    "rope_color_2": "#3b82f6",
+    "updated_at": "2026-02-25T20:16:45.853508+00:00"
   },
   {
     "slug": "sterling-t-10-xeros-10-0",
@@ -13826,15 +13974,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 65.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 65,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 8,
-    "impact_force_kn": 9.0,
-    "dynamic_elongation_pct": 30.0,
+    "impact_force_kn": 9,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -13904,7 +14052,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
-    "rope_color_2": "#b91c1c"
+    "rope_color_2": "#b91c1c",
+    "updated_at": "2026-02-25T20:16:45.997251+00:00"
   },
   {
     "slug": "sterling-velocity-xeros-9-8",
@@ -13922,9 +14071,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.8,
     "uiaa_falls": 6,
@@ -13997,7 +14146,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#4f46e5",
-    "rope_color_2": "#4338ca"
+    "rope_color_2": "#4338ca",
+    "updated_at": "2026-03-02T19:57:27.410715+00:00"
   },
   {
     "slug": "sterling-vr10-10.1",
@@ -14015,9 +14165,9 @@
       "UIAA 101"
     ],
     "diameter_mm": 10.2,
-    "weight_per_meter_g": 65.0,
+    "weight_per_meter_g": 65,
     "sheath_percentage": 33,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.6,
     "uiaa_falls": 8,
@@ -14069,7 +14219,7 @@
     "eco_label": null,
     "price_uvp_per_meter_eur": 2.95,
     "price_per_meter_eur_min": 2.45,
-    "price_per_meter_eur_max": 3.0,
+    "price_per_meter_eur_max": 3,
     "discount_pct": 16.9,
     "available_in": [
       "DE",
@@ -14091,7 +14241,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0066cc",
-    "rope_color_2": "#ffcc00"
+    "rope_color_2": "#ffcc00",
+    "updated_at": "2026-03-02T19:57:27.847488+00:00"
   },
   {
     "slug": "tendon-alpine-7-9",
@@ -14109,14 +14260,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 7.9,
-    "weight_per_meter_g": 42.0,
+    "weight_per_meter_g": 42,
     "sheath_percentage": 44,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 10.5,
     "uiaa_falls": 5,
     "impact_force_kn": 5.7,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14185,7 +14336,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#10b981",
-    "rope_color_2": "#059669"
+    "rope_color_2": "#059669",
+    "updated_at": "2026-03-02T14:47:21.547464+00:00"
   },
   {
     "slug": "tendon-ambition-9-8",
@@ -14203,14 +14355,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 64.0,
+    "weight_per_meter_g": 64,
     "sheath_percentage": 39,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.8,
     "uiaa_falls": 9,
     "impact_force_kn": 7.4,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14284,7 +14436,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b82f6",
-    "rope_color_2": "#ef4444"
+    "rope_color_2": "#ef4444",
+    "updated_at": "2026-03-02T19:51:56.351937+00:00"
   },
   {
     "slug": "tendon-hattrick-9.7",
@@ -14303,14 +14456,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.7,
-    "weight_per_meter_g": 60.0,
+    "weight_per_meter_g": 60,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 8.0,
+    "static_elongation_pct": 8,
     "uiaa_falls": 5,
     "impact_force_kn": 9.4,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": 5,
@@ -14380,7 +14533,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#0066cc",
-    "rope_color_2": "#cc0000"
+    "rope_color_2": "#cc0000",
+    "updated_at": "2026-03-02T19:51:56.96833+00:00"
   },
   {
     "slug": "tendon-master-8-6",
@@ -14398,14 +14552,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 8.6,
-    "weight_per_meter_g": 50.0,
+    "weight_per_meter_g": 50,
     "sheath_percentage": 34,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.7,
     "uiaa_falls": 5,
     "impact_force_kn": 9.9,
-    "dynamic_elongation_pct": 30.0,
+    "dynamic_elongation_pct": 30,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14451,10 +14605,10 @@
     "recycled_materials": "none",
     "pfc_free": false,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 4.0,
+    "price_uvp_per_meter_eur": 4,
     "price_per_meter_eur_min": 3.2,
-    "price_per_meter_eur_max": 4.0,
-    "discount_pct": 20.0,
+    "price_per_meter_eur_max": 4,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -14475,7 +14629,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#eab308",
-    "rope_color_2": "#ca8a04"
+    "rope_color_2": "#ca8a04",
+    "updated_at": "2026-03-02T19:51:57.540169+00:00"
   },
   {
     "slug": "tendon-master-9.4-tefix-complete-shield",
@@ -14493,14 +14648,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.4,
-    "weight_per_meter_g": 57.0,
+    "weight_per_meter_g": 57,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.4,
     "uiaa_falls": 6,
     "impact_force_kn": 7.9,
-    "dynamic_elongation_pct": 37.0,
+    "dynamic_elongation_pct": 37,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14550,7 +14705,7 @@
     "price_uvp_per_meter_eur": 2.86,
     "price_per_meter_eur_min": 2.43,
     "price_per_meter_eur_max": 2.86,
-    "discount_pct": 15.0,
+    "discount_pct": 15,
     "available_in": [
       "DE",
       "AT",
@@ -14572,7 +14727,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#bf3636",
-    "rope_color_2": "#a02828"
+    "rope_color_2": "#a02828",
+    "updated_at": "2026-03-02T19:51:57.951743+00:00"
   },
   {
     "slug": "tendon-master-pro-9.2-complete-shield",
@@ -14590,14 +14746,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.2,
-    "weight_per_meter_g": 56.0,
+    "weight_per_meter_g": 56,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 6.5,
     "uiaa_falls": 6,
     "impact_force_kn": 9.5,
-    "dynamic_elongation_pct": 35.0,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14667,7 +14823,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#ff9f1c",
-    "rope_color_2": "#1a1a1a"
+    "rope_color_2": "#1a1a1a",
+    "updated_at": "2026-03-02T19:51:58.37424+00:00"
   },
   {
     "slug": "tendon-smart-10-0",
@@ -14684,15 +14841,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 67.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 67,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.7,
     "uiaa_falls": 8,
-    "impact_force_kn": 8.0,
-    "dynamic_elongation_pct": 35.0,
+    "impact_force_kn": 8,
+    "dynamic_elongation_pct": 35,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14764,7 +14921,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#1f2937",
-    "rope_color_2": "#374151"
+    "rope_color_2": "#374151",
+    "updated_at": "2026-02-25T20:16:47.847431+00:00"
   },
   {
     "slug": "tendon-smartlite-9-8",
@@ -14782,14 +14940,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 62.0,
+    "weight_per_meter_g": 62,
     "sheath_percentage": 38,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
-    "static_elongation_pct": 6.0,
+    "static_elongation_pct": 6,
     "uiaa_falls": 7,
     "impact_force_kn": 7.9,
-    "dynamic_elongation_pct": 34.0,
+    "dynamic_elongation_pct": 34,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -14836,10 +14994,10 @@
     "recycled_materials": "none",
     "pfc_free": false,
     "eco_label": null,
-    "price_uvp_per_meter_eur": 2.0,
+    "price_uvp_per_meter_eur": 2,
     "price_per_meter_eur_min": 1.6,
-    "price_per_meter_eur_max": 2.0,
-    "discount_pct": 20.0,
+    "price_per_meter_eur_max": 2,
+    "discount_pct": 20,
     "available_in": [
       "DE",
       "AT",
@@ -14859,7 +15017,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#16a34a",
-    "rope_color_2": "#15803d"
+    "rope_color_2": "#15803d",
+    "updated_at": "2026-03-02T14:47:21.080436+00:00"
   },
   {
     "slug": "tendon-static-10",
@@ -14875,8 +15034,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 10.0,
-    "weight_per_meter_g": 69.0,
+    "diameter_mm": 10,
+    "weight_per_meter_g": 69,
     "sheath_percentage": null,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -14943,7 +15102,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:48.371528+00:00"
   },
   {
     "slug": "tendon-static-11",
@@ -14959,8 +15119,8 @@
     "certification": [
       "EN 1891"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 80.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 80,
     "sheath_percentage": null,
     "sheath_slippage_mm": null,
     "knotability_mm": null,
@@ -15011,7 +15171,7 @@
     "price_uvp_per_meter_eur": 2.5,
     "price_per_meter_eur_min": 1.95,
     "price_per_meter_eur_max": 2.5,
-    "discount_pct": 22.0,
+    "discount_pct": 22,
     "available_in": [
       "DE",
       "AT",
@@ -15028,7 +15188,8 @@
     ],
     "ai_review": null,
     "rope_color_1": null,
-    "rope_color_2": null
+    "rope_color_2": null,
+    "updated_at": "2026-02-25T20:16:48.585983+00:00"
   },
   {
     "slug": "tendon-trust-11.0",
@@ -15045,15 +15206,15 @@
       "EN 892",
       "UIAA 101"
     ],
-    "diameter_mm": 11.0,
-    "weight_per_meter_g": 79.0,
+    "diameter_mm": 11,
+    "weight_per_meter_g": 79,
     "sheath_percentage": 40,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 5.3,
     "uiaa_falls": 16,
     "impact_force_kn": 9.1,
-    "dynamic_elongation_pct": 31.0,
+    "dynamic_elongation_pct": 31,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -15122,7 +15283,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#cc0000",
-    "rope_color_2": "#ffffff"
+    "rope_color_2": "#ffffff",
+    "updated_at": "2026-02-25T20:16:48.795048+00:00"
   },
   {
     "slug": "trango-agility-9-1-duo-dry",
@@ -15140,14 +15302,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.1,
-    "weight_per_meter_g": 56.0,
+    "weight_per_meter_g": 56,
     "sheath_percentage": 37,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 8.2,
     "uiaa_falls": 9,
     "impact_force_kn": 8.2,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -15195,7 +15357,7 @@
     "pfc_free": false,
     "eco_label": null,
     "price_uvp_per_meter_eur": 6.43,
-    "price_per_meter_eur_min": 5.0,
+    "price_per_meter_eur_min": 5,
     "price_per_meter_eur_max": 6.43,
     "discount_pct": 22.2,
     "available_in": [
@@ -15218,7 +15380,8 @@
     ],
     "ai_review": null,
     "rope_color_1": "#dc2626",
-    "rope_color_2": "#b91c1c"
+    "rope_color_2": "#b91c1c",
+    "updated_at": "2026-03-02T20:18:30.667236+00:00"
   },
   {
     "slug": "trango-agility-9-8",
@@ -15236,14 +15399,14 @@
       "UIAA 101"
     ],
     "diameter_mm": 9.8,
-    "weight_per_meter_g": 65.0,
+    "weight_per_meter_g": 65,
     "sheath_percentage": 35,
-    "sheath_slippage_mm": 0.0,
+    "sheath_slippage_mm": 0,
     "knotability_mm": null,
     "static_elongation_pct": 7.5,
     "uiaa_falls": 13,
     "impact_force_kn": 8.6,
-    "dynamic_elongation_pct": 32.0,
+    "dynamic_elongation_pct": 32,
     "breaking_strength_kn": null,
     "working_elongation_pct": null,
     "falls_en1891": null,
@@ -15311,6 +15474,7 @@
     ],
     "ai_review": null,
     "rope_color_1": "#3b9a5b",
-    "rope_color_2": "#1a4d7a"
+    "rope_color_2": "#1a4d7a",
+    "updated_at": "2026-03-02T20:18:31.134382+00:00"
   }
 ]

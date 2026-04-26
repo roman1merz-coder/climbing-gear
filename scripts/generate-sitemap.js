@@ -74,9 +74,12 @@ function generateSitemaps() {
     // Exclude static ropes from sitemap (hidden from frontend)
     if (prefix === '/rope') items = items.filter(r => r.rope_type !== 'static');
 
-    const entries = items.map(item =>
-      urlEntry(`${BASE_URL}${prefix}/${item.slug}`, TODAY, 'weekly', '0.8')
-    );
+    // Use per-product updated_at when present (YYYY-MM-DD); fall back to TODAY.
+    // Accurate <lastmod> helps Google prioritize re-crawl of recently edited specs.
+    const entries = items.map(item => {
+      const updated = item.updated_at ? String(item.updated_at).split('T')[0] : TODAY;
+      return urlEntry(`${BASE_URL}${prefix}/${item.slug}`, updated, 'weekly', '0.8');
+    });
 
     const filename = `sitemap-${name}.xml`;
     writeSitemap(filename, wrapUrlset(entries));

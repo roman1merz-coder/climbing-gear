@@ -1,5 +1,6 @@
 [
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "beal-pulp-express",
     "brand": "Beal",
     "model": "Pulp Express",
@@ -54,6 +55,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "beal-zest",
     "brand": "Beal",
     "model": "Zest",
@@ -107,6 +109,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "black-diamond-hotforge",
     "brand": "Black Diamond",
     "model": "HotForge",
@@ -162,6 +165,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:55.857197+00:00",
     "slug": "black-diamond-hotforge-hybrid",
     "brand": "Black Diamond",
     "model": "HotForge Hybrid",
@@ -184,8 +188,8 @@
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 25,
     "strength_major_kn": 24,
-    "strength_minor_kn": 7,
-    "strength_open_kn": 7,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
     "weight_g": 100,
     "rubber_keeper": true,
     "captive_eye": false,
@@ -217,6 +221,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:55.624648+00:00",
     "slug": "black-diamond-hotwire",
     "brand": "Black Diamond",
     "model": "HotWire",
@@ -239,9 +244,9 @@
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 25,
     "strength_major_kn": 24,
-    "strength_minor_kn": 7,
-    "strength_open_kn": 7,
-    "weight_g": 94,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 8,
+    "weight_g": 100,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -272,6 +277,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "black-diamond-litewire",
     "brand": "Black Diamond",
     "model": "LiteWire",
@@ -319,13 +325,14 @@
     "year_released": 2021,
     "color_1": "#f39c12",
     "color_2": "#2c3e50",
-    "description": "Budget-friendly wiregate quickdraw. Light and simple - a solid first quickdraw set for gym-to-outdoor transition.",
+    "description": "Budget-friendly wiregate quickdraw. Light and simple — a solid first quickdraw set for gym-to-outdoor transition.",
     "pros": null,
     "cons": null,
     "admin_flags": null,
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:56.05229+00:00",
     "slug": "black-diamond-miniwire",
     "brand": "Black Diamond",
     "model": "MiniWire",
@@ -346,7 +353,7 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 21,
-    "strength_major_kn": 22,
+    "strength_major_kn": 20,
     "strength_minor_kn": 7,
     "strength_open_kn": 7,
     "weight_g": 75,
@@ -380,6 +387,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:56.231603+00:00",
     "slug": "black-diamond-miniwire-alpine",
     "brand": "Black Diamond",
     "model": "MiniWire Alpine",
@@ -400,10 +408,10 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 21,
-    "strength_major_kn": 22,
+    "strength_major_kn": 20,
     "strength_minor_kn": 7,
     "strength_open_kn": 7,
-    "weight_g": 65,
+    "weight_g": 75,
     "rubber_keeper": false,
     "captive_eye": false,
     "extendable": true,
@@ -434,6 +442,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:57.867636+00:00",
     "slug": "black-diamond-oz",
     "brand": "Black Diamond",
     "model": "Oz",
@@ -458,7 +467,7 @@
     "strength_major_kn": 20,
     "strength_minor_kn": 7,
     "strength_open_kn": 7,
-    "weight_g": 65,
+    "weight_g": 63,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -488,6 +497,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "black-diamond-positron",
     "brand": "Black Diamond",
     "model": "Positron",
@@ -541,6 +551,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:56.474751+00:00",
     "slug": "camp-dyon-express-ks",
     "brand": "Camp",
     "model": "Dyon Express KS",
@@ -562,8 +573,8 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 26,
-    "strength_major_kn": 24,
-    "strength_minor_kn": 8,
+    "strength_major_kn": 21,
+    "strength_minor_kn": 7,
     "strength_open_kn": 11,
     "weight_g": 85,
     "rubber_keeper": true,
@@ -595,6 +606,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:56.380967+00:00",
     "slug": "camp-nano-22-express-ks-dyneema",
     "brand": "Camp",
     "model": "Nano 22 Express KS Dyneema",
@@ -611,13 +623,13 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 20,
+    "gate_opening_upper_mm": 21,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 20,
-    "strength_major_kn": 20,
-    "strength_minor_kn": 7,
-    "strength_open_kn": 7,
+    "strength_major_kn": 21,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 9,
     "weight_g": 57,
     "rubber_keeper": false,
     "captive_eye": false,
@@ -647,6 +659,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:56.555745+00:00",
     "slug": "camp-orbit-wire-express-ks",
     "brand": "Camp",
     "model": "Orbit Wire Express KS",
@@ -665,14 +678,14 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 25,
+    "gate_opening_upper_mm": 27,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 25,
-    "strength_major_kn": 23,
-    "strength_minor_kn": 8,
-    "strength_open_kn": 9,
-    "weight_g": 82,
+    "strength_major_kn": 22,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 8,
+    "weight_g": 85,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -703,6 +716,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "camp-photon-mixed-express-ks-dyneema",
     "brand": "Camp",
     "model": "Photon Mixed Express KS Dyneema",
@@ -757,6 +771,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:56.740885+00:00",
     "slug": "camp-photon-wire-express-ks-dyneema",
     "brand": "Camp",
     "model": "Photon Wire Express KS Dyneema",
@@ -779,7 +794,7 @@
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 26,
     "strength_major_kn": 22,
-    "strength_minor_kn": 7,
+    "strength_minor_kn": 8,
     "strength_open_kn": 9,
     "weight_g": 69,
     "rubber_keeper": true,
@@ -811,6 +826,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:11:58.940956+00:00",
     "slug": "climbing-technology-fly-weight-evo-alpine-set",
     "brand": "Climbing Technology",
     "model": "Fly-Weight Evo Alpine Set",
@@ -863,6 +879,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:11:59.096971+00:00",
     "slug": "climbing-technology-fly-weight-evo-long",
     "brand": "Climbing Technology",
     "model": "Fly-Weight Evo Long",
@@ -916,6 +933,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:56.883541+00:00",
     "slug": "climbing-technology-fly-weight-evo-set-ul",
     "brand": "Climbing Technology",
     "model": "Fly-Weight Evo Set UL",
@@ -940,7 +958,7 @@
     "strength_major_kn": 25,
     "strength_minor_kn": 7,
     "strength_open_kn": 8,
-    "weight_g": 56,
+    "weight_g": 60,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -970,6 +988,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:21:57.097541+00:00",
     "slug": "climbing-technology-lime-set",
     "brand": "Climbing Technology",
     "model": "Lime Set",
@@ -988,13 +1007,13 @@
     ],
     "upper_gate_type": "solid_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 21,
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
     "strength_major_kn": 23,
     "strength_minor_kn": 8,
-    "strength_open_kn": 9,
+    "strength_open_kn": 8,
     "weight_g": 96,
     "rubber_keeper": true,
     "captive_eye": false,
@@ -1019,13 +1038,14 @@
     "year_released": 2021,
     "color_1": "#2ecc71",
     "color_2": "#27ae60",
-    "description": "Italian-made sport quickdraw with dual keylock solid gates. Hot-forged carabiners at an entry-level price - exceptional value.",
+    "description": "Italian-made sport quickdraw with dual keylock solid gates. Hot-forged carabiners at an entry-level price — exceptional value.",
     "pros": null,
     "cons": null,
     "admin_flags": null,
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:56.700509+00:00",
     "slug": "climbing-technology-morfo-set-ul-pro",
     "brand": "Climbing Technology",
     "model": "Morfo Set UL Pro",
@@ -1048,8 +1068,8 @@
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 22,
-    "strength_major_kn": 23,
-    "strength_minor_kn": 7,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 9,
     "strength_open_kn": 7,
     "weight_g": 107,
     "rubber_keeper": true,
@@ -1081,6 +1101,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:02.894781+00:00",
     "slug": "climbing-technology-salto-set-ny",
     "brand": "Climbing Technology",
     "model": "Salto Set NY",
@@ -1098,10 +1119,10 @@
       22
     ],
     "upper_gate_type": "solid_straight",
-    "upper_nose_type": null,
+    "upper_nose_type": "keylock",
     "gate_opening_upper_mm": 20,
     "lower_gate_type": "solid_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 21,
     "strength_major_kn": 23,
     "strength_minor_kn": 7,
@@ -1135,6 +1156,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:03.115915+00:00",
     "slug": "climbing-technology-salto-set-ul",
     "brand": "Climbing Technology",
     "model": "Salto Set UL",
@@ -1151,10 +1173,10 @@
       17
     ],
     "upper_gate_type": "solid_straight",
-    "upper_nose_type": null,
+    "upper_nose_type": "keylock",
     "gate_opening_upper_mm": 20,
     "lower_gate_type": "solid_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 21,
     "strength_major_kn": 23,
     "strength_minor_kn": 7,
@@ -1189,6 +1211,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:12:00.41586+00:00",
     "slug": "climbing-technology-tricky",
     "brand": "Climbing Technology",
     "model": "Tricky",
@@ -1242,6 +1265,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "cypher-firefly-ii",
     "brand": "Cypher",
     "model": "Firefly II",
@@ -1296,6 +1320,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:34.169481+00:00",
     "slug": "dmm-aether",
     "brand": "DMM",
     "model": "Aether",
@@ -1314,14 +1339,14 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 20,
+    "gate_opening_upper_mm": 23,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
-    "gate_opening_lower_mm": 20,
+    "gate_opening_lower_mm": 23,
     "strength_major_kn": 21,
     "strength_minor_kn": 7,
     "strength_open_kn": 8,
-    "weight_g": 65,
+    "weight_g": 69,
     "rubber_keeper": false,
     "captive_eye": false,
     "extendable": false,
@@ -1350,6 +1375,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:34.697639+00:00",
     "slug": "dmm-alpha-sport",
     "brand": "DMM",
     "model": "Alpha Sport",
@@ -1372,9 +1398,9 @@
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 25,
-    "strength_major_kn": 25,
+    "strength_major_kn": 24,
     "strength_minor_kn": 8,
-    "strength_open_kn": 8,
+    "strength_open_kn": 9,
     "weight_g": 112,
     "rubber_keeper": true,
     "captive_eye": false,
@@ -1406,6 +1432,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:35.005242+00:00",
     "slug": "dmm-phantom",
     "brand": "DMM",
     "model": "Phantom",
@@ -1430,7 +1457,7 @@
     "gate_opening_lower_mm": 21,
     "strength_major_kn": 24,
     "strength_minor_kn": 7,
-    "strength_open_kn": 7,
+    "strength_open_kn": 9,
     "weight_g": 65,
     "rubber_keeper": false,
     "captive_eye": false,
@@ -1462,6 +1489,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "dmm-shadow",
     "brand": "DMM",
     "model": "Shadow",
@@ -1517,6 +1545,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:35.422621+00:00",
     "slug": "dmm-shadow-spectre-hybrid",
     "brand": "DMM",
     "model": "Shadow/Spectre Hybrid",
@@ -1535,14 +1564,14 @@
     ],
     "upper_gate_type": "solid_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 20,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "hooked",
-    "gate_opening_lower_mm": 24,
+    "gate_opening_lower_mm": 23,
     "strength_major_kn": 24,
-    "strength_minor_kn": 7,
-    "strength_open_kn": 7,
-    "weight_g": 86,
+    "strength_minor_kn": 8,
+    "strength_open_kn": 9,
+    "weight_g": 93,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -1573,6 +1602,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:35.663595+00:00",
     "slug": "dmm-spectre",
     "brand": "DMM",
     "model": "Spectre 2",
@@ -1591,13 +1621,13 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "notchless",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 23,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "notchless",
-    "gate_opening_lower_mm": 22,
+    "gate_opening_lower_mm": 23,
     "strength_major_kn": 24,
     "strength_minor_kn": 8,
-    "strength_open_kn": 7,
+    "strength_open_kn": 9,
     "weight_g": 75,
     "rubber_keeper": false,
     "captive_eye": false,
@@ -1628,6 +1658,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:03.842747+00:00",
     "slug": "dmm-wisp",
     "brand": "DMM",
     "model": "Wisp",
@@ -1646,10 +1677,10 @@
       60
     ],
     "upper_gate_type": "wire_straight",
-    "upper_nose_type": null,
+    "upper_nose_type": "notchless",
     "gate_opening_upper_mm": 20,
     "lower_gate_type": "wire_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "notchless",
     "gate_opening_lower_mm": 20,
     "strength_major_kn": 20,
     "strength_minor_kn": 8,
@@ -1684,6 +1715,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "edelrid-bulletproof",
     "brand": "Edelrid",
     "model": "Bulletproof",
@@ -1738,6 +1770,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "edelrid-nineteen-g",
     "brand": "Edelrid",
     "model": "Nineteen G Set",
@@ -1784,13 +1817,14 @@
     "year_released": 2021,
     "color_1": "#f1c40f",
     "color_2": "#f39c12",
-    "description": "The world's lightest quickdraw at just 46g. Uses the 19.5g Nineteen G carabiner - the lightest full-strength biner on the market.",
+    "description": "The world's lightest quickdraw at just 46g. Uses the 19.5g Nineteen G carabiner — the lightest full-strength biner on the market.",
     "pros": null,
     "cons": null,
     "admin_flags": null,
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:36.002624+00:00",
     "slug": "edelrid-pure-set",
     "brand": "Edelrid",
     "model": "Pure Set",
@@ -1808,14 +1842,14 @@
     ],
     "upper_gate_type": "solid_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 21,
+    "gate_opening_upper_mm": 20,
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
-    "gate_opening_lower_mm": 23,
+    "gate_opening_lower_mm": 20,
     "strength_major_kn": 22,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
-    "weight_g": 101,
+    "weight_g": 94,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -1844,6 +1878,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:36.249232+00:00",
     "slug": "edelrid-pure-wire-set",
     "brand": "Edelrid",
     "model": "Pure Wire Set",
@@ -1861,14 +1896,14 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 24,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
     "strength_major_kn": 23,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
-    "weight_g": 87,
+    "weight_g": 97,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -1898,6 +1933,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:36.498833+00:00",
     "slug": "edelrid-slash-wire",
     "brand": "Edelrid",
     "model": "Slash Wire Set",
@@ -1915,10 +1951,10 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 26,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
-    "gate_opening_lower_mm": 22,
+    "gate_opening_lower_mm": 26,
     "strength_major_kn": 23,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
@@ -1951,6 +1987,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:36.734428+00:00",
     "slug": "fixe-montgrony-express",
     "brand": "Fixe",
     "model": "Montgrony Express",
@@ -1972,7 +2009,7 @@
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
-    "strength_major_kn": 24,
+    "strength_major_kn": 25,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
     "weight_g": 102,
@@ -2005,6 +2042,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T11:41:36.981922+00:00",
     "slug": "grivel-all-round-beta",
     "brand": "Grivel",
     "model": "All Round Beta",
@@ -2026,10 +2064,10 @@
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
-    "strength_major_kn": 23,
+    "strength_major_kn": 24,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
-    "weight_g": 98,
+    "weight_g": 95,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -2059,6 +2097,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:02.416272+00:00",
     "slug": "grivel-alpine-plume",
     "brand": "Grivel",
     "model": "Alpine Plume",
@@ -2075,10 +2114,10 @@
       16
     ],
     "upper_gate_type": "wire_straight",
-    "upper_nose_type": null,
+    "upper_nose_type": "keylock",
     "gate_opening_upper_mm": 24,
     "lower_gate_type": "wire_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
     "strength_major_kn": 20,
     "strength_minor_kn": 7,
@@ -2114,6 +2153,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:02.696195+00:00",
     "slug": "grivel-alpine-plume-evo",
     "brand": "Grivel",
     "model": "Alpine Plume Evo",
@@ -2130,10 +2170,10 @@
       16
     ],
     "upper_gate_type": "wire_straight",
-    "upper_nose_type": null,
+    "upper_nose_type": "keylock",
     "gate_opening_upper_mm": 24,
     "lower_gate_type": "wire_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
     "strength_major_kn": 20,
     "strength_minor_kn": 7,
@@ -2170,6 +2210,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "kong-rush-quickdraw",
     "brand": "Kong",
     "model": "Rush",
@@ -2224,6 +2265,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:55.656354+00:00",
     "slug": "mad-rock-concorde-express",
     "brand": "Mad Rock",
     "model": "Concorde Express",
@@ -2244,8 +2286,8 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 24,
-    "strength_major_kn": 27,
-    "strength_minor_kn": 8,
+    "strength_major_kn": 26,
+    "strength_minor_kn": 10,
     "strength_open_kn": 8,
     "weight_g": 87,
     "rubber_keeper": true,
@@ -2276,6 +2318,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:55.992196+00:00",
     "slug": "mammut-crag-keylock-indicator",
     "brand": "Mammut",
     "model": "Crag Keylock Indicator Express Set",
@@ -2297,10 +2340,10 @@
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
-    "strength_major_kn": 22,
+    "strength_major_kn": 24,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
-    "weight_g": 105,
+    "weight_g": 110,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -2331,6 +2374,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:56.249876+00:00",
     "slug": "mammut-crag-wire-indicator",
     "brand": "Mammut",
     "model": "Crag Wire Indicator Express Set",
@@ -2352,10 +2396,10 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
     "gate_opening_lower_mm": 24,
-    "strength_major_kn": 22,
-    "strength_minor_kn": 7,
-    "strength_open_kn": 7,
-    "weight_g": 82,
+    "strength_major_kn": 24,
+    "strength_minor_kn": 9,
+    "strength_open_kn": 8,
+    "weight_g": 106,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -2385,6 +2429,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:03.338091+00:00",
     "slug": "mammut-sender-keylock",
     "brand": "Mammut",
     "model": "Sender Keylock",
@@ -2404,7 +2449,7 @@
     "upper_nose_type": "keylock",
     "gate_opening_upper_mm": 19,
     "lower_gate_type": "wire_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 21,
     "strength_major_kn": 21,
     "strength_minor_kn": 7,
@@ -2438,6 +2483,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:03.586186+00:00",
     "slug": "mammut-sender-wire",
     "brand": "Mammut",
     "model": "Sender Wire",
@@ -2455,10 +2501,10 @@
       60
     ],
     "upper_gate_type": "wire_straight",
-    "upper_nose_type": null,
+    "upper_nose_type": "hooked",
     "gate_opening_upper_mm": 20,
     "lower_gate_type": "wire_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 20,
     "strength_major_kn": 21,
     "strength_minor_kn": 7,
@@ -2492,6 +2538,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T17:40:04.090379+00:00",
     "slug": "mammut-workhorse-keylock",
     "brand": "Mammut",
     "model": "Workhorse Keylock",
@@ -2511,7 +2558,7 @@
     "upper_nose_type": "keylock",
     "gate_opening_upper_mm": 20,
     "lower_gate_type": "wire_bent",
-    "lower_nose_type": null,
+    "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 23,
     "strength_major_kn": 26,
     "strength_minor_kn": 9,
@@ -2545,6 +2592,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "metolius-bravo-ii",
     "brand": "Metolius",
     "model": "Bravo II",
@@ -2598,6 +2646,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "metolius-captive-eye",
     "brand": "Metolius",
     "model": "Captive Eye",
@@ -2650,6 +2699,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:56.942334+00:00",
     "slug": "ocun-hawk-qd-wire",
     "brand": "Ocun",
     "model": "Hawk QD Wire",
@@ -2667,14 +2717,14 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 25,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "keylock",
-    "gate_opening_lower_mm": 24,
+    "gate_opening_lower_mm": 25,
     "strength_major_kn": 24,
     "strength_minor_kn": 8,
-    "strength_open_kn": 8,
-    "weight_g": 85,
+    "strength_open_kn": 9,
+    "weight_g": 81,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -2704,6 +2754,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "petzl-ange-finesse",
     "brand": "Petzl",
     "model": "Ange Finesse",
@@ -2759,6 +2810,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "petzl-djinn-axess",
     "brand": "Petzl",
     "model": "Djinn Axess",
@@ -2816,6 +2868,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-25T20:08:55.243303+00:00",
     "slug": "petzl-spirit-express",
     "brand": "Petzl",
     "model": "Spirit Express",
@@ -2873,6 +2926,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:57.108735+00:00",
     "slug": "salewa-hot-g3-express-set",
     "brand": "Salewa",
     "model": "Hot G3 Express Set",
@@ -2897,7 +2951,7 @@
     "strength_major_kn": 22,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
-    "weight_g": 98,
+    "weight_g": 96,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -2927,6 +2981,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:57.546746+00:00",
     "slug": "simond-rocky-quickdraw",
     "brand": "Simond",
     "model": "Rocky Quickdraw",
@@ -2949,9 +3004,9 @@
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 23,
     "strength_major_kn": 22,
-    "strength_minor_kn": 7,
+    "strength_minor_kn": 8,
     "strength_open_kn": 7,
-    "weight_g": 89,
+    "weight_g": 87,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -2980,6 +3035,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:57.713405+00:00",
     "slug": "singing-rock-vision-set",
     "brand": "Singing Rock",
     "model": "Vision Set",
@@ -2997,13 +3053,13 @@
     ],
     "upper_gate_type": "solid_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 21,
+    "gate_opening_upper_mm": 19,
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
-    "gate_opening_lower_mm": 23,
-    "strength_major_kn": 24,
+    "gate_opening_lower_mm": 19,
+    "strength_major_kn": 25,
     "strength_minor_kn": 7,
-    "strength_open_kn": 7,
+    "strength_open_kn": 8,
     "weight_g": 75,
     "rubber_keeper": true,
     "captive_eye": false,
@@ -3033,6 +3089,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:57.316739+00:00",
     "slug": "trango-phase-alpine",
     "brand": "Trango",
     "model": "Phase Alpine",
@@ -3053,9 +3110,9 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "hooked",
     "gate_opening_lower_mm": 26,
-    "strength_major_kn": 24,
+    "strength_major_kn": 22,
     "strength_minor_kn": 8,
-    "strength_open_kn": 8,
+    "strength_open_kn": 7,
     "weight_g": 80,
     "rubber_keeper": false,
     "captive_eye": false,
@@ -3087,6 +3144,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:54.743675+00:00",
     "slug": "wild-country-astro",
     "brand": "Wild Country",
     "model": "Astro",
@@ -3109,9 +3167,9 @@
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "clean",
     "gate_opening_lower_mm": 24,
-    "strength_major_kn": 24,
-    "strength_minor_kn": 8,
-    "strength_open_kn": 8,
+    "strength_major_kn": 23,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 7,
     "weight_g": 65,
     "rubber_keeper": false,
     "captive_eye": false,
@@ -3143,6 +3201,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:55.117124+00:00",
     "slug": "wild-country-helium",
     "brand": "Wild Country",
     "model": "Helium",
@@ -3161,14 +3220,14 @@
     ],
     "upper_gate_type": "solid_straight",
     "upper_nose_type": "keylock",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 27,
     "lower_gate_type": "solid_bent",
     "lower_nose_type": "keylock",
-    "gate_opening_lower_mm": 24,
+    "gate_opening_lower_mm": 27,
     "strength_major_kn": 24,
-    "strength_minor_kn": 8,
-    "strength_open_kn": 8,
-    "weight_g": 95,
+    "strength_minor_kn": 7,
+    "strength_open_kn": 9,
+    "weight_g": 83,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -3197,6 +3256,7 @@
     "data_confidence": null
   },
   {
+    "updated_at": "2026-02-26T12:01:55.351341+00:00",
     "slug": "wild-country-session",
     "brand": "Wild Country",
     "model": "Session",
@@ -3214,14 +3274,14 @@
     ],
     "upper_gate_type": "wire_straight",
     "upper_nose_type": "hooked",
-    "gate_opening_upper_mm": 22,
+    "gate_opening_upper_mm": 20,
     "lower_gate_type": "wire_bent",
     "lower_nose_type": "hooked",
-    "gate_opening_lower_mm": 22,
-    "strength_major_kn": 24,
+    "gate_opening_lower_mm": 21,
+    "strength_major_kn": 23,
     "strength_minor_kn": 8,
     "strength_open_kn": 8,
-    "weight_g": 75,
+    "weight_g": 99,
     "rubber_keeper": true,
     "captive_eye": false,
     "extendable": false,
@@ -3243,7 +3303,7 @@
     "year_released": 2022,
     "color_1": "#1abc9c",
     "color_2": "#16a085",
-    "description": "Entry-level wiregate quickdraw. Light, affordable, and effective - ideal for gym climbers transitioning to outdoor sport climbing.",
+    "description": "Entry-level wiregate quickdraw. Light, affordable, and effective — ideal for gym climbers transitioning to outdoor sport climbing.",
     "pros": null,
     "cons": null,
     "admin_flags": null,

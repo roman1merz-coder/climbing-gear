@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 /**
- * Pre-build script: fetch crashpad data from Supabase and write seed JSON files.
- * Run before `npm run build` to ensure seed data is fresh.
- * Supabase is the single source of truth.
+ * Pre-build script: fetch product data from Supabase and write seed JSON files.
+ * Runs automatically before `npm run build` via the `prebuild` script.
+ * Supabase is the single source of truth for all product specs.
+ *
+ * For each product table we strip:
+ *  - DB-internal columns (id, created_at)
+ *  - Generated/computed columns (e.g. crashpad volume_l, shoes computed_stiffness)
+ *
+ * We KEEP `updated_at` so generate-sitemap.js can emit accurate <lastmod> values.
  */
 import { writeFileSync } from 'fs';
 import { join, dirname } from 'path';
@@ -14,7 +20,43 @@ const SRC = join(__dirname, '..', 'src');
 const SUPABASE_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI';
 
-const GENERATED_COLS = ['id', 'created_at', 'updated_at', 'volume_l', 'landing_area_sqm', 'kg_per_area', 'kg_per_liter', 'eur_per_area', 'eur_per_liter'];
+// Always-stripped DB-internal columns
+const ALWAYS_STRIP = ['id', 'created_at'];
+
+// Per-table generated/computed columns to also strip.
+// Anything front-end code or prerender doesn't read should be stripped to keep bundle small.
+const TABLE_CONFIG = {
+  shoes: {
+    outFiles: ['seed_data.json'],
+    extraStrip: [
+      // computed_stiffness is a Postgres GENERATED column derived from
+      // midsole/rand/rubber_thickness/closure/upper. Not consumed by the
+      // front-end (verified via grep) so safe to drop from bundle.
+      'computed_stiffness',
+    ],
+  },
+  ropes: {
+    outFiles: ['rope_seed_data.json', 'ropes_seed_data.json'],
+    extraStrip: [],
+  },
+  belay_devices: {
+    outFiles: ['belay_seed_data.json'],
+    extraStrip: [],
+  },
+  crashpads: {
+    outFiles: ['crashpad_seed_data.json', 'crashpads_seed_data.json'],
+    extraStrip: [
+      // computed at scoring time; front-end recomputes if needed
+      'volume_l', 'landing_area_sqm',
+      'kg_per_area', 'kg_per_liter',
+      'eur_per_area', 'eur_per_liter',
+    ],
+  },
+  quickdraws: {
+    outFiles: ['quickdraw_seed_data.json'],
+    extraStrip: [],
+  },
+};
 
 async function fetchAll(table) {
   const PAGE = 1000;
@@ -28,7 +70,7 @@ async function fetchAll(table) {
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
       }
     });
-    if (!res.ok) throw new Error(`Supabase error: ${res.status} ${await res.text()}`);
+    if (!res.ok) throw new Error(`Supabase error fetching ${table}: ${res.status} ${await res.text()}`);
     const rows = await res.json();
     all = all.concat(rows);
     if (rows.length < PAGE) break;
@@ -37,32 +79,45 @@ async function fetchAll(table) {
   return all;
 }
 
-function stripGenerated(rows) {
+function stripCols(rows, cols) {
+  const set = new Set(cols);
   return rows.map(r => {
     const clean = {};
     for (const [k, v] of Object.entries(r)) {
-      if (!GENERATED_COLS.includes(k)) clean[k] = v;
+      if (!set.has(k)) clean[k] = v;
     }
     return clean;
   });
 }
 
-async function main() {
-  console.log('Fetching crashpad data from Supabase...');
-  const crashpads = await fetchAll('crashpads');
-  console.log(`  \u2192 ${crashpads.length} crashpads fetched`);
-  
-  const cleaned = stripGenerated(crashpads);
+async function generateForTable(table, cfg) {
+  console.log(`\nFetching ${table} from Supabase...`);
+  const rows = await fetchAll(table);
+  console.log(`  \u2192 ${rows.length} rows fetched`);
+
+  const cleaned = stripCols(rows, [...ALWAYS_STRIP, ...cfg.extraStrip]);
   const json = JSON.stringify(cleaned, null, 2);
-  
-  // Write both seed files (they're the same content)
-  writeFileSync(join(SRC, 'crashpad_seed_data.json'), json + '\n');
-  writeFileSync(join(SRC, 'crashpads_seed_data.json'), json + '\n');
-  console.log(`  \u2192 Wrote crashpad_seed_data.json (${(json.length/1024).toFixed(1)}KB)`);
-  console.log(`  \u2192 Wrote crashpads_seed_data.json (${(json.length/1024).toFixed(1)}KB)`);
+
+  for (const file of cfg.outFiles) {
+    writeFileSync(join(SRC, file), json + '\n');
+    console.log(`  \u2192 Wrote ${file} (${(json.length / 1024).toFixed(1)} KB)`);
+  }
+  return rows.length;
+}
+
+async function main() {
+  const start = Date.now();
+  let total = 0;
+  for (const [table, cfg] of Object.entries(TABLE_CONFIG)) {
+    total += await generateForTable(table, cfg);
+  }
+  const seconds = ((Date.now() - start) / 1000).toFixed(1);
+  console.log(`\n\u2705 Seed generation complete: ${total} products across ${Object.keys(TABLE_CONFIG).length} tables in ${seconds}s`);
 }
 
 main().catch(e => {
-  console.error('Seed generation failed:', e.message);
-  console.log('Build will continue with existing seed files.');
+  console.error('\u274C Seed generation failed:', e.message);
+  console.error('Build will continue with existing seed files.');
+  // Do NOT exit non-zero - we want the build to fall back to last-known-good seeds
+  // rather than fail outright if Supabase is briefly unreachable.
 });
