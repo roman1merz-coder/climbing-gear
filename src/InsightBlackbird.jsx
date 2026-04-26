@@ -606,7 +606,7 @@ const ARTICLE_HTML = `
 
       <h2>What is new about the Blackbird</h2>
       <p>The headline feature is Scarpa's first carbon-enhanced 3D molded midsole. It is a deliberately polarising design choice: a very stiff carbon platform combined with thin and relatively soft XS Grip2 rubber. The idea is that the carbon does the structural work (edging power, support) while the thin rubber retains sensitivity and friction.</p>
-      <p>For my home crag, a sandstone quarry where vertical climbing on micro-smears and small edges is the name of the game, that combination sounded promising. A stiff platform that still lets you feel the rock and smear on blanks parts of the wall would be amazing for that style of climbing.</p>
+      <p>For my home crag, a sandstone quarry where vertical climbing on micro-smears and small edges is the name of the game, that combination sounded promising. A stiff platform that still lets you feel the rock and smear on blank parts of the wall would be ideal for that style of climbing.</p>
 
       <div class="stat-grid">
         <div class="stat">
@@ -710,7 +710,7 @@ const ARTICLE_HTML = `
       <p>The forefoot and toes fit my low to mid volume foot very well; the front of the shoe is genuinely precise out of the box - indeed supportive yet sensitive. The heel is a different story for me: it feels loose and I am not entirely sure what the intent of this new construction is.&nbsp;</p>
 
       <div class="key-insight">
-        Sizing recommendation: Scarpa's "+0.5 over your usual Scarpa" guidance held up. So 1 size down from street shoes is my recommendation. Likely fits well for egyptian toes, narrow-to-medium forefoot with medium-to-wide heels. In otehr words: If the Drago fits you, this one will likely, too.</div>
+        Sizing recommendation: Scarpa's "+0.5 over your usual Scarpa" guidance held up. So 1 size down from street shoes is my recommendation. Likely fits well for egyptian toes, narrow-to-medium forefoot with medium-to-wide heels. In other words: If the Drago fits you, this one will likely, too.</div>
 
       <h2>Performance</h2>
       <p>The midsole is indeed extremely stiff and seems to extend through roughly three quarters of the shoe. Under the toes the forefoot is heavily concaved, more so than the typical Scarpa, and closer in feel to the La Sportiva Otaki or the 3D-molded Mad Rock shoes.</p>
