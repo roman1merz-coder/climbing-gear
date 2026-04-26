@@ -6406,7 +6406,7 @@
     "weight_g": 510,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Performance climbing shoe with a full-length MX-P plastic midsole and 4.2mm TRAX SAS rubber. Aggressively asymmetric with a moderate downturn, the Geshido delivers powerful edging on small features while remaining versatile across sport and bouldering terrain. Two-strap velcro closure, single-layer vegan synthetic upper.",
+    "description": "Performance climbing shoe with a full-length MX-P plastic midsole and 4.2mm TRAX SAS rubber. Aggressively asymmetric with a cambered downturn, the Geshido delivers powerful edging on small features while remaining versatile across sport and bouldering terrain. Two-strap velcro closure, single-layer vegan synthetic upper.",
     "pros": "[\"Stiff full-length midsole drives precise edging\", \"Sticky 4.2mm TRAX SAS rubber\", \"Vegan synthetic upper\"]",
     "cons": "[\"Aggressive asymmetry not ideal for long routes\", \"Newer model, durability at scale not yet proven\"]",
     "sizing": "Performance fit. Most climbers go from street size to half a size down depending on intended use.",
@@ -6415,7 +6415,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:39.053611+00:00",
+    "updated_at": "2026-04-26T10:05:21.062219+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -6495,7 +6495,7 @@
     "weight_g": 510,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
-    "description": "Low-volume version of the Geshido for narrower feet and lower insteps. Same full-length stiff MX-P midsole and 4.2mm TRAX SAS rubber as the standard Geshido, with a narrower last and a women's size range. Strong asymmetry and a moderate downturn for powerful edging on vertical to overhanging terrain.",
+    "description": "Low-volume version of the Geshido for narrower feet and lower insteps. Same full-length stiff MX-P midsole and 4.2mm TRAX SAS rubber as the standard Geshido, with a narrower last and a women's size range. Strong asymmetry and a cambered downturn for powerful edging on vertical to overhanging terrain.",
     "pros": "[\"Low-volume last fits narrower feet better than the standard Geshido\", \"Stiff full-length midsole\", \"Vegan synthetic upper\"]",
     "cons": "[\"Aggressive asymmetry uncomfortable for long routes\", \"Limited size range\"]",
     "sizing": "Performance fit, narrow last. Half a size down from street.",
@@ -6504,7 +6504,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:42.422883+00:00",
+    "updated_at": "2026-04-26T10:05:21.183137+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -7666,7 +7666,7 @@
       "pocket",
       "crack"
     ],
-    "feel": "moderate",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 175,
     "current_price_eur": null,
     "discount_pct": 0,
@@ -7704,7 +7704,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:47.623025+00:00",
+    "updated_at": "2026-04-26T10:05:21.306874+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -8331,8 +8331,7 @@
       "advanced"
     ],
     "use_cases": [
-      "trad_multipitch",
-      "sport"
+      "trad_multipitch"
     ],
     "best_rock_types": [
       "granite",
@@ -8346,7 +8345,7 @@
       "crack",
       "edge"
     ],
-    "feel": "stiff",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 180,
     "current_price_eur": null,
     "discount_pct": 0,
@@ -8384,8 +8383,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:53.169924+00:00",
-    "midsole_stiffness": "hard",
+    "updated_at": "2026-04-26T10:05:21.424092+00:00",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "greek",
       "roman"
@@ -8419,8 +8418,7 @@
       "advanced"
     ],
     "use_cases": [
-      "trad_multipitch",
-      "sport"
+      "trad_multipitch"
     ],
     "best_rock_types": [
       "granite",
@@ -8434,7 +8432,7 @@
       "crack",
       "edge"
     ],
-    "feel": "stiff",
+    "feel": "stiff-moderate",
     "price_uvp_eur": 180,
     "current_price_eur": null,
     "discount_pct": 0,
@@ -8472,8 +8470,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:38:56.180996+00:00",
-    "midsole_stiffness": "hard",
+    "updated_at": "2026-04-26T10:05:21.588313+00:00",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "greek",
       "roman"
