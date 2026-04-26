@@ -158,6 +158,16 @@ export function computeSupport(shoe) {
   return Math.min(1, stiff * 0.25 + hardR * 0.20 + thickR * 0.20 + mid * 0.20 + laceSup * 0.15);
 }
 
+/** Manual comfort overrides for shoes whose marketed all-day comfort is not
+ *  captured by the formula (e.g. carbon midsoles that reduce fatigue without
+ *  reducing stiffness, conservative manufacturer downsize recommendations).
+ *  Value is added to the raw comfort score before clamping to 0–1. */
+const COMFORT_OVERRIDES = {
+  // Carbon-fiber-reinforced 3/4 Pebax midsole + 1.0 EU conservative downsize;
+  // formula penalises hard stiffness too aggressively for this design.
+  "scarpa-blackbird": 0.10,
+};
+
 /** Overall comfort score 0–1.
  *  Moderate downturn (0.55) - gentle curve is still wearable.
  *  Velcro raised (0.70) - convenience matters for comfort.
@@ -172,7 +182,8 @@ export function getComfortScore(shoe) {
   const comfCl = ({ lace: 0.85, velcro: 0.70, slipper: 0.30 })[cl] || 0.55;
   const midComf = ({ full: 0.70, three_quarter: 0.63, half: 0.55, forefoot: 0.48, toe: 0.38, none: 0.30, partial: 0.50 })[shoe.midsole] || 0.50;
   const thickR = rubberThick(shoe);
-  return Math.min(1, flex * 0.24 + gentleDown * 0.24 + gentleAsym * 0.20 + comfCl * 0.12 + midComf * 0.10 + thickR * 0.10);
+  const override = COMFORT_OVERRIDES[shoe.slug] || 0;
+  return Math.min(1, flex * 0.24 + gentleDown * 0.24 + gentleAsym * 0.20 + comfCl * 0.12 + midComf * 0.10 + thickR * 0.10 + override);
 }
 
 /** Comfort label from score */

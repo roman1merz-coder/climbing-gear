@@ -22075,7 +22075,7 @@
       "{\"url\":\"https://us.scarpa.com/cdn/shop/files/70086-000-1_06_BLB_Blk-Wht_BLACKBIRD_Black-White.jpg?v=1773691176&width=2000\",\"label\":\"Detail\"}"
     ],
     "forefoot_volume": "standard",
-    "width": "medium",
+    "width": "narrow",
     "heel_volume": "medium",
     "skill_level": [
       "advanced",
@@ -22122,7 +22122,7 @@
       "soft"
     ],
     "rubber_thickness_mm": 3.5,
-    "midsole": "full",
+    "midsole": "three_quarter",
     "rand": "tensioned",
     "gender": "unisex",
     "kids_friendly": false,
@@ -22130,9 +22130,9 @@
     "weight_g": 470,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
-    "description": "Scarpa's first climbing shoe with a carbon-reinforced 3D-molded Pebax midsole, designed by Heinz Mariacher to balance rigid edging support with softness for all-day comfort. The Z-cord wraparound closure with feather-shaped strap and Alcantara heel with integrated heel cup deliver a precise fit and powerful heel hooks. Moderately downturned and asymmetric, the Blackbird is engineered for technical edging on small footholds and excels from single pitches to multi-pitch routes without aggressive downsizing.",
-    "pros": "[\"Carbon-reinforced Pebax midsole reduces foot fatigue\",\"Less downsizing required for all-day comfort\",\"Vibram XS Grip 2 rubber for confident smearing and edging\",\"Integrated heel cup excels on heel hooks\",\"Designed by Heinz Mariacher\"]",
-    "cons": "[\"Premium price point\",\"Brand new model with limited resole network\",\"Not for climbers who prefer aggressive downsizing for sensitivity\",\"Unique cord-and-strap closure has a learning curve\"]",
+    "description": "Scarpa's first climbing shoe with a carbon-fiber-reinforced 3D-molded Pebax midsole that pairs rigid edging support with a 3/4 layout for all-day wear. The Z-cord wraparound closure with feather-shaped Velcro strap and Alcantara heel with integrated heel cup deliver a precise fit and powerful heel hooks. Moderately downturned and asymmetric on a narrow Egyptian-toe last, the Blackbird is built for technical edging on small footholds and works from single pitches to long multi-pitch routes without aggressive downsizing.",
+    "pros": "[\"Carbon-fiber-reinforced 3/4 Pebax midsole holds an edge without the dead-foot fatigue of a full board\",\"Conservative 1.0 EU downsize keeps it wearable on long sessions and multi-pitches\",\"Vibram XS Grip 2 rubber plus full toe patch and tensioned rand for confident edging and toe hooking\",\"Narrow Egyptian-toe last with Alcantara heel cup locks the foot in for precision footwork\"]",
+    "cons": "[\"Premium price (€249.95)\",\"Heavy at 470 g (pair) for a moderate-aggressive shoe\",\"Hard, stiff carbon platform mutes rock feedback for sensitivity-focused climbers\",\"Narrow forefoot won't suit wide feet\"]",
     "sizing": "Manufacturer recommends choosing at least 0.5 EU size up compared to your usual Scarpa climbing shoe. Not designed for aggressive downsizing - the carbon midsole and adaptive upper deliver performance without forcing the foot into pain.",
     "customer_voices": null,
     "vegan": false,
@@ -22144,9 +22144,11 @@
       "spec_source": "manufacturer+reviews",
       "weight_verified": true
     },
-    "updated_at": "2026-04-25T19:20:00.316501+00:00",
+    "updated_at": "2026-04-26T06:41:41.546594+00:00",
     "midsole_stiffness": "hard",
-    "toe_form": null,
+    "toe_form": [
+      "egyptian"
+    ],
     "mfr_downsize_min_eu": 1,
     "mfr_downsize_max_eu": 1,
     "mfr_toe_box": null,
