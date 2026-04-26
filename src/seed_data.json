@@ -6341,6 +6341,170 @@
   },
   {
     "brand": "Evolv",
+    "model": "Geshido",
+    "slug": "evolv-geshido",
+    "image_url": "/images/shoes/evolv-geshido.jpg",
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 175,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": null,
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "TRAX SAS",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 510,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Performance climbing shoe with a full-length MX-P plastic midsole and 4.2mm TRAX SAS rubber. Aggressively asymmetric with a moderate downturn, the Geshido delivers powerful edging on small features while remaining versatile across sport and bouldering terrain. Two-strap velcro closure, single-layer vegan synthetic upper.",
+    "pros": "[\"Stiff full-length midsole drives precise edging\", \"Sticky 4.2mm TRAX SAS rubber\", \"Vegan synthetic upper\"]",
+    "cons": "[\"Aggressive asymmetry not ideal for long routes\", \"Newer model, durability at scale not yet proven\"]",
+    "sizing": "Performance fit. Most climbers go from street size to half a size down depending on intended use.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:15:48.647769+00:00",
+    "midsole_stiffness": "hard",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": null
+  },
+  {
+    "brand": "Evolv",
+    "model": "Geshido LV",
+    "slug": "evolv-geshido-lv",
+    "image_url": "/images/shoes/evolv-geshido-lv.jpg",
+    "images": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket"
+    ],
+    "feel": "stiff-moderate",
+    "price_uvp_eur": 175,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": null,
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "TRAX SAS",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 480,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Low-volume version of the Geshido for narrower feet and lower insteps. Same full-length stiff MX-P midsole and 4.2mm TRAX SAS rubber as the standard Geshido, with a narrower last and a women's size range. Strong asymmetry and a moderate downturn for powerful edging on vertical to overhanging terrain.",
+    "pros": "[\"Low-volume last fits narrower feet better than the standard Geshido\", \"Stiff full-length midsole\", \"Vegan synthetic upper\"]",
+    "cons": "[\"Aggressive asymmetry uncomfortable for long routes\", \"Limited size range\"]",
+    "sizing": "Performance fit, narrow last. Half a size down from street.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:14:18.886646+00:00",
+    "midsole_stiffness": "hard",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": "Low-volume version of the Geshido for narrower feet."
+  },
+  {
+    "brand": "Evolv",
     "model": "Kira",
     "slug": "evolv-kira",
     "image_url": "/images/shoes/evolv-kira.jpg",
@@ -6770,6 +6934,88 @@
     "mfr_volume": null,
     "no_edge": false,
     "special_fit_notes": null
+  },
+  {
+    "brand": "Evolv",
+    "model": "Phantom LV",
+    "slug": "evolv-phantom-lv",
+    "image_url": "/images/shoes/evolv-phantom-lv.jpg",
+    "images": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "volume"
+    ],
+    "feel": "moderate",
+    "price_uvp_eur": 185,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "aggressive",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": null,
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "TRAX SAS",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "half",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 562,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Aggressively cambered shoe built for steep bouldering and sport. Six-point single-pull velcro closure pulls the foot forward into an asymmetric toe, while the half-length plastic midsole keeps the front edge powerful. Low-volume last suits narrower feet and lower insteps. 4.2mm TRAX SAS sole rubber.",
+    "pros": "[\"Aggressive downturn for steep terrain\", \"Single-pull velcro is fast and secure\", \"Low-volume last fits narrower feet\"]",
+    "cons": "[\"Aggressive shape uncomfortable for long routes\", \"Front edge wears quickly on abrasive rock\"]",
+    "sizing": "Aggressive performance fit. Half a size down from street.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:14:19.073468+00:00",
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": "Low-volume version of the Phantom for narrower feet and lower insteps."
   },
   {
     "brand": "Evolv",
@@ -7271,6 +7517,170 @@
     "mfr_volume": null,
     "no_edge": false,
     "special_fit_notes": null
+  },
+  {
+    "brand": "Evolv",
+    "model": "Shaman 2S LV",
+    "slug": "evolv-shaman-2s-lv",
+    "image_url": "/images/shoes/evolv-shaman-2s-lv.jpg",
+    "images": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "advanced",
+      "elite"
+    ],
+    "use_cases": [
+      "sport",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "indoor"
+    ],
+    "best_wall_angles": [
+      "overhang",
+      "roof"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "volume"
+    ],
+    "feel": "moderate-soft",
+    "price_uvp_eur": 170,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "velcro",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": null,
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "EVO 74",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 3.5,
+    "midsole": "partial",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 540,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Low-volume version of the Shaman 2S, designed for high-tension coordination climbing. Two-strap velcro and a 3.5mm EVO 74 sticky rubber sole give grip on both rock and gym holds. Narrow last suits lower-volume feet and competition-style climbers.",
+    "pros": "[\"EVO 74 rubber is extremely sticky on volumes\", \"Low-volume last for narrower feet\", \"Versatile across sport and bouldering\"]",
+    "cons": "[\"Soft rubber wears quickly on abrasive rock\", \"Narrow heel can feel snug on wider feet\"]",
+    "sizing": "Performance fit. Half a size down from street is typical.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:15:48.875293+00:00",
+    "midsole_stiffness": "medium",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": "Low-volume Shaman 2S for narrower feet and lighter climbers."
+  },
+  {
+    "brand": "Evolv",
+    "model": "Shaman Lace LV",
+    "slug": "evolv-shaman-lace-lv",
+    "image_url": "/images/shoes/evolv-shaman-lace-lv.jpg",
+    "images": null,
+    "forefoot_volume": "low",
+    "width": "narrow",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "sport",
+      "trad_multipitch",
+      "boulder"
+    ],
+    "best_rock_types": [
+      "limestone",
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "vertical",
+      "overhang"
+    ],
+    "best_foothold_types": [
+      "edge",
+      "pocket",
+      "crack"
+    ],
+    "feel": "moderate",
+    "price_uvp_eur": 185,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "strong",
+    "downturn": "moderate",
+    "toe_patch": "full",
+    "heel_rubber_coverage": "full",
+    "ankle_protection": null,
+    "durability": [
+      "moderate"
+    ],
+    "rubber_type": "TRAX SAS",
+    "rubber_hardness": [
+      "soft"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "half",
+    "rand": "tensioned",
+    "gender": "unisex",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 528,
+    "stretch_expectation": "minimal",
+    "break_in_period": "minimal",
+    "description": "Low-volume laced version of the Shaman family. The 1.6mm MX-P Half-Length Love Bump midsole keeps the toe pointed and powerful, while the lace closure dials in fit precisely across narrower feet. Strong asymmetry with a moderate downturn for edging on steep faces and thin features.",
+    "pros": "[\"Lace closure for precise fit\", \"Stiff Love Bump midsole drives toe power\", \"Vegan synthetic upper\"]",
+    "cons": "[\"Lace closure is slower to put on or off\", \"Narrow last not for wider feet\"]",
+    "sizing": "Performance fit, narrow last. Lace closure allows fine tuning.",
+    "customer_voices": null,
+    "vegan": true,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:15:48.761452+00:00",
+    "midsole_stiffness": "medium_hard",
+    "toe_form": [
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": "Low-volume laced Shaman for narrower feet and lighter climbers."
   },
   {
     "brand": "Evolv",
@@ -7864,6 +8274,168 @@
     "mfr_volume": null,
     "no_edge": false,
     "special_fit_notes": null
+  },
+  {
+    "brand": "Evolv",
+    "model": "Yosemite Bum",
+    "slug": "evolv-yosemite-bum",
+    "image_url": "/images/shoes/evolv-yosemite-bum.jpg",
+    "images": null,
+    "forefoot_volume": "high",
+    "width": "wide",
+    "heel_volume": "medium",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "trad_multipitch",
+      "sport"
+    ],
+    "best_rock_types": [
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "crack",
+      "edge"
+    ],
+    "feel": "stiff",
+    "price_uvp_eur": 180,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": null,
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "TRAX SAS",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "mens",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 522,
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "description": "All-day comfort shoe built for big-wall and crack climbing. Full-length stiff midsole supports edging and foot jamming over long routes; flat profile keeps the foot relaxed for multi-pitch days. 4.2mm TRAX SAS rubber and a split tongue for quick on and off. Includes one free resole from Evolv.",
+    "pros": "[\"Full-length stiff midsole for foot jams and edging\", \"Comfortable for long multi-pitch days\", \"Includes a free resole from Evolv\"]",
+    "cons": "[\"Flat profile not ideal for steep terrain\", \"Heavier than performance shoes\"]",
+    "sizing": "Comfort fit for all-day wear. Roman recommends sizing close to street size, half a size down at most for cracks.",
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:15:48.994934+00:00",
+    "midsole_stiffness": "hard",
+    "toe_form": [
+      "roman",
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": null
+  },
+  {
+    "brand": "Evolv",
+    "model": "Yosemite Bum LV",
+    "slug": "evolv-yosemite-bum-lv",
+    "image_url": "/images/shoes/evolv-yosemite-bum-lv.jpg",
+    "images": null,
+    "forefoot_volume": "standard",
+    "width": "medium",
+    "heel_volume": "narrow",
+    "skill_level": [
+      "intermediate",
+      "advanced"
+    ],
+    "use_cases": [
+      "trad_multipitch",
+      "sport"
+    ],
+    "best_rock_types": [
+      "granite",
+      "sandstone"
+    ],
+    "best_wall_angles": [
+      "slab",
+      "vertical"
+    ],
+    "best_foothold_types": [
+      "crack",
+      "edge"
+    ],
+    "feel": "stiff",
+    "price_uvp_eur": 180,
+    "current_price_eur": null,
+    "discount_pct": 0,
+    "size_range": null,
+    "year_released": null,
+    "current_price_url": null,
+    "closure": "lace",
+    "asymmetry": "slight",
+    "downturn": "flat",
+    "toe_patch": "medium",
+    "heel_rubber_coverage": "partial",
+    "ankle_protection": null,
+    "durability": [
+      "high"
+    ],
+    "rubber_type": "TRAX SAS",
+    "rubber_hardness": [
+      "medium"
+    ],
+    "rubber_thickness_mm": 4.2,
+    "midsole": "full",
+    "rand": "tensioned",
+    "gender": "womens",
+    "kids_friendly": false,
+    "upper_material": "synthetic",
+    "weight_g": 480,
+    "stretch_expectation": "minimal",
+    "break_in_period": "moderate",
+    "description": "Low-volume version of the Yosemite Bum for narrower feet. Same full-length stiff midsole, 4.2mm TRAX SAS rubber and split-tongue lace closure as the standard Yosemite Bum, with a women's last and narrower heel pocket. Built for all-day trad, crack and multi-pitch climbing. Includes one free resole.",
+    "pros": "[\"Narrow last fits low-volume feet better than the standard Bum\", \"Stiff supportive midsole for edging and jamming\", \"Includes a free resole from Evolv\"]",
+    "cons": "[\"Flat profile not for steep climbing\", \"Heavier than typical performance shoes\"]",
+    "sizing": "Comfort fit. Most users size close to street size; half a size down for crack-heavy use.",
+    "customer_voices": null,
+    "vegan": false,
+    "resoleable": true,
+    "admin_flags": null,
+    "data_confidence": {},
+    "updated_at": "2026-04-26T08:15:49.109548+00:00",
+    "midsole_stiffness": "hard",
+    "toe_form": [
+      "roman",
+      "egyptian"
+    ],
+    "mfr_downsize_min_eu": null,
+    "mfr_downsize_max_eu": null,
+    "mfr_toe_box": null,
+    "mfr_heel": null,
+    "mfr_volume": null,
+    "no_edge": false,
+    "special_fit_notes": "Low-volume version of the Yosemite Bum for narrower feet."
   },
   {
     "brand": "Evolv",
