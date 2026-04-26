@@ -736,17 +736,29 @@ function buildArticleSchema(article) {
     ...(imageNode && { image: imageNode }),
   };
   if (article.isReview && article.reviewedSlug && article.reviewedBrand && article.reviewedName) {
+    const ratingValue = article.ratingValue || '6.5';
     base.itemReviewed = {
       '@type': 'Product',
       name: `${article.reviewedBrand} ${article.reviewedName}`,
       brand: { '@type': 'Brand', name: article.reviewedBrand },
       category: 'Climbing Shoes',
       url: `${BASE}/shoe/${article.reviewedSlug}`,
+      ...(article.image && { image: `${BASE}${article.image}` }),
+      // aggregateRating is required by Google for nested Products to be eligible
+      // for Product rich results (offers/review/aggregateRating one-of rule).
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue,
+        bestRating: '10',
+        worstRating: '1',
+        ratingCount: 1,
+        reviewCount: 1,
+      },
     };
     // Subjective overall rating; honest 6.5/10 reflects the verdict
     base.reviewRating = {
       '@type': 'Rating',
-      ratingValue: '6.5',
+      ratingValue,
       bestRating: '10',
       worstRating: '1',
     };

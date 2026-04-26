@@ -835,6 +835,17 @@ const REVIEW_SCHEMA = {
     brand: { "@type": "Brand", name: "Scarpa" },
     category: "Climbing Shoes",
     url: "https://www.climbing-gear.com/shoe/scarpa-blackbird",
+    image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg",
+    // aggregateRating required by Google so the nested Product satisfies the
+    // offers/review/aggregateRating one-of rule.
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "6.5",
+      bestRating: "10",
+      worstRating: "1",
+      ratingCount: 1,
+      reviewCount: 1,
+    },
   },
   reviewRating: {
     "@type": "Rating",
