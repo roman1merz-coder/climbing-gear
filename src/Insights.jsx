@@ -14,7 +14,6 @@ import PADS from "./crashpad_seed_data.json";
 const ARTICLES = [
   {
     to: "/insights/scarpa-blackbird",
-    external: true,
     tag: "Shoes", tagColor: T.accent,
     title: "Scarpa Blackbird: Carbon Midsole, Real World Test",
     desc: "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what doesn't, and seven alternatives compared head-to-head.",
