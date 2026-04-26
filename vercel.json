@@ -16,7 +16,8 @@
     { "source": "/scan-testv2", "destination": "/scan-testv2.html" },
     { "source": "/scan/petz/:scanId", "destination": "/scan/petz/:scanId.html" },
     { "source": "/scan/:scanId/browse", "destination": "/scan-browse.html" },
-    { "source": "/scan/:scanId", "destination": "/index.html" }
+    { "source": "/scan/:scanId", "destination": "/index.html" },
+    { "source": "/insights/scarpa-blackbird", "destination": "/insights/scarpa-blackbird.html" }
   ],
   "functions": {
     "api/fetch-prices.js": {

@@ -13,6 +13,14 @@ import PADS from "./crashpad_seed_data.json";
 
 const ARTICLES = [
   {
+    to: "/insights/scarpa-blackbird",
+    external: true,
+    tag: "Shoes", tagColor: T.accent,
+    title: "Scarpa Blackbird: Carbon Midsole, Real World Test",
+    desc: "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what doesn't, and seven alternatives compared head-to-head.",
+    stats: ["7 alternatives", "Sandstone tested", "Sized 44.5"],
+  },
+  {
     to: "/insights/foot-scanner",
     tag: "Scanner", tagColor: T.green,
     title: "How the Foot Scanner Works - A Practical Guide",
@@ -78,42 +86,47 @@ export default function Insights() {
 
         {/* Article Cards */}
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {ARTICLES.map((a, i) => (
-            <Link key={a.to} to={a.to} style={{
-              display: "block", textDecoration: "none",
-              background: T.surface, border: `1px solid ${T.border}`, borderRadius: "16px",
-              padding: isMobile ? "20px 16px" : "28px 32px",
-              transition: "transform 0.15s, box-shadow 0.15s",
-            }}
-              onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.2)`; }}
-              onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-                <span style={{ fontSize: "11px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px" }}>
-                  INSIGHT {["I", "II", "III", "IV", "V"][i]}
-                </span>
-                <span style={{ fontSize: "10px", fontWeight: 600, color: a.tagColor, background: `${a.tagColor}15`, padding: "2px 8px", borderRadius: "4px" }}>
-                  {a.tag}
-                </span>
-              </div>
-              <h2 style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", lineHeight: 1.3, margin: "0 0 8px" }}>
-                {a.title}
-              </h2>
-              <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6, margin: "0 0 14px" }}>
-                {a.desc}
-              </p>
-              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                {a.stats.map(s => (
-                  <span key={s} style={{ fontSize: "10px", color: T.muted, background: T.bg, padding: "3px 10px", borderRadius: "4px", fontWeight: 600 }}>
-                    {s}
+          {ARTICLES.map((a, i) => {
+            const Wrapper = a.external ? "a" : Link;
+            const wrapperProps = a.external ? { href: a.to } : { to: a.to };
+            const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"][i];
+            return (
+              <Wrapper key={a.to} {...wrapperProps} style={{
+                display: "block", textDecoration: "none",
+                background: T.surface, border: `1px solid ${T.border}`, borderRadius: "16px",
+                padding: isMobile ? "20px 16px" : "28px 32px",
+                transition: "transform 0.15s, box-shadow 0.15s",
+              }}
+                onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = `0 8px 24px rgba(0,0,0,0.2)`; }}
+                onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: T.accent, background: T.accentSoft, padding: "3px 10px", borderRadius: "6px", letterSpacing: "0.5px" }}>
+                    INSIGHT {ROMAN}
                   </span>
-                ))}
-              </div>
-              <div style={{ marginTop: "14px", fontSize: "13px", fontWeight: 700, color: T.accent }}>
-                Read article →
-              </div>
-            </Link>
-          ))}
+                  <span style={{ fontSize: "10px", fontWeight: 600, color: a.tagColor, background: `${a.tagColor}15`, padding: "2px 8px", borderRadius: "4px" }}>
+                    {a.tag}
+                  </span>
+                </div>
+                <h2 style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 800, color: T.text, letterSpacing: "-0.3px", lineHeight: 1.3, margin: "0 0 8px" }}>
+                  {a.title}
+                </h2>
+                <p style={{ fontSize: "13px", color: T.muted, lineHeight: 1.6, margin: "0 0 14px" }}>
+                  {a.desc}
+                </p>
+                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                  {a.stats.map(s => (
+                    <span key={s} style={{ fontSize: "10px", color: T.muted, background: T.bg, padding: "3px 10px", borderRadius: "4px", fontWeight: 600 }}>
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <div style={{ marginTop: "14px", fontSize: "13px", fontWeight: 700, color: T.accent }}>
+                  Read article →
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
 
         {/* Footer CTA */}
