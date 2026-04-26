@@ -809,7 +809,11 @@ const REVIEW_SCHEMA = {
   url: "https://www.climbing-gear.com/insights/scarpa-blackbird",
   datePublished: "2026-04-26",
   dateModified: "2026-04-26",
-  author: { "@type": "Organization", name: "climbing-gear.com" },
+  author: {
+    "@type": "Person",
+    name: "Roman",
+    url: "https://www.climbing-gear.com/about",
+  },
   publisher: {
     "@type": "Organization",
     name: "climbing-gear.com",
@@ -819,7 +823,12 @@ const REVIEW_SCHEMA = {
     "@type": "WebPage",
     "@id": "https://www.climbing-gear.com/insights/scarpa-blackbird",
   },
-  image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg",
+  image: {
+    "@type": "ImageObject",
+    url: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg",
+    width: 1280,
+    height: 960,
+  },
   itemReviewed: {
     "@type": "Product",
     name: "Scarpa Blackbird",
@@ -833,6 +842,64 @@ const REVIEW_SCHEMA = {
     bestRating: "10",
     worstRating: "1",
   },
+  positiveNotes: {
+    "@type": "ItemList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Carbon-enhanced 3D-molded midsole delivers genuinely precise toe placement on micro-edges" },
+      { "@type": "ListItem", position: 2, name: "Comfortable from day one with zero break-in period" },
+      { "@type": "ListItem", position: 3, name: "Real sensitivity at the toe tip despite the very stiff platform" },
+      { "@type": "ListItem", position: 4, name: "Concave forefoot well suited for vertical climbing on small edges" },
+    ],
+  },
+  negativeNotes: {
+    "@type": "ItemList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Heel cup feels loose and undermines stability when fully loading the toe" },
+      { "@type": "ListItem", position: 2, name: "Thin XS Grip 2 rubber expected to wear faster than typical edging compounds" },
+      { "@type": "ListItem", position: 3, name: "Premium price for a shoe that may need a resole sooner than peers" },
+      { "@type": "ListItem", position: 4, name: "Comparable edging performance available from the La Sportiva Otaki or Scarpa Vapor V at roughly half the price" },
+    ],
+  },
+};
+
+// Mirrors the FAQPage JSON-LD injected by prerender.mjs so SPA navigations also expose it.
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is new about the Scarpa Blackbird?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The headline feature is Scarpa's first carbon-enhanced 3D molded midsole. It is a deliberately polarising design choice: a very stiff carbon platform combined with thin and relatively soft XS Grip 2 rubber. The idea is that the carbon does the structural work (edging power, support) while the thin rubber retains sensitivity and friction.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does the Scarpa Blackbird fit?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The last is strongly asymmetric with a moderate downturn. The forefoot is narrow to medium, while the heel is a touch wider than expected given Scarpa advertises the shoe as a narrow fit. Scarpa recommends sizing up by 0.5 from your usual Scarpa size.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Who should buy the Scarpa Blackbird?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "If you seek maximum performance on the smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, the Otaki, Up Beat or Vapor V will get you most of the way there at a fraction of the cost.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What are good alternatives to the Scarpa Blackbird?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Comparable edging shoes include the La Sportiva Otaki (most direct comparison at roughly half the price), La Sportiva Katana Lace (long-standing vertical edging benchmark), Scarpa Vapor V (versatile all-rounder), Scarpa Boostic (more downturned and aggressive), EB Strange, Unparallel Up Beat (better for non-Egyptian toe shapes), and Evolv Geshido.",
+      },
+    },
+  ],
 };
 
 export default function InsightBlackbird() {
@@ -842,6 +909,18 @@ export default function InsightBlackbird() {
     { image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg" }
   );
   useStructuredData(REVIEW_SCHEMA);
+
+  // FAQ JSON-LD injection (separate <script> tag with its own id)
+  useEffect(() => {
+    const old = document.getElementById("structured-data-faq");
+    if (old) old.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "structured-data-faq";
+    script.textContent = JSON.stringify(FAQ_SCHEMA);
+    document.head.appendChild(script);
+    return () => { script.remove(); };
+  }, []);
 
   // Scroll to top on mount (in case the user navigated within the SPA)
   useEffect(() => { window.scrollTo(0, 0); }, []);

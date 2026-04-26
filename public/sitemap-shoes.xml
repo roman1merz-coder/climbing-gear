@@ -451,6 +451,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-geshido</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-geshido-lv</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.climbing-gear.com/shoe/evolv-kira</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -477,6 +489,12 @@
   <url>
     <loc>https://www.climbing-gear.com/shoe/evolv-phantom</loc>
     <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-phantom-lv</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -513,6 +531,18 @@
   <url>
     <loc>https://www.climbing-gear.com/shoe/evolv-shaman-2s</loc>
     <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-shaman-2s-lv</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-shaman-lace-lv</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -555,6 +585,18 @@
   <url>
     <loc>https://www.climbing-gear.com/shoe/evolv-venga</loc>
     <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-yosemite-bum</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.climbing-gear.com/shoe/evolv-yosemite-bum-lv</loc>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1550,7 +1592,7 @@
   </url>
   <url>
     <loc>https://www.climbing-gear.com/shoe/scarpa-blackbird</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

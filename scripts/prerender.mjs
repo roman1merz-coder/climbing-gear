@@ -148,7 +148,7 @@ function buildBreadcrumbSchema(crumbs) {
   };
 }
 
-function renderPage(routePath, title, description, ssrContent, jsonLd, breadcrumbSchema) {
+function renderPage(routePath, title, description, ssrContent, jsonLd, breadcrumbSchema, faqSchema) {
   const fullTitle = `${title} | climbing-gear.com`;
   const canonical = `${BASE}${routePath}`;
 
@@ -200,6 +200,14 @@ function renderPage(routePath, title, description, ssrContent, jsonLd, breadcrum
     html = html.replace(
       '</head>',
       `<script type="application/ld+json" id="structured-data-breadcrumb">${JSON.stringify(breadcrumbSchema)}</script>\n</head>`
+    );
+  }
+
+  // Inject FAQPage JSON-LD as separate tag
+  if (faqSchema) {
+    html = html.replace(
+      '</head>',
+      `<script type="application/ld+json" id="structured-data-faq">${JSON.stringify(faqSchema)}</script>\n</head>`
     );
   }
 
@@ -692,6 +700,24 @@ const CATEGORY_BREADCRUMBS = Object.fromEntries(
 
 // --- Article JSON-LD builder for insight/news pages ----------------------
 function buildArticleSchema(article) {
+  // Image: prefer ImageObject with explicit dimensions when known (better for Google + AI engines)
+  let imageNode;
+  if (article.image) {
+    if (article.imageWidth && article.imageHeight) {
+      imageNode = {
+        '@type': 'ImageObject',
+        url: `${BASE}${article.image}`,
+        width: article.imageWidth,
+        height: article.imageHeight,
+      };
+    } else {
+      imageNode = `${BASE}${article.image}`;
+    }
+  }
+  // Author: use Person for first-person reviews to strengthen E-E-A-T; Organization for everything else
+  const authorNode = article.authorPerson
+    ? { '@type': 'Person', name: article.authorPerson, url: `${BASE}/about` }
+    : { '@type': 'Organization', name: 'climbing-gear.com' };
   const base = {
     '@context': 'https://schema.org',
     '@type': article.isReview ? 'Review' : 'Article',
@@ -700,14 +726,14 @@ function buildArticleSchema(article) {
     url: `${BASE}${article.route}`,
     datePublished: article.datePublished,
     dateModified: article.dateModified || article.datePublished,
-    author: { '@type': 'Organization', name: 'climbing-gear.com' },
+    author: authorNode,
     publisher: {
       '@type': 'Organization',
       name: 'climbing-gear.com',
       url: BASE,
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE}${article.route}` },
-    ...(article.image && { image: `${BASE}${article.image}` }),
+    ...(imageNode && { image: imageNode }),
   };
   if (article.isReview && article.reviewedSlug && article.reviewedBrand && article.reviewedName) {
     base.itemReviewed = {
@@ -725,7 +751,42 @@ function buildArticleSchema(article) {
       worstRating: '1',
     };
   }
+  // Pros/cons: Google can render these in the SERP for Review snippets
+  if (Array.isArray(article.positives) && article.positives.length) {
+    base.positiveNotes = {
+      '@type': 'ItemList',
+      itemListElement: article.positives.map((text, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: text,
+      })),
+    };
+  }
+  if (Array.isArray(article.negatives) && article.negatives.length) {
+    base.negativeNotes = {
+      '@type': 'ItemList',
+      itemListElement: article.negatives.map((text, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: text,
+      })),
+    };
+  }
   return base;
+}
+
+// FAQPage JSON-LD — answers must mirror visible article content
+function buildFaqSchema(faq) {
+  if (!Array.isArray(faq) || faq.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  };
 }
 
 // --- Static pages -----------------------------------------------------
@@ -743,10 +804,43 @@ const ARTICLES = [
     headline: 'Scarpa Blackbird Review: Carbon Midsole, Real World Test',
     datePublished: '2026-04-26', dateModified: '2026-04-26',
     image: '/images/insights/blackbird/hero.jpg',
+    imageWidth: 1280,
+    imageHeight: 960,
     isReview: true,
     reviewedSlug: 'scarpa-blackbird',
     reviewedBrand: 'Scarpa',
     reviewedName: 'Blackbird',
+    authorPerson: 'Roman',
+    positives: [
+      'Carbon-enhanced 3D-molded midsole delivers genuinely precise toe placement on micro-edges',
+      'Comfortable from day one with zero break-in period',
+      'Real sensitivity at the toe tip despite the very stiff platform',
+      'Concave forefoot well suited for vertical climbing on small edges',
+    ],
+    negatives: [
+      'Heel cup feels loose and undermines stability when fully loading the toe',
+      'Thin XS Grip 2 rubber expected to wear faster than typical edging compounds',
+      'Premium price for a shoe that may need a resole sooner than peers',
+      'Comparable edging performance available from the La Sportiva Otaki or Scarpa Vapor V at roughly half the price',
+    ],
+    faq: [
+      {
+        q: 'What is new about the Scarpa Blackbird?',
+        a: "The headline feature is Scarpa's first carbon-enhanced 3D molded midsole. It is a deliberately polarising design choice: a very stiff carbon platform combined with thin and relatively soft XS Grip 2 rubber. The idea is that the carbon does the structural work (edging power, support) while the thin rubber retains sensitivity and friction.",
+      },
+      {
+        q: 'How does the Scarpa Blackbird fit?',
+        a: 'The last is strongly asymmetric with a moderate downturn. The forefoot is narrow to medium, while the heel is a touch wider than expected given Scarpa advertises the shoe as a narrow fit. Scarpa recommends sizing up by 0.5 from your usual Scarpa size.',
+      },
+      {
+        q: 'Who should buy the Scarpa Blackbird?',
+        a: 'If you seek maximum performance on the smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, the Otaki, Up Beat or Vapor V will get you most of the way there at a fraction of the cost.',
+      },
+      {
+        q: 'What are good alternatives to the Scarpa Blackbird?',
+        a: 'Comparable edging shoes include the La Sportiva Otaki (most direct comparison at roughly half the price), La Sportiva Katana Lace (long-standing vertical edging benchmark), Scarpa Vapor V (versatile all-rounder), Scarpa Boostic (more downturned and aggressive), EB Strange, Unparallel Up Beat (better for non-Egyptian toe shapes), and Evolv Geshido.',
+      },
+    ],
   },
 ];
 
@@ -879,7 +973,8 @@ async function main() {
       { name: art.headline, url: `${BASE}${art.route}` },
     ]);
     const articleSchema = buildArticleSchema(art);
-    const html = renderPage(art.route, art.title, art.desc, ssr, articleSchema, breadcrumb);
+    const faqSchema = buildFaqSchema(art.faq);
+    const html = renderPage(art.route, art.title, art.desc, ssr, articleSchema, breadcrumb, faqSchema);
     writePage(art.route, html);
     count++;
   }
