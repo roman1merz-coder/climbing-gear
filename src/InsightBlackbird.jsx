@@ -56,7 +56,7 @@ const ARTICLE_CSS = `
   font-weight: 600;
 }
 .bb-article .shoe-link:hover { text-decoration-color: #c98a42; color: #a76e2c; }
-.bb-article .shoe-link::after { content: " \2197"; font-size: 0.85em; opacity: 0.7; }
+.bb-article .shoe-link::after { content: " \\2197"; font-size: 0.85em; opacity: 0.7; }
 
 .bb-article .scanner-note {
   font-size: 12.5px;
