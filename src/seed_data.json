@@ -6345,7 +6345,7 @@
     "slug": "evolv-geshido",
     "image_url": "/images/shoes/evolv-geshido.jpg",
     "images": null,
-    "forefoot_volume": "standard",
+    "forefoot_volume": "high",
     "width": "medium",
     "heel_volume": "medium",
     "skill_level": [
@@ -6379,7 +6379,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": null,
@@ -6393,7 +6393,7 @@
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "tensioned",
-    "gender": "unisex",
+    "gender": "mens",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 510,
@@ -6408,8 +6408,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T08:15:48.647769+00:00",
-    "midsole_stiffness": "hard",
+    "updated_at": "2026-04-26T09:12:01.146654+00:00",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],
@@ -6461,7 +6461,7 @@
     "current_price_url": null,
     "closure": "velcro",
     "asymmetry": "strong",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": null,
@@ -6478,7 +6478,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 480,
+    "weight_g": 510,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Low-volume version of the Geshido for narrower feet and lower insteps. Same full-length stiff MX-P midsole and 4.2mm TRAX SAS rubber as the standard Geshido, with a narrower last and a women's size range. Strong asymmetry and a moderate downturn for powerful edging on vertical to overhanging terrain.",
@@ -6490,8 +6490,8 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T08:14:18.886646+00:00",
-    "midsole_stiffness": "hard",
+    "updated_at": "2026-04-26T09:12:01.418154+00:00",
+    "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
     ],
@@ -7540,8 +7540,8 @@
       "indoor"
     ],
     "best_wall_angles": [
-      "overhang",
-      "roof"
+      "vertical",
+      "overhang"
     ],
     "best_foothold_types": [
       "edge",
@@ -7549,7 +7549,7 @@
       "volume"
     ],
     "feel": "moderate-soft",
-    "price_uvp_eur": 170,
+    "price_uvp_eur": 160,
     "current_price_eur": null,
     "discount_pct": 0,
     "size_range": null,
@@ -7586,7 +7586,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T08:15:48.875293+00:00",
+    "updated_at": "2026-04-26T09:12:01.805803+00:00",
     "midsole_stiffness": "medium",
     "toe_form": [
       "egyptian"
@@ -7632,7 +7632,7 @@
       "crack"
     ],
     "feel": "moderate",
-    "price_uvp_eur": 185,
+    "price_uvp_eur": 175,
     "current_price_eur": null,
     "discount_pct": 0,
     "size_range": null,
@@ -7640,7 +7640,7 @@
     "current_price_url": null,
     "closure": "lace",
     "asymmetry": "strong",
-    "downturn": "moderate",
+    "downturn": "aggressive",
     "toe_patch": "full",
     "heel_rubber_coverage": "full",
     "ankle_protection": null,
@@ -7657,7 +7657,7 @@
     "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 528,
+    "weight_g": 527,
     "stretch_expectation": "minimal",
     "break_in_period": "minimal",
     "description": "Low-volume laced version of the Shaman family. The 1.6mm MX-P Half-Length Love Bump midsole keeps the toe pointed and powerful, while the lace closure dials in fit precisely across narrower feet. Strong asymmetry with a moderate downturn for edging on steep faces and thin features.",
@@ -7669,7 +7669,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T08:15:48.761452+00:00",
+    "updated_at": "2026-04-26T09:12:01.611388+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -8342,11 +8342,11 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T08:15:48.994934+00:00",
+    "updated_at": "2026-04-26T09:12:02.009742+00:00",
     "midsole_stiffness": "hard",
     "toe_form": [
-      "roman",
-      "egyptian"
+      "greek",
+      "roman"
     ],
     "mfr_downsize_min_eu": null,
     "mfr_downsize_max_eu": null,
@@ -8362,7 +8362,7 @@
     "slug": "evolv-yosemite-bum-lv",
     "image_url": "/images/shoes/evolv-yosemite-bum-lv.jpg",
     "images": null,
-    "forefoot_volume": "standard",
+    "forefoot_volume": "low",
     "width": "medium",
     "heel_volume": "narrow",
     "skill_level": [
@@ -8411,7 +8411,7 @@
     "gender": "womens",
     "kids_friendly": false,
     "upper_material": "synthetic",
-    "weight_g": 480,
+    "weight_g": 522,
     "stretch_expectation": "minimal",
     "break_in_period": "moderate",
     "description": "Low-volume version of the Yosemite Bum for narrower feet. Same full-length stiff midsole, 4.2mm TRAX SAS rubber and split-tongue lace closure as the standard Yosemite Bum, with a women's last and narrower heel pocket. Built for all-day trad, crack and multi-pitch climbing. Includes one free resole.",
@@ -8423,11 +8423,11 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T08:15:49.109548+00:00",
+    "updated_at": "2026-04-26T09:12:02.272007+00:00",
     "midsole_stiffness": "hard",
     "toe_form": [
-      "roman",
-      "egyptian"
+      "greek",
+      "roman"
     ],
     "mfr_downsize_min_eu": null,
     "mfr_downsize_max_eu": null,
