@@ -284,10 +284,66 @@ const heelFit = `
 <p><strong>Try it yourself:</strong> ${L('/scan', 'climbing-gear.com/scan')}.</p>
 `;
 
+const scarpaBlackbird = `
+<p><strong>Scarpa Blackbird Review: Carbon Midsole, Real World Test.</strong> First-person review of Scarpa's first carbon-enhanced midsole shoe. Tested on the vertical micro-edges of a sandstone quarry in Edenkoben. What works, what does not, and how it compares to seven established edging shoes.</p>
+
+<ul>
+  <li><strong>Midsole:</strong> Carbon-enhanced, 3D-molded, very stiff platform extending through ~3/4 of the shoe</li>
+  <li><strong>Rubber:</strong> 3.5 mm XS Grip 2 (soft)</li>
+  <li><strong>Downturn:</strong> Moderate - <strong>Asymmetry:</strong> Strong</li>
+  <li><strong>Last:</strong> Narrow to medium forefoot, slightly wider heel</li>
+  <li><strong>Tested at:</strong> EU 44.5 (street size 45.5, usual Scarpa 44)</li>
+</ul>
+
+<h2>TL;DR</h2>
+<p>Interesting shoe, but for me not worth the money. Shoes like the ${L('/shoe/la-sportiva-otaki-mens', 'La Sportiva Otaki')} or ${L('/shoe/scarpa-vapor-v-mens', 'Scarpa Vapor V')} deliver comparable edging performance at roughly half the price. The thin XS Grip 2 rubber will likely not last long, so you end up paying a huge premium for a shoe that needs a resole rather quickly. Only worth recommending if you genuinely need that last bit of performance and price is no object. Note: only climbed once with it so far - will update after a few more sessions. The standout positive: comfy from day 1, literally zero break-in period.</p>
+
+<h2>What is new about the Blackbird</h2>
+<p>The headline feature is Scarpa's first carbon-enhanced 3D molded midsole. It is a deliberately polarising design choice: a very stiff carbon platform combined with thin and relatively soft XS Grip 2 rubber. The idea is that the carbon does the structural work (edging power, support) while the thin rubber retains sensitivity and friction.</p>
+<p>For my home crag - a sandstone quarry where vertical climbing on micro-smears and small edges is the name of the game - that combination sounded promising. A stiff platform that still lets you feel the rock and smear on blank parts of the wall would be ideal for that style of climbing.</p>
+
+<h2>Fit</h2>
+<p>The last is strongly asymmetric with a moderate downturn. The forefoot is narrow to medium, while the heel is a touch wider than I would have expected given Scarpa advertises the shoe as a narrow fit (unfortunate for me).</p>
+<p>I am a street size 45.5 and I usually wear Scarpa in 44. Following Scarpa's own recommendation to size up by 0.5 from your usual Scarpa size, I went with 44.5, which worked well overall. The shoe felt surprisingly comfortable out of the box - unlike most other stiff edging shoes.</p>
+
+<h3>How it actually fits my foot</h3>
+<p>The forefoot and toes fit my low to mid volume foot very well; the front of the shoe is genuinely precise out of the box - supportive yet sensitive. The heel is a different story for me: it feels loose and I am not entirely sure what the intent of this new construction is.</p>
+<p>These measurements were taken with the climbing-gear.com ${L('/scan', 'free Foot Scanner')} - feel free to run it for a direct comparison to my foot shape.</p>
+
+<h2>Performance</h2>
+<p>The midsole is indeed extremely stiff and seems to extend through roughly three quarters of the shoe. Under the toes the forefoot is heavily concaved, more so than the typical Scarpa, and closer in feel to the ${L('/shoe/la-sportiva-otaki-mens', 'La Sportiva Otaki')} or the 3D-molded Mad Rock shoes.</p>
+<p>The toe is genuinely very precise and, despite the stiffness, the shoe does not climb like a rigid board: there is real sensitivity at the very tip. On micro-edges that combination is impressive.</p>
+<p>The catch: while my toe stayed firmly planted on the edge, the midfoot flexed surprisingly a lot. When I pushed maximum pressure onto the front of the shoe, it almost felt like my foot was slipping out of the back. I suspect this is a direct consequence of the loose heel rather than a construction issue, but the effect on the wall is the same: not enough stability on small edges when I have to load them with full body weight and then move upwards.</p>
+
+<h3>Rubber and durability expectation</h3>
+<p>XS Grip 2 is excellent rubber for friction on small features, which is exactly what you want on sandstone, but it obviously wears faster than stiff compounds. Combined with how aggressively you load the front of the shoe on micro-edges, my expectation is that the toe tip will wear through faster than on a typical edging shoe with thicker XS Edge rubber or similar. So you are paying a premium price for a shoe that will likely need a resole sooner than its peers.</p>
+
+<h2>Verdict</h2>
+<p>"Interesting shoe, and the carbon-enhanced platform delivers on precise edging. But for me, the loose heel undermines the very thing the carbon is supposed to enable, and the thin + soft rubber means you will resole it sooner. At this price point, only buy the Blackbird if you truly need that last 5% of performance and it fits your entire foot. Otherwise the alternatives below give you comparable performance for half the money."</p>
+
+<h2>Alternatives worth considering</h2>
+<p>Each of these tackles the same problem of precise edging on vertical to slightly overhanging terrain.</p>
+<ul>
+  <li><strong>${L('/shoe/la-sportiva-otaki-mens', 'La Sportiva Otaki')}:</strong> Moderately aggressive shoe with a concave forefoot, XS Grip 2 rubber and a stiff midsole tuned for small edges. The most direct comparison. Not as extreme as carbon, but at roughly half the price the value proposition is hard to beat. Also a pretty similar fit.</li>
+  <li><strong>${L('/shoe/la-sportiva-katana-lace-mens', 'La Sportiva Katana Lace')}:</strong> Long-standing vertical edging benchmark. Comparable edging precision but less good for "pulling" on foot holds. Slightly wider forefoot but tighter heel cup.</li>
+  <li><strong>${L('/shoe/scarpa-vapor-v-mens', 'Scarpa Vapor V')}:</strong> Versatile all-rounder from Scarpa with a similar last philosophy but less aggressive. A workhorse if you want a Scarpa edging shoe without committing to a carbon midsole.</li>
+  <li><strong>${L('/shoe/scarpa-boostic', 'Scarpa Boostic')}:</strong> More downturned, more aggressive Scarpa with a similar focus on precise toeing in. Far less sensitive but better suited if your projects also include steeper terrain.</li>
+  <li><strong>${L('/shoe/eb-strange', 'EB Strange')}:</strong> Quirky outsider option with an unusual shape and construction, surprisingly capable on small edges and often overlooked.</li>
+  <li><strong>${L('/shoe/unparallel-up-beat', 'Unparallel Up Beat')}:</strong> Unparallel's latest edging-focused shoe. A strong alternative for Greek or Roman toe profiles with a less pointy toe box and less asymmetry. Far more versatile and forgiving for non-Egyptian toe forms.</li>
+  <li><strong>${L('/shoe/evolv-geshido', 'Evolv Geshido')}:</strong> Stiff edging shoe using Evolv's TRAX rubber, aimed at precise small-edge performance. Worth a direct comparison if you are into Evolv.</li>
+</ul>
+
+<h2>Who should actually buy the Blackbird?</h2>
+<p>If you seek maximum performance on the smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, including me, the Otaki, Up Beat or Vapor V will get you most of the way there at a fraction of the cost.</p>
+
+<p>${L('/insights', 'Read more climbing-gear.com insights')} or ${L('/scan', 'compare your own foot to mine using the free Foot Scanner')}.</p>
+`;
+
 export const ARTICLE_BODIES = {
   '/insights/climbing-shoe-guide': climbingShoeGuide,
   '/insights/inflatable-crashpads': inflatableCrashpads,
   '/insights/rope-cost-vs-safety': ropeCostVsSafety,
   '/insights/foot-scanner': footScanner,
   '/insights/heel-fit': heelFit,
+  '/insights/scarpa-blackbird': scarpaBlackbird,
 };

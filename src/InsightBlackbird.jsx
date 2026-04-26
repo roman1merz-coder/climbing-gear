@@ -798,11 +798,50 @@ const ARTICLE_HTML = `
    Self-contained article body lifted from the static HTML draft.
    All CSS is scoped to .bb-article to avoid leaking to the rest of the site.
    NavBar + Footer are provided by the parent BrowserRouter layout in main.jsx. */
+// JSON-LD Review schema. Mirrors the static schema injected by prerender.mjs
+// so client-only navigations also expose the structured data.
+const REVIEW_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  headline: "Scarpa Blackbird Review: Carbon Midsole, Real World Test",
+  description:
+    "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives compared head-to-head.",
+  url: "https://www.climbing-gear.com/insights/scarpa-blackbird",
+  datePublished: "2026-04-26",
+  dateModified: "2026-04-26",
+  author: { "@type": "Organization", name: "climbing-gear.com" },
+  publisher: {
+    "@type": "Organization",
+    name: "climbing-gear.com",
+    url: "https://www.climbing-gear.com",
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://www.climbing-gear.com/insights/scarpa-blackbird",
+  },
+  image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg",
+  itemReviewed: {
+    "@type": "Product",
+    name: "Scarpa Blackbird",
+    brand: { "@type": "Brand", name: "Scarpa" },
+    category: "Climbing Shoes",
+    url: "https://www.climbing-gear.com/shoe/scarpa-blackbird",
+  },
+  reviewRating: {
+    "@type": "Rating",
+    ratingValue: "6.5",
+    bestRating: "10",
+    worstRating: "1",
+  },
+};
+
 export default function InsightBlackbird() {
   usePageMeta(
     "Scarpa Blackbird Review: Carbon Midsole, Real World Test",
-    "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, and seven alternatives compared head-to-head."
+    "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, and seven alternatives compared head-to-head.",
+    { image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg" }
   );
+  useStructuredData(REVIEW_SCHEMA);
 
   // Scroll to top on mount (in case the user navigated within the SPA)
   useEffect(() => { window.scrollTo(0, 0); }, []);

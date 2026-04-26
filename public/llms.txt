@@ -32,6 +32,7 @@ An algorithm-driven questionnaire that scores all 400+ climbing shoes across 7 p
 - [How We Score Climbing Shoes](https://www.climbing-gear.com/insights/climbing-shoe-guide): Explains the 7-axis scoring methodology
 - [Inflatable Crashpads: Game-Changer or Gimmick?](https://www.climbing-gear.com/insights/inflatable-crashpads): Safety and performance analysis
 - [Does Spending More Buy a Safer Rope?](https://www.climbing-gear.com/insights/rope-cost-vs-safety): Cost vs. safety data analysis
+- [Scarpa Blackbird Review: Carbon Midsole, Real World Test](https://www.climbing-gear.com/insights/scarpa-blackbird): First-person review of Scarpa's first carbon-enhanced midsole climbing shoe, tested on vertical sandstone micro-edges, with seven alternatives (Otaki, Katana Lace, Vapor V, Boostic, EB Strange, Up Beat, Geshido) compared head-to-head
 
 ## What Makes This Site Different
 

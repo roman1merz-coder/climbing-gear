@@ -692,9 +692,9 @@ const CATEGORY_BREADCRUMBS = Object.fromEntries(
 
 // --- Article JSON-LD builder for insight/news pages ----------------------
 function buildArticleSchema(article) {
-  return {
+  const base = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': article.isReview ? 'Review' : 'Article',
     headline: article.headline,
     description: article.desc,
     url: `${BASE}${article.route}`,
@@ -709,6 +709,23 @@ function buildArticleSchema(article) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE}${article.route}` },
     ...(article.image && { image: `${BASE}${article.image}` }),
   };
+  if (article.isReview && article.reviewedSlug && article.reviewedBrand && article.reviewedName) {
+    base.itemReviewed = {
+      '@type': 'Product',
+      name: `${article.reviewedBrand} ${article.reviewedName}`,
+      brand: { '@type': 'Brand', name: article.reviewedBrand },
+      category: 'Climbing Shoes',
+      url: `${BASE}/shoe/${article.reviewedSlug}`,
+    };
+    // Subjective overall rating; honest 6.5/10 reflects the verdict
+    base.reviewRating = {
+      '@type': 'Rating',
+      ratingValue: '6.5',
+      bestRating: '10',
+      worstRating: '1',
+    };
+  }
+  return base;
 }
 
 // --- Static pages -----------------------------------------------------
@@ -719,6 +736,18 @@ const ARTICLES = [
   { route: '/insights/rope-cost-vs-safety', title: 'Rope Cost vs Safety: What the Data Says', desc: 'Analyzing whether expensive climbing ropes are actually safer. Data from 190+ ropes compared.', headline: 'Does Spending More Buy a Safer Rope?', datePublished: '2026-02-25', dateModified: '2026-04-09' },
   { route: '/insights/foot-scanner', title: 'How the Foot Scanner Works - Real Scan Walkthrough', desc: 'Two photos, seven measurements, 400+ shoes ranked. See a real scan walkthrough from photo to recommendation.', headline: 'How the Foot Scanner Works', datePublished: '2026-04-05', dateModified: '2026-04-09' },
   { route: '/insights/heel-fit', title: 'Climbing Shoe Heel Fit: Narrow vs. Shallow Heels (Data from 200 Scans)', desc: "Empty heel in your climbing shoe? It's usually one of two things: narrow heel width or shallow heel depth. We analysed 280 fit reports across 97 shoes to show which dimension drives the mismatch for the Skwama, Instinct VSR, Drago, Shaman, Mastia, Solution and more.", headline: 'Climbing Shoe Heel Fit: Why "Narrow Heel" Isn\'t Enough', datePublished: '2026-04-13', dateModified: '2026-04-14' },
+  {
+    route: '/insights/scarpa-blackbird',
+    title: 'Scarpa Blackbird Review: Carbon Midsole, Real World Test',
+    desc: "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives (Otaki, Katana Lace, Vapor V, Boostic, EB Strange, Up Beat, Geshido) compared head-to-head.",
+    headline: 'Scarpa Blackbird Review: Carbon Midsole, Real World Test',
+    datePublished: '2026-04-26', dateModified: '2026-04-26',
+    image: '/images/insights/blackbird/hero.jpg',
+    isReview: true,
+    reviewedSlug: 'scarpa-blackbird',
+    reviewedBrand: 'Scarpa',
+    reviewedName: 'Blackbird',
+  },
 ];
 
 const STATIC = [
