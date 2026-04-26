@@ -6393,7 +6393,7 @@
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "tensioned",
-    "gender": "mens",
+    "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 510,
@@ -6408,7 +6408,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:12:01.146654+00:00",
+    "updated_at": "2026-04-26T09:28:11.367713+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -6475,7 +6475,7 @@
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "tensioned",
-    "gender": "womens",
+    "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 510,
@@ -6490,7 +6490,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:12:01.418154+00:00",
+    "updated_at": "2026-04-26T09:28:11.489525+00:00",
     "midsole_stiffness": "medium_hard",
     "toe_form": [
       "egyptian"
@@ -8327,7 +8327,7 @@
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "tensioned",
-    "gender": "mens",
+    "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 522,
@@ -8342,7 +8342,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:12:02.009742+00:00",
+    "updated_at": "2026-04-26T09:28:11.64677+00:00",
     "midsole_stiffness": "hard",
     "toe_form": [
       "greek",
@@ -8408,7 +8408,7 @@
     "rubber_thickness_mm": 4.2,
     "midsole": "full",
     "rand": "tensioned",
-    "gender": "womens",
+    "gender": "unisex",
     "kids_friendly": false,
     "upper_material": "synthetic",
     "weight_g": 522,
@@ -8423,7 +8423,7 @@
     "resoleable": true,
     "admin_flags": null,
     "data_confidence": {},
-    "updated_at": "2026-04-26T09:12:02.272007+00:00",
+    "updated_at": "2026-04-26T09:28:11.772532+00:00",
     "midsole_stiffness": "hard",
     "toe_form": [
       "greek",
