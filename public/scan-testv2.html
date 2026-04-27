@@ -995,7 +995,7 @@ body {
         <div class="scan-step-time">~20 sec</div>
       </div>
     </div>
-    <button id="start-btn" class="btn-primary" style="margin-bottom: 0">Scan My Feet</button>
+    <button id="start-btn" class="btn-primary" style="margin-bottom: 0">Start Scan</button>
     <p class="trust-line">No account needed. Photos are processed instantly and not stored.</p>
   </div>
 </div>
@@ -1064,32 +1064,18 @@ body {
     <button class="scan-back" onclick="showScreen('start-screen')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Back</button>
     <span></span>
   </div>
-  <span class="step-badge">Step 1/3 - Sole Scan</span>
-  <div class="progress-dots">
-    <div class="progress-dot active"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-  </div>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-sole.jpg" alt="How to take sole photo" />
   <p class="instruction-text">
     <strong>Lay your phone flat on the ground</strong>, screen up, and hold your foot above the camera.
     It is important to have your foot level above the phone - toes and heel should have the same distance from the phone!
     Then just keep your foot steady - the voice guide instructs you and the scanner will snap automatically.
   </p>
-  <button class="btn-primary" id="start-sole-scan" style="max-width:360px;width:100%;padding:10px 14px">Start Sole Scan</button>
+  <button class="btn-primary" id="start-sole-scan" style="flex:none;width:auto;align-self:center;max-width:240px;padding:11px 28px;font-size:0.95rem">Start Sole Scan</button>
 </div>
 
 <!-- ── Sole Review Screen ── -->
 <div id="sole-review" class="review-screen">
   <div class="scan-topbar"><span></span><span></span></div>
-  <span class="step-badge review">Step 1/3 - Review</span>
-  <div class="progress-dots">
-    <div class="progress-dot done"></div>
-    <div class="progress-dot active"></div>
-    <div class="progress-dot"></div>
-    <div class="progress-dot"></div>
-  </div>
   <h2>Check Your Sole Photo</h2>
   <div class="review-img-wrap">
     <img class="review-img" id="review-sole-img" />
@@ -1116,32 +1102,18 @@ body {
     <button class="scan-back" onclick="showScreen('sole-review')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg> Back</button>
     <span></span>
   </div>
-  <span class="step-badge">Step 2/3 - Side Scan</span>
-  <div class="progress-dots">
-    <div class="progress-dot done"></div>
-    <div class="progress-dot done"></div>
-    <div class="progress-dot active"></div>
-    <div class="progress-dot"></div>
-  </div>
   <img class="instruction-img" src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/instruction-side.jpg" alt="How to take side photo" />
   <p class="instruction-text">
     <strong>Hold your phone horizontally on the ground</strong>, screen facing the inside of your right foot.
     Foot stands flat on the ground, leg straight. Stay still - it will snap automatically.
     The voice guidance will talk you through the scan.
   </p>
-  <button class="btn-primary" id="start-side-scan" style="max-width:360px;width:100%;padding:10px 14px">Start Side Scan</button>
+  <button class="btn-primary" id="start-side-scan" style="flex:none;width:auto;align-self:center;max-width:240px;padding:11px 28px;font-size:0.95rem">Start Side Scan</button>
 </div>
 
 <!-- ── Side Review Screen ── -->
 <div id="side-review" class="review-screen">
   <div class="scan-topbar"><span></span><span></span></div>
-  <span class="step-badge review">Step 2/3 - Review</span>
-  <div class="progress-dots">
-    <div class="progress-dot done"></div>
-    <div class="progress-dot done"></div>
-    <div class="progress-dot done"></div>
-    <div class="progress-dot active"></div>
-  </div>
   <h2>Check Your Side Photo</h2>
   <div class="review-img-wrap review-img-wrap-side">
     <img class="review-img" id="review-side-img" />
@@ -1165,7 +1137,6 @@ body {
 <!-- ── Shoe Fit Screen ── -->
 <div id="shoe-fit-screen">
   <div class="scan-topbar"><span></span><span></span></div>
-  <span class="step-badge">Step 3/3 - Shoe Fit</span>
   <h2>Which shoes fit you well?</h2>
   <p class="shoe-fit-subtitle">Helps us give you better size and fit recommendations.</p>
 
@@ -1252,7 +1223,7 @@ body {
 
 <!-- ── V2 Question 1: Discipline (placed AFTER current-shoe feedback) ── -->
 <div id="q-discipline" class="q-screen">
-  <div class="q-step-num">Step 1 of <span class="q-total">4</span></div>
+  <div class="q-step-num">Discipline &middot; <span class="q-total">3</span> quick questions</div>
   <h2>What do you climb?</h2>
   <p class="q-sub">Your discipline tells us which closure type, stiffness target, and downturn profile to favour.</p>
   <div class="q-options-grid cols-3" data-q="discipline">
@@ -1285,7 +1256,7 @@ body {
 
 <!-- ── V2 Question 2: Environment ── -->
 <div id="q-environment" class="q-screen">
-  <div class="q-step-num">Step 2 of <span class="q-total">4</span></div>
+  <div class="q-step-num">Discipline &middot; question 2 of <span class="q-total">3</span></div>
   <h2>Where do you climb most?</h2>
   <p class="q-sub">This determines rubber compound and how much we weight outdoor-rock-specific traits.</p>
   <div class="q-options-grid cols-3" data-q="environment">
@@ -1316,7 +1287,7 @@ body {
 
 <!-- ── V2 Question 3: Rock Type (only if environment == outdoor) ── -->
 <div id="q-rock" class="q-screen">
-  <div class="q-step-num">Step 3 of <span class="q-total">4</span></div>
+  <div class="q-step-num">Discipline &middot; question 3 of <span class="q-total">3</span></div>
   <h2>What rock do you climb most?</h2>
   <p class="q-sub">Rock type drives rubber compound and edge geometry choices.</p>
   <div class="q-options-grid cols-4" data-q="rock_type">
@@ -1353,7 +1324,7 @@ body {
 
 <!-- ── V2 Question 4: Aggressiveness (Comfort vs Performance, 4-level) ── -->
 <div id="q-aggressiveness" class="q-screen">
-  <div class="q-step-num">Step <span id="q-aggr-step-num">3</span> of <span class="q-total">4</span></div>
+  <div class="q-step-num">Performance</div>
   <h2>Comfort or performance?</h2>
   <p class="q-sub">An aggressive shoe puts the foot in a powerful but uncomfortable position. A flat shoe trades downturn and asymmetry for all-day comfort.</p>
   <div class="q-options-grid" data-q="aggressiveness">
@@ -1708,34 +1679,25 @@ function isPhoneLevel() {
 /* ── Screen management with browser back button support ── */
 const SCREEN_ORDER = ['start-screen','sole-instruction','scanner','sole-review','side-instruction','side-review','shoe-fit-screen','q-discipline','q-environment','q-rock','q-aggressiveness','processing-screen','results-screen','thankyou-screen'];
 
-/* V2 wizard step labels - shown in progress bar.
-   Two phases: photo capture (Sole/Side), current shoes (Fit), V2 wizard (Style/Where/Rock/Discipline).
-   Rock is conditional - only appears when environment == "outdoor". */
-const V2_STEPS_OUTDOOR = [
-  { id: 'sole-instruction', label: 'Sole'       },
-  { id: 'side-instruction', label: 'Side'       },
-  { id: 'shoe-fit-screen',  label: 'Your shoes' },
-  { id: 'q-discipline',     label: 'Discipline' },
-  { id: 'q-environment',    label: 'Where'      },
-  { id: 'q-rock',           label: 'Rock'       },
-  { id: 'q-aggressiveness', label: 'Style'      },
+/* V2 wizard step labels - shown in progress bar (5 macro steps).
+   Discipline bundles three sub-questions (type-of-climbing, indoor/outdoor, rock if outdoor).
+   Performance is the aggressiveness slider. */
+const V2_STEPS = [
+  { id: 'sole-instruction', label: 'Sole Scan'   },
+  { id: 'side-instruction', label: 'Side Scan'   },
+  { id: 'shoe-fit-screen',  label: 'Your Shoes'  },
+  { id: 'q-discipline',     label: 'Discipline'  },
+  { id: 'q-aggressiveness', label: 'Performance' },
 ];
-const V2_STEPS_INDOOR = [
-  { id: 'sole-instruction', label: 'Sole'       },
-  { id: 'side-instruction', label: 'Side'       },
-  { id: 'shoe-fit-screen',  label: 'Your shoes' },
-  { id: 'q-discipline',     label: 'Discipline' },
-  { id: 'q-environment',    label: 'Where'      },
-  { id: 'q-aggressiveness', label: 'Style'      },
-];
-function v2Steps() {
-  return (v2State.environment === 'outdoor') ? V2_STEPS_OUTDOOR : V2_STEPS_INDOOR;
-}
-/* Group transient sub-screens with their parent step so progress doesn't backslide. */
+function v2Steps() { return V2_STEPS; }
+/* Group transient sub-screens with their parent step so progress doesn't backslide.
+   q-environment + q-rock both alias to q-discipline so the bundle stays "active". */
 const V2_STEP_ALIASES = {
   'sole-review':       'sole-instruction',
   'side-review':       'side-instruction',
   'scanner':           'sole-instruction',
+  'q-environment':     'q-discipline',
+  'q-rock':            'q-discipline',
   'processing-screen': 'q-aggressiveness',
   'results-screen':    'q-aggressiveness',
   'thankyou-screen':   'q-aggressiveness',
@@ -1892,11 +1854,10 @@ function v2WireQuestions() {
 }
 
 function v2UpdateAggrStepNumber() {
-  const el = document.getElementById('q-aggr-step-num');
+  /* q-total spans inside the Discipline bundle reflect: 3 sub-questions outdoor, 2 indoor. */
   const total = document.querySelectorAll('.q-total');
   const isOutdoor = v2State.environment === 'outdoor';
-  if (el) el.textContent = isOutdoor ? '4' : '3';
-  total.forEach(t => { t.textContent = isOutdoor ? '4' : '3'; });
+  total.forEach(t => { t.textContent = isOutdoor ? '3' : '2'; });
 }
 
 function v2NextScreen(currentKey) {
