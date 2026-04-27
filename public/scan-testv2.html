@@ -1180,17 +1180,6 @@ body {
     </div>
     <button class="add-shoe-btn" id="add-shoe-btn">+ Add another shoe</button>
 
-    <!-- Preference -->
-    <div class="pref-card">
-      <div class="pref-title">What should your next shoe prioritise?</div>
-      <div class="fit-options" id="next-shoe-pref">
-        <button class="fit-option" data-val="comfort">More comfort</button>
-        <button class="fit-option" data-val="same">Same balance</button>
-        <button class="fit-option" data-val="performance">More performance</button>
-      </div>
-      <textarea id="next-shoe-notes" placeholder="Any other preferences? (optional)"></textarea>
-    </div>
-
     <p style="font-size:0.75rem;color:#8a7e6e;text-align:center;margin-bottom:8px">Sex, street shoe size, and at least one shoe with fit ratings are required.</p>
     <div class="shoe-fit-buttons">
       <button class="btn-skip" id="skip-fit-btn" style="display:none">Skip</button>
@@ -2641,9 +2630,9 @@ function collectShoeFitData() {
 /* Save shoe fit data to Supabase */
 async function saveShoeFitData(email) {
   const shoes = collectShoeFitData();
-  const nextPrefBtn = document.querySelector('#next-shoe-pref .fit-option.active');
-  const nextPref = nextPrefBtn ? nextPrefBtn.dataset.val : null;
-  const nextNotes = (document.getElementById('next-shoe-notes')?.value || '').trim() || null;
+  /* V2: 'next shoe preference' UI removed — superseded by aggressiveness wizard step. */
+  const nextPref = null;
+  const nextNotes = null;
   if (shoes.length === 0 && !email && !nextPref && !nextNotes) return;
 
   const sexBtn = document.querySelector('.sex-option.active');
@@ -2901,9 +2890,9 @@ async function submitPreferencesAndProcess(email) {
     return;
   }
   const shoes = collectShoeFitData();
-  const nextPrefBtn = document.querySelector('#next-shoe-pref .fit-option.active');
-  const nextPref = nextPrefBtn ? nextPrefBtn.dataset.val : null;
-  const nextNotes = (document.getElementById('next-shoe-notes')?.value || '').trim() || null;
+  /* V2: 'next shoe preference' UI removed — superseded by aggressiveness wizard step. */
+  const nextPref = null;
+  const nextNotes = null;
   const sexBtn = document.querySelector('.sex-option.active');
   const sex = sexBtn ? sexBtn.dataset.val : null;
   const streetSize = parseFloat(document.getElementById('street-size')?.value) || null;
