@@ -713,7 +713,7 @@ const CATEGORY_BREADCRUMBS = Object.fromEntries(
 );
 
 // --- Article JSON-LD builder for insight/news pages ----------------------
-function buildArticleSchema(article) {
+function buildArticleSchema(article, shoePriceMap) {
   // Image: prefer ImageObject with explicit dimensions when known (better for Google + AI engines)
   let imageNode;
   if (article.image) {
@@ -751,15 +751,20 @@ function buildArticleSchema(article) {
   };
   if (article.isReview && article.reviewedSlug && article.reviewedBrand && article.reviewedName) {
     const ratingValue = article.ratingValue || '6.5';
+    const reviewedUrl = `${BASE}/shoe/${article.reviewedSlug}`;
+    // Pull live offers from the same Supabase price map the shoe page uses,
+    // so the Review's nested Product carries real InStock offers when available.
+    const reviewedOffers = buildOfferSchema(shoePriceMap?.get(article.reviewedSlug), reviewedUrl);
     base.itemReviewed = {
       '@type': 'Product',
       name: `${article.reviewedBrand} ${article.reviewedName}`,
       brand: { '@type': 'Brand', name: article.reviewedBrand },
       category: 'Climbing Shoes',
-      url: `${BASE}/shoe/${article.reviewedSlug}`,
+      url: reviewedUrl,
       ...(article.image && { image: `${BASE}${article.image}` }),
-      // aggregateRating is required by Google for nested Products to be eligible
-      // for Product rich results (offers/review/aggregateRating one-of rule).
+      ...(reviewedOffers && { offers: reviewedOffers }),
+      // aggregateRating kept as a fallback so SPA navigations (which lack the
+      // server-side priceMap) still satisfy Google's one-of rule.
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue,
@@ -998,7 +1003,7 @@ async function main() {
       { name: 'Insights', url: `${BASE}/insights` },
       { name: art.headline, url: `${BASE}${art.route}` },
     ]);
-    const articleSchema = buildArticleSchema(art);
+    const articleSchema = buildArticleSchema(art, shoePriceMap);
     const faqSchema = buildFaqSchema(art.faq);
     const html = renderPage(art.route, art.title, art.desc, ssr, articleSchema, breadcrumb, faqSchema);
     writePage(art.route, html);
