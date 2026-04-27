@@ -59,15 +59,19 @@ export function buildShoeSchema(shoe, priceData) {
     category: "Climbing Shoes",
     url: `${BASE_URL}/shoe/${shoe.slug}`,
     image: shoe.image_url ? `${BASE_URL}${shoe.image_url}` : undefined,
-    ...(offers.length > 0 && {
-      offers: offers.length === 1 ? offers[0] : {
-        "@type": "AggregateOffer",
-        lowPrice: Math.min(...offers.map(o => o.price)),
-        highPrice: Math.max(...offers.map(o => o.price)),
-        priceCurrency: offers[0].priceCurrency,
-        offerCount: offers.length,
-        offers,
-      },
+    offers: offers.length === 0 ? {
+      "@type": "Offer",
+      url: `${BASE_URL}/shoe/${shoe.slug}`,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: "climbing-gear.com" },
+    } : (offers.length === 1 ? offers[0] : {
+      "@type": "AggregateOffer",
+      lowPrice: Math.min(...offers.map(o => o.price)),
+      highPrice: Math.max(...offers.map(o => o.price)),
+      priceCurrency: offers[0].priceCurrency,
+      offerCount: offers.length,
+      offers,
     }),
     additionalProperty: [
       shoe.weight_g && { "@type": "PropertyValue", name: "Weight", value: `${shoe.weight_g}g` },
@@ -112,15 +116,19 @@ export function buildRopeSchema(rope, priceData) {
     category: "Climbing Ropes",
     url: `${BASE_URL}/rope/${rope.slug}`,
     image: rope.image_url ? `${BASE_URL}${rope.image_url}` : undefined,
-    ...(offers.length > 0 && {
-      offers: offers.length === 1 ? offers[0] : {
-        "@type": "AggregateOffer",
-        lowPrice: Math.min(...offers.map(o => o.price)),
-        highPrice: Math.max(...offers.map(o => o.price)),
-        priceCurrency: offers[0].priceCurrency,
-        offerCount: offers.length,
-        offers,
-      },
+    offers: offers.length === 0 ? {
+      "@type": "Offer",
+      url: `${BASE_URL}/rope/${rope.slug}`,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: "climbing-gear.com" },
+    } : (offers.length === 1 ? offers[0] : {
+      "@type": "AggregateOffer",
+      lowPrice: Math.min(...offers.map(o => o.price)),
+      highPrice: Math.max(...offers.map(o => o.price)),
+      priceCurrency: offers[0].priceCurrency,
+      offerCount: offers.length,
+      offers,
     }),
     additionalProperty: [
       rope.diameter_mm && { "@type": "PropertyValue", name: "Diameter", value: `${rope.diameter_mm}mm` },
@@ -164,15 +172,19 @@ export function buildBelaySchema(belay, priceData) {
     category: "Belay Devices",
     url: `${BASE_URL}/belay/${belay.slug}`,
     image: belay.image_url ? `${BASE_URL}${belay.image_url}` : undefined,
-    ...(offers.length > 0 && {
-      offers: offers.length === 1 ? offers[0] : {
-        "@type": "AggregateOffer",
-        lowPrice: Math.min(...offers.map(o => o.price)),
-        highPrice: Math.max(...offers.map(o => o.price)),
-        priceCurrency: offers[0].priceCurrency,
-        offerCount: offers.length,
-        offers,
-      },
+    offers: offers.length === 0 ? {
+      "@type": "Offer",
+      url: `${BASE_URL}/belay/${belay.slug}`,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: "climbing-gear.com" },
+    } : (offers.length === 1 ? offers[0] : {
+      "@type": "AggregateOffer",
+      lowPrice: Math.min(...offers.map(o => o.price)),
+      highPrice: Math.max(...offers.map(o => o.price)),
+      priceCurrency: offers[0].priceCurrency,
+      offerCount: offers.length,
+      offers,
     }),
     additionalProperty: [
       belay.weight_g && { "@type": "PropertyValue", name: "Weight", value: `${belay.weight_g}g` },
@@ -215,15 +227,19 @@ export function buildQuickdrawSchema(qd, priceData) {
     category: "Quickdraws",
     url: `${BASE_URL}/quickdraw/${qd.slug}`,
     image: qd.image_url ? `${BASE_URL}${qd.image_url}` : undefined,
-    ...(offers.length > 0 && {
-      offers: offers.length === 1 ? offers[0] : {
-        "@type": "AggregateOffer",
-        lowPrice: Math.min(...offers.map(o => o.price)),
-        highPrice: Math.max(...offers.map(o => o.price)),
-        priceCurrency: offers[0].priceCurrency,
-        offerCount: offers.length,
-        offers,
-      },
+    offers: offers.length === 0 ? {
+      "@type": "Offer",
+      url: `${BASE_URL}/quickdraw/${qd.slug}`,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: "climbing-gear.com" },
+    } : (offers.length === 1 ? offers[0] : {
+      "@type": "AggregateOffer",
+      lowPrice: Math.min(...offers.map(o => o.price)),
+      highPrice: Math.max(...offers.map(o => o.price)),
+      priceCurrency: offers[0].priceCurrency,
+      offerCount: offers.length,
+      offers,
     }),
     additionalProperty: [
       qd.weight_g && { "@type": "PropertyValue", name: "Weight", value: `${qd.weight_g}g` },
@@ -266,15 +282,19 @@ export function buildCrashpadSchema(pad, priceData) {
     category: "Crashpads",
     url: `${BASE_URL}/crashpad/${pad.slug}`,
     image: pad.image_url ? `${BASE_URL}${pad.image_url}` : undefined,
-    ...(offers.length > 0 && {
-      offers: offers.length === 1 ? offers[0] : {
-        "@type": "AggregateOffer",
-        lowPrice: Math.min(...offers.map(o => o.price)),
-        highPrice: Math.max(...offers.map(o => o.price)),
-        priceCurrency: offers[0].priceCurrency,
-        offerCount: offers.length,
-        offers,
-      },
+    offers: offers.length === 0 ? {
+      "@type": "Offer",
+      url: `${BASE_URL}/crashpad/${pad.slug}`,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: "climbing-gear.com" },
+    } : (offers.length === 1 ? offers[0] : {
+      "@type": "AggregateOffer",
+      lowPrice: Math.min(...offers.map(o => o.price)),
+      highPrice: Math.max(...offers.map(o => o.price)),
+      priceCurrency: offers[0].priceCurrency,
+      offerCount: offers.length,
+      offers,
     }),
     additionalProperty: [
       pad.weight_kg && { "@type": "PropertyValue", name: "Weight", value: `${pad.weight_kg}kg` },

@@ -89,10 +89,24 @@ async function fetchPriceMap(table) {
 
 /**
  * Build the AggregateOffer (or single Offer) schema fragment from a price list.
- * Returns undefined if no prices available - caller spreads into schema.
+ * If no prices are available, returns an OutOfStock Offer pointing to the product
+ * page so the parent Product schema still satisfies Google's
+ * "offers/review/aggregateRating one-of" rule for Product rich results.
+ *
+ * @param {Array} prices - rows from the *_prices table for this product (may be empty)
+ * @param {string} productUrl - canonical product page URL (used as fallback offer.url)
  */
-function buildOfferSchema(prices) {
-  if (!prices || prices.length === 0) return undefined;
+function buildOfferSchema(prices, productUrl) {
+  if (!prices || prices.length === 0) {
+    if (!productUrl) return undefined;
+    return {
+      '@type': 'Offer',
+      url: productUrl,
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/OutOfStock',
+      seller: { '@type': 'Organization', name: 'climbing-gear.com' },
+    };
+  }
   const allPrices = prices.map(p => p.price);
   const offers = prices.map(p => ({
     '@type': 'Offer',
@@ -462,7 +476,7 @@ function shoeJsonLd(s, shoePriceMap) {
   };
 
   // Inject AggregateOffer from Supabase price data fetched at build time
-  const offerSchema = buildOfferSchema(shoePriceMap?.get(s.slug));
+  const offerSchema = buildOfferSchema(shoePriceMap?.get(s.slug), `${BASE}/shoe/${s.slug}`);
   if (offerSchema) schema.offers = offerSchema;
 
   return schema;
@@ -514,7 +528,7 @@ function ropeJsonLd(r, priceMap) {
     category: 'Climbing Ropes',
     url: `${BASE}/rope/${r.slug}`,
   };
-  const offerSchema = buildOfferSchema(priceMap?.get(r.slug));
+  const offerSchema = buildOfferSchema(priceMap?.get(r.slug), `${BASE}/rope/${r.slug}`);
   if (offerSchema) schema.offers = offerSchema;
   return schema;
 }
@@ -560,7 +574,7 @@ function padJsonLd(p, priceMap) {
     category: 'Bouldering Crashpads',
     url: `${BASE}/crashpad/${p.slug}`,
   };
-  const offerSchema = buildOfferSchema(priceMap?.get(p.slug));
+  const offerSchema = buildOfferSchema(priceMap?.get(p.slug), `${BASE}/crashpad/${p.slug}`);
   if (offerSchema) schema.offers = offerSchema;
   return schema;
 }
@@ -604,7 +618,7 @@ function belayJsonLd(b, priceMap) {
     category: 'Belay Devices',
     url: `${BASE}/belay/${b.slug}`,
   };
-  const offerSchema = buildOfferSchema(priceMap?.get(b.slug));
+  const offerSchema = buildOfferSchema(priceMap?.get(b.slug), `${BASE}/belay/${b.slug}`);
   if (offerSchema) schema.offers = offerSchema;
   return schema;
 }
@@ -646,7 +660,7 @@ function qdJsonLd(q, priceMap) {
     category: 'Quickdraws',
     url: `${BASE}/quickdraw/${q.slug}`,
   };
-  const offerSchema = buildOfferSchema(priceMap?.get(q.slug));
+  const offerSchema = buildOfferSchema(priceMap?.get(q.slug), `${BASE}/quickdraw/${q.slug}`);
   if (offerSchema) schema.offers = offerSchema;
   return schema;
 }
