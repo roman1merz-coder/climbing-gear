@@ -215,11 +215,121 @@ function ShoeCard({ slug, brand, model, description, why, tradeoffs, imageUrl, r
   );
 }
 
+// ── Share results card ───────────────────────────────────────
+// Tries the native Web Share sheet first (mobile / supporting browsers),
+// falls back to a clipboard copy with inline confirmation. We never
+// silently mix the two: if the user picks "Copy link" inside the share
+// sheet we don't also overwrite their clipboard from here.
+function ShareCard({ scanId }) {
+  const [status, setStatus] = useState("idle"); // idle | copied | error
+
+  async function handleShare() {
+    if (typeof window === "undefined") return;
+    const url = `${window.location.origin}/scan/${encodeURIComponent(scanId)}`;
+    const shareData = {
+      title: "My Climbing Shoe Scan Results",
+      text: "My foot scan and shoe recommendations from climbing-gear.com",
+      url,
+    };
+    // Prefer the native share sheet when available.
+    if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (e) {
+        // User cancelled: leave the UI alone, no clipboard fallback.
+        if (e && e.name === "AbortError") return;
+        // Any other share failure: fall through to clipboard copy.
+      }
+    }
+    // Fallback: copy to clipboard.
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        // Legacy fallback for very old browsers.
+        const ta = document.createElement("textarea");
+        ta.value = url; ta.setAttribute("readonly", "");
+        ta.style.position = "absolute"; ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      setStatus("copied");
+      setTimeout(() => setStatus("idle"), 2200);
+    } catch (e) {
+      console.error("Share/copy failed:", e);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 2200);
+    }
+  }
+
+  const label =
+    status === "copied" ? "Link copied to clipboard" :
+    status === "error"  ? "Couldn't copy, try again" :
+    "Share your results";
+
+  return (
+    <div style={{
+      background: "#fff", borderRadius: 14, border: "1px solid #e8e2d6",
+      padding: "0.7rem 1rem", marginBottom: "1rem",
+      boxShadow: "0 2px 16px rgba(44,50,39,0.05)",
+      display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", minWidth: 0 }}>
+        <span aria-hidden="true" style={{
+          width: 28, height: 28, borderRadius: "50%",
+          background: "#fdf3e3", color: "#c98a42",
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0,
+        }}>
+          {/* simple share glyph */}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" strokeWidth="2.2"
+               strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="18" cy="5"  r="3" />
+            <circle cx="6"  cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.6" y1="13.5" x2="15.4" y2="17.5" />
+            <line x1="15.4" y1="6.5"  x2="8.6"  y2="10.5" />
+          </svg>
+        </span>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: "0.82rem", fontWeight: 700, color: T.text, lineHeight: 1.3 }}>
+            {label}
+          </div>
+          <div style={{ fontSize: "0.72rem", color: T.muted, lineHeight: 1.4 }}>
+            Send this scan to yourself or a friend.
+          </div>
+        </div>
+      </div>
+      <button
+        onClick={handleShare}
+        style={{
+          padding: "8px 14px", border: "none", borderRadius: 10,
+          background: status === "copied" ? "#6b8f5e" : "#c98a42",
+          color: "#fff", fontSize: "0.8rem", fontWeight: 700,
+          cursor: "pointer", fontFamily: "inherit", flexShrink: 0,
+          transition: "background 0.3s",
+        }}
+      >
+        {status === "copied" ? "Copied" : "Share"}
+      </button>
+    </div>
+  );
+}
+
 // ── Email capture card ───────────────────────────────────────
-function EmailCapture({ scanId }) {
-  const [email, setEmail] = useState("");
-  const [freq, setFreq] = useState("once");
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+// Collapses to a compact confirmation row once the user has saved an
+// email + frequency preference (either earlier in this session, or in
+// a previous visit: savedEmail comes from the persisted scan row).
+// "Edit" re-expands the form so the user can change either field.
+function EmailCapture({ scanId, savedEmail, savedFreq }) {
+  const hasSaved = Boolean(savedEmail);
+  const [email, setEmail] = useState(savedEmail || "");
+  const [freq, setFreq]   = useState(savedFreq  || "once");
+  const [status, setStatus] = useState(hasSaved ? "sent" : "idle"); // idle | sending | sent | error
+  const [expanded, setExpanded] = useState(!hasSaved);
 
   async function handleSend() {
     if (!email.trim() || !scanId) return;
@@ -236,10 +346,54 @@ function EmailCapture({ scanId }) {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("sent");
+      // Brief pause so the user sees the "Saved!" state before collapse.
+      setTimeout(() => setExpanded(false), 900);
     } catch (e) {
       console.error("Email save failed:", e);
       setStatus("error");
     }
+  }
+
+  // Collapsed confirmation row, shown once an email has been saved.
+  if (!expanded) {
+    return (
+      <div style={{
+        background: "#fff", borderRadius: 14, border: "1px solid #e8e2d6",
+        padding: "0.7rem 1rem", marginBottom: "1rem",
+        boxShadow: "0 2px 16px rgba(44,50,39,0.05)",
+        display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", minWidth: 0 }}>
+          <span aria-hidden="true" style={{
+            width: 28, height: 28, borderRadius: "50%",
+            background: "#eaf2e1", color: "#6b8f5e",
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0, fontWeight: 700, fontSize: 16, lineHeight: 1,
+          }}>✓</span>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontSize: "0.82rem", fontWeight: 700, color: T.text, lineHeight: 1.3 }}>
+              Email saved
+            </div>
+            <div style={{
+              fontSize: "0.72rem", color: T.muted, lineHeight: 1.4,
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+            }}>
+              {email}{freq === "updates" ? " · with scan updates" : ""}
+            </div>
+          </div>
+        </div>
+        <button
+          onClick={() => setExpanded(true)}
+          style={{
+            padding: "6px 12px", border: "1.5px solid #e8e2d6", borderRadius: 10,
+            background: "#fff", color: "#8a6930", fontSize: "0.75rem", fontWeight: 700,
+            cursor: "pointer", fontFamily: "inherit", flexShrink: 0,
+          }}
+        >
+          Edit
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -1577,8 +1731,13 @@ export default function ScanResult({ shoes }) {
         </div>
       </div>
 
-      {/* ── Email capture ── */}
-      <EmailCapture scanId={scanId} />
+      {/* ── Share + Email capture ── */}
+      <ShareCard scanId={scanId} />
+      <EmailCapture
+        scanId={scanId}
+        savedEmail={s.email}
+        savedFreq={s.email_freq}
+      />
 
       {/* ── Your inputs (read-only summary of what was submitted) ── */}
       <UserInputsPanel
