@@ -2082,6 +2082,16 @@ async function uploadThenShoeFit() {
     const soleBlob = await (await fetch(soleDataUrl)).blob();
     const sideBlob = await (await fetch(sideDataUrl)).blob();
 
+    /* Pre-upload sanity: empty/tiny blobs would silently produce 0-byte
+     * storage objects and break the worker (OpenCV imdecode_ assertion).
+     * Real JPEGs from the capture step are always >>10 KB. */
+    const MIN_BLOB_BYTES = 5000;
+    if (soleBlob.size < MIN_BLOB_BYTES || sideBlob.size < MIN_BLOB_BYTES) {
+      throw new Error(
+        'empty-blob: sole=' + soleBlob.size + ' side=' + sideBlob.size
+      );
+    }
+
     const headers = {
       'Authorization': `Bearer ${SB_KEY}`,
       'apikey': SB_KEY,
@@ -2089,40 +2099,65 @@ async function uploadThenShoeFit() {
       'x-upsert': 'true',
     };
 
-    const [upSole, upSide] = await Promise.all([
-      fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${scanId}-sole.jpg`, {
-        method: 'POST', headers, body: soleBlob,
-      }),
-      fetch(`${SB_URL}/storage/v1/object/foot-scans/scans/${scanId}-side.jpg`, {
-        method: 'POST', headers, body: sideBlob,
-      }),
+    /* Upload helper with one automatic retry on transient failures
+     * (empty body, non-2xx response). */
+    const uploadOne = async (view, blob) => {
+      const url = `${SB_URL}/storage/v1/object/foot-scans/scans/${scanId}-${view}.jpg`;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch(url, { method: 'POST', headers, body: blob });
+        if (res.ok) return res;
+        if (attempt === 0) await new Promise(r => setTimeout(r, 600));
+      }
+      throw new Error('upload failed: ' + view);
+    };
+
+    await Promise.all([
+      uploadOne('sole', soleBlob),
+      uploadOne('side', sideBlob),
     ]);
 
-    if (upSole.ok && upSide.ok) {
-      status.textContent = 'Uploaded!';
-      btn.textContent = 'Saved';
+    /* Post-upload verification: HEAD the public URLs and confirm both
+     * objects landed with non-trivial size. This catches the case where
+     * the POST returns 200 but the body never actually transferred. */
+    const soleVerifyUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${scanId}-sole.jpg`;
+    const sideVerifyUrl = `${SB_URL}/storage/v1/object/public/foot-scans/scans/${scanId}-side.jpg`;
+    const verifyOne = async (url, view) => {
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        const len = +r.headers.get('content-length');
+        if (r.ok && len >= MIN_BLOB_BYTES) return len;
+        await new Promise(r => setTimeout(r, 400));
+      }
+      throw new Error('verify-empty: ' + view);
+    };
+    await Promise.all([
+      verifyOne(soleVerifyUrl, 'sole'),
+      verifyOne(sideVerifyUrl, 'side'),
+    ]);
 
-      /* Trigger SAM3 pipeline immediately in the background */
-      triggerScanStart(scanId);
+    status.textContent = 'Uploaded!';
+    btn.textContent = 'Saved';
 
-      setTimeout(() => {
-        /* Only populate brands if not already populated (preserves selections on retake) */
-        const bs = document.querySelector('.brand-select');
-        if (bs && bs.options.length <= 1) populateBrands(bs);
-        showScreen('shoe-fit-screen');
-      }, 400);
-    } else {
-      throw new Error('Upload failed');
-    }
-  } catch(e) {
-    console.error(e);
-    status.textContent = 'Upload issue - continuing anyway...';
-    scanId = scanId || 'scan-local-' + Date.now();
+    /* Trigger SAM3 pipeline only AFTER both objects are verified non-empty */
+    triggerScanStart(scanId);
+
     setTimeout(() => {
+      /* Only populate brands if not already populated (preserves selections on retake) */
       const bs = document.querySelector('.brand-select');
       if (bs && bs.options.length <= 1) populateBrands(bs);
       showScreen('shoe-fit-screen');
-    }, 800);
+    }, 400);
+  } catch(e) {
+    console.error('upload failed:', e);
+    /* Hard-stop: do NOT advance to shoe-fit. A broken upload means the
+     * worker would fail and the user would get garbage results. Surface
+     * a clear retake prompt and reset the button so they can re-capture. */
+    status.textContent = 'Upload failed. Please retake both photos and try again.';
+    btn.disabled = false;
+    btn.textContent = 'Retry upload';
+    /* Clear scanId so a retry generates a fresh row instead of reusing
+     * the broken id. */
+    scanId = '';
   }
 }
 
