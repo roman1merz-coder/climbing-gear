@@ -111,6 +111,331 @@
       "permanent": true
     },
     {
+      "source": "/shoes/la-sportiva-finale-vs-mens",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/la-sportiva-finale-vs-womens",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/la-sportiva-tc-pro-womens",
+      "destination": "/shoe/la-sportiva-tc-pro",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/scarpa-arpia",
+      "destination": "/shoe/scarpa-arpia-v",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/scarpa-arpia-womens",
+      "destination": "/shoe/scarpa-arpia-v",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/tenaya-iati-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/tenaya-mastia-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/tenaya-mundaka-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/tenaya-oasi-kids",
+      "destination": "/shoe/tenaya-oasi",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/unparallel-souped-up-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/unparallel-up-mocc-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/unparallel-up-rise-pro-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/unparallel-up-rise-zero",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/unparallel-up-rise-zero-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-access-unicore-10-5",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-antidote-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-apollo-ii-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-berlin-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-cobra-ii-8",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-gully-7",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-industrie-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-intervention-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-opera-unicore-golden-dry-8",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-rando-8",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-sunrise-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-the-one-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/beal-wall-cruiser-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/black-diamond-9",
+      "destination": "/rope/black-diamond-9-9",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-boa-eco-9",
+      "destination": "/rope/edelrid-boa-eco-2r-9-6",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-neo-3r-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-performance-static-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-performance-static-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-pintail-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-skimmer-eco-dry-7",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-starling-protect-pro-dry-8",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-superstatic-link-tec-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-swift-48-8",
+      "destination": "/rope/edelrid-swift-eco-dry-8-9",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-swift-protect-pro-dry-8",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-tommy-caldwell-eco-dry-9",
+      "destination": "/rope/edelrid-tommy-caldwell-eco-dry-colortec-9-3",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/edelrid-tower-lite-synctec-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/mammut-8",
+      "destination": "/rope/mammut-10-2-gravity",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/mammut-9",
+      "destination": "/rope/mammut-10-2-gravity",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/mammut-performance-static-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/mammut-performance-static-10-5",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/ocun-peak-8",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/petzl-axis-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/petzl-parallel-10-5",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/petzl-push-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/petzl-volta-9",
+      "destination": "/rope/petzl-volta-guide-9-0",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/singing-rock-mystic-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/singing-rock-score-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/singing-rock-static-r44-10-5",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/singing-rock-static-r44-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/sterling-canyonprime-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/sterling-fusion-nano-ix-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/sterling-htp-static-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/sterling-marathon-pro-10-1",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/sterling-vr10-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/tendon-hattrick-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/tendon-master-9",
+      "destination": "/rope/tendon-master-8-6",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/tendon-master-pro-9",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/tendon-static-10",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/tendon-static-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/tendon-trust-11",
+      "destination": "/ropes",
+      "permanent": true
+    },
+    {
+      "source": "/crashpads/asana-sidekick",
+      "destination": "/crashpads",
+      "permanent": true
+    },
+    {
       "source": "/shoes/:slug",
       "destination": "/shoe/:slug",
       "permanent": true
