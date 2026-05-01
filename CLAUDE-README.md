@@ -327,3 +327,33 @@ NOTE: Website uses "navicular_ratio" as the field name for heel depth (legacy na
 - **Skill level matters.** A beginner should get soft/moderate-soft feel, flat/slight downturn. Don't recommend aggressive/stiff shoes regardless of foot geometry.
 - **High instep → adjustable closure.** Lace closure is best for high instep (fine-tune tension). Velcro is acceptable. Slippers are least adjustable.
 - **Supabase project URL changed (2026-03-06).** Old: `ixnlbbfnhbvuqjnatxht.supabase.co`. New: `wsjsuhvpgupalwgcjatp.supabase.co`. Config is in `src/supabase.js`. Use service-role key for writes (anon key is read-only due to RLS). Service-role key is in this README under Supabase section.
+
+
+## SEO Route Conventions & Redirects (NON-NEGOTIABLE)
+
+**Canonical product URL pattern: SINGULAR.** `/shoe/<slug>`, `/rope/<slug>`, `/crashpad/<slug>`, `/belay/<slug>`, `/quickdraw/<slug>`. Listing pages stay plural: `/shoes`, `/ropes`, `/crashpads`, `/belays`, `/quickdraws`.
+
+**Why this matters:** A 2026-02-23 migration moved product routes from plural (`/shoes/<slug>`) to singular (`/shoe/<slug>`) without 301 redirects. Google deindexed ~800 URLs and the GSC indexed-page count dropped sharply. The `vercel.json` redirects added 2026-04-30 are what stop the bleed. **Never remove them.**
+
+### Redirect rules in `vercel.json` (must stay in this order)
+
+1. **Specific lost-slug redirects FIRST** — discontinued products, slug renames (e.g. `tenaya-oasi-kids` → `tenaya-oasi`), and old gendered slugs that were absorbed into a unisex variant (e.g. `scarpa-arpia-womens` → `scarpa-arpia-v`). When in doubt, redirect to the category browse page (`/shoes`, `/ropes`, …) — never to the homepage (Google treats that as a soft 404).
+2. **Catch-all plural→singular redirects LAST** — `/shoes/:slug → /shoe/:slug`, etc. This handles every slug that didn't change between Feb 23 and now.
+
+### When you change a product slug or remove a product
+
+1. Add a specific entry to the `redirects` block in `vercel.json` BEFORE the catch-all rules.
+2. Map to the closest current product page if there is one; otherwise to the relevant `/shoes` `/ropes` `/crashpads` `/belays` `/quickdraws` listing.
+3. Push and verify with `curl -sIL https://www.climbing-gear.com/shoes/<old-slug>` — expect `308` then `200`, never `404`.
+
+### Top-level renames already in place
+
+- `/gear-news` → `/news`
+- `/legal` → `/impressum`
+
+### Other SEO essentials
+
+- All product detail pages have a single `<link rel="canonical">` matching the current URL (no plural canonicals).
+- The `noindex` meta tag is ONLY served on the 404 page (`public/404.html`) — verify this stays that way for any new error/utility pages.
+- Sitemap is split into 6 files: `sitemap.xml` (index) + `sitemap-{core,shoes,ropes,crashpads,belays,quickdraws}.xml`. The build pipeline regenerates them from Supabase via `scripts/generate-sitemap.js`.
+
