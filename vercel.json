@@ -1,22 +1,189 @@
 {
   "redirects": [
-    { "source": "/scanner-test.html", "destination": "/scan", "permanent": true },
-    { "source": "/scanner-test", "destination": "/scan", "permanent": true }
+    {
+      "source": "/scanner-test.html",
+      "destination": "/scan",
+      "permanent": true
+    },
+    {
+      "source": "/scanner-test",
+      "destination": "/scan",
+      "permanent": true
+    },
+    {
+      "source": "/gear-news",
+      "destination": "/news",
+      "permanent": true
+    },
+    {
+      "source": "/legal",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/boreal-joker",
+      "destination": "/shoe/boreal-joker-plus",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/red-chili-fusion-ii",
+      "destination": "/shoe/red-chili-fusion-lv",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/red-chili-fusion-lv-ii",
+      "destination": "/shoe/red-chili-fusion-lv",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/scarpa-instinct-vsr-womens",
+      "destination": "/shoe/scarpa-instinct-vsr-lv",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/unparallel-flagship-pro-lv",
+      "destination": "/shoe/unparallel-flagship-pro",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/boreal-crux",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/boreal-indo",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/boreal-ninja-junior-vent",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/boreal-satori",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/boreal-synergy",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/evolv-agro",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/lacd-splash",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/ocun-crest-qc",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/ocun-rental-qc",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/ocun-rival",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/so-ill-kick-lv",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/so-ill-new-zero-pro",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/so-ill-the-runner",
+      "destination": "/shoes",
+      "permanent": true
+    },
+    {
+      "source": "/shoes/:slug",
+      "destination": "/shoe/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/ropes/:slug",
+      "destination": "/rope/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/crashpads/:slug",
+      "destination": "/crashpad/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/belays/:slug",
+      "destination": "/belay/:slug",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/ingest/static/(.*)", "destination": "https://eu-assets.i.posthog.com/static/$1" },
-    { "source": "/ingest/(.*)", "destination": "https://eu.i.posthog.com/$1" },
-    { "source": "/compare", "destination": "/index.html" },
-    { "source": "/compare-ropes", "destination": "/index.html" },
-    { "source": "/compare-belays", "destination": "/index.html" },
-    { "source": "/compare-pads", "destination": "/index.html" },
-    { "source": "/compare-quickdraws", "destination": "/index.html" },
-    { "source": "/wishlist", "destination": "/index.html" },
-    { "source": "/scan", "destination": "/scan.html" },
-    { "source": "/scan-testv2", "destination": "/scan-testv2.html" },
-    { "source": "/scan/petz/:scanId", "destination": "/scan/petz/:scanId.html" },
-    { "source": "/scan/:scanId/browse", "destination": "/scan-browse.html" },
-    { "source": "/scan/:scanId", "destination": "/index.html" }
+    {
+      "source": "/ingest/static/(.*)",
+      "destination": "https://eu-assets.i.posthog.com/static/$1"
+    },
+    {
+      "source": "/ingest/(.*)",
+      "destination": "https://eu.i.posthog.com/$1"
+    },
+    {
+      "source": "/compare",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/compare-ropes",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/compare-belays",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/compare-pads",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/compare-quickdraws",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/wishlist",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/scan",
+      "destination": "/scan.html"
+    },
+    {
+      "source": "/scan-testv2",
+      "destination": "/scan-testv2.html"
+    },
+    {
+      "source": "/scan/petz/:scanId",
+      "destination": "/scan/petz/:scanId.html"
+    },
+    {
+      "source": "/scan/:scanId/browse",
+      "destination": "/scan-browse.html"
+    },
+    {
+      "source": "/scan/:scanId",
+      "destination": "/index.html"
+    }
   ],
   "functions": {
     "api/fetch-prices.js": {
@@ -33,35 +200,62 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(), payment=()" }
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(), payment=()"
+        }
       ]
     },
     {
       "source": "/scan",
       "headers": [
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(self), payment=()"
+        }
       ]
     },
     {
       "source": "/scan.html",
       "headers": [
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(self), payment=()"
+        }
       ]
     },
     {
       "source": "/scan-testv2",
       "headers": [
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(self), payment=()"
+        }
       ]
     },
     {
       "source": "/scan-testv2.html",
       "headers": [
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(self), payment=()" }
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(self), payment=()"
+        }
       ]
     }
   ]
