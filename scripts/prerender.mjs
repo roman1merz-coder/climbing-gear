@@ -103,6 +103,9 @@ function buildOfferSchema(prices, productUrl) {
       '@type': 'Offer',
       url: productUrl,
       priceCurrency: 'EUR',
+      // Google requires price/priceSpecification on every Offer (even OutOfStock).
+      // 0 is the conventional value when the item is unavailable.
+      price: 0,
       availability: 'https://schema.org/OutOfStock',
       seller: { '@type': 'Organization', name: 'climbing-gear.com' },
     };
@@ -1028,3 +1031,4 @@ main().catch(err => {
   console.error('Prerender failed:', err);
   process.exit(1);
 });
+
