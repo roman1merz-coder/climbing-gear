@@ -803,7 +803,7 @@ const ARTICLE_HTML = `
 const REVIEW_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Review",
-  headline: "Scarpa Blackbird Review: Carbon Midsole, Real World Test",
+  headline: "Scarpa Blackbird Review: Carbon Midsole, Record Price, Real World Test",
   description:
     "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives compared head-to-head.",
   url: "https://www.climbing-gear.com/insights/scarpa-blackbird",
@@ -915,7 +915,7 @@ const FAQ_SCHEMA = {
 
 export default function InsightBlackbird() {
   usePageMeta(
-    "Scarpa Blackbird Review: Carbon Midsole, Real World Test",
+    "Scarpa Blackbird Review: Carbon Midsole, Record Price, Real World Test",
     "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, and seven alternatives compared head-to-head.",
     { image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg" }
   );
@@ -943,3 +943,4 @@ export default function InsightBlackbird() {
     </>
   );
 }
+
