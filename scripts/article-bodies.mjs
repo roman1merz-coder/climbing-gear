@@ -285,7 +285,7 @@ const heelFit = `
 `;
 
 const scarpaBlackbird = `
-<p><strong>Scarpa Blackbird Review: Carbon Midsole, Real World Test.</strong> First-person review of Scarpa's first carbon-enhanced midsole shoe. Tested on the vertical micro-edges of a sandstone quarry in Edenkoben. What works, what does not, and how it compares to seven established edging shoes.</p>
+<p><strong>Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges.</strong> First-person review of Scarpa's first carbon-enhanced midsole shoe. Tested on the vertical micro-edges of a sandstone quarry in Edenkoben. What works, what does not, and how it compares to seven established edging shoes.</p>
 
 <ul>
   <li><strong>Midsole:</strong> Carbon-enhanced, 3D-molded, very stiff platform extending through ~3/4 of the shoe</li>
@@ -296,7 +296,7 @@ const scarpaBlackbird = `
 </ul>
 
 <h2>TL;DR</h2>
-<p>Interesting shoe, but for me not worth the money. Shoes like the ${L('/shoe/la-sportiva-otaki-mens', 'La Sportiva Otaki')} or ${L('/shoe/scarpa-vapor-v-mens', 'Scarpa Vapor V')} deliver comparable edging performance at roughly half the price. The thin XS Grip 2 rubber will likely not last long, so you end up paying a huge premium for a shoe that needs a resole rather quickly. Only worth recommending if you genuinely need that last bit of performance and price is no object. Note: only climbed once with it so far - will update after a few more sessions. The standout positive: comfy from day 1, literally zero break-in period.</p>
+<p>Interesting shoe, but for me not worth the money. Shoes like the ${L('/shoe/la-sportiva-otaki-mens', 'La Sportiva Otaki')} or ${L('/shoe/scarpa-vapor-v-mens', 'Scarpa Vapor V')} deliver comparable edging performance at roughly half the price. The thin XS Grip 2 rubber will likely not last long, so you end up paying a huge premium for a shoe that needs a resole rather quickly. Only worth recommending if you genuinely need that last bit of performance and price is no object. The standout positive: comfy from day 1, literally zero break-in period.</p>
 
 <h2>What is new about the Blackbird</h2>
 <p>The headline feature is Scarpa's first carbon-enhanced 3D molded midsole. It is a deliberately polarising design choice: a very stiff carbon platform combined with thin and relatively soft XS Grip 2 rubber. The idea is that the carbon does the structural work (edging power, support) while the thin rubber retains sensitivity and friction.</p>

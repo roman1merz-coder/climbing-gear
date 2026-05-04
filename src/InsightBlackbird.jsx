@@ -595,13 +595,13 @@ const ARTICLE_HTML = `
         <span class="tag review">PRODUCT ReView</span>
       </div>
 
-      <h1>Scarpa Blackbird: Stiff Carbon-infused Midsole meets soft XS Grip 2 and Extreme Price</h1>
+      <h1>Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges</h1>
       <p class="subtitle">Scarpa's first carbon-enhanced 3D midsole shoe pairs an ultra-stiff platform with rather thin and soft XS Grip2 rubber. I tested it on the vertical micro-edges of my local sandstone quarry. Here is what worked, what did not, and whether I recommend it.</p>
       <div class="byline">By Roman · April 2026 · Tested at my home crag in Edenkoben (sandstone quarry, vertical micro-smears &amp; edging)</div>
 
       <div class="tldr">
         <div class="tldr-label">TL;DR</div>
-        <p>Interesting shoe, but for me not worth the money. Shoes like the <a class="shoe-link" href="https://www.climbing-gear.com/shoe/la-sportiva-otaki-mens">La Sportiva Otaki</a> or <a class="shoe-link" href="https://www.climbing-gear.com/shoe/scarpa-vapor-v-mens">Scarpa Vapor V</a> deliver comparable performance at roughly half the price. The thin XS Grip2 rubber will likely not last long, so you end up paying a huge premium for a shoe that needs a resole rather quickly. Only worth recommending if you genuinely need that last bit of performance and price is no object. Note: Only climbed once with it - will update after a few more sessions. The one thing that stood out indeed: Comfy from day 1 and literally zero break-in period.</p>
+        <p>Interesting shoe, but for me not worth the money. Shoes like the <a class="shoe-link" href="https://www.climbing-gear.com/shoe/la-sportiva-otaki-mens">La Sportiva Otaki</a> or <a class="shoe-link" href="https://www.climbing-gear.com/shoe/scarpa-vapor-v-mens">Scarpa Vapor V</a> deliver comparable performance at roughly half the price. The thin XS Grip2 rubber will likely not last long, so you end up paying a huge premium for a shoe that needs a resole rather quickly. Only worth recommending if you genuinely need that last bit of performance and price is no object. The one thing that stood out indeed: Comfy from day 1 and literally zero break-in period.</p>
       </div>
 
       <h2>What is new about the Blackbird</h2>
@@ -803,7 +803,7 @@ const ARTICLE_HTML = `
 const REVIEW_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Review",
-  headline: "Scarpa Blackbird Review: Carbon Midsole, Record Price, Real World Test",
+  headline: "Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges",
   description:
     "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives compared head-to-head.",
   url: "https://www.climbing-gear.com/insights/scarpa-blackbird",
@@ -915,7 +915,7 @@ const FAQ_SCHEMA = {
 
 export default function InsightBlackbird() {
   usePageMeta(
-    "Scarpa Blackbird Review: Carbon Midsole, Record Price, Real World Test",
+    "Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges",
     "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, and seven alternatives compared head-to-head.",
     { image: "https://www.climbing-gear.com/images/insights/blackbird/hero.jpg" }
   );

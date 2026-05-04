@@ -15,7 +15,7 @@ const ARTICLES = [
   {
     to: "/insights/scarpa-blackbird",
     tag: "Shoes", tagColor: T.accent,
-    title: "Scarpa Blackbird: Carbon Midsole, Real World Test",
+    title: "Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges",
     desc: "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what doesn't, and seven alternatives compared head-to-head.",
     stats: ["7 alternatives", "Sandstone tested", "Sized 44.5"],
   },

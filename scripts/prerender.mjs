@@ -833,9 +833,9 @@ const ARTICLES = [
   { route: '/insights/heel-fit', title: 'Climbing Shoe Heel Fit: Narrow vs. Shallow Heels (Data from 200 Scans)', desc: "Empty heel in your climbing shoe? It's usually one of two things: narrow heel width or shallow heel depth. We analysed 280 fit reports across 97 shoes to show which dimension drives the mismatch for the Skwama, Instinct VSR, Drago, Shaman, Mastia, Solution and more.", headline: 'Climbing Shoe Heel Fit: Why "Narrow Heel" Isn\'t Enough', datePublished: '2026-04-13', dateModified: '2026-04-14' },
   {
     route: '/insights/scarpa-blackbird',
-    title: 'Scarpa Blackbird Review: Carbon Midsole, Record Price, Real World Test',
+    title: 'Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges',
     desc: "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives (Otaki, Katana Lace, Vapor V, Boostic, EB Strange, Up Beat, Geshido) compared head-to-head.",
-    headline: 'Scarpa Blackbird Review: Carbon Midsole, Record Price, Real World Test',
+    headline: 'Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges',
     datePublished: '2026-04-26', dateModified: '2026-04-26',
     image: '/images/insights/blackbird/hero.jpg',
     imageWidth: 1280,
