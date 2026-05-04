@@ -851,7 +851,7 @@ const ARTICLES = [
     title: 'Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges',
     desc: "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives (Otaki, Katana Lace, Vapor V, Boostic, EB Strange, Up Beat, Geshido) compared head-to-head.",
     headline: 'Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges',
-    datePublished: '2026-04-26', dateModified: '2026-04-26',
+    datePublished: '2026-04-26', dateModified: '2026-05-04',
     image: '/images/insights/blackbird/hero.jpg',
     imageWidth: 1280,
     imageHeight: 960,

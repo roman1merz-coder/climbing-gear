@@ -808,7 +808,7 @@ const REVIEW_SCHEMA = {
     "First-person review of Scarpa's first carbon-enhanced midsole shoe, tested on vertical sandstone micro-edges. What works, what does not, plus seven alternatives compared head-to-head.",
   url: "https://www.climbing-gear.com/insights/scarpa-blackbird",
   datePublished: "2026-04-26",
-  dateModified: "2026-04-26",
+  dateModified: "2026-05-04",
   author: {
     "@type": "Person",
     name: "Roman",
