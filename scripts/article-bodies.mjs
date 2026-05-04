@@ -334,7 +334,7 @@ const scarpaBlackbird = `
 </ul>
 
 <h2>Who should actually buy the Blackbird?</h2>
-<p>If you seek maximum performance on the smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, including me, the Otaki, Up Beat or Vapor V will get you most of the way there at a fraction of the cost.</p>
+<p>If you seek maximum performance on the smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, including me, the ${L('/shoe/la-sportiva-otaki-mens', 'Otaki')}, ${L('/shoe/unparallel-up-beat', 'Up Beat')} or ${L('/shoe/scarpa-vapor-v-mens', 'Vapor V')} will get you most of the way there at a fraction of the cost.</p>
 
 <p>${L('/insights', 'Read more climbing-gear.com insights')} or ${L('/scan', 'compare your own foot to mine using the free Foot Scanner')}.</p>
 `;

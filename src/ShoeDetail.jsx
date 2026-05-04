@@ -1054,6 +1054,53 @@ function SimilarCarousel({ shoe, shoes, isMobile, navigate }) {
   );
 }
 
+// ─── Internal long-form reviews on climbing-gear.com ───
+// Renders a prominent "Our review" CTA on shoe detail pages that have a
+// climbing-gear.com insight article. Internal links pass full SEO equity
+// (vs. the external Reviews tab which is rel="nofollow").
+const INTERNAL_REVIEWS = {
+  "scarpa-blackbird": {
+    url: "/insights/scarpa-blackbird",
+    title: "Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges",
+    blurb: "Roman tested the carbon-midsole Blackbird on vertical sandstone micro-edges. What worked, what did not, and seven cheaper alternatives compared.",
+  },
+};
+
+function InternalReviewCallout({ slug, isMobile }) {
+  const review = INTERNAL_REVIEWS[slug];
+  if (!review) return null;
+  return (
+    <div style={{ maxWidth: "1200px", margin: isMobile ? "16px auto 0" : "24px auto 0", padding: isMobile ? "0 16px" : "0 32px" }}>
+      <Link
+        to={review.url}
+        style={{
+          display: "flex", alignItems: "flex-start", gap: "14px",
+          padding: isMobile ? "14px 16px" : "18px 22px",
+          background: T.accentSoft,
+          border: `1px solid rgba(201,138,66,0.25)`,
+          borderRadius: T.radius,
+          textDecoration: "none",
+          color: T.text,
+        }}
+      >
+        <span style={{ fontSize: isMobile ? "20px" : "24px", flexShrink: 0, lineHeight: 1 }}>📝</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: "10.5px", fontWeight: 800, color: T.accent, textTransform: "uppercase", letterSpacing: "0.6px", marginBottom: "4px" }}>
+            Our review
+          </div>
+          <div style={{ fontSize: isMobile ? "14px" : "15.5px", fontWeight: 700, color: T.text, lineHeight: 1.35, marginBottom: "4px" }}>
+            {review.title}
+          </div>
+          <div style={{ fontSize: isMobile ? "12px" : "12.5px", color: T.muted, lineHeight: 1.5 }}>
+            {review.blurb}
+          </div>
+        </div>
+        <span style={{ fontSize: "16px", color: T.accent, fontWeight: 700, flexShrink: 0, alignSelf: "center" }}>{"→"}</span>
+      </Link>
+    </div>
+  );
+}
+
 // ═══ SHOE DETAIL PAGE (3-Tab Layout) ═══
 export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = [], reviewData = {} }) {
   const { slug } = useParams();
@@ -1185,6 +1232,9 @@ export default function ShoeDetail({ shoes = [], priceData = {}, priceHistory = 
           </div>
         </div>
       </div>
+
+      {/* ═══ INTERNAL REVIEW CTA (only shown for shoes with a climbing-gear.com long-form review) ═══ */}
+      <InternalReviewCallout slug={slug} isMobile={isMobile} />
 
       {/* ═══ TABS ═══ */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "20px 16px" : "40px 32px" }}>

@@ -85,6 +85,7 @@ const SELECTORS = [
 ];
 
 const INSIGHTS = [
+  { title: "Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges", description: "First-person review of Scarpa's first carbon-midsole shoe, tested on vertical sandstone micro-edges. Plus seven cheaper alternatives compared head-to-head.", to: "/insights/scarpa-blackbird" },
   { title: "How the Foot Scanner Works", description: "Two photos, seven measurements, 400+ shoes ranked. See a real scan walkthrough from photo to recommendation.", to: "/insights/foot-scanner" },
   { title: `How We Score ${SHOES.length} Climbing Shoes - and How to Pick Yours`, description: "Our guided search scores every shoe across 7 performance axes. Learn how specs affect real-world performance.", to: "/insights/climbing-shoe-guide" },
   { title: "Inflatable Crashpads: Game-Changer or Gimmick?", description: "They shatter the weight curve, fit inside your backpack, and inflate in minutes. But how safe are they really?", to: "/insights/inflatable-crashpads" },

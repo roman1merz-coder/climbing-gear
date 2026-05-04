@@ -694,9 +694,9 @@ const ARTICLE_HTML = `
       <div class="figure-pair">
         <figure class="figure">
           <div class="figure-img-wrap">
-            <img src="/images/insights/blackbird/compare-katana.jpg" alt="Soles of the Scarpa Blackbird and <a class="shoe-link" href="https://www.climbing-gear.com/shoe/la-sportiva-katana-lace-mens">La Sportiva Katana Lace</a> held side by side, showing the narrower Blackbird forefoot and slightly wider heel.">
+            <img src="/images/insights/blackbird/compare-katana.jpg" alt="Soles of the Scarpa Blackbird and La Sportiva Katana Lace held side by side, showing the narrower Blackbird forefoot and slightly wider heel.">
           </div>
-          <figcaption><strong>Blackbird vs Katana Lace.</strong> I wear the Katana Lace slightly larger. The Blackbird forefoot is more narrow, while the heel runs a bit wider.</figcaption>
+          <figcaption><strong>Blackbird vs <a class="shoe-link" href="https://www.climbing-gear.com/shoe/la-sportiva-katana-lace-mens">Katana Lace</a>.</strong> I wear the Katana Lace slightly larger. The Blackbird forefoot is more narrow, while the heel runs a bit wider.</figcaption>
         </figure>
         <figure class="figure">
           <div class="figure-img-wrap">
@@ -786,7 +786,7 @@ const ARTICLE_HTML = `
       </div>
 
       <h2>Who should actually buy the Blackbird?</h2>
-      <p>If you seek maximum performance on smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, including me, the Otaki, Up Beat or Vapor V will get you most of the way there at a fraction of the cost.</p>
+      <p>If you seek maximum performance on smallest edges but want to keep sensitivity and comfort, the price is not a blocker, and your foot has a wider heel than mine, the Blackbird might be a real step ahead. For everyone else, including me, the <a class="shoe-link" href="https://www.climbing-gear.com/shoe/la-sportiva-otaki-mens">La Sportiva Otaki</a>, <a class="shoe-link" href="https://www.climbing-gear.com/shoe/unparallel-up-beat">Unparallel Up Beat</a> or <a class="shoe-link" href="https://www.climbing-gear.com/shoe/scarpa-vapor-v-mens">Scarpa Vapor V</a> will get you most of the way there at a fraction of the cost.</p>
 
       <p style="font-size: 12px; color: var(--muted); margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-style: italic;"><br></p>
     
