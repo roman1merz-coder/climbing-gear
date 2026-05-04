@@ -431,12 +431,27 @@ function shoeDesc(s) {
   parts.push('Compare specs, performance scores, and prices across retailers.');
   return parts.join('. ');
 }
+// Internal long-form reviews on climbing-gear.com - mirrored from
+// src/ShoeDetail.jsx INTERNAL_REVIEWS so the "Our review" link appears in
+// first-pass crawler HTML, not just after React hydration.
+const INTERNAL_REVIEWS = {
+  'scarpa-blackbird': {
+    url: '/insights/scarpa-blackbird',
+    title: 'Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges',
+    blurb: 'Roman tested the carbon-midsole Blackbird on vertical sandstone micro-edges. Plus seven cheaper alternatives compared head-to-head.',
+  },
+};
+
 function shoeSsr(s, allShoes, priceMap) {
   let h = `<article itemscope itemtype="https://schema.org/Product">`;
   h += `<nav><a href="${BASE}/">Home</a> / <a href="${BASE}/shoes">Climbing Shoes</a> / ${escHtml(s.brand)} ${escHtml(s.model || s.slug)}</nav>`;
   h += `<h1 itemprop="name">${escHtml(s.brand)} ${escHtml(s.model || s.slug)}</h1>`;
   h += `<p itemprop="brand" itemscope itemtype="https://schema.org/Brand"><span itemprop="name">${escHtml(s.brand)}</span></p>`;
   h += `<p itemprop="description">${escHtml(shoeDesc(s))}</p>`;
+  const internalReview = INTERNAL_REVIEWS[s.slug];
+  if (internalReview) {
+    h += `<aside><p><strong>Our review:</strong> <a href="${BASE}${internalReview.url}">${escHtml(internalReview.title)}</a> - ${escHtml(internalReview.blurb)}</p></aside>`;
+  }
   h += `<h2>Specifications</h2>`;
   h += specTable([
     specRow('Brand', s.brand),
@@ -908,6 +923,9 @@ function homepageSsr() {
   h += `<li><a href="${BASE}/insights">Gear Insights</a> - Data-driven articles and guides</li>`;
   h += `<li><a href="${BASE}/news">Gear News</a> - Latest climbing equipment updates</li>`;
   h += `<li><a href="${BASE}/methodology">Methodology</a> - How we score climbing gear</li>`;
+  h += `</ul>`;
+  h += `<h2>Latest Review</h2><ul>`;
+  h += `<li><a href="${BASE}/insights/scarpa-blackbird">Scarpa Blackbird Review: I Tested the Most Expensive Shoe on Sandstone Edges</a> - First-person review of Scarpa's first carbon-midsole shoe, plus seven cheaper alternatives compared head-to-head.</li>`;
   h += `</ul>`;
   h += `</article>`;
   return h;
