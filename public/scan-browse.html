@@ -573,7 +573,11 @@ function setStatus(html) {
 async function loadScan(scanId) {
   try {
     setStatus("<div class='loading'><span class='spinner'></span>Loading scan data...</div>");
-    const rows = await sb(`foot_scan_fits?select=*&scan_id=eq.${encodeURIComponent(scanId)}`);
+    // Explicit column list (no email/email_freq) - anon role lost
+    // table-level SELECT after the 2026-05-07 RLS lockdown, so select=*
+    // returns 401. Specific columns that anon was granted still work.
+    const cols = "id,scan_id,created_at,generated_at,pipeline_started_at,sex,street_size_eu,shoes,next_shoe_preference,next_shoe_notes,toe_shape,toe_confidence,toe_delta_ratio,forefoot_width_ratio,forefoot_width_class,heel_width_ratio,heel_width_class,heel_depth_ratio,heel_depth_class,arch_length_ratio,arch_length_class,instep_height_ratio,instep_height_class,volume_class,hallux_valgus_class,hva_offset_ratio,confidence,notes,pipeline_stage,pipeline_error,recommendations,interpretation,landmarks,validation_results,browse_extended,status";
+    const rows = await sb(`foot_scan_fits?select=${cols}&scan_id=eq.${encodeURIComponent(scanId)}`);
     if (rows.length === 0) throw new Error("Scan not found");
     const scan = rows[0];
     if (!scan.browse_extended) throw new Error("No browse_extended data on this scan");

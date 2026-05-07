@@ -5,11 +5,10 @@ Allow: /
 # Sitemap location
 Sitemap: https://www.climbing-gear.com/sitemap.xml
 
-# Block admin/test/utility pages
+# Block admin/test/utility prefixes (paths intentionally unlisted -
+# admin pages are gated by HTTP Basic auth on the server, not by this file).
 Disallow: /admin/
 Disallow: /test/
-Disallow: /scan-admin.html
-Disallow: /suggestion-admin.html
 Disallow: /shoe-fit-v2.html
 Disallow: /scanner-test.html
 

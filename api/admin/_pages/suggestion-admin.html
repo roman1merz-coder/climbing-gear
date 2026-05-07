@@ -115,48 +115,33 @@
             .sg-actions { flex-direction: column; }
             .sg-actions input[type="text"] { min-width: unset; width: 100%; }
         }
-        #auth-gate { display: flex; align-items: center; justify-content: center; min-height: 80vh; }
-        #auth-gate form { background: #fff; border: 1px solid #d5cdbf; border-radius: 12px; padding: 32px; max-width: 340px; width: 100%; text-align: center; }
-        #auth-gate h2 { font-size: 1.1rem; margin-bottom: 16px; color: #2d2a26; }
-        #auth-gate input { width: 100%; padding: 10px 14px; border: 1px solid #d5cdbf; border-radius: 8px; font-size: 14px; margin-bottom: 12px; outline: none; font-family: inherit; }
-        #auth-gate input:focus { border-color: #3d7a52; }
-        #auth-gate button { width: 100%; padding: 10px; border: none; border-radius: 8px; background: #3d7a52; color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; font-family: inherit; }
-        #auth-gate .error { color: #c0392b; font-size: 12px; margin-top: 8px; display: none; }
-        #admin-content { display: none; }
+        /* Auth is now done server-side via HTTP Basic on /api/admin/page.
+         * The client-side gate has been removed; an unauthenticated user
+         * never receives this HTML. */
     </style>
 </head>
 <body>
-<div id="auth-gate">
-  <form onsubmit="return checkAuth(event)">
-    <h2>Suggestion Admin Login</h2>
-    <input type="password" id="auth-pw" placeholder="Password" autocomplete="current-password" autofocus>
-    <button type="submit">Log in</button>
-    <div class="error" id="auth-error">Wrong password</div>
-  </form>
-</div>
-<div id="admin-content">
+<div id="admin-content" style="display:block">
     <h1>Suggestion Hub Admin</h1>
     <div id="stats" class="stats"></div>
     <div id="suggestions-container" class="loading">Loading suggestions…</div>
 
     <script>
-        const SB_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
-        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4';
-        const headers = {
-            'apikey': SB_KEY,
-            'Authorization': `Bearer ${SB_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
-        };
+        async function adminApi(path, init) {
+            const res = await fetch(path, init);
+            if (res.status === 401) {
+                /* Browser will re-prompt for Basic-auth credentials on reload. */
+                location.reload();
+                throw new Error('unauthorized');
+            }
+            return res;
+        }
 
         let allSuggestions = [];
         let activeFilter = null; // null = all
 
         async function loadData() {
-            const res = await fetch(
-                `${SB_URL}/rest/v1/feedback?select=*&order=created_at.desc`,
-                { headers }
-            );
+            const res = await adminApi('/api/admin/feedback?op=list');
             allSuggestions = await res.json();
             renderStats();
             renderList();
@@ -277,10 +262,10 @@
             btn.disabled = true;
 
             try {
-                await fetch(`${SB_URL}/rest/v1/feedback?id=eq.${id}`, {
-                    method: 'PATCH',
-                    headers,
-                    body: JSON.stringify({ status, admin_notes: notes || null })
+                await adminApi('/api/admin/feedback?op=update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, status, admin_notes: notes || null })
                 });
 
                 // Update local data
@@ -312,32 +297,5 @@
         setInterval(() => loadData().catch(console.error), 60000);
     </script>
 </div><!-- /admin-content -->
-<script>
-const AUTH_HASH = '15312cdc628474104415591d7786c6d37abedb48bddac3a8d0196b6b2e964b4d';
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-async function checkAuth(e) {
-  e.preventDefault();
-  const pw = document.getElementById('auth-pw').value;
-  const hash = await sha256(pw);
-  if (hash === AUTH_HASH) {
-    sessionStorage.setItem('cg-admin-auth', hash);
-    document.getElementById('auth-gate').style.display = 'none';
-    document.getElementById('admin-content').style.display = 'block';
-  } else {
-    document.getElementById('auth-error').style.display = 'block';
-    document.getElementById('auth-pw').value = '';
-  }
-  return false;
-}
-(async () => {
-  if (sessionStorage.getItem('cg-admin-auth') === AUTH_HASH) {
-    document.getElementById('auth-gate').style.display = 'none';
-    document.getElementById('admin-content').style.display = 'block';
-  }
-})();
-</script>
 </body>
 </html>

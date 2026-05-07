@@ -10,11 +10,11 @@
 //   SUPABASE_URL
 //   SUPABASE_SERVICE_KEY
 
-// Fallbacks match the constants in src/supabase.js and CLAUDE-README. The
-// service-role key is already in the repo, so no new secret is exposed.
-const SUPABASE_URL = process.env.SUPABASE_URL || "https://wsjsuhvpgupalwgcjatp.supabase.co";
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4";
+// Env vars only - no hardcoded fallback. A missing env var must fail
+// loudly so the leak is caught at deploy time rather than silently
+// reverting to a stale (rotated-out) key.
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 export default async function handler(req, res) {
   // Basic CORS for safety (same-origin is the main use case)

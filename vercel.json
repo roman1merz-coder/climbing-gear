@@ -436,6 +436,16 @@
       "permanent": true
     },
     {
+      "source": "/crashpads/beal-double-air-light",
+      "destination": "/crashpads",
+      "permanent": true
+    },
+    {
+      "source": "/crashpad/beal-double-air-light",
+      "destination": "/crashpads",
+      "permanent": true
+    },
+    {
       "source": "/shoes/:slug",
       "destination": "/shoe/:slug",
       "permanent": true
@@ -508,11 +518,33 @@
     {
       "source": "/scan/:scanId",
       "destination": "/index.html"
+    },
+    {
+      "source": "/scan-admin.html",
+      "destination": "/api/admin/page?p=scan"
+    },
+    {
+      "source": "/scan-admin",
+      "destination": "/api/admin/page?p=scan"
+    },
+    {
+      "source": "/suggestion-admin.html",
+      "destination": "/api/admin/page?p=suggestion"
+    },
+    {
+      "source": "/suggestion-admin",
+      "destination": "/api/admin/page?p=suggestion"
     }
   ],
   "functions": {
     "api/fetch-prices.js": {
       "maxDuration": 60
+    },
+    "api/scan/upload.js": {
+      "maxDuration": 30
+    },
+    "api/admin/page.js": {
+      "includeFiles": "api/admin/_pages/**"
     }
   },
   "crons": [

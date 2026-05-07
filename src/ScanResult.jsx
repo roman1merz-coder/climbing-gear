@@ -6,8 +6,19 @@ import useIsMobile from "./useIsMobile.js";
 import usePageMeta from "./usePageMeta.js";
 import { SHOE_DB, BRANDS, modelsFor, SHOE_SIZES_EU, STREET_SIZES_EU, formatSize } from "./shoeDb.js";
 
-// Service-role key for writes (same key already public in scan.html)
-const SB_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4";
+// Writes used to call Supabase REST directly with the service-role key
+// embedded in this bundle. They now POST to /api/scan, which holds the
+// service-role key server-side. Reads still go through anon-key
+// supabaseFetch (allowed by RLS on the public foot_scan_fits view).
+async function apiScanPost(op, payload) {
+  const r = await fetch("/api/scan", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ op, ...(payload || {}) }),
+  });
+  if (!r.ok) throw new Error(`api/scan ${op} ${r.status}`);
+  return r.json().catch(() => ({}));
+}
 
 // ══════════════════════════════════════════════════════════════
 // Population reference (tertile-calibrated, 2026-04-14)
@@ -335,16 +346,7 @@ function EmailCapture({ scanId, savedEmail, savedFreq }) {
     if (!email.trim() || !scanId) return;
     setStatus("sending");
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${SB_SERVICE_KEY}`,
-          apikey: SB_SERVICE_KEY,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: email.trim(), email_freq: freq }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      await apiScanPost("email", { scan_id: scanId, email: email.trim(), email_freq: freq });
       setStatus("sent");
       // Brief pause so the user sees the "Saved!" state before collapse.
       setTimeout(() => setExpanded(false), 900);
@@ -831,39 +833,24 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
         },
       }));
 
-    const body = {
+    // /api/scan op:rescore validates the payload server-side then patches
+    // foot_scan_fits with pipeline_stage='rescore' so the worker re-runs
+    // matrix scoring against the new fit data. The pipeline_started_at
+    // timestamp is reset server-side so ProcessingScreen counts from 0.
+    const payload = {
+      scan_id: scanId,
       sex,
       shoes: cleanedShoes,
       next_shoe_preference: nextPref || null,
       next_shoe_notes: notes.trim() || null,
-      pipeline_stage: "rescore",
-      // Reset the start timestamp so the ProcessingScreen progress bar
-      // counts from 0 rather than whatever the original scan recorded.
-      pipeline_started_at: new Date().toISOString(),
     };
     if (streetSize.trim()) {
       const n = Number(streetSize);
-      if (!Number.isNaN(n)) body.street_size_eu = n;
+      if (!Number.isNaN(n)) payload.street_size_eu = n;
     }
 
     try {
-      const resp = await fetch(
-        `${SUPABASE_URL}/rest/v1/foot_scan_fits?scan_id=eq.${scanId}`,
-        {
-          method: "PATCH",
-          headers: {
-            apikey: SB_SERVICE_KEY,
-            Authorization: `Bearer ${SB_SERVICE_KEY}`,
-            "Content-Type": "application/json",
-            Prefer: "return=minimal",
-          },
-          body: JSON.stringify(body),
-        }
-      );
-      if (!resp.ok) {
-        const txt = await resp.text();
-        throw new Error(`Save failed (${resp.status}): ${txt.slice(0, 200)}`);
-      }
+      await apiScanPost("rescore", payload);
       setSaving(false);
       if (onSaved) onSaved();
       onClose();
@@ -1554,8 +1541,19 @@ export default function ScanResult({ shoes }) {
 
     const POLL_COLS = "scan_id,pipeline_stage,pipeline_error,pipeline_started_at";
 
+    // Full row goes through /api/scan?op=get (service-role server-side) so
+    // PII columns (email, email_freq) are returned even though anon RLS now
+    // hides them. The narrow poll stays on direct REST: it only reads non-
+    // PII columns and benefits from PostgREST's lower latency. /api/scan
+    // returns a single row object; wrap in array to match the existing
+    // consumer shape (rows[0]).
     const fetchFull = () =>
-      supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=*`);
+      fetch(`/api/scan?op=get&scan_id=${encodeURIComponent(scanId)}`)
+        .then((r) => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        })
+        .then((row) => (row ? [row] : []));
     const fetchNarrow = () =>
       supabaseFetch(`/rest/v1/foot_scan_fits?scan_id=eq.${scanId}&select=${POLL_COLS}`);
 
