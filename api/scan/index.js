@@ -25,7 +25,20 @@ import { sbFetch, sendSupabaseError } from "../_lib/supabase.js";
 
 const SCAN_ID_RE = /^scan-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}$/;
 const SEX_VALUES = new Set(["male", "female", null, undefined, ""]);
-const FIT_VALUES = new Set(["", null, undefined, "tight", "snug", "good", "loose", "very-tight", "very-loose"]);
+// The values the public scanner form actually submits, per dimension:
+//   toes:     squeezed | perfect | roomy
+//   forefoot: tight    | perfect | loose
+//   heel:     tight    | perfect | empty
+// Plus the legacy keywords the older /shoe-fit-v2 form used. Anything
+// outside this set falls back to null in cleanShoes().
+const FIT_VALUES = new Set([
+  "", null, undefined,
+  "perfect",
+  "squeezed", "tight",        // tightness keywords
+  "roomy", "loose", "empty",  // looseness keywords
+  // legacy aliases that may still appear in older serialized payloads
+  "snug", "good", "very-tight", "very-loose",
+]);
 
 function validScanId(id) {
   return typeof id === "string" && SCAN_ID_RE.test(id);
