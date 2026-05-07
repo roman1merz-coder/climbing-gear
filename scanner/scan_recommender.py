@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 """
 Shoe candidate pre-filtering for the foot scan pipeline.
 
@@ -1041,7 +1042,16 @@ def upload_overlay(scan_id: str, suffix: str, file_path: str):
     with open(file_path, "rb") as f:
         resp = requests.post(
             f"{SB_URL}/storage/v1/object/foot-scans/scans/{filename}",
-            headers={"Authorization": f"Bearer {SB_KEY}", "Content-Type": "image/png", "x-upsert": "true"},
+            # Both `apikey` and `Authorization` are required for the new
+            # sb_secret_* key format. The legacy JWT was looser and worked
+            # with `Authorization` alone, but Storage now hard-checks that
+            # `apikey` is set on the new keys (else "Invalid Compact JWS").
+            headers={
+                "apikey": SB_KEY,
+                "Authorization": f"Bearer {SB_KEY}",
+                "Content-Type": "image/png",
+                "x-upsert": "true",
+            },
             data=f.read(),
         )
     resp.raise_for_status()
