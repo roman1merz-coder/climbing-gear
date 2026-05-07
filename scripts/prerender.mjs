@@ -946,20 +946,16 @@ async function main() {
   ]);
 
   // Homepage
+  // Note: WebSite schema previously included a potentialAction → SearchAction
+  // (Sitelinks Searchbox). Google deprecated that feature in early 2024 and
+  // was crawling the `{search_term_string}` placeholder as a real URL. Removed
+  // 2026-05-07. Keep this prerender block in sync with src/useStructuredData.js.
   let homepageHtml = renderPage('/', 'climbing-gear.com - Scroll less. Climb more.', 'Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.', homepageSsr(), {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'climbing-gear.com',
     url: BASE,
     description: 'Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${BASE}/shoes?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   });
   // Preload the hero image so browser discovers it before JS loads (LCP optimization)
   homepageHtml = homepageHtml.replace(
