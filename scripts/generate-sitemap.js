@@ -38,20 +38,37 @@ function generateSitemaps() {
   let totalUrls = 0;
 
   // 1. Core pages sitemap (homepage, categories, static pages)
+  // Priority reflects unique-content / SEO value, not just URL hierarchy:
+  //   1.0 — homepage
+  //   0.9 — category listings, scanner & finder tools, individual insight articles
+  //         (these are the site's highest-quality, most-distinct pages)
+  //   0.7 — hub pages (insights overview, news), changelog/news
+  //   0.5 — informational static pages (about, methodology, feedback)
+  //   0.3 — legal boilerplate (impressum, privacy, terms)
+  // Note: Google has stated <priority> is largely ignored for ranking; this is
+  // primarily a hint for relative crawl-budget allocation within the sitemap.
   const coreEntries = [];
   coreEntries.push(urlEntry(BASE_URL, TODAY, 'daily', '1.0'));
   for (const cat of ['/shoes', '/ropes', '/crashpads', '/belays', '/quickdraws']) {
     coreEntries.push(urlEntry(`${BASE_URL}${cat}`, TODAY, 'daily', '0.9'));
   }
   for (const page of ['/find', '/scan']) {
-    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.8'));
+    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.9'));
   }
   for (const page of [
-    '/insights', '/insights/climbing-shoe-guide', '/insights/foot-scanner', '/insights/heel-fit',
+    '/insights/climbing-shoe-guide', '/insights/foot-scanner', '/insights/heel-fit',
     '/insights/inflatable-crashpads', '/insights/rope-cost-vs-safety', '/insights/scarpa-blackbird',
-    '/news', '/methodology', '/about', '/feedback', '/impressum', '/privacy', '/terms',
   ]) {
-    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'monthly', '0.7'));
+    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'monthly', '0.9'));
+  }
+  for (const page of ['/insights', '/news']) {
+    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.7'));
+  }
+  for (const page of ['/methodology', '/about', '/feedback']) {
+    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'monthly', '0.5'));
+  }
+  for (const page of ['/impressum', '/privacy', '/terms']) {
+    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'yearly', '0.3'));
   }
   writeSitemap('sitemap-core.xml', wrapUrlset(coreEntries));
   sitemapFiles.push('sitemap-core.xml');
