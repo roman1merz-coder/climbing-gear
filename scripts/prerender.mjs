@@ -37,7 +37,7 @@ const TEMPLATE = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
 
 // --- Supabase price fetching for AggregateOffer in JSON-LD ---------------
 const SUPABASE_URL = 'https://wsjsuhvpgupalwgcjatp.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI';
+const SUPABASE_ANON_KEY = 'sb_publishable_dG9yKzuhsr2DtSHIh9-cXg_DhZbfYkr';
 
 /**
  * Fetch all in-stock, high-confidence prices from a Supabase price table

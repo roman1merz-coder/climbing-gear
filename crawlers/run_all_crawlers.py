@@ -27,11 +27,7 @@ LOG_DIR = os.path.expanduser("~/crawl_logs")
 PYTHON = os.path.join(os.path.dirname(sys.executable), "python3") if sys.executable else "python3"
 
 SUPABASE_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co"
-SERVICE_KEY = (
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
-    "eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ."
-    "6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4"
-)
+SERVICE_KEY = os.environ["SUPABASE_SECRET_KEY"]  # set in ~/.cgkeys, not committed
 HEADERS = {
     "apikey": SERVICE_KEY,
     "Authorization": f"Bearer {SERVICE_KEY}",

@@ -26,8 +26,8 @@ from datetime import datetime, timezone
 
 # ── Config ──────────────────────────────────────────────────────────────────
 SUPABASE_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co"
-SERVICE_KEY  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4"
-ANON_KEY     = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI"
+SERVICE_KEY = os.environ["SUPABASE_SECRET_KEY"]  # set in ~/.cgkeys, not committed
+ANON_KEY    = "sb_publishable_dG9yKzuhsr2DtSHIh9-cXg_DhZbfYkr"
 
 RETAILER = "sportokay.com"
 COUNTRY  = "AT"

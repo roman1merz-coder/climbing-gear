@@ -1,18 +1,23 @@
 /**
  * Centralized Supabase configuration.
  *
- * The anon key is a PUBLIC, read-only key - safe to ship in client-side code.
- * Supabase uses Row Level Security (RLS) to control access; the anon key
- * simply authenticates requests as "anonymous public reader".
+ * The publishable key is a PUBLIC, read-only key - safe to ship in
+ * client-side code. Supabase uses Row Level Security (RLS) to control
+ * access; the publishable key authenticates requests as the "anonymous
+ * public reader" role.
  *
- * Service-role key (write access) lives ONLY in Vercel env vars and is
- * never included in client bundles.
+ * Migrated 2026-05-07 from the legacy `eyJ...` JWT anon key to the new
+ * `sb_publishable_...` format. The secret key (write access) lives ONLY
+ * in Vercel env vars (SUPABASE_SERVICE_KEY) and is never bundled.
+ *
+ * The export name `SUPABASE_ANON_KEY` is kept for backwards-compat with
+ * existing imports across the codebase; the value is now the publishable
+ * key, not a JWT.
  */
 
 export const SUPABASE_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co";
 
-export const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1NjA3OTEsImV4cCI6MjA4NjEzNjc5MX0.QH3wFa14gSvRKOz8Q099sbKvKoSroGJfPerdZgPtbTI";
+export const SUPABASE_ANON_KEY = "sb_publishable_dG9yKzuhsr2DtSHIh9-cXg_DhZbfYkr";
 
 /**
  * Helper: fetch JSON from Supabase REST API (read-only, anon key).
