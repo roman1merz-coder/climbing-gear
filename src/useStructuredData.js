@@ -308,6 +308,13 @@ export function buildCrashpadSchema(pad, priceData) {
 
 /**
  * Build WebSite structured data for the homepage.
+ *
+ * Note: the Sitelinks Searchbox feature (potentialAction → SearchAction) was
+ * deprecated by Google in early 2024 and no longer renders. We previously
+ * emitted it with `urlTemplate: ".../shoes?q={search_term_string}"`, which
+ * Googlebot was crawling literally — the placeholder URL appeared in GSC as
+ * "Alternative Seite mit kanonischem Tag" and "Crawled — currently not
+ * indexed". Removed 2026-05-07; do NOT re-add unless Google revives the spec.
  */
 export function buildWebsiteSchema() {
   return {
@@ -316,14 +323,6 @@ export function buildWebsiteSchema() {
     name: "climbing-gear.com",
     url: BASE_URL,
     description: "Compare 750+ climbing products - shoes, ropes, belay devices, and crashpads. Every spec, every price, zero brand bias.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${BASE_URL}/shoes?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
