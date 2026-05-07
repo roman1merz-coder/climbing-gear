@@ -196,7 +196,7 @@ export default function PetzFeedback() {
           <p style={{ fontSize: "15px", color: T.muted, lineHeight: 1.7, margin: "0 0 22px" }}>
             Das hilft uns den Scanner und das Angebot für euch in Neustadt weiter zu verbessern. Viel Spaß beim Bouldern!
           </p>
-          <a href="https://climbing-gear.com/" style={{
+          <a href="https://www.climbing-gear.com/" style={{
             display: "inline-block", padding: "10px 20px",
             borderRadius: "10px", background: T.accent, color: "#fff",
             fontSize: "13px", fontWeight: 700, textDecoration: "none",

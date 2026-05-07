@@ -457,7 +457,7 @@
   <div class="tabs" id="tabs"></div>
   <nav class="subnav">
     <a id="back-scan-result" href="#">← Back to scan results</a>
-    <a id="browse-all" href="https://climbing-gear.com/shoes">Browse all shoes →</a>
+    <a id="browse-all" href="https://www.climbing-gear.com/shoes">Browse all shoes →</a>
   </nav>
   <div class="grid" id="grid"></div>
 </div>
@@ -583,7 +583,7 @@ async function loadScan(scanId) {
     const urlTier = new URLSearchParams(window.location.search).get("tier");
     state.tier = TIERS.includes(urlTier) ? urlTier : "baseline";
     renderScanMeta();
-    $("back-scan-result").href = `https://climbing-gear.com/scan/${encodeURIComponent(scanId)}`;
+    $("back-scan-result").href = `https://www.climbing-gear.com/scan/${encodeURIComponent(scanId)}`;
     await loadOffers();
     render();
     setStatus("");
@@ -686,7 +686,7 @@ function renderGrid() {
 function cardHtml(p, rank) {
   const meta = state.shoeMeta[p.slug] || {};
   const imgUrl = meta.image_url
-    ? (meta.image_url.startsWith("http") ? meta.image_url : `https://climbing-gear.com${meta.image_url}`)
+    ? (meta.image_url.startsWith("http") ? meta.image_url : `https://www.climbing-gear.com${meta.image_url}`)
     : null;
   const img = imgUrl
     ? `<img src="${imgUrl}" alt="${escapeAttr(p.brand + ' ' + p.model)}" loading="lazy">`
@@ -710,7 +710,7 @@ function cardHtml(p, rank) {
   }
 
   return `
-    <a class="card-link" href="https://climbing-gear.com/shoe/${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">
+    <a class="card-link" href="https://www.climbing-gear.com/shoe/${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">
       <div class="card">
         <div class="${rankCls}">${rank}</div>
         <div class="thumb">${img}</div>
