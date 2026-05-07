@@ -88,12 +88,20 @@ def _downsize_label_raw(raw_ds):
 
 def _fit_issues(shoes):
     """Collect fit issue counts across all shoes.
-    Returns dict of {dimension: {rating: count}}."""
+    Returns dict of {dimension: {rating: count}}.
+
+    Shoes where the user did not provide a rating for a dimension
+    (fit[dim] is None or missing) are skipped for that dimension,
+    not counted as a separate "None" category. Otherwise downstream
+    formatters render literal "None" in user-facing text.
+    """
     issues = {"heel": {}, "toes": {}, "forefoot": {}}
     for s in shoes:
-        fit = s.get("fit", {})
+        fit = s.get("fit") or {}
         for dim in issues:
-            rating = fit.get(dim, "perfect")
+            rating = fit.get(dim)
+            if not rating:  # None, missing, or empty string
+                continue
             issues[dim][rating] = issues[dim].get(rating, 0) + 1
     return issues
 
@@ -117,10 +125,12 @@ def _find_anchor(shoes, street):
     best = None
     best_score = -99
     for s in shoes:
-        fit = s.get("fit", {})
+        fit = s.get("fit") or {}
         score = 0
         for dim in ("heel", "toes", "forefoot"):
-            rating = fit.get(dim, "perfect")
+            rating = fit.get(dim)
+            if not rating:  # unrated - neither bonus nor penalty
+                continue
             if rating == "perfect":
                 score += 3
             elif rating in ("tight", "roomy"):
@@ -418,10 +428,26 @@ def _para_fit_patterns(shoes, profile=None):
             })
 
     if not patterns:
+        # Check whether the user actually rated any dimension on any shoe.
+        # `issues` is empty for both "everything is perfect" and "nothing
+        # was rated" - we need to disambiguate or we'd falsely tell the
+        # user their shoes fit perfectly when they just didn't rate them.
+        any_rated = any(
+            (s.get("fit") or {}).get(d)
+            for s in shoes
+            for d in ("heel", "toes", "forefoot")
+        )
+        if not any_rated:
+            return (
+                "You did not rate the fit of your current shoes, so we cannot "
+                "draw conclusions from them. The shoe recommendations below come "
+                "from your foot measurements alone. For more tailored picks, edit "
+                "your inputs above and add fit ratings."
+            )
         if n == 1:
             s = shoes[0]
-            fit = s.get("fit", {})
-            if all(v == "perfect" for v in fit.values()):
+            fit = s.get("fit") or {}
+            if all(v == "perfect" for v in fit.values() if v):
                 return (
                     f"Your {s['brand']} {s['model']} fits perfectly across all dimensions: "
                     "heel, toes, and forefoot. This tells us the shoe's geometry matches your foot well, "
