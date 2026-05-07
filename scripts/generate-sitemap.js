@@ -17,6 +17,23 @@ function loadJSON(filename) {
   return JSON.parse(fs.readFileSync(filepath, 'utf8'));
 }
 
+// Auto-discover insight article slugs from src/Insights.jsx so adding a new
+// article only requires editing the ARTICLES array there — no sitemap edit
+// needed. Matches `to: "/insights/<slug>"` lines (the Insights.jsx convention).
+// Throws if zero matches: that would silently drop articles from the sitemap.
+function loadInsightSlugs() {
+  const filepath = path.join(__dirname, '..', 'src', 'Insights.jsx');
+  const src = fs.readFileSync(filepath, 'utf8');
+  const slugs = [...src.matchAll(/to:\s*["']\/insights\/([a-z0-9-]+)["']/gi)]
+    .map(m => m[1]);
+  // Dedupe while preserving order
+  const unique = [...new Set(slugs)];
+  if (unique.length === 0) {
+    throw new Error('loadInsightSlugs: found 0 articles in Insights.jsx — refusing to write a sitemap that drops every insight URL');
+  }
+  return unique;
+}
+
 function urlEntry(loc, lastmod, changefreq, priority) {
   return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
@@ -55,11 +72,11 @@ function generateSitemaps() {
   for (const page of ['/find', '/scan']) {
     coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.9'));
   }
-  for (const page of [
-    '/insights/climbing-shoe-guide', '/insights/foot-scanner', '/insights/heel-fit',
-    '/insights/inflatable-crashpads', '/insights/rope-cost-vs-safety', '/insights/scarpa-blackbird',
-  ]) {
-    coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'monthly', '0.9'));
+  // Insights articles are auto-discovered from src/Insights.jsx (single source
+  // of truth). Add a new article there and it appears here automatically.
+  const insightSlugs = loadInsightSlugs();
+  for (const slug of insightSlugs) {
+    coreEntries.push(urlEntry(`${BASE_URL}/insights/${slug}`, TODAY, 'monthly', '0.9'));
   }
   for (const page of ['/insights', '/news']) {
     coreEntries.push(urlEntry(`${BASE_URL}${page}`, TODAY, 'weekly', '0.7'));
