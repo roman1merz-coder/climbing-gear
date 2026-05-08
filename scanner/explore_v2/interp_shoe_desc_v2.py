@@ -386,10 +386,17 @@ _P1_PERF_RE = _re.compile(
 def _strip_p1_target_redundancy(p1):
     """Drop sentences in P1 that repeat the user's target (toe box,
     downturn+asym). Keep shoe-specific sentences (fit profile, no-edge,
-    rubber/sole/stiffness)."""
+    rubber/sole/stiffness).
+
+    Roman 2026-05-08: split on sentence-ending periods only (period followed
+    by whitespace or end-of-string), NOT on every period — otherwise
+    decimal numbers in rubber names ("Science Friction 3.0") and rubber
+    thicknesses ("3.5mm") get broken into "3. 0" and "3. 5mm".
+    """
     if not p1:
         return p1
-    sentences = [s.strip() for s in p1.split(".") if s.strip()]
+    # Split on '.' that's followed by whitespace OR end-of-string only.
+    sentences = [s.strip() for s in _re.split(r'\.(?=\s|$)', p1) if s.strip()]
     kept = [s for s in sentences
             if not _P1_TOE_BOX_RE.match(s) and not _P1_PERF_RE.match(s)]
     if not kept:
