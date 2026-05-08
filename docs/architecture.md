@@ -115,12 +115,30 @@ Dev: vite, @vitejs/plugin-react.
 
 ## Static Pages (not SPA)
 
-These live in `public/` and are excluded from the Vite SPA rewrite:
+Public, unauthenticated, in `public/` and excluded from the Vite SPA rewrite:
 - `scan.html` - foot scanner upload UI
-- `scan-admin.html` - admin dashboard for scans
+- `scan-testv2.html` - V2 sandbox of the scanner (noindex)
+- `scan-browse.html` - alternate browse view linked from `/scan/:id/browse`
 - `shoe-fit-v2.html` - shoe fit questionnaire
-- `content-editor.html` - content editing tool
-- `suggestion-admin.html` - suggestion management
+- `content-editor.html` - content editing tool (gated by user-supplied GitHub PAT)
+
+Admin-only, gated by HTTP Basic auth, in `api/admin/_pages/` (the underscore prefix tells Vercel not to serve the directory directly):
+- `scan-admin.html` -> served via `/api/admin/page?p=scan` (rewritten from `/scan-admin.html`)
+- `suggestion-admin.html` -> served via `/api/admin/page?p=suggestion`
+
+See `docs/security-architecture.md` for the full credential boundary.
+
+## Server-side API endpoints (Vercel functions)
+
+| Path | Purpose |
+| --- | --- |
+| `/api/scan/upload` | Photo upload proxy (POST raw image/jpeg). Replaces direct browser-to-Storage writes. |
+| `/api/scan` | Public scanner ops dispatch: `init`, `prefs`, `email`, `rescore`, `retake`, `status`, `queue`, `get`. Replaces direct browser-to-Postgres writes. |
+| `/api/admin/scans` | Admin CRUD on `foot_scan_fits` and the storage bucket. Basic-auth gated. |
+| `/api/admin/feedback` | Admin CRUD on the `feedback` table. Basic-auth gated. |
+| `/api/admin/page` | Serves the gated admin HTML (after Basic auth). |
+| `/api/petz-feedback` | Public POST endpoint for the Petz event feedback form. |
+| `/api/fetch-prices` | Daily SerpApi cron (gated by `CRON_SECRET`). |
 
 ## Custom Hooks
 

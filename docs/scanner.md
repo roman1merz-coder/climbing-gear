@@ -1,17 +1,58 @@
 # Foot Scanner
 
+> Security boundary first. Read **[security-architecture.md](security-architecture.md)**
+> before any change to `/scan`, `/api/scan/*`, or the worker. The browser
+> never talks to Supabase REST or Storage directly for write paths -
+> everything goes through `/api/scan/*`.
+
 ## Overview
 
 The foot scanner at `climbing-gear.com/scan` lets users upload sole + side photos, fill in a shoe fit questionnaire, and get personalized shoe recommendations. The analysis pipeline runs on Roman's Mac Mini (M4 Pro, 64GB) - fully automated and deterministic, no LLM, $0/scan.
 
 ## User Flow
 
-1. User uploads 2 photos: sole and side
-2. Photos go to Supabase Storage: `foot-scans/scans/{scanId}-sole.jpg`, `scans/{scanId}-side.jpg`
-3. User fills shoe fit questionnaire: sex, street shoe size (EU), climbing shoes (brand, model, EU size, fit ratings)
-4. Optional email, then submit
-5. Data saves to `foot_scan_fits` table with `pipeline_stage='pending'`
-6. Worker picks it up, processes, results viewable at `/scan/{scanId}`
+1. User uploads 2 photos. The form posts each to `POST /api/scan/upload?scan_id=X&view=sole|side`. The serverless function uses the secret key to write to Supabase Storage at `foot-scans/scans/{scanId}-{view}.jpg`.
+2. The form posts `POST /api/scan {op:"init", scan_id}` which inserts a `foot_scan_fits` row with `pipeline_stage='pending'`.
+3. User fills the shoe-fit questionnaire (sex, street EU size, current climbing shoes with per-dimension fit ratings).
+4. Optional email, then submit. The form posts `POST /api/scan {op:"prefs", ...}` which patches the same row with the cleaned shoe-fit payload (see "Fit-value enums" below for the allow-list).
+5. The Mac Mini worker polls Supabase every 5s for `pipeline_stage='pending'`. It downloads the photos, segments them, writes overlays + measurements, generates interpretation + recommendations, sets `pipeline_stage='complete'`.
+6. While the worker runs, the page polls `GET /api/scan?op=status&scan_id=X` (cheap, no PII).
+7. On completion, the React route `/scan/{scanId}` reads the full row via `GET /api/scan?op=get&scan_id=X` (server-side, returns email/email_freq for EmailCapture pre-fill) plus polls non-PII columns directly with the publishable key.
+
+## Architecture in one picture
+
+```
+                        [BROWSER  /scan, /scan-testv2]
+                                |
+         POST /api/scan/upload  |  raw image/jpeg
+         POST /api/scan {op}    |
+                                v
+                      [Vercel /api/scan/*]    <- holds sb_secret_*
+                                |
+                                v
+                        [Supabase Storage]   foot-scans/scans/...
+                        [Supabase REST]      foot_scan_fits row
+
+                                ^
+                                | poll every 5s
+                                |
+                       [Mac Mini scan_worker]   <- holds sb_secret_* via launchd plist
+                                |
+                                v
+                       [Supabase Storage]    overlay PNGs
+                       [Supabase REST]       measurements + interpretation + recommendations
+
+                                ^
+                                | GET /api/scan?op=get
+                                | (publishable for status poll)
+                                v
+                        [BROWSER  /scan/:id]
+```
+
+`/api/scan/upload.js` is the only place where browser bytes turn into a
+Supabase Storage write. `/api/scan/index.js` is the only place where
+browser JSON turns into a `foot_scan_fits` row. The worker is the only
+component that writes overlays and pipeline output.
 
 ## Pipeline (scan_worker.py)
 
@@ -104,6 +145,36 @@ META min/max define visual scale of each bar on the website:
 | navicular_ratio | 0.00 | 0.15 | heel_depth_ratio |
 
 NOTE: Website uses "navicular_ratio" as the field name for heel depth (legacy naming from v1).
+
+## Fit-value enums (must stay in sync across 4 places)
+
+The scan form lets the user rate each shoe along three dimensions, with
+three choices each. The values used internally do **not** match the
+button labels (the labels are `Tight`/`Perfect`/`Loose` everywhere, but
+the underlying tokens are dimension-specific):
+
+| Dimension | Token for "Tight" | Token for "Perfect" | Token for "Loose" |
+| --- | --- | --- | --- |
+| toes | `squeezed` | `perfect` | `roomy` |
+| forefoot | `tight` | `perfect` | `loose` |
+| heel | `tight` | `perfect` | `empty` |
+
+These six tokens (plus `null`/`""` for unrated) flow through four
+surfaces. **All four must stay in sync** - if you add or rename a
+token, change all four in the same commit:
+
+| Surface | File | What you change |
+| --- | --- | --- |
+| Form HTML | `public/scan.html`, `public/scan-testv2.html` | `data-val="..."` attributes inside `.fit-options` blocks (search for `data-area="toes"` etc.) |
+| API allow-list | `api/scan/index.js` | The `FIT_VALUES` `Set` (cleanShoes uses it). Anything not in this set silently becomes `null`. |
+| Interpretation engine | `scanner/benchmark/interp_shoe_fit.py` | `_universal_issue_text`, `_majority_issue_text`, `_contradiction_text`, `_issue_implication`. Each token needs a sentence pattern, otherwise the engine prints an awkward generic fallback or the literal token. |
+| Display badge | `src/ScanResult.jsx` | `FitBadge` palette + `FIT_LABELS` map. Each token needs a colour and a human label. |
+
+The 2026-05-07 incident was caused by exactly this drift: the form
+submitted `perfect` and `squeezed`, but the API allow-list only had
+`tight`/`snug`/`good`/`loose`/`very-tight`/`very-loose`, so users saw
+their fit ratings disappear from the results page. See
+`SECURITY-FIX.md` and the 61818c3 commit for the fix.
 
 ## Recommendation Rules
 
