@@ -67,6 +67,16 @@ def flatten_pick(score_dict, shoe, *, tier, target, best_price=None,
         "heel_volume":       shoe.get("heel_volume"),
         "forefoot_volume":   shoe.get("forefoot_volume"),
         "no_edge":           shoe.get("no_edge"),
+        # Build fields used by V1 _para_description for the sole sentence.
+        # Roman 2026-05-02 case-4 review (D): without these, P1 collapsed
+        # to just "Sensitive shoe." with no rubber / midsole / build context.
+        "rubber_type":          shoe.get("rubber_type"),
+        "rubber_thickness_mm":  shoe.get("rubber_thickness_mm"),
+        "midsole":              shoe.get("midsole"),
+        "midsole_stiffness":    shoe.get("midsole_stiffness"),
+        "upper_material":       shoe.get("upper_material"),
+        "description":          shoe.get("description"),
+        "special_fit_notes":    shoe.get("special_fit_notes"),
         # Scoring + context
         "score":             score_dict.get("score"),
         "breakdown":         bd_scores,
@@ -229,6 +239,11 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
         # case.
         forms = pick.get("toe_form") or []
         forms_lc = [f.lower() for f in forms] if forms else []
+        # Roman 2026-05-01 audit S13/S18: capitalize toe-shape names in
+        # user-facing prose (Egyptian/Greek/Roman).
+        _TOE_LBL = {"egyptian": "Egyptian", "greek": "Greek", "roman": "Roman"}
+        forms_cap = [_TOE_LBL.get(f.lower(), f.capitalize()) for f in forms]
+        user_toe_cap = _TOE_LBL.get(user_toe, user_toe.capitalize() if user_toe else "")
 
         def _join_forms(fs):
             if not fs: return None
@@ -236,19 +251,50 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
             if len(fs) == 2: return f"{fs[0]} or {fs[1]}"
             return ", ".join(fs[:-1]) + f", or {fs[-1]}"
 
-        if user_toe == "greek" and forms_lc and user_toe not in forms_lc:
-            # Greek user, shoe is egyptian or roman → -5 × conf
-            tf_str = _join_forms(forms) or "a different shape"
-            issues.append(
-                f"the toe box is shaped for {tf_str} feet, not Greek"
-            )
-        elif forms_lc and user_toe not in forms_lc:
-            # Egyptian↔Roman opposite, full -10 × conf
-            tf_str = _join_forms(forms) or "the opposite form"
-            issues.append(
-                f"the toe box is built for {tf_str} feet, opposite to your "
-                f"{user_toe} foot"
-            )
+        # Roman 2026-05-02 case-4 review (E): replace the vague
+        # "opposite to your X foot" wording with a consequence-specific
+        # sentence. Tell the user WHERE the mismatch will show up
+        # (which toe gets pinched / where dead space sits) instead of
+        # just labeling the form difference.
+        if forms_lc and user_toe and user_toe not in forms_lc:
+            tf_str = _join_forms(forms_cap) or "a different shape"
+            shoe_first = forms_lc[0]  # primary form for pinpointing
+
+            # Pinpoint the mechanical consequence per (user, shoe-form) pair.
+            consequence = None
+            if user_toe == "egyptian":
+                # Egyptian = big toe longest. Greek/Roman lasts narrow elsewhere.
+                if shoe_first == "greek":
+                    consequence = ("expects the second toe to be longest, so your "
+                                   "prominent big toe gets pushed against the front")
+                elif shoe_first == "roman":
+                    consequence = ("has a flatter front for evenly-lengthed toes, "
+                                   "with no extra space for your longer big toe")
+            elif user_toe == "greek":
+                # Greek = second toe longest.
+                if shoe_first == "egyptian":
+                    consequence = ("tapers to where the big toe should be longest, "
+                                   "so your longer second toe presses into the seam")
+                elif shoe_first == "roman":
+                    consequence = ("has a flatter front for evenly-lengthed toes, "
+                                   "leaving no extra room for your prominent second toe")
+            elif user_toe == "roman":
+                # Roman = first 2-3 toes roughly equal.
+                if shoe_first == "egyptian":
+                    consequence = ("tapers steeply down from the big toe, leaving "
+                                   "dead space where your second and third toes sit")
+                elif shoe_first == "greek":
+                    consequence = ("expects only the second toe to be longest, "
+                                   "leaving dead space at your big toe and outer toes")
+
+            if consequence:
+                issues.append(f"the {tf_str} toe box {consequence}")
+            else:
+                # Fallback: less specific but still better than the old wording.
+                issues.append(
+                    f"the {tf_str} toe box is shaped differently than your "
+                    f"{user_toe_cap} toes need"
+                )
 
     # ── Stiffness vs user baseline (tier-aware suppression) ───────────
     st_score = bd.get("stiffness", 0)
@@ -306,9 +352,11 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
             if _shared_by_most(shared_axis, peers):
                 issues = [i for i in issues if keyword not in i]
 
-    # ── Output formatting (mirrors v1) ────────────────────────────────
+    # ── Output formatting (v2: drop dead boilerplate, return None) ────
+    # Roman 2026-04-27: don't render "No notable tradeoffs..." — when there's
+    # nothing to flag, omit P3 entirely. The renderer skips falsy fields.
     if not issues:
-        return "No notable tradeoffs for your foot shape."
+        return None
 
     issues = issues[:3]
     issues[0] = issues[0][0].upper() + issues[0][1:]
@@ -321,22 +369,79 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
 
 # ── Public API ────────────────────────────────────────────────────────
 
+import re as _re
+
+# P1 sentences that restate the USER'S target, not anything specific to
+# this shoe — strip across all picks. The toe-shape and downturn/asym
+# targets already appear in §3; repeating them in every shoe card
+# creates the "11 of 12 cards say the same thing" duplication
+# (Roman 2026-04-27).
+_P1_TOE_BOX_RE = _re.compile(r'^[A-Za-z]+(?:/[a-z]+)* toe box$')
+_P1_PERF_RE = _re.compile(
+    r'^(Aggressively downturned|Moderate downturn|Slight downturn|Flat-lasted)'
+    r'( with (?:strong|moderate|slight) asymmetry| with symmetric profile)?$'
+)
+
+
+def _strip_p1_target_redundancy(p1):
+    """Drop sentences in P1 that repeat the user's target (toe box,
+    downturn+asym). Keep shoe-specific sentences (fit profile, no-edge,
+    rubber/sole/stiffness)."""
+    if not p1:
+        return p1
+    sentences = [s.strip() for s in p1.split(".") if s.strip()]
+    kept = [s for s in sentences
+            if not _P1_TOE_BOX_RE.match(s) and not _P1_PERF_RE.match(s)]
+    if not kept:
+        return ""
+    return ". ".join(kept) + "."
+
+
+# P2 boilerplate fallback the v1 generator emits when no specific
+# selection reason fired. Shows up 4/12 times — dead text. Return None.
+_P2_BOILERPLATE = "Good overall fit for your foot shape and climbing style."
+
+
+def _strip_p2_boilerplate(p2):
+    if not p2:
+        return None
+    if p2.strip() == _P2_BOILERPLATE:
+        return None
+    cleaned = p2.replace(_P2_BOILERPLATE, "").strip()
+    return cleaned if cleaned else None
+
+
 def generate_shoe_description_v2(pick, profile, all_picks=None):
-    """V2 wrapper: P1 + P2 from v1, P3 from v2.
+    """V2 wrapper: P1 + P2 from v1 (with dedup filters), P3 from v2.
 
     ``pick`` must be the flat shape returned by ``flatten_pick`` (so it
     carries v2 ``breakdown`` semantics + the merged v2 ``target`` dict).
 
-    Returns list of 3 paragraph strings, same contract as v1.
+    Returns list of [P1, P2, P3] strings. Any of P2/P3 may be None when
+    nothing useful to say — the renderer should skip those fields.
     """
-    p1 = _v1_para_description(pick, profile)
-    p2 = _v1_para_why_selected(pick, profile, all_picks=all_picks)
+    p1_raw = _v1_para_description(pick, profile)
+    p1 = _strip_p1_target_redundancy(p1_raw)
+
+    p2_raw = _v1_para_why_selected(pick, profile, all_picks=all_picks)
+    p2 = _strip_p2_boilerplate(p2_raw)
     if pick.get("not_in_stock"):
-        p2 += (" Note: this shoe is not currently available online. "
-               "Check local shops or wait for restocks.")
+        note = ("Note: this shoe is not currently available online. "
+                "Check local shops or wait for restocks.")
+        p2 = f"{p2} {note}" if p2 else note
     if pick.get("tier") == "budget" and pick.get("best_price") is not None:
         price = pick["best_price"]
-        p2 = f"At EUR {price:.0f}, this is a strong value pick. {p2}"
+        prefix = f"At EUR {price:.0f}, this is a strong value pick."
+        p2 = f"{prefix} {p2}" if p2 else prefix
+
+    # Roman 2026-05-02 case-4 review (C): when no tier-distinguishing reason
+    # fired (typical of the headline tier picks, since they're chosen
+    # precisely for being clean matches), surface a clean alignment
+    # statement instead of leaving P2 blank. Without this, ~half of the
+    # shoe cards rendered with no selection rationale at all.
+    if not p2:
+        p2 = "Shoe geometry and features align perfectly with your fit target."
+
     p3 = _para_tradeoffs_v2(pick, profile, all_picks=all_picks)
     return [p1, p2, p3]
 

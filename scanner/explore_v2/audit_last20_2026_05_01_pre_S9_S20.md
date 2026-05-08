@@ -1,0 +1,545 @@
+# V2 audit — last 20 scans
+
+Generated 2026-05-01. Sandbox-only. Per-scan random V2 inputs (seeded by scan_id for reproducibility).
+
+---
+
+## 1. `scan-2026-05-01T03-43-11`
+
+- **Created:** 2026-05-01T03:43:12.788328+00:00
+- **Sex / street size:** male / EU 41
+- **Toe shape:** roman  |  **HVA:** mild
+- **Forefoot:** wide (0.374)
+- **Arch:** normal (0.714)
+- **Instep:** high instep  |  **Heel:** wide heel / shallow heel
+- **Shoes (2):** Mad Rock Remora Pro HV EU39 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'tight'}; La Sportiva Ondra Comp EU37 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / indoor / aggressive
+- **Targets:** fw=2, hv=1, dt=aggressive, asym=moderate (baseline=strong, delta=-1), stiff_target=0.6699999999999999
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and wide forefoot with a wide heel. Throughout a wide profile.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. Your shallow heel doesn't project as far back as most. Deeply sculpted cups will feel empty at the back. For your mild hallux valgus, we prefer a slightly wider, less pointed toe box to compensate for the inward drift.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 37 to 39 (street size 41), but the raw numbers do not tell the full story because brands size very differently. Your Mad Rock Remora Pro HV in EU 39 is two sizes down from street size, very aggressive for Mad Rock, where the typical downsize is about half a size down. Your La Sportiva Ondra Comp in EU 37 is 4.0 sizes down from street size, very aggressive for La Sportiva, where the typical downsize is about 2.5 sizes down.
+  2. Your Mad Rock Remora Pro HV's forefoot feels tight while your other shoes fit on the forefoot. Comparing your Mad Rock Remora Pro HV to your foot profile, it should fit. You downsized two sizes down, more aggressive than the usual half a size down for Mad Rock, so half a size up could relieve the tightness.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, wide forefoot width, and normal heel width.
+  2. Given your preference for trad and multipitch indoors and an aggressive fit, we prioritize stiff lace-ups with aggressive downturn and moderate asymmetry (shifted lower to accommodate your mild hallux valgus), with ankle protection for trad/multipitch wear.
+  3. Note: data on shoe heel depth is unfortunately not widely available. We're working on extracting this data from shoe scans, but for now the recommendations match heel width only. Your current shoes are soft enough to forgive some mismatch; stiffer recommendations may feel different at the same target geometry. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 2. `scan-2026-05-01T00-48-44`
+
+- **Created:** 2026-05-01T00:48:43.279652+00:00
+- **Sex / street size:** male / EU 44
+- **Toe shape:** roman  |  **HVA:** normal
+- **Forefoot:** narrow (0.308)
+- **Arch:** normal (0.724)
+- **Instep:** normal  |  **Heel:** narrow heel / deep heel
+- **Shoes (1):** La Sportiva Skwama EU41.5 fit:{'heel': 'empty', 'toes': 'squeezed', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / outdoor/granite / comfort
+- **Targets:** fw=0, hv=0, dt=flat, asym=none (baseline=none, delta=0), stiff_target=0.87
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and narrow forefoot with a narrow heel. Throughout a narrow profile.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your La Sportiva Skwama in EU 41.5, 2.5 sizes down from your street size of 44. That is a typical fit for La Sportiva.
+  2. Your La Sportiva Skwama has a wide heel volume while your heel is narrow. The wider cup is the most likely cause of the empty feel.
+  3. Your La Sportiva Skwama is built on a greek toe form while you have roman toes. The mismatch is the most likely cause; look for shoes with a roman-compatible toe box.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, narrow forefoot width, and narrow heel width.
+  2. Given your preference for trad and multipitch outdoors on granite and a comfort fit, we prioritize very stiff lace-ups with flat profile and no asymmetry, with ankle protection for trad/multipitch wear.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 3. `scan-2026-04-30T16-58-31`
+
+- **Created:** 2026-04-30T16:58:32.27605+00:00
+- **Sex / street size:** male / EU 41.5
+- **Toe shape:** roman  |  **HVA:** mild
+- **Forefoot:** wide (0.388)
+- **Arch:** normal (0.713)
+- **Instep:** high instep  |  **Heel:** wide heel / normal
+- **Shoes (2):** Mad Rock Remora Pro HV EU39 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'tight'}; La Sportiva Ondra Comp EU37 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'tight'}
+- **V2 inputs:** sport / indoor / balanced
+- **Targets:** fw=2, hv=1, dt=slight, asym=none (baseline=slight, delta=-1), stiff_target=0.4
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and wide forefoot with a wide heel. Throughout a wide profile.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. For your mild hallux valgus, we prefer a slightly wider, less pointed toe box to compensate for the inward drift.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 37 to 39 (street size 41.5), but the raw numbers do not tell the full story because brands size very differently. Your Mad Rock Remora Pro HV in EU 39 is 2.5 sizes down from street size, very aggressive for Mad Rock, where the typical downsize is about half a size down. Your La Sportiva Ondra Comp in EU 37 is 4.5 sizes down from street size, very aggressive for La Sportiva, where the typical downsize is about 2.5 sizes down.
+  2. Your forefoot feels tight in all your shoes. We look at wider lasts for next picks.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, wide forefoot width, and normal heel width.
+  2. Given your preference for sport climbing indoors and a balanced fit, we prioritize balanced stiffness double-velcros or lace-ups (avoiding single-strap velcros due to your high instep) with slight downturn and no asymmetry (shifted lower to accommodate your mild hallux valgus).
+  3. Your current shoes are soft enough to forgive some mismatch; stiffer recommendations may feel different at the same target geometry. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 4. `scan-2026-04-30T13-55-24`
+
+- **Created:** 2026-04-30T13:55:37.014959+00:00
+- **Sex / street size:** male / EU 43
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** normal (0.362)
+- **Arch:** long arch (0.739)
+- **Instep:** normal  |  **Heel:** wide heel / deep heel
+- **Shoes (1):** Evolv Shaman EU44.5 fit:{'heel': 'empty', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / indoor / moderate
+- **Targets:** fw=1, hv=1, dt=moderate, asym=strong (baseline=moderate, delta=1), stiff_target=0.6699999999999999
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and normal forefoot with a wide heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Evolv Shaman in EU 44.5, which is actually 1.5 sizes above your street size of 43. That is relaxed for Evolv, where shoes typically fit at street size.
+  2. Comparing your Evolv Shaman to your foot profile, it should fit. You're wearing your Evolv 1.5 sizes above street size, while the typical for Evolv is at street size, so going down further could tighten the heel and reduce the empty feel.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and normal heel width.
+  2. Given your preference for trad and multipitch indoors and a moderate fit, we prioritize stiff lace-ups with moderate downturn and strong asymmetry (shifted higher to match your Egyptian toe shape), with ankle protection for trad/multipitch wear.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 5. `scan-2026-04-30T04-53-47`
+
+- **Created:** 2026-04-30T04:53:48.472449+00:00
+- **Sex / street size:** male / EU 42
+- **Toe shape:** roman  |  **HVA:** mild
+- **Forefoot:** normal (0.346)
+- **Arch:** normal (0.724)
+- **Instep:** normal  |  **Heel:** wide heel / deep heel
+- **Shoes (2):** Scarpa Instinct VSR EU41 fit:{'heel': 'empty', 'toes': 'perfect', 'forefoot': 'perfect'}; La Sportiva Solution EU40.5 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** boulder / outdoor/limestone / comfort
+- **Targets:** fw=1, hv=1, dt=flat, asym=none (baseline=none, delta=-1), stiff_target=0.35
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and normal forefoot with a wide heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally. For your mild hallux valgus, we prefer a slightly wider, less pointed toe box to compensate for the inward drift.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 40.5 to 41 (street size 42), but the raw numbers do not tell the full story because brands size very differently. Your La Sportiva Solution in EU 40.5 is 1.5 sizes down from street size, rather relaxed for La Sportiva, where the typical downsize is about 2.5 sizes down.
+  2. Your Scarpa Instinct VSR's heel feels empty while your other shoes fit on the heel. Your Scarpa Instinct VSR should fit based on heel width and depth, and you're sized typically for Scarpa. In the recommendations we aim for even narrower heel cups.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, normal forefoot width, and normal heel width.
+  2. Given your preference for bouldering outdoors on limestone and a comfort fit, we prioritize soft slippers or velcros with flat profile and no asymmetry.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 6. `scan-2026-04-30T00-13-44`
+
+- **Created:** 2026-04-30T00:13:45.788736+00:00
+- **Sex / street size:** female / EU 38.5
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** wide (0.397)
+- **Arch:** normal (0.725)
+- **Instep:** high instep  |  **Heel:** narrow heel / normal
+- **Shoes (2):** La Sportiva Skwama Women's EU36 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}; La Sportiva Tarantulace Women's EU37.5 fit:{'heel': 'perfect', 'toes': 'roomy', 'forefoot': 'loose'}
+- **V2 inputs:** sport / outdoor/mixed / aggressive
+- **Targets:** fw=1, hv=0, dt=aggressive, asym=strong (baseline=strong, delta=1), stiff_target=0.55
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and wide forefoot with a narrow heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your La Sportiva shoes in sizes EU 36 to 37.5, one size down to 2.5 sizes down from your street size of 38.5. For La Sportiva, where the typical downsize is about 2.5 sizes down, this is a typical fit.
+  2. Your La Sportiva Tarantulace Women's's toes feel roomy while your other shoes fit on the toes. Comparing your La Sportiva Tarantulace Women's to your foot profile, it should fit. You only downsized one size down vs the usual 2.5 sizes down for La Sportiva, so going down half a size could tighten the toe box.
+  3. Your La Sportiva Tarantulace Women's's forefoot feels loose while your other shoes fit on the forefoot. Comparing your La Sportiva Tarantulace Women's to your foot profile, it should fit. You only downsized one size down vs the usual 2.5 sizes down for La Sportiva, so going down further could tighten the forefoot.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and narrow heel width.
+  2. Given your preference for sport climbing outdoors on mixed and an aggressive fit, we prioritize balanced stiffness double-velcros or lace-ups (avoiding single-strap velcros due to your high instep) with aggressive downturn and strong asymmetry.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 7. `scan-2026-04-29T20-02-33`
+
+- **Created:** 2026-04-29T20:02:35.241821+00:00
+- **Sex / street size:** female / EU 40
+- **Toe shape:** roman  |  **HVA:** normal
+- **Forefoot:** narrow (0.314)
+- **Arch:** normal (0.719)
+- **Instep:** normal  |  **Heel:** narrow heel / shallow heel
+- **Shoes (1):** Simond Rock+ EU40 fit:{'heel': 'perfect', 'toes': 'roomy', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / indoor / aggressive
+- **Targets:** fw=0, hv=1, dt=aggressive, asym=strong (baseline=strong, delta=0), stiff_target=0.6699999999999999
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and narrow forefoot with a narrow heel. Throughout a narrow profile.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your shallow heel doesn't project as far back as most. Deeply sculpted cups will feel empty at the back.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Simond Rock+ in EU 40, at your street size of 40. That is rather relaxed for Simond, where the typical downsize is about one size down.
+  2. Your Simond Rock+'s toe shape matches your foot, but the wide forefoot is wider than your narrow forefoot. Look for narrower lasts.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, narrow forefoot width, and normal heel width.
+  2. Given your preference for trad and multipitch indoors and an aggressive fit, we prioritize stiff lace-ups with aggressive downturn and strong asymmetry, with ankle protection for trad/multipitch wear.
+  3. Note: data on shoe heel depth is unfortunately not widely available. We're working on extracting this data from shoe scans, but for now the recommendations match heel width only. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 8. `scan-2026-04-29T18-50-25`
+
+- **Created:** 2026-04-29T18:50:59.024445+00:00
+- **Sex / street size:** female / EU 39
+- **Toe shape:** greek  |  **HVA:** mild
+- **Forefoot:** narrow (0.341)
+- **Arch:** long arch (0.742)
+- **Instep:** high instep  |  **Heel:** normal / normal
+- **Shoes (2):** Ocun Ozone EU38.5 fit:{'heel': 'empty', 'toes': 'perfect', 'forefoot': 'perfect'}; La Sportiva Miura VS Women's EU36.5 fit:{'heel': 'empty', 'toes': 'squeezed', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / both / moderate
+- **Targets:** fw=0, hv=0, dt=moderate, asym=slight (baseline=moderate, delta=-1), stiff_target=0.72
+
+### §1 Your Foot Shape
+  1. You have a Greek toe form and narrow forefoot with a normal heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. For your mild hallux valgus, we prefer a slightly wider, less pointed toe box to compensate for the inward drift.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 36.5 to 38.5 (street size 39). Your sizing is close to the brand-typical fit across your shoes.
+  2. Your heel feels empty across all your shoes. This points to a structural fit pattern; your normal heel needs cups narrower than these models offer.
+  3. Your La Sportiva Miura VS Women's's toes feel squeezed while your other shoes fit on the toes. Your La Sportiva Miura VS Women's's toe shape and width match your foot, but your long arch may push the ball of your foot into the toe box. Look for shoes with a shorter toe box to relieve the squeeze.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Greek toe form, narrow forefoot width, and narrow heel width.
+  2. Given your preference for trad and multipitch both indoors and outdoors and a moderate fit, we prioritize stiff lace-ups with moderate downturn and slight asymmetry (shifted lower to accommodate your mild hallux valgus), with ankle protection for trad/multipitch wear.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 9. `scan-2026-04-29T05-57-15`
+
+- **Created:** 2026-04-29T05:57:17.138957+00:00
+- **Sex / street size:** male / EU 43
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** normal (0.347)
+- **Arch:** normal (0.73)
+- **Instep:** high instep  |  **Heel:** normal / shallow heel
+- **Shoes (1):** Scarpa Origin EU42 fit:{'heel': 'perfect', 'toes': 'tight', 'forefoot': 'perfect'}
+- **V2 inputs:** boulder / outdoor/mixed / comfort
+- **Targets:** fw=1, hv=1, dt=flat, asym=slight (baseline=none, delta=1), stiff_target=0.35
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and normal forefoot with a normal heel. Throughout a medium profile.
+  2. Beyond the obvious: Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. Your shallow heel doesn't project as far back as most. Deeply sculpted cups will feel empty at the back.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Scarpa Origin in EU 42, one size down from your street size of 43. That is a typical fit for Scarpa.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and normal heel width.
+  2. Given your preference for bouldering outdoors on mixed and a comfort fit, we prioritize soft double-velcros (avoiding pure slippers and single-strap velcros due to your high instep) with flat profile and slight asymmetry (shifted higher to match your Egyptian toe shape).
+  3. Note: data on shoe heel depth is unfortunately not widely available. We're working on extracting this data from shoe scans, but for now the recommendations match heel width only. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 10. `scan-2026-04-29T04-42-30`
+
+- **Created:** 2026-04-29T04:42:32.696373+00:00
+- **Sex / street size:** male / EU 42
+- **Toe shape:** roman  |  **HVA:** normal
+- **Forefoot:** wide (0.405)
+- **Arch:** short arch (0.698)
+- **Instep:** normal  |  **Heel:** normal / normal
+- **Shoes (1):** Scarpa Origin EU42 fit:{'heel': 'perfect', 'toes': 'roomy', 'forefoot': 'perfect'}
+- **V2 inputs:** sport / indoor / moderate
+- **Targets:** fw=2, hv=1, dt=moderate, asym=moderate (baseline=moderate, delta=0), stiff_target=0.4
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and wide forefoot with a normal heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your arch is rather short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Scarpa Origin in EU 42, at your street size of 42. That is relaxed for Scarpa, where the typical downsize is about 1.5 sizes down.
+  2. Your Scarpa Origin is built on a greek toe form while you have roman toes. The mismatch likely leaves dead space at your second toe; look for shoes with a roman-compatible toe box.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, wide forefoot width, and normal heel width.
+  2. Given your preference for sport climbing indoors and a moderate fit, we prioritize balanced stiffness velcros or lace-ups with moderate downturn and moderate asymmetry.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 11. `scan-2026-04-29T02-13-06`
+
+- **Created:** 2026-04-29T02:13:05.875256+00:00
+- **Sex / street size:** female / EU 37
+- **Toe shape:** egyptian  |  **HVA:** mild
+- **Forefoot:** normal (0.359)
+- **Arch:** long arch (0.739)
+- **Instep:** low instep  |  **Heel:** narrow heel / deep heel
+- **Shoes (1):** Evolv Kira EU37 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** boulder / indoor / moderate
+- **Targets:** fw=1, hv=0, dt=moderate, asym=slight (baseline=moderate, delta=-1), stiff_target=0.25
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and normal forefoot with a narrow heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Additionally your instep is rather low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally. For your mild hallux valgus, we avoid very asymmetric lasts and prefer moderately asymmetric or wider-tipped designs that help the big toe stay in contact with the shoe tip.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Evolv Kira in EU 37, at your street size of 37. That is a typical fit for Evolv.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and narrow heel width.
+  2. Given your preference for bouldering indoors and a moderate fit, we prioritize soft velcros (avoiding pure slippers due to your low instep) with moderate downturn and slight asymmetry (shifted lower to accommodate your mild hallux valgus).
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 12. `scan-2026-04-28T20-23-39`
+
+- **Created:** 2026-04-28T20:23:42.56122+00:00
+- **Sex / street size:** male / EU 41.5
+- **Toe shape:** greek  |  **HVA:** normal
+- **Forefoot:** wide (0.384)
+- **Arch:** short arch (0.685)
+- **Instep:** normal  |  **Heel:** narrow heel / deep heel
+- **Shoes (1):** Scarpa Instinct VSR LV EU41 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / indoor / moderate
+- **Targets:** fw=1, hv=0, dt=moderate, asym=moderate (baseline=moderate, delta=0), stiff_target=0.6699999999999999
+
+### §1 Your Foot Shape
+  1. You have a Greek toe form and wide forefoot with a narrow heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your arch is rather short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Scarpa Instinct VSR LV in EU 41, half a size down from your street size of 41.5. That is rather relaxed for Scarpa, where the typical downsize is about 1.5 sizes down.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Greek toe form, normal forefoot width, and narrow heel width.
+  2. Given your preference for trad and multipitch indoors and a moderate fit, we prioritize stiff lace-ups with moderate downturn and moderate asymmetry, with ankle protection for trad/multipitch wear.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 13. `scan-2026-04-27T22-10-32`
+
+- **Created:** 2026-04-27T22:10:35.297095+00:00
+- **Sex / street size:** male / EU 40
+- **Toe shape:** egyptian  |  **HVA:** mild
+- **Forefoot:** normal (0.349)
+- **Arch:** normal (0.734)
+- **Instep:** high instep  |  **Heel:** wide heel / normal
+- **Shoes (1):** Scarpa Instinct VSR EU37.5 fit:{'heel': 'empty', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** sport / both / aggressive
+- **Targets:** fw=1, hv=1, dt=aggressive, asym=moderate (baseline=strong, delta=-1), stiff_target=0.5
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and normal forefoot with a wide heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. For your mild hallux valgus, we avoid very asymmetric lasts and prefer moderately asymmetric or wider-tipped designs that help the big toe stay in contact with the shoe tip.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Scarpa Instinct VSR in EU 37.5, 2.5 sizes down from your street size of 40. That is aggressive for Scarpa, where the typical downsize is about 1.5 sizes down.
+  2. Your Scarpa Instinct VSR should fit based on heel width and depth, and you're sized 2.5 sizes down (more aggressive than the typical 1.5 sizes down for Scarpa, which doesn't drive this issue). In the recommendations we aim for even narrower heel cups.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and normal heel width.
+  2. Given your preference for sport climbing both indoors and outdoors and an aggressive fit, we prioritize balanced stiffness double-velcros or lace-ups (avoiding single-strap velcros due to your high instep) with aggressive downturn and moderate asymmetry (shifted lower to accommodate your mild hallux valgus).
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 14. `scan-2026-04-27T12-13-40`
+
+- **Created:** 2026-04-27T12:13:40.831685+00:00
+- **Sex / street size:** male / EU 44
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** narrow (0.342)
+- **Arch:** normal (0.73)
+- **Instep:** low instep  |  **Heel:** wide heel / normal
+- **Shoes (2):** Unparallel Flagship EU43 fit:{'heel': 'empty', 'toes': 'squeezed', 'forefoot': 'perfect'}; Simond Vertika EU44 fit:{'heel': 'empty', 'toes': 'roomy', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / outdoor/sandstone / moderate
+- **Targets:** fw=0, hv=2, dt=moderate, asym=strong (baseline=moderate, delta=1), stiff_target=0.72
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and narrow forefoot with a wide heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Additionally your instep is rather low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 43 to 44 (street size 44), but the raw numbers do not tell the full story because brands size very differently. Your Simond Vertika in EU 44 is at street size, rather relaxed for Simond, where the typical downsize is about one size down. Your Unparallel Flagship in EU 43 is one size down from street size, rather aggressive for Unparallel, where the typical downsize is about half a size down.
+  2. Your heel feels empty across all your shoes. This points to a structural fit pattern; your wide heel needs cups narrower than these models offer.
+  3. Your toe fit varies: squeezed in your Unparallel Flagship, roomy in your Simond Vertika. Different toe box shapes; the next section will narrow which one matches your scan.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, narrow forefoot width, and wide heel width.
+  2. Given your preference for trad and multipitch outdoors on sandstone and a moderate fit, we prioritize stiff lace-ups with moderate downturn and strong asymmetry (shifted higher to match your Egyptian toe shape), with ankle protection for trad/multipitch wear.
+  3. Your shoe feedback was inconsistent across models. We weight the most consistent signal. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 15. `scan-2026-04-27T10-19-34`
+
+- **Created:** 2026-04-27T10:19:35.758716+00:00
+- **Sex / street size:** male / EU 45.5
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** narrow (0.328)
+- **Arch:** normal (0.733)
+- **Instep:** low instep  |  **Heel:** narrow heel / deep heel
+- **Shoes (1):** Scarpa Furia Air EU44 fit:{'heel': 'empty', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** boulder / indoor / balanced
+- **Targets:** fw=0, hv=0, dt=slight, asym=moderate (baseline=slight, delta=1), stiff_target=0.25
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and narrow forefoot with a narrow heel. Throughout a narrow profile.
+  2. Beyond the obvious: Additionally your instep is rather low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Scarpa Furia Air in EU 44, 1.5 sizes down from your street size of 45.5. That is a typical fit for Scarpa.
+  2. Your Scarpa Furia Air has a medium heel volume while your heel is narrow. The wider cup is the most likely cause of the empty feel.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, narrow forefoot width, and narrow heel width.
+  2. Given your preference for bouldering indoors and a balanced fit, we prioritize soft velcros (avoiding pure slippers due to your low instep) with slight downturn and moderate asymmetry (shifted higher to match your Egyptian toe shape).
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 16. `scan-2026-04-27T07-27-48`
+
+- **Created:** 2026-04-27T07:27:48.942405+00:00
+- **Sex / street size:** male / EU 45
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** normal (0.353)
+- **Arch:** normal (0.713)
+- **Instep:** low instep  |  **Heel:** normal / deep heel
+- **Shoes (1):** Tenaya Tatanka EU42.5 fit:{'heel': 'perfect', 'toes': 'roomy', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / outdoor/mixed / aggressive
+- **Targets:** fw=1, hv=1, dt=aggressive, asym=strong (baseline=strong, delta=1), stiff_target=0.77
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and normal forefoot with a normal heel. Throughout a medium profile.
+  2. Beyond the obvious: Additionally your instep is rather low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Tenaya Tatanka in EU 42.5, 2.5 sizes down from your street size of 45. That is rather aggressive for Tenaya, where the typical downsize is about 1.5 sizes down.
+  2. Your Tenaya Tatanka should fit based on toe form and forefoot width, and you're sized 2.5 sizes down (more aggressive than the typical 1.5 sizes down for Tenaya, which doesn't drive this issue). In the recommendations we aim for snugger toe boxes.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and normal heel width.
+  2. Given your preference for trad and multipitch outdoors on mixed and an aggressive fit, we prioritize very stiff lace-ups with aggressive downturn and strong asymmetry, with ankle protection for trad/multipitch wear.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 17. `scan-2026-04-27T07-14-04`
+
+- **Created:** 2026-04-27T07:14:04.394143+00:00
+- **Sex / street size:** male / EU 44
+- **Toe shape:** roman  |  **HVA:** normal
+- **Forefoot:** narrow (0.336)
+- **Arch:** long arch (0.75)
+- **Instep:** normal  |  **Heel:** normal / shallow heel
+- **Shoes (1):** Scarpa Instinct VSR LV EU43.5 fit:{'heel': 'perfect', 'toes': 'squeezed', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / outdoor/mixed / comfort
+- **Targets:** fw=0, hv=0, dt=flat, asym=none (baseline=none, delta=0), stiff_target=0.77
+
+### §1 Your Foot Shape
+  1. You have a Roman toe form and narrow forefoot with a normal heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Your shallow heel doesn't project as far back as most. Deeply sculpted cups will feel empty at the back.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. You wear your Scarpa Instinct VSR LV in EU 43.5, half a size down from your street size of 44. That is rather relaxed for Scarpa, where the typical downsize is about 1.5 sizes down.
+  2. Your Scarpa Instinct VSR LV is built on a greek toe form while you have roman toes. The mismatch is the most likely cause; look for shoes with a roman-compatible toe box.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Roman toe form, narrow forefoot width, and narrow heel width.
+  2. Given your preference for trad and multipitch outdoors on mixed and a comfort fit, we prioritize very stiff lace-ups with flat profile and no asymmetry, with ankle protection for trad/multipitch wear.
+  3. Note: data on shoe heel depth is unfortunately not widely available. We're working on extracting this data from shoe scans, but for now the recommendations match heel width only. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 18. `scan-2026-04-26T20-56-23`
+
+- **Created:** 2026-04-26T20:56:22.959717+00:00
+- **Sex / street size:** male / EU 44
+- **Toe shape:** greek  |  **HVA:** normal
+- **Forefoot:** normal (0.365)
+- **Arch:** normal (0.725)
+- **Instep:** normal  |  **Heel:** wide heel / deep heel
+- **Shoes (3):** La Sportiva Skwama EU41.5 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}; La Sportiva Solution EU42 fit:{'heel': 'perfect', 'toes': 'perfect', 'forefoot': 'perfect'}; Scarpa Instinct VSR EU42.5 fit:{'heel': 'perfect', 'toes': 'squeezed', 'forefoot': 'perfect'}
+- **V2 inputs:** sport / outdoor/limestone / balanced
+- **Targets:** fw=1, hv=2, dt=slight, asym=slight (baseline=slight, delta=0), stiff_target=0.55
+
+### §1 Your Foot Shape
+  1. You have a Greek toe form and normal forefoot with a wide heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 41.5 to 42.5 (street size 44). Your sizing is close to the brand-typical fit across your shoes.
+  2. Your Scarpa Instinct VSR's toes feel squeezed while your other shoes fit on the toes. Your Scarpa Instinct VSR should fit based on toe form, forefoot width and arch, and you're sized typically for Scarpa. In the recommendations we aim for slightly more toe room.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Greek toe form, normal forefoot width, and wide heel width.
+  2. Given your preference for sport climbing outdoors on limestone and a balanced fit, we prioritize balanced stiffness velcros or lace-ups with slight downturn and slight asymmetry.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 19. `scan-2026-04-26T20-51-10`
+
+- **Created:** 2026-04-26T20:51:09.306171+00:00
+- **Sex / street size:** None / EU None
+- **Toe shape:** greek  |  **HVA:** normal
+- **Forefoot:** normal (0.362)
+- **Arch:** long arch (0.748)
+- **Instep:** high instep  |  **Heel:** wide heel / normal
+- **Shoes (0):** _(none)_
+- **V2 inputs:** sport / indoor / comfort
+- **Targets:** fw=1, hv=2, dt=flat, asym=none (baseline=none, delta=0), stiff_target=0.4
+
+### §1 Your Foot Shape
+  1. You have a Greek toe form and normal forefoot with a wide heel. A mixed profile; forefoot and heel require different fits.
+  2. Beyond the obvious: Given your greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized.
+
+### §2 What Your Current Shoe Fit Tells Us
+  _(no shoes uploaded)_
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Greek toe form, normal forefoot width, and wide heel width.
+  2. Given your preference for sport climbing indoors and a comfort fit, we prioritize balanced stiffness double-velcros or lace-ups (avoiding single-strap velcros due to your high instep) with flat profile and no asymmetry.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---
+
+## 20. `scan-2026-04-26T20-39-30`
+
+- **Created:** 2026-04-26T20:39:31.905924+00:00
+- **Sex / street size:** male / EU 44
+- **Toe shape:** egyptian  |  **HVA:** normal
+- **Forefoot:** narrow (0.312)
+- **Arch:** long arch (0.745)
+- **Instep:** low instep  |  **Heel:** narrow heel / normal
+- **Shoes (5):** La Sportiva Mantra EU43.5 fit:{'heel': 'loose', 'toes': 'tight', 'forefoot': 'tight'}; Evolv Zenist EU45 fit:{'heel': 'loose', 'toes': 'tight', 'forefoot': 'perfect'}; Unparallel TN Pro EU45 fit:{'heel': 'perfect', 'toes': 'tight', 'forefoot': 'perfect'}; La Sportiva Skwama Vegan EU44 fit:{'heel': 'loose', 'toes': 'perfect', 'forefoot': 'perfect'}; Scarpa Chimera EU44 fit:{'heel': 'loose', 'toes': 'perfect', 'forefoot': 'perfect'}
+- **V2 inputs:** trad_multipitch / both / aggressive
+- **Targets:** fw=1, hv=0, dt=aggressive, asym=strong (baseline=strong, delta=1), stiff_target=0.72
+
+### §1 Your Foot Shape
+  1. You have an Egyptian toe form and narrow forefoot with a narrow heel. Throughout a narrow profile.
+  2. Beyond the obvious: Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Additionally your instep is rather low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers.
+
+### §2 What Your Current Shoe Fit Tells Us
+  1. Your shoes range from EU 43.5 to 45 (street size 44), but the raw numbers do not tell the full story because brands size very differently. Your La Sportiva Skwama Vegan in EU 44 is at street size, very relaxed for La Sportiva, where the typical downsize is about 2.5 sizes down. Your La Sportiva Mantra in EU 43.5 is half a size down from street size, very relaxed for La Sportiva, where the typical downsize is about 2.5 sizes down. You tend to prefer a more relaxed fit than typical across brands.
+  2. Your La Sportiva Mantra's forefoot feels tight while your other shoes fit on the forefoot. Your La Sportiva Mantra's width matches your forefoot, but your long arch may push the ball forward into the toe box. Look for shoes with a shorter toe box.
+
+### §3 What to Look For
+  1. Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and narrow heel width.
+  2. Given your preference for trad and multipitch both indoors and outdoors and an aggressive fit, we prioritize stiff lace-ups with aggressive downturn and strong asymmetry, with ankle protection for trad/multipitch wear.
+  3. The softer, stiffer, and budget tiers below offer alternative options around this target.
+
+---

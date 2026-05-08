@@ -34,8 +34,13 @@ from benchmark.interp_foot_shape import generate_foot_shape
 from benchmark.interp_shoe_fit  import generate_shoe_fit
 
 SB_URL = "https://wsjsuhvpgupalwgcjatp.supabase.co"
-SB_KEY = os.environ.get("SUPABASE_SERVICE_KEY",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzanN1aHZwZ3VwYWx3Z2NqYXRwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDU2MDc5MSwiZXhwIjoyMDg2MTM2NzkxfQ.6cYE1ElsvX7-BTc1DD15zoPJyr4L3bN0_QyKRQmp3M4")
+# Roman 2026-05-08: keys migrated to sb_secret_/sb_publishable_ format.
+# Read from env only — never hardcode (GitHub push protection blocks it).
+SB_KEY = (os.environ.get("SUPABASE_SECRET_KEY")
+          or os.environ.get("SUPABASE_SERVICE_KEY"))
+if not SB_KEY:
+    raise RuntimeError("SUPABASE_SECRET_KEY (or legacy SUPABASE_SERVICE_KEY) "
+                       "must be set; run via launchd or `source ~/.scanner-env`.")
 HEADERS = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
 
 OUT_PATH = Path(__file__).resolve().parent / "full_v2_sample_cases.md"
@@ -80,6 +85,9 @@ def load_recent_scans(n):
 
 
 def load_shoes_db():
+    # Roman 2026-05-02 case-4 review (D): added upper_material and
+    # special_fit_notes so flatten_pick can pass them through to V1
+    # _para_description for the build/sole sentence.
     r = requests.get(f"{SB_URL}/rest/v1/shoes", headers=HEADERS,
         params={"select": (
             "slug,brand,model,closure,downturn,asymmetry,toe_form,"
@@ -87,7 +95,8 @@ def load_shoes_db():
             "ankle_protection,width,heel_volume,forefoot_volume,no_edge,"
             "rubber_thickness_mm,rubber_type,midsole_stiffness,"
             "rubber_hardness,description,feel,heel_rubber_coverage,"
-            "midsole,break_in_period,stretch_expectation"
+            "midsole,break_in_period,stretch_expectation,"
+            "upper_material,special_fit_notes"
         ), "limit": 1000}, timeout=30)
     r.raise_for_status()
     return r.json()
@@ -130,15 +139,28 @@ def normalize_user_shoes(raw, shoes_db):
     out = []
     for us in raw or []:
         db = lookup_db(shoes_db, us.get("brand"), us.get("model"))
+        # Preserve size_eu + db_toe_form + db_closure so the §2 cascade
+        # generator can derive sizing status, toe-form match, and closure
+        # exclusions per shoe (Roman 2026-05-01 cascade implementation).
+        size_eu = us.get("size_eu") or us.get("size")
+        try:
+            f = float(size_eu) if size_eu is not None else None
+            # Drop trailing .0 so "44.0" -> 44, "44.5" stays 44.5
+            size_eu = int(f) if (f is not None and f.is_integer()) else f
+        except (TypeError, ValueError):
+            size_eu = None
         out.append({
             "brand": us.get("brand", ""),
             "model": us.get("model", ""),
+            "size_eu": size_eu,
             "db_width": db.get("width") if db else None,
             "db_heel_volume": db.get("heel_volume") if db else None,
             "db_forefoot_volume": db.get("forefoot_volume") if db else None,
             "db_downturn": db.get("downturn") if db else None,
             "db_asymmetry": db.get("asymmetry") if db else None,
             "db_stiffness": db.get("computed_stiffness") if db else None,
+            "db_toe_form": db.get("toe_form") if db else None,
+            "db_closure": db.get("closure") if db else None,
             "fit": us.get("fit") or {},
         })
     return out

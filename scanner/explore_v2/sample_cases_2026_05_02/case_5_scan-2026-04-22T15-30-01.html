@@ -1,0 +1,541 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>V2 review &middot; scan-2026-04-22T15-30-01</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; background: #f5f0e8; color: #2c3227; }
+.page { max-width: 1060px; margin: 0 auto; padding: 2rem 1.5rem; }
+@media (max-width: 600px) { .page { padding: 1rem 0.75rem; } }
+
+/* ─── Header ─── */
+.header { text-align: center; margin-bottom: 1.2rem; }
+.header-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase;
+                   letter-spacing: 2px; color: #c98a42; margin-bottom: 6px; }
+.header h1 { font-size: 28px; font-weight: 800; color: #2c3227; letter-spacing: -0.5px; margin: 0; }
+.header-sub { font-size: 13px; color: #7a7462; margin-top: 4px; }
+@media (max-width: 600px) { .header h1 { font-size: 22px; } }
+
+/* ─── ShareCard ─── */
+.share-card { background: #fff; border-radius: 14px; border: 1px solid #e8e2d6;
+              padding: 0.7rem 1rem; margin-bottom: 1rem;
+              box-shadow: 0 2px 16px rgba(44,50,39,0.05);
+              display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.share-left { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+.share-icon { width: 28px; height: 28px; border-radius: 50%; background: #fdf3e3; color: #c98a42;
+              display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.share-title { font-size: 0.82rem; font-weight: 700; color: #2c3227; line-height: 1.3; }
+.share-sub { font-size: 0.72rem; color: #7a7462; line-height: 1.4; }
+.share-btn { padding: 8px 14px; border: none; border-radius: 10px;
+             background: #c98a42; color: #fff; font-size: 0.8rem; font-weight: 700;
+             cursor: pointer; font-family: inherit; flex-shrink: 0; }
+
+/* ─── EmailCapture ─── */
+.email-card { background: #fff; border-radius: 14px; border: 1px solid #e8e2d6;
+              padding: 1rem 1.2rem; margin-bottom: 1rem;
+              box-shadow: 0 2px 16px rgba(44,50,39,0.05); }
+.email-title { font-size: 0.85rem; font-weight: 700; color: #2c3227; margin-bottom: 0.5rem; }
+.email-input { width: 100%; padding: 10px 12px; border: 1.5px solid #e8e2d6; border-radius: 10px;
+               font-size: 0.85rem; font-family: inherit; background: #faf8f4; outline: none;
+               margin-bottom: 0.6rem; }
+.email-radios { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.7rem; }
+.email-radio { display: flex; gap: 0.5rem; padding: 0.5rem 0.65rem;
+               border: 1.5px solid #e8e2d6; border-radius: 10px; background: #faf8f4;
+               cursor: pointer; align-items: flex-start; font-size: 0.78rem; }
+.email-radio input { margin-top: 4px; accent-color: #c98a42; }
+.email-radio-sub { display: block; font-size: 0.7rem; color: #7a7462; margin-top: 2px; font-weight: 400; }
+.email-send { padding: 9px 16px; border: none; border-radius: 10px; background: #c98a42;
+              color: #fff; font-size: 0.8rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+
+/* ─── UserInputsPanel ─── */
+.ui-panel { background: #ffffff; border-radius: 12px; border: 1px solid #d5cdbf;
+            padding: 0.9rem 1.1rem; margin-bottom: 1.1rem; }
+.ui-head { display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 0.5rem; gap: 0.75rem; }
+.ui-pill { font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: #c98a42; }
+.ui-edit { font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 6px;
+            border: 1px solid #c98a42; background: transparent; color: #c98a42;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; font-family: inherit; }
+.ui-row { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.4rem 0;
+           border-bottom: 1px dashed #eee8dc; font-size: 0.8rem; }
+.ui-k { flex: 0 0 120px; color: #7a7462; font-weight: 600;
+         text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; }
+.ui-v { color: #2c3227; }
+.ui-shoes { padding-top: 0.6rem; }
+.ui-shoe-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+               padding: 0.35rem 0.6rem; background: rgba(201,138,66,0.10);
+               border-radius: 8px; font-size: 0.78rem; margin-bottom: 6px; }
+.ui-shoe-name { font-weight: 700; color: #2c3227; }
+.ui-shoe-sz { color: #7a7462; }
+.fit-row { display: inline-flex; gap: 4px; margin-left: auto; align-items: center; }
+.fit-k { font-size: 0.68rem; color: #7a7462; margin-right: 2px; }
+.fit-badge { display: inline-block; padding: 1px 7px; border-radius: 10px;
+              font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+.ui-empty { font-size: 0.78rem; color: #7a7462; font-style: italic; }
+
+/* ─── SectionNav ─── */
+.snav { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+         max-width: 500px; margin: 0 auto 1.2rem; padding: 0 4px; }
+.snav-link { padding: 6px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+              color: #8a6930; background: transparent; border: 1.5px solid #e8e2d6;
+              text-decoration: none; white-space: nowrap; transition: background 0.15s, border-color 0.15s; }
+.snav-link:hover { background: rgba(201,138,66,0.10); border-color: #c98a42; }
+
+/* ─── Foot views ─── */
+.views-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+@media (max-width: 700px) { .views-row { grid-template-columns: 1fr; } }
+.view-card { background: #ffffff; border-radius: 16px; border: 1px solid #d5cdbf;
+             overflow: hidden; box-shadow: 0 2px 16px rgba(44,50,39,0.05); }
+.view-head { padding: 0.7rem 1.5rem 0.5rem; border-bottom: 1px solid #eee8dc;
+             display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.view-label { font-size: 10px; font-weight: 700; text-transform: uppercase;
+              letter-spacing: 1.5px; color: #c98a42; }
+.retake-link { font-size: 0.7rem; font-weight: 600; color: #7a7462;
+               text-decoration: none; padding: 2px 6px; border-radius: 4px; }
+.retake-link:hover { color: #c98a42; background: rgba(201,138,66,0.10); }
+.sole-body { display: grid; grid-template-columns: 1fr 1fr; }
+.side-body { display: flex; flex-direction: column; }
+@media (max-width: 700px) { .sole-body { grid-template-columns: 1fr; } }
+.view-img-wrap { background: #faf8f4; padding: 0.75rem; display: flex;
+                 align-items: center; justify-content: center; border-bottom: 1px solid #eee8dc; }
+.sole-body .view-img-wrap { border-right: 1px solid #eee8dc; border-bottom: none; }
+@media (max-width: 700px) { .sole-body .view-img-wrap { border-right: none; border-bottom: 1px solid #eee8dc; } }
+.view-img-wrap img { max-width: 100%; max-height: 320px; object-fit: contain; border-radius: 8px; }
+.view-side { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; }
+.toe-card { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem;
+            background: rgba(201,138,66,0.10); border-radius: 10px; border: 1px solid #eee8dc;
+            margin-bottom: 0.25rem; }
+.toe-img { width: 56px; height: auto; flex-shrink: 0; }
+.toe-name { font-size: 13px; font-weight: 700; color: #2c3227; margin-bottom: 2px; text-transform: capitalize; }
+.toe-desc { font-size: 11px; color: #7a7462; line-height: 1.4; }
+.side-metrics-row { padding: 0.75rem 1.25rem; display: flex; flex-wrap: wrap;
+                    gap: 0.65rem 2rem; align-items: flex-start; }
+.side-metrics-row > .mbar { flex: 1; min-width: 180px; }
+
+/* ─── MetricBar ─── */
+.mbar { display: flex; flex-direction: column; gap: 4px; }
+.mbar-row { display: flex; justify-content: space-between; align-items: baseline; }
+.mbar-label { font-size: 0.78rem; font-weight: 600; color: #2c3227; }
+.mbar-level { font-size: 0.78rem; font-weight: 700; }
+.mbar-track { height: 8px; border-radius: 4px; position: relative; overflow: visible; }
+.mbar-band { position: absolute; top: 0; bottom: 0; width: 33.333%; }
+.mbar-band.b1 { left: 0; background: #ece5d4; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+.mbar-band.b2 { left: 33.333%; background: #d6cdb4; border-left: 1px solid #c4b99a; border-right: 1px solid #c4b99a; }
+.mbar-band.b3 { left: 66.666%; background: #ece5d4; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+.mbar-pointer { position: absolute; top: -3px; transform: translateX(-50%);
+                width: 4px; height: 14px; border-radius: 2px;
+                box-shadow: 0 0 0 1.5px #fff; }
+.mbar-axis { display: flex; font-size: 0.58rem; color: #a8a08e; text-transform: lowercase; }
+.mbar-axis span { flex: 1; }
+.mbar-axis span:nth-child(1) { text-align: left; }
+.mbar-axis span:nth-child(2) { text-align: center; }
+.mbar-axis span:nth-child(3) { text-align: right; }
+
+/* ─── Big section headlines ─── */
+.big-h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; color: #2c3227;
+          margin: 0 0 1rem; font-weight: 700; }
+
+/* ─── Interpretation ─── */
+.interp-section { margin-top: 1.5rem; }
+.interp-block { margin-bottom: 1.2rem; }
+.interp-h3 { font-size: 0.85rem; font-weight: 700; color: #8a6930;
+              margin: 0 0 0.3rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.interp-p { font-size: 0.82rem; color: #4a4538; line-height: 1.55; margin-top: 0.4rem; }
+.interp-p:first-of-type { margin-top: 0; }
+
+/* ─── Recommendations ─── */
+.recs-section { margin-top: 1.5rem; }
+.rec-group { margin-bottom: 1.5rem; }
+.rec-head { margin: 0 0 0.6rem; }
+.rec-desc { font-size: 0.72rem; color: #7a7462; margin: 0.15rem 0 0; }
+.shoe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+@media (max-width: 600px) { .shoe-grid { grid-template-columns: 1fr; } }
+.see-more { margin-top: 1rem; display: flex; justify-content: center; }
+.see-more-btn { display: inline-flex; align-items: center; gap: 0.45rem;
+                padding: 0.65rem 1.5rem; border-radius: 999px;
+                background: #c98a42; color: #fff; font-size: 0.85rem;
+                font-weight: 700; letter-spacing: 0.2px; text-decoration: none;
+                box-shadow: 0 2px 8px rgba(201,138,66,0.28); }
+.see-more-btn span { font-size: 1rem; line-height: 1; margin-top: -1px; }
+
+/* ─── ShoeCard ─── */
+.shoe-card { background: #ffffff; border: 1px solid #eee8dc; border-radius: 12px; overflow: hidden; }
+.shoe-img-wrap { background: #faf8f4; padding: 12px; }
+.shoe-img-wrap img { width: 100%; aspect-ratio: 1/1; object-fit: contain; }
+.shoe-body { padding: 0.8rem 1rem; }
+.shoe-brand { font-size: 0.7rem; color: #7a7462; text-transform: uppercase; letter-spacing: 0.04em; }
+.shoe-model { font-size: 0.95rem; font-weight: 700; color: #2c3227; margin: 0.15rem 0 0.4rem; }
+.size-pill { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+             margin: 0 0 0.4rem; padding: 0.35rem 0.5rem;
+             background: rgba(201,138,66,0.10); border-radius: 6px; }
+.pill-size { font-size: 0.72rem; font-weight: 700; color: #c98a42; white-space: nowrap; }
+.pill-sep { font-size: 0.65rem; color: #c5bfb3; }
+.pill-price { font-size: 0.72rem; font-weight: 700; color: #2d7a3a; white-space: nowrap; }
+.pill-retailer { font-size: 0.65rem; color: #7a7462; }
+.shoe-desc { font-size: 0.75rem; color: #5a5344; line-height: 1.5; margin-bottom: 0.3rem; }
+.shoe-why { font-size: 0.75rem; color: #5a5344; line-height: 1.5; }
+.shoe-tradeoffs { font-size: 0.73rem; color: #8a7e6e; line-height: 1.5; font-style: italic; margin-top: 0.3rem; }
+.shoe-cta { margin-top: 0.6rem; padding: 0.45rem 0; text-align: center;
+            font-size: 0.75rem; font-weight: 600; color: #c98a42;
+            border: 1px solid #c98a42; border-radius: 6px; }
+
+/* ─── Footer CTAs ─── */
+.footer-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+@media (max-width: 600px) { .footer-ctas { grid-template-columns: 1fr; } }
+.cta-card { background: #ffffff; border-radius: 16px; border: 1px solid #d5cdbf;
+            box-shadow: 0 2px 16px rgba(44,50,39,0.05);
+            padding: 1.5rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+.cta-title { font-size: 0.95rem; font-weight: 700; color: #2c3227; margin: 0; }
+.cta-text { font-size: 0.8rem; color: #5a5344; line-height: 1.5; margin: 0; }
+.cta-btn { display: inline-block; padding: 0.5rem 1.25rem; border-radius: 8px;
+           font-size: 0.8rem; font-weight: 700; text-decoration: none; }
+.cta-btn-fill { background: #c98a42; color: #fff; }
+.cta-btn-outline { background: transparent; color: #c98a42; border: 1.5px solid #c98a42; }
+</style></head><body><div class="page"><div class="header"><div class="header-eyebrow">climbing-gear.com</div><h1>Your Foot Profile</h1><div class="header-sub">Scan analysis: sole &amp; side view</div></div>
+<div class="share-card">
+  <div class="share-left">
+    <span class="share-icon" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/>
+        <line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+      </svg>
+    </span>
+    <div>
+      <div class="share-title">Share your results</div>
+      <div class="share-sub">Send this scan to yourself or a friend.</div>
+    </div>
+  </div>
+  <button class="share-btn" type="button">Share</button>
+</div>
+
+<div class="email-card">
+  <div class="email-title">Get your results via email</div>
+  <input class="email-input" type="email" placeholder="your@email.com" />
+  <div class="email-radios">
+    <label class="email-radio">
+      <input type="radio" name="freq" checked />
+      <span><strong>Just send me my results once.</strong>
+      <span class="email-radio-sub">No follow-ups, just this one email.</span></span>
+    </label>
+    <label class="email-radio">
+      <input type="radio" name="freq" />
+      <span><strong>Keep me posted on scan updates.</strong>
+      <span class="email-radio-sub">If we re-score your scan with better data, you'll hear about it.</span></span>
+    </label>
+  </div>
+  <button class="email-send" type="button">Save</button>
+</div>
+
+<div class="ui-panel">
+  <div class="ui-head">
+    <div class="ui-pill">Your inputs</div>
+    <button class="ui-edit" type="button">Edit</button>
+  </div>
+  <div class="ui-row"><span class="ui-k">Sex</span><span class="ui-v">Female</span></div>
+  <div class="ui-row"><span class="ui-k">Street size</span><span class="ui-v">EU 37</span></div>
+  <div class="ui-row"><span class="ui-k">V2 inputs</span><span class="ui-v">sport &middot; both &middot; balanced</span></div>
+  <div class="ui-shoes">
+    <div class="ui-k" style="margin-bottom:6px">Current shoes (4)</div>
+    <div class="ui-shoe-row"><span class="ui-shoe-name">Red Chili Spirit</span><span class="ui-shoe-sz">EU 37</span><span class="fit-row"><span class="fit-k">toes</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">forefoot</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">heel</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span></span></div><div class="ui-shoe-row"><span class="ui-shoe-name">Red Chili Magnet</span><span class="ui-shoe-sz">EU 36.5</span><span class="fit-row"><span class="fit-k">toes</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">forefoot</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">heel</span><span class="fit-badge" style="background:#f3e3d8;color:#8a4f20">Tight</span></span></div><div class="ui-shoe-row"><span class="ui-shoe-name">Red Chili Puzzle</span><span class="ui-shoe-sz">EU 37</span><span class="fit-row"><span class="fit-k">toes</span><span class="fit-badge" style="background:#f3e3d8;color:#8a4f20">squeezed</span><span class="fit-k">forefoot</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">heel</span><span class="fit-badge" style="background:#f3e3d8;color:#8a4f20">Tight</span></span></div><div class="ui-shoe-row"><span class="ui-shoe-name">Scarpa Veloce</span><span class="ui-shoe-sz">EU 37</span><span class="fit-row"><span class="fit-k">toes</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">forefoot</span><span class="fit-badge" style="background:#e3ede0;color:#4a6a3a">Perfect</span><span class="fit-k">heel</span><span class="fit-badge" style="background:#f3e3d8;color:#8a4f20">empty</span></span></div>
+  </div>
+</div>
+<nav class="snav"><a href="#interpretation-section" class="snav-link">Your foot profile</a><a href="#recs-baseline" class="snav-link">Your Best Match</a><a href="#recs-softer" class="snav-link">Softer Feel</a><a href="#recs-stiffer" class="snav-link">Stiffer Feel</a><a href="#recs-budget" class="snav-link">Best Value</a></nav>
+<div class="views-row">
+  <div class="view-card">
+    <div class="view-head">
+      <span class="view-label">Sole Scan Results</span>
+      <a class="retake-link" href="#">Retake</a>
+    </div>
+    <div class="view-body sole-body">
+      <div class="view-img-wrap">
+        <img src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-04-22T15-30-01-sole_overlay.png" alt="sole overlay" onerror="this.style.opacity=0.2" />
+      </div>
+      <div class="view-side">
+        <div class="toe-card">
+          <img src="https://www.climbing-gear.com/images/foot-greek.png" alt="greek" class="toe-img" />
+          <div>
+            <div class="toe-name">Greek</div>
+            <div class="toe-desc">Second toe is the longest, extends past the big toe.</div>
+          </div>
+        </div>
+        
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Forefoot Width</span>
+    <span class="mbar-level" style="color:#c98a42">high</span>
+  </div>
+  <div class="mbar-track">
+    <div class="mbar-band b1"></div>
+    <div class="mbar-band b2"></div>
+    <div class="mbar-band b3"></div>
+    <div class="mbar-pointer" title="0.419" style="left:90.74%; background:#c98a42"></div>
+  </div>
+  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+</div>
+
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Arch Length</span>
+    <span class="mbar-level" style="color:#c98a42">low</span>
+  </div>
+  <div class="mbar-track">
+    <div class="mbar-band b1"></div>
+    <div class="mbar-band b2"></div>
+    <div class="mbar-band b3"></div>
+    <div class="mbar-pointer" title="0.704" style="left:29.03%; background:#c98a42"></div>
+  </div>
+  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+</div>
+
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Heel Width</span>
+    <span class="mbar-level" style="color:#c98a42">high</span>
+  </div>
+  <div class="mbar-track">
+    <div class="mbar-band b1"></div>
+    <div class="mbar-band b2"></div>
+    <div class="mbar-band b3"></div>
+    <div class="mbar-pointer" title="0.255" style="left:72.32%; background:#c98a42"></div>
+  </div>
+  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+  <div class="view-card">
+    <div class="view-head">
+      <span class="view-label">Side Scan Results</span>
+      <a class="retake-link" href="#">Retake</a>
+    </div>
+    <div class="view-body side-body">
+      <div class="view-img-wrap">
+        <img src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-04-22T15-30-01-side_overlay.png" alt="side overlay" onerror="this.style.opacity=0.2" />
+      </div>
+      <div class="side-metrics-row">
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Instep Height</span>
+    <span class="mbar-level" style="color:#3d7a52">mid</span>
+  </div>
+  <div class="mbar-track">
+    <div class="mbar-band b1"></div>
+    <div class="mbar-band b2"></div>
+    <div class="mbar-band b3"></div>
+    <div class="mbar-pointer" title="0.272" style="left:64.82%; background:#3d7a52"></div>
+  </div>
+  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+</div>
+
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Heel Depth</span>
+    <span class="mbar-level" style="color:#c98a42">low</span>
+  </div>
+  <div class="mbar-track">
+    <div class="mbar-band b1"></div>
+    <div class="mbar-band b2"></div>
+    <div class="mbar-band b3"></div>
+    <div class="mbar-pointer" title="0.014" style="left:16.67%; background:#c98a42"></div>
+  </div>
+  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+</div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="interp-section" id="interpretation-section"><h2 class="big-h2">What This Means</h2><div class="interp-block"><h3 class="interp-h3">Your Foot Shape</h3><p class="interp-p">You have a Greek toe form and wide forefoot with a wide heel. Throughout a wide profile.</p><p class="interp-p">Beyond the obvious: Given your Greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your arch is rather short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up. Your shallow heel doesn&#x27;t project as far back as most. Deeply sculpted cups will feel empty at the back.</p></div><div class="interp-block"><h3 class="interp-h3">What Your Current Shoe Fit Tells Us</h3><p class="interp-p">Your shoes range from EU 36.5 to 37 (street size 37), but the raw numbers do not tell the full story because brands size very differently. Your Scarpa Veloce in EU 37 is at street size, relaxed for Scarpa, where the typical downsize is about 1.5 sizes down. You tend to prefer a more relaxed fit than typical across brands.</p><p class="interp-p">Your heel fit varies: empty in your Scarpa Veloce, tight in your Red Chili Magnet. Different heel cup geometries; for next picks we target narrow heel volume.</p><p class="interp-p">Your Red Chili Puzzle&#x27;s toes feel squeezed while the other shoes fit on the toes. Your Red Chili Puzzle is built on a different toe form while you have Greek toes. The mismatch is the most likely cause; look for shoes with a Greek-compatible toe box.</p></div><div class="interp-block"><h3 class="interp-h3">What to Look For</h3><p class="interp-p">Based on your scan and current shoe fit, we target shoes with Greek toe form, normal forefoot width, and normal heel width.</p><p class="interp-p">Given your preference for sport climbing both indoors and outdoors and a balanced fit, we prioritize balanced-stiffness velcros or lace-ups with slight downturn and slight asymmetry.</p><p class="interp-p">Note: data on shoe heel depth is unfortunately not widely available. We&#x27;re working on extracting this data from shoe scans, but for now the recommendations match heel width only.</p><p class="interp-p">Your shoe feedback was inconsistent across models. We weight the most consistent signal.</p><p class="interp-p">The softer, stiffer, and budget tiers below offer alternative options around this target.</p></div></div><div class="recs-section"><h2 class="big-h2">Recommended Shoes</h2><div class="rec-group" id="recs-baseline"><div class="rec-head"><h3 class="interp-h3">Your Best Match</h3><p class="rec-desc">Similar feel and use case to your current shoes</p></div><div class="shoe-grid">
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/ocun-advancer-qc.jpg" alt="Ocun Advancer QC" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Ocun</div>
+    <div class="shoe-model">Advancer QC</div>
+    <div class="size-pill"><span class="pill-size">EU 37</span></div>
+    <div class="shoe-desc">Medium fit throughout. 4mm CAT 1. 5 rubber with a full, medium-hard midsole, resulting in a supportive shoe.</div>
+    <div class="shoe-why">Selected because the velcro closure allows quick on/off.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/la-sportiva-kubo-woman.jpg" alt="La Sportiva Kubo Woman" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">La Sportiva</div>
+    <div class="shoe-model">Kubo Woman</div>
+    <div class="size-pill"><span class="pill-size">EU 35</span></div>
+    <div class="shoe-desc">Medium fit throughout. 4mm Vibram XS Grip2 rubber with a full, medium-hard midsole, resulting in a balanced shoe.</div>
+    <div class="shoe-why">Selected because the velcro closure allows quick on/off.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/scarpa-force-v.jpg" alt="Scarpa Force" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Scarpa</div>
+    <div class="shoe-model">Force</div>
+    <div class="size-pill"><span class="pill-size">EU 36</span></div>
+    <div class="shoe-desc">Medium fit throughout. 4mm Vibram XS Edge rubber with a full, medium-soft midsole, resulting in a balanced shoe.</div>
+    <div class="shoe-why">Selected because the flat downturn is less aggressive than most picks, trading power for comfort, and the velcro closure allows quick on/off.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+</div><div class="see-more"><a class="see-more-btn" href="#">See more top matches <span>&rarr;</span></a></div></div><div class="rec-group" id="recs-softer"><div class="rec-head"><h3 class="interp-h3">Softer Shoes</h3><p class="rec-desc">For more sensitivity, recommended for indoors and bouldering</p></div><div class="shoe-grid">
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/scarpa-arpia-v.jpg" alt="Scarpa Arpia V" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Scarpa</div>
+    <div class="shoe-model">Arpia V</div>
+    <div class="size-pill"><span class="pill-size">EU 36</span></div>
+    <div class="shoe-desc">Medium fit throughout. 3. 5mm Vibram XS Grip2 rubber with a full, medium-soft midsole, resulting in a balanced shoe.</div>
+    <div class="shoe-why">Selected because noticeably softer than most other picks, for more sensitivity, and the velcro closure allows quick on/off.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/ocun-striker-lu.jpg" alt="Ocun Striker LU" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Ocun</div>
+    <div class="shoe-model">Striker LU</div>
+    <div class="size-pill"><span class="pill-size">EU 37</span></div>
+    <div class="shoe-desc">Medium fit throughout, lace closure. 4mm CAT 1. 1 rubber with a full, medium midsole, resulting in a balanced shoe.</div>
+    <div class="shoe-why">Selected because noticeably softer than most other picks, for more sensitivity. Also, the flat downturn is less aggressive than most picks, trading power for comfort, and the lace-up closure allows a more custom fit.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/andrea-boldrini-t-rex.jpg" alt="Andrea Boldrini T-Rex" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Andrea Boldrini</div>
+    <div class="shoe-model">T-Rex</div>
+    <div class="size-pill"><span class="pill-size">EU 36.5</span></div>
+    <div class="shoe-desc">Medium fit throughout, lace closure. 4mm Formula Enduro rubber with a partial, medium-soft midsole, resulting in a sensitive shoe.</div>
+    <div class="shoe-why">Selected because noticeably softer than most other picks, for more sensitivity, and the lace-up closure allows a more custom fit.</div>
+    <div class="shoe-tradeoffs">Tradeoff: The Egyptian toe box tapers to where the big toe should be longest, so your longer second toe presses into the seam.</div>
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+</div><div class="see-more"><a class="see-more-btn" href="#">See more softer picks <span>&rarr;</span></a></div></div><div class="rec-group" id="recs-stiffer"><div class="rec-head"><h3 class="interp-h3">Stiffer Shoes</h3><p class="rec-desc">For more support, recommended for outdoors and sport/trad climbing</p></div><div class="shoe-grid">
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/ocun-advancer-lu.jpg" alt="Ocun Advancer LU" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Ocun</div>
+    <div class="shoe-model">Advancer LU</div>
+    <div class="size-pill"><span class="pill-size">EU 37</span></div>
+    <div class="shoe-desc">Medium fit throughout, lace closure. 4mm CAT 1. 5 rubber with a full, medium-hard midsole, resulting in a supportive shoe.</div>
+    <div class="shoe-why">Selected because the lace-up closure allows a more custom fit.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/la-sportiva-kubo.jpg" alt="La Sportiva Kubo" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">La Sportiva</div>
+    <div class="shoe-model">Kubo</div>
+    <div class="size-pill"><span class="pill-size">EU 35</span></div>
+    <div class="shoe-desc">Medium fit throughout. 4mm Vibram XS Edge rubber with a full, medium-hard midsole, resulting in a supportive shoe.</div>
+    <div class="shoe-why">Selected because noticeably stiffer than most other picks, for more support, and the velcro closure allows quick on/off.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/scarpa-vapor-v-mens.jpg" alt="Scarpa Vapor V" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Scarpa</div>
+    <div class="shoe-model">Vapor V</div>
+    <div class="size-pill"><span class="pill-size">EU 36</span></div>
+    <div class="shoe-desc">Medium fit throughout. 3. 5mm Vibram XS Edge rubber with a full, medium midsole, resulting in a supportive shoe.</div>
+    <div class="shoe-why">Selected because the velcro closure allows quick on/off.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+</div><div class="see-more"><a class="see-more-btn" href="#">See more stiffer picks <span>&rarr;</span></a></div></div><div class="rec-group" id="recs-budget"><div class="rec-head"><h3 class="interp-h3">Best Value</h3><p class="rec-desc">Affordable picks at your recommended size</p></div><div class="shoe-grid">
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/red-chili-ventic-air-lace.jpg" alt="Red Chili Ventic Air Lace" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Red Chili</div>
+    <div class="shoe-model">Ventic Air Lace</div>
+    <div class="size-pill"><span class="pill-size">EU 37</span><span class="pill-sep">|</span><span class="pill-price">51 EUR</span></div>
+    <div class="shoe-desc">Medium forefoot with a wide heel cup, lace closure. 4. 5mm Red Chili RX-2 Techgrip rubber with a full, medium-hard midsole, resulting in a supportive shoe.</div>
+    <div class="shoe-why">At EUR 51, this is a strong value pick. Selected because the lace-up closure allows a more custom fit.</div>
+    <div class="shoe-tradeoffs">Tradeoff: The wide heel volume is roomier than your medium target.</div>
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/la-sportiva-mythos-mens.jpg" alt="La Sportiva Mythos" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">La Sportiva</div>
+    <div class="shoe-model">Mythos</div>
+    <div class="size-pill"><span class="pill-size">EU 35</span><span class="pill-sep">|</span><span class="pill-price">106 EUR</span></div>
+    <div class="shoe-desc">Medium fit throughout, lace closure. 4mm Vibram XS Edge rubber with a full, medium-hard midsole, resulting in a supportive shoe.</div>
+    <div class="shoe-why">At EUR 106, this is a strong value pick. Selected because the flat downturn is less aggressive than most picks, trading power for comfort, and the lace-up closure allows a more custom fit.</div>
+    
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+
+<div class="shoe-card">
+  <div class="shoe-img-wrap">
+    <img src="https://www.climbing-gear.com/images/shoes/wild-climb-pantera-laser.jpg" alt="Wild Climb Pantera Laser" loading="lazy" />
+  </div>
+  <div class="shoe-body">
+    <div class="shoe-brand">Wild Climb</div>
+    <div class="shoe-model">Pantera Laser</div>
+    <div class="size-pill"><span class="pill-size">EU 36.5</span><span class="pill-sep">|</span><span class="pill-price">110 EUR</span></div>
+    <div class="shoe-desc">Medium fit throughout, lace closure. 4mm Wild Rubber performance rubber with a partial, medium midsole, resulting in a balanced shoe.</div>
+    <div class="shoe-why">At EUR 110, this is a strong value pick. Selected because the moderate downturn is more aggressive than most picks, built for steeper terrain, and the lace-up closure allows a more custom fit.</div>
+    <div class="shoe-tradeoffs">Tradeoff: The Egyptian toe box tapers to where the big toe should be longest, so your longer second toe presses into the seam.</div>
+    <div class="shoe-cta">Check details and availability</div>
+  </div>
+</div>
+</div><div class="see-more"><a class="see-more-btn" href="#">See more value picks <span>&rarr;</span></a></div></div></div>
+<div class="footer-ctas">
+  <div class="cta-card">
+    <h3 class="cta-title">Browse the Database</h3>
+    <p class="cta-text">Check out our full database of 350+ climbing shoes with detailed specs, fit profiles and price comparison.</p>
+    <a class="cta-btn cta-btn-fill" href="#">Browse Shoes</a>
+  </div>
+  <div class="cta-card">
+    <h3 class="cta-title">Was this scan helpful?</h3>
+    <p class="cta-text">We're building this tool to help climbers find their perfect shoe. Your feedback helps us improve.</p>
+    <a class="cta-btn cta-btn-outline" href="#">Give Feedback</a>
+  </div>
+</div>
+</div></body></html>
