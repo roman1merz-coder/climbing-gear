@@ -132,11 +132,21 @@ def _shared_by_most(axis, picks_minus_self):
 def _para_tradeoffs_v2(pick, profile, all_picks=None):
     """V2 tradeoffs paragraph.
 
-    Reads the v2 9-axis breakdown and compares each negative axis against
-    the v2 unified target dict (target_fw / target_hv / target_dt /
-    target_asym + stiffness window). Tier-aware suppression for stiffness.
-    Peer suppression (>= 70% share a negative) for axes where it would
-    otherwise read as a case-level fact.
+    Roman 2026-05-08: a tradeoff is any axis where the pick's value
+    DIFFERS from the ideal target value, regardless of whether the
+    score is positive or negative. A pick with asymmetry +5 (slight
+    instead of moderate target) IS a tradeoff even though the score
+    is positive — the user should know this pick is weaker on that
+    axis vs the ideal.
+
+    Earlier (pre-2026-05-08) the function only flagged score < 0,
+    which missed partial-match cases entirely. That made baseline tier
+    P3 always empty (filter excludes hard-mismatch shoes; survivors
+    that get partial matches were silently treated as tradeoff-free).
+
+    Tier-aware suppression for stiffness still applies (a softer-tier
+    pick is intentionally softer, not a tradeoff). Peer suppression
+    (>= 70% share a negative) still applies for the case-level facts.
     """
     bd        = pick.get("breakdown") or {}
     target    = pick.get("target") or {}
@@ -168,36 +178,37 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
         )
 
     # ── Forefoot width vs target ──────────────────────────────────────
-    fw_score = bd.get("forefoot_width", 0)
-    if fw_score < 0 and shoe_w and "target_fw" in target:
-        tgt_lbl = WIDTH_LABELS[target["target_fw"]]
+    # Roman 2026-05-08: trigger on any rank difference, not just score < 0.
+    if shoe_w and "target_fw" in target:
         sr = _FW_RANK.get(shoe_w)
         tr = target["target_fw"]
-        if sr is not None:
+        tgt_lbl = WIDTH_LABELS[tr]
+        if sr is not None and sr != tr:
             direction = "wider" if sr > tr else "narrower"
             issues.append(
                 f"the {shoe_w} forefoot runs {direction} than your {tgt_lbl} target"
             )
 
     # ── Heel volume vs target ─────────────────────────────────────────
-    hv_score = bd.get("heel_volume", 0)
-    if hv_score < 0 and shoe_hv and "target_hv" in target:
-        tgt_lbl = HV_LABELS[target["target_hv"]]
+    # Roman 2026-05-08: trigger on any rank difference.
+    if shoe_hv and "target_hv" in target:
         sr = _HV_RANK.get(shoe_hv)
         tr = target["target_hv"]
-        if sr is not None:
+        tgt_lbl = HV_LABELS[tr]
+        if sr is not None and sr != tr:
             direction = "roomier" if sr > tr else "tighter"
             issues.append(
                 f"the {shoe_hv} heel volume is {direction} than your {tgt_lbl} target"
             )
 
     # ── Downturn vs target ────────────────────────────────────────────
-    dt_score = bd.get("downturn", 0)
-    if dt_score < 0 and shoe_dt and "target_dt" in target:
-        tgt_lbl = DOWNTURN_LABELS[target["target_dt"]]
+    # Roman 2026-05-08: trigger on ANY rank difference, not just score < 0.
+    # A slight downturn vs moderate target is a tradeoff even if scored +5.
+    if shoe_dt and "target_dt" in target:
         sr = _DT_RANK.get(shoe_dt)
         tr = target["target_dt"]
-        if sr is not None:
+        tgt_lbl = DOWNTURN_LABELS[tr]
+        if sr is not None and sr != tr:
             if sr < tr:
                 issues.append(
                     f"the {shoe_dt} downturn is less aggressive than the "
@@ -210,16 +221,17 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
                 )
 
     # ── Asymmetry vs target ───────────────────────────────────────────
-    # Note: v2 target_asym already includes the foot-shape delta
-    # (Egyptian +1, HVA -1), so any negative asym score is a mismatch
-    # against the user's intent-adjusted target — no separate Greek-toe
-    # special-case is needed.
-    as_score = bd.get("asymmetry", 0)
-    if as_score < 0 and shoe_as and "target_asym" in target:
-        tgt_lbl = ASYM_LABELS[target["target_asym"]]
+    # v2 target_asym already includes the foot-shape delta (Egyptian +1,
+    # HVA -1), so any rank mismatch is a real divergence from the user's
+    # intent-adjusted target.
+    # Roman 2026-05-08: trigger on ANY rank difference (slight vs moderate
+    # target is a tradeoff worth flagging, even though the partial-match
+    # score is positive).
+    if shoe_as and "target_asym" in target:
         sr = _ASYM_RANK.get(shoe_as)
         tr = target["target_asym"]
-        if sr is not None:
+        tgt_lbl = ASYM_LABELS[tr]
+        if sr is not None and sr != tr:
             if sr > tr:
                 issues.append(
                     f"the {shoe_as} asymmetry is more aggressive than the "
@@ -296,28 +308,25 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
                     f"{user_toe_cap} toes need"
                 )
 
-    # ── Stiffness vs user baseline (tier-aware suppression) ───────────
-    st_score = bd.get("stiffness", 0)
-    direction = _stiff_vs_user(shoe_st, user_shoes)
-    if st_score < 0 and not _tier_intends(tier, direction):
-        sw = _stiffness_word(shoe_st)
-        if direction:
-            if sw:
-                issues.append(
-                    f"the {sw} sole is {direction} than what you currently climb in"
-                )
-            else:
-                issues.append(
-                    f"the sole is {direction} than what you currently climb in"
-                )
-        elif sw:
-            # No reference shoes — fall back to window comment
-            note = pick.get("breakdown_notes", {}).get("stiffness", "")
-            if "outside" in note:
-                issues.append(
-                    f"the {sw} stiffness sits outside the comfortable range for "
-                    f"your selection"
-                )
+    # ── Stiffness vs target ───────────────────────────────────────────
+    # Roman 2026-05-08: compare shoe stiffness against v2 target stiff_target,
+    # not just the user-shoes average. Tradeoff fires whenever the shoe's
+    # stiffness bin differs from the target's bin (regardless of whether
+    # the partial-match score is positive). Tier intent still suppresses:
+    # a softer-tier pick is intentionally softer, not a tradeoff.
+    stiff_target = target.get("stiff_target")
+    if shoe_st is not None and stiff_target is not None:
+        shoe_bin = _stiffness_word(shoe_st)        # uses 7-level vocab
+        target_bin = _stiffness_word(stiff_target)
+        # Tier intent suppression: softer/stiffer tier picks are meant to
+        # diverge from the baseline target; don't flag them.
+        direction = "softer" if shoe_st < stiff_target else "stiffer"
+        if shoe_bin and target_bin and shoe_bin != target_bin \
+                and not _tier_intends(tier, direction):
+            issues.append(
+                f"the {shoe_bin} sole is {direction} than the {target_bin} "
+                f"stiffness we target for your selection"
+            )
 
     # ── Closure (preferred set vs bad set, from compute_use_case_target) ─
     cl_score = bd.get("closure", 0)
