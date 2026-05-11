@@ -2481,15 +2481,20 @@ def _emit_minority(dim, rating, shoes_with_rating, n_total, profile, street, cas
     return [" ".join(parts)]
 
 
-def _dispatch_dim(dim, shoes, profile, street):
+def _dispatch_dim(dim, shoes, profile, street, suppressed=None):
     """Returns list of paragraphs for the given dim across all shoes.
 
     Decision logic:
       - N == 1: cascade for that shoe (if non-perfect)
       - N > 1, all same negative-rating: aggregate (no shoe names)
       - N > 1, mixed positive + negative: contradiction sentence
-      - N > 1, only some shoes have rating: minority -> cascade for affected
+      - N > 1, only some shoes have rating: minority -> count + cause-grouped
+
+    `suppressed` (Roman 2026-05-08): set of (shoe_key, dim, rating) tuples
+    that the cross-dim consolidation already covered. Sole-minority shoes
+    matching a suppressed entry are skipped here.
     """
+    suppressed = suppressed or set()
     cfg = _DIM_DISPATCH[dim]
     pos_label = cfg["positive"]
     neg_label = cfg["negative"]
@@ -2499,6 +2504,14 @@ def _dispatch_dim(dim, shoes, profile, street):
 
     n = len(shoes)
     out = []
+
+    # Filter out sole-minority shoes already covered by cross-dim consolidation.
+    if len(pos_shoes) == 1 and n > 1:
+        if (_name(pos_shoes[0]), dim, pos_label) in suppressed:
+            pos_shoes = []
+    if len(neg_shoes) == 1 and n > 1:
+        if (_name(neg_shoes[0]), dim, neg_label) in suppressed:
+            neg_shoes = []
 
     # Contradiction (N>1, both ratings present)
     if pos_shoes and neg_shoes:
@@ -2578,18 +2591,144 @@ _S15_FALLBACK_PARA = (
 )
 
 
+# ─── Cross-dim sizing consolidation (Roman 2026-05-08 case-1 review) ────
+#
+# When ONE shoe is the sole minority on >=2 dims AND all the firing
+# cascades trace to the same sizing fix (all under-downsized for
+# loose/roomy/empty, all over-downsized for tight/squeezed), emit ONE
+# combined sentence instead of N near-identical per-dim paragraphs.
+
+# Per (dim, rating): the branch_id that means "going down further fixes it"
+_SIZING_DOWN_BRANCH = {
+    ("heel",     "empty"):    "C",
+    ("toes",     "roomy"):    "C",
+    ("forefoot", "loose"):    "B",
+}
+# Per (dim, rating): the branch_id that means "going up half a size fixes it"
+_SIZING_UP_BRANCH = {
+    ("heel",     "tight"):    "C",
+    ("toes",     "squeezed"): "D",
+    ("forefoot", "tight"):    "C",
+}
+
+
+def _classify_per_shoe_minorities(shoes, profile, street):
+    """For each shoe that's the SOLE minority on a dim, classify its
+    cascade branch. Returns {shoe_key: [(dim, rating, branch_id, params, shoe), ...]}.
+    Only fires when total_shoes >= 2 (otherwise no minority case).
+    """
+    out = {}
+    if len(shoes) < 2:
+        return out
+    for dim in ("heel", "toes", "forefoot"):
+        cfg = _DIM_DISPATCH[dim]
+        for rating in (cfg["positive"], cfg["negative"]):
+            affected = [s for s in shoes
+                        if (s.get("fit") or {}).get(dim) == rating]
+            if len(affected) != 1:
+                continue
+            sh = affected[0]
+            classifier = _CLASSIFIERS.get((dim, rating))
+            if not classifier:
+                continue
+            branch_id, params = classifier(sh, profile, street)
+            shoe_key = _name(sh)
+            out.setdefault(shoe_key, []).append(
+                (dim, rating, branch_id, params, sh))
+    return out
+
+
+def _consolidate_cross_dim_sizing(per_shoe, shoes):
+    """For each shoe with >=2 minority dims all hitting the same sizing
+    branch, emit ONE consolidated sentence. Returns (paragraphs,
+    suppressed_set) where suppressed_set is {(shoe_key, dim, rating)}
+    pairs that the per-dim dispatcher should skip.
+    """
+    paragraphs = []
+    suppressed = set()
+
+    for shoe_key, issues in per_shoe.items():
+        down_issues = [(d, r, p, sh) for d, r, b, p, sh in issues
+                       if _SIZING_DOWN_BRANCH.get((d, r)) == b]
+        up_issues   = [(d, r, p, sh) for d, r, b, p, sh in issues
+                       if _SIZING_UP_BRANCH.get((d, r)) == b]
+
+        if len(down_issues) >= 2:
+            sh = down_issues[0][3]
+            params = down_issues[0][2]
+            paragraphs.append(
+                _render_sizing_consolidation(sh, down_issues, "down", params,
+                                             n_total=len(shoes)))
+            for d, r, _, _ in down_issues:
+                suppressed.add((shoe_key, d, r))
+
+        if len(up_issues) >= 2:
+            sh = up_issues[0][3]
+            params = up_issues[0][2]
+            paragraphs.append(
+                _render_sizing_consolidation(sh, up_issues, "up", params,
+                                             n_total=len(shoes)))
+            for d, r, _, _ in up_issues:
+                suppressed.add((shoe_key, d, r))
+
+    return paragraphs, suppressed
+
+
+def _render_sizing_consolidation(shoe, issues, direction, params, n_total):
+    """Compose ONE sentence covering all minority dims of `shoe` whose
+    fixes converge on the same sizing change."""
+    name = _name(shoe)
+    brand = shoe.get("brand", "")
+
+    # Build dim-list as natural prose:
+    #   2 dims: "toes feel roomy and the forefoot feels loose"
+    #   3 dims: "toes feel roomy, the forefoot feels loose, and the heel feels empty"
+    clauses = []
+    for idx, (d, r, _, _) in enumerate(issues):
+        verb = "feel" if d == "toes" else "feels"
+        prefix = "" if idx == 0 else "the "
+        clauses.append(f"{prefix}{d} {verb} {r}")
+    if len(clauses) == 2:
+        dim_str = f"{clauses[0]} and {clauses[1]}"
+    else:
+        dim_str = ", ".join(clauses[:-1]) + f", and {clauses[-1]}"
+
+    raw = params.get("raw") if params else None
+    user_ds = params.get("user_ds") if params else None
+    typical_ds = params.get("typical_ds") if params else None
+    typical_value = params.get("typical_value") if params else None
+
+    others_phrase = ("while your other shoes fit" if n_total > 2
+                     else "while your other shoe fits")
+
+    if direction == "down":
+        clause = _under_downsize_clause(brand, raw, user_ds, typical_ds,
+                                        typical_value, None)
+        return (f"Your {_possessive(name)} {dim_str} {others_phrase}. "
+                f"Comparing your {name} to your foot profile, it should fit. "
+                f"{clause}, so going down further could tighten the fit.")
+    # direction == "up"
+    clause = _over_downsize_clause(brand, raw, user_ds, typical_ds)
+    return (f"Your {_possessive(name)} {dim_str} {others_phrase}. "
+            f"Comparing your {name} to your foot profile, it should fit. "
+            f"{clause}, so going up half a size could relieve the issues.")
+
+
 def generate_shoe_fit(profile):
     """V2 'What Your Current Shoe Fit Tells Us' (cascade design).
 
-    Roman 2026-04-30 locked design:
+    Roman 2026-04-30 locked design + 2026-05-08 cross-dim consolidation:
       1. S1 sizing intro (always when >=1 shoe with size)
-      2. Per dim (heel -> toes -> forefoot) with non-perfect ratings:
+      2. Cross-dim sizing consolidation (Roman 2026-05-08 case-1): if any
+         one shoe is the sole minority on 2+ dims AND all cascades trace
+         to the same sizing fix, emit ONE combined paragraph and suppress
+         the per-dim emissions for those (shoe, dim) pairs.
+      3. Per dim (heel -> toes -> forefoot) with non-perfect ratings:
          - N==1 -> run cascade for that shoe
          - N>1 ALL same -> aggregate (no shoe names)
-         - N>1 MINORITY -> cascade for affected shoe(s) only (only that
-           shoe named)
+         - N>1 MINORITY -> count + cause-grouped (Roman 2026-05-02 A)
          - N>1 contradiction -> dedicated sentence
-      3. S5 closing anchor (TODO -- can fold into §3 P3 closing)
+         - Skips any (shoe, dim, rating) pair consolidated in step 2.
     """
     # S14: canonicalize heel='loose' -> 'empty' so downstream is uniform.
     shoes = _canonicalize_shoes(profile.get("shoes", []))
@@ -2608,9 +2747,16 @@ def generate_shoe_fit(profile):
     if sizing:
         paragraphs.append(sizing)
 
-    # Per-dim cascade in heel -> toes -> forefoot order.
+    # Cross-dim sizing consolidation (Roman 2026-05-08).
+    per_shoe = _classify_per_shoe_minorities(shoes, profile, street)
+    cross_dim_paras, suppressed = _consolidate_cross_dim_sizing(per_shoe, shoes)
+    paragraphs.extend(cross_dim_paras)
+
+    # Per-dim cascade in heel -> toes -> forefoot order, skipping any
+    # (shoe, dim, rating) pair already covered by a cross-dim paragraph.
     for dim in ("heel", "toes", "forefoot"):
-        for para in _dispatch_dim(dim, shoes, profile, street):
+        for para in _dispatch_dim(dim, shoes, profile, street,
+                                  suppressed=suppressed):
             paragraphs.append(para)
 
     return paragraphs
