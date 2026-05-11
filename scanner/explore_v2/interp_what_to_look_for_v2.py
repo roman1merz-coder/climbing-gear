@@ -61,11 +61,16 @@ _DISCIPLINE_CLOSURE_PREF = {
 def _closure_pref(discipline, instep_class):
     """Returns (closure_phrase, caveat_str_with_leading_space).
 
-    Anatomy exclusions per Roman 2026-04-30:
+    Anatomy exclusions:
       - low instep  -> exclude pure slippers
-      - high instep -> exclude pure slippers AND single-strap velcros
-        (so 'velcros' becomes 'double-velcros' in the output)
+      - high instep -> exclude pure slippers
       - normal instep -> no exclusions
+
+    Roman 2026-05-08: dropped the high-instep "double-velcros" /
+    "single-strap velcros" distinction. The shoes table only carries
+    closure=velcro/lace/slipper — single vs double strap isn't a tracked
+    field, so recommending one over the other was inventing data.
+    Both extreme insteps now exclude slippers only.
     """
     pref = _DISCIPLINE_CLOSURE_PREF.get((discipline or "").lower(), [])
     instep = (instep_class or "").lower()
@@ -82,12 +87,7 @@ def _closure_pref(discipline, instep_class):
                 continue
             parts.append("slippers")
         elif c == "velcro":
-            if is_high:
-                parts.append("double-velcros")
-                if "single-strap velcros" not in excluded:
-                    excluded.append("single-strap velcros")
-            else:
-                parts.append("velcros")
+            parts.append("velcros")
         elif c == "lace":
             parts.append("lace-ups")
 
