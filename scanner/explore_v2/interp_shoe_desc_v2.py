@@ -127,6 +127,79 @@ def _shared_by_most(axis, picks_minus_self):
     return neg / len(picks_minus_self) >= 0.7
 
 
+# ── Per-axis diff helpers (Roman 2026-05-08 concise wording) ──────────
+#
+# Each axis maps to a (positive_phrase, negative_phrase) pair where
+# positive = shoe rank > target rank and negative = shoe rank < target.
+# Phrases are short adjective fragments that compose cleanly into
+# "{magnitude} {phrase} than we target".
+
+_AXIS_DIFF_PHRASES = {
+    "downturn":      ("more downturned",          "less downturned"),
+    "asymmetry":     ("more asymmetric",          "less asymmetric"),
+    "forefoot":      ("wider in the forefoot",    "narrower in the forefoot"),
+    "heel":          ("roomier in the heel",      "tighter in the heel"),
+    "stiffness":     ("stiffer",                  "softer"),
+}
+
+# Per-axis "matches target" phrasing for the pros (P2)
+_AXIS_MATCH_LABELS = {
+    "downturn":      "downturn",
+    "asymmetry":     "asymmetry",
+    "forefoot":      "forefoot width",
+    "heel":          "heel volume",
+    "stiffness":     "stiffness",
+    "toe_form":      "toe form",
+    "closure":       "closure",
+}
+
+
+def _magnitude_prefix(abs_diff):
+    """1 step -> 'slightly ', 2 steps -> '', 3+ steps -> 'much '."""
+    if abs_diff == 1:
+        return "slightly "
+    if abs_diff >= 3:
+        return "much "
+    return ""
+
+
+def _format_axis_diffs(diffs):
+    """`diffs` = list of (axis, shoe_rank, target_rank). Returns concise
+    "X and Y than we target" / "X but Y than we target" string, or None."""
+    if not diffs:
+        return None
+    phrases = []
+    signs = []
+    for axis, sr, tr in diffs:
+        diff = sr - tr
+        if diff == 0:
+            continue
+        pos, neg = _AXIS_DIFF_PHRASES.get(axis, (axis, axis))
+        phrases.append(_magnitude_prefix(abs(diff)) + (pos if diff > 0 else neg))
+        signs.append(1 if diff > 0 else -1)
+    if not phrases:
+        return None
+    if len(phrases) == 1:
+        return f"{phrases[0]} than we target"
+    same_dir = all(s == signs[0] for s in signs)
+    connector = "and" if same_dir else "but"
+    if len(phrases) == 2:
+        return f"{phrases[0]} {connector} {phrases[1]} than we target"
+    # 3+: comma list with the connector before the last
+    return ", ".join(phrases[:-1]) + f", {connector} {phrases[-1]} than we target"
+
+
+def _join_match_labels(labels):
+    """'a' / 'a and b' / 'a, b, and c'."""
+    if not labels:
+        return ""
+    if len(labels) == 1:
+        return labels[0]
+    if len(labels) == 2:
+        return f"{labels[0]} and {labels[1]}"
+    return ", ".join(labels[:-1]) + f", and {labels[-1]}"
+
+
 # ── P3 (v2) ───────────────────────────────────────────────────────────
 
 def _para_tradeoffs_v2(pick, profile, all_picks=None):
@@ -166,82 +239,53 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
     user_instep = (profile.get("instep_height_class") or "").lower()
     user_instep_clean = user_instep.replace(" instep", "").strip()
 
-    issues = []
+    # Roman 2026-05-08: collect rank-axis diffs as concise phrases joined
+    # with "and" / "but". Toe form, closure, instep, discipline-overlap
+    # remain separate categorical issues (not rank diffs).
+    rank_diffs = []   # list of (axis, shoe_rank, target_rank)
 
     # ── Discipline overlap (v2-specific, very high impact) ─────────────
     do = bd.get("discipline_overlap", 0)
+    discipline_issue = None
     if do < 0:
         # When this fires, score is -100 — overrides everything else
-        issues.append(
-            f"the shoe is not built for {target.get('discipline', 'this discipline')} "
-            f"climbing"
+        discipline_issue = (
+            f"the shoe is not built for "
+            f"{target.get('discipline', 'this discipline')} climbing"
         )
 
     # ── Forefoot width vs target ──────────────────────────────────────
-    # Roman 2026-05-08: trigger on any rank difference, not just score < 0.
     if shoe_w and "target_fw" in target:
         sr = _FW_RANK.get(shoe_w)
         tr = target["target_fw"]
-        tgt_lbl = WIDTH_LABELS[tr]
         if sr is not None and sr != tr:
-            direction = "wider" if sr > tr else "narrower"
-            issues.append(
-                f"the {shoe_w} forefoot runs {direction} than your {tgt_lbl} target"
-            )
+            rank_diffs.append(("forefoot", sr, tr))
 
     # ── Heel volume vs target ─────────────────────────────────────────
-    # Roman 2026-05-08: trigger on any rank difference.
     if shoe_hv and "target_hv" in target:
         sr = _HV_RANK.get(shoe_hv)
         tr = target["target_hv"]
-        tgt_lbl = HV_LABELS[tr]
         if sr is not None and sr != tr:
-            direction = "roomier" if sr > tr else "tighter"
-            issues.append(
-                f"the {shoe_hv} heel volume is {direction} than your {tgt_lbl} target"
-            )
+            rank_diffs.append(("heel", sr, tr))
 
     # ── Downturn vs target ────────────────────────────────────────────
-    # Roman 2026-05-08: trigger on ANY rank difference, not just score < 0.
-    # A slight downturn vs moderate target is a tradeoff even if scored +5.
     if shoe_dt and "target_dt" in target:
         sr = _DT_RANK.get(shoe_dt)
         tr = target["target_dt"]
-        tgt_lbl = DOWNTURN_LABELS[tr]
         if sr is not None and sr != tr:
-            if sr < tr:
-                issues.append(
-                    f"the {shoe_dt} downturn is less aggressive than the "
-                    f"{tgt_lbl} downturn we target for your selection"
-                )
-            else:
-                issues.append(
-                    f"the {shoe_dt} downturn is more aggressive than the "
-                    f"{tgt_lbl} downturn we target for your selection"
-                )
+            rank_diffs.append(("downturn", sr, tr))
 
     # ── Asymmetry vs target ───────────────────────────────────────────
-    # v2 target_asym already includes the foot-shape delta (Egyptian +1,
-    # HVA -1), so any rank mismatch is a real divergence from the user's
-    # intent-adjusted target.
-    # Roman 2026-05-08: trigger on ANY rank difference (slight vs moderate
-    # target is a tradeoff worth flagging, even though the partial-match
-    # score is positive).
+    # v2 target_asym already includes the foot-shape delta.
     if shoe_as and "target_asym" in target:
         sr = _ASYM_RANK.get(shoe_as)
         tr = target["target_asym"]
-        tgt_lbl = ASYM_LABELS[tr]
         if sr is not None and sr != tr:
-            if sr > tr:
-                issues.append(
-                    f"the {shoe_as} asymmetry is more aggressive than the "
-                    f"{tgt_lbl} asymmetry we target"
-                )
-            else:
-                issues.append(
-                    f"the {shoe_as} asymmetry is less pronounced than the "
-                    f"{tgt_lbl} asymmetry we target"
-                )
+            rank_diffs.append(("asymmetry", sr, tr))
+
+    issues = []
+    if discipline_issue:
+        issues.append(discipline_issue)
 
     # ── Toe form (Egyptian↔Roman opposites, Greek neutral) ────────────
     tf_score = bd.get("toe_form", 0)
@@ -308,62 +352,70 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
                     f"{user_toe_cap} toes need"
                 )
 
-    # ── Stiffness vs target ───────────────────────────────────────────
+    # ── Stiffness vs target (rank-style) ──────────────────────────────
     # Roman 2026-05-08: compare shoe stiffness against v2 target stiff_target,
     # not just the user-shoes average. Tradeoff fires whenever the shoe's
-    # stiffness bin differs from the target's bin (regardless of whether
-    # the partial-match score is positive). Tier intent still suppresses:
-    # a softer-tier pick is intentionally softer, not a tradeoff.
-    stiff_target = target.get("stiff_target")
-    if shoe_st is not None and stiff_target is not None:
-        shoe_bin = _stiffness_word(shoe_st)        # uses 7-level vocab
-        target_bin = _stiffness_word(stiff_target)
-        # Tier intent suppression: softer/stiffer tier picks are meant to
-        # diverge from the baseline target; don't flag them.
-        direction = "softer" if shoe_st < stiff_target else "stiffer"
-        if shoe_bin and target_bin and shoe_bin != target_bin \
-                and not _tier_intends(tier, direction):
-            issues.append(
-                f"the {shoe_bin} sole is {direction} than the {target_bin} "
-                f"stiffness we target for your selection"
-            )
+    # stiffness differs meaningfully from the target. Tier intent still
+    # suppresses: a softer-tier pick is intentionally softer, not a tradeoff.
+    # Synthetic rank diff: 1 step per ~0.20 stiffness-unit gap.
+    stiff_target_val = target.get("stiff_target")
+    if shoe_st is not None and stiff_target_val is not None:
+        diff = shoe_st - stiff_target_val
+        direction = "stiffer" if diff > 0 else "softer"
+        if abs(diff) >= 0.05 and not _tier_intends(tier, direction):
+            if abs(diff) < 0.20:
+                steps = 1
+            elif abs(diff) < 0.40:
+                steps = 2
+            else:
+                steps = 3
+            rank_diffs.append(("stiffness",
+                               steps if diff > 0 else -steps, 0))
 
-    # ── Closure (preferred set vs bad set, from compute_use_case_target) ─
+    # ── Closure (preferred set vs bad set) ─────────────────────────────
+    closure_issue = None
     cl_score = bd.get("closure", 0)
     if cl_score < 0 and shoe_cl:
         disc = target.get("discipline", "your selection")
-        issues.append(
-            f"the {shoe_cl} closure is not ideal for {disc} climbing"
-        )
+        closure_issue = f"the {shoe_cl} closure is not ideal for {disc} climbing"
 
-    # ── Instep extreme + slipper (v2 axis_instep_extreme) ─────────────
+    # ── Instep extreme + slipper ──────────────────────────────────────
+    instep_issue = None
     ie_score = bd.get("instep_extreme", 0)
     if ie_score < 0 and shoe_cl == "slipper" and user_instep_clean \
             and user_instep_clean not in ("normal", ""):
-        issues.append(
-            f"the slipper closure leaves no adjustability for your "
-            f"{user_instep_clean} instep"
-        )
+        instep_issue = (f"the slipper closure leaves no adjustability for "
+                        f"your {user_instep_clean} instep")
 
-    # ── Peer suppression: drop axes shared by ≥70% of peers ────────────
-    # Recompute issues by re-checking each issue's underlying axis.
-    # Simpler approach: build (axis, msg) pairs above and filter here.
-    # For now we filter only the most case-level prone ones.
+    # ── Peer suppression: drop axes shared by >=70% of peers ───────────
+    # Roman 2026-05-08: applies to rank diffs only (case-level facts vs
+    # shoe-specific differentiators). Map axis name to v2 breakdown key.
     if peers:
-        # Drop heel_volume / forefoot_width / asymmetry mismatches when
-        # they're shared — those become case-level facts, not shoe-level
-        # differentiators.
-        for shared_axis, keyword in (
-            ("heel_volume",     "heel volume"),
-            ("forefoot_width",  "forefoot runs"),
-            ("asymmetry",       "asymmetry"),
-        ):
-            if _shared_by_most(shared_axis, peers):
-                issues = [i for i in issues if keyword not in i]
+        suppress_keys = {
+            "heel":     "heel_volume",
+            "forefoot": "forefoot_width",
+            "asymmetry": "asymmetry",
+        }
+        rank_diffs = [
+            d for d in rank_diffs
+            if not (d[0] in suppress_keys
+                    and _shared_by_most(suppress_keys[d[0]], peers))
+        ]
+
+    # ── Append the categorical issues already in `issues`, then add
+    # closure / instep, then the rank-diffs as one combined phrase.
+    if closure_issue:
+        issues.append(closure_issue)
+    if instep_issue:
+        issues.append(instep_issue)
+
+    rank_phrase = _format_axis_diffs(rank_diffs)
+    if rank_phrase:
+        issues.append(rank_phrase)
 
     # ── Output formatting (v2: drop dead boilerplate, return None) ────
-    # Roman 2026-04-27: don't render "No notable tradeoffs..." — when there's
-    # nothing to flag, omit P3 entirely. The renderer skips falsy fields.
+    # Roman 2026-04-27: don't render "No notable tradeoffs..." — when
+    # there's nothing to flag, omit P3 entirely.
     if not issues:
         return None
 
@@ -427,6 +479,40 @@ def _strip_p2_boilerplate(p2):
     return cleaned if cleaned else None
 
 
+def _matched_axes(pick, profile):
+    """Return list of user-facing axis labels where the pick's value
+    matches the v2 target. Roman 2026-05-08: P2 pros mirror P3 tradeoffs
+    — list which axes are aligned, in the same order as P3 lists which
+    differ. Composable with the existing V1 tier-rationale text.
+    """
+    target = pick.get("target") or {}
+    matched = []
+
+    shoe_w  = (pick.get("width")        or "").lower()
+    shoe_hv = (pick.get("heel_volume")  or "").lower()
+    shoe_dt = (pick.get("downturn")     or "").lower()
+    shoe_as = (pick.get("asymmetry")    or "").lower()
+    shoe_st = pick.get("stiffness")
+    user_toe = (profile.get("toe_shape") or "").lower()
+    pick_toe_forms = [str(f).lower() for f in (pick.get("toe_form") or [])]
+
+    if "target_fw" in target and _FW_RANK.get(shoe_w) == target["target_fw"]:
+        matched.append("forefoot width")
+    if "target_hv" in target and _HV_RANK.get(shoe_hv) == target["target_hv"]:
+        matched.append("heel volume")
+    if "target_dt" in target and _DT_RANK.get(shoe_dt) == target["target_dt"]:
+        matched.append("downturn")
+    if "target_asym" in target and _ASYM_RANK.get(shoe_as) == target["target_asym"]:
+        matched.append("asymmetry")
+    if user_toe and pick_toe_forms and user_toe in pick_toe_forms:
+        matched.append("toe form")
+    stiff_target = target.get("stiff_target")
+    if shoe_st is not None and stiff_target is not None \
+            and abs(shoe_st - stiff_target) < 0.05:
+        matched.append("stiffness")
+    return matched
+
+
 def generate_shoe_description_v2(pick, profile, all_picks=None):
     """V2 wrapper: P1 + P2 from v1 (with dedup filters), P3 from v2.
 
@@ -450,13 +536,26 @@ def generate_shoe_description_v2(pick, profile, all_picks=None):
         prefix = f"At EUR {price:.0f}, this is a strong value pick."
         p2 = f"{prefix} {p2}" if p2 else prefix
 
-    # Roman 2026-05-02 case-4 review (C): when no tier-distinguishing reason
-    # fired (typical of the headline tier picks, since they're chosen
-    # precisely for being clean matches), surface a clean alignment
-    # statement instead of leaving P2 blank. Without this, ~half of the
-    # shoe cards rendered with no selection rationale at all.
+    # Roman 2026-05-08: list matched-to-target axes as the pros — mirror
+    # of P3 tradeoffs that lists mismatched axes. Composes with existing
+    # tier rationale (e.g. "Selected because softer than peers. Matches
+    # your target on toe form, forefoot width, and heel volume.").
+    matched = _matched_axes(pick, profile)
+    if matched:
+        n_matched = len(matched)
+        # 6 = all scored axes match, 3-5 = strong match, 1-2 = partial
+        if n_matched >= 6:
+            match_phrase = "Matches your target on every key axis."
+        elif n_matched >= 3:
+            match_phrase = f"Matches your target on {_join_match_labels(matched)}."
+        else:
+            match_phrase = f"Matches your target on {_join_match_labels(matched)}."
+        p2 = f"{p2} {match_phrase}" if p2 else match_phrase
+
+    # Last-resort fallback when no rationale and no matches — should be rare
+    # (most picks match at least 1 axis). Kept for safety.
     if not p2:
-        p2 = "Shoe geometry and features align perfectly with your fit target."
+        p2 = "Shoe geometry and features align with your fit target."
 
     p3 = _para_tradeoffs_v2(pick, profile, all_picks=all_picks)
     return [p1, p2, p3]
