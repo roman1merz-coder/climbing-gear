@@ -99,6 +99,37 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     # ── v1 axes (unchanged) ───────────────────────────────────────────
     out = dict(_v1_resolve_targets(profile, shoes))
 
+    # Roman 2026-05-12: the v1 shallow-heel vote always forces target_hv
+    # to rank 0 (narrow). That logic conflates heel DEPTH (anteroposterior
+    # projection) with heel cup VOLUME (width × depth). For a user with
+    # WIDE heel + shallow heel, it drags the target away from the user's
+    # actual heel size — even when shoe feedback also says "tight heel,
+    # go wider". We rerun the aggregation with the shallow-heel vote
+    # removed when the user's heel WIDTH scan says wide (rank 2). The
+    # vote stays for narrow/medium heel widths where it's anatomically
+    # consistent. Production target_resolver untouched (project memory
+    # heel_cup_geometry_future tracks the proper fix: a separate
+    # heel_cup_shallow_compatible axis).
+    if out.get("shallow_heel_triggered") and out.get("meas_hv") == 2:
+        from benchmark.target_resolver import (
+            _scan_vote, _shoe_votes, _aggregate,
+            POP_FOREFOOT_LO, POP_FOREFOOT_HI,
+            POP_HEEL_WIDTH_LO, POP_HEEL_WIDTH_HI,
+        )
+        scan_hv = _scan_vote(
+            profile.get("heel_width_ratio"),
+            POP_HEEL_WIDTH_LO, POP_HEEL_WIDTH_HI,
+            "scan_heel_width",
+            "heel width {ratio:.3f} (conf {confidence:.2f})",
+        )
+        _, fb_hv, _ = _shoe_votes(shoes or [])
+        votes_hv = ([scan_hv] if scan_hv else []) + fb_hv
+        tgt_hv, avg_hv = _aggregate(votes_hv, fallback_rank=1, tie="down")
+        out["target_hv"] = tgt_hv
+        out["avg_hv"]    = avg_hv
+        out["votes_hv"]  = votes_hv
+        out["shallow_heel_suppressed_for_wide_heel"] = True
+
     # ── v2 axes ───────────────────────────────────────────────────────
     toe_shape = profile.get("toe_shape")
     hva       = profile.get("hva_offset_ratio")

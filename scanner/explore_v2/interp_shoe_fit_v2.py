@@ -2498,7 +2498,36 @@ def _emit_minority(dim, rating, shoes_with_rating, n_total, profile, street, cas
     return [" ".join(parts)]
 
 
-def _dispatch_dim(dim, shoes, profile, street, suppressed=None):
+_HV_LABELS = ("narrow", "medium", "wide")
+_FW_LABELS = ("narrow", "medium", "wide")
+
+
+def _hv_label(target):
+    """Map target dict (or rank int) to user-facing heel-volume label."""
+    if target is None:
+        return "medium"
+    if isinstance(target, dict):
+        rank = target.get("target_hv")
+    else:
+        rank = target
+    if isinstance(rank, int) and 0 <= rank <= 2:
+        return _HV_LABELS[rank]
+    return "medium"
+
+
+def _fw_label(target):
+    if target is None:
+        return "medium"
+    if isinstance(target, dict):
+        rank = target.get("target_fw")
+    else:
+        rank = target
+    if isinstance(rank, int) and 0 <= rank <= 2:
+        return _FW_LABELS[rank]
+    return "medium"
+
+
+def _dispatch_dim(dim, shoes, profile, street, suppressed=None, target=None):
     """Returns list of paragraphs for the given dim across all shoes.
 
     Decision logic:
@@ -2534,12 +2563,12 @@ def _dispatch_dim(dim, shoes, profile, street, suppressed=None):
     if pos_shoes and neg_shoes:
         if dim == "heel":
             out.append(_contradiction_heel(pos_shoes, neg_shoes,
-                                           "narrow"))  # target_hv label TBD
+                                           _hv_label(target)))
         elif dim == "toes":
             out.append(_contradiction_toes(pos_shoes, neg_shoes))
         elif dim == "forefoot":
             out.append(_contradiction_ff(pos_shoes, neg_shoes,
-                                         "medium"))  # target_fw TBD
+                                         _fw_label(target)))
         return out
 
     # Positive rating present
@@ -2731,8 +2760,13 @@ def _render_sizing_consolidation(shoe, issues, direction, params, n_total):
             f"{clause}, so going up half a size could relieve the issues.")
 
 
-def generate_shoe_fit(profile):
+def generate_shoe_fit(profile, target=None):
     """V2 'What Your Current Shoe Fit Tells Us' (cascade design).
+
+    Roman 2026-05-12: ``target`` is the resolved target dict from
+    target_resolver_v2. Used to fill in the §2 contradiction sentences
+    ("we target X heel volume / Y forefoot width") with the actual
+    resolver result instead of a hardcoded placeholder.
 
     Roman 2026-04-30 locked design + 2026-05-08 cross-dim consolidation:
       1. S1 sizing intro (always when >=1 shoe with size)
@@ -2773,7 +2807,8 @@ def generate_shoe_fit(profile):
     # (shoe, dim, rating) pair already covered by a cross-dim paragraph.
     for dim in ("heel", "toes", "forefoot"):
         for para in _dispatch_dim(dim, shoes, profile, street,
-                                  suppressed=suppressed):
+                                  suppressed=suppressed,
+                                  target=target):
             paragraphs.append(para)
 
     return paragraphs

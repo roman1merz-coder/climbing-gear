@@ -802,7 +802,7 @@ def main():
         {"title": "Your Foot Shape",
          "paragraphs": list(generate_foot_shape(profile))},
         {"title": "What Your Current Shoe Fit Tells Us",
-         "paragraphs": list(generate_shoe_fit(profile))},
+         "paragraphs": list(generate_shoe_fit(profile, target=target))},
         {"title": "What to Look For",
          "paragraphs": list(generate_what_to_look_for_v2(
              profile, profile["shoes"],
