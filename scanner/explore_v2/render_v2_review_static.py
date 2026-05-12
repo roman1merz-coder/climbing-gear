@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import requests
 
-from target_resolver_v2 import resolve_targets_v2
+from target_resolver_v2 import resolve_targets_v2, _scrub_sizing_artifacts
 from matrix_scorer_v2 import compute_use_case_target, assemble_tiers
 from interp_what_to_look_for_v2 import generate_what_to_look_for_v2
 from interp_shoe_desc_v2 import flatten_pick, generate_shoe_description_v2
@@ -773,6 +773,69 @@ def calc_rec_size(profile_shoes, target_brand, brand_sizing, street_size, prefer
         return None
 
 
+def _shoe_fit_with_artifact_filter(profile, target=None):
+    """Run generate_shoe_fit on shoes with sizing-artifact feedback
+    blanked, AND prepend a disclosure sentence listing what was
+    discounted so the user understands why a contradictory rating
+    was set aside.
+
+    Roman 2026-05-12: passing filtered shoes to the cascade prevents
+    artifact ratings from triggering false "fit varies" contradiction
+    sentences (case 5 Veloce empty heel was sizing, not cup geometry).
+    The disclosure is only added when something was actually filtered.
+    """
+    from interp_shoe_fit_v2 import _relative_downsize, _brand_typical, _downsize_label_raw
+    raw_shoes = profile.get("shoes") or []
+    street    = profile.get("street_size_eu")
+    clean_shoes = (_scrub_sizing_artifacts(raw_shoes, street)
+                   if street else raw_shoes)
+
+    # Build a disclosure sentence per (shoe, dim) that was filtered.
+    discounted = []
+    for raw, clean in zip(raw_shoes, clean_shoes):
+        raw_fit   = raw.get("fit") or {}
+        clean_fit = clean.get("fit") or {}
+        for dim in ("heel", "toes", "forefoot"):
+            if raw_fit.get(dim) and not clean_fit.get(dim):
+                discounted.append({
+                    "shoe":   raw,
+                    "dim":    dim,
+                    "rating": raw_fit[dim],
+                })
+
+    paragraphs = []
+    if discounted:
+        # One sentence per discounted (shoe, dim, rating) triple.
+        parts = []
+        for d in discounted:
+            s = d["shoe"]
+            brand, model, size = s.get("brand"), s.get("model"), s.get("size_eu")
+            raw, _, label = _relative_downsize(street, size, brand)
+            typ = _brand_typical(brand)
+            typ_phrase = (f"typical downsize is {_downsize_label_raw(typ)}"
+                          if typ > 0 else "shoes typically fit at street size")
+            actual_phrase = _downsize_label_raw(raw)  # already starts with "at" / "X sizes down" / etc.
+            # Avoid "at at street size" by stripping a leading "at " when we
+            # prefix with our own preposition.
+            if actual_phrase.startswith("at "):
+                actual_clause = actual_phrase  # "at street size"
+            else:
+                actual_clause = f"at {actual_phrase}"  # "at one size down"
+            parts.append(
+                f"Your {brand} {model}'s {d['rating']} {d['dim']} is "
+                f"consistent with its {label} sizing — {actual_clause} in "
+                f"{brand} where {typ_phrase} — so we set it aside as a "
+                f"sizing artifact rather than a cup-fit signal."
+            )
+        paragraphs.append(" ".join(parts))
+
+    # Splice the filtered shoes into a profile copy so the cascade sees them.
+    filtered_profile = dict(profile)
+    filtered_profile["shoes"] = clean_shoes
+    paragraphs.extend(generate_shoe_fit(filtered_profile, target=target))
+    return paragraphs
+
+
 def main():
     if len(sys.argv) != 7:
         print(__doc__); sys.exit(1)
@@ -802,7 +865,7 @@ def main():
         {"title": "Your Foot Shape",
          "paragraphs": list(generate_foot_shape(profile))},
         {"title": "What Your Current Shoe Fit Tells Us",
-         "paragraphs": list(generate_shoe_fit(profile, target=target))},
+         "paragraphs": list(_shoe_fit_with_artifact_filter(profile, target=target))},
         {"title": "What to Look For",
          "paragraphs": list(generate_what_to_look_for_v2(
              profile, profile["shoes"],
