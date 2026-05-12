@@ -52,6 +52,9 @@ T = {
     "bg": "#f5f0e8", "surface": "#ffffff", "card": "#ffffff",
     "border": "#d5cdbf", "text": "#2c3227", "muted": "#7a7462",
     "accent": "#c98a42", "accentSoft": "rgba(201,138,66,0.10)",
+    # Roman 2026-05-08: extreme-tier color (very low / very high / pronounced)
+    # — darker variant of accent for stronger off-target signal.
+    "accentDark": "#8a5d20",
     "primary": "#3d7a52", "green": "#3d7a52",
     "navBg": "rgba(245,240,232,0.92)",
     "font": "'DM Sans', 'Instrument Sans', system-ui, sans-serif",
@@ -158,10 +161,11 @@ def render_metric_bar(ratio_key, value):
     vmax = p["mean"] + VISUAL_SIGMA * p["std"]
     pos = section_pct_5(value, vmin, vl_lo, lo, hi, vh_hi, vmax)
     lbl = level_label_5(value, vl_lo, lo, hi, vh_hi)
-    # Color: extremes (very_low / very_high) full accent; one-step
-    # off-center (low/high) muted accent; mid green.
+    # Color (Roman 2026-05-08): mid = green, low/high = light orange
+    # (accent), very_low/very_high = dark orange (accentDark). 3-color
+    # scheme matches HVA slider for consistency.
     if lbl in ("very low", "very high"):
-        col = T["accent"]
+        col = T["accentDark"]
     elif lbl in ("low", "high"):
         col = T["accent"]
     else:
@@ -208,12 +212,15 @@ def render_hva_bar(value, hva_class=None):
     else:
         pos = 100.0
 
+    # Roman 2026-05-08: 3-color scheme matching other sliders.
+    # none = green, mild = light orange (accent), pronounced = dark
+    # orange (accentDark).
     if value < mild_lo:
         lbl, col = "none", T["green"]
     elif value < pronounced_lo:
         lbl, col = "mild", T["accent"]
     else:
-        lbl, col = "pronounced", T["accent"]
+        lbl, col = "pronounced", T["accentDark"]
 
     return f"""
 <div class="mbar">

@@ -33,8 +33,13 @@ SAMPLE_SCANS = [
 
 # Color used for avg silhouette outline in foot_measure.draw_sole_overlay
 # BGR (191,205,213) -> RGB (213,205,191). Tolerance for anti-aliased pixels.
+# Roman 2026-05-08: tightened from 25 -> 10 because the user's amber
+# semi-transparent foot fill RGB (236,214,189) was within 25 channels
+# of the silhouette color and was being stripped along with the outline.
+# 10 is enough to catch antialiased silhouette edge pixels but won't
+# touch the much-warmer foot fill.
 SILHOUETTE_RGB = (213, 205, 191)
-SIL_TOL = 25
+SIL_TOL = 10
 
 # HVA visualization color BGR (60, 140, 200) -> RGB (200, 140, 60)
 HVA_RGB = (200, 140, 60)
