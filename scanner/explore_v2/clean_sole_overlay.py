@@ -149,59 +149,28 @@ def _detect_foot_top_and_big_toe_x(arr, ball_cy, line_left, line_right):
     fill_mask[:, :line_left] = False
     fill_mask[:, line_right + 1:] = False
 
-    # Build per-column "top edge" Y array: topmost amber row in each
-    # column (or h if no amber). Restrict to the upper half of the
-    # foot so the heel doesn't confuse peak detection.
-    half_h = ball_cy  # everything above ball line is forefoot+toes
-    upper = fill_mask[:half_h, :]
-    has_fill = upper.any(axis=0)
-    top_y = np.where(has_fill, upper.argmax(axis=0), h)
-
-    # Smooth top_y with a small moving average to suppress 1-pixel
-    # halo wobble. Window 5.
-    valid_cols = np.where(has_fill)[0]
-    if len(valid_cols) < 10:
+    # Detect the production HVA filled CIRCLE position directly — that
+    # IS the production big_toe_cx / big_toe_cy (foot_measure draws
+    # the orange circle at exactly that point on every overlay). The
+    # circle is a 13-px-diameter filled disc of orange (RGB 200,140,60).
+    # Foot OUTLINE is the same color but only 2 px thin. Eroding the
+    # orange mask by 3 px destroys the outline and leaves only the
+    # circle's interior — its centroid is the big toe tip.
+    # Verified pixel-perfect against production on 5 sample scans
+    # (2026-05-08).
+    from scipy.ndimage import binary_erosion
+    orange_target = np.array((200, 140, 60), dtype=np.int16)
+    odiff2 = np.abs(arr.astype(np.int16) - orange_target)
+    o_mask = (odiff2[..., 0] <= 12) & (odiff2[..., 1] <= 12) & (odiff2[..., 2] <= 12)
+    upper_orange = o_mask[:ball_cy, :].copy()
+    upper_orange[:, :line_left] = False
+    upper_orange[:, line_right + 1:] = False
+    eroded = binary_erosion(upper_orange, iterations=3)
+    if eroded.sum() == 0:
         return None
-    win = 5
-    kernel = np.ones(win, dtype=np.float32) / win
-    top_y_f = top_y.astype(np.float32)
-    smoothed = np.convolve(top_y_f, kernel, mode="same")
-
-    # Restrict peak search to columns that have fill.
-    foot_left = int(valid_cols.min())
-    foot_right = int(valid_cols.max())
-
-    # Find columns where smoothed top_y is a local minimum within a
-    # window of 12 cols (toe width). A toe peak is roughly 20-40 cols
-    # wide, so a 12-col window catches the apex without false splits.
-    peaks = []
-    radius = 12
-    for x in range(foot_left + radius, foot_right - radius + 1):
-        y_here = smoothed[x]
-        if y_here >= h - 1: continue  # no fill
-        window = smoothed[x - radius : x + radius + 1]
-        if y_here == window.min() and y_here < smoothed[foot_left:foot_right + 1].min() + 80:
-            peaks.append((x, int(top_y[x])))
-
-    # Dedup near-duplicate peaks (within 8 cols).
-    if not peaks:
-        # Fallback: take the leftmost valid column near the foot top.
-        big_toe_cx = foot_left
-        big_toe_cy = int(top_y[foot_left])
-    else:
-        # Cluster: keep first peak in each ≥8-col cluster.
-        peaks.sort(key=lambda t: t[0])
-        clusters = [peaks[0]]
-        for x, y in peaks[1:]:
-            if x - clusters[-1][0] > 8:
-                clusters.append((x, y))
-            elif y < clusters[-1][1]:
-                clusters[-1] = (x, y)
-        # Big toe = LEFTMOST cluster (medial side).
-        big_toe_cx, big_toe_cy = clusters[0]
-        # Move 3 px down from peak so we're on the toe meat, not the
-        # antialiased apex.
-        big_toe_cy = min(big_toe_cy + 3, h - 1)
+    ys, xs = np.where(eroded)
+    big_toe_cx = int(round(xs.mean()))
+    big_toe_cy = int(round(ys.mean()))
 
     # med_edge_cx: detect the production GREEN ball_l_cx tick marker
     # directly. Production foot_measure draws 2-px green vertical lines
