@@ -709,10 +709,27 @@ def _t4_clause(p):
     out = []
 
     toe = (p.get("toe_shape") or "egyptian").lower()
-    # Raw classifier classes (no soft-promotion) per Roman 2026-05-01 S8 / A.
-    arch_cls   = p.get("arch_length_class", "normal")
-    instep_cls = p.get("instep_height_class", "normal")
-    heel_d_cls = p.get("heel_depth_class", "normal")
+    # Roman 2026-05-12: derive the dimensional classes from the V2 5-tier
+    # classifier (same one feeding the metric-bar slider) instead of the
+    # production 3-tier `*_class` columns. Production thresholds disagree
+    # with the slider in borderline cases (e.g. heel_depth_ratio=0.029 →
+    # production "normal" but V2 5-tier "shallow heel"), which made the
+    # prose ignore dims the user can clearly see flagged on the slider.
+    # Map 5-tier labels back to the legacy 3-tier vocabulary used below.
+    def _to_3t(ratio_key, low_label, high_label):
+        lbl5 = _classify_5tier(ratio_key, p.get(ratio_key))
+        if lbl5 in ("very narrow", "narrow", "very short", "short arch",
+                     "very low", "low instep", "very shallow", "shallow heel"):
+            return low_label
+        if lbl5 in ("very wide", "wide", "very wide heel", "wide heel",
+                     "very long", "long arch", "very high instep", "high instep",
+                     "very deep heel", "deep heel"):
+            return high_label
+        return "normal"
+
+    arch_cls   = _to_3t("arch_length_ratio",   "short arch",   "long arch")
+    instep_cls = _to_3t("instep_height_ratio", "low instep",   "high instep")
+    heel_d_cls = _to_3t("heel_depth_ratio",    "shallow heel", "deep heel")
     hva = (p.get("hallux_valgus_class") or "normal").lower()
 
     # T4.2 — non-Egyptian toes
