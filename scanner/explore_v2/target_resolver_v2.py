@@ -110,10 +110,31 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     # consistent. Production target_resolver untouched (project memory
     # heel_cup_geometry_future tracks the proper fix: a separate
     # heel_cup_shallow_compatible axis).
-    if out.get("shallow_heel_triggered") and out.get("meas_hv") == 2:
+    # Roman 2026-05-12: two corrections applied as a single rerun.
+    #
+    #  (A) Shallow-heel vote always forces rank 0 (narrow). Conflates
+    #      heel DEPTH with cup VOLUME. Drop it when scan_heel_width is
+    #      wide — the scan there is the stronger signal.
+    #
+    #  (B) When heel feedback is CONTRADICTORY (some shoes report tight
+    #      AND others report empty), the user's lived fit experience is
+    #      ambiguous and the simple weighted average dilutes the scan
+    #      with noise. We boost the scan vote's weight ×3 in that case
+    #      so the scan dominates as the tiebreaker. Single-direction
+    #      feedback (all tight, all empty, or only perfect+one side)
+    #      keeps the original weighting.
+    #
+    # Both rules are sandbox-only — production target_resolver untouched.
+    # Proper fix tracked in project_heel_cup_geometry_future.md (separate
+    # heel_cup_shallow axis on shoes + smarter sizing-artifact detection).
+    needs_rerun_A = out.get("shallow_heel_triggered") and out.get("meas_hv") == 2
+    heel_fits = [(s.get("fit") or {}).get("heel") for s in (shoes or [])]
+    has_tight = any(f in ("tight", "squeezed") for f in heel_fits)
+    has_empty = any(f in ("empty", "loose") for f in heel_fits)
+    needs_rerun_B = has_tight and has_empty
+    if needs_rerun_A or needs_rerun_B:
         from benchmark.target_resolver import (
-            _scan_vote, _shoe_votes, _aggregate,
-            POP_FOREFOOT_LO, POP_FOREFOOT_HI,
+            _scan_vote, _shoe_votes, _aggregate, _heel_depth_vote,
             POP_HEEL_WIDTH_LO, POP_HEEL_WIDTH_HI,
         )
         scan_hv = _scan_vote(
@@ -122,13 +143,24 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
             "scan_heel_width",
             "heel width {ratio:.3f} (conf {confidence:.2f})",
         )
+        # Drop the depth vote only when the wide-heel guard fires (A);
+        # otherwise leave it in (B alone keeps the production behaviour).
+        depth_hv = None if needs_rerun_A else _heel_depth_vote(
+            profile.get("heel_depth_ratio")
+        )
         _, fb_hv, _ = _shoe_votes(shoes or [])
-        votes_hv = ([scan_hv] if scan_hv else []) + fb_hv
+        if needs_rerun_B and scan_hv is not None:
+            scan_hv = dict(scan_hv)
+            scan_hv["weight"] *= 3.0
+            scan_hv["note"] += "; scan boosted ×3 (contradictory heel feedback)"
+        votes_hv = ([scan_hv]  if scan_hv  else []) + \
+                   ([depth_hv] if depth_hv else []) + fb_hv
         tgt_hv, avg_hv = _aggregate(votes_hv, fallback_rank=1, tie="down")
         out["target_hv"] = tgt_hv
         out["avg_hv"]    = avg_hv
         out["votes_hv"]  = votes_hv
-        out["shallow_heel_suppressed_for_wide_heel"] = True
+        if needs_rerun_A: out["shallow_heel_suppressed_for_wide_heel"] = True
+        if needs_rerun_B: out["scan_boosted_for_contradictory_heel_fb"] = True
 
     # ── v2 axes ───────────────────────────────────────────────────────
     toe_shape = profile.get("toe_shape")
