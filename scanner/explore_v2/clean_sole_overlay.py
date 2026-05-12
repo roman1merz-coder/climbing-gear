@@ -66,20 +66,36 @@ def strip_color(arr, target_rgb, tol):
 
 def clean_overlay(img):
     """Strip avg silhouette outline + HVA text label + bottom legend.
-    Returns the cleaned PIL Image."""
+    Returns the cleaned PIL Image.
+
+    Roman 2026-05-08: HVA text color (RGB 200,140,60) is nearly identical
+    to the amber foot outline color (RGB 201,138,66) — color-based
+    stripping destroyed the foot outline pixels. Switched to region-based
+    crop for the HVA text (top-left rectangle, far left of where the
+    foot sits).
+    """
     arr = np.array(img)
     h, w, _ = arr.shape
 
-    # 1. Strip the silhouette outline globally (the AA-line color is
-    # distinct from amber + green, so this only removes the outline).
+    # 1. Strip the silhouette outline globally. The silhouette gray
+    # (RGB 213,205,191) is far from the amber foot (RGB 201,138,66) and
+    # green measurement lines (RGB 61,122,82), so color-replace is safe.
     strip_color(arr, SILHOUETTE_RGB, SIL_TOL)
 
-    # 2. Strip the HVA text label (only in the top band where it sits).
-    # The HVA text uses BGR (60,140,200) which is similar to AMBER
-    # (66,138,201). Restrict to the top band so we don't touch the
-    # amber foot outline lower down.
-    top_band = arr[HVA_TEXT_TOP:HVA_TEXT_BOTTOM]
-    strip_color(top_band, HVA_RGB, HVA_TOL)
+    # 2. Paint white over the HVA text region — region-based (NOT color-
+    # based, because the HVA text uses BGR (60,140,200) → RGB (200,140,60)
+    # which is virtually identical to the amber foot outline RGB
+    # (201,138,66). Color-stripping destroyed the foot outline pixels.
+    #
+    # The text is drawn at foot_measure.py line ~1170 at coords
+    # (line_left, upper_cy - 15). With PAD=50:
+    #   line_left = dx + PAD - 10 = 40
+    #   upper_cy  = PAD + 0 = 50 (foot's top edge, since upper_row =
+    #               scan_top after orientation normalization)
+    #   text top  = upper_cy - 15 = 35
+    # So the text sits at y ≈ 25-48, x ≈ 40-180 — ENTIRELY ABOVE the
+    # foot's top edge at y=50. Clearing y<48 is always safe.
+    arr[0:48, :] = (255, 255, 255)
 
     # 3. Crop the bottom legend area entirely.
     arr = arr[:h - LEGEND_HEIGHT, :, :]

@@ -365,16 +365,18 @@ def render_foot_views(scan, scan_id):
     toe = scan.get("toe_shape") or "egyptian"
     toe_desc = TOE_DESCRIPTIONS.get(toe, TOE_DESCRIPTIONS["egyptian"])
 
+    # Roman 2026-05-08 (corrected): HVA is a SOLE-view measurement
+    # (top-down big-toe deviation), so the Big Toe Inward Drift slider
+    # belongs with the sole metrics, not the side metrics.
     sole_metrics = "".join([
         render_metric_bar("forefoot_width_ratio", scan.get("forefoot_width_ratio")),
         render_metric_bar("arch_length_ratio", scan.get("arch_length_ratio")),
         render_metric_bar("heel_width_ratio", scan.get("heel_width_ratio")),
+        render_hva_bar(scan.get("hva_offset_ratio"), scan.get("hallux_valgus_class")),
     ])
-    # Roman 2026-05-08: HVA slider added to side view as a 3rd row.
     side_metrics = "".join([
         render_metric_bar("instep_height_ratio", scan.get("instep_height_ratio")),
         render_metric_bar("heel_depth_ratio", scan.get("heel_depth_ratio")),
-        render_hva_bar(scan.get("hva_offset_ratio"), scan.get("hallux_valgus_class")),
     ])
 
     return f"""
