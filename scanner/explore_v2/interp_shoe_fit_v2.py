@@ -226,6 +226,23 @@ def _para_sizing(shoes, street):
                          f"{_downsize_label_raw(street - min_size)}")
         else:
             raw_range = _downsize_label_raw(street - min_size)
+        # Roman 2026-05-08 case-1: when min/max sizes give different
+        # labels for the same brand (e.g. one shoe typical, the other
+        # relaxed), the average-based "this is a X fit" verdict
+        # contradicts the per-shoe diagnoses below. Drop the verdict in
+        # that case and just state the facts; the per-shoe paragraphs
+        # below will explain the variance.
+        labels = [_relative_downsize(street, s["size_eu"], brand)[2]
+                  for s in shoes_with_size]
+        if len(set(labels)) > 1:
+            return (
+                f"You wear your {brand} shoes in sizes {size_range}, "
+                f"ranging from {raw_range} from your street size of "
+                f"{street}. The typical downsize for {brand} is "
+                f"{_downsize_label_raw(typical)}; the per-shoe diagnoses "
+                f"below break down each pair."
+            )
+        # Uniform label across all shoes — keep the verdict.
         _, _, label = _relative_downsize(street, sum(sizes)/len(sizes), brand)
         return (
             f"You wear your {brand} shoes in sizes {size_range}, "
