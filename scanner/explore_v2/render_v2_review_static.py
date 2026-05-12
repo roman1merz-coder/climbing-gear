@@ -65,17 +65,21 @@ T = {
 # ─── ScanResult.jsx constants (Roman 2026-05-08: 5-tier, sandbox) ──
 # Boundaries from POP_5TIER in interp_foot_shape_v2.py — derived from
 # n=340 production scans at the 20th/40th/60th/80th percentiles.
+# Roman 2026-05-12: tier widths rebalanced to 16.7 / 16.7 / 33.3 / 16.7 / 16.7
+# percentile splits (was 20 / 20 / 20 / 20 / 20). Keeps mid-tier 1/3 of
+# population so users only get flagged off-center when meaningfully so.
+# Thresholds match interp_foot_shape_v2.POP_5TIER (single source of truth).
 POP = {
     "forefoot_width_ratio":  {"mean": 0.354, "std": 0.029,
-                              "vl_lo": 0.334, "lo": 0.347, "hi": 0.363, "vh_hi": 0.380},
+                              "vl_lo": 0.331, "lo": 0.343, "hi": 0.367, "vh_hi": 0.384},
     "arch_length_ratio":     {"mean": 0.725, "std": 0.024,
-                              "vl_lo": 0.703, "lo": 0.719, "hi": 0.731, "vh_hi": 0.745},
+                              "vl_lo": 0.700, "lo": 0.714, "hi": 0.735, "vh_hi": 0.747},
     "heel_width_ratio":      {"mean": 0.236, "std": 0.021,
-                              "vl_lo": 0.220, "lo": 0.233, "hi": 0.241, "vh_hi": 0.252},
+                              "vl_lo": 0.218, "lo": 0.228, "hi": 0.245, "vh_hi": 0.255},
     "instep_height_ratio":   {"mean": 0.263, "std": 0.102,
-                              "vl_lo": 0.243, "lo": 0.258, "hi": 0.270, "vh_hi": 0.289},
+                              "vl_lo": 0.241, "lo": 0.255, "hi": 0.273, "vh_hi": 0.294},
     "heel_depth_ratio":      {"mean": 0.036, "std": 0.030,
-                              "vl_lo": 0.024, "lo": 0.032, "hi": 0.041, "vh_hi": 0.051},
+                              "vl_lo": 0.022, "lo": 0.029, "hi": 0.043, "vh_hi": 0.053},
 }
 # HVA: kept at 3 tiers (per Roman 2026-05-08 — "use the HVA logic and
 # values, just visualization, call it differently"). Thresholds match
@@ -129,11 +133,19 @@ def fetch_shoe_images():
     return {s["slug"]: s.get("image_url") for s in r.json()}
 
 
-# ─── MetricBar (Roman 2026-05-08: 5-section) ───────────────────────
-# Each band is 20% of track width. Pointer position is interpolated
-# inside whichever band the value falls in.
+# ─── MetricBar (Roman 2026-05-12: 5-section, mid-tier widened) ─────
+# Band widths in track px: 16.67 / 16.67 / 33.33 / 16.67 / 16.67 — visually
+# wider mid section reflects that 1/3 of users land in mid (vs 1/5 in each
+# extreme tier). Both the underlying classifier and the visual layout
+# share the same percentile distribution so position math stays in sync.
+_BAND_WIDTHS = (16.667, 16.667, 33.333, 16.667, 16.667)
+_BAND_STARTS = (0.0, 16.667, 33.333, 66.667, 83.333)
+
+
 def section_pct_5(val, vmin, vl_lo, lo, hi, vh_hi, vmax):
-    """Compute pointer position 0-100 across a 5-section track."""
+    """Compute pointer position 0-100 across a 5-section track. Each
+    section maps 1:1 from its value range onto its band width on the
+    track (which is no longer uniform — see _BAND_WIDTHS)."""
     bounds = [vmin, vl_lo, lo, hi, vh_hi, vmax]
     for i in range(5):
         b0, b1 = bounds[i], bounds[i+1]
@@ -141,7 +153,7 @@ def section_pct_5(val, vmin, vl_lo, lo, hi, vh_hi, vmax):
             span = b1 - b0
             t = (val - b0) / span if span > 0 else 0.5
             t = max(0, min(1, t))
-            return i * 20 + t * 20
+            return _BAND_STARTS[i] + t * _BAND_WIDTHS[i]
     return 100.0
 
 
@@ -653,11 +665,13 @@ body {{ font-family: {T['font']}; background: {T['bg']}; color: {T['text']}; }}
 .mbar-band.b2 {{ left: 33.333%; background: #efdbc1; border-left: 1px solid #d8c4a4; border-right: 1px solid #d8c4a4; }}
 .mbar-band.b3 {{ left: 66.666%; background: #e8c79b; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
 /* 5-section bands (Roman 2026-05-08): extremes amber-strong, off-mid amber-soft, mid green */
-.mbar-band.b5-1 {{ left: 0;     width: 20%; background: #e8c79b; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
-.mbar-band.b5-2 {{ left: 20%;   width: 20%; background: #efdbc1; }}
-.mbar-band.b5-3 {{ left: 40%;   width: 20%; background: #cad7c4; border-left: 1px solid #b9c8b1; border-right: 1px solid #b9c8b1; }}
-.mbar-band.b5-4 {{ left: 60%;   width: 20%; background: #efdbc1; }}
-.mbar-band.b5-5 {{ left: 80%;   width: 20%; background: #e8c79b; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
+/* Roman 2026-05-12: band widths now 16.67 / 16.67 / 33.33 / 16.67 / 16.67
+   to mirror the rebalanced tier population (1/3 mid, 1/6 each side). */
+.mbar-band.b5-1 {{ left: 0;        width: 16.667%; background: #e8c79b; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
+.mbar-band.b5-2 {{ left: 16.667%;  width: 16.667%; background: #efdbc1; }}
+.mbar-band.b5-3 {{ left: 33.333%;  width: 33.333%; background: #cad7c4; border-left: 1px solid #b9c8b1; border-right: 1px solid #b9c8b1; }}
+.mbar-band.b5-4 {{ left: 66.667%;  width: 16.667%; background: #efdbc1; }}
+.mbar-band.b5-5 {{ left: 83.333%;  width: 16.667%; background: #e8c79b; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
 .mbar-pointer {{ position: absolute; top: -3px; transform: translateX(-50%);
                 width: 4px; height: 14px; border-radius: 2px;
                 box-shadow: 0 0 0 1.5px #fff; }}

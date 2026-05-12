@@ -577,12 +577,16 @@ def generate_foot_shape(profile):
 # hi:    bound between mid and high      (60th pctile)
 # vh_hi: bound between high and very_high (80th pctile)
 
+# Roman 2026-05-12: tier widths rebalanced to 16.7 / 16.7 / 33.3 / 16.7 / 16.7
+# — the middle "mid" tier now holds 1/3 of the population (was 1/5), so a
+# user only gets flagged off-center when they really are. Boundaries below
+# are the 16.7 / 33.3 / 66.7 / 83.3 percentiles from n=378 production scans.
 POP_5TIER = {
-    "forefoot_width_ratio":  {"vl_lo": 0.334, "lo": 0.347, "hi": 0.363, "vh_hi": 0.380},
-    "arch_length_ratio":     {"vl_lo": 0.703, "lo": 0.719, "hi": 0.731, "vh_hi": 0.745},
-    "heel_width_ratio":      {"vl_lo": 0.220, "lo": 0.233, "hi": 0.241, "vh_hi": 0.252},
-    "instep_height_ratio":   {"vl_lo": 0.243, "lo": 0.258, "hi": 0.270, "vh_hi": 0.289},
-    "heel_depth_ratio":      {"vl_lo": 0.024, "lo": 0.032, "hi": 0.041, "vh_hi": 0.051},
+    "forefoot_width_ratio":  {"vl_lo": 0.331, "lo": 0.343, "hi": 0.367, "vh_hi": 0.384},
+    "arch_length_ratio":     {"vl_lo": 0.700, "lo": 0.714, "hi": 0.735, "vh_hi": 0.747},
+    "heel_width_ratio":      {"vl_lo": 0.218, "lo": 0.228, "hi": 0.245, "vh_hi": 0.255},
+    "instep_height_ratio":   {"vl_lo": 0.241, "lo": 0.255, "hi": 0.273, "vh_hi": 0.294},
+    "heel_depth_ratio":      {"vl_lo": 0.022, "lo": 0.029, "hi": 0.043, "vh_hi": 0.053},
 }
 
 # Per-axis 5-tier label tuples (very_low, low, mid, high, very_high)
