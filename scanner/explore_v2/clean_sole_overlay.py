@@ -120,42 +120,146 @@ def _detect_green_lines_geometry(arr):
 
 
 def _detect_foot_top_and_big_toe_x(arr, ball_cy, line_left, line_right):
-    """Find the topmost amber-fill row (big_toe_cy) and the x of the
-    foot's leftmost pixel at that row (big_toe_cx). Also find ball_left
-    (med_edge_cx) — leftmost amber pixel at ball_cy.
+    """Find the BIG TOE tip (leftmost toe peak) and the medial edge X
+    at the ball line. Returns (big_toe_cy, big_toe_cx, med_edge_cx).
+
+    The big toe is the leftmost toe — not necessarily the topmost foot
+    point (Greek/Roman toe shapes have the second toe higher than the
+    big toe). We find toe peaks by detecting columns whose top-edge Y
+    is a local minimum, then take the leftmost peak.
+
+    Roman 2026-05-08: foot_measure orients the sole with toes at top
+    and the big toe on the LEFT, so leftmost peak = big toe.
     """
     h, w, _ = arr.shape
-    # Amber fill mask — center color RGB (236,214,189) ± wide tol.
+    # Foot extent = OUTLINE (RGB 201,138,66) + FILL (RGB 236,214,189).
+    # Production foot_measure ball_l_cx / big_toe_cx coords are at the
+    # MASK boundary, which corresponds to the OUTLINE position — NOT
+    # the interior fill (the outline sits 4-6 px outside the fill).
+    # To match production tick alignment, mask must include outline.
     fill_target = np.array((236, 214, 189), dtype=np.int16)
     fdiff = np.abs(arr.astype(np.int16) - fill_target)
-    fill_mask = (fdiff[..., 0] <= 18) & (fdiff[..., 1] <= 18) & (fdiff[..., 2] <= 18)
-    # Search only inside the line_left .. line_right window.
+    fill_only_mask = (fdiff[..., 0] <= 18) & (fdiff[..., 1] <= 18) & (fdiff[..., 2] <= 18)
+
+    outline_target = np.array((201, 138, 66), dtype=np.int16)
+    odiff = np.abs(arr.astype(np.int16) - outline_target)
+    outline_mask = (odiff[..., 0] <= 18) & (odiff[..., 1] <= 18) & (odiff[..., 2] <= 18)
+
+    fill_mask = fill_only_mask | outline_mask
     fill_mask[:, :line_left] = False
     fill_mask[:, line_right + 1:] = False
-    # Topmost row with SUBSTANTIAL fill (>= 10 pixels) — skip stray
-    # antialiased halo pixels at very top.
-    row_fill_counts = fill_mask.sum(axis=1)
-    rows_with_solid_fill = np.where(row_fill_counts >= 10)[0]
-    if len(rows_with_solid_fill) == 0:
+
+    # Build per-column "top edge" Y array: topmost amber row in each
+    # column (or h if no amber). Restrict to the upper half of the
+    # foot so the heel doesn't confuse peak detection.
+    half_h = ball_cy  # everything above ball line is forefoot+toes
+    upper = fill_mask[:half_h, :]
+    has_fill = upper.any(axis=0)
+    top_y = np.where(has_fill, upper.argmax(axis=0), h)
+
+    # Smooth top_y with a small moving average to suppress 1-pixel
+    # halo wobble. Window 5.
+    valid_cols = np.where(has_fill)[0]
+    if len(valid_cols) < 10:
         return None
-    foot_top = int(rows_with_solid_fill[0])
-    # big_toe_cy: a few rows BELOW foot top to land on the toe meat
-    # (not antialiased halo). 6 rows in is safely past the halo.
-    big_toe_cy = min(foot_top + 6, h - 1)
-    cols_at_top = np.where(fill_mask[big_toe_cy])[0]
-    if len(cols_at_top) == 0:
-        return None
-    big_toe_cx = int(cols_at_top.min())
-    # med_edge_cx: leftmost fill pixel near ball_cy. Cannot use ball_cy
-    # itself — the production GREEN ball line paints over the amber
-    # there. Sample 5 rows above (still firmly inside the foot at the
-    # ball level for any normal foot orientation).
-    sample_y = max(0, ball_cy - 5)
-    cols_at_ball = np.where(fill_mask[sample_y])[0]
-    if len(cols_at_ball) == 0:
-        return None
-    med_edge_cx = int(cols_at_ball.min())
+    win = 5
+    kernel = np.ones(win, dtype=np.float32) / win
+    top_y_f = top_y.astype(np.float32)
+    smoothed = np.convolve(top_y_f, kernel, mode="same")
+
+    # Restrict peak search to columns that have fill.
+    foot_left = int(valid_cols.min())
+    foot_right = int(valid_cols.max())
+
+    # Find columns where smoothed top_y is a local minimum within a
+    # window of 12 cols (toe width). A toe peak is roughly 20-40 cols
+    # wide, so a 12-col window catches the apex without false splits.
+    peaks = []
+    radius = 12
+    for x in range(foot_left + radius, foot_right - radius + 1):
+        y_here = smoothed[x]
+        if y_here >= h - 1: continue  # no fill
+        window = smoothed[x - radius : x + radius + 1]
+        if y_here == window.min() and y_here < smoothed[foot_left:foot_right + 1].min() + 80:
+            peaks.append((x, int(top_y[x])))
+
+    # Dedup near-duplicate peaks (within 8 cols).
+    if not peaks:
+        # Fallback: take the leftmost valid column near the foot top.
+        big_toe_cx = foot_left
+        big_toe_cy = int(top_y[foot_left])
+    else:
+        # Cluster: keep first peak in each ≥8-col cluster.
+        peaks.sort(key=lambda t: t[0])
+        clusters = [peaks[0]]
+        for x, y in peaks[1:]:
+            if x - clusters[-1][0] > 8:
+                clusters.append((x, y))
+            elif y < clusters[-1][1]:
+                clusters[-1] = (x, y)
+        # Big toe = LEFTMOST cluster (medial side).
+        big_toe_cx, big_toe_cy = clusters[0]
+        # Move 3 px down from peak so we're on the toe meat, not the
+        # antialiased apex.
+        big_toe_cy = min(big_toe_cy + 3, h - 1)
+
+    # med_edge_cx: detect the production GREEN ball_l_cx tick marker
+    # directly. Production foot_measure draws 2-px green vertical lines
+    # at ball_l_cx (left edge) and ball_r_cx (right edge), spanning
+    # ball_cy ± 10. We sample in a narrow band ABOVE ball_cy (avoiding
+    # the green horizontal line itself), find clusters of green
+    # vertical pixels, and take the LEFTMOST cluster's X — that's
+    # ball_l_cx exactly. This guarantees pixel-perfect alignment with
+    # the existing forefoot-width left tick marker.
+    green_target = np.array(GREEN_RGB, dtype=np.int16)
+    gdiff = np.abs(arr.astype(np.int16) - green_target)
+    g_pixel_mask = (gdiff[..., 0] <= GREEN_TOL) & (gdiff[..., 1] <= GREEN_TOL) & (gdiff[..., 2] <= GREEN_TOL)
+    # Sample 7 rows above ball_cy (clear of the horizontal line band).
+    sample_y = max(0, ball_cy - 7)
+    g_cols = np.where(g_pixel_mask[sample_y])[0]
+    if len(g_cols) == 0:
+        # Fallback: leftmost outline+fill at ball_cy ± 5
+        sample_y = max(0, ball_cy - 5)
+        cols_at_ball = np.where(fill_mask[sample_y])[0]
+        if len(cols_at_ball) == 0:
+            return None
+        med_edge_cx = int(cols_at_ball.min())
+    else:
+        # Cluster green X positions (gap > 4 → new cluster). Each
+        # vertical tick is 2 px wide so a cluster has 1-3 cols.
+        clusters = [[int(g_cols[0])]]
+        for x in g_cols[1:]:
+            if int(x) - clusters[-1][-1] <= 4:
+                clusters[-1].append(int(x))
+            else:
+                clusters.append([int(x)])
+        # The horizontal-line bracket caps live at the canvas edges
+        # (line_left and line_right). Skip clusters that are clearly
+        # NOT inside the foot — they are < line_left + 5 (arch
+        # bracket leftover) or > line_right - 5 (line endpoint).
+        valid_clusters = [
+            c for c in clusters
+            if line_left + 5 <= c[0] <= line_right - 5
+        ]
+        if not valid_clusters:
+            return None
+        # Leftmost valid cluster = ball_l_cx tick.
+        med_edge_cx = valid_clusters[0][0]
     return big_toe_cy, big_toe_cx, med_edge_cx
+
+
+def _strip_orange_in_box(arr, x0, x1, y0, y1):
+    """Paint over orange pixels (RGB ~200,140,60) inside the bounded
+    interior box with the amber FILL color. Used to erase the production
+    HVA line + circle without touching the foot outline (which is
+    outside this interior box).
+    """
+    target = np.array((200, 140, 60), dtype=np.int16)
+    region = arr[y0:y1, x0:x1]
+    diff = np.abs(region.astype(np.int16) - target)
+    mask = (diff[..., 0] <= 12) & (diff[..., 1] <= 12) & (diff[..., 2] <= 12)
+    region[mask] = (236, 214, 189)  # restore as amber fill
+    arr[y0:y1, x0:x1] = region
 
 
 def _strip_pink(arr):
@@ -240,9 +344,27 @@ def clean_overlay(img):
         )
         if coords is not None:
             big_toe_cy, big_toe_cx, med_edge_cx = coords
-            # Crop bottom legend BEFORE drawing so we don't lose new
-            # green pixels near the bottom (HVA line is high up, so
-            # ordering doesn't matter for it, but keep array fresh).
+            # Strip the production orange HVA line from the interior
+            # band (between med_edge and big_toe, narrow vertical band
+            # around the big-toe Y). Foot outline doesn't pass through
+            # this interior region.
+            x0 = min(med_edge_cx, big_toe_cx) + 2
+            x1 = max(med_edge_cx, big_toe_cx) - 1
+            y0 = max(0, big_toe_cy - 4)
+            y1 = min(h, big_toe_cy + 4)
+            if x1 > x0:
+                _strip_orange_in_box(arr, x0, x1, y0, y1)
+            # The production HVA filled CIRCLE (radius 6) is centered
+            # at (big_toe_cx, prod_big_toe_cy). Our big_toe_cy might be
+            # offset by ±5, so strip orange in a 16x16 box around our
+            # big_toe_cx to catch the circle. Foot outline at big_toe
+            # tip IS in this box — to avoid erasing it we will redraw
+            # the green tick marker on top right after.
+            cx0 = max(0, big_toe_cx - 7)
+            cx1 = min(w, big_toe_cx + 8)
+            cy0 = max(0, big_toe_cy - 10)
+            cy1 = min(h, big_toe_cy + 10)
+            _strip_orange_in_box(arr, cx0, cx1, cy0, cy1)
             arr = arr[:h - LEGEND_HEIGHT, :, :]
             img2 = Image.fromarray(arr)
             _draw_green_hva_line(img2, line_left, line_right,
