@@ -26,7 +26,11 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 SAMPLE_SCANS = [
     "scan-2026-04-30T00-13-44",
     "scan-2026-04-13T15-21-21",
-    "scan-2026-04-26T08-40-41",
+    # Roman 2026-05-12: replaced scan-2026-04-26T08-40-41 — that scan
+    # had a corrupted side overlay (leg+foot captured by SAM3, flipped
+    # orientation). The fresh May 11 scan has matching profile (Roman
+    # toe, narrow forefoot, 2 shoes w/ fit data) plus a clean side.
+    "scan-2026-05-11T17-06-47",
     "scan-2026-04-26T20-39-30",
     "scan-2026-04-22T15-30-01",
 ]
