@@ -603,11 +603,23 @@ def _build_basics_paragraph_v2(p):
     # Sentence 1 — toe + forefoot + heel widths.
     # heel labels come back as "narrow heel" / "wide heel" / "normal";
     # strip the trailing " heel" so the sentence reads naturally.
+    # Roman 2026-05-08: avoid double "with" by using "with ... and ..."
+    # instead of "and ... with a ..."; also relabel "normal" → "medium-width"
+    # for the user-facing sentence (the classifier still outputs "normal").
     heel_label = hw_cls.replace(" heel", "") if hw_cls else "normal"
     forefoot_label = (fw_cls or "normal").replace(" forefoot", "")
 
-    s1 = (f"You have {article} {toe_cap} toe form and "
-          f"{forefoot_label} forefoot with a {heel_label} heel.")
+    def _width_lbl(x):
+        return "medium-width" if x == "normal" else x
+
+    if forefoot_label == heel_label:
+        # Same width front and back — collapse: "medium-width forefoot and heel"
+        s1 = (f"You have {article} {toe_cap} toe form with "
+              f"{_width_lbl(forefoot_label)} forefoot and heel.")
+    else:
+        s1 = (f"You have {article} {toe_cap} toe form with "
+              f"{_width_lbl(forefoot_label)} forefoot and a "
+              f"{_width_lbl(heel_label)} heel.")
 
     # Sentence 2 — overall profile label (T3.1..T3.4)
     s2 = _profile_label_t3(forefoot_label, hw_cls)
@@ -677,18 +689,24 @@ def _t4_clause(p):
             "sculpted cups will feel empty at the back."
         )
 
-    # T4.9 / T4.10 — HVA (verbatim from v1, condensed)
+    # T4.9 / T4.10 — HVA
+    # Roman 2026-05-08: lead with user-friendly "big toe drifts inwards"
+    # description and put the medical term in parentheses. Recommendation
+    # uses "not too asymmetric" instead of "less pointed" / "less aggressive".
     if hva in ("mild", "pronounced"):
+        drift_word = "slightly" if hva == "mild" else "noticeably"
         if toe == "egyptian":
             out.append(
-                f"For your {hva} hallux valgus, we avoid very asymmetric lasts "
-                "and prefer moderately asymmetric or wider-tipped designs that "
-                "help the big toe stay in contact with the shoe tip."
+                f"Your big toe drifts {drift_word} inwards (could be a "
+                f"{hva} hallux valgus); we avoid very asymmetric lasts "
+                "and prefer moderately asymmetric or wider-tipped designs "
+                "that help the big toe stay in contact with the shoe tip."
             )
-        else:  # greek or roman -- per Q2, treated the same
+        else:  # greek or roman — same treatment per Q2
             out.append(
-                f"For your {hva} hallux valgus, we prefer a slightly wider, "
-                "less pointed toe box to compensate for the inward drift."
+                f"Your big toe drifts {drift_word} inwards (could be a "
+                f"{hva} hallux valgus), hence we recommend a slightly "
+                "wider and not too asymmetric shape."
             )
 
     return out
