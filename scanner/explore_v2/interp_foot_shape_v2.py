@@ -564,6 +564,65 @@ def generate_foot_shape(profile):
     return paragraphs
 
 
+# ── 5-tier population reference (Roman 2026-05-08, sandbox) ────────────
+#
+# Replaces the production 3-tier classifier (still in foot_measure.py)
+# with a 5-tier scheme using 20th/40th/60th/80th percentiles from
+# n=340 production scans. Sandbox-only — production classifier untouched
+# until cutover.
+#
+# Tier order:    very_low / low / mid / high / very_high
+# vl_lo: bound between very_low and low (20th pctile)
+# lo:    bound between low and mid       (40th pctile)
+# hi:    bound between mid and high      (60th pctile)
+# vh_hi: bound between high and very_high (80th pctile)
+
+POP_5TIER = {
+    "forefoot_width_ratio":  {"vl_lo": 0.334, "lo": 0.347, "hi": 0.363, "vh_hi": 0.380},
+    "arch_length_ratio":     {"vl_lo": 0.703, "lo": 0.719, "hi": 0.731, "vh_hi": 0.745},
+    "heel_width_ratio":      {"vl_lo": 0.220, "lo": 0.233, "hi": 0.241, "vh_hi": 0.252},
+    "instep_height_ratio":   {"vl_lo": 0.243, "lo": 0.258, "hi": 0.270, "vh_hi": 0.289},
+    "heel_depth_ratio":      {"vl_lo": 0.024, "lo": 0.032, "hi": 0.041, "vh_hi": 0.051},
+}
+
+# Per-axis 5-tier label tuples (very_low, low, mid, high, very_high)
+_LABELS_5TIER = {
+    "forefoot_width_ratio":  ("very narrow", "narrow",       "medium-width", "wide",        "very wide"),
+    "arch_length_ratio":     ("very short",  "short arch",   "medium",       "long arch",   "very long"),
+    "heel_width_ratio":      ("very narrow", "narrow heel",  "medium-width", "wide heel",   "very wide heel"),
+    "instep_height_ratio":   ("very low",    "low instep",   "medium",       "high instep", "very high instep"),
+    "heel_depth_ratio":      ("very shallow","shallow heel", "medium",       "deep heel",   "very deep heel"),
+}
+
+
+def _classify_5tier(ratio_key, value):
+    """Classify a raw ratio into one of 5 tiers using POP_5TIER bounds.
+    Returns the user-facing label string (e.g. "very narrow" / "wide").
+    Falls back to "medium" if value or bounds are missing.
+    """
+    if value is None or ratio_key not in POP_5TIER:
+        return "medium"
+    p = POP_5TIER[ratio_key]
+    labels = _LABELS_5TIER[ratio_key]
+    if value < p["vl_lo"]:    return labels[0]
+    if value < p["lo"]:       return labels[1]
+    if value < p["hi"]:       return labels[2]
+    if value < p["vh_hi"]:    return labels[3]
+    return labels[4]
+
+
+def _is_extreme_low_5(label):
+    """Helper: True if label is 'very X' on the low side."""
+    return label.startswith("very ") and any(
+        x in label for x in ("narrow", "short", "low", "shallow"))
+
+
+def _is_extreme_high_5(label):
+    """Helper: True if label is 'very X' on the high side."""
+    return label.startswith("very ") and any(
+        x in label for x in ("wide", "long", "high", "deep"))
+
+
 # ── T2: Basics paragraph ───────────────────────────────────────────────
 
 _TOE_ARTICLE = {"egyptian": "an", "greek": "a", "roman": "a"}
@@ -594,36 +653,52 @@ def _build_basics_paragraph_v2(p):
     article = _TOE_ARTICLE.get(toe, "a")
     toe_cap = toe.capitalize()
 
-    # Roman 2026-05-01 audit S8 (Option A): boundaries stay as-is. Use the
-    # raw class straight from the classifier -- no soft promotion -- so the
-    # V2 prose always agrees with the live MetricBar.
-    fw_cls = p.get("forefoot_width_class", "normal")
-    hw_cls = p.get("heel_width_class", "normal")
+    # Roman 2026-05-08: use sandbox 5-tier classifier instead of the
+    # production 3-tier `*_class` columns. Production classes still get
+    # written; this just re-derives a more granular label from the raw
+    # ratio for prose (and to match the 5-section MetricBar in the renderer).
+    fw_lbl = _classify_5tier("forefoot_width_ratio", p.get("forefoot_width_ratio"))
+    hw_lbl = _classify_5tier("heel_width_ratio", p.get("heel_width_ratio"))
 
-    # Sentence 1 — toe + forefoot + heel widths.
-    # heel labels come back as "narrow heel" / "wide heel" / "normal";
-    # strip the trailing " heel" so the sentence reads naturally.
-    # Roman 2026-05-08: avoid double "with" by using "with ... and ..."
-    # instead of "and ... with a ..."; also relabel "normal" → "medium-width"
-    # for the user-facing sentence (the classifier still outputs "normal").
-    heel_label = hw_cls.replace(" heel", "") if hw_cls else "normal"
-    forefoot_label = (fw_cls or "normal").replace(" forefoot", "")
-
-    def _width_lbl(x):
-        return "medium-width" if x == "normal" else x
+    # Heel labels include " heel" suffix on the low/high tiers (e.g.
+    # "narrow heel", "wide heel"); strip for inline use.
+    heel_label = hw_lbl.replace(" heel", "")
+    forefoot_label = fw_lbl.replace(" forefoot", "")  # no-op (no suffix used)
 
     if forefoot_label == heel_label:
-        # Same width front and back — collapse: "medium-width forefoot and heel"
+        # Same width front and back — collapse
         s1 = (f"You have {article} {toe_cap} toe form with "
-              f"{_width_lbl(forefoot_label)} forefoot and heel.")
+              f"{forefoot_label} forefoot and heel.")
     else:
         s1 = (f"You have {article} {toe_cap} toe form with "
-              f"{_width_lbl(forefoot_label)} forefoot and a "
-              f"{_width_lbl(heel_label)} heel.")
+              f"{forefoot_label} forefoot and a "
+              f"{heel_label} heel.")
 
     # Sentence 2 — overall profile label (T3.1..T3.4)
-    s2 = _profile_label_t3(forefoot_label, hw_cls)
+    s2 = _profile_label_t3_5tier(forefoot_label, heel_label)
     return f"{s1} {s2}"
+
+
+def _profile_label_t3_5tier(fw_label, hw_label):
+    """5-tier-aware overall profile sentence.
+    fw_label / hw_label are raw 5-tier labels from _classify_5tier
+    (already stripped of " heel" / " forefoot" suffixes).
+    """
+    # Check for extreme matches on both ends
+    fw_low  = fw_label in ("very narrow", "narrow")
+    fw_med  = fw_label == "medium-width"
+    fw_high = fw_label in ("wide", "very wide")
+    hw_low  = hw_label in ("very narrow", "narrow")
+    hw_med  = hw_label == "medium-width"
+    hw_high = hw_label in ("wide", "very wide")
+
+    if fw_low and hw_low:
+        return "Throughout a narrow profile."
+    if fw_high and hw_high:
+        return "Throughout a wide profile."
+    if fw_med and hw_med:
+        return "Throughout a medium profile."
+    return "A mixed profile; forefoot and heel require different fits."
 
 
 # ── T4: Secondaries paragraph ─────────────────────────────────────────

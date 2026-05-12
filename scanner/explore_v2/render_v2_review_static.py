@@ -59,20 +59,33 @@ T = {
     "mono": "'JetBrains Mono', monospace",
 }
 
-# ─── ScanResult.jsx constants (verbatim) ───────────────────────────
+# ─── ScanResult.jsx constants (Roman 2026-05-08: 5-tier, sandbox) ──
+# Boundaries from POP_5TIER in interp_foot_shape_v2.py — derived from
+# n=340 production scans at the 20th/40th/60th/80th percentiles.
 POP = {
-    "forefoot_width_ratio":  {"mean": 0.355, "std": 0.028, "lo": 0.344, "hi": 0.367},
-    "arch_length_ratio":     {"mean": 0.725, "std": 0.025, "lo": 0.712, "hi": 0.734},
-    "heel_width_ratio":      {"mean": 0.238, "std": 0.022, "lo": 0.228, "hi": 0.245},
-    "instep_height_ratio":   {"mean": 0.264, "std": 0.036, "lo": 0.255, "hi": 0.273},
-    "heel_depth_ratio":      {"mean": 0.034, "std": 0.020, "lo": 0.028, "hi": 0.041},
+    "forefoot_width_ratio":  {"mean": 0.354, "std": 0.029,
+                              "vl_lo": 0.334, "lo": 0.347, "hi": 0.363, "vh_hi": 0.380},
+    "arch_length_ratio":     {"mean": 0.725, "std": 0.024,
+                              "vl_lo": 0.703, "lo": 0.719, "hi": 0.731, "vh_hi": 0.745},
+    "heel_width_ratio":      {"mean": 0.236, "std": 0.021,
+                              "vl_lo": 0.220, "lo": 0.233, "hi": 0.241, "vh_hi": 0.252},
+    "instep_height_ratio":   {"mean": 0.263, "std": 0.102,
+                              "vl_lo": 0.243, "lo": 0.258, "hi": 0.270, "vh_hi": 0.289},
+    "heel_depth_ratio":      {"mean": 0.036, "std": 0.030,
+                              "vl_lo": 0.024, "lo": 0.032, "hi": 0.041, "vh_hi": 0.051},
 }
+# HVA: kept at 3 tiers (per Roman 2026-05-08 — "use the HVA logic and
+# values, just visualization, call it differently"). Thresholds match
+# the existing classifier in foot_measure.py.
+HVA_BOUNDS = {"mild_lo": 0.25, "pronounced_lo": 0.35}
+
 META = {
     "forefoot_width_ratio":  "Forefoot Width",
     "arch_length_ratio":     "Arch Length",
     "heel_width_ratio":      "Heel Width",
     "instep_height_ratio":   "Instep Height",
     "heel_depth_ratio":      "Heel Depth",
+    "hva_offset_ratio":      "Big Toe Inward Drift",
 }
 VISUAL_SIGMA = 3
 TOE_DESCRIPTIONS = {
@@ -113,36 +126,46 @@ def fetch_shoe_images():
     return {s["slug"]: s.get("image_url") for s in r.json()}
 
 
-# ─── MetricBar (mirrors React) ─────────────────────────────────────
-def section_pct(val, vmin, lo, hi, vmax):
-    if val <= lo:
-        span = lo - vmin
-        t = (val - vmin) / span if span > 0 else 0.5
-        return max(0, min(1, t)) * 33.333
-    if val <= hi:
-        span = hi - lo
-        t = (val - lo) / span if span > 0 else 0.5
-        return 33.333 + max(0, min(1, t)) * 33.334
-    span = vmax - hi
-    t = (val - hi) / span if span > 0 else 0.5
-    return 66.667 + max(0, min(1, t)) * 33.333
+# ─── MetricBar (Roman 2026-05-08: 5-section) ───────────────────────
+# Each band is 20% of track width. Pointer position is interpolated
+# inside whichever band the value falls in.
+def section_pct_5(val, vmin, vl_lo, lo, hi, vh_hi, vmax):
+    """Compute pointer position 0-100 across a 5-section track."""
+    bounds = [vmin, vl_lo, lo, hi, vh_hi, vmax]
+    for i in range(5):
+        b0, b1 = bounds[i], bounds[i+1]
+        if val <= b1:
+            span = b1 - b0
+            t = (val - b0) / span if span > 0 else 0.5
+            t = max(0, min(1, t))
+            return i * 20 + t * 20
+    return 100.0
 
 
-def level_label(val, lo, hi):
-    if val < lo: return "low"
-    if val > hi: return "high"
-    return "mid"
+def level_label_5(val, vl_lo, lo, hi, vh_hi):
+    if val < vl_lo:  return "very low"
+    if val < lo:     return "low"
+    if val < hi:     return "mid"
+    if val < vh_hi:  return "high"
+    return "very high"
 
 
 def render_metric_bar(ratio_key, value):
     if value is None or ratio_key not in POP: return ""
     p = POP[ratio_key]
-    lo, hi = p["lo"], p["hi"]
+    vl_lo, lo, hi, vh_hi = p["vl_lo"], p["lo"], p["hi"], p["vh_hi"]
     vmin = max(0, p["mean"] - VISUAL_SIGMA * p["std"])
     vmax = p["mean"] + VISUAL_SIGMA * p["std"]
-    pos = section_pct(value, vmin, lo, hi, vmax)
-    lbl = level_label(value, lo, hi)
-    col = T["accent"] if lbl in ("low", "high") else T["green"]
+    pos = section_pct_5(value, vmin, vl_lo, lo, hi, vh_hi, vmax)
+    lbl = level_label_5(value, vl_lo, lo, hi, vh_hi)
+    # Color: extremes (very_low / very_high) full accent; one-step
+    # off-center (low/high) muted accent; mid green.
+    if lbl in ("very low", "very high"):
+        col = T["accent"]
+    elif lbl in ("low", "high"):
+        col = T["accent"]
+    else:
+        col = T["green"]
     label = META.get(ratio_key, ratio_key)
     return f"""
 <div class="mbar">
@@ -151,12 +174,60 @@ def render_metric_bar(ratio_key, value):
     <span class="mbar-level" style="color:{col}">{lbl}</span>
   </div>
   <div class="mbar-track">
+    <div class="mbar-band b5-1"></div>
+    <div class="mbar-band b5-2"></div>
+    <div class="mbar-band b5-3"></div>
+    <div class="mbar-band b5-4"></div>
+    <div class="mbar-band b5-5"></div>
+    <div class="mbar-pointer" title="{value:.3f}" style="left:{pos:.2f}%; background:{col}"></div>
+  </div>
+  <div class="mbar-axis-5"><span>very low</span><span>low</span><span>mid</span><span>high</span><span>very high</span></div>
+</div>
+"""
+
+
+# ─── HVA slider (Roman 2026-05-08): 3 sections, label "Big toe inward
+# drift". Uses existing 3-tier thresholds (none / mild / pronounced).
+def render_hva_bar(value, hva_class=None):
+    if value is None: return ""
+    mild_lo = HVA_BOUNDS["mild_lo"]       # 0.25
+    pronounced_lo = HVA_BOUNDS["pronounced_lo"]  # 0.35
+    # Visualize on a track from 0 to ~0.50 (covers all observed values).
+    vmin = 0.0
+    vmax = 0.50
+    bounds = [vmin, mild_lo, pronounced_lo, vmax]
+    pos = 0.0
+    for i in range(3):
+        b0, b1 = bounds[i], bounds[i+1]
+        if value <= b1:
+            span = b1 - b0
+            t = (value - b0) / span if span > 0 else 0.5
+            t = max(0, min(1, t))
+            pos = i * 33.333 + t * 33.333
+            break
+    else:
+        pos = 100.0
+
+    if value < mild_lo:
+        lbl, col = "none", T["green"]
+    elif value < pronounced_lo:
+        lbl, col = "mild", T["accent"]
+    else:
+        lbl, col = "pronounced", T["accent"]
+
+    return f"""
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Big Toe Inward Drift</span>
+    <span class="mbar-level" style="color:{col}">{lbl}</span>
+  </div>
+  <div class="mbar-track">
     <div class="mbar-band b1"></div>
     <div class="mbar-band b2"></div>
     <div class="mbar-band b3"></div>
     <div class="mbar-pointer" title="{value:.3f}" style="left:{pos:.2f}%; background:{col}"></div>
   </div>
-  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+  <div class="mbar-axis"><span>none</span><span>mild</span><span>pronounced</span></div>
 </div>
 """
 
@@ -280,7 +351,16 @@ def render_section_nav(groups):
 
 
 def render_foot_views(scan, scan_id):
-    sole_url = f"{SB_URL}/storage/v1/object/public/foot-scans/scans/{scan_id}-sole_overlay.png"
+    # Roman 2026-05-08: prefer the sandbox-cleaned sole overlay (avg
+    # silhouette + HVA text + bottom legend stripped). Falls back to
+    # production overlay if the clean version isn't generated yet.
+    clean_sole = (Path(__file__).resolve().parent
+                  / "sample_cases_2026_05_02" / "sole_overlays"
+                  / f"{scan_id}-sole_overlay-clean.png")
+    if clean_sole.exists():
+        sole_url = f"sole_overlays/{scan_id}-sole_overlay-clean.png"
+    else:
+        sole_url = f"{SB_URL}/storage/v1/object/public/foot-scans/scans/{scan_id}-sole_overlay.png"
     side_url = f"{SB_URL}/storage/v1/object/public/foot-scans/scans/{scan_id}-side_overlay.png"
     toe = scan.get("toe_shape") or "egyptian"
     toe_desc = TOE_DESCRIPTIONS.get(toe, TOE_DESCRIPTIONS["egyptian"])
@@ -290,9 +370,11 @@ def render_foot_views(scan, scan_id):
         render_metric_bar("arch_length_ratio", scan.get("arch_length_ratio")),
         render_metric_bar("heel_width_ratio", scan.get("heel_width_ratio")),
     ])
+    # Roman 2026-05-08: HVA slider added to side view as a 3rd row.
     side_metrics = "".join([
         render_metric_bar("instep_height_ratio", scan.get("instep_height_ratio")),
         render_metric_bar("heel_depth_ratio", scan.get("heel_depth_ratio")),
+        render_hva_bar(scan.get("hva_offset_ratio"), scan.get("hallux_valgus_class")),
     ])
 
     return f"""
@@ -558,6 +640,12 @@ body {{ font-family: {T['font']}; background: {T['bg']}; color: {T['text']}; }}
 .mbar-band.b1 {{ left: 0; background: #ece5d4; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
 .mbar-band.b2 {{ left: 33.333%; background: #d6cdb4; border-left: 1px solid #c4b99a; border-right: 1px solid #c4b99a; }}
 .mbar-band.b3 {{ left: 66.666%; background: #ece5d4; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
+/* 5-section bands (Roman 2026-05-08): extremes amber-strong, off-mid amber-soft, mid green */
+.mbar-band.b5-1 {{ left: 0;     width: 20%; background: #e8c79b; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
+.mbar-band.b5-2 {{ left: 20%;   width: 20%; background: #efdbc1; }}
+.mbar-band.b5-3 {{ left: 40%;   width: 20%; background: #cad7c4; border-left: 1px solid #b9c8b1; border-right: 1px solid #b9c8b1; }}
+.mbar-band.b5-4 {{ left: 60%;   width: 20%; background: #efdbc1; }}
+.mbar-band.b5-5 {{ left: 80%;   width: 20%; background: #e8c79b; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
 .mbar-pointer {{ position: absolute; top: -3px; transform: translateX(-50%);
                 width: 4px; height: 14px; border-radius: 2px;
                 box-shadow: 0 0 0 1.5px #fff; }}
@@ -566,6 +654,13 @@ body {{ font-family: {T['font']}; background: {T['bg']}; color: {T['text']}; }}
 .mbar-axis span:nth-child(1) {{ text-align: left; }}
 .mbar-axis span:nth-child(2) {{ text-align: center; }}
 .mbar-axis span:nth-child(3) {{ text-align: right; }}
+.mbar-axis-5 {{ display: flex; font-size: 0.55rem; color: #a8a08e; text-transform: lowercase; }}
+.mbar-axis-5 span {{ flex: 1; }}
+.mbar-axis-5 span:nth-child(1) {{ text-align: left; }}
+.mbar-axis-5 span:nth-child(5) {{ text-align: right; }}
+.mbar-axis-5 span:nth-child(2),
+.mbar-axis-5 span:nth-child(3),
+.mbar-axis-5 span:nth-child(4) {{ text-align: center; }}
 
 /* ─── Big section headlines ─── */
 .big-h2 {{ font-family: {T['display']}; font-size: 1.3rem; color: {T['text']};

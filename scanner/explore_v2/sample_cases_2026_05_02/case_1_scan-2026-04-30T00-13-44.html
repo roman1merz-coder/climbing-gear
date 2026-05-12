@@ -120,6 +120,12 @@ body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; backgro
 .mbar-band.b1 { left: 0; background: #ece5d4; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
 .mbar-band.b2 { left: 33.333%; background: #d6cdb4; border-left: 1px solid #c4b99a; border-right: 1px solid #c4b99a; }
 .mbar-band.b3 { left: 66.666%; background: #ece5d4; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+/* 5-section bands (Roman 2026-05-08): extremes amber-strong, off-mid amber-soft, mid green */
+.mbar-band.b5-1 { left: 0;     width: 20%; background: #e8c79b; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+.mbar-band.b5-2 { left: 20%;   width: 20%; background: #efdbc1; }
+.mbar-band.b5-3 { left: 40%;   width: 20%; background: #cad7c4; border-left: 1px solid #b9c8b1; border-right: 1px solid #b9c8b1; }
+.mbar-band.b5-4 { left: 60%;   width: 20%; background: #efdbc1; }
+.mbar-band.b5-5 { left: 80%;   width: 20%; background: #e8c79b; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
 .mbar-pointer { position: absolute; top: -3px; transform: translateX(-50%);
                 width: 4px; height: 14px; border-radius: 2px;
                 box-shadow: 0 0 0 1.5px #fff; }
@@ -128,6 +134,13 @@ body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; backgro
 .mbar-axis span:nth-child(1) { text-align: left; }
 .mbar-axis span:nth-child(2) { text-align: center; }
 .mbar-axis span:nth-child(3) { text-align: right; }
+.mbar-axis-5 { display: flex; font-size: 0.55rem; color: #a8a08e; text-transform: lowercase; }
+.mbar-axis-5 span { flex: 1; }
+.mbar-axis-5 span:nth-child(1) { text-align: left; }
+.mbar-axis-5 span:nth-child(5) { text-align: right; }
+.mbar-axis-5 span:nth-child(2),
+.mbar-axis-5 span:nth-child(3),
+.mbar-axis-5 span:nth-child(4) { text-align: center; }
 
 /* ─── Big section headlines ─── */
 .big-h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; color: #2c3227;
@@ -248,7 +261,7 @@ body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; backgro
     </div>
     <div class="view-body sole-body">
       <div class="view-img-wrap">
-        <img src="https://wsjsuhvpgupalwgcjatp.supabase.co/storage/v1/object/public/foot-scans/scans/scan-2026-04-30T00-13-44-sole_overlay.png" alt="sole overlay" onerror="this.style.opacity=0.2" />
+        <img src="sole_overlays/scan-2026-04-30T00-13-44-sole_overlay-clean.png" alt="sole overlay" onerror="this.style.opacity=0.2" />
       </div>
       <div class="view-side">
         <div class="toe-card">
@@ -262,15 +275,17 @@ body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; backgro
 <div class="mbar">
   <div class="mbar-row">
     <span class="mbar-label">Forefoot Width</span>
-    <span class="mbar-level" style="color:#c98a42">high</span>
+    <span class="mbar-level" style="color:#c98a42">very high</span>
   </div>
   <div class="mbar-track">
-    <div class="mbar-band b1"></div>
-    <div class="mbar-band b2"></div>
-    <div class="mbar-band b3"></div>
-    <div class="mbar-pointer" title="0.397" style="left:80.56%; background:#c98a42"></div>
+    <div class="mbar-band b5-1"></div>
+    <div class="mbar-band b5-2"></div>
+    <div class="mbar-band b5-3"></div>
+    <div class="mbar-band b5-4"></div>
+    <div class="mbar-band b5-5"></div>
+    <div class="mbar-pointer" title="0.397" style="left:85.57%; background:#c98a42"></div>
   </div>
-  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+  <div class="mbar-axis-5"><span>very low</span><span>low</span><span>mid</span><span>high</span><span>very high</span></div>
 </div>
 
 <div class="mbar">
@@ -279,26 +294,30 @@ body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; backgro
     <span class="mbar-level" style="color:#3d7a52">mid</span>
   </div>
   <div class="mbar-track">
-    <div class="mbar-band b1"></div>
-    <div class="mbar-band b2"></div>
-    <div class="mbar-band b3"></div>
-    <div class="mbar-pointer" title="0.725" style="left:53.03%; background:#3d7a52"></div>
+    <div class="mbar-band b5-1"></div>
+    <div class="mbar-band b5-2"></div>
+    <div class="mbar-band b5-3"></div>
+    <div class="mbar-band b5-4"></div>
+    <div class="mbar-band b5-5"></div>
+    <div class="mbar-pointer" title="0.725" style="left:50.00%; background:#3d7a52"></div>
   </div>
-  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+  <div class="mbar-axis-5"><span>very low</span><span>low</span><span>mid</span><span>high</span><span>very high</span></div>
 </div>
 
 <div class="mbar">
   <div class="mbar-row">
     <span class="mbar-label">Heel Width</span>
-    <span class="mbar-level" style="color:#c98a42">low</span>
+    <span class="mbar-level" style="color:#c98a42">very low</span>
   </div>
   <div class="mbar-track">
-    <div class="mbar-band b1"></div>
-    <div class="mbar-band b2"></div>
-    <div class="mbar-band b3"></div>
-    <div class="mbar-pointer" title="0.211" style="left:23.21%; background:#c98a42"></div>
+    <div class="mbar-band b5-1"></div>
+    <div class="mbar-band b5-2"></div>
+    <div class="mbar-band b5-3"></div>
+    <div class="mbar-band b5-4"></div>
+    <div class="mbar-band b5-5"></div>
+    <div class="mbar-pointer" title="0.211" style="left:16.17%; background:#c98a42"></div>
   </div>
-  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+  <div class="mbar-axis-5"><span>very low</span><span>low</span><span>mid</span><span>high</span><span>very high</span></div>
 </div>
 
       </div>
@@ -317,35 +336,53 @@ body { font-family: 'DM Sans', 'Instrument Sans', system-ui, sans-serif; backgro
 <div class="mbar">
   <div class="mbar-row">
     <span class="mbar-label">Instep Height</span>
-    <span class="mbar-level" style="color:#c98a42">high</span>
+    <span class="mbar-level" style="color:#c98a42">very high</span>
   </div>
   <div class="mbar-track">
-    <div class="mbar-band b1"></div>
-    <div class="mbar-band b2"></div>
-    <div class="mbar-band b3"></div>
-    <div class="mbar-pointer" title="0.306" style="left:77.78%; background:#c98a42"></div>
+    <div class="mbar-band b5-1"></div>
+    <div class="mbar-band b5-2"></div>
+    <div class="mbar-band b5-3"></div>
+    <div class="mbar-band b5-4"></div>
+    <div class="mbar-band b5-5"></div>
+    <div class="mbar-pointer" title="0.306" style="left:81.21%; background:#c98a42"></div>
   </div>
-  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+  <div class="mbar-axis-5"><span>very low</span><span>low</span><span>mid</span><span>high</span><span>very high</span></div>
 </div>
 
 <div class="mbar">
   <div class="mbar-row">
     <span class="mbar-label">Heel Depth</span>
-    <span class="mbar-level" style="color:#3d7a52">mid</span>
+    <span class="mbar-level" style="color:#c98a42">low</span>
+  </div>
+  <div class="mbar-track">
+    <div class="mbar-band b5-1"></div>
+    <div class="mbar-band b5-2"></div>
+    <div class="mbar-band b5-3"></div>
+    <div class="mbar-band b5-4"></div>
+    <div class="mbar-band b5-5"></div>
+    <div class="mbar-pointer" title="0.030" style="left:35.00%; background:#c98a42"></div>
+  </div>
+  <div class="mbar-axis-5"><span>very low</span><span>low</span><span>mid</span><span>high</span><span>very high</span></div>
+</div>
+
+<div class="mbar">
+  <div class="mbar-row">
+    <span class="mbar-label">Big Toe Inward Drift</span>
+    <span class="mbar-level" style="color:#3d7a52">none</span>
   </div>
   <div class="mbar-track">
     <div class="mbar-band b1"></div>
     <div class="mbar-band b2"></div>
     <div class="mbar-band b3"></div>
-    <div class="mbar-pointer" title="0.030" style="left:38.46%; background:#3d7a52"></div>
+    <div class="mbar-pointer" title="0.166" style="left:22.13%; background:#3d7a52"></div>
   </div>
-  <div class="mbar-axis"><span>low</span><span>mid</span><span>high</span></div>
+  <div class="mbar-axis"><span>none</span><span>mild</span><span>pronounced</span></div>
 </div>
 </div>
     </div>
   </div>
 </div>
-<div class="interp-section" id="interpretation-section"><h2 class="big-h2">What This Means</h2><div class="interp-block"><h3 class="interp-h3">Your Foot Shape</h3><p class="interp-p">You have an Egyptian toe form with wide forefoot and a narrow heel. A mixed profile; forefoot and heel require different fits.</p><p class="interp-p">Beyond the obvious: Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized.</p></div><div class="interp-block"><h3 class="interp-h3">What Your Current Shoe Fit Tells Us</h3><p class="interp-p">You wear your La Sportiva shoes in sizes EU 36 to 37.5, ranging from one size down to 2.5 sizes down from your street size of 38.5. The typical downsize for La Sportiva is 2.5 sizes down; the per-shoe diagnoses below break down each pair.</p><p class="interp-p">Your La Sportiva Tarantulace Women&#x27;s toes feel roomy and the forefoot feels loose while your other shoe fits. Comparing your La Sportiva Tarantulace Women&#x27;s to your foot profile, it should fit. You only downsized one size down vs the usual 2.5 sizes down for La Sportiva, so going down further could tighten the fit.</p></div><div class="interp-block"><h3 class="interp-h3">What to Look For</h3><p class="interp-p">Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and narrow heel width.</p><p class="interp-p">Given your preference for bouldering indoors and a balanced fit, we prioritize soft velcros (avoiding pure slippers due to your high instep) with slight downturn and moderate asymmetry (shifted higher to match your Egyptian toe shape).</p><p class="interp-p">The softer, stiffer, and budget tiers below offer alternative options around this target.</p></div></div><div class="recs-section"><h2 class="big-h2">Recommended Shoes</h2><div class="rec-group" id="recs-baseline"><div class="rec-head"><h3 class="interp-h3">Your Best Match</h3><p class="rec-desc">Similar feel and use case to your current shoes</p></div><div class="shoe-grid">
+<div class="interp-section" id="interpretation-section"><h2 class="big-h2">What This Means</h2><div class="interp-block"><h3 class="interp-h3">Your Foot Shape</h3><p class="interp-p">You have an Egyptian toe form with very wide forefoot and a very narrow heel. A mixed profile; forefoot and heel require different fits.</p><p class="interp-p">Beyond the obvious: Additionally your instep is rather high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized.</p></div><div class="interp-block"><h3 class="interp-h3">What Your Current Shoe Fit Tells Us</h3><p class="interp-p">You wear your La Sportiva shoes in sizes EU 36 to 37.5, ranging from one size down to 2.5 sizes down from your street size of 38.5. The typical downsize for La Sportiva is 2.5 sizes down; the per-shoe diagnoses below break down each pair.</p><p class="interp-p">Your La Sportiva Tarantulace Women&#x27;s toes feel roomy and the forefoot feels loose while your other shoe fits. Comparing your La Sportiva Tarantulace Women&#x27;s to your foot profile, it should fit. You only downsized one size down vs the usual 2.5 sizes down for La Sportiva, so going down further could tighten the fit.</p></div><div class="interp-block"><h3 class="interp-h3">What to Look For</h3><p class="interp-p">Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width, and narrow heel width.</p><p class="interp-p">Given your preference for bouldering indoors and a balanced fit, we prioritize soft velcros (avoiding pure slippers due to your high instep) with slight downturn and moderate asymmetry (shifted higher to match your Egyptian toe shape).</p><p class="interp-p">The softer, stiffer, and budget tiers below offer alternative options around this target.</p></div></div><div class="recs-section"><h2 class="big-h2">Recommended Shoes</h2><div class="rec-group" id="recs-baseline"><div class="rec-head"><h3 class="interp-h3">Your Best Match</h3><p class="rec-desc">Similar feel and use case to your current shoes</p></div><div class="shoe-grid">
 <div class="shoe-card">
   <div class="shoe-img-wrap">
     <img src="https://www.climbing-gear.com/images/shoes/so-ill-stay.jpg" alt="So iLL Stay" loading="lazy" />
