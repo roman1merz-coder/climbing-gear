@@ -512,6 +512,36 @@ _MIDSOLE_STIFF_LABEL = {
     "hard": "hard",
 }
 
+def _stiffness_word_9(s):
+    """Roman 2026-05-08: replace V1's 7-level stiffness vocab with a
+    9-level scheme using ~0.10 bins. The old "sensitive" bin (0.25-0.40)
+    was 15 percentile points wide and swallowed multiple picks per case.
+    Finer bins give P1 distinct labels per pick.
+
+      < 0.15        super soft
+      0.15 - 0.25   very soft
+      0.25 - 0.35   soft
+      0.35 - 0.45   medium-soft
+      0.45 - 0.55   balanced
+      0.55 - 0.65   medium-firm
+      0.65 - 0.75   firm
+      0.75 - 0.85   very firm
+      >= 0.85       super firm
+    """
+    if s is None:
+        return ""
+    s = float(s)
+    if s < 0.15: return "super soft"
+    if s < 0.25: return "very soft"
+    if s < 0.35: return "soft"
+    if s < 0.45: return "medium-soft"
+    if s < 0.55: return "balanced"
+    if s < 0.65: return "medium-firm"
+    if s < 0.75: return "firm"
+    if s < 0.85: return "very firm"
+    return "super firm"
+
+
 _DOWNTURN_PHRASE = {
     "flat":       "flat profile",
     "slight":     "slight downturn",
@@ -574,7 +604,9 @@ def _build_p1_v2(pick, profile):
         if width == hv:
             fit_str = f"{width} fit throughout{vol_suffix}"
         else:
-            fit_str = f"{width} forefoot with a {hv} heel cup{vol_suffix}"
+            # Roman 2026-05-08: "and a" not "with a" — avoids double "with"
+            # when the closure prefix is "Velcro with Egyptian toe form".
+            fit_str = f"{width} forefoot and a {hv} heel cup{vol_suffix}"
     elif width:
         fit_str = f"{width} forefoot{vol_suffix}"
 
@@ -611,7 +643,9 @@ def _build_p1_v2(pick, profile):
     else:
         midsole_phrase = ""
 
-    stiff_word = _stiffness_word(pick.get("stiffness")) if pick.get("stiffness") is not None else ""
+    # Roman 2026-05-08: 9-level stiffness vocab (replaces V1's 7-level
+    # which had a too-wide "sensitive" bin that swallowed multiple picks).
+    stiff_word = _stiffness_word_9(pick.get("stiffness"))
 
     downturn = (pick.get("downturn") or "").lower()
     asym = (pick.get("asymmetry") or "").lower()
