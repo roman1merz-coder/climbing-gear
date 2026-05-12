@@ -646,9 +646,12 @@ body {{ font-family: {T['font']}; background: {T['bg']}; color: {T['text']}; }}
 .mbar-level {{ font-size: 0.78rem; font-weight: 700; }}
 .mbar-track {{ height: 8px; border-radius: 4px; position: relative; overflow: visible; }}
 .mbar-band {{ position: absolute; top: 0; bottom: 0; width: 33.333%; }}
-.mbar-band.b1 {{ left: 0; background: #ece5d4; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
-.mbar-band.b2 {{ left: 33.333%; background: #d6cdb4; border-left: 1px solid #c4b99a; border-right: 1px solid #c4b99a; }}
-.mbar-band.b3 {{ left: 66.666%; background: #ece5d4; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
+/* Roman 2026-05-08: HVA 3-tier bands now match the 5-tier color
+   semantics — none = green tint, mild = light orange, pronounced =
+   darker orange. */
+.mbar-band.b1 {{ left: 0; background: #cad7c4; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
+.mbar-band.b2 {{ left: 33.333%; background: #efdbc1; border-left: 1px solid #d8c4a4; border-right: 1px solid #d8c4a4; }}
+.mbar-band.b3 {{ left: 66.666%; background: #e8c79b; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }}
 /* 5-section bands (Roman 2026-05-08): extremes amber-strong, off-mid amber-soft, mid green */
 .mbar-band.b5-1 {{ left: 0;     width: 20%; background: #e8c79b; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }}
 .mbar-band.b5-2 {{ left: 20%;   width: 20%; background: #efdbc1; }}
