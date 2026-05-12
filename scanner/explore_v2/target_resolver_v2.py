@@ -63,6 +63,55 @@ from target_asym_dt import (
 
 
 # ── Main API ───────────────────────────────────────────────────────────
+_LOOSE_RATINGS = ("loose", "empty", "roomy")
+_TIGHT_RATINGS = ("tight", "squeezed")
+_DOWNSIZE_ARTIFACT_THRESHOLD = 0.5  # matches "typical" band in _relative_downsize
+
+
+def _scrub_sizing_artifacts(shoes, street):
+    """Blank per-shoe-per-dim fit ratings that are explained by the
+    user's downsize choice rather than a real cup-mismatch.
+
+    Rule (applies to every dim — heel / forefoot / toes):
+      - loose-direction rating in an oversized shoe  -> artifact, blank.
+      - tight-direction rating in an aggressively
+        downsized shoe                                -> artifact, blank.
+
+    Returns a deep-enough copy of the shoes list with offending
+    fit-dim values replaced by "" (which suppresses vote generation
+    in benchmark.target_resolver._shoe_votes).
+    """
+    if not shoes or street is None:
+        return shoes or []
+    # Local import to avoid circular dep at module load (interp_shoe_fit_v2
+    # imports from target_resolver_v2 via the scorer chain).
+    from interp_shoe_fit_v2 import _relative_downsize
+    out = []
+    for s in shoes:
+        size  = s.get("size_eu")
+        brand = s.get("brand")
+        fit   = dict(s.get("fit") or {})
+        if size is not None and brand:
+            try:
+                _, rel, _ = _relative_downsize(float(street), float(size), brand)
+            except (TypeError, ValueError):
+                rel = 0.0
+            if rel <= -_DOWNSIZE_ARTIFACT_THRESHOLD:
+                # Oversized for brand → loose-direction feedback is an artifact
+                for dim, rating in list(fit.items()):
+                    if rating in _LOOSE_RATINGS:
+                        fit[dim] = ""
+            elif rel >= _DOWNSIZE_ARTIFACT_THRESHOLD:
+                # Aggressively downsized → tight-direction feedback is an artifact
+                for dim, rating in list(fit.items()):
+                    if rating in _TIGHT_RATINGS:
+                        fit[dim] = ""
+        new_s = dict(s)
+        new_s["fit"] = fit
+        out.append(new_s)
+    return out
+
+
 def resolve_targets_v2(profile, shoes, aggressiveness):
     """Resolve all five v2 targets in one call.
 
@@ -96,45 +145,40 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     preserved verbatim — downstream callers that only care about width/
     volume keep working.
     """
-    # ── v1 axes (unchanged) ───────────────────────────────────────────
-    out = dict(_v1_resolve_targets(profile, shoes))
+    # ── Sizing-artifact filter (Roman 2026-05-12) ────────────────────
+    # A feedback rating is a SIZING ARTIFACT when the user's downsize
+    # choice (vs brand typical) fully explains it:
+    #
+    #   loose / empty / roomy in a shoe sized > typical for the brand
+    #     → naturally loose because the shoe is oversized for the user's
+    #       expected fit, NOT because the cup is too big.
+    #
+    #   tight / squeezed in a shoe sized < typical for the brand
+    #     → naturally tight because the user downsized aggressively,
+    #       NOT because the cup is too small.
+    #
+    # Threshold ±0.5 sizes from brand typical matches the existing
+    # "typical" band in interp_shoe_fit_v2._relative_downsize. Applied
+    # to all three dims (heel / forefoot / toes) — blanking the
+    # offending dim per shoe BEFORE the v1 resolver runs so the
+    # artifact never generates a vote. Sandbox-only.
+    street = profile.get("street_size_eu")
+    clean_shoes = _scrub_sizing_artifacts(shoes, street) if street else shoes
+    out = dict(_v1_resolve_targets(profile, clean_shoes))
 
-    # Roman 2026-05-12: the v1 shallow-heel vote always forces target_hv
-    # to rank 0 (narrow). That logic conflates heel DEPTH (anteroposterior
-    # projection) with heel cup VOLUME (width × depth). For a user with
-    # WIDE heel + shallow heel, it drags the target away from the user's
-    # actual heel size — even when shoe feedback also says "tight heel,
-    # go wider". We rerun the aggregation with the shallow-heel vote
-    # removed when the user's heel WIDTH scan says wide (rank 2). The
-    # vote stays for narrow/medium heel widths where it's anatomically
-    # consistent. Production target_resolver untouched (project memory
-    # heel_cup_geometry_future tracks the proper fix: a separate
-    # heel_cup_shallow_compatible axis).
-    # Roman 2026-05-12: two corrections applied as a single rerun.
-    #
-    #  (A) Shallow-heel vote always forces rank 0 (narrow). Conflates
-    #      heel DEPTH with cup VOLUME. Drop it when scan_heel_width is
-    #      wide — the scan there is the stronger signal.
-    #
-    #  (B) When heel feedback is CONTRADICTORY (some shoes report tight
-    #      AND others report empty), the user's lived fit experience is
-    #      ambiguous and the simple weighted average dilutes the scan
-    #      with noise. We boost the scan vote's weight ×3 in that case
-    #      so the scan dominates as the tiebreaker. Single-direction
-    #      feedback (all tight, all empty, or only perfect+one side)
-    #      keeps the original weighting.
-    #
-    # Both rules are sandbox-only — production target_resolver untouched.
-    # Proper fix tracked in project_heel_cup_geometry_future.md (separate
-    # heel_cup_shallow axis on shoes + smarter sizing-artifact detection).
-    needs_rerun_A = out.get("shallow_heel_triggered") and out.get("meas_hv") == 2
-    heel_fits = [(s.get("fit") or {}).get("heel") for s in (shoes or [])]
-    has_tight = any(f in ("tight", "squeezed") for f in heel_fits)
-    has_empty = any(f in ("empty", "loose") for f in heel_fits)
-    needs_rerun_B = has_tight and has_empty
-    if needs_rerun_A or needs_rerun_B:
+    # ── Shallow-heel vote misfire for wide-heel users ────────────────
+    # The v1 shallow_heel vote always forces target_hv to rank 0
+    # (narrow). It conflates heel DEPTH (anteroposterior projection)
+    # with heel cup VOLUME (width × depth). For a user with a wide
+    # heel + shallow heel, that drags target_hv away from the user's
+    # actual heel size. Drop the depth vote when scan_heel_width says
+    # wide (rank 2); keep it for narrow / medium heel widths where it
+    # is anatomically consistent. Long-term fix tracked in
+    # project_heel_cup_geometry_future.md (separate heel_cup_shallow
+    # axis on shoes).
+    if out.get("shallow_heel_triggered") and out.get("meas_hv") == 2:
         from benchmark.target_resolver import (
-            _scan_vote, _shoe_votes, _aggregate, _heel_depth_vote,
+            _scan_vote, _shoe_votes, _aggregate,
             POP_HEEL_WIDTH_LO, POP_HEEL_WIDTH_HI,
         )
         scan_hv = _scan_vote(
@@ -143,24 +187,13 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
             "scan_heel_width",
             "heel width {ratio:.3f} (conf {confidence:.2f})",
         )
-        # Drop the depth vote only when the wide-heel guard fires (A);
-        # otherwise leave it in (B alone keeps the production behaviour).
-        depth_hv = None if needs_rerun_A else _heel_depth_vote(
-            profile.get("heel_depth_ratio")
-        )
-        _, fb_hv, _ = _shoe_votes(shoes or [])
-        if needs_rerun_B and scan_hv is not None:
-            scan_hv = dict(scan_hv)
-            scan_hv["weight"] *= 3.0
-            scan_hv["note"] += "; scan boosted ×3 (contradictory heel feedback)"
-        votes_hv = ([scan_hv]  if scan_hv  else []) + \
-                   ([depth_hv] if depth_hv else []) + fb_hv
+        _, fb_hv, _ = _shoe_votes(clean_shoes or [])
+        votes_hv = ([scan_hv] if scan_hv else []) + fb_hv
         tgt_hv, avg_hv = _aggregate(votes_hv, fallback_rank=1, tie="down")
         out["target_hv"] = tgt_hv
         out["avg_hv"]    = avg_hv
         out["votes_hv"]  = votes_hv
-        if needs_rerun_A: out["shallow_heel_suppressed_for_wide_heel"] = True
-        if needs_rerun_B: out["scan_boosted_for_contradictory_heel_fb"] = True
+        out["shallow_heel_suppressed_for_wide_heel"] = True
 
     # ── v2 axes ───────────────────────────────────────────────────────
     toe_shape = profile.get("toe_shape")
