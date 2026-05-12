@@ -522,7 +522,10 @@ def _stiffness_word_9(s):
       0.15 - 0.25   very soft
       0.25 - 0.35   soft
       0.35 - 0.45   medium-soft
-      0.45 - 0.55   balanced
+      0.45 - 0.55   balanced-stiffness  (hyphenated — "balanced" alone
+                                          would be ambiguous in P1's
+                                          "balanced shoe" reading;
+                                          consistent with §3 wording)
       0.55 - 0.65   medium-firm
       0.65 - 0.75   firm
       0.75 - 0.85   very firm
@@ -535,7 +538,7 @@ def _stiffness_word_9(s):
     if s < 0.25: return "very soft"
     if s < 0.35: return "soft"
     if s < 0.45: return "medium-soft"
-    if s < 0.55: return "balanced"
+    if s < 0.55: return "balanced-stiffness"
     if s < 0.65: return "medium-firm"
     if s < 0.75: return "firm"
     if s < 0.85: return "very firm"
