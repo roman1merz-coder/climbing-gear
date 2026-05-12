@@ -803,15 +803,36 @@ def main():
     for tname in ("baseline", "softer", "stiffer", "budget"):
         for sc, sh in tiers[tname]:
             all_picks_flat.append(flatten_pick(sc, sh, tier=tname, target=target))
+    # Roman 2026-05-08: prices for ALL tiers (not just budget). matrix_scorer_v2
+    # only attaches best_price_at_size to budget picks because that tier is
+    # selected by price; baseline/softer/stiffer never get prices attached
+    # internally. Look them up here per pick using the shoe's recommended
+    # size at this brand, so every card shows a price when a vendor is in
+    # stock at that size.
+    from matrix_scorer_v2 import best_price_at_size as _best_price
     price_lookup = {}
-    for sc, sh in tiers["budget"]:
-        if sc.get("best_price_at_size") is not None:
-            price_lookup[sh["slug"]] = sc["best_price_at_size"]
+    for tname in ("baseline", "softer", "stiffer", "budget"):
+        for sc, sh in tiers[tname]:
+            slug = sh.get("slug")
+            if slug in price_lookup:
+                continue
+            # Budget already has the price annotated on sc.
+            existing = sc.get("best_price_at_size")
+            if existing is not None:
+                price_lookup[slug] = existing
+                continue
+            # Compute price-at-recommended-size for this shoe.
+            rec_size = calc_rec_size(profile["shoes"], sh.get("brand"),
+                                      brand_sizing, street_size, pref)
+            if rec_size is not None:
+                p = _best_price(slug, rec_size, price_rows)
+                if p is not None:
+                    price_lookup[slug] = p
 
     recommendations = []
     for tname in ("baseline", "softer", "stiffer", "budget"):
         for sc, sh in tiers[tname]:
-            best_price = price_lookup.get(sh["slug"]) if tname == "budget" else None
+            best_price = price_lookup.get(sh["slug"])
             pick = flatten_pick(sc, sh, tier=tname, target=target, best_price=best_price)
             paras = generate_shoe_description_v2(pick, profile, all_picks=all_picks_flat)
             P1 = paras[0] if len(paras) > 0 else ""
@@ -823,7 +844,7 @@ def main():
                    "model": sh.get("model"), "category": tname,
                    "recommended_size_eu": rec_size,
                    "description": P1, "why": P2, "tradeoffs": P3}
-            if tname == "budget" and best_price is not None:
+            if best_price is not None:
                 rec["best_offer"] = {"price_eur": round(float(best_price), 2)}
             recommendations.append(rec)
 
