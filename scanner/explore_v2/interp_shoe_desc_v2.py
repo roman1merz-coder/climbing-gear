@@ -479,6 +479,191 @@ def _strip_p2_boilerplate(p2):
     return cleaned if cleaned else None
 
 
+# ── V2 P1 description (Roman 2026-05-08) ──────────────────────────────
+#
+# Complete 2-sentence description, replacing the V1 multi-sentence build.
+#
+#   "{Closure} with {ToeForm} toe form, {width} forefoot with a {hv}
+#    heel cup. {thickness}mm {rubber} rubber with a {midsole_coverage},
+#    {midsole_stiff} midsole, resulting in a {stiff_word} shoe with
+#    {downturn} and {asymmetry}."
+#
+# Drops P2 entirely — P1 carries all the shoe character; P3 carries
+# tradeoffs vs the user's target.
+
+_CLOSURE_LBL = {"velcro": "Velcro", "lace": "Lace-up", "slipper": "Slipper"}
+
+_MIDSOLE_COVERAGE_LABEL = {
+    "none": None,
+    "toe": "toe-only",
+    "partial": "partial",
+    "forefoot": "forefoot",
+    "half": "half-length",
+    "three_quarter": "three-quarter",
+    "full": "full",
+}
+
+_MIDSOLE_STIFF_LABEL = {
+    "none": None,
+    "soft": "soft",
+    "medium_soft": "medium-soft",
+    "medium": "medium",
+    "medium_hard": "medium-hard",
+    "hard": "hard",
+}
+
+_DOWNTURN_PHRASE = {
+    "flat":       "flat profile",
+    "slight":     "slight downturn",
+    "moderate":   "moderate downturn",
+    "aggressive": "aggressive downturn",
+}
+
+_ASYM_PHRASE = {
+    "none":     "symmetric profile",
+    "slight":   "slight asymmetry",
+    "moderate": "moderate asymmetry",
+    "strong":   "strong asymmetry",
+}
+
+
+def _build_p1_v2(pick, profile):
+    """Build the 2-sentence V2 shoe description.
+
+    Format:
+      "{Closure} with {ToeForm} toe form, {width} forefoot with a
+       {hv} heel cup. {thickness}mm {rubber} rubber with a {midsole},
+       {midsole_stiff} midsole, resulting in a {stiff_word} shoe with
+       {downturn} and {asymmetry}."
+
+    Gracefully degrades when fields are missing.
+    """
+    from benchmark.interp_shoe_desc import _clean_rubber_name
+
+    _TOE_LBL = {"egyptian": "Egyptian", "greek": "Greek", "roman": "Roman"}
+
+    closure = (pick.get("closure") or "").lower()
+    closure_lbl = _CLOSURE_LBL.get(closure, closure.capitalize() if closure else None)
+
+    toe_forms = pick.get("toe_form") or []
+    if isinstance(toe_forms, str):
+        toe_forms = [toe_forms]
+    toe_form_lbl = "/".join(
+        _TOE_LBL.get(str(f).lower(), str(f).capitalize()) for f in toe_forms
+    ) or None
+
+    width = (pick.get("width") or "").lower()
+    hv    = (pick.get("heel_volume") or "").lower()
+    fv    = (pick.get("forefoot_volume") or "").lower()
+
+    # ── Sentence 1: closure + toe form + fit profile ──
+    s1_parts = []
+    if closure_lbl and toe_form_lbl:
+        s1_parts.append(f"{closure_lbl} with {toe_form_lbl} toe form")
+    elif closure_lbl:
+        s1_parts.append(closure_lbl)
+    elif toe_form_lbl:
+        s1_parts.append(f"{toe_form_lbl} toe form")
+
+    fit_str = ""
+    vol_suffix = ""
+    if fv == "low":  vol_suffix = ", low forefoot volume"
+    elif fv == "high": vol_suffix = ", high forefoot volume"
+
+    if width and hv:
+        if width == hv:
+            fit_str = f"{width} fit throughout{vol_suffix}"
+        else:
+            fit_str = f"{width} forefoot with a {hv} heel cup{vol_suffix}"
+    elif width:
+        fit_str = f"{width} forefoot{vol_suffix}"
+
+    if fit_str:
+        s1_parts.append(fit_str)
+
+    s1 = ", ".join(s1_parts) + "." if s1_parts else ""
+
+    # ── Sentence 2: rubber + midsole + stiffness + downturn + asym ──
+    db_rubber = pick.get("rubber_type") or ""
+    rubber_name = _clean_rubber_name(db_rubber)
+    thick = pick.get("rubber_thickness_mm")
+    thickness_str = f"{thick:g}mm" if thick else ""
+
+    if rubber_name:
+        rubber_phrase = f"{thickness_str} {rubber_name} rubber".strip() \
+            if thickness_str else f"{rubber_name} rubber"
+    elif thickness_str:
+        rubber_phrase = f"{thickness_str} rubber"
+    else:
+        rubber_phrase = ""
+
+    db_midsole       = (pick.get("midsole") or "").lower()
+    db_midsole_stiff = (pick.get("midsole_stiffness") or "").lower()
+    coverage_label = _MIDSOLE_COVERAGE_LABEL.get(db_midsole)
+    stiff_label    = _MIDSOLE_STIFF_LABEL.get(db_midsole_stiff)
+
+    if db_midsole == "none" or coverage_label is None:
+        midsole_phrase = "no midsole"
+    elif coverage_label and stiff_label:
+        midsole_phrase = f"a {coverage_label}, {stiff_label} midsole"
+    elif coverage_label:
+        midsole_phrase = f"a {coverage_label} midsole"
+    else:
+        midsole_phrase = ""
+
+    stiff_word = _stiffness_word(pick.get("stiffness")) if pick.get("stiffness") is not None else ""
+
+    downturn = (pick.get("downturn") or "").lower()
+    asym = (pick.get("asymmetry") or "").lower()
+    perf_parts = []
+    if downturn in _DOWNTURN_PHRASE:
+        perf_parts.append(_DOWNTURN_PHRASE[downturn])
+    if asym in _ASYM_PHRASE:
+        perf_parts.append(_ASYM_PHRASE[asym])
+
+    if len(perf_parts) == 2:
+        perf_phrase = f"{perf_parts[0]} and {perf_parts[1]}"
+    elif perf_parts:
+        perf_phrase = perf_parts[0]
+    else:
+        perf_phrase = ""
+
+    # Assemble sentence 2
+    s2 = ""
+    if rubber_phrase and midsole_phrase:
+        head = f"{rubber_phrase} with {midsole_phrase}"
+    elif rubber_phrase:
+        head = rubber_phrase
+    elif midsole_phrase:
+        head = midsole_phrase[0].upper() + midsole_phrase[1:]
+    else:
+        head = ""
+
+    if head and stiff_word and perf_phrase:
+        s2 = f"{head}, resulting in a {stiff_word} shoe with {perf_phrase}."
+    elif head and stiff_word:
+        s2 = f"{head}, resulting in a {stiff_word} shoe."
+    elif head and perf_phrase:
+        s2 = f"{head}, with {perf_phrase}."
+    elif head:
+        s2 = f"{head}."
+    elif stiff_word and perf_phrase:
+        s2 = f"{stiff_word.capitalize()} shoe with {perf_phrase}."
+    elif stiff_word:
+        s2 = f"{stiff_word.capitalize()} shoe."
+
+    # Optional 3rd sentence: no-edge construction
+    extras = []
+    if pick.get("no_edge"):
+        extras.append("No-edge construction wraps rubber smoothly for smearing.")
+    special = pick.get("special_fit_notes")
+    if special:
+        extras.append(special.strip())
+
+    parts = [p for p in [s1, s2] + extras if p]
+    return " ".join(parts)
+
+
 def _matched_axes(pick, profile):
     """Return list of user-facing axis labels where the pick's value
     matches the v2 target. Roman 2026-05-08: P2 pros mirror P3 tradeoffs
@@ -514,51 +699,33 @@ def _matched_axes(pick, profile):
 
 
 def generate_shoe_description_v2(pick, profile, all_picks=None):
-    """V2 wrapper: P1 + P2 from v1 (with dedup filters), P3 from v2.
+    """V2 generator: P1 (full shoe description) + P3 (tradeoffs vs target).
 
-    ``pick`` must be the flat shape returned by ``flatten_pick`` (so it
-    carries v2 ``breakdown`` semantics + the merged v2 ``target`` dict).
+    Roman 2026-05-08: P2 dropped entirely. P1 carries the full shoe
+    character (closure + toe form + fit + build + downturn + asymmetry).
+    P3 carries the tradeoffs vs the user's target. The tier label
+    above the cards already communicates the per-tier intent (Your Best
+    Match / Softer / Stiffer / Best Value).
 
-    Returns list of [P1, P2, P3] strings. Any of P2/P3 may be None when
-    nothing useful to say — the renderer should skip those fields.
+    Returns list of [P1, P2, P3] where P2 is always None (kept in the
+    return shape for renderer compatibility — the renderer skips None).
     """
-    p1_raw = _v1_para_description(pick, profile)
-    p1 = _strip_p1_target_redundancy(p1_raw)
+    p1 = _build_p1_v2(pick, profile)
 
-    p2_raw = _v1_para_why_selected(pick, profile, all_picks=all_picks)
-    p2 = _strip_p2_boilerplate(p2_raw)
-    if pick.get("not_in_stock"):
-        note = ("Note: this shoe is not currently available online. "
-                "Check local shops or wait for restocks.")
-        p2 = f"{p2} {note}" if p2 else note
+    # Append not-in-stock + budget price as a continuation of P1 — these
+    # are the only non-tier pieces of context worth carrying forward.
+    extras = []
     if pick.get("tier") == "budget" and pick.get("best_price") is not None:
-        price = pick["best_price"]
-        prefix = f"At EUR {price:.0f}, this is a strong value pick."
-        p2 = f"{prefix} {p2}" if p2 else prefix
-
-    # Roman 2026-05-08: list matched-to-target axes as the pros — mirror
-    # of P3 tradeoffs that lists mismatched axes. Composes with existing
-    # tier rationale (e.g. "Selected because softer than peers. Matches
-    # your target on toe form, forefoot width, and heel volume.").
-    matched = _matched_axes(pick, profile)
-    if matched:
-        n_matched = len(matched)
-        # 6 = all scored axes match, 3-5 = strong match, 1-2 = partial
-        if n_matched >= 6:
-            match_phrase = "Matches your target on every key axis."
-        elif n_matched >= 3:
-            match_phrase = f"Matches your target on {_join_match_labels(matched)}."
-        else:
-            match_phrase = f"Matches your target on {_join_match_labels(matched)}."
-        p2 = f"{p2} {match_phrase}" if p2 else match_phrase
-
-    # Last-resort fallback when no rationale and no matches — should be rare
-    # (most picks match at least 1 axis). Kept for safety.
-    if not p2:
-        p2 = "Shoe geometry and features align with your fit target."
+        extras.append(f"At EUR {pick['best_price']:.0f}, a strong-value pick.")
+    if pick.get("not_in_stock"):
+        extras.append("Note: not currently available online — check local shops.")
+    if extras:
+        p1 = f"{p1} {' '.join(extras)}"
 
     p3 = _para_tradeoffs_v2(pick, profile, all_picks=all_picks)
-    return [p1, p2, p3]
+
+    # P2 retired (Roman 2026-05-08). Returned as None for renderer compat.
+    return [p1, None, p3]
 
 
 __all__ = [
