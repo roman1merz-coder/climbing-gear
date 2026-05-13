@@ -47,6 +47,21 @@ The new keys are:
 
 Disable URL: https://supabase.com/dashboard/project/wsjsuhvpgupalwgcjatp/settings/api-keys/legacy
 
+### 1c. RLS extended to catalog tables - DONE (2026-05-11)
+
+Supabase's security advisor pinged the project with
+`rls_disabled_in_public` because the catalog/price tables still had RLS
+*off* (anon read worked by GRANT alone, with no default-deny safety
+net). `supabase/migrations/20260511_enable_rls_on_catalog.sql` was
+applied via the dashboard SQL editor. It enables RLS and adds an
+explicit "anon select" policy on 25 catalog/price/history tables:
+`shoes`, `ropes`, `belay_devices`, `crashpads`, `quickdraws`; all 8
+`*_prices` tables plus the legacy `prices` table; all 7
+`*_price_history` tables; and `brand_sizing`, `fit_cases`,
+`shoe_reviews`. Anon SELECT still returns 200; anon INSERT/UPDATE/DELETE
+now affects 0 rows (RLS hides them from those operations). Service-role
+keeps bypassing RLS, so crawlers and the worker continue to write.
+
 ### 1b. RLS migration applied - DONE
 
 `supabase/migrations/20260507_lock_pii_tables.sql` was applied via the
