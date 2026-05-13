@@ -7,14 +7,24 @@ Extract sole-shape metrics from a top-down product photo of a climbing shoe.
 
 Rebuilt 2026-05-13 after the previous session's working copy was lost. Design
 follows the schema in outputs/make_xlsx_all.py and the project memory note
-~/.auto-memory/project_shoe_sole_measure.md. Includes the two fixes from the
-prior session (task #18 + task #24):
+~/.auto-memory/project_shoe_sole_measure.md.
 
-  * heel_width search is restricted to the bottom 30 percent of the silhouette
-    so the forefoot cannot win the heel slot,
-  * toe_cx is computed as the average per-row midline ((min_x + max_x) / 2)
-    over the top 0.5 percent of the length (min 2 rows). Old centroid-of-band
-    biased toward the gradually-tapering side on asymmetric tips.
+Aligned with the documented fixes from the prior session:
+
+  * task #10: segment_shoe uses LAB color distance from a corner-sampled
+    background. A pixel is foreground if its LAB distance to the median
+    background colour exceeds bg_thresh. Default bg_thresh=40 works for
+    white (Scarpa, Unparallel) and grey (La Sportiva) backdrops.
+  * task #17/#11: rotation is done with cv2.minAreaRect (bounding-rectangle
+    long axis), matching the side-view module the prior session also wrote.
+    PCA was tried during the rebuild but disagreed with minAreaRect by
+    2-4 deg on asymmetric lasts which shifted asym_height_px by 30-70 px.
+  * task #18: heel_width search is restricted to the bottom 30 percent of
+    the silhouette so the forefoot cannot win the heel slot.
+  * task #24: toe_cx is computed as the average per-row midline
+    ((min_x + max_x) / 2) over the top 0.5 percent of the length (min 2
+    rows). Old centroid-of-band biased toward the gradually-tapering side
+    on asymmetric tips.
 
 Output dict (one row per shoe), matching outputs/make_xlsx_all.py columns:
 
@@ -31,13 +41,15 @@ Output dict (one row per shoe), matching outputs/make_xlsx_all.py columns:
 
 Auxiliary keys prefixed with "_" expose the geometry needed by draw_overlay.
 
-Background segmentation is grayscale-threshold based:
+Background segmentation is LAB-distance-from-corners:
 
-    bg_thresh = 240  white backgrounds (Scarpa F, Unparallel E)
-    bg_thresh = 180  grey backgrounds  (La Sportiva 2)
+    bg_thresh = 40   default; works for both white and grey backdrops
+    bg_thresh = 30   tighten (more aggressive foreground), if dark shadows
+                      bleed into the silhouette
+    bg_thresh = 55   loosen, if a low-contrast strap or rand drops out
 
-Pipeline: read -> segment -> rotate long axis vertical -> ensure toe at top
-(optional horizontal flip) -> measure -> draw overlay.
+Pipeline: read -> segment -> rotate long axis vertical (minAreaRect) ->
+ensure toe at top (optional horizontal flip) -> measure -> draw overlay.
 """
 
 from __future__ import annotations
@@ -54,28 +66,69 @@ import numpy as np
 # Segmentation
 # ---------------------------------------------------------------------------
 
-def segment_shoe(img: np.ndarray, bg_thresh: int = 240) -> np.ndarray:
+def segment_shoe(img: np.ndarray, bg_thresh: float = 25.0,
+                 corner_size: int = 32) -> np.ndarray:
     """Return a binary mask (0 / 255) of the shoe silhouette.
 
-    Strategy: grayscale threshold (pixels brighter than bg_thresh are
-    background), morphological close to bridge small interior gaps, fill
-    interior holes via flood-fill, then keep only the largest connected
-    component.
-    """
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    mask = (gray < bg_thresh).astype(np.uint8) * 255
+    Strategy (task #10 fix): sample background colour from the four image
+    corners (median LAB), compute per-pixel LAB Euclidean distance, mark
+    pixels as foreground if distance > bg_thresh. Robust to white, grey,
+    and mildly off-white backdrops.
 
+    If the largest connected component covers less than 60 percent of the
+    total foreground area, the silhouette has likely split across a
+    same-as-background midfoot (Veloce-L style). We then re-attempt
+    segmentation at progressively lower bg_thresh until the largest CC
+    covers >= 60 percent OR we exhaust the fallback ladder.
+
+    Pipeline: LAB distance threshold -> general close -> vertical-bridge
+    close (heals near-vertical midfoot gaps) -> fill interior holes ->
+    pick largest connected component.
+    """
+    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB).astype(np.float32)
+    c = corner_size
+    corners = np.concatenate([
+        lab[:c, :c].reshape(-1, 3),
+        lab[:c, -c:].reshape(-1, 3),
+        lab[-c:, :c].reshape(-1, 3),
+        lab[-c:, -c:].reshape(-1, 3),
+    ], axis=0)
+    bg = np.median(corners, axis=0)
+    dist = np.sqrt(np.sum((lab - bg) ** 2, axis=2))
+
+    fallback = [bg_thresh, max(bg_thresh - 8, 12), max(bg_thresh - 15, 8)]
+    best_mask = None
+    best_fill = 0.0
+    for t in fallback:
+        m = _post_process(dist > t, mask_h=img.shape[0])
+        num, lab_cc, stats, _ = cv2.connectedComponentsWithStats(
+            m, connectivity=8)
+        if num <= 1:
+            continue
+        areas = stats[1:, cv2.CC_STAT_AREA]
+        largest = 1 + int(np.argmax(areas))
+        total = float(areas.sum())
+        fill = float(areas[largest - 1]) / total if total > 0 else 0.0
+        out = np.zeros_like(m)
+        out[lab_cc == largest] = 255
+        if fill >= 0.85:
+            return out
+        if fill > best_fill:
+            best_fill = fill
+            best_mask = out
+    return best_mask if best_mask is not None else np.zeros_like(dist, dtype=np.uint8)
+
+
+def _post_process(bool_mask: np.ndarray, mask_h: int) -> np.ndarray:
+    mask = (bool_mask.astype(np.uint8)) * 255
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
-    mask = _fill_holes(mask)
-
-    num, lab, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
-    if num <= 1:
-        return mask
-    largest = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
-    out = np.zeros_like(mask)
-    out[lab == largest] = 255
-    return out
+    # Vertical bridge: heals near-vertical midfoot gaps (white-midfoot
+    # shoes whose middle blends into a same-colour backdrop).
+    vbridge = cv2.getStructuringElement(
+        cv2.MORPH_RECT, (3, max(15, mask_h // 30)))
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, vbridge, iterations=1)
+    return _fill_holes(mask)
 
 
 def _fill_holes(mask: np.ndarray) -> np.ndarray:
@@ -96,24 +149,26 @@ def rotate_long_axis_vertical(mask: np.ndarray,
                               img: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     """Rotate mask + img so the silhouette's long axis is vertical.
 
-    Uses PCA on the foreground pixel coordinates: the dominant eigenvector
-    gives the long-axis direction; rotate so it aligns with the y-axis.
+    Uses cv2.minAreaRect (smallest enclosing rotated rectangle) to find the
+    long-axis orientation. minAreaRect respects the extreme silhouette
+    points rather than the mass distribution, which keeps the rotation
+    stable across asymmetric lasts (PCA drifts 2-4 deg on Egyptian-apex
+    shoes because the dense forefoot biases the eigenvector).
     """
     ys, xs = np.where(mask > 0)
     if len(xs) < 10:
         return mask, img
 
-    pts = np.column_stack([xs.astype(np.float32), ys.astype(np.float32)])
-    mean = np.mean(pts, axis=0)
-    centered = pts - mean
-    cov = np.cov(centered.T)
-    eigvals, eigvecs = np.linalg.eigh(cov)
-    long_vec = eigvecs[:, -1]  # (dx, dy), unit vector
-
-    theta_deg = float(np.degrees(np.arctan2(long_vec[1], long_vec[0])))
-    # We want the long axis aligned with the vertical (y) axis. The y-axis
-    # points "down" in image space (theta = +90 deg). Rotation angle:
-    rot_deg = 90.0 - theta_deg
+    pts = np.column_stack([xs, ys]).astype(np.float32)
+    _, (w, h), a = cv2.minAreaRect(pts)
+    # cv2.minAreaRect: 'a' is the rotation of the rect's first edge from
+    # horizontal (range (-90, 0] in classic OpenCV). 'w' is the dimension
+    # along that first edge. The long axis is along the longer dimension:
+    if w >= h:
+        long_angle = a
+    else:
+        long_angle = a + 90.0
+    rot_deg = 90.0 - long_angle  # bring long axis to vertical (90 deg)
 
     h_img, w_img = mask.shape[:2]
     M = cv2.getRotationMatrix2D((w_img / 2.0, h_img / 2.0), rot_deg, 1.0)
@@ -130,6 +185,56 @@ def rotate_long_axis_vertical(mask: np.ndarray,
                            flags=cv2.INTER_LINEAR,
                            borderValue=(255, 255, 255))
     return mask_r, img_r
+
+
+def canonicalise_apex_side(mask: np.ndarray,
+                           img: np.ndarray,
+                           target: str = "right",
+                           top_band_frac: float = 0.05,
+                           ff_band_frac: float = 0.40
+                          ) -> Tuple[np.ndarray, np.ndarray]:
+    """Horizontal-flip the silhouette if the toe-apex lands on the wrong
+    side of the forefoot midline.
+
+    Without this step minAreaRect leaves a 180-degree ambiguity in axis
+    direction which leaks into a left/right inversion of the silhouette,
+    so asym_height_px and toe_drift_px can flip sign between shoes for
+    no anatomical reason. We pick the toe apex by the midline of the top
+    5 percent of rows, and the forefoot midline by averaging row midlines
+    in the upper 40 percent of the silhouette. If the apex is on the
+    opposite side from `target`, we flip horizontally.
+    """
+    ys, xs = np.where(mask > 0)
+    if len(xs) < 10:
+        return mask, img
+    top_y = int(ys.min()); bot_y = int(ys.max())
+    L = bot_y - top_y + 1
+
+    apex_band_bot = top_y + max(2, int(round(L * top_band_frac)))
+    ff_band_bot = top_y + max(2, int(round(L * ff_band_frac)))
+
+    row_min = np.full(mask.shape[0], 10**9, dtype=np.int32)
+    row_max = np.full(mask.shape[0], -1,    dtype=np.int32)
+    np.minimum.at(row_min, ys, xs)
+    np.maximum.at(row_max, ys, xs)
+
+    apex_mids = [(row_min[y] + row_max[y]) / 2.0
+                 for y in range(top_y, apex_band_bot + 1)
+                 if row_max[y] >= 0]
+    ff_mids = [(row_min[y] + row_max[y]) / 2.0
+               for y in range(top_y, ff_band_bot + 1)
+               if row_max[y] >= 0]
+    if not apex_mids or not ff_mids:
+        return mask, img
+
+    apex_x = float(np.mean(apex_mids))
+    ff_mid_x = float(np.mean(ff_mids))
+
+    apex_on_right = apex_x >= ff_mid_x
+    want_right = target == "right"
+    if apex_on_right == want_right:
+        return mask, img
+    return cv2.flip(mask, 1), cv2.flip(img, 1)
 
 
 def ensure_toe_at_top(mask: np.ndarray,
@@ -399,7 +504,7 @@ def _dashed(img, p1, p2, color, thickness, dash):
 
 def process(in_path: str,
             out_overlay: str | None = None,
-            bg_thresh: int = 240,
+            bg_thresh: float = 40.0,
             flip_horizontal: bool = False) -> Tuple[Dict, np.ndarray, np.ndarray]:
     """Run the full pipeline on one image.
 
@@ -411,6 +516,7 @@ def process(in_path: str,
     mask = segment_shoe(img, bg_thresh=bg_thresh)
     mask, img = rotate_long_axis_vertical(mask, img)
     mask, img = ensure_toe_at_top(mask, img)
+    mask, img = canonicalise_apex_side(mask, img, target="right")
     if flip_horizontal:
         mask = cv2.flip(mask, 1)
         img = cv2.flip(img, 1)
@@ -426,7 +532,7 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("image")
     p.add_argument("--overlay", default=None)
-    p.add_argument("--bg-thresh", type=int, default=240)
+    p.add_argument("--bg-thresh", type=float, default=40.0)
     p.add_argument("--flip-h", action="store_true")
     a = p.parse_args()
     m, _, _ = process(a.image, out_overlay=a.overlay,

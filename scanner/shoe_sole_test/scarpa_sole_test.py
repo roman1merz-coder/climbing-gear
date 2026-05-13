@@ -85,7 +85,7 @@ SCARPA = [
 # the 2026-05-13 rebuild.
 FLIP_OVERRIDE: set[str] = set()
 
-BG_THRESH = 240  # white-background Scarpa product shots
+BG_THRESH = 25  # LAB-distance cutoff (handles Scarpa white-midfoot Veloce-L)
 
 
 def run_one(slug: str, in_path: str) -> dict | None:

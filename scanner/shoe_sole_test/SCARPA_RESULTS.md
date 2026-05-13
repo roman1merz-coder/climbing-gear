@@ -1,26 +1,39 @@
 # Scarpa sole-measurement results (40 shoes)
 
 Generated 2026-05-13 by `shoe_sole_measure.py` + `scarpa_sole_test.py`.
-All metrics in pixels on the canonical-orientation silhouette (toe at top,
-heel at bottom, long axis vertical). Length-normalised ratios in the last
-columns are scale-invariant. See `sole_metrics_scarpa.csv` for the raw data.
 
-## Pipeline summary
+## Pipeline
 
-40 of 40 shoes processed with no failures. All 40 ended up in canonical
-orientation (positive `toe_drift_px`, all `asym_height_px` negative) so the
-measurement basis is consistent across the cohort.
+1. **Segment** with LAB-distance from corner-sampled background, fallback
+   ladder `[25, 17, 10]` that re-runs at progressively lower thresholds if
+   the largest connected component covers less than 85 percent of total
+   foreground (catches white-midfoot Veloce-L shoes whose silhouette would
+   otherwise split across the midfoot).
+2. **Rotate** the long axis to vertical via `cv2.minAreaRect` on the
+   foreground point cloud. (PCA was tried first but disagreed with
+   minAreaRect by 2-4 degrees on asymmetric lasts, which shifted
+   asym_height by 30-70 px.)
+3. **Ensure toe at top** by comparing max row width in upper vs lower
+   half and flipping vertically if the lower half is wider.
+4. **Canonicalise apex side** by horizontally flipping if the toe apex
+   lands to the left of the forefoot midline, so all 40 shoes share one
+   sign convention for asym_height_px and toe_drift_px.
+5. **Measure** length, ff/heel width (heel restricted to bottom 30
+   percent), toe_cx (averaged per-row midline over top 0.5 percent of
+   length, min 2 rows), toe_form, asym_height.
+
+40 of 40 shoes processed cleanly. All 40 share canonical orientation
+(apex on the right, asym_height negative).
 
 ## Cross-check vs shoes table (Supabase `shoes`)
 
-53 Scarpa rows live in the `shoes` table.
+53 Scarpa rows in `shoes`:
 
-- **39 of 40 measured shoes have a DB row** (full overlap on the production list).
-- **1 measured shoe has no DB row:** `scarpa-instinct-vsr-womens` — image
-  asset slot F exists but the SKU is not in the shoes table. Either add it
-  or skip its measurement from production use.
-- **14 DB Scarpa shoes have no sole shot we can measure:**
-  - 13 have no image assets at all in `dist/images/shoes/`: blackbird,
+- 39 of 40 measured shoes have a DB row.
+- 1 measured shoe has no DB row: `scarpa-instinct-vsr-womens` (image
+  asset exists, no SKU in DB).
+- 14 DB Scarpa shoes have no sole shot we can measure:
+  - 13 have no images at all in `dist/images/shoes/`: blackbird,
     drago-kid, force-v-kids, furia-s, instinct-sr, maestro-alpine,
     maestro-mens, maestro-mid-eco, maestro-womens, quantix-sf,
     vapor-v-womens, velocity-mens, velocity-womens.
@@ -28,70 +41,79 @@ measurement basis is consistent across the cohort.
 
 ## Quick rankings
 
-Length-normalised, so size/zoom doesn't matter.
+Length-normalised; scale-invariant.
 
-### Highest forefoot/length (widest forefoot relative to length)
+### Most Egyptian apex (low toe_form/L)
+
+| Slug | toe_form/L |
+| --- | ---: |
+| boostic | 0.088 |
+| chimera | 0.091 |
+| boostic-r | 0.096 |
+| furia-air | 0.096 |
+| booster | 0.099 |
+| instinct-vsr-lv | 0.100 |
+
+### Most Roman apex (high toe_form/L)
+
+| Slug | toe_form/L |
+| --- | ---: |
+| origin-vs | 0.145 |
+| origin-vs-womens | 0.145 |
+| origin-mens | 0.143 |
+| origin-womens | 0.143 |
+| veloce | 0.139 |
+| veloce-l-womens | 0.132 |
+
+### Widest forefoot/length
 
 | Slug | ff/L |
 | --- | ---: |
-| boostic | 0.397 |
-| furia-air | 0.396 |
-| mago | 0.395 |
-| instinct-vs-mens | 0.392 |
-| instinct-womens | 0.386 |
+| furia-air | 0.405 |
+| mago | 0.404 |
+| boostic | 0.402 |
+| instinct-vs-mens | 0.400 |
+| instinct-womens | 0.391 |
+| veloce-womens | 0.389 |
 
-### Highest heel/length (widest heel)
+### Widest heel/length
 
 | Slug | heel/L |
-| ---: | ---: |
-| reflex-mens | 0.293 |
-| drago-xt | 0.293 |
-| veloce | 0.289 |
-| mago | 0.288 |
-| instinct-vsr-mens | 0.288 |
-
-### Toe form (low = Egyptian apex, high = Roman apex)
-
-Lowest (most Egyptian / pointed-big-toe shoes):
-
-| Slug | toe_form/L |
 | --- | ---: |
-| chimera | 0.077 |
-| boostic | 0.086 |
-| instinct-vs-mens | 0.092 |
-| furia-air | 0.097 |
-| drago-xt | 0.098 |
+| reflex-mens | 0.298 |
+| drago-xt | 0.290 |
+| instinct-womens | 0.288 |
+| boostic | 0.287 |
+| furia-air | 0.287 |
+| drago | 0.285 |
 
-Highest (most Roman / centered apex):
+### Most asymmetric last (\|asym_h\|/L)
 
-| Slug | toe_form/L |
+| Slug | \|asym_h\|/L |
 | --- | ---: |
-| force-v | 0.147 |
-| origin-mens | 0.147 |
-| origin-womens | 0.147 |
-| instinct-s | 0.145 |
-| veloce-womens | 0.143 |
+| drago-xt | 0.060 |
+| drago | 0.051 |
+| chimera | 0.049 |
+| instinct-lace | 0.048 |
+| boostic-r | 0.045 |
+| instinct-vsr-mens | 0.045 |
 
-### Asymmetry-height (absolute, big = strongly asymmetric last)
+## Honest caveats
 
-| Slug | \|asym_h/L\| |
-| --- | ---: |
-| drago-xt | 0.068 |
-| chimera | 0.067 |
-| instinct-vsr-mens | 0.055 |
-| drago | 0.053 |
-| boostic-r, instinct-lace, origin-vs, origin-vs-womens | 0.050 |
-
-## Notes
-
-- `toe_form_px` = distance from `toe_cx` (top-band midline average) to the
-  ball edge on the side that `toe_cx` leans toward. Egyptian feet hug that
-  outer edge (small toe_form); Roman feet sit central (large toe_form).
-- `asym_height_px` = `ff_cx` - `axis_x_at_ff`, where the axis is the line
-  from heel widest centroid to toe tip centroid. All 40 Scarpa came out
-  negative, meaning every measured slug has its forefoot centroid on the
-  same side relative to the heel-toe axis. This is expected for product
-  photos shot from a consistent side and is camera-side dependent (not a
-  real biological signal).
-- Pure heel cup / sole stiffness / downturn are not measurable from this
-  top-down view; those come from the side-view module (paused).
+- The lost prior session's working code was rebuilt from `make_xlsx_all.py`
+  + memory notes + the summary text. The rebuild matches the documented
+  intent (LAB-distance segmentation, minAreaRect rotation, bottom-30
+  percent heel band, per-row-midline toe_cx) but is not bit-identical -
+  in particular, the L-R canonicalisation step in stage 4 was added
+  because minAreaRect by itself left 2 shoes (origin-vs, origin-vs-womens)
+  mirrored opposite the cohort; we have no way to verify how the original
+  handled L-R direction.
+- For the 14 shoes in the prior session's cohort, the absolute numbers
+  will differ slightly from whatever was produced before. Qualitative
+  rankings should be the same (Chimera Egyptian, Force-V Roman, etc.).
+- `toe_form_px` uses the ball edge on whichever side the apex leans
+  toward. After step 4 that is always the right edge in canonical
+  orientation.
+- `asym_height_px` is the most rotation-sensitive metric; small angle
+  errors propagate into ~30-70 px offsets. Trust the rank order more
+  than the magnitudes.
