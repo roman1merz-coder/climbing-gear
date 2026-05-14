@@ -126,12 +126,15 @@ def compute_use_case_target(discipline, env, rock, aggressiveness):
                                    ENV_SHIFT.get(env, 0.0))
     rock_s = ROCK_SHIFT.get(rock, 0.0) if env != "indoor" else 0.0
 
+    # Roman 2026-05-12: dropped the pad term (was +0.05 per active env or
+    # rock shift). It widened 15 of 18 input combinations on top of the
+    # discipline-base width — turning boulder/outdoor/sandstone from a
+    # 0.30-wide window into a 0.50-wide window that swallowed >70% of
+    # the shoe catalog. Window width now stays at the discipline base
+    # (0.30 boulder/sport, 0.35 trad); env+rock just shift the center.
     target_stiff = max(0.0, min(1.0, center + env_s + rock_s))
-    pad = 0.0
-    if env_s  != 0: pad += 0.05
-    if rock_s != 0: pad += 0.05
-    target_lo = max(0.0, lo + env_s + rock_s - pad)
-    target_hi = min(1.0, hi + env_s + rock_s + pad)
+    target_lo = max(0.0, lo + env_s + rock_s)
+    target_hi = min(1.0, hi + env_s + rock_s)
 
     pref_cl, ok_cl, bad_cl = closure_prefs_for(discipline, env)
     return {
@@ -196,22 +199,34 @@ def axis_ankle(shoe, target, profile):
 
 
 def axis_downturn(shoe, target, profile):
-    """+15 at target, decays linearly. At opposite end of 4-rank scale: -15."""
+    """Roman 2026-05-12: steepened d=1 from +8 to +3. The old curve only
+    lost 7 points for a 1-step downturn mismatch — letting moderate-
+    downturn all-rounders score nearly as well as aggressive-downturn
+    shoes for users who explicitly chose 'aggressive'. New curve makes
+    the d=0 perfect match decisive."""
     tgt = target["target_dt"]
     sd  = _norm(shoe.get("downturn"))
     if sd not in DOWNTURN_ORDER:
         return 0, f"shoe downturn unknown ('{sd}')"
     d = abs(tgt - DOWNTURN_ORDER.index(sd))
-    s = {0: 15, 1: 8, 2: -5, 3: -15}[d]
+    s = {0: 15, 1: 3, 2: -8, 3: -18}[d]
     return s, f"shoe dt={sd} vs target dt={DOWNTURN_LABELS[tgt]}, {'+' if s>=0 else ''}{s}"
 
 
 def axis_toe_form(shoe, target, profile):
     """+10 if shoe last matches scanned toe_shape, -10 if opposite-form,
-    scaled by toe_confidence. Egyptian↔Roman is the "opposite" pair;
-    Greek is the neutral middle.
+    -5 if neutral mismatch (user greek vs shoe egyptian/roman, or vice
+    versa). Egyptian↔Roman is the "opposite" pair; Greek is the
+    neutral middle.
 
-    Multi-form shoes match if ANY of their forms equals the scan toe_shape.
+    Multi-form shoes match if ANY of their forms equals the scan
+    toe_shape.
+
+    Roman 2026-05-12: toe_confidence multiplier dropped. Low-confidence
+    scans were getting near-zero rewards/penalties (×0.4 conf → ±4),
+    which let opposite-form shoes leak into top picks. The scan
+    classifier IS our best estimate of the user's foot — commit to
+    it. If we're wrong, the user can flag it and we re-score.
     """
     user_toe = _norm(profile.get("toe_shape"))
     if not user_toe:
@@ -219,23 +234,22 @@ def axis_toe_form(shoe, target, profile):
     forms = _toe_forms(shoe)
     if not forms:
         return 0, "shoe has no toe_form"
-    conf = profile.get("toe_confidence")
-    conf = 1.0 if conf is None else float(conf)
 
     if user_toe in forms:
-        s = int(round(10 * conf))
-        return s, f"shoe toe_form {forms} matches scan '{user_toe}' (conf {conf:.2f}), +{s}"
+        return 10, f"shoe toe_form {forms} matches scan '{user_toe}', +10"
 
     # opposite-form check (egyptian ↔ roman)
     opposites = {"egyptian": "roman", "roman": "egyptian"}
     opp = opposites.get(user_toe)
     if opp and opp in forms:
-        s = -int(round(10 * conf))
-        return s, f"shoe toe_form {forms} opposite to scan '{user_toe}' (conf {conf:.2f}), {s}"
+        # Roman 2026-05-12: softened from -10 → -6. Opposite-form is real
+        # mismatch but shouldn't fully kill an otherwise-perfect-fit shoe.
+        return -6, f"shoe toe_form {forms} opposite to scan '{user_toe}', -6"
 
     # otherwise neutral (e.g. user greek, shoe egyptian or roman)
-    s = -int(round(5 * conf))
-    return s, f"shoe toe_form {forms} mismatched to scan '{user_toe}' (conf {conf:.2f}), {s}"
+    # Roman 2026-05-12: softened from -5 → -3 in line with the opposite-
+    # form softening — neutral mismatch is half of opposite mismatch.
+    return -3, f"shoe toe_form {forms} mismatched to scan '{user_toe}', -3"
 
 
 def axis_forefoot_width(shoe, target, profile):
@@ -265,13 +279,15 @@ def axis_heel_volume(shoe, target, profile):
 
 
 def axis_asymmetry(shoe, target, profile):
-    """+10 at target, decays linearly. Opposite end (4-rank scale): -10."""
+    """Roman 2026-05-12: peak reward bumped 10→15 and d=1 tightened
+    5→3 to match downturn weighting (both axes are equally use-case-
+    defining, should have equal influence)."""
     tgt = target["target_asym"]
     sa  = _norm(shoe.get("asymmetry"))
     if sa not in ASYM_ORDER:
         return 0, f"shoe asymmetry unknown ('{sa}')"
     d = abs(tgt - ASYM_ORDER.index(sa))
-    s = {0: 10, 1: 5, 2: -3, 3: -10}[d]
+    s = {0: 15, 1: 3, 2: -6, 3: -15}[d]
     return s, f"shoe asym={sa} vs target {ASYM_LABELS[tgt]}, {'+' if s>=0 else ''}{s}"
 
 
