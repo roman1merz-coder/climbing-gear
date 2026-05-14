@@ -68,6 +68,52 @@ _TIGHT_RATINGS = ("tight", "squeezed")
 _DOWNSIZE_ARTIFACT_THRESHOLD = 0.5  # matches "typical" band in _relative_downsize
 
 
+# Roman 2026-05-12 (T1): scan-vote thresholds for the V2 sandbox. Mirror
+# the V2 5-tier classifier in interp_foot_shape_v2.POP_5TIER so the
+# resolver target stays in sync with what the slider + §1 prose show.
+# Values are 16.7/33.3/66.7/83.3 percentiles from n=378 production scans.
+# The 3-rank target (narrow/medium/wide) folds 5-tier as:
+#    rank 0 = very_low + low  (value < lo)
+#    rank 1 = mid             (lo <= value < hi)
+#    rank 2 = high + very_high (value >= hi)
+_V2_SCAN_BOUNDS = {
+    "forefoot_width_ratio": {"lo": 0.343, "hi": 0.367},
+    "heel_width_ratio":     {"lo": 0.228, "hi": 0.245},
+}
+
+
+def _scan_vote_v2(ratio, ratio_key, source, note_template):
+    """V2-aligned scan vote: rank 0 if value < lo, rank 1 if lo <= value < hi,
+    rank 2 if value >= hi. Strict-less-at-hi matches the 5-tier classifier
+    so target resolver stays consistent with the slider/§1 prose.
+
+    Confidence + weight follow the v1 formula, just with V2 boundaries.
+    """
+    if ratio is None or ratio_key not in _V2_SCAN_BOUNDS:
+        return None
+    p = _V2_SCAN_BOUNDS[ratio_key]
+    lo, hi = p["lo"], p["hi"]
+    bw = hi - lo
+    if bw <= 0:
+        return None
+    if ratio < lo:
+        rank = 0
+    elif ratio < hi:                # strict < to align with 5-tier mid range
+        rank = 1
+    else:
+        rank = 2
+    d_nearest = min(abs(ratio - lo), abs(ratio - hi))
+    confidence = min(1.0, max(0.0, d_nearest / bw))
+    from benchmark.target_resolver import SCAN_WEIGHT_K
+    weight = 1.0 + SCAN_WEIGHT_K * confidence
+    return {
+        "source": source,
+        "rank":   rank,
+        "weight": weight,
+        "note":   note_template.format(ratio=ratio, confidence=confidence),
+    }
+
+
 def _scrub_sizing_artifacts(shoes, street):
     """Blank per-shoe-per-dim fit ratings that are explained by the
     user's downsize choice rather than a real cup-mismatch.
@@ -165,6 +211,47 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     street = profile.get("street_size_eu")
     clean_shoes = _scrub_sizing_artifacts(shoes, street) if street else shoes
     out = dict(_v1_resolve_targets(profile, clean_shoes))
+
+    # ── T1: V2-aligned scan votes for target_fw and target_hv ────────
+    # Production _scan_vote uses ratio <= hi for the mid rank, V2 5-tier
+    # uses strict <. They disagree at exactly the hi boundary
+    # (forefoot=0.367, heel=0.245) — the slider/§1 says "wide" but the
+    # target says "normal". Rerun aggregation with V2-aligned scan
+    # votes so target stays in sync with what the user sees.
+    from benchmark.target_resolver import _shoe_votes, _aggregate, _heel_depth_vote
+    _, fb_hv_clean, _ = _shoe_votes(clean_shoes or [])
+    fb_fw_clean, _, fb_fv_clean = _shoe_votes(clean_shoes or [])
+
+    scan_fw_v2 = _scan_vote_v2(
+        profile.get("forefoot_width_ratio"), "forefoot_width_ratio",
+        "scan_forefoot_width",
+        "forefoot width {ratio:.3f} (conf {confidence:.2f}, V2 5-tier)",
+    )
+    scan_hv_v2 = _scan_vote_v2(
+        profile.get("heel_width_ratio"), "heel_width_ratio",
+        "scan_heel_width",
+        "heel width {ratio:.3f} (conf {confidence:.2f}, V2 5-tier)",
+    )
+    depth_hv = _heel_depth_vote(profile.get("heel_depth_ratio"))
+    # Forefoot volume shares the forefoot-width scan signal in v1; mirror.
+    scan_fv_v2 = (dict(scan_fw_v2, source="scan_forefoot_width_for_fv")
+                  if scan_fw_v2 else None)
+
+    votes_fw_v2 = ([scan_fw_v2] if scan_fw_v2 else []) + fb_fw_clean
+    votes_hv_v2 = ([scan_hv_v2] if scan_hv_v2 else []) + \
+                  ([depth_hv]   if depth_hv   else []) + fb_hv_clean
+    votes_fv_v2 = ([scan_fv_v2] if scan_fv_v2 else []) + fb_fv_clean
+
+    tgt_fw_v2, avg_fw_v2 = _aggregate(votes_fw_v2, fallback_rank=1, tie="up")
+    tgt_hv_v2, avg_hv_v2 = _aggregate(votes_hv_v2, fallback_rank=1, tie="down")
+    tgt_fv_v2, avg_fv_v2 = _aggregate(votes_fv_v2, fallback_rank=1, tie="up")
+
+    out["target_fw"] = tgt_fw_v2; out["avg_fw"] = avg_fw_v2; out["votes_fw"] = votes_fw_v2
+    out["target_hv"] = tgt_hv_v2; out["avg_hv"] = avg_hv_v2; out["votes_hv"] = votes_hv_v2
+    out["target_fv"] = tgt_fv_v2; out["avg_fv"] = avg_fv_v2; out["votes_fv"] = votes_fv_v2
+    if scan_fw_v2: out["meas_fw"] = scan_fw_v2["rank"]
+    if scan_hv_v2: out["meas_hv"] = scan_hv_v2["rank"]
+    if scan_fv_v2: out["meas_fv"] = scan_fv_v2["rank"]
 
     # ── Shallow-heel vote misfire for wide-heel users ────────────────
     # The v1 shallow_heel vote always forces target_hv to rank 0
