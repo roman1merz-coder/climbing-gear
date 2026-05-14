@@ -797,10 +797,40 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
     street    = profile.get("street_size_eu")
     clean_shoes = _scrub_sizing_artifacts(raw_shoes, street, profile=profile)
 
-    # Identify each discounted (shoe, dim, rating) and tag the reason
-    # so the disclosure sentence can be specific.
+    # Identify each discounted (shoe, dim, rating) and tag the most-
+    # likely cause. Priority:
+    #  1. SIZING — if the shoes downsize choice is far enough from
+    #     brand typical that the feedback direction is fully explained
+    #     by sizing alone.
+    #  2. SIT-ABOVE — extreme directional mismatch (cup ≥ 2 ranks
+    #     smaller than user) with loose-direction feedback. Speculative
+    #     theory: the foot is too big to seat into the cup, sits on top
+    #     instead, leaving space below.
+    #  3. PERCEPTION — mild directional mismatch (cup 1 rank off) where
+    #     the rating direction doesn't match cup geometry.
     user_hv_rank = _user_dim_rank(profile, "heel_width_ratio")
     user_fw_rank = _user_dim_rank(profile, "forefoot_width_ratio")
+    from interp_shoe_fit_v2 import _relative_downsize, _brand_typical, _downsize_label_raw
+
+    def _classify_reason(shoe, dim, rating, user_rank, cup_rank):
+        # Step 1: sizing-driven?
+        size, brand = shoe.get("size_eu"), shoe.get("brand")
+        if street is not None and size is not None and brand:
+            try:
+                _, rel, _ = _relative_downsize(float(street), float(size), brand)
+            except (TypeError, ValueError):
+                rel = 0.0
+            if (rel <= -0.5 and rating in ("loose", "empty", "roomy")) or \
+               (rel >= +0.5 and rating in ("tight", "squeezed")):
+                return "sizing"
+        # Step 2 / 3: directional impossibility
+        if user_rank is None or cup_rank is None:
+            return "perception"
+        diff = user_rank - cup_rank
+        if rating in ("loose", "empty", "roomy") and diff >= 2:
+            return "sit_above"
+        return "perception"
+
     discounted = []
     for raw, clean in zip(raw_shoes, clean_shoes):
         raw_fit   = raw.get("fit") or {}
@@ -809,24 +839,18 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
             if not (raw_fit.get(dim) and not clean_fit.get(dim)):
                 continue
             rating = raw_fit[dim]
-            # Decide which rule fired (sizing or directional impossibility).
-            reason = "sizing"   # default — Rule A
-            if dim == "heel" and user_hv_rank is not None:
-                cup = _cup_rank(raw.get("db_heel_volume"))
-                if cup is not None:
-                    if cup < user_hv_rank and rating in ("loose", "empty", "roomy"):
-                        reason = "directional"
-                    elif cup > user_hv_rank and rating in ("tight", "squeezed"):
-                        reason = "directional"
-            elif dim == "forefoot" and user_fw_rank is not None:
-                cup = _cup_rank(raw.get("db_width"))
-                if cup is not None:
-                    if cup < user_fw_rank and rating in ("loose", "empty", "roomy"):
-                        reason = "directional"
-                    elif cup > user_fw_rank and rating in ("tight", "squeezed"):
-                        reason = "directional"
+            if dim == "heel":
+                user_r = user_hv_rank
+                cup_r  = _cup_rank(raw.get("db_heel_volume"))
+            elif dim == "forefoot":
+                user_r = user_fw_rank
+                cup_r  = _cup_rank(raw.get("db_width"))
+            else:  # toes — no rank comparison, default to sizing
+                user_r = cup_r = None
+            reason = _classify_reason(raw, dim, rating, user_r, cup_r)
             discounted.append({"shoe": raw, "dim": dim, "rating": rating,
-                                "reason": reason})
+                                "reason": reason,
+                                "user_rank": user_r, "cup_rank": cup_r})
 
     # Build the §2 paragraph sequence (Roman 2026-05-12: sizing intro
     # FIRST, then disclosure of discounted ratings, then cascade).
@@ -846,8 +870,8 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
         cascade_remainder = []
 
     if discounted:
-        # Roman 2026-05-12: consolidate per (dim, rating, reason) group
-        # so two shoes with the same artifact get ONE sentence, not two.
+        # Group only ratings that share (dim, rating, reason). Different
+        # reasons get different sentences even for the same dim+rating.
         from collections import defaultdict
         groups = defaultdict(list)
         for d in discounted:
@@ -855,38 +879,58 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
 
         parts = []
         for (dim, rating, reason), members in groups.items():
-            shoe_names = [f"{m['shoe'].get('brand')} {m['shoe'].get('model')}"
-                          for m in members]
-            joined = (shoe_names[0] if len(shoe_names) == 1 else
-                      " and ".join([", ".join(shoe_names[:-1]),
-                                     shoe_names[-1]]) if len(shoe_names) > 2
-                      else " and ".join(shoe_names))
-            count = "Your" if len(members) == 1 else f"Both your"
-            if reason == "directional":
+            user_dim = "heel" if dim == "heel" else ("forefoot" if dim == "forefoot" else "toes")
+
+            if reason == "sizing":
+                # Per-shoe — sizing-driven feedback. Roman 2026-05-12 wording:
+                # "is most likely a sizing issue — the relaxed/aggressive
+                # downsize creates a [rating] [dim]."
+                for m in members:
+                    s = m["shoe"]
+                    brand, model = s.get("brand"), s.get("model")
+                    _, _, lbl = _relative_downsize(street, s.get("size_eu"), brand)
+                    article = "an" if rating[:1].lower() in "aeiou" else "a"
+                    parts.append(
+                        f"Your {brand} {model}'s {rating} {dim} is most "
+                        f"likely a sizing issue — the {lbl} downsize creates "
+                        f"{article} {rating} {dim}."
+                    )
+
+            elif reason == "sit_above":
+                # Roman 2026-05-12 wording: contradictory + sit-above theory
+                # without the "set aside" / "speculative" hedge wording.
+                cup_key = "db_heel_volume" if dim == "heel" else "db_width"
+                user_lbl = "wide" if rating in ("loose","empty","roomy") else "narrow"
+                for m in members:
+                    s = m["shoe"]
+                    brand, model = s.get("brand"), s.get("model")
+                    cup_lbl = _norm_cup(s.get(cup_key))
+                    parts.append(
+                        f"Your {brand} {model}'s {rating} {dim} is "
+                        f"contradictory — its {cup_lbl} {dim} cup should be "
+                        f"too small for your {user_lbl} {user_dim}. We "
+                        f"suspect your {user_dim} does not fit inside the "
+                        f"cup and hence leaves the empty space at the bottom "
+                        f"which you perceive as {rating} feel."
+                    )
+
+            else:  # perception (mild mismatch, no obvious cause)
                 cup_key = "db_heel_volume" if dim == "heel" else "db_width"
                 cups = [_norm_cup(m["shoe"].get(cup_key)) for m in members]
-                cup_phrase = (f"{cups[0]} cup" if len(cups) == 1 else
-                              f"{cups[0]} and {cups[1]} cups" if len(cups) == 2
-                              else f"{', '.join(cups[:-1])} and {cups[-1]} cups")
-                user_dim = "heel" if dim == "heel" else "forefoot"
+                shoe_names = [f"{m['shoe'].get('brand')} {m['shoe'].get('model')}"
+                              for m in members]
+                joined = " and ".join(shoe_names) if len(shoe_names) <= 2 else \
+                         ", ".join(shoe_names[:-1]) + ", and " + shoe_names[-1]
+                cup_phrase = " and ".join(cups) if len(cups) <= 2 else \
+                             ", ".join(cups[:-1]) + ", and " + cups[-1]
                 user_lbl = "wide" if rating in ("loose","empty","roomy") else "narrow"
                 parts.append(
-                    f"{count} {joined} report{'s' if len(members)==1 else ''} "
-                    f"{rating} {dim}, but their {cup_phrase} are smaller than "
-                    f"your {user_lbl} {user_dim} — that combination can't "
-                    f"actually feel {rating}, so we set "
-                    f"{'it' if len(members)==1 else 'them'} aside as outliers."
+                    f"Your {joined} report {rating} {dim} despite "
+                    f"{cup_phrase} cups that should fit your {user_lbl} "
+                    f"{user_dim} differently — likely a perception "
+                    f"variation, set aside."
                 )
-            else:
-                # Sizing artifact: just cite shoes + sizing label
-                first = members[0]["shoe"]
-                _, _, sizing_label = _relative_downsize(
-                    street, first.get("size_eu"), first.get("brand"))
-                parts.append(
-                    f"{count} {joined} {'is' if len(members)==1 else 'are'} "
-                    f"sized {sizing_label} for the brand, so {'its' if len(members)==1 else 'their'} "
-                    f"{rating} {dim} is sizing-driven, not cup-fit. Set aside."
-                )
+
         paragraphs.append(" ".join(parts))
 
     paragraphs.extend(cascade_remainder)

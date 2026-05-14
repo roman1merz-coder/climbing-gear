@@ -251,59 +251,32 @@ def _para_sizing(shoes, street):
             f"{_downsize_label_raw(typical)}, this is a {label} fit."
         )
 
-    # Mixed brands -- highlight the brand differences
-    # Sort by most interesting (biggest relative deviation from typical)
-    interesting = sorted(
-        shoes_with_size,
-        key=lambda s: abs(_relative_downsize(street, s["size_eu"], s["brand"])[1]),
-        reverse=True,
-    )
-
-    # Pick up to two non-typical to highlight
-    highlights = []
-    for s in interesting[:2]:
+    # Mixed brands — Roman 2026-05-12: list each shoe briefly with its
+    # sizing label vs brand typical, instead of dwelling on the most-
+    # deviating one. Shoes that fit "typical" for their brand still
+    # get acknowledged so the user sees the full picture.
+    pieces = []
+    for s in shoes_with_size:
         raw, rel, label = _relative_downsize(street, s["size_eu"], s["brand"])
-        if label != "typical":
-            if raw < 0:
-                size_phrase = (f"is actually {abs(raw):.1f} sizes above street size")
-            elif raw == 0:
-                size_phrase = "is at street size"
-            else:
-                size_phrase = f"is {_downsize_label_raw(raw)} from street size"
-            highlights.append(
-                f"Your {s['brand']} {s['model']} in EU {s['size_eu']} "
-                f"{size_phrase}, "
-                f"{label} for {s['brand']}, where the typical downsize is about "
-                f"{_downsize_label_raw(_brand_typical(s['brand']))}."
-            )
-
-    if highlights:
-        # Only append overall summary if it aligns with the highlights
-        # (skip if highlights show aggressive but average is typical, etc.)
-        all_highlight_labels = []
-        for s in interesting[:2]:
-            _, _, lbl = _relative_downsize(street, s["size_eu"], s["brand"])
-            all_highlight_labels.append(lbl)
-        extreme_labels = ("very aggressive", "aggressive", "very relaxed", "relaxed")
-        show_overall = (
-            len(shoes_with_size) > 2
-            and not (
-                avg_rel >= -0.5 and avg_rel <= 0.5
-                and any(l in extreme_labels for l in all_highlight_labels)
-            )
+        # Compact size phrase: "at street size" / "1 size down" / etc.
+        if raw == 0:
+            sz = "at street size"
+        elif raw < 0:
+            sz = f"{abs(raw):g} above street"
+        else:
+            sz = f"{raw:g} down"
+        pieces.append(
+            f"your {s['brand']} {s['model']} ({sz}) is **{label}** for "
+            f"{s['brand']}"
         )
-        return (
-            f"Your shoes range from {size_range} "
-            f"(street size {street}), but the raw numbers do not tell the full story "
-            f"because brands size very differently. "
-            + " ".join(highlights)
-            + (f" {overall}" if show_overall else "")
-        )
-    else:
-        return (
-            f"Your shoes range from {size_range} "
-            f"(street size {street}). {overall}"
-        )
+    # Strip the markdown bold (frontend doesn't render it) — just
+    # used for readability while constructing.
+    pieces = [p.replace("**", "") for p in pieces]
+    joined = "; ".join(pieces)
+    # Roman 2026-05-12: dropped the "Your shoes range..." preamble — it
+    # was redundant with the per-shoe sizing labels that follow. Capitalize
+    # only the first character to keep brand names cased correctly.
+    return (joined[:1].upper() + joined[1:] + ".") if joined else None
 
 
 def _combined_toes_squeezed_ff_loose(shoes, profile=None):
@@ -2017,14 +1990,44 @@ def _aggregate_heel_tight(shoes, profile):
 
 
 def _aggregate_toes_squeezed(shoes, profile):
+    """Roman 2026-05-12: list ALL plausible causes when several apply
+    (toe-form mismatch, width mismatch, long arch). The previous version
+    only mentioned toe-form mismatch and ignored a wide-forefoot user
+    being squeezed by narrow shoes."""
     user_toe = (profile.get("toe_shape") or "").lower()
     user_lbl = _toe_label(user_toe)
+    user_fw  = profile.get("forefoot_width_class")
+    user_fw_r = _vol_rank(user_fw)
+    arch_cls = (profile.get("arch_length_class") or "").lower()
+
+    causes = []
+    fixes  = []
     if user_toe and not any(_toe_match(profile, s) for s in shoes):
-        return ("Your toes feel squeezed across all your shoes. None of them "
-                f"are built for {user_lbl} toes, so for next picks we filter "
-                f"for {user_lbl}-compatible toe boxes.")
-    return ("Your toes feel squeezed across all your shoes. A consistent "
-            "squeeze across different lasts points to a structural cause.")
+        causes.append(f"none of your shoes are built for {user_lbl} toes")
+        fixes.append(f"filter for {user_lbl}-compatible toe boxes")
+    if user_fw_r is not None:
+        ranks = [_vol_rank(s.get("db_width")) for s in shoes]
+        if all(r is not None and r < user_fw_r for r in ranks):
+            causes.append(
+                f"all your shoes are narrower than your "
+                f"{_clean_width(user_fw)} forefoot")
+            fixes.append("look at wider lasts")
+    if arch_cls == "long arch":
+        causes.append("your long arch pushes the ball into the toe box")
+        fixes.append("favor shorter toe boxes")
+
+    if not causes:
+        return ("Your toes feel squeezed across all your shoes. A consistent "
+                "squeeze across different lasts points to a structural cause.")
+
+    cause_text = causes[0] if len(causes) == 1 else \
+                 (causes[0] + " and " + causes[1] if len(causes) == 2 else
+                  ", ".join(causes[:-1]) + ", and " + causes[-1])
+    fix_text = fixes[0] if len(fixes) == 1 else \
+               (fixes[0] + " and " + fixes[1] if len(fixes) == 2 else
+                ", ".join(fixes[:-1]) + ", and " + fixes[-1])
+    return (f"Your toes feel squeezed across all your shoes. Likely "
+            f"causes: {cause_text}. For next picks we {fix_text}.")
 
 
 def _aggregate_toes_roomy(shoes, profile):
