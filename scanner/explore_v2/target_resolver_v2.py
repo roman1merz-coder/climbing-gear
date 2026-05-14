@@ -114,48 +114,100 @@ def _scan_vote_v2(ratio, ratio_key, source, note_template):
     }
 
 
-def _scrub_sizing_artifacts(shoes, street):
-    """Blank per-shoe-per-dim fit ratings that are explained by the
-    user's downsize choice rather than a real cup-mismatch.
+def _scrub_sizing_artifacts(shoes, street, profile=None):
+    """Blank per-shoe-per-dim fit ratings that are explained by either
+    the user's downsize choice OR an anatomical impossibility given
+    the cup spec + scan.
 
-    Rule (applies to every dim — heel / forefoot / toes):
+    Rule A (sizing artifact, applies to every dim):
       - loose-direction rating in an oversized shoe  -> artifact, blank.
       - tight-direction rating in an aggressively
         downsized shoe                                -> artifact, blank.
 
+    Rule B (directional-impossibility artifact, applies to heel +
+    forefoot where shoe spec ranks are comparable to scan ranks):
+      - loose-direction rating when shoe cup is at LEAST one rank
+        NARROWER than the user's scanned dim → impossible (a narrow
+        cup on a wide foot must feel tight, not loose).
+      - tight-direction rating when shoe cup is at LEAST one rank
+        WIDER than the user's scanned dim → impossible (a wide cup
+        on a narrow foot can't feel tight).
+
     Returns a deep-enough copy of the shoes list with offending
-    fit-dim values replaced by "" (which suppresses vote generation
-    in benchmark.target_resolver._shoe_votes).
+    fit-dim values replaced by "" (suppresses vote generation in
+    benchmark.target_resolver._shoe_votes).
     """
-    if not shoes or street is None:
+    if not shoes:
         return shoes or []
-    # Local import to avoid circular dep at module load (interp_shoe_fit_v2
-    # imports from target_resolver_v2 via the scorer chain).
     from interp_shoe_fit_v2 import _relative_downsize
+
+    # User dim ranks (0=narrow, 1=medium, 2=wide). None when scan missing.
+    user_hv_rank = _user_dim_rank(profile, "heel_width_ratio")  if profile else None
+    user_fw_rank = _user_dim_rank(profile, "forefoot_width_ratio") if profile else None
+
     out = []
     for s in shoes:
         size  = s.get("size_eu")
         brand = s.get("brand")
         fit   = dict(s.get("fit") or {})
-        if size is not None and brand:
+
+        # Rule A: sizing artifact
+        if street is not None and size is not None and brand:
             try:
                 _, rel, _ = _relative_downsize(float(street), float(size), brand)
             except (TypeError, ValueError):
                 rel = 0.0
             if rel <= -_DOWNSIZE_ARTIFACT_THRESHOLD:
-                # Oversized for brand → loose-direction feedback is an artifact
                 for dim, rating in list(fit.items()):
                     if rating in _LOOSE_RATINGS:
                         fit[dim] = ""
             elif rel >= _DOWNSIZE_ARTIFACT_THRESHOLD:
-                # Aggressively downsized → tight-direction feedback is an artifact
                 for dim, rating in list(fit.items()):
                     if rating in _TIGHT_RATINGS:
                         fit[dim] = ""
+
+        # Rule B: directional-impossibility artifact
+        for dim, user_rank, db_key in (("heel",     user_hv_rank, "db_heel_volume"),
+                                       ("forefoot", user_fw_rank, "db_width")):
+            if user_rank is None: continue
+            cup_rank = _cup_rank(s.get(db_key))
+            if cup_rank is None: continue
+            rating = fit.get(dim)
+            # Cup narrower than user → loose-direction feedback impossible
+            if cup_rank < user_rank and rating in _LOOSE_RATINGS:
+                fit[dim] = ""
+            # Cup wider than user → tight-direction feedback impossible
+            elif cup_rank > user_rank and rating in _TIGHT_RATINGS:
+                fit[dim] = ""
+
         new_s = dict(s)
         new_s["fit"] = fit
         out.append(new_s)
     return out
+
+
+def _user_dim_rank(profile, ratio_key):
+    """Return the user's 3-rank for the given dim, using V2 5-tier
+    boundaries (lo/hi). 0 narrow / 1 medium / 2 wide. None if missing."""
+    if not profile: return None
+    p = _V2_SCAN_BOUNDS.get(ratio_key)
+    val = profile.get(ratio_key)
+    if not p or val is None: return None
+    if val < p["lo"]: return 0
+    if val < p["hi"]: return 1
+    return 2
+
+
+_CUP_RANK_MAP = {"narrow": 0, "low": 0,
+                 "medium": 1, "standard": 1,
+                 "wide":   2, "high":     2}
+
+
+def _cup_rank(label):
+    """Map a shoe spec label (heel_volume / width / forefoot_volume) to
+    a 0/1/2 rank. None if the label is missing or unrecognised."""
+    if not label: return None
+    return _CUP_RANK_MAP.get(str(label).strip().lower())
 
 
 def resolve_targets_v2(profile, shoes, aggressiveness):
@@ -209,7 +261,7 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     # offending dim per shoe BEFORE the v1 resolver runs so the
     # artifact never generates a vote. Sandbox-only.
     street = profile.get("street_size_eu")
-    clean_shoes = _scrub_sizing_artifacts(shoes, street) if street else shoes
+    clean_shoes = _scrub_sizing_artifacts(shoes, street, profile=profile)
     out = dict(_v1_resolve_targets(profile, clean_shoes))
 
     # ── T1: V2-aligned scan votes for target_fw and target_hv ────────

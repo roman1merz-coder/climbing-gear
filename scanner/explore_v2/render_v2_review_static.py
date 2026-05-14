@@ -22,7 +22,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import requests
 
-from target_resolver_v2 import resolve_targets_v2, _scrub_sizing_artifacts
+from target_resolver_v2 import (resolve_targets_v2, _scrub_sizing_artifacts,
+                                  _user_dim_rank, _cup_rank)
 from matrix_scorer_v2 import compute_use_case_target, assemble_tiers
 from interp_what_to_look_for_v2 import generate_what_to_look_for_v2
 from interp_shoe_desc_v2 import flatten_pick, generate_shoe_description_v2
@@ -773,6 +774,13 @@ def calc_rec_size(profile_shoes, target_brand, brand_sizing, street_size, prefer
         return None
 
 
+def _norm_cup(label):
+    """Normalize shoe cup labels for prose: 'standard' → 'medium', etc."""
+    if not label: return "unknown"
+    s = str(label).strip().lower()
+    return {"standard": "medium", "low": "narrow", "high": "wide"}.get(s, s)
+
+
 def _shoe_fit_with_artifact_filter(profile, target=None):
     """Run generate_shoe_fit on shoes with sizing-artifact feedback
     blanked, AND prepend a disclosure sentence listing what was
@@ -787,52 +795,101 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
     from interp_shoe_fit_v2 import _relative_downsize, _brand_typical, _downsize_label_raw
     raw_shoes = profile.get("shoes") or []
     street    = profile.get("street_size_eu")
-    clean_shoes = (_scrub_sizing_artifacts(raw_shoes, street)
-                   if street else raw_shoes)
+    clean_shoes = _scrub_sizing_artifacts(raw_shoes, street, profile=profile)
 
-    # Build a disclosure sentence per (shoe, dim) that was filtered.
+    # Identify each discounted (shoe, dim, rating) and tag the reason
+    # so the disclosure sentence can be specific.
+    user_hv_rank = _user_dim_rank(profile, "heel_width_ratio")
+    user_fw_rank = _user_dim_rank(profile, "forefoot_width_ratio")
     discounted = []
     for raw, clean in zip(raw_shoes, clean_shoes):
         raw_fit   = raw.get("fit") or {}
         clean_fit = clean.get("fit") or {}
         for dim in ("heel", "toes", "forefoot"):
-            if raw_fit.get(dim) and not clean_fit.get(dim):
-                discounted.append({
-                    "shoe":   raw,
-                    "dim":    dim,
-                    "rating": raw_fit[dim],
-                })
+            if not (raw_fit.get(dim) and not clean_fit.get(dim)):
+                continue
+            rating = raw_fit[dim]
+            # Decide which rule fired (sizing or directional impossibility).
+            reason = "sizing"   # default — Rule A
+            if dim == "heel" and user_hv_rank is not None:
+                cup = _cup_rank(raw.get("db_heel_volume"))
+                if cup is not None:
+                    if cup < user_hv_rank and rating in ("loose", "empty", "roomy"):
+                        reason = "directional"
+                    elif cup > user_hv_rank and rating in ("tight", "squeezed"):
+                        reason = "directional"
+            elif dim == "forefoot" and user_fw_rank is not None:
+                cup = _cup_rank(raw.get("db_width"))
+                if cup is not None:
+                    if cup < user_fw_rank and rating in ("loose", "empty", "roomy"):
+                        reason = "directional"
+                    elif cup > user_fw_rank and rating in ("tight", "squeezed"):
+                        reason = "directional"
+            discounted.append({"shoe": raw, "dim": dim, "rating": rating,
+                                "reason": reason})
 
+    # Build the §2 paragraph sequence (Roman 2026-05-12: sizing intro
+    # FIRST, then disclosure of discounted ratings, then cascade).
     paragraphs = []
-    if discounted:
-        # One sentence per discounted (shoe, dim, rating) triple.
-        parts = []
-        for d in discounted:
-            s = d["shoe"]
-            brand, model, size = s.get("brand"), s.get("model"), s.get("size_eu")
-            raw, _, label = _relative_downsize(street, size, brand)
-            typ = _brand_typical(brand)
-            typ_phrase = (f"typical downsize is {_downsize_label_raw(typ)}"
-                          if typ > 0 else "shoes typically fit at street size")
-            actual_phrase = _downsize_label_raw(raw)  # already starts with "at" / "X sizes down" / etc.
-            # Avoid "at at street size" by stripping a leading "at " when we
-            # prefix with our own preposition.
-            if actual_phrase.startswith("at "):
-                actual_clause = actual_phrase  # "at street size"
-            else:
-                actual_clause = f"at {actual_phrase}"  # "at one size down"
-            parts.append(
-                f"Your {brand} {model}'s {d['rating']} {d['dim']} is "
-                f"consistent with its {label} sizing — {actual_clause} in "
-                f"{brand} where {typ_phrase} — so we set it aside as a "
-                f"sizing artifact rather than a cup-fit signal."
-            )
-        paragraphs.append(" ".join(parts))
 
     # Splice the filtered shoes into a profile copy so the cascade sees them.
     filtered_profile = dict(profile)
     filtered_profile["shoes"] = clean_shoes
-    paragraphs.extend(generate_shoe_fit(filtered_profile, target=target))
+    cascade_paragraphs = list(generate_shoe_fit(filtered_profile, target=target))
+
+    # First paragraph from the cascade is the sizing intro — emit it
+    # before the disclosure so context comes first.
+    if cascade_paragraphs:
+        paragraphs.append(cascade_paragraphs[0])
+        cascade_remainder = cascade_paragraphs[1:]
+    else:
+        cascade_remainder = []
+
+    if discounted:
+        # Roman 2026-05-12: consolidate per (dim, rating, reason) group
+        # so two shoes with the same artifact get ONE sentence, not two.
+        from collections import defaultdict
+        groups = defaultdict(list)
+        for d in discounted:
+            groups[(d["dim"], d["rating"], d["reason"])].append(d)
+
+        parts = []
+        for (dim, rating, reason), members in groups.items():
+            shoe_names = [f"{m['shoe'].get('brand')} {m['shoe'].get('model')}"
+                          for m in members]
+            joined = (shoe_names[0] if len(shoe_names) == 1 else
+                      " and ".join([", ".join(shoe_names[:-1]),
+                                     shoe_names[-1]]) if len(shoe_names) > 2
+                      else " and ".join(shoe_names))
+            count = "Your" if len(members) == 1 else f"Both your"
+            if reason == "directional":
+                cup_key = "db_heel_volume" if dim == "heel" else "db_width"
+                cups = [_norm_cup(m["shoe"].get(cup_key)) for m in members]
+                cup_phrase = (f"{cups[0]} cup" if len(cups) == 1 else
+                              f"{cups[0]} and {cups[1]} cups" if len(cups) == 2
+                              else f"{', '.join(cups[:-1])} and {cups[-1]} cups")
+                user_dim = "heel" if dim == "heel" else "forefoot"
+                user_lbl = "wide" if rating in ("loose","empty","roomy") else "narrow"
+                parts.append(
+                    f"{count} {joined} report{'s' if len(members)==1 else ''} "
+                    f"{rating} {dim}, but their {cup_phrase} are smaller than "
+                    f"your {user_lbl} {user_dim} — that combination can't "
+                    f"actually feel {rating}, so we set "
+                    f"{'it' if len(members)==1 else 'them'} aside as outliers."
+                )
+            else:
+                # Sizing artifact: just cite shoes + sizing label
+                first = members[0]["shoe"]
+                _, _, sizing_label = _relative_downsize(
+                    street, first.get("size_eu"), first.get("brand"))
+                parts.append(
+                    f"{count} {joined} {'is' if len(members)==1 else 'are'} "
+                    f"sized {sizing_label} for the brand, so {'its' if len(members)==1 else 'their'} "
+                    f"{rating} {dim} is sizing-driven, not cup-fit. Set aside."
+                )
+        paragraphs.append(" ".join(parts))
+
+    paragraphs.extend(cascade_remainder)
     return paragraphs
 
 
