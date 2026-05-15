@@ -253,7 +253,10 @@ def axis_toe_form(shoe, target, profile):
 
 
 def axis_forefoot_width(shoe, target, profile):
-    """+10 if shoe width = target_fw; -3 per grade off; -6 floor at 2+ off."""
+    """Roman 2026-05-12: steepened d=1 from -3 to -8, d=2 from -6 to -18.
+    The previous curve let medium-fit shoes leak into top picks for
+    extreme-foot users (test 2: very wide forefoot user with 1/3 of
+    the top 12 being medium-fit shoes scoring only -3 per dim)."""
     tgt = target["target_fw"]
     sw  = _norm(shoe.get("width"))
     rank_map = {"narrow": 0, "medium": 1, "wide": 2}
@@ -261,12 +264,14 @@ def axis_forefoot_width(shoe, target, profile):
     if sr is None:
         return 0, f"shoe width unknown ('{sw}')"
     d = abs(tgt - sr)
-    s = {0: 10, 1: -3, 2: -6}[min(d, 2)]
+    s = {0: 10, 1: -8, 2: -18}[min(d, 2)]
     return s, f"shoe fw={sw} vs target {WIDTH_LABELS[tgt]}, {'+' if s>=0 else ''}{s}"
 
 
 def axis_heel_volume(shoe, target, profile):
-    """+10 if shoe heel_volume = target_hv; -3 per grade; -6 floor at 2+."""
+    """Roman 2026-05-12: steepened d=1 from -3 to -8, d=2 from -6 to -18.
+    Same rationale as axis_forefoot_width — a medium-cup shoe on a
+    wide-heel user is meaningfully wrong, not slightly off."""
     tgt = target["target_hv"]
     sv  = _norm(shoe.get("heel_volume"))
     rank_map = {"narrow": 0, "low": 0, "medium": 1, "standard": 1, "wide": 2, "high": 2}
@@ -274,7 +279,7 @@ def axis_heel_volume(shoe, target, profile):
     if sr is None:
         return 0, f"shoe heel_volume unknown ('{sv}')"
     d = abs(tgt - sr)
-    s = {0: 10, 1: -3, 2: -6}[min(d, 2)]
+    s = {0: 10, 1: -8, 2: -18}[min(d, 2)]
     return s, f"shoe hv={sv} vs target {HV_LABELS[tgt]}, {'+' if s>=0 else ''}{s}"
 
 
