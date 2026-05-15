@@ -187,10 +187,10 @@ Everything for one scan lives in **one row** in `foot_scan_fits`, matched by `sc
 
 ### Supabase Access (Scanner)
 - **Project URL:** `https://wsjsuhvpgupalwgcjatp.supabase.co`
-- **Service-role key:** REDACTED. Never commit. Read it from Vercel env var
-  `SUPABASE_SERVICE_KEY` (also exported on the Mac Mini for `scan_worker.py`).
-  After 2026-05-07 the previously-committed key has been rotated.
-- **Anon key (read-only):** see `src/supabase.js`. Safe to expose; RLS gates writes.
+- **Service-role / secret key:** REDACTED. Never commit. Format is `sb_secret_...` (new key system, post-2026-05-07 rotation; the legacy JWT-shaped key was leaked and revoked). Read it from Vercel env var `SUPABASE_SECRET_KEY` (canonical) or `SUPABASE_SERVICE_KEY` (legacy alias kept for backwards compatibility). On the Mac Mini both names are exported in `~/Library/LaunchAgents/com.climbing-gear.scan-worker.plist` and `com.climbing-gear.scan-watchdog.plist`.
+- **Publishable key:** `SUPABASE_PUBLISHABLE_KEY` (format `sb_publishable_...`) — new public-key replacement for the old anon JWT. Safe to expose.
+- **Storage upload gotcha (sb_secret_* keys):** Storage now hard-checks that BOTH `apikey` and `Authorization: Bearer` headers carry the secret key. The legacy JWT was looser and worked with just `Authorization`. Missing the `apikey` header on the new keys returns "Invalid Compact JWS". See `scan_recommender.upload_overlay()` for the canonical header set.
+- **Anon key (legacy, read-only):** see `src/supabase.js`. Being phased out in favor of `SUPABASE_PUBLISHABLE_KEY`. RLS still gates writes.
 - The scanner HTML and SPA NEVER carry the service-role key. Browser-side
   writes go through `/api/scan/*` (public) and `/api/admin/*` (Basic-auth
   gated). See SECURITY-FIX.md for the full migration story.
@@ -231,7 +231,45 @@ launchctl kickstart -k gui/$(id -u)/com.climbing-gear.scan-worker
 
 # Check worker status:
 launchctl list | grep scan-worker
+
+# Restart watchdog (after edits to scan_watchdog.py or its plist):
+launchctl unload  ~/Library/LaunchAgents/com.climbing-gear.scan-watchdog.plist
+launchctl load    ~/Library/LaunchAgents/com.climbing-gear.scan-watchdog.plist
 ```
+
+### Reliability & Alerting (added 2026-05-11)
+
+**Incident that drove this:** on 2026-05-11 the worker hung silently for ~10 hours inside `_ssl__SSLSocket_do_handshake_impl` (a dead TLS read on the Supabase REST poll) while ~11 user scans piled up in `pipeline_stage='pending'`. No errors logged, no crash, process alive at 0% CPU. Two fixes were put in place:
+
+**1. HTTP timeouts everywhere.** Every `requests.*` call in `scan_worker.py` and `scan_recommender.py` now passes an explicit timeout (`REST_TIMEOUT = (10, 30)` for JSON, `(10, 60)` for storage uploads/photo downloads). Without these, `requests` blocks forever on a stale TLS socket. **When adding any new HTTP call to these files, you MUST pass the same timeout constants** — grep the file for them.
+
+**2. Telegram alerts via @ScanWatchdogBot (chat_id 8369090479).**
+
+The bot token lives only in two launchd plists:
+- `~/Library/LaunchAgents/com.climbing-gear.scan-worker.plist` (`TG_BOT_TOKEN`, `TG_CHAT_ID`)
+- `~/Library/LaunchAgents/com.climbing-gear.scan-watchdog.plist`
+
+Two layers of detection:
+
+- **Instant (in the worker itself):** `scanner/scan_alert.py` is called from `update_stage()` whenever a scan transitions to `error` or `validation_failed`. The worker also fires a throttled poll-loop alert (max 1/hour) when the top-level `except Exception` catches something.
+- **Watchdog (independent launchd job, every 2 min):** `scanner/scan_watchdog.py` (one-shot, `StartInterval=120`). Pings on three signals:
+  1. Any scan in `pending` / `segmenting` / `finding_shoes` for more than 3 minutes
+  2. Any scan with `pipeline_stage` in `('error','validation_failed')` created in the last 30 minutes (belt-and-suspenders for cases where the in-worker alert failed)
+  3. **Worker silent:** `/Users/rolfes/foot-scanner/logs/worker.log` mtime older than 5 min AND pending scan count > 0
+
+Dedup state at `~/foot-scanner/.watchdog_state.json` (24h prune for per-scan, 1h dedup for the heartbeat alert) so the same scan doesn't get alerted twice.
+
+Test:
+```bash
+SUPABASE_SECRET_KEY=... TG_BOT_TOKEN=... TG_CHAT_ID=8369090479 \
+  /Users/rolfes/foot-scanner/venv/bin/python3 \
+  /Users/rolfes/foot-scanner/scan_alert.py 'test ping'
+```
+
+**Files:**
+- `scanner/scan_alert.py` — Telegram helper; no-ops cleanly if env vars are unset (so misconfig never breaks the pipeline)
+- `scanner/scan_watchdog.py` — watchdog logic
+- `scanner/com.climbing-gear.scan-watchdog.plist` — source-of-truth (in iCloud); installed copy at `~/Library/LaunchAgents/` has the token filled in and is NOT a symlink (secrets shouldn't sync via iCloud)
 
 ### Location
 - **Worker:** `/Users/rolfes/foot-scanner/scan_worker.py` (symlink to iCloud climbing-gear/scanner/)
@@ -365,4 +403,46 @@ NOTE: Website uses "navicular_ratio" as the field name for heel depth (legacy na
 - **Sitemap auto-discovery (2026-05-07):** product URLs come from the seed JSON files (already auto-regenerated from Supabase by `prebuild`). Insight article URLs are auto-discovered from the `ARTICLES` array in `src/Insights.jsx` via regex on `to: "/insights/<slug>"` — adding a new article only needs that one file. The script throws if it finds zero matches, so a malformed Insights.jsx fails the build instead of shipping a sitemap with no insights.
 - **Sitemap priorities** (mostly cosmetic — Google has stated `<priority>` is largely ignored): 1.0 homepage / 0.9 listings + scan + find + individual insight articles / 0.8 product detail pages / 0.7 hubs (insights index, news) / 0.5 informational static / 0.3 legal boilerplate.
 - **GSC sitemap submission (2026-05-07 lesson):** the sitemap-index at `/sitemap.xml` reported `Erkannte Seiten: 0` because Google did not auto-follow the sub-sitemaps. **Submit each sub-sitemap individually** in GSC (`sitemap-core.xml`, `sitemap-shoes.xml`, etc.) — don't rely on the index alone. The old apex `https://climbing-gear.com/sitemap.xml` was a stale Feb-18 submission with 667 plural URLs that has been removed; never re-submit a sitemap on the apex hostname (canonical is `www.`).
+
+---
+
+## Git & GitHub Auth (Mac Mini)
+
+As of 2026-05-15, GitHub auth on the Mac Mini uses an **SSH key**, not a Personal Access Token. This is the durable fix after the previous PAT silently expired and blocked all pushes with a cryptic "Device not configured" / "could not read Password" error.
+
+### Setup
+
+- **Key file:** `~/.ssh/id_ed25519` (ed25519, no passphrase, comment `roman@climbing-gear.com`)
+- **Public key:** `~/.ssh/id_ed25519.pub`
+- **Fingerprint:** `SHA256:OntmAQsVUzGeFeMBK5ENYseqyKw2X4Ux1qlCJCf1Wag`
+- **Registered on GitHub:** yes, under roman1merz-coder account (Settings → SSH keys)
+
+### Remote URL format
+
+All `climbing-gear` clones on the Mac Mini use SSH form:
+
+```
+git@github.com:roman1merz-coder/climbing-gear.git
+```
+
+**Do NOT switch back to the HTTPS+token form** (`https://ghp_xxx@github.com/...`). That form was the source of the original outage: the PAT expired, and because there was no TTY available for an interactive fallback prompt, every push failed with the unhelpful "Device not configured" error. The expired PAT (prefix `ghp_7zd...`) was explicitly revoked on GitHub on 2026-05-15.
+
+### When push auth breaks again
+
+The right diagnosis order is:
+
+1. `ssh -T git@github.com` should print `Hi roman1merz-coder! You've successfully authenticated...`. If not, the key is missing from `~/.ssh/` or has been removed from the GitHub side.
+2. `git remote -v` must show `git@github.com:...`, NOT `https://...@github.com/...`. If the URL was changed back to HTTPS+token form, switch it back to SSH:
+   ```bash
+   git remote set-url origin git@github.com:roman1merz-coder/climbing-gear.git
+   ```
+3. If the key truly is gone, regenerate with:
+   ```bash
+   ssh-keygen -t ed25519 -C 'roman@climbing-gear.com' -f ~/.ssh/id_ed25519 -N ''
+   pbcopy < ~/.ssh/id_ed25519.pub
+   open 'https://github.com/settings/ssh/new'
+   ```
+   Then paste, give it a title, click Add.
+
+**Never paste a new PAT into the remote URL as a "quick fix".** That reintroduces the exact failure mode this section exists to prevent.
 
