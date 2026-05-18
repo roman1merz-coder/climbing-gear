@@ -2,17 +2,13 @@
 
 Issues found in this round of skill-driven test cases. Severity-tagged.
 
-## CRITICAL
+## RESOLVED
 
-### B1 — Scan dominance for extreme dims when feedback is thin or non-corroborating
+### B1 — Scan dominance for extreme dims (FIXED 2026-05-16)
 
-**Surfaced in:** test_1 (very-narrow forefoot scan → target_fw resolves to "normal" because the single shoe's perfect-in-wide-cup vote dilutes the scan).
+~~Surfaced in test_1 (very-narrow forefoot scan → target_fw resolves to "normal" because the single shoe's perfect-in-wide-cup vote dilutes the scan).~~
 
-Same failure mode as test 2 (sample set) where very-wide heel was diluted to medium by the Mandala empty-heel vote.
-
-Current artifact filters catch sizing-explained ratings and directionally-impossible loose-direction ratings. **They don't catch "perfect" feedback in directionally-mismatched cups** (perfect in cup-too-wide for narrow foot, or perfect in cup-too-narrow for wide foot).
-
-Proposed rule: when scan rank is 0 or 2 with high confidence AND total non-suppressed feedback weight is low (1-2 shoes), the scan vote weight should be multiplied (say x3) so it dominates.
+Resolved by Rule C in `target_resolver_v2._scrub_sizing_artifacts`: perfect rating in cup ≥2 ranks off from user's scan dim → blanked. Test_2 (2026-05-16) verifies fix — Drone 2 LV's perfect-in-narrow-cup forefoot was silently filtered, target_fw correctly resolved to wide.
 
 ## WARNING
 
@@ -34,6 +30,12 @@ Add a closing one-liner when the cascade ends up empty: *"With only one heavily 
 
 ### B4 — Price coverage thin on small EU sizes
 
-**Surfaced in:** test_1 (3/12 picks have prices, EU 40-42 range).
+**Surfaced in:** test_1 (3/12 picks have prices, EU 40-42 range). Also test_2 (3/12 picks, EU 43-45 men's range).
 
-Many shoes have no vendor in stock at EU 40-42 for women. Worth considering ±0.5 EU fallback for price display.
+Many shoes have no vendor in stock at the user's recommended size. Worth considering ±0.5 EU fallback for price display.
+
+### B5 — §1 T4 wording flattens "very" tiers into "rather"
+
+**Surfaced in:** test_2 (instep "very high" on slider → "rather high" in §1 P2; arch "very low" on slider → "rather short" in §1 P2).
+
+T4 sentences (`Additionally your instep is rather high...`, `Your arch is rather short...`) don't escalate for users at the extreme ends. A user at the 95th percentile gets the same prose as one at the 65th. Proposal: for `very high` / `very low` 5-tier labels, use "particularly high" / "noticeably short" or similar to convey the extreme.

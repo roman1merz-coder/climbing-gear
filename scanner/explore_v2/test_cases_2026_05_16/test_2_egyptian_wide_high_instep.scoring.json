@@ -1,0 +1,743 @@
+{
+  "scan_id": "scan-2026-04-08T21-04-30",
+  "prefs": [
+    "sport",
+    "both",
+    null,
+    "balanced"
+  ],
+  "target": {
+    "target_fw": 2,
+    "target_hv": 1,
+    "target_fv": 2,
+    "avg_fw": 1.75,
+    "avg_hv": 1.0,
+    "avg_fv": 2.0,
+    "votes_fw": [
+      {
+        "source": "scan_forefoot_width",
+        "rank": 2,
+        "weight": 3.0,
+        "note": "forefoot width 0.456 (conf 1.00, V2 5-tier)"
+      },
+      {
+        "source": "shoe:Mad Rock Drone 2 LV",
+        "rank": 1,
+        "weight": 1.0,
+        "note": "forefoot/toes tight in narrow shoe \u2192 wider"
+      }
+    ],
+    "votes_hv": [
+      {
+        "source": "scan_heel_width",
+        "rank": 1,
+        "weight": 1.2352941176470593,
+        "note": "heel width 0.243 (conf 0.12, V2 5-tier)"
+      }
+    ],
+    "votes_fv": [
+      {
+        "source": "scan_forefoot_width_for_fv",
+        "rank": 2,
+        "weight": 3.0,
+        "note": "forefoot width 0.456 (conf 1.00, V2 5-tier)"
+      }
+    ],
+    "shallow_heel_triggered": false,
+    "meas_fw": 2,
+    "meas_hv": 1,
+    "meas_fv": 2,
+    "fb_fw_votes": [
+      1
+    ],
+    "fb_hv_votes": [],
+    "fb_fv_votes": [],
+    "shallow_heel_override": false,
+    "target_asym": 2,
+    "target_asym_lbl": "moderate",
+    "asym_baseline_rank": 1,
+    "asym_baseline_lbl": "slight",
+    "asym_delta": 1,
+    "asym_reason": "Egyptian + no HVA",
+    "asym_has_hallux": false,
+    "asym_toe_shape": "egyptian",
+    "target_dt": 1,
+    "target_dt_lbl": "slight",
+    "aggressiveness": "balanced",
+    "stiff_target": 0.5,
+    "stiff_lo": 0.35,
+    "stiff_hi": 0.65,
+    "closure_pref": [
+      "velcro",
+      "lace"
+    ],
+    "closure_ok": [],
+    "closure_bad": [
+      "slipper"
+    ],
+    "ankle_required": false,
+    "rock": null,
+    "discipline": "sport"
+  },
+  "tiers": {
+    "baseline": [
+      {
+        "slug": "ocun-ozone-hv",
+        "brand": "Ocun",
+        "model": "Ozone HV",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian",
+          "greek",
+          "roman"
+        ],
+        "downturn": "slight",
+        "asymmetry": "strong",
+        "computed_stiffness": 0.499,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 88,
+        "breakdown": {
+          "stiffness": [
+            20,
+            "stiff 0.50 in window [0.35,0.65], +20"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=slight vs target dt=slight, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian', 'greek', 'roman'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=strong vs target moderate, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "evolv-v6",
+        "brand": "Evolv",
+        "model": "V6",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian",
+          "roman"
+        ],
+        "downturn": "moderate",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.4294,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 85,
+        "breakdown": {
+          "stiffness": [
+            17,
+            "stiff 0.43 in window [0.35,0.65], +17"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            3,
+            "shoe dt=moderate vs target dt=slight, +3"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian', 'roman'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "tenaya-arai",
+        "brand": "Tenaya",
+        "model": "Ara\u00ed",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "slight",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4207,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 85,
+        "breakdown": {
+          "stiffness": [
+            17,
+            "stiff 0.42 in window [0.35,0.65], +17"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=slight vs target dt=slight, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target moderate, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ],
+    "softer": [
+      {
+        "slug": "lowa-parrot-vcr",
+        "brand": "Lowa",
+        "model": "Parrot VCR",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "slight",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.2857,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 56,
+        "breakdown": {
+          "stiffness": [
+            -24,
+            "stiff 0.29 outside [0.35,0.65] by 0.06, -24"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=slight vs target dt=slight, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "evolv-defy",
+        "brand": "Evolv",
+        "model": "Defy",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "flat",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.3979,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 84,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.40 in window [0.35,0.65], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            3,
+            "shoe dt=flat vs target dt=slight, +3"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "scarpa-vapor-s-womens",
+        "brand": "Scarpa",
+        "model": "Vapor S Women's",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "slight",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.4057,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 78,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.41 in window [0.35,0.65], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=slight vs target dt=slight, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            -8,
+            "shoe fw=medium vs target wide, -8"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ],
+    "stiffer": [
+      {
+        "slug": "mad-rock-rover",
+        "brand": "Mad Rock",
+        "model": "Rover",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "slight",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.6007,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 78,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.60 in window [0.35,0.65], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=slight vs target dt=slight, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            -8,
+            "shoe fw=medium vs target wide, -8"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "eb-electron",
+        "brand": "EB",
+        "model": "Electron 3.0",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.5294,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 75,
+        "breakdown": {
+          "stiffness": [
+            19,
+            "stiff 0.53 in window [0.35,0.65], +19"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            3,
+            "shoe dt=flat vs target dt=slight, +3"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target moderate, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "five-ten-aleon",
+        "brand": "Five Ten",
+        "model": "Aleon",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "moderate",
+        "asymmetry": "strong",
+        "computed_stiffness": 0.4794,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 75,
+        "breakdown": {
+          "stiffness": [
+            19,
+            "stiff 0.48 in window [0.35,0.65], +19"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            3,
+            "shoe dt=moderate vs target dt=slight, +3"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=strong vs target moderate, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ],
+    "budget": [
+      {
+        "slug": "tenaya-tanta-laces",
+        "brand": "Tenaya",
+        "model": "Tanta Laces",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4207,
+        "no_edge": false,
+        "best_price_at_size": 88.99,
+        "score": 73,
+        "breakdown": {
+          "stiffness": [
+            17,
+            "stiff 0.42 in window [0.35,0.65], +17"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            3,
+            "shoe dt=flat vs target dt=slight, +3"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=wide vs target wide, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target moderate, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'lace' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'lace', +10"
+          ]
+        }
+      },
+      {
+        "slug": "scarpa-arpia-v",
+        "brand": "Scarpa",
+        "model": "Arpia V",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "greek"
+        ],
+        "downturn": "slight",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.4057,
+        "no_edge": false,
+        "best_price_at_size": 108.49,
+        "score": 65,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.41 in window [0.35,0.65], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=slight vs target dt=slight, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['greek'] mismatched to scan 'egyptian', -3"
+          ],
+          "forefoot_width": [
+            -8,
+            "shoe fw=medium vs target wide, -8"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "ocun-jett-qc",
+        "brand": "Ocun",
+        "model": "Jett QC",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "flat",
+        "asymmetry": "moderate",
+        "computed_stiffness": 0.6007,
+        "no_edge": false,
+        "best_price_at_size": 109.95,
+        "score": 66,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.60 in window [0.35,0.65], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            3,
+            "shoe dt=flat vs target dt=slight, +3"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian'] matches scan 'egyptian', +10"
+          ],
+          "forefoot_width": [
+            -8,
+            "shoe fw=medium vs target wide, -8"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=moderate vs target moderate, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "high instep 0.347 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ]
+  }
+}

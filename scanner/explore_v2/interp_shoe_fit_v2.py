@@ -145,7 +145,9 @@ def _para_sizing(shoes, street):
         return None
 
     if len(shoes_with_size) == 1:
-        # Roman 2026-05-16: match the concise multi-shoe pattern.
+        # Roman 2026-05-16: concise wording. For label=="typical" use
+        # "is a typical fit for X"; otherwise use "is [label] for X".
+        # In both cases append ", where the usual downsize is [typ]."
         s = shoes_with_size[0]
         raw, _rel, label = _relative_downsize(street, s["size_eu"], s["brand"])
         if raw == 0:
@@ -156,14 +158,19 @@ def _para_sizing(shoes, street):
             sz = f"{raw:g} down"
         typ = _brand_typical(s["brand"])
         if typ > 0:
-            brand_ctx = f"typical {_downsize_label_raw(typ)}"
-        elif typ < 0:
-            brand_ctx = f"typical {_downsize_label_raw(typ)}"
+            # _downsize_label_raw returns "half a size down" — strip trailing
+            # " down" since we already say "downsize".
+            typ_lbl = _downsize_label_raw(typ).removesuffix(" down")
+            tail = f", where the usual downsize is {typ_lbl}"
+        elif typ == 0:
+            tail = ", where shoes usually fit at street size"
         else:
-            brand_ctx = "typical at street size"
+            tail = f", where shoes usually fit {_downsize_label_raw(typ)} street"
+        fit_phrase = ("a typical fit" if label == "typical"
+                      else label)
         return (
             f"Your {s['brand']} {s['model']} (EU {s['size_eu']:g}, {sz}) is "
-            f"{label} for {s['brand']}, {brand_ctx}."
+            f"{fit_phrase} for {s['brand']}{tail}."
         )
 
     # Multiple shoes
@@ -1782,7 +1789,7 @@ def _cascade_toes_squeezed(shoe, profile, street):
             and user_fw_r is not None and shoe_w_r < user_fw_r):
         return (f"Your {_possessive(name)} toe shape matches your {_toe_label(user_toe)} foot, but "
                 f"your wide forefoot in this {_clean_width(shoe_w)} last is "
-                f"likely causing the squeeze. Look for wider lasts.")
+                f"likely causing the squeezed toes. Look for wider lasts.")
 
     # C: toe shape + width fit + long arch
     if "long" in arch_cls:

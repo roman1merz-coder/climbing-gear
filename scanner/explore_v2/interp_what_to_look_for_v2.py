@@ -340,8 +340,15 @@ def _build_p3(profile, shoes):
     so the user can scan them.
     """
     parts = []
-    heel_depth = (profile.get("heel_depth_class") or "").lower()
-    if "shallow" in heel_depth:
+    # Roman 2026-05-16: use V2 5-tier classifier (same source as the
+    # slider label) instead of production heel_depth_class. The two
+    # disagree at borderline values (e.g. ratio=0.034 was stored as
+    # "shallow heel" by production but the V2 5-tier says mid). Firing
+    # this caveat when the slider shows mid looked wrong to the user.
+    from interp_foot_shape_v2 import _classify_5tier
+    heel_depth_5t = _classify_5tier(
+        "heel_depth_ratio", profile.get("heel_depth_ratio"))
+    if heel_depth_5t in ("very shallow", "shallow heel"):
         parts.append(_SHALLOW_HEEL_CLAUSE)
 
     if _detect_soft_mask(profile, shoes):
