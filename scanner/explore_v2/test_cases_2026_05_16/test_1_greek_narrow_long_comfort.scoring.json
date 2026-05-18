@@ -1,0 +1,751 @@
+{
+  "scan_id": "scan-2026-04-11T21-17-57",
+  "prefs": [
+    "sport",
+    "indoor",
+    null,
+    "comfort"
+  ],
+  "target": {
+    "target_fw": 1,
+    "target_hv": 1,
+    "target_fv": 1,
+    "avg_fw": 0.6315789473684205,
+    "avg_hv": 1.0,
+    "avg_fv": 0.6315789473684205,
+    "votes_fw": [
+      {
+        "source": "scan_forefoot_width",
+        "rank": 0,
+        "weight": 2.1666666666666696,
+        "note": "forefoot width 0.329 (conf 0.58, V2 5-tier)"
+      },
+      {
+        "source": "shoe:Simond Rock+",
+        "rank": 2,
+        "weight": 1.0,
+        "note": "forefoot+toes perfect in wide shoe"
+      }
+    ],
+    "votes_hv": [
+      {
+        "source": "scan_heel_width",
+        "rank": 1,
+        "weight": 1.588235294117648,
+        "note": "heel width 0.240 (conf 0.29, V2 5-tier)"
+      }
+    ],
+    "votes_fv": [
+      {
+        "source": "scan_forefoot_width_for_fv",
+        "rank": 0,
+        "weight": 2.1666666666666696,
+        "note": "forefoot width 0.329 (conf 0.58, V2 5-tier)"
+      },
+      {
+        "source": "shoe:Simond Rock+",
+        "rank": 2,
+        "weight": 1.0,
+        "note": "forefoot perfect in high vol"
+      }
+    ],
+    "shallow_heel_triggered": false,
+    "meas_fw": 0,
+    "meas_hv": 1,
+    "meas_fv": 0,
+    "fb_fw_votes": [
+      2
+    ],
+    "fb_hv_votes": [],
+    "fb_fv_votes": [
+      2
+    ],
+    "shallow_heel_override": false,
+    "target_asym": 0,
+    "target_asym_lbl": "none",
+    "asym_baseline_rank": 0,
+    "asym_baseline_lbl": "none",
+    "asym_delta": -1,
+    "asym_reason": "HVA 0.25 \u2265 0.25",
+    "asym_has_hallux": true,
+    "asym_toe_shape": "greek",
+    "target_dt": 0,
+    "target_dt_lbl": "flat",
+    "aggressiveness": "comfort",
+    "stiff_target": 0.4,
+    "stiff_lo": 0.24999999999999997,
+    "stiff_hi": 0.55,
+    "closure_pref": [
+      "velcro",
+      "lace"
+    ],
+    "closure_ok": [
+      "slipper"
+    ],
+    "closure_bad": [],
+    "ankle_required": false,
+    "rock": null,
+    "discipline": "sport"
+  },
+  "tiers": {
+    "baseline": [
+      {
+        "slug": "scarpa-origin-mens",
+        "brand": "Scarpa",
+        "model": "Origin",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "greek"
+        ],
+        "downturn": "flat",
+        "asymmetry": "none",
+        "computed_stiffness": 0.4683,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 97,
+        "breakdown": {
+          "stiffness": [
+            17,
+            "stiff 0.47 in window [0.25,0.55], +17"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['greek'] matches scan 'greek', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=none vs target none, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "ocun-striker-lu",
+        "brand": "Ocun",
+        "model": "Striker LU",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian",
+          "greek"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4378,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 86,
+        "breakdown": {
+          "stiffness": [
+            18,
+            "stiff 0.44 in window [0.25,0.55], +18"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian', 'greek'] matches scan 'greek', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'lace' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'lace', +10"
+          ]
+        }
+      },
+      {
+        "slug": "unparallel-engage-lace",
+        "brand": "Unparallel",
+        "model": "Engage Lace",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "flat",
+        "asymmetry": "none",
+        "computed_stiffness": 0.5078,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 83,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.51 in window [0.25,0.55], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['egyptian'] mismatched to scan 'greek', -3"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=none vs target none, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'lace' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'lace', +10"
+          ]
+        }
+      }
+    ],
+    "softer": [
+      {
+        "slug": "tulson-tolf-out",
+        "brand": "Tulson Tolf",
+        "model": "OUT",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "roman"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.3564,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 73,
+        "breakdown": {
+          "stiffness": [
+            18,
+            "stiff 0.36 in window [0.25,0.55], +18"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['roman'] mismatched to scan 'greek', -3"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'lace' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'lace', +10"
+          ]
+        }
+      },
+      {
+        "slug": "saltic-tanaka",
+        "brand": "Saltic",
+        "model": "Tanaka",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "roman"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.3564,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 73,
+        "breakdown": {
+          "stiffness": [
+            18,
+            "stiff 0.36 in window [0.25,0.55], +18"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['roman'] mismatched to scan 'greek', -3"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'lace' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'lace', +10"
+          ]
+        }
+      },
+      {
+        "slug": "tenaya-tanta",
+        "brand": "Tenaya",
+        "model": "Tanta",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4207,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 74,
+        "breakdown": {
+          "stiffness": [
+            19,
+            "stiff 0.42 in window [0.25,0.55], +19"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['egyptian'] mismatched to scan 'greek', -3"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ],
+    "stiffer": [
+      {
+        "slug": "la-sportiva-mythos-mens",
+        "brand": "La Sportiva",
+        "model": "Mythos",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian",
+          "greek"
+        ],
+        "downturn": "flat",
+        "asymmetry": "none",
+        "computed_stiffness": 0.6007,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 57,
+        "breakdown": {
+          "stiffness": [
+            -23,
+            "stiff 0.60 outside [0.25,0.55] by 0.05, -23"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian', 'greek'] matches scan 'greek', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=none vs target none, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'lace' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'lace', +10"
+          ]
+        }
+      },
+      {
+        "slug": "red-chili-spirit-vcr",
+        "brand": "Red Chili",
+        "model": "Spirit",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "greek"
+        ],
+        "downturn": "flat",
+        "asymmetry": "none",
+        "computed_stiffness": 0.6257,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 55,
+        "breakdown": {
+          "stiffness": [
+            -25,
+            "stiff 0.63 outside [0.25,0.55] by 0.08, -25"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['greek'] matches scan 'greek', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=none vs target none, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "ocun-striker-qc",
+        "brand": "Ocun",
+        "model": "Striker QC",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "egyptian",
+          "greek"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4978,
+        "no_edge": false,
+        "best_price_at_size": null,
+        "score": 84,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.50 in window [0.25,0.55], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['egyptian', 'greek'] matches scan 'greek', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ],
+    "budget": [
+      {
+        "slug": "scarpa-force-v",
+        "brand": "Scarpa",
+        "model": "Force",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "greek"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4907,
+        "no_edge": false,
+        "best_price_at_size": 55.99,
+        "score": 84,
+        "breakdown": {
+          "stiffness": [
+            16,
+            "stiff 0.49 in window [0.25,0.55], +16"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            10,
+            "shoe toe_form ['greek'] matches scan 'greek', +10"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "five-ten-kirigami",
+        "brand": "Five Ten",
+        "model": "Kirigami",
+        "width": "wide",
+        "heel_volume": "medium",
+        "toe_form": [
+          "roman"
+        ],
+        "downturn": "flat",
+        "asymmetry": "none",
+        "computed_stiffness": 0.4457,
+        "no_edge": false,
+        "best_price_at_size": 69.9,
+        "score": 67,
+        "breakdown": {
+          "stiffness": [
+            18,
+            "stiff 0.45 in window [0.25,0.55], +18"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['roman'] mismatched to scan 'greek', -3"
+          ],
+          "forefoot_width": [
+            -8,
+            "shoe fw=wide vs target medium, -8"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            15,
+            "shoe asym=none vs target none, +15"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      },
+      {
+        "slug": "wild-climb-bat",
+        "brand": "Wild Climb",
+        "model": "Bat",
+        "width": "medium",
+        "heel_volume": "medium",
+        "toe_form": [
+          "roman"
+        ],
+        "downturn": "flat",
+        "asymmetry": "slight",
+        "computed_stiffness": 0.4207,
+        "no_edge": false,
+        "best_price_at_size": 86.9,
+        "score": 74,
+        "breakdown": {
+          "stiffness": [
+            19,
+            "stiff 0.42 in window [0.25,0.55], +19"
+          ],
+          "ankle": [
+            0,
+            "ankle not required"
+          ],
+          "downturn": [
+            15,
+            "shoe dt=flat vs target dt=flat, +15"
+          ],
+          "toe_form": [
+            -3,
+            "shoe toe_form ['roman'] mismatched to scan 'greek', -3"
+          ],
+          "forefoot_width": [
+            10,
+            "shoe fw=medium vs target medium, +10"
+          ],
+          "heel_volume": [
+            10,
+            "shoe hv=medium vs target medium, +10"
+          ],
+          "asymmetry": [
+            3,
+            "shoe asym=slight vs target none, +3"
+          ],
+          "closure": [
+            10,
+            "closure 'velcro' preferred for (sport), +10"
+          ],
+          "instep_extreme": [
+            10,
+            "low instep 0.238 + adjustable closure 'velcro', +10"
+          ]
+        }
+      }
+    ]
+  }
+}

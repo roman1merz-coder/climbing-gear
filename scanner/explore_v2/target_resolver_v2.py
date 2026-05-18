@@ -166,18 +166,25 @@ def _scrub_sizing_artifacts(shoes, street, profile=None):
                     if rating in _TIGHT_RATINGS:
                         fit[dim] = ""
 
-        # Rule B: directional-impossibility artifact
+        # Rule B: directional-impossibility artifact (loose-in-narrow-cup,
+        # tight-in-wide-cup).
+        # Rule C (Roman 2026-05-16): perfect rating in a cup that's ≥2
+        # ranks off from user's scan dim. Anatomically a wide cup can't
+        # feel "perfect" on a narrow foot, nor a narrow cup on a wide
+        # foot. Silent filter — no user-facing disclosure (reads odd).
         for dim, user_rank, db_key in (("heel",     user_hv_rank, "db_heel_volume"),
                                        ("forefoot", user_fw_rank, "db_width")):
             if user_rank is None: continue
             cup_rank = _cup_rank(s.get(db_key))
             if cup_rank is None: continue
             rating = fit.get(dim)
-            # Cup narrower than user → loose-direction feedback impossible
+            # Rule B
             if cup_rank < user_rank and rating in _LOOSE_RATINGS:
                 fit[dim] = ""
-            # Cup wider than user → tight-direction feedback impossible
             elif cup_rank > user_rank and rating in _TIGHT_RATINGS:
+                fit[dim] = ""
+            # Rule C: perfect at ≥2 rank diff
+            elif rating == "perfect" and abs(user_rank - cup_rank) >= 2:
                 fit[dim] = ""
 
         new_s = dict(s)

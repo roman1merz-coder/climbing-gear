@@ -813,7 +813,7 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
     from interp_shoe_fit_v2 import _relative_downsize, _brand_typical, _downsize_label_raw
 
     def _classify_reason(shoe, dim, rating, user_rank, cup_rank):
-        # Step 1: sizing-driven?
+        # Step 1: sizing-driven (Rule A)?
         size, brand = shoe.get("size_eu"), shoe.get("brand")
         if street is not None and size is not None and brand:
             try:
@@ -823,13 +823,17 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
             if (rel <= -0.5 and rating in ("loose", "empty", "roomy")) or \
                (rel >= +0.5 and rating in ("tight", "squeezed")):
                 return "sizing"
-        # Step 2 / 3: directional impossibility
-        if user_rank is None or cup_rank is None:
-            return "perception"
-        diff = user_rank - cup_rank
-        if rating in ("loose", "empty", "roomy") and diff >= 2:
-            return "sit_above"
-        return "perception"
+        # Step 2: sit-above for loose-direction (Rule B extreme case)
+        if user_rank is not None and cup_rank is not None:
+            diff = user_rank - cup_rank
+            if rating in ("loose", "empty", "roomy") and diff >= 2:
+                return "sit_above"
+        # Anything else (mild directional, perfect-at-2+-rank-diff) →
+        # silent. Roman 2026-05-16: no user-facing disclosure for these
+        # cases — the prose reads odd. The filter still ran in
+        # target_resolver, so the rating is correctly excluded from
+        # the target math.
+        return "silent"
 
     discounted = []
     for raw, clean in zip(raw_shoes, clean_shoes):
@@ -882,56 +886,42 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
             user_dim = "heel" if dim == "heel" else ("forefoot" if dim == "forefoot" else "toes")
 
             if reason == "sizing":
-                # Per-shoe — sizing-driven feedback. Roman 2026-05-12 wording:
-                # "is most likely a sizing issue — the relaxed/aggressive
-                # downsize creates a [rating] [dim]."
+                # Roman's exact wording (2026-05-16): commas, no em dashes,
+                # "sizing problem" not "sizing issue".
                 for m in members:
                     s = m["shoe"]
                     brand, model = s.get("brand"), s.get("model")
                     _, _, lbl = _relative_downsize(street, s.get("size_eu"), brand)
-                    article = "an" if rating[:1].lower() in "aeiou" else "a"
+                    direction = "loose" if rating in ("loose","empty","roomy") else "tight"
                     parts.append(
                         f"Your {brand} {model}'s {rating} {dim} is most "
-                        f"likely a sizing issue — the {lbl} downsize creates "
-                        f"{article} {rating} {dim}."
+                        f"likely a sizing problem, at {lbl} sizing for "
+                        f"{brand}, the shoe naturally runs {direction}."
                     )
 
             elif reason == "sit_above":
-                # Roman 2026-05-12 wording: contradictory + sit-above theory
-                # without the "set aside" / "speculative" hedge wording.
-                cup_key = "db_heel_volume" if dim == "heel" else "db_width"
+                # Roman's exact wording (2026-05-16): heel-only, commas.
                 user_lbl = "wide" if rating in ("loose","empty","roomy") else "narrow"
                 for m in members:
                     s = m["shoe"]
                     brand, model = s.get("brand"), s.get("model")
-                    cup_lbl = _norm_cup(s.get(cup_key))
+                    cup_lbl = _norm_cup(s.get("db_heel_volume"))
                     parts.append(
-                        f"Your {brand} {model}'s {rating} {dim} is "
-                        f"contradictory — its {cup_lbl} {dim} cup should be "
-                        f"too small for your {user_lbl} {user_dim}. We "
-                        f"suspect your {user_dim} does not fit inside the "
-                        f"cup and hence leaves the empty space at the bottom "
-                        f"which you perceive as {rating} feel."
+                        f"Your {brand} {model}'s {rating} heel is "
+                        f"contradictory, a {cup_lbl} cup shouldn't feel "
+                        f"{rating} on your {user_lbl} heel. Likely your "
+                        f"heel does not fit inside the cup and hence leaves "
+                        f"the empty space at the bottom which you perceive "
+                        f"as {rating} feel."
                     )
 
-            else:  # perception (mild mismatch, no obvious cause)
-                cup_key = "db_heel_volume" if dim == "heel" else "db_width"
-                cups = [_norm_cup(m["shoe"].get(cup_key)) for m in members]
-                shoe_names = [f"{m['shoe'].get('brand')} {m['shoe'].get('model')}"
-                              for m in members]
-                joined = " and ".join(shoe_names) if len(shoe_names) <= 2 else \
-                         ", ".join(shoe_names[:-1]) + ", and " + shoe_names[-1]
-                cup_phrase = " and ".join(cups) if len(cups) <= 2 else \
-                             ", ".join(cups[:-1]) + ", and " + cups[-1]
-                user_lbl = "wide" if rating in ("loose","empty","roomy") else "narrow"
-                parts.append(
-                    f"Your {joined} report {rating} {dim} despite "
-                    f"{cup_phrase} cups that should fit your {user_lbl} "
-                    f"{user_dim} differently — likely a perception "
-                    f"variation, set aside."
-                )
+            # "silent" reason — perfect-mismatch (Rule C) or mild
+            # directional. No user-facing prose; the filter already
+            # excluded these ratings from target math. Skip.
 
-        paragraphs.append(" ".join(parts))
+        # Emit the disclosure only if at least one non-silent finding fired.
+        if parts:
+            paragraphs.append(" ".join(parts))
 
     paragraphs.extend(cascade_remainder)
     return paragraphs

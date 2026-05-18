@@ -145,52 +145,26 @@ def _para_sizing(shoes, street):
         return None
 
     if len(shoes_with_size) == 1:
+        # Roman 2026-05-16: match the concise multi-shoe pattern.
         s = shoes_with_size[0]
-        raw, rel, label = _relative_downsize(street, s["size_eu"], s["brand"])
-        raw_label = _downsize_label_raw(raw)
-        typical_label = _downsize_label_raw(_brand_typical(s["brand"]))
-
-        if raw < 0:
-            size_phrase = (f"which is actually {abs(raw):.1f} sizes above "
-                           f"your street size of {street}")
-        elif raw == 0:
-            size_phrase = f"at your street size of {street}"
+        raw, _rel, label = _relative_downsize(street, s["size_eu"], s["brand"])
+        if raw == 0:
+            sz = "at street size"
+        elif raw < 0:
+            sz = f"{abs(raw):g} above street"
         else:
-            size_phrase = f"{raw_label} from your street size of {street}"
-
-        # Roman 2026-05-01 audit S7: handle typical == 0 ("at street size")
-        # gracefully so we don't say "typical downsize is about at street size".
-        typical_value = _brand_typical(s["brand"])
-        if label == "typical":
-            brand_context = f"a typical fit for {s['brand']}"
-        elif typical_value == 0:
-            brand_context = (
-                f"{label} for {s['brand']}, where shoes typically fit at "
-                f"street size"
-            )
-        elif typical_value < 0:
-            brand_context = (
-                f"{label} for {s['brand']}, where the typical fit is about "
-                f"{typical_label}"
-            )
+            sz = f"{raw:g} down"
+        typ = _brand_typical(s["brand"])
+        if typ > 0:
+            brand_ctx = f"typical {_downsize_label_raw(typ)}"
+        elif typ < 0:
+            brand_ctx = f"typical {_downsize_label_raw(typ)}"
         else:
-            brand_context = (
-                f"{label} for {s['brand']}, where the typical downsize is "
-                f"about {typical_label}"
-            )
-
-        base = (
-            f"You wear your {s['brand']} {s['model']} in EU {s['size_eu']}, "
-            f"{size_phrase}. "
-            f"That is {brand_context}."
+            brand_ctx = "typical at street size"
+        return (
+            f"Your {s['brand']} {s['model']} (EU {s['size_eu']:g}, {sz}) is "
+            f"{label} for {s['brand']}, {brand_ctx}."
         )
-
-        # Roman 2026-05-01 audit S5: drop the V1 "Downsizing further toward
-        # the typical range could tighten the heel..." follow-up. The new
-        # cascade (S2.HEEL.empty.1.C) owns sizing diagnosis now and the two
-        # together produced a duplicate paragraph.
-
-        return base
 
     # Multiple shoes
     sizes = [s["size_eu"] for s in shoes_with_size]

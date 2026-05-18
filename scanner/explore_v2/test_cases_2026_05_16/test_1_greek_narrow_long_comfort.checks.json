@@ -1,0 +1,22 @@
+{
+  "scan_id": "scan-2026-04-11T21-17-57",
+  "prefs": [
+    "sport",
+    "indoor",
+    null,
+    "comfort"
+  ],
+  "n_findings": 1,
+  "findings_by_severity": {
+    "CRITICAL": 0,
+    "WARNING": 1,
+    "NOTE": 0
+  },
+  "findings": [
+    {
+      "rule": "R7",
+      "severity": "WARNING",
+      "msg": "only 3/12 picks have prices (>50% missing)"
+    }
+  ]
+}
