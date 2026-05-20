@@ -8,6 +8,8 @@
 //   GET  ?op=status&scan_id=X     pipeline progress poll
 //   GET  ?op=queue                in-flight scans for queue position
 //   GET  ?op=get&scan_id=X        full row read (used by retake page)
+//   GET  ?op=shoes                {brand:[model,...]} from the shoes table
+//                                 (feeds the scanner's current-shoe dropdown)
 //   POST {op:"init",  scan_id}                              insert pending row
 //   POST {op:"prefs", scan_id, sex, street_size_eu, shoes,
 //                     next_shoe_preference, next_shoe_notes, email?}
@@ -106,6 +108,7 @@ export default async function handler(req, res) {
     if (op === "status") return handleStatus(req, res);
     if (op === "queue") return handleQueue(req, res);
     if (op === "get") return handleGet(req, res);
+    if (op === "shoes") return handleShoes(req, res);
     return res.status(400).json({ error: "Unknown op" });
   }
   if (req.method !== "POST") {
@@ -158,6 +161,24 @@ async function handleGet(req, res) {
   );
   if (!sb.ok) return sendSupabaseError(res, sb);
   return res.status(200).json(Array.isArray(sb.body) ? sb.body[0] || null : null);
+}
+
+// Returns the catalog as { brand: [model, ...] } so the scanner's
+// current-shoe dropdown is fed by the live shoes table — every
+// selectable shoe is guaranteed to exist in the DB.
+async function handleShoes(req, res) {
+  const sb = await sbFetch(
+    `/rest/v1/shoes?select=brand,model&order=brand.asc,model.asc&limit=2000`,
+  );
+  if (!sb.ok) return sendSupabaseError(res, sb);
+  const byBrand = {};
+  for (const row of (Array.isArray(sb.body) ? sb.body : [])) {
+    const b = (row.brand || "").trim();
+    const m = (row.model || "").trim();
+    if (!b || !m) continue;
+    (byBrand[b] = byBrand[b] || []).push(m);
+  }
+  return res.status(200).json(byBrand);
 }
 
 async function handleInit(body, res) {
