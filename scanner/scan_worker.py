@@ -29,9 +29,19 @@ import cv2
 import numpy as np
 import requests
 
+# V2 engines live in climbing-gear/scanner/explore_v2/. scan_worker.py runs
+# via a symlink (~/foot-scanner/scan_worker.py), so resolve the *real*
+# scanner dir and put it + explore_v2/ on sys.path before importing the V2
+# pipeline. Harmless for the existing benchmark/* imports (same files).
+_REAL_SCANNER_DIR = os.path.dirname(os.path.realpath(__file__))
+for _p in (os.path.join(_REAL_SCANNER_DIR, "explore_v2"), _REAL_SCANNER_DIR):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
 # Local modules (symlinked from climbing-gear/scanner/)
 import foot_measure
 import scan_recommender
+import scan_alert
 
 # ── Config ──────────────────────────────────────────────────────────────
 POLL_INTERVAL = 5          # seconds between polls
@@ -39,9 +49,33 @@ RESULTS_DIR = "/Users/rolfes/foot-scanner/results"
 SB_URL = scan_recommender.SB_URL
 SB_KEY = scan_recommender.SB_KEY
 
+# Network timeouts for every HTTP call. Without these, a dead TLS socket
+# (e.g. after a network blip) will block the worker forever in ssl3_read_bytes.
+# (connect_timeout_seconds, read_timeout_seconds)
+REST_TIMEOUT = (10, 30)        # Supabase REST API: small JSON payloads
+DOWNLOAD_TIMEOUT = (10, 60)    # Photo download from Storage: ~1-3MB JPEGs
+
 # /scan/:scanId/browse page fetches foot_scan_fits.browse_extended and renders
 # top_n shoes per tier. Must match scripts/backfill_browse_extended.py.
 _BROWSE_TOP_N = 30
+
+# ── V2 pipeline feature flag (W9) ───────────────────────────────────────
+# SCANNER_PIPELINE = "v2" (default): a scan carrying the four V2 preference
+#   inputs (discipline / environment / aggressiveness) is scored by the V2
+#   deterministic pipeline; scans without them fall through to V1.
+# SCANNER_PIPELINE = "v1": global kill-switch - every scan uses V1.
+# Rollback is just flipping this env var in the launchd plist + restart;
+# no code revert needed. The V1 path stays fully intact.
+SCANNER_PIPELINE = os.environ.get("SCANNER_PIPELINE", "v2").strip().lower()
+
+
+def _scan_wants_v2(scan_data):
+    """True when this scan should be scored by the V2 pipeline."""
+    if SCANNER_PIPELINE == "v1":
+        return False
+    return bool(scan_data.get("discipline")
+                and scan_data.get("environment")
+                and scan_data.get("aggressiveness"))
 
 
 def log(msg):
@@ -121,6 +155,7 @@ def fetch_pending_scans():
             "order": "created_at.asc",
             "limit": "1",
         },
+        timeout=REST_TIMEOUT,
     )
     if resp.status_code != 200:
         log(f"Error fetching pending scans: HTTP {resp.status_code}")
@@ -147,6 +182,7 @@ def fetch_waiting_scans():
             "order": "created_at.asc",
             "limit": "10",
         },
+        timeout=REST_TIMEOUT,
     )
     if resp.status_code != 200:
         return []
@@ -169,6 +205,7 @@ def fetch_rescore_scans():
             "order": "created_at.asc",
             "limit": "10",
         },
+        timeout=REST_TIMEOUT,
     )
     if resp.status_code != 200:
         return []
@@ -200,6 +237,7 @@ def fetch_stuck_scans():
             "order": "created_at.asc",
             "limit": "5",
         },
+        timeout=REST_TIMEOUT,
     )
     if resp.status_code == 200:
         results.extend(resp.json())
@@ -218,6 +256,7 @@ def fetch_stuck_scans():
             "order": "created_at.asc",
             "limit": "5",
         },
+        timeout=REST_TIMEOUT,
     )
     if resp2.status_code == 200:
         results.extend(resp2.json())
@@ -226,11 +265,50 @@ def fetch_stuck_scans():
 
 
 def update_stage(scan_id, stage, error=None):
-    """Update pipeline_stage (and optionally pipeline_error) in Supabase."""
+    """Update pipeline_stage (and optionally pipeline_error) in Supabase.
+
+    When stage transitions to a terminal failure ('error', 'validation_failed'),
+    also fire an instant Telegram alert. The watchdog catches whatever this
+    misses, but this gives sub-second notification for the common case.
+    """
     data = {"pipeline_stage": stage}
     if error:
         data["pipeline_error"] = str(error)[:500]
     scan_recommender.update_scan(scan_id, data)
+    if stage in ("error", "validation_failed"):
+        try:
+            err_str = str(error)[:300] if error else "—"
+            scan_alert.send_alert(
+                f"❌ <b>Scan failed</b>\n"
+                f"<code>{scan_id}</code>\n"
+                f"Stage: <b>{stage}</b>\n"
+                f"Error: {err_str}"
+            )
+        except Exception as e:
+            log(f"  (alert send failed: {e})")
+
+
+# Throttled alert state for poll-loop exceptions (avoid spamming Roman
+# if Supabase is unreachable - one alert per hour is enough).
+_last_poll_alert_at = 0.0
+_POLL_ALERT_INTERVAL = 3600  # seconds
+
+
+def alert_poll_error(exc: Exception) -> None:
+    """Alert on a poll-loop exception, throttled to once per hour."""
+    global _last_poll_alert_at
+    now = time.time()
+    if now - _last_poll_alert_at < _POLL_ALERT_INTERVAL:
+        return
+    _last_poll_alert_at = now
+    try:
+        scan_alert.send_alert(
+            f"⚠️ <b>Scan worker poll error</b>\n"
+            f"<code>{type(exc).__name__}: {str(exc)[:300]}</code>\n"
+            f"(Suppressed for 1h to avoid spam.)"
+        )
+    except Exception:
+        pass
 
 
 def has_preferences(scan_data):
@@ -243,7 +321,7 @@ def has_preferences(scan_data):
 def download_photo(scan_id, view):
     """Download a photo from Supabase storage. Returns numpy array or None."""
     url = f"{SB_URL}/storage/v1/object/public/foot-scans/scans/{scan_id}-{view}.jpg"
-    resp = requests.get(url)
+    resp = requests.get(url, timeout=DOWNLOAD_TIMEOUT)
     if resp.status_code != 200:
         return None
     arr = np.frombuffer(resp.content, np.uint8)
@@ -659,16 +737,89 @@ def _build_browse_extended(tier_result, profile, shoes_db, brand_sizing,
     }
 
 
+# ── V2 deterministic pipeline ────────────────────────────────────────────
+_v2_engine_data = None  # cached shoes_db + price_rows + brand_sizing
+
+
+def _load_v2_engine_data():
+    """Load and cache the V2 engine inputs (shoes table, price rows,
+    brand sizing). Mirrors _load_engine_data for the V2 path."""
+    global _v2_engine_data
+    if _v2_engine_data is not None:
+        return _v2_engine_data
+    from check_full_v2_matrix import load_shoes_db, load_price_rows
+    log("  Loading V2 engine data (shoes / prices / brand sizing)...")
+    shoes_db = load_shoes_db()
+    price_rows = load_price_rows()
+    brand_sizing = scan_recommender._load_brand_sizing()
+    log(f"  V2 engine data: {len(shoes_db)} shoes, {len(price_rows)} price rows, "
+        f"{len(brand_sizing)} brands")
+    _v2_engine_data = {"shoes_db": shoes_db, "price_rows": price_rows,
+                       "brand_sizing": brand_sizing}
+    return _v2_engine_data
+
+
+def _generate_recommendations_v2(scan_id, profile, scan_data):
+    """V2 path: deterministic V2 engines via explore_v2/v2_pipeline.
+
+    Writes interpretation + recommendations in the same JSON shape the V1
+    path uses (ScanResult.jsx consumes both identically) and tags the row
+    pipeline_version='v2'. browse_extended is intentionally left untouched
+    on the V2 path - the /scan/:id/browse page is not yet ported to the
+    V2 scorer (tracked follow-up, not a go-live blocker).
+    """
+    from v2_pipeline import build_v2_results
+
+    ed = _load_v2_engine_data()
+    # Fresh measurements from this run's segmentation take precedence over
+    # whatever is stored on the row.
+    merged = {**scan_data, **(profile or {})}
+
+    discipline     = scan_data.get("discipline")
+    environment    = scan_data.get("environment")
+    rock           = scan_data.get("rock_type")
+    aggressiveness = scan_data.get("aggressiveness")
+    log(f"  V2 pipeline: {discipline} / {environment} / {rock or '-'} / {aggressiveness}")
+
+    res = build_v2_results(merged, ed["shoes_db"], ed["price_rows"],
+                           ed["brand_sizing"], discipline, environment,
+                           rock, aggressiveness)
+    interpretation = res["interpretation"]
+    recommendations = res["recommendations"]
+    log(f"  Generated {len(recommendations)} V2 recommendations across 4 tiers")
+
+    result_data = {
+        "pipeline_stage": "complete",
+        "pipeline_version": "v2",
+    }
+    if interpretation:
+        result_data["interpretation"] = interpretation
+    if recommendations:
+        result_data["recommendations"] = recommendations
+    scan_recommender.update_scan(scan_id, result_data)
+    return len(recommendations)
+
+
 def generate_recommendations(scan_id, profile):
     """Score shoes deterministically, generate interpretation, write to DB.
 
-    Replaces the previous Sonnet API call with:
+    Feature-flag dispatch (W9): a scan carrying the four V2 inputs is
+    scored by the V2 pipeline unless SCANNER_PIPELINE forces V1. The V1
+    path below is unchanged and stays the rollback target.
+
+    V1 path:
     - matrix_scorer for shoe selection + scoring (4 tiers: baseline/softer/stiffer/budget)
     - interp_foot_shape for Section 1
     - interp_shoe_fit for Section 2
     - interp_what_to_look_for for Section 3
     - interp_shoe_desc for per-shoe description paragraphs (P1/P2/P3)
     """
+    # Dispatch: re-fetch the row so we see the latest V2 inputs / prefs.
+    _row = scan_recommender.fetch_scan_data(scan_id)
+    if _row and _scan_wants_v2(_row):
+        return _generate_recommendations_v2(scan_id, profile, _row)
+
+    # ===== V1 pipeline (unchanged) =====
     from benchmark.matrix_scorer import (
         run_case_full, calc_recommended_size, check_size_available,
     )
@@ -783,7 +934,7 @@ def generate_recommendations(scan_id, profile):
     log(f"  Generated {len(recommendations)} recommendations across 4 tiers")
 
     # Write results to DB
-    result_data = {"pipeline_stage": "complete"}
+    result_data = {"pipeline_stage": "complete", "pipeline_version": "v1"}
     if interpretation:
         result_data["interpretation"] = interpretation
     if recommendations:
@@ -994,6 +1145,7 @@ def main():
         except Exception as e:
             log(f"Poll loop error: {e}")
             traceback.print_exc()
+            alert_poll_error(e)
 
         time.sleep(POLL_INTERVAL)
 

@@ -1,0 +1,183 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have a Roman toe form with very narrow forefoot and a very wide heel. A mixed profile; forefoot and heel require different fits.",
+        "Beyond the obvious: Given your Roman toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally. Your big toe drifts slightly inwards (could be a mild hallux valgus), hence we recommend a slightly wider and not too asymmetric shape."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your Tenaya Tarifa (1 down) is typical for Tenaya; your Tenaya Indalo (3 down) is aggressive for Tenaya; your Scarpa Veloce (1.5 down) is typical for Scarpa; your Scarpa Drago LV (2 down) is rather aggressive for Scarpa; your La Sportiva Skwama (1.5 down) is rather relaxed for La Sportiva.",
+        "Your Scarpa Drago LV's squeezed toes is most likely a sizing problem, you could try a size larger for a better fit. Your La Sportiva Skwama's empty heel and loose forefoot are most likely a sizing problem, you could try a size smaller for a better fit. Your Tenaya Indalo and Scarpa Veloce's empty heels are contradictory, a medium cup shouldn't feel empty on your wide heel. Likely your heel does not fit inside the cup and hence leaves the empty space at the bottom which you perceive as empty feel. Your Scarpa Drago LV's empty heel is contradictory, a narrow cup shouldn't feel empty on your wide heel. Likely your heel does not fit inside the cup and hence leaves the empty space at the bottom which you perceive as empty feel.",
+        "In 3 out of 5 of your shoes your toes feel squeezed. In 2 of these (Tenaya Tarifa and La Sportiva Skwama) the toe form doesn't match your Roman toes. Look for a Roman-compatible toe box. In 1 of these (Scarpa Veloce) the toe form and width match and sizing is typical.",
+        "Your Scarpa Veloce's forefoot feels loose while the other shoes fit on the forefoot. Your Scarpa Veloce's medium forefoot is wider than your narrow forefoot. The width mismatch is the most likely cause of the loose feel."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Roman toe form, normal forefoot width (adjusted from narrow scan result based on your current shoe fit), and wide heel width.",
+        "Given your preference for sport climbing indoors and a balanced fit, we prioritize balanced-stiffness velcros or lace-ups with slight downturn and no asymmetry (shifted lower to accommodate your mild hallux valgus).",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 84.99
+      },
+      "brand": "Simond",
+      "category": "baseline",
+      "description": "Velcro with Roman toe form, medium forefoot and a wide heel cup. 4mm Vibram XS Grip rubber with a partial, medium midsole, resulting in a balanced-stiffness shoe with moderate downturn and slight asymmetry.",
+      "model": "Vertika",
+      "recommended_size_eu": 42.5,
+      "slug": "simond-vertika",
+      "tradeoffs": "Tradeoff: Slightly more downturned, slightly more asymmetric, and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 89.19
+      },
+      "brand": "Millet",
+      "category": "baseline",
+      "description": "Velcro with Roman toe form, wide fit throughout, high forefoot volume. 4.5mm 4PointsGrip Durable rubber with a full, soft midsole, resulting in a medium-soft shoe with flat profile and symmetric profile.",
+      "model": "Easy Up",
+      "recommended_size_eu": 42.5,
+      "slug": "millet-easy-up",
+      "tradeoffs": "Tradeoff: Slightly wider in the forefoot and slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 89.99
+      },
+      "brand": "Scarpa",
+      "category": "baseline",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm S72 rubber with a three-quarter, medium-hard midsole, resulting in a balanced-stiffness shoe with flat profile and symmetric profile.",
+      "model": "Origin VS",
+      "recommended_size_eu": 42.5,
+      "slug": "scarpa-origin-vs",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel, slightly less downturned, and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 122.7
+      },
+      "brand": "Scarpa",
+      "category": "softer",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm S72 rubber with a forefoot, medium-soft midsole, resulting in a medium-soft shoe with slight downturn and moderate asymmetry.",
+      "model": "Veloce Women's",
+      "recommended_size_eu": 42.5,
+      "slug": "scarpa-veloce-womens",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel and more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 89.9
+      },
+      "brand": "Mad Rock",
+      "category": "softer",
+      "description": "Slipper with Roman toe form, wide fit throughout, high forefoot volume. 4.2mm Science Friction 3.0 rubber with no midsole, resulting in a very soft shoe with slight downturn and slight asymmetry.",
+      "model": "Remora HV",
+      "recommended_size_eu": 43.5,
+      "slug": "mad-rock-remora-hv",
+      "tradeoffs": "Tradeoffs: The slipper closure, vs the velcro or lace we target for sport climbing, and slightly wider in the forefoot and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 109.99
+      },
+      "brand": "Simond",
+      "category": "softer",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm Vibram XS Grip rubber with a partial, soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Edge Soft",
+      "recommended_size_eu": 42.5,
+      "slug": "simond-edge-soft",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel, slightly more downturned, and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 59.79
+      },
+      "brand": "Red Chili",
+      "category": "stiffer",
+      "description": "Lace-up with Greek toe form, medium forefoot and a wide heel cup. 4.5mm Red Chili RX-2 Techgrip rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with slight downturn and slight asymmetry.",
+      "model": "Ventic Air Lace",
+      "recommended_size_eu": 43.0,
+      "slug": "red-chili-ventic-air-lace",
+      "tradeoffs": "Tradeoffs: Greek toe form might not be a perfect fit for your Roman toe, and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 96.47
+      },
+      "brand": "Scarpa",
+      "category": "stiffer",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm S72 rubber with a three-quarter, medium-hard midsole, resulting in a balanced-stiffness shoe with flat profile and symmetric profile.",
+      "model": "Origin VS Women's",
+      "recommended_size_eu": 42.5,
+      "slug": "scarpa-origin-vs-womens",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel and slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "brand": "So iLL",
+      "category": "stiffer",
+      "description": "Velcro with Roman/Egyptian toe form, medium fit throughout. 3mm So iLL Proprietary rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with slight downturn and slight asymmetry.",
+      "model": "Step",
+      "recommended_size_eu": 42.5,
+      "slug": "so-ill-step",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 64.64
+      },
+      "brand": "EB",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, wide fit throughout. 4mm Optima Rubber rubber with a partial, medium-soft midsole, resulting in a medium-soft shoe with flat profile and symmetric profile. At EUR 65, a strong-value pick.",
+      "model": "Mojo 3.0",
+      "recommended_size_eu": 42.0,
+      "slug": "eb-mojo",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Roman toe, and slightly wider in the forefoot and slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 74.95
+      },
+      "brand": "Red Chili",
+      "category": "budget",
+      "description": "Velcro with Roman toe form, wide fit throughout, low forefoot volume. 4mm Red Chili RX-1 Allround rubber with a full, medium-hard midsole, resulting in a balanced-stiffness shoe with slight downturn and slight asymmetry. At EUR 75, a strong-value pick.",
+      "model": "Circuit",
+      "recommended_size_eu": 43.0,
+      "slug": "red-chili-circuit",
+      "tradeoffs": "Tradeoff: Slightly wider in the forefoot, slightly more asymmetric, and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 86.9
+      },
+      "brand": "Wild Climb",
+      "category": "budget",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm Altaderenza rubber with a full, medium-soft midsole, resulting in a medium-soft shoe with flat profile and slight asymmetry. At EUR 87, a strong-value pick.",
+      "model": "Bat",
+      "recommended_size_eu": 42.5,
+      "slug": "wild-climb-bat",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel, slightly less downturned, and slightly more asymmetric than we target.",
+      "why": null
+    }
+  ]
+}

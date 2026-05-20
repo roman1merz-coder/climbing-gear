@@ -2618,6 +2618,11 @@ async function saveShoeFitData(email) {
     shoes: shoes,
     next_shoe_preference: nextPref,
     next_shoe_notes: nextNotes,
+    /* V2 inputs from the discipline/environment/rock/aggressiveness wizard */
+    discipline: v2State.discipline,
+    environment: v2State.environment,
+    rock_type: v2State.rock_type,
+    aggressiveness: v2State.aggressiveness,
     email: email || null,
     created_at: new Date().toISOString()
   };
@@ -2663,25 +2668,37 @@ function validatePreferencesForm() {
   if (shoeCards.length === 0) {
     errors.push('Please add at least one climbing shoe you currently wear');
   } else {
-    // Only the FIRST shoe is mandatory
-    const firstCard = shoeCards[0];
-    const brandSel = firstCard.querySelector('.brand-select')?.value || '';
-    const modelSel = firstCard.querySelector('.model-select')?.value || '';
-    const sizeSel = firstCard.querySelector('.shoe-size-select')?.value || '';
-
-    if (!brandSel) errors.push('Shoe 1: Please select a brand');
-    if (!modelSel) errors.push('Shoe 1: Please select a model');
-    if (!sizeSel) errors.push('Shoe 1: Please select a size');
-
-    // Check that first shoe has all three fit ratings
-    const fitGroups = firstCard.querySelectorAll('.fit-group');
-    fitGroups.forEach((group) => {
-      const area = group.querySelector('.fit-options')?.dataset.area || 'unknown';
-      const selectedRating = group.querySelector('.fit-option.active');
-      if (!selectedRating) {
-        errors.push(`Shoe 1: Please rate the ${area}`);
+    /* W6: every shoe card must be either fully complete (brand + model +
+       size + all three fit ratings) or fully empty - never a partial
+       row. At least one shoe must be fully complete. */
+    let completeCount = 0;
+    shoeCards.forEach((card, idx) => {
+      const brandSel = card.querySelector('.brand-select')?.value || '';
+      const modelSel = card.querySelector('.model-select')?.value || '';
+      const sizeSel = card.querySelector('.shoe-size-select')?.value || '';
+      const fitGroups = card.querySelectorAll('.fit-group');
+      let filledFits = 0;
+      fitGroups.forEach((group) => {
+        if (group.querySelector('.fit-option.active')) filledFits++;
+      });
+      const anyFilled = brandSel || modelSel || sizeSel || filledFits > 0;
+      const allFilled = brandSel && modelSel && sizeSel &&
+                        filledFits === fitGroups.length;
+      if (!anyFilled) return; /* fully empty row - allowed, skipped */
+      if (!allFilled) {
+        const miss = [];
+        if (!brandSel) miss.push('brand');
+        if (!modelSel) miss.push('model');
+        if (!sizeSel) miss.push('size');
+        if (filledFits < fitGroups.length) miss.push('fit ratings');
+        errors.push(`Shoe ${idx + 1}: incomplete (missing ${miss.join(', ')}). Fill it in fully or remove it.`);
+        return;
       }
+      completeCount++;
     });
+    if (completeCount === 0) {
+      errors.push('Please fully fill in at least one climbing shoe');
+    }
   }
 
   return errors;
@@ -2820,6 +2837,14 @@ async function submitPreferencesAndProcess(email) {
     showScreen('thankyou-screen');
     return;
   }
+  /* Guard: the V2 wizard must be fully answered before we submit. The
+     per-screen Continue gating normally guarantees this; this is a
+     defensive backstop so we never POST a partial preference set. */
+  if (!v2State.discipline || !v2State.environment || !v2State.aggressiveness) {
+    alert('Please answer all the climbing preference questions first.');
+    showScreen('q-discipline');
+    return;
+  }
   const shoes = collectShoeFitData();
   /* V2: 'next shoe preference' UI removed — superseded by aggressiveness wizard step. */
   const nextPref = null;
@@ -2837,6 +2862,11 @@ async function submitPreferencesAndProcess(email) {
       next_shoe_preference: nextPref,
       next_shoe_notes: nextNotes,
       shoes: shoes,
+      /* V2 inputs from the discipline/environment/rock/aggressiveness wizard */
+      discipline: v2State.discipline,
+      environment: v2State.environment,
+      rock_type: v2State.rock_type,
+      aggressiveness: v2State.aggressiveness,
     };
     if (email) payload.email = email;
 

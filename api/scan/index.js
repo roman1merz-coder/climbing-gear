@@ -42,25 +42,96 @@ const FIT_VALUES = new Set([
   "snug", "good", "very-tight", "very-loose",
 ]);
 
+// V2 preference inputs - fixed enums, mirror the foot_scan_fits CHECK
+// constraints from the v2_scanner_inputs_and_pipeline_version migration.
+const DISCIPLINE_VALUES = new Set(["boulder", "sport", "trad_multipitch"]);
+const ENVIRONMENT_VALUES = new Set(["indoor", "outdoor", "both"]);
+const ROCK_VALUES = new Set(["granite", "limestone", "sandstone", "mixed"]);
+const AGGRESSIVENESS_VALUES = new Set(["comfort", "balanced", "moderate", "aggressive"]);
+const FIT_AREAS = ["toes", "forefoot", "heel"];
+
 function validScanId(id) {
   return typeof id === "string" && SCAN_ID_RE.test(id);
 }
 
-function cleanShoes(arr) {
-  if (!Array.isArray(arr)) return [];
-  return arr
-    .filter((s) => s && (s.brand || s.model))
-    .slice(0, 10)
-    .map((s) => ({
-      brand: String(s.brand || "").trim().slice(0, 80),
-      model: String(s.model || "").trim().slice(0, 120),
-      size_eu: s.size_eu == null || s.size_eu === "" ? null : Number(s.size_eu),
-      fit: s.fit && typeof s.fit === "object" ? {
-        toes: FIT_VALUES.has(s.fit.toes) ? s.fit.toes || null : null,
-        forefoot: FIT_VALUES.has(s.fit.forefoot) ? s.fit.forefoot || null : null,
-        heel: FIT_VALUES.has(s.fit.heel) ? s.fit.heel || null : null,
-      } : null,
-    }));
+// W6: a shoe entry is either fully complete (brand + model + size + all
+// three fit ratings) or fully empty - never a partial row. A partial row
+// returns an { error } so the caller answers 400 instead of silently
+// nulling fields and accepting corrupt data.
+function validateShoes(arr) {
+  if (arr == null) return { shoes: [] };
+  if (!Array.isArray(arr)) return { error: "shoes must be a list" };
+  const out = [];
+  for (let i = 0; i < arr.length && i < 10; i++) {
+    const s = arr[i] || {};
+    const brand = String(s.brand || "").trim();
+    const model = String(s.model || "").trim();
+    const size = s.size_eu == null || s.size_eu === "" ? null : Number(s.size_eu);
+    const sizeOk = size != null && Number.isFinite(size);
+    const fit = s.fit && typeof s.fit === "object" ? s.fit : {};
+    const ratings = {};
+    let filledFits = 0;
+    for (const area of FIT_AREAS) {
+      const v = fit[area];
+      if (v && v !== "") {
+        if (!FIT_VALUES.has(v)) return { error: `Shoe ${i + 1}: invalid ${area} rating` };
+        ratings[area] = v;
+        filledFits++;
+      } else {
+        ratings[area] = null;
+      }
+    }
+    const anyFilled = brand || model || sizeOk || filledFits > 0;
+    if (!anyFilled) continue; // fully empty row - skip silently
+    const missing = [];
+    if (!brand) missing.push("brand");
+    if (!model) missing.push("model");
+    if (!sizeOk) missing.push("size");
+    if (filledFits < FIT_AREAS.length) missing.push("fit ratings");
+    if (missing.length) {
+      return {
+        error: `Shoe ${i + 1} is incomplete (missing ${missing.join(", ")}). ` +
+               `Fill it in fully or remove it.`,
+      };
+    }
+    out.push({
+      brand: brand.slice(0, 80),
+      model: model.slice(0, 120),
+      size_eu: size,
+      fit: { toes: ratings.toes, forefoot: ratings.forefoot, heel: ratings.heel },
+    });
+  }
+  return { shoes: out };
+}
+
+// W2.1: validate + normalize the four V2 preference inputs. When
+// `required` is true (rescore path) the three core inputs must all be
+// present; otherwise they are all-or-nothing (a V1 capture submits
+// none, a V2 capture submits all). rock_type is only kept outdoors,
+// mirroring the foot_scan_fits cross-field CHECK.
+function validateV2Inputs(body, required) {
+  const norm = (v) => (v == null || v === "" ? null : String(v).trim().toLowerCase());
+  const discipline = norm(body.discipline);
+  const environment = norm(body.environment);
+  let rock_type = norm(body.rock_type);
+  const aggressiveness = norm(body.aggressiveness);
+  if (discipline && !DISCIPLINE_VALUES.has(discipline)) return { error: "Invalid discipline" };
+  if (environment && !ENVIRONMENT_VALUES.has(environment)) return { error: "Invalid environment" };
+  if (aggressiveness && !AGGRESSIVENESS_VALUES.has(aggressiveness)) {
+    return { error: "Invalid aggressiveness" };
+  }
+  const present = [discipline, environment, aggressiveness].filter(Boolean).length;
+  if (required && present < 3) {
+    return { error: "Climbing preferences (discipline, environment, aggressiveness) are required." };
+  }
+  if (!required && present > 0 && present < 3) {
+    return { error: "Incomplete climbing preferences: discipline, environment and aggressiveness must be set together." };
+  }
+  if (rock_type) {
+    if (!ROCK_VALUES.has(rock_type)) return { error: "Invalid rock_type" };
+    if (environment !== "outdoor") rock_type = null; // mirror DB CHECK
+  }
+  return { discipline, environment, rock_type, aggressiveness };
 }
 
 function cleanString(v, max = 500) {
@@ -203,12 +274,20 @@ async function handlePrefs(body, res) {
   if (body.sex != null && !SEX_VALUES.has(body.sex)) {
     return res.status(400).json({ error: "Invalid sex" });
   }
+  const shoesResult = validateShoes(body.shoes);
+  if (shoesResult.error) return res.status(400).json({ error: shoesResult.error });
+  const v2 = validateV2Inputs(body, false);
+  if (v2.error) return res.status(400).json({ error: v2.error });
   const patch = {
     sex: body.sex || null,
     street_size_eu: cleanNumber(body.street_size_eu),
-    shoes: cleanShoes(body.shoes),
+    shoes: shoesResult.shoes,
     next_shoe_preference: cleanString(body.next_shoe_preference, 100),
     next_shoe_notes: cleanString(body.next_shoe_notes, 2000),
+    discipline: v2.discipline,
+    environment: v2.environment,
+    rock_type: v2.rock_type,
+    aggressiveness: v2.aggressiveness,
   };
   const email = cleanEmail(body.email);
   if (email) patch.email = email;
@@ -247,11 +326,24 @@ async function handleEmail(body, res) {
 
 async function handleRescore(body, res) {
   if (!validScanId(body.scan_id)) return res.status(400).json({ error: "Invalid scan_id" });
+  if (body.sex != null && !SEX_VALUES.has(body.sex)) {
+    return res.status(400).json({ error: "Invalid sex" });
+  }
+  const shoesResult = validateShoes(body.shoes);
+  if (shoesResult.error) return res.status(400).json({ error: shoesResult.error });
+  // V2 inputs are enum-validated if present; the edit modal enforces their
+  // presence client-side. A rescore that lacks them keeps the row on V1.
+  const v2 = validateV2Inputs(body, false);
+  if (v2.error) return res.status(400).json({ error: v2.error });
   const patch = {
     sex: SEX_VALUES.has(body.sex) ? body.sex || null : null,
-    shoes: cleanShoes(body.shoes),
+    shoes: shoesResult.shoes,
     next_shoe_preference: cleanString(body.next_shoe_preference, 100),
     next_shoe_notes: cleanString(body.next_shoe_notes, 2000),
+    discipline: v2.discipline,
+    environment: v2.environment,
+    rock_type: v2.rock_type,
+    aggressiveness: v2.aggressiveness,
     pipeline_stage: "rescore",
     pipeline_started_at: new Date().toISOString(),
   };

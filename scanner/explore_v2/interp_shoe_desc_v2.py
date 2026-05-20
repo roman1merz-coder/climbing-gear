@@ -165,28 +165,30 @@ def _magnitude_prefix(abs_diff):
 
 def _format_axis_diffs(diffs):
     """`diffs` = list of (axis, shoe_rank, target_rank). Returns concise
-    "X and Y than we target" / "X but Y than we target" string, or None."""
+    "X and Y than we target" string, or None.
+
+    Roman 2026-05-18: connector is always "and". Every entry here is a
+    tradeoff (a deviation from target) — there is no "good" item to
+    contrast against, so "but" was never appropriate. The earlier
+    same-direction check conflated "shoe ranks above vs below target"
+    with "desirable vs undesirable", which they are not."""
     if not diffs:
         return None
     phrases = []
-    signs = []
     for axis, sr, tr in diffs:
         diff = sr - tr
         if diff == 0:
             continue
         pos, neg = _AXIS_DIFF_PHRASES.get(axis, (axis, axis))
         phrases.append(_magnitude_prefix(abs(diff)) + (pos if diff > 0 else neg))
-        signs.append(1 if diff > 0 else -1)
     if not phrases:
         return None
     if len(phrases) == 1:
         return f"{phrases[0]} than we target"
-    same_dir = all(s == signs[0] for s in signs)
-    connector = "and" if same_dir else "but"
     if len(phrases) == 2:
-        return f"{phrases[0]} {connector} {phrases[1]} than we target"
-    # 3+: comma list with the connector before the last
-    return ", ".join(phrases[:-1]) + f", {connector} {phrases[-1]} than we target"
+        return f"{phrases[0]} and {phrases[1]} than we target"
+    # 3+: comma list with "and" before the last
+    return ", ".join(phrases[:-1]) + f", and {phrases[-1]} than we target"
 
 
 def _join_match_labels(labels):
@@ -288,69 +290,33 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
         issues.append(discipline_issue)
 
     # ── Toe form (Egyptian↔Roman opposites, Greek neutral) ────────────
+    # Roman 2026-05-18: keep the toe-form tradeoff short and consistent
+    # with the other one-line tradeoffs. The earlier per-pair
+    # "consequence" wording was long, and one mapping (Roman foot in
+    # Egyptian last) was anatomically backwards. Dropped in favour of a
+    # plain form-mismatch statement.
     tf_score = bd.get("toe_form", 0)
     if tf_score < 0 and user_toe:
         # Note: missing toe_form metadata returns 0 (per
-        # feedback_v2_toe_form_scoring), so we never get here for that
-        # case.
+        # feedback_v2_toe_form_scoring), so we never get here for that case.
         forms = pick.get("toe_form") or []
         forms_lc = [f.lower() for f in forms] if forms else []
-        # Roman 2026-05-01 audit S13/S18: capitalize toe-shape names in
-        # user-facing prose (Egyptian/Greek/Roman).
         _TOE_LBL = {"egyptian": "Egyptian", "greek": "Greek", "roman": "Roman"}
-        forms_cap = [_TOE_LBL.get(f.lower(), f.capitalize()) for f in forms]
-        user_toe_cap = _TOE_LBL.get(user_toe, user_toe.capitalize() if user_toe else "")
+        forms_cap = [_TOE_LBL.get(f, f.capitalize()) for f in forms_lc]
+        user_toe_cap = _TOE_LBL.get(user_toe, user_toe.capitalize())
 
         def _join_forms(fs):
-            if not fs: return None
+            if not fs: return "a different"
             if len(fs) == 1: return fs[0]
             if len(fs) == 2: return f"{fs[0]} or {fs[1]}"
             return ", ".join(fs[:-1]) + f", or {fs[-1]}"
 
-        # Roman 2026-05-02 case-4 review (E): replace the vague
-        # "opposite to your X foot" wording with a consequence-specific
-        # sentence. Tell the user WHERE the mismatch will show up
-        # (which toe gets pinched / where dead space sits) instead of
-        # just labeling the form difference.
-        if forms_lc and user_toe and user_toe not in forms_lc:
-            tf_str = _join_forms(forms_cap) or "a different shape"
-            shoe_first = forms_lc[0]  # primary form for pinpointing
-
-            # Pinpoint the mechanical consequence per (user, shoe-form) pair.
-            consequence = None
-            if user_toe == "egyptian":
-                # Egyptian = big toe longest. Greek/Roman lasts narrow elsewhere.
-                if shoe_first == "greek":
-                    consequence = ("expects the second toe to be longest, so your "
-                                   "prominent big toe gets pushed against the front")
-                elif shoe_first == "roman":
-                    consequence = ("has a flatter front for evenly-lengthed toes, "
-                                   "with no extra space for your longer big toe")
-            elif user_toe == "greek":
-                # Greek = second toe longest.
-                if shoe_first == "egyptian":
-                    consequence = ("tapers to where the big toe should be longest, "
-                                   "so your longer second toe presses into the seam")
-                elif shoe_first == "roman":
-                    consequence = ("has a flatter front for evenly-lengthed toes, "
-                                   "leaving no extra room for your prominent second toe")
-            elif user_toe == "roman":
-                # Roman = first 2-3 toes roughly equal.
-                if shoe_first == "egyptian":
-                    consequence = ("tapers steeply down from the big toe, leaving "
-                                   "dead space where your second and third toes sit")
-                elif shoe_first == "greek":
-                    consequence = ("expects only the second toe to be longest, "
-                                   "leaving dead space at your big toe and outer toes")
-
-            if consequence:
-                issues.append(f"the {tf_str} toe box {consequence}")
-            else:
-                # Fallback: less specific but still better than the old wording.
-                issues.append(
-                    f"the {tf_str} toe box is shaped differently than your "
-                    f"{user_toe_cap} toes need"
-                )
+        if forms_lc and user_toe not in forms_lc:
+            tf_str = _join_forms(forms_cap)
+            issues.append(
+                f"{tf_str} toe form might not be a perfect fit for "
+                f"your {user_toe_cap} toe"
+            )
 
     # ── Stiffness vs target (rank-style) ──────────────────────────────
     # Roman 2026-05-08: compare shoe stiffness against v2 target stiff_target,
@@ -373,11 +339,30 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
                                steps if diff > 0 else -steps, 0))
 
     # ── Closure (preferred set vs bad set) ─────────────────────────────
+    # Roman 2026-05-18: a closure that merely scores 0 ("acceptable")
+    # is still a tradeoff if it's not in the PREFERRED set — e.g. a
+    # recommended lace-up when §3 targets velcro/slipper for bouldering.
+    # Flag whenever the closure isn't preferred, with softer wording
+    # for the acceptable-but-not-preferred case than the bad case.
     closure_issue = None
     cl_score = bd.get("closure", 0)
-    if cl_score < 0 and shoe_cl:
+    closure_pref = [c.lower() for c in (target.get("closure_pref") or [])]
+    if shoe_cl and closure_pref and shoe_cl not in closure_pref:
         disc = target.get("discipline", "your selection")
-        closure_issue = f"the {shoe_cl} closure is not ideal for {disc} climbing"
+        # Roman 2026-05-18: natural-language discipline phrase
+        # ("bouldering", not "boulder climbing").
+        disc_phrase = {
+            "boulder": "bouldering",
+            "sport": "sport climbing",
+            "trad_multipitch": "trad and multipitch climbing",
+        }.get(disc, f"{disc} climbing")
+        if cl_score < 0:
+            closure_issue = f"the {shoe_cl} closure is not ideal for {disc_phrase}"
+        else:
+            pref_str = (closure_pref[0] if len(closure_pref) == 1
+                        else " or ".join(closure_pref))
+            closure_issue = (f"the {shoe_cl} closure, vs the {pref_str} "
+                             f"we target for {disc_phrase}")
 
     # ── Instep extreme + slipper ──────────────────────────────────────
     instep_issue = None
@@ -390,10 +375,13 @@ def _para_tradeoffs_v2(pick, profile, all_picks=None):
     # ── Peer suppression: drop axes shared by >=70% of peers ───────────
     # Roman 2026-05-08: applies to rank diffs only (case-level facts vs
     # shoe-specific differentiators). Map axis name to v2 breakdown key.
+    # Roman 2026-05-18: foot-shape axes (heel, forefoot) are NO LONGER
+    # peer-suppressed. A heel/forefoot mismatch is a real per-shoe
+    # tradeoff the user must see even when most picks share it — e.g.
+    # medium-fw + wide-heel shoes are rare, so most picks miss a wide
+    # heel, but each card still has to disclose its own heel miss.
     if peers:
         suppress_keys = {
-            "heel":     "heel_volume",
-            "forefoot": "forefoot_width",
             "asymmetry": "asymmetry",
         }
         rank_diffs = [

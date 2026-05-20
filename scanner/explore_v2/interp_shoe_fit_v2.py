@@ -1678,6 +1678,23 @@ def _toe_match(profile, shoe):
     return user_toe in forms_lower
 
 
+# ─── Fall-through "we aim for X" suppression ────────────────────────────
+
+def _aim_suppressed(profile, ratio_key):
+    """Roman 2026-05-18: a cascade fall-through branch (cause not found)
+    closes with "In the recommendations we aim for {direction}" — a
+    nudge toward the feedback the user reported. That nudge is offered
+    for narrow / medium / wide feet, but SUPPRESSED when the user's
+    scan dimension is a "very" extreme (very narrow / very wide). You
+    cannot sensibly steer a very-wide or very-narrow foot toward a
+    different cup size, so on those scans the branch states the
+    observation and stops. Returns True when the conclusion should be
+    dropped."""
+    from interp_foot_shape_v2 import _classify_5tier
+    lbl = (_classify_5tier(ratio_key, profile.get(ratio_key)) or "")
+    return lbl.startswith("very ")
+
+
 # ─── Cascade: HEEL EMPTY ────────────────────────────────────────────────
 
 def _cascade_heel_empty(shoe, profile, street):
@@ -1714,9 +1731,11 @@ def _cascade_heel_empty(shoe, profile, street):
     # D: width + depth fit; sizing is either typical or over-downsized
     # (over-downsized is fine for empty heel, just doesn't fix it).
     fit_clause = _fit_summary_clause(brand, status, user_ds, typical_ds)
-    return (f"Your {name} should fit based on heel width and depth, and "
-            f"{fit_clause}. In the recommendations we aim for even narrower "
-            f"heel cups.")
+    msg = (f"Your {name} should fit based on heel width and depth, and "
+           f"{fit_clause}.")
+    if not _aim_suppressed(profile, "heel_width_ratio"):
+        msg += " In the recommendations we aim for even narrower heel cups."
+    return msg
 
 
 # ─── Cascade: HEEL TIGHT ────────────────────────────────────────────────
@@ -1753,9 +1772,11 @@ def _cascade_heel_tight(shoe, profile, street):
 
     # D: width + depth fit; typical or under-downsized (under doesn't fix tight)
     fit_clause = _fit_summary_clause(brand, status, user_ds, typical_ds)
-    return (f"Your {name} should fit based on heel width and depth, and "
-            f"{fit_clause}. In the recommendations we aim for slightly roomier "
-            f"heel cups.")
+    msg = (f"Your {name} should fit based on heel width and depth, and "
+           f"{fit_clause}.")
+    if not _aim_suppressed(profile, "heel_width_ratio"):
+        msg += " In the recommendations we aim for slightly roomier heel cups."
+    return msg
 
 
 # ─── Cascade: TOES SQUEEZED (5-step) ────────────────────────────────────
@@ -1804,11 +1825,16 @@ def _cascade_toes_squeezed(shoe, profile, street):
         return (f"Comparing your {name} to your foot profile, it should fit. "
                 f"{clause}, so going up half a size could relieve the squeeze.")
 
-    # E: typical or under-downsized (under doesn't fix squeezed)
+    # E: typical or under-downsized (under doesn't fix squeezed). Every
+    # checkable cause ruled out. Offer a toe-room nudge unless the
+    # user's forefoot is a "very" extreme (Roman 2026-05-18).
     fit_clause = _fit_summary_clause(brand, status, user_ds, typical_ds)
-    return (f"Your {name} should fit based on toe form, forefoot width and "
-            f"arch, and {fit_clause}. In the recommendations we aim for "
-            f"slightly more toe room.")
+    msg = (f"Your {name} matches your toe form and width class and "
+           f"{fit_clause}, so the squeezed toes aren't explained by toe "
+           f"form, width, or sizing.")
+    if not _aim_suppressed(profile, "forefoot_width_ratio"):
+        msg += " In the recommendations we aim for slightly more toe room."
+    return msg
 
 
 # ─── Cascade: TOES ROOMY (4-step) ───────────────────────────────────────
@@ -1852,9 +1878,11 @@ def _cascade_toes_roomy(shoe, profile, street):
 
     # D: typical or over-downsized (over doesn't fix roomy)
     fit_clause = _fit_summary_clause(brand, status, user_ds, typical_ds)
-    return (f"Your {name} should fit based on toe form and forefoot width, "
-            f"and {fit_clause}. In the recommendations we aim for snugger "
-            f"toe boxes.")
+    msg = (f"Your {name} should fit based on toe form and forefoot width, "
+           f"and {fit_clause}.")
+    if not _aim_suppressed(profile, "forefoot_width_ratio"):
+        msg += " In the recommendations we aim for snugger toe boxes."
+    return msg
 
 
 # ─── Cascade: FOREFOOT TIGHT (4-step) ───────────────────────────────────
@@ -1888,11 +1916,15 @@ def _cascade_ff_tight(shoe, profile, street):
         return (f"Comparing your {name} to your foot profile, it should fit. "
                 f"{clause}, so half a size up could relieve the tightness.")
 
-    # D: typical or under-downsized (under doesn't fix tight)
+    # D: typical or under-downsized (under doesn't fix tight). Width +
+    # sizing check out. Offer a wider-forefoot nudge unless the user's
+    # forefoot is a "very" extreme (Roman 2026-05-18).
     fit_clause = _fit_summary_clause(brand, status, user_ds, typical_ds)
-    return (f"Your {name} should fit based on width and arch, and "
-            f"{fit_clause}. In the recommendations we aim for slightly wider "
-            f"forefoots.")
+    msg = (f"Your {name} matches your width class and {fit_clause}, "
+           f"so the tight forefoot isn't explained by width or sizing.")
+    if not _aim_suppressed(profile, "forefoot_width_ratio"):
+        msg += " In the recommendations we aim for slightly wider forefoots."
+    return msg
 
 
 # ─── Cascade: FOREFOOT LOOSE (3-step) ───────────────────────────────────
@@ -1922,8 +1954,10 @@ def _cascade_ff_loose(shoe, profile, street):
 
     # C: typical or over-downsized (over doesn't fix loose)
     fit_clause = _fit_summary_clause(brand, status, user_ds, typical_ds)
-    return (f"Your {name} should fit based on width, and {fit_clause}. "
-            f"In the recommendations we aim for snugger forefoots.")
+    msg = f"Your {name} should fit based on width, and {fit_clause}."
+    if not _aim_suppressed(profile, "forefoot_width_ratio"):
+        msg += " In the recommendations we aim for snugger forefoots."
+    return msg
 
 
 # ─── Aggregate (N>1 ALL) sentences ──────────────────────────────────────
@@ -2297,17 +2331,22 @@ def _group_heel_empty(branch, members, profile):
                 f"{user_hw} heel", "")
     if branch == "B":
         user_hw = next((p["user_hw"] for _, p in members if p.get("user_hw")), "")
-        return (f"the heel volume matches your {user_hw} heel width but "
-                f"your shallow heel doesn't fill the deeply sculpted cup",
-                "")
+        # Roman 2026-05-18: "feels empty although ... matches ..., likely
+        # your shallow heel ..." framing — connector "although".
+        return (f"the heel volume matches your {user_hw} heel width, "
+                f"likely your shallow heel doesn't fill the deeply "
+                f"sculpted cup",
+                "",
+                "although")
     if branch == "C":
         brands = _join_brands([p.get("brand") for _, p in members])
         return (f"the heel volume already matches your foot, but you wear "
                 f"them larger than typical for {brands}",
                 "Going down further could tighten the heel.")
+    fix = ("" if _aim_suppressed(profile, "heel_width_ratio")
+           else "We aim for narrower heel cups in the recommendations.")
     return ("the cup matches on width and depth and sizing is in the "
-            "brand-typical range",
-            "We aim for narrower heel cups in the recommendations.")
+            "brand-typical range", fix, "even though")
 
 
 def _group_heel_tight(branch, members, profile):
@@ -2326,17 +2365,19 @@ def _group_heel_tight(branch, members, profile):
         brands = _join_brands([p.get("brand") for _, p in members])
         return (f"you're sized more aggressively than typical for {brands}",
                 "Going up half a size could relieve the tightness.")
+    fix = ("" if _aim_suppressed(profile, "heel_width_ratio")
+           else "We aim for slightly roomier heel cups in the recommendations.")
     return ("the cup matches on width and depth and sizing is in the "
-            "brand-typical range",
-            "We aim for slightly roomier heel cups in the recommendations.")
+            "brand-typical range", fix, "even though")
 
 
 def _group_toes_squeezed(branch, members, profile):
     if branch == "A":
         user_toe = next((p["user_toe"] for _, p in members if p.get("user_toe")), "")
         user_lbl = _toe_label(user_toe)
+        article = "an" if user_lbl[:1].lower() in "aeiou" else "a"
         return (f"the toe form doesn't match your {user_lbl} toes",
-                f"Look for a {user_lbl}-compatible toe box.")
+                f"Look for {article} {user_lbl}-compatible toe box.")
     if branch == "B":
         return ("the toe form matches but the last runs narrower than your "
                 "wide forefoot", "")
@@ -2349,17 +2390,22 @@ def _group_toes_squeezed(branch, members, profile):
         return (f"the toe shape and width match and you're sized more "
                 f"aggressively than typical for {brands}",
                 "Going up half a size could relieve the squeeze.")
-    return ("the toe form, width, and arch all match",
-            "We aim for slightly more toe room in the recommendations.")
+    # Branch E fall-through: every checkable cause ruled out. Offer the
+    # toe-room nudge unless the user's forefoot is a "very" extreme.
+    fix = ("" if _aim_suppressed(profile, "forefoot_width_ratio")
+           else "We aim for slightly more toe room in the recommendations.")
+    return ("the toe form and width match and sizing is typical",
+            fix, "even though")
 
 
 def _group_toes_roomy(branch, members, profile):
     if branch == "A":
         user_toe = next((p["user_toe"] for _, p in members if p.get("user_toe")), "")
         user_lbl = _toe_label(user_toe)
+        article = "an" if user_lbl[:1].lower() in "aeiou" else "a"
         return (f"the toe form leaves dead space because they aren't built "
                 f"for {user_lbl} toes",
-                f"Look for a {user_lbl}-compatible toe box.")
+                f"Look for {article} {user_lbl}-compatible toe box.")
     if branch == "B":
         return ("the forefoot is wider than your narrow forefoot",
                 "Look for a narrower last.")
@@ -2368,9 +2414,10 @@ def _group_toes_roomy(branch, members, profile):
         return (f"the toe form and width match but you're sized less "
                 f"aggressively than typical for {brands}",
                 "Going down half a size could tighten the toe box.")
+    fix = ("" if _aim_suppressed(profile, "forefoot_width_ratio")
+           else "We aim for snugger toe boxes in the recommendations.")
     return ("the toe form and width match and sizing is in the brand-typical "
-            "range",
-            "We aim for snugger toe boxes in the recommendations.")
+            "range", fix, "even though")
 
 
 def _group_ff_tight(branch, members, profile):
@@ -2386,9 +2433,12 @@ def _group_ff_tight(branch, members, profile):
         return (f"the width and arch match but you're sized more aggressively "
                 f"than typical for {brands}",
                 "Half a size up could relieve the tightness.")
-    return ("the width and arch match and sizing is in the brand-typical "
-            "range",
-            "We aim for slightly wider forefoots in the recommendations.")
+    # Branch D fall-through: every checkable cause ruled out. Offer the
+    # wider-forefoot nudge unless the user's forefoot is a "very" extreme.
+    fix = ("" if _aim_suppressed(profile, "forefoot_width_ratio")
+           else "We aim for slightly wider forefoots in the recommendations.")
+    return ("the shoes match your width class and sizing is typical",
+            fix, "even though")
 
 
 def _group_ff_loose(branch, members, profile):
@@ -2399,8 +2449,10 @@ def _group_ff_loose(branch, members, profile):
         brands = _join_brands([p.get("brand") for _, p in members])
         return (f"you're sized less aggressively than typical for {brands}",
                 "Going down further could tighten the forefoot.")
+    fix = ("" if _aim_suppressed(profile, "forefoot_width_ratio")
+           else "We aim for snugger forefoots in the recommendations.")
     return ("the width matches and sizing is in the brand-typical range",
-            "We aim for snugger forefoots in the recommendations.")
+            fix, "even though")
 
 
 _GROUP_RENDERERS = {
@@ -2460,10 +2512,19 @@ def _emit_minority(dim, rating, shoes_with_rating, n_total, profile, street, cas
     # (with the fix as a follow-on sentence if any).
     if len(groups) == 1:
         branch_id, members = next(iter(groups.items()))
-        cause, fix = renderer(branch_id, members, profile)
+        rendered = renderer(branch_id, members, profile)
+        # Group renderers return (cause, fix) or, for fall-through
+        # branches that describe an ABSENCE of cause, (cause, fix,
+        # connector) so the sentence can read "even though" instead
+        # of "because".
+        if len(rendered) == 3:
+            cause, fix, connector = rendered
+        else:
+            cause, fix = rendered
+            connector = "because"
         names = _join_names([_name(s) for s, _ in members])
         sentence = (f"In {n_affected} of your {n_total} shoes ({names}), "
-                    f"your {dim} {verb} {rating} because {cause}.")
+                    f"your {dim} {verb} {rating} {connector} {cause}.")
         if fix:
             sentence += f" {fix}"
         return [sentence]
@@ -2474,7 +2535,10 @@ def _emit_minority(dim, rating, shoes_with_rating, n_total, profile, street, cas
     for branch_id in sorted(groups.keys()):
         members = groups[branch_id]
         names = _join_names([_name(s) for s, _ in members])
-        cause, fix = renderer(branch_id, members, profile)
+        rendered = renderer(branch_id, members, profile)
+        # Tolerate the optional 3rd connector element (unused here —
+        # the multi-branch seg has no "because"/"even though" slot).
+        cause, fix = rendered[0], rendered[1]
         seg = f"In {len(members)} of these ({names}) {cause}."
         if fix:
             seg += f" {fix}"

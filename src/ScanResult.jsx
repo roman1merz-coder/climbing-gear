@@ -28,13 +28,22 @@ async function apiScanPost(op, payload) {
 // ~1/3 of the population. The slider renders these three bands as
 // three equal-width visual sections.
 // ══════════════════════════════════════════════════════════════
+// V2 5-tier population reference (very low / low / mid / high / very high).
+// Thresholds mirror interp_foot_shape_v2.POP_5TIER - the single source of
+// truth shared with the worker, so the slider and the section-1 prose
+// always agree on a measurement's tier.
 const POP = {
-  forefoot_width_ratio:  { mean: 0.355, std: 0.028, lo: 0.344, hi: 0.367 },
-  arch_length_ratio:     { mean: 0.725, std: 0.025, lo: 0.712, hi: 0.734 },
-  heel_width_ratio:      { mean: 0.238, std: 0.022, lo: 0.228, hi: 0.245 },
-  instep_height_ratio:   { mean: 0.264, std: 0.036, lo: 0.255, hi: 0.273 },
-  heel_depth_ratio:      { mean: 0.034, std: 0.020, lo: 0.028, hi: 0.041 },
+  forefoot_width_ratio:  { mean: 0.354, std: 0.029, vl_lo: 0.331, lo: 0.343, hi: 0.367, vh_hi: 0.384 },
+  arch_length_ratio:     { mean: 0.725, std: 0.024, vl_lo: 0.700, lo: 0.714, hi: 0.735, vh_hi: 0.747 },
+  heel_width_ratio:      { mean: 0.236, std: 0.021, vl_lo: 0.218, lo: 0.228, hi: 0.245, vh_hi: 0.255 },
+  instep_height_ratio:   { mean: 0.263, std: 0.102, vl_lo: 0.241, lo: 0.255, hi: 0.273, vh_hi: 0.294 },
+  heel_depth_ratio:      { mean: 0.036, std: 0.030, vl_lo: 0.022, lo: 0.029, hi: 0.043, vh_hi: 0.053 },
 };
+
+// HVA (hallux valgus) renders on its own 3-section slider. mild_lo matches
+// the foot_measure.py classifier (raised 0.25 -> 0.28 at V2 go-live).
+const HVA_BOUNDS = { mild_lo: 0.28, pronounced_lo: 0.35 };
+const ACCENT_DARK = "#8a5d20";
 
 // Labels only. Visual min/max are derived below as mean ± 3σ from POP,
 // so the outer band edges track real population spread instead of hand-
@@ -68,56 +77,56 @@ const TOE_DESCRIPTIONS = {
 
 // ── Helpers ──────────────────────────────────────────────────
 
-// Map a measured value into the three-equal-section slider space
-// (0-100%). Uses piecewise-linear mapping so each of the three
-// classification bands (low / mid / high) occupies exactly 33.33%
-// of visible width, regardless of how wide each band is in real units.
-function sectionPct(val, min, lo, hi, max) {
-  if (val <= lo) {
-    const span = lo - min;
-    const t = span > 0 ? (val - min) / span : 0.5;
-    return Math.max(0, Math.min(1, t)) * 33.333;
+// The visual track is split into five bands. The mid band is double-width
+// (33%) because ~1/3 of the population lands there; the four off-mid bands
+// are 16.67% each. BAND_STARTS are the cumulative left offsets.
+const BAND_WIDTHS = [16.667, 16.667, 33.333, 16.667, 16.667];
+const BAND_STARTS = [0, 16.667, 33.333, 66.667, 83.333];
+
+// Map a measured value to a pointer position (0-100%) across the 5-section
+// track. Each section maps its value range 1:1 onto its band width.
+function sectionPct5(val, vmin, vlLo, lo, hi, vhHi, vmax) {
+  const bounds = [vmin, vlLo, lo, hi, vhHi, vmax];
+  for (let i = 0; i < 5; i++) {
+    const b0 = bounds[i], b1 = bounds[i + 1];
+    if (val <= b1) {
+      const span = b1 - b0;
+      const t = span > 0 ? Math.max(0, Math.min(1, (val - b0) / span)) : 0.5;
+      return BAND_STARTS[i] + t * BAND_WIDTHS[i];
+    }
   }
-  if (val <= hi) {
-    const span = hi - lo;
-    const t = span > 0 ? (val - lo) / span : 0.5;
-    return 33.333 + Math.max(0, Math.min(1, t)) * 33.334;
-  }
-  const span = max - hi;
-  const t = span > 0 ? (val - hi) / span : 0.5;
-  return 66.667 + Math.max(0, Math.min(1, t)) * 33.333;
+  return 100;
 }
 
-function levelLabel(val, lo, hi) {
-  if (val < lo) return "low";
-  if (val > hi) return "high";
-  return "mid";
+function levelLabel5(val, vlLo, lo, hi, vhHi) {
+  if (val < vlLo) return "very low";
+  if (val < lo)   return "low";
+  if (val < hi)   return "mid";
+  if (val < vhHi) return "high";
+  return "very high";
 }
 
-function levelColor(lbl) {
-  if (lbl === "low")  return T.accent;
-  if (lbl === "high") return T.accent;
+function levelColor5(lbl) {
+  if (lbl === "very low" || lbl === "very high") return ACCENT_DARK;
+  if (lbl === "low" || lbl === "high") return T.accent;
   return T.green || "#6a8a4f";
 }
 
 // ── Metric bar component ─────────────────────────────────────
-// Three equal-width sections (low | mid | high). Pointer shows
-// where the user sits, with its left/right offset within a section
-// indicating closeness to the boundary.
+// Five sections (very low | low | mid | high | very high). The mid
+// section is double-width. Pointer shows where the user sits.
 function MetricBar({ ratioKey, value }) {
   const p = POP[ratioKey];
   const m = META[ratioKey];
   if (!p || !m || value == null) return null;
 
-  const lo  = p.lo;
-  const hi  = p.hi;
   // Derive visual bounds from real population spread (mean ± 3σ),
   // floored at 0 for ratios where negative is nonsensical.
   const vmin = Math.max(0, p.mean - VISUAL_SIGMA * p.std);
   const vmax = p.mean + VISUAL_SIGMA * p.std;
-  const pos = sectionPct(value, vmin, lo, hi, vmax);
-  const lbl = levelLabel(value, lo, hi);
-  const col = levelColor(lbl);
+  const pos = sectionPct5(value, vmin, p.vl_lo, p.lo, p.hi, p.vh_hi, vmax);
+  const lbl = levelLabel5(value, p.vl_lo, p.lo, p.hi, p.vh_hi);
+  const col = levelColor5(lbl);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -126,12 +135,14 @@ function MetricBar({ ratioKey, value }) {
         <span style={{ fontSize: "0.78rem", fontWeight: 700, color: col }}>{lbl}</span>
       </div>
 
-      {/* Three equal-width bands */}
+      {/* Five bands: extremes amber-strong, off-mid amber-soft, mid green */}
       <div style={{ height: 8, borderRadius: 4, position: "relative", overflow: "visible" }}>
         <div style={{ position: "absolute", inset: 0, display: "flex", borderRadius: 4, overflow: "hidden" }}>
-          <div style={{ flex: 1, background: "#ece5d4" }} />
-          <div style={{ flex: 1, background: "#d6cdb4", borderLeft: "1px solid #c4b99a", borderRight: "1px solid #c4b99a" }} />
-          <div style={{ flex: 1, background: "#ece5d4" }} />
+          <div style={{ width: "16.667%", background: "#e8c79b" }} />
+          <div style={{ width: "16.667%", background: "#efdbc1" }} />
+          <div style={{ width: "33.333%", background: "#cad7c4", borderLeft: "1px solid #b9c8b1", borderRight: "1px solid #b9c8b1" }} />
+          <div style={{ width: "16.667%", background: "#efdbc1" }} />
+          <div style={{ width: "16.667%", background: "#e8c79b" }} />
         </div>
         {/* Pointer */}
         <div
@@ -148,10 +159,67 @@ function MetricBar({ ratioKey, value }) {
       </div>
 
       {/* Section labels */}
-      <div style={{ display: "flex", fontSize: "0.58rem", color: "#a8a08e", textTransform: "lowercase" }}>
-        <span style={{ flex: 1, textAlign: "left" }}>low</span>
+      <div style={{ display: "flex", fontSize: "0.55rem", color: "#a8a08e", textTransform: "lowercase" }}>
+        <span style={{ flex: 1, textAlign: "left" }}>very low</span>
+        <span style={{ flex: 1, textAlign: "center" }}>low</span>
         <span style={{ flex: 1, textAlign: "center" }}>mid</span>
-        <span style={{ flex: 1, textAlign: "right" }}>high</span>
+        <span style={{ flex: 1, textAlign: "center" }}>high</span>
+        <span style={{ flex: 1, textAlign: "right" }}>very high</span>
+      </div>
+    </div>
+  );
+}
+
+// ── HVA "Big Toe Inward Drift" bar ───────────────────────────
+// Three sections (none | mild | pronounced). Hallux valgus is a
+// sole-view measurement; the slider lives with the sole metrics.
+function HvaBar({ value }) {
+  if (value == null) return null;
+  const { mild_lo, pronounced_lo } = HVA_BOUNDS;
+  const bounds = [0, mild_lo, pronounced_lo, 0.50];
+  let pos = 100;
+  for (let i = 0; i < 3; i++) {
+    const b0 = bounds[i], b1 = bounds[i + 1];
+    if (value <= b1) {
+      const span = b1 - b0;
+      const t = span > 0 ? Math.max(0, Math.min(1, (value - b0) / span)) : 0.5;
+      pos = i * 33.333 + t * 33.333;
+      break;
+    }
+  }
+  let lbl, col;
+  if (value < mild_lo) { lbl = "none"; col = T.green || "#6a8a4f"; }
+  else if (value < pronounced_lo) { lbl = "mild"; col = T.accent; }
+  else { lbl = "pronounced"; col = ACCENT_DARK; }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <span style={{ fontSize: "0.78rem", fontWeight: 600, color: T.text }}>Big Toe Inward Drift</span>
+        <span style={{ fontSize: "0.78rem", fontWeight: 700, color: col }}>{lbl}</span>
+      </div>
+      <div style={{ height: 8, borderRadius: 4, position: "relative", overflow: "visible" }}>
+        <div style={{ position: "absolute", inset: 0, display: "flex", borderRadius: 4, overflow: "hidden" }}>
+          <div style={{ flex: 1, background: "#cad7c4" }} />
+          <div style={{ flex: 1, background: "#efdbc1", borderLeft: "1px solid #d8c4a4", borderRight: "1px solid #d8c4a4" }} />
+          <div style={{ flex: 1, background: "#e8c79b" }} />
+        </div>
+        <div
+          title={value.toFixed(3)}
+          style={{
+            position: "absolute", top: -3, left: `${pos}%`,
+            transform: "translateX(-50%)",
+            width: 4, height: 14, background: col,
+            borderRadius: 2,
+            boxShadow: "0 0 0 1.5px #fff",
+            transition: "left 1.2s cubic-bezier(0.22,1,0.36,1)",
+          }}
+        />
+      </div>
+      <div style={{ display: "flex", fontSize: "0.58rem", color: "#a8a08e", textTransform: "lowercase" }}>
+        <span style={{ flex: 1, textAlign: "left" }}>none</span>
+        <span style={{ flex: 1, textAlign: "center" }}>mild</span>
+        <span style={{ flex: 1, textAlign: "right" }}>pronounced</span>
       </div>
     </div>
   );
@@ -751,6 +819,12 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
   });
   const [nextPref, setNextPref] = useState(scan?.next_shoe_preference || "");
   const [notes, setNotes] = useState(scan?.next_shoe_notes || "");
+  // V2 climbing preferences. Pre-filled for V2 scans; empty for older V1
+  // scans, in which case validate() makes them required before rescoring.
+  const [discipline, setDiscipline] = useState(scan?.discipline || "");
+  const [environment, setEnvironment] = useState(scan?.environment || "");
+  const [rockType, setRockType] = useState(scan?.rock_type || "");
+  const [aggressiveness, setAggressiveness] = useState(scan?.aggressiveness || "");
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState(null);
 
@@ -776,6 +850,15 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
     if (!sex) {
       errors.push("Please select a sex - the recommendation engine needs this to compute sizes.");
     }
+
+    // V2 climbing preferences are all required (old V1 scans must supply
+    // them here before they can be re-scored under the V2 pipeline).
+    if (!discipline) errors.push("Please select your climbing discipline.");
+    if (!environment) errors.push("Please select where you climb most.");
+    if (environment === "outdoor" && !rockType) {
+      errors.push("Please select your main rock type.");
+    }
+    if (!aggressiveness) errors.push("Please select your fit preference.");
 
     // A row "counts" if any field is set; completely empty rows are silently dropped.
     const activeRows = shoes
@@ -843,6 +926,10 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
       shoes: cleanedShoes,
       next_shoe_preference: nextPref || null,
       next_shoe_notes: notes.trim() || null,
+      discipline: discipline || null,
+      environment: environment || null,
+      rock_type: environment === "outdoor" ? (rockType || null) : null,
+      aggressiveness: aggressiveness || null,
     };
     if (streetSize.trim()) {
       const n = Number(streetSize);
@@ -948,6 +1035,72 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
             {STREET_SIZES_EU.map((s) => (
               <option key={s} value={s}>{formatSize(s)}</option>
             ))}
+          </select>
+        </div>
+
+        {/* V2 climbing preferences */}
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>Climbing discipline *</div>
+          <select
+            value={discipline}
+            onChange={(e) => setDiscipline(e.target.value)}
+            disabled={saving}
+            style={inputStyle}
+          >
+            <option value="">Select...</option>
+            <option value="boulder">Bouldering</option>
+            <option value="sport">Sport climbing</option>
+            <option value="trad_multipitch">Trad / multipitch</option>
+          </select>
+        </div>
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>Where you climb most *</div>
+          <select
+            value={environment}
+            onChange={(e) => {
+              const v = e.target.value;
+              setEnvironment(v);
+              if (v !== "outdoor") setRockType("");
+            }}
+            disabled={saving}
+            style={inputStyle}
+          >
+            <option value="">Select...</option>
+            <option value="indoor">Indoor</option>
+            <option value="outdoor">Outdoor</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+        {environment === "outdoor" && (
+          <div style={{ marginBottom: "0.85rem" }}>
+            <div style={labelStyle}>Main rock type *</div>
+            <select
+              value={rockType}
+              onChange={(e) => setRockType(e.target.value)}
+              disabled={saving}
+              style={inputStyle}
+            >
+              <option value="">Select...</option>
+              <option value="granite">Granite</option>
+              <option value="limestone">Limestone</option>
+              <option value="sandstone">Sandstone</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </div>
+        )}
+        <div style={{ marginBottom: "0.85rem" }}>
+          <div style={labelStyle}>Fit preference *</div>
+          <select
+            value={aggressiveness}
+            onChange={(e) => setAggressiveness(e.target.value)}
+            disabled={saving}
+            style={inputStyle}
+          >
+            <option value="">Select...</option>
+            <option value="comfort">Comfort</option>
+            <option value="balanced">Balanced</option>
+            <option value="moderate">Moderate performance</option>
+            <option value="aggressive">Aggressive performance</option>
           </select>
         </div>
 
@@ -1833,6 +1986,7 @@ export default function ScanResult({ shoes }) {
               <MetricBar ratioKey="forefoot_width_ratio" value={s.forefoot_width_ratio} />
               <MetricBar ratioKey="arch_length_ratio" value={s.arch_length_ratio} />
               <MetricBar ratioKey="heel_width_ratio" value={s.heel_width_ratio} />
+              <HvaBar value={s.hva_offset_ratio} />
             </div>
           </div>
         </div>
@@ -1917,10 +2071,10 @@ export default function ScanResult({ shoes }) {
       {recommendations.length > 0 && (() => {
         // Group recommendations by category (new format) or show flat list (legacy)
         const CATEGORY_META = {
-          baseline: { label: "Your Best Match", desc: "Similar feel and use case to your current shoes", ctaText: "top matches" },
-          softer: { label: "Softer Shoes", desc: "For more sensitivity, recommended for indoors and bouldering", ctaText: "softer picks" },
-          stiffer: { label: "Stiffer Shoes", desc: "For more support, recommended for outdoors and sport/trad climbing", ctaText: "stiffer picks" },
-          budget: { label: "Best Value", desc: "Affordable picks at your recommended size", ctaText: "value picks" },
+          baseline: { label: "Your Best Match", desc: "Best fit to your use case and performance preference", ctaText: "top matches" },
+          softer: { label: "Softer Shoes", desc: "For more sensitivity and better smearing.", ctaText: "softer picks" },
+          stiffer: { label: "Stiffer Shoes", desc: "For more support and better edging.", ctaText: "stiffer picks" },
+          budget: { label: "Best Value", desc: "Affordable picks for real dirtbags.", ctaText: "value picks" },
         };
         const hasCats = recommendations.some((r) => r.category);
         const groups = hasCats

@@ -76,7 +76,16 @@ def main():
     fit_target = resolve_targets_v2(profile, profile["shoes"], aggr)
     use_target = compute_use_case_target(disc, env, rock, aggr)
     target = {**fit_target, **use_target}
-    tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows)
+
+    # Roman 2026-05-18: pass the same rec-size resolver the renderer uses,
+    # so the budget tier prices at the downsized size AND the +5
+    # availability axis lands in the scoring.json breakdowns.
+    from render_v2_review_static import calc_rec_size
+    pref = "performance" if aggr in ("moderate", "aggressive") else "comfort"
+    rec_size_fn = lambda sh: calc_rec_size(profile["shoes"], sh.get("brand"),
+                                           brand_sizing, street, pref)
+    tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows,
+                           rec_size_fn=rec_size_fn)
 
     # ── O3 — full score breakdowns per pick ───────────────────────────
     scoring = {}

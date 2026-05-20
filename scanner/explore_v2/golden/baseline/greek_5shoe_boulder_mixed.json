@@ -1,0 +1,171 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have a Greek toe form with wide forefoot and a medium-width heel. A mixed profile; forefoot and heel require different fits.",
+        "Beyond the obvious: Given your Greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your shallow heel doesn't project as far back as most. Deeply sculpted cups will feel empty at the back. Your big toe drifts slightly inwards (could be a mild hallux valgus), hence we recommend a slightly wider and not too asymmetric shape."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your Scarpa Instinct VS (2 down) is rather aggressive for Scarpa; your Scarpa Instinct VSR (2 down) is rather aggressive for Scarpa; your La Sportiva Skwama Vegan (1.5 down) is rather relaxed for La Sportiva; your Wild Climb Mangusta (2 down) is rather aggressive for Wild Climb; your Wild Climb Pantera (2023) (2 down) is rather aggressive for Wild Climb.",
+        "Your La Sportiva Skwama Vegan's loose heel, loose toes, and loose forefoot are most likely a sizing problem, you could try a size smaller for a better fit. Your Wild Climb Mangusta's loose could be caused by your shallow heel, the back of your foot may not project far enough to fill the cup which you perceive as loose feel.",
+        "Your Wild Climb Pantera (2023)'s heel feels empty while the other shoes fit on the heel. Your Wild Climb Pantera (2023)'s medium volume matches your normal heel width, but your shallow heel may not fill deeply sculpted cups. The cause is likely heel depth, so try shoes with a flatter, less sculpted heel cup."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Greek toe form, normal forefoot width (adjusted from wide scan result based on your current shoe fit), and normal heel width.",
+        "Given your preference for bouldering outdoors on mixed and a moderate fit, we prioritize soft slippers or velcros with moderate downturn and slight asymmetry (shifted lower to accommodate your mild hallux valgus).",
+        "Note: data on shoe heel depth is unfortunately not widely available. We're working on extracting this data from shoe scans, but for now the recommendations match heel width only.",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 109.99
+      },
+      "brand": "Simond",
+      "category": "baseline",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm Vibram XS Grip rubber with a partial, soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Edge Soft",
+      "recommended_size_eu": 40.0,
+      "slug": "simond-edge-soft",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 102.99
+      },
+      "brand": "Black Diamond",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3.8mm BlackLabel Fuse rubber with a partial, soft midsole, resulting in a soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Method S",
+      "recommended_size_eu": 40.5,
+      "slug": "black-diamond-method-s",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "brand": "Scarpa",
+      "category": "baseline",
+      "description": "Slipper with Greek toe form, medium fit throughout. 3.5mm Vibram XS Grip 2 rubber with a half-length, medium-soft midsole, resulting in a medium-soft shoe with moderate downturn and moderate asymmetry.",
+      "model": "Instinct SR",
+      "recommended_size_eu": 39.5,
+      "slug": "scarpa-instinct-sr",
+      "tradeoffs": "Tradeoff: Slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "brand": "Saltic",
+      "category": "softer",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm Extasy rubber with a partial, soft midsole, resulting in a soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Enigma White EVO",
+      "recommended_size_eu": 40.0,
+      "slug": "saltic-enigma-white-evo",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "brand": "So iLL",
+      "category": "softer",
+      "description": "Slipper with Egyptian/Roman toe form, medium fit throughout. 3.5mm Vibram XS Grip rubber with a half-length, medium midsole, resulting in a soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Roam Rigid",
+      "recommended_size_eu": 40.0,
+      "slug": "so-ill-roam-rigid",
+      "tradeoffs": "Tradeoff: Egyptian or Roman toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 94.52
+      },
+      "brand": "Boreal",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm Zenith Ultra 2.0 rubber with a forefoot, soft midsole, resulting in a soft shoe with moderate downturn and moderate asymmetry.",
+      "model": "Indo",
+      "recommended_size_eu": 40.0,
+      "slug": "boreal-indo",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 94.99
+      },
+      "brand": "Black Diamond",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4.3mm BlackLabel Fuse rubber with a partial, medium-soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Method",
+      "recommended_size_eu": 40.5,
+      "slug": "black-diamond-method",
+      "tradeoffs": "Tradeoff: Egyptian toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "brand": "Saltic",
+      "category": "stiffer",
+      "description": "Velcro with Roman toe form, medium fit throughout. 4mm Extasy rubber with a partial, soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Enigma Black EVO",
+      "recommended_size_eu": 40.0,
+      "slug": "saltic-enigma-black-evo",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "brand": "Climb X",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm X-Factor rubber with a partial, medium-hard midsole, resulting in a medium-firm shoe with moderate downturn and slight asymmetry.",
+      "model": "Red Point",
+      "recommended_size_eu": 40.0,
+      "slug": "climb-x-red-point",
+      "tradeoffs": "Tradeoff: Egyptian toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 55.99
+      },
+      "brand": "Scarpa",
+      "category": "budget",
+      "description": "Velcro with Greek toe form, medium fit throughout. 4mm Vibram XS Edge rubber with a full, medium-soft midsole, resulting in a balanced-stiffness shoe with flat profile and slight asymmetry. At EUR 56, a strong-value pick.",
+      "model": "Force",
+      "recommended_size_eu": 39.5,
+      "slug": "scarpa-force-v",
+      "tradeoffs": "Tradeoff: Less downturned and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 84.99
+      },
+      "brand": "Simond",
+      "category": "budget",
+      "description": "Velcro with Roman toe form, medium forefoot and a wide heel cup. 4mm Vibram XS Grip rubber with a partial, medium midsole, resulting in a balanced-stiffness shoe with moderate downturn and slight asymmetry. At EUR 85, a strong-value pick.",
+      "model": "Vertika",
+      "recommended_size_eu": 40.0,
+      "slug": "simond-vertika",
+      "tradeoffs": "Tradeoffs: Roman toe form might not be a perfect fit for your Greek toe, and slightly roomier in the heel and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 103.95
+      },
+      "brand": "Evolv",
+      "category": "budget",
+      "description": "Slipper with Egyptian toe form, narrow forefoot and a medium heel cup. 4.2mm TRAX SAS rubber with a full, soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry. At EUR 104, a strong-value pick.",
+      "model": "Rave",
+      "recommended_size_eu": 41.0,
+      "slug": "evolv-rave",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly narrower in the forefoot than we target.",
+      "why": null
+    }
+  ]
+}

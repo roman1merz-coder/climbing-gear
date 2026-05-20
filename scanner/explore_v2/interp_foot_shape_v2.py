@@ -736,6 +736,15 @@ def _t4_clause(p):
     heel_d_cls = _to_3t("heel_depth_ratio",    "shallow heel", "deep heel")
     hva = (p.get("hallux_valgus_class") or "normal").lower()
 
+    # Roman 2026-05-18 (B5): escalate the T4 adverb for users at the
+    # extreme (very) 5-tier — "rather high" understates a 95th-percentile
+    # instep. "particularly" for the very-tier, "rather" otherwise.
+    arch_5t   = _classify_5tier("arch_length_ratio",   p.get("arch_length_ratio"))
+    instep_5t = _classify_5tier("instep_height_ratio", p.get("instep_height_ratio"))
+    arch_adv   = "particularly" if arch_5t   in ("very short", "very long") else "rather"
+    instep_adv = "particularly" if instep_5t in ("very low", "very high instep") else "rather"
+    arch_long_phrase = "particularly long" if arch_5t == "very long" else "long"
+
     # T4.2 — non-Egyptian toes
     # Roman 2026-05-01 audit S18: capitalize toe-shape names in §1 prose.
     if toe in ("greek", "roman"):
@@ -748,29 +757,30 @@ def _t4_clause(p):
     # T4.3 / T4.4 — arch length
     if arch_cls == "long arch":
         out.append(
-            "Given your long arch, the ball of your foot may be pushed into "
-            "the toe box. A squeezed forefoot may be caused by this instead "
-            "of actual shoe width, so look for rather short toe boxes."
+            f"Given your {arch_long_phrase} arch, the ball of your foot may be "
+            "pushed into the toe box. A squeezed forefoot may be caused by this "
+            "instead of actual shoe width, so look for rather short toe boxes."
         )
     elif arch_cls == "short arch":
         out.append(
-            "Your arch is rather short, meaning your toes are relatively long. "
-            "Especially when considering aggressive shoes look for sufficient "
-            "height in the toe box to let your toes curl up."
+            f"Your arch is {arch_adv} short, meaning your toes are relatively "
+            "long. Especially when considering aggressive shoes look for "
+            "sufficient height in the toe box to let your toes curl up."
         )
 
     # T4.5 / T4.6 — instep
     if _is_low_instep(instep_cls):
         out.append(
-            "Additionally your instep is rather low, so an adjustable closure "
-            "is preferable to avoid dead space. Ideally double velcro or laces, "
-            "rather avoid pure slippers."
+            f"Additionally your instep is {instep_adv} low, so an adjustable "
+            "closure is preferable to avoid dead space. Ideally double velcro "
+            "or laces, rather avoid pure slippers."
         )
     elif _is_high_instep(instep_cls):
         out.append(
-            "Additionally your instep is rather high, so an adjustable closure "
-            "is preferable to actually get into the shoe. Ideally double velcro "
-            "or laces, you may struggle getting into slippers if adequately downsized."
+            f"Additionally your instep is {instep_adv} high, so an adjustable "
+            "closure is preferable to actually get into the shoe. Ideally double "
+            "velcro or laces, you may struggle getting into slippers if "
+            "adequately downsized."
         )
 
     # T4.7 / T4.8 — heel depth

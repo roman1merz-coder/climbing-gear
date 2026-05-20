@@ -586,7 +586,8 @@ def detect_toe_shape(mask, upper_row, ball_row):
 # Hallux valgus = inward drift of the big toe (bunion tendency).
 # Measurement: ratio of big toe tip's lateral offset from medial edge to forefoot width.
 # HVA offset ratio: (big_toe_tip_x - medial_edge_x) / forefoot_width
-# Classification: normal (<0.25), mild (0.25-0.35), pronounced (>0.35)
+# Classification: normal (<0.28), mild (0.28-0.35), pronounced (>0.35)
+# (mild threshold raised 0.25 -> 0.28 at V2 go-live, 2026-05-20; pronounced unchanged)
 
 def measure_hallux_valgus(toe_tips, ball_left, ball_width, toe_shape="egyptian"):
     """Measure hallux valgus from big toe tip position.
@@ -615,7 +616,7 @@ def measure_hallux_valgus(toe_tips, ball_left, ball_width, toe_shape="egyptian")
     # Clamp to [0, 1] range for safety
     hva_offset_ratio = max(0.0, min(1.0, hva_offset_ratio))
 
-    mild_threshold = 0.25
+    mild_threshold = 0.28
     pronounced_threshold = 0.35
 
     if hva_offset_ratio < mild_threshold:
@@ -1070,14 +1071,11 @@ def draw_sole_overlay(img, mask, m, out_path):
     dx = 0
     cx = dx + PAD + body_w // 2
 
-    # Draw silhouette outline
-    if sil_r is not None:
-        sil_x0 = cx - sil_nw // 2
-        sil_contours, _ = cv2.findContours(sil_r, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        for c in sil_contours:
-            c[:, :, 0] += sil_x0
-            c[:, :, 1] += PAD
-        cv2.drawContours(canvas, sil_contours, -1, (191, 205, 213), 2, cv2.LINE_AA)
+    # V2 go-live (2026-05-20): the average-foot silhouette outline is no
+    # longer drawn on the overlay. The V2 results page conveys "average"
+    # via the metric sliders, so the diagram shows the user's foot +
+    # measurement lines only. Silhouette scaling above is kept so the
+    # canvas geometry stays identical to the previous overlay.
 
     # Draw scan: semi-transparent amber fill + outline
     AMBER_BGR = (66, 138, 201)
@@ -1146,39 +1144,13 @@ def draw_sole_overlay(img, mask, m, out_path):
         cv2.circle(canvas, (tcx, tcy), 5, TIP_GREEN, -1, cv2.LINE_AA)
         cv2.circle(canvas, (tcx, tcy), 5, (255, 255, 255), 1, cv2.LINE_AA)
 
-    # Hallux valgus visualization (if available)
-    if m.get("toe_tips") and m.get("ball_left") is not None and m.get("hallux_valgus_class"):
-        big_toe_x, big_toe_y = m["toe_tips"][0]
-        ball_left = m["ball_left"]
+    # V2 go-live (2026-05-20): the hallux-valgus visualization (medial-edge
+    # reference line, offset line, marker, and "HVA: ..." text label) is no
+    # longer drawn on the overlay. The V2 results page shows hallux valgus
+    # via the "Big Toe Inward Drift" slider instead.
 
-        # Draw medial edge reference line (at ball row)
-        med_edge_cx = scan_x0 + int((ball_left - scan_left) * scan_scale)
-        cv2.line(canvas, (med_edge_cx, ball_cy - 30), (med_edge_cx, ball_cy + 30), (200, 100, 100), 1, cv2.LINE_AA)
-
-        # Draw HVA offset line from medial edge to big toe tip
-        big_toe_cx = scan_x0 + int((big_toe_x - scan_left) * scan_scale)
-        big_toe_cy = PAD + int((big_toe_y - scan_top) * scan_scale)
-        hva_color = (60, 140, 200)  # Orange-ish for HVA
-        cv2.line(canvas, (med_edge_cx, big_toe_cy), (big_toe_cx, big_toe_cy), hva_color, 2, cv2.LINE_AA)
-        cv2.circle(canvas, (big_toe_cx, big_toe_cy), 6, hva_color, -1, cv2.LINE_AA)
-        cv2.circle(canvas, (big_toe_cx, big_toe_cy), 6, (255, 255, 255), 1, cv2.LINE_AA)
-
-        # Add HVA class label
-        hva_class = m.get("hallux_valgus_class", "normal")
-        hva_ratio = m.get("hva_offset_ratio", 0)
-        hva_text = f"HVA: {hva_class} ({hva_ratio:.3f})"
-        cv2.putText(
-            canvas, hva_text, (line_left, upper_cy - 15),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.4, hva_color, 1, cv2.LINE_AA
-        )
-
-    # Legend
-    ly = ch - 30
-    lx = dx + 15
-    cv2.circle(canvas, (lx, ly), 4, (191, 205, 213), -1, cv2.LINE_AA)
-    cv2.putText(canvas, "Average", (lx + 11, ly+4), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (98, 116, 122), 1, cv2.LINE_AA)
-    cv2.circle(canvas, (lx + 80, ly), 4, AMBER_BGR, -1, cv2.LINE_AA)
-    cv2.putText(canvas, "Your foot", (lx + 91, ly+4), cv2.FONT_HERSHEY_SIMPLEX, 0.35, AMBER_BGR, 1, cv2.LINE_AA)
+    # V2 go-live (2026-05-20): the bottom "Average / Your foot" legend is no
+    # longer drawn - with the silhouette removed there is nothing to key.
 
     cv2.imwrite(out_path, canvas)
     print(f"  Sole overlay → {out_path}")

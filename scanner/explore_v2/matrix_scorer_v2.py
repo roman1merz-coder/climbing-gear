@@ -326,6 +326,24 @@ def axis_instep_extreme(shoe, target, profile):
     return 0, f"{label} instep {instep:.3f}, closure '{cl}' neutral"
 
 
+def axis_availability(shoe, target, profile):
+    """+5 if the shoe has a price at the user's recommended size.
+
+    Roman 2026-05-18: a gentle nudge toward shoes the user can actually
+    buy. +5 is below a single foot-shape miss (-8), so it tie-breaks
+    between near-equal shoes without overriding a real fit miss. The
+    priced-slug set is precomputed in assemble_tiers and stashed on the
+    target as `priced_slugs`; when absent (e.g. a standalone score_shoe
+    call with no price data) the axis contributes 0.
+    """
+    priced = target.get("priced_slugs")
+    if not priced:
+        return 0, "price data not available"
+    if shoe.get("slug") in priced:
+        return 5, "available at your recommended size, +5"
+    return 0, "no price found at your recommended size"
+
+
 SCORING_AXES = [
     ("stiffness",        axis_stiffness),
     ("ankle",            axis_ankle),
@@ -336,6 +354,7 @@ SCORING_AXES = [
     ("asymmetry",        axis_asymmetry),
     ("closure",          axis_closure),
     ("instep_extreme",   axis_instep_extreme),
+    ("availability",     axis_availability),
 ]
 
 
@@ -462,15 +481,25 @@ def _pick_with_caps(scored, picked_slugs, brand_count, no_edge_count, n=TIER_SIZ
 
 # ── Price-at-size helper (budget tier only) ───────────────────────────
 def best_price_at_size(slug, user_size_eu, price_rows):
-    """Return min price_eur for ``slug`` across in-stock vendor rows whose
-    ``sizes_available`` include ``user_size_eu``. None if not available.
+    """Return min price_eur for ``slug`` across in-stock vendor rows that
+    stock a size within +/- 0.5 EU of ``user_size_eu``. None if not
+    available.
 
-    ``price_rows`` is a list of dicts with keys product_slug, price_eur,
-    in_stock, sizes_available — the raw shoe_prices rows.
+    ``price_rows`` are rows from the shoe_prices_by_size view (one row per
+    product+size) with keys product_slug, price_eur, in_stock, size_eu.
+
+    Roman 2026-05-18: matched with a +/- 0.5 EU window (mirrors
+    scan_recommender._check_size_available) rather than an exact-size
+    membership test — a vendor stocking 45.5 + 46.5 but not 46.0 should
+    still count as available near a 46.0 recommendation.
+
+    2026-05-20: switched from the raw shoe_prices read to the
+    shoe_prices_by_size view so per-size affiliate rows (bergfreunde /
+    gigasport, size in eur_size) are covered too. Each row now carries a
+    single numeric ``size_eu`` instead of a sizes_available array.
     """
     if not slug or user_size_eu is None or not price_rows:
         return None
-    import json as _json
     user_size = float(user_size_eu)
     best = None
     for row in price_rows:
@@ -478,15 +507,14 @@ def best_price_at_size(slug, user_size_eu, price_rows):
             continue
         if not row.get("in_stock"):
             continue
-        sizes = row.get("sizes_available") or []
-        if isinstance(sizes, str):
-            try: sizes = _json.loads(sizes)
-            except: sizes = []
+        size = row.get("size_eu")
+        if size is None:
+            continue
         try:
-            sizes_f = {float(x) for x in sizes}
+            size = float(size)
         except (TypeError, ValueError):
             continue
-        if user_size not in sizes_f:
+        if abs(size - user_size) > 0.5:
             continue
         p = row.get("price_eur")
         if p is None:
@@ -498,12 +526,18 @@ def best_price_at_size(slug, user_size_eu, price_rows):
 
 
 def _select_budget(baseline_scored, profile, price_rows,
-                   picked_slugs, brand_count):
+                   picked_slugs, brand_count, rec_size_fn=None):
     """Budget tier: top-30 by baseline score → cheapest-3 by price-at-size.
 
     See project_v2_tier_assembly memory for the locked rules.
+
+    Roman 2026-05-18: each shoe is priced at its RECOMMENDED (downsized)
+    size via ``rec_size_fn(shoe) -> size``, not the user's street size —
+    climbing shoes run 1-2.5 EU down, so street-size stock lookups
+    almost always miss. Falls back to street size if no rec_size_fn is
+    supplied (keeps other callers working).
     """
-    user_size = profile.get("street_size_eu")
+    street_size = profile.get("street_size_eu")
     pool = baseline_scored[:BUDGET_POOL_SIZE]
 
     # Build (price, score_dict, shoe) for each pool entry that has a
@@ -513,7 +547,10 @@ def _select_budget(baseline_scored, profile, price_rows,
         slug = shoe.get("slug")
         if slug in picked_slugs:
             continue
-        price = best_price_at_size(slug, user_size, price_rows)
+        size = rec_size_fn(shoe) if rec_size_fn else street_size
+        if size is None:
+            size = street_size
+        price = best_price_at_size(slug, size, price_rows)
         if price is None:
             continue
         # Annotate the score dict so the harness can show the price
@@ -532,7 +569,7 @@ def _select_budget(baseline_scored, profile, price_rows,
                            no_edge_count=0, n=TIER_SIZE)
 
 
-def assemble_tiers(profile, shoes_db, target, price_rows=None):
+def assemble_tiers(profile, shoes_db, target, price_rows=None, rec_size_fn=None):
     """Build all 4 tiers in one call.
 
     Parameters
@@ -541,6 +578,9 @@ def assemble_tiers(profile, shoes_db, target, price_rows=None):
     shoes_db : list[dict]
     target : merged dict from resolve_targets_v2(...) ∪ compute_use_case_target(...)
     price_rows : raw shoe_prices rows (only needed for budget tier)
+    rec_size_fn : optional callable shoe -> recommended EU size, used to
+        price budget candidates at their downsized size. Falls back to
+        the user's street size when not supplied.
 
     Returns
     -------
@@ -554,6 +594,19 @@ def assemble_tiers(profile, shoes_db, target, price_rows=None):
     """
     picked_slugs = set()
     brand_count  = {}
+
+    # Roman 2026-05-18: price-availability axis (+5). Precompute the set
+    # of slugs that have a price at the user's recommended size and stash
+    # it on the target dict so axis_availability can read it. Mutating
+    # `target` in place is intentional — it keeps a caller's subsequent
+    # standalone score_shoe(...) calls (e.g. the review harness) in sync.
+    priced_slugs = set()
+    if price_rows and rec_size_fn:
+        for s in shoes_db:
+            slug = s.get("slug")
+            if slug and best_price_at_size(slug, rec_size_fn(s), price_rows):
+                priced_slugs.add(slug)
+    target["priced_slugs"] = priced_slugs
 
     baseline_scored = _score_against(shoes_db,
                                      _shift_target(target, TIER_STIFFNESS_SHIFT["baseline"]),
@@ -569,7 +622,7 @@ def assemble_tiers(profile, shoes_db, target, price_rows=None):
     softer   = _pick_with_caps(softer_scored,   picked_slugs, brand_count, 0)
     stiffer  = _pick_with_caps(stiffer_scored,  picked_slugs, brand_count, 0)
     budget   = _select_budget(baseline_scored, profile, price_rows or [],
-                              picked_slugs, brand_count)
+                              picked_slugs, brand_count, rec_size_fn=rec_size_fn)
 
     return {
         "baseline":        baseline,

@@ -103,15 +103,27 @@ def load_shoes_db():
 
 
 def load_price_rows():
+    """Load per-(slug,size) price rows from the shoe_prices_by_size view.
+
+    The view normalises both shoe_prices storage models — the array model
+    (sizes_available) and the per-size model (eur_size, used by the
+    bergfreunde/gigasport AWIN affiliate feeds) — into one row per
+    product+size. Each row carries a single numeric ``size_eu``.
+
+    Paginated: the REST API hard-caps every response at 1000 rows, so a
+    single large ``limit`` would silently truncate.
+    """
     rows, offset = [], 0
     while True:
-        r = requests.get(f"{SB_URL}/rest/v1/shoe_prices", headers=HEADERS,
-            params={"select": "product_slug,price_eur,in_stock,sizes_available",
+        r = requests.get(f"{SB_URL}/rest/v1/shoe_prices_by_size", headers=HEADERS,
+            params={"select": "product_slug,price_eur,in_stock,size_eu",
+                    "order": "source_id,size_eu",
                     "limit": 1000, "offset": offset}, timeout=30)
         r.raise_for_status()
         b = r.json()
         if not b: break
         rows.extend(b)
+        if len(b) < 1000: break
         offset += 1000
     return rows
 

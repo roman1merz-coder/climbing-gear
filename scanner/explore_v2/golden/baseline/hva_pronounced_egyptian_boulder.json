@@ -1,0 +1,177 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have an Egyptian toe form with wide forefoot and a medium-width heel. A mixed profile; forefoot and heel require different fits.",
+        "Beyond the obvious: Your arch is particularly short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up. Your big toe drifts noticeably inwards (could be a pronounced hallux valgus); we avoid very asymmetric lasts and prefer moderately asymmetric or wider-tipped designs that help the big toe stay in contact with the shoe tip."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your Tenaya Indalo (EU 43, 0.5 down) is rather relaxed for Tenaya, where the usual downsize is 1.5 sizes."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Egyptian toe form, wide forefoot width, and normal heel width.",
+        "Given your preference for bouldering indoors and a moderate fit, we prioritize soft slippers or velcros with moderate downturn and slight asymmetry (shifted lower to accommodate your pronounced hallux valgus).",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "brand": "Butora",
+      "category": "baseline",
+      "description": "Slipper with Egyptian toe form, wide forefoot and a medium heel cup, high forefoot volume. 4mm NEO Fuse rubber with a partial, medium midsole, resulting in a soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Sensa",
+      "recommended_size_eu": 43.0,
+      "slug": "butora-sensa",
+      "tradeoffs": "Tradeoff: Slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 102.99
+      },
+      "brand": "Black Diamond",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3.8mm BlackLabel Fuse rubber with a partial, soft midsole, resulting in a soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Method S",
+      "recommended_size_eu": 43.0,
+      "slug": "black-diamond-method-s",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 103.96
+      },
+      "brand": "Ocun",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup. 4mm CAT 1.5 rubber with a toe-only, soft midsole, resulting in a very soft shoe with slight downturn and moderate asymmetry.",
+      "model": "Havoc",
+      "recommended_size_eu": 43.0,
+      "slug": "ocun-havoc",
+      "tradeoffs": "Tradeoff: Slightly less downturned and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "brand": "Butora",
+      "category": "softer",
+      "description": "Slipper with Egyptian toe form, wide forefoot and a medium heel cup, high forefoot volume. 4mm NEO Fuse rubber with a partial, soft midsole, resulting in a soft shoe with slight downturn and moderate asymmetry.",
+      "model": "Nix",
+      "recommended_size_eu": 43.0,
+      "slug": "butora-nix",
+      "tradeoffs": "Tradeoff: Slightly less downturned and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 116.99
+      },
+      "brand": "Boreal",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm Zenith Ultra 2.0 rubber with a forefoot, soft midsole, resulting in a soft shoe with moderate downturn and moderate asymmetry.",
+      "model": "Indo",
+      "recommended_size_eu": 42.5,
+      "slug": "boreal-indo",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 153.9
+      },
+      "brand": "So iLL",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3mm Vibram XS Grip rubber with a forefoot, medium-soft midsole, resulting in a soft shoe with moderate downturn and moderate asymmetry.",
+      "model": "Street",
+      "recommended_size_eu": 42.5,
+      "slug": "so-ill-street",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 108.95
+      },
+      "brand": "Tenaya",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup. 4mm Tenaya proprietary rubber rubber with a full, medium-soft midsole, resulting in a medium-soft shoe with slight downturn and slight asymmetry.",
+      "model": "Araí",
+      "recommended_size_eu": 42.0,
+      "slug": "tenaya-arai",
+      "tradeoffs": "Tradeoff: Slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 123.9
+      },
+      "brand": "Evolv",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian/Roman toe form, wide forefoot and a medium heel cup. 4.2mm TRAX SAS rubber with a partial, medium midsole, resulting in a medium-soft shoe with moderate downturn and moderate asymmetry. Good for duck feet. 'Perfect if you have a narrow heel and wide forefoot.' Wide toe box, slimmer heel.",
+      "model": "V6",
+      "recommended_size_eu": 43.5,
+      "slug": "evolv-v6",
+      "tradeoffs": "Tradeoff: Slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 103.9
+      },
+      "brand": "Black Diamond",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4.3mm BlackLabel Fuse rubber with a partial, medium-soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Method",
+      "recommended_size_eu": 43.0,
+      "slug": "black-diamond-method",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 76.9
+      },
+      "brand": "Evolv",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup. 4.2mm TRAX SAS rubber with a full, soft midsole, resulting in a medium-soft shoe with flat profile and moderate asymmetry. Wide toe box suits wide forefeet. Good beginner option for wider-footed climbers. At EUR 77, a strong-value pick.",
+      "model": "Defy",
+      "recommended_size_eu": 43.5,
+      "slug": "evolv-defy",
+      "tradeoffs": "Tradeoff: Less downturned, slightly more asymmetric, and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 80.99
+      },
+      "brand": "La Sportiva",
+      "category": "budget",
+      "description": "Slipper with Egyptian toe form, narrow forefoot and a medium heel cup. 3.5mm Vibram XS Grip2 rubber with a forefoot, soft midsole, resulting in a soft shoe with slight downturn and slight asymmetry. At EUR 81, a strong-value pick.",
+      "model": "Cobra",
+      "recommended_size_eu": 41.0,
+      "slug": "la-sportiva-cobra",
+      "tradeoffs": "Tradeoff: Narrower in the forefoot and slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 89.9
+      },
+      "brand": "Mad Rock",
+      "category": "budget",
+      "description": "Slipper with Roman toe form, wide fit throughout, high forefoot volume. 4.2mm Science Friction 3.0 rubber with no midsole, resulting in a very soft shoe with slight downturn and slight asymmetry. At EUR 90, a strong-value pick.",
+      "model": "Remora HV",
+      "recommended_size_eu": 43.0,
+      "slug": "mad-rock-remora-hv",
+      "tradeoffs": "Tradeoffs: Roman toe form might not be a perfect fit for your Egyptian toe, and slightly roomier in the heel and slightly less downturned than we target.",
+      "why": null
+    }
+  ]
+}

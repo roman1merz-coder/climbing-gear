@@ -501,6 +501,10 @@
     },
     {
       "source": "/scan",
+      "destination": "/scan-testv2.html"
+    },
+    {
+      "source": "/scan-v1",
       "destination": "/scan.html"
     },
     {
@@ -608,6 +612,15 @@
     },
     {
       "source": "/scan-testv2.html",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(self), payment=()"
+        }
+      ]
+    },
+    {
+      "source": "/scan-v1",
       "headers": [
         {
           "key": "Permissions-Policy",

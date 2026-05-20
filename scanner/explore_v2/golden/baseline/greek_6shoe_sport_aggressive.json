@@ -1,0 +1,176 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have a Greek toe form with wide forefoot and a medium-width heel. A mixed profile; forefoot and heel require different fits.",
+        "Beyond the obvious: Given your Greek toes, rather avoid very pointy shoes. These might squeeze your toe tips, even if the width of the shoe fits you. Your arch is rather short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your La Sportiva Solution Comp Woman (2 down) is typical for La Sportiva; your Evolv Phantom Pro LV (0.5 above street) is typical for Evolv; your Mad Rock D2.ONE HV (at street size) is typical for Mad Rock; your Mad Rock Remora Pro HV (at street size) is typical for Mad Rock; your Unparallel Flagship Pro (at street size) is typical for Unparallel; your Scarpa Instinct VSR LV (0.5 down) is rather relaxed for Scarpa.",
+        "Your Scarpa Instinct VSR LV's loose heel is most likely a sizing problem, you could try a size smaller for a better fit.",
+        "In 3 out of 6 of your shoes your toes feel squeezed. In 2 of these (Mad Rock D2.ONE HV and Mad Rock Remora Pro HV) the toe form doesn't match your Greek toes. Look for a Greek-compatible toe box. In 1 of these (Scarpa Instinct VSR LV) the toe form matches but the last runs narrower than your wide forefoot."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Greek toe form, wide forefoot width, and normal heel width.",
+        "Given your preference for sport climbing outdoors on limestone and an aggressive fit, we prioritize balanced-stiffness velcros or lace-ups with aggressive downturn and strong asymmetry.",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 117.5
+      },
+      "brand": "Red Chili",
+      "category": "baseline",
+      "description": "Lace-up with Egyptian toe form, wide forefoot and a medium heel cup. 4mm Vibram XS Grip rubber with a partial, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Voltage Lace",
+      "recommended_size_eu": 41.0,
+      "slug": "red-chili-voltage-lace",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 140.36
+      },
+      "brand": "Tenaya",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup. 3.5mm Vibram XS Grip rubber with a half-length, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Mastia",
+      "recommended_size_eu": 40.0,
+      "slug": "tenaya-mastia",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 118.9
+      },
+      "brand": "Evolv",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup, high forefoot volume. 4.2mm TRAX SAS rubber with a partial, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Shaman",
+      "recommended_size_eu": 41.5,
+      "slug": "evolv-shaman",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 111.99
+      },
+      "brand": "Red Chili",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup, high forefoot volume. 4mm Vibram XS Grip rubber with a partial, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Voltage 3",
+      "recommended_size_eu": 41.0,
+      "slug": "red-chili-voltage-2",
+      "tradeoffs": "Tradeoff: Egyptian toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "brand": "Evolv",
+      "category": "softer",
+      "description": "Lace-up with Egyptian toe form, wide forefoot and a medium heel cup. 4mm TRAX SAS rubber with a partial, medium midsole, resulting in a balanced-stiffness shoe with aggressive downturn and strong asymmetry.",
+      "model": "Oracle",
+      "recommended_size_eu": 41.5,
+      "slug": "evolv-oracle",
+      "tradeoffs": "Tradeoff: Egyptian toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "brand": "Boreal",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup, low forefoot volume. 4mm Zenith Pro rubber with a partial, medium-soft midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry. Great for duck feet (narrow heel, wide but flat forefoot). Reviewer: 'one of the most well-fitting shoes for my classic duck foot'.",
+      "model": "Dharma",
+      "recommended_size_eu": 40.5,
+      "slug": "boreal-dharma",
+      "tradeoffs": "Tradeoff: Egyptian toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 119.9
+      },
+      "brand": "Mad Rock",
+      "category": "stiffer",
+      "description": "Velcro with Roman toe form, wide forefoot and a medium heel cup, high forefoot volume. 4.2mm Science Friction 3.0 rubber with a full, hard midsole, resulting in a very firm shoe with aggressive downturn and strong asymmetry.",
+      "model": "Drone 2 HV",
+      "recommended_size_eu": 41.0,
+      "slug": "mad-rock-drone-2-hv",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Greek toe.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 111.9
+      },
+      "brand": "Evolv",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout, high forefoot volume. 4.2mm TRAX SAS rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with aggressive downturn and strong asymmetry.",
+      "model": "Geshido",
+      "recommended_size_eu": 41.5,
+      "slug": "evolv-geshido",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly narrower in the forefoot than we target.",
+      "why": null
+    },
+    {
+      "brand": "Unparallel",
+      "category": "stiffer",
+      "description": "Velcro, medium fit throughout. 3.5mm UP RH rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with aggressive downturn and strong asymmetry.",
+      "model": "Orbit",
+      "recommended_size_eu": 41.0,
+      "slug": "unparallel-orbit",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 99.95
+      },
+      "brand": "Red Chili",
+      "category": "budget",
+      "description": "Velcro with Greek toe form, wide forefoot and a medium heel cup. 4mm Red Chili RX-1 Allround rubber with a full, medium midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry. At EUR 100, a strong-value pick.",
+      "model": "Fusion",
+      "recommended_size_eu": 41.0,
+      "slug": "red-chili-fusion-vcr",
+      "tradeoffs": "Tradeoff: Slightly less downturned, less asymmetric, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 101.4
+      },
+      "brand": "EB",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 5mm Daytona Rubber rubber with a full, medium-soft midsole, resulting in a balanced-stiffness shoe with moderate downturn and strong asymmetry. At EUR 101, a strong-value pick.",
+      "model": "Guardian 3.0",
+      "recommended_size_eu": 40.0,
+      "slug": "eb-guardian",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly narrower in the forefoot and slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 101.9
+      },
+      "brand": "Ocun",
+      "category": "budget",
+      "description": "Lace-up with Greek toe form, medium fit throughout. 4mm CAT rubber 1.5 rubber with a full, medium-hard midsole, resulting in a balanced-stiffness shoe with moderate downturn and moderate asymmetry. At EUR 102, a strong-value pick.",
+      "model": "Pearl",
+      "recommended_size_eu": 41.0,
+      "slug": "ocun-pearl",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot, slightly less downturned, and slightly less asymmetric than we target.",
+      "why": null
+    }
+  ]
+}

@@ -18,6 +18,12 @@ if not SB_KEY:
 
 HEADERS = {"apikey": SB_KEY, "Authorization": f"Bearer {SB_KEY}"}
 
+# Network timeouts for every HTTP call. Without these, a dead TLS socket
+# blocks the caller forever in ssl3_read_bytes (see scan_worker hang 2026-05-11).
+# (connect_timeout_seconds, read_timeout_seconds)
+REST_TIMEOUT = (10, 30)        # Supabase REST API: small JSON payloads
+UPLOAD_TIMEOUT = (10, 60)      # Storage upload: overlay PNGs ~200-800KB
+
 # --- Knowledge Base (baked in from Fit_Knowledge_Base.xlsx) ---
 
 INSIGHTS = [
@@ -125,6 +131,7 @@ def _load_shoes():
                       "computed_stiffness",
             "limit": 600,
         },
+        timeout=REST_TIMEOUT,
     )
     resp.raise_for_status()
     _shoes_cache = resp.json()
@@ -143,6 +150,7 @@ def _load_brand_sizing():
         f"{SB_URL}/rest/v1/brand_sizing",
         headers=HEADERS,
         params={"select": "brand,typical_downsize_mid"},
+        timeout=REST_TIMEOUT,
     )
     resp.raise_for_status()
     _brand_sizing_cache = {r["brand"]: r["typical_downsize_mid"] for r in resp.json()}
@@ -165,6 +173,7 @@ def _load_proven_slugs():
             f"{SB_URL}/rest/v1/fit_cases",
             headers=HEADERS,
             params={"select": "recommended_slugs"},
+            timeout=REST_TIMEOUT,
         )
         resp.raise_for_status()
         slugs = set()
@@ -181,44 +190,53 @@ def _load_proven_slugs():
 
 
 def _load_size_availability():
-    """Load available sizes per shoe slug from shoe_prices (in-stock only).
+    """Load available sizes per shoe slug from shoe_prices_by_size (in-stock).
 
     Builds a dict: slug -> set of EU sizes available at any retailer.
     Only loads once per CACHE_TTL.
+
+    Reads the shoe_prices_by_size view (one row per product+size) so BOTH
+    storage models are covered: the array model (sizes_available) and the
+    per-size model (eur_size, used by the bergfreunde/gigasport AWIN
+    affiliate feeds). Paginated — the REST API hard-caps every response at
+    1000 rows, so a single large ``limit`` would silently truncate.
     """
     global _size_avail_cache
     if _size_avail_cache and (time.time() - _caches_loaded_at) < CACHE_TTL:
         return _size_avail_cache
 
     t0 = time.time()
-    resp = requests.get(
-        f"{SB_URL}/rest/v1/shoe_prices",
-        headers=HEADERS,
-        params={
-            "select": "product_slug,sizes_available",
-            "in_stock": "eq.true",
-            "limit": 10000,
-        },
-    )
-    resp.raise_for_status()
-
     avail = {}
-    for row in resp.json():
-        slug = row.get("product_slug")
-        sizes_raw = row.get("sizes_available") or []
-        if isinstance(sizes_raw, str):
+    offset = 0
+    while True:
+        resp = requests.get(
+            f"{SB_URL}/rest/v1/shoe_prices_by_size",
+            headers=HEADERS,
+            params={
+                "select": "product_slug,size_eu",
+                "in_stock": "eq.true",
+                "order": "source_id,size_eu",
+                "limit": 1000,
+                "offset": offset,
+            },
+            timeout=REST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        batch = resp.json()
+        if not batch:
+            break
+        for row in batch:
+            slug = row.get("product_slug")
+            size = row.get("size_eu")
+            if not slug or size is None:
+                continue
             try:
-                sizes_raw = json.loads(sizes_raw)
-            except (json.JSONDecodeError, TypeError):
-                sizes_raw = []
-        if slug and sizes_raw:
-            if slug not in avail:
-                avail[slug] = set()
-            for s in sizes_raw:
-                try:
-                    avail[slug].add(float(s))
-                except (ValueError, TypeError):
-                    pass
+                avail.setdefault(slug, set()).add(float(size))
+            except (ValueError, TypeError):
+                pass
+        if len(batch) < 1000:
+            break
+        offset += 1000
 
     _size_avail_cache = avail
     print(f"[scan_recommender] Size availability loaded for {len(avail)} shoes in {time.time()-t0:.1f}s")
@@ -226,54 +244,60 @@ def _load_size_availability():
 
 
 def _load_best_prices():
-    """Load cheapest available price per shoe slug per size from shoe_prices.
+    """Load cheapest in-stock price per shoe slug per size from
+    shoe_prices_by_size.
 
     Builds a dict: slug -> {size_eu: lowest_price_eur}.
     Used for the budget recommendation category - we only show prices
     that are actually available in the user's recommended size.
+
+    Reads the shoe_prices_by_size view (one row per product+size) so BOTH
+    storage models are covered: the array model (sizes_available) and the
+    per-size model (eur_size, used by the bergfreunde/gigasport AWIN
+    affiliate feeds).
     """
     global _best_price_cache
     if _best_price_cache and (time.time() - _caches_loaded_at) < CACHE_TTL:
         return _best_price_cache
 
     t0 = time.time()
-    resp = requests.get(
-        f"{SB_URL}/rest/v1/shoe_prices",
-        headers=HEADERS,
-        params={
-            "select": "product_slug,price_eur,sizes_available",
-            "in_stock": "eq.true",
-            "limit": 10000,
-        },
-    )
-    resp.raise_for_status()
-
     # prices[slug][size] = lowest price
     prices = {}
-    for row in resp.json():
-        slug = row.get("product_slug")
-        price = row.get("price_eur")
-        sizes_raw = row.get("sizes_available") or []
-        if isinstance(sizes_raw, str):
+    offset = 0
+    while True:
+        resp = requests.get(
+            f"{SB_URL}/rest/v1/shoe_prices_by_size",
+            headers=HEADERS,
+            params={
+                "select": "product_slug,price_eur,size_eu",
+                "in_stock": "eq.true",
+                "order": "source_id,size_eu",
+                "limit": 1000,
+                "offset": offset,
+            },
+            timeout=REST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        batch = resp.json()
+        if not batch:
+            break
+        for row in batch:
+            slug = row.get("product_slug")
+            price = row.get("price_eur")
+            size = row.get("size_eu")
+            if not slug or price is None or size is None:
+                continue
             try:
-                sizes_raw = json.loads(sizes_raw)
-            except (json.JSONDecodeError, TypeError):
-                sizes_raw = []
-        if not slug or price is None:
-            continue
-        try:
-            p = float(price)
-        except (ValueError, TypeError):
-            continue
-        if slug not in prices:
-            prices[slug] = {}
-        for s in sizes_raw:
-            try:
-                sz = float(s)
-                if sz not in prices[slug] or p < prices[slug][sz]:
-                    prices[slug][sz] = p
+                p = float(price)
+                sz = float(size)
             except (ValueError, TypeError):
-                pass
+                continue
+            slot = prices.setdefault(slug, {})
+            if sz not in slot or p < slot[sz]:
+                slot[sz] = p
+        if len(batch) < 1000:
+            break
+        offset += 1000
 
     _best_price_cache = prices
     print(f"[scan_recommender] Best prices loaded for {len(prices)} shoes in {time.time()-t0:.1f}s")
@@ -1000,6 +1024,7 @@ def fetch_scan_data(scan_id: str) -> Optional[dict]:
         f"{SB_URL}/rest/v1/foot_scan_fits",
         headers=HEADERS,
         params={"scan_id": f"eq.{scan_id}", "select": "*"},
+        timeout=REST_TIMEOUT,
     )
     resp.raise_for_status()
     rows = resp.json()
@@ -1017,6 +1042,7 @@ def update_scan(scan_id: str, data: dict) -> dict:
         headers={**HEADERS, "Content-Type": "application/json", "Prefer": "return=representation"},
         params={"scan_id": f"eq.{scan_id}"},
         json=data,
+        timeout=REST_TIMEOUT,
     )
     resp.raise_for_status()
     rows = resp.json()
@@ -1030,6 +1056,7 @@ def update_scan(scan_id: str, data: dict) -> dict:
         f"{SB_URL}/rest/v1/foot_scan_fits",
         headers={**HEADERS, "Content-Type": "application/json", "Prefer": "return=representation"},
         json=insert_data,
+        timeout=REST_TIMEOUT,
     )
     resp.raise_for_status()
     rows = resp.json()
@@ -1053,6 +1080,7 @@ def upload_overlay(scan_id: str, suffix: str, file_path: str):
                 "x-upsert": "true",
             },
             data=f.read(),
+            timeout=UPLOAD_TIMEOUT,
         )
     resp.raise_for_status()
     return resp.json()

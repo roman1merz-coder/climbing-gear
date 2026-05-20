@@ -1,0 +1,180 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have an Egyptian toe form with very narrow forefoot and a medium-width heel. A mixed profile; forefoot and heel require different fits.",
+        "Beyond the obvious: Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Additionally your instep is particularly high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your La Sportiva Tarantula Boulder (EU 41, 2.5 down) is a typical fit for La Sportiva, where the usual downsize is 2.5 sizes.",
+        "Your La Sportiva Tarantula Boulder should fit based on heel width and depth, and you're sized typically for La Sportiva. In the recommendations we aim for even narrower heel cups.",
+        "Your La Sportiva Tarantula Boulder's toe shape and width match your foot, but your long arch may push the ball of your foot into the toe box. Look for shoes with a shorter toe box to relieve the squeeze.",
+        "Your La Sportiva Tarantula Boulder's wide forefoot is wider than your narrow forefoot. The width mismatch is the most likely cause of the loose feel."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Egyptian toe form, normal forefoot width (adjusted from narrow scan result based on your current shoe fit), and normal heel width.",
+        "Given your preference for bouldering indoors and an aggressive fit, we prioritize soft velcros (avoiding pure slippers due to your high instep) with aggressive downturn and strong asymmetry.",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 126.9
+      },
+      "brand": "Scarpa",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3.5mm Vibram XS Grip 2 rubber with a toe-only, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Drago",
+      "recommended_size_eu": 42.0,
+      "slug": "scarpa-drago",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 132.56
+      },
+      "brand": "Ocun",
+      "category": "baseline",
+      "description": "Velcro with Egyptian/Greek toe form, medium fit throughout. 4mm CAT 1.5 rubber with a toe-only, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Fury",
+      "recommended_size_eu": 43.0,
+      "slug": "ocun-fury",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 133.9
+      },
+      "brand": "La Sportiva",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3.5mm Vibram XS Grip2 rubber with a toe-only, medium-soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Solution Comp",
+      "recommended_size_eu": 41.0,
+      "slug": "la-sportiva-solution-comp",
+      "tradeoffs": "Tradeoff: Slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 111.99
+      },
+      "brand": "EB",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm DS Max rubber with a partial, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Balboa",
+      "recommended_size_eu": 42.0,
+      "slug": "eb-balboa",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "brand": "Butora",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm NEO Fuse rubber with no midsole, resulting in a very soft shoe with aggressive downturn and strong asymmetry. Good for duck feet. 'For a classic duck foot (narrow heel, wide but thin forefoot), the pink narrow version fit incredibly well.'",
+      "model": "Gomi",
+      "recommended_size_eu": 43.0,
+      "slug": "butora-gomi",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "brand": "Wild Climb",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm Wild Rubber performance rubber with no midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Dagara",
+      "recommended_size_eu": 42.5,
+      "slug": "wild-climb-dagara",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 140.36
+      },
+      "brand": "Evolv",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4.2mm TRAX SAS rubber with a partial, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Shaman Pro",
+      "recommended_size_eu": 43.5,
+      "slug": "evolv-shaman-pro",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 113.9
+      },
+      "brand": "Black Diamond",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4.3mm NeoFriction Fuse rubber with a partial, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Shadow",
+      "recommended_size_eu": 43.0,
+      "slug": "black-diamond-shadow",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 144.26
+      },
+      "brand": "Tenaya",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3.5mm Vibram XS Grip rubber with a half-length, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Indalo",
+      "recommended_size_eu": 42.0,
+      "slug": "tenaya-indalo",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 99.99
+      },
+      "brand": "Boreal",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, medium forefoot and a narrow heel cup, high forefoot volume. 4mm Zenith Ultra rubber with no midsole, resulting in a very soft shoe with aggressive downturn and strong asymmetry. At EUR 100, a strong-value pick.",
+      "model": "Synergy 2.0",
+      "recommended_size_eu": 42.5,
+      "slug": "boreal-synergy",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 101.49
+      },
+      "brand": "EB",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 4mm DS Max rubber with no midsole, resulting in a very soft shoe with moderate downturn and strong asymmetry. At EUR 101, a strong-value pick.",
+      "model": "Nebula 3.0",
+      "recommended_size_eu": 42.0,
+      "slug": "eb-nebula",
+      "tradeoffs": "Tradeoff: Slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 102.99
+      },
+      "brand": "Black Diamond",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, medium fit throughout. 3.8mm BlackLabel Fuse rubber with a partial, soft midsole, resulting in a soft shoe with moderate downturn and slight asymmetry. At EUR 103, a strong-value pick.",
+      "model": "Method S",
+      "recommended_size_eu": 43.0,
+      "slug": "black-diamond-method-s",
+      "tradeoffs": "Tradeoff: Slightly less downturned and less asymmetric than we target.",
+      "why": null
+    }
+  ]
+}

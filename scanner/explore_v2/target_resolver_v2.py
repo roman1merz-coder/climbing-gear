@@ -277,7 +277,7 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     # (forefoot=0.367, heel=0.245) — the slider/§1 says "wide" but the
     # target says "normal". Rerun aggregation with V2-aligned scan
     # votes so target stays in sync with what the user sees.
-    from benchmark.target_resolver import _shoe_votes, _aggregate, _heel_depth_vote
+    from benchmark.target_resolver import _shoe_votes, _aggregate
     _, fb_hv_clean, _ = _shoe_votes(clean_shoes or [])
     fb_fw_clean, _, fb_fv_clean = _shoe_votes(clean_shoes or [])
 
@@ -291,14 +291,18 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
         "scan_heel_width",
         "heel width {ratio:.3f} (conf {confidence:.2f}, V2 5-tier)",
     )
-    depth_hv = _heel_depth_vote(profile.get("heel_depth_ratio"))
+    # Roman 2026-05-18: measured heel DEPTH must not affect the heel-WIDTH
+    # target. Heel width and heel depth are independent fit parameters
+    # (a wide-shallow heel and a narrow-deep heel can share a volume yet
+    # fit very differently). The heel-depth vote is no longer added to
+    # votes_hv. Future work: an explicit heel-volume axis or separate
+    # width + depth shoe data (see BACKLOG B15).
     # Forefoot volume shares the forefoot-width scan signal in v1; mirror.
     scan_fv_v2 = (dict(scan_fw_v2, source="scan_forefoot_width_for_fv")
                   if scan_fw_v2 else None)
 
     votes_fw_v2 = ([scan_fw_v2] if scan_fw_v2 else []) + fb_fw_clean
-    votes_hv_v2 = ([scan_hv_v2] if scan_hv_v2 else []) + \
-                  ([depth_hv]   if depth_hv   else []) + fb_hv_clean
+    votes_hv_v2 = ([scan_hv_v2] if scan_hv_v2 else []) + fb_hv_clean
     votes_fv_v2 = ([scan_fv_v2] if scan_fv_v2 else []) + fb_fv_clean
 
     tgt_fw_v2, avg_fw_v2 = _aggregate(votes_fw_v2, fallback_rank=1, tie="up")
@@ -312,34 +316,11 @@ def resolve_targets_v2(profile, shoes, aggressiveness):
     if scan_hv_v2: out["meas_hv"] = scan_hv_v2["rank"]
     if scan_fv_v2: out["meas_fv"] = scan_fv_v2["rank"]
 
-    # ── Shallow-heel vote misfire for wide-heel users ────────────────
-    # The v1 shallow_heel vote always forces target_hv to rank 0
-    # (narrow). It conflates heel DEPTH (anteroposterior projection)
-    # with heel cup VOLUME (width × depth). For a user with a wide
-    # heel + shallow heel, that drags target_hv away from the user's
-    # actual heel size. Drop the depth vote when scan_heel_width says
-    # wide (rank 2); keep it for narrow / medium heel widths where it
-    # is anatomically consistent. Long-term fix tracked in
-    # project_heel_cup_geometry_future.md (separate heel_cup_shallow
-    # axis on shoes).
-    if out.get("shallow_heel_triggered") and out.get("meas_hv") == 2:
-        from benchmark.target_resolver import (
-            _scan_vote, _shoe_votes, _aggregate,
-            POP_HEEL_WIDTH_LO, POP_HEEL_WIDTH_HI,
-        )
-        scan_hv = _scan_vote(
-            profile.get("heel_width_ratio"),
-            POP_HEEL_WIDTH_LO, POP_HEEL_WIDTH_HI,
-            "scan_heel_width",
-            "heel width {ratio:.3f} (conf {confidence:.2f})",
-        )
-        _, fb_hv, _ = _shoe_votes(clean_shoes or [])
-        votes_hv = ([scan_hv] if scan_hv else []) + fb_hv
-        tgt_hv, avg_hv = _aggregate(votes_hv, fallback_rank=1, tie="down")
-        out["target_hv"] = tgt_hv
-        out["avg_hv"]    = avg_hv
-        out["votes_hv"]  = votes_hv
-        out["shallow_heel_suppressed_for_wide_heel"] = True
+    # Roman 2026-05-18: the former "shallow-heel vote misfire for
+    # wide-heel users" workaround is removed. It re-aggregated votes_hv
+    # without the depth vote only for wide-heel users; now that the
+    # heel-depth vote never enters votes_hv at all (for any heel width),
+    # the workaround is obsolete.
 
     # ── v2 axes ───────────────────────────────────────────────────────
     toe_shape = profile.get("toe_shape")

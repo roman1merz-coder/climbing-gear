@@ -1,0 +1,166 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have an Egyptian toe form with medium-width forefoot and a narrow heel. A mixed profile; forefoot and heel require different fits.",
+        "Beyond the obvious: Your arch is rather short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up. Additionally your instep is particularly low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers. Your deep heel projects further back than most, so a deeper, more sculpted heel cup fits naturally. Your big toe drifts slightly inwards (could be a mild hallux valgus); we avoid very asymmetric lasts and prefer moderately asymmetric or wider-tipped designs that help the big toe stay in contact with the shoe tip."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "You wear your Scarpa shoes in sizes EU 39.5 to 40, ranging from at street size to half a size down from your street size of 40. The typical downsize for Scarpa is 1.5 sizes down; the per-shoe diagnoses below break down each pair.",
+        "Your Scarpa Instinct VSR LV's toes feel squeezed while the other shoes fit on the toes. Your Scarpa Instinct VSR LV is built on a Greek toe form while you have Egyptian toes. The mismatch is the most likely cause; look for shoes with a Egyptian-compatible toe box."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Egyptian toe form, narrow forefoot width (adjusted from normal scan result based on your current shoe fit), and narrow heel width.",
+        "Given your preference for sport climbing both indoors and outdoors and a balanced fit, we prioritize balanced-stiffness velcros or lace-ups with slight downturn and no asymmetry (shifted lower to accommodate your mild hallux valgus).",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 97.44
+      },
+      "brand": "Evolv",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.2mm TRAX SAS rubber with a full, medium-soft midsole, resulting in a balanced-stiffness shoe with slight downturn and slight asymmetry.",
+      "model": "Kira",
+      "recommended_size_eu": 40.0,
+      "slug": "evolv-kira",
+      "tradeoffs": "Tradeoff: Slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "brand": "Unparallel",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 3.5mm RH rubber rubber with a full, medium midsole, resulting in a balanced-stiffness shoe with flat profile and symmetric profile.",
+      "model": "Engage VCS LV",
+      "recommended_size_eu": 40.0,
+      "slug": "unparallel-engage-vcs-lv",
+      "tradeoffs": "Tradeoff: Slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "brand": "Lowa",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4mm LC-SuperGrip rubber with a partial, medium midsole, resulting in a balanced-stiffness shoe with slight downturn and slight asymmetry.",
+      "model": "Sparrow VCR",
+      "recommended_size_eu": 39.0,
+      "slug": "lowa-sparrow-vcr",
+      "tradeoffs": "Tradeoff: Slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "brand": "Evolv",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.2mm TRAX HF rubber with a full, medium-soft midsole, resulting in a balanced-stiffness shoe with flat profile and symmetric profile.",
+      "model": "Elektra VTR",
+      "recommended_size_eu": 40.0,
+      "slug": "evolv-elektra-vtr",
+      "tradeoffs": "Tradeoff: Slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 71.97
+      },
+      "brand": "Scarpa",
+      "category": "softer",
+      "description": "Velcro with Greek toe form, narrow fit throughout, low forefoot volume. 4mm Vision rubber with a three-quarter, medium midsole, resulting in a balanced-stiffness shoe with flat profile and symmetric profile.",
+      "model": "Origin Women's",
+      "recommended_size_eu": 39.0,
+      "slug": "scarpa-origin-womens",
+      "tradeoffs": "Tradeoffs: Greek toe form might not be a perfect fit for your Egyptian toe, and slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "brand": "Black Diamond",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.3mm Fuse rubber with a partial, medium midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry.",
+      "model": "Zone LV",
+      "recommended_size_eu": 40.0,
+      "slug": "black-diamond-zone-lv",
+      "tradeoffs": "Tradeoff: Slightly more downturned and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 68.5
+      },
+      "brand": "La Sportiva",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian/Greek/Roman toe form, narrow fit throughout, low forefoot volume. 5mm La Sportiva FriXion RS rubber with a full, medium-hard midsole, resulting in a firm shoe with flat profile and symmetric profile.",
+      "model": "Tarantula Women's",
+      "recommended_size_eu": 38.0,
+      "slug": "la-sportiva-tarantula-womens",
+      "tradeoffs": "Tradeoff: Slightly less downturned than we target.",
+      "why": null
+    },
+    {
+      "brand": "Climb X",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4mm X-Factor rubber with a partial, medium-hard midsole, resulting in a medium-firm shoe with moderate downturn and slight asymmetry.",
+      "model": "Red Point NLV",
+      "recommended_size_eu": 39.0,
+      "slug": "climb-x-red-point-nlv",
+      "tradeoffs": "Tradeoff: Slightly more downturned and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "brand": "Unparallel",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 3.5mm UP RH + VD toe rubber with a full, medium midsole, resulting in a balanced-stiffness shoe with flat profile and slight asymmetry.",
+      "model": "Up Rise VCS LV",
+      "recommended_size_eu": 40.0,
+      "slug": "unparallel-up-rise-vcs-lv",
+      "tradeoffs": "Tradeoff: Slightly less downturned and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 53.9
+      },
+      "brand": "Black Diamond",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, narrow forefoot and a medium heel cup. 4.3mm NeoFriction Fuse rubber with a full, medium-soft midsole, resulting in a medium-soft shoe with flat profile and slight asymmetry. At EUR 54, a strong-value pick.",
+      "model": "Momentum",
+      "recommended_size_eu": 40.0,
+      "slug": "black-diamond-momentum",
+      "tradeoffs": "Tradeoff: Slightly roomier in the heel, slightly less downturned, slightly more asymmetric, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 64.9
+      },
+      "brand": "Evolv",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, narrow forefoot and a medium heel cup, low forefoot volume. 4.2mm TRAX SAS rubber with a full, medium-soft midsole, resulting in a balanced-stiffness shoe with flat profile and slight asymmetry. At EUR 65, a strong-value pick.",
+      "model": "Elektra",
+      "recommended_size_eu": 40.0,
+      "slug": "evolv-elektra",
+      "tradeoffs": "Tradeoff: Slightly roomier in the heel, slightly less downturned, and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 101.9
+      },
+      "brand": "La Sportiva",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4mm Vibram XS Grip2 rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with moderate downturn and moderate asymmetry. At EUR 102, a strong-value pick.",
+      "model": "Otaki Women's",
+      "recommended_size_eu": 38.0,
+      "slug": "la-sportiva-otaki-womens",
+      "tradeoffs": "Tradeoff: Slightly more downturned, more asymmetric, and slightly stiffer than we target.",
+      "why": null
+    }
+  ]
+}

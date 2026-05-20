@@ -349,19 +349,44 @@ def clean_overlay(img):
     return Image.fromarray(arr)
 
 
+def clean_one(scan_id, out_dir=None):
+    """Generate the clean overlay for a single scan_id. Saves to out_dir
+    (defaults to the legacy sample_cases_2026_05_02/sole_overlays folder).
+    Returns the output Path, or None if the production overlay was missing.
+    """
+    img = fetch_overlay(scan_id)
+    if img is None:
+        return None
+    clean = clean_overlay(img)
+    dest_dir = Path(out_dir) if out_dir else OUT_DIR
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    out = dest_dir / f"{scan_id}-sole_overlay-clean.png"
+    clean.save(out)
+    return out
+
+
 def main():
     if not KEY:
         print("ERROR: SUPABASE_SECRET_KEY env var not set", file=sys.stderr)
         sys.exit(1)
+    # Roman 2026-05-18: CLI usage — `clean_sole_overlay.py <scan_id> [out_dir]`
+    # cleans a single scan into out_dir (default: shared legacy folder).
+    # No args = batch the original 5 sample scans into the legacy folder.
+    if len(sys.argv) >= 2:
+        scan_id = sys.argv[1]
+        out_dir = sys.argv[2] if len(sys.argv) >= 3 else None
+        out = clean_one(scan_id, out_dir)
+        if out is None:
+            print(f"ERROR: production overlay for {scan_id} not found", file=sys.stderr)
+            sys.exit(2)
+        print(f"# wrote {out} ({out.stat().st_size:,} bytes)", file=sys.stderr)
+        return
     for scan_id in SAMPLE_SCANS:
         print(f"# {scan_id}", file=sys.stderr)
-        img = fetch_overlay(scan_id)
-        if img is None:
+        out = clean_one(scan_id)
+        if out is None:
             print(f"  skip — overlay not found", file=sys.stderr)
             continue
-        clean = clean_overlay(img)
-        out = OUT_DIR / f"{scan_id}-sole_overlay-clean.png"
-        clean.save(out)
         print(f"  wrote {out} ({out.stat().st_size:,} bytes)", file=sys.stderr)
 
 

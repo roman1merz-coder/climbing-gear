@@ -218,15 +218,29 @@ def _rank_label(rank, default="normal"):
 # ─── P1: fit target ───────────────────────────────────────────────────
 
 def _build_p1(profile, target):
-    """One sentence stating the final fit target after any shoe-feedback
-    adjustment is BAKED IN.  No '(adjusted from X)' footnote per Roman
-    2026-04-30 (the conclusion is what matters)."""
+    """One sentence stating the final fit target.
+
+    Roman 2026-05-18: when the resolved forefoot width differs from the
+    scan's own forefoot reading (the shoe feedback pulled it off the
+    scan value), disclose the adjustment in a parenthetical so the user
+    sees why §3 differs from the §1 scan result. Earlier (2026-04-30)
+    the footnote was dropped; restored here for transparency."""
     toe = (profile.get("toe_shape") or "egyptian").capitalize()
-    fw  = _rank_label(target.get("target_fw") if target else None, "normal")
+    target_fw = target.get("target_fw") if target else None
+    fw  = _rank_label(target_fw, "normal")
     hv  = _rank_label(target.get("target_hv") if target else None, "normal")
+
+    fw_phrase = f"{fw} forefoot width"
+    scan_fw = target.get("meas_fw") if target else None
+    if (scan_fw is not None and target_fw is not None
+            and int(scan_fw) != int(target_fw)):
+        scan_lbl = _rank_label(scan_fw)
+        fw_phrase = (f"{fw} forefoot width (adjusted from {scan_lbl} "
+                     f"scan result based on your current shoe fit)")
+
     return (
         f"Based on your scan and current shoe fit, we target shoes with "
-        f"{toe} toe form, {fw} forefoot width, and {hv} heel width."
+        f"{toe} toe form, {fw_phrase}, and {hv} heel width."
     )
 
 

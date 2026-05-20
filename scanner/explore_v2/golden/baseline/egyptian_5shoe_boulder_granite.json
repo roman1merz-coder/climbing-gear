@@ -1,0 +1,182 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have an Egyptian toe form with very narrow forefoot and a narrow heel. Throughout a narrow profile.",
+        "Beyond the obvious: Given your long arch, the ball of your foot may be pushed into the toe box. A squeezed forefoot may be caused by this instead of actual shoe width, so look for rather short toe boxes. Additionally your instep is particularly low, so an adjustable closure is preferable to avoid dead space. Ideally double velcro or laces, rather avoid pure slippers."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your La Sportiva Mantra (0.5 down) is very relaxed for La Sportiva; your Evolv Zenist (1 above street) is rather relaxed for Evolv; your Unparallel TN Pro (1 above street) is relaxed for Unparallel; your La Sportiva Skwama Vegan (at street size) is very relaxed for La Sportiva; your Scarpa Chimera (at street size) is relaxed for Scarpa.",
+        "Your La Sportiva Mantra's loose heel is most likely a sizing problem, you could try a size smaller for a better fit. Your Evolv Zenist's loose heel is most likely a sizing problem, you could try a size smaller for a better fit. Your La Sportiva Skwama Vegan's loose heel is most likely a sizing problem, you could try a size smaller for a better fit. Your Scarpa Chimera's loose heel is most likely a sizing problem, you could try a size smaller for a better fit.",
+        "In 3 of your 5 shoes (La Sportiva Mantra, Evolv Zenist, and Unparallel TN Pro), your toes feel squeezed because the toe form and width match but your long arch pushes the ball of your foot into the toe box. A shorter toe box would relieve the squeeze."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Egyptian toe form, narrow forefoot width, and narrow heel width.",
+        "Given your preference for bouldering outdoors on granite and an aggressive fit, we prioritize balanced-stiffness velcros (avoiding pure slippers due to your low instep) with aggressive downturn and strong asymmetry.",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 125.9
+      },
+      "brand": "Evolv",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.2mm TRAX SAS rubber with a half-length, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry. Low-volume version of the Phantom for narrower feet and lower insteps.",
+      "model": "Phantom LV",
+      "recommended_size_eu": 44.0,
+      "slug": "evolv-phantom-lv",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 155.05
+      },
+      "brand": "Mad Rock",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 3.5mm Science Friction 3.0 rubber with a full, medium midsole, resulting in a balanced-stiffness shoe with aggressive downturn and strong asymmetry.",
+      "model": "D2.ONE LV",
+      "recommended_size_eu": 43.5,
+      "slug": "mad-rock-d2-one-lv",
+      "tradeoffs": "Tradeoff: Slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 170.95
+      },
+      "brand": "Five Ten",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout. 4mm Stealth C4 rubber with a partial, medium-hard midsole, resulting in a medium-firm shoe with aggressive downturn and strong asymmetry.",
+      "model": "Hiangle",
+      "recommended_size_eu": 43.0,
+      "slug": "five-ten-hiangle",
+      "tradeoffs": "Tradeoff: Slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 125.9
+      },
+      "brand": "Evolv",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.2mm TRAX SAS rubber with a partial, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Zenist Pro LV",
+      "recommended_size_eu": 44.0,
+      "slug": "evolv-zenist-pro-lv",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 79.9
+      },
+      "brand": "Black Diamond",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.3mm Fuse rubber with a partial, soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Shadow LV",
+      "recommended_size_eu": 43.5,
+      "slug": "black-diamond-shadow-lv",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 103.99
+      },
+      "brand": "La Sportiva",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout. 3mm Vibram XS Grip2 rubber with a toe-only, medium-soft midsole, resulting in a soft shoe with aggressive downturn and strong asymmetry. No-edge construction wraps rubber smoothly for smearing.",
+      "model": "Futura",
+      "recommended_size_eu": 41.5,
+      "slug": "la-sportiva-futura",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 159.75
+      },
+      "brand": "Mad Rock",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian/Greek toe form, narrow fit throughout, low forefoot volume. 3.5mm Xtreme Friction rubber with a full, medium midsole, resulting in a balanced-stiffness shoe with aggressive downturn and strong asymmetry.",
+      "model": "Drone CS LV",
+      "recommended_size_eu": 43.5,
+      "slug": "mad-rock-drone-cs-lv",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "brand": "Unparallel",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 3mm UP RS rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with aggressive downturn and strong asymmetry. Low-volume version of the Flagship Pro, built on a narrower last for narrow feet, narrow heels, and lower insteps. Rubber, downturn, and split-sole construction are otherwise identical to the standard Flagship Pro. UnParallel markets it toward women and climbers with narrower feet.",
+      "model": "Flagship Pro LV",
+      "recommended_size_eu": 43.5,
+      "slug": "unparallel-flagship-pro-lv",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 127.9
+      },
+      "brand": "Evolv",
+      "category": "stiffer",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 4.2mm TRAX SAS rubber with a partial, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry.",
+      "model": "Shaman LV",
+      "recommended_size_eu": 44.0,
+      "slug": "evolv-shaman-lv",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 92.99
+      },
+      "brand": "Ocun",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, medium forefoot and a narrow heel cup. 4mm CAT 1.5 rubber with a half-length, medium midsole, resulting in a medium-soft shoe with aggressive downturn and strong asymmetry. At EUR 93, a strong-value pick.",
+      "model": "Diamond S",
+      "recommended_size_eu": 43.5,
+      "slug": "ocun-diamond-s",
+      "tradeoffs": "Tradeoff: Slightly wider in the forefoot than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 101.35
+      },
+      "brand": "Boreal",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, medium forefoot and a narrow heel cup. 4.5mm Zenith Pro rubber with a partial, medium-soft midsole, resulting in a balanced-stiffness shoe with aggressive downturn and strong asymmetry. At EUR 101, a strong-value pick.",
+      "model": "Mutant",
+      "recommended_size_eu": 43.0,
+      "slug": "boreal-mutant",
+      "tradeoffs": "Tradeoff: Slightly wider in the forefoot than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 109.9
+      },
+      "brand": "Mad Rock",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, narrow fit throughout, low forefoot volume. 3.5mm Science Friction 3.0 rubber with a half-length, medium midsole, resulting in a medium-soft shoe with moderate downturn and strong asymmetry. At EUR 110, a strong-value pick.",
+      "model": "Shark 3 LV",
+      "recommended_size_eu": 43.5,
+      "slug": "mad-rock-shark-3-lv",
+      "tradeoffs": "Tradeoff: Slightly less downturned than we target.",
+      "why": null
+    }
+  ]
+}

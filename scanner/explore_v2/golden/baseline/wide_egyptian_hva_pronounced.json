@@ -1,0 +1,173 @@
+{
+  "interpretation": [
+    {
+      "paragraphs": [
+        "You have an Egyptian toe form with very wide forefoot and heel. Throughout a wide profile.",
+        "Beyond the obvious: Your arch is particularly short, meaning your toes are relatively long. Especially when considering aggressive shoes look for sufficient height in the toe box to let your toes curl up. Additionally your instep is particularly high, so an adjustable closure is preferable to actually get into the shoe. Ideally double velcro or laces, you may struggle getting into slippers if adequately downsized. Your shallow heel doesn't project as far back as most. Deeply sculpted cups will feel empty at the back. Your big toe drifts noticeably inwards (could be a pronounced hallux valgus); we avoid very asymmetric lasts and prefer moderately asymmetric or wider-tipped designs that help the big toe stay in contact with the shoe tip."
+      ],
+      "title": "Your Foot Shape"
+    },
+    {
+      "paragraphs": [
+        "Your La Sportiva Tarantula (EU 42.5, 0.5 down) is very relaxed for La Sportiva, where the usual downsize is 2.5 sizes.",
+        "Your La Sportiva Tarantula's empty heel, roomy toes, and loose forefoot are most likely a sizing problem, you could try a size smaller for a better fit."
+      ],
+      "title": "What Your Current Shoe Fit Tells Us"
+    },
+    {
+      "paragraphs": [
+        "Based on your scan and current shoe fit, we target shoes with Egyptian toe form, wide forefoot width, and wide heel width.",
+        "Given your preference for sport climbing outdoors on granite and a comfort fit, we prioritize stiff velcros or lace-ups with flat profile and no asymmetry.",
+        "Note: data on shoe heel depth is unfortunately not widely available. We're working on extracting this data from shoe scans, but for now the recommendations match heel width only.",
+        "The softer, stiffer, and budget tiers below offer alternative options around this target."
+      ],
+      "title": "What to Look For"
+    }
+  ],
+  "recommendations": [
+    {
+      "best_offer": {
+        "price_eur": 71.11
+      },
+      "brand": "Boreal",
+      "category": "baseline",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup. 4.5mm Zenith Quattro rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with flat profile and symmetric profile.",
+      "model": "Silex",
+      "recommended_size_eu": 42.5,
+      "slug": "boreal-silex",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 64.4
+      },
+      "brand": "Scarpa",
+      "category": "baseline",
+      "description": "Velcro with Egyptian/Greek/Roman toe form, wide forefoot and a medium heel cup. 4mm Vision rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with flat profile and symmetric profile.",
+      "model": "Reflex VS",
+      "recommended_size_eu": 42.0,
+      "slug": "scarpa-reflex-mens",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel than we target.",
+      "why": null
+    },
+    {
+      "brand": "Simond",
+      "category": "baseline",
+      "description": "Lace-up with Roman toe form, wide fit throughout, high forefoot volume. 4mm Vibram rubber rubber with a full, hard midsole, resulting in a firm shoe with flat profile and symmetric profile.",
+      "model": "Rock",
+      "recommended_size_eu": 42.0,
+      "slug": "simond-rock",
+      "tradeoffs": "Tradeoffs: Roman toe form might not be a perfect fit for your Egyptian toe, and slightly stiffer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 79.9
+      },
+      "brand": "EB",
+      "category": "softer",
+      "description": "Velcro with Egyptian toe form, wide fit throughout. 4mm Optima Rubber rubber with a partial, medium-soft midsole, resulting in a medium-soft shoe with flat profile and symmetric profile.",
+      "model": "Mojo 3.0",
+      "recommended_size_eu": 41.5,
+      "slug": "eb-mojo",
+      "tradeoffs": null,
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 89.19
+      },
+      "brand": "Millet",
+      "category": "softer",
+      "description": "Velcro with Roman toe form, wide fit throughout, high forefoot volume. 4.5mm 4PointsGrip Durable rubber with a full, soft midsole, resulting in a medium-soft shoe with flat profile and symmetric profile.",
+      "model": "Easy Up",
+      "recommended_size_eu": 42.0,
+      "slug": "millet-easy-up",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Egyptian toe.",
+      "why": null
+    },
+    {
+      "brand": "Simond",
+      "category": "softer",
+      "description": "Velcro with Roman toe form, wide fit throughout, high forefoot volume. 4mm Vibram XS Grip rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with flat profile and symmetric profile.",
+      "model": "Rock+",
+      "recommended_size_eu": 42.0,
+      "slug": "simond-rock-plus",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Egyptian toe.",
+      "why": null
+    },
+    {
+      "brand": "Five Ten",
+      "category": "stiffer",
+      "description": "Velcro with Roman toe form, wide fit throughout, high forefoot volume. 4.2mm Stealth C4 rubber with a full, hard midsole, resulting in a firm shoe with flat profile and symmetric profile.",
+      "model": "Wallmaster",
+      "recommended_size_eu": 42.5,
+      "slug": "five-ten-wallmaster",
+      "tradeoffs": "Tradeoff: Roman toe form might not be a perfect fit for your Egyptian toe.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 82.46
+      },
+      "brand": "Ocun",
+      "category": "stiffer",
+      "description": "Lace-up with Egyptian toe form, wide fit throughout. 4mm CAT 1.5 rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with flat profile and moderate asymmetry.",
+      "model": "Jett LU",
+      "recommended_size_eu": 43.0,
+      "slug": "ocun-jett-lu",
+      "tradeoffs": "Tradeoff: More asymmetric than we target.",
+      "why": null
+    },
+    {
+      "brand": "Evolv",
+      "category": "stiffer",
+      "description": "Lace-up with Egyptian toe form, wide forefoot and a medium heel cup. 4.2mm TRAX HF rubber with a partial, hard midsole, resulting in a medium-firm shoe with flat profile and symmetric profile.",
+      "model": "Royale",
+      "recommended_size_eu": 43.0,
+      "slug": "evolv-royale",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 59.79
+      },
+      "brand": "Red Chili",
+      "category": "budget",
+      "description": "Lace-up with Greek toe form, medium forefoot and a wide heel cup. 4.5mm Red Chili RX-2 Techgrip rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with slight downturn and slight asymmetry. At EUR 60, a strong-value pick.",
+      "model": "Ventic Air Lace",
+      "recommended_size_eu": 42.5,
+      "slug": "red-chili-ventic-air-lace",
+      "tradeoffs": "Tradeoffs: Greek toe form might not be a perfect fit for your Egyptian toe, and slightly narrower in the forefoot, slightly more downturned, and slightly more asymmetric than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 60.7
+      },
+      "brand": "La Sportiva",
+      "category": "budget",
+      "description": "Lace-up with Egyptian toe form, narrow fit throughout, low forefoot volume. 5mm La Sportiva FriXion RS rubber with a full, medium-hard midsole, resulting in a firm shoe with flat profile and symmetric profile. At EUR 61, a strong-value pick.",
+      "model": "Tarantulace Women's",
+      "recommended_size_eu": 41.0,
+      "slug": "la-sportiva-tarantulace-womens",
+      "tradeoffs": "Tradeoff: Narrower in the forefoot and tighter in the heel than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 89.9
+      },
+      "brand": "EB",
+      "category": "budget",
+      "description": "Velcro with Egyptian toe form, wide forefoot and a medium heel cup. 5mm Optimax rubber with a partial, medium midsole, resulting in a balanced-stiffness shoe with flat profile and slight asymmetry. At EUR 90, a strong-value pick.",
+      "model": "Electron 3.0",
+      "recommended_size_eu": 41.5,
+      "slug": "eb-electron",
+      "tradeoffs": "Tradeoff: Slightly tighter in the heel, slightly more asymmetric, and slightly softer than we target.",
+      "why": null
+    }
+  ]
+}

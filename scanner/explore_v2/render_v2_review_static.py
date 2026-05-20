@@ -107,10 +107,10 @@ PREF_LABELS = {
 }
 FIT_LABELS = {"tight": "Tight", "perfect": "Perfect", "loose": "Loose"}
 CATEGORY_META = {
-    "baseline": ("Your Best Match", "Similar feel and use case to your current shoes", "top matches"),
-    "softer":   ("Softer Shoes",    "For more sensitivity, recommended for indoors and bouldering", "softer picks"),
-    "stiffer":  ("Stiffer Shoes",   "For more support, recommended for outdoors and sport/trad climbing", "stiffer picks"),
-    "budget":   ("Best Value",      "Affordable picks at your recommended size", "value picks"),
+    "baseline": ("Your Best Match", "Best fit to your use case and performance preference", "top matches"),
+    "softer":   ("Softer Shoes",    "For more sensitivity and better smearing.", "softer picks"),
+    "stiffer":  ("Stiffer Shoes",   "For more support and better edging.", "stiffer picks"),
+    "budget":   ("Best Value",      "Affordable picks for real dirtbags.", "value picks"),
 }
 
 def esc(s):
@@ -370,16 +370,37 @@ def render_section_nav(groups):
     return f'<nav class="snav">{"".join(items)}</nav>'
 
 
-def render_foot_views(scan, scan_id):
+def render_foot_views(scan, scan_id, out_dir=None):
     # Roman 2026-05-08: prefer the sandbox-cleaned sole overlay (avg
     # silhouette + HVA text + bottom legend stripped). Falls back to
     # production overlay if the clean version isn't generated yet.
-    clean_sole = (Path(__file__).resolve().parent
-                  / "sample_cases_2026_05_02" / "sole_overlays"
-                  / f"{scan_id}-sole_overlay-clean.png")
-    if clean_sole.exists():
-        sole_url = f"sole_overlays/{scan_id}-sole_overlay-clean.png"
-    else:
+    # Roman 2026-05-18: also check a sibling sole_overlays/ folder
+    # next to the rendered HTML, so test_cases_* folders can carry
+    # their own clean PNGs without dumping into sample_cases_2026_05_02.
+    # If no clean PNG exists anywhere, auto-generate one into the
+    # sibling sole_overlays/ folder so the next render is clean.
+    fname = f"{scan_id}-sole_overlay-clean.png"
+    sole_url = None
+    if out_dir is not None:
+        local_clean = Path(out_dir) / "sole_overlays" / fname
+        if local_clean.exists():
+            sole_url = f"sole_overlays/{fname}"
+    if sole_url is None:
+        shared_clean = (Path(__file__).resolve().parent
+                        / "sample_cases_2026_05_02" / "sole_overlays" / fname)
+        if shared_clean.exists():
+            sole_url = f"sole_overlays/{fname}"
+    if sole_url is None and out_dir is not None:
+        # Try to generate it on demand.
+        try:
+            from clean_sole_overlay import clean_one
+            target = Path(out_dir) / "sole_overlays"
+            generated = clean_one(scan_id, target)
+            if generated and generated.exists():
+                sole_url = f"sole_overlays/{fname}"
+        except Exception as e:
+            print(f"# clean_one({scan_id}) failed: {e}", file=sys.stderr)
+    if sole_url is None:
         sole_url = f"{SB_URL}/storage/v1/object/public/foot-scans/scans/{scan_id}-sole_overlay.png"
     side_url = f"{SB_URL}/storage/v1/object/public/foot-scans/scans/{scan_id}-side_overlay.png"
     toe = scan.get("toe_shape") or "egyptian"
@@ -754,24 +775,28 @@ body {{ font-family: {T['font']}; background: {T['bg']}; color: {T['text']}; }}
 
 # ─── Main ──────────────────────────────────────────────────────────
 def calc_rec_size(profile_shoes, target_brand, brand_sizing, street_size, preference):
-    from scan_recommender import _calc_recommended_size
-    if not profile_shoes: return None
-    anchor = profile_shoes[0]
-    try:
-        anchor_size = float(anchor.get("size_eu") or anchor.get("size") or 0) or None
-    except Exception:
-        anchor_size = None
-    anchor_brand = (anchor.get("brand") or "").strip() or None
-    if not anchor_size: return None
-    try:
-        raw = _calc_recommended_size(
-            user_anchor_size=anchor_size, anchor_brand=anchor_brand,
-            target_brand=target_brand, brand_sizing=brand_sizing,
-            street_size=street_size, preference=preference,
-        )
-        return round(raw * 2) / 2 if raw else None
-    except Exception:
+    """V2 target size (Roman 2026-05-18).
+
+    Target size = street shoe size adjusted by the target brand's typical
+    downsize, then snapped to a half-EU:
+      - performance (moderate / aggressive)  -> round DOWN  (tighter)
+      - comfort     (balanced / comfort)     -> round UP    (roomier)
+
+    The anchor shoe is no longer used. `profile_shoes` is kept in the
+    signature only for call-site compatibility. Sandbox-only — the
+    production scan_recommender._calc_recommended_size is unchanged.
+    """
+    if street_size is None:
         return None
+    try:
+        street = float(street_size)
+    except (TypeError, ValueError):
+        return None
+    target_ds = brand_sizing.get(target_brand, 1.0)
+    half = (street - target_ds) * 2
+    if preference == "performance":
+        return math.floor(half) / 2
+    return math.ceil(half) / 2
 
 
 def _norm_cup(label):
@@ -802,15 +827,22 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
     #  1. SIZING — if the shoes downsize choice is far enough from
     #     brand typical that the feedback direction is fully explained
     #     by sizing alone.
-    #  2. SIT-ABOVE — extreme directional mismatch (cup ≥ 2 ranks
-    #     smaller than user) with loose-direction feedback. Speculative
-    #     theory: the foot is too big to seat into the cup, sits on top
+    #  2. SHALLOW_HEEL — heel + loose-direction + user has shallow
+    #     or very-shallow heel on V2 5-tier. The back of the foot
+    #     doesn't project far enough to fill the cup, explaining
+    #     the empty feel before reaching for a cup-geometry story.
+    #  3. SIT_ABOVE — heel-only contradictory cup (cup narrower than
+    #     user heel width) with loose-direction feedback, any diff >= 1.
+    #     Speculative: foot too big to seat in cup, sits on top
     #     instead, leaving space below.
-    #  3. PERCEPTION — mild directional mismatch (cup 1 rank off) where
-    #     the rating direction doesn't match cup geometry.
+    #  4. SILENT — perfect-at-2+-rank-diff (Rule C) and any other
+    #     residual mild-directional case without a clean story.
     user_hv_rank = _user_dim_rank(profile, "heel_width_ratio")
     user_fw_rank = _user_dim_rank(profile, "forefoot_width_ratio")
     from interp_shoe_fit_v2 import _relative_downsize, _brand_typical, _downsize_label_raw
+    from interp_foot_shape_v2 import _classify_5tier
+    user_heel_depth_5t = _classify_5tier(
+        "heel_depth_ratio", profile.get("heel_depth_ratio"))
 
     def _classify_reason(shoe, dim, rating, user_rank, cup_rank):
         # Step 1: sizing-driven (Rule A)?
@@ -823,16 +855,22 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
             if (rel <= -0.5 and rating in ("loose", "empty", "roomy")) or \
                (rel >= +0.5 and rating in ("tight", "squeezed")):
                 return "sizing"
-        # Step 2: sit-above for loose-direction (Rule B extreme case)
-        if user_rank is not None and cup_rank is not None:
+        # Step 2: shallow_heel — heel + loose-direction +
+        # shallow/very-shallow user heel.
+        if (dim == "heel"
+                and rating in ("loose", "empty", "roomy")
+                and user_heel_depth_5t in ("very shallow", "shallow heel")):
+            return "shallow_heel"
+        # Step 3: sit_above — heel-only, cup narrower than user heel,
+        # loose-direction feedback. Any diff >= 1 (Roman 2026-05-18:
+        # arbitrary >= 2 threshold dropped).
+        if dim == "heel" and user_rank is not None and cup_rank is not None:
             diff = user_rank - cup_rank
-            if rating in ("loose", "empty", "roomy") and diff >= 2:
+            if rating in ("loose", "empty", "roomy") and diff >= 1:
                 return "sit_above"
-        # Anything else (mild directional, perfect-at-2+-rank-diff) →
-        # silent. Roman 2026-05-16: no user-facing disclosure for these
-        # cases — the prose reads odd. The filter still ran in
-        # target_resolver, so the rating is correctly excluded from
-        # the target math.
+        # Anything else (perfect-at-2+-rank-diff, mild non-heel
+        # directional) -> silent. The filter already excluded these
+        # from the target math.
         return "silent"
 
     discounted = []
@@ -874,50 +912,100 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
         cascade_remainder = []
 
     if discounted:
-        # Group only ratings that share (dim, rating, reason). Different
-        # reasons get different sentences even for the same dim+rating.
         from collections import defaultdict
+        parts = []
+
+        # ── Sizing reason: consolidate per shoe (Roman 2026-05-18, B10).
+        # A uniformly over/under-sized shoe has ONE cause across all its
+        # discounted dims — emit one sentence listing the dims, not one
+        # sentence per dim.
+        sizing_by_shoe = defaultdict(list)
+        for d in discounted:
+            if d["reason"] == "sizing":
+                s = d["shoe"]
+                key = s.get("slug") or f"{s.get('brand')}|{s.get('model')}"
+                sizing_by_shoe[key].append(d)
+        for members in sizing_by_shoe.values():
+            s = members[0]["shoe"]
+            brand, model = s.get("brand"), s.get("model")
+            ratings = [m["rating"] for m in members]
+            direction = ("loose" if ratings[0] in ("loose", "empty", "roomy")
+                         else "tight")
+            # Roman 2026-05-18: close with actionable advice instead of
+            # the brand-sizing explanation. Loose -> size down,
+            # tight -> size up.
+            size_advice = ("a size smaller" if direction == "loose"
+                           else "a size larger")
+            dim_phrases = [f"{m['rating']} {m['dim']}" for m in members]
+            if len(dim_phrases) == 1:
+                dims_str, verb = dim_phrases[0], "is"
+            elif len(dim_phrases) == 2:
+                dims_str = f"{dim_phrases[0]} and {dim_phrases[1]}"
+                verb = "are"
+            else:
+                dims_str = ", ".join(dim_phrases[:-1]) + f", and {dim_phrases[-1]}"
+                verb = "are"
+            parts.append(
+                f"Your {brand} {model}'s {dims_str} {verb} most likely a "
+                f"sizing problem, you could try {size_advice} for a "
+                f"better fit."
+            )
+
+        # ── Non-sizing reasons: group by (dim, rating, reason). Different
+        # reasons get different sentences even for the same dim+rating.
         groups = defaultdict(list)
         for d in discounted:
+            if d["reason"] == "sizing":
+                continue
             groups[(d["dim"], d["rating"], d["reason"])].append(d)
 
-        parts = []
         for (dim, rating, reason), members in groups.items():
             user_dim = "heel" if dim == "heel" else ("forefoot" if dim == "forefoot" else "toes")
 
-            if reason == "sizing":
-                # Roman's exact wording (2026-05-16): commas, no em dashes,
-                # "sizing problem" not "sizing issue".
+            if reason == "shallow_heel":
+                # Roman's exact wording (2026-05-18): heel-only, commas.
                 for m in members:
                     s = m["shoe"]
                     brand, model = s.get("brand"), s.get("model")
-                    _, _, lbl = _relative_downsize(street, s.get("size_eu"), brand)
-                    direction = "loose" if rating in ("loose","empty","roomy") else "tight"
                     parts.append(
-                        f"Your {brand} {model}'s {rating} {dim} is most "
-                        f"likely a sizing problem, at {lbl} sizing for "
-                        f"{brand}, the shoe naturally runs {direction}."
+                        f"Your {brand} {model}'s {rating} could be "
+                        f"caused by your shallow heel, the back of "
+                        f"your foot may not project far enough to fill "
+                        f"the cup which you perceive as {rating} feel."
                     )
 
             elif reason == "sit_above":
                 # Roman's exact wording (2026-05-16): heel-only, commas.
-                user_lbl = "wide" if rating in ("loose","empty","roomy") else "narrow"
+                # user_lbl uses the actual user rank (2026-05-18).
+                # Roman 2026-05-18: consolidate shoes that share the same
+                # heel cup label into ONE sentence ("A and B's empty
+                # heels are contradictory ...") instead of repeating a
+                # near-identical sentence per shoe.
+                _RANK_LBL = {0: "narrow", 1: "medium", 2: "wide"}
+                by_cup = defaultdict(list)
                 for m in members:
-                    s = m["shoe"]
-                    brand, model = s.get("brand"), s.get("model")
-                    cup_lbl = _norm_cup(s.get("db_heel_volume"))
+                    by_cup[_norm_cup(m["shoe"].get("db_heel_volume"))].append(m)
+                for cup_lbl, grp in by_cup.items():
+                    user_lbl = _RANK_LBL.get(grp[0]["user_rank"], "")
+                    names = [f"{m['shoe'].get('brand')} {m['shoe'].get('model')}"
+                             for m in grp]
+                    if len(names) == 1:
+                        subj = f"Your {names[0]}'s {rating} heel is"
+                    else:
+                        joined = (" and ".join(names) if len(names) == 2
+                                  else ", ".join(names[:-1]) + ", and " + names[-1])
+                        subj = f"Your {joined}'s {rating} heels are"
                     parts.append(
-                        f"Your {brand} {model}'s {rating} heel is "
-                        f"contradictory, a {cup_lbl} cup shouldn't feel "
-                        f"{rating} on your {user_lbl} heel. Likely your "
+                        f"{subj} contradictory, a {cup_lbl} cup shouldn't "
+                        f"feel {rating} on your {user_lbl} heel. Likely your "
                         f"heel does not fit inside the cup and hence leaves "
                         f"the empty space at the bottom which you perceive "
                         f"as {rating} feel."
                     )
 
             # "silent" reason — perfect-mismatch (Rule C) or mild
-            # directional. No user-facing prose; the filter already
-            # excluded these ratings from target math. Skip.
+            # non-heel directional. No user-facing prose; the filter
+            # already excluded these ratings from target math. Skip.
 
         # Emit the disclosure only if at least one non-silent finding fired.
         if parts:
@@ -945,12 +1033,19 @@ def main():
     image_lookup = fetch_shoe_images()
     from scan_recommender import _load_brand_sizing
     brand_sizing = _load_brand_sizing()
+    street_size = float(scan.get("street_size_eu") or 0) or None
+    pref = "performance" if aggressiveness in ("moderate", "aggressive") else "comfort"
+    # Recommended-size resolver — used to price budget candidates at
+    # their downsized size, not the user's street size.
+    rec_size_fn = lambda sh: calc_rec_size(profile["shoes"], sh.get("brand"),
+                                           brand_sizing, street_size, pref)
 
     # V2 unified target + tiers
     fit_target = resolve_targets_v2(profile, profile["shoes"], aggressiveness)
     use_target = compute_use_case_target(discipline, environment, rock, aggressiveness)
     target = {**fit_target, **use_target}
-    tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows)
+    tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows,
+                           rec_size_fn=rec_size_fn)
 
     interpretation = [
         {"title": "Your Foot Shape",
@@ -965,8 +1060,6 @@ def main():
     ]
 
     # Build recommendations
-    pref = "performance" if aggressiveness in ("moderate", "aggressive") else "comfort"
-    street_size = float(scan.get("street_size_eu") or 0) or None
     all_picks_flat = []
     for tname in ("baseline", "softer", "stiffer", "budget"):
         for sc, sh in tiers[tname]:
@@ -1036,7 +1129,7 @@ def main():
         + render_email_capture()
         + render_user_inputs_panel(scan, v2_inputs)
         + render_section_nav(nav_groups)
-        + render_foot_views(scan, scan_id)
+        + render_foot_views(scan, scan_id, out_dir=Path(out_path).parent)
         + render_interpretation(interpretation)
         + render_recommendations(recommendations, image_lookup)
         + render_footer_ctas()
