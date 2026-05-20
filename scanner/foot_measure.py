@@ -1144,10 +1144,22 @@ def draw_sole_overlay(img, mask, m, out_path):
         cv2.circle(canvas, (tcx, tcy), 5, TIP_GREEN, -1, cv2.LINE_AA)
         cv2.circle(canvas, (tcx, tcy), 5, (255, 255, 255), 1, cv2.LINE_AA)
 
-    # V2 go-live (2026-05-20): the hallux-valgus visualization (medial-edge
-    # reference line, offset line, marker, and "HVA: ..." text label) is no
-    # longer drawn on the overlay. The V2 results page shows hallux valgus
-    # via the "Big Toe Inward Drift" slider instead.
+    # Hallux valgus measurement line: medial-edge reference + the offset
+    # line out to the big toe tip. V2 go-live (2026-05-20): the "HVA: ..."
+    # text label is no longer drawn (the results page shows the class on the
+    # Big Toe Inward Drift slider), but the measurement line itself stays,
+    # consistent with the other green measurement lines.
+    if m.get("toe_tips") and m.get("ball_left") is not None and m.get("hallux_valgus_class"):
+        big_toe_x, big_toe_y = m["toe_tips"][0]
+        ball_left = m["ball_left"]
+        med_edge_cx = scan_x0 + int((ball_left - scan_left) * scan_scale)
+        cv2.line(canvas, (med_edge_cx, ball_cy - 30), (med_edge_cx, ball_cy + 30), (200, 100, 100), 1, cv2.LINE_AA)
+        big_toe_cx = scan_x0 + int((big_toe_x - scan_left) * scan_scale)
+        big_toe_cy = PAD + int((big_toe_y - scan_top) * scan_scale)
+        hva_color = (60, 140, 200)
+        cv2.line(canvas, (med_edge_cx, big_toe_cy), (big_toe_cx, big_toe_cy), hva_color, 2, cv2.LINE_AA)
+        cv2.circle(canvas, (big_toe_cx, big_toe_cy), 6, hva_color, -1, cv2.LINE_AA)
+        cv2.circle(canvas, (big_toe_cx, big_toe_cy), 6, (255, 255, 255), 1, cv2.LINE_AA)
 
     # V2 go-live (2026-05-20): the bottom "Average / Your foot" legend is no
     # longer drawn - with the silhouette removed there is nothing to key.

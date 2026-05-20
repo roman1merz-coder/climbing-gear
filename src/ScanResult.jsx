@@ -621,6 +621,14 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
   if (!scan) return null;
   const shoes = Array.isArray(scan.shoes) ? scan.shoes : [];
   const pref = PREF_LABELS[scan.next_shoe_preference] || scan.next_shoe_preference || "Not specified";
+  // V2 scans carry discipline/environment/rock/aggressiveness instead of a
+  // single "next shoe" preference. Show that summary when present.
+  const v2Summary = scan.discipline
+    ? [scan.discipline, scan.environment, scan.rock_type, scan.aggressiveness]
+        .filter(Boolean)
+        .map((s) => String(s).replace(/_/g, " "))
+        .join(" · ")
+    : null;
   const sex = scan.sex ? scan.sex.charAt(0).toUpperCase() + scan.sex.slice(1) : "Not specified";
   const size = scan.street_size_eu != null ? `EU ${scan.street_size_eu}` : "Not specified";
 
@@ -675,10 +683,17 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
         <span style={keyStyle}>Street size</span>
         <span style={{ color: T.text }}>{size}</span>
       </div>
-      <div style={rowStyle}>
-        <span style={keyStyle}>Next shoe</span>
-        <span style={{ color: T.text }}>{pref}</span>
-      </div>
+      {v2Summary ? (
+        <div style={rowStyle}>
+          <span style={keyStyle}>Climbing</span>
+          <span style={{ color: T.text, textTransform: "capitalize" }}>{v2Summary}</span>
+        </div>
+      ) : (
+        <div style={rowStyle}>
+          <span style={keyStyle}>Next shoe</span>
+          <span style={{ color: T.text }}>{pref}</span>
+        </div>
+      )}
       {scan.next_shoe_notes && (
         <div style={rowStyle}>
           <span style={keyStyle}>Notes</span>
@@ -817,7 +832,6 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
       },
     }));
   });
-  const [nextPref, setNextPref] = useState(scan?.next_shoe_preference || "");
   const [notes, setNotes] = useState(scan?.next_shoe_notes || "");
   // V2 climbing preferences. Pre-filled for V2 scans; empty for older V1
   // scans, in which case validate() makes them required before rescoring.
@@ -924,7 +938,6 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
       scan_id: scanId,
       sex,
       shoes: cleanedShoes,
-      next_shoe_preference: nextPref || null,
       next_shoe_notes: notes.trim() || null,
       discipline: discipline || null,
       environment: environment || null,
@@ -1226,18 +1239,6 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
               cursor: saving ? "not-allowed" : "pointer",
             }}
           >+ Add shoe</button>
-        </div>
-
-        {/* Next shoe preference */}
-        <div style={{ marginBottom: "0.85rem" }}>
-          <div style={labelStyle}>What should your next shoe prioritise?</div>
-          <SegmentedToggle
-            value={nextPref}
-            options={PREF_VALUES}
-            labels={{ comfort: "More comfort", same: "Same balance", performance: "More performance" }}
-            onChange={(v) => setNextPref(v || "")}
-            disabled={saving}
-          />
         </div>
 
         {/* Notes */}
@@ -1832,6 +1833,50 @@ export default function ScanResult({ shoes }) {
   );
 
   const s = scan; // shorthand
+
+  // Terminal failure gate: the worker rejected the scan (validation_failed,
+  // e.g. a blurry or wrong photo) or hit an error. Without this the scan
+  // never reaches stage 'complete', so ProcessingScreen's onDismiss never
+  // fires and the user is stuck on the loading screen forever. Show a clear
+  // failure card with a retake action instead.
+  if (s.pipeline_stage === "validation_failed" || s.pipeline_stage === "error") {
+    const isValidation = s.pipeline_stage === "validation_failed";
+    const failMsg = s.pipeline_error || (isValidation
+      ? "We could not read this scan clearly. Please retake your photos in good light with the foot inside the guide."
+      : "Something went wrong while processing this scan. Please try again.");
+    const retakeBtn = (view, label, filled) => (
+      <a
+        href={`/scan?retake=${view}&scan_id=${encodeURIComponent(scanId)}`}
+        style={{
+          display: "inline-block", margin: "0 5px 8px",
+          padding: "0.6rem 1.2rem", borderRadius: 8,
+          fontWeight: 700, fontSize: "0.85rem", textDecoration: "none",
+          background: filled ? T.accent : "transparent",
+          color: filled ? "#fff" : T.accent,
+          border: filled ? "none" : `1.5px solid ${T.accent}`,
+        }}
+      >{label}</a>
+    );
+    return (
+      <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: T.font, padding: "2rem 1rem" }}>
+        <div style={{ textAlign: "center", maxWidth: 430 }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 8 }}>
+            {isValidation ? "This scan needs a retake" : "Scan could not be processed"}
+          </div>
+          <div style={{ fontSize: 14, color: T.muted, marginBottom: 20, lineHeight: 1.55 }}>
+            {failMsg}
+          </div>
+          {retakeBtn("sole", "Retake sole photo", true)}
+          {retakeBtn("side", "Retake side photo", false)}
+          <div style={{ marginTop: 12 }}>
+            <a href="/scan" style={{ color: T.muted, fontWeight: 600, textDecoration: "none", fontSize: "0.8rem" }}>
+              Start a new scan
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Pipeline gate: we never show stale results while the worker is
   // running. ProcessingScreen also enforces a client-side minimum dwell

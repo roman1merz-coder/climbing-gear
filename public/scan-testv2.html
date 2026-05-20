@@ -139,6 +139,47 @@ body {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; display: flex; align-items: center; justify-content: center;
 }
+/* ── Manual 5s timer (fallback when auto-capture struggles) ── */
+#timer-btn {
+  position: absolute; left: 50%; bottom: max(24px, env(safe-area-inset-bottom));
+  transform: translateX(-50%); z-index: 11;
+  display: flex; align-items: center; gap: 8px;
+  background: #c98a42; color: #fff;
+  border: none;
+  padding: 10px 20px; border-radius: 999px;
+  font-family: inherit; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+#timer-btn:active { background: #b97a35; }
+#timer-btn svg { width: 18px; height: 18px; }
+#timer-countdown {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); z-index: 12;
+  display: none; pointer-events: auto;
+  font-family: inherit; font-size: 9rem; font-weight: 800;
+  color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+  line-height: 1; letter-spacing: -2px;
+  width: 180px; height: 180px; border-radius: 50%;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.35);
+  cursor: pointer;
+  animation: countdown-pulse 1s ease-out infinite;
+}
+#timer-countdown.show { display: flex; }
+#timer-countdown .cancel-hint {
+  position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%);
+  font-size: 0.78rem; font-weight: 600; color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  white-space: nowrap; letter-spacing: 0;
+}
+@keyframes countdown-pulse {
+  0%   { transform: translate(-50%, -50%) scale(1.0); opacity: 1; }
+  60%  { transform: translate(-50%, -50%) scale(1.15); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(1.0); opacity: 1; }
+}
+
 #foot-guide-svg {
   width: 75%; height: 88%;
   transition: filter 0.3s, opacity 0.3s;
@@ -998,6 +1039,19 @@ body {
     <div id="gyro-dot"></div>
   </div>
   <div id="gyro-warning"></div>
+  <!-- Manual 5s timer (fallback to auto-capture) -->
+  <button id="timer-btn" type="button" aria-label="Start 5 second timer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="13" r="8"/>
+      <path d="M12 9v4l2 2"/>
+      <path d="M9 2h6"/>
+    </svg>
+    Use 5s timer
+  </button>
+  <div id="timer-countdown" role="button" aria-label="Cancel timer">
+    <span id="timer-countdown-num">5</span>
+    <span class="cancel-hint">tap to cancel</span>
+  </div>
 </div>
 
 <div id="transition-screen">
@@ -1516,6 +1570,10 @@ const SIDE_CONFIG = {
 
 let video, analyzeCanvas, analyzeCtx;
 let checkTimer = null;
+/* Manual 5s timer state (fallback to auto-capture) */
+let manualTimerActive = false;
+let manualTimerInterval = null;
+let manualTimerSecond = 0;
 let captured = false;
 let soleDataUrl = null;
 let sideDataUrl = null;
@@ -2007,6 +2065,12 @@ function startScanner(step) {
 
   video = document.getElementById('video');
 
+  /* Reset manual 5s timer state on each scanner entry */
+  manualTimerActive = false;
+  if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+  { const _tci = document.getElementById('timer-countdown'); if (_tci) _tci.classList.remove('show'); }
+  { const _tbi = document.getElementById('timer-btn'); if (_tbi) _tbi.style.display = ''; }
+
   /* Stop any previous stream before requesting new one */
   if (video.srcObject) {
     video.srcObject.getTracks().forEach(t => t.stop());
@@ -2058,7 +2122,7 @@ function startScanner(step) {
  * 3) When shape is good AND frame is stable for N consecutive checks → snap
  */
 function analyzeFrame() {
-  if (captured || !video || video.readyState < 2) return;
+  if (captured || manualTimerActive || !video || video.readyState < 2) return;
 
   analyzeCtx.drawImage(video, 0, 0, analyzeCanvas.width, analyzeCanvas.height);
 
@@ -2200,9 +2264,83 @@ function analyzeFrame() {
   }
 }
 
+/* ── Manual 5s timer (fallback when auto-capture struggles) ──
+ * Tap "Use 5s timer" to hold still through a 5-second countdown then
+ * auto-snap; tap the countdown circle to cancel and fall back to
+ * auto-capture. Ported from scan.html. */
+function startManualTimer() {
+  if (captured || manualTimerActive) return;
+  manualTimerActive = true;
+  /* Stop auto-capture while the user is using the timer */
+  if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
+
+  const btn = document.getElementById('timer-btn');
+  const overlay = document.getElementById('timer-countdown');
+  const num = document.getElementById('timer-countdown-num');
+  const guideEl = currentStep === 'sole'
+    ? document.getElementById('foot-guide-svg')
+    : document.getElementById('side-guide-img');
+  const msgBox = document.getElementById('gyro-warning');
+
+  if (btn) btn.style.display = 'none';
+  if (msgBox) msgBox.style.display = 'none';
+  if (guideEl) guideEl.classList.add('ready');
+
+  manualTimerSecond = 5;
+  if (num) num.textContent = String(manualTimerSecond);
+  if (overlay) overlay.classList.add('show');
+
+  /* Re-trigger pulse animation each tick */
+  function bump() {
+    if (!overlay) return;
+    overlay.style.animation = 'none';
+    void overlay.offsetWidth;
+    overlay.style.animation = '';
+  }
+
+  speak('Hold still. Five seconds.');
+  bump();
+
+  manualTimerInterval = setInterval(() => {
+    manualTimerSecond -= 1;
+    if (manualTimerSecond <= 0) {
+      clearInterval(manualTimerInterval);
+      manualTimerInterval = null;
+      if (overlay) overlay.classList.remove('show');
+      capture();
+      return;
+    }
+    if (num) num.textContent = String(manualTimerSecond);
+    bump();
+    if (manualTimerSecond === 3) speak('Three.');
+    else if (manualTimerSecond === 1) speak('One.');
+  }, 1000);
+}
+
+function cancelManualTimer() {
+  if (!manualTimerActive) return;
+  manualTimerActive = false;
+  if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+  const overlay = document.getElementById('timer-countdown');
+  const btn = document.getElementById('timer-btn');
+  if (overlay) overlay.classList.remove('show');
+  if (btn && currentScreen === 'scanner' && !captured) btn.style.display = '';
+  /* Resume auto-capture */
+  if (!captured && !checkTimer && video && video.readyState >= 2) {
+    checkTimer = setInterval(analyzeFrame, CHECK_INTERVAL);
+  }
+}
+
+document.getElementById('timer-btn').addEventListener('click', () => { initSpeech(); startManualTimer(); });
+document.getElementById('timer-countdown').addEventListener('click', cancelManualTimer);
+
 function capture() {
   if (captured) return;
   captured = true;
+  manualTimerActive = false;
+  if (manualTimerInterval) { clearInterval(manualTimerInterval); manualTimerInterval = null; }
+  { const _tcO = document.getElementById('timer-countdown'); if (_tcO) _tcO.classList.remove('show'); }
+  { const _tcB = document.getElementById('timer-btn'); if (_tcB) _tcB.style.display = 'none'; }
   if (checkTimer) { clearInterval(checkTimer); checkTimer = null; }
 
   speak('Photo captured.');
