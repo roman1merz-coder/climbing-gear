@@ -39,4 +39,13 @@ export const GLOBAL_CSS = `
   @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   .fade-up { animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
   @keyframes compareSlideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  /* Results-page action buttons - Direction A (warm solid, leading icon) */
+  .scan-btn { background:#c98a42; color:#fff; cursor:pointer; transition:background .16s ease, transform .16s cubic-bezier(.2,.7,.3,1); }
+  .scan-btn:hover { background:#a86f2e; transform:translateY(-2px); }
+  .scan-btn:active { transform:translateY(0); }
+  .scan-btn:disabled { opacity:.5; cursor:not-allowed; }
+  .scan-btn:disabled:hover { background:#c98a42; transform:none; }
+  .scan-btn-green, .scan-btn-green:hover { background:#3d7a52; }
+  .scan-btn-ext { transition:transform .16s cubic-bezier(.2,.7,.3,1); }
+  .scan-btn:hover .scan-btn-ext { transform:translate(1.5px,-1.5px); }
 `;

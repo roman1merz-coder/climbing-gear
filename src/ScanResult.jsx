@@ -45,18 +45,56 @@ const POP = {
 const HVA_BOUNDS = { mild_lo: 0.28, pronounced_lo: 0.35 };
 const ACCENT_DARK = "#8a5d20";
 
-// Shared style for the page's interactive controls (Share, Edit, Retake,
-// "Check details and availability"). One outlined-accent look so every
-// clickable element reads unambiguously as a button/link.
+// Shared geometry for the page's action buttons (Share, Edit, Retake,
+// "Check details and availability", "See more" links). The warm-accent
+// fill, hover lift/darken, disabled dimming and leading-icon nudge all
+// come from the .scan-btn / .scan-btn-ext CSS classes in GLOBAL_CSS, so
+// :hover works without per-button JS handlers. Each call site spreads
+// this and adds its own padding / radius / font-size / shadow.
 const ACTION_BTN = {
-  display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
-  padding: "0.4rem 0.85rem", fontSize: "0.78rem", fontWeight: 700,
-  fontFamily: T.font, lineHeight: 1.2, whiteSpace: "nowrap",
-  border: `1.5px solid ${T.accent}`, borderRadius: 8,
-  background: "transparent", color: T.accent,
-  cursor: "pointer", letterSpacing: 0.2,
-  transition: "background 0.15s, color 0.15s, border-color 0.15s",
+  display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 7,
+  fontFamily: T.font, fontWeight: 700, border: "none",
+  textDecoration: "none", lineHeight: 1.2, whiteSpace: "nowrap",
 };
+
+// ── Leading button icons (line art, inherit currentColor) ──────
+function IconExternal({ size = 15 }) {
+  return (
+    <svg className="scan-btn-ext" width={size} height={size} viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" strokeWidth="2.4"
+      strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
+      <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" />
+      <path d="M14 4h6v6" />
+      <path d="M20 4 10 14" />
+    </svg>
+  );
+}
+function IconShareGlyph({ size = 15 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
+      <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+      <line x1="8.6" y1="13.5" x2="15.4" y2="17.5" /><line x1="15.4" y1="6.5" x2="8.6" y2="10.5" />
+    </svg>
+  );
+}
+function IconPencil({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </svg>
+  );
+}
+function IconCamera({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none" }}>
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2Z" />
+      <circle cx="12" cy="13" r="3.5" />
+    </svg>
+  );
+}
 
 // Labels only. Visual min/max are derived below as mean ± 3σ from POP,
 // so the outer band edges track real population spread instead of hand-
@@ -294,10 +332,13 @@ function ShoeCard({ slug, brand, model, description, why, tradeoffs, imageUrl, r
           {tradeoffs && (
             <div style={{ fontSize: "0.73rem", color: "#8a7e6e", lineHeight: 1.5, fontStyle: "italic", marginTop: "0.3rem" }}>{tradeoffs}</div>
           )}
-          <div style={{
+          <div className="scan-btn" style={{
             ...ACTION_BTN,
             display: "flex", width: "100%", marginTop: "0.6rem",
+            padding: "0.8rem 1rem", borderRadius: 11, fontSize: "0.92rem",
+            boxShadow: "0 5px 16px rgba(201,138,66,0.34)",
           }}>
+            <IconExternal size={16} />
             Check details and availability
           </div>
         </div>
@@ -396,14 +437,17 @@ function ShareCard({ scanId }) {
       </div>
       <button
         onClick={handleShare}
+        className={status === "copied" ? "scan-btn scan-btn-green" : "scan-btn"}
         style={{
           ...ACTION_BTN,
           flexShrink: 0,
-          ...(status === "copied"
-            ? { borderColor: T.green, color: T.green }
-            : {}),
+          padding: "0.55rem 1.05rem", borderRadius: 999, fontSize: "0.82rem",
+          boxShadow: status === "copied"
+            ? "0 4px 12px rgba(61,122,82,0.3)"
+            : "0 4px 12px rgba(201,138,66,0.32)",
         }}
       >
+        <IconShareGlyph size={15} />
         {status === "copied" ? "Copied" : "Share results"}
       </button>
     </div>
@@ -722,13 +766,14 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
             type="button"
             onClick={onEdit}
             disabled={disabled}
+            className="scan-btn"
             style={{
               ...ACTION_BTN,
-              padding: "0.3rem 0.8rem", fontSize: "0.74rem",
-              cursor: disabled ? "not-allowed" : "pointer",
-              opacity: disabled ? 0.5 : 1,
+              padding: "0.46rem 0.95rem", borderRadius: 999, fontSize: "0.78rem",
+              boxShadow: "0 3px 10px rgba(201,138,66,0.28)",
             }}
           >
+            <IconPencil size={14} />
             Edit inputs
           </button>
         )}
@@ -825,14 +870,14 @@ function RetakeLink({ onClick, disabled }) {
       onClick={onClick}
       disabled={disabled}
       title={disabled ? "Wait for current processing to finish" : "Retake this photo"}
+      className="scan-btn"
       style={{
         ...ACTION_BTN,
-        padding: "0.3rem 0.7rem", fontSize: "0.72rem",
-        ...(disabled
-          ? { borderColor: T.border, color: T.muted, cursor: "not-allowed", opacity: 0.6 }
-          : {}),
+        padding: "0.46rem 0.95rem", borderRadius: 999, fontSize: "0.74rem",
+        boxShadow: "0 3px 10px rgba(201,138,66,0.28)",
       }}
     >
+      <IconCamera size={14} />
       Retake photo
     </button>
   );
@@ -2419,23 +2464,17 @@ export default function ScanResult({ shoes }) {
                   <div style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}>
                     <a
                       href={`/scan/${encodeURIComponent(scanId)}/browse?tier=${g.cat}`}
+                      className="scan-btn"
                       style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "0.45rem",
-                        padding: mobile ? "0.7rem 1.3rem" : "0.65rem 1.5rem",
+                        ...ACTION_BTN,
+                        padding: mobile ? "0.7rem 1.3rem" : "0.65rem 1.4rem",
                         borderRadius: 999,
-                        background: T.accent,
-                        color: "#fff",
                         fontSize: mobile ? "0.88rem" : "0.85rem",
-                        fontWeight: 700,
-                        letterSpacing: "0.2px",
-                        textDecoration: "none",
-                        boxShadow: "0 2px 8px rgba(201,138,66,0.28)",
+                        boxShadow: "0 3px 9px rgba(201,138,66,0.3)",
                       }}
                     >
+                      <IconExternal size={mobile ? 16 : 15} />
                       See more {g.ctaText || "shoes"}
-                      <span style={{ fontSize: "1rem", lineHeight: 1, marginTop: "-1px" }}>→</span>
                     </a>
                   </div>
                 )}
