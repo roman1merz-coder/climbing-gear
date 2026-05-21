@@ -510,12 +510,14 @@ function EmailCapture({ scanId, savedEmail, savedFreq }) {
         </div>
         <button
           onClick={() => setExpanded(true)}
+          className="scan-btn"
           style={{
-            padding: "6px 12px", border: "1.5px solid #e8e2d6", borderRadius: 10,
-            background: "#fff", color: "#8a6930", fontSize: "0.75rem", fontWeight: 700,
-            cursor: "pointer", fontFamily: "inherit", flexShrink: 0,
+            ...ACTION_BTN,
+            padding: "0.46rem 0.95rem", borderRadius: 999, fontSize: "0.78rem",
+            boxShadow: "0 3px 10px rgba(201,138,66,0.28)", flexShrink: 0,
           }}
         >
+          <IconPencil size={14} />
           Edit
         </button>
       </div>
