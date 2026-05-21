@@ -130,9 +130,11 @@ def run_all(shoes_db, price_rows, brand_sizing):
         scan = fetch_scan(scan_id)
         result = build_v2_results(scan, shoes_db, price_rows, brand_sizing,
                                   disc, env, rock, agg)
-        # browse_extended is a price-sensitive derived browse list; it is
-        # not part of the golden lock (interpretation + recommendations).
+        # browse_extended (price-sensitive browse list) and derived_preferences
+        # (the question-derived defaults) are not part of the golden lock -
+        # the gate is interpretation + recommendations.
         result.pop("browse_extended", None)
+        result.pop("derived_preferences", None)
         out[name] = result
     return out
 

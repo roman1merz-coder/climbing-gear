@@ -135,19 +135,6 @@
     },
     {
       "best_offer": {
-        "price_eur": 13.15
-      },
-      "brand": "La Sportiva",
-      "category": "budget",
-      "description": "Lace-up with Egyptian toe form, medium fit throughout. 4mm Vibram XS Edge rubber with a full, medium-hard midsole, resulting in a firm shoe with moderate downturn and moderate asymmetry. At EUR 13, a strong-value pick.",
-      "model": "Katana Lace",
-      "recommended_size_eu": 41.5,
-      "slug": "la-sportiva-katana-lace-mens",
-      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot, slightly tighter in the heel, more downturned, more asymmetric, and slightly softer than we target.",
-      "why": null
-    },
-    {
-      "best_offer": {
         "price_eur": 59.79
       },
       "brand": "Red Chili",
@@ -157,6 +144,19 @@
       "recommended_size_eu": 43.0,
       "slug": "red-chili-ventic-air-lace",
       "tradeoffs": "Tradeoffs: Greek toe form might not be a perfect fit for your Egyptian toe, and slightly narrower in the forefoot, slightly more downturned, slightly more asymmetric, and softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 60.7
+      },
+      "brand": "La Sportiva",
+      "category": "budget",
+      "description": "Lace-up with Egyptian toe form, narrow fit throughout, low forefoot volume. 5mm La Sportiva FriXion RS rubber with a full, medium-hard midsole, resulting in a firm shoe with flat profile and symmetric profile. At EUR 61, a strong-value pick.",
+      "model": "Tarantulace Women's",
+      "recommended_size_eu": 41.5,
+      "slug": "la-sportiva-tarantulace-womens",
+      "tradeoffs": "Tradeoff: Narrower in the forefoot, tighter in the heel, and softer than we target.",
       "why": null
     },
     {

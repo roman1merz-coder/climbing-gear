@@ -134,6 +134,48 @@ function validateV2Inputs(body, required) {
   return { discipline, environment, rock_type, aggressiveness };
 }
 
+// Advanced-preferences overrides (mirror the v2_pipeline override layer).
+// preference_overrides is a sparse object - only the axes the user
+// customized are present. Returns { overrides } (clean sparse object or
+// null) or { error }.
+const DOWNTURN_VALUES = new Set(["flat", "slight", "moderate", "aggressive"]);
+const ASYMMETRY_VALUES = new Set(["none", "slight", "moderate", "strong"]);
+const CLOSURE_PREF_VALUES = new Set(["lace", "velcro", "slipper", "any"]);
+const PREF_OVERRIDE_KEYS = new Set(["stiffness", "downturn", "asymmetry", "closure", "ankle"]);
+
+function validatePreferenceOverrides(raw) {
+  if (raw == null) return { overrides: null };
+  if (typeof raw !== "object" || Array.isArray(raw)) {
+    return { error: "preference_overrides must be an object" };
+  }
+  const out = {};
+  for (const [k, v] of Object.entries(raw)) {
+    if (!PREF_OVERRIDE_KEYS.has(k)) {
+      return { error: `Unknown preference override: ${k}` };
+    }
+    if (v == null) continue; // sparse - a null value just means "not set"
+    if (k === "stiffness") {
+      const n = Number(v);
+      if (!Number.isFinite(n) || n < 0 || n > 1) {
+        return { error: "stiffness override must be a number between 0 and 1" };
+      }
+      out.stiffness = n;
+    } else if (k === "downturn") {
+      if (!DOWNTURN_VALUES.has(v)) return { error: "Invalid downturn override" };
+      out.downturn = v;
+    } else if (k === "asymmetry") {
+      if (!ASYMMETRY_VALUES.has(v)) return { error: "Invalid asymmetry override" };
+      out.asymmetry = v;
+    } else if (k === "closure") {
+      if (!CLOSURE_PREF_VALUES.has(v)) return { error: "Invalid closure override" };
+      out.closure = v;
+    } else if (k === "ankle") {
+      out.ankle = Boolean(v);
+    }
+  }
+  return { overrides: Object.keys(out).length ? out : null };
+}
+
 function cleanString(v, max = 500) {
   if (v == null) return null;
   const s = String(v).trim();
@@ -335,6 +377,8 @@ async function handleRescore(body, res) {
   // presence client-side. A rescore that lacks them keeps the row on V1.
   const v2 = validateV2Inputs(body, false);
   if (v2.error) return res.status(400).json({ error: v2.error });
+  const po = validatePreferenceOverrides(body.preference_overrides);
+  if (po.error) return res.status(400).json({ error: po.error });
   const patch = {
     sex: SEX_VALUES.has(body.sex) ? body.sex || null : null,
     shoes: shoesResult.shoes,
@@ -344,6 +388,7 @@ async function handleRescore(body, res) {
     environment: v2.environment,
     rock_type: v2.rock_type,
     aggressiveness: v2.aggressiveness,
+    preference_overrides: po.overrides,
     pipeline_stage: "rescore",
     pipeline_started_at: new Date().toISOString(),
   };

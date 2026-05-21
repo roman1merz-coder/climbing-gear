@@ -600,6 +600,22 @@ const PREF_LABELS = {
 };
 const FIT_LABELS = { tight: "Tight", perfect: "Perfect", loose: "Loose" };
 
+// ── Advanced preferences (override layer on the V2-derived targets) ──
+const PREF_KEYS = ["stiffness", "downturn", "asymmetry", "closure", "ankle"];
+const DOWNTURN_OPTS = ["flat", "slight", "moderate", "aggressive"];
+const ASYM_OPTS = ["none", "slight", "moderate", "strong"];
+const CLOSURE_OPTS = ["lace", "velcro", "slipper", "any"];
+const CLOSURE_LABELS = { lace: "Laces", velcro: "Velcro", slipper: "Slipper", any: "No preference" };
+function stiffnessWord(v) {
+  if (v < 0.15) return "Super sensitive";
+  if (v < 0.25) return "Very sensitive";
+  if (v < 0.40) return "Sensitive";
+  if (v < 0.60) return "Balanced";
+  if (v < 0.75) return "Supportive";
+  if (v < 0.86) return "Very supportive";
+  return "Super supportive";
+}
+
 function FitBadge({ value }) {
   if (!value) return null;
   const palette = {
@@ -839,6 +855,18 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
   const [environment, setEnvironment] = useState(scan?.environment || "");
   const [rockType, setRockType] = useState(scan?.rock_type || "");
   const [aggressiveness, setAggressiveness] = useState(scan?.aggressiveness || "");
+  // Advanced preferences: the V2 questions derive default targets; the user
+  // can override any directly. derivedPrefs is the auto baseline; prefs is
+  // the current (possibly overridden) set. A control is "Customized" when
+  // its value differs from the derived default.
+  const derivedPrefs = scan?.derived_preferences || null;
+  const [prefs, setPrefs] = useState(() => ({
+    ...(derivedPrefs || {}),
+    ...(scan?.preference_overrides || {}),
+  }));
+  const [advancedOpen, setAdvancedOpen] = useState(
+    !!(scan?.preference_overrides && Object.keys(scan.preference_overrides).length)
+  );
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState(null);
 
@@ -934,6 +962,14 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
     // foot_scan_fits with pipeline_stage='rescore' so the worker re-runs
     // matrix scoring against the new fit data. The pipeline_started_at
     // timestamp is reset server-side so ProcessingScreen counts from 0.
+    // Build the sparse preference-override set: only axes the user moved
+    // away from the question-derived default.
+    const prefOverrides = {};
+    if (derivedPrefs) {
+      for (const k of PREF_KEYS) {
+        if (prefs[k] !== derivedPrefs[k]) prefOverrides[k] = prefs[k];
+      }
+    }
     const payload = {
       scan_id: scanId,
       sex,
@@ -943,6 +979,7 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
       environment: environment || null,
       rock_type: environment === "outdoor" ? (rockType || null) : null,
       aggressiveness: aggressiveness || null,
+      preference_overrides: Object.keys(prefOverrides).length ? prefOverrides : null,
     };
     if (streetSize.trim()) {
       const n = Number(streetSize);
@@ -975,6 +1012,39 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
     width: "100%", padding: "0.4rem 0.6rem", fontSize: "0.82rem",
     border: `1px solid ${T.border}`, borderRadius: 6,
     background: "#fff", color: T.text, fontFamily: T.font, boxSizing: "border-box",
+  };
+
+  const nCustomPrefs = derivedPrefs
+    ? PREF_KEYS.filter((k) => prefs[k] !== derivedPrefs[k]).length : 0;
+
+  // One advanced-preference row: label, Auto/Customized status, per-row
+  // reset, and the control.
+  const renderPrefRow = (key, label, control) => {
+    const custom = derivedPrefs && prefs[key] !== derivedPrefs[key];
+    return (
+      <div style={{ marginBottom: "0.7rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
+          <span style={{ fontSize: "0.78rem", fontWeight: 700, color: T.text }}>{label}</span>
+          <span style={{ display: "flex", gap: 8, alignItems: "baseline" }}>
+            <span style={{
+              fontSize: "0.58rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.4,
+              padding: "2px 7px", borderRadius: 999,
+              background: custom ? "rgba(201,138,66,0.13)" : "rgba(61,122,82,0.13)",
+              color: custom ? "#8a5d20" : (T.green || "#3d7a52"),
+            }}>{custom ? "Customized" : "Auto"}</span>
+            {custom && (
+              <button type="button" disabled={saving}
+                onClick={() => setPrefs((p) => ({ ...p, [key]: derivedPrefs[key] }))}
+                style={{ fontSize: "0.68rem", fontWeight: 600, color: T.accent, background: "none",
+                  border: "none", cursor: "pointer", fontFamily: T.font, padding: 0 }}>
+                &#8634; auto
+              </button>
+            )}
+          </span>
+        </div>
+        {control}
+      </div>
+    );
   };
 
   return (
@@ -1116,6 +1186,104 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
             <option value="aggressive">Aggressive performance</option>
           </select>
         </div>
+
+        {/* Advanced preferences - override layer on the V2-derived targets */}
+        {derivedPrefs && (
+          <div style={{ marginBottom: "0.85rem" }}>
+            <button
+              type="button"
+              onClick={() => setAdvancedOpen((o) => !o)}
+              disabled={saving}
+              style={{
+                width: "100%", display: "flex", justifyContent: "space-between",
+                alignItems: "center", background: "#faf8f4",
+                border: `1px solid ${T.border}`,
+                borderRadius: advancedOpen ? "8px 8px 0 0" : 8,
+                padding: "0.5rem 0.7rem", cursor: "pointer", fontFamily: T.font,
+              }}
+            >
+              <span style={{ fontSize: "0.78rem", fontWeight: 700, color: T.text }}>
+                Advanced preferences{nCustomPrefs > 0 ? ` (${nCustomPrefs} customized)` : " (optional)"}
+              </span>
+              <span style={{ fontSize: "1rem", color: T.muted }}>{advancedOpen ? "−" : "+"}</span>
+            </button>
+            {advancedOpen && (
+              <div style={{
+                border: `1px solid ${T.border}`, borderTop: "none",
+                borderRadius: "0 0 8px 8px", padding: "0.85rem 0.7rem",
+              }}>
+                <div style={{ fontSize: "0.72rem", color: T.muted, lineHeight: 1.5, marginBottom: "0.85rem" }}>
+                  Your answers set these automatically. Adjust any directly and we re-score against your choice.
+                </div>
+
+                {renderPrefRow("stiffness", "Stiffness",
+                  <div>
+                    <input
+                      type="range" min="0" max="1" step="0.01" disabled={saving}
+                      value={prefs.stiffness ?? 0.5}
+                      onChange={(e) => setPrefs((p) => ({ ...p, stiffness: Number(e.target.value) }))}
+                      style={{ width: "100%", accentColor: T.accent }}
+                    />
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.62rem", color: "#a8a08e" }}>
+                      <span>soft / sensitive</span><span>stiff / supportive</span>
+                    </div>
+                    <div style={{ fontSize: "0.76rem", fontWeight: 700, color: T.accent, marginTop: 2 }}>
+                      {stiffnessWord(prefs.stiffness ?? 0.5)}
+                    </div>
+                  </div>
+                )}
+
+                {renderPrefRow("downturn", "Downturn",
+                  <SegmentedToggle
+                    value={prefs.downturn} options={DOWNTURN_OPTS}
+                    labels={{ flat: "Flat", slight: "Slight", moderate: "Moderate", aggressive: "Aggressive" }}
+                    onChange={(v) => v && setPrefs((p) => ({ ...p, downturn: v }))}
+                    disabled={saving}
+                  />
+                )}
+
+                {renderPrefRow("asymmetry", "Asymmetry",
+                  <SegmentedToggle
+                    value={prefs.asymmetry} options={ASYM_OPTS}
+                    labels={{ none: "None", slight: "Slight", moderate: "Moderate", strong: "Strong" }}
+                    onChange={(v) => v && setPrefs((p) => ({ ...p, asymmetry: v }))}
+                    disabled={saving}
+                  />
+                )}
+
+                {renderPrefRow("closure", "Closure",
+                  <SegmentedToggle
+                    value={prefs.closure} options={CLOSURE_OPTS} labels={CLOSURE_LABELS}
+                    onChange={(v) => v && setPrefs((p) => ({ ...p, closure: v }))}
+                    disabled={saving}
+                  />
+                )}
+
+                {renderPrefRow("ankle", "Ankle protection",
+                  <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.78rem", color: "#5a5344", cursor: "pointer" }}>
+                    <input
+                      type="checkbox" checked={!!prefs.ankle} disabled={saving}
+                      onChange={(e) => setPrefs((p) => ({ ...p, ankle: e.target.checked }))}
+                      style={{ accentColor: T.accent, width: 16, height: 16 }}
+                    />
+                    {prefs.ankle ? "Prefer a protective higher cuff" : "Standard low-cut shoes"}
+                  </label>
+                )}
+
+                {nCustomPrefs > 0 && (
+                  <button
+                    type="button" disabled={saving}
+                    onClick={() => setPrefs({ ...derivedPrefs })}
+                    style={{ fontSize: "0.72rem", fontWeight: 600, color: T.muted, background: "none",
+                      border: "none", cursor: "pointer", fontFamily: T.font, textDecoration: "underline", padding: 0 }}
+                  >
+                    Reset all to auto
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Shoes editor */}
         <div style={{ marginBottom: "0.85rem" }}>

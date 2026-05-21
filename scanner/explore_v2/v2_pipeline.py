@@ -34,6 +34,7 @@ from target_resolver_v2 import (resolve_targets_v2, _scrub_sizing_artifacts,
                                 _user_dim_rank, _cup_rank)
 from matrix_scorer_v2 import (compute_use_case_target, assemble_tiers,
                               best_price_at_size)
+from combinations_top5 import DOWNTURN_ORDER, ASYM_ORDER
 from interp_what_to_look_for_v2 import generate_what_to_look_for_v2
 from interp_shoe_desc_v2 import flatten_pick, generate_shoe_description_v2
 from interp_foot_shape_v2 import generate_foot_shape
@@ -372,6 +373,81 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
 # Main entry point
 # ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
+# Advanced preferences: an optional user override layer on top of the
+# question-derived target. derive_preferences() snapshots what the four
+# V2 questions produced (the results-page panel renders these as the
+# "auto" defaults); apply_preference_overrides() lays the user's explicit
+# choices on top before scoring.
+# ---------------------------------------------------------------------
+
+_CLOSURE_ALL = {"lace", "velcro", "slipper"}
+
+
+def derive_preferences(target):
+    """Snapshot the five adjustable preferences as the V2 questions
+    derived them, before any user override."""
+    cp = target.get("closure_pref") or set()
+    closure = next(iter(cp)) if len(cp) == 1 else "any"
+    return {
+        "stiffness": round(float(target.get("stiff_target", 0.5)), 3),
+        "downturn":  target.get("target_dt_lbl"),
+        "asymmetry": target.get("target_asym_lbl"),
+        "closure":   closure,
+        "ankle":     bool(target.get("ankle_required")),
+    }
+
+
+def apply_preference_overrides(target, overrides):
+    """Apply the user's explicit preference overrides onto the merged
+    target dict. ``overrides`` is sparse - only customized axes are
+    present. Returns a new dict; the input is not mutated."""
+    if not overrides:
+        return target
+    t = dict(target)
+
+    # Stiffness: recenter the scoring window on the user's value, keeping
+    # the question-derived window width.
+    sv = overrides.get("stiffness")
+    if sv is not None:
+        try:
+            v = max(0.0, min(1.0, float(sv)))
+            width = float(t.get("stiff_hi", 0.6)) - float(t.get("stiff_lo", 0.3))
+            if width <= 0:
+                width = 0.30
+            t["stiff_target"] = v
+            t["stiff_lo"] = max(0.0, v - width / 2)
+            t["stiff_hi"] = min(1.0, v + width / 2)
+        except (TypeError, ValueError):
+            pass
+
+    dt = overrides.get("downturn")
+    if dt in DOWNTURN_ORDER:
+        t["target_dt"] = DOWNTURN_ORDER.index(dt)
+        t["target_dt_lbl"] = dt
+
+    asym = overrides.get("asymmetry")
+    if asym in ASYM_ORDER:
+        t["target_asym"] = ASYM_ORDER.index(asym)
+        t["target_asym_lbl"] = asym
+
+    cl = overrides.get("closure")
+    if cl == "any":
+        t["closure_pref"] = set()
+        t["closure_ok"]   = set(_CLOSURE_ALL)
+        t["closure_bad"]  = set()
+    elif cl in _CLOSURE_ALL:
+        t["closure_pref"] = {cl}
+        t["closure_ok"]   = set(_CLOSURE_ALL) - {cl}
+        t["closure_bad"]  = set()
+
+    av = overrides.get("ankle")
+    if av is not None:
+        t["ankle_required"] = bool(av)
+
+    return t
+
+
 def build_browse_extended(profile, tiers, brand_sizing, price_rows,
                           street_size, pref, top_n=30):
     """Build the browse_extended payload that powers /scan/:id/browse.
@@ -423,7 +499,8 @@ def build_browse_extended(profile, tiers, brand_sizing, price_rows,
 
 
 def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
-                     discipline, environment, rock, aggressiveness):
+                     discipline, environment, rock, aggressiveness,
+                     preference_overrides=None):
     """Run the full V2 pipeline for one scan + preference set.
 
     Parameters
@@ -457,6 +534,10 @@ def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
     fit_target = resolve_targets_v2(profile, profile["shoes"], aggressiveness)
     use_target = compute_use_case_target(discipline, environment, rock, aggressiveness)
     target = {**fit_target, **use_target}
+    # Snapshot what the four questions derived, then lay the user's
+    # explicit preference overrides (if any) on top before scoring.
+    derived_prefs = derive_preferences(target)
+    target = apply_preference_overrides(target, preference_overrides)
     tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows,
                            rec_size_fn=rec_size_fn)
 
@@ -522,4 +603,5 @@ def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
 
     return {"interpretation": interpretation,
             "recommendations": recommendations,
-            "browse_extended": browse_extended}
+            "browse_extended": browse_extended,
+            "derived_preferences": derived_prefs}

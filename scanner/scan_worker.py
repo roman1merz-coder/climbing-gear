@@ -781,9 +781,11 @@ def _generate_recommendations_v2(scan_id, profile, scan_data):
     aggressiveness = scan_data.get("aggressiveness")
     log(f"  V2 pipeline: {discipline} / {environment} / {rock or '-'} / {aggressiveness}")
 
+    preference_overrides = scan_data.get("preference_overrides")
     res = build_v2_results(merged, ed["shoes_db"], ed["price_rows"],
                            ed["brand_sizing"], discipline, environment,
-                           rock, aggressiveness)
+                           rock, aggressiveness,
+                           preference_overrides=preference_overrides)
     interpretation = res["interpretation"]
     recommendations = res["recommendations"]
     log(f"  Generated {len(recommendations)} V2 recommendations across 4 tiers")
@@ -799,6 +801,9 @@ def _generate_recommendations_v2(scan_id, profile, scan_data):
     browse_extended = res.get("browse_extended")
     if browse_extended:
         result_data["browse_extended"] = browse_extended
+    derived_prefs = res.get("derived_preferences")
+    if derived_prefs:
+        result_data["derived_preferences"] = derived_prefs
     scan_recommender.update_scan(scan_id, result_data)
     return len(recommendations)
 
