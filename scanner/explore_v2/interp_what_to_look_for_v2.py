@@ -247,12 +247,20 @@ def _build_p1(profile, target):
 # ─── P2: use-case target ──────────────────────────────────────────────
 
 def _build_p2(profile, target, *, discipline, environment, rock,
-              aggressiveness):
+              aggressiveness, overrides=None):
     if not aggressiveness:
         return None  # no V2 inputs -> P2 doesn't fire
+    has_overrides = bool(overrides)
     disc_phrase = _discipline_phrase(discipline, environment, rock)
     closure_phrase, closure_caveat = _closure_pref(
         discipline, profile.get("instep_height_class"))
+    # An explicit closure override replaces the discipline-derived closure
+    # phrase (and drops the instep caveat - the user made the call).
+    _cl_ov = (overrides or {}).get("closure")
+    if _cl_ov in ("lace", "velcro", "slipper"):
+        closure_phrase = {"lace": "lace-ups", "velcro": "velcros",
+                          "slipper": "slippers"}[_cl_ov]
+        closure_caveat = ""
     stiffness   = _stiffness_word_5(target.get("stiff_target") if target else None)
     downturn    = _downturn_label(target.get("target_dt_lbl") if target else None)
     asymmetry   = _asymmetry_label(target.get("target_asym_lbl") if target else None)
@@ -261,6 +269,14 @@ def _build_p2(profile, target, *, discipline, environment, rock,
     # Article guard: "an aggressive" (vowel sound), "a balanced" / "a comfort"
     # / "a moderate" (consonant). Roman 2026-05-01 audit S1.
     article = "an" if aggressiveness[:1].lower() in "aeiou" else "a"
+    if has_overrides:
+        # The user adjusted the preferences directly; attribute the target
+        # to that rather than to the discipline questions.
+        return (
+            f"Based on your custom preferences, we prioritize {stiffness} "
+            f"{closure_phrase}{closure_caveat} with {downturn} and "
+            f"{asymmetry}{asym_cav}{ankle}."
+        )
     return (
         f"Given your preference for {disc_phrase} and {article} {aggressiveness} "
         f"fit, we prioritize {stiffness} {closure_phrase}{closure_caveat} "
@@ -386,6 +402,7 @@ def generate_what_to_look_for_v2(
     rock=None,
     aggressiveness=None,
     target=None,
+    preference_overrides=None,
 ):
     """3-paragraph generator. Locked design Roman 2026-04-30.
 
@@ -410,7 +427,8 @@ def generate_what_to_look_for_v2(
 
     p2 = _build_p2(profile, target, discipline=discipline,
                    environment=environment, rock=rock,
-                   aggressiveness=aggressiveness)
+                   aggressiveness=aggressiveness,
+                   overrides=preference_overrides)
     if p2:
         paragraphs.append(p2)
 

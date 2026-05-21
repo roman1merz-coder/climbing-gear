@@ -538,6 +538,14 @@ def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
     # explicit preference overrides (if any) on top before scoring.
     derived_prefs = derive_preferences(target)
     target = apply_preference_overrides(target, preference_overrides)
+    # A closure override is a hard constraint: restrict the shoe pool to the
+    # chosen closure so the override fully overwrites the derived closure
+    # preference (build_profile already ran on the full db, so the user's
+    # own current-shoe lookup is unaffected).
+    _cl = (preference_overrides or {}).get("closure")
+    if _cl in ("lace", "velcro", "slipper"):
+        shoes_db = [s for s in shoes_db
+                    if str(s.get("closure") or "").strip().lower() == _cl]
     tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows,
                            rec_size_fn=rec_size_fn)
 
@@ -550,7 +558,8 @@ def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
          "paragraphs": list(generate_what_to_look_for_v2(
              profile, profile["shoes"],
              discipline=discipline, environment=environment,
-             rock=rock, aggressiveness=aggressiveness, target=target))},
+             rock=rock, aggressiveness=aggressiveness, target=target,
+             preference_overrides=preference_overrides))},
     ]
 
     # Flat all-picks list for peer-suppression in P3.

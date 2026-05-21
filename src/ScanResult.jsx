@@ -645,6 +645,18 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
         .map((s) => String(s).replace(/_/g, " "))
         .join(" · ")
     : null;
+  // When the user set explicit preference overrides, surface those in the
+  // panel in place of the climbing-discipline summary.
+  const ov = (scan.preference_overrides && typeof scan.preference_overrides === "object")
+    ? scan.preference_overrides : null;
+  const customPrefSummary = ov
+    ? PREF_KEYS.filter((k) => ov[k] != null).map((k) => {
+        if (k === "stiffness") return stiffnessWord(ov.stiffness).toLowerCase();
+        if (k === "closure") return (CLOSURE_LABELS[ov.closure] || ov.closure).toLowerCase();
+        if (k === "ankle") return ov.ankle ? "ankle protection" : "no ankle protection";
+        return `${ov[k]} ${k}`;
+      }).join(" · ")
+    : null;
   const sex = scan.sex ? scan.sex.charAt(0).toUpperCase() + scan.sex.slice(1) : "Not specified";
   const size = scan.street_size_eu != null ? `EU ${scan.street_size_eu}` : "Not specified";
 
@@ -699,7 +711,12 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
         <span style={keyStyle}>Street size</span>
         <span style={{ color: T.text }}>{size}</span>
       </div>
-      {v2Summary ? (
+      {customPrefSummary ? (
+        <div style={rowStyle}>
+          <span style={keyStyle}>Preferences</span>
+          <span style={{ color: T.text, textTransform: "capitalize" }}>{customPrefSummary}</span>
+        </div>
+      ) : v2Summary ? (
         <div style={rowStyle}>
           <span style={keyStyle}>Climbing</span>
           <span style={{ color: T.text, textTransform: "capitalize" }}>{v2Summary}</span>
@@ -2084,15 +2101,9 @@ export default function ScanResult({ shoes }) {
 
       {/* ── Header ── */}
       <div style={{ textAlign: "center", marginBottom: "1.2rem" }}>
-        <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 2, color: T.accent, marginBottom: 6 }}>
-          climbing-gear.com
-        </div>
         <h1 style={{ fontSize: mobile ? 22 : 28, fontWeight: 800, color: T.text, letterSpacing: -0.5, margin: 0 }}>
-          Your Foot Profile
+          Your Scan Results
         </h1>
-        <div style={{ fontSize: 13, color: T.muted, marginTop: 4 }}>
-          Scan analysis - sole &amp; side view
-        </div>
       </div>
 
       {/* ── Share + Email capture ── */}
