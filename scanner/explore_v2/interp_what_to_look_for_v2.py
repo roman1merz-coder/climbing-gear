@@ -257,9 +257,12 @@ def _build_p2(profile, target, *, discipline, environment, rock,
     # An explicit closure override replaces the discipline-derived closure
     # phrase (and drops the instep caveat - the user made the call).
     _cl_ov = (overrides or {}).get("closure")
-    if _cl_ov in ("lace", "velcro", "slipper"):
-        closure_phrase = {"lace": "lace-ups", "velcro": "velcros",
-                          "slipper": "slippers"}[_cl_ov]
+    if isinstance(_cl_ov, str):
+        _cl_ov = [_cl_ov]
+    _cl_list = [c for c in (_cl_ov or []) if c in ("lace", "velcro", "slipper")]
+    if _cl_list:
+        _ph = {"lace": "lace-ups", "velcro": "velcros", "slipper": "slippers"}
+        closure_phrase = " or ".join(_ph[c] for c in _cl_list)
         closure_caveat = ""
     stiffness   = _stiffness_word_5(target.get("stiff_target") if target else None)
     downturn    = _downturn_label(target.get("target_dt_lbl") if target else None)

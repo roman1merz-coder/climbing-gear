@@ -45,6 +45,19 @@ const POP = {
 const HVA_BOUNDS = { mild_lo: 0.28, pronounced_lo: 0.35 };
 const ACCENT_DARK = "#8a5d20";
 
+// Shared style for the page's interactive controls (Share, Edit, Retake,
+// "Check details and availability"). One outlined-accent look so every
+// clickable element reads unambiguously as a button/link.
+const ACTION_BTN = {
+  display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
+  padding: "0.4rem 0.85rem", fontSize: "0.78rem", fontWeight: 700,
+  fontFamily: T.font, lineHeight: 1.2, whiteSpace: "nowrap",
+  border: `1.5px solid ${T.accent}`, borderRadius: 8,
+  background: "transparent", color: T.accent,
+  cursor: "pointer", letterSpacing: 0.2,
+  transition: "background 0.15s, color 0.15s, border-color 0.15s",
+};
+
 // Labels only. Visual min/max are derived below as mean ± 3σ from POP,
 // so the outer band edges track real population spread instead of hand-
 // picked cutoffs. Keeps the slider in sync with the single source of truth.
@@ -282,9 +295,8 @@ function ShoeCard({ slug, brand, model, description, why, tradeoffs, imageUrl, r
             <div style={{ fontSize: "0.73rem", color: "#8a7e6e", lineHeight: 1.5, fontStyle: "italic", marginTop: "0.3rem" }}>{tradeoffs}</div>
           )}
           <div style={{
-            marginTop: "0.6rem", padding: "0.45rem 0", textAlign: "center",
-            fontSize: "0.75rem", fontWeight: 600, color: T.accent,
-            border: `1px solid ${T.accent}`, borderRadius: 6,
+            ...ACTION_BTN,
+            display: "flex", width: "100%", marginTop: "0.6rem",
           }}>
             Check details and availability
           </div>
@@ -385,14 +397,14 @@ function ShareCard({ scanId }) {
       <button
         onClick={handleShare}
         style={{
-          padding: "8px 14px", border: "none", borderRadius: 10,
-          background: status === "copied" ? "#6b8f5e" : "#c98a42",
-          color: "#fff", fontSize: "0.8rem", fontWeight: 700,
-          cursor: "pointer", fontFamily: "inherit", flexShrink: 0,
-          transition: "background 0.3s",
+          ...ACTION_BTN,
+          flexShrink: 0,
+          ...(status === "copied"
+            ? { borderColor: T.green, color: T.green }
+            : {}),
         }}
       >
-        {status === "copied" ? "Copied" : "Share"}
+        {status === "copied" ? "Copied" : "Share results"}
       </button>
     </div>
   );
@@ -604,8 +616,25 @@ const FIT_LABELS = { tight: "Tight", perfect: "Perfect", loose: "Loose" };
 const PREF_KEYS = ["stiffness", "downturn", "asymmetry", "closure", "ankle"];
 const DOWNTURN_OPTS = ["flat", "slight", "moderate", "aggressive"];
 const ASYM_OPTS = ["none", "slight", "moderate", "strong"];
-const CLOSURE_OPTS = ["lace", "velcro", "slipper", "any"];
+const CLOSURE_OPTS = ["lace", "velcro", "slipper"];
 const CLOSURE_LABELS = { lace: "Laces", velcro: "Velcro", slipper: "Slipper", any: "No preference" };
+
+// Closure overrides are multi-select: 1-2 of lace/velcro/slipper. Normalize
+// any stored shape (array, single string, legacy "any", null) to a clean
+// array of valid closure values.
+function closureArr(c) {
+  const raw = Array.isArray(c) ? c : (c == null ? [] : [c]);
+  return raw.filter((x) => x === "lace" || x === "velcro" || x === "slipper");
+}
+// Equality test for one preference axis. Closure compares order-independently
+// as a set; every other axis is a plain scalar compare.
+function prefEq(key, a, b) {
+  if (key === "closure") {
+    const x = closureArr(a), y = closureArr(b);
+    return x.length === y.length && x.every((v) => y.includes(v));
+  }
+  return a === b;
+}
 function stiffnessWord(v) {
   if (v < 0.15) return "Super sensitive";
   if (v < 0.25) return "Very sensitive";
@@ -652,7 +681,12 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
   const customPrefSummary = ov
     ? PREF_KEYS.filter((k) => ov[k] != null).map((k) => {
         if (k === "stiffness") return stiffnessWord(ov.stiffness).toLowerCase();
-        if (k === "closure") return (CLOSURE_LABELS[ov.closure] || ov.closure).toLowerCase();
+        if (k === "closure") {
+          const cl = closureArr(ov.closure);
+          return cl.length
+            ? cl.map((c) => (CLOSURE_LABELS[c] || c).toLowerCase()).join(" / ")
+            : "any closure";
+        }
         if (k === "ankle") return ov.ankle ? "ankle protection" : "no ankle protection";
         return `${ov[k]} ${k}`;
       }).join(" · ")
@@ -689,16 +723,13 @@ function UserInputsPanel({ scan, onEdit, disabled }) {
             onClick={onEdit}
             disabled={disabled}
             style={{
-              fontSize: "0.72rem", fontWeight: 700,
-              padding: "0.25rem 0.7rem", borderRadius: 6,
-              border: `1px solid ${T.accent}`,
-              background: "transparent", color: T.accent,
+              ...ACTION_BTN,
+              padding: "0.3rem 0.8rem", fontSize: "0.74rem",
               cursor: disabled ? "not-allowed" : "pointer",
               opacity: disabled ? 0.5 : 1,
-              textTransform: "uppercase", letterSpacing: 0.5,
             }}
           >
-            Edit
+            Edit inputs
           </button>
         )}
       </div>
@@ -795,17 +826,14 @@ function RetakeLink({ onClick, disabled }) {
       disabled={disabled}
       title={disabled ? "Wait for current processing to finish" : "Retake this photo"}
       style={{
-        padding: "0.25rem 0.55rem",
-        fontSize: "0.7rem", fontWeight: 700,
-        background: "transparent",
-        border: `1px solid ${T.border}`, borderRadius: 6,
-        color: disabled ? T.muted : T.accent,
-        cursor: disabled ? "not-allowed" : "pointer",
-        textTransform: "uppercase", letterSpacing: 0.5,
-        opacity: disabled ? 0.55 : 1,
+        ...ACTION_BTN,
+        padding: "0.3rem 0.7rem", fontSize: "0.72rem",
+        ...(disabled
+          ? { borderColor: T.border, color: T.muted, cursor: "not-allowed", opacity: 0.6 }
+          : {}),
       }}
     >
-      Retake
+      Retake photo
     </button>
   );
 }
@@ -877,10 +905,24 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
   // the current (possibly overridden) set. A control is "Customized" when
   // its value differs from the derived default.
   const derivedPrefs = scan?.derived_preferences || null;
-  const [prefs, setPrefs] = useState(() => ({
-    ...(derivedPrefs || {}),
-    ...(scan?.preference_overrides || {}),
-  }));
+  const [prefs, setPrefs] = useState(() => {
+    const merged = { ...(derivedPrefs || {}), ...(scan?.preference_overrides || {}) };
+    // closure is multi-select - always carry it as a normalized array
+    merged.closure = closureArr(merged.closure);
+    return merged;
+  });
+  // Toggle one closure chip. Capped at 2 (adding a third drops the oldest);
+  // once at least one is picked it never collapses to zero - use the
+  // per-row "auto" reset to go back to the question-derived closure.
+  const toggleClosure = (c) => setPrefs((p) => {
+    const cur = closureArr(p.closure);
+    if (cur.includes(c)) {
+      const next = cur.filter((x) => x !== c);
+      return next.length === 0 ? p : { ...p, closure: next };
+    }
+    const next = cur.length >= 2 ? [cur[cur.length - 1], c] : [...cur, c];
+    return { ...p, closure: next };
+  });
   const [advancedOpen, setAdvancedOpen] = useState(
     !!(scan?.preference_overrides && Object.keys(scan.preference_overrides).length)
   );
@@ -984,7 +1026,9 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
     const prefOverrides = {};
     if (derivedPrefs) {
       for (const k of PREF_KEYS) {
-        if (prefs[k] !== derivedPrefs[k]) prefOverrides[k] = prefs[k];
+        if (!prefEq(k, prefs[k], derivedPrefs[k])) {
+          prefOverrides[k] = k === "closure" ? closureArr(prefs[k]) : prefs[k];
+        }
       }
     }
     const payload = {
@@ -1032,12 +1076,12 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
   };
 
   const nCustomPrefs = derivedPrefs
-    ? PREF_KEYS.filter((k) => prefs[k] !== derivedPrefs[k]).length : 0;
+    ? PREF_KEYS.filter((k) => !prefEq(k, prefs[k], derivedPrefs[k])).length : 0;
 
   // One advanced-preference row: label, Auto/Customized status, per-row
   // reset, and the control.
   const renderPrefRow = (key, label, control) => {
-    const custom = derivedPrefs && prefs[key] !== derivedPrefs[key];
+    const custom = derivedPrefs && !prefEq(key, prefs[key], derivedPrefs[key]);
     return (
       <div style={{ marginBottom: "0.7rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
@@ -1051,7 +1095,10 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
             }}>{custom ? "Customized" : "Auto"}</span>
             {custom && (
               <button type="button" disabled={saving}
-                onClick={() => setPrefs((p) => ({ ...p, [key]: derivedPrefs[key] }))}
+                onClick={() => setPrefs((p) => ({
+                  ...p,
+                  [key]: key === "closure" ? closureArr(derivedPrefs[key]) : derivedPrefs[key],
+                }))}
                 style={{ fontSize: "0.68rem", fontWeight: 600, color: T.accent, background: "none",
                   border: "none", cursor: "pointer", fontFamily: T.font, padding: 0 }}>
                 &#8634; auto
@@ -1269,11 +1316,32 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
                 )}
 
                 {renderPrefRow("closure", "Closure",
-                  <SegmentedToggle
-                    value={prefs.closure} options={CLOSURE_OPTS} labels={CLOSURE_LABELS}
-                    onChange={(v) => v && setPrefs((p) => ({ ...p, closure: v }))}
-                    disabled={saving}
-                  />
+                  <div>
+                    <div style={{ display: "flex", gap: 4 }}>
+                      {CLOSURE_OPTS.map((c) => {
+                        const active = closureArr(prefs.closure).includes(c);
+                        return (
+                          <button
+                            key={c} type="button" disabled={saving}
+                            onClick={() => toggleClosure(c)}
+                            style={{
+                              flex: 1, padding: "0.35rem 0.5rem",
+                              fontSize: "0.72rem", fontWeight: 700,
+                              border: `1px solid ${active ? T.accent : T.border}`,
+                              background: active ? T.accent : "#fff",
+                              color: active ? "#fff" : T.text,
+                              borderRadius: 6, cursor: saving ? "not-allowed" : "pointer",
+                            }}
+                          >
+                            {CLOSURE_LABELS[c]}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div style={{ fontSize: "0.62rem", color: "#a8a08e", marginTop: 4 }}>
+                      Pick one or two. Recommendations will only include shoes with the chosen closures.
+                    </div>
+                  </div>
                 )}
 
                 {renderPrefRow("ankle", "Ankle protection",
@@ -1290,7 +1358,7 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
                 {nCustomPrefs > 0 && (
                   <button
                     type="button" disabled={saving}
-                    onClick={() => setPrefs({ ...derivedPrefs })}
+                    onClick={() => setPrefs({ ...derivedPrefs, closure: closureArr(derivedPrefs.closure) })}
                     style={{ fontSize: "0.72rem", fontWeight: 600, color: T.muted, background: "none",
                       border: "none", cursor: "pointer", fontFamily: T.font, textDecoration: "underline", padding: 0 }}
                   >

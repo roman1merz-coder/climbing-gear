@@ -388,7 +388,7 @@ def derive_preferences(target):
     """Snapshot the five adjustable preferences as the V2 questions
     derived them, before any user override."""
     cp = target.get("closure_pref") or set()
-    closure = next(iter(cp)) if len(cp) == 1 else "any"
+    closure = sorted(c for c in cp if c)  # multi-select: list of closures
     return {
         "stiffness": round(float(target.get("stiff_target", 0.5)), 3),
         "downturn":  target.get("target_dt_lbl"),
@@ -432,14 +432,14 @@ def apply_preference_overrides(target, overrides):
         t["target_asym_lbl"] = asym
 
     cl = overrides.get("closure")
-    if cl == "any":
-        t["closure_pref"] = set()
-        t["closure_ok"]   = set(_CLOSURE_ALL)
-        t["closure_bad"]  = set()
-    elif cl in _CLOSURE_ALL:
-        t["closure_pref"] = {cl}
-        t["closure_ok"]   = set(_CLOSURE_ALL) - {cl}
-        t["closure_bad"]  = set()
+    if isinstance(cl, str):  # tolerate a legacy single-value string
+        cl = [] if cl in ("any", "") else [cl]
+    if isinstance(cl, list):
+        chosen = {c for c in cl if c in _CLOSURE_ALL}
+        if chosen:
+            t["closure_pref"] = chosen
+            t["closure_ok"]   = set()
+            t["closure_bad"]  = set(_CLOSURE_ALL) - chosen
 
     av = overrides.get("ankle")
     if av is not None:
@@ -543,9 +543,12 @@ def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
     # preference (build_profile already ran on the full db, so the user's
     # own current-shoe lookup is unaffected).
     _cl = (preference_overrides or {}).get("closure")
-    if _cl in ("lace", "velcro", "slipper"):
+    if isinstance(_cl, str):
+        _cl = [_cl]
+    _cl_set = {c for c in (_cl or []) if c in ("lace", "velcro", "slipper")}
+    if _cl_set:
         shoes_db = [s for s in shoes_db
-                    if str(s.get("closure") or "").strip().lower() == _cl]
+                    if str(s.get("closure") or "").strip().lower() in _cl_set]
     tiers = assemble_tiers(profile, shoes_db, target, price_rows=price_rows,
                            rec_size_fn=rec_size_fn)
 
