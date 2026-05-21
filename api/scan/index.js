@@ -167,11 +167,12 @@ function validatePreferenceOverrides(raw) {
       if (!ASYMMETRY_VALUES.has(v)) return { error: "Invalid asymmetry override" };
       out.asymmetry = v;
     } else if (k === "closure") {
-      // closure is multi-select: an array of 1-2 of lace/velcro/slipper.
+      // closure is multi-select: an array of 0-2 of lace/velcro/slipper.
+      // An explicit empty array means "no closure preference".
       const arr = [...new Set((Array.isArray(v) ? v : [v])
         .filter((x) => x === "lace" || x === "velcro" || x === "slipper"))];
-      if (arr.length < 1 || arr.length > 2) {
-        return { error: "closure override must be 1 or 2 of lace, velcro, slipper" };
+      if (arr.length > 2) {
+        return { error: "closure override must be at most 2 of lace, velcro, slipper" };
       }
       out.closure = arr;
     } else if (k === "ankle") {

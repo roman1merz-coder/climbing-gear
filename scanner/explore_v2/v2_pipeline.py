@@ -440,6 +440,12 @@ def apply_preference_overrides(target, overrides):
             t["closure_pref"] = chosen
             t["closure_ok"]   = set()
             t["closure_bad"]  = set(_CLOSURE_ALL) - chosen
+        else:
+            # Explicit empty list = "no closure preference": clear any
+            # discipline-derived closure bias so every closure scores 0.
+            t["closure_pref"] = set()
+            t["closure_ok"]   = set(_CLOSURE_ALL)
+            t["closure_bad"]  = set()
 
     av = overrides.get("ankle")
     if av is not None:

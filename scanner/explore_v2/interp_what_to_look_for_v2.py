@@ -255,15 +255,21 @@ def _build_p2(profile, target, *, discipline, environment, rock,
     closure_phrase, closure_caveat = _closure_pref(
         discipline, profile.get("instep_height_class"))
     # An explicit closure override replaces the discipline-derived closure
-    # phrase (and drops the instep caveat - the user made the call).
+    # phrase (and drops the instep caveat - the user made the call). An
+    # explicit empty override means "no closure preference".
     _cl_ov = (overrides or {}).get("closure")
     if isinstance(_cl_ov, str):
-        _cl_ov = [_cl_ov]
-    _cl_list = [c for c in (_cl_ov or []) if c in ("lace", "velcro", "slipper")]
-    if _cl_list:
-        _ph = {"lace": "lace-ups", "velcro": "velcros", "slipper": "slippers"}
-        closure_phrase = " or ".join(_ph[c] for c in _cl_list)
-        closure_caveat = ""
+        _cl_ov = [] if _cl_ov in ("any", "") else [_cl_ov]
+    if isinstance(_cl_ov, list):
+        _cl_list = [c for c in _cl_ov if c in ("lace", "velcro", "slipper")]
+        if _cl_list:
+            _ph = {"lace": "lace-ups", "velcro": "velcros", "slipper": "slippers"}
+            closure_phrase = " or ".join(_ph[c] for c in _cl_list)
+            closure_caveat = ""
+        else:
+            # explicit "no closure preference" - do not name a closure type
+            closure_phrase = "shoes"
+            closure_caveat = ""
     stiffness   = _stiffness_word_5(target.get("stiff_target") if target else None)
     downturn    = _downturn_label(target.get("target_dt_lbl") if target else None)
     asymmetry   = _asymmetry_label(target.get("target_asym_lbl") if target else None)

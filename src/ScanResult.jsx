@@ -911,14 +911,14 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
     merged.closure = closureArr(merged.closure);
     return merged;
   });
-  // Toggle one closure chip. Capped at 2 (adding a third drops the oldest);
-  // once at least one is picked it never collapses to zero - use the
-  // per-row "auto" reset to go back to the question-derived closure.
+  // Toggle one closure chip. Capped at 2 (adding a third drops the oldest).
+  // The "any" chip clears the selection ("No preference"); deselecting the
+  // last real closure also lands on "No preference" (empty array).
   const toggleClosure = (c) => setPrefs((p) => {
+    if (c === "any") return { ...p, closure: [] };
     const cur = closureArr(p.closure);
     if (cur.includes(c)) {
-      const next = cur.filter((x) => x !== c);
-      return next.length === 0 ? p : { ...p, closure: next };
+      return { ...p, closure: cur.filter((x) => x !== c) };
     }
     const next = cur.length >= 2 ? [cur[cur.length - 1], c] : [...cur, c];
     return { ...p, closure: next };
@@ -1318,15 +1318,16 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
                 {renderPrefRow("closure", "Closure",
                   <div>
                     <div style={{ display: "flex", gap: 4 }}>
-                      {CLOSURE_OPTS.map((c) => {
-                        const active = closureArr(prefs.closure).includes(c);
+                      {[...CLOSURE_OPTS, "any"].map((c) => {
+                        const sel = closureArr(prefs.closure);
+                        const active = c === "any" ? sel.length === 0 : sel.includes(c);
                         return (
                           <button
                             key={c} type="button" disabled={saving}
                             onClick={() => toggleClosure(c)}
                             style={{
-                              flex: 1, padding: "0.35rem 0.5rem",
-                              fontSize: "0.72rem", fontWeight: 700,
+                              flex: 1, padding: "0.35rem 0.3rem",
+                              fontSize: "0.7rem", fontWeight: 700,
                               border: `1px solid ${active ? T.accent : T.border}`,
                               background: active ? T.accent : "#fff",
                               color: active ? "#fff" : T.text,
@@ -1339,7 +1340,7 @@ function EditInputsModal({ scan, scanId, onClose, onSaved }) {
                       })}
                     </div>
                     <div style={{ fontSize: "0.62rem", color: "#a8a08e", marginTop: 4 }}>
-                      Pick one or two. Recommendations will only include shoes with the chosen closures.
+                      Pick one or two closures, or No preference. With a closure set, recommendations only include shoes that match.
                     </div>
                   </div>
                 )}
