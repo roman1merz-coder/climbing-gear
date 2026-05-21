@@ -38,14 +38,14 @@
     },
     {
       "best_offer": {
-        "price_eur": 259.7
+        "price_eur": 99.99
       },
       "brand": "Scarpa",
       "category": "baseline",
       "description": "Lace-up with Roman toe form, medium fit throughout. 4mm Vibram XS Edge rubber with a full, hard midsole, resulting in a very firm shoe with flat profile and slight asymmetry.",
-      "model": "Maestro Alpine",
+      "model": "Maestro Mid Eco",
       "recommended_size_eu": 43.0,
-      "slug": "scarpa-maestro-alpine",
+      "slug": "scarpa-maestro-mid-eco",
       "tradeoffs": "Tradeoff: Slightly tighter in the heel and slightly more asymmetric than we target.",
       "why": null
     },
@@ -63,15 +63,12 @@
       "why": null
     },
     {
-      "best_offer": {
-        "price_eur": 99.99
-      },
       "brand": "Scarpa",
       "category": "softer",
       "description": "Lace-up with Roman toe form, medium fit throughout. 4mm Vibram XS Edge rubber with a full, hard midsole, resulting in a very firm shoe with flat profile and slight asymmetry.",
-      "model": "Maestro Mid Eco",
+      "model": "Maestro Alpine",
       "recommended_size_eu": 43.0,
-      "slug": "scarpa-maestro-mid-eco",
+      "slug": "scarpa-maestro-alpine",
       "tradeoffs": "Tradeoff: Slightly tighter in the heel and slightly more asymmetric than we target.",
       "why": null
     },

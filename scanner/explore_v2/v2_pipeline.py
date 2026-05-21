@@ -372,6 +372,56 @@ def _shoe_fit_with_artifact_filter(profile, target=None):
 # Main entry point
 # ---------------------------------------------------------------------
 
+def build_browse_extended(profile, tiers, brand_sizing, price_rows,
+                          street_size, pref, top_n=30):
+    """Build the browse_extended payload that powers /scan/:id/browse.
+
+    Top-N picks per tier ranked by V2 scanner score (budget tier ranked
+    cheapest-first instead). The shape matches what scan-browse.html
+    consumes: {"tiers": {baseline/softer/stiffer/budget: [pick, ...]}},
+    where each pick carries slug / brand / model / recommended_size_eu
+    (plus score / toe_form / feel, kept for parity with the V1 payload).
+    """
+    def _rec(brand):
+        return calc_rec_size(profile.get("shoes"), brand, brand_sizing,
+                             street_size, pref)
+
+    def _pick(sc, sh):
+        return {
+            "slug":  sh.get("slug"),
+            "brand": sh.get("brand"),
+            "model": sh.get("model"),
+            "score": sc.get("score"),
+            "recommended_size_eu": _rec(sh.get("brand")),
+            "toe_form": sh.get("toe_form"),
+            "feel": sh.get("feel"),
+        }
+
+    def _topn(scored):
+        return [_pick(sc, sh) for sc, sh in (scored or [])[:top_n]]
+
+    # Budget browse: the baseline-scored pool re-ranked cheapest-first,
+    # restricted to shoes that have a price at the user's recommended size.
+    budget = []
+    for sc, sh in (tiers.get("scored_baseline") or [])[:80]:
+        rs = _rec(sh.get("brand"))
+        price = (best_price_at_size(sh.get("slug"), rs, price_rows)
+                 if rs is not None else None)
+        if price is not None:
+            budget.append((price, sc, sh))
+    budget.sort(key=lambda x: x[0])
+    budget_picks = [_pick(sc, sh) for _p, sc, sh in budget[:top_n]]
+
+    return {
+        "tiers": {
+            "baseline": _topn(tiers.get("scored_baseline")),
+            "softer":   _topn(tiers.get("scored_softer")),
+            "stiffer":  _topn(tiers.get("scored_stiffer")),
+            "budget":   budget_picks,
+        },
+    }
+
+
 def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
                      discipline, environment, rock, aggressiveness):
     """Run the full V2 pipeline for one scan + preference set.
@@ -467,4 +517,9 @@ def build_v2_results(scan, shoes_db, price_rows, brand_sizing,
                 rec["best_offer"] = {"price_eur": round(float(best_price), 2)}
             recommendations.append(rec)
 
-    return {"interpretation": interpretation, "recommendations": recommendations}
+    browse_extended = build_browse_extended(profile, tiers, brand_sizing,
+                                            price_rows, street_size, pref)
+
+    return {"interpretation": interpretation,
+            "recommendations": recommendations,
+            "browse_extended": browse_extended}

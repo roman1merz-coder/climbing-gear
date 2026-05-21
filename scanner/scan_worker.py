@@ -796,6 +796,9 @@ def _generate_recommendations_v2(scan_id, profile, scan_data):
         result_data["interpretation"] = interpretation
     if recommendations:
         result_data["recommendations"] = recommendations
+    browse_extended = res.get("browse_extended")
+    if browse_extended:
+        result_data["browse_extended"] = browse_extended
     scan_recommender.update_scan(scan_id, result_data)
     return len(recommendations)
 

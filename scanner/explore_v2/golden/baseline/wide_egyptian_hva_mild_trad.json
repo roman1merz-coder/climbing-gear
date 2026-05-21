@@ -47,14 +47,14 @@
     },
     {
       "best_offer": {
-        "price_eur": 259.7
+        "price_eur": 99.99
       },
       "brand": "Scarpa",
       "category": "baseline",
       "description": "Lace-up with Roman toe form, medium fit throughout. 4mm Vibram XS Edge rubber with a full, hard midsole, resulting in a very firm shoe with flat profile and slight asymmetry.",
-      "model": "Maestro Alpine",
+      "model": "Maestro Mid Eco",
       "recommended_size_eu": 42.5,
-      "slug": "scarpa-maestro-alpine",
+      "slug": "scarpa-maestro-mid-eco",
       "tradeoffs": "Tradeoffs: Roman toe form might not be a perfect fit for your Egyptian toe, and slightly narrower in the forefoot, slightly tighter in the heel, slightly more asymmetric, and slightly softer than we target.",
       "why": null
     },
@@ -111,19 +111,6 @@
       "why": null
     },
     {
-      "best_offer": {
-        "price_eur": 99.99
-      },
-      "brand": "Scarpa",
-      "category": "stiffer",
-      "description": "Lace-up with Roman toe form, medium fit throughout. 4mm Vibram XS Edge rubber with a full, hard midsole, resulting in a very firm shoe with flat profile and slight asymmetry.",
-      "model": "Maestro Mid Eco",
-      "recommended_size_eu": 42.5,
-      "slug": "scarpa-maestro-mid-eco",
-      "tradeoffs": "Tradeoffs: Roman toe form might not be a perfect fit for your Egyptian toe, and slightly narrower in the forefoot, slightly tighter in the heel, slightly more asymmetric, and slightly softer than we target.",
-      "why": null
-    },
-    {
       "brand": "Andrea Boldrini",
       "category": "stiffer",
       "description": "Lace-up with Egyptian toe form, medium fit throughout. 4.5mm Formula Tractor rubber with a full, medium midsole, resulting in a balanced-stiffness shoe with flat profile and slight asymmetry.",
@@ -131,6 +118,19 @@
       "recommended_size_eu": 42.5,
       "slug": "andrea-boldrini-lynx",
       "tradeoffs": "Tradeoff: Slightly narrower in the forefoot, slightly tighter in the heel, slightly more asymmetric, and softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
+        "price_eur": 143.26
+      },
+      "brand": "Unparallel",
+      "category": "stiffer",
+      "description": "Lace-up with Egyptian toe form, medium fit throughout. 4.2mm UP RH rubber with a full, medium-hard midsole, resulting in a firm shoe with flat profile and slight asymmetry.",
+      "model": "Up Lace",
+      "recommended_size_eu": 43.5,
+      "slug": "unparallel-up-lace",
+      "tradeoffs": "Tradeoff: Slightly narrower in the forefoot, slightly tighter in the heel, slightly more asymmetric, and slightly softer than we target.",
       "why": null
     },
     {

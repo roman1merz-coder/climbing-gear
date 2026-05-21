@@ -630,6 +630,8 @@ def assemble_tiers(profile, shoes_db, target, price_rows=None, rec_size_fn=None)
         "stiffer":         stiffer,
         "budget":          budget,
         "scored_baseline": baseline_scored,
+        "scored_softer":   softer_scored,
+        "scored_stiffer":  stiffer_scored,
     }
 
 

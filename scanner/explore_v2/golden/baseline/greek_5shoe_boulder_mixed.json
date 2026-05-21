@@ -156,15 +156,15 @@
     },
     {
       "best_offer": {
-        "price_eur": 103.95
+        "price_eur": 104.99
       },
-      "brand": "Evolv",
+      "brand": "Millet",
       "category": "budget",
-      "description": "Slipper with Egyptian toe form, narrow forefoot and a medium heel cup. 4.2mm TRAX SAS rubber with a full, soft midsole, resulting in a medium-soft shoe with moderate downturn and slight asymmetry. At EUR 104, a strong-value pick.",
-      "model": "Rave",
-      "recommended_size_eu": 41.0,
-      "slug": "evolv-rave",
-      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly narrower in the forefoot than we target.",
+      "description": "Velcro with Egyptian toe form, medium forefoot and a narrow heel cup. 4mm 4PointsGrip Plus rubber with a partial, soft midsole, resulting in a soft shoe with moderate downturn and slight asymmetry. At EUR 105, a strong-value pick.",
+      "model": "Siurana Evo",
+      "recommended_size_eu": 40.0,
+      "slug": "millet-siurana-evo",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Greek toe, and slightly tighter in the heel and slightly softer than we target.",
       "why": null
     }
   ]

@@ -132,6 +132,19 @@
     },
     {
       "best_offer": {
+        "price_eur": 75.01
+      },
+      "brand": "Ocun",
+      "category": "budget",
+      "description": "Lace-up with Egyptian toe form, wide fit throughout. 4mm CAT 1.5 rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with flat profile and moderate asymmetry. At EUR 75, a strong-value pick.",
+      "model": "Jett LU",
+      "recommended_size_eu": 41.5,
+      "slug": "ocun-jett-lu",
+      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Roman toe, and wider in the forefoot, more asymmetric, and slightly softer than we target.",
+      "why": null
+    },
+    {
+      "best_offer": {
         "price_eur": 76.49
       },
       "brand": "La Sportiva",
@@ -141,19 +154,6 @@
       "recommended_size_eu": 39.5,
       "slug": "la-sportiva-tarantulace-mens",
       "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Roman toe, and slightly wider in the forefoot, slightly tighter in the heel, and slightly softer than we target.",
-      "why": null
-    },
-    {
-      "best_offer": {
-        "price_eur": 76.9
-      },
-      "brand": "Ocun",
-      "category": "budget",
-      "description": "Lace-up with Egyptian toe form, wide fit throughout. 4mm CAT 1.5 rubber with a full, medium-hard midsole, resulting in a medium-firm shoe with flat profile and moderate asymmetry. At EUR 77, a strong-value pick.",
-      "model": "Jett LU",
-      "recommended_size_eu": 41.5,
-      "slug": "ocun-jett-lu",
-      "tradeoffs": "Tradeoffs: Egyptian toe form might not be a perfect fit for your Roman toe, and wider in the forefoot, more asymmetric, and slightly softer than we target.",
       "why": null
     },
     {
